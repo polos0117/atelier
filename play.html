@@ -1,0 +1,3195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>기동전사 드래프트 — DOCK</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500;700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#12151B; --hull:#1A1F28; --plate:#242B37; --plate2:#2E3746;
+  --lume:#C9D3E1; --dim:#79849A; --amber:#E8A13A; --alert:#D2483C; --ok:#5FA88C;
+  --line:rgba(201,211,225,.13);
+  --disp:"Gothic A1",'Apple SD Gothic Neo',sans-serif;
+  --body:"IBM Plex Sans KR",'Apple SD Gothic Neo',system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--void);
+  background-image:
+    repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px),
+    radial-gradient(130% 70% at 50% -8%,#1E2530 0%,#12151B 60%);
+  color:var(--lume); font-family:var(--body);
+  min-height:100dvh; padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  overflow-x:hidden;
+}
+.wrap{max-width:560px;margin:0 auto;padding:16px 13px 48px}
+
+/* ── 머리 ── */
+.top{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;
+  padding-bottom:9px;border-bottom:1px solid var(--line)}
+.tt{font-family:var(--disp);font-weight:900;font-size:23px;letter-spacing:-.01em;line-height:1}
+.tt small{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.34em;
+  color:var(--amber);font-weight:400;margin-bottom:6px}
+.gauge{display:flex;gap:3px;align-items:flex-end;height:22px}
+.gauge i{width:5px;height:8px;background:var(--plate2);display:block;transition:.3s;
+  clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+.gauge i.done{background:var(--dim);height:14px}
+.gauge i.now{background:var(--amber);height:22px;box-shadow:0 0 9px rgba(232,161,58,.55)}
+
+/* ── 라운드 표시 ── */
+.rd{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:13px 0 9px}
+.rd>div:first-child{flex:1;min-width:0}
+.rdl{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--dim)}
+.rdt{font-family:var(--disp);font-weight:900;font-size:15px;letter-spacing:.02em}
+.rdt em{font-style:normal;color:var(--amber)}
+.turn{font-family:var(--mono);font-size:10px;padding:3px 8px;border:1px solid var(--line);
+  color:var(--dim);letter-spacing:.1em}
+.turn.mine{color:var(--amber);border-color:rgba(232,161,58,.45)}
+
+/* ── 카드 ── */
+.pack{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;
+  align-items:stretch;gap:6px;margin-bottom:14px}
+.card{position:relative;text-align:left;padding:0 0 7px;border:1px solid var(--line);
+  border-left:3px solid var(--fc,var(--dim));background:linear-gradient(180deg,#1D232D,#171C24);
+  color:var(--lume);font-family:var(--body);cursor:pointer;overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:transform .12s,border-color .2s}
+.card>.av{flex:none}
+.card>.pd{padding:0 6px;flex:0 0 auto;display:flex;flex-direction:column}
+.card>.dlt{flex:none;margin-top:auto}
+.card>.pd{padding-bottom:2px}
+.card:active{transform:scale(.975)}
+.card:disabled{opacity:.4;cursor:default}
+.card:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+
+/* 초상 프레임 — 기체·파일럿은 전신 1:2 */
+.av{position:relative;width:100%;background:#10141A;overflow:hidden;
+  border-bottom:2px solid var(--fc,var(--line))}
+.av.pilot,.av.mech{aspect-ratio:2/3}
+.av.crew{aspect-ratio:3/4}
+.av.ship{aspect-ratio:3/2}
+.av img{width:100%;height:100%;object-fit:cover;display:block}
+.av svg{width:100%;height:100%;display:block}
+.av .scrim{position:absolute;left:0;right:0;bottom:0;padding:12px 6px 4px;
+  background:linear-gradient(180deg,rgba(16,20,26,0) 0%,rgba(16,20,26,.9) 58%,rgba(16,20,26,.97) 100%)}
+.av .scrim b{display:block;font-family:var(--disp);font-weight:700;font-size:12.5px;
+  line-height:1.15;word-break:keep-all;text-shadow:0 1px 2px rgba(0,0,0,.8)}
+.av .scrim b.ln{font-size:11px}
+.av .scrim b.ln2{font-size:10px;line-height:1.1}
+.av .scrim b.ln3{font-size:9px;line-height:1.08;letter-spacing:-.02em}
+.bdg{position:absolute;top:3px;left:4px;display:flex;gap:3px;align-items:center}
+.vx{font-family:var(--mono);font-size:8px;
+  padding:0 2px;background:rgba(16,20,26,.72);color:var(--dim);border:1px solid var(--line)}
+.sb{font-family:var(--mono);font-size:8px;letter-spacing:.04em;padding:0 3px;
+  background:rgba(16,20,26,.72);color:var(--lume);opacity:.92;border:1px solid var(--line)}
+.ty{position:absolute;top:0;right:0;font-family:var(--mono);font-size:7.5px;letter-spacing:.1em;
+  padding:1px 4px;background:rgba(16,20,26,.82);color:var(--dim);border-left:1px solid var(--line)}
+.fx{font-family:var(--mono);font-size:8.5px;color:#94A0B6;line-height:1.4;
+  margin:4px 0 3px;word-break:break-all;min-height:22px}
+.stats{display:grid;grid-template-columns:1fr;gap:2px}
+.st{display:flex;align-items:center;gap:3px;font-family:var(--mono);font-size:8px}
+.st span{color:var(--dim);width:18px;flex:none}
+.st u{flex:1;height:3px;background:var(--plate);text-decoration:none;display:block}
+.st u i{display:block;height:100%;background:var(--fc,var(--dim))}
+.st b{width:15px;text-align:right;font-weight:600;font-size:8.5px}
+.tag{display:inline-block;font-family:var(--mono);font-size:7.5px;padding:0 3px;
+  border:1px solid var(--line);color:var(--dim);margin-right:2px}
+.tag.nt{color:var(--amber);border-color:rgba(232,161,58,.4)}
+.tag.psy{color:#9C7ACF;border-color:rgba(156,122,207,.4)}
+.dlt{margin-top:5px;padding-top:4px;border-top:1px dashed var(--line);
+  font-family:var(--mono);font-size:8px;color:var(--ok)}
+.dlt.dn{color:var(--alert)}
+.dlt em{font-style:normal;color:var(--dim);display:block;font-size:7.5px;margin-top:1px}
+.dlt em.fi{color:var(--amber)}
+.dlt em.nr{color:#8A9AB0}
+.fx b{color:var(--fc,var(--lume));font-weight:600}
+.fx s{text-decoration:none;opacity:.55}
+.sr{font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:var(--amber);opacity:.8}
+
+/* ── 도크(서명 요소) ── */
+.dock{border:1px solid var(--line);background:rgba(26,31,40,.75);margin-bottom:11px}
+.dh{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:7px 10px;background:var(--plate);border-bottom:1px solid var(--line)}
+.dh b{font-family:var(--disp);font-weight:900;font-size:12px;letter-spacing:.04em}
+.dh span{font-family:var(--mono);font-size:10px;color:var(--dim)}
+.dh span.hi{color:var(--amber)}
+.db{padding:9px 10px}
+.ship{display:flex;align-items:center;gap:9px;padding:7px 9px;margin-bottom:9px;
+  border-left:3px solid var(--fc,var(--dim));background:rgba(36,43,55,.55)}
+.ship b{font-family:var(--disp);font-weight:700;font-size:14px}
+.ship span{font-family:var(--mono);font-size:10px;color:var(--dim);margin-left:auto;flex:none}
+.ship.empty{border-left-color:var(--plate2);color:var(--dim);font-family:var(--mono);font-size:11px}
+
+.unit{display:flex;align-items:stretch;gap:0;margin-bottom:6px}
+.uh{flex:1;min-width:0;padding:6px 8px;background:rgba(36,43,55,.5);
+  border-left:2px solid var(--mc,var(--dim));display:flex;align-items:center;gap:8px}
+.uh.p{border-left-color:var(--pc,var(--dim))}
+.uh .tx{min-width:0;flex:1}
+.uh b{display:block;font-family:var(--disp);font-weight:700;font-size:12px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.uh i{display:block;font-style:normal;font-family:var(--mono);font-size:9px;color:var(--dim);margin-top:2px}
+.th{flex:none;width:44px;height:44px;background:#10141A;overflow:hidden;
+  border:1px solid var(--line);cursor:pointer;position:relative}
+.th .fcp{position:absolute;inset:0;background-repeat:no-repeat}
+.th svg{width:100%;height:100%;display:block}
+
+/* ── 도감 ── */
+.dexbtn{flex:none;padding:4px 9px;border:1px solid var(--line);background:transparent;
+  color:var(--dim);font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;cursor:pointer}
+.dexbtn:active{color:var(--amber);border-color:rgba(232,161,58,.45)}
+.ovl{position:fixed;inset:0;z-index:60;background:rgba(10,13,17,.94);
+  overflow-y:auto;-webkit-overflow-scrolling:touch;animation:rise .2s ease-out}
+.ovlw{max-width:560px;margin:0 auto;padding:calc(14px + env(safe-area-inset-top)) 13px
+  calc(28px + env(safe-area-inset-bottom))}
+.ovlh{display:flex;align-items:center;gap:10px;padding-bottom:9px;
+  border-bottom:1px solid var(--line);margin-bottom:11px}
+.ovlh b{font-family:var(--disp);font-weight:900;font-size:17px;flex:1;
+  min-width:0;word-break:keep-all;line-height:1.15}
+.xbtn{flex:none;width:32px;height:32px;border:1px solid var(--line);background:transparent;
+  color:var(--lume);font-family:var(--mono);font-size:15px;cursor:pointer;line-height:1}
+.tabs{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-bottom:11px}
+.tab{padding:7px 2px;border:1px solid var(--line);background:transparent;color:var(--dim);
+  font-family:var(--disp);font-weight:700;font-size:11.5px;cursor:pointer}
+.tab.on{border-color:var(--amber);color:var(--amber);background:rgba(232,161,58,.07)}
+.dexg{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.dexi{border:1px solid var(--line);background:rgba(26,31,40,.6);cursor:pointer;
+  padding:0 0 4px;overflow:hidden;text-align:center;color:var(--lume);font-family:var(--body)}
+.dexi .fw{position:relative;width:100%;background:#10141A;overflow:hidden;
+  border-bottom:2px solid var(--cc,var(--dim))}
+.dexi .fcp{position:absolute;inset:0;background-repeat:no-repeat}
+.dexi img{width:100%;height:100%;object-fit:cover;display:block}
+.dexi svg{width:100%;height:100%;display:block}
+.dexi span{display:block;font-size:8.5px;line-height:1.2;padding:3px 3px 0;
+  word-break:keep-all;overflow:hidden;display:-webkit-box;
+  -webkit-line-clamp:2;-webkit-box-orient:vertical;min-height:20px}
+.dexi em{display:block;font-style:normal;font-family:var(--mono);font-size:7.5px;color:var(--dim)}
+
+.dexvar{display:flex;align-items:center;gap:5px;margin-bottom:10px}
+.dexvar span{font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--dim);
+  margin-right:3px}
+.dexvar .obtn{flex:1;padding:5px 2px;font-size:11px}
+
+/* ── 상세 ── */
+.big{position:relative;width:100%;max-width:none;margin:0 auto 12px;background:#10141A;
+  border:1px solid var(--line);overflow:hidden}
+.big.tall{aspect-ratio:2/3}
+.big.wide{aspect-ratio:16/9}
+.big.sq{aspect-ratio:3/4}
+.big img{width:100%;height:100%;object-fit:contain;display:block}
+.big svg{width:100%;height:100%;display:block}
+.vtog{display:flex;gap:5px;justify-content:center;margin-bottom:12px}
+.vtog button{padding:5px 16px;border:1px solid var(--line);background:transparent;
+  color:var(--dim);font-family:var(--mono);font-size:12px;cursor:pointer}
+.vtog button.on{border-color:var(--amber);color:var(--amber)}
+.dinfo{border:1px solid var(--line);margin-bottom:11px}
+.dinfo .r{display:flex;gap:10px;padding:7px 10px;border-bottom:1px dashed rgba(201,211,225,.07);
+  font-size:11.5px;align-items:flex-start}
+.dinfo .r:last-child{border-bottom:0}
+.dinfo .r u{text-decoration:none;font-family:var(--mono);font-size:9px;color:var(--dim);
+  width:52px;flex:none;padding-top:2px}
+.dinfo .r div{flex:1;min-width:0}
+.dbar{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;padding:2px 0}
+.dbar span{color:var(--dim);width:26px;flex:none}
+.dbar u{flex:1;height:5px;background:var(--plate);text-decoration:none;display:block}
+.dbar u i{display:block;height:100%;background:var(--cc,var(--dim))}
+.dbar b{width:22px;text-align:right;font-weight:600}
+/* 도킹 클램프 */
+.clamp{flex:none;width:46px;position:relative;display:flex;align-items:center;justify-content:center}
+.clamp::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--plate2)}
+.clamp em{position:relative;font-style:normal;font-family:var(--mono);font-size:11px;font-weight:600;
+  padding:2px 4px;background:var(--hull);border:1px solid var(--cc,var(--plate2));color:var(--cc,var(--dim))}
+.unit.solo .uh{opacity:.5}
+.unit.solo .clamp em{border-style:dashed;color:var(--dim)}
+.crew{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;padding-top:7px;border-top:1px solid var(--line)}
+.pledge{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;padding-top:7px;
+  border-top:1px solid var(--line)}
+.pg{font-family:var(--body);font-size:10.5px;padding:2px 7px;
+  border:1px solid rgba(232,161,58,.35);color:var(--amber);background:rgba(232,161,58,.06)}
+.pg b{font-family:var(--mono);font-size:9.5px;font-weight:600;margin-left:5px;opacity:.85}
+.pg.kin{border-color:rgba(95,168,140,.4);color:var(--ok);background:rgba(95,168,140,.06)}
+.pg.bad{border-color:rgba(210,72,60,.4);color:var(--alert);background:rgba(210,72,60,.06)}
+.chip{font-family:var(--mono);font-size:11px;padding:3px 8px;border:1px solid var(--cc,var(--line));
+  color:var(--cc,var(--dim))}
+.chip.ph{border-style:dashed;opacity:.45}
+
+/* ── 픽 로그 ── */
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes flash{0%{background:rgba(232,161,58,.16)}100%{background:transparent}}
+.feed{border:1px solid var(--line);margin-bottom:11px;background:rgba(26,31,40,.55)}
+.feed .fh{padding:6px 10px;background:var(--plate);border-bottom:1px solid var(--line);
+  font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--dim)}
+.lg{display:flex;align-items:center;gap:7px;padding:5px 10px;
+  border-bottom:1px dashed rgba(201,211,225,.07);animation:rise .22s ease-out}
+.lg:last-child{border-bottom:0}
+.lg u{text-decoration:none;font-family:var(--mono);font-size:8.5px;color:var(--dim);
+  width:26px;flex:none}
+.lg i{font-style:normal;font-family:var(--disp);font-weight:700;font-size:10.5px;
+  width:78px;flex:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lg i.me{color:var(--amber)}
+.lg b{font-family:var(--body);font-weight:600;font-size:11.5px;flex:1;min-width:0;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  border-left:2px solid var(--cc,var(--dim));padding-left:6px}
+.lg s{text-decoration:none;font-family:var(--mono);font-size:8px;color:var(--dim);flex:none}
+.lg.new{animation:rise .22s ease-out,flash .9s ease-out}
+.lg.rr b{border-left-color:var(--plate2);color:var(--dim);font-weight:400;font-style:italic}
+.lg.rr s{color:var(--amber);opacity:.75}
+
+/* ── 적 함대 ── */
+.foes{display:grid;gap:7px;margin-bottom:12px}
+.foe{border:1px solid var(--line);background:rgba(26,31,40,.5);overflow:hidden}
+.foe.act{border-color:rgba(232,161,58,.45)}
+.fhd{display:flex;align-items:center;gap:8px;padding:7px 10px;background:rgba(36,43,55,.5);
+  cursor:pointer;width:100%;border:0;color:var(--lume);text-align:left;font-family:var(--body)}
+.fhd b{font-family:var(--disp);font-weight:900;font-size:11.5px;flex:1;min-width:0;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fhd em{font-style:normal;font-family:var(--mono);font-size:12px;font-weight:600;color:var(--dim)}
+.fhd u{text-decoration:none;font-family:var(--mono);font-size:9px;color:var(--dim);
+  transition:transform .2s;display:inline-block}
+.foe.open .fhd u{transform:rotate(90deg)}
+.fbd{display:none;padding:7px 10px 9px}
+.foe.open .fbd{display:block;animation:rise .2s ease-out}
+.frow{display:flex;gap:6px;align-items:flex-start;padding:3px 0;font-size:10.5px}
+.frow u{text-decoration:none;font-family:var(--mono);font-size:8.5px;color:var(--dim);
+  width:30px;flex:none;padding-top:2px}
+.frow div{flex:1;display:flex;flex-wrap:wrap;gap:4px}
+.pill{font-family:var(--body);font-size:10.5px;padding:1px 6px;
+  border-left:2px solid var(--cc,var(--dim));background:rgba(36,43,55,.6)}
+.pill.dim{opacity:.4;font-family:var(--mono);font-size:9px;border-left-style:dashed}
+
+/* ── 버튼 ── */
+.row{display:flex;gap:7px;margin-bottom:11px}
+.btn{flex:1;padding:10px;border:1px solid var(--line);background:var(--plate);color:var(--lume);
+  font-family:var(--disp);font-weight:700;font-size:12.5px;letter-spacing:.03em;cursor:pointer}
+.btn:active{background:var(--plate2)}
+.btn.on{border-color:var(--amber);color:var(--amber)}
+.btn:disabled{opacity:.35;cursor:default}
+.btn.sm{font-size:11px;padding:7px}
+
+/* ── 결과 ── */
+.res{border:1px solid var(--line);margin-bottom:11px}
+.rh{padding:9px 10px;background:var(--plate);display:flex;justify-content:space-between;align-items:baseline}
+.rh b{font-family:var(--disp);font-weight:900;font-size:13px}
+.rh span{font-family:var(--mono);font-size:15px;font-weight:600;color:var(--amber)}
+.rl2{padding:4px 10px 9px}
+.rl2 div{display:flex;justify-content:space-between;gap:10px;padding:3px 0;
+  font-family:var(--mono);font-size:10px;border-bottom:1px dashed rgba(201,211,225,.07)}
+.rl2 div:last-child{border:0}
+.rl2 k{color:var(--dim);font-style:normal}
+.rl2 v{font-weight:600}
+.rl2 v.dn{color:var(--alert)}
+.rank{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);
+  margin-bottom:6px;background:rgba(26,31,40,.6)}
+.rank b{font-family:var(--disp);font-weight:900;font-size:13px;flex:1}
+.rank em{font-style:normal;font-family:var(--mono);font-size:9px;color:var(--dim)}
+.rank span{font-family:var(--mono);font-size:15px;font-weight:600}
+.rank.win{border-color:var(--amber)}
+.rank.win span{color:var(--amber)}
+
+.note{font-family:var(--mono);font-size:9.5px;color:var(--dim);line-height:1.7;
+  padding:9px 10px;border:1px solid var(--line);margin-bottom:11px}
+.note b{color:var(--lume);font-weight:600}
+
+/* ── 시작 설정 ── */
+.setupbox{border:1px solid var(--line);background:rgba(26,31,40,.6);padding:12px;margin-bottom:12px}
+.optrow{display:flex;align-items:center;gap:10px;padding:9px 0;
+  border-bottom:1px dashed rgba(201,211,225,.08)}
+.optlab{flex:1;min-width:0}
+.optlab b{display:block;font-family:var(--disp);font-weight:700;font-size:13px}
+.optlab span{display:block;font-family:var(--mono);font-size:8.5px;color:var(--dim);margin-top:2px}
+.optbtns{flex:none;display:flex;gap:4px}
+.obtn{padding:6px 11px;border:1px solid var(--line);background:transparent;color:var(--dim);
+  font-family:var(--disp);font-weight:700;font-size:11.5px;cursor:pointer}
+.obtn.on{border-color:var(--amber);color:var(--amber);background:rgba(232,161,58,.08)}
+.btn.big{padding:14px;font-size:15px;letter-spacing:.1em;margin-top:12px}
+
+
+/* ── 기록 · 통계 ── */
+.statbar{display:flex;gap:6px;margin-bottom:4px}
+.statbar div{flex:1;border:1px solid var(--line);background:rgba(26,31,40,.6);
+  padding:9px 6px;text-align:center}
+.statbar u{display:block;text-decoration:none;font-family:var(--mono);font-size:17px;
+  font-weight:600;color:var(--amber)}
+.statbar span{display:block;font-family:var(--mono);font-size:8.5px;color:var(--dim);margin-top:3px}
+.medals{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.medal{border:1px solid var(--line);background:rgba(26,31,40,.5);padding:7px 9px;opacity:.45}
+.medal.on{opacity:1;border-color:rgba(232,161,58,.4);background:rgba(232,161,58,.06)}
+.medal b{display:block;font-family:var(--disp);font-weight:900;font-size:12px}
+.medal.on b{color:var(--amber)}
+.medal span{display:block;font-family:var(--mono);font-size:8px;color:var(--dim);
+  margin-top:3px;line-height:1.4}
+.stamps{display:flex;flex-wrap:wrap;gap:4px}
+.stamp{font-family:var(--body);font-size:11px;padding:3px 8px;
+  border:1px solid rgba(232,161,58,.35);color:var(--amber);background:rgba(232,161,58,.06)}
+.stamp b{font-family:var(--mono);font-size:9.5px;opacity:.8}
+.stamp.kin{border-color:rgba(95,168,140,.4);color:var(--ok);background:rgba(95,168,140,.06)}
+.stamp.yet{border-color:var(--line);color:var(--dim);background:transparent;
+  border-style:dashed;font-family:var(--mono);font-size:10px}
+.lore{font-family:var(--body);font-size:11.5px;color:var(--lume);line-height:1.6;
+  padding:9px 10px;border-left:2px solid var(--amber);background:rgba(232,161,58,.05);
+  margin-bottom:11px}
+
+/* ── 이미 지명된 카드 ── */
+.card.taken{cursor:default;opacity:.9}
+.card.taken .av{filter:grayscale(.75) brightness(.5)}
+.tkv{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:3px;background:rgba(16,20,26,.45)}
+.tkv u{text-decoration:none;font-family:var(--disp);font-weight:900;font-size:11px;
+  color:var(--lume);text-shadow:0 1px 4px #000;white-space:nowrap;
+  max-width:92%;overflow:hidden;text-overflow:ellipsis}
+.tkv b{font-family:var(--mono);font-size:8px;letter-spacing:.18em;color:var(--dim)}
+
+/* ── 맨 위 · 맨 아래 ── */
+.jump{position:fixed;right:10px;bottom:calc(14px + env(safe-area-inset-bottom));
+  z-index:5;display:flex;flex-direction:column;gap:5px}
+.jb{width:38px;height:38px;border:1px solid var(--line);background:rgba(16,20,26,.9);
+  color:var(--dim);font-family:var(--mono);font-size:12px;cursor:pointer;line-height:1;
+  backdrop-filter:blur(2px)}
+.jb:active{color:var(--amber);border-color:rgba(232,161,58,.45)}
+
+/* ── 시리즈 고르개 ── */
+.serrow{display:flex;gap:5px;margin-bottom:10px}
+.selser{flex:1;min-width:0;padding:8px 26px 8px 9px;border:1px solid var(--line);
+  background-color:rgba(26,31,40,.75);color:var(--lume);
+  font-family:var(--body);font-size:12px;cursor:pointer;
+  -webkit-appearance:none;appearance:none;border-radius:0;
+  background-image:linear-gradient(45deg,transparent 50%,var(--dim) 50%),
+    linear-gradient(135deg,var(--dim) 50%,transparent 50%);
+  background-position:calc(100% - 15px) 50%,calc(100% - 10px) 50%;
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+.selser:focus{outline:none;border-color:rgba(232,161,58,.5)}
+.selser option{background:#1A1F28;color:var(--lume)}
+.serclr{flex:none;padding:8px 12px;border:1px solid rgba(232,161,58,.4);
+  background:rgba(232,161,58,.07);color:var(--amber);
+  font-family:var(--mono);font-size:10.5px;cursor:pointer}
+
+/* ── 도감 이동 ── */
+.dexnav{display:flex;align-items:center;gap:6px;margin-bottom:10px}
+.navb{flex:1;padding:9px 4px;border:1px solid var(--line);background:rgba(26,31,40,.6);
+  color:var(--lume);font-family:var(--disp);font-weight:700;font-size:12.5px;cursor:pointer}
+.navb:active{background:var(--plate2);border-color:rgba(232,161,58,.45);color:var(--amber)}
+.navc{flex:none;min-width:64px;text-align:center;font-family:var(--mono);font-size:10px;
+  color:var(--dim);letter-spacing:.06em}
+@keyframes slL{from{opacity:0;transform:translateX(22px)}to{opacity:1;transform:none}}
+@keyframes slR{from{opacity:0;transform:translateX(-22px)}to{opacity:1;transform:none}}
+.ovlw.slideL{animation:slL .2s ease-out}
+.ovlw.slideR{animation:slR .2s ease-out}
+
+/* ── 갤러리 ── */
+.gal{border-top:1px solid var(--line);margin-top:12px;padding-top:10px}
+.gal .gh{font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--dim);
+  margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.gal .gh span{flex:1;height:1px;background:var(--line)}
+.gal .gi{display:block;width:100%;margin-bottom:8px;border:1px solid var(--line);
+  background:#10141A;cursor:zoom-in}
+.gal .gi img{width:100%;display:block}
+.zoom{position:fixed;inset:0;z-index:80;background:rgba(8,10,14,.96);
+  display:flex;align-items:center;justify-content:center;padding:12px;
+  animation:rise .2s ease-out;cursor:zoom-out}
+.zoom img{max-width:100%;max-height:100%;object-fit:contain}
+.zoom .zx{position:absolute;top:calc(10px + env(safe-area-inset-top));right:12px;
+  padding:8px 16px;font:inherit;font-size:13px;letter-spacing:.08em;
+  color:var(--amber);background:rgba(16,20,26,.92);border:1px solid var(--amber);
+  cursor:pointer}
+
+/* ── 인연 발동 알림 ── */
+.toastwrap{position:fixed;left:0;right:0;top:calc(10px + env(safe-area-inset-top));
+  z-index:70;display:flex;flex-direction:column;align-items:center;gap:5px;pointer-events:none}
+.toast{display:flex;align-items:center;gap:9px;padding:8px 16px;
+  border:1px solid var(--tc,var(--amber));background:rgba(16,20,26,.93);
+  box-shadow:0 0 24px rgba(0,0,0,.7),0 0 12px var(--tg,rgba(232,161,58,.35));
+  animation:tin .28s cubic-bezier(.2,.9,.3,1.3), tout .35s ease-in 1.5s forwards}
+.toast u{text-decoration:none;font-family:var(--mono);font-size:9px;letter-spacing:.24em;
+  color:var(--tc,var(--amber))}
+.toast b{font-family:var(--disp);font-weight:900;font-size:15px;letter-spacing:.01em;
+  color:var(--lume);white-space:nowrap}
+.toast em{font-style:normal;font-family:var(--mono);font-size:12px;font-weight:600;
+  color:var(--tc,var(--amber))}
+@keyframes tin{from{opacity:0;transform:translateY(-16px) scaleX(.86)}to{opacity:1;transform:none}}
+@keyframes tout{to{opacity:0;transform:translateY(-10px)}}
+.pg.fresh{animation:pgpop .7s ease-out}
+@keyframes pgpop{0%{transform:scale(.8);box-shadow:0 0 0 0 currentColor}
+  40%{transform:scale(1.06)}100%{transform:none;box-shadow:0 0 0 6px rgba(0,0,0,0)}}
+
+/* ── 훈장 ── */
+.feats{border:1px solid rgba(232,161,58,.4);margin-bottom:11px;background:rgba(232,161,58,.05)}
+.feats .fh{padding:6px 10px;background:rgba(232,161,58,.14);color:var(--amber);
+  font-family:var(--mono);font-size:9px;letter-spacing:.2em}
+.ft{padding:7px 10px;border-bottom:1px dashed rgba(232,161,58,.15);animation:rise .3s ease-out}
+.ft:last-child{border-bottom:0}
+.ft b{font-family:var(--disp);font-weight:900;font-size:12.5px;color:var(--amber)}
+.ft span{display:block;font-family:var(--mono);font-size:9px;color:var(--dim);margin-top:2px}
+h3{font-family:var(--disp);font-weight:900;font-size:12px;letter-spacing:.1em;color:var(--dim);
+  margin:16px 0 7px;padding-bottom:5px;border-bottom:1px solid var(--line)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="tt"><small>MOBILE SUIT DRAFT</small>기동전사 드래프트</div>
+    <div class="gauge" id="gauge"></div>
+  </div>
+
+  <div class="rd">
+    <div>
+      <div class="rdl" id="rdl">ROUND 01 / 16</div>
+      <div class="rdt" id="rdt">모함 <em>선정</em></div>
+    </div>
+    <button class="dexbtn" id="dexbtn">도감</button>
+    <div class="turn" id="turn">대기</div>
+  </div>
+
+  <div id="packArea"></div>
+  <div id="dockArea"></div>
+  <div id="boardArea"></div>
+  <div id="endArea"></div>
+  <div id="ovlArea"></div>
+  <div class="toastwrap" id="toastArea"></div>
+</div>
+
+<script>
+"use strict";
+
+/* ═══════ 데이터 ═══════ */
+/* 기체: 이름, 소속이력, 출력,화력,장갑,기동, 기질, 계열, 시리즈 */
+var MECH=[
+["RX-78-2 건담",["연방"],88,90,85,82,"냉정","시작기",["0079"]],
+["건담 Mk-II",["티탄즈","에우고"],78,76,74,80,"냉정","시작기",["Z","ZZ"]],
+["건담 Mk-II 티탄즈사양",["티탄즈"],76,74,74,78,"오만","시작기",["Z"]],
+["Z건담",["에우고"],90,88,80,92,"폭주","사이코뮤",["Z","ZZ"]],
+["ZZ건담",["에우고"],95,96,88,76,"폭주","사이코뮤",["ZZ"]],
+["뉴 건담",["론드벨"],95,90,86,90,"냉정","사이코뮤",["CCA"]],
+["하이뉴 건담",["론드벨"],96,92,88,92,"냉정","사이코뮤",["CCA"]],
+["백식",["에우고"],80,78,72,85,"오만","시작기",["Z","ZZ"]],
+["건담 NT-1",["연방"],80,78,82,76,"냉정","시작기",["0080"]],
+["시작 3호기 덴드로비움",["연방"],94,98,90,52,"오만","시작기",["0083"]],
+["건캐논",["연방"],66,78,72,54,"헌신","양산",["0079"]],
+["건탱크",["연방"],58,82,76,32,"헌신","양산",["0079"]],
+["짐",["연방"],56,54,56,58,"헌신","양산",["0079","0080","0083","Z"]],
+["짐 커스텀",["연방"],66,64,64,68,"냉정","양산",["0083"]],
+["짐 스나이퍼II",["연방"],62,76,58,66,"냉정","양산",["0080","0083"]],
+["볼",["연방"],40,52,38,44,"헌신","양산",["0079","0083"]],
+["제간",["론드벨"],62,60,62,64,"헌신","양산",["CCA"]],
+["자쿠II",["지온","카라바"],55,50,52,58,"헌신","양산",["0079","08MS","0080","0083","TB"]],
+["샤아 전용 자쿠",["지온"],62,54,54,72,"오만","양산",["0079"]],
+["자쿠 캐논",["지온"],58,70,60,48,"헌신","양산",["0079","08MS"]],
+["구프",["지온"],62,60,66,58,"폭주","양산",["0079","08MS"]],
+["돔",["지온"],68,70,72,64,"냉정","양산",["0079","08MS"]],
+["릭 돔",["지온"],68,70,68,70,"냉정","양산",["0079","0083"]],
+["겔구그",["지온"],72,75,70,74,"냉정","양산",["0079","0083"]],
+["겔구그 예거",["지온"],76,80,70,80,"오만","양산",["0083"]],
+["갸안",["지온"],70,68,66,80,"오만","시작기",["0079"]],
+["캠퍼",["지온"],74,82,66,78,"폭주","시작기",["0080"]],
+["지옹",["지온"],92,95,80,70,"오만","사이코뮤",["0079"]],
+["엘메스",["지온"],85,88,60,65,"헌신","사이코뮤",["0079"]],
+["노이에 질",["지온"],90,94,92,58,"오만","사이코뮤",["0083"]],
+["빅잠",["지온"],90,92,94,50,"폭주","시작기",["0079"]],
+["하이잭",["티탄즈"],60,62,60,62,"헌신","양산",["Z"]],
+["마라사이",["티탄즈"],66,66,64,68,"냉정","양산",["Z","ZZ"]],
+["갸프랑",["티탄즈"],72,70,64,82,"폭주","시작기",["Z"]],
+["바이알란",["티탄즈"],78,74,70,86,"폭주","시작기",["Z"]],
+["감마 간",["티탄즈"],82,80,76,78,"오만","시작기",["Z"]],
+["사이코 건담",["티탄즈"],92,94,96,44,"폭주","사이코뮤",["Z"]],
+["디 오",["티탄즈"],92,88,84,88,"오만","사이코뮤",["Z"]],
+["큐베레이",["네오지온"],88,82,72,90,"오만","사이코뮤",["Z","ZZ"]],
+["큐베레이 Mk-II 플기",["네오지온"],78,72,66,82,"헌신","사이코뮤",["ZZ"]],
+["큐베레이 Mk-II 플투기",["네오지온"],78,74,66,84,"폭주","사이코뮤",["ZZ"]],
+["도벤 울프",["네오지온"],84,86,82,72,"오만","사이코뮤",["ZZ"]],
+["야크트 도가",["네오지온"],82,80,76,80,"냉정","사이코뮤",["CCA"]],
+["사자비",["네오지온"],94,92,88,86,"오만","사이코뮤",["CCA"]],
+["나이팅게일",["네오지온"],98,96,92,76,"오만","사이코뮤",["CCA"]],
+["기라 도가",["네오지온"],68,68,68,70,"헌신","양산",["CCA"]],
+["릭 디아스",["에우고"],72,74,72,70,"냉정","양산",["Z"]],
+["스트라이크",["지구연합","오브"],80,80,76,80,"냉정","시작기",["SEED"]],
+["스트라이크 루즈",["오브"],80,78,76,82,"냉정","시작기",["SEED","DESTINY"]],
+["프리덤",["오브"],92,90,84,92,"냉정","핵동력",["SEED","DESTINY"]],
+["저스티스",["자프트","오브"],90,88,82,90,"헌신","핵동력",["SEED"]],
+["프로비던스",["자프트"],90,92,80,84,"오만","핵동력",["SEED"]],
+["스트라이크 프리덤",["오브"],96,94,86,96,"냉정","핵동력",["DESTINY"]],
+["데스티니",["자프트"],92,90,82,94,"폭주","핵동력",["DESTINY"]],
+["이지스",["자프트"],78,80,74,80,"오만","시작기",["SEED"]],
+["듀엘",["자프트"],74,76,74,74,"오만","시작기",["SEED","DESTINY"]],
+["버스터",["자프트"],72,88,76,60,"냉정","시작기",["SEED","DESTINY"]],
+["블리츠",["자프트"],70,72,64,84,"냉정","시작기",["SEED"]],
+["진",["자프트"],56,56,54,58,"헌신","양산",["SEED","DESTINY"]],
+["자쿠 워리어",["자프트"],64,64,64,66,"헌신","양산",["DESTINY"]],
+["임펄스",["자프트"],82,80,76,84,"폭주","시작기",["DESTINY"]],
+["캘러미티",["지구연합"],78,88,84,62,"폭주","시작기",["SEED"]],
+["건담 엑시아",["소레스탈비잉"],82,84,72,90,"폭주","GN드라이브",["00"]],
+["건담 듀나메스",["소레스탈비잉"],76,90,68,72,"냉정","GN드라이브",["00"]],
+["건담 큐리오스",["소레스탈비잉"],78,78,70,86,"폭주","GN드라이브",["00"]],
+["건담 버체",["소레스탈비잉"],80,92,86,58,"헌신","GN드라이브",["00"]],
+["더블오 라이저",["소레스탈비잉"],96,90,84,94,"냉정","GN드라이브",["00"]],
+["아리오스 건담",["소레스탈비잉"],80,80,72,90,"폭주","GN드라이브",["00"]],
+["세라비 건담",["소레스탈비잉"],84,94,88,60,"헌신","GN드라이브",["00"]],
+["리본즈 건담",["이노베이드"],94,90,84,90,"오만","GN드라이브",["00"]],
+["아헤드",["연방군"],68,68,66,70,"헌신","양산",["00"]],
+["티에렌 지상형",["인류혁신연맹"],56,60,62,50,"헌신","양산",["00"]],
+["건담 발바토스",["철화단"],84,80,88,74,"폭주","아르비",["IBO"]],
+["건담 발바토스 루프스 렉스",["철화단"],92,88,94,80,"폭주","아르비",["IBO"]],
+["건담 구시온",["철화단"],80,84,92,58,"헌신","아르비",["IBO"]],
+["건담 플라우로스",["철화단"],78,90,80,68,"냉정","아르비",["IBO"]],
+["건담 바알",["기간틱"],86,78,82,84,"오만","아르비",["IBO"]],
+["건담 키마리스 비다르",["기간틱"],88,82,84,86,"오만","아르비",["IBO"]],
+["그레이즈",["기간틱"],58,58,60,60,"헌신","양산",["IBO"]],
+["시덴",["철화단"],66,66,70,64,"헌신","양산",["IBO"]],
+["건담 키마리스",["기간틱"],78,76,76,80,"오만","시작기",["IBO"]],
+["건담 에어리얼",["아스티카시아","셸미라주"],86,80,78,88,"헌신","GUND",["WM"]],
+["건담 에어리얼 개수형",["셸미라주"],92,86,82,92,"헌신","GUND",["WM"]],
+["건담 르브리스",["오크스어스"],84,78,76,86,"폭주","GUND",["WM"]],
+["건담 파렉트",["오크스어스"],88,82,78,90,"냉정","GUND",["WM"]],
+["다릴 바르데",["잔토뷔넨"],76,78,74,76,"오만","시작기",["WM"]],
+["슈바르제테",["잔토뷔넨"],88,84,82,84,"오만","시작기",["WM"]],
+["베귀르베우",["잔토뷔넨"],82,80,78,82,"냉정","시작기",["WM"]],
+["미카엘리스",["그라스레"],80,76,72,84,"냉정","시작기",["WM"]],
+["데미 트레이너",["아스티카시아"],52,50,54,56,"헌신","양산",["WM"]],
+["데미 바딩",["아스티카시아"],60,62,64,58,"헌신","양산",["WM"]],
+["젤트줌",["오크스어스"],66,68,66,66,"냉정","양산",["WM"]],
+["윙 건담 제로",["화이트팽","프리벤터"],94,92,82,92,"냉정","제로시스템",["W","EW"]],
+["윙 건담",["재야"],82,84,74,86,"냉정","시작기",["W"]],
+["건담 데스사이즈",["재야"],80,78,72,90,"폭주","시작기",["W"]],
+["건담 헤비암즈",["재야"],76,94,78,64,"냉정","시작기",["W"]],
+["건담 샌드록",["재야"],74,76,86,66,"헌신","시작기",["W"]],
+["알트론 건담",["재야"],82,82,78,84,"오만","시작기",["W","EW"]],
+["톨기스",["OZ","프리벤터"],88,82,78,90,"오만","시작기",["W"]],
+["리오",["OZ"],52,54,54,56,"헌신","양산",["W","EW"]],
+["육전형 건담",["연방"],64,68,66,60,"냉정","양산",["08MS"]],
+["건담 Ez8",["연방"],70,72,68,70,"폭주","시작기",["08MS"]],
+["육전형 짐",["연방"],54,56,56,54,"헌신","양산",["08MS"]],
+["구프 커스텀",["지온"],66,70,68,62,"폭주","양산",["08MS"]],
+["아프사라스 III",["지온"],88,92,86,40,"오만","시작기",["08MS"]],
+["짐 커맨드",["연방"],60,60,60,62,"냉정","양산",["0080"]],
+["자쿠II 개량형",["지온"],60,58,58,62,"헌신","양산",["0080"]],
+["하이곡그",["지온"],70,74,72,58,"폭주","양산",["0080"]],
+["즈고크 E",["지온"],68,72,66,66,"냉정","양산",["0080"]],
+["건담 시작 1호기 제피랜서스",["연방"],76,74,72,78,"폭주","시작기",["0083"]],
+["건담 시작 2호기 사이살리스",["연방"],84,96,82,60,"오만","시작기",["0083"]],
+["건담 시작 3호기 스테이멘",["연방"],80,78,76,74,"냉정","시작기",["0083"]],
+["가베라 테트라",["지온"],76,76,70,82,"폭주","시작기",["0083"]],
+["메타스",["에우고"],66,62,62,78,"헌신","양산",["Z"]],
+["가브스레이",["티탄즈"],78,76,70,84,"오만","시작기",["Z"]],
+["함브라비",["티탄즈"],74,72,66,86,"폭주","시작기",["Z"]],
+["바운드 독",["티탄즈"],86,84,82,70,"폭주","사이코뮤",["Z"]],
+["건담 Mk-V",["네오지온"],84,82,78,76,"냉정","사이코뮤",["ZZ"]],
+["게마르크",["네오지온"],88,86,80,74,"오만","사이코뮤",["ZZ"]],
+["자쿠 III",["네오지온"],70,70,70,72,"헌신","양산",["ZZ"]],
+["리가지",["론드벨"],70,70,68,76,"냉정","양산",["CCA"]],
+["알파 아질",["네오지온"],92,94,90,46,"오만","사이코뮤",["CCA"]],
+["포비든 건담",["지구연합"],78,76,88,68,"폭주","시작기",["SEED"]],
+["레이더 건담",["지구연합"],76,82,74,80,"폭주","시작기",["SEED"]],
+["세이버 건담",["자프트"],82,80,76,88,"냉정","시작기",["DESTINY"]],
+["카오스 건담",["지구연합"],78,78,74,82,"냉정","시작기",["DESTINY"]],
+["가이아 건담",["지구연합"],78,76,76,84,"폭주","시작기",["DESTINY"]],
+["어비스 건담",["지구연합"],78,86,80,70,"오만","시작기",["DESTINY"]],
+["레전드 건담",["자프트"],88,86,80,84,"냉정","핵동력",["DESTINY"]],
+["인피니트 저스티스 건담",["오브"],94,90,84,94,"헌신","핵동력",["DESTINY"]],
+["아카츠키 건담",["오브"],82,80,92,76,"오만","시작기",["DESTINY"]],
+["구프 이그나이티드",["자프트"],66,68,68,66,"폭주","양산",["DESTINY"]],
+["돔 트루퍼",["자프트"],72,74,74,70,"냉정","양산",["DESTINY"]],
+["더블오 건담",["소레스탈비잉"],90,86,80,90,"냉정","GN드라이브",["00"]],
+["더블오 퀀터",["소레스탈비잉"],98,92,84,96,"냉정","GN드라이브",["00","00M"]],
+["캘딤 건담",["소레스탈비잉"],82,92,72,80,"냉정","GN드라이브",["00"]],
+["건담 나드레",["소레스탈비잉"],76,78,74,74,"오만","GN드라이브",["00"]],
+["오 건담",["소레스탈비잉"],70,68,70,68,"헌신","GN드라이브",["00"]],
+["건담 스로네 아인",["트리니티"],80,84,74,78,"폭주","GN드라이브",["00"]],
+["GN-X",["연방군"],66,68,66,68,"헌신","양산",["00"]],
+["라파엘 건담",["이노베이드"],88,90,84,78,"오만","GN드라이브",["00","00M"]],
+["건담 발바토스 루프스",["철화단"],88,84,90,78,"폭주","아르비",["IBO"]],
+["건담 구시온 리베이크",["철화단"],84,86,92,62,"헌신","아르비",["IBO"]],
+["건담 비다르",["기간틱"],84,80,82,84,"냉정","아르비",["IBO"]],
+["그레이즈 아인",["기간틱"],76,78,74,76,"폭주","아르비",["IBO"]],
+["레긴레이즈",["기간틱"],68,70,70,72,"헌신","양산",["IBO"]],
+["하슈말",["재야"],94,92,96,44,"폭주","아르비",["IBO"]],
+["건담 캘리번",["셸미라주"],90,84,80,90,"헌신","GUND",["WM"]],
+["건담 르브리스 손",["오크스어스"],82,80,76,82,"폭주","GUND",["WM"]],
+["건담 르브리스 울",["오크스어스"],82,78,76,84,"냉정","GUND",["WM"]],
+["딜란자",["잔토뷔넨"],68,70,70,66,"오만","양산",["WM"]],
+["베귀르펜테",["잔토뷔넨"],84,82,80,82,"오만","시작기",["WM"]],
+["조워트",["그라스레"],64,64,66,68,"헌신","양산",["WM"]],
+["셴롱 건담",["재야"],80,80,76,82,"오만","시작기",["W"]],
+["건담 데스사이즈 헬",["재야"],86,82,76,92,"폭주","시작기",["W","EW"]],
+["에피온",["OZ"],92,88,84,90,"오만","제로시스템",["W"]],
+["톨기스 II",["OZ"],86,82,78,88,"냉정","시작기",["W"]],
+["비르고",["OZ"],66,68,78,64,"헌신","양산",["W"]],
+["윙 건담 제로 EW",["프리벤터"],96,94,84,94,"냉정","제로시스템",["EW"]],
+["건담 데스사이즈 헬 EW",["재야"],88,84,78,94,"폭주","시작기",["EW"]],
+["건담 헤비암즈 EW",["재야"],78,96,80,66,"냉정","시작기",["EW"]],
+["건담 샌드록 EW",["재야"],76,78,88,68,"헌신","시작기",["EW"]],
+["알트론 건담 EW",["재야"],84,84,80,86,"오만","시작기",["EW"]],
+["톨기스 III",["프리벤터"],88,86,80,90,"냉정","시작기",["EW"]],
+["서펜트",["마리메이아군"],62,72,74,58,"헌신","양산",["EW"]],
+["마이티 스트라이크 프리덤 건담",["컴퍼스"],98,96,88,96,"냉정","핵동력",["FREEDOM"]],
+["라이징 프리덤 건담",["컴퍼스"],90,88,82,92,"냉정","핵동력",["FREEDOM"]],
+["이모탈 저스티스 건담",["컴퍼스"],90,86,84,90,"헌신","핵동력",["FREEDOM"]],
+["인피니트 저스티스 건담 이식",["오브"],94,90,86,94,"헌신","핵동력",["FREEDOM"]],
+["데스티니 건담 SpecII",["자프트"],94,92,84,94,"폭주","핵동력",["FREEDOM"]],
+["블랙나이트 스쿼드 시바",["파운데이션"],92,88,84,92,"폭주","핵동력",["FREEDOM"]],
+["블랙나이트 스쿼드 카룰라",["파운데이션"],84,86,80,82,"오만","시작기",["FREEDOM"]],
+["블랙나이트 스쿼드 루드라",["파운데이션"],76,76,74,80,"헌신","양산",["FREEDOM"]],
+["유니콘 건담",["연방","비스트"],96,92,88,94,"냉정","사이코뮤",["UNICORN"]],
+["밴시 노른",["연방"],94,90,86,92,"폭주","사이코뮤",["UNICORN"]],
+["시난주",["네오지온"],94,92,86,92,"오만","사이코뮤",["UNICORN"]],
+["크샤트리야",["네오지온"],88,90,84,78,"폭주","사이코뮤",["UNICORN"]],
+["네오 지옹",["네오지온"],96,96,94,48,"오만","사이코뮤",["UNICORN"]],
+["델타 플러스",["연방"],76,74,72,84,"냉정","시작기",["UNICORN"]],
+["리젤",["연방"],70,70,70,76,"헌신","양산",["UNICORN"]],
+["기라 즐루",["네오지온"],68,70,68,70,"헌신","양산",["UNICORN"]],
+["나라티브 건담",["연방"],84,82,78,86,"냉정","사이코뮤",["NT"]],
+["페넥스",["재야"],94,88,84,96,"냉정","사이코뮤",["NT"]],
+["시난주 스타인",["연방"],84,82,78,82,"냉정","시작기",["NT"]],
+["실바 바레토",["연방"],74,78,76,66,"헌신","시작기",["NT"]],
+["크시 건담",["마프티"],94,92,86,88,"냉정","사이코뮤",["HATHAWAY"]],
+["페넬로페",["연방"],94,90,88,86,"오만","사이코뮤",["HATHAWAY"]],
+["메싸",["마프티"],72,74,70,76,"냉정","양산",["HATHAWAY"]],
+["그이 마리에",["연방"],66,66,66,74,"헌신","양산",["HATHAWAY"]],
+["샤이닝 건담",["네오재팬"],82,80,76,88,"폭주","모빌트레이스",["G"]],
+["갓 건담",["네오재팬"],94,92,84,96,"폭주","모빌트레이스",["G"]],
+["마스터 건담",["네오홍콩"],94,94,84,94,"오만","모빌트레이스",["G"]],
+["데빌 건담",["재야"],98,96,96,58,"폭주","모빌트레이스",["G"]],
+["건담 맥스터",["네오아메리카"],74,80,74,76,"오만","모빌트레이스",["G"]],
+["건담 로즈",["네오프랑스"],76,74,72,84,"냉정","모빌트레이스",["G"]],
+["드래곤 건담",["네오차이나"],76,76,72,86,"헌신","모빌트레이스",["G"]],
+["보르트 건담",["네오러시아"],78,80,88,56,"헌신","모빌트레이스",["G"]],
+["건담 X",["프리덴"],88,92,80,80,"냉정","플래시시스템",["X"]],
+["더블 엑스",["프리덴"],92,96,82,82,"냉정","플래시시스템",["X"]],
+["건담 에어마스터",["프리덴"],76,74,70,88,"폭주","시작기",["X"]],
+["건담 레오파드",["프리덴"],74,84,76,66,"헌신","시작기",["X"]],
+["건담 벨페고르",["프리덴"],78,78,74,78,"냉정","시작기",["X"]],
+["제니체",["우주혁명군"],62,64,64,66,"헌신","양산",["X"]],
+["패틀리아",["신연방"],66,68,66,68,"헌신","양산",["X"]],
+["건담 AGE-1",["연방"],78,78,74,80,"헌신","AGE시스템",["AGE"]],
+["건담 AGE-2",["연방"],82,82,76,88,"냉정","AGE시스템",["AGE"]],
+["건담 AGE-3",["연방"],88,88,82,84,"냉정","AGE시스템",["AGE"]],
+["건담 AGE-FX",["연방"],92,90,84,92,"냉정","AGE시스템",["AGE"]],
+["레길스",["베이건"],92,90,86,86,"오만","AGE시스템",["AGE"]],
+["지랏하",["베이건"],76,78,76,74,"오만","시작기",["AGE"]],
+["제다스",["베이건"],70,72,70,72,"헌신","양산",["AGE"]],
+["아델",["연방"],64,66,66,68,"헌신","양산",["AGE"]],
+["건담 F91",["연방"],90,88,78,94,"냉정","시작기",["F91"]],
+["비기나 기나",["크로스본뱅가드"],84,82,78,86,"오만","시작기",["F91"]],
+["라플레시아",["크로스본뱅가드"],92,94,86,58,"오만","사이코뮤",["F91"]],
+["베르가 기로스",["크로스본뱅가드"],76,74,72,80,"오만","양산",["F91"]],
+["베르가 다라스",["크로스본뱅가드"],74,72,70,78,"헌신","양산",["F91"]],
+["데난 게",["크로스본뱅가드"],66,66,64,70,"헌신","양산",["F91"]],
+["데난 존",["크로스본뱅가드"],64,64,62,68,"헌신","양산",["F91"]],
+["헤비건",["연방"],62,62,60,68,"헌신","양산",["F91"]],
+["V건담",["리가밀리티아"],82,80,74,88,"헌신","시작기",["V"]],
+["V2건담",["리가밀리티아"],92,88,78,96,"헌신","미노프스키드라이브",["V"]],
+["V2 어설트 버스터 건담",["리가밀리티아"],96,94,86,90,"헌신","미노프스키드라이브",["V"]],
+["건이지",["리가밀리티아"],62,62,62,68,"헌신","양산",["V"]],
+["게드라프",["잔스칼"],66,66,66,70,"헌신","양산",["V"]],
+["고틀라탄",["잔스칼"],82,84,76,82,"오만","사이코뮤",["V"]],
+["리그 샤코",["잔스칼"],76,74,74,72,"헌신","양산",["V"]],
+["샤코",["잔스칼"],70,70,70,68,"헌신","양산",["V"]],
+["조로",["잔스칼"],64,66,64,72,"헌신","양산",["V"]],
+["풀아머 건담",["연방"],84,92,84,66,"폭주","시작기",["TB"]],
+["사이코 자쿠",["지온"],82,88,78,80,"폭주","사이코뮤",["TB"]],
+["아틀라스 건담",["연방"],80,80,76,82,"냉정","시작기",["TB"]],
+["∀건담",["밀리시아"],88,86,92,84,"헌신","나노스킨",["TA"]],
+["턴 X",["문레이스"],92,94,90,86,"오만","나노스킨",["TA"]],
+["스모",["문레이스"],78,76,74,82,"냉정","시작기",["TA"]],
+["골드 스모",["문레이스"],82,78,76,84,"오만","시작기",["TA"]],
+["카풀",["밀리시아"],58,60,60,58,"헌신","양산",["TA"]],
+["워돔",["문레이스"],64,66,68,60,"헌신","양산",["TA"]],
+["볼자논",["밀리시아"],68,70,72,58,"헌신","양산",["TA"]],
+["마히로",["문레이스"],62,64,62,66,"헌신","양산",["TA"]],
+["건담 아스트레이 레드프레임",["준크숍"],80,78,74,84,"폭주","시작기",["ASTRAY"]],
+["건담 아스트레이 블루프레임",["세르비스"],78,80,74,80,"냉정","시작기",["ASTRAY"]],
+["건담 아스트레이 블루프레임 세컨드L",["세르비스"],84,86,78,82,"냉정","시작기",["ASTRAY"]],
+["건담 아스트레이 골드프레임",["오브"],78,76,76,78,"오만","시작기",["ASTRAY"]],
+["건담 아스트레이 골드프레임 아마츠 미나",["오브"],86,84,80,84,"오만","시작기",["ASTRAY"]],
+["하이페리온 건담",["지구연합"],80,78,86,80,"냉정","시작기",["ASTRAY"]],
+["드레드노트 건담",["지구연합"],84,82,76,84,"냉정","핵동력",["ASTRAY"]],
+["건담 하루트",["소레스탈비잉"],90,86,80,92,"냉정","GN드라이브",["00M"]],
+["건담 사바냐",["소레스탈비잉"],86,84,78,86,"냉정","GN드라이브",["00M"]],
+["브레이브 지휘관용 시험기",["지구연합"],82,80,74,88,"냉정","GN드라이브",["00M"]],
+["GQuuuuuuX",["재야"],88,84,78,90,"폭주","사이코뮤",["GQ"]],
+["붉은 건담",["지온"],86,84,80,86,"냉정","사이코뮤",["GQ"]],
+["건담 아스트레이 골드프레임 아마츠 하나",["오브"],84,82,80,86,"냉정","시작기",["ASTRAY"]],
+["건담 아스트레이 그린프레임",["준크숍"],74,72,72,78,"헌신","시작기",["ASTRAY"]],
+["스타게이저 건담",["재야"],76,62,72,92,"헌신","시작기",["ASTRAY"]],
+["건담 아스트레이 미라쥬 프레임",["라이브러리안"],82,80,76,86,"오만","시작기",["ASTRAY"]]
+];
+/* 파일럿: 이름, 소속이력, 지휘,조종,전술,정치, 기질, 감응등급, 시리즈, 감응계통 */
+var PILOT=[
+["아무로",["연방","카라바","론드벨"],60,98,78,20,"냉정",3,["0079","Z","CCA"],"뉴타입"],
+["샤아",["지온","에우고","네오지온"],88,95,88,80,"오만",2,["0079","Z","ZZ","CCA"],"뉴타입"],
+["카미유",["티탄즈","에우고"],50,95,80,25,"폭주",3,["Z"],"뉴타입"],
+["쥬도 아시타",["에우고"],45,92,70,25,"폭주",3,["ZZ"],"뉴타입"],
+["라라아",["지온"],30,80,70,25,"헌신",3,["0079"],"뉴타입"],
+["하만 칸",["지온","네오지온"],90,88,92,88,"오만",2,["Z","ZZ"],"뉴타입"],
+["엘피 플",["네오지온"],30,82,58,18,"헌신",2,["ZZ"],"뉴타입"],
+["플 투",["네오지온"],28,80,54,15,"폭주",2,["ZZ"],"뉴타입"],
+["포우",["티탄즈"],35,80,55,15,"폭주",1,["Z"],"뉴타입"],
+["로자미아",["티탄즈"],32,76,52,15,"폭주",1,["Z"],"뉴타입"],
+["사라 자비아로프",["티탄즈"],38,74,60,40,"헌신",1,["Z"],"뉴타입"],
+["레코아",["에우고","티탄즈"],55,70,66,50,"냉정",1,["Z"],"뉴타입"],
+["에마 신",["티탄즈","에우고"],68,78,70,55,"헌신",0,["Z"],""],
+["파 유이리",["에우고"],48,74,62,40,"헌신",1,["Z","ZZ"],"뉴타입"],
+["루 루카",["에우고"],40,76,58,30,"폭주",0,["ZZ"],""],
+["첸 아기",["론드벨"],40,72,55,30,"냉정",1,["CCA"],"뉴타입"],
+["나나이",["네오지온"],45,60,80,62,"헌신",2,["CCA"],"뉴타입"],
+["마우아",["네오지온"],34,70,54,28,"헌신",0,["ZZ"],""],
+["시로코",["티탄즈"],78,85,90,72,"오만",2,["Z"],"뉴타입"],
+["야잔",["티탄즈","네오지온"],40,88,60,20,"폭주",0,["Z","ZZ"],""],
+["란바 랄",["지온"],78,82,72,55,"냉정",0,["0079"],""],
+["도즐",["지온"],82,80,60,65,"폭주",0,["0079"],""],
+["가르마",["지온"],65,68,55,70,"오만",0,["0079"],""],
+["마 쿠베",["지온"],70,65,78,72,"냉정",0,["0079"],""],
+["가이아",["지온"],62,74,58,30,"폭주",0,["0079"],""],
+["아나벨 가토",["지온"],80,90,78,55,"오만",0,["0083"],""],
+["버나드 와이즈먼",["지온"],66,72,62,48,"냉정",0,["0080"],""],
+["켈리 레즈너",["지온"],58,70,56,36,"폭주",0,["0083"],""],
+["코우 우라키",["연방"],45,80,64,30,"폭주",0,["0083"],""],
+["크리스티나 맥켄지",["연방"],46,76,62,42,"냉정",0,["0080"],""],
+["카이 시덴",["연방","카라바"],45,70,68,40,"오만",0,["0079","Z"],""],
+["바스크 옴",["티탄즈"],72,50,62,70,"오만",0,["Z"],""],
+["글레미",["네오지온"],62,70,66,60,"오만",0,["ZZ"],""],
+["레즌",["네오지온"],50,80,62,35,"냉정",1,["ZZ"],"뉴타입"],
+["케라 스",["네오지온"],48,74,58,32,"냉정",0,["ZZ"],""],
+["키라 야마토",["지구연합","오브"],55,96,78,30,"헌신",3,["SEED","DESTINY","FREEDOM"],"코디네이터"],
+["아스란 자라",["자프트","오브"],70,92,80,60,"냉정",2,["SEED","DESTINY","FREEDOM"],"코디네이터"],
+["라크스 클라인",["자프트","오브"],85,20,80,96,"헌신",1,["SEED","DESTINY","FREEDOM"],"코디네이터"],
+["카가리",["오브"],72,60,64,88,"폭주",0,["SEED","DESTINY","FREEDOM"],""],
+["마류 라미아스",["지구연합","오브"],80,55,76,66,"냉정",0,["SEED","DESTINY","FREEDOM"],""],
+["무우 라 프라가",["지구연합","오브"],74,84,78,58,"오만",1,["SEED","DESTINY","FREEDOM"],"코디네이터"],
+["탈리아 글래디스",["자프트"],82,58,80,72,"냉정",0,["DESTINY"],""],
+["이자크 쥴",["자프트"],58,80,66,48,"오만",1,["SEED","DESTINY","FREEDOM"],"코디네이터"],
+["디아카 앨스먼",["자프트"],52,76,64,44,"냉정",1,["SEED","DESTINY","FREEDOM"],"코디네이터"],
+["루나마리아 호크",["자프트"],42,76,58,35,"폭주",1,["DESTINY","FREEDOM"],"코디네이터"],
+["스텔라 루셰",["지구연합"],28,82,50,12,"폭주",1,["DESTINY"],"코디네이터"],
+["라우 르 크루제",["자프트"],78,90,86,68,"오만",2,["SEED"],"코디네이터"],
+["신 아스카",["자프트"],40,90,62,20,"폭주",2,["DESTINY","FREEDOM"],"코디네이터"],
+["오르페 라무",["파운데이션"],85,90,82,88,"오만",2,["FREEDOM"],"코디네이터"],
+["잉그리드 트라돌",["파운데이션"],72,80,76,70,"냉정",1,["FREEDOM"],"코디네이터"],
+["슈라 서펜타인",["파운데이션"],45,86,62,30,"폭주",1,["FREEDOM"],"코디네이터"],
+["아그네스 기벨",["자프트","컴퍼스"],48,78,58,42,"오만",0,["DESTINY","FREEDOM"],""],
+["세츠나 F. 세이에이",["소레스탈비잉"],48,92,70,25,"냉정",3,["00"],"이노베이터"],
+["록온 스트라토스",["소레스탈비잉"],60,88,74,45,"냉정",0,["00"],""],
+["알렐루야 합티즘",["소레스탈비잉"],45,86,66,25,"폭주",2,["00"],"이노베이터"],
+["티에리아 아데",["소레스탈비잉"],55,82,84,40,"오만",2,["00"],"이노베이터"],
+["스메라기 리 노리에가",["소레스탈비잉"],92,30,96,70,"냉정",0,["00"],""],
+["펠트 그레이스",["소레스탈비잉"],50,40,74,45,"헌신",1,["00"],"이노베이터"],
+["넨나 트리니티",["트리니티"],40,78,58,30,"폭주",1,["00"],"이노베이터"],
+["소마 필리스",["연방군"],44,84,62,28,"냉정",2,["00"],"이노베이터"],
+["리본즈 알마크",["이노베이드"],86,88,90,80,"오만",3,["00"],"이노베이터"],
+["마리나 이스마일",["아자디스탄"],70,10,60,92,"헌신",0,["00"],""],
+["미카즈키 아우구스",["철화단"],35,94,58,15,"폭주",2,["IBO"],"아할리아"],
+["오르가 이츠카",["철화단"],86,50,80,62,"오만",0,["IBO"],""],
+["유진 세븐스타크",["철화단"],52,68,64,46,"폭주",0,["IBO"],""],
+["쿠델리아 아이나 번스타인",["철화단"],72,10,70,94,"헌신",0,["IBO"],""],
+["아토라 미쿠스라",["철화단"],30,35,50,45,"헌신",0,["IBO"],""],
+["아미다 아루카",["터빈즈"],66,80,70,58,"냉정",0,["IBO"],""],
+["줄리에타 쥬리스",["기간틱"],48,84,64,30,"헌신",1,["IBO"],"아할리아"],
+["아인 달튼",["기간틱"],40,82,56,24,"폭주",2,["IBO"],"아할리아"],
+["맥길리스 파리드",["기간틱"],84,78,92,90,"오만",0,["IBO"],""],
+["슬레타 머큐리",["아스티카시아","셸미라주"],40,92,60,25,"헌신",2,["WM"],"데이터스톰"],
+["미오리네 렘블랑",["아스티카시아","셸미라주"],88,15,82,96,"오만",0,["WM"],""],
+["프로스페라 머큐리",["셸미라주"],80,55,90,84,"냉정",2,["WM"],"데이터스톰"],
+["엘란 케레스",["페일"],46,86,68,34,"냉정",3,["WM"],"데이터스톰"],
+["노레아 듀노크",["오크스어스"],34,84,54,20,"폭주",2,["WM"],"데이터스톰"],
+["니카 나나우라",["아스티카시아"],35,25,80,50,"헌신",0,["WM"],""],
+["추아츄리 판런치",["아스티카시아"],45,70,55,40,"폭주",0,["WM"],""],
+["세세리아 도트",["오크스어스"],44,74,58,36,"냉정",0,["WM"],""],
+["펠시 티에라토",["잔토뷔넨"],42,72,60,38,"헌신",0,["WM"],""],
+["구엘 제타크",["잔토뷔넨"],70,80,68,60,"오만",0,["WM"],""],
+["라우다 네일",["잔토뷔넨"],54,76,64,50,"폭주",0,["WM"],""],
+["샤디크 제네리",["그라스레"],66,74,86,78,"냉정",0,["WM"],""],
+["히이로 유이",["재야","프리벤터"],45,94,76,20,"냉정",2,["W","EW"],"제로내성"],
+["듀오 맥스웰",["재야"],40,86,66,30,"폭주",1,["W","EW"],"제로내성"],
+["트로와 버튼",["재야"],42,88,72,26,"냉정",1,["W","EW"],"제로내성"],
+["카토르 라버바 위너",["재야"],62,80,76,66,"헌신",2,["W","EW"],"제로내성"],
+["창 우페이",["재야","프리벤터"],48,88,70,34,"오만",1,["W","EW"],"제로내성"],
+["젝스 마키스",["OZ","화이트팽","프리벤터"],82,90,84,74,"오만",2,["W","EW"],"제로내성"],
+["루크레치아 노인",["OZ","프리벤터"],68,78,72,58,"냉정",0,["W","EW"],""],
+["시로 아마다",["연방"],62,74,70,46,"폭주",0,["08MS"],""],
+["노리스 팩커드",["지온"],74,82,76,50,"냉정",0,["08MS"],""],
+["알프레드 이즈루하",["연방"],20,30,40,25,"폭주",0,["0080"],""],
+["시마 가라하우",["지온"],72,80,70,58,"오만",0,["0083"],""],
+["제리드 메사",["티탄즈"],52,76,58,34,"폭주",0,["Z"],""],
+["카츠 코바야시",["에우고"],38,68,54,30,"폭주",1,["Z"],"뉴타입"],
+["비챠 올레그",["에우고"],44,74,60,36,"냉정",0,["ZZ"],""],
+["엘 비안노",["에우고"],40,72,58,34,"폭주",0,["ZZ"],""],
+["마슈마 세로",["네오지온"],66,78,64,44,"폭주",0,["ZZ"],""],
+["규네이 거스",["네오지온"],46,84,62,32,"오만",2,["CCA"],"뉴타입"],
+["퀘스 파라야",["네오지온"],32,82,54,26,"폭주",2,["CCA"],"뉴타입"],
+["니콜 아말피",["자프트"],42,74,62,40,"헌신",1,["SEED"],"코디네이터"],
+["올가 사브낙",["지구연합"],30,80,50,14,"폭주",1,["SEED"],"코디네이터"],
+["샤니 앤드라스",["지구연합"],28,78,52,16,"오만",1,["SEED"],"코디네이터"],
+["클로토 뷰엘",["지구연합"],26,78,48,12,"폭주",1,["SEED"],"코디네이터"],
+["레이 자 바렐",["자프트"],62,86,74,44,"냉정",2,["DESTINY"],"코디네이터"],
+["네오 로아노크",["지구연합"],76,82,78,56,"오만",1,["DESTINY"],"코디네이터"],
+["하이네 베스텐플루스",["자프트"],58,80,66,48,"냉정",1,["DESTINY"],"코디네이터"],
+["스팅 오클레이",["지구연합"],34,78,54,18,"오만",1,["DESTINY"],"코디네이터"],
+["아울 니더",["지구연합"],30,76,50,14,"폭주",1,["DESTINY"],"코디네이터"],
+["그라함 에이커",["연방군"],62,88,74,40,"오만",0,["00"],""],
+["패트릭 콜라사워",["연방군"],44,66,54,40,"폭주",0,["00"],""],
+["알리 알 사셰스",["재야"],56,82,68,42,"오만",0,["00"],""],
+["리보리 아넨스키",["트리니티"],38,74,56,30,"냉정",1,["00"],"이노베이터"],
+["가엘리오 보드윈",["기간틱"],66,80,70,58,"폭주",1,["IBO"],"아할리아"],
+["노르바 시노",["철화단"],46,78,60,40,"폭주",0,["IBO"],""],
+["아키히로 앨트랜드",["철화단"],50,80,62,36,"냉정",1,["IBO"],"아할리아"],
+["소피 프로네",["오크스어스"],34,82,52,20,"폭주",2,["WM"],"데이터스톰"],
+["마르탱 업몬트",["아스티카시아"],36,40,60,44,"헌신",0,["WM"],""],
+["트레즈 크슈리나다",["OZ"],84,70,90,94,"오만",0,["W"],""],
+["바나지 링크스",["비스트","연방"],45,88,62,30,"헌신",3,["UNICORN"],"뉴타입"],
+["풀 프론탈",["네오지온"],86,94,88,78,"오만",2,["UNICORN"],"뉴타입"],
+["마리다 크루스",["네오지온","연방"],55,88,72,35,"헌신",3,["UNICORN"],"뉴타입"],
+["리디 마세나스",["연방"],50,76,62,55,"폭주",1,["UNICORN"],"뉴타입"],
+["미네바 라오 자비",["네오지온"],80,25,76,94,"냉정",2,["UNICORN"],"뉴타입"],
+["안젤로 자우퍼",["네오지온"],45,78,58,30,"폭주",1,["UNICORN"],"뉴타입"],
+["요나 바슈타",["연방"],50,84,64,30,"폭주",2,["NT"],"뉴타입"],
+["리타 베르나르",["재야"],35,70,58,25,"헌신",3,["NT"],"뉴타입"],
+["졸탄 앗카넨",["네오지온"],40,86,60,20,"폭주",2,["NT"],"뉴타입"],
+["미셸 루오",["재야"],70,40,72,80,"냉정",0,["NT"],""],
+["하사웨이 노아",["마프티"],65,88,80,60,"폭주",2,["HATHAWAY"],"뉴타입"],
+["레인 에임",["연방"],60,86,72,50,"오만",1,["HATHAWAY"],"뉴타입"],
+["기기 안달루시아",["재야"],30,20,60,82,"냉정",2,["HATHAWAY"],"뉴타입"],
+["케네스 슬레그",["연방"],82,70,86,70,"냉정",0,["HATHAWAY"],""],
+["도몬 캇슈",["네오재팬"],55,96,70,25,"폭주",3,["G"],"명경지수"],
+["마스터 아시아",["네오홍콩"],88,96,90,60,"오만",3,["G"],"명경지수"],
+["레인 미카무라",["네오재팬"],60,55,74,60,"헌신",0,["G"],""],
+["치보데 크로켓",["네오아메리카"],45,80,58,30,"오만",1,["G"],"명경지수"],
+["죠르쥬 드 사드",["네오프랑스"],70,78,72,80,"냉정",1,["G"],"명경지수"],
+["사이 사이시",["네오차이나"],40,76,60,35,"폭주",1,["G"],"명경지수"],
+["아르고 가르스키",["네오러시아"],60,78,68,40,"헌신",1,["G"],"명경지수"],
+["가로드 란",["프리덴"],50,86,64,35,"폭주",0,["X"],""],
+["티파 아디르",["프리덴"],20,20,60,70,"헌신",3,["X"],"뉴타입"],
+["위츠 수",["프리덴"],40,78,58,30,"오만",0,["X"],""],
+["로아비 로이",["프리덴"],45,76,60,35,"냉정",0,["X"],""],
+["샤기아 프로스트",["신연방"],70,88,78,60,"오만",2,["X"],"뉴타입"],
+["올바 프로스트",["신연방"],65,86,74,55,"오만",2,["X"],"뉴타입"],
+["플리트 아스노",["연방"],55,88,72,40,"폭주",2,["AGE"],"X라운더"],
+["아세무 아스노",["연방"],50,86,66,35,"헌신",2,["AGE"],"X라운더"],
+["키오 아스노",["연방"],45,84,62,30,"헌신",3,["AGE"],"X라운더"],
+["제하트 갈렛",["베이건"],78,88,80,70,"냉정",2,["AGE"],"X라운더"],
+["이젤칸트",["베이건"],88,70,90,88,"오만",2,["AGE"],"X라운더"],
+["울프 에니아클",["연방"],60,80,68,45,"오만",0,["AGE"],""],
+["시북 아노",["연방"],55,88,66,35,"폭주",2,["F91"],"뉴타입"],
+["세실리 페어차일드",["크로스본뱅가드"],62,74,66,74,"헌신",2,["F91"],"뉴타입"],
+["자비네 샤르",["크로스본뱅가드"],64,84,70,55,"오만",1,["F91"],"뉴타입"],
+["카롯조 로나",["크로스본뱅가드"],86,80,88,90,"오만",2,["F91"],"뉴타입"],
+["도렐 로나",["크로스본뱅가드"],70,74,68,72,"냉정",1,["F91"],"뉴타입"],
+["안나마리 부르제",["크로스본뱅가드"],45,76,58,40,"폭주",0,["F91"],""],
+["우소 에빈",["리가밀리티아"],50,90,66,35,"헌신",3,["V"],"뉴타입"],
+["크로노클 아샤",["잔스칼"],68,82,72,60,"냉정",1,["V"],"뉴타입"],
+["카테지나 루스",["잔스칼"],60,84,70,66,"폭주",2,["V"],"뉴타입"],
+["오데로 헨릭",["리가밀리티아"],45,68,56,40,"헌신",0,["V"],""],
+["마베트 핑거하트",["리가밀리티아"],55,74,60,45,"냉정",0,["V"],""],
+["파라 그리폰",["잔스칼"],50,80,58,35,"폭주",2,["V"],"뉴타입"],
+["이오 플레밍",["연방"],50,88,62,30,"폭주",1,["TB"],"뉴타입"],
+["다릴 로렌츠",["지온"],45,86,60,30,"헌신",2,["TB"],"뉴타입"],
+["카를라 미첨",["연방"],66,60,70,60,"냉정",0,["TB"],""],
+["빌리 히크맨",["연방"],60,64,72,55,"냉정",0,["TB"],""],
+["로랑 세아크",["밀리시아"],60,86,72,60,"헌신",2,["TA"],"뉴타입"],
+["해리 오드",["문레이스"],74,84,78,66,"냉정",1,["TA"],"뉴타입"],
+["김 깅가남",["문레이스"],78,86,74,70,"오만",2,["TA"],"뉴타입"],
+["코린 난더",["문레이스"],50,74,56,30,"폭주",0,["TA"],""],
+["로우 규레",["준크숍"],55,84,70,40,"폭주",0,["ASTRAY"],""],
+["가이 무라쿠모",["세르비스"],62,86,72,50,"냉정",0,["ASTRAY"],""],
+["카나드 펄스",["지구연합"],58,86,66,40,"폭주",1,["ASTRAY"],"코디네이터"],
+["안드레이 스미르노프",["지구연합"],62,82,68,50,"냉정",0,["00","00M"],""],
+["아마테 유즈리하",["재야"],50,86,62,35,"폭주",2,["GQ"],"뉴타입"],
+["슈우지 이토",["재야"],45,84,60,30,"냉정",3,["GQ"],"뉴타입"],
+["론도 기나 사하크",["오브","라이브러리안"],72,84,74,78,"오만",0,["ASTRAY"],""],
+["론도 미나 사하크",["오브"],78,82,80,84,"오만",0,["ASTRAY"],""]
+];
+/* 모함: 이름, 소속이력, 지휘,방어,색적,정원, 시리즈 */
+var SHIP=[
+["화이트 베이스",["연방"],85,70,75,3,["0079"]],
+["그레이 팬텀",["연방"],68,64,66,3,["0080"]],
+["알비온",["연방"],74,68,72,3,["0083"]],
+["살라미스",["연방"],55,55,58,3,["0079","0083","Z","CCA"]],
+["마젤란",["연방"],60,68,58,3,["0079"]],
+["아가마",["에우고"],78,68,80,4,["Z","ZZ"]],
+["라 비앙 로즈",["에우고"],56,60,72,5,["Z"]],
+["네엘 아가마",["에우고","론드벨"],80,72,82,4,["ZZ","CCA","UNICORN"]],
+["라 카이람",["론드벨"],82,75,82,4,["CCA"]],
+["무사이",["지온"],60,50,62,3,["0079","0083"]],
+["잔지바르",["지온"],68,62,64,4,["0079","0083"]],
+["그와진",["지온"],76,84,66,5,["0079"]],
+["도로스",["지온"],70,90,65,6,["0079"]],
+["도고스 기어",["티탄즈"],80,86,72,5,["Z"]],
+["알렉산드리아",["티탄즈"],70,68,68,4,["Z","ZZ"]],
+["그와단",["네오지온"],78,88,70,5,["ZZ"]],
+["사다란",["네오지온"],74,86,68,5,["CCA"]],
+["레우루라",["네오지온"],76,74,76,4,["CCA"]],
+["아크엔젤",["지구연합","오브"],82,76,84,4,["SEED","DESTINY","FREEDOM"]],
+["도미니온",["지구연합"],74,72,74,4,["SEED"]],
+["쿠사나기",["오브"],72,70,76,4,["SEED"]],
+["이터널",["오브"],74,66,78,4,["DESTINY"]],
+["미네르바",["자프트"],80,74,80,4,["DESTINY"]],
+["밀레니엄",["컴퍼스"],80,76,82,4,["FREEDOM"]],
+["프톨레마이오스",["소레스탈비잉"],72,60,92,4,["00"]],
+["이사리비",["철화단"],62,58,66,4,["IBO"]],
+["하시마루",["터빈즈"],66,62,70,4,["IBO"]],
+["피스밀리온",["화이트팽"],74,70,74,4,["W"]],
+["리브라",["화이트팽"],78,92,74,6,["W"]],
+["건페리",["연방"],42,44,56,2,["0079"]],
+["프톨레마이오스 2",["소레스탈비잉"],78,66,94,5,["00"]],
+["호타루비",["터빈즈"],60,58,70,4,["IBO"]],
+["펜데",["셸미라주"],70,64,76,4,["WM"]],
+["불지",["OZ"],80,88,72,6,["W"]],
+["가란셰르",["비스트"],66,62,72,4,["UNICORN"]],
+["프리덴",["프리덴"],70,64,74,4,["X"]],
+["디바",["연방"],76,70,78,4,["AGE"]],
+["스페이스 아크",["연방"],70,66,72,4,["F91"]],
+["아드라스테아",["잔스칼"],80,76,78,5,["V"]],
+["리인포스 주니어",["리가밀리티아"],72,66,74,4,["V"]],
+["비하이브",["연방"],68,62,70,4,["TB"]],
+["윌게임",["밀리시아"],66,62,70,4,["TA"]],
+["솔레이유",["문레이스"],84,78,82,6,["TA"]]
+];
+/* 지휘관: 이름, 소속이력, 지휘,정비,전술,정치, 시리즈 */
+var CREW=[
+["브라이트",["연방","에우고","론드벨"],90,40,82,70,["0079","Z","ZZ","CCA"]],
+["미라이",["연방"],60,55,70,62,["0079","Z"]],
+["아스토니지 메드쓰",["에우고"],30,25,78,45,["Z","ZZ"]],
+["헨켄",["에우고"],78,45,72,64,["Z"]],
+["블렉스",["에우고"],76,20,78,84,["Z"]],
+["웡 리",["에우고"],52,20,64,72,["Z","ZZ"]],
+["기렌 자비",["지온"],88,20,86,96,["0079"]],
+["키시리아",["지온"],82,25,84,88,["0079"]],
+["데긴",["지온"],60,10,70,92,["0079"]],
+["에기유 데라즈",["지온"],74,30,76,62,["0083"]],
+["아이나 사하린",["지온"],40,55,58,50,["08MS"]],
+["자미토프",["티탄즈"],70,15,72,86,["Z"]],
+["나탈 버지룰",["지구연합"],76,45,72,60,["SEED"]],
+["앤드류 발트펠트",["자프트","오브"],78,50,80,66,["SEED","DESTINY","FREEDOM"]],
+["크리스티나 시에라",["소레스탈비잉"],35,40,64,42,["00"]],
+["이안 바스티",["소레스탈비잉"],38,72,62,44,["00"]],
+["비스킷 그리폰",["철화단"],50,35,78,58,["IBO"]],
+["메리빗 스테이플턴",["철화단"],46,25,70,72,["IBO"]],
+["나제 터빈",["터빈즈"],72,40,76,74,["IBO"]],
+["레이디 언",["OZ","프리벤터"],72,35,74,70,["W","EW"]],
+["에이파 시냅스",["연방"],74,30,74,60,["0083"]],
+["랏세 아이온",["소레스탈비잉"],52,60,66,44,["00"]],
+["레아리 에다베리",["연방"],60,70,62,55,["F91"]],
+["클로디아 페어",["연방"],72,20,68,66,["TB"]],
+["니나 퍼플턴",["연방"],35,20,80,60,["0083"]],
+["무루타 아즈라엘",["지구연합"],62,15,68,88,["SEED"]],
+["우즈미 나라 아스하",["오브"],70,20,74,90,["SEED"]],
+["라스탈 엘리온",["기간틱"],76,15,80,92,["IBO"]],
+["델링 렘블랑",["셸미라주"],80,20,82,94,["WM"]],
+["사리우스 제타크",["잔토뷔넨"],66,20,70,84,["WM"]],
+["릴리나 도리안",["재야"],80,5,74,98,["W","EW"]],
+["디아나 소렐",["문레이스"],80,10,78,94,["TA"]],
+["마리아 피어 아마리아",["잔스칼"],78,10,72,92,["V"]]
+];
+
+var SER_NAME={"0079": "기동전사 건담", "08MS": "제08MS소대", "0080": "포켓 속의 전쟁", "0083": "스타더스트 메모리", "Z": "Z건담", "ZZ": "ZZ건담", "CCA": "역습의 샤아", "SEED": "건담 SEED", "DESTINY": "SEED DESTINY", "FREEDOM": "SEED FREEDOM", "00": "건담 00", "IBO": "철혈의 오펀즈", "WM": "수성의 마녀", "W": "건담 W", "EW": "건담 W Endless Waltz", "UNICORN": "기동전사 건담 UC", "NT": "건담 NT", "HATHAWAY": "섬광의 하사웨이", "G": "G건담", "X": "건담X", "AGE": "건담 AGE", "F91": "기동전사 건담 F91", "V": "기동전사 V건담", "TB": "건담 썬더볼트", "TA": "∀건담", "ASTRAY": "건담 SEED ASTRAY", "00M": "건담 00 극장판", "GQ": "Gundam GQuuuuuuX"};
+/* 대표 시리즈 — 표시와 정규화에 쓴다.
+   파일럿만 시리즈 뒤에 감응 계통이 하나 더 붙는다 */
+function serAll(c){
+  var i;
+  for(i=c.length-1;i>=0;i--)if(Object.prototype.toString.call(c[i])==="[object Array]"&&i>1)return c[i];
+  return [];
+}
+function serOf(c){var a=serAll(c);return a.length?a[0]:""}
+/* 전력 정규화는 큰 계열 단위로 — 잘게 나누면 소수 기체가 과대평가된다 */
+var FRANCHISE={"0079":"UC","08MS":"UC","0080":"UC","0083":"UC",
+  "Z":"UC","ZZ":"UC","CCA":"UC","SEED":"SEED","DESTINY":"SEED","FREEDOM":"SEED",
+  "UNICORN":"UC","NT":"UC","HATHAWAY":"UC",
+  "W":"W","EW":"W",
+  "F91":"UC","V":"UC","TB":"UC","ASTRAY":"SEED","00M":"00"};
+function franOf(c){var x=serOf(c);return FRANCHISE[x]||x}
+function serLabel(c){return SER_NAME[serOf(c)]||serOf(c)}
+/* 카드에 얹는 짧은 시리즈 딱지 — 긴 코드만 줄여 쓴다 */
+var SER_TAG={"UNICORN":"UC","HATHAWAY":"섬광","DESTINY":"DEST","FREEDOM":"FREE",
+  "08MS":"08MS","0080":"0080","0083":"0083",
+  "ASTRAY":"ASTR","00M":"00M"};
+function serTag(c){var x=serOf(c);return SER_TAG[x]||x}
+var FAC={
+"연방":"#3E6C9C","연방군":"#3E6C9C","지온":"#4F7A4A","티탄즈":"#2F4270","에우고":"#B0A44E",
+"네오지온":"#A03A50","카라바":"#6E7A4F","론드벨":"#4F86A8","지구연합":"#8A8A96","오브":"#C08A2F",
+"자프트":"#B0463A","소레스탈비잉":"#4F8C9E","아자디스탄":"#8C6A3E","이노베이드":"#7A5FA8",
+"트리니티":"#5F6A8C","인류혁신연맹":"#8C7A4F","철화단":"#A85F2A","기간틱":"#6E5F8C",
+"터빈즈":"#C08A4F","아스티카시아":"#5F8C7A","셸미라주":"#8A5FA8","잔토뷔넨":"#9C7A3A",
+"그라스레":"#4F7A5F","오크스어스":"#9C4F6A","페일":"#6A7F9C","OZ":"#6A6A7A",
+"화이트팽":"#9AA4B4","프리벤터":"#4F8C8C","로무페라":"#8C6A7A","재야":"#7A6A55","마리메이아군":"#8C5F4F","컴퍼스":"#4F7FA8","파운데이션":"#6E4F8C",
+"비스트":"#7A6A9C","마프티":"#8C7A4F","베이건":"#7A4F6A","프리덴":"#5F8CA8",
+"신연방":"#4F6A8C","우주혁명군":"#8C5F5F","네오재팬":"#B04A4A","네오홍콩":"#8C6A2F",
+"네오아메리카":"#4F6AA8","네오프랑스":"#6A8C5F","네오차이나":"#A87A2F","네오러시아":"#6A6A8C",
+"크로스본뱅가드":"#8C4F5F","리가밀리티아":"#4F8C6A","잔스칼":"#9C6A3A",
+"문레이스":"#BFA45F","밀리시아":"#6A8C4F","준크숍":"#A85F3A","세르비스":"#5F7A9C","라이브러리안":"#7A5F9C"};
+function fc(f){return FAC[f]||"#79849A"}
+
+/* ═══════ 열전 — 카드 한 줄 ═══════ */
+var LORE={
+"RX-78-2 건담":"소년이 우연히 올라탄 흰 기체가 전쟁의 저울을 기울였다",
+"건담 Mk-II":"티탄즈가 만들었으나 에우고의 손에 넘어가 반기를 들었다",
+"Z건담":"날개를 접어 하늘을 가르는 형태로 변한다",
+"ZZ건담":"세 기가 하나로 합쳐 가슴에 거포를 품었다",
+"뉴 건담":"조종사가 직접 설계에 손을 댄 마지막 기체",
+"하이뉴 건담":"끝내 싸울 필요가 없었을 또 하나의 결말",
+"백식":"금빛 도금은 빛을 튕겨내기 위한 것이었다",
+"건담 NT-1":"한 소년을 위해 만들어졌으나 끝내 만나지 못했다",
+"시작 3호기 덴드로비움":"기체를 통째로 감싼 무장고가 함대를 삼켰다",
+"건캐논":"어깨의 두 포신이 전선을 뒤에서 받쳤다",
+"건탱크":"다리 대신 궤도를 달고 포대 노릇을 했다",
+"짐":"흰 양산기의 수는 곧 연방의 저력이었다",
+"짐 커스텀":"손에 익은 병사에게만 돌아간 개량형",
+"짐 스나이퍼II":"한 발에 모든 것을 거는 자들의 기체",
+"볼":"작업용 포드에 포 하나를 얹어 전장에 내보냈다",
+"제간":"평범함이야말로 연방이 오래 버틴 이유였다",
+"자쿠II":"단 하나의 눈이 전장을 훑는다",
+"샤아 전용 자쿠":"붉은 기체가 세 배로 빠르다는 소문이 돌았다",
+"자쿠 캐논":"어깨에 포를 얹어 지원에 나섰다",
+"구프":"손끝에서 채찍이 뻗어 나온다",
+"돔":"지면을 스치듯 미끄러지는 육중한 몸",
+"릭 돔":"중력을 벗어나 우주에서도 미끄러졌다",
+"겔구그":"너무 늦게 나온 걸작이었다",
+"겔구그 예거":"숙련자에게만 맡겨진 저격 사양",
+"갸안":"기사의 방패와 검을 그대로 옮겨 왔다",
+"캠퍼":"기습만을 위해 만들어졌고 그렇게 사라졌다",
+"지옹":"다리는 장식이라 했으나 아무도 웃지 못했다",
+"엘메스":"조종사의 생각만으로 비트를 날린다",
+"노이에 질":"거대한 몸으로 함대 한가운데를 뚫었다",
+"빅잠":"방패 두 장으로 요새 하나를 상대했다",
+"하이잭":"자쿠의 뼈대에 연방의 살을 붙였다",
+"마라사이":"지온의 기술이 티탄즈의 손에 넘어간 증거",
+"갸프랑":"대기권 안에서 가장 빠른 것 중 하나였다",
+"바이알란":"팔이 곧 무기이자 추진기였다",
+"감마 간":"지휘관을 위해 만들어진 붉은 이질감",
+"사이코 건담":"소녀 하나를 태우려 도시만 한 몸을 지었다",
+"디 오":"조종사의 사념이 그대로 출력이 되었다",
+"큐베레이":"아홉 장의 날개가 펼쳐지면 도망칠 곳이 없다",
+"큐베레이 Mk-II 플기":"강화인간 소녀에게 주어진 붉은 날개",
+"큐베레이 Mk-II 플투기":"같은 얼굴의 또 다른 소녀가 탔다",
+"도벤 울프":"양산할 수 없을 만큼 무겁고 강했다",
+"야크트 도가":"뉴타입이 아니면 다룰 수 없는 사냥꾼",
+"사자비":"붉은 총수가 마지막으로 고른 몸",
+"나이팅게일":"거대함으로 신념의 무게를 대신했다",
+"기라 도가":"평범한 병사도 탈 수 있게 만든 네오지온의 기둥",
+"릭 디아스":"검붉은 장갑에 감마늄을 처음 썼다",
+"건담 Mk-II 티탄즈사양":"빼앗기기 전까지는 티탄즈의 자랑이었다",
+"스트라이크":"등에 무엇을 다느냐로 전혀 다른 기체가 되었다",
+"스트라이크 루즈":"같은 골격에 다른 색을 입고 지킬 것을 정했다",
+"프리덤":"날개를 펼치면 다섯 개의 총구가 동시에 열린다",
+"저스티스":"등에 매단 판이 방패도 발판도 되었다",
+"프로비던스":"조종사의 광기만큼 드래군이 흩어졌다",
+"스트라이크 프리덤":"금빛 뼈대가 드러날 때 승부는 이미 끝났다",
+"데스티니":"빛의 날개를 펼치고 대검을 뽑았다",
+"이지스":"팔다리를 접어 스스로 폭탄이 되었다",
+"듀엘":"가장 먼저 만들어졌고 가장 오래 싸웠다",
+"버스터":"두 자루의 포를 합쳐 한 발을 쏜다",
+"블리츠":"보이지 않는 채로 창을 던졌다",
+"진":"자프트가 처음 손에 쥔 대검",
+"자쿠 워리어":"이름만 물려받은 새 시대의 양산기",
+"임펄스":"셋으로 나뉘어 날아와 하나로 합쳐진다",
+"캘러미티":"쏘는 것 말고는 아무것도 고려하지 않았다",
+"건담 엑시아":"일곱 자루의 검을 몸에 지녔다",
+"건담 듀나메스":"방아쇠를 당기기 전에 이미 맞혔다",
+"건담 큐리오스":"날개를 접어 하늘을 달린다",
+"건담 버체":"쏘기 위해 장갑을 벗는다",
+"더블오 라이저":"두 개의 태양로가 겹쳐 세계를 넘었다",
+"아리오스 건담":"사람을 태우고 나는 법을 배웠다",
+"세라비 건담":"등에 또 하나의 기체를 업고 있었다",
+"리본즈 건담":"인류를 이끌겠다던 자가 마지막에 탄 몸",
+"아헤드":"태양로를 흉내 냈으나 흉내에 그쳤다",
+"티에렌 지상형":"흙빛 몸으로 대지를 지켰다",
+"건담 발바토스":"삼백 년을 잠들었다 다시 깨어났다",
+"건담 발바토스 루프스 렉스":"이리의 형상으로 마지막 전장에 섰다",
+"건담 구시온":"망치 한 자루로 모든 것을 부쉈다",
+"건담 플라우로스":"멀리서 조용히 숨통을 끊는다",
+"건담 바알":"아무도 탈 수 없다던 왕의 기체",
+"건담 키마리스 비다르":"복수를 위해 뿔을 다시 세웠다",
+"그레이즈":"규격품이라는 말이 곧 안정이었다",
+"시덴":"철화단이 스스로 만든 첫 기체",
+"건담 키마리스":"유니콘의 뿔로 정면을 꿰뚫는다",
+"건담 에어리얼":"열한 장의 비트가 소녀를 지킨다",
+"건담 에어리얼 개수형":"어머니가 딸에게 물려준 몸",
+"건담 르브리스":"모든 것의 시작이 된 금기의 기체",
+"건담 파렉트":"복수와 구원 사이에서 흔들렸다",
+"다릴 바르데":"결투에서 이기기 위해 다듬어진 형태",
+"슈바르제테":"검은 기사가 마지막에 탄 몸",
+"베귀르베우":"양산을 전제로 만든 결투기",
+"미카엘리스":"우아함 뒤에 계산을 숨겼다",
+"데미 트레이너":"학생들이 처음 잡는 조종간",
+"데미 바딩":"싸움이 아니라 일을 하러 나간다",
+"젤트줌":"수를 믿고 밀어붙이는 기체",
+"윙 건담 제로":"조종사의 정신을 갉아먹으며 답을 보여준다",
+"윙 건담":"새의 형태로 대기권을 갈랐다",
+"건담 데스사이즈":"어둠 속에서 낫이 먼저 도착한다",
+"건담 헤비암즈":"탄이 떨어지면 주먹으로 싸웠다",
+"건담 샌드록":"모래바람 속에서 방패가 되었다",
+"알트론 건담":"두 마리 용이 팔에서 뻗어 나온다",
+"톨기스":"너무 강해 사람이 견디지 못했다",
+"리오":"수를 채우기 위해 만들어진 병졸",
+"아무로":"우연히 올라탄 소년이 전쟁의 향방을 바꾸었다",
+"샤아":"가면 뒤에 복수와 이상을 함께 감췄다",
+"카미유":"이름 때문에 시비가 붙어 전쟁에 뛰어들었다",
+"쥬도 아시타":"고물상 소년이 우주의 운명을 떠맡았다",
+"라라아":"만나지 말았어야 할 때에 만났다",
+"하만 칸":"열여섯에 한 나라를 손에 쥐었다",
+"엘피 플":"싸우는 법만 배우고 사는 법은 몰랐다",
+"플 투":"같은 얼굴로 태어나 다른 최후를 맞았다",
+"포우":"기억을 지운 자리에 명령만 남았다",
+"로자미아":"오빠라 부를 사람을 끝내 찾지 못했다",
+"사라 자비아로프":"믿었던 사람을 위해 방아쇠를 당겼다",
+"레코아":"이해받고 싶어 진영을 넘었다",
+"에마 신":"옳다고 믿는 쪽으로 기체를 돌렸다",
+"파 유이리":"곁을 지키는 일도 싸움이었다",
+"루 루카":"웃으며 전장에 뛰어드는 아이였다",
+"첸 아기":"기술자였으나 조종간을 잡아야 했다",
+"나나이":"총수의 곁에서 마음을 읽었다",
+"마우아":"끝까지 주인을 지키려 했다",
+"시로코":"목성에서 돌아와 세상을 저울에 올렸다",
+"야잔":"싸움 자체가 목적인 사내",
+"란바 랄":"청기사라 불린 노련한 지휘관",
+"도즐":"거구에 어울리지 않게 가정을 아꼈다",
+"가르마":"친구의 계략에 젊음을 잃었다",
+"마 쿠베":"전장에서도 도자기를 논했다",
+"가이아":"검은 삼련성의 이름으로 몰려왔다",
+"아나벨 가토":"솔로몬의 망령이라 불렸다",
+"버나드 와이즈먼":"부하를 먼저 보내고 마지막에 남았다",
+"켈리 레즈너":"의수로 다시 조종간을 잡았다",
+"코우 우라키":"시험 조종사가 실전에 내던져졌다",
+"크리스티나 맥켄지":"친구를 알아보지 못한 채 방아쇠를 당겼다",
+"카이 시덴":"입은 거칠어도 끝까지 남았다",
+"바스크 옴":"질서를 위해서라면 무엇이든 했다",
+"글레미":"핏줄을 내세워 왕좌를 노렸다",
+"레즌":"주인이 정한 길을 의심 없이 따랐다",
+"케라 스":"이름 없는 자리에서 최선을 다했다",
+"키라 야마토":"싸우기 싫다면서 가장 많이 싸웠다",
+"아스란 자라":"친구와 조국 사이에서 오래 흔들렸다",
+"라크스 클라인":"노래로 사람을 움직였다",
+"카가리":"울면서도 앞에 서기를 택했다",
+"마류 라미아스":"교관이 함장이 되어야 했다",
+"무우 라 프라가":"불가능을 가능케 하는 사내라 불렸다",
+"탈리아 글래디스":"함과 아들 사이에서 저울질했다",
+"이자크 쥴":"자존심이 꺾인 자리에서 자라났다",
+"디아카 앨스먼":"가벼운 말투 뒤에 의리를 두었다",
+"루나마리아 호크":"동생을 지키려 앞에 섰다",
+"스텔라 루셰":"죽음이 무섭다는 말만 되풀이했다",
+"라우 르 크루제":"세상이 끝나기를 바란 복제인간",
+"신 아스카":"가족을 잃은 자리에서 분노만 자랐다",
+"세츠나 F. 세이에이":"소년병이 건담이 되겠다고 말했다",
+"록온 스트라토스":"복수를 품고도 동료를 웃겼다",
+"알렐루야 합티즘":"두 인격이 한 몸에서 다투었다",
+"티에리아 아데":"사람이 아님을 알고도 사람을 택했다",
+"스메라기 리 노리에가":"술잔을 든 채 전황을 읽었다",
+"펠트 그레이스":"부모의 자리를 이어 함교에 앉았다",
+"넨나 트리니티":"가족과 함께 전장을 놀이터로 삼았다",
+"소마 필리스":"만들어진 이름 아래 진짜를 찾았다",
+"리본즈 알마크":"인류를 이끌겠다며 인류를 내려다봤다",
+"마리나 이스마일":"총 대신 노래와 말을 들었다",
+"미카즈키 아우구스":"명령이 있어야 살아갈 수 있었다",
+"오르가 이츠카":"앞으로 나아가는 것만이 답이라 믿었다",
+"유진 세븐스타크":"입은 험해도 자리를 지켰다",
+"쿠델리아 아이나 번스타인":"철화의 마녀라 불린 아가씨",
+"아토라 미쿠스라":"싸우지 못해도 곁을 지켰다",
+"아미다 아루카":"터빈즈의 하늘을 지킨 여인",
+"줄리에타 쥬리스":"주인에게 인정받기 위해 칼을 들었다",
+"아인 달튼":"복수를 위해 몸의 절반을 내주었다",
+"맥길리스 파리드":"제도를 부수기 위해 제도의 정점에 올랐다",
+"슬레타 머큐리":"도망치면 하나, 나아가면 둘",
+"미오리네 렘블랑":"울타리를 부수고 나온 아가씨",
+"프로스페라 머큐리":"복수를 위해 딸까지 셈에 넣었다",
+"엘란 케레스":"이름도 몸도 자기 것이 아니었다",
+"노레아 듀노크":"빼앗긴 자리에서 빼앗는 법을 배웠다",
+"니카 나나우라":"기계를 만지며 사람을 도왔다",
+"추아츄리 판런치":"작은 몸으로 가장 크게 소리쳤다",
+"세세리아 도트":"명령과 우정 사이에서 흔들렸다",
+"펠시 티에라토":"묵묵히 자기 몫을 해냈다",
+"구엘 제타크":"패배를 통해 비로소 자랐다",
+"라우다 네일":"형의 그늘에서 벗어나지 못했다",
+"샤디크 제네리":"판을 뒤집기 위해 오래 기다렸다",
+"히이로 유이":"임무를 위해 자신부터 버렸다",
+"듀오 맥스웰":"죽음의 신이라 자칭하며 웃었다",
+"트로와 버튼":"이름조차 빌린 것이었다",
+"카토르 라버바 위너":"온화함 뒤에 결단이 있었다",
+"창 우페이":"정의가 무엇인지 끝까지 물었다",
+"젝스 마키스":"가면을 쓰고 조국의 이름을 지웠다",
+"루크레치아 노인":"충성과 사랑이 같은 방향이었다",
+"육전형 건담":"양산할 수 있게 다듬은 흰 기체",
+"건담 Ez8":"부서진 자리를 급조로 메워 다시 세웠다",
+"육전형 짐":"진흙탕에서 가장 많이 부서진 기체",
+"구프 커스텀":"손끝에서 세 자루의 칼이 뻗어 나온다",
+"아프사라스 III":"산 하나를 통째로 겨눈 시제기",
+"짐 커맨드":"우주와 지상 어디든 보내졌다",
+"자쿠II 개량형":"낡은 몸으로 마지막 임무를 맡았다",
+"하이곡그":"물속에서 올라와 도시를 덮쳤다",
+"즈고크 E":"바다에서 온 것치고 너무 빨랐다",
+"건담 시작 1호기 제피랜서스":"시험용으로 만들어 실전에 던져졌다",
+"건담 시작 2호기 사이살리스":"등에 진 한 발이 함대를 지웠다",
+"건담 시작 3호기 스테이멘":"무장고를 벗으면 오히려 가벼워진다",
+"가베라 테트라":"해적의 손에 넘어간 시제기",
+"메타스":"싸우기보다 고치기 위해 만들어졌다",
+"가브스레이":"강화인간을 전제로 설계했다",
+"함브라비":"꼬리를 늘어뜨린 채 미끄러진다",
+"바운드 독":"조종사의 광기를 그대로 담았다",
+"건담 Mk-V":"이름만 건담이고 속은 다른 것이었다",
+"게마르크":"사념을 읽어 스스로 움직인다",
+"자쿠 III":"이름을 물려받은 마지막 자쿠",
+"리가지":"제타의 값비싼 부분을 덜어냈다",
+"알파 아질":"거대한 몸이 곧 요새였다",
+"포비든 건담":"빛을 휘어 총알을 비껴낸다",
+"레이더 건담":"하늘로 뜨는 순간 짐승이 된다",
+"세이버 건담":"날개를 접어 하늘을 가른다",
+"카오스 건담":"등의 포드가 알아서 사냥한다",
+"가이아 건담":"네 발로 땅을 달린다",
+"어비스 건담":"물속에서 포문을 연다",
+"레전드 건담":"드래군을 물려받은 후계기",
+"인피니트 저스티스 건담":"발끝까지 칼날을 세웠다",
+"아카츠키 건담":"금빛 장갑이 빔을 되돌려보낸다",
+"구프 이그나이티드":"옛 이름을 새 시대에 다시 꺼냈다",
+"돔 트루퍼":"셋이 함께 지면을 미끄러진다",
+"더블오 건담":"두 개의 태양로가 처음으로 맞물렸다",
+"더블오 퀀터":"검 한 자루로 세계를 열었다",
+"캘딤 건담":"방패마저 총구로 삼았다",
+"건담 나드레":"숨겨둔 정체가 드러나는 순간 열린다",
+"오 건담":"모든 것이 여기서 시작되었다",
+"건담 스로네 아인":"셋 중 맏이가 앞장섰다",
+"GN-X":"빼앗은 기술로 만들어 되돌려 쐈다",
+"라파엘 건담":"품에 또 하나의 기체를 감췄다",
+"건담 발바토스 루프스":"이리의 이름을 얻고 더 사나워졌다",
+"건담 구시온 리베이크":"부서진 몸을 다시 짜맞췄다",
+"건담 비다르":"가면 뒤에 옛 주인의 얼굴이 있다",
+"그레이즈 아인":"사람의 신경을 기계에 이었다",
+"레긴레이즈":"규격을 지키며 조용히 강해졌다",
+"하슈말":"삼백 년 전의 재앙이 땅을 갈랐다",
+"건담 캘리번":"물려받은 몸으로 스스로 나아갔다",
+"건담 르브리스 손":"쌍둥이 중 하나가 먼저 나섰다",
+"건담 르브리스 울":"나머지 하나가 뒤를 따랐다",
+"딜란자":"결투장의 단골 얼굴",
+"베귀르펜테":"결투기를 전장용으로 고쳤다",
+"조워트":"손에 익은 만큼만 해낸다",
+"셴롱 건담":"팔에서 용의 머리가 뻗는다",
+"건담 데스사이즈 헬":"어둠을 두르고 다시 나타났다",
+"에피온":"방패도 총도 없이 검만 들었다",
+"톨기스 II":"견디는 자만이 탈 수 있었다",
+"비르고":"사람이 타지 않는 병사",
+"시로 아마다":"규정보다 눈앞의 사람을 먼저 봤다",
+"노리스 팩커드":"주인의 딸을 위해 홀로 막아섰다",
+"알프레드 이즈루하":"전쟁을 구경거리로 여겼던 아이",
+"시마 가라하우":"깃발을 여러 번 갈아 달았다",
+"제리드 메사":"뒤처졌다는 조바심이 그를 몰았다",
+"카츠 코바야시":"인정받고 싶어 무리하게 나섰다",
+"비챠 올레그":"고물상에서 조종간으로 옮겨 앉았다",
+"엘 비안노":"울면서도 방아쇠를 놓지 않았다",
+"마슈마 세로":"싸움을 축제처럼 여겼다",
+"규네이 거스":"인정받기 위해 사랑까지 걸었다",
+"퀘스 파라야":"아버지를 대신할 무언가를 찾았다",
+"니콜 아말피":"피아노를 치던 손으로 조종간을 잡았다",
+"올가 사브낙":"약이 끊기면 아무것도 남지 않았다",
+"샤니 앤드라스":"웃으며 방아쇠를 당겼다",
+"클로토 뷰엘":"두려움조차 지워진 채 싸웠다",
+"레이 자 바렐":"짧은 수명을 알고도 명령을 따랐다",
+"네오 로아노크":"가면 아래의 이름을 잃었다",
+"하이네 베스텐플루스":"주황빛으로 앞장서다 스러졌다",
+"스팅 오클레이":"기억을 지운 자리에 임무만 남았다",
+"아울 니더":"이기는 것 말고는 배우지 못했다",
+"그라함 에이커":"건담을 쫓다 스스로 가면을 썼다",
+"패트릭 콜라사워":"몇 번을 격추당해도 살아 돌아왔다",
+"알리 알 사셰스":"전쟁이 이어지기만을 바랐다",
+"리보리 아넨스키":"만들어진 형제 중 하나였다",
+"가엘리오 보드윈":"친구라 믿었던 자에게 모든 것을 잃었다",
+"노르바 시노":"동생들을 위해 저격수가 되었다",
+"아키히로 앨트랜드":"형제를 잃고도 앞만 보고 걸었다",
+"소피 프로네":"싸움을 통해서만 살아 있음을 느꼈다",
+"마르탱 업몬트":"묵묵히 남의 뒤를 받쳤다",
+"트레즈 크슈리나다":"아름다운 전쟁이 있다고 믿었다",
+"릴리나 도리안":"무기를 들지 않고 전쟁을 끝내려 했다"
+};
+function loreOf(c){return LORE[c[0]]||""}
+
+/* 전용기 연대 */
+var BOND={"카가리|스트라이크 루즈":.20,
+"아무로|RX-78-2 건담":.15,"아무로|뉴 건담":.20,"아무로|하이뉴 건담":.22,"샤아|사자비":.20,"샤아|나이팅게일":.22,
+"샤아|샤아 전용 자쿠":.15,"카미유|Z건담":.20,"쥬도 아시타|ZZ건담":.20,"하만 칸|큐베레이":.20,
+"라라아|엘메스":.18,"코우 우라키|건담 시작 1호기 제피랜서스":.20,"아나벨 가토|건담 시작 2호기 사이살리스":.20,"시마 가라하우|가베라 테트라":.18,"시로 아마다|건담 Ez8":.20,"노리스 팩커드|구프 커스텀":.20,"규네이 거스|야크트 도가":.20,"퀘스 파라야|야크트 도가":.20,"엘 비안노|건담 Mk-II":.15,"제리드 메사|가브스레이":.18,"야잔|함브라비":.18,"로자미아|바운드 독":.18,"니콜 아말피|블리츠":.20,"올가 사브낙|캘러미티":.20,"샤니 앤드라스|포비든 건담":.20,"클로토 뷰엘|레이더 건담":.20,"아스란 자라|세이버 건담":.18,"레이 자 바렐|레전드 건담":.20,"스텔라 루셰|가이아 건담":.20,"스팅 오클레이|카오스 건담":.20,"아울 니더|어비스 건담":.20,"카가리|아카츠키 건담":.18,"세츠나 F. 세이에이|더블오 건담":.20,"세츠나 F. 세이에이|더블오 퀀터":.20,"록온 스트라토스|캘딤 건담":.20,"티에리아 아데|건담 나드레":.18,"그라함 에이커|GN-X":.15,"미카즈키 아우구스|건담 발바토스 루프스":.20,"아키히로 앨트랜드|건담 구시온 리베이크":.20,"가엘리오 보드윈|건담 비다르":.20,"노르바 시노|건담 플라우로스":.20,"아인 달튼|그레이즈 아인":.20,"슬레타 머큐리|건담 캘리번":.20,"소피 프로네|건담 르브리스 손":.18,"구엘 제타크|딜란자":.15,"창 우페이|셴롱 건담":.20,"듀오 맥스웰|건담 데스사이즈 헬":.20,"젝스 마키스|에피온":.20,"트레즈 크슈리나다|톨기스 II":.15,"엘피 플|큐베레이 Mk-II 플기":.20,"플 투|큐베레이 Mk-II 플투기":.20,"란바 랄|구프":.15,"시로코|디 오":.20,
+"아나벨 가토|겔구그":.15,
+"샤아|백식":.20,"샤아|지옹":.18,"에마 신|건담 Mk-II 티탄즈사양":.18,"크리스티나 맥켄지|건담 NT-1":.20,
+"코우 우라키|시작 3호기 덴드로비움":.20,"코우 우라키|건담 시작 3호기 스테이멘":.20,"카이 시덴|건캐논":.18,"마 쿠베|갸안":.20,
+"도즐|빅잠":.20,"아나벨 가토|노이에 질":.18,"가이아|돔":.18,"포우|사이코 건담":.20,"파 유이리|메타스":.18,"글레미|게마르크":.20,
+"제리드 메사|마라사이":.15,"야잔|갸프랑":.15,"시로 아마다|육전형 건담":.18,"마슈마 세로|자쿠 III":.15,"바나지 링크스|리젤":.12,
+"안젤로 자우퍼|기라 즐루":.18,"졸탄 앗카넨|실바 바레토":.12,"하사웨이 노아|메싸":.15,"레인 에임|그이 마리에":.12,
+"키라 야마토|스트라이크":.20,"라우 르 크루제|프로비던스":.20,"아스란 자라|이지스":.20,"이자크 쥴|듀엘":.20,"디아카 앨스먼|버스터":.20,
+"아스란 자라|구프 이그나이티드":.12,"알렐루야 합티즘|건담 큐리오스":.20,"알렐루야 합티즘|아리오스 건담":.20,"티에리아 아데|세라비 건담":.20,
+"티에리아 아데|라파엘 건담":.18,"리본즈 알마크|리본즈 건담":.20,"그라함 에이커|아헤드":.15,"미카즈키 아우구스|건담 발바토스 루프스 렉스":.20,
+"아키히로 앨트랜드|건담 구시온":.18,"가엘리오 보드윈|건담 키마리스":.20,"가엘리오 보드윈|건담 키마리스 비다르":.20,
+"줄리에타 쥬리스|레긴레이즈":.18,"노레아 듀노크|건담 파렉트":.20,"라우다 네일|슈바르제테":.20,"샤디크 제네리|미카엘리스":.20,
+"구엘 제타크|다릴 바르데":.20,"듀오 맥스웰|건담 데스사이즈":.20,"제하트 갈렛|지랏하":.18,
+"바나지 링크스|유니콘 건담":.20,"마리다 크루스|크샤트리야":.20,"풀 프론탈|시난주":.20,
+"풀 프론탈|네오 지옹":.20,"리디 마세나스|델타 플러스":.20,"리디 마세나스|밴시 노른":.18,
+"요나 바슈타|나라티브 건담":.20,"리타 베르나르|페넥스":.20,"졸탄 앗카넨|시난주 스타인":.20,
+"하사웨이 노아|크시 건담":.20,"레인 에임|페넬로페":.20,
+"도몬 캇슈|갓 건담":.20,"도몬 캇슈|샤이닝 건담":.18,"마스터 아시아|마스터 건담":.20,
+"치보데 크로켓|건담 맥스터":.20,"죠르쥬 드 사드|건담 로즈":.20,
+"사이 사이시|드래곤 건담":.20,"아르고 가르스키|보르트 건담":.20,
+"가로드 란|건담 X":.20,"가로드 란|더블 엑스":.20,"위츠 수|건담 에어마스터":.20,
+"로아비 로이|건담 레오파드":.20,"샤기아 프로스트|건담 벨페고르":.15,
+"플리트 아스노|건담 AGE-1":.20,"아세무 아스노|건담 AGE-2":.20,
+"키오 아스노|건담 AGE-3":.20,"플리트 아스노|건담 AGE-FX":.15,"이젤칸트|레길스":.20,
+"키라 야마토|마이티 스트라이크 프리덤 건담":.20,"키라 야마토|라이징 프리덤 건담":.18,
+"아스란 자라|이모탈 저스티스 건담":.20,"아스란 자라|인피니트 저스티스 건담 이식":.20,
+"신 아스카|데스티니 건담 SpecII":.20,"슈라 서펜타인|블랙나이트 스쿼드 시바":.20,
+"오르페 라무|블랙나이트 스쿼드 카룰라":.20,"잉그리드 트라돌|블랙나이트 스쿼드 루드라":.15,"아스란 자라|인피니트 저스티스 건담":.18,
+"키라 야마토|스트라이크 프리덤":.20,"신 아스카|데스티니":.20,"키라 야마토|프리덤":.20,"아스란 자라|저스티스":.20,
+"세츠나 F. 세이에이|건담 엑시아":.20,"세츠나 F. 세이에이|더블오 라이저":.20,"미카즈키 아우구스|건담 발바토스":.20,
+"슬레타 머큐리|건담 에어리얼":.20,"슬레타 머큐리|건담 에어리얼 개수형":.20,"히이로 유이|윙 건담 제로":.20,
+"젝스 마키스|톨기스":.18,
+"히이로 유이|윙 건담 제로 EW":.20,"듀오 맥스웰|건담 데스사이즈 헬 EW":.20,
+"트로와 버튼|건담 헤비암즈 EW":.20,"카토르 라버바 위너|건담 샌드록 EW":.20,
+"창 우페이|알트론 건담 EW":.20,"젝스 마키스|톨기스 III":.20,
+"트로와 버튼|건담 헤비암즈":.18,"카토르 라버바 위너|건담 샌드록":.18,
+"창 우페이|알트론 건담":.18,"히이로 유이|윙 건담":.18,"맥길리스 파리드|건담 바알":.18,"신 아스카|임펄스":.18,"록온 스트라토스|건담 듀나메스":.18,
+"티에리아 아데|건담 버체":.18,"프로스페라 머큐리|건담 르브리스":.15
+,
+"시북 아노|건담 F91":.20,"세실리 페어차일드|비기나 기나":.20,
+"카롯조 로나|라플레시아":.20,"자비네 샤르|베르가 기로스":.18,
+"도렐 로나|베르가 다라스":.15,
+"우소 에빈|V건담":.20,"우소 에빈|V2건담":.20,
+"우소 에빈|V2 어설트 버스터 건담":.18,"크로노클 아샤|고틀라탄":.20,
+"카테지나 루스|고틀라탄":.15,"파라 그리폰|조로":.15,
+"이오 플레밍|풀아머 건담":.20,"다릴 로렌츠|사이코 자쿠":.20,
+"이오 플레밍|아틀라스 건담":.15,
+"로랑 세아크|∀건담":.20,"김 깅가남|턴 X":.20,
+"해리 오드|골드 스모":.20,"코린 난더|카풀":.12,
+"로우 규레|건담 아스트레이 레드프레임":.20,
+"가이 무라쿠모|건담 아스트레이 블루프레임":.20,
+"가이 무라쿠모|건담 아스트레이 블루프레임 세컨드L":.20,
+"카나드 펄스|하이페리온 건담":.20,
+"아마테 유즈리하|GQuuuuuuX":.20,"슈우지 이토|붉은 건담":.20,
+"론도 기나 사하크|건담 아스트레이 미라쥬 프레임":.20,
+"론도 기나 사하크|건담 아스트레이 골드프레임":.18,
+"론도 미나 사하크|건담 아스트레이 골드프레임 아마츠 미나":.20,
+"론도 미나 사하크|건담 아스트레이 골드프레임 아마츠 하나":.18,
+"론도 미나 사하크|건담 아스트레이 골드프레임":.15};
+
+
+/* ═══════ 초상 ═══════
+   카드 하나에 남성체(m)·여성체(f) 두 장을 둔다.
+   기체는 의인화 성별, 파일럿은 원작 성별과 그 반대.
+   비워두면 진영색 자리표시자가 대신 뜬다.
+   형식:  "이름":{m:"data:image/webp;base64,...", f:"...", face:[좌,상,폭]}
+   prep_images.py --inject 로 자동 생성한다.
+*/
+/* 이미지 호스팅 주소. 옮길 때 이 한 줄만 고치면 된다. */
+var IMG_BASE="https://polos0117.github.io/gundam-img/";
+function imgURL(p){return IMG_BASE+encodeURIComponent(p)}
+
+var IMG={
+"리젤":{m:"리젤_m.webp",f:"리젤_f.webp",face:{"m": [0.472, 0.13, 0.125], "f": [0.442, 0.155, 0.125]},casual:["리젤_casual1.webp","리젤_casual2.webp"]},
+"건담 AGE-2":{m:"건담 AGE-2_m.webp",f:"건담 AGE-2_f.webp",face:{"m": [0.415, 0.052, 0.145], "f": [0.412, 0.05, 0.125]},casual:["건담 AGE-2_casual1.webp","건담 AGE-2_casual2.webp","건담 AGE-2_casual3.webp"]},
+"건담 AGE-1":{m:"건담 AGE-1_m.webp",f:"건담 AGE-1_f.webp",face:{"m": [0.425, 0.048, 0.13], "f": [0.435, 0.062, 0.13]},casual:["건담 AGE-1_casual1.webp","건담 AGE-1_casual2.webp"]},
+"더블오 건담":{m:"더블오 건담_m.webp",f:"더블오 건담_f.webp",face:{"m": [0.415, 0.085, 0.105], "f": [0.40, 0.115, 0.11]},casual:["더블오 건담_casual1.webp","더블오 건담_casual2.webp"]},
+"갸프랑":{m:"갸프랑_m.webp",f:"갸프랑_f.webp",face:{"m": [0.465, 0.085, 0.10], "f": [0.455, 0.06, 0.105]},casual:["갸프랑_casual1.webp","갸프랑_casual2.webp"]},
+"델타 플러스":{m:"델타 플러스_m.webp",f:"델타 플러스_f.webp",face:{"m": [0.455, 0.085, 0.10], "f": [0.44, 0.10, 0.105]},casual:["델타 플러스_casual1.webp"]},
+"건담 키마리스":{m:"건담 키마리스_m.webp",f:"건담 키마리스_f.webp",face:{"m": [0.455, 0.075, 0.10], "f": [0.44, 0.095, 0.115]},casual:["건담 키마리스_casual1.webp"]},
+"건담 키마리스 비다르":{m:"건담 키마리스 비다르_m.webp",f:"건담 키마리스 비다르_f.webp",face:{"m": [0.455, 0.135, 0.10], "f": [0.455, 0.10, 0.10]},casual:["건담 키마리스 비다르_casual1.webp","건담 키마리스 비다르_casual2.webp"]},
+"알파 아질":{m:"알파 아질_m.webp",f:"알파 아질_f.webp",face:{"m": [0.415, 0.19, 0.10], "f": [0.44, 0.09, 0.10]},casual:["알파 아질_casual1.webp","알파 아질_casual2.webp"]},
+"리가지":{m:"리가지_m.webp",f:"리가지_f.webp",face:{"m": [0.455, 0.055, 0.10], "f": [0.45, 0.075, 0.10]},casual:["리가지_casual1.webp","리가지_casual2.webp"]},
+"메타스":{m:"메타스_m.webp",f:"메타스_f.webp",face:{"m": [0.435, 0.125, 0.105], "f": [0.435, 0.155, 0.10]},casual:["메타스_casual1.webp","메타스_casual2.webp"]},
+"돔":{m:"돔_m.webp",f:"돔_f.webp",face:{"m": [0.465, 0.045, 0.11], "f": [0.47, 0.13, 0.105]},casual:["돔_casual1.webp","돔_casual2.webp"]},
+"하이잭":{m:"하이잭_m.webp",f:"하이잭_f.webp",face:{"m": [0.44, 0.115, 0.105], "f": [0.435, 0.13, 0.115]},casual:["하이잭_casual1.webp","하이잭_casual2.webp"]},
+"마라사이":{m:"마라사이_m.webp",f:"마라사이_f.webp",face:{"m": [0.455, 0.085, 0.105], "f": [0.455, 0.10, 0.105]},casual:["마라사이_casual1.webp"]},
+"자쿠 III":{m:"자쿠 III_m.webp",f:"자쿠 III_f.webp",face:{"m": [0.455, 0.09, 0.105], "f": [0.465, 0.05, 0.11]},casual:["자쿠 III_casual1.webp","자쿠 III_casual2.webp"]},
+"V2 어설트 버스터 건담":{m:"V2 어설트 버스터 건담_m.webp",f:"V2 어설트 버스터 건담_f.webp",face:{"m": [0.44, 0.135, 0.11], "f": [0.45, 0.125, 0.105]},casual:["V2 어설트 버스터 건담_casual1.webp","V2 어설트 버스터 건담_casual2.webp"]},
+"V2건담":{m:"V2건담_m.webp",f:"V2건담_f.webp",face:{"m": [0.445, 0.065, 0.115], "f": [0.44, 0.07, 0.115]},casual:["V2건담_casual1.webp","V2건담_casual2.webp"]},
+"V건담":{m:"V건담_m.webp",f:"V건담_f.webp",face:{"m": [0.44, 0.05, 0.115], "f": [0.44, 0.06, 0.115]},casual:["V건담_casual1.webp"]},
+"사이코 건담":{m:"사이코 건담_m.webp",f:"사이코 건담_f.webp",face:{"m": [0.445, 0.055, 0.115], "f": [0.44, 0.055, 0.115]},casual:["사이코 건담_casual1.webp"]},
+"구프":{m:"구프_m.webp",f:"구프_f.webp",face:{"m": [0.435, 0.055, 0.12], "f": [0.43, 0.075, 0.12]},casual:["구프_casual1.webp"]},
+"비기나 기나":{m:"비기나 기나_m.webp",f:"비기나 기나_f.webp",face:{"m": [0.435, 0.07, 0.12], "f": [0.44, 0.075, 0.115]},casual:["비기나 기나_casual1.webp"]},
+"릭 디아스":{m:"릭 디아스_m.webp",f:"릭 디아스_f.webp",face:{"m": [0.425, 0.06, 0.125], "f": [0.425, 0.10, 0.12]},casual:["릭 디아스_casual1.webp"]},
+"톨기스 III":{m:"톨기스 III_m.webp",f:"톨기스 III_f.webp",face:{"m": [0.415, 0.06, 0.125], "f": [0.44, 0.09, 0.12]},casual:["톨기스 III_casual1.webp"]},
+"톨기스 II":{m:"톨기스 II_m.webp",f:"톨기스 II_f.webp",face:{"m": [0.44, 0.075, 0.125], "f": [0.445, 0.09, 0.12]},casual:["톨기스 II_casual1.webp","톨기스 II_casual2.webp"]},
+"톨기스":{m:"톨기스_m.webp",f:"톨기스_f.webp",face:{"m": [0.435, 0.075, 0.135], "f": [0.43, 0.105, 0.13]},casual:["톨기스_casual1.webp"]},
+"윙 건담":{m:"윙 건담_m.webp",f:"윙 건담_f.webp",face:{"m": [0.445, 0.045, 0.125], "f": [0.455, 0.04, 0.15]},casual:["윙 건담_casual1.webp"]},
+"건담 바알":{m:"건담 바알_m.webp",f:"건담 바알_f.webp",face:{"m": [0.40, 0.075, 0.13], "f": [0.415, 0.10, 0.13]},casual:["건담 바알_casual1.webp"]},
+"윙 건담 제로":{m:"윙 건담 제로_m.webp",f:"윙 건담 제로_f.webp",face:{"m": [0.435, 0.045, 0.135], "f": [0.455, 0.045, 0.13]},casual:["윙 건담 제로_casual1.webp","윙 건담 제로_casual2.webp"]},
+"건담 플라우로스":{m:"건담 플라우로스_m.webp",f:"건담 플라우로스_f.webp",face:{"m": [0.415, 0.075, 0.145], "f": [0.425, 0.075, 0.145]},casual:["건담 플라우로스_casual1.webp"]},
+"나이팅게일":{m:"나이팅게일_m.webp",f:"나이팅게일_f.webp",face:{"m": [0.405, 0.075, 0.15], "f": [0.415, 0.115, 0.135]},casual:["나이팅게일_casual1.webp"]},
+"하이뉴 건담":{m:"하이뉴_건담_m.webp",f:"하이뉴_건담_f.webp",face:{"m": [0.385, 0.085, 0.15], "f": [0.445, 0.11, 0.115]},casual:["하이뉴_건담_casual1.webp"]},
+"게마르크":{m:"게마르크_m.webp",f:"게마르크_f.webp",face:{"m": [0.425, 0.09, 0.155], "f": [0.45, 0.12, 0.115]},casual:["게마르크_casual1.webp"]},
+"건담 Mk-V":{m:"건담_Mk-V_m.webp",f:"건담_Mk-V_f.webp",face:{"m": [0.435, 0.07, 0.13], "f": [0.435, 0.11, 0.13]},casual:["건담_Mk-V_casual1.webp"]},
+"자쿠II":{m:"자쿠II_m.webp",f:"자쿠II_f.webp",face:{"m": [0.425, 0.05, 0.15], "f": [0.42, 0.055, 0.15]},casual:["자쿠II_casual1.webp"]},
+"구프 커스텀":{m:"구프_커스텀_m.webp",f:"구프_커스텀_f.webp",face:{"m": [0.40, 0.10, 0.13], "f": [0.43, 0.08, 0.13]},casual:["구프_커스텀_casual1.webp"]},
+"베귀르베우":{m:"베귀르베우_m.webp",f:"베귀르베우_f.webp",face:{"m": [0.42, 0.135, 0.13], "f": [0.42, 0.10, 0.115]},casual:["베귀르베우_casual1.webp","베귀르베우_casual2.webp"]},
+"슈바르제테":{m:"슈바르제테_m.webp",f:"슈바르제테_f.webp",face:{"m": [0.42, 0.075, 0.13], "f": [0.41, 0.115, 0.135]},casual:["슈바르제테_casual1.webp"]},
+"건담 르브리스":{m:"건담_르브리스_m.webp",f:"건담_르브리스_f.webp",face:{"m": [0.41, 0.08, 0.15], "f": [0.44, 0.115, 0.115]},extra:["건담_르브리스_extra1.webp"],casual:["건담_르브리스_casual1.webp","건담_르브리스_casual2.webp"]},
+"볼":{m:"볼_m.webp",f:"볼_f.webp",face:{"m": [0.415, 0.125, 0.14], "f": [0.38, 0.11, 0.14]},casual:["볼_casual1.webp"]},
+"건담 X":{m:"건담_X_m.webp",f:"건담_X_f.webp",face:{"m": [0.37, 0.18, 0.13], "f": [0.35, 0.19, 0.13]},casual:["건담_X_casual1.webp"]},
+"짐":{m:"짐_m.webp",f:"짐_f.webp",face:{"m": [0.41, 0.03, 0.185], "f": [0.44, 0.055, 0.13]},casual:["짐_casual1.webp"]},
+"건담 구시온":{m:"건담_구시온_m.webp",f:"건담_구시온_f.webp",face:{"m": [0.44, 0.08, 0.125], "f": [0.44, 0.085, 0.13]},casual:["건담_구시온_casual1.webp"]},
+"RX-78-2 건담":{m:"RX-78-2_건담_m.webp",f:"RX-78-2_건담_f.webp",face:{"m": [0.442, 0.106, 0.14], "f": [0.427, 0.056, 0.15]},casual:["RX-78-2_건담_casual1.webp"]},
+"ZZ건담":{m:"ZZ건담_m.webp",f:"ZZ건담_f.webp",face:{"m": [0.44, 0.115, 0.18], "f": [0.415, 0.11, 0.2]},casual:["ZZ건담_casual1.webp"]},
+"Z건담":{m:"Z건담_m.webp",f:"Z건담_f.webp",face:{"m": [0.385, 0.106, 0.223], "f": [0.416, 0.176, 0.16]},casual:["Z건담_casual1.webp"]},
+"가이아 건담":{m:"가이아_건담_m.webp",f:"가이아_건담_f.webp",face:{"m": [0.402, 0.138, 0.16], "f": [0.393, 0.147, 0.16]},casual:["가이아_건담_casual1.webp"]},
+"가베라 테트라":{m:"가베라_테트라_m.webp",f:"가베라_테트라_f.webp",face:{"m": [0.376, 0.072, 0.186], "f": [0.415, 0.085, 0.186]},casual:["가베라_테트라_casual1.webp"]},
+"갓 건담":{m:"갓_건담_m.webp",f:"갓_건담_f.webp",face:{"m": [0.347, 0.150, 0.186], "f": [0.342, 0.163, 0.186]},casual:["갓_건담_casual1.webp"]},
+"건담 Ez8":{m:"건담_Ez8_m.webp",f:"건담_Ez8_f.webp",face:{"m": [0.420, 0.078, 0.176], "f": [0.391, 0.072, 0.166]},casual:["건담_Ez8_casual1.webp"]},
+"건담 F91":{m:"건담_F91_m.webp",f:"건담_F91_f.webp",face:{"m": [0.420, 0.098, 0.176], "f": [0.420, 0.065, 0.176]},casual:["건담_F91_casual1.webp"]},
+"건담 Mk-II":{m:"건담_Mk-II_m.webp",f:"건담_Mk-II_f.webp",face:{"m": [0.4, 0.055, 0.2], "f": [0.396, 0.151, 0.16]}},
+"건담 Mk-II 티탄즈사양":{m:"건담_Mk-II_티탄즈사양_m.webp",f:"건담_Mk-II_티탄즈사양_f.webp",face:{"m": [0.425, 0.158, 0.16], "f": [0.404, 0.09, 0.16]}},
+"건담 NT-1":{m:"건담_NT-1_m.webp",f:"건담_NT-1_f.webp",face:{"m": [0.475, 0.078, 0.118], "f": [0.455, 0.09, 0.115]},casual:["건담_NT-1_casual1.webp"]},
+"건담 데스사이즈 헬 EW":{m:"건담_데스사이즈_헬_EW_m.webp",f:"건담_데스사이즈_헬_EW_f.webp",face:{"m": [0.395, 0.132, 0.17], "f": [0.435, 0.112, 0.17]},casual:["건담_데스사이즈_헬_EW_casual1.webp","건담_데스사이즈_헬_EW_casual2.webp"]},
+"건담 듀나메스":{m:"건담_듀나메스_m.webp",f:"건담_듀나메스_f.webp",face:{"m": [0.43, 0.038, 0.15], "f": [0.44, 0.088, 0.145]},extra:["건담_듀나메스_extra1.webp"],casual:["건담_듀나메스_casual1.webp"]},
+"건담 발바토스":{m:"건담_발바토스_m.webp",f:"건담_발바토스_f.webp",face:{"m": [0.462, 0.085, 0.13], "f": [0.448, 0.108, 0.125]},casual:["건담_발바토스_casual1.webp"]},
+"건담 발바토스 루프스 렉스":{m:"건담_발바토스_루프스_렉스_m.webp",f:"건담_발바토스_루프스_렉스_f.webp",face:{"m": [0.468, 0.176, 0.12], "f": [0.474, 0.198, 0.115]},casual:["건담_발바토스_루프스_렉스_casual1.webp"]},
+"건담 버체":{m:"건담_버체_m.webp",f:"건담_버체_f.webp",face:{"m": [0.42, 0.087, 0.15], "f": [0.447, 0.095, 0.15]},casual:["건담_버체_casual1.webp"]},
+"건담 비다르":{m:"건담_비다르_m.webp",f:"건담_비다르_f.webp",face:{"m": [0.452, 0.075, 0.124], "f": [0.452, 0.086, 0.12]},casual:["건담_비다르_casual1.webp"]},
+"건담 샌드록 EW":{m:"건담_샌드록_EW_m.webp",f:"건담_샌드록_EW_f.webp",face:{"m": [0.408, 0.086, 0.16], "f": [0.428, 0.062, 0.155]},extra:["건담_샌드록_EW_extra1.webp"],casual:["건담_샌드록_EW_casual1.webp"]},
+"건담 시작 1호기 제피랜서스":{m:"건담_시작_1호기_제피랜서스_m.webp",f:"건담_시작_1호기_제피랜서스_f.webp",face:{"m": [0.420, 0.052, 0.186], "f": [0.415, 0.072, 0.186]},casual:["건담_시작_1호기_제피랜서스_casual1.webp"]},
+"건담 시작 2호기 사이살리스":{m:"건담_시작_2호기_사이살리스_m.webp",f:"건담_시작_2호기_사이살리스_f.webp",face:{"m": [0.415, 0.101, 0.171], "f": [0.405, 0.114, 0.176]},casual:["건담_시작_2호기_사이살리스_casual1.webp"]},
+"건담 시작 3호기 스테이멘":{m:"건담_시작_3호기_스테이멘_m.webp",f:"건담_시작_3호기_스테이멘_f.webp",face:{"m": [0.415, 0.059, 0.186], "f": [0.415, 0.085, 0.186]},casual:["건담_시작_3호기_스테이멘_casual1.webp"]},
+"건담 아스트레이 레드프레임":{m:"건담_아스트레이_레드프레임_m.webp",f:"건담_아스트레이_레드프레임_f.webp",face:{"m": [0.376, 0.091, 0.176], "f": [0.371, 0.107, 0.166]},casual:["건담_아스트레이_레드프레임_casual1.webp"]},
+"건담 아스트레이 골드프레임":{m:"건담_아스트레이_골드프레임_m.webp",f:"건담_아스트레이_골드프레임_f.webp",face:{"m": [0.420, 0.052, 0.176], "f": [0.430, 0.065, 0.166]},casual:["건담_아스트레이_골드프레임_casual1.webp"]},
+"건담 아스트레이 블루프레임":{m:"건담_아스트레이_블루프레임_m.webp",f:"건담_아스트레이_블루프레임_f.webp",face:{"m": [0.435, 0.052, 0.176], "f": [0.439, 0.059, 0.166]},casual:["건담_아스트레이_블루프레임_casual1.webp"]},
+"건담 아스트레이 블루프레임 세컨드L":{m:"건담_아스트레이_블루프레임_세컨드L_m.webp",f:"건담_아스트레이_블루프레임_세컨드L_f.webp",face:{"m": [0.459, 0.078, 0.186], "f": [0.479, 0.111, 0.176]},casual:["건담_아스트레이_블루프레임_세컨드L_casual1.webp"]},
+"건담 아스트레이 골드프레임 아마츠 하나":{m:"건담_아스트레이_골드프레임_아마츠_하나_m.webp",f:"건담_아스트레이_골드프레임_아마츠_하나_f.webp",face:{"m": [0.430, 0.133, 0.176], "f": [0.410, 0.186, 0.166]},casual:["건담_아스트레이_골드프레임_아마츠_하나_casual1.webp"]},
+"건담 아스트레이 골드프레임 아마츠 미나":{m:"건담_아스트레이_골드프레임_아마츠_미나_m.webp",f:"건담_아스트레이_골드프레임_아마츠_미나_f.webp",face:{"m": [0.420, 0.046, 0.176], "f": [0.420, 0.085, 0.176]},casual:["건담_아스트레이_골드프레임_아마츠_미나_casual1.webp"]},
+"건담 에어리얼":{m:"건담_에어리얼_m.webp",f:"건담_에어리얼_f.webp",face:{"m": [0.45, 0.078, 0.132], "f": [0.452, 0.098, 0.128]},extra:["건담_에어리얼_extra1.webp"],casual:["건담_에어리얼_casual1.webp"]},
+"건담 에어리얼 개수형":{m:"건담_에어리얼_개수형_m.webp",f:"건담_에어리얼_개수형_f.webp",face:{"m": [0.452, 0.092, 0.132], "f": [0.452, 0.102, 0.132]},casual:["건담_에어리얼_개수형_casual1.webp"]},
+"건담 엑시아":{m:"건담_엑시아_m.webp",f:"건담_엑시아_f.webp",face:{"m": [0.44, 0.06, 0.15], "f": [0.46, 0.06, 0.155]},casual:["건담_엑시아_casual1.webp"]},
+"건담 캘리번":{m:"건담_캘리번_m.webp",f:"건담_캘리번_f.webp",face:{"m": [0.468, 0.052, 0.13], "f": [0.422, 0.088, 0.132]},casual:["건담_캘리번_casual1.webp","건담_캘리번_casual2.webp"]},
+"건담 큐리오스":{m:"건담_큐리오스_m.webp",f:"건담_큐리오스_f.webp",face:{"m": [0.4, 0.057, 0.15], "f": [0.415, 0.068, 0.15]},casual:["건담_큐리오스_casual1.webp"]},
+"건담 파렉트":{m:"건담_파렉트_m.webp",f:"건담_파렉트_f.webp",face:{"m": [0.413, 0.098, 0.186], "f": [0.418, 0.081, 0.186]},casual:["건담_파렉트_casual1.webp"]},
+"건담 헤비암즈 EW":{m:"건담_헤비암즈_EW_m.webp",f:"건담_헤비암즈_EW_f.webp",face:{"m": [0.413, 0.104, 0.165], "f": [0.4, 0.1, 0.16]},casual:["건담_헤비암즈_EW_casual1.webp"]},
+"건캐논":{m:"건캐논_m.webp",f:"건캐논_f.webp",face:{"m": [0.439, 0.091, 0.186], "f": [0.439, 0.094, 0.186]},casual:["건캐논_casual1.webp"]},
+"건탱크":{m:"건탱크_m.webp",f:"건탱크_f.webp",face:{"m": [0.42, 0.117, 0.176], "f": [0.43, 0.104, 0.176]},casual:["건탱크_casual1.webp"]},
+"기라 도가":{m:"기라_도가_m.webp",f:"기라_도가_f.webp",face:{"m": [0.415, 0.095, 0.19], "f": [0.42, 0.143, 0.16]}},
+"노이에 질":{m:"노이에_질_m.webp",f:"노이에_질_f.webp",face:{"m": [0.420, 0.114, 0.166], "f": [0.420, 0.107, 0.166]},casual:["노이에_질_casual1.webp"]},
+"뉴 건담":{m:"뉴_건담_m.webp",f:"뉴_건담_f.webp",face:[0.393, 0.14, 0.21],casual:["뉴_건담_casual1.webp"]},
+"다릴 바르데":{m:"다릴_바르데_m.webp",f:"다릴_바르데_f.webp",face:{"m": [0.403, 0.062, 0.195], "f": [0.433, 0.088, 0.186]},casual:["다릴_바르데_casual1.webp"]},
+"더블오 라이저":{m:"더블오_라이저_m.webp",f:"더블오_라이저_f.webp",face:{"m": [0.452, 0.108, 0.125], "f": [0.452, 0.098, 0.128]},casual:["더블오_라이저_casual1.webp"]},
+"데스티니":{m:"데스티니_m.webp",f:"데스티니_f.webp",face:{"m": [0.397, 0.155, 0.194], "f": [0.439, 0.206, 0.16]},casual:["데스티니_casual1.webp"]},
+"도벤 울프":{m:"도벤_울프_m.webp",f:"도벤_울프_f.webp",face:{"m": [0.415, 0.11, 0.2], "f": [0.416, 0.176, 0.165]},casual:["도벤_울프_casual1.webp"]},
+"듀엘":{m:"듀엘_m.webp",f:"듀엘_f.webp",face:{"m": [0.4, 0.119, 0.16], "f": [0.424, 0.123, 0.16]},casual:["듀엘_casual1.webp"]},
+"디 오":{m:"디_오_m.webp",f:"디_오_f.webp",face:{"m": [0.448, 0.062, 0.135], "f": [0.452, 0.118, 0.128]},casual:["디_오_casual1.webp"]},
+"라이징 프리덤 건담":{m:"라이징_프리덤_건담_m.webp",f:"라이징_프리덤_건담_f.webp",face:{"m": [0.378, 0.128, 0.135], "f": [0.462, 0.125, 0.12]},casual:["라이징_프리덤_건담_casual1.webp"]},
+"레이더 건담":{m:"레이더_건담_m.webp",f:"레이더_건담_f.webp",face:{"m": [0.343, 0.11, 0.247], "f": [0.402, 0.199, 0.16]},casual:["레이더_건담_casual1.webp"]},
+"레전드 건담":{m:"레전드_건담_m.webp",f:"레전드_건담_f.webp",face:{"m": [0.425, 0.128, 0.16], "f": [0.42, 0.158, 0.155]},casual:["레전드_건담_casual1.webp"]},
+"리본즈 건담":{m:"리본즈_건담_m.webp",f:"리본즈_건담_f.webp",face:{"m": [0.458, 0.072, 0.124], "f": [0.462, 0.088, 0.122]},casual:["리본즈_건담_casual1.webp"]},
+"마스터 건담":{m:"마스터_건담_m.webp",f:"마스터_건담_f.webp",face:{"m": [0.415, 0.055, 0.186], "f": [0.425, 0.070, 0.186]},casual:["마스터_건담_casual1.webp","마스터_건담_casual2.webp"]},
+"미카엘리스":{m:"미카엘리스_m.webp",f:"미카엘리스_f.webp",face:{"m": [0.395, 0.07, 0.15], "f": [0.418, 0.088, 0.145]},casual:["미카엘리스_casual1.webp"]},
+"백식":{m:"백식_m.webp",f:"백식_f.webp",face:{"m": [0.427, 0.113, 0.16], "f": [0.413, 0.144, 0.16]},extra:["백식_extra1.webp"],casual:["백식_casual1.webp"]},
+"밴시 노른":{m:"밴시_노른_m.webp",f:"밴시_노른_f.webp",face:{"m": [0.425, 0.14, 0.13], "f": [0.462, 0.145, 0.125]},casual:["밴시_노른_casual1.webp"]},
+"버스터":{m:"버스터_m.webp",f:"버스터_f.webp",face:{"m": [0.44, 0.09, 0.18], "f": [0.455, 0.115, 0.18]},casual:["버스터_casual1.webp"]},
+"블랙나이트 스쿼드 시바":{m:"블랙나이트_스쿼드_시바_m.webp",f:"블랙나이트_스쿼드_시바_f.webp",face:{"m": [0.452, 0.082, 0.12], "f": [0.452, 0.08, 0.118]},casual:["블랙나이트_스쿼드_시바_casual1.webp"]},
+"블랙나이트 스쿼드 카룰라":{m:"블랙나이트_스쿼드_카룰라_m.webp",f:"블랙나이트_스쿼드_카룰라_f.webp",face:{"m": [0.452, 0.15, 0.118], "f": [0.442, 0.14, 0.12]},casual:["블랙나이트_스쿼드_카룰라_casual1.webp"]},
+"블리츠":{m:"블리츠_m.webp",f:"블리츠_f.webp",face:{"m": [0.416, 0.124, 0.16], "f": [0.442, 0.129, 0.163]},casual:["블리츠_casual1.webp"]},
+"사자비":{m:"사자비_m.webp",f:"사자비_f.webp",face:{"m": [0.415, 0.105, 0.22], "f": [0.4, 0.075, 0.24]},casual:["사자비_casual1.webp"]},
+"샤아 전용 자쿠":{m:"샤아_전용_자쿠_m.webp",f:"샤아_전용_자쿠_f.webp",face:{"m": [0.42, 0.092, 0.15], "f": [0.43, 0.078, 0.15]},casual:["샤아_전용_자쿠_casual1.webp"]},
+"세라비 건담":{m:"세라비_건담_m.webp",f:"세라비_건담_f.webp",face:{"m": [0.462, 0.12, 0.122], "f": [0.455, 0.138, 0.12]},casual:["세라비_건담_casual1.webp"]},
+"세이버 건담":{m:"세이버_건담_m.webp",f:"세이버_건담_f.webp",face:{"m": [0.385, 0.177, 0.16], "f": [0.393, 0.163, 0.16]},casual:["세이버_건담_casual1.webp"]},
+"스트라이크 프리덤":{m:"스트라이크_프리덤_m.webp",f:"스트라이크_프리덤_f.webp",face:{"m": [0.44, 0.29, 0.16], "f": [0.414, 0.169, 0.175]},casual:["스트라이크_프리덤_casual1.webp"]},
+"시난주":{m:"시난주_m.webp",f:"시난주_f.webp",face:{"m": [0.428, 0.098, 0.135], "f": [0.428, 0.088, 0.13]},casual:["시난주_casual1.webp"]},
+"시작 3호기 덴드로비움":{m:"시작_3호기_덴드로비움_m.webp",f:"시작_3호기_덴드로비움_f.webp",face:{"m": [0.454, 0.189, 0.186], "f": [0.420, 0.140, 0.176]},casual:["시작_3호기_덴드로비움_casual1.webp"]},
+"아리오스 건담":{m:"아리오스_건담_m.webp",f:"아리오스_건담_f.webp",face:{"m": [0.452, 0.092, 0.125], "f": [0.455, 0.102, 0.125]},casual:["아리오스_건담_casual1.webp"]},
+"아카츠키 건담":{m:"아카츠키_건담_m.webp",f:"아카츠키_건담_f.webp",face:{"m": [0.38, 0.112, 0.17], "f": [0.435, 0.11, 0.16]},casual:["아카츠키_건담_casual1.webp"]},
+"알트론 건담 EW":{m:"알트론_건담_EW_m.webp",f:"알트론_건담_EW_f.webp",face:{"m": [0.428, 0.148, 0.152], "f": [0.428, 0.146, 0.15]},casual:["알트론_건담_EW_casual1.webp"]},
+"야크트 도가":{m:"야크트_도가_m.webp",f:"야크트_도가_f.webp",face:{"m": [0.415, 0.105, 0.2], "f": [0.395, 0.155, 0.2]},casual:["야크트_도가_casual1.webp"]},
+"어비스 건담":{m:"어비스_건담_m.webp",f:"어비스_건담_f.webp",face:{"m": [0.395, 0.098, 0.17], "f": [0.396, 0.092, 0.16]},casual:["어비스_건담_casual1.webp"]},
+"에피온":{m:"에피온_m.webp",f:"에피온_f.webp",face:{"m": [0.400, 0.078, 0.195], "f": [0.400, 0.098, 0.195]},extra:["에피온_extra1.webp"],casual:["에피온_casual1.webp"]},
+"윙 건담 제로 EW":{m:"윙_건담_제로_EW_m.webp",f:"윙_건담_제로_EW_f.webp",face:{"m": [0.396, 0.062, 0.175], "f": [0.44, 0.088, 0.17]},casual:["윙_건담_제로_EW_casual1.webp","윙_건담_제로_EW_casual2.webp"]},
+"유니콘 건담":{m:"유니콘_건담_m.webp",f:"유니콘_건담_f.webp",face:{"m": [0.425, 0.095, 0.145], "f": [0.443, 0.1, 0.132]},casual:["유니콘_건담_casual1.webp","유니콘_건담_casual2.webp"]},
+"육전형 건담":{m:"육전형_건담_m.webp",f:"육전형_건담_f.webp",face:{"m": [0.410, 0.052, 0.176], "f": [0.420, 0.062, 0.166]},casual:["육전형_건담_casual1.webp"]},
+"이모탈 저스티스 건담":{m:"이모탈_저스티스_건담_m.webp",f:"이모탈_저스티스_건담_f.webp",face:{"m": [0.47, 0.096, 0.12], "f": [0.464, 0.11, 0.12]},casual:["이모탈_저스티스_건담_casual1.webp"]},
+"이지스":{m:"이지스_m.webp",f:"이지스_f.webp",face:{"m": [0.385, 0.167, 0.16], "f": [0.4, 0.1, 0.2]},casual:["이지스_casual1.webp"]},
+"인피니트 저스티스 건담":{m:"인피니트_저스티스_건담_m.webp",f:"인피니트_저스티스_건담_f.webp",face:{"m": [0.418, 0.11, 0.165], "f": [0.408, 0.104, 0.17]},casual:["인피니트_저스티스_건담_casual1.webp"]},
+"임펄스":{m:"임펄스_m.webp",f:"임펄스_f.webp",face:{"m": [0.372, 0.145, 0.16], "f": [0.374, 0.159, 0.16]},casual:["임펄스_casual1.webp"]},
+"저스티스":{m:"저스티스_m.webp",f:"저스티스_f.webp",face:{"m": [0.415, 0.185, 0.22], "f": [0.405, 0.199, 0.16]},casual:["저스티스_casual1.webp"]},
+"제간":{m:"제간_m.webp",f:"제간_f.webp",face:{"m": [0.415, 0.115, 0.2], "f": [0.42, 0.135, 0.2]}},
+"짐 스나이퍼II":{m:"짐_스나이퍼II_m.webp",f:"짐_스나이퍼II_f.webp",face:{"m": [0.439, 0.033, 0.195], "f": [0.438, 0.062, 0.186]},casual:["짐_스나이퍼II_casual1.webp"]},
+"카오스 건담":{m:"카오스_건담_m.webp",f:"카오스_건담_f.webp",face:{"m": [0.395, 0.2, 0.185], "f": [0.395, 0.18, 0.185]},casual:["카오스_건담_casual1.webp"]},
+"캘딤 건담":{m:"캘딤_건담_m.webp",f:"캘딤_건담_f.webp",face:{"m": [0.448, 0.088, 0.122], "f": [0.428, 0.098, 0.12]},casual:["캘딤_건담_casual1.webp"]},
+"캘러미티":{m:"캘러미티_m.webp",f:"캘러미티_f.webp",face:{"m": [0.413, 0.106, 0.16], "f": [0.399, 0.095, 0.203]},casual:["캘러미티_casual1.webp"]},
+"캠퍼":{m:"캠퍼_m.webp",f:"캠퍼_f.webp",face:{"m": [0.452, 0.128, 0.155], "f": [0.42, 0.132, 0.152]},casual:["캠퍼_casual1.webp"]},
+"큐베레이":{m:"큐베레이_m.webp",f:"큐베레이_f.webp",face:{"m": [0.415, 0.175, 0.17], "f": [0.399, 0.208, 0.16]},casual:["큐베레이_casual1.webp"]},
+"큐베레이 Mk-II 플기":{m:"큐베레이_Mk-II_플기_m.webp",f:"큐베레이_Mk-II_플기_f.webp",face:{"m": [0.417, 0.202, 0.16], "f": [0.407, 0.241, 0.16]},casual:["큐베레이_Mk-II_플기_casual1.webp"]},
+"큐베레이 Mk-II 플투기":{m:"큐베레이_Mk-II_플투기_m.webp",f:"큐베레이_Mk-II_플투기_f.webp",face:{"m": [0.38, 0.16, 0.16], "f": [0.417, 0.146, 0.16]},casual:["큐베레이_Mk-II_플투기_casual1.webp"]},
+"크샤트리야":{m:"크샤트리야_m.webp",f:"크샤트리야_f.webp",face:{"m": [0.443, 0.098, 0.13], "f": [0.443, 0.128, 0.125]},casual:["크샤트리야_casual1.webp"]},
+"크시 건담":{m:"크시_건담_m.webp",f:"크시_건담_f.webp",face:{"m": [0.43, 0.115, 0.13], "f": [0.448, 0.075, 0.135]},casual:["크시_건담_casual1.webp"]},
+"페넥스":{m:"페넥스_m.webp",f:"페넥스_f.webp",face:{"m": [0.435, 0.176, 0.128], "f": [0.418, 0.132, 0.125]},casual:["페넥스_casual1.webp"]},
+"페넬로페":{m:"페넬로페_m.webp",f:"페넬로페_f.webp",face:{"m": [0.42, 0.185, 0.125], "f": [0.456, 0.15, 0.13]},casual:["페넬로페_casual1.webp"]},
+"포비든 건담":{m:"포비든_건담_m.webp",f:"포비든_건담_f.webp",face:{"m": [0.374, 0.128, 0.209], "f": [0.358, 0.182, 0.189]},casual:["포비든_건담_casual1.webp"]},
+"프로비던스":{m:"프로비던스_m.webp",f:"프로비던스_f.webp",face:{"m": [0.445, 0.248, 0.16], "f": [0.416, 0.176, 0.162]},casual:["프로비던스_casual1.webp"]},
+"프리덤":{f:"프리덤_f.webp",face:[0.398, 0.165, 0.21],casual:["프리덤_casual1.webp"]}
+};
+var VSEED={};
+/* 초상 표시 방식 — "m" · "f" · "r"(무작위) · "x"(짝의 반대, 기체 전용) */
+var VIEW_P="r", VIEW_M="x";
+function rollVariants(){
+  VSEED={};
+  var all=[].concat(MECH,PILOT,SHIP,CREW),i;
+  for(i=0;i<all.length;i++)VSEED[all[i][0]]=Math.random()<.5?"m":"f";
+}
+function flip(v){return v==="m"?"f":"m"}
+function seedOf(c){return VSEED[c[0]]||"m"}
+function pilotView(c){return VIEW_P==="r"?seedOf(c):VIEW_P}
+/* 파일럿은 설정대로, 기체는 설정이 "반대"면 짝의 반대를 따른다 */
+function variantOf(card,partner){
+  if(partner)return VIEW_M==="x"?flip(pilotView(partner))
+            :VIEW_M==="r"?seedOf(card):VIEW_M;
+  if(card===undefined)return "m";
+  var isPilot=PILOT.indexOf(card)>=0;
+  if(isPilot)return pilotView(card);
+  var vm=VIEW_M==="x"?"r":VIEW_M;
+  return vm==="r"?seedOf(card):vm;
+}
+function hashOf(s){var h=0,i;for(i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))&0xffff;return h}
+function placeholder(card,v){
+  var col=fc(card[1][card[1].length-1]),h=hashOf(card[0]),
+      a=(h%40)-20, b=((h>>4)%30)+15, ch=card[0].charAt(0);
+  return '<svg viewBox="0 0 90 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'+
+    '<defs><linearGradient id="g'+h+'" x1="0" y1="0" x2="0" y2="1">'+
+    '<stop offset="0" stop-color="'+col+'" stop-opacity=".38"/>'+
+    '<stop offset="1" stop-color="'+col+'" stop-opacity=".06"/></linearGradient></defs>'+
+    '<rect width="90" height="120" fill="#10141A"/>'+
+    '<rect width="90" height="120" fill="url(#g'+h+')"/>'+
+    '<g stroke="'+col+'" stroke-opacity=".22" stroke-width=".5" fill="none">'+
+    '<circle cx="45" cy="'+(46+a/6)+'" r="'+b+'"/>'+
+    '<path d="M0 '+(84+a/4)+' L90 '+(72+a/4)+'"/>'+
+    '<path d="M'+(20+a/3)+' 0 L'+(20+a/3)+' 120" stroke-dasharray="3 5"/></g>'+
+    '<text x="45" y="58" text-anchor="middle" font-family="Gothic A1,sans-serif" '+
+    'font-size="30" font-weight="900" fill="'+col+'" fill-opacity=".55">'+ch+'</text>'+
+    '<text x="45" y="76" text-anchor="middle" font-family="IBM Plex Mono,monospace" '+
+    'font-size="8" fill="'+col+'" fill-opacity=".5">'+(v==="f"?"F":"M")+'</text></svg>';
+}
+/* 이미지 로드 실패 시 자리표시자로 대체 (미리보기·오프라인 대응) */
+var FB={},FBN=0;
+function fbReg(card,v){
+  var id="fb"+(FBN++);
+  FB[id]="data:image/svg+xml;utf8,"+encodeURIComponent(placeholder(card,v));
+  return id;
+}
+function fbSwap(im){
+  im.onerror=null;
+  var d=FB[im.getAttribute("data-fb")];
+  if(d)im.src=d;
+}
+function avHTML(card,type,partner,force){
+  var v=force||variantOf(card,partner),src=IMG[card[0]];
+  if(src){
+    var pic=src[v]||src[flip(v)];
+    if(pic)return '<img src="'+imgURL(pic)+'" alt="" loading="lazy" decoding="async" data-fb="'+fbReg(card,v)+'" onerror="fbSwap(this)">';
+  }
+  return placeholder(card,v);
+}
+/* 얼굴 크롭 — [좌측비율, 상단비율, 폭비율].
+   face가 배열이면 남녀 공통, {m:[...],f:[...]}면 배리언트별로 쓴다 */
+var ASPECT={"기체":1.5,"파일럿":1.5,"지휘관":4/3,"함":9/16};
+var FACE_DEF=[.34,.03,.30];
+function faceOf(src,v){
+  var f=src&&src.face;
+  if(!f)return FACE_DEF;
+  if(f.length===3&&typeof f[0]==="number")return f;
+  return f[v]||f[flip(v)]||FACE_DEF;
+}
+function faceHTML(card,partner,type){
+  var v=variantOf(card,partner),src=IMG[card[0]];
+  if(src){
+    var pic=src[v]||src[flip(v)];
+    if(pic){
+      var used=src[v]?v:flip(v), f=faceOf(src,used),
+          ar=ASPECT[type]||1.5,
+          fx=f[0], fy=f[1], fw=f[2], fh=Math.min(.999,fw/ar);
+      var size=(100/fw), px=(fw<1?fx/(1-fw)*100:0), py=(fh<1?fy/(1-fh)*100:0);
+      return '<span class="fcp" style="background-color:'+fc(card[1][card[1].length-1])+'33;'+
+        'background-image:url(\''+imgURL(pic)+'\');'+
+        'background-size:'+size.toFixed(1)+'% auto;'+
+        'background-position:'+px.toFixed(1)+'% '+py.toFixed(1)+'%"></span>';
+    }
+  }
+  return placeholder(card,v);
+}
+function bigHTML(card,v){
+  var src=IMG[card[0]];
+  if(src){var pic=src[v]||src[flip(v)];if(pic)return '<img src="'+imgURL(pic)+'" alt="" loading="lazy" decoding="async" data-fb="'+fbReg(card,v)+'" onerror="fbSwap(this)">'}
+  return placeholder(card,v);
+}
+var AV_CLS={"기체":"mech","파일럿":"pilot","함":"ship","지휘관":"crew"};
+
+/* ═══════ 시리즈별 정규화 ═══════ */
+function mp(m){return m[2]*.20+m[3]*.35+m[4]*.20+m[5]*.25}
+function pp(p){return p[2]*.15+p[3]*.60+p[4]*.25}
+function sp(s){return s[2]*.50+s[3]*.30+s[4]*.20}
+function cp(c){return c[2]*.35+c[3]*.20+c[4]*.30+c[5]*.15}
+function normalize(arr,pw,si,i0,i1){
+  var by={},i,j,k;
+  for(i=0;i<arr.length;i++){var s=franOf(arr[i]);if(!by[s]||pw(arr[i])>by[s])by[s]=pw(arr[i])}
+  var T=0;for(k in by)if(by[k]>T)T=by[k];
+  for(i=0;i<arr.length;i++){
+    var f=T/by[franOf(arr[i])];
+    if(f<=1.001)continue;
+    for(j=i0;j<=i1;j++)arr[i][j]=Math.min(99,Math.round(arr[i][j]*f));
+  }
+}
+normalize(MECH,mp,8,2,5);
+normalize(PILOT,pp,8,2,5);
+normalize(SHIP,sp,6,2,4);
+normalize(CREW,cp,6,2,5);
+
+/* ═══════ 규칙 ═══════ */
+var VOL={"폭주":1,"오만":1};
+function temper(a,b){
+  if((a==="폭주"&&b==="냉정")||(a==="냉정"&&b==="폭주")||
+     (a==="오만"&&b==="헌신")||(a==="헌신"&&b==="오만"))return .20;
+  if(a===b)return VOL[a]?-.15:.08;
+  return 0;
+}
+/* 특수 계열 기체 ↔ 감응 계통 대응 */
+var LINE={"사이코뮤":"뉴타입","핵동력":"코디네이터","GN드라이브":"이노베이터",
+  "아르비":"아할리아","GUND":"데이터스톰","제로시스템":"제로내성",
+  "모빌트레이스":"명경지수","플래시시스템":"뉴타입","AGE시스템":"X라운더",
+  "미노프스키드라이브":"뉴타입","나노스킨":"뉴타입"};
+var NTB=[-.20,.10,.18,.25];
+/* 계통이 맞으면 온전히, 다르면 절반만. 감응이 없으면 특수기를 못 다룬다 */
+function ntBonus(p,m){
+  var need=LINE[m[7]];
+  if(!need)return 0;
+  if(p[7]===0)return NTB[0];
+  return p[9]===need?NTB[p[7]]:NTB[p[7]]*.5;
+}
+function overlap(a,b){for(var i=0;i<a.length;i++)if(b.indexOf(a[i])>=0)return true;return false}
+function syncParts(m,p){
+  var t=temper(m[6],p[6]), n=ntBonus(p,m),
+      s=overlap(serAll(m),serAll(p))?.10:0, o=overlap(m[1],p[1])?.05:0,
+      b=BOND[p[0]+"|"+m[0]]||0;
+  return {t:t,n:n,s:s,o:o,b:b,raw:1+t+n+s+o+b,
+    xline:!!(LINE[m[7]]&&p[7]>0&&p[9]!==LINE[m[7]])};
+}
+function sync(m,p){var r=syncParts(m,p).raw;return Math.max(.70,Math.min(1.45,r))}
+function pairScore(m,p){return (mp(m)/100)*(pp(p)/100)*sync(m,p)*100}
+
+/* 진영 시너지 — 현소속 1.0 / 과거 0.5 */
+/* ═══════ 인연 — 연대 · 혈연 · 악연 ═══════
+   m: 구성원 (기체·파일럿·함·지휘관 어느 타입이든 이름으로 건다)
+   t: 몇 명이 모였을 때 몇 점인지.  k:1 이면 혈연 */
+var COMBO=[
+ /* ── 연대 ── */
+ /* 함과 그 주인 */
+ {n:"팔멜의 무사이",m:["샤아","무사이"],t:{2:35}},
+ {n:"액시즈의 여왕",m:["하만 칸","레우루라","글레미"],t:{2:35,3:70}},
+ {n:"돌아온 아가마",m:["브라이트","네엘 아가마","아무로"],t:{2:35,3:70}},
+ {n:"티탄즈의 함대",m:["바스크 옴","알렉산드리아"],t:{2:35}},
+ {n:"지온의 요새함",m:["도즐","그와진"],t:{2:40}},
+ {n:"솔라 시스템의 그늘",m:["기렌 자비","도로스"],t:{2:35}},
+ {n:"도미니온의 함교",m:["나탈 버지룰","도미니온","무루타 아즈라엘"],t:{2:35,3:70}},
+ {n:"컴퍼스의 기함",m:["라크스 클라인","밀레니엄","키라 야마토"],t:{2:35,3:75}},
+ {n:"피스밀리온",m:["카토르 라버바 위너","피스밀리온"],t:{2:40}},
+ {n:"프리덴의 아이들",m:["가로드 란","티파 아디르","프리덴"],t:{2:35,3:75}},
+ {n:"디바의 항해",m:["플리트 아스노","디바"],t:{2:35}},
+ {n:"프톨레마이오스 2",m:["스메라기 리 노리에가","프톨레마이오스 2","펠트 그레이스"],t:{2:35,3:70}},
+ {n:"가란셰르의 짐",m:["가란셰르","바나지 링크스"],t:{2:30}},
+ {n:"OZ의 기함",m:["트레즈 크슈리나다","불지"],t:{2:40}},
+ {n:"화이트 베이스의 아이들",m:["아무로","카이 시덴","미라이","브라이트"],t:{3:40,4:70}},
+ {n:"함장과 그 배",m:["브라이트","화이트 베이스"],t:{2:45}},
+ {n:"뉴타입의 첫 조우",m:["아무로","라라아"],t:{2:60}},
+ {n:"붉은 혜성과 흰 악마",m:["아무로","샤아"],t:{2:55}},
+ {n:"론드 벨",m:["아무로","브라이트","첸 아기","라 카이람"],t:{2:30,3:60,4:110}},
+ {n:"에우고의 기치",m:["샤아","카미유","에마 신","브라이트","아가마","블렉스"],t:{3:45,4:80,6:140}},
+ {n:"스승과 제자",m:["샤아","카미유"],t:{2:50}},
+ {n:"카미유와 파",m:["카미유","파 유이리"],t:{2:40}},
+ {n:"아우드무라의 아이들",m:["쥬도 아시타","엘피 플","루 루카"],t:{2:35,3:75}},
+ {n:"네오지온의 섭정",m:["하만 칸","글레미","마우아","그와단"],t:{2:30,3:60,4:100}},
+ {n:"랄 대장과 부하들",m:["란바 랄","구프"],t:{2:45}},
+ {n:"지온의 자비가",m:["기렌 자비","키시리아","도즐","가르마","데긴"],t:{2:35,3:70,5:150},k:1},
+ {n:"솔로몬의 수호신",m:["도즐","빅잠"],t:{2:50}},
+ {n:"델라즈 함대",m:["아나벨 가토","에기유 데라즈","노이에 질"],t:{2:40,3:85}},
+ {n:"알비온의 신참",m:["코우 우라키","크리스티나 맥켄지","알비온"],t:{2:35,3:75}},
+ {n:"티탄즈의 실세",m:["바스크 옴","자미토프","시로코","도고스 기어"],t:{2:30,3:60,4:100}},
+ {n:"강화인간의 그늘",m:["포우","로자미아","사라 자비아로프"],t:{2:35,3:75}},
+ {n:"규네이와 퀘스",m:["규네이 거스","퀘스 파라야","야크트 도가"],t:{2:35,3:70}},
+ /* SEED */
+ {n:"아크엔젤의 승무원",m:["키라 야마토","마류 라미아스","무우 라 프라가","나탈 버지룰","아크엔젤"],t:{3:45,4:80,5:130}},
+ {n:"오브의 맹세",m:["카가리","우즈미 나라 아스하","키라 야마토","아스란 자라","이터널"],t:{3:45,4:85,5:135}},
+ {n:"어릴 적 벗",m:["키라 야마토","아스란 자라"],t:{2:55}},
+ {n:"클라인 파",m:["라크스 클라인","앤드류 발트펠트","키라 야마토"],t:{2:40,3:85}},
+ {n:"자프트 붉은 옷",m:["아스란 자라","이자크 쥴","디아카 앨스먼"],t:{2:35,3:75}},
+ {n:"미네르바의 지휘",m:["탈리아 글래디스","신 아스카","루나마리아 호크","미네르바"],t:{2:35,3:70,4:115}},
+ /* 00 */
+ {n:"소레스탈 비잉",m:["세츠나 F. 세이에이","록온 스트라토스","알렐루야 합티즘","티에리아 아데","스메라기 리 노리에가","프톨레마이오스"],t:{3:50,4:90,6:155}},
+ {n:"마이스터의 결속",m:["세츠나 F. 세이에이","록온 스트라토스","알렐루야 합티즘","티에리아 아데"],t:{4:70}},
+ {n:"작전 지휘",m:["스메라기 리 노리에가","프톨레마이오스"],t:{2:45}},
+ {n:"펠트와 크리스티나",m:["펠트 그레이스","크리스티나 시에라"],t:{2:30}},
+ /* IBO */
+ {n:"철화단",m:["미카즈키 아우구스","오르가 이츠카","비스킷 그리폰","유진 세븐스타크","아토라 미쿠스라","이사리비"],t:{3:50,4:90,6:150}},
+ {n:"미카와 오르가",m:["미카즈키 아우구스","오르가 이츠카"],t:{2:60}},
+ {n:"터빈즈",m:["나제 터빈","아미다 아루카","하시마루"],t:{2:40,3:85}},
+ {n:"기간틱의 계보",m:["맥길리스 파리드","줄리에타 쥬리스","라스탈 엘리온","건담 바알"],t:{2:30,3:65,4:110}},
+ /* 수성의 마녀 */
+ {n:"지구 기숙사",m:["슬레타 머큐리","니카 나나우라","추아츄리 판런치"],t:{2:35,3:80}},
+ {n:"홀더와 파트너",m:["슬레타 머큐리","미오리네 렘블랑"],t:{2:60}},
+ {n:"저크 가문",m:["구엘 제타크","라우다 네일","사리우스 제타크"],t:{2:35,3:75},k:1},
+ {n:"셸 미라주",m:["프로스페라 머큐리","슬레타 머큐리","건담 에어리얼"],t:{2:40,3:85}},
+ /* W */
+ {n:"다섯 건담 파일럿",m:["히이로 유이","듀오 맥스웰","트로와 버튼","카토르 라버바 위너","창 우페이"],t:{3:50,4:90,5:140}},
+ {n:"OZ의 기사도",m:["트레즈 크슈리나다","젝스 마키스","루크레치아 노인","레이디 언"],t:{2:35,3:70,4:115}},
+ /* ── 혈연 ── */
+ {n:"혈연 · 자비가 남매",m:["기렌 자비","키시리아","도즐","가르마"],t:{2:40,3:80,4:130},k:1},
+ {n:"혈연 · 머큐리 모녀",m:["슬레타 머큐리","프로스페라 머큐리"],t:{2:55},k:1},
+ {n:"혈연 · 저크 형제",m:["구엘 제타크","라우다 네일"],t:{2:45},k:1},
+ {n:"혈연 · 플과 플 투",m:["엘피 플","플 투"],t:{2:45},k:1},
+ /* ── 악연 ── */
+ {n:"악연 · 카미유와 시로코",m:["카미유","시로코"],t:{2:-45}},
+ {n:"악연 · 카미유와 야잔",m:["카미유","야잔"],t:{2:-40}},
+ {n:"악연 · 샤아와 하만",m:["샤아","하만 칸"],t:{2:-50}},
+ {n:"악연 · 쥬도와 글레미",m:["쥬도 아시타","글레미"],t:{2:-40}},
+ {n:"악연 · 기렌과 데긴",m:["기렌 자비","데긴"],t:{2:-55}},
+ {n:"악연 · 도즐과 기렌",m:["도즐","기렌 자비"],t:{2:-35}},
+ {n:"악연 · 바스크와 에마",m:["바스크 옴","에마 신"],t:{2:-40}},
+ {n:"악연 · 레코아의 변심",m:["레코아","카미유"],t:{2:-35}},
+ {n:"악연 · 키라와 라우",m:["키라 야마토","라우 르 크루제"],t:{2:-50}},
+ {n:"생물 CPU 삼기",m:["캘러미티","레이더 건담","포비든 건담"],t:{2:35,3:75}},
+ {n:"악연 · 신과 키라",m:["신 아스카","키라 야마토"],t:{2:-45}},
+ {n:"악연 · 이자크와 디아카",m:["이자크 쥴","디아카 앨스먼"],t:{2:-25}},
+ {n:"악연 · 세츠나와 리본즈",m:["세츠나 F. 세이에이","리본즈 알마크"],t:{2:-50}},
+ {n:"악연 · 알렐루야와 소마",m:["알렐루야 합티즘","소마 필리스"],t:{2:-35}},
+ {n:"악연 · 미카즈키와 아인",m:["미카즈키 아우구스","아인 달튼"],t:{2:-45}},
+ {n:"악연 · 슬레타와 샤디크",m:["슬레타 머큐리","샤디크 제네리"],t:{2:-40}},
+ {n:"악연 · 히이로와 젝스",m:["히이로 유이","젝스 마키스"],t:{2:-35}},
+ {n:"악연 · 트레즈와 화이트팽",m:["트레즈 크슈리나다","리브라"],t:{2:-40}},
+ /* ── 2인 연대 보강 ── */
+ {n:"아무로와 브라이트",m:["아무로","브라이트"],t:{2:40}},
+ {n:"미라이의 조타",m:["미라이","화이트 베이스"],t:{2:35}},
+ {n:"기술반의 손길",m:["아스토니지 메드쓰","건담 Mk-II"],t:{2:35}},
+ {n:"Mk-II 탈취",m:["카미유","건담 Mk-II","에마 신"],t:{2:35,3:75}},
+ {n:"티탄즈의 시작기",m:["건담 Mk-II 티탄즈사양","바스크 옴"],t:{2:35}},
+ {n:"악연 · 빼앗긴 기체",m:["건담 Mk-II","건담 Mk-II 티탄즈사양"],t:{2:-30}},
+ {n:"헨켄과 아가마",m:["헨켄","아가마"],t:{2:35}},
+ {n:"블렉스의 유지",m:["블렉스","샤아"],t:{2:35}},
+ {n:"가토와 겔구그",m:["아나벨 가토","겔구그"],t:{2:35}},
+ {n:"키시리아의 총아",m:["키시리아","마 쿠베"],t:{2:35}},
+ {n:"도즐의 맹장",m:["도즐","가이아"],t:{2:30}},
+ {n:"자쿠의 붉은 주인",m:["샤아","샤아 전용 자쿠"],t:{2:40}},
+ {n:"백식과 금빛",m:["샤아","백식"],t:{2:35}},
+ {n:"나나이의 헌신",m:["나나이","샤아"],t:{2:40}},
+ {n:"하만과 큐베레이",m:["하만 칸","큐베레이"],t:{2:45}},
+ {n:"플과 큐베레이 Mk-II",m:["엘피 플","큐베레이 Mk-II 플기"],t:{2:40}},
+ {n:"플 투의 붉은 날개",m:["플 투","큐베레이 Mk-II 플투기"],t:{2:40}},
+ {n:"악연 · 두 자매의 충돌",m:["큐베레이 Mk-II 플기","큐베레이 Mk-II 플투기"],t:{2:-30}},
+ {n:"야잔과 갸프랑",m:["야잔","갸프랑"],t:{2:35}},
+ {n:"시로코와 디 오",m:["시로코","디 오"],t:{2:40}},
+ {n:"포우와 사이코 건담",m:["포우","사이코 건담"],t:{2:40}},
+ {n:"코우와 알비온",m:["코우 우라키","알비온"],t:{2:30}},
+ {n:"란바 랄과 하몬",m:["란바 랄","도즐"],t:{2:30}},
+ {n:"발트펠트의 안목",m:["앤드류 발트펠트","라크스 클라인"],t:{2:35}},
+ {n:"마류와 아크엔젤",m:["마류 라미아스","아크엔젤"],t:{2:40}},
+ {n:"무우와 스트라이크",m:["무우 라 프라가","스트라이크"],t:{2:35}},
+ {n:"신과 임펄스",m:["신 아스카","임펄스"],t:{2:40}},
+ {n:"루나마리아와 자쿠 워리어",m:["루나마리아 호크","자쿠 워리어"],t:{2:30}},
+ {n:"탈리아와 미네르바",m:["탈리아 글래디스","미네르바"],t:{2:40}},
+ {n:"라우와 프로비던스",m:["라우 르 크루제","프로비던스"],t:{2:40}},
+ {n:"카가리와 쿠사나기",m:["카가리","쿠사나기"],t:{2:35}},
+ {n:"카가리와 스트라이크 루즈",m:["카가리","스트라이크 루즈"],t:{2:35}},
+ {n:"이안의 정비",m:["이안 바스티","건담 엑시아"],t:{2:35}},
+ {n:"소마와 아헤드",m:["소마 필리스","아헤드"],t:{2:30}},
+ {n:"넨나와 스로네",m:["넨나 트리니티","건담 스로네 아인"],t:{2:40}},
+ {n:"마리나의 기도",m:["마리나 이스마일","세츠나 F. 세이에이"],t:{2:40}},
+ {n:"비스킷의 계산",m:["비스킷 그리폰","오르가 이츠카"],t:{2:40}},
+ {n:"메리빗의 보살핌",m:["메리빗 스테이플턴","아토라 미쿠스라"],t:{2:35}},
+ {n:"쿠델리아와 철화단",m:["쿠델리아 아이나 번스타인","이사리비"],t:{2:35}},
+ {n:"줄리에타와 레긴레이즈",m:["줄리에타 쥬리스","레긴레이즈"],t:{2:40}},
+ {n:"니카의 정비",m:["니카 나나우라","건담 에어리얼"],t:{2:35}},
+ {n:"츄츄와 데미 트레이너",m:["추아츄리 판런치","데미 트레이너"],t:{2:30}},
+ {n:"세세리아와 르브리스",m:["세세리아 도트","건담 르브리스"],t:{2:30}},
+ {n:"구엘과 다릴 바르데",m:["구엘 제타크","다릴 바르데"],t:{2:35}},
+ {n:"샤디크와 미카엘리스",m:["샤디크 제네리","미카엘리스"],t:{2:35}},
+ {n:"듀오와 데스사이즈",m:["듀오 맥스웰","건담 데스사이즈"],t:{2:40}},
+ {n:"트로와와 헤비암즈",m:["트로와 버튼","건담 헤비암즈"],t:{2:40}},
+ {n:"카트르와 샌드록",m:["카토르 라버바 위너","건담 샌드록"],t:{2:40}},
+ {n:"우페이와 알트론",m:["창 우페이","알트론 건담"],t:{2:40}},
+ {n:"노인과 톨기스",m:["루크레치아 노인","톨기스"],t:{2:35}},
+ {n:"레이디 언의 충성",m:["레이디 언","트레즈 크슈리나다"],t:{2:40}},
+ /* ── 보강 카드 연대 ── */
+ {n:"제08MS소대",m:["시로 아마다","건담 Ez8","육전형 건담","아이나 사하린"],t:{2:35,3:70,4:110}},
+ {n:"사이클롭스 부대",m:["버나드 와이즈먼","자쿠II 개량형","즈고크 E"],t:{2:35,3:75}},
+ {n:"시작기 계획",m:["코우 우라키","건담 시작 1호기 제피랜서스","건담 시작 3호기 스테이멘","니나 퍼플턴"],t:{2:35,3:70,4:115}},
+ {n:"해적 함대",m:["시마 가라하우","가베라 테트라"],t:{2:40}},
+ {n:"아우드무라의 소년들",m:["쥬도 아시타","비챠 올레그","엘 비안노"],t:{2:35,3:80}},
+ {n:"샤아의 두 뉴타입",m:["규네이 거스","퀘스 파라야","사자비"],t:{2:35,3:75}},
+ {n:"자프트 붉은 넷",m:["아스란 자라","이자크 쥴","디아카 앨스먼","니콜 아말피"],t:{2:30,3:65,4:110}},
+ {n:"생물 CPU",m:["올가 사브낙","샤니 앤드라스","클로토 뷰엘"],t:{2:35,3:85}},
+ {n:"팬텀 페인",m:["네오 로아노크","스팅 오클레이","아울 니더","스텔라 루셰"],t:{2:35,3:70,4:120}},
+ {n:"미네르바의 붉은 옷",m:["신 아스카","레이 자 바렐","루나마리아 호크","하이네 베스텐플루스"],t:{2:30,3:65,4:110}},
+ {n:"솔레스탈 비잉 2기",m:["더블오 건담","캘딤 건담","아리오스 건담","세라비 건담"],t:{2:35,3:75,4:125}},
+ {n:"철화단 형제",m:["미카즈키 아우구스","아키히로 앨트랜드","노르바 시노","유진 세븐스타크"],t:{2:30,3:65,4:110}},
+ {n:"보드윈과 파리드",m:["가엘리오 보드윈","맥길리스 파리드"],t:{2:40}},
+ {n:"쌍둥이 르브리스",m:["건담 르브리스 손","건담 르브리스 울"],t:{2:45},k:1},
+ {n:"어머니의 유산",m:["건담 캘리번","슬레타 머큐리","프로스페라 머큐리"],t:{2:40,3:85}},
+ {n:"OZ의 정점",m:["트레즈 크슈리나다","젝스 마키스","에피온","톨기스 II"],t:{2:35,3:70,4:115}},
+ {n:"악연 · 제리드의 집념",m:["제리드 메사","카미유"],t:{2:-35}},
+ {n:"악연 · 그라함과 세츠나",m:["그라함 에이커","세츠나 F. 세이에이"],t:{2:-40}},
+ {n:"악연 · 알 사셰스",m:["알리 알 사셰스","세츠나 F. 세이에이"],t:{2:-45}},
+ {n:"철가면의 야망",m:["카롯조 로나","라플레시아","도렐 로나"],t:{2:40,3:80}},
+ {n:"코스모 바빌로니아",m:["자비네 샤르","베르가 기로스","비기나 기나","세실리 페어차일드"],t:{2:35,3:75,4:120}},
+ {n:"리가밀리티아",m:["우소 에빈","V건담","마베트 핑거하트","오데로 헨릭"],t:{2:35,3:70,4:110}},
+ {n:"잔스칼의 여왕",m:["마리아 피어 아마리아","크로노클 아샤","카테지나 루스","아드라스테아"],t:{2:35,3:75,4:120}},
+ {n:"남극조약 밖에서",m:["이오 플레밍","다릴 로렌츠","풀아머 건담","사이코 자쿠"],t:{2:40,3:80,4:130}},
+ {n:"흑역사의 끝",m:["로랑 세아크","∀건담","디아나 소렐"],t:{2:40,3:85}},
+ {n:"깅가남의 무리",m:["김 깅가남","턴 X","해리 오드"],t:{2:40,3:80}},
+ {n:"준크의 고물상",m:["로우 규레","건담 아스트레이 레드프레임"],t:{2:35}},
+ {n:"세 프레임",m:["건담 아스트레이 레드프레임","건담 아스트레이 블루프레임","건담 아스트레이 골드프레임"],t:{2:40,3:90}},
+ {n:"이긴 지온의 세계",m:["아마테 유즈리하","GQuuuuuuX","슈우지 이토","붉은 건담"],t:{2:35,3:75,4:120}},
+ {n:"평화의 두 축",m:["히이로 유이","릴리나 도리안"],t:{2:50}},
+ {n:"악연 · 아즈라엘과 오브",m:["무루타 아즈라엘","카가리"],t:{2:-40}},
+ {n:"악연 · 맥길리스와 이오크",m:["맥길리스 파리드","라스탈 엘리온"],t:{2:-40}},
+ {n:"악연 · 프로스페라와 델링",m:["프로스페라 머큐리","델링 렘블랑"],t:{2:-50}},
+ {n:"니나의 설계",m:["니나 퍼플턴","시작 3호기 덴드로비움"],t:{2:35}},
+ {n:"혈연 · 아스하 부녀",m:["카가리","우즈미 나라 아스하"],t:{2:50},k:1},
+ {n:"혈연 · 렘브란 부녀",m:["미오리네 렘블랑","델링 렘블랑"],t:{2:55},k:1},
+ {n:"혈연 · 사하크 남매",m:["론도 미나 사하크","론도 기나 사하크"],t:{2:50},k:1},
+ {n:"사하크 가문의 기체",m:["론도 미나 사하크","건담 아스트레이 골드프레임 아마츠 미나","건담 아스트레이 골드프레임"],t:{2:35,3:75}},
+ {n:"라이브러리안",m:["론도 기나 사하크","건담 아스트레이 미라쥬 프레임"],t:{2:40}}
+];
+/* 팀에 걸린 인연을 모두 찾는다 */
+var justFired=[];    /* 방금 맺어진 인연 — 도크에서 한 번 번쩍인다 */
+function announce(list){
+  if(!list||!list.length)return;
+  var wrap=document.getElementById("toastArea");
+  wrap.innerHTML="";
+  for(var i=0;i<Math.min(3,list.length);i++){
+    (function(g,delay){
+      setTimeout(function(){
+        var t=el("div","toast"),
+            kind=g.v<0?"악연":g.kin?"혈연":"연대",
+            col=g.v<0?"var(--alert)":g.kin?"var(--ok)":"var(--amber)",
+            glow=g.v<0?"rgba(210,72,60,.4)":g.kin?"rgba(95,168,140,.4)":"rgba(232,161,58,.4)";
+        t.style.setProperty("--tc",col);
+        t.style.setProperty("--tg",glow);
+        t.innerHTML='<u>'+kind+'</u><b>'+g.n+'</b><em>'+(g.v>0?"+":"")+Math.round(g.v*PLEDGE_MUL)+'</em>';
+        wrap.appendChild(t);
+        setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t)},1900);
+      },delay);
+    })(list[i],i*160);
+  }
+  if(navigator.vibrate)try{navigator.vibrate(list.some(function(g){return g.v<0})?[18,60,18]:22)}catch(e){}
+}
+function pledges(t){
+  var all=[].concat(t.함,t.기체,t.파일럿,t.지휘관),names={},i,j;
+  for(i=0;i<all.length;i++)names[all[i][0]]=1;
+  var out=[];
+  for(i=0;i<COMBO.length;i++){
+    var cb=COMBO[i],hit=0,got=[];
+    for(j=0;j<cb.m.length;j++)if(names[cb.m[j]]){hit++;got.push(cb.m[j])}
+    var best=0,bk=0,k;
+    for(k in cb.t){if(hit>=+k&&+k>=bk){bk=+k;best=cb.t[k]}}
+    if(best)out.push({n:cb.n,v:best,kin:!!cb.k,got:got,need:cb.m});
+  }
+  return out.concat(tagPledges(t));
+}
+
+
+/* ═══════ 태그 ═══════
+   시리즈·진영이 작품 안을 묶는다면, 태그는 작품을 가로질러 묶는다.
+   색과 역할만 표로 적고, 계보는 이름과 계열에서 자동으로 뽑는다.
+   태그 자체는 능력치에 영향이 없다 — 오로지 아래 TCOMBO 의 걸쇠 노릇만 한다 */
+var TAG_COLOR={
+"RX-78-2 건담":"백색","가이아 건담":"녹색","감마 간":"적색","갓 건담":"백색","갸프랑":"청색","가베라 테트라":"적색",
+"건담 AGE-1":"백색","건담 AGE-2":"백색","건담 AGE-3":"백색","건담 AGE-FX":"백색","건담 Ez8":"백색","건담 Mk-II":"백색",
+"건담 Mk-II 티탄즈사양":"흑색","건담 Mk-V":"흑색","건담 NT-1":"백색","건담 X":"백색","건담 나드레":"녹색","건담 데스사이즈":"흑색",
+"건담 데스사이즈 헬":"흑색","건담 데스사이즈 헬 EW":"흑색","건담 듀나메스":"녹색","건담 로즈":"백색","건담 르브리스":"백색","건담 맥스터":"적색",
+"건담 바알":"금색","건담 발바토스":"백색","건담 발바토스 루프스":"적색","건담 발바토스 루프스 렉스":"적색","건담 버체":"백색",
+"건담 벨페고르":"백색","건담 비다르":"흑색","건담 샌드록":"백색","건담 샌드록 EW":"백색","건담 스로네 아인":"흑색",
+"건담 시작 1호기 제피랜서스":"백색","건담 시작 2호기 사이살리스":"적색","건담 시작 3호기 스테이멘":"백색","건담 에어리얼":"백색",
+"건담 에어리얼 개수형":"백색","건담 에어마스터":"청색","건담 엑시아":"청색","건담 캘리번":"백색","건담 큐리오스":"적색","건담 키마리스":"청색",
+"건담 키마리스 비다르":"청색","건담 파렉트":"적색","건담 헤비암즈":"적색","건담 헤비암즈 EW":"청색","겔구그":"녹색","겔구그 예거":"녹색",
+"구프":"적색","구프 이그나이티드":"적색","구프 커스텀":"적색","그레이즈":"녹색","기라 도가":"녹색","기라 즐루":"녹색","나라티브 건담":"백색",
+"뉴 건담":"백색","하이뉴 건담":"백색","더블 엑스":"백색","더블오 건담":"청색","더블오 퀀터":"청색","데미 트레이너":"백색","데빌 건담":"흑색","데스티니":"백색",
+"데스티니 건담 SpecII":"백색","델타 플러스":"백색","돔":"녹색","듀엘":"백색","드래곤 건담":"녹색","디 오":"흑색",
+"라이징 프리덤 건담":"백색","레긴레이즈":"백색","레전드 건담":"흑색","리가지":"백색","리젤":"백색","릭 디아스":"적색","릭 돔":"녹색",
+"마라사이":"청색","마스터 건담":"흑색","마이티 스트라이크 프리덤 건담":"백색","메타스":"백색","바운드 독":"흑색","백식":"금색",
+"밴시 노른":"흑색","블랙나이트 스쿼드 루드라":"흑색","블랙나이트 스쿼드 시바":"흑색","블랙나이트 스쿼드 카룰라":"백색","블리츠":"흑색",
+"비르고":"백색","사자비":"적색","나이팅게일":"적색","샤아 전용 자쿠":"적색","서펜트":"녹색","세이버 건담":"청색","셴롱 건담":"녹색","슈바르제테":"흑색",
+"스트라이크":"백색","스트라이크 루즈":"적색","스트라이크 프리덤":"백색","시난주":"적색","시덴":"녹색","실바 바레토":"백색","아델":"백색","아카츠키 건담":"금색",
+"알트론 건담":"녹색","알트론 건담 EW":"녹색","어비스 건담":"청색","오 건담":"백색","윙 건담":"백색","윙 건담 제로":"백색",
+"윙 건담 제로 EW":"백색","유니콘 건담":"백색","육전형 건담":"백색","육전형 짐":"백색","이모탈 저스티스 건담":"적색","이지스":"적색",
+"인피니트 저스티스 건담":"적색","인피니트 저스티스 건담 이식":"적색","임펄스":"백색","자쿠 III":"녹색","자쿠 워리어":"청색","자쿠 캐논":"녹색",
+"자쿠II":"녹색","자쿠II 개량형":"녹색","저스티스":"적색","제간":"백색","제니체":"청색","지랏하":"적색","짐":"백색",
+"짐 스나이퍼II":"백색","짐 커맨드":"백색","짐 커스텀":"백색","카오스 건담":"청색","캘딤 건담":"녹색","큐베레이":"백색",
+"큐베레이 Mk-II 플기":"적색","크샤트리야":"녹색","크시 건담":"청색","톨기스":"백색","톨기스 II":"백색","톨기스 III":"백색",
+"티에렌 지상형":"녹색","패틀리아":"청색","페넥스":"금색","페넬로페":"백색","포비든 건담":"흑색","프로비던스":"흑색","프리덤":"백색",
+"하이잭":"청색",
+"건담 F91":"백색","비기나 기나":"적색","라플레시아":"흑색",
+"베르가 기로스":"녹색","베르가 다라스":"녹색","데난 게":"녹색","데난 존":"녹색","헤비건":"백색",
+"V건담":"백색","V2건담":"백색","V2 어설트 버스터 건담":"백색","건이지":"백색",
+"게드라프":"녹색","고틀라탄":"적색","리그 샤코":"녹색","샤코":"녹색","조로":"녹색",
+"풀아머 건담":"백색","사이코 자쿠":"녹색","아틀라스 건담":"백색",
+"∀건담":"백색","턴 X":"백색","스모":"백색","골드 스모":"금색",
+"카풀":"청색","워돔":"청색","볼자논":"녹색","마히로":"백색",
+"건담 아스트레이 레드프레임":"적색","건담 아스트레이 블루프레임":"청색",
+"건담 아스트레이 블루프레임 세컨드L":"청색","건담 아스트레이 골드프레임":"금색",
+"건담 아스트레이 골드프레임 아마츠 미나":"흑색","하이페리온 건담":"백색","드레드노트 건담":"백색",
+"건담 하루트":"적색","건담 사바냐":"백색","브레이브 지휘관용 시험기":"청색",
+"GQuuuuuuX":"백색","붉은 건담":"적색",
+"건담 아스트레이 골드프레임 아마츠 하나":"백색",
+"건담 아스트레이 그린프레임":"녹색","스타게이저 건담":"백색"};
+var TAG_ROLE={
+"RX-78-2 건담":"주역기","ZZ건담":"주역기","Z건담":"주역기","가브스레이":"숙적기","갓 건담":"주역기","건담 AGE-1":"주역기",
+"건담 AGE-2":"주역기","건담 AGE-3":"주역기","건담 AGE-FX":"주역기","건담 Ez8":"주역기","건담 Mk-II":"주역기",
+"건담 Mk-II 티탄즈사양":"숙적기","건담 NT-1":"주역기","건담 X":"주역기","건담 데스사이즈":"주역기","건담 데스사이즈 헬":"주역기",
+"건담 데스사이즈 헬 EW":"주역기","건담 듀나메스":"주역기","건담 레오파드":"주역기","건담 바알":"숙적기","건담 발바토스":"주역기",
+"건담 발바토스 루프스":"주역기","건담 발바토스 루프스 렉스":"주역기","건담 버체":"주역기","건담 비다르":"숙적기","건담 샌드록":"주역기",
+"건담 샌드록 EW":"주역기","건담 스로네 아인":"숙적기","건담 시작 1호기 제피랜서스":"주역기","건담 에어리얼":"주역기","건담 에어리얼 개수형":"주역기",
+"건담 에어마스터":"주역기","건담 엑시아":"주역기","건담 캘리번":"주역기","건담 큐리오스":"주역기","건담 헤비암즈":"주역기",
+"건담 헤비암즈 EW":"주역기","겔구그":"숙적기","나라티브 건담":"주역기","네오 지옹":"숙적기","뉴 건담":"주역기","하이뉴 건담":"주역기","더블 엑스":"주역기",
+"더블오 건담":"주역기","더블오 퀀터":"주역기","데빌 건담":"숙적기","데스티니":"주역기","데스티니 건담 SpecII":"주역기","디 오":"숙적기",
+"라이징 프리덤 건담":"주역기","레길스":"숙적기","레전드 건담":"숙적기","리본즈 건담":"숙적기","마스터 건담":"숙적기",
+"마이티 스트라이크 프리덤 건담":"주역기","백식":"주역기","밴시 노른":"숙적기","블랙나이트 스쿼드 시바":"숙적기","블랙나이트 스쿼드 카룰라":"숙적기","비르고":"숙적기","사자비":"숙적기","나이팅게일":"숙적기",
+"샤아 전용 자쿠":"숙적기","샤이닝 건담":"주역기","셴롱 건담":"주역기","슈바르제테":"숙적기","스트라이크":"주역기","스트라이크 루즈":"주역기","스트라이크 프리덤":"주역기",
+"시난주":"숙적기","시난주 스타인":"숙적기","알트론 건담":"주역기","알트론 건담 EW":"주역기","에피온":"숙적기","윙 건담":"주역기",
+"윙 건담 제로":"주역기","윙 건담 제로 EW":"주역기","유니콘 건담":"주역기","육전형 건담":"주역기","이모탈 저스티스 건담":"숙적기",
+"이지스":"숙적기","인피니트 저스티스 건담":"숙적기","인피니트 저스티스 건담 이식":"숙적기","임펄스":"주역기","저스티스":"숙적기","지랏하":"숙적기",
+"지옹":"숙적기","큐베레이":"숙적기","크샤트리야":"숙적기","크시 건담":"주역기","톨기스":"숙적기","톨기스 II":"숙적기","톨기스 III":"숙적기",
+"페넬로페":"숙적기","프로비던스":"숙적기","프리덤":"주역기",
+"건담 F91":"주역기","라플레시아":"숙적기","비기나 기나":"숙적기",
+"V건담":"주역기","V2건담":"주역기","V2 어설트 버스터 건담":"주역기","고틀라탄":"숙적기",
+"풀아머 건담":"주역기","사이코 자쿠":"숙적기",
+"∀건담":"주역기","턴 X":"숙적기","골드 스모":"숙적기",
+"건담 아스트레이 레드프레임":"주역기","건담 아스트레이 블루프레임":"주역기",
+"건담 아스트레이 골드프레임 아마츠 미나":"숙적기",
+"건담 하루트":"주역기","GQuuuuuuX":"주역기","붉은 건담":"숙적기",
+"건담 아스트레이 미라쥬 프레임":"숙적기"};
+var GUNDAM_EXTRA={"스트라이크 루즈":1,"나이팅게일":1,"스트라이크":1,"프리덤":1,"저스티스":1,"이지스":1,"듀엘":1,"버스터":1,"블리츠":1,
+"프로비던스":1,"캘러미티":1,"임펄스":1,"데스티니":1,"백식":1,"큐베레이":1,"사자비":1,"시난주":1,
+"밴시 노른":1,"페넥스":1,"페넬로페":1,"에피온":1,"톨기스":1,"톨기스 II":1,"톨기스 III":1,
+"더블 엑스":1,"디 오":1,"크샤트리야":1,"네오 지옹":1,"지옹":1,"슈바르제테":1,"미카엘리스":1,
+"레길스":1,"아델":1,"제간":1,"리가지":1};
+var MECH_SET=null;
+function tagsOf(c){
+  if(!MECH_SET){MECH_SET={};for(var z=0;z<MECH.length;z++)MECH_SET[MECH[z][0]]=1}
+  var n=c[0];
+  if(!MECH_SET[n])return [];      /* 태그는 기체에만 붙인다 */
+  var out=[];
+  if(TAG_COLOR[n])out.push(TAG_COLOR[n]);
+  if(TAG_ROLE[n])out.push(TAG_ROLE[n]);
+  if(n.indexOf("자쿠")>=0)out.push("자쿠");
+  else if(n.indexOf("짐")>=0)out.push("짐");
+  if(n.indexOf("건담")>=0||GUNDAM_EXTRA[n])out.push("건담");
+  if(c[7]==="양산")out.push("양산기");
+  return out;
+}
+/* 태그로 걸리는 연대 — 이름이 아니라 태그 수를 센다 */
+var TCOMBO=[
+ {n:"붉은 기체들",g:"적색",t:{2:26,3:56,4:92}},
+ {n:"백색 편대",g:"백색",t:{4:55,5:100}},
+ {n:"검은 기체들",g:"흑색",t:{2:30,3:66}},
+ {n:"금빛 기체",g:"금색",t:{2:48,3:90}},
+ {n:"푸른 기체들",g:"청색",t:{2:26,3:56}},
+ {n:"녹빛 기체들",g:"녹색",t:{2:26,3:56}},
+ {n:"건담이라는 이름",g:"건담",t:{4:45,5:85,6:135}},
+ {n:"자쿠의 계보",g:"자쿠",t:{2:35,3:75}},
+ {n:"짐의 계보",g:"짐",t:{2:35,3:75}},
+ {n:"수의 논리",g:"양산기",t:{3:40,4:75}},
+ {n:"주역의 자리",g:"주역기",t:{2:38,3:80}},
+ {n:"숙적들",g:"숙적기",t:{2:38,3:80}}
+];
+function tagPledges(t){
+  var bag={},i,j,out=[];
+  for(i=0;i<t.기체.length;i++){
+    var tg=tagsOf(t.기체[i]);
+    for(j=0;j<tg.length;j++){(bag[tg[j]]=bag[tg[j]]||[]).push(t.기체[i][0])}
+  }
+  for(i=0;i<TCOMBO.length;i++){
+    var tc=TCOMBO[i],got=bag[tc.g]||[],hit=got.length,best=0,bk=0,k;
+    for(k in tc.t){if(hit>=+k&&+k>=bk){bk=+k;best=tc.t[k]}}
+    if(best)out.push({n:tc.n,v:best,kin:false,got:got,need:got,tag:tc.g});
+  }
+  return out;
+}
+
+var PLEDGE_MUL=.7;   // 인연이 승부를 지나치게 가르지 않도록 눌러 둔다
+var SYN={2:10,3:26,4:46,5:70,6:96,7:124,8:154};
+function synergy(t){
+  var cnt={},k,i,arr=[].concat(t.함,t.기체,t.파일럿,t.지휘관);
+  for(i=0;i<arr.length;i++){
+    var fs=arr[i][1],j;
+    for(j=0;j<fs.length;j++)cnt[fs[j]]=(cnt[fs[j]]||0)+(j===fs.length-1?1:.5);
+  }
+  var out=[],tot=0;
+  for(k in cnt){var n=Math.round(cnt[k]);if(n>=2){var v=SYN[n]||154;out.push([k,n,v]);tot+=v}}
+  out.sort(function(a,b){return b[2]-a[2]});
+  return {rows:out,total:tot};
+}
+
+/* 조 배정 — 탐욕 */
+function assign(t){
+  var cand=[],i,j;
+  for(i=0;i<t.기체.length;i++)for(j=0;j<t.파일럿.length;j++)
+    cand.push([pairScore(t.기체[i],t.파일럿[j]),t.기체[i],t.파일럿[j]]);
+  cand.sort(function(a,b){return b[0]-a[0]});
+  var um={},up={},out=[];
+  for(i=0;i<cand.length;i++){
+    var m=cand[i][1],p=cand[i][2];
+    if(um[m[0]]||up[p[0]])continue;
+    um[m[0]]=up[p[0]]=1;out.push({s:cand[i][0],m:m,p:p});
+  }
+  for(i=0;i<t.기체.length;i++)if(!um[t.기체[i][0]])out.push({s:mp(t.기체[i])*.35,m:t.기체[i],p:null});
+  for(i=0;i<t.파일럿.length;i++)if(!up[t.파일럿[i][0]])out.push({s:pp(t.파일럿[i])*.35,m:null,p:t.파일럿[i]});
+  return out;
+}
+
+function evaluate(t,blind){
+  var rows=[],total=0,i,units=assign(t),cap=capOf(t),over=0;
+  var paired=units.filter(function(u){return u.m&&u.p});
+  for(i=0;i<paired.length;i++){
+    var v=paired[i].s;
+    if(i>=cap){v*=.60;over++}
+    total+=v;
+  }
+  rows.push(["출격 "+paired.length+"조"+(over?" (정원초과 "+over+"조 60%)":""),Math.round(total)]);
+  var solo=units.filter(function(u){return !(u.m&&u.p)});
+  if(solo.length){
+    var sv=0;for(i=0;i<solo.length;i++)sv+=solo[i].s;
+    rows.push(["미편성 "+solo.length+"기 · 대기",Math.round(sv)]);total+=sv;
+  }
+  if(t.함.length){
+    var s=t.함[0],v2=sp(s)*.55;
+    rows.push(["모함 "+s[0]+" · 정원 "+(s[5]+CAP_BONUS),Math.round(v2)]);total+=v2;
+  }else{rows.push(["모함 부재",-60]);total-=60}
+  for(i=0;i<t.지휘관.length;i++){
+    var c=t.지휘관[i],v3=cp(c)*.42;
+    rows.push(["지휘관 "+c[0],Math.round(v3)]);total+=v3;
+  }
+  var sy=synergy(t);
+  for(i=0;i<sy.rows.length;i++)
+    rows.push(["결속 · "+sy.rows[i][0]+" "+sy.rows[i][1],Math.round(sy.rows[i][2]*.35)]);
+  total+=sy.total*.35;
+  if(!blind){
+    var pg=pledges(t);
+    for(i=0;i<pg.length;i++){
+      var pv=Math.round(pg[i].v*PLEDGE_MUL);
+      var nm=pg[i].n.replace(/^(혈연|악연) · /,"");
+    rows.push([(pg[i].v<0?"악연 · ":pg[i].kin?"혈연 · ":"연대 · ")+nm,pv]);
+      total+=pv;
+    }
+  }
+  return {rows:rows,total:Math.round(total)};
+}
+
+/* ═══════ 진행 ═══════ */
+var SCHEDULE=["함","기체","기체","기체","기체","기체","기체",
+  "파일럿","파일럿","파일럿","파일럿","파일럿","파일럿","지휘관","지휘관","지휘관"];
+/* 편성 규모에 맞춰 정원을 넉넉히 잡는다 — 기체 수에서 함 평균 정원을 뺀 만큼 */
+function slotsOf(type){var n=0,i;for(i=0;i<SCHEDULE.length;i++)if(SCHEDULE[i]===type)n++;return n}
+var CAP_BONUS=Math.max(0,slotsOf("기체")-4);
+function capOf(t){return t.함.length?t.함[0][5]+CAP_BONUS:0}
+var TYPE_LABEL={"함":"모함 선정","기체":"기체 확보","파일럿":"파일럿 영입","지휘관":"지휘관 배치"};
+var STAT_LABEL={"기체":["출력","화력","장갑","기동"],"파일럿":["지휘","조종","전술","정치"],
+  "함":["지휘","방어","색적","정원"],"지휘관":["지휘","정비","전술","정치"]};
+var SEATS=["아군","적 1","적 2"],PACKN=9;
+var sharedPack=true;   // 한 팩을 셋이 나눠 집는다
+var pools,teams,round,seq,si,busy,log,openFoe={};
+
+/* ═══════ 설정 ═══════ */
+var AI_LV=1, AI_NAME=["신참","숙련","에이스"];
+var fogOn=false, hintOn=true, exhaustOn=false;
+var REROLL_MAX=1, RR_OPT=[0,1,3,5];   // 양편이 한 판에 쓸 수 있는 보급 횟수
+var rerolls=0, discard={함:[],기체:[],파일럿:[],지휘관:[]}, shown={};
+var aiRR=[0,0,0];
+/* 적 함대가 물리는 기준 — 신참은 쓰지 않고, 눈이 높을수록 자주 물린다 */
+var RR_K=[-1,.80,.95];
+var RR_SAY=["이 보급으론 어림없다","다른 기체를 요청한다","목록을 다시 받겠다","쓸 만한 것이 보이지 않는군"];
+
+/* ═══════ 기록 ═══════ */
+var REC_KEY="gundam_draft_rec_v1";
+function recLoad(){
+  try{var r=JSON.parse(localStorage.getItem(REC_KEY));if(r&&r.v===1)return r}catch(e){}
+  return {v:1,games:0,first:0,second:0,third:0,best:0,stamps:{},feats:{},lv:{},seen:{},picks:{}};
+}
+function recSave(){try{localStorage.setItem(REC_KEY,JSON.stringify(REC))}catch(e){}}
+var REC=recLoad();
+
+/* ═══════ 이름 정규화 이사 ═══════
+   옛 이름으로 쌓인 기록을 정식 표기로 옮긴다. 한 번만 돈다 */
+var RENAME_MAP={"갸플랑": "갸프랑", "리크 디아스": "릭 디아스", "건담 키리오스": "건담 큐리오스", "건담 아리오스": "아리오스 건담", "건담 세라비": "세라비 건담", "티에렌": "티에렌 지상형", "바르바토스": "건담 발바토스", "바르바토스 루프스 렉스": "건담 발바토스 루프스 렉스", "바엘": "건담 바알", "건담 바엘": "건담 바알", "키마리스": "건담 키마리스", "키마리스 비다르": "건담 키마리스 비다르", "에어리얼": "건담 에어리얼", "에어리얼 개수형": "건담 에어리얼 개수형", "루브리스": "건담 르브리스", "프네우마": "건담 파렉트", "다릴바르데": "다릴 바르데", "데미트레이너": "데미 트레이너", "데미바딩": "데미 바딩", "데스사이즈": "건담 데스사이즈", "헤비암즈": "건담 헤비암즈", "샌드록": "건담 샌드록", "알트론": "알트론 건담", "세츠나": "세츠나 F. 세이에이", "로크온": "록온 스트라토스", "알레루야": "알렐루야 합티즘", "티에리아": "티에리아 아데", "스메라기": "스메라기 리 노리에가", "미카즈키": "미카즈키 아우구스", "오르가": "오르가 이츠카", "쿠델리아": "쿠델리아 아이나 번스타인", "아토라": "아토라 미쿠스라", "줄리에타": "줄리에타 쥬리스", "맥길리스": "맥길리스 파리드", "미오리네": "미오리네 렘블랑", "프로스페라": "프로스페라 머큐리", "노레아 두노크": "노레아 듀노크", "츄츄": "추아츄리 판런치", "세세리아": "세세리아 도트", "구엘 저크": "구엘 제타크", "라우다 나일": "라우다 네일", "샤디크": "샤디크 제네리", "히이로": "히이로 유이", "듀오": "듀오 맥스웰", "트로와": "트로와 버튼", "카트르": "카토르 라버바 위너", "우페이": "창 우페이", "젝스": "젝스 마키스", "리리나": "릴리나 도리안", "노인": "루크레치아 노인", "마리유 라미아스": "마류 라미아스", "이자크 줄": "이자크 쥴", "디아카 엘스만": "디아카 앨스먼", "루나마리아": "루나마리아 호크", "바니드 시나프스": "버나드 와이즈먼", "주도": "쥬도 아시타", "에타나르": "이터널", "비스켓": "비스킷 그리폰", "메리비트": "메리빗 스테이플턴", "크리스티나": "크리스티나 시에라", "리히티": "리히티 트라디", "델링 렘브란": "델링 렘블랑", "사리우스 저크": "사리우스 제타크", "트레이즈": "트레즈 크슈리나다", "아스토니지": "아스토니지 메드쓰", "나탈 바지루르": "나탈 버지룰", "안드류 발트펠트": "앤드류 발트펠트", "케루딤 건담": "캘딤 건담", "블랙나이트 스쿼드 칼립소": "블랙나이트 스쿼드 카룰라", "블랙나이트 스쿼드 시반": "블랙나이트 스쿼드 시바", "켐퍼": "캠퍼", "비그자무": "빅잠", "거베라 테트라": "가베라 테트라", "슈바르젯테": "슈바르제테", "베기르베우": "베귀르베우", "건담 아스트레이 골드프레임 아마츠": "건담 아스트레이 골드프레임 아마츠 미나"};
+function migrateNames(){
+  if(REC.ren>=14)return;
+  var k,i,keys=["seen","picks"];
+  for(i=0;i<keys.length;i++){
+    var src=REC[keys[i]]||{},dst={};
+    for(k in src){
+      var nk=RENAME_MAP[k]||k;
+      dst[nk]=(dst[nk]||0)+(typeof src[k]==="number"?src[k]:1);
+    }
+    REC[keys[i]]=dst;
+  }
+  REC.ren=14;
+  recSave();
+}
+migrateNames();
+
+
+/* ═══════ 설정 저장 ═══════ */
+var CFG_KEY="gundam_draft_cfg_v1";
+function cfgSave(){
+  try{localStorage.setItem(CFG_KEY,JSON.stringify({
+    lv:AI_LV, fog:fogOn, hint:hintOn, ex:exhaustOn,
+    rr:REROLL_MAX, shared:sharedPack, vp:VIEW_P, vm:VIEW_M, dv:dexVar
+  }))}catch(e){}
+}
+function cfgLoad(){
+  try{
+    var c=JSON.parse(localStorage.getItem(CFG_KEY));
+    if(!c)return;
+    if(typeof c.lv==="number"&&c.lv>=0&&c.lv<=2)AI_LV=c.lv;
+    if(typeof c.fog==="boolean")fogOn=c.fog;
+    if(typeof c.hint==="boolean")hintOn=c.hint;
+    if(typeof c.ex==="boolean")exhaustOn=c.ex;
+    if(RR_OPT.indexOf(c.rr)>=0)REROLL_MAX=c.rr;
+    if(typeof c.shared==="boolean")sharedPack=c.shared;
+    if("mfr".indexOf(c.vp)>=0&&c.vp)VIEW_P=c.vp;
+    if("mfrx".indexOf(c.vm)>=0&&c.vm)VIEW_M=c.vm;
+    if("mfr".indexOf(c.dv)>=0&&c.dv)dexVar=c.dv;
+  }catch(e){}
+}
+
+var FEATS=[
+ {id:"first_win",n:"첫 출격",d:"처음으로 수위에 오르다"},
+ {id:"ace_win",n:"에이스를 꺾다",d:"에이스 상대로 수위"},
+ {id:"fog_win",n:"관제 두절",d:"적진을 가린 채 수위"},
+ {id:"big_win",n:"압도적 전과",d:"3위와 200점 이상 차이"},
+ {id:"pledge5",n:"인연의 실타래",d:"한 판에 인연 다섯을 맺다"},
+ {id:"kin2",n:"핏줄의 힘",d:"한 판에 혈연 둘을 맺다"},
+ {id:"no_feud",d:"악연 없이 수위에 오르다",n:"흠 없는 편대"},
+ {id:"full_cap",n:"만재 출격",d:"정원을 남김없이 채워 수위"},
+ {id:"sync140",n:"완벽한 동조",d:"싱크 1.40 이상 조를 만들다"},
+ {id:"bond3",n:"전용기의 주인",d:"전용기 연대 셋을 한 판에"},
+ {id:"one_series",n:"한 시대의 함대",d:"기체·파일럿 전원 같은 시리즈로 수위"},
+ {id:"cross_win",n:"시공을 넘어",d:"기체와 파일럿이 모두 다른 시리즈인 조로 수위"},
+ {id:"no_reroll",n:"물러섬 없이",d:"보급 요청 없이 수위에 오르다"},
+ {id:"vet10",n:"백전노장",d:"열 판을 겨루다"},
+ {id:"stamp30",n:"인연 수집가",d:"교신 기록 서른을 남기다"},
+ {id:"dex60",n:"함대 사령",d:"예순 장을 기용해 보다"}
+];
+function checkFeats(rank,ev,gaps){
+  var got=[],t=teams[0],i;
+  function give(id){if(!REC.feats[id]){REC.feats[id]=1;got.push(id)}}
+  var pg=pledges(t),kin=pg.filter(function(x){return x.kin}).length;
+  var feud=pg.filter(function(x){return x.v<0}).length;
+  var units=assign(t).filter(function(u){return u.m&&u.p});
+  var cap=capOf(t);
+  var hi=units.filter(function(u){return sync(u.m,u.p)>=1.40}).length;
+  var bond=units.filter(function(u){return BOND[u.p[0]+"|"+u.m[0]]}).length;
+  var ser=null,cross=0;
+  for(i=0;i<units.length;i++){
+    var common=serAll(units[i].m).filter(function(x){return serAll(units[i].p).indexOf(x)>=0});
+    if(!common.length)cross++;
+    var us=serAll(units[i].m).filter(function(x){return serAll(units[i].p).indexOf(x)>=0});
+    ser = ser===null ? us.slice()
+        : ser.filter(function(x){return us.indexOf(x)>=0});
+  }
+  ser = ser||[];
+  if(rank===0){
+    give("first_win");
+    if(AI_LV===2)give("ace_win");
+    if(fogOn)give("fog_win");
+    if(gaps>=200)give("big_win");
+    if(!feud)give("no_feud");
+    if(cap&&units.length>=cap)give("full_cap");
+    if(ser.length)give("one_series");
+    if(cross===units.length&&units.length>=3)give("cross_win");
+    if(rerolls===REROLL_MAX)give("no_reroll");
+  }
+  if(pg.length>=5)give("pledge5");
+  if(kin>=2)give("kin2");
+  if(hi>=1)give("sync140");
+  if(bond>=3)give("bond3");
+  for(i=0;i<pg.length;i++)if(pg[i].v>0)REC.stamps[pg[i].n]=1;
+  var all=[].concat(t.함,t.기체,t.파일럿,t.지휘관);
+  if(!REC.picks)REC.picks={};
+  for(i=0;i<all.length;i++){REC.seen[all[i][0]]=1;
+    REC.picks[all[i][0]]=(REC.picks[all[i][0]]||0)+1}
+  if(REC.games>=10)give("vet10");
+  if(Object.keys(REC.stamps).length>=30)give("stamp30");
+  if(Object.keys(REC.seen).length>=60)give("dex60");
+  return got;
+}
+/* 모함을 뽑으면 그 이름이 곧 부대 이름이 된다 */
+function seatName(ti){
+  var t=teams[ti];
+  if(t&&t.함.length)return t.함[0][0]+(ti===0?" (아군)":"");
+  return SEATS[ti];
+}
+
+function newTeam(){return {"함":[],"기체":[],"파일럿":[],"지휘관":[]}}
+function reset(){
+  pools={"함":SHIP.slice(),"기체":MECH.slice(),"파일럿":PILOT.slice(),"지휘관":CREW.slice()};
+  teams=[newTeam(),newTeam(),newTeam()];
+  round=0;seq=order();si=0;busy=false;log=[];openFoe={};
+  rerolls=REROLL_MAX;aiRR=[0,REROLL_MAX,REROLL_MAX];curPack=null;packArr=[];packType=null;discard={함:[],기체:[],파일럿:[],지휘관:[]};shown={};
+  rollVariants();
+  render();
+}
+function order(){
+  var o=[0,1,2],i,j,t;
+  for(i=o.length-1;i>0;i--){j=Math.floor(Math.random()*(i+1));t=o[i];o[i]=o[j];o[j]=t}
+  return o;
+}
+function turnSeq(){return round%2===0?seq:seq.slice().reverse()}
+function drawPack(type){
+  var src=pools[type],out=[],i;
+  if(src.length<PACKN+2){src=pools[type]=src.concat(discard[type]);discard[type]=[];shown={}}
+  var idx=[];for(i=0;i<src.length;i++)if(!(exhaustOn&&shown[src[i][0]]))idx.push(i);
+  if(idx.length<PACKN){idx=[];for(i=0;i<src.length;i++)idx.push(i)}
+  for(i=idx.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=idx[i];idx[i]=idx[j];idx[j]=t}
+  for(i=0;i<Math.min(PACKN,idx.length);i++){out.push(src[idx[i]]);if(exhaustOn)shown[src[idx[i]][0]]=1}
+  return out;
+}
+function take(type,card,ti){
+  teams[ti][type].push(card);
+  var k=pools[type].indexOf(card);
+  if(k>=0)pools[type].splice(k,1);
+  log.unshift({r:round+1,ti:ti,type:type,c:card,fresh:true});
+}
+function tossPack(type,pack,keep){
+  for(var i=0;i<pack.length;i++)if(pack[i]!==keep)discard[type].push(pack[i]);
+}
+function aiPick(type,pack,ti,wantGain){
+  /* 신참은 가끔 헛발질하고, 에이스는 인연을 내다보며 팩을 물릴 줄 안다 */
+  var blind=AI_LV<2, base=evaluate(teams[ti],blind).total;
+  if(AI_LV===0&&Math.random()<.35){
+    var rc=pack[Math.floor(Math.random()*pack.length)];
+    return wantGain?{c:rc,gain:0}:rc;
+  }
+  var best=null,bs=-1e9,i;
+  for(i=0;i<pack.length;i++){
+    teams[ti][type].push(pack[i]);
+    var s=evaluate(teams[ti],blind).total;
+    if(AI_LV===2)s+=nearBonus(teams[ti],pack[i]);
+    teams[ti][type].pop();
+    if(s>bs){bs=s;best=pack[i]}
+  }
+  return wantGain?{c:best,gain:bs-base}:best;
+}
+/* 이 라운드에서 통상 기대할 만한 이득 — 이보다 못하면 물린다 */
+var RR_BAR={"함":105,"기체":32,"파일럿":66,"지휘관":35};   // 타입별 통상 이득
+function aiDraw(type,ti){
+  if(sharedPack){
+    ensurePack(type);
+    var open=openSlots();
+    if(!open.length){dealPack(type);open=openSlots()}
+    var cards=open.map(function(i){return packArr[i].c}),
+        res=aiPick(type,cards,ti,true),g=RR_K[AI_LV],guard2=0;
+    /* 마지막 라운드가 아니고 팩이 시원치 않으면 남은 자리만 새로 뽑는다 */
+    while(g>0&&aiRR[ti]>0&&round<SCHEDULE.length-1&&
+          res.gain<RR_BAR[type]*g&&guard2++<3){
+      aiRR[ti]--;
+      log.unshift({r:round+1,ti:ti,type:type,rr:true,
+        say:RR_SAY[Math.floor(Math.random()*RR_SAY.length)],fresh:true});
+      var keep=packArr.filter(function(x){return x.by!==null}),n=packArr.length-keep.length,j;
+      for(j=0;j<packArr.length;j++)if(packArr[j].by===null)discard[type].push(packArr[j].c);
+      packArr=keep.concat(drawPack(type).slice(0,n).map(function(c){return {c:c,by:null}}));
+      open=openSlots();cards=open.map(function(i2){return packArr[i2].c});
+      res=aiPick(type,cards,ti,true);
+    }
+    if(!res.c){dealPack(type);res=aiPick(type,openSlots().map(function(i3){return packArr[i3].c}),ti,true)}
+    for(var q=0;q<packArr.length;q++)if(packArr[q].c===res.c&&packArr[q].by===null){packArr[q].by=ti;break}
+    return res.c;
+  }
+  var pack=drawPack(type),r=aiPick(type,pack,ti,true),guard=0,k=RR_K[AI_LV];
+  /* 마지막 라운드에서는 아무도 물리지 않는다 */
+  while(k>0&&aiRR[ti]>0&&round<SCHEDULE.length-1&&
+        r.gain<RR_BAR[type]*k&&guard++<3){
+    aiRR[ti]--;
+    log.unshift({r:round+1,ti:ti,type:type,rr:true,
+      say:RR_SAY[Math.floor(Math.random()*RR_SAY.length)],fresh:true});
+    tossPack(type,pack,null);
+    pack=drawPack(type);r=aiPick(type,pack,ti,true);
+  }
+  tossPack(type,pack,r.c);
+  return r.c;
+}
+function nearBonus(t,c){
+  var names={},all=[].concat(t.함,t.기체,t.파일럿,t.지휘관),i,j,b=0;
+  for(i=0;i<all.length;i++)names[all[i][0]]=1;
+  for(i=0;i<COMBO.length;i++){
+    var cb=COMBO[i];if(cb.m.indexOf(c[0])<0)continue;
+    var hit=0;for(j=0;j<cb.m.length;j++)if(names[cb.m[j]])hit++;
+    for(var k in cb.t)if(+k===hit+1&&cb.t[k]>0)b+=cb.t[k]*.12;
+  }
+  return b;
+}
+
+/* ═══════ 그리기 ═══════ */
+var curPack=null;      /* 개별 보급일 때 내 팩 */
+var packArr=[],packType=null;   /* 공유 팩 — {c:카드, by:좌석|null} */
+function dealPack(type){
+  packArr=drawPack(type).map(function(c){return {c:c,by:null}});
+  packType=type;
+}
+/* 라운드가 바뀌면 팩 종류도 달라지므로 항상 확인한다 */
+function ensurePack(type){
+  if(packType!==type||!packArr.length){
+    if(packType&&packType!==type&&packArr.length)tossRest(packType);
+    dealPack(type);
+  }
+}
+function openSlots(){var r=[],i;for(i=0;i<packArr.length;i++)if(packArr[i].by===null)r.push(i);return r}
+/* 공유 팩에서 안 팔린 카드는 버림패로 — 순환이 끝나면 다시 섞인다 */
+function tossRest(type){
+  for(var i=0;i<packArr.length;i++)if(packArr[i].by===null)discard[type].push(packArr[i].c);
+  packArr=[];packType=null;
+}
+function el(tag,cls,html){var d=document.createElement(tag);if(cls)d.className=cls;
+  if(html!==undefined)d.innerHTML=html;return d}
+function facHTML(card){
+  var fs=card[1],out=[],i;
+  for(i=0;i<fs.length;i++){
+    var last=i===fs.length-1;
+    out.push('<'+(last?'b':'s')+' style="color:'+fc(fs[i])+(last?'':';opacity:.55')+'">'+fs[i]+'</'+(last?'b':'s')+'>');
+  }
+  return out.join('<span style="opacity:.4"> › </span>');
+}
+function cardEl(c,type,onPick){
+  var b=el("button","card"),i,labels=STAT_LABEL[type],cur=c[1][c[1].length-1];
+  b.style.setProperty("--fc",fc(cur));
+  var stats="";
+  for(i=0;i<4;i++){
+    var v=c[2+i],w=type==="함"&&i===3?v*14:v;
+    stats+='<div class="st"><span>'+labels[i]+'</span><u><i style="width:'+Math.min(100,w)+'%"></i></u><b>'+v+'</b></div>';
+  }
+  var tags="";
+  if(type==="기체"){
+    tags='<span class="tag'+(LINE[c[7]]?" psy":"")+'">'+c[7]+'</span><span class="tag">'+c[6]+'</span>';
+  }else if(type==="파일럿"){
+    tags=(c[7]>0?'<span class="tag nt">'+c[9]+' '+c[7]+'</span>':"")+'<span class="tag">'+c[6]+'</span>';
+  }
+  b.innerHTML='<div class="av '+AV_CLS[type]+'">'+avHTML(c,type)+
+    '<div class="ty">'+type+'</div>'+
+    '<div class="bdg"><span class="vx">'+(variantOf(c)==="f"?"♀":"♂")+'</span>'+
+      '<span class="sb">'+serTag(c)+'</span></div>'+
+    '<div class="scrim"><b'+(c[0].length>=13?' class="ln3"':c[0].length>=11?' class="ln2"':c[0].length>=9?' class="ln"':'')+'>'+c[0]+'</b></div></div>'+
+    '<div class="pd"><div class="fx">'+facHTML(c)+'</div>'+
+    (tags?'<div style="margin-bottom:5px">'+tags+'</div>':"")+
+    '<div class="stats">'+stats+'</div></div>';
+  var d=hintOn?delta(c,type):null;
+  if(d){
+    var dv=el("div","dlt"+(d.v<0?" dn":""));
+    dv.style.margin="0 6px";
+    var ex="";
+    if(d.fired&&d.fired.length)ex+='<em class="fi">◈ '+d.fired.slice(0,2).map(function(x){return (x.v<0?"악연 ":x.kin?"혈연 ":"연대 ")+x.n}).join(" · ")+'</em>';
+    if(d.near&&d.near.length)ex+='<em class="nr">◇ '+d.near.slice(0,2).join(" · ")+'</em>';
+    if(d.why)ex+='<em>'+d.why+'</em>';
+    dv.innerHTML=(d.v>=0?"▲ +":"▼ ")+d.v+ex;
+    b.appendChild(dv);
+  }
+  b.title=loreOf(c);
+  if(onPick)b.onclick=function(){onPick(c)};else b.disabled=true;
+  return b;
+}
+function delta(c,type){
+  var t=teams[0],before=evaluate(t).total,pg0=pledges(t);
+  var had={};for(var q=0;q<pg0.length;q++)had[pg0[q].n]=pg0[q].v;
+  t[type].push(c);
+  var after=evaluate(t).total,u=assign(t),pg1=pledges(t);
+  var fired=[],near=[];
+  for(q=0;q<pg1.length;q++)if(had[pg1[q].n]===undefined||had[pg1[q].n]!==pg1[q].v)
+    fired.push({n:pg1[q].n.replace(/^(혈연|악연) · /,""),v:pg1[q].v,kin:pg1[q].kin});
+  /* 한 명만 더 모으면 터지는 인연 */
+  var names={},all=[].concat(t.함,t.기체,t.파일럿,t.지휘관),z;
+  for(z=0;z<all.length;z++)names[all[z][0]]=1;
+  for(z=0;z<COMBO.length;z++){
+    var cb=COMBO[z];if(cb.m.indexOf(c[0])<0)continue;
+    var hit=0,miss=[];
+    for(q=0;q<cb.m.length;q++)names[cb.m[q]]?hit++:miss.push(cb.m[q]);
+    var nk=null;for(var kk in cb.t)if(+kk===hit+1&&cb.t[kk]>0)nk=+kk;
+    if(nk&&miss.length)near.push(cb.n+"(+"+miss.length+")");
+  }
+  t[type].pop();
+  var why="";
+  if(type==="기체"||type==="파일럿"){
+    for(var i=0;i<u.length;i++){
+      var uu=u[i];
+      if(uu.m&&uu.p&&((type==="기체"&&uu.m[0]===c[0])||(type==="파일럿"&&uu.p[0]===c[0]))){
+        var sp2=syncParts(uu.m,uu.p),bits=[];
+        if(sp2.b)bits.push("전용기");
+        if(sp2.t>0)bits.push("기질");else if(sp2.t<0)bits.push("기질충돌");
+        if(sp2.n>0)bits.push(sp2.xline?"타계통 절반":LINE[uu.m[7]]);
+        else if(sp2.n<0)bits.push("감응 부재");
+        if(sp2.s)bits.push("동시리즈");
+        if(sp2.o)bits.push("옛소속");
+        why=(type==="기체"?uu.p[0]:uu.m[0])+" 조 · 싱크 "+sync(uu.m,uu.p).toFixed(2)+
+            (bits.length?" ("+bits.join("·")+")":"");
+        break;
+      }
+    }
+  }
+  return {v:after-before,why:why,fired:fired,near:near};
+}
+
+function dockEl(ti){
+  var t=teams[ti],d=el("div","dock"),ev=evaluate(t);
+  var h=el("div","dh");
+  h.innerHTML='<b>'+seatName(ti)+'</b><span class="'+(ti===0?"hi":"")+'">'+ev.total+'</span>';
+  d.appendChild(h);
+  var b=el("div","db");
+  if(t.함.length){
+    var s=t.함[0],cur=s[1][s[1].length-1],sh=el("div","ship");
+    sh.style.setProperty("--fc",fc(cur));
+    sh.innerHTML='<span class="th" data-n="'+s[0]+'" data-t="함" style="width:62px;height:36px">'+avHTML(s,"함")+'</span>'+
+      '<b>'+s[0]+'</b><span>정원 '+(s[5]+CAP_BONUS)+'</span>';
+    b.appendChild(sh);
+  }else b.appendChild(el("div","ship empty","모함 미정"));
+  var units=assign(t),cap=capOf(t),i;
+  for(i=0;i<units.length;i++){
+    var u=units[i],row=el("div","unit"+(u.m&&u.p?"":" solo"));
+    var sv=u.m&&u.p?sync(u.m,u.p):0;
+    var col=sv>=1.25?"var(--ok)":sv<=.95&&sv>0?"var(--alert)":"var(--dim)";
+    var mh=el("div","uh");
+    if(u.m){mh.style.setProperty("--mc",fc(u.m[1][u.m[1].length-1]));
+      mh.innerHTML='<span class="th" data-n="'+u.m[0]+'" data-t="기체">'+faceHTML(u.m,u.p,"기체")+'</span>'+
+        '<span class="tx"><b>'+u.m[0]+'</b><i>'+u.m[7]+'</i></span>'}
+    else mh.innerHTML='<span class="tx"><b style="opacity:.35">기체 없음</b><i>—</i></span>';
+    var cl=el("div","clamp");
+    cl.style.setProperty("--cc",col);
+    cl.innerHTML='<em>'+(sv?sv.toFixed(2):"—")+'</em>';
+    var ph=el("div","uh p");
+    if(u.p){ph.style.setProperty("--pc",fc(u.p[1][u.p[1].length-1]));
+      ph.innerHTML='<span class="tx"><b>'+u.p[0]+'</b><i>'+(u.p[7]>0?u.p[9]+" "+u.p[7]+" · ":"")+u.p[6]+'</i></span>'+
+        '<span class="th" data-n="'+u.p[0]+'" data-t="파일럿">'+faceHTML(u.p,null,"파일럿")+'</span>'}
+    else ph.innerHTML='<span class="tx"><b style="opacity:.35">파일럿 없음</b><i>—</i></span>';
+    if(i>=cap&&u.m&&u.p)row.style.opacity=".62";
+    row.appendChild(mh);row.appendChild(cl);row.appendChild(ph);
+    b.appendChild(row);
+  }
+  if(t.지휘관.length){
+    var cw=el("div","crew");
+    for(i=0;i<t.지휘관.length;i++){
+      var c=t.지휘관[i],ch=el("span","chip",c[0]);
+      ch.style.setProperty("--cc",fc(c[1][c[1].length-1]));
+      cw.appendChild(ch);
+    }
+    b.appendChild(cw);
+  }
+  var pg=pledges(t);
+  if(pg.length){
+    var pl=el("div","pledge");
+    for(i=0;i<pg.length;i++){
+      var g=pg[i],pe=el("span","pg"+(g.v<0?" bad":g.kin?" kin":"")+
+        (justFired.indexOf(g.n)>=0?" fresh":""));
+      pe.innerHTML=g.n.replace(/^(혈연|악연) · /,"")+
+        '<b>'+(g.v>0?"+":"")+g.v+'</b>';
+      pe.title=g.got.join(" · ");
+      pl.appendChild(pe);
+    }
+    b.appendChild(pl);
+  }
+  d.appendChild(b);
+  return d;
+}
+function pillEl(c){
+  var s=el("span","pill",c[0]);
+  s.style.setProperty("--cc",fc(c[1][c[1].length-1]));
+  return s;
+}
+function foeEl(ti,active){
+  var t=teams[ti],ev=evaluate(t),f=el("div","foe"+(openFoe[ti]?" open":"")+(active?" act":""));
+  var need={},k;
+  SCHEDULE.forEach(function(type){need[type]=(need[type]||0)+1});
+  var hd=el("button","fhd"),hidden=fogOn&&round<SCHEDULE.length;
+  hd.innerHTML='<u>'+(hidden?"✕":"▸")+'</u><b>'+(hidden?SEATS[ti]:seatName(ti))+
+    '</b><em>'+(hidden?"???":ev.total)+'</em>';
+  hd.onclick=function(){if(hidden)return;openFoe[ti]=!openFoe[ti];renderBoard()};
+  if(hidden){f.appendChild(hd);return f}
+  f.appendChild(hd);
+  var bd=el("div","fbd");
+  for(k in need){
+    var row=el("div","frow"),box=el("div");
+    row.appendChild(el("u",null,k));
+    for(var i=0;i<need[k];i++){
+      if(t[k][i])box.appendChild(pillEl(t[k][i]));
+      else box.appendChild(el("span","pill dim","—"));
+    }
+    row.appendChild(box);bd.appendChild(row);
+  }
+  var u=assign(t).filter(function(x){return x.m&&x.p});
+  if(u.length){
+    var sr=el("div","frow"),sb=el("div");
+    sr.appendChild(el("u",null,"조"));
+    for(i=0;i<u.length;i++){
+      var p=el("span","pill",u[i].p[0]+" × "+u[i].m[0]+" "+sync(u[i].m,u[i].p).toFixed(2));
+      p.style.setProperty("--cc",sync(u[i].m,u[i].p)>=1.25?"var(--ok)":"var(--dim)");
+      sb.appendChild(p);
+    }
+    sr.appendChild(sb);bd.appendChild(sr);
+  }
+  f.appendChild(bd);
+  return f;
+}
+function feedEl(){
+  var d=el("div","feed"),i;
+  d.appendChild(el("div","fh","최근 지명"));
+  if(!log.length){d.appendChild(el("div","lg",'<u>—</u><b style="border-left-color:var(--plate2);opacity:.45">아직 지명이 없다</b>'));return d}
+  for(i=0;i<Math.min(7,log.length);i++){
+    var L=log[i],row=el("div","lg"+(L.fresh&&i===0?" new":"")+(L.rr?" rr":""));
+    if(L.rr){
+      row.innerHTML='<u>R'+L.r+'</u><i class="'+(L.ti===0?"me":"")+'">'+seatName(L.ti)+'</i>'+
+        '<b>“'+L.say+'”</b><s>보급</s>';
+      d.appendChild(row);continue;
+    }
+    row.style.setProperty("--cc",fc(L.c[1][L.c[1].length-1]));
+    row.innerHTML='<u>R'+L.r+'</u><i class="'+(L.ti===0?"me":"")+'">'+seatName(L.ti)+'</i>'+
+      '<b>'+L.c[0]+'</b><s>'+L.type+'</s>';
+    d.appendChild(row);
+  }
+  log.forEach(function(L){L.fresh=false});
+  return d;
+}
+
+function renderHead(){
+  var g=document.getElementById("gauge");g.innerHTML="";
+  for(var i=0;i<SCHEDULE.length;i++){
+    var b=el("i");
+    if(i<round)b.className="done";else if(i===round)b.className="now";
+    g.appendChild(b);
+  }
+  document.getElementById("rdl").textContent="ROUND "+String(Math.min(round+1,SCHEDULE.length)).padStart(2,"0")+" / "+SCHEDULE.length;
+  var done=round>=SCHEDULE.length;
+  document.getElementById("rdt").innerHTML=done?"전과 <em>판정</em>"
+    :TYPE_LABEL[SCHEDULE[round]].replace(/ (.+)$/," <em>$1</em>");
+  var tn=document.getElementById("turn"),who=done?-1:turnSeq()[si];
+  tn.textContent=done?"종료":(who===0?"내 차례":seatName(who)+" 지명 중");
+  tn.className="turn"+(who===0?" mine":"");
+}
+function renderPack(){
+  var a=document.getElementById("packArea");
+  if(round>=SCHEDULE.length){a.innerHTML="";return}
+  var type=SCHEDULE[round],mine=turnSeq()[si]===0;
+  if(!sharedPack&&!mine){a.innerHTML="";return}
+  a.innerHTML="";
+  var pk=el("div","pack"),i;
+  if(sharedPack){
+    ensurePack(type);
+    for(i=0;i<packArr.length;i++){
+      var slot=packArr[i];
+      if(slot.by===null){
+        var cd=cardEl(slot.c,type,mine?pick:null);
+        if(!mine)cd.disabled=true;
+        pk.appendChild(cd);
+      }else pk.appendChild(takenEl(slot,type));
+    }
+  }else{
+    if(!curPack)curPack=drawPack(type);
+    for(i=0;i<curPack.length;i++)pk.appendChild(cardEl(curPack[i],type,pick));
+  }
+  a.appendChild(pk);
+  if(!mine)return;
+  var rr=el("div","row");
+  var rb=el("button","btn sm",REROLL_MAX===0?"보급 없음":"보급 요청  남은 "+rerolls+"회");
+  var last=round>=SCHEDULE.length-1;
+  rb.disabled=rerolls<1||last;
+  if(last)rb.textContent="마지막 배치 — 보급 불가";
+  rb.onclick=function(){
+    if(rerolls<1||busy||last)return;
+    rerolls--;
+    log.unshift({r:round+1,ti:0,type:type,rr:true,say:"보급을 요청한다",fresh:true});
+    if(sharedPack){
+      var keep=packArr.filter(function(x){return x.by!==null}),n=packArr.length-keep.length,j;
+      for(j=0;j<packArr.length;j++)if(packArr[j].by===null)discard[type].push(packArr[j].c);
+      var fresh=drawPack(type).slice(0,n);
+      packArr=keep.concat(fresh.map(function(c){return {c:c,by:null}}));
+    }else{tossPack(type,curPack,null);curPack=null}
+    renderPack();renderBoard();
+  };
+  rr.appendChild(rb);
+  a.appendChild(rr);
+}
+function takenEl(slot,type){
+  var d=el("div","card taken"),c=slot.c;
+  d.style.setProperty("--fc",fc(c[1][c[1].length-1]));
+  d.innerHTML='<div class="av '+AV_CLS[type]+'">'+avHTML(c,type)+
+    '<div class="tkv"><u>'+seatName(slot.by).replace(/ \(아군\)$/,"")+'</u><b>지명됨</b></div>'+
+    '<div class="scrim"><b'+(c[0].length>=13?' class="ln3"':c[0].length>=11?' class="ln2"':c[0].length>=9?' class="ln"':'')+'>'+c[0]+'</b></div></div>';
+  return d;
+}
+function renderDock(){
+  var a=document.getElementById("dockArea");a.innerHTML="";
+  a.appendChild(dockEl(0));
+}
+function renderBoard(){
+  var a=document.getElementById("boardArea");a.innerHTML="";
+  if(!fogOn)a.appendChild(feedEl());
+  else a.appendChild(el("div","note","<b>관제 두절</b><br>적 함대의 편성은 판정 때까지 알 수 없다."));
+  var who=round<SCHEDULE.length?turnSeq()[si]:-1;
+  var fo=el("div","foes");
+  fo.appendChild(foeEl(1,who===1));fo.appendChild(foeEl(2,who===2));
+  a.appendChild(fo);
+}
+function render(){
+  renderHead();renderPack();renderDock();renderBoard();
+  if(round>=SCHEDULE.length){renderResult();return}
+  if(turnSeq()[si]!==0&&!busy){busy=true;setTimeout(step,380)}
+}
+function pick(c){
+  if(busy)return;
+  var type=SCHEDULE[round],before={},pg0=pledges(teams[0]),i;
+  for(i=0;i<pg0.length;i++)before[pg0[i].n]=pg0[i].v;
+  if(sharedPack){
+    for(i=0;i<packArr.length;i++)if(packArr[i].c===c&&packArr[i].by===null){packArr[i].by=0;break}
+  }else{tossPack(type,curPack,c);curPack=null}
+  take(type,c,0);
+  var pg1=pledges(teams[0]),fresh=[];
+  for(i=0;i<pg1.length;i++)
+    if(before[pg1[i].n]===undefined||before[pg1[i].n]!==pg1[i].v)fresh.push(pg1[i]);
+  justFired=fresh.map(function(g){return g.n});
+  announce(fresh);
+  advance();
+  setTimeout(function(){justFired=[]},900);
+}
+/* AI 차례는 전체를 다시 그리지 않고 로그와 명단만 갱신한다 */
+function step(){
+  var type=SCHEDULE[round],who=turnSeq()[si];
+  take(type,aiDraw(type,who),who);
+  si++;
+  if(si>=3){if(sharedPack)tossRest(SCHEDULE[round]);si=0;round++;busy=false;render();return}
+  renderHead();renderBoard();renderPack();
+  if(turnSeq()[si]!==0){setTimeout(step,380);return}
+  busy=false;renderPack();renderDock();
+}
+function advance(){
+  si++;
+  if(si>=3){if(sharedPack)tossRest(SCHEDULE[round]);si=0;round++}
+  render();
+}
+
+var resultDone=false;
+function renderResult(){
+  var st=document.getElementById("endArea");st.innerHTML="";
+  var evs=[0,1,2].map(function(i){return {i:i,ev:evaluate(teams[i])}});
+  var srt=evs.slice().sort(function(a,b){return b.ev.total-a.ev.total});
+  var myRank=0;for(var z=0;z<srt.length;z++)if(srt[z].i===0)myRank=z;
+  var newFeats=[];
+  if(!resultDone){
+    resultDone=true;
+    REC.games++;
+    REC[["first","second","third"][myRank]]++;
+    if(evs[0].ev.total>REC.best)REC.best=evs[0].ev.total;
+    REC.lv[AI_LV]=(REC.lv[AI_LV]||0)+(myRank===0?1:0);
+    newFeats=checkFeats(myRank,evs[0].ev,srt[0].ev.total-srt[2].ev.total);
+    recSave();
+  }
+  var sorted=srt;
+  for(var r=0;r<sorted.length;r++){
+    var e=sorted[r],row=el("div","rank"+(r===0?" win":""));
+    row.innerHTML='<em>'+(r+1)+'위</em><b>'+seatName(e.i)+'</b><span>'+e.ev.total+'</span>';
+    st.appendChild(row);
+  }
+  var my=evs[0].ev;
+  var res=el("div","res");
+  res.appendChild(el("div","rh",'<b>아군 내역</b><span>'+my.total+'</span>'));
+  var lst=el("div","rl2");
+  for(var i=0;i<my.rows.length;i++)
+    lst.innerHTML+='<div><k>'+my.rows[i][0]+'</k><v'+(my.rows[i][1]<0?' class="dn"':'')+'>'+
+      (my.rows[i][1]>=0?"+":"")+my.rows[i][1]+'</v></div>';
+  res.appendChild(lst);
+  st.appendChild(res);
+  if(newFeats.length){
+    var fb=el("div","feats");
+    fb.appendChild(el("div","fh","새 훈장"));
+    for(var q=0;q<newFeats.length;q++){
+      var ft=null;for(var w=0;w<FEATS.length;w++)if(FEATS[w].id===newFeats[q])ft=FEATS[w];
+      if(ft)fb.appendChild(el("div","ft","<b>"+ft.n+"</b><span>"+ft.d+"</span>"));
+    }
+    st.appendChild(fb);
+  }
+  st.appendChild(el("div","note",
+    "<b>전적</b>  "+REC.games+"판 · 수위 "+REC.first+" · 2위 "+REC.second+" · 3위 "+REC.third+
+    "<br>최고 점수 "+REC.best+" · 교신 기록 "+Object.keys(REC.stamps).length+"/"+
+    COMBO.filter(function(c){return c.t[2]>0||c.t[3]>0}).length+
+    " · 훈장 "+Object.keys(REC.feats).length+"/"+FEATS.length));
+  var row2=el("div","row");
+  /* 같은 설정으로 바로 다시 — 설정을 바꿀 때만 따로 들어간다 */
+  var again=el("button","btn","다시 출격");
+  again.onclick=function(){
+    resultDone=false;curPack=null;
+    document.getElementById("endArea").innerHTML="";
+    reset();
+  };
+  var cfg=el("button","btn sm","설정 변경");
+  cfg.style.flex="0 0 34%";
+  cfg.onclick=function(){
+    resultDone=false;curPack=null;
+    document.getElementById("endArea").innerHTML="";
+    setup();
+  };
+  row2.appendChild(again);row2.appendChild(cfg);
+  st.appendChild(row2);
+  st.appendChild(el("div","note",
+    '<b>이 판의 규칙</b><br>'+
+    '조 점수 = 기체력 × 파일럿력 × 싱크. 싱크는 기질 상성, 감응 계통 적합, '+
+    '동시리즈, 옛 소속 겹침, 전용기 연대를 더해 0.70~1.45로 묶는다.<br>'+
+    '특수 계열 기체는 계통이 맞는 감응자가 타면 온전히, 다른 계통이면 절반만 살린다. '+
+    '감응이 없는 파일럿이 타면 오히려 깎인다.<br>'+
+    '모함 정원을 넘긴 조는 60%만 계산된다. 결속은 현 소속 1.0, 과거 소속 0.5로 센다.<br>'+
+    '보급 요청은 양편이 같은 횟수를 쓰며, 마지막 배치에서는 아무도 쓰지 못한다.<br>'+
+    '공유 보급에서는 한 팩을 셋이 나눠 집고, 남은 카드는 다시 순환한다.'));
+}
+
+/* ═══════ 도감 ═══════ */
+var DEX_POOL={"함":SHIP,"기체":MECH,"파일럿":PILOT,"지휘관":CREW};
+var dexTab="기체", dexView=null, dexScroll=0, ovlEl=null;
+var dexVar="r";   /* 도감에서 볼 초상 — "m" · "f" · "r"(무작위) */
+var dexSlide=0;   /* 넘어간 방향 — 밀림 효과에 쓴다 */
+var dexSer="";    /* 시리즈 걸러보기 — 빈 값이면 전부 */
+/* 지금 탭에서 걸러진 목록 — 격자와 앞뒤 이동이 같은 목록을 본다 */
+function dexList(tab){
+  var arr=DEX_POOL[tab]||[];
+  if(!dexSer)return arr;
+  return arr.filter(function(c){return serAll(c).indexOf(dexSer)>=0});
+}
+/* 그 탭에 실제로 있는 시리즈만 골라 센다 */
+function serCounts(tab){
+  var arr=DEX_POOL[tab]||[],cnt={},i,j;
+  for(i=0;i<arr.length;i++){
+    var sl=serAll(arr[i]);
+    for(j=0;j<sl.length;j++)cnt[sl[j]]=(cnt[sl[j]]||0)+1;
+  }
+  return cnt;
+}
+/* 상세에서 같은 탭의 이웃 카드로. 끝에서는 반대편으로 돈다 */
+function dexStep(dir){
+  if(!dexView)return;
+  var arr=dexList(dexView.t);if(!arr.length)return;
+  var i=arr.indexOf(dexView.c);
+  if(i<0){arr=DEX_POOL[dexView.t];i=arr.indexOf(dexView.c);if(i<0)return}
+  var n=(i+dir+arr.length)%arr.length;
+  dexSlide=dir;
+  dexView={c:arr[n],t:dexView.t,v:dexView.v};   /* 성별 선택은 이어간다 */
+  drawOvl();
+}
+var zoomEl=null;
+function closeZoom(){
+  if(zoomEl&&zoomEl.parentNode)zoomEl.parentNode.removeChild(zoomEl);
+  zoomEl=null;
+}
+function openZoom(url){
+  closeZoom();
+  var z=el("div","zoom");
+  z.innerHTML='<img src="'+imgURL(url)+'" alt="">'+
+    '<button type="button" class="zx" aria-label="닫기">닫기</button>';
+  z.onclick=function(){closeZoom()};
+  zoomEl=z;
+  document.body.appendChild(z);
+}
+document.addEventListener("keydown",function(e){
+  if(e.key==="Escape"&&zoomEl)closeZoom();
+});
+function closeOvl(){document.getElementById("ovlArea").innerHTML="";ovlEl=null;dexScroll=0}
+function openDex(tab){
+  dexTab=tab||dexTab; dexView=null; dexScroll=0; drawOvl();
+}
+function openDetail(name,type){
+  var arr=DEX_POOL[type],i,card=null;
+  for(i=0;i<arr.length;i++)if(arr[i][0]===name)card=arr[i];
+  if(!card)return;
+  dexView={c:card,t:type,v:dexVar==="r"?variantOf(card):dexVar};
+  drawOvl();
+}
+function statRows(c,type){
+  var labels=STAT_LABEL[type],out="",i,col=fc(c[1][c[1].length-1]);
+  for(i=0;i<4;i++){
+    var v=c[2+i],w=(type==="함"&&i===3)?v*14:v;
+    out+='<div class="dbar" style="--cc:'+col+'"><span>'+labels[i]+'</span>'+
+      '<u><i style="width:'+Math.min(100,w)+'%"></i></u><b>'+v+'</b></div>';
+  }
+  return out;
+}
+function bondsOf(card,type){
+  var out=[],k;
+  for(k in BOND){
+    var pr=k.split("|");
+    if(type==="파일럿"&&pr[0]===card[0])out.push(pr[1]);
+    if(type==="기체"&&pr[1]===card[0])out.push(pr[0]);
+  }
+  return out;
+}
+
+/* ═══════ 도감 · 기록 · 통계 ═══════ */
+function stampRows(){
+  var got=[],yet=[],i;
+  for(i=0;i<COMBO.length;i++){
+    var cb=COMBO[i];
+    if(!(cb.t[2]>0||cb.t[3]>0||cb.t[4]>0))continue;   /* 악연은 교신 기록에 넣지 않는다 */
+    (REC.stamps[cb.n]?got:yet).push(cb);
+  }
+  return {got:got,yet:yet};
+}
+function drawRecord(w){
+  var st=stampRows(),i;
+  var head=el("div","statbar");
+  head.innerHTML='<div><u>'+Object.keys(REC.feats).length+'</u><span>훈장 / '+FEATS.length+'</span></div>'+
+    '<div><u>'+st.got.length+'</u><span>교신 기록 / '+(st.got.length+st.yet.length)+'</span></div>'+
+    '<div><u>'+Object.keys(REC.seen).length+'</u><span>기용 카드</span></div>';
+  w.appendChild(head);
+
+  w.appendChild(el("h3",null,"훈장"));
+  var fl=el("div","medals");
+  for(i=0;i<FEATS.length;i++){
+    var f=FEATS[i],on=!!REC.feats[f.id],m=el("div","medal"+(on?" on":""));
+    m.innerHTML='<b>'+(on?f.n:"？？？")+'</b><span>'+f.d+'</span>';
+    fl.appendChild(m);
+  }
+  w.appendChild(fl);
+
+  w.appendChild(el("h3",null,"교신 기록 · 맺은 인연"));
+  if(st.got.length){
+    var g1=el("div","stamps");
+    for(i=0;i<st.got.length;i++){
+      var cb=st.got[i],sp=el("span","stamp"+(cb.k?" kin":""));
+      sp.textContent=cb.n.replace(/^(혈연|악연) · /,"");
+      sp.title=cb.m.join(" · ");
+      g1.appendChild(sp);
+    }
+    w.appendChild(g1);
+  }else w.appendChild(el("div","note","아직 맺은 인연이 없다."));
+  if(st.yet.length){
+    w.appendChild(el("h3",null,"아직 못 맺은 인연 "+st.yet.length));
+    var g2=el("div","stamps");
+    for(i=0;i<st.yet.length;i++){
+      var sp2=el("span","stamp yet");
+      sp2.textContent="？ "+st.yet[i].m.length+"인";
+      g2.appendChild(sp2);
+    }
+    w.appendChild(g2);
+  }
+}
+function drawStats(w){
+  var i,k;
+  var bar=el("div","statbar");
+  bar.innerHTML='<div><u>'+REC.games+'</u><span>판</span></div>'+
+    '<div><u>'+REC.first+'</u><span>수위</span></div>'+
+    '<div><u>'+(REC.games?Math.round(REC.first/REC.games*100):0)+'%</u><span>수위율</span></div>'+
+    '<div><u>'+REC.best+'</u><span>최고 점수</span></div>';
+  w.appendChild(bar);
+
+  w.appendChild(el("h3",null,"순위 분포"));
+  var tot=Math.max(1,REC.games),rk=el("div","dinfo");
+  [["수위",REC.first,"var(--amber)"],["2위",REC.second,"var(--dim)"],["3위",REC.third,"var(--alert)"]]
+    .forEach(function(r){
+      var row=el("div","r");
+      row.innerHTML='<u>'+r[0]+'</u><div><div class="dbar" style="--cc:'+r[2]+'">'+
+        '<u><i style="width:'+(r[1]/tot*100).toFixed(0)+'%"></i></u><b>'+r[1]+'</b></div></div>';
+      rk.appendChild(row);
+    });
+  w.appendChild(rk);
+
+  w.appendChild(el("h3",null,"적 함대 난이도별 수위"));
+  var lv=el("div","dinfo");
+  for(i=0;i<AI_NAME.length;i++){
+    var row2=el("div","r"),won=REC.lv[i]||0;
+    row2.innerHTML='<u>'+AI_NAME[i]+'</u><div><div class="dbar" style="--cc:var(--ok)">'+
+      '<u><i style="width:'+Math.min(100,won*10)+'%"></i></u><b>'+won+'</b></div></div>';
+    lv.appendChild(row2);
+  }
+  w.appendChild(lv);
+
+  /* 자주 기용한 카드 */
+  var arr=[];
+  for(k in (REC.picks||{}))arr.push([k,REC.picks[k]]);
+  arr.sort(function(a,b){return b[1]-a[1]});
+  w.appendChild(el("h3",null,"자주 기용한 카드"));
+  if(arr.length){
+    var pk=el("div","stamps");
+    for(i=0;i<Math.min(20,arr.length);i++){
+      var sp=el("span","stamp");
+      sp.innerHTML=arr[i][0]+'<b> '+arr[i][1]+'</b>';
+      pk.appendChild(sp);
+    }
+    w.appendChild(pk);
+  }else w.appendChild(el("div","note","아직 기록이 없다."));
+
+  /* 시리즈별 기용 */
+  var ser={},all=[].concat(MECH,PILOT,SHIP,CREW);
+  for(i=0;i<all.length;i++)if(REC.seen[all[i][0]]){
+    var sl=serAll(all[i]);
+    for(var si2=0;si2<sl.length;si2++){
+      var sn=SER_NAME[sl[si2]]||sl[si2];
+      ser[sn]=(ser[sn]||0)+1;
+    }
+  }
+  var sarr=[];for(k in ser)sarr.push([k,ser[k]]);
+  sarr.sort(function(a,b){return b[1]-a[1]});
+  if(sarr.length){
+    w.appendChild(el("h3",null,"시리즈별 기용"));
+    var sl=el("div","dinfo"),mx=sarr[0][1];
+    for(i=0;i<sarr.length;i++){
+      var row3=el("div","r");
+      row3.innerHTML='<u>'+sarr[i][0]+'</u><div><div class="dbar" style="--cc:var(--amber)">'+
+        '<u><i style="width:'+(sarr[i][1]/mx*100).toFixed(0)+'%"></i></u><b>'+sarr[i][1]+'</b></div></div>';
+      sl.appendChild(row3);
+    }
+    w.appendChild(sl);
+  }
+
+  var row4=el("div","row");
+  var rb=el("button","btn sm","기록 지우기");
+  rb.onclick=function(){
+    if(rb.dataset.arm){
+      REC={v:1,games:0,first:0,second:0,third:0,best:0,stamps:{},feats:{},lv:{},seen:{},picks:{}};
+      recSave();drawOvl();
+    }else{rb.dataset.arm="1";rb.textContent="정말 지울까? 한 번 더";}
+  };
+  row4.appendChild(rb);
+  w.appendChild(row4);
+}
+
+/* 오버레이 마무리 — 어느 탭이든 같은 방식으로 닫고 스크롤 버튼을 붙인다 */
+function finishOvl(ov,w,a,restore){
+  ov.appendChild(w);
+  ov.onclick=function(e){if(e.target===ov)closeOvl()};
+  var jump=el("div","jump");
+  var up=el("button","jb","▲");
+  up.onclick=function(e){e.stopPropagation();
+    ov.scrollTo?ov.scrollTo({top:0,behavior:"smooth"}):ov.scrollTop=0};
+  var dn=el("button","jb","▼");
+  dn.onclick=function(e){e.stopPropagation();
+    var h=ov.scrollHeight||0;
+    ov.scrollTo?ov.scrollTo({top:h,behavior:"smooth"}):ov.scrollTop=h};
+  jump.appendChild(up);jump.appendChild(dn);
+  ov.appendChild(jump);
+  a.appendChild(ov);
+  ovlEl=ov;
+  ov.scrollTop=restore;
+}
+function drawOvl(){
+  var a=document.getElementById("ovlArea");a.innerHTML="";
+  var ov=el("div","ovl"),w=el("div","ovlw");
+  var hd=el("div","ovlh");
+  if(dexView){
+    hd.innerHTML='<b>'+dexView.c[0]+'</b>';
+    var back=el("button","xbtn","‹");
+    back.onclick=function(){dexView=null;drawOvl()};
+    hd.appendChild(back);
+  }else hd.innerHTML='<b>도감</b>';
+  var x=el("button","xbtn","✕");x.onclick=closeOvl;
+  hd.appendChild(x);
+  w.appendChild(hd);
+
+  if(dexView){
+    var c=dexView.c,type=dexView.t,col=fc(c[1][c[1].length-1]);
+    if(dexSlide){w.className="ovlw "+(dexSlide>0?"slideL":"slideR");dexSlide=0}
+    var cls=type==="함"?"wide":type==="지휘관"?"sq":"tall";
+    var big=el("div","big "+cls);
+    big.innerHTML=bigHTML(c,dexView.v);
+    w.appendChild(big);
+    var nav=el("div","dexnav");
+    var arr0=dexList(type);
+    if(arr0.indexOf(c)<0)arr0=DEX_POOL[type];
+    var idx=arr0.indexOf(c)+1;
+    var pv=el("button","navb","‹ 이전");
+    pv.onclick=function(){dexStep(-1)};
+    var nx=el("button","navb","다음 ›");
+    nx.onclick=function(){dexStep(1)};
+    var cnt=el("span","navc",idx+" / "+arr0.length);
+    nav.appendChild(pv);nav.appendChild(cnt);nav.appendChild(nx);
+    w.appendChild(nav);
+    var tg=el("div","vtog");
+    ["m","f"].forEach(function(v){
+      var b2=el("button",dexView.v===v?"on":"",v==="m"?"♂ 남성체":"♀ 여성체");
+      b2.onclick=function(){dexView.v=v;drawOvl()};
+      tg.appendChild(b2);
+    });
+    w.appendChild(tg);
+    var lo=loreOf(c);
+    if(lo)w.appendChild(el("div","lore",lo));
+    var info=el("div","dinfo");
+    var facs=c[1].map(function(f){
+      return '<span class="pill" style="--cc:'+fc(f)+'">'+f+'</span>';
+    }).join(' ');
+    var html='<div class="r"><u>소속이력</u><div style="display:flex;flex-wrap:wrap;gap:4px">'+facs+'</div></div>'+
+      '<div class="r"><u>시리즈</u><div>'+serAll(c).map(function(x){
+        return '<span class="pill">'+(SER_NAME[x]||x)+'</span>'}).join(" ")+'</div></div>';
+    var tgs=tagsOf(c);
+    if(tgs.length)html+='<div class="r"><u>태그</u><div>'+tgs.map(function(x){
+      return '<span class="pill">'+x+'</span>'}).join(" ")+'</div></div>';
+    if(type==="기체")html+='<div class="r"><u>계열</u><div>'+c[7]+
+      (LINE[c[7]]?' <span style="color:var(--amber)">· '+LINE[c[7]]+' 적합</span>':'')+
+      ' · '+c[6]+'</div></div>';
+    if(type==="파일럿")html+='<div class="r"><u>감응</u><div>'+
+      (c[7]>0?c[9]+' 등급 '+c[7]:'<span style="color:var(--dim)">없음 · 특수기 부적합</span>')+
+      ' · '+c[6]+'</div></div>';
+    var bd=bondsOf(c,type);
+    if(bd.length)html+='<div class="r"><u>전용기</u><div style="color:var(--amber)">'+bd.join(" · ")+'</div></div>';
+    html+='<div class="r"><u>능력</u><div>'+statRows(c,type)+'</div></div>';
+    info.innerHTML=html;
+    w.appendChild(info);
+    var srcx=IMG[c[0]];
+    function drawGal(list,label){
+      if(!list||!list.length)return;
+      var g=el("div","gal");
+      g.appendChild(el("div","gh",label+" "+list.length+"<span></span>"));
+      for(var gi=0;gi<list.length;gi++){
+        (function(url){
+          var box=el("div","gi");
+          box.innerHTML='<img src="'+imgURL(url)+'" alt="" loading="lazy" decoding="async" onerror="this.parentNode.style.display=\'none\'">';
+          box.onclick=function(){openZoom(url)};
+          g.appendChild(box);
+        })(list[gi]);
+      }
+      w.appendChild(g);
+    }
+    if(srcx){
+      drawGal(srcx.extra,"다른 그림");
+      drawGal(srcx.casual,"일상");
+    }
+    if(!srcx)w.appendChild(el("div","note",
+      '이 카드에는 아직 그림이 없다. <b>IMG["'+c[0]+'"]</b>에 남성체(m)·여성체(f)를 넣으면 여기에 뜬다.'
+      +'<br>갤러리용 그림은 <b>extra[]</b>, 일상 버전은 <b>casual[]</b> 에 넣는다.'));
+  }else{
+    var tabs=el("div","tabs");
+    ["함","기체","파일럿","지휘관","공적","통계"].forEach(function(t){
+      var b3=el("button","tab"+(dexTab===t?" on":""),
+        DEX_POOL[t]?t+" "+DEX_POOL[t].length:t);
+      b3.onclick=function(){dexTab=t;dexScroll=0;drawOvl()};
+      tabs.appendChild(b3);
+    });
+    w.appendChild(tabs);
+    if(DEX_POOL[dexTab]){
+      var vr=el("div","dexvar");
+      vr.appendChild(el("span",null,"초상"));
+      [["남","m"],["여","f"],["무작위","r"]].forEach(function(o){
+        var vb=el("button","obtn"+(dexVar===o[1]?" on":""),o[0]);
+        vb.onclick=function(){dexVar=o[1];cfgSave();drawOvl()};
+        vr.appendChild(vb);
+      });
+      w.appendChild(vr);
+      var cnt2=serCounts(dexTab),order=Object.keys(SER_NAME),k2,opts="";
+      opts+='<option value="">전체 '+DEX_POOL[dexTab].length+'</option>';
+      for(k2=0;k2<order.length;k2++){
+        var code=order[k2];
+        if(!cnt2[code])continue;
+        opts+='<option value="'+code+'"'+(dexSer===code?" selected":"")+'>'+
+          SER_NAME[code]+' '+cnt2[code]+'</option>';
+      }
+      var fr=el("div","serrow");
+      var sel=el("select","selser");
+      sel.innerHTML=opts;
+      sel.value=dexSer;
+      sel.onchange=function(){dexSer=this.value;dexScroll=0;drawOvl()};
+      fr.appendChild(sel);
+      if(dexSer){
+        var cl2=el("button","serclr","전체");
+        cl2.onclick=function(){dexSer="";dexScroll=0;drawOvl()};
+        fr.appendChild(cl2);
+      }
+      w.appendChild(fr);
+    }
+    if(dexTab==="공적"){drawRecord(w);finishOvl(ov,w,a,dexScroll);return}
+    if(dexTab==="통계"){drawStats(w);finishOvl(ov,w,a,dexScroll);return}
+    var g=el("div","dexg"),arr=dexList(dexTab),i,
+        ratio=1/(ASPECT[dexTab]||1.5);   /* ASPECT는 높이÷폭, CSS는 폭÷높이 */
+    for(i=0;i<arr.length;i++){
+      var c2=arr[i],b4=el("button","dexi");
+      b4.style.setProperty("--cc",fc(c2[1][c2[1].length-1]));
+      b4.innerHTML='<span class="fw" style="aspect-ratio:'+ratio.toFixed(4)+'">'+
+        avHTML(c2,dexTab,null,dexVar==='r'?null:dexVar)+'</span><span>'+c2[0]+'</span>'+
+        '<em>'+serLabel(c2)+'</em>';
+      (function(n,t){b4.onclick=function(){
+        if(ovlEl)dexScroll=ovlEl.scrollTop;
+        openDetail(n,t);
+      }})(c2[0],dexTab);
+      g.appendChild(b4);
+    }
+    if(!arr.length)w.appendChild(el("div","note","이 시리즈에는 해당하는 카드가 없다."));
+    w.appendChild(g);
+  }
+  /* 상세에서는 좌우로 밀어 이웃 카드로 — 세로 스크롤과 겹치지 않게 판정한다 */
+  if(dexView){
+    var sx=0,sy=0,st=0,moved=false;
+    ov.addEventListener("touchstart",function(e){
+      var t=e.touches[0];sx=t.clientX;sy=t.clientY;st=Date.now();moved=false;
+    },{passive:true});
+    ov.addEventListener("touchend",function(e){
+      if(moved)return;
+      var t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;
+      if(Date.now()-st>700)return;
+      if(Math.abs(dx)<40||Math.abs(dx)<Math.abs(dy)*1.5)return;
+      moved=true;
+      dexStep(dx<0?1:-1);
+    },{passive:true});
+  }
+  /* 목록으로 돌아오면 보던 자리로 */
+  finishOvl(ov,w,a,dexView?0:dexScroll);
+}
+document.getElementById("dexbtn").onclick=function(){openDex()};
+/* 도크의 썸네일을 누르면 그 카드의 상세로 */
+document.addEventListener("click",function(e){
+  var t=e.target.closest?e.target.closest(".th"):null;
+  if(t&&t.dataset&&t.dataset.n){e.stopPropagation();openDetail(t.dataset.n,t.dataset.t)}
+});
+document.addEventListener("keydown",function(e){
+  if(e.key==="Escape")closeOvl();
+  else if(dexView&&e.key==="ArrowLeft")dexStep(-1);
+  else if(dexView&&e.key==="ArrowRight")dexStep(1);
+});
+
+/* ═══════ 시작 화면 ═══════ */
+function setup(){
+  ["packArea","dockArea","boardArea","endArea"].forEach(function(id){
+    document.getElementById(id).innerHTML="";});
+  document.getElementById("gauge").innerHTML="";
+  document.getElementById("rdl").textContent="OPERATION SETUP";
+  document.getElementById("rdt").innerHTML="출격 <em>준비</em>";
+  var tn=document.getElementById("turn");tn.textContent="설정";tn.className="turn";
+  var a=document.getElementById("packArea"),box=el("div","setupbox");
+
+  function optRow(label,desc,btns){
+    var r=el("div","optrow");
+    r.appendChild(el("div","optlab","<b>"+label+"</b><span>"+desc+"</span>"));
+    var bs=el("div","optbtns");
+    btns.forEach(function(b){bs.appendChild(b)});
+    r.appendChild(bs);return r;
+  }
+  var lvBtns=AI_NAME.map(function(n,i){
+    var b=el("button","obtn"+(AI_LV===i?" on":""),n);
+    b.onclick=function(){AI_LV=i;cfgSave();setup()};return b;
+  });
+  box.appendChild(optRow("적 함대","신참은 실수하고 에이스는 인연까지 노린다",lvBtns));
+  function toggle(get,set){
+    var b=el("button","obtn"+(get()?" on":""),get()?"켬":"끔");
+    b.onclick=function(){set(!get());cfgSave();setup()};return [b];
+  }
+  function viewRow(label,desc,get,set,opts){
+    var bs=opts.map(function(o){
+      var b=el("button","obtn"+(get()===o[1]?" on":""),o[0]);
+      b.onclick=function(){set(o[1]);cfgSave();setup()};return b;
+    });
+    return optRow(label,desc,bs);
+  }
+  box.appendChild(viewRow("파일럿 초상","파일럿 카드를 어느 쪽으로 볼지",
+    function(){return VIEW_P},function(v){VIEW_P=v},
+    [["남",'m'],["여",'f'],["무작위",'r']]));
+  box.appendChild(viewRow("기체 초상","기체 카드를 어느 쪽으로 볼지",
+    function(){return VIEW_M},function(v){VIEW_M=v},
+    [["남",'m'],["여",'f'],["무작위",'r'],["반대",'x']]));
+  var spBtns=[["공유",true],["개별",false]].map(function(o){
+    var b=el("button","obtn"+(sharedPack===o[1]?" on":""),o[0]);
+    b.onclick=function(){sharedPack=o[1];cfgSave();setup()};return b;
+  });
+  box.appendChild(optRow("보급 방식","한 팩을 나눠 집을지, 각자 받을지",spBtns));
+  var rrBtns=RR_OPT.map(function(n){
+    var b=el("button","obtn"+(REROLL_MAX===n?" on":""),n===0?"없음":n+"회");
+    b.onclick=function(){REROLL_MAX=n;cfgSave();setup()};return b;
+  });
+  box.appendChild(optRow("보급 요청","팩을 다시 펼치는 횟수 — 적 함대도 같이 쓴다",rrBtns));
+  box.appendChild(optRow("증감 힌트","카드마다 점수 변화와 인연을 미리 본다",
+    toggle(function(){return hintOn},function(v){hintOn=v})));
+  box.appendChild(optRow("관제 두절","적 함대의 편성을 판정 때까지 가린다",
+    toggle(function(){return fogOn},function(v){fogOn=v})));
+  box.appendChild(optRow("보급 제한","한 번 나온 카드는 한동안 다시 오지 않는다",
+    toggle(function(){return exhaustOn},function(v){exhaustOn=v})));
+  var go=el("button","btn big","출격");
+  go.onclick=function(){reset()};
+  var r2=el("div","row");r2.appendChild(go);
+  box.appendChild(r2);
+  box.appendChild(el("div","note",
+    "<b>전적</b>  "+REC.games+"판 · 수위 "+REC.first+" · 2위 "+REC.second+" · 3위 "+REC.third+
+    (REC.best?"<br>최고 점수 "+REC.best:"")+
+    "<br>교신 기록 "+Object.keys(REC.stamps).length+" · 훈장 "+Object.keys(REC.feats).length+"/"+FEATS.length));
+  a.appendChild(box);
+}
+cfgLoad();
+setup();
+
+</script>
+</body>
+</html>

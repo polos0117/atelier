@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>기체 잔여 목록 — 건담 드래프트</title>
+<style>
+:root{
+  --paper:#E4E2DB; --ink:#14181E; --dim:#6C6A62; --rule:#BFBCB2;
+  --hazard:#D8A200; --slab:#CFCCC3; --done:#8B9A6B;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --disp:"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--mono); font-size:13px; line-height:1.5;
+  padding:0 0 env(safe-area-inset-bottom);
+  -webkit-text-size-adjust:100%;
+}
+/* ── 상단 슬레이트 ── */
+header{
+  position:sticky; top:0; z-index:5; background:var(--paper);
+  border-bottom:2px solid var(--ink); padding:14px 16px 10px;
+}
+.eyebrow{
+  font-size:10px; letter-spacing:.28em; color:var(--dim);
+  text-transform:uppercase;
+}
+h1{
+  font-family:var(--disp); font-weight:700; font-size:26px;
+  letter-spacing:-.02em; margin:2px 0 10px;
+}
+h1 b{
+  font-size:44px; font-variant-numeric:tabular-nums;
+  border-bottom:6px solid var(--hazard); padding-bottom:1px;
+}
+.meta{display:flex; gap:14px; font-size:11px; color:var(--dim); flex-wrap:wrap}
+.meta span b{color:var(--ink); font-variant-numeric:tabular-nums}
+.tools{display:flex; gap:8px; margin-top:10px}
+input[type=search]{
+  flex:1; min-width:0; font:inherit; padding:7px 10px;
+  background:#EFEEE9; border:1px solid var(--rule); border-radius:0; color:inherit;
+}
+input[type=search]:focus{outline:2px solid var(--hazard); outline-offset:-2px}
+/* ── 시리즈 블록 ── */
+section{border-bottom:1px solid var(--rule)}
+.shd{
+  display:flex; align-items:baseline; gap:10px; width:100%;
+  padding:11px 16px; background:none; border:0; font:inherit;
+  color:inherit; text-align:left; cursor:pointer;
+}
+.shd:focus-visible{outline:2px solid var(--hazard); outline-offset:-2px}
+.sname{font-family:var(--disp); font-weight:700; font-size:15px; flex:1}
+.scount{
+  font-size:11px; color:var(--dim); font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+/* 잔탄식 게이지 — 남은 칸이 위험색 */
+.gauge{display:flex; gap:2px; padding:0 16px 11px}
+.gauge i{height:6px; flex:1; background:var(--done)}
+.gauge i.left{background:var(--hazard)}
+.gauge i.none{background:var(--slab)}
+ul{list-style:none; margin:0; padding:0 0 6px}
+li{
+  display:flex; align-items:flex-start; gap:10px;
+  padding:8px 16px; border-top:1px dotted var(--rule);
+}
+li:first-child{border-top:1px solid var(--rule)}
+.tick{
+  flex:none; width:16px; height:16px; margin-top:2px;
+  border:1.5px solid var(--ink); background:transparent; cursor:pointer; padding:0;
+}
+.tick[aria-pressed=true]{background:var(--done); border-color:var(--done)}
+.tick[aria-pressed=true]::after{
+  content:"✓"; display:block; color:var(--paper); font-size:12px;
+  line-height:13px; text-align:center;
+}
+.body{flex:1; min-width:0}
+.nm{font-family:var(--disp); font-weight:600; font-size:14px}
+li.off .nm{text-decoration:line-through; color:var(--dim)}
+.half{
+  font-size:9px; letter-spacing:.14em; background:var(--hazard);
+  color:var(--ink); padding:1px 5px; margin-left:6px; vertical-align:2px;
+}
+.copy{
+  margin-top:4px; font:inherit; font-size:11px; color:var(--dim);
+  background:none; border:0; padding:0; text-align:left; cursor:pointer;
+  text-decoration:underline; text-underline-offset:3px;
+}
+.copy:active{color:var(--ink)}
+.copy.ok{color:var(--done); text-decoration:none}
+.pr{
+  display:none; margin-top:6px; font-size:11px; color:var(--dim);
+  border-left:3px solid var(--rule); padding-left:9px; word-break:break-all;
+}
+li.open .pr{display:block}
+.empty{padding:40px 16px; text-align:center; color:var(--dim)}
+footer{padding:18px 16px 28px; font-size:10px; color:var(--dim); letter-spacing:.1em}
+@media(prefers-reduced-motion:no-preference){
+  .copy{transition:color .15s}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">기체 초상 잔여</div>
+  <h1><b id="left">0</b> 장 남음</h1>
+  <div class="meta">
+    <span>전체 <b>256</b></span>
+    <span>완료 <b id="done">0</b></span>
+    <span>시리즈 <b id="sers">0</b></span>
+  </div>
+  <div class="tools">
+    <input type="search" id="q" placeholder="기체명 · 시리즈 검색" autocomplete="off">
+  </div>
+</header>
+<main id="list"></main>
+<footer>탭하면 프롬프트가 복사된다. 체크는 이 화면에서만 유지된다.</footer>
+
+<script>
+var DATA = [{"series": "신기동전기 건담 W", "total": 13, "rows": [{"name": "건담 데스사이즈", "prompt": "[성별, 건담 데스사이즈, 신기동전기 건담 W, 흑색 몸체에 대형 낫과 등에 박쥐형 날개]", "half": false}, {"name": "건담 헤비암즈", "prompt": "[성별, 건담 헤비암즈, 신기동전기 건담 W, 주황과 백색에 전신 미사일 포트와 개틀링]", "half": false}, {"name": "건담 샌드록", "prompt": "[성별, 건담 샌드록, 신기동전기 건담 W, 백색과 청색 중장갑에 쌍둥이 히트 쇼텔]", "half": false}, {"name": "알트론 건담", "prompt": "[성별, 알트론 건담, 신기동전기 건담 W, 녹색과 백색에 쌍두룡 팔과 대형 창]", "half": false}, {"name": "리오", "prompt": "[성별, 리오, 신기동전기 건담 W, 청록색 양산기, 단순한 원형 두상]", "half": false}, {"name": "셴롱 건담", "prompt": "[성별, 셴롱 건담, 신기동전기 건담 W]", "half": false}, {"name": "건담 데스사이즈 헬", "prompt": "[성별, 건담 데스사이즈 헬, 신기동전기 건담 W]", "half": false}, {"name": "비르고", "prompt": "[성별, 비르고, 신기동전기 건담 W]", "half": false}]}, {"series": "기동전사 Z건담", "total": 17, "rows": [{"name": "바이알란", "prompt": "[성별, 바이알란, 기동전사 Z건담]", "half": false}, {"name": "감마 간", "prompt": "[성별, 감마 간, 기동전사 Z건담]", "half": false}, {"name": "가브스레이", "prompt": "[성별, 가브스레이, 기동전사 Z건담]", "half": false}, {"name": "함브라비", "prompt": "[성별, 함브라비, 기동전사 Z건담]", "half": false}, {"name": "바운드 독", "prompt": "[성별, 바운드 독, 기동전사 Z건담]", "half": false}]}, {"series": "기동전사 건담 철혈의 오펀즈", "total": 15, "rows": [{"name": "그레이즈", "prompt": "[성별, 그레이즈, 기동전사 건담 철혈의 오펀즈, 회색 양산기에 단안 센서]", "half": false}, {"name": "시덴", "prompt": "[성별, 시덴, 기동전사 건담 철혈의 오펀즈, 청색 양산기]", "half": false}, {"name": "건담 발바토스 루프스", "prompt": "[성별, 건담 발바토스 루프스, 기동전사 건담 철혈의 오펀즈]", "half": false}, {"name": "건담 구시온 리베이크", "prompt": "[성별, 건담 구시온 리베이크, 기동전사 건담 철혈의 오펀즈]", "half": false}, {"name": "그레이즈 아인", "prompt": "[성별, 그레이즈 아인, 기동전사 건담 철혈의 오펀즈]", "half": false}, {"name": "레긴레이즈", "prompt": "[성별, 레긴레이즈, 기동전사 건담 철혈의 오펀즈]", "half": false}, {"name": "하슈말", "prompt": "[성별, 하슈말, 기동전사 건담 철혈의 오펀즈]", "half": false}]}, {"series": "기동전사 건담", "total": 16, "rows": [{"name": "자쿠 캐논", "prompt": "[성별, 자쿠 캐논, 기동전사 건담]", "half": false}, {"name": "릭 돔", "prompt": "[성별, 릭 돔, 기동전사 건담]", "half": false}, {"name": "겔구그", "prompt": "[성별, 겔구그, 기동전사 건담, 녹색 몸체에 빔 나기나타, 단안 모노아이]", "half": false}, {"name": "갸안", "prompt": "[성별, 갸안, 기동전사 건담, 백색 기사형 체형에 원형 실드와 빔 사벨]", "half": false}, {"name": "지옹", "prompt": "[성별, 지옹, 기동전사 건담, 거대한 상반신에 하반신이 없고 팔이 유선 조종]", "half": false}, {"name": "엘메스", "prompt": "[성별, 엘메스, 기동전사 건담, 길쭉한 유선형 몸체에 다수의 비트를 거느림]", "half": false}, {"name": "빅잠", "prompt": "[성별, 빅잠, 기동전사 건담, 거대한 원반형 실드 두 장과 육중한 흑색 체형]", "half": false}]}, {"series": "기동전사 건담 00", "total": 18, "rows": [{"name": "아헤드", "prompt": "[성별, 아헤드, 기동전사 건담 00, 회색 양산기에 둥근 체형]", "half": false}, {"name": "티에렌 지상형", "prompt": "[성별, 티에렌 지상형, 기동전사 건담 00, 흙빛 녹색의 각진 양산기]", "half": false}, {"name": "더블오 퀀터", "prompt": "[성별, 더블오 퀀터, 기동전사 건담 00]", "half": false}, {"name": "건담 나드레", "prompt": "[성별, 건담 나드레, 기동전사 건담 00]", "half": false}, {"name": "오 건담", "prompt": "[성별, 오 건담, 기동전사 건담 00]", "half": false}, {"name": "건담 스로네 아인", "prompt": "[성별, 건담 스로네 아인, 기동전사 건담 00]", "half": false}, {"name": "GN-X", "prompt": "[성별, GN-X, 기동전사 건담 00]", "half": false}, {"name": "라파엘 건담", "prompt": "[성별, 라파엘 건담, 기동전사 건담 00]", "half": false}]}, {"series": "기동전사 V건담", "total": 9, "rows": [{"name": "건이지", "prompt": "[성별, 건이지, 기동전사 V건담, 백색 양산기, 단순한 머리 형상]", "half": false}, {"name": "게드라프", "prompt": "[성별, 게드라프, 기동전사 V건담, 녹색 양산기, 원반형 하부]", "half": false}, {"name": "고틀라탄", "prompt": "[성별, 고틀라탄, 기동전사 V건담, 적색 기체, 사이코뮤 유선 무장]", "half": false}, {"name": "리그 샤코", "prompt": "[성별, 리그 샤코, 기동전사 V건담, 녹색 기체, 다수의 모노아이 센서]", "half": false}, {"name": "샤코", "prompt": "[성별, 샤코, 기동전사 V건담, 녹색 소형 기체, 구형 몸체]", "half": false}, {"name": "조로", "prompt": "[성별, 조로, 기동전사 V건담, 녹색 가변기, 원반형 상부]", "half": false}]}, {"series": "기동전사 건담 수성의 마녀", "total": 17, "rows": [{"name": "데미 트레이너", "prompt": "[성별, 데미 트레이너, 기동전사 건담 수성의 마녀, 청회색 훈련기, 단순한 두상]", "half": false}, {"name": "데미 바딩", "prompt": "[성별, 데미 바딩, 기동전사 건담 수성의 마녀, 청회색 작업기]", "half": false}, {"name": "젤트줌", "prompt": "[성별, 젤트줌, 기동전사 건담 수성의 마녀, 회색 양산기]", "half": false}, {"name": "건담 르브리스 손", "prompt": "[성별, 건담 르브리스 손, 기동전사 건담 수성의 마녀]", "half": false}, {"name": "건담 르브리스 울", "prompt": "[성별, 건담 르브리스 울, 기동전사 건담 수성의 마녀]", "half": false}, {"name": "딜란자", "prompt": "[성별, 딜란자, 기동전사 건담 수성의 마녀]", "half": false}, {"name": "베귀르펜테", "prompt": "[성별, 베귀르펜테, 기동전사 건담 수성의 마녀]", "half": false}, {"name": "조워트", "prompt": "[성별, 조워트, 기동전사 건담 수성의 마녀]", "half": false}]}, {"series": "건담 AGE", "total": 8, "rows": [{"name": "건담 AGE-3", "prompt": "[성별, 건담 AGE-3, 건담 AGE, 백색과 적청색 배색, 등에 대형 부스터와 캐논]", "half": false}, {"name": "건담 AGE-FX", "prompt": "[성별, 건담 AGE-FX, 건담 AGE, 백색 몸체에 녹색 발광선, 전신에 분리형 C펀넬]", "half": false}, {"name": "레길스", "prompt": "[성별, 레길스, 건담 AGE, 흑금색 대형기, 등에 다수의 부유 병기와 붉은 발광부]", "half": false}, {"name": "지랏하", "prompt": "[성별, 지랏하, 건담 AGE, 적자색 시작기, 곤충형 두상과 대형 클로]", "half": false}, {"name": "제다스", "prompt": "[성별, 제다스, 건담 AGE, 자색 양산기, 각진 두상과 빔 라이플]", "half": false}, {"name": "아델", "prompt": "[성별, 아델, 건담 AGE, 백색과 청색 양산기, 둥근 두상과 실드]", "half": false}]}, {"series": "∀건담", "total": 8, "rows": [{"name": "∀건담", "prompt": "[성별, ∀건담, ∀건담, 백색 기체, 얼굴을 가로지르는 수염 형상의 장식, 배의 대형 원판]", "half": false}, {"name": "턴 X", "prompt": "[성별, 턴 X, ∀건담, 백색 기체, 몸 곳곳에 분할선, 이마의 X자 흉터]", "half": false}, {"name": "스모", "prompt": "[성별, 스모, ∀건담, 백색 유선형 기체, 둥근 실루엣]", "half": false}, {"name": "골드 스모", "prompt": "[성별, 골드 스모, ∀건담, 금색 유선형 기체, 둥근 실루엣]", "half": false}, {"name": "카풀", "prompt": "[성별, 카풀, ∀건담, 청색 소형 양산기, 둥근 몸체]", "half": false}, {"name": "워돔", "prompt": "[성별, 워돔, ∀건담, 청색 양산기, 원통형 몸체와 가느다란 사지]", "half": false}, {"name": "볼자논", "prompt": "[성별, 볼자논, ∀건담, 녹색 기체, 전차형 하부]", "half": false}, {"name": "마히로", "prompt": "[성별, 마히로, ∀건담, 백색 소형 기체, 곤충형 실루엣]", "half": false}]}, {"series": "기동전사 건담 F91", "total": 8, "rows": [{"name": "라플레시아", "prompt": "[성별, 라플레시아, 기동전사 건담 F91, 흑색 거대 모빌아머, 하반신 없이 방사형으로 뻗은 다수의 유선 촉수]", "half": false}, {"name": "베르가 기로스", "prompt": "[성별, 베르가 기로스, 기동전사 건담 F91, 녹색 장갑, 뿔 모양 머리 장식, 대형 숄더 아머]", "half": false}, {"name": "베르가 다라스", "prompt": "[성별, 베르가 다라스, 기동전사 건담 F91, 녹색 장갑, 육중한 체형, 대형 빔 실드]", "half": false}, {"name": "데난 게", "prompt": "[성별, 데난 게, 기동전사 건담 F91, 녹색 양산기, 단순한 머리 형상, 빔 라이플]", "half": false}, {"name": "데난 존", "prompt": "[성별, 데난 존, 기동전사 건담 F91, 녹색 양산기, 어깨의 각진 장갑]", "half": false}, {"name": "헤비건", "prompt": "[성별, 헤비건, 기동전사 건담 F91, 백색 경량 양산기, 가느다란 체형]", "half": false}]}, {"series": "G건담", "total": 8, "rows": [{"name": "샤이닝 건담", "prompt": "[성별, 샤이닝 건담, G건담, 백색과 녹색 배색, 어깨에 대형 방열판, 이마에 금색 뿔]", "half": false}, {"name": "데빌 건담", "prompt": "[성별, 데빌 건담, G건담, 거대한 흑녹색 괴수형 기체, 다수의 촉수와 붉은 눈]", "half": false}, {"name": "건담 맥스터", "prompt": "[성별, 건담 맥스터, G건담, 백색과 적색 배색, 양손에 대형 권투 글러브, 어깨에 별 문양]", "half": false}, {"name": "건담 로즈", "prompt": "[성별, 건담 로즈, G건담, 백색과 청색 기사형 기체, 손에 레이피어, 등에 장미 문양 망토]", "half": false}, {"name": "드래곤 건담", "prompt": "[성별, 드래곤 건담, G건담, 녹색과 백색 배색, 오른팔에 용머리 클로, 등에 삼절곤]", "half": false}, {"name": "보르트 건담", "prompt": "[성별, 보르트 건담, G건담, 회색 중장갑 거구, 양팔에 대형 해머와 사슬]", "half": false}]}, {"series": "건담X", "total": 7, "rows": [{"name": "더블 엑스", "prompt": "[성별, 더블 엑스, 건담X, 백색과 적청색 배색, 등에 두 문의 트윈 새틀라이트 캐논]", "half": false}, {"name": "건담 에어마스터", "prompt": "[성별, 건담 에어마스터, 건담X, 백색과 청색 가변기, 등에 대형 날개와 부스터]", "half": false}, {"name": "건담 레오파드", "prompt": "[성별, 건담 레오파드, 건담X, 회백색 중화기 기체, 전신에 포문과 미사일 발사구]", "half": false}, {"name": "건담 벨페고르", "prompt": "[성별, 건담 벨페고르, 건담X, 백색과 흑색 배색, 등에 십자형 대형 백팩]", "half": false}, {"name": "제니체", "prompt": "[성별, 제니체, 건담X, 암청색 양산기, 각진 두상과 대형 실드]", "half": false}, {"name": "패틀리아", "prompt": "[성별, 패틀리아, 건담X, 회녹색 양산기, 둥근 단안과 빔 라이플]", "half": false}]}, {"series": "건담 SEED ASTRAY", "total": 11, "rows": [{"name": "하이페리온 건담", "prompt": "[성별, 하이페리온 건담, 건담 SEED ASTRAY, 백색 기체, 대형 방어막 발생기]", "half": false}, {"name": "드레드노트 건담", "prompt": "[성별, 드레드노트 건담, 건담 SEED ASTRAY, 백색 기체, 등의 대형 무선 무장 포드]", "half": false}, {"name": "건담 아스트레이 그린프레임", "prompt": "[성별, 건담 아스트레이 그린프레임, 건담 SEED ASTRAY, 녹색과 백색 기체, 등에 대형 추진 유닛]", "half": false}, {"name": "스타게이저 건담", "prompt": "[성별, 스타게이저 건담, 건담 SEED ASTRAY, 백색 기체, 등에 고리 형태의 대형 추진 링과 다수의 빛 입자]", "half": false}, {"name": "건담 아스트레이 미라쥬 프레임", "prompt": "[성별, 건담 아스트레이 미라쥬 프레임, 건담 SEED ASTRAY, 등에 대형 날개형 바인더와 다수의 원격 무장]", "half": false}]}, {"series": "포켓 속의 전쟁", "total": 7, "rows": [{"name": "짐 커맨드", "prompt": "[성별, 짐 커맨드, 포켓 속의 전쟁]", "half": false}, {"name": "자쿠II 개량형", "prompt": "[성별, 자쿠II 개량형, 포켓 속의 전쟁]", "half": false}, {"name": "하이곡그", "prompt": "[성별, 하이곡그, 포켓 속의 전쟁]", "half": false}, {"name": "즈고크 E", "prompt": "[성별, 즈고크 E, 포켓 속의 전쟁]", "half": false}]}, {"series": "기동전사 건담 SEED", "total": 13, "rows": [{"name": "스트라이크", "prompt": "[성별, 스트라이크, 기동전사 건담 SEED, 흰색과 청색에 교체식 스트라이커 팩, 이마 V자 안테나]", "half": false}, {"name": "스트라이크 루즈", "prompt": "[성별, 스트라이크 루즈, 기동전사 건담 SEED, 백색 골격에 분홍·적색 장갑과 금색 이마 V자 안테나, 등에 에일 스트라이커 날개, 오브 문장]", "half": false}, {"name": "프리덤", "prompt": "[성별, 프리덤, 기동전사 건담 SEED, 백·청·적 배색에 등에 좌우 대칭으로 전개되는 대형 날개와 레일건]", "half": true}, {"name": "진", "prompt": "[성별, 진, 기동전사 건담 SEED, 청회색 양산기에 단안 센서와 대형 대검]", "half": false}]}, {"series": "건담 SEED FREEDOM", "total": 8, "rows": [{"name": "마이티 스트라이크 프리덤 건담", "prompt": "[성별, 마이티 스트라이크 프리덤 건담, 건담 SEED FREEDOM, 백색과 청색에 금빛 골격, 등에 대형 드라군 날개와 다연장 포문, 양손에 대형 빔소드]", "half": false}, {"name": "인피니트 저스티스 건담 이식", "prompt": "[성별, 인피니트 저스티스 건담 이식, 건담 SEED FREEDOM, 진홍과 백색 배색, 무릎과 발끝에 빔 블레이드, 등에 대형 리프터]", "half": false}, {"name": "데스티니 건담 SpecII", "prompt": "[성별, 데스티니 건담 SpecII, 건담 SEED FREEDOM, 백색과 청색에 금색 장식, 등에 빛의 날개, 대형 대검과 팔름 팬텀]", "half": false}, {"name": "블랙나이트 스쿼드 루드라", "prompt": "[성별, 블랙나이트 스쿼드 루드라, 건담 SEED FREEDOM, 흑색 양산기, 붉은 단안과 각진 두상, 실드와 빔 라이플]", "half": false}]}, {"series": "기동전사 건담 UC", "total": 8, "rows": [{"name": "네오 지옹", "prompt": "[성별, 네오 지옹, 기동전사 건담 UC, 거대한 흑녹색 상체와 원통형 하부, 앞에 시난주가 결합된 형상]", "half": false}, {"name": "기라 즐루", "prompt": "[성별, 기라 즐루, 기동전사 건담 UC, 암녹색 양산기, 둥근 단안 두상, 어깨 스파이크와 대형 실드]", "half": false}]}, {"series": "건담 SEED DESTINY", "total": 13, "rows": [{"name": "자쿠 워리어", "prompt": "[성별, 자쿠 워리어, 건담 SEED DESTINY]", "half": false}, {"name": "구프 이그나이티드", "prompt": "[성별, 구프 이그나이티드, 건담 SEED DESTINY]", "half": false}, {"name": "돔 트루퍼", "prompt": "[성별, 돔 트루퍼, 건담 SEED DESTINY]", "half": false}]}, {"series": "건담 NT", "total": 4, "rows": [{"name": "나라티브 건담", "prompt": "[성별, 나라티브 건담, 건담 NT, 백색과 회색 몸체에 대형 등짐 장비, 금색 V자 안테나]", "half": false}, {"name": "시난주 스타인", "prompt": "[성별, 시난주 스타인, 건담 NT, 흑회색 시작기, 시난주와 같은 골격에 무장식 장갑]", "half": false}, {"name": "실바 바레토", "prompt": "[성별, 실바 바레토, 건담 NT, 녹회색 대형 지원기, 등에 대형 부스터와 컨테이너]", "half": false}]}, {"series": "기동전사 건담 썬더볼트", "total": 3, "rows": [{"name": "풀아머 건담", "prompt": "[성별, 풀아머 건담, 기동전사 건담 썬더볼트, 백색과 청색 기체, 전신을 덮은 대형 추가 장갑과 다수의 미사일 포드]", "half": false}, {"name": "사이코 자쿠", "prompt": "[성별, 사이코 자쿠, 기동전사 건담 썬더볼트, 녹색 자쿠, 등의 거대한 추진 유닛과 다수의 유선 무장]", "half": false}, {"name": "아틀라스 건담", "prompt": "[성별, 아틀라스 건담, 기동전사 건담 썬더볼트, 백색과 청색 기체, 두꺼운 사지, 실드 부메랑]", "half": false}]}, {"series": "건담 00 극장판", "total": 3, "rows": [{"name": "건담 하루트", "prompt": "[성별, 건담 하루트, 건담 00 극장판, 적색과 청색 기체, 등의 대형 GN 필드 발생기]", "half": false}, {"name": "건담 사바냐", "prompt": "[성별, 건담 사바냐, 건담 00 극장판, 백색 기체, 다수의 원격 조종 라이플 유닛]", "half": false}, {"name": "브레이브 지휘관용 시험기", "prompt": "[성별, 브레이브 지휘관용 시험기, 건담 00 극장판, 청색 가변기, 항공기형 변형]", "half": false}]}, {"series": "제08MS소대", "total": 5, "rows": [{"name": "육전형 짐", "prompt": "[성별, 육전형 짐, 제08MS소대]", "half": false}, {"name": "아프사라스 III", "prompt": "[성별, 아프사라스 III, 제08MS소대]", "half": false}]}, {"series": "스타더스트 메모리", "total": 8, "rows": [{"name": "짐 커스텀", "prompt": "[성별, 짐 커스텀, 스타더스트 메모리]", "half": false}, {"name": "겔구그 예거", "prompt": "[성별, 겔구그 예거, 스타더스트 메모리]", "half": false}]}, {"series": "건담 W Endless Waltz", "total": 7, "rows": [{"name": "서펜트", "prompt": "[성별, 서펜트, 신기동전기 건담 W Endless Waltz, 회녹색 양산기, 둥근 단안 두상, 어깨 미사일 포드와 대형 실드]", "half": false}]}, {"series": "섬광의 하사웨이", "total": 4, "rows": [{"name": "메싸", "prompt": "[성별, 메싸, 섬광의 하사웨이, 녹회색 양산기, 각진 두상과 대형 실드]", "half": false}, {"name": "그이 마리에", "prompt": "[성별, 그이 마리에, 섬광의 하사웨이, 회백색 연방 양산기, 둥근 두상과 빔 라이플]", "half": false}]}, {"series": "Gundam GQuuuuuuX", "total": 2, "rows": [{"name": "GQuuuuuuX", "prompt": "[성별, GQuuuuuuX, Gundam GQuuuuuuX, 백색 기체, 날카로운 실루엣, 대형 클로]", "half": false}, {"name": "붉은 건담", "prompt": "[성별, 붉은 건담, Gundam GQuuuuuuX, 적색 건담형 기체, 이마 V자 안테나]", "half": false}]}];
+var TOTAL_MECH = 256;
+var checked = {};
+
+function gauge(remain, total){
+  var n = Math.min(total, 24), out = "";
+  var doneN = Math.round((total-remain)/total*n);
+  for(var i=0;i<n;i++) out += '<i class="'+(i<doneN?"":"left")+'"></i>';
+  return out;
+}
+
+function render(){
+  var q = document.getElementById("q").value.trim().toLowerCase();
+  var list = document.getElementById("list");
+  list.innerHTML = "";
+  var shown = 0, sers = 0;
+
+  DATA.forEach(function(s){
+    var rows = s.rows.filter(function(r){
+      return !q || r.name.toLowerCase().indexOf(q)>=0 || s.series.toLowerCase().indexOf(q)>=0;
+    });
+    if(!rows.length) return;
+    sers++;
+
+    var sec = document.createElement("section");
+    var remain = s.rows.length;
+    sec.innerHTML =
+      '<button class="shd"><span class="sname">'+s.series+'</span>'+
+      '<span class="scount">'+remain+' / '+s.total+'</span></button>'+
+      '<div class="gauge">'+gauge(remain, s.total)+'</div>';
+
+    var ul = document.createElement("ul");
+    rows.forEach(function(r){
+      shown++;
+      var li = document.createElement("li");
+      var on = !!checked[r.name];
+      if(on) li.className = "off";
+      li.innerHTML =
+        '<button class="tick" aria-pressed="'+on+'" aria-label="완료 표시"></button>'+
+        '<div class="body">'+
+          '<div class="nm">'+r.name+(r.half?'<span class="half">한쪽만</span>':'')+'</div>'+
+          '<button class="copy">프롬프트 복사</button>'+
+          '<div class="pr">'+r.prompt+'</div>'+
+        '</div>';
+
+      li.querySelector(".tick").onclick = function(){
+        checked[r.name] = !checked[r.name];
+        render();
+      };
+      li.querySelector(".copy").onclick = function(){
+        var btn = this;
+        var ta = document.createElement("textarea");
+        ta.value = r.prompt; ta.style.position="fixed"; ta.style.opacity=0;
+        document.body.appendChild(ta); ta.select();
+        var ok=false; try{ ok = document.execCommand("copy"); }catch(e){}
+        document.body.removeChild(ta);
+        li.classList.add("open");
+        btn.textContent = ok ? "복사됨" : "아래에서 길게 눌러 복사";
+        btn.className = "copy ok";
+        setTimeout(function(){ btn.textContent="프롬프트 복사"; btn.className="copy"; }, 1800);
+      };
+      ul.appendChild(li);
+    });
+    sec.appendChild(ul);
+
+    sec.querySelector(".shd").onclick = function(){
+      ul.style.display = ul.style.display === "none" ? "" : "none";
+    };
+    list.appendChild(sec);
+  });
+
+  if(!shown) list.innerHTML = '<div class="empty">일치하는 기체가 없다.</div>';
+
+  var total = DATA.reduce(function(a,s){return a+s.rows.length},0);
+  var off = Object.keys(checked).filter(function(k){return checked[k]}).length;
+  document.getElementById("left").textContent = total - off;
+  document.getElementById("done").textContent = (TOTAL_MECH - total) + off;
+  document.getElementById("sers").textContent = sers;
+}
+
+document.getElementById("q").addEventListener("input", render);
+render();
+</script>
+</body>
+</html>
