@@ -1376,11 +1376,60 @@ var BOND={"카가리|스트라이크 루즈":.20,
 var IMG_BASE="https://polos0117.github.io/atelier/";
 function imgURL(p){return IMG_BASE+encodeURIComponent(p)}
 
+/* ══ 저장소 파일 목록으로 IMG 자동 보강 ══
+   카드명_m / _f / _casualN / _extraN .webp 규칙이면 배열을 손대지 않아도 잡힌다.
+   공백은 밑줄로 써도 인식한다. 목록을 못 받아오면 기존 IMG 로만 동작한다.
+   단 얼굴 좌표는 파일명에서 알 수 없어 기본값이 쓰인다. */
+var GH_=(function(){
+  var m=/^https?:\/\/([^.]+)\.github\.io\/([^\/]+)\//.exec(IMG_BASE);
+  return m?{u:m[1],r:m[2]}:null;
+})();
+function mergeRepoFiles(names){
+  var key={},pools=[MECH,PILOT,SHIP,CREW],i,j;
+  for(i=0;i<pools.length;i++)for(j=0;j<pools[i].length;j++)
+    key[pools[i][j][0].replace(/ /g,"_")]=pools[i][j][0];
+  var added=0;
+  for(i=0;i<names.length;i++){
+    var n=names[i];
+    if(!/\.webp$/i.test(n))continue;
+    var m=/^(.+)_(m|f|casual(\d+)|extra(\d+))\.webp$/i.exec(n);
+    if(!m)continue;
+    var card=key[m[1].replace(/ /g,"_")]; if(!card)continue;
+    var src=IMG[card]||(IMG[card]={}), kind=m[2].toLowerCase();
+    if(kind==="m"||kind==="f"){if(!src[kind]){src[kind]=n;added++} continue}
+    var a=kind.indexOf("casual")===0?"casual":"extra", idx=parseInt(m[3]||m[4],10)-1;
+    src[a]=src[a]||[];
+    if(src[a].indexOf(n)<0){src[a][idx>=0?idx:src[a].length]=n;added++}
+  }
+  for(var c in IMG)["casual","extra"].forEach(function(a){
+    if(!IMG[c][a])return;
+    IMG[c][a]=IMG[c][a].filter(Boolean);
+    if(!IMG[c][a].length)delete IMG[c][a];
+  });
+  return added;
+}
+setTimeout(function(){          /* IMG 선언 이후에 돌아야 한다 */
+  if(!GH_||typeof fetch!=="function")return;
+  var K="game_filelist_v1";
+  try{
+    var c=JSON.parse(localStorage.getItem(K));
+    if(c&&Date.now()-c.t<6e5){mergeRepoFiles(c.n);return}
+  }catch(e){}
+  fetch("https://api.github.com/repos/"+GH_.u+"/"+GH_.r+"/contents/")
+    .then(function(r){if(!r.ok)throw 0;return r.json()})
+    .then(function(j){
+      var n=j.filter(function(x){return x.type==="file"}).map(function(x){return x.name});
+      try{localStorage.setItem(K,JSON.stringify({t:Date.now(),n:n}))}catch(e){}
+      mergeRepoFiles(n);
+    })
+    .catch(function(){});
+},0);
+
 var IMG={
-"기라 줄루":{m:"기라 줄루_m.webp",f:"기라 줄루_f.webp",face:{"m": [0.435, 0.022, 0.13], "f": [0.44, 0.035, 0.125]},casual:["기라 줄루_casual1.webp","기라 줄루_casual2.webp"]},
-"리젤":{m:"리젤_m.webp",f:"리젤_f.webp",face:{"m": [0.472, 0.13, 0.125], "f": [0.442, 0.155, 0.125]},casual:["리젤_casual1.webp","리젤_casual2.webp"]},
-"건담 AGE-2":{m:"건담 AGE-2_m.webp",f:"건담 AGE-2_f.webp",face:{"m": [0.415, 0.052, 0.145], "f": [0.412, 0.05, 0.125]},casual:["건담 AGE-2_casual1.webp","건담 AGE-2_casual2.webp","건담 AGE-2_casual3.webp"]},
-"건담 AGE-1":{m:"건담 AGE-1_m.webp",f:"건담 AGE-1_f.webp",face:{"m": [0.425, 0.048, 0.13], "f": [0.435, 0.062, 0.13]},casual:["건담 AGE-1_casual1.webp","건담 AGE-1_casual2.webp"]},
+"기라 줄루":{m:"기라 줄루_m.webp",f:"기라 줄루_f.webp",face:{"m": [0.435, 0.0437, 0.13], "f": [0.44, 0.0558, 0.125]},casual:["기라 줄루_casual1.webp","기라 줄루_casual2.webp"]},
+"리젤":{m:"리젤_m.webp",f:"리젤_f.webp",face:{"m": [0.472, 0.1508, 0.125], "f": [0.442, 0.1758, 0.125]},casual:["리젤_casual1.webp","리젤_casual2.webp"]},
+"건담 AGE-2":{m:"건담 AGE-2_m.webp",f:"건담 AGE-2_f.webp",face:{"m": [0.415, 0.0762, 0.145], "f": [0.412, 0.0708, 0.125]},casual:["건담 AGE-2_casual1.webp","건담 AGE-2_casual2.webp","건담 AGE-2_casual3.webp"]},
+"건담 AGE-1":{m:"건담 AGE-1_m.webp",f:"건담 AGE-1_f.webp",face:{"m": [0.425, 0.0697, 0.13], "f": [0.435, 0.0837, 0.13]},casual:["건담 AGE-1_casual1.webp","건담 AGE-1_casual2.webp"]},
 "더블오 건담":{m:"더블오 건담_m.webp",f:"더블오 건담_f.webp",face:{"m": [0.415, 0.085, 0.105], "f": [0.40, 0.115, 0.11]},casual:["더블오 건담_casual1.webp","더블오 건담_casual2.webp"]},
 "갸프랑":{m:"갸프랑_m.webp",f:"갸프랑_f.webp",face:{"m": [0.465, 0.085, 0.10], "f": [0.455, 0.06, 0.105]},casual:["갸프랑_casual1.webp","갸프랑_casual2.webp"]},
 "델타 플러스":{m:"델타 플러스_m.webp",f:"델타 플러스_f.webp",face:{"m": [0.455, 0.085, 0.10], "f": [0.44, 0.10, 0.105]},casual:["델타 플러스_casual1.webp"]},
