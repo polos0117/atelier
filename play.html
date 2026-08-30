@@ -1628,8 +1628,11 @@ function avHTML(card,type,partner,force){
    face가 배열이면 남녀 공통, {m:[...],f:[...]}면 배리언트별로 쓴다 */
 var ASPECT={"기체":1.5,"파일럿":1.5,"지휘관":4/3,"함":9/16};
 var FACE_DEF=[.34,.03,.30];
-/* 저장된 상자는 얼굴에 딱 맞게 잡혀 있다. 중심을 유지한 채 넓혀 머리와 어깨가 들어오게 한다 */
-var FACE_PAD=1.7;
+/* 저장된 상자는 폭이 카드마다 제각각이라 확대율이 들쭉날쭉했다.
+   그래서 폭은 쓰지 않고 고정 축척으로 자르되, 얼굴 중심만 위치 기준으로 쓴다.
+   FACE_W  : 잘라낼 폭 (이미지 폭 대비)
+   FACE_TOP: 얼굴 중심이 잘린 상자에서 위에서 몇 지점에 오게 할지 */
+var FACE_W=0.40, FACE_TOP=0.38;
 function faceOf(src,v){
   var f=src&&src.face;
   if(!f)return FACE_DEF;
@@ -1645,9 +1648,9 @@ function faceHTML(card,partner,type){
           ar=ASPECT[type]||1.5,
           bw=f[2], bh=Math.min(.999,bw/ar),
           cx=f[0]+bw/2, cy=f[1]+bh/2,
-          fw=Math.min(1,bw*FACE_PAD), fh=Math.min(.999,fw/ar),
+          fw=Math.min(1,FACE_W), fh=Math.min(.999,fw/ar),
           fx=Math.min(Math.max(cx-fw/2,0),1-fw),
-          fy=Math.min(Math.max(cy-fh/2,0),1-fh);
+          fy=Math.min(Math.max(cy-fh*FACE_TOP,0),1-fh);
       var size=(100/fw), px=(fw<1?fx/(1-fw)*100:0), py=(fh<1?fy/(1-fh)*100:0);
       return '<span class="fcp" style="background-color:'+fc(card[1][card[1].length-1])+'33;'+
         'background-image:url(\''+imgURL(pic)+'\');'+
