@@ -888,6 +888,61 @@ var MODE_NAME={p:"의인화",c:"일상",x:"특별 컷",w:"작업"};
 var onlyLeft=true;   /* 작업 모드: 남은 것만 볼지 */
 
 function imgURL(p){return IMG_BASE+encodeURIComponent(p)}
+
+/* ══ 저장소 파일 목록으로 IMG 자동 보강 ══
+   배열을 손대지 않아도, 규칙에 맞는 이름으로 올리기만 하면 잡힌다.
+     카드명_m.webp / _f.webp / _casualN.webp / _extraN.webp
+   공백은 밑줄로 바꿔 써도 인식한다. 목록을 못 받아오면 기존 IMG 로만 동작한다. */
+var GH=(function(){
+  var m=/^https?:\/\/([^.]+)\.github\.io\/([^\/]+)\//.exec(IMG_BASE);
+  return m?{user:m[1],repo:m[2]}:null;
+})();
+var LIST_KEY="dex_filelist_v1", LIST_TTL=6e5;   /* 10분 */
+
+function norm(s){return s.replace(/ /g,"_")}
+function mergeFiles(names){
+  var key={},t,i;                                /* 정규화 카드명 → 실제 카드명 */
+  for(t in POOL)for(i=0;i<POOL[t].length;i++)key[norm(POOL[t][i][0])]=POOL[t][i][0];
+  var added=0;
+  for(i=0;i<names.length;i++){
+    var n=names[i];
+    if(!/\.webp$/i.test(n))continue;
+    var m=/^(.+)_(m|f|casual(\d+)|extra(\d+))\.webp$/i.exec(n);
+    if(!m)continue;
+    var card=key[norm(m[1])]; if(!card)continue;
+    var s=IMG[card]||(IMG[card]={});
+    var kind=m[2].toLowerCase();
+    if(kind==="m"||kind==="f"){ if(!s[kind]){s[kind]=n;added++} continue}
+    var arr=kind.indexOf("casual")===0?"casual":"extra";
+    var idx=parseInt(m[3]||m[4],10)-1;
+    s[arr]=s[arr]||[];
+    if(s[arr].indexOf(n)<0){s[arr][idx>=0?idx:s[arr].length]=n;added++}
+  }
+  /* 빈 칸 정리 후 파일명 순으로 */
+  for(var c in IMG)["casual","extra"].forEach(function(a){
+    if(!IMG[c][a])return;
+    IMG[c][a]=IMG[c][a].filter(Boolean);
+    if(!IMG[c][a].length)delete IMG[c][a];
+  });
+  return added;
+}
+function loadFileList(force){
+  if(!GH)return Promise.resolve(0);
+  if(!force){
+    try{
+      var c=JSON.parse(localStorage.getItem(LIST_KEY));
+      if(c&&Date.now()-c.t<LIST_TTL)return Promise.resolve(mergeFiles(c.n));
+    }catch(e){}
+  }
+  return fetch("https://api.github.com/repos/"+GH.user+"/"+GH.repo+"/contents/")
+    .then(function(r){if(!r.ok)throw 0;return r.json()})
+    .then(function(j){
+      var n=j.filter(function(x){return x.type==="file"}).map(function(x){return x.name});
+      try{localStorage.setItem(LIST_KEY,JSON.stringify({t:Date.now(),n:n}))}catch(e){}
+      return mergeFiles(n);
+    })
+    .catch(function(){return 0});
+}
 function flip(v){return v==="m"?"f":"m"}
 function fc(f){return FAC[f]||"#79849A"}
 function ccOf(c){return fc(c[1][c[1].length-1])}
@@ -1222,6 +1277,11 @@ addEventListener("keydown",function(e){
 });
 
 draw();
+loadFileList(false).then(function(n){if(n)draw()});
+document.getElementById("tot").onclick=function(){
+  var el=this; el.textContent="…";
+  loadFileList(true).then(function(n){draw();toast(n?n+"장 새로 잡았다":"새 그림 없음")});
+};
 </script>
 </body>
 </html>
