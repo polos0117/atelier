@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Gundam Prompt Toolkit v8</title>
+<title>Gundam Prompt Toolkit v8.1</title>
 <style>
 :root{
   color-scheme:light dark;
@@ -14,6 +14,16 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;background:var(--bg);color:var(--text)}
 .wrap{max-width:960px;margin:0 auto;padding:14px 10px 42px}
+.page-head{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(10px);padding-top:max(8px,env(safe-area-inset-top));padding-bottom:8px;margin:-14px -10px 8px;padding-left:10px;padding-right:10px;border-bottom:1px solid color-mix(in srgb,var(--line) 72%,transparent)}
+.page-head h1{margin:0 0 9px}
+.quick-note{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.35}
+.pair-card select,.pair-card input{font-size:14px}
+.pair-card{box-shadow:0 1px 0 rgba(255,255,255,.02)}
+details.box summary::after{content:'＋';float:right;color:var(--muted);font-weight:500}
+details.box[open] summary::after{content:'－'}
+.rec-card{min-height:100%}
+.rec-card .rec-title{font-weight:650}
+
 h1{margin:0 0 12px;font-size:18px}
 select,input,textarea{width:100%;min-width:0;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text)}
 select,input{min-height:48px;padding:10px 12px;font-size:15px}
@@ -65,6 +75,11 @@ details.box .inside{padding:10px}
 .rec-card button{width:100%;margin-top:8px}
 .hidden{display:none!important}
 @media(max-width:760px){
+  select,input{font-size:16px}
+  .pair-card,.field,.override-card,.param-card,.rec-card{padding:10px}
+  details.box summary{padding:13px 11px}
+  button.small{min-height:42px}
+
   .top-grid,.grid2,.grid3,.override-grid,.param-grid,.controls,.param-actions,.preset-row,.rec-grid{grid-template-columns:1fr}
   .tabs{grid-template-columns:1fr 1fr}
   .prompt-view textarea{height:66vh;min-height:390px;font-size:12px}
@@ -77,24 +92,27 @@ details.box .inside{padding:10px}
 </head>
 <body>
 <div class="wrap">
-  <h1>Gundam Prompt Toolkit v8</h1>
+  <div class="page-head">
+    <h1>Gundam Prompt Toolkit v8.1</h1>
 
-  <div class="top-grid">
-    <select id="seriesPicker" aria-label="시리즈 선택"></select>
-    <select id="mechPicker" aria-label="기체 선택"></select>
-  </div>
-  <button id="applySource" class="primary apply" type="button">기체 선택 적용</button>
-  <div id="selInfo" class="selection">선택 정보 로딩 중…</div>
+    <div class="top-grid">
+      <select id="seriesPicker" aria-label="시리즈 선택"></select>
+      <select id="mechPicker" aria-label="기체 선택"></select>
+    </div>
+    <button id="applySource" class="primary apply" type="button">기체 선택 적용</button>
+    <div id="selInfo" class="selection">선택 정보 로딩 중…</div>
 
-  <div class="tabs">
-    <button id="tabCollage" class="tab active" type="button">콜라주</button>
-    <button id="tabAnthro" class="tab" type="button">의인화</button>
+    <div class="tabs">
+      <button id="tabCollage" class="tab active" type="button">콜라주</button>
+      <button id="tabAnthro" class="tab" type="button">의인화</button>
+    </div>
+    <div class="quick-note">기본은 AUTO로 두고, 마음에 안 드는 요소만 선택하면 됩니다.</div>
   </div>
 
   <section id="panelCollage" class="panel">
     <div class="panel-head">
       <strong>COLLAGE GENERATOR</strong>
-      <span>카테고리 예시: 기본 / 대중 / 특수 · Panel 1~6 개별 예시 · 기체별 추천 예시 자동 제안</span>
+      <span>Pair 카테고리 + 예시 선택 · Panel 개별 Override · SOURCE 추천</span>
     </div>
 
     <div class="form-section">
@@ -123,33 +141,33 @@ details.box .inside{padding:10px}
         <div class="pair-card">
           <h3>PAIR 1 <small style="color:var(--muted);font-weight:500">Panel 1 &lt; Panel 2</small></h3>
           <label>Category <small>카테고리</small></label>
-          <select id="pair1Select"></select>
+          <select id="pair1Select" aria-label="Pair 1 카테고리"></select>
           <input id="pair1Custom" class="custom-input hidden" type="text" placeholder="카테고리 직접 입력">
           <div class="pair-sep"></div>
           <label>Example Menu <small>예시 메뉴</small></label>
-          <select id="pair1Example"></select>
+          <select id="pair1Example" aria-label="Pair 1 예시"></select>
           <input id="pair1ExampleCustom" class="custom-input hidden" type="text" placeholder="예시 직접 입력">
         </div>
 
         <div class="pair-card">
           <h3>PAIR 2 <small style="color:var(--muted);font-weight:500">Panel 3 &lt; Panel 4</small></h3>
           <label>Category <small>카테고리</small></label>
-          <select id="pair2Select"></select>
+          <select id="pair2Select" aria-label="Pair 2 카테고리"></select>
           <input id="pair2Custom" class="custom-input hidden" type="text" placeholder="카테고리 직접 입력">
           <div class="pair-sep"></div>
           <label>Example Menu <small>예시 메뉴</small></label>
-          <select id="pair2Example"></select>
+          <select id="pair2Example" aria-label="Pair 2 예시"></select>
           <input id="pair2ExampleCustom" class="custom-input hidden" type="text" placeholder="예시 직접 입력">
         </div>
 
         <div class="pair-card">
           <h3>PAIR 3 <small style="color:var(--muted);font-weight:500">Panel 5 &lt; Panel 6</small></h3>
           <label>Category <small>카테고리</small></label>
-          <select id="pair3Select"></select>
+          <select id="pair3Select" aria-label="Pair 3 카테고리"></select>
           <input id="pair3Custom" class="custom-input hidden" type="text" placeholder="카테고리 직접 입력">
           <div class="pair-sep"></div>
           <label>Example Menu <small>예시 메뉴</small></label>
-          <select id="pair3Example"></select>
+          <select id="pair3Example" aria-label="Pair 3 예시"></select>
           <input id="pair3ExampleCustom" class="custom-input hidden" type="text" placeholder="예시 직접 입력">
         </div>
       </div>
@@ -173,10 +191,10 @@ details.box .inside{padding:10px}
     </div>
 
     <div class="controls">
-      <button id="applyCollage" type="button">콜라주 설정 적용</button>
+      <button id="applyCollage" type="button">설정 반영</button>
       <button class="primary" type="button" data-copy="textCollage" data-status="statusCollage">클립보드 복사</button>
       <button type="button" data-toggle="viewCollage">텍스트 보기</button>
-      <button id="resetCollage" type="button">콜라주 초기화</button>
+      <button id="resetCollage" type="button">콜라주 리셋</button>
     </div>
     <div id="statusCollage" class="status">준비됨</div>
     <div id="viewCollage" class="prompt-view hidden">
@@ -217,8 +235,8 @@ details.box .inside{padding:10px}
       </div>
 
       <div class="param-actions">
-        <button id="applyAnthro" type="button">PARAMETERS 적용</button>
-        <button id="resetAnthro" type="button">외형 설정 초기화</button>
+        <button id="applyAnthro" type="button">외형 설정 반영</button>
+        <button id="resetAnthro" type="button">외형 리셋</button>
       </div>
     </div>
 
@@ -242,7 +260,7 @@ details.box .inside{padding:10px}
   const SERIES_ORDER = ["0079", "08MS", "0080", "0083", "Z", "ZZ", "CCA", "SEED", "DESTINY", "FREEDOM", "00", "IBO", "WM", "W", "EW", "UNICORN", "NT", "HATHAWAY", "G", "X", "AGE", "F91", "V", "TB", "TA", "ASTRAY", "00M", "GQ"];
   const PARAM_DEFS = [{"key": "apparent age", "label": "Apparent Age", "ko": "외관상 나이", "basic": true, "options": [["", "AUTO — 기체 이미지에 맞춰 자동 결정"], ["20s", "20s — 20대 성인"], ["30s", "30s — 30대 성인"], ["40s", "40s — 40대 성인"], ["mature adult", "Mature Adult — 성숙하고 연륜 있는 성인"], ["__custom__", "직접 입력… — 원하는 나이 인상 직접 작성"]]}, {"key": "body type", "label": "Body Type", "ko": "체형", "basic": true, "options": [["", "AUTO — 기체 실루엣에서 자동 추론"], ["slender", "Slender — 가늘고 슬림한 체형"], ["athletic", "Athletic — 탄탄한 운동형 체형"], ["curvy", "Curvy — 허리와 골반 곡선이 강조된 체형"], ["glamorous", "Glamorous — 풍만하고 화려한 체형"], ["muscular", "Muscular — 근육이 뚜렷한 체형"], ["heavy-built", "Heavy-built — 중후하고 묵직한 체형"], ["tall and lean", "Tall & Lean — 장신의 길고 슬림한 체형"], ["__custom__", "직접 입력… — 원하는 체형 직접 작성"]]}, {"key": "height impression", "label": "Height Impression", "ko": "키 인상", "basic": true, "options": [["", "AUTO — 전체 비율에서 자동 결정"], ["short", "Short — 비교적 작은 키 인상"], ["average", "Average — 평균적인 키 인상"], ["tall", "Tall — 장신 인상"], ["very tall", "Very Tall — 매우 큰 키 인상"], ["__custom__", "직접 입력… — 원하는 키/비율 직접 작성"]]}, {"key": "face shape", "label": "Face Shape", "ko": "얼굴형", "basic": true, "options": [["", "AUTO — 기체 디자인에서 자동 추론"], ["oval", "Oval — 균형 잡힌 타원형"], ["angular", "Angular — 각지고 선명한 얼굴형"], ["heart-shaped", "Heart-shaped — 이마가 넓고 턱이 가는 하트형"], ["elongated", "Elongated — 길고 세련된 얼굴형"], ["compact", "Compact — 짧고 응축된 얼굴형"], ["softly rounded", "Softly Rounded — 부드럽고 둥근 얼굴형"], ["sharp", "Sharp — 턱선과 골격이 날카로운 얼굴형"], ["__custom__", "직접 입력… — 얼굴형 직접 작성"]]}, {"key": "facial character", "label": "Facial Character", "ko": "얼굴 인상", "basic": true, "options": [["", "AUTO — 기체 성격에 맞춰 자동 결정"], ["elegant", "Elegant — 우아하고 정제된 인상"], ["cool", "Cool — 차갑고 세련된 인상"], ["sharp", "Sharp — 예리하고 공격적인 인상"], ["mature", "Mature — 성숙하고 안정된 인상"], ["soft", "Soft — 부드럽고 온화한 인상"], ["glamorous", "Glamorous — 화려하고 매력적인 인상"], ["rugged", "Rugged — 거칠고 강인한 인상"], ["stoic", "Stoic — 무표정하고 절제된 인상"], ["__custom__", "직접 입력… — 원하는 얼굴 인상 직접 작성"]]}, {"key": "hair color", "label": "Hair Color", "ko": "머리색", "basic": true, "options": [["", "AUTO — 기체 색상에 맞춰 자동 결정"], ["white", "White — 흰색"], ["silver", "Silver — 은색"], ["black", "Black — 검은색"], ["blue", "Blue — 파란색"], ["red", "Red — 붉은색"], ["blonde", "Blonde — 금발"], ["brown", "Brown — 갈색"], ["green", "Green — 녹색"], ["purple", "Purple — 보라색"], ["mint", "Mint — 민트색"], ["__custom__", "직접 입력… — 원하는 색 직접 작성"]]}, {"key": "hair length", "label": "Hair Length", "ko": "머리 길이", "basic": true, "options": [["", "AUTO — 기체 실루엣에 맞춰 자동 결정"], ["very short", "Very Short — 매우 짧은 머리"], ["short", "Short — 짧은 머리"], ["medium", "Medium — 중간 길이"], ["long", "Long — 긴 머리"], ["very long", "Very Long — 매우 긴 머리"], ["__custom__", "직접 입력… — 길이 직접 작성"]]}, {"key": "hairstyle", "label": "Hairstyle", "ko": "헤어스타일", "basic": true, "options": [["", "AUTO — 기체 디자인에 맞춰 자동 결정"], ["bob", "Bob — 단정한 보브컷"], ["pixie cut", "Pixie Cut — 짧고 가벼운 픽시컷"], ["layered", "Layered — 층을 살린 레이어드"], ["ponytail", "Ponytail — 포니테일"], ["twin tail", "Twin Tail — 트윈테일"], ["wolf cut", "Wolf Cut — 층감이 강한 울프컷"], ["slicked back", "Slicked Back — 뒤로 넘긴 스타일"], ["wavy", "Wavy — 웨이브 헤어"], ["straight", "Straight — 곧은 생머리"], ["side ponytail", "Side Ponytail — 사이드 포니테일"], ["__custom__", "직접 입력… — 헤어스타일 직접 작성"]]}, {"key": "human-mechanical balance", "label": "Human ↔ Mechanical Balance", "ko": "인간/기계 비율", "basic": true, "options": [["", "AUTO — 기체에 맞춰 자동 결정"], ["more human", "More Human — 인간 신체 비중을 더 높임"], ["balanced", "Balanced — 인간과 기계 요소를 균형 있게"], ["more mechanical", "More Mechanical — 기계 장갑 비중을 더 높임"], ["very mechanical", "Very Mechanical — 원기체 구조를 매우 강하게 유지"], ["__custom__", "직접 입력… — 원하는 비율 직접 작성"]]}, {"key": "armor coverage", "label": "Armor Coverage", "ko": "장갑 커버리지", "basic": true, "options": [["", "AUTO — 기체 구조에서 자동 결정"], ["full", "Full — 거의 전신 장갑"], ["high", "High — 장갑 비중이 높은 편"], ["balanced", "Balanced — 피부와 장갑의 균형"], ["open", "Open — 일부 피부 노출이 더 많은 구조"], ["__custom__", "직접 입력… — 커버리지 직접 작성"]]}, {"key": "lower-body treatment", "label": "Lower-body Treatment", "ko": "하체 장갑 구조", "basic": true, "options": [["", "AUTO — 원기체 실루엣에 맞춰 자동 결정"], ["armored skirt", "Armored Skirt — 스커트형 장갑"], ["split armored skirt", "Split Armored Skirt — 좌우 분할 스커트 장갑"], ["robe-like armor", "Robe-like Armor — 로브형 장갑"], ["mantle-like armor", "Mantle-like Armor — 망토/드레이프형 장갑"], ["pants armor", "Pants Armor — 바지처럼 이어지는 장갑 구조"], ["layered plates", "Layered Plates — 여러 겹 판넬형 하체 장갑"], ["__custom__", "직접 입력… — 하체 구조 직접 작성"]]}, {"key": "shoulder build", "label": "Shoulder Build", "ko": "어깨 체형", "basic": false, "options": [["", "AUTO — 자동 결정"], ["narrow", "Narrow — 좁은 어깨"], ["average", "Average — 평균적인 어깨"], ["broad", "Broad — 넓은 어깨"], ["__custom__", "직접 입력…"]]}, {"key": "torso / chest build", "label": "Torso / Chest Build", "ko": "상체/흉곽 인상", "basic": false, "options": [["", "AUTO — 자동 결정"], ["slim", "Slim — 얇고 가벼운 상체"], ["balanced", "Balanced — 균형 잡힌 상체"], ["full", "Full — 풍만한 상체"], ["powerful", "Powerful — 넓고 강한 흉곽"], ["__custom__", "직접 입력…"]]}, {"key": "waist / hip silhouette", "label": "Waist / Hip Silhouette", "ko": "허리/골반 실루엣", "basic": false, "options": [["", "AUTO — 자동 결정"], ["straight", "Straight — 직선적인 실루엣"], ["athletic", "Athletic — 운동형 허리/골반"], ["balanced", "Balanced — 균형형"], ["hourglass", "Hourglass — 허리가 잘록한 모래시계형"], ["curvy", "Curvy — 골반 곡선이 강조된 형태"], ["__custom__", "직접 입력…"]]}, {"key": "leg proportion", "label": "Leg Proportion", "ko": "다리 비율", "basic": false, "options": [["", "AUTO — 자동 결정"], ["balanced", "Balanced — 균형형"], ["long", "Long — 긴 다리"], ["very long", "Very Long — 매우 긴 다리"], ["powerful", "Powerful — 굵고 힘 있는 다리"], ["__custom__", "직접 입력…"]]}, {"key": "eye shape", "label": "Eye Shape", "ko": "눈매", "basic": false, "options": [["", "AUTO — 자동 결정"], ["narrow", "Narrow — 가늘고 날카로운 눈"], ["almond", "Almond — 아몬드형 눈"], ["large", "Large — 큰 눈"], ["sharp", "Sharp — 강하게 치켜올라간 눈"], ["drooping", "Drooping — 살짝 처진 부드러운 눈"], ["upturned", "Upturned — 끝이 올라간 눈"], ["__custom__", "직접 입력…"]]}, {"key": "eye color", "label": "Eye Color", "ko": "눈동자 색", "basic": false, "options": [["", "AUTO — 센서/기체색에서 자동 결정"], ["red", "Red — 적색"], ["blue", "Blue — 청색"], ["green", "Green — 녹색"], ["gold", "Gold — 금색"], ["purple", "Purple — 보라색"], ["gray", "Gray — 회색"], ["brown", "Brown — 갈색"], ["black", "Black — 검은색"], ["__custom__", "직접 입력…"]]}, {"key": "bangs", "label": "Bangs", "ko": "앞머리", "basic": false, "options": [["", "AUTO — 자동 결정"], ["none", "None — 앞머리 없음"], ["straight bangs", "Straight Bangs — 일자 앞머리"], ["side-swept bangs", "Side-swept Bangs — 옆으로 넘긴 앞머리"], ["curtain bangs", "Curtain Bangs — 커튼뱅"], ["long side bangs", "Long Side Bangs — 긴 사이드뱅"], ["__custom__", "직접 입력…"]]}, {"key": "expression", "label": "Expression", "ko": "표정", "basic": false, "options": [["", "AUTO — 기체 성격에 맞춰 자동 결정"], ["calm", "Calm — 차분함"], ["serious", "Serious — 진지함"], ["confident", "Confident — 자신감"], ["cold", "Cold — 차갑고 냉정함"], ["gentle", "Gentle — 부드러움"], ["smirk", "Smirk — 옅은 비웃음/미소"], ["fierce", "Fierce — 강렬하고 사나움"], ["stoic", "Stoic — 감정을 절제한 무표정"], ["__custom__", "직접 입력…"]]}, {"key": "skin tone", "label": "Skin Tone", "ko": "피부 톤", "basic": false, "options": [["", "AUTO — 자동 결정"], ["pale", "Pale — 매우 밝은 피부"], ["light", "Light — 밝은 피부"], ["medium", "Medium — 중간 피부톤"], ["tan", "Tan — 태닝된 피부"], ["deep", "Deep — 짙은 피부톤"], ["__custom__", "직접 입력…"]]}, {"key": "head crest integration", "label": "Head Crest Integration", "ko": "헤드 크레스트 표현", "basic": false, "options": [["", "AUTO — 원기체에 맞춰 자동 결정"], ["mechanical crest", "Mechanical Crest — 기계식 크레스트 유지"], ["headband-like", "Headband-like — 헤드밴드처럼 통합"], ["hair ornament", "Hair Ornament — 헤어 장식처럼 통합"], ["helmet-like", "Helmet-like — 헬멧 구조로 통합"], ["sensor ornament", "Sensor Ornament — 센서 장식으로 표현"], ["__custom__", "직접 입력…"]]}, {"key": "silhouette character", "label": "Silhouette Character", "ko": "전체 실루엣 성격", "basic": false, "options": [["", "AUTO — 자동 결정"], ["aerodynamic", "Aerodynamic — 공기역학적이고 날렵함"], ["elegant", "Elegant — 우아하고 유려함"], ["aggressive", "Aggressive — 공격적이고 뾰족함"], ["heavy", "Heavy — 중장갑형의 묵직함"], ["tactical", "Tactical — 실전적이고 전술적"], ["regal", "Regal — 위엄 있고 장식적인 인상"], ["experimental", "Experimental — 실험기다운 이질적 형태"], ["minimal", "Minimal — 간결하고 절제된 형태"], ["__custom__", "직접 입력…"]]}, {"key": "equipment emphasis", "label": "Equipment Emphasis", "ko": "장비 강조", "basic": false, "options": [["", "AUTO — 기체 대표 장비를 자동 우선"], ["balanced", "Balanced — 장비를 균형 있게"], ["backpack", "Backpack — 백팩 구조 강조"], ["wings / binders", "Wings / Binders — 날개/바인더 강조"], ["main weapon", "Main Weapon — 주무장 강조"], ["shield", "Shield — 방패 강조"], ["remote weapons", "Remote Weapons — 판넬/비트/드론 강조"], ["transformation system", "Transformation System — 변형기구 강조"], ["__custom__", "직접 입력…"]]}, {"key": "equipment state", "label": "Equipment State", "ko": "장비 상태", "basic": false, "options": [["", "AUTO — 자동 결정"], ["fully mounted", "Fully Mounted — 장비 전부 장착"], ["main weapon held", "Main Weapon Held — 주무장을 손에 듦"], ["weapons stowed", "Weapons Stowed — 무장 수납 상태"], ["equipment deployed", "Equipment Deployed — 날개/판넬 등 전개 상태"], ["__custom__", "직접 입력…"]]}, {"key": "pose character", "label": "Pose Character", "ko": "포즈 성격", "basic": false, "options": [["", "AUTO — 자동 결정"], ["neutral", "Neutral — 정적인 기본 자세"], ["heroic", "Heroic — 영웅적인 자세"], ["confident", "Confident — 자신감 있는 자세"], ["relaxed", "Relaxed — 힘을 뺀 자연스러운 자세"], ["combat-ready", "Combat-ready — 전투 준비 자세"], ["elegant", "Elegant — 우아한 자세"], ["__custom__", "직접 입력…"]]}, {"key": "view angle", "label": "View Angle", "ko": "시점", "basic": false, "options": [["", "AUTO — 자동 결정"], ["front", "Front — 정면"], ["front three-quarter", "Front 3/4 — 정면 45도"], ["side", "Side — 측면"], ["rear three-quarter", "Rear 3/4 — 후면 45도"], ["__custom__", "직접 입력…"]]}];
   const CATS = [["auto_random", "AUTO / RANDOM", "자동 / 랜덤", ""], ["adult_roleplay", "ADULT ROLEPLAY / OCCUPATION EVENT FASHION", "성인 역할극 / 직업풍 이벤트 패션", "Create playful adult event fashion inspired by occupation or roleplay motifs. It must look like stylized adult costume fashion rather than a real professional uniform. Use believable styling or preparation actions. No real insignia, no weapons, no tactical gear."], ["occupation_basic", "MODERN OCCUPATION — BASIC", "현대 직업컷 — 기본", "Create ONE believable modern occupation scene. First derive a specific modern profession from a distinctive SOURCE MOBILE SUIT lore anchor whenever possible. The workplace, clothing, action, and tools should make the occupation understandable without text. Keep styling attractive but grounded, practical, and non-costume-like."], ["occupation_sensual", "MODERN OCCUPATION — SENSUAL", "현대 직업컷 — 섹시", "Create ONE believable modern occupation scene with the same clearly adult woman, but use more attractive, fashion-forward, body-conscious styling and cinematic presentation while keeping the occupation readable and plausible. Sensuality should come from silhouette, tailoring, posture, movement, exposed non-intimate skin, and lighting rather than explicit exposure. This is a real modern occupation interpretation, NOT roleplay costume fashion."], ["everyday_basic", "EVERYDAY LIFE — BASIC", "일상컷 — 기본", "Create candid ordinary personal-life moments. The scene should feel lived-in, believable, and visually specific rather than staged. Use normal contemporary clothing with clear character personality. Avoid glamour-shoot posing, professional work, and costume styling."], ["everyday_sensual", "EVERYDAY LIFE — SENSUAL", "일상컷 — 섹시", "Create candid ordinary personal-life moments with naturally sensual adult styling. The situation must still feel believable everyday life, but clothing, silhouette, movement, fabric drape, shoulders, waist, back, hips, thighs, framing, or lighting may create a stronger attractive mood. Avoid turning the scene into a lingerie catalogue or deliberate glamour shoot."], ["swimwear", "SWIMWEAR LIFESTYLE", "수영복 라이프스타일", "This pair is always swimwear-focused. Use noticeably sensual but fully covering modern swimwear. Prioritize memorable swimwear-related scenes rather than static posing. Prefer post-swim atmosphere, water context, wet or damp hair, reflected light, and meaningful action."], ["active", "ACTIVE / MOVEMENT FASHION", "액티브 / 무브먼트 패션", "Show real movement with fashion-forward activewear or movement-oriented clothing. Avoid generic gym snapshots. Prioritize dynamic motion, readable silhouette, waist and hip lines, fabric movement, and varied action."], ["source_editorial", "SOURCE-INSPIRED EDITORIAL FASHION", "SOURCE 영감 에디토리얼 패션", "This pair should reinterpret the source mobile suit as human editorial fashion. Translate source-specific colors, geometry, silhouette logic, crest language, and equipment symbolism into couture or themed fashion. No literal armor, no pilot suit, no mechanical body, no weapons."], ["homewear", "FASHION HOMEWEAR / LOUNGE LIFE", "패션 홈웨어 / 라운지 라이프", "Create designed, fashion-forward homewear or lounge-life scenes. Avoid plain pajamas and bland static sofa poses. Use believable home-life actions, stylish home fashion silhouettes, and a sensual but natural private-life atmosphere."], ["private_evening", "PRIVATE EVENING FASHION", "프라이빗 이브닝 패션", "Create mature private evening fashion scenes with intimate but non-explicit atmosphere. Use elegant, attractive, clearly adult styling, confident body language, and believable private-life context."], ["lingerie", "LINGERIE-INSPIRED FASHION", "란제리풍 패션", "Use tasteful adult lingerie-inspired fashion or intimate evening styling with full intimate coverage. Emphasize framing, silhouette, posture, lighting, and atmosphere rather than explicit nudity."], ["everyday", "EVERYDAY LIFESTYLE", "일상 라이프스타일", "Depict ordinary personal-life moments rather than occupation, costume, or formal editorial shoots. Keep them candid, believable, visually varied, and attractive without becoming too plain."], ["wildcard", "WILDCARD", "와일드카드", "Invent a fresh mature category not already used by the other pairs. It should remain stylish, sensual, cinematic, and non-explicit while contributing strong novelty."], ["__custom__", "CUSTOM", "직접 입력", ""]];
-  const PRESETS = {"free": {"label": "자유 설정", "pairs": ["adult_roleplay", "swimwear", "homewear"], "advanced": {}}, "A": {"label": "기존 A — 코스튬 / 수영복 / 홈웨어", "pairs": ["adult_roleplay", "swimwear", "homewear"], "advanced": {"overall_intensity": "sensual", "pair_gap": "medium", "outfit_variety": "high", "scene_variety": "high", "source_influence": "subtle"}}, "B": {"label": "기존 B — 액티브 / SOURCE 에디토리얼 / 프라이빗", "pairs": ["active", "source_editorial", "private_evening"], "advanced": {"overall_intensity": "sensual", "pair_gap": "medium", "outfit_variety": "high", "scene_variety": "high", "source_influence": "balanced"}}, "random_variety": {"label": "랜덤 다양성", "pairs": ["wildcard", "wildcard", "wildcard"], "advanced": {"overall_intensity": "sensual", "pair_gap": "medium", "outfit_variety": "extreme", "scene_variety": "extreme", "pose_variety": "extreme", "camera_variety": "extreme", "unexpected_cuts": "3"}}, "outfit_focus": {"label": "의상 중심", "pairs": ["adult_roleplay", "source_editorial", "lingerie"], "advanced": {"overall_intensity": "bold", "pair_gap": "medium", "outfit_variety": "extreme", "scene_variety": "high", "source_influence": "balanced"}}, "scene_focus": {"label": "씬 중심", "pairs": ["everyday", "swimwear", "wildcard"], "advanced": {"overall_intensity": "sensual", "pair_gap": "medium", "scene_variety": "extreme", "camera_variety": "high", "pose_variety": "high"}}, "strong_fashion": {"label": "강한 패션", "pairs": ["adult_roleplay", "source_editorial", "lingerie"], "advanced": {"overall_intensity": "strong", "pair_gap": "strong", "skin_exposure": "bold", "outfit_variety": "high", "source_influence": "balanced"}}, "stable": {"label": "안정형", "pairs": ["adult_roleplay", "swimwear", "private_evening"], "advanced": {"overall_intensity": "restrained", "pair_gap": "small", "outfit_variety": "normal", "scene_variety": "normal", "pose_variety": "normal"}}, "worklife": {"label": "직업·일상 믹스", "pairs": ["occupation_basic", "everyday_basic", "everyday_sensual"], "advanced": {"overall_intensity": "sensual", "pair_gap": "medium", "scene_variety": "high", "pose_variety": "high"}}, "worklife_bold": {"label": "직업·일상 강한 버전", "pairs": ["occupation_sensual", "everyday_sensual", "private_evening"], "advanced": {"overall_intensity": "bold", "pair_gap": "medium", "outfit_variety": "high", "scene_variety": "high", "skin_exposure": "moderate"}}};
+  const PRESETS = {"free": {"label": "자유 설정", "pairs": ["adult_roleplay", "swimwear", "homewear"], "advanced": {}}, "A": {"label": "코스튬 · 수영복 · 홈웨어", "pairs": ["adult_roleplay", "swimwear", "homewear"], "advanced": {"overall_intensity": "sensual", "pair_gap": "medium", "outfit_variety": "high", "scene_variety": "high", "source_influence": "subtle"}}, "B": {"label": "액티브 · SOURCE · 프라이빗", "pairs": ["active", "source_editorial", "private_evening"], "advanced": {"overall_intensity": "sensual", "pair_gap": "medium", "outfit_variety": "high", "scene_variety": "high", "source_influence": "balanced"}}, "random_variety": {"label": "랜덤 다양성 강화", "pairs": ["wildcard", "wildcard", "wildcard"], "advanced": {"overall_intensity": "sensual", "pair_gap": "medium", "outfit_variety": "extreme", "scene_variety": "extreme", "pose_variety": "extreme", "camera_variety": "extreme", "unexpected_cuts": "3"}}, "outfit_focus": {"label": "의상 중심", "pairs": ["adult_roleplay", "source_editorial", "lingerie"], "advanced": {"overall_intensity": "bold", "pair_gap": "medium", "outfit_variety": "extreme", "scene_variety": "high", "source_influence": "balanced"}}, "scene_focus": {"label": "장면 중심", "pairs": ["everyday", "swimwear", "wildcard"], "advanced": {"overall_intensity": "sensual", "pair_gap": "medium", "scene_variety": "extreme", "camera_variety": "high", "pose_variety": "high"}}, "strong_fashion": {"label": "강한 패션 중심", "pairs": ["adult_roleplay", "source_editorial", "lingerie"], "advanced": {"overall_intensity": "strong", "pair_gap": "strong", "skin_exposure": "bold", "outfit_variety": "high", "source_influence": "balanced"}}, "stable": {"label": "안정형", "pairs": ["adult_roleplay", "swimwear", "private_evening"], "advanced": {"overall_intensity": "restrained", "pair_gap": "small", "outfit_variety": "normal", "scene_variety": "normal", "pose_variety": "normal"}}, "worklife": {"label": "직업 · 일상 믹스", "pairs": ["occupation_basic", "everyday_basic", "everyday_sensual"], "advanced": {"overall_intensity": "sensual", "pair_gap": "medium", "scene_variety": "high", "pose_variety": "high"}}, "worklife_bold": {"label": "직업 · 일상 강한 버전", "pairs": ["occupation_sensual", "everyday_sensual", "private_evening"], "advanced": {"overall_intensity": "bold", "pair_gap": "medium", "outfit_variety": "high", "scene_variety": "high", "skin_exposure": "moderate"}}};
   const ADVANCED_OPTIONS = {"overall_intensity": ["AUTO", "restrained", "sensual", "bold", "strong"], "pair_gap": ["AUTO", "small", "medium", "strong", "extreme"], "outfit_variety": ["AUTO", "normal", "high", "extreme"], "scene_variety": ["AUTO", "normal", "high", "extreme"], "pose_variety": ["AUTO", "normal", "high", "extreme"], "camera_variety": ["AUTO", "normal", "high", "extreme"], "skin_exposure": ["AUTO", "low", "moderate", "bold"], "separates_preference": ["AUTO", "balanced", "prefer separates", "strongly prefer separates"], "one_piece_limit": ["AUTO", "1", "2", "3"], "action_level": ["AUTO", "mostly posed", "balanced", "mostly active"], "direct_gaze_limit": ["AUTO", "0", "1", "2"], "smile_limit": ["AUTO", "0", "1", "2"], "unexpected_cuts": ["AUTO", "1", "2", "3"], "source_influence": ["AUTO", "subtle", "balanced", "strong"]};
   const ADVANCED_LABELS = {"overall_intensity": ["Overall Intensity", "전체 강도"], "pair_gap": ["Pair Gap", "약한 컷↔강한 컷 차이"], "outfit_variety": ["Outfit Variety", "의상 다양성"], "scene_variety": ["Scene Variety", "장면 다양성"], "pose_variety": ["Pose Variety", "포즈 다양성"], "camera_variety": ["Camera Variety", "카메라 다양성"], "skin_exposure": ["Skin Exposure", "피부 노출 정도"], "separates_preference": ["Separates Preference", "분리형 의상 선호"], "one_piece_limit": ["One-piece Limit", "원피스류 최대 개수"], "action_level": ["Action Level", "액션 비중"], "direct_gaze_limit": ["Direct Gaze Limit", "정면 시선 최대"], "smile_limit": ["Smile Limit", "미소 최대"], "unexpected_cuts": ["Unexpected Cuts", "예상 밖 컷 수"], "source_influence": ["Source Influence", "SOURCE 영향도"]};
   const RANDOM_POOL = ["adult_roleplay", "occupation_basic", "occupation_sensual", "swimwear", "active", "source_editorial", "homewear", "private_evening", "lingerie", "everyday_basic", "everyday_sensual", "wildcard"];
@@ -493,7 +511,7 @@ details.box .inside{padding:10px}
       '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman in all six panels. Preserve the exact same face, apparent adult age, eyes, nose, mouth, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. No face drift, age drift, hairstyle redesign, or body redesign. Only identity repeats.',
       '[OUTPUT]\n\nCreate ONE SINGLE 3:2 LANDSCAPE image as a clean 3-column × 2-row collage:\n1 | 2 | 3\n4 | 5 | 6\nExactly six equal, approximately square panels. Only small numerals 1–6 in the upper-left corners. No captions, titles, labels, subtitles, logos-as-text, or other words. Exactly one woman per panel.',
       '[PAIR STRUCTURE]\n\nPair 1 = Panel 1 < Panel 2 = '+pairLabel(p1,1)+'\nPair 2 = Panel 3 < Panel 4 = '+pairLabel(p2,2)+'\nPair 3 = Panel 5 < Panel 6 = '+pairLabel(p3,3)+'\n\nWithin each pair, the first panel is relatively lighter or more restrained and the second panel is clearly stronger, bolder, more visually striking, or more intense.',
-      '[GLOBAL DIVERSITY]\n\nCreate six substantially different scenes. The six panels should differ in location, action, outfit silhouette, body configuration, camera distance, camera angle, lighting, and atmosphere. Changing only colors or props does not count. At least four panels should show meaningful action and at least two should feel caught midway. Review recent generations in this conversation and avoid substantial repetition of recent outfits, scenes, poses, and compositions.',
+      '[GLOBAL DIVERSITY / RECENT-USE AVOIDANCE]\n\nCreate six substantially different scenes. The six panels should differ in location, action, outfit silhouette, body configuration, camera distance, camera angle, lighting, and atmosphere. Changing only colors, accessories, minor straps, mirrored poses, hand positions, or room props does NOT count as meaningful novelty. Review recent generations available in this conversation and treat recently used outfit structures, scene archetypes, action families, pose families, and camera compositions as already-used concepts. If a proposed panel resembles a recent result at thumbnail size, discard it and invent another. If several outfits would look almost identical as black silhouettes, redesign them. At least four panels should show meaningful action and at least two should feel caught midway. Avoid repeating the same dominant sensual mechanism across multiple panels.',
       pairInstruction(p1,1,1,2),
       pairInstruction(p2,2,3,4),
       pairInstruction(p3,3,5,6),
@@ -502,7 +520,7 @@ details.box .inside{padding:10px}
     const ovs=panelOverrideBlocks();
     if(ovs.length)parts.push('[PANEL OVERRIDES]\n\n'+ovs.join('\n\n'));
     parts.push('[NON-EXPLICIT LIMITS]\n\nThe character must clearly read as an adult. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.');
-    parts.push('[FINAL CHECK]\n\nVerify: exactly six panels; 3×2 landscape layout; same adult woman in all panels; only numbers 1–6 appear; selected pair categories and examples are followed; individual Panel Example selections override pair-level examples when present; the second panel of each pair is clearly stronger than the first; outfits, scenes, actions, poses, and camera treatments remain varied; no explicit nudity or sexual activity.');
+    parts.push('[FINAL CHECK]\n\nVerify: exactly six panels; 3×2 landscape layout; same adult woman in all panels; only numbers 1–6 appear; selected pair categories and examples are followed; individual Panel Example selections override pair-level examples when present; the second panel of each pair is clearly stronger than the first; outfits, scenes, actions, poses, and camera treatments remain varied; no panel substantially repeats a recent thumbnail-level concept; no explicit nudity or sexual activity.');
     return parts.join('\n\n==================================================\n\n');
   }
   function refreshCollagePrompt(){textCollage.value=buildCollagePrompt();}
