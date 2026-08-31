@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Gundam Prompt Toolkit v8</title>
+<style>
+:root{
+  color-scheme:light dark;
+  --bg:#0f1115;--card:#171a21;--card2:#1e222b;--text:#f4f6f8;
+  --muted:#aeb6c2;--line:#303744;--accent:#6ea8fe;--ok:#75d69c;--warn:#f0c36b;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;background:var(--bg);color:var(--text)}
+.wrap{max-width:960px;margin:0 auto;padding:14px 10px 42px}
+h1{margin:0 0 12px;font-size:18px}
+select,input,textarea{width:100%;min-width:0;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text)}
+select,input{min-height:48px;padding:10px 12px;font-size:15px}
+button{min-height:48px;padding:10px 13px;border:1px solid var(--line);border-radius:10px;background:var(--card2);color:var(--text);font-size:14px;font-weight:750;cursor:pointer;touch-action:manipulation}
+button.primary{background:var(--accent);color:#07111f;border-color:transparent}
+button.small{min-height:38px;padding:7px 9px;font-size:12px}
+.top-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:8px}
+.apply{width:100%;margin-top:8px}
+.selection{margin-top:8px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card);font-size:12px;color:var(--muted)}
+.selection b{color:var(--text)}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0 10px}
+.tab.active{background:var(--accent);color:#07111f;border-color:transparent}
+.panel{border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden}
+.panel-head{padding:12px;border-bottom:1px solid var(--line)}
+.panel-head strong{display:block;font-size:15px}
+.panel-head span{display:block;margin-top:3px;color:var(--muted);font-size:12px;line-height:1.45}
+.form-section{padding:12px;border-bottom:1px solid var(--line)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}
+.field,.pair-card,.override-card,.param-card,.rec-card{border:1px solid var(--line);border-radius:10px;background:var(--card2);padding:9px}
+.field label,.param-card label,.override-card label,.pair-card label{display:block;margin-bottom:6px;font-size:12px;font-weight:700;color:var(--text)}
+.field label small,.param-card label small,.override-card label small,.pair-card label small{color:var(--muted);font-weight:500;margin-left:5px}
+.help,.param-note{margin-top:8px;padding:9px 10px;border-radius:9px;background:var(--card2);color:var(--muted);font-size:12px;line-height:1.45}
+.preset-row{display:grid;grid-template-columns:1fr auto;gap:8px}
+.pair-card h3,.override-card h3{margin:0 0 8px;font-size:14px}
+.custom-input{margin-top:7px}
+.pair-sep{height:7px}
+details.box{margin-top:10px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+details.box summary{cursor:pointer;padding:12px;font-size:14px;font-weight:750;background:var(--card2)}
+details.box .inside{padding:10px}
+.override-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.override-card input,.override-card select{margin-top:7px}
+.override-card label+select,.override-card label+input{margin-top:0}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px}
+.status{min-height:24px;padding:0 12px 12px;color:var(--muted);font-size:12px}
+.status.ok{color:var(--ok)}.status.warn{color:var(--warn)}
+.prompt-view{border-top:1px solid var(--line)}
+.prompt-view textarea{display:block;height:62vh;min-height:420px;border:0;outline:0;padding:14px;background:#11141a;color:#e8edf3;font:12.5px/1.52 ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;white-space:pre;overflow:auto;resize:vertical}
+.param-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.param-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.rec-wrap{margin-top:10px}
+.rec-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.rec-head strong{font-size:13px}
+.rec-head span{font-size:11px;color:var(--muted)}
+.rec-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.rec-card b{display:block;font-size:12px;margin-bottom:4px}
+.rec-card .rec-title{font-size:12px;line-height:1.4}
+.rec-card .rec-reason{margin-top:5px;color:var(--muted);font-size:11px;line-height:1.35}
+.rec-card button{width:100%;margin-top:8px}
+.hidden{display:none!important}
+@media(max-width:760px){
+  .top-grid,.grid2,.grid3,.override-grid,.param-grid,.controls,.param-actions,.preset-row,.rec-grid{grid-template-columns:1fr}
+  .tabs{grid-template-columns:1fr 1fr}
+  .prompt-view textarea{height:66vh;min-height:390px;font-size:12px}
+}
+@media(prefers-color-scheme:light){
+  :root{--bg:#f6f7f9;--card:#fff;--card2:#f1f3f5;--text:#15181d;--muted:#626b78;--line:#d7dce3;--accent:#2f73d9;--ok:#147a3e;--warn:#8a5a00}
+  .prompt-view textarea{background:#fbfcfe;color:#14171c}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Gundam Prompt Toolkit v8</h1>
+
+  <div class="top-grid">
+    <select id="seriesPicker" aria-label="시리즈 선택"></select>
+    <select id="mechPicker" aria-label="기체 선택"></select>
+  </div>
+  <button id="applySource" class="primary apply" type="button">기체 선택 적용</button>
+  <div id="selInfo" class="selection">선택 정보 로딩 중…</div>
+
+  <div class="tabs">
+    <button id="tabCollage" class="tab active" type="button">콜라주</button>
+    <button id="tabAnthro" class="tab" type="button">의인화</button>
+  </div>
+
+  <section id="panelCollage" class="panel">
+    <div class="panel-head">
+      <strong>COLLAGE GENERATOR</strong>
+      <span>카테고리 예시: 기본 / 대중 / 특수 · Panel 1~6 개별 예시 · 기체별 추천 예시 자동 제안</span>
+    </div>
+
+    <div class="form-section">
+      <div class="preset-row">
+        <div class="field">
+          <label>Preset <small>프리셋</small></label>
+          <select id="presetSelect"></select>
+        </div>
+        <button id="randomizeBtn" type="button">🎲 랜덤 조합</button>
+      </div>
+
+      <div class="field" style="margin-top:9px">
+        <label>Overall Custom Instructions <small>전체 추가 지시</small></label>
+        <input id="collageCustom" type="text" placeholder="예: moonlit pool preferred, avoid black mini dresses">
+      </div>
+
+      <div class="rec-wrap">
+        <div class="rec-head">
+          <strong>SOURCE 추천 예시</strong>
+          <span id="recMeta"></span>
+        </div>
+        <div id="recGrid" class="rec-grid"></div>
+      </div>
+
+      <div class="grid3" style="margin-top:10px">
+        <div class="pair-card">
+          <h3>PAIR 1 <small style="color:var(--muted);font-weight:500">Panel 1 &lt; Panel 2</small></h3>
+          <label>Category <small>카테고리</small></label>
+          <select id="pair1Select"></select>
+          <input id="pair1Custom" class="custom-input hidden" type="text" placeholder="카테고리 직접 입력">
+          <div class="pair-sep"></div>
+          <label>Example Menu <small>예시 메뉴</small></label>
+          <select id="pair1Example"></select>
+          <input id="pair1ExampleCustom" class="custom-input hidden" type="text" placeholder="예시 직접 입력">
+        </div>
+
+        <div class="pair-card">
+          <h3>PAIR 2 <small style="color:var(--muted);font-weight:500">Panel 3 &lt; Panel 4</small></h3>
+          <label>Category <small>카테고리</small></label>
+          <select id="pair2Select"></select>
+          <input id="pair2Custom" class="custom-input hidden" type="text" placeholder="카테고리 직접 입력">
+          <div class="pair-sep"></div>
+          <label>Example Menu <small>예시 메뉴</small></label>
+          <select id="pair2Example"></select>
+          <input id="pair2ExampleCustom" class="custom-input hidden" type="text" placeholder="예시 직접 입력">
+        </div>
+
+        <div class="pair-card">
+          <h3>PAIR 3 <small style="color:var(--muted);font-weight:500">Panel 5 &lt; Panel 6</small></h3>
+          <label>Category <small>카테고리</small></label>
+          <select id="pair3Select"></select>
+          <input id="pair3Custom" class="custom-input hidden" type="text" placeholder="카테고리 직접 입력">
+          <div class="pair-sep"></div>
+          <label>Example Menu <small>예시 메뉴</small></label>
+          <select id="pair3Example"></select>
+          <input id="pair3ExampleCustom" class="custom-input hidden" type="text" placeholder="예시 직접 입력">
+        </div>
+      </div>
+
+      <details class="box">
+        <summary>콜라주 고급 설정 펼치기</summary>
+        <div class="inside">
+          <div id="collageAdvancedGrid" class="grid2"></div>
+        </div>
+      </details>
+
+      <details class="box">
+        <summary>Panel 1~6 개별 예시 / Override 펼치기</summary>
+        <div class="inside">
+          <div class="help" style="margin-top:0;margin-bottom:10px">
+            Panel Example은 해당 Pair의 카테고리에 맞춰 자동으로 메뉴가 바뀐다. 비워두면 Pair 예시를 그대로 따른다.
+          </div>
+          <div id="overrideGrid" class="override-grid"></div>
+        </div>
+      </details>
+    </div>
+
+    <div class="controls">
+      <button id="applyCollage" type="button">콜라주 설정 적용</button>
+      <button class="primary" type="button" data-copy="textCollage" data-status="statusCollage">클립보드 복사</button>
+      <button type="button" data-toggle="viewCollage">텍스트 보기</button>
+      <button id="resetCollage" type="button">콜라주 초기화</button>
+    </div>
+    <div id="statusCollage" class="status">준비됨</div>
+    <div id="viewCollage" class="prompt-view hidden">
+      <textarea id="textCollage" spellcheck="false"></textarea>
+    </div>
+  </section>
+
+  <section id="panelAnthro" class="panel hidden">
+    <div class="panel-head">
+      <strong>ANTHROPOMORPHIZATION GENERATOR</strong>
+      <span>AUTO는 원기체에서 자동 추론 · 원하는 외형만 지정</span>
+    </div>
+
+    <div class="form-section">
+      <div class="field">
+        <label>Gender <small>성별</small></label>
+        <select id="genderInput">
+          <option value="female">female — 여성</option>
+          <option value="male">male — 남성</option>
+        </select>
+      </div>
+
+      <div id="basicParams" class="param-grid" style="margin-top:10px"></div>
+
+      <details class="box">
+        <summary>고급 외형 설정 펼치기</summary>
+        <div class="inside">
+          <div id="advancedParams" class="param-grid"></div>
+          <div class="field" style="margin-top:10px">
+            <label>Special Characteristics <small>특수 외형 / 추가 지시</small></label>
+            <input id="specialInput" type="text" placeholder="예: pale mint highlights, narrow waist armor">
+          </div>
+        </div>
+      </details>
+
+      <div class="param-note">
+        AUTO 항목은 최종 PARAMETERS에서 생략돼. 직접 입력을 고르면 원하는 값을 자유롭게 넣을 수 있어.
+      </div>
+
+      <div class="param-actions">
+        <button id="applyAnthro" type="button">PARAMETERS 적용</button>
+        <button id="resetAnthro" type="button">외형 설정 초기화</button>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="primary" type="button" data-copy="textAnthro" data-status="statusAnthro">클립보드 복사</button>
+      <button type="button" data-toggle="viewAnthro">텍스트 보기</button>
+    </div>
+    <div id="statusAnthro" class="status">준비됨</div>
+    <div id="viewAnthro" class="prompt-view hidden">
+      <textarea id="textAnthro" spellcheck="false"></textarea>
+    </div>
+  </section>
+</div>
+
+<script>
+(() => {
+  const templateC = "Full-body semi-realistic digital oil painting of an anthropomorphization of a Gundam-series mobile suit. Every design decision — armor color scheme, head crest, backpack and weapon attachments, facial design, hair color, and hairstyle — is determined strictly by the PARAMETERS at the bottom. Where the PARAMETERS are silent, follow the mobile suit's canonical design and visual identity.\n\n\nDESIGN PRIORITY — Every visual decision must follow this priority order:\n\n1. Explicit instructions written in PARAMETERS.\n2. Clearly visible equipment and loadout details from any uploaded reference image.\n3. The mobile suit's canonical design from the specified series or work.\n4. The general humanoid styling instructions in this prompt.\n\n\nREFERENCE IMAGE RULE — If one or more original reference images are provided by the user, use them as authoritative visual references for equipment and loadout details.\n\nWhen a reference image is provided, prioritize it especially for:\n\n- weapon type, shape, scale, and proportions\n- shield design, outline, mounted accessories, and surface structure\n- backpack structure, thrusters, binders, funnels, panel containers, and launcher arrangement\n- hardpoint placement, attachment direction, and equipment mounting method\n- visible sub-weapons such as spare magazines, Sturm Fausts, missiles, beam sabers, grenades, or auxiliary equipment\n- distinctive armor geometry and mechanical structures that define the identity of the mobile suit\n\nIf the uploaded reference image clearly shows a specific loadout or equipment arrangement, do not replace it with a generic or alternative interpretation.\n\nPreserve the recognizable structure, proportions, placement, and mechanical logic of the equipment from the reference image as faithfully as possible while translating it into the anthropomorphized humanoid design.\n\n\nPARAMETER INTERPRETATION RULE — The PARAMETERS are intentionally minimal and usually contain only gender, mobile suit name, series/work title, body type, and any explicitly requested special characteristics.\n\nBecause of this, all other fitting design details must be inferred and completed from the mobile suit's canonical design and from any uploaded original reference image when provided.\n\nWhen PARAMETERS are minimal, automatically determine and faithfully add the following in a way that best matches the specified mobile suit:\n\n- canonical armor color scheme\n- head crest / antenna / sensor design\n- shoulder, chest, waist, leg, and overall armor silhouette\n- backpack structure and attachment placement\n- funnels, wing binders, panel containers, shields, cannons, rifles, and signature equipment\n- distinctive transformation mechanisms or unusual mechanical structures\n- a distinctive human facial design appropriate for the mobile suit\n- a fitting human hairstyle and hair color that harmonize primarily with the mobile suit's armor colors, silhouette, design language, and overall visual character\n- robe-like, mantle-like, dress-like, skirt-like, or armored lower-body treatment that best matches the mobile suit's silhouette\n- suitable negative constraints to prevent common generation errors that would conflict with the specified mobile suit\n\nDo not leave these unspecified as generic design choices.\n\nThey must be completed in a way that makes the result clearly recognizable as the requested mobile suit rather than as generic Gundam-inspired armor.\n\n\nHAIR / PILOT RULE — Do not automatically derive hairstyle, hair color, facial appearance, or character styling from the mobile suit's associated pilot.\n\nPilot-inspired hairstyle, hair color, facial traits, or character styling must only be used when explicitly requested in PARAMETERS.\n\nWhen PARAMETERS explicitly specify hairstyle or hair color, follow those instructions exactly.\n\nWhen PARAMETERS are silent about hair, determine the hairstyle and hair color independently based primarily on:\n\n- the mobile suit's canonical armor colors\n- secondary and accent colors\n- armor silhouette\n- mechanical design language\n- overall visual atmosphere\n- gender and body presentation specified in PARAMETERS\n\nThe resulting hairstyle should visually complement the mobile suit itself rather than imitate or resemble its canonical pilot.\n\nDo not automatically make the anthropomorphized character resemble the pilot.\n\n\nFACE DIVERSITY RULE — Do not reuse a generic or recurring face across different mobile-suit anthropomorphizations.\n\nEvery mobile suit must receive an independently designed and visually distinctive human face.\n\nThe facial identity should harmonize with the mobile suit itself while remaining recognizably different from faces used for other mobile suits.\n\nNaturally vary facial characteristics between different designs, including:\n\n- overall face shape: oval, angular, heart-shaped, elongated, compact, softly rounded, or sharp\n- facial width and length\n- jawline shape and definition\n- chin width, length, and projection\n- cheekbone prominence\n- cheek fullness\n- eye size\n- eye shape\n- eye tilt\n- eye spacing\n- eyelid structure\n- eyebrow shape, angle, and thickness\n- nose bridge height and width\n- nose length and tip shape\n- lip shape and fullness\n- mouth width\n- apparent age within an adult range\n- facial maturity\n- resting expression\n- overall facial temperament\n\nDo not simply change hair while retaining the same underlying face.\n\nThe skull proportions, eyes, nose, lips, jawline, cheek structure, and overall facial geometry should meaningfully vary between different mobile-suit anthropomorphizations.\n\n\nMOBILE SUIT → FACE DESIGN RULE — When PARAMETERS do not explicitly define the face, derive an appropriate facial character primarily from the mobile suit's own visual design.\n\nConsider:\n\n- armor silhouette\n- mechanical design language\n- proportions\n- color palette\n- combat role\n- movement characteristics\n- transformation capability\n- visual aggressiveness or elegance\n- technological or stylistic atmosphere\n\nExamples of interpretation:\n\nAngular, aggressive, close-combat-oriented mobile suits may receive sharper facial geometry, narrower or more intense eyes, stronger eyebrows, and more defined jawlines.\n\nElegant, aerodynamic, or high-mobility mobile suits may receive finer facial structures, cleaner jawlines, elongated eyes, and more refined proportions.\n\nHeavy, rugged, heavily armed mobile suits may receive broader or more mature facial structures, stronger jaws, heavier brows, or more grounded facial proportions.\n\nUnusual transformable mobile suits may receive distinctive, slightly unconventional facial proportions or sharper structural characteristics reflecting their mechanical identity.\n\nThese are interpretive guidelines rather than fixed templates. Do not assign the same facial archetype to every mobile suit belonging to the same category.\n\n\nFACE / PILOT SEPARATION RULE — Facial identity must not automatically resemble the canonical pilot.\n\nDo not reproduce the pilot's:\n\n- face shape\n- eye shape\n- hairstyle\n- hair color\n- expression\n- recognizable facial characteristics\n\nunless explicitly requested in PARAMETERS.\n\nPilot resemblance is permitted only when PARAMETERS specifically request pilot-inspired appearance.\n\nOtherwise, the anthropomorphized character must be an original adult human interpretation of the mobile suit itself.\n\n\nFACE UNIQUENESS RULE — Avoid convergence toward a single conventionally attractive anime face.\n\nBeauty should not require identical facial geometry.\n\nFemale characters may remain glamorous and attractive while having substantially different:\n\n- facial proportions\n- jaw structures\n- eye geometry\n- noses\n- lips\n- cheekbones\n- maturity\n- expressions\n\nMale characters should likewise have distinct facial identities rather than sharing one generic handsome face.\n\nPreserve attractiveness where appropriate while prioritizing individual facial identity.\n\n\nAGE RULE — All anthropomorphized human characters are clearly adults.\n\nDo not generate childlike, adolescent, or ambiguously underage facial proportions.\n\nUse mature adult facial anatomy appropriate to the requested gender presentation and mobile suit design.\n\n\nFANTASY ELEMENT RULE — Do not add unrelated fantasy elements unless they are strongly supported by the mobile suit's canonical design or explicitly requested.\n\nAvoid arbitrary:\n\n- crowns\n- tiaras\n- angel wings\n- feathered wings\n- excessive gold filigree\n- ornamental jewelry\n- bridal styling\n- magical staffs\n- fantasy swords\n- generic fantasy armor\n\nunless such elements genuinely correspond to the source mobile suit.\n\n\nHUMANOID TRANSLATION RULE — The mobile suit's armor silhouette is translated into an elegant but mechanically recognizable humanoid form.\n\nPreserve important mechanical geometry rather than converting the design into generic fantasy clothing.\n\nUse:\n\n- angular armor plates\n- visible mechanical segmentation\n- layered armor construction\n- internal mechanical frames where appropriate\n- glowing sensor accents\n- mechanical joints and hardpoints\n- recognizable weapon mounting structures\n\nThese elements may be integrated into flowing robe-like, mantle-like, skirt-like, or body-contoured forms when appropriate, but the original mobile suit's mechanical identity must remain immediately obvious.\n\nUse realistic skin texture where skin is exposed and rich painterly brush strokes throughout.\n\n\nFIGURE RULE —\n\nIf the gender parameter is female:\n\n- glamorous adult feminine figure\n- graceful silhouette\n- body proportions may follow additional PARAMETERS\n- slightly revealing armor when appropriate\n- feminine but mechanically integrated armor\n- attractive adult facial appearance\n- expression chosen to fit the mobile suit's individual character\n\nIf the gender parameter is male:\n\n- lean or appropriately built adult masculine figure\n- fully armored unless PARAMETERS specify otherwise\n- heroic mechanical silhouette\n- masculine adult facial structure\n- expression chosen to fit the mobile suit's individual character\n\nGender determines body build and presentation but does not determine a fixed hairstyle, hair color, or recurring facial template.\n\nHair and facial identity follow explicit PARAMETERS first; when unspecified, they are independently inferred from the mobile suit's own visual design rather than from its pilot.\n\n\nCOMPOSITION — vertical 2:3 tall composition.\n\nFull figure centered.\n\nGenerous empty margin on both the left and right sides.\n\nSubject occupying roughly the center 65–70 percent of the width.\n\nEntire figure from crown to feet fully inside the frame.\n\nProvide clear headroom above the highest point of the head crest or hair and visible floor space beneath the feet.\n\nHead positioned in the upper center of the frame.\n\nFace and both eyes clearly visible and unobstructed.\n\nHair must not obscure important facial features.\n\nThe complete silhouette of the character should be readable at a glance.\n\n\nEQUIPMENT FRAMING RULE — Large backpacks, wings, binders, funnels, cannons, shields, rifles, swords, transformation structures, and other major attachments must remain completely inside the frame whenever reasonably possible.\n\nAdjust the relative scale of the character and camera distance as necessary so that important canonical equipment is not cropped.\n\nDo not enlarge the character so much that signature equipment extends outside the image.\n\nWhen a weapon is being held rather than stored, preserve the mechanically logical state of its corresponding storage mount and avoid duplicating the same weapon.\n\n\nLIGHTING — deep dark gray background with subtle atmospheric shadows.\n\nStrong controlled rim lighting along the outer edges of the figure, clearly separating armor geometry from the dark background.\n\nSoft cinematic key lighting on the face and torso.\n\nSemi-realistic digital oil painting treatment throughout.\n\nRich painterly surface detail.\n\nHighly detailed mechanical materials.\n\nThe face remains clearly readable while the mechanical identity remains immediately obvious.\n\n\nAVOID —\n\ncropped limbs,\ncut off at edges,\ncropped feet,\ncropped head crest,\ncropped backpack,\ncropped wings,\ncropped binders,\ncropped weapons,\nclose-up,\nportrait crop,\nbust shot,\nwide horizontal composition,\nbright background,\nwhite background,\ncluttered background,\nhair covering face,\nobscured eyes,\ntext,\nwatermark,\nmultiple characters,\nextra limbs,\nextra arms,\nextra legs,\nextra fingers,\nmalformed hands,\nduplicated equipment,\nduplicated weapons,\nfloating equipment,\nincorrect weapon mounting,\ngeneric Gundam armor replacing distinctive canonical structures,\nunrelated fantasy elements,\nautomatic pilot resemblance,\npilot-derived hairstyle unless explicitly requested,\npilot-derived face unless explicitly requested,\nrepeated face design,\nsame face as previous characters,\nrecycled facial identity,\ngeneric anime face,\ngeneric beautiful anime girl face,\ngeneric handsome anime male face,\nidentical facial proportions,\nidentical eye shape across characters,\nidentical nose across characters,\nidentical jawline across characters,\nsame facial geometry with different hair.\n\n\nPARAMETERS = [\ngender,\nmobile suit name,\nseries\n]";
+  const MECH = [["RX-78-2 건담", ["0079"]], ["건담 Mk-II", ["Z", "ZZ"]], ["건담 Mk-II 티탄즈사양", ["Z"]], ["Z건담", ["Z", "ZZ"]], ["ZZ건담", ["ZZ"]], ["뉴 건담", ["CCA"]], ["하이뉴 건담", ["CCA"]], ["백식", ["Z", "ZZ"]], ["건담 NT-1", ["0080"]], ["시작 3호기 덴드로비움", ["0083"]], ["건캐논", ["0079"]], ["건탱크", ["0079"]], ["짐", ["0079", "0080", "0083", "Z"]], ["짐 커스텀", ["0083"]], ["짐 스나이퍼II", ["0080", "0083"]], ["볼", ["0079", "0083"]], ["제간", ["CCA"]], ["자쿠II", ["0079", "08MS", "0080", "0083", "TB"]], ["샤아 전용 자쿠", ["0079"]], ["자쿠 캐논", ["0079", "08MS"]], ["구프", ["0079", "08MS"]], ["돔", ["0079", "08MS"]], ["릭 돔", ["0079", "0083"]], ["겔구그", ["0079", "0083"]], ["겔구그 예거", ["0083"]], ["갸안", ["0079"]], ["캠퍼", ["0080"]], ["지옹", ["0079"]], ["엘메스", ["0079"]], ["노이에 질", ["0083"]], ["빅잠", ["0079"]], ["하이잭", ["Z"]], ["마라사이", ["Z", "ZZ"]], ["갸프랑", ["Z"]], ["바이알란", ["Z"]], ["감마 간", ["Z"]], ["사이코 건담", ["Z"]], ["디 오", ["Z"]], ["큐베레이", ["Z", "ZZ"]], ["큐베레이 Mk-II 플기", ["ZZ"]], ["큐베레이 Mk-II 플투기", ["ZZ"]], ["도벤 울프", ["ZZ"]], ["야크트 도가", ["CCA"]], ["사자비", ["CCA"]], ["나이팅게일", ["CCA"]], ["기라 도가", ["CCA"]], ["릭 디아스", ["Z"]], ["스트라이크", ["SEED"]], ["스트라이크 루즈", ["SEED", "DESTINY"]], ["프리덤", ["SEED", "DESTINY"]], ["저스티스", ["SEED"]], ["프로비던스", ["SEED"]], ["스트라이크 프리덤", ["DESTINY"]], ["데스티니", ["DESTINY"]], ["이지스", ["SEED"]], ["듀엘", ["SEED", "DESTINY"]], ["버스터", ["SEED", "DESTINY"]], ["블리츠", ["SEED"]], ["진", ["SEED", "DESTINY"]], ["자쿠 워리어", ["DESTINY"]], ["임펄스", ["DESTINY"]], ["캘러미티", ["SEED"]], ["건담 엑시아", ["00"]], ["건담 듀나메스", ["00"]], ["건담 큐리오스", ["00"]], ["건담 버체", ["00"]], ["더블오 라이저", ["00"]], ["아리오스 건담", ["00"]], ["세라비 건담", ["00"]], ["리본즈 건담", ["00"]], ["아헤드", ["00"]], ["티에렌 지상형", ["00"]], ["건담 발바토스", ["IBO"]], ["건담 발바토스 루프스 렉스", ["IBO"]], ["건담 구시온", ["IBO"]], ["건담 플라우로스", ["IBO"]], ["건담 바알", ["IBO"]], ["건담 키마리스 비다르", ["IBO"]], ["그레이즈", ["IBO"]], ["시덴", ["IBO"]], ["건담 키마리스", ["IBO"]], ["건담 에어리얼", ["WM"]], ["건담 에어리얼 개수형", ["WM"]], ["건담 르브리스", ["WM"]], ["건담 파렉트", ["WM"]], ["다릴 바르데", ["WM"]], ["슈바르제테", ["WM"]], ["베귀르베우", ["WM"]], ["미카엘리스", ["WM"]], ["데미 트레이너", ["WM"]], ["데미 바딩", ["WM"]], ["젤트줌", ["WM"]], ["윙 건담 제로", ["W", "EW"]], ["윙 건담", ["W"]], ["건담 데스사이즈", ["W"]], ["건담 헤비암즈", ["W"]], ["건담 샌드록", ["W"]], ["알트론 건담", ["W", "EW"]], ["톨기스", ["W"]], ["리오", ["W", "EW"]], ["육전형 건담", ["08MS"]], ["건담 Ez8", ["08MS"]], ["육전형 짐", ["08MS"]], ["구프 커스텀", ["08MS"]], ["아프사라스 III", ["08MS"]], ["짐 커맨드", ["0080"]], ["자쿠II 개량형", ["0080"]], ["하이곡그", ["0080"]], ["즈고크 E", ["0080"]], ["건담 시작 1호기 제피랜서스", ["0083"]], ["건담 시작 2호기 사이살리스", ["0083"]], ["건담 시작 3호기 스테이멘", ["0083"]], ["가베라 테트라", ["0083"]], ["메타스", ["Z"]], ["가브스레이", ["Z"]], ["함브라비", ["Z"]], ["바운드 독", ["Z"]], ["건담 Mk-V", ["ZZ"]], ["게마르크", ["ZZ"]], ["자쿠 III", ["ZZ"]], ["리가지", ["CCA"]], ["알파 아질", ["CCA"]], ["포비든 건담", ["SEED"]], ["레이더 건담", ["SEED"]], ["세이버 건담", ["DESTINY"]], ["카오스 건담", ["DESTINY"]], ["가이아 건담", ["DESTINY"]], ["어비스 건담", ["DESTINY"]], ["레전드 건담", ["DESTINY"]], ["인피니트 저스티스 건담", ["DESTINY"]], ["아카츠키 건담", ["DESTINY"]], ["구프 이그나이티드", ["DESTINY"]], ["돔 트루퍼", ["DESTINY"]], ["더블오 건담", ["00"]], ["더블오 퀀터", ["00", "00M"]], ["캘딤 건담", ["00"]], ["건담 나드레", ["00"]], ["오 건담", ["00"]], ["건담 스로네 아인", ["00"]], ["GN-X", ["00"]], ["라파엘 건담", ["00", "00M"]], ["건담 발바토스 루프스", ["IBO"]], ["건담 구시온 리베이크", ["IBO"]], ["건담 비다르", ["IBO"]], ["그레이즈 아인", ["IBO"]], ["레긴레이즈", ["IBO"]], ["하슈말", ["IBO"]], ["건담 캘리번", ["WM"]], ["건담 르브리스 손", ["WM"]], ["건담 르브리스 울", ["WM"]], ["딜란자", ["WM"]], ["베귀르펜테", ["WM"]], ["조워트", ["WM"]], ["셴롱 건담", ["W"]], ["건담 데스사이즈 헬", ["W", "EW"]], ["에피온", ["W"]], ["톨기스 II", ["W"]], ["비르고", ["W"]], ["윙 건담 제로 EW", ["EW"]], ["건담 데스사이즈 헬 EW", ["EW"]], ["건담 헤비암즈 EW", ["EW"]], ["건담 샌드록 EW", ["EW"]], ["알트론 건담 EW", ["EW"]], ["톨기스 III", ["EW"]], ["서펜트", ["EW"]], ["마이티 스트라이크 프리덤 건담", ["FREEDOM"]], ["라이징 프리덤 건담", ["FREEDOM"]], ["이모탈 저스티스 건담", ["FREEDOM"]], ["인피니트 저스티스 건담 이식", ["FREEDOM"]], ["데스티니 건담 SpecII", ["FREEDOM"]], ["블랙나이트 스쿼드 시바", ["FREEDOM"]], ["블랙나이트 스쿼드 카룰라", ["FREEDOM"]], ["블랙나이트 스쿼드 루드라", ["FREEDOM"]], ["유니콘 건담", ["UNICORN"]], ["밴시 노른", ["UNICORN"]], ["시난주", ["UNICORN"]], ["크샤트리야", ["UNICORN"]], ["네오 지옹", ["UNICORN"]], ["델타 플러스", ["UNICORN"]], ["리젤", ["UNICORN"]], ["기라 줄루", ["UNICORN"]], ["나라티브 건담", ["NT"]], ["페넥스", ["NT"]], ["시난주 스타인", ["NT"]], ["실바 바레토", ["NT"]], ["크시 건담", ["HATHAWAY"]], ["페넬로페", ["HATHAWAY"]], ["메싸", ["HATHAWAY"]], ["그이 마리에", ["HATHAWAY"]], ["샤이닝 건담", ["G"]], ["갓 건담", ["G"]], ["마스터 건담", ["G"]], ["데빌 건담", ["G"]], ["건담 맥스터", ["G"]], ["건담 로즈", ["G"]], ["드래곤 건담", ["G"]], ["보르트 건담", ["G"]], ["건담 X", ["X"]], ["더블 엑스", ["X"]], ["건담 에어마스터", ["X"]], ["건담 레오파드", ["X"]], ["건담 벨페고르", ["X"]], ["제니체", ["X"]], ["패틀리아", ["X"]], ["건담 AGE-1", ["AGE"]], ["건담 AGE-2", ["AGE"]], ["건담 AGE-3", ["AGE"]], ["건담 AGE-FX", ["AGE"]], ["레길스", ["AGE"]], ["지랏하", ["AGE"]], ["제다스", ["AGE"]], ["아델", ["AGE"]], ["건담 F91", ["F91"]], ["비기나 기나", ["F91"]], ["라플레시아", ["F91"]], ["베르가 기로스", ["F91"]], ["베르가 다라스", ["F91"]], ["데난 게", ["F91"]], ["데난 존", ["F91"]], ["헤비건", ["F91"]], ["V건담", ["V"]], ["V2건담", ["V"]], ["V2 어설트 버스터 건담", ["V"]], ["건이지", ["V"]], ["게드라프", ["V"]], ["고틀라탄", ["V"]], ["리그 샤코", ["V"]], ["샤코", ["V"]], ["조로", ["V"]], ["풀아머 건담", ["TB"]], ["사이코 자쿠", ["TB"]], ["아틀라스 건담", ["TB"]], ["∀건담", ["TA"]], ["턴 X", ["TA"]], ["스모", ["TA"]], ["골드 스모", ["TA"]], ["카풀", ["TA"]], ["워돔", ["TA"]], ["볼자논", ["TA"]], ["마히로", ["TA"]], ["건담 아스트레이 레드프레임", ["ASTRAY"]], ["건담 아스트레이 블루프레임", ["ASTRAY"]], ["건담 아스트레이 블루프레임 세컨드L", ["ASTRAY"]], ["건담 아스트레이 골드프레임", ["ASTRAY"]], ["건담 아스트레이 골드프레임 아마츠 미나", ["ASTRAY"]], ["하이페리온 건담", ["ASTRAY"]], ["드레드노트 건담", ["ASTRAY"]], ["건담 하루트", ["00M"]], ["건담 사바냐", ["00M"]], ["브레이브 지휘관용 시험기", ["00M"]], ["GQuuuuuuX", ["GQ"]], ["붉은 건담", ["GQ"]], ["건담 아스트레이 골드프레임 아마츠 하나", ["ASTRAY"]], ["건담 아스트레이 그린프레임", ["ASTRAY"]], ["스타게이저 건담", ["ASTRAY"]], ["건담 아스트레이 미라쥬 프레임", ["ASTRAY"]]];
+  const MECH_META = {"RX-78-2 건담": {"factions": ["연방"], "output": 88, "firepower": 90, "armor": 85, "mobility": 82, "temperament": "냉정", "system": "시작기", "series": ["0079"]}, "건담 Mk-II": {"factions": ["티탄즈", "에우고"], "output": 78, "firepower": 76, "armor": 74, "mobility": 80, "temperament": "냉정", "system": "시작기", "series": ["Z", "ZZ"]}, "건담 Mk-II 티탄즈사양": {"factions": ["티탄즈"], "output": 76, "firepower": 74, "armor": 74, "mobility": 78, "temperament": "오만", "system": "시작기", "series": ["Z"]}, "Z건담": {"factions": ["에우고"], "output": 90, "firepower": 88, "armor": 80, "mobility": 92, "temperament": "폭주", "system": "사이코뮤", "series": ["Z", "ZZ"]}, "ZZ건담": {"factions": ["에우고"], "output": 95, "firepower": 96, "armor": 88, "mobility": 76, "temperament": "폭주", "system": "사이코뮤", "series": ["ZZ"]}, "뉴 건담": {"factions": ["론드벨"], "output": 95, "firepower": 90, "armor": 86, "mobility": 90, "temperament": "냉정", "system": "사이코뮤", "series": ["CCA"]}, "하이뉴 건담": {"factions": ["론드벨"], "output": 96, "firepower": 92, "armor": 88, "mobility": 92, "temperament": "냉정", "system": "사이코뮤", "series": ["CCA"]}, "백식": {"factions": ["에우고"], "output": 80, "firepower": 78, "armor": 72, "mobility": 85, "temperament": "오만", "system": "시작기", "series": ["Z", "ZZ"]}, "건담 NT-1": {"factions": ["연방"], "output": 80, "firepower": 78, "armor": 82, "mobility": 76, "temperament": "냉정", "system": "시작기", "series": ["0080"]}, "시작 3호기 덴드로비움": {"factions": ["연방"], "output": 94, "firepower": 98, "armor": 90, "mobility": 52, "temperament": "오만", "system": "시작기", "series": ["0083"]}, "건캐논": {"factions": ["연방"], "output": 66, "firepower": 78, "armor": 72, "mobility": 54, "temperament": "헌신", "system": "양산", "series": ["0079"]}, "건탱크": {"factions": ["연방"], "output": 58, "firepower": 82, "armor": 76, "mobility": 32, "temperament": "헌신", "system": "양산", "series": ["0079"]}, "짐": {"factions": ["연방"], "output": 56, "firepower": 54, "armor": 56, "mobility": 58, "temperament": "헌신", "system": "양산", "series": ["0079", "0080", "0083", "Z"]}, "짐 커스텀": {"factions": ["연방"], "output": 66, "firepower": 64, "armor": 64, "mobility": 68, "temperament": "냉정", "system": "양산", "series": ["0083"]}, "짐 스나이퍼II": {"factions": ["연방"], "output": 62, "firepower": 76, "armor": 58, "mobility": 66, "temperament": "냉정", "system": "양산", "series": ["0080", "0083"]}, "볼": {"factions": ["연방"], "output": 40, "firepower": 52, "armor": 38, "mobility": 44, "temperament": "헌신", "system": "양산", "series": ["0079", "0083"]}, "제간": {"factions": ["론드벨"], "output": 62, "firepower": 60, "armor": 62, "mobility": 64, "temperament": "헌신", "system": "양산", "series": ["CCA"]}, "자쿠II": {"factions": ["지온", "카라바"], "output": 55, "firepower": 50, "armor": 52, "mobility": 58, "temperament": "헌신", "system": "양산", "series": ["0079", "08MS", "0080", "0083", "TB"]}, "샤아 전용 자쿠": {"factions": ["지온"], "output": 62, "firepower": 54, "armor": 54, "mobility": 72, "temperament": "오만", "system": "양산", "series": ["0079"]}, "자쿠 캐논": {"factions": ["지온"], "output": 58, "firepower": 70, "armor": 60, "mobility": 48, "temperament": "헌신", "system": "양산", "series": ["0079", "08MS"]}, "구프": {"factions": ["지온"], "output": 62, "firepower": 60, "armor": 66, "mobility": 58, "temperament": "폭주", "system": "양산", "series": ["0079", "08MS"]}, "돔": {"factions": ["지온"], "output": 68, "firepower": 70, "armor": 72, "mobility": 64, "temperament": "냉정", "system": "양산", "series": ["0079", "08MS"]}, "릭 돔": {"factions": ["지온"], "output": 68, "firepower": 70, "armor": 68, "mobility": 70, "temperament": "냉정", "system": "양산", "series": ["0079", "0083"]}, "겔구그": {"factions": ["지온"], "output": 72, "firepower": 75, "armor": 70, "mobility": 74, "temperament": "냉정", "system": "양산", "series": ["0079", "0083"]}, "겔구그 예거": {"factions": ["지온"], "output": 76, "firepower": 80, "armor": 70, "mobility": 80, "temperament": "오만", "system": "양산", "series": ["0083"]}, "갸안": {"factions": ["지온"], "output": 70, "firepower": 68, "armor": 66, "mobility": 80, "temperament": "오만", "system": "시작기", "series": ["0079"]}, "캠퍼": {"factions": ["지온"], "output": 74, "firepower": 82, "armor": 66, "mobility": 78, "temperament": "폭주", "system": "시작기", "series": ["0080"]}, "지옹": {"factions": ["지온"], "output": 92, "firepower": 95, "armor": 80, "mobility": 70, "temperament": "오만", "system": "사이코뮤", "series": ["0079"]}, "엘메스": {"factions": ["지온"], "output": 85, "firepower": 88, "armor": 60, "mobility": 65, "temperament": "헌신", "system": "사이코뮤", "series": ["0079"]}, "노이에 질": {"factions": ["지온"], "output": 90, "firepower": 94, "armor": 92, "mobility": 58, "temperament": "오만", "system": "사이코뮤", "series": ["0083"]}, "빅잠": {"factions": ["지온"], "output": 90, "firepower": 92, "armor": 94, "mobility": 50, "temperament": "폭주", "system": "시작기", "series": ["0079"]}, "하이잭": {"factions": ["티탄즈"], "output": 60, "firepower": 62, "armor": 60, "mobility": 62, "temperament": "헌신", "system": "양산", "series": ["Z"]}, "마라사이": {"factions": ["티탄즈"], "output": 66, "firepower": 66, "armor": 64, "mobility": 68, "temperament": "냉정", "system": "양산", "series": ["Z", "ZZ"]}, "갸프랑": {"factions": ["티탄즈"], "output": 72, "firepower": 70, "armor": 64, "mobility": 82, "temperament": "폭주", "system": "시작기", "series": ["Z"]}, "바이알란": {"factions": ["티탄즈"], "output": 78, "firepower": 74, "armor": 70, "mobility": 86, "temperament": "폭주", "system": "시작기", "series": ["Z"]}, "감마 간": {"factions": ["티탄즈"], "output": 82, "firepower": 80, "armor": 76, "mobility": 78, "temperament": "오만", "system": "시작기", "series": ["Z"]}, "사이코 건담": {"factions": ["티탄즈"], "output": 92, "firepower": 94, "armor": 96, "mobility": 44, "temperament": "폭주", "system": "사이코뮤", "series": ["Z"]}, "디 오": {"factions": ["티탄즈"], "output": 92, "firepower": 88, "armor": 84, "mobility": 88, "temperament": "오만", "system": "사이코뮤", "series": ["Z"]}, "큐베레이": {"factions": ["네오지온"], "output": 88, "firepower": 82, "armor": 72, "mobility": 90, "temperament": "오만", "system": "사이코뮤", "series": ["Z", "ZZ"]}, "큐베레이 Mk-II 플기": {"factions": ["네오지온"], "output": 78, "firepower": 72, "armor": 66, "mobility": 82, "temperament": "헌신", "system": "사이코뮤", "series": ["ZZ"]}, "큐베레이 Mk-II 플투기": {"factions": ["네오지온"], "output": 78, "firepower": 74, "armor": 66, "mobility": 84, "temperament": "폭주", "system": "사이코뮤", "series": ["ZZ"]}, "도벤 울프": {"factions": ["네오지온"], "output": 84, "firepower": 86, "armor": 82, "mobility": 72, "temperament": "오만", "system": "사이코뮤", "series": ["ZZ"]}, "야크트 도가": {"factions": ["네오지온"], "output": 82, "firepower": 80, "armor": 76, "mobility": 80, "temperament": "냉정", "system": "사이코뮤", "series": ["CCA"]}, "사자비": {"factions": ["네오지온"], "output": 94, "firepower": 92, "armor": 88, "mobility": 86, "temperament": "오만", "system": "사이코뮤", "series": ["CCA"]}, "나이팅게일": {"factions": ["네오지온"], "output": 98, "firepower": 96, "armor": 92, "mobility": 76, "temperament": "오만", "system": "사이코뮤", "series": ["CCA"]}, "기라 도가": {"factions": ["네오지온"], "output": 68, "firepower": 68, "armor": 68, "mobility": 70, "temperament": "헌신", "system": "양산", "series": ["CCA"]}, "릭 디아스": {"factions": ["에우고"], "output": 72, "firepower": 74, "armor": 72, "mobility": 70, "temperament": "냉정", "system": "양산", "series": ["Z"]}, "스트라이크": {"factions": ["지구연합", "오브"], "output": 80, "firepower": 80, "armor": 76, "mobility": 80, "temperament": "냉정", "system": "시작기", "series": ["SEED"]}, "스트라이크 루즈": {"factions": ["오브"], "output": 80, "firepower": 78, "armor": 76, "mobility": 82, "temperament": "냉정", "system": "시작기", "series": ["SEED", "DESTINY"]}, "프리덤": {"factions": ["오브"], "output": 92, "firepower": 90, "armor": 84, "mobility": 92, "temperament": "냉정", "system": "핵동력", "series": ["SEED", "DESTINY"]}, "저스티스": {"factions": ["자프트", "오브"], "output": 90, "firepower": 88, "armor": 82, "mobility": 90, "temperament": "헌신", "system": "핵동력", "series": ["SEED"]}, "프로비던스": {"factions": ["자프트"], "output": 90, "firepower": 92, "armor": 80, "mobility": 84, "temperament": "오만", "system": "핵동력", "series": ["SEED"]}, "스트라이크 프리덤": {"factions": ["오브"], "output": 96, "firepower": 94, "armor": 86, "mobility": 96, "temperament": "냉정", "system": "핵동력", "series": ["DESTINY"]}, "데스티니": {"factions": ["자프트"], "output": 92, "firepower": 90, "armor": 82, "mobility": 94, "temperament": "폭주", "system": "핵동력", "series": ["DESTINY"]}, "이지스": {"factions": ["자프트"], "output": 78, "firepower": 80, "armor": 74, "mobility": 80, "temperament": "오만", "system": "시작기", "series": ["SEED"]}, "듀엘": {"factions": ["자프트"], "output": 74, "firepower": 76, "armor": 74, "mobility": 74, "temperament": "오만", "system": "시작기", "series": ["SEED", "DESTINY"]}, "버스터": {"factions": ["자프트"], "output": 72, "firepower": 88, "armor": 76, "mobility": 60, "temperament": "냉정", "system": "시작기", "series": ["SEED", "DESTINY"]}, "블리츠": {"factions": ["자프트"], "output": 70, "firepower": 72, "armor": 64, "mobility": 84, "temperament": "냉정", "system": "시작기", "series": ["SEED"]}, "진": {"factions": ["자프트"], "output": 56, "firepower": 56, "armor": 54, "mobility": 58, "temperament": "헌신", "system": "양산", "series": ["SEED", "DESTINY"]}, "자쿠 워리어": {"factions": ["자프트"], "output": 64, "firepower": 64, "armor": 64, "mobility": 66, "temperament": "헌신", "system": "양산", "series": ["DESTINY"]}, "임펄스": {"factions": ["자프트"], "output": 82, "firepower": 80, "armor": 76, "mobility": 84, "temperament": "폭주", "system": "시작기", "series": ["DESTINY"]}, "캘러미티": {"factions": ["지구연합"], "output": 78, "firepower": 88, "armor": 84, "mobility": 62, "temperament": "폭주", "system": "시작기", "series": ["SEED"]}, "건담 엑시아": {"factions": ["소레스탈비잉"], "output": 82, "firepower": 84, "armor": 72, "mobility": 90, "temperament": "폭주", "system": "GN드라이브", "series": ["00"]}, "건담 듀나메스": {"factions": ["소레스탈비잉"], "output": 76, "firepower": 90, "armor": 68, "mobility": 72, "temperament": "냉정", "system": "GN드라이브", "series": ["00"]}, "건담 큐리오스": {"factions": ["소레스탈비잉"], "output": 78, "firepower": 78, "armor": 70, "mobility": 86, "temperament": "폭주", "system": "GN드라이브", "series": ["00"]}, "건담 버체": {"factions": ["소레스탈비잉"], "output": 80, "firepower": 92, "armor": 86, "mobility": 58, "temperament": "헌신", "system": "GN드라이브", "series": ["00"]}, "더블오 라이저": {"factions": ["소레스탈비잉"], "output": 96, "firepower": 90, "armor": 84, "mobility": 94, "temperament": "냉정", "system": "GN드라이브", "series": ["00"]}, "아리오스 건담": {"factions": ["소레스탈비잉"], "output": 80, "firepower": 80, "armor": 72, "mobility": 90, "temperament": "폭주", "system": "GN드라이브", "series": ["00"]}, "세라비 건담": {"factions": ["소레스탈비잉"], "output": 84, "firepower": 94, "armor": 88, "mobility": 60, "temperament": "헌신", "system": "GN드라이브", "series": ["00"]}, "리본즈 건담": {"factions": ["이노베이드"], "output": 94, "firepower": 90, "armor": 84, "mobility": 90, "temperament": "오만", "system": "GN드라이브", "series": ["00"]}, "아헤드": {"factions": ["연방군"], "output": 68, "firepower": 68, "armor": 66, "mobility": 70, "temperament": "헌신", "system": "양산", "series": ["00"]}, "티에렌 지상형": {"factions": ["인류혁신연맹"], "output": 56, "firepower": 60, "armor": 62, "mobility": 50, "temperament": "헌신", "system": "양산", "series": ["00"]}, "건담 발바토스": {"factions": ["철화단"], "output": 84, "firepower": 80, "armor": 88, "mobility": 74, "temperament": "폭주", "system": "아르비", "series": ["IBO"]}, "건담 발바토스 루프스 렉스": {"factions": ["철화단"], "output": 92, "firepower": 88, "armor": 94, "mobility": 80, "temperament": "폭주", "system": "아르비", "series": ["IBO"]}, "건담 구시온": {"factions": ["철화단"], "output": 80, "firepower": 84, "armor": 92, "mobility": 58, "temperament": "헌신", "system": "아르비", "series": ["IBO"]}, "건담 플라우로스": {"factions": ["철화단"], "output": 78, "firepower": 90, "armor": 80, "mobility": 68, "temperament": "냉정", "system": "아르비", "series": ["IBO"]}, "건담 바알": {"factions": ["기간틱"], "output": 86, "firepower": 78, "armor": 82, "mobility": 84, "temperament": "오만", "system": "아르비", "series": ["IBO"]}, "건담 키마리스 비다르": {"factions": ["기간틱"], "output": 88, "firepower": 82, "armor": 84, "mobility": 86, "temperament": "오만", "system": "아르비", "series": ["IBO"]}, "그레이즈": {"factions": ["기간틱"], "output": 58, "firepower": 58, "armor": 60, "mobility": 60, "temperament": "헌신", "system": "양산", "series": ["IBO"]}, "시덴": {"factions": ["철화단"], "output": 66, "firepower": 66, "armor": 70, "mobility": 64, "temperament": "헌신", "system": "양산", "series": ["IBO"]}, "건담 키마리스": {"factions": ["기간틱"], "output": 78, "firepower": 76, "armor": 76, "mobility": 80, "temperament": "오만", "system": "시작기", "series": ["IBO"]}, "건담 에어리얼": {"factions": ["아스티카시아", "셸미라주"], "output": 86, "firepower": 80, "armor": 78, "mobility": 88, "temperament": "헌신", "system": "GUND", "series": ["WM"]}, "건담 에어리얼 개수형": {"factions": ["셸미라주"], "output": 92, "firepower": 86, "armor": 82, "mobility": 92, "temperament": "헌신", "system": "GUND", "series": ["WM"]}, "건담 르브리스": {"factions": ["오크스어스"], "output": 84, "firepower": 78, "armor": 76, "mobility": 86, "temperament": "폭주", "system": "GUND", "series": ["WM"]}, "건담 파렉트": {"factions": ["오크스어스"], "output": 88, "firepower": 82, "armor": 78, "mobility": 90, "temperament": "냉정", "system": "GUND", "series": ["WM"]}, "다릴 바르데": {"factions": ["잔토뷔넨"], "output": 76, "firepower": 78, "armor": 74, "mobility": 76, "temperament": "오만", "system": "시작기", "series": ["WM"]}, "슈바르제테": {"factions": ["잔토뷔넨"], "output": 88, "firepower": 84, "armor": 82, "mobility": 84, "temperament": "오만", "system": "시작기", "series": ["WM"]}, "베귀르베우": {"factions": ["잔토뷔넨"], "output": 82, "firepower": 80, "armor": 78, "mobility": 82, "temperament": "냉정", "system": "시작기", "series": ["WM"]}, "미카엘리스": {"factions": ["그라스레"], "output": 80, "firepower": 76, "armor": 72, "mobility": 84, "temperament": "냉정", "system": "시작기", "series": ["WM"]}, "데미 트레이너": {"factions": ["아스티카시아"], "output": 52, "firepower": 50, "armor": 54, "mobility": 56, "temperament": "헌신", "system": "양산", "series": ["WM"]}, "데미 바딩": {"factions": ["아스티카시아"], "output": 60, "firepower": 62, "armor": 64, "mobility": 58, "temperament": "헌신", "system": "양산", "series": ["WM"]}, "젤트줌": {"factions": ["오크스어스"], "output": 66, "firepower": 68, "armor": 66, "mobility": 66, "temperament": "냉정", "system": "양산", "series": ["WM"]}, "윙 건담 제로": {"factions": ["화이트팽", "프리벤터"], "output": 94, "firepower": 92, "armor": 82, "mobility": 92, "temperament": "냉정", "system": "제로시스템", "series": ["W", "EW"]}, "윙 건담": {"factions": ["재야"], "output": 82, "firepower": 84, "armor": 74, "mobility": 86, "temperament": "냉정", "system": "시작기", "series": ["W"]}, "건담 데스사이즈": {"factions": ["재야"], "output": 80, "firepower": 78, "armor": 72, "mobility": 90, "temperament": "폭주", "system": "시작기", "series": ["W"]}, "건담 헤비암즈": {"factions": ["재야"], "output": 76, "firepower": 94, "armor": 78, "mobility": 64, "temperament": "냉정", "system": "시작기", "series": ["W"]}, "건담 샌드록": {"factions": ["재야"], "output": 74, "firepower": 76, "armor": 86, "mobility": 66, "temperament": "헌신", "system": "시작기", "series": ["W"]}, "알트론 건담": {"factions": ["재야"], "output": 82, "firepower": 82, "armor": 78, "mobility": 84, "temperament": "오만", "system": "시작기", "series": ["W", "EW"]}, "톨기스": {"factions": ["OZ", "프리벤터"], "output": 88, "firepower": 82, "armor": 78, "mobility": 90, "temperament": "오만", "system": "시작기", "series": ["W"]}, "리오": {"factions": ["OZ"], "output": 52, "firepower": 54, "armor": 54, "mobility": 56, "temperament": "헌신", "system": "양산", "series": ["W", "EW"]}, "육전형 건담": {"factions": ["연방"], "output": 64, "firepower": 68, "armor": 66, "mobility": 60, "temperament": "냉정", "system": "양산", "series": ["08MS"]}, "건담 Ez8": {"factions": ["연방"], "output": 70, "firepower": 72, "armor": 68, "mobility": 70, "temperament": "폭주", "system": "시작기", "series": ["08MS"]}, "육전형 짐": {"factions": ["연방"], "output": 54, "firepower": 56, "armor": 56, "mobility": 54, "temperament": "헌신", "system": "양산", "series": ["08MS"]}, "구프 커스텀": {"factions": ["지온"], "output": 66, "firepower": 70, "armor": 68, "mobility": 62, "temperament": "폭주", "system": "양산", "series": ["08MS"]}, "아프사라스 III": {"factions": ["지온"], "output": 88, "firepower": 92, "armor": 86, "mobility": 40, "temperament": "오만", "system": "시작기", "series": ["08MS"]}, "짐 커맨드": {"factions": ["연방"], "output": 60, "firepower": 60, "armor": 60, "mobility": 62, "temperament": "냉정", "system": "양산", "series": ["0080"]}, "자쿠II 개량형": {"factions": ["지온"], "output": 60, "firepower": 58, "armor": 58, "mobility": 62, "temperament": "헌신", "system": "양산", "series": ["0080"]}, "하이곡그": {"factions": ["지온"], "output": 70, "firepower": 74, "armor": 72, "mobility": 58, "temperament": "폭주", "system": "양산", "series": ["0080"]}, "즈고크 E": {"factions": ["지온"], "output": 68, "firepower": 72, "armor": 66, "mobility": 66, "temperament": "냉정", "system": "양산", "series": ["0080"]}, "건담 시작 1호기 제피랜서스": {"factions": ["연방"], "output": 76, "firepower": 74, "armor": 72, "mobility": 78, "temperament": "폭주", "system": "시작기", "series": ["0083"]}, "건담 시작 2호기 사이살리스": {"factions": ["연방"], "output": 84, "firepower": 96, "armor": 82, "mobility": 60, "temperament": "오만", "system": "시작기", "series": ["0083"]}, "건담 시작 3호기 스테이멘": {"factions": ["연방"], "output": 80, "firepower": 78, "armor": 76, "mobility": 74, "temperament": "냉정", "system": "시작기", "series": ["0083"]}, "가베라 테트라": {"factions": ["지온"], "output": 76, "firepower": 76, "armor": 70, "mobility": 82, "temperament": "폭주", "system": "시작기", "series": ["0083"]}, "메타스": {"factions": ["에우고"], "output": 66, "firepower": 62, "armor": 62, "mobility": 78, "temperament": "헌신", "system": "양산", "series": ["Z"]}, "가브스레이": {"factions": ["티탄즈"], "output": 78, "firepower": 76, "armor": 70, "mobility": 84, "temperament": "오만", "system": "시작기", "series": ["Z"]}, "함브라비": {"factions": ["티탄즈"], "output": 74, "firepower": 72, "armor": 66, "mobility": 86, "temperament": "폭주", "system": "시작기", "series": ["Z"]}, "바운드 독": {"factions": ["티탄즈"], "output": 86, "firepower": 84, "armor": 82, "mobility": 70, "temperament": "폭주", "system": "사이코뮤", "series": ["Z"]}, "건담 Mk-V": {"factions": ["네오지온"], "output": 84, "firepower": 82, "armor": 78, "mobility": 76, "temperament": "냉정", "system": "사이코뮤", "series": ["ZZ"]}, "게마르크": {"factions": ["네오지온"], "output": 88, "firepower": 86, "armor": 80, "mobility": 74, "temperament": "오만", "system": "사이코뮤", "series": ["ZZ"]}, "자쿠 III": {"factions": ["네오지온"], "output": 70, "firepower": 70, "armor": 70, "mobility": 72, "temperament": "헌신", "system": "양산", "series": ["ZZ"]}, "리가지": {"factions": ["론드벨"], "output": 70, "firepower": 70, "armor": 68, "mobility": 76, "temperament": "냉정", "system": "양산", "series": ["CCA"]}, "알파 아질": {"factions": ["네오지온"], "output": 92, "firepower": 94, "armor": 90, "mobility": 46, "temperament": "오만", "system": "사이코뮤", "series": ["CCA"]}, "포비든 건담": {"factions": ["지구연합"], "output": 78, "firepower": 76, "armor": 88, "mobility": 68, "temperament": "폭주", "system": "시작기", "series": ["SEED"]}, "레이더 건담": {"factions": ["지구연합"], "output": 76, "firepower": 82, "armor": 74, "mobility": 80, "temperament": "폭주", "system": "시작기", "series": ["SEED"]}, "세이버 건담": {"factions": ["자프트"], "output": 82, "firepower": 80, "armor": 76, "mobility": 88, "temperament": "냉정", "system": "시작기", "series": ["DESTINY"]}, "카오스 건담": {"factions": ["지구연합"], "output": 78, "firepower": 78, "armor": 74, "mobility": 82, "temperament": "냉정", "system": "시작기", "series": ["DESTINY"]}, "가이아 건담": {"factions": ["지구연합"], "output": 78, "firepower": 76, "armor": 76, "mobility": 84, "temperament": "폭주", "system": "시작기", "series": ["DESTINY"]}, "어비스 건담": {"factions": ["지구연합"], "output": 78, "firepower": 86, "armor": 80, "mobility": 70, "temperament": "오만", "system": "시작기", "series": ["DESTINY"]}, "레전드 건담": {"factions": ["자프트"], "output": 88, "firepower": 86, "armor": 80, "mobility": 84, "temperament": "냉정", "system": "핵동력", "series": ["DESTINY"]}, "인피니트 저스티스 건담": {"factions": ["오브"], "output": 94, "firepower": 90, "armor": 84, "mobility": 94, "temperament": "헌신", "system": "핵동력", "series": ["DESTINY"]}, "아카츠키 건담": {"factions": ["오브"], "output": 82, "firepower": 80, "armor": 92, "mobility": 76, "temperament": "오만", "system": "시작기", "series": ["DESTINY"]}, "구프 이그나이티드": {"factions": ["자프트"], "output": 66, "firepower": 68, "armor": 68, "mobility": 66, "temperament": "폭주", "system": "양산", "series": ["DESTINY"]}, "돔 트루퍼": {"factions": ["자프트"], "output": 72, "firepower": 74, "armor": 74, "mobility": 70, "temperament": "냉정", "system": "양산", "series": ["DESTINY"]}, "더블오 건담": {"factions": ["소레스탈비잉"], "output": 90, "firepower": 86, "armor": 80, "mobility": 90, "temperament": "냉정", "system": "GN드라이브", "series": ["00"]}, "더블오 퀀터": {"factions": ["소레스탈비잉"], "output": 98, "firepower": 92, "armor": 84, "mobility": 96, "temperament": "냉정", "system": "GN드라이브", "series": ["00", "00M"]}, "캘딤 건담": {"factions": ["소레스탈비잉"], "output": 82, "firepower": 92, "armor": 72, "mobility": 80, "temperament": "냉정", "system": "GN드라이브", "series": ["00"]}, "건담 나드레": {"factions": ["소레스탈비잉"], "output": 76, "firepower": 78, "armor": 74, "mobility": 74, "temperament": "오만", "system": "GN드라이브", "series": ["00"]}, "오 건담": {"factions": ["소레스탈비잉"], "output": 70, "firepower": 68, "armor": 70, "mobility": 68, "temperament": "헌신", "system": "GN드라이브", "series": ["00"]}, "건담 스로네 아인": {"factions": ["트리니티"], "output": 80, "firepower": 84, "armor": 74, "mobility": 78, "temperament": "폭주", "system": "GN드라이브", "series": ["00"]}, "GN-X": {"factions": ["연방군"], "output": 66, "firepower": 68, "armor": 66, "mobility": 68, "temperament": "헌신", "system": "양산", "series": ["00"]}, "라파엘 건담": {"factions": ["이노베이드"], "output": 88, "firepower": 90, "armor": 84, "mobility": 78, "temperament": "오만", "system": "GN드라이브", "series": ["00", "00M"]}, "건담 발바토스 루프스": {"factions": ["철화단"], "output": 88, "firepower": 84, "armor": 90, "mobility": 78, "temperament": "폭주", "system": "아르비", "series": ["IBO"]}, "건담 구시온 리베이크": {"factions": ["철화단"], "output": 84, "firepower": 86, "armor": 92, "mobility": 62, "temperament": "헌신", "system": "아르비", "series": ["IBO"]}, "건담 비다르": {"factions": ["기간틱"], "output": 84, "firepower": 80, "armor": 82, "mobility": 84, "temperament": "냉정", "system": "아르비", "series": ["IBO"]}, "그레이즈 아인": {"factions": ["기간틱"], "output": 76, "firepower": 78, "armor": 74, "mobility": 76, "temperament": "폭주", "system": "아르비", "series": ["IBO"]}, "레긴레이즈": {"factions": ["기간틱"], "output": 68, "firepower": 70, "armor": 70, "mobility": 72, "temperament": "헌신", "system": "양산", "series": ["IBO"]}, "하슈말": {"factions": ["재야"], "output": 94, "firepower": 92, "armor": 96, "mobility": 44, "temperament": "폭주", "system": "아르비", "series": ["IBO"]}, "건담 캘리번": {"factions": ["셸미라주"], "output": 90, "firepower": 84, "armor": 80, "mobility": 90, "temperament": "헌신", "system": "GUND", "series": ["WM"]}, "건담 르브리스 손": {"factions": ["오크스어스"], "output": 82, "firepower": 80, "armor": 76, "mobility": 82, "temperament": "폭주", "system": "GUND", "series": ["WM"]}, "건담 르브리스 울": {"factions": ["오크스어스"], "output": 82, "firepower": 78, "armor": 76, "mobility": 84, "temperament": "냉정", "system": "GUND", "series": ["WM"]}, "딜란자": {"factions": ["잔토뷔넨"], "output": 68, "firepower": 70, "armor": 70, "mobility": 66, "temperament": "오만", "system": "양산", "series": ["WM"]}, "베귀르펜테": {"factions": ["잔토뷔넨"], "output": 84, "firepower": 82, "armor": 80, "mobility": 82, "temperament": "오만", "system": "시작기", "series": ["WM"]}, "조워트": {"factions": ["그라스레"], "output": 64, "firepower": 64, "armor": 66, "mobility": 68, "temperament": "헌신", "system": "양산", "series": ["WM"]}, "셴롱 건담": {"factions": ["재야"], "output": 80, "firepower": 80, "armor": 76, "mobility": 82, "temperament": "오만", "system": "시작기", "series": ["W"]}, "건담 데스사이즈 헬": {"factions": ["재야"], "output": 86, "firepower": 82, "armor": 76, "mobility": 92, "temperament": "폭주", "system": "시작기", "series": ["W", "EW"]}, "에피온": {"factions": ["OZ"], "output": 92, "firepower": 88, "armor": 84, "mobility": 90, "temperament": "오만", "system": "제로시스템", "series": ["W"]}, "톨기스 II": {"factions": ["OZ"], "output": 86, "firepower": 82, "armor": 78, "mobility": 88, "temperament": "냉정", "system": "시작기", "series": ["W"]}, "비르고": {"factions": ["OZ"], "output": 66, "firepower": 68, "armor": 78, "mobility": 64, "temperament": "헌신", "system": "양산", "series": ["W"]}, "윙 건담 제로 EW": {"factions": ["프리벤터"], "output": 96, "firepower": 94, "armor": 84, "mobility": 94, "temperament": "냉정", "system": "제로시스템", "series": ["EW"]}, "건담 데스사이즈 헬 EW": {"factions": ["재야"], "output": 88, "firepower": 84, "armor": 78, "mobility": 94, "temperament": "폭주", "system": "시작기", "series": ["EW"]}, "건담 헤비암즈 EW": {"factions": ["재야"], "output": 78, "firepower": 96, "armor": 80, "mobility": 66, "temperament": "냉정", "system": "시작기", "series": ["EW"]}, "건담 샌드록 EW": {"factions": ["재야"], "output": 76, "firepower": 78, "armor": 88, "mobility": 68, "temperament": "헌신", "system": "시작기", "series": ["EW"]}, "알트론 건담 EW": {"factions": ["재야"], "output": 84, "firepower": 84, "armor": 80, "mobility": 86, "temperament": "오만", "system": "시작기", "series": ["EW"]}, "톨기스 III": {"factions": ["프리벤터"], "output": 88, "firepower": 86, "armor": 80, "mobility": 90, "temperament": "냉정", "system": "시작기", "series": ["EW"]}, "서펜트": {"factions": ["마리메이아군"], "output": 62, "firepower": 72, "armor": 74, "mobility": 58, "temperament": "헌신", "system": "양산", "series": ["EW"]}, "마이티 스트라이크 프리덤 건담": {"factions": ["컴퍼스"], "output": 98, "firepower": 96, "armor": 88, "mobility": 96, "temperament": "냉정", "system": "핵동력", "series": ["FREEDOM"]}, "라이징 프리덤 건담": {"factions": ["컴퍼스"], "output": 90, "firepower": 88, "armor": 82, "mobility": 92, "temperament": "냉정", "system": "핵동력", "series": ["FREEDOM"]}, "이모탈 저스티스 건담": {"factions": ["컴퍼스"], "output": 90, "firepower": 86, "armor": 84, "mobility": 90, "temperament": "헌신", "system": "핵동력", "series": ["FREEDOM"]}, "인피니트 저스티스 건담 이식": {"factions": ["오브"], "output": 94, "firepower": 90, "armor": 86, "mobility": 94, "temperament": "헌신", "system": "핵동력", "series": ["FREEDOM"]}, "데스티니 건담 SpecII": {"factions": ["자프트"], "output": 94, "firepower": 92, "armor": 84, "mobility": 94, "temperament": "폭주", "system": "핵동력", "series": ["FREEDOM"]}, "블랙나이트 스쿼드 시바": {"factions": ["파운데이션"], "output": 92, "firepower": 88, "armor": 84, "mobility": 92, "temperament": "폭주", "system": "핵동력", "series": ["FREEDOM"]}, "블랙나이트 스쿼드 카룰라": {"factions": ["파운데이션"], "output": 84, "firepower": 86, "armor": 80, "mobility": 82, "temperament": "오만", "system": "시작기", "series": ["FREEDOM"]}, "블랙나이트 스쿼드 루드라": {"factions": ["파운데이션"], "output": 76, "firepower": 76, "armor": 74, "mobility": 80, "temperament": "헌신", "system": "양산", "series": ["FREEDOM"]}, "유니콘 건담": {"factions": ["연방", "비스트"], "output": 96, "firepower": 92, "armor": 88, "mobility": 94, "temperament": "냉정", "system": "사이코뮤", "series": ["UNICORN"]}, "밴시 노른": {"factions": ["연방"], "output": 94, "firepower": 90, "armor": 86, "mobility": 92, "temperament": "폭주", "system": "사이코뮤", "series": ["UNICORN"]}, "시난주": {"factions": ["네오지온"], "output": 94, "firepower": 92, "armor": 86, "mobility": 92, "temperament": "오만", "system": "사이코뮤", "series": ["UNICORN"]}, "크샤트리야": {"factions": ["네오지온"], "output": 88, "firepower": 90, "armor": 84, "mobility": 78, "temperament": "폭주", "system": "사이코뮤", "series": ["UNICORN"]}, "네오 지옹": {"factions": ["네오지온"], "output": 96, "firepower": 96, "armor": 94, "mobility": 48, "temperament": "오만", "system": "사이코뮤", "series": ["UNICORN"]}, "델타 플러스": {"factions": ["연방"], "output": 76, "firepower": 74, "armor": 72, "mobility": 84, "temperament": "냉정", "system": "시작기", "series": ["UNICORN"]}, "리젤": {"factions": ["연방"], "output": 70, "firepower": 70, "armor": 70, "mobility": 76, "temperament": "헌신", "system": "양산", "series": ["UNICORN"]}, "기라 줄루": {"factions": ["네오지온"], "output": 68, "firepower": 70, "armor": 68, "mobility": 70, "temperament": "헌신", "system": "양산", "series": ["UNICORN"]}, "나라티브 건담": {"factions": ["연방"], "output": 84, "firepower": 82, "armor": 78, "mobility": 86, "temperament": "냉정", "system": "사이코뮤", "series": ["NT"]}, "페넥스": {"factions": ["재야"], "output": 94, "firepower": 88, "armor": 84, "mobility": 96, "temperament": "냉정", "system": "사이코뮤", "series": ["NT"]}, "시난주 스타인": {"factions": ["연방"], "output": 84, "firepower": 82, "armor": 78, "mobility": 82, "temperament": "냉정", "system": "시작기", "series": ["NT"]}, "실바 바레토": {"factions": ["연방"], "output": 74, "firepower": 78, "armor": 76, "mobility": 66, "temperament": "헌신", "system": "시작기", "series": ["NT"]}, "크시 건담": {"factions": ["마프티"], "output": 94, "firepower": 92, "armor": 86, "mobility": 88, "temperament": "냉정", "system": "사이코뮤", "series": ["HATHAWAY"]}, "페넬로페": {"factions": ["연방"], "output": 94, "firepower": 90, "armor": 88, "mobility": 86, "temperament": "오만", "system": "사이코뮤", "series": ["HATHAWAY"]}, "메싸": {"factions": ["마프티"], "output": 72, "firepower": 74, "armor": 70, "mobility": 76, "temperament": "냉정", "system": "양산", "series": ["HATHAWAY"]}, "그이 마리에": {"factions": ["연방"], "output": 66, "firepower": 66, "armor": 66, "mobility": 74, "temperament": "헌신", "system": "양산", "series": ["HATHAWAY"]}, "샤이닝 건담": {"factions": ["네오재팬"], "output": 82, "firepower": 80, "armor": 76, "mobility": 88, "temperament": "폭주", "system": "모빌트레이스", "series": ["G"]}, "갓 건담": {"factions": ["네오재팬"], "output": 94, "firepower": 92, "armor": 84, "mobility": 96, "temperament": "폭주", "system": "모빌트레이스", "series": ["G"]}, "마스터 건담": {"factions": ["네오홍콩"], "output": 94, "firepower": 94, "armor": 84, "mobility": 94, "temperament": "오만", "system": "모빌트레이스", "series": ["G"]}, "데빌 건담": {"factions": ["재야"], "output": 98, "firepower": 96, "armor": 96, "mobility": 58, "temperament": "폭주", "system": "모빌트레이스", "series": ["G"]}, "건담 맥스터": {"factions": ["네오아메리카"], "output": 74, "firepower": 80, "armor": 74, "mobility": 76, "temperament": "오만", "system": "모빌트레이스", "series": ["G"]}, "건담 로즈": {"factions": ["네오프랑스"], "output": 76, "firepower": 74, "armor": 72, "mobility": 84, "temperament": "냉정", "system": "모빌트레이스", "series": ["G"]}, "드래곤 건담": {"factions": ["네오차이나"], "output": 76, "firepower": 76, "armor": 72, "mobility": 86, "temperament": "헌신", "system": "모빌트레이스", "series": ["G"]}, "보르트 건담": {"factions": ["네오러시아"], "output": 78, "firepower": 80, "armor": 88, "mobility": 56, "temperament": "헌신", "system": "모빌트레이스", "series": ["G"]}, "건담 X": {"factions": ["프리덴"], "output": 88, "firepower": 92, "armor": 80, "mobility": 80, "temperament": "냉정", "system": "플래시시스템", "series": ["X"]}, "더블 엑스": {"factions": ["프리덴"], "output": 92, "firepower": 96, "armor": 82, "mobility": 82, "temperament": "냉정", "system": "플래시시스템", "series": ["X"]}, "건담 에어마스터": {"factions": ["프리덴"], "output": 76, "firepower": 74, "armor": 70, "mobility": 88, "temperament": "폭주", "system": "시작기", "series": ["X"]}, "건담 레오파드": {"factions": ["프리덴"], "output": 74, "firepower": 84, "armor": 76, "mobility": 66, "temperament": "헌신", "system": "시작기", "series": ["X"]}, "건담 벨페고르": {"factions": ["프리덴"], "output": 78, "firepower": 78, "armor": 74, "mobility": 78, "temperament": "냉정", "system": "시작기", "series": ["X"]}, "제니체": {"factions": ["우주혁명군"], "output": 62, "firepower": 64, "armor": 64, "mobility": 66, "temperament": "헌신", "system": "양산", "series": ["X"]}, "패틀리아": {"factions": ["신연방"], "output": 66, "firepower": 68, "armor": 66, "mobility": 68, "temperament": "헌신", "system": "양산", "series": ["X"]}, "건담 AGE-1": {"factions": ["연방"], "output": 78, "firepower": 78, "armor": 74, "mobility": 80, "temperament": "헌신", "system": "AGE시스템", "series": ["AGE"]}, "건담 AGE-2": {"factions": ["연방"], "output": 82, "firepower": 82, "armor": 76, "mobility": 88, "temperament": "냉정", "system": "AGE시스템", "series": ["AGE"]}, "건담 AGE-3": {"factions": ["연방"], "output": 88, "firepower": 88, "armor": 82, "mobility": 84, "temperament": "냉정", "system": "AGE시스템", "series": ["AGE"]}, "건담 AGE-FX": {"factions": ["연방"], "output": 92, "firepower": 90, "armor": 84, "mobility": 92, "temperament": "냉정", "system": "AGE시스템", "series": ["AGE"]}, "레길스": {"factions": ["베이건"], "output": 92, "firepower": 90, "armor": 86, "mobility": 86, "temperament": "오만", "system": "AGE시스템", "series": ["AGE"]}, "지랏하": {"factions": ["베이건"], "output": 76, "firepower": 78, "armor": 76, "mobility": 74, "temperament": "오만", "system": "시작기", "series": ["AGE"]}, "제다스": {"factions": ["베이건"], "output": 70, "firepower": 72, "armor": 70, "mobility": 72, "temperament": "헌신", "system": "양산", "series": ["AGE"]}, "아델": {"factions": ["연방"], "output": 64, "firepower": 66, "armor": 66, "mobility": 68, "temperament": "헌신", "system": "양산", "series": ["AGE"]}, "건담 F91": {"factions": ["연방"], "output": 90, "firepower": 88, "armor": 78, "mobility": 94, "temperament": "냉정", "system": "시작기", "series": ["F91"]}, "비기나 기나": {"factions": ["크로스본뱅가드"], "output": 84, "firepower": 82, "armor": 78, "mobility": 86, "temperament": "오만", "system": "시작기", "series": ["F91"]}, "라플레시아": {"factions": ["크로스본뱅가드"], "output": 92, "firepower": 94, "armor": 86, "mobility": 58, "temperament": "오만", "system": "사이코뮤", "series": ["F91"]}, "베르가 기로스": {"factions": ["크로스본뱅가드"], "output": 76, "firepower": 74, "armor": 72, "mobility": 80, "temperament": "오만", "system": "양산", "series": ["F91"]}, "베르가 다라스": {"factions": ["크로스본뱅가드"], "output": 74, "firepower": 72, "armor": 70, "mobility": 78, "temperament": "헌신", "system": "양산", "series": ["F91"]}, "데난 게": {"factions": ["크로스본뱅가드"], "output": 66, "firepower": 66, "armor": 64, "mobility": 70, "temperament": "헌신", "system": "양산", "series": ["F91"]}, "데난 존": {"factions": ["크로스본뱅가드"], "output": 64, "firepower": 64, "armor": 62, "mobility": 68, "temperament": "헌신", "system": "양산", "series": ["F91"]}, "헤비건": {"factions": ["연방"], "output": 62, "firepower": 62, "armor": 60, "mobility": 68, "temperament": "헌신", "system": "양산", "series": ["F91"]}, "V건담": {"factions": ["리가밀리티아"], "output": 82, "firepower": 80, "armor": 74, "mobility": 88, "temperament": "헌신", "system": "시작기", "series": ["V"]}, "V2건담": {"factions": ["리가밀리티아"], "output": 92, "firepower": 88, "armor": 78, "mobility": 96, "temperament": "헌신", "system": "미노프스키드라이브", "series": ["V"]}, "V2 어설트 버스터 건담": {"factions": ["리가밀리티아"], "output": 96, "firepower": 94, "armor": 86, "mobility": 90, "temperament": "헌신", "system": "미노프스키드라이브", "series": ["V"]}, "건이지": {"factions": ["리가밀리티아"], "output": 62, "firepower": 62, "armor": 62, "mobility": 68, "temperament": "헌신", "system": "양산", "series": ["V"]}, "게드라프": {"factions": ["잔스칼"], "output": 66, "firepower": 66, "armor": 66, "mobility": 70, "temperament": "헌신", "system": "양산", "series": ["V"]}, "고틀라탄": {"factions": ["잔스칼"], "output": 82, "firepower": 84, "armor": 76, "mobility": 82, "temperament": "오만", "system": "사이코뮤", "series": ["V"]}, "리그 샤코": {"factions": ["잔스칼"], "output": 76, "firepower": 74, "armor": 74, "mobility": 72, "temperament": "헌신", "system": "양산", "series": ["V"]}, "샤코": {"factions": ["잔스칼"], "output": 70, "firepower": 70, "armor": 70, "mobility": 68, "temperament": "헌신", "system": "양산", "series": ["V"]}, "조로": {"factions": ["잔스칼"], "output": 64, "firepower": 66, "armor": 64, "mobility": 72, "temperament": "헌신", "system": "양산", "series": ["V"]}, "풀아머 건담": {"factions": ["연방"], "output": 84, "firepower": 92, "armor": 84, "mobility": 66, "temperament": "폭주", "system": "시작기", "series": ["TB"]}, "사이코 자쿠": {"factions": ["지온"], "output": 82, "firepower": 88, "armor": 78, "mobility": 80, "temperament": "폭주", "system": "사이코뮤", "series": ["TB"]}, "아틀라스 건담": {"factions": ["연방"], "output": 80, "firepower": 80, "armor": 76, "mobility": 82, "temperament": "냉정", "system": "시작기", "series": ["TB"]}, "∀건담": {"factions": ["밀리시아"], "output": 88, "firepower": 86, "armor": 92, "mobility": 84, "temperament": "헌신", "system": "나노스킨", "series": ["TA"]}, "턴 X": {"factions": ["문레이스"], "output": 92, "firepower": 94, "armor": 90, "mobility": 86, "temperament": "오만", "system": "나노스킨", "series": ["TA"]}, "스모": {"factions": ["문레이스"], "output": 78, "firepower": 76, "armor": 74, "mobility": 82, "temperament": "냉정", "system": "시작기", "series": ["TA"]}, "골드 스모": {"factions": ["문레이스"], "output": 82, "firepower": 78, "armor": 76, "mobility": 84, "temperament": "오만", "system": "시작기", "series": ["TA"]}, "카풀": {"factions": ["밀리시아"], "output": 58, "firepower": 60, "armor": 60, "mobility": 58, "temperament": "헌신", "system": "양산", "series": ["TA"]}, "워돔": {"factions": ["문레이스"], "output": 64, "firepower": 66, "armor": 68, "mobility": 60, "temperament": "헌신", "system": "양산", "series": ["TA"]}, "볼자논": {"factions": ["밀리시아"], "output": 68, "firepower": 70, "armor": 72, "mobility": 58, "temperament": "헌신", "system": "양산", "series": ["TA"]}, "마히로": {"factions": ["문레이스"], "output": 62, "firepower": 64, "armor": 62, "mobility": 66, "temperament": "헌신", "system": "양산", "series": ["TA"]}, "건담 아스트레이 레드프레임": {"factions": ["준크숍"], "output": 80, "firepower": 78, "armor": 74, "mobility": 84, "temperament": "폭주", "system": "시작기", "series": ["ASTRAY"]}, "건담 아스트레이 블루프레임": {"factions": ["세르비스"], "output": 78, "firepower": 80, "armor": 74, "mobility": 80, "temperament": "냉정", "system": "시작기", "series": ["ASTRAY"]}, "건담 아스트레이 블루프레임 세컨드L": {"factions": ["세르비스"], "output": 84, "firepower": 86, "armor": 78, "mobility": 82, "temperament": "냉정", "system": "시작기", "series": ["ASTRAY"]}, "건담 아스트레이 골드프레임": {"factions": ["오브"], "output": 78, "firepower": 76, "armor": 76, "mobility": 78, "temperament": "오만", "system": "시작기", "series": ["ASTRAY"]}, "건담 아스트레이 골드프레임 아마츠 미나": {"factions": ["오브"], "output": 86, "firepower": 84, "armor": 80, "mobility": 84, "temperament": "오만", "system": "시작기", "series": ["ASTRAY"]}, "하이페리온 건담": {"factions": ["지구연합"], "output": 80, "firepower": 78, "armor": 86, "mobility": 80, "temperament": "냉정", "system": "시작기", "series": ["ASTRAY"]}, "드레드노트 건담": {"factions": ["지구연합"], "output": 84, "firepower": 82, "armor": 76, "mobility": 84, "temperament": "냉정", "system": "핵동력", "series": ["ASTRAY"]}, "건담 하루트": {"factions": ["소레스탈비잉"], "output": 90, "firepower": 86, "armor": 80, "mobility": 92, "temperament": "냉정", "system": "GN드라이브", "series": ["00M"]}, "건담 사바냐": {"factions": ["소레스탈비잉"], "output": 86, "firepower": 84, "armor": 78, "mobility": 86, "temperament": "냉정", "system": "GN드라이브", "series": ["00M"]}, "브레이브 지휘관용 시험기": {"factions": ["지구연합"], "output": 82, "firepower": 80, "armor": 74, "mobility": 88, "temperament": "냉정", "system": "GN드라이브", "series": ["00M"]}, "GQuuuuuuX": {"factions": ["재야"], "output": 88, "firepower": 84, "armor": 78, "mobility": 90, "temperament": "폭주", "system": "사이코뮤", "series": ["GQ"]}, "붉은 건담": {"factions": ["지온"], "output": 86, "firepower": 84, "armor": 80, "mobility": 86, "temperament": "냉정", "system": "사이코뮤", "series": ["GQ"]}, "건담 아스트레이 골드프레임 아마츠 하나": {"factions": ["오브"], "output": 84, "firepower": 82, "armor": 80, "mobility": 86, "temperament": "냉정", "system": "시작기", "series": ["ASTRAY"]}, "건담 아스트레이 그린프레임": {"factions": ["준크숍"], "output": 74, "firepower": 72, "armor": 72, "mobility": 78, "temperament": "헌신", "system": "시작기", "series": ["ASTRAY"]}, "스타게이저 건담": {"factions": ["재야"], "output": 76, "firepower": 62, "armor": 72, "mobility": 92, "temperament": "헌신", "system": "시작기", "series": ["ASTRAY"]}, "건담 아스트레이 미라쥬 프레임": {"factions": ["라이브러리안"], "output": 82, "firepower": 80, "armor": 76, "mobility": 86, "temperament": "오만", "system": "시작기", "series": ["ASTRAY"]}};
+  const SER_NAME = {"0079": "기동전사 건담", "08MS": "제08MS소대", "0080": "포켓 속의 전쟁", "0083": "스타더스트 메모리", "Z": "Z건담", "ZZ": "ZZ건담", "CCA": "역습의 샤아", "SEED": "건담 SEED", "DESTINY": "SEED DESTINY", "FREEDOM": "SEED FREEDOM", "00": "건담 00", "IBO": "철혈의 오펀즈", "WM": "수성의 마녀", "W": "건담 W", "EW": "건담 W Endless Waltz", "UNICORN": "기동전사 건담 UC", "NT": "건담 NT", "HATHAWAY": "섬광의 하사웨이", "G": "G건담", "X": "건담X", "AGE": "건담 AGE", "F91": "기동전사 건담 F91", "V": "기동전사 V건담", "TB": "건담 썬더볼트", "TA": "∀건담", "ASTRAY": "건담 SEED ASTRAY", "00M": "건담 00 극장판", "GQ": "Gundam GQuuuuuuX"};
+  const SERIES_ORDER = ["0079", "08MS", "0080", "0083", "Z", "ZZ", "CCA", "SEED", "DESTINY", "FREEDOM", "00", "IBO", "WM", "W", "EW", "UNICORN", "NT", "HATHAWAY", "G", "X", "AGE", "F91", "V", "TB", "TA", "ASTRAY", "00M", "GQ"];
+  const PARAM_DEFS = [{"key": "apparent age", "label": "Apparent Age", "ko": "외관상 나이", "basic": true, "options": [["", "AUTO — 기체 이미지에 맞춰 자동 결정"], ["20s", "20s — 20대 성인"], ["30s", "30s — 30대 성인"], ["40s", "40s — 40대 성인"], ["mature adult", "Mature Adult — 성숙하고 연륜 있는 성인"], ["__custom__", "직접 입력… — 원하는 나이 인상 직접 작성"]]}, {"key": "body type", "label": "Body Type", "ko": "체형", "basic": true, "options": [["", "AUTO — 기체 실루엣에서 자동 추론"], ["slender", "Slender — 가늘고 슬림한 체형"], ["athletic", "Athletic — 탄탄한 운동형 체형"], ["curvy", "Curvy — 허리와 골반 곡선이 강조된 체형"], ["glamorous", "Glamorous — 풍만하고 화려한 체형"], ["muscular", "Muscular — 근육이 뚜렷한 체형"], ["heavy-built", "Heavy-built — 중후하고 묵직한 체형"], ["tall and lean", "Tall & Lean — 장신의 길고 슬림한 체형"], ["__custom__", "직접 입력… — 원하는 체형 직접 작성"]]}, {"key": "height impression", "label": "Height Impression", "ko": "키 인상", "basic": true, "options": [["", "AUTO — 전체 비율에서 자동 결정"], ["short", "Short — 비교적 작은 키 인상"], ["average", "Average — 평균적인 키 인상"], ["tall", "Tall — 장신 인상"], ["very tall", "Very Tall — 매우 큰 키 인상"], ["__custom__", "직접 입력… — 원하는 키/비율 직접 작성"]]}, {"key": "face shape", "label": "Face Shape", "ko": "얼굴형", "basic": true, "options": [["", "AUTO — 기체 디자인에서 자동 추론"], ["oval", "Oval — 균형 잡힌 타원형"], ["angular", "Angular — 각지고 선명한 얼굴형"], ["heart-shaped", "Heart-shaped — 이마가 넓고 턱이 가는 하트형"], ["elongated", "Elongated — 길고 세련된 얼굴형"], ["compact", "Compact — 짧고 응축된 얼굴형"], ["softly rounded", "Softly Rounded — 부드럽고 둥근 얼굴형"], ["sharp", "Sharp — 턱선과 골격이 날카로운 얼굴형"], ["__custom__", "직접 입력… — 얼굴형 직접 작성"]]}, {"key": "facial character", "label": "Facial Character", "ko": "얼굴 인상", "basic": true, "options": [["", "AUTO — 기체 성격에 맞춰 자동 결정"], ["elegant", "Elegant — 우아하고 정제된 인상"], ["cool", "Cool — 차갑고 세련된 인상"], ["sharp", "Sharp — 예리하고 공격적인 인상"], ["mature", "Mature — 성숙하고 안정된 인상"], ["soft", "Soft — 부드럽고 온화한 인상"], ["glamorous", "Glamorous — 화려하고 매력적인 인상"], ["rugged", "Rugged — 거칠고 강인한 인상"], ["stoic", "Stoic — 무표정하고 절제된 인상"], ["__custom__", "직접 입력… — 원하는 얼굴 인상 직접 작성"]]}, {"key": "hair color", "label": "Hair Color", "ko": "머리색", "basic": true, "options": [["", "AUTO — 기체 색상에 맞춰 자동 결정"], ["white", "White — 흰색"], ["silver", "Silver — 은색"], ["black", "Black — 검은색"], ["blue", "Blue — 파란색"], ["red", "Red — 붉은색"], ["blonde", "Blonde — 금발"], ["brown", "Brown — 갈색"], ["green", "Green — 녹색"], ["purple", "Purple — 보라색"], ["mint", "Mint — 민트색"], ["__custom__", "직접 입력… — 원하는 색 직접 작성"]]}, {"key": "hair length", "label": "Hair Length", "ko": "머리 길이", "basic": true, "options": [["", "AUTO — 기체 실루엣에 맞춰 자동 결정"], ["very short", "Very Short — 매우 짧은 머리"], ["short", "Short — 짧은 머리"], ["medium", "Medium — 중간 길이"], ["long", "Long — 긴 머리"], ["very long", "Very Long — 매우 긴 머리"], ["__custom__", "직접 입력… — 길이 직접 작성"]]}, {"key": "hairstyle", "label": "Hairstyle", "ko": "헤어스타일", "basic": true, "options": [["", "AUTO — 기체 디자인에 맞춰 자동 결정"], ["bob", "Bob — 단정한 보브컷"], ["pixie cut", "Pixie Cut — 짧고 가벼운 픽시컷"], ["layered", "Layered — 층을 살린 레이어드"], ["ponytail", "Ponytail — 포니테일"], ["twin tail", "Twin Tail — 트윈테일"], ["wolf cut", "Wolf Cut — 층감이 강한 울프컷"], ["slicked back", "Slicked Back — 뒤로 넘긴 스타일"], ["wavy", "Wavy — 웨이브 헤어"], ["straight", "Straight — 곧은 생머리"], ["side ponytail", "Side Ponytail — 사이드 포니테일"], ["__custom__", "직접 입력… — 헤어스타일 직접 작성"]]}, {"key": "human-mechanical balance", "label": "Human ↔ Mechanical Balance", "ko": "인간/기계 비율", "basic": true, "options": [["", "AUTO — 기체에 맞춰 자동 결정"], ["more human", "More Human — 인간 신체 비중을 더 높임"], ["balanced", "Balanced — 인간과 기계 요소를 균형 있게"], ["more mechanical", "More Mechanical — 기계 장갑 비중을 더 높임"], ["very mechanical", "Very Mechanical — 원기체 구조를 매우 강하게 유지"], ["__custom__", "직접 입력… — 원하는 비율 직접 작성"]]}, {"key": "armor coverage", "label": "Armor Coverage", "ko": "장갑 커버리지", "basic": true, "options": [["", "AUTO — 기체 구조에서 자동 결정"], ["full", "Full — 거의 전신 장갑"], ["high", "High — 장갑 비중이 높은 편"], ["balanced", "Balanced — 피부와 장갑의 균형"], ["open", "Open — 일부 피부 노출이 더 많은 구조"], ["__custom__", "직접 입력… — 커버리지 직접 작성"]]}, {"key": "lower-body treatment", "label": "Lower-body Treatment", "ko": "하체 장갑 구조", "basic": true, "options": [["", "AUTO — 원기체 실루엣에 맞춰 자동 결정"], ["armored skirt", "Armored Skirt — 스커트형 장갑"], ["split armored skirt", "Split Armored Skirt — 좌우 분할 스커트 장갑"], ["robe-like armor", "Robe-like Armor — 로브형 장갑"], ["mantle-like armor", "Mantle-like Armor — 망토/드레이프형 장갑"], ["pants armor", "Pants Armor — 바지처럼 이어지는 장갑 구조"], ["layered plates", "Layered Plates — 여러 겹 판넬형 하체 장갑"], ["__custom__", "직접 입력… — 하체 구조 직접 작성"]]}, {"key": "shoulder build", "label": "Shoulder Build", "ko": "어깨 체형", "basic": false, "options": [["", "AUTO — 자동 결정"], ["narrow", "Narrow — 좁은 어깨"], ["average", "Average — 평균적인 어깨"], ["broad", "Broad — 넓은 어깨"], ["__custom__", "직접 입력…"]]}, {"key": "torso / chest build", "label": "Torso / Chest Build", "ko": "상체/흉곽 인상", "basic": false, "options": [["", "AUTO — 자동 결정"], ["slim", "Slim — 얇고 가벼운 상체"], ["balanced", "Balanced — 균형 잡힌 상체"], ["full", "Full — 풍만한 상체"], ["powerful", "Powerful — 넓고 강한 흉곽"], ["__custom__", "직접 입력…"]]}, {"key": "waist / hip silhouette", "label": "Waist / Hip Silhouette", "ko": "허리/골반 실루엣", "basic": false, "options": [["", "AUTO — 자동 결정"], ["straight", "Straight — 직선적인 실루엣"], ["athletic", "Athletic — 운동형 허리/골반"], ["balanced", "Balanced — 균형형"], ["hourglass", "Hourglass — 허리가 잘록한 모래시계형"], ["curvy", "Curvy — 골반 곡선이 강조된 형태"], ["__custom__", "직접 입력…"]]}, {"key": "leg proportion", "label": "Leg Proportion", "ko": "다리 비율", "basic": false, "options": [["", "AUTO — 자동 결정"], ["balanced", "Balanced — 균형형"], ["long", "Long — 긴 다리"], ["very long", "Very Long — 매우 긴 다리"], ["powerful", "Powerful — 굵고 힘 있는 다리"], ["__custom__", "직접 입력…"]]}, {"key": "eye shape", "label": "Eye Shape", "ko": "눈매", "basic": false, "options": [["", "AUTO — 자동 결정"], ["narrow", "Narrow — 가늘고 날카로운 눈"], ["almond", "Almond — 아몬드형 눈"], ["large", "Large — 큰 눈"], ["sharp", "Sharp — 강하게 치켜올라간 눈"], ["drooping", "Drooping — 살짝 처진 부드러운 눈"], ["upturned", "Upturned — 끝이 올라간 눈"], ["__custom__", "직접 입력…"]]}, {"key": "eye color", "label": "Eye Color", "ko": "눈동자 색", "basic": false, "options": [["", "AUTO — 센서/기체색에서 자동 결정"], ["red", "Red — 적색"], ["blue", "Blue — 청색"], ["green", "Green — 녹색"], ["gold", "Gold — 금색"], ["purple", "Purple — 보라색"], ["gray", "Gray — 회색"], ["brown", "Brown — 갈색"], ["black", "Black — 검은색"], ["__custom__", "직접 입력…"]]}, {"key": "bangs", "label": "Bangs", "ko": "앞머리", "basic": false, "options": [["", "AUTO — 자동 결정"], ["none", "None — 앞머리 없음"], ["straight bangs", "Straight Bangs — 일자 앞머리"], ["side-swept bangs", "Side-swept Bangs — 옆으로 넘긴 앞머리"], ["curtain bangs", "Curtain Bangs — 커튼뱅"], ["long side bangs", "Long Side Bangs — 긴 사이드뱅"], ["__custom__", "직접 입력…"]]}, {"key": "expression", "label": "Expression", "ko": "표정", "basic": false, "options": [["", "AUTO — 기체 성격에 맞춰 자동 결정"], ["calm", "Calm — 차분함"], ["serious", "Serious — 진지함"], ["confident", "Confident — 자신감"], ["cold", "Cold — 차갑고 냉정함"], ["gentle", "Gentle — 부드러움"], ["smirk", "Smirk — 옅은 비웃음/미소"], ["fierce", "Fierce — 강렬하고 사나움"], ["stoic", "Stoic — 감정을 절제한 무표정"], ["__custom__", "직접 입력…"]]}, {"key": "skin tone", "label": "Skin Tone", "ko": "피부 톤", "basic": false, "options": [["", "AUTO — 자동 결정"], ["pale", "Pale — 매우 밝은 피부"], ["light", "Light — 밝은 피부"], ["medium", "Medium — 중간 피부톤"], ["tan", "Tan — 태닝된 피부"], ["deep", "Deep — 짙은 피부톤"], ["__custom__", "직접 입력…"]]}, {"key": "head crest integration", "label": "Head Crest Integration", "ko": "헤드 크레스트 표현", "basic": false, "options": [["", "AUTO — 원기체에 맞춰 자동 결정"], ["mechanical crest", "Mechanical Crest — 기계식 크레스트 유지"], ["headband-like", "Headband-like — 헤드밴드처럼 통합"], ["hair ornament", "Hair Ornament — 헤어 장식처럼 통합"], ["helmet-like", "Helmet-like — 헬멧 구조로 통합"], ["sensor ornament", "Sensor Ornament — 센서 장식으로 표현"], ["__custom__", "직접 입력…"]]}, {"key": "silhouette character", "label": "Silhouette Character", "ko": "전체 실루엣 성격", "basic": false, "options": [["", "AUTO — 자동 결정"], ["aerodynamic", "Aerodynamic — 공기역학적이고 날렵함"], ["elegant", "Elegant — 우아하고 유려함"], ["aggressive", "Aggressive — 공격적이고 뾰족함"], ["heavy", "Heavy — 중장갑형의 묵직함"], ["tactical", "Tactical — 실전적이고 전술적"], ["regal", "Regal — 위엄 있고 장식적인 인상"], ["experimental", "Experimental — 실험기다운 이질적 형태"], ["minimal", "Minimal — 간결하고 절제된 형태"], ["__custom__", "직접 입력…"]]}, {"key": "equipment emphasis", "label": "Equipment Emphasis", "ko": "장비 강조", "basic": false, "options": [["", "AUTO — 기체 대표 장비를 자동 우선"], ["balanced", "Balanced — 장비를 균형 있게"], ["backpack", "Backpack — 백팩 구조 강조"], ["wings / binders", "Wings / Binders — 날개/바인더 강조"], ["main weapon", "Main Weapon — 주무장 강조"], ["shield", "Shield — 방패 강조"], ["remote weapons", "Remote Weapons — 판넬/비트/드론 강조"], ["transformation system", "Transformation System — 변형기구 강조"], ["__custom__", "직접 입력…"]]}, {"key": "equipment state", "label": "Equipment State", "ko": "장비 상태", "basic": false, "options": [["", "AUTO — 자동 결정"], ["fully mounted", "Fully Mounted — 장비 전부 장착"], ["main weapon held", "Main Weapon Held — 주무장을 손에 듦"], ["weapons stowed", "Weapons Stowed — 무장 수납 상태"], ["equipment deployed", "Equipment Deployed — 날개/판넬 등 전개 상태"], ["__custom__", "직접 입력…"]]}, {"key": "pose character", "label": "Pose Character", "ko": "포즈 성격", "basic": false, "options": [["", "AUTO — 자동 결정"], ["neutral", "Neutral — 정적인 기본 자세"], ["heroic", "Heroic — 영웅적인 자세"], ["confident", "Confident — 자신감 있는 자세"], ["relaxed", "Relaxed — 힘을 뺀 자연스러운 자세"], ["combat-ready", "Combat-ready — 전투 준비 자세"], ["elegant", "Elegant — 우아한 자세"], ["__custom__", "직접 입력…"]]}, {"key": "view angle", "label": "View Angle", "ko": "시점", "basic": false, "options": [["", "AUTO — 자동 결정"], ["front", "Front — 정면"], ["front three-quarter", "Front 3/4 — 정면 45도"], ["side", "Side — 측면"], ["rear three-quarter", "Rear 3/4 — 후면 45도"], ["__custom__", "직접 입력…"]]}];
+  const CATS = [["auto_random", "AUTO / RANDOM", "자동 / 랜덤", ""], ["adult_roleplay", "ADULT ROLEPLAY / OCCUPATION EVENT FASHION", "성인 역할극 / 직업풍 이벤트 패션", "Create playful adult event fashion inspired by occupation or roleplay motifs. It must look like stylized adult costume fashion rather than a real professional uniform. Use believable styling or preparation actions. No real insignia, no weapons, no tactical gear."], ["occupation_basic", "MODERN OCCUPATION — BASIC", "현대 직업컷 — 기본", "Create ONE believable modern occupation scene. First derive a specific modern profession from a distinctive SOURCE MOBILE SUIT lore anchor whenever possible. The workplace, clothing, action, and tools should make the occupation understandable without text. Keep styling attractive but grounded, practical, and non-costume-like."], ["occupation_sensual", "MODERN OCCUPATION — SENSUAL", "현대 직업컷 — 섹시", "Create ONE believable modern occupation scene with the same clearly adult woman, but use more attractive, fashion-forward, body-conscious styling and cinematic presentation while keeping the occupation readable and plausible. Sensuality should come from silhouette, tailoring, posture, movement, exposed non-intimate skin, and lighting rather than explicit exposure. This is a real modern occupation interpretation, NOT roleplay costume fashion."], ["everyday_basic", "EVERYDAY LIFE — BASIC", "일상컷 — 기본", "Create candid ordinary personal-life moments. The scene should feel lived-in, believable, and visually specific rather than staged. Use normal contemporary clothing with clear character personality. Avoid glamour-shoot posing, professional work, and costume styling."], ["everyday_sensual", "EVERYDAY LIFE — SENSUAL", "일상컷 — 섹시", "Create candid ordinary personal-life moments with naturally sensual adult styling. The situation must still feel believable everyday life, but clothing, silhouette, movement, fabric drape, shoulders, waist, back, hips, thighs, framing, or lighting may create a stronger attractive mood. Avoid turning the scene into a lingerie catalogue or deliberate glamour shoot."], ["swimwear", "SWIMWEAR LIFESTYLE", "수영복 라이프스타일", "This pair is always swimwear-focused. Use noticeably sensual but fully covering modern swimwear. Prioritize memorable swimwear-related scenes rather than static posing. Prefer post-swim atmosphere, water context, wet or damp hair, reflected light, and meaningful action."], ["active", "ACTIVE / MOVEMENT FASHION", "액티브 / 무브먼트 패션", "Show real movement with fashion-forward activewear or movement-oriented clothing. Avoid generic gym snapshots. Prioritize dynamic motion, readable silhouette, waist and hip lines, fabric movement, and varied action."], ["source_editorial", "SOURCE-INSPIRED EDITORIAL FASHION", "SOURCE 영감 에디토리얼 패션", "This pair should reinterpret the source mobile suit as human editorial fashion. Translate source-specific colors, geometry, silhouette logic, crest language, and equipment symbolism into couture or themed fashion. No literal armor, no pilot suit, no mechanical body, no weapons."], ["homewear", "FASHION HOMEWEAR / LOUNGE LIFE", "패션 홈웨어 / 라운지 라이프", "Create designed, fashion-forward homewear or lounge-life scenes. Avoid plain pajamas and bland static sofa poses. Use believable home-life actions, stylish home fashion silhouettes, and a sensual but natural private-life atmosphere."], ["private_evening", "PRIVATE EVENING FASHION", "프라이빗 이브닝 패션", "Create mature private evening fashion scenes with intimate but non-explicit atmosphere. Use elegant, attractive, clearly adult styling, confident body language, and believable private-life context."], ["lingerie", "LINGERIE-INSPIRED FASHION", "란제리풍 패션", "Use tasteful adult lingerie-inspired fashion or intimate evening styling with full intimate coverage. Emphasize framing, silhouette, posture, lighting, and atmosphere rather than explicit nudity."], ["everyday", "EVERYDAY LIFESTYLE", "일상 라이프스타일", "Depict ordinary personal-life moments rather than occupation, costume, or formal editorial shoots. Keep them candid, believable, visually varied, and attractive without becoming too plain."], ["wildcard", "WILDCARD", "와일드카드", "Invent a fresh mature category not already used by the other pairs. It should remain stylish, sensual, cinematic, and non-explicit while contributing strong novelty."], ["__custom__", "CUSTOM", "직접 입력", ""]];
+  const PRESETS = {"free": {"label": "자유 설정", "pairs": ["adult_roleplay", "swimwear", "homewear"], "advanced": {}}, "A": {"label": "기존 A — 코스튬 / 수영복 / 홈웨어", "pairs": ["adult_roleplay", "swimwear", "homewear"], "advanced": {"overall_intensity": "sensual", "pair_gap": "medium", "outfit_variety": "high", "scene_variety": "high", "source_influence": "subtle"}}, "B": {"label": "기존 B — 액티브 / SOURCE 에디토리얼 / 프라이빗", "pairs": ["active", "source_editorial", "private_evening"], "advanced": {"overall_intensity": "sensual", "pair_gap": "medium", "outfit_variety": "high", "scene_variety": "high", "source_influence": "balanced"}}, "random_variety": {"label": "랜덤 다양성", "pairs": ["wildcard", "wildcard", "wildcard"], "advanced": {"overall_intensity": "sensual", "pair_gap": "medium", "outfit_variety": "extreme", "scene_variety": "extreme", "pose_variety": "extreme", "camera_variety": "extreme", "unexpected_cuts": "3"}}, "outfit_focus": {"label": "의상 중심", "pairs": ["adult_roleplay", "source_editorial", "lingerie"], "advanced": {"overall_intensity": "bold", "pair_gap": "medium", "outfit_variety": "extreme", "scene_variety": "high", "source_influence": "balanced"}}, "scene_focus": {"label": "씬 중심", "pairs": ["everyday", "swimwear", "wildcard"], "advanced": {"overall_intensity": "sensual", "pair_gap": "medium", "scene_variety": "extreme", "camera_variety": "high", "pose_variety": "high"}}, "strong_fashion": {"label": "강한 패션", "pairs": ["adult_roleplay", "source_editorial", "lingerie"], "advanced": {"overall_intensity": "strong", "pair_gap": "strong", "skin_exposure": "bold", "outfit_variety": "high", "source_influence": "balanced"}}, "stable": {"label": "안정형", "pairs": ["adult_roleplay", "swimwear", "private_evening"], "advanced": {"overall_intensity": "restrained", "pair_gap": "small", "outfit_variety": "normal", "scene_variety": "normal", "pose_variety": "normal"}}, "worklife": {"label": "직업·일상 믹스", "pairs": ["occupation_basic", "everyday_basic", "everyday_sensual"], "advanced": {"overall_intensity": "sensual", "pair_gap": "medium", "scene_variety": "high", "pose_variety": "high"}}, "worklife_bold": {"label": "직업·일상 강한 버전", "pairs": ["occupation_sensual", "everyday_sensual", "private_evening"], "advanced": {"overall_intensity": "bold", "pair_gap": "medium", "outfit_variety": "high", "scene_variety": "high", "skin_exposure": "moderate"}}};
+  const ADVANCED_OPTIONS = {"overall_intensity": ["AUTO", "restrained", "sensual", "bold", "strong"], "pair_gap": ["AUTO", "small", "medium", "strong", "extreme"], "outfit_variety": ["AUTO", "normal", "high", "extreme"], "scene_variety": ["AUTO", "normal", "high", "extreme"], "pose_variety": ["AUTO", "normal", "high", "extreme"], "camera_variety": ["AUTO", "normal", "high", "extreme"], "skin_exposure": ["AUTO", "low", "moderate", "bold"], "separates_preference": ["AUTO", "balanced", "prefer separates", "strongly prefer separates"], "one_piece_limit": ["AUTO", "1", "2", "3"], "action_level": ["AUTO", "mostly posed", "balanced", "mostly active"], "direct_gaze_limit": ["AUTO", "0", "1", "2"], "smile_limit": ["AUTO", "0", "1", "2"], "unexpected_cuts": ["AUTO", "1", "2", "3"], "source_influence": ["AUTO", "subtle", "balanced", "strong"]};
+  const ADVANCED_LABELS = {"overall_intensity": ["Overall Intensity", "전체 강도"], "pair_gap": ["Pair Gap", "약한 컷↔강한 컷 차이"], "outfit_variety": ["Outfit Variety", "의상 다양성"], "scene_variety": ["Scene Variety", "장면 다양성"], "pose_variety": ["Pose Variety", "포즈 다양성"], "camera_variety": ["Camera Variety", "카메라 다양성"], "skin_exposure": ["Skin Exposure", "피부 노출 정도"], "separates_preference": ["Separates Preference", "분리형 의상 선호"], "one_piece_limit": ["One-piece Limit", "원피스류 최대 개수"], "action_level": ["Action Level", "액션 비중"], "direct_gaze_limit": ["Direct Gaze Limit", "정면 시선 최대"], "smile_limit": ["Smile Limit", "미소 최대"], "unexpected_cuts": ["Unexpected Cuts", "예상 밖 컷 수"], "source_influence": ["Source Influence", "SOURCE 영향도"]};
+  const RANDOM_POOL = ["adult_roleplay", "occupation_basic", "occupation_sensual", "swimwear", "active", "source_editorial", "homewear", "private_evening", "lingerie", "everyday_basic", "everyday_sensual", "wildcard"];
+  const EXAMPLE_MAP = {"auto_random": [["", "AUTO", "자동", "basic"], ["seasonal_night", "Seasonal Night Mood", "계절감 있는 야간 무드", "basic"], ["travel_cut", "Travel / Resort Vibe", "여행 / 리조트 무드", "popular"], ["festival_night", "Night Festival", "야간 페스티벌", "popular"], ["unexpected_contrast", "Unexpected Contrast Concept", "예상 밖 대비 콘셉트", "special"], ["retro_future", "Retro-Future Lifestyle", "레트로 퓨처 라이프", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "adult_roleplay": [["", "AUTO", "자동", "basic"], ["event_staff", "Adult Event Staff Costume", "성인 이벤트 스태프 코스튬", "basic"], ["uniform_inspired", "Stylized Uniform-inspired Look", "스타일화된 유니폼풍 룩", "basic"], ["adult_police", "Adult Police Costume", "성인 경찰 코스튬", "popular"], ["adult_nurse", "Adult Nurse Costume", "성인 간호사 코스튬", "popular"], ["adult_maid", "Adult Maid Costume", "성인 메이드 코스튬", "popular"], ["adult_secretary", "Adult Secretary Costume", "성인 비서 코스튬", "popular"], ["bunny", "Bunny Costume", "바니 코스튬", "popular"], ["flight_attendant", "Flight-attendant-inspired Costume", "승무원풍 코스튬", "popular"], ["casino_dealer", "Casino Dealer / Hostess Styling", "카지노 딜러 / 호스티스 스타일", "popular"], ["lab_roleplay", "Laboratory Roleplay Fashion", "연구실 역할극 패션", "special"], ["ceremonial_instructor", "Ceremonial Instructor Styling", "세리머니얼 인스트럭터 스타일", "special"], ["retro_racer", "Retro Grid / Racing Costume", "레트로 레이싱 코스튬", "special"], ["vinyl_stage", "Vinyl Stage Fashion", "비닐 스테이지 패션", "special"], ["masquerade", "Masquerade Costume Fashion", "마스커레이드 코스튬 패션", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "occupation_basic": [["", "AUTO — source-appropriate profession", "AUTO — 기체에 어울리는 직업 자동", "basic"], ["office_project", "Technical Project Manager", "기술 프로젝트 매니저", "basic"], ["field_surveyor", "Field Surveyor / Recon Specialist", "현장 조사 / 정찰 전문", "basic"], ["industrial_inspector", "Industrial Safety Inspector", "산업 안전 점검관", "basic"], ["drone_operator", "Drone Operator / Remote Systems", "드론 운용 / 원격 시스템", "popular"], ["aviation_control", "Aviation Dispatch / Flight Control", "항공 디스패치 / 비행 관제", "popular"], ["rescue_paramedic", "Rescue Paramedic", "구조 구급대원", "popular"], ["test_engineer", "Experimental Test Engineer", "실험기 테스트 엔지니어", "popular"], ["robotics_researcher", "Robotics Researcher", "로보틱스 연구원", "popular"], ["mobility_tuner", "Mobility Mechanic / Performance Tuner", "모빌리티 정비사 / 퍼포먼스 튜너", "popular"], ["marine_technician", "Marine Systems Technician", "해양 시스템 기술자", "special"], ["observatory_engineer", "Observatory Systems Engineer", "천문 관측 시스템 엔지니어", "special"], ["architecture_engineer", "Structural / Architecture Engineer", "구조 / 건축 엔지니어", "special"], ["renewable_engineer", "High-output Energy Systems Engineer", "고출력 에너지 시스템 엔지니어", "special"], ["stage_rigging", "Stage Rigging / Motion Systems Engineer", "무대 리깅 / 모션 시스템 엔지니어", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "occupation_sensual": [["", "AUTO — source-appropriate profession", "AUTO — 기체에 어울리는 직업 자동", "basic"], ["fashion_project", "Fashion-forward Technical Project Lead", "패션감 있는 기술 프로젝트 리드", "basic"], ["night_lab", "Night-shift Lab Specialist", "야간 근무 연구실 스페셜리스트", "basic"], ["fashion_test_engineer", "Fashion-forward Test Engineer", "패션감 있는 테스트 엔지니어", "popular"], ["flight_supervisor", "Flight Operations Supervisor", "비행 운항 슈퍼바이저", "popular"], ["elite_paramedic", "Elite Rescue Medic", "엘리트 구조 메딕", "popular"], ["drone_director", "Remote Drone Director", "원격 드론 디렉터", "popular"], ["hightech_inspector", "High-tech Systems Inspector", "하이테크 시스템 인스펙터", "popular"], ["prototype_consultant", "Prototype Mobility Consultant", "프로토타입 모빌리티 컨설턴트", "special"], ["luxury_yacht_tech", "Luxury Yacht Tech Specialist", "럭셔리 요트 기술 전문가", "special"], ["night_observatory", "Night Observatory Engineer", "야간 천문대 엔지니어", "special"], ["motion_stage_director", "Kinetic Stage Systems Director", "키네틱 무대 시스템 디렉터", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "swimwear": [["", "AUTO", "자동", "basic"], ["classic_bikini", "Classic Bikini", "클래식 비키니", "basic"], ["sport_onepiece", "Sporty One-piece", "스포티 원피스", "basic"], ["highleg_onepiece", "High-leg One-piece", "하이레그 원피스", "popular"], ["monokini", "Monokini", "모노키니", "popular"], ["triangle_bikini", "Triangle Bikini", "트라이앵글 비키니", "popular"], ["bandeau_bikini", "Bandeau Bikini", "반두 비키니", "popular"], ["halter_bikini", "Halter Bikini", "홀터 비키니", "popular"], ["asymmetric_swim", "Asymmetric One-shoulder Swimwear", "비대칭 원숄더 수영복", "popular"], ["crossstrap_swim", "Cross-strap Swimwear", "크로스 스트랩 수영복", "popular"], ["moonlit_pool", "Moonlit Outdoor Pool", "달빛 야외풀", "special"], ["rooftop_infinity_pool", "Rooftop Infinity Pool", "루프탑 인피니티 풀", "special"], ["outdoor_shower", "Outdoor Shower / Rinse-off", "야외 샤워 / 린스오프", "special"], ["cabana_daybed", "Resort Cabana / Daybed", "리조트 카바나 / 데이베드", "special"], ["thermal_spa", "Modern Thermal Spa Pool", "모던 온천 / 스파 풀", "special"], ["shoreline_walk", "Wet Shoreline Walk", "젖은 해변 산책", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "active": [["", "AUTO", "자동", "basic"], ["warmup", "Warm-up / Cool-down", "워밍업 / 쿨다운", "basic"], ["stretch", "Mobility Stretch Session", "모빌리티 스트레칭", "basic"], ["dance_transition", "Dance Practice Transition", "댄스 연습 중 전환 동작", "popular"], ["pilates", "Pilates / Core Session", "필라테스 / 코어 세션", "popular"], ["tennis_active", "Tennis-inspired Active Fashion", "테니스풍 액티브 패션", "popular"], ["basketball_jersey", "Loose Basketball Jersey Fashion", "루즈 농구저지 패션", "popular"], ["boxing_fitness", "Boxing Fitness Styling", "복싱 피트니스 스타일", "popular"], ["running_recovery", "Post-run Recovery", "러닝 후 리커버리", "popular"], ["parkour_stairs", "Stair / Parkour Transition", "계단 / 파쿠르 전환 동작", "special"], ["roller_skating", "Roller-skating Fashion", "롤러스케이트 패션", "special"], ["fencing_motion", "Fencing-inspired Movement Fashion", "펜싱풍 무브먼트 패션", "special"], ["climbing_warmup", "Climbing Warm-up", "클라이밍 워밍업", "special"], ["surf_prep", "Surf Preparation", "서핑 준비 장면", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "source_editorial": [["", "AUTO — strongest source motif", "AUTO — 기체 대표 모티프 자동", "basic"], ["couture_gala", "Couture Gala Look", "쿠튀르 갈라 룩", "basic"], ["runway", "Runway Editorial", "런웨이 에디토리얼", "basic"], ["aerodynamic_couture", "Aerodynamic Layered Couture", "공기역학적 레이어드 쿠튀르", "popular"], ["metallic_asymmetry", "Metallic Asymmetric Tailoring", "메탈릭 비대칭 테일러링", "popular"], ["ceremonial_whitegold", "Ceremonial White / Gold Look", "의전풍 화이트 / 골드 룩", "popular"], ["cyber_street", "Cyber Street Editorial", "사이버 스트리트 에디토리얼", "popular"], ["deconstructed_frame", "Deconstructed Frame-line Couture", "프레임 라인 해체형 쿠튀르", "special"], ["floating_panel", "Floating-panel Inspired Couture", "플로팅 패널 영감 쿠튀르", "special"], ["luminous_circuit", "Luminous Circuit Editorial", "루미너스 서킷 에디토리얼", "special"], ["wing_light", "Wing-light / Kinetic Layer Editorial", "윙 라이트 / 키네틱 레이어 에디토리얼", "special"], ["heavy_architecture", "Heavy Architectural Tailoring", "중량감 있는 아키텍처럴 테일러링", "special"], ["stealth_monochrome", "Stealth Monochrome Editorial", "스텔스 모노크롬 에디토리얼", "special"], ["transformation_drape", "Transforming Drape Construction", "변형 구조 드레이프", "special"], ["orbital_ring", "Orbital Ring / Halo Geometry", "궤도 링 / 헤일로 지오메트리", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "homewear": [["", "AUTO", "자동", "basic"], ["soft_tank_shorts", "Soft Tank Top + Shorts", "소프트 탱크탑 + 쇼츠", "basic"], ["satin_lounge", "Satin Lounge Set", "새틴 라운지 세트", "basic"], ["offshoulder_knit", "Off-shoulder Knit Homewear", "오프숄더 니트 홈웨어", "popular"], ["camisole_wrap", "Camisole + Wrap Bottom", "캐미솔 + 랩 바텀", "popular"], ["bralette_cardigan", "Bralette + Open Cardigan", "브라렛 + 오픈 가디건", "popular"], ["one_shoulder_lounge", "One-shoulder Lounge Set", "원숄더 라운지 세트", "popular"], ["backless_lounge", "Backless Lounge Look", "백리스 라운지 룩", "special"], ["after_bath", "After-bath Homewear", "목욕 후 홈웨어", "special"], ["window_vanity", "Window-side Vanity Moment", "창가 화장대 순간", "special"], ["late_night_kitchen", "Late-night Kitchen Homewear", "늦은 밤 주방 홈웨어", "special"], ["laundry_lounge", "Laundry / Bedding Lounge Scene", "빨래 / 침구 정리 라운지 장면", "special"], ["sunroom_lounge", "Sunroom Lounge Fashion", "선룸 라운지 패션", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "private_evening": [["", "AUTO", "자동", "basic"], ["slip_dress", "Slip Dress Evening", "슬립 드레스 이브닝", "basic"], ["cocktail_mini", "Cocktail Mini Dress", "칵테일 미니드레스", "basic"], ["one_shoulder_satin", "One-shoulder Satin Evening", "원숄더 새틴 이브닝", "popular"], ["low_back_evening", "Low-back Evening Dress", "로우백 이브닝 드레스", "popular"], ["after_party", "After-party Styling", "애프터파티 스타일링", "popular"], ["hotel_evening", "Hotel Room Evening", "호텔룸 이브닝", "popular"], ["balcony_night", "Night Balcony Mood", "야간 발코니 무드", "popular"], ["mirror_touchup", "Mirror Touch-up", "거울 앞 메이크업 수정", "special"], ["opera_night", "Opera / Theater Night Styling", "오페라 / 극장 나이트 스타일", "special"], ["penthouse_window", "Penthouse Window Mood", "펜트하우스 창가 무드", "special"], ["silk_robe_evening", "Silk Robe over Evening Base", "이브닝 베이스 위 실크 로브", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "lingerie": [["", "AUTO", "자동", "basic"], ["lace_set", "Lace Lingerie Set", "레이스 란제리 세트", "basic"], ["satin_set", "Satin Lingerie Set", "새틴 란제리 세트", "basic"], ["bralette_highwaist", "Bralette + High-waist Bottom", "브라렛 + 하이웨이스트 바텀", "popular"], ["bustier_inspired", "Bustier-inspired Lingerie", "뷔스티에풍 란제리", "popular"], ["bodysuit", "Lingerie Bodysuit", "란제리 보디수트", "popular"], ["garter_set", "Garter-inspired Styling", "가터풍 스타일링", "popular"], ["corset_lingerie", "Corset-inspired Lingerie", "코르셋풍 란제리", "popular"], ["open_shirt_lingerie", "Open Shirt over Lingerie", "란제리 위 오픈 셔츠", "special"], ["night_robe", "Night Robe + Lingerie", "나이트 로브 + 란제리", "special"], ["back_strap", "Back-strap Lingerie", "백스트랩 란제리", "special"], ["asymmetric_lingerie", "Asymmetric Lingerie Set", "비대칭 란제리 세트", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "everyday_basic": [["", "AUTO", "자동", "basic"], ["commute_train", "Train / Subway Commute", "지하철 / 기차 통근", "basic"], ["grocery_run", "Grocery Run", "장보기", "basic"], ["simple_cooking", "Simple Cooking", "간단한 요리", "basic"], ["cafe_takeout", "Coffee / Takeout Run", "커피 / 테이크아웃", "popular"], ["laundry", "Laundry / Folding Clothes", "세탁 / 빨래 개기", "popular"], ["rain_walk", "Rainy Day Walk", "비 오는 날 걷기", "popular"], ["station_wait", "Waiting at Station", "역에서 기다리기", "popular"], ["bookstore", "Bookstore Browsing", "서점 구경", "popular"], ["parcel_pickup", "Parcel / Convenience-store Pickup", "택배 / 편의점 픽업", "popular"], ["midnight_laundromat", "Midnight Laundromat", "심야 코인세탁방", "special"], ["greenhouse", "Greenhouse / Plant Shop", "온실 / 식물가게", "special"], ["pottery_class", "Pottery / Craft Class", "도예 / 공예 클래스", "special"], ["record_store", "Vinyl Record Store", "레코드숍", "special"], ["hardware_store", "Hardware / Home-improvement Store", "철물 / 홈센터", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "everyday_sensual": [["", "AUTO", "자동", "basic"], ["morning_stretch", "Morning Stretch", "아침 스트레칭", "basic"], ["window_light", "Window-light Casual Moment", "창가 자연광 캐주얼 순간", "basic"], ["late_snack", "Late-night Snack / Drink", "늦은 밤 간식 / 음료", "popular"], ["high_shelf", "Reaching to a High Shelf", "높은 선반 손 뻗기", "popular"], ["hair_tie", "Tying Hair after Shower", "샤워 후 머리 묶기", "popular"], ["laundry_soft", "Laundry with Soft Fashion Reveal", "소프트 패션 리빌 세탁 장면", "popular"], ["sunroom_relax", "Sunroom Relaxation", "선룸 휴식", "popular"], ["balcony_plants", "Watering Balcony Plants", "발코니 식물 물주기", "popular"], ["rainy_return", "Returning Home after Rain", "비 맞고 귀가한 순간", "special"], ["floor_organizing", "Floor-level Closet Organizing", "바닥에 앉아 옷장 정리", "special"], ["after_work_change", "Changing Outer Layers after Work", "퇴근 후 겉옷 정리", "special"], ["fridge_light", "Refrigerator-light Late-night Moment", "냉장고 불빛 늦은 밤 순간", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "wildcard": [["", "AUTO", "자동", "basic"], ["festival_night", "Night Festival Cut", "야간 페스티벌 컷", "basic"], ["rain_editorial", "Rain Editorial", "비 오는 에디토리얼", "popular"], ["arcade_night", "Night Arcade Styling", "야간 아케이드 스타일", "popular"], ["ferry_deck", "Ferry / Ship Deck Fashion", "페리 / 선박 데크 패션", "popular"], ["retro_motel", "Retro Motel Mood", "레트로 모텔 무드", "special"], ["desert_resort", "Desert Resort Fashion", "사막 리조트 패션", "special"], ["futuristic_spa", "Futuristic Spa", "퓨처리스틱 스파", "special"], ["observatory_night", "Night Observatory", "야간 천문대", "special"], ["greenhouse_afterdark", "Greenhouse after Dark", "심야 온실", "special"], ["rooftop_cinema", "Rooftop Cinema", "루프탑 시네마", "special"], ["winter_lodge", "Winter Lodge Fashion", "겨울 로지 패션", "special"], ["art_studio", "After-hours Art Studio", "영업 종료 후 아트 스튜디오", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "__custom__": [["", "AUTO", "자동", "basic"], ["__custom__", "CUSTOM", "직접 입력", "special"]]};
+  const GROUP_LABELS = {"basic": "기본 / Standard", "popular": "대중 / Popular", "special": "특수 / Unusual"};
+
+  const seriesPicker=document.getElementById('seriesPicker');
+  const mechPicker=document.getElementById('mechPicker');
+  const selInfo=document.getElementById('selInfo');
+  const textCollage=document.getElementById('textCollage');
+  const textAnthro=document.getElementById('textAnthro');
+
+  const tabs={
+    collage:[document.getElementById('tabCollage'),document.getElementById('panelCollage')],
+    anthro:[document.getElementById('tabAnthro'),document.getElementById('panelAnthro')]
+  };
+
+  function escHtml(s){return String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+  function setStatus(id,msg,kind=''){const el=document.getElementById(id);el.textContent=msg;el.classList.remove('ok','warn');if(kind)el.classList.add(kind);}
+  function showTab(which){Object.entries(tabs).forEach(([k,p])=>{const on=k===which;p[0].classList.toggle('active',on);p[1].classList.toggle('hidden',!on);});}
+
+  function rowsForSeries(key){return MECH.filter(r=>r[1].includes(key));}
+  function fillSeries(){seriesPicker.innerHTML=SERIES_ORDER.map(k=>'<option value="'+escHtml(k)+'">'+escHtml(SER_NAME[k]||k)+'</option>').join('');}
+  function fillMechs(preferred=''){
+    const rows=rowsForSeries(seriesPicker.value);
+    mechPicker.innerHTML=rows.map(r=>'<option value="'+escHtml(r[0])+'">'+escHtml(r[0])+'</option>').join('');
+    if(preferred&&rows.some(r=>r[0]===preferred))mechPicker.value=preferred;
+  }
+  function selectedSource(){const key=seriesPicker.value;return{seriesKey:key,series:SER_NAME[key]||key,mech:mechPicker.value};}
+  function updateSelInfo(){const s=selectedSource();selInfo.innerHTML='<b>'+escHtml(s.series)+'</b> · '+escHtml(s.mech);}
+
+  const CAT={};CATS.forEach(r=>CAT[r[0]]={eng:r[1],ko:r[2],guide:r[3]});
+
+  function renderPresetSelect(){
+    document.getElementById('presetSelect').innerHTML=Object.entries(PRESETS).map(([k,v])=>'<option value="'+escHtml(k)+'">'+escHtml(v.label)+'</option>').join('');
+  }
+  function renderPairSelects(){
+    [1,2,3].forEach(n=>{
+      document.getElementById('pair'+n+'Select').innerHTML=CATS.map(r=>'<option value="'+escHtml(r[0])+'">'+escHtml(r[1]+' — '+r[2])+'</option>').join('');
+    });
+  }
+  function renderAdvancedGrid(){
+    const grid=document.getElementById('collageAdvancedGrid');
+    grid.innerHTML=Object.entries(ADVANCED_OPTIONS).map(([key,vals])=>{
+      const lab=ADVANCED_LABELS[key];
+      const opts=vals.map(v=>'<option value="'+escHtml(v==='AUTO'?'':v)+'">'+escHtml(v==='AUTO'?'AUTO — 자동':v)+'</option>').join('');
+      return '<div class="field"><label>'+escHtml(lab[0])+' <small>'+escHtml(lab[1])+'</small></label><select id="adv_'+escHtml(key)+'">'+opts+'</select></div>';
+    }).join('');
+  }
+
+  function groupedOptions(cat, panelMode=false){
+    const items=EXAMPLE_MAP[cat]||EXAMPLE_MAP['__custom__'];
+    let h=panelMode?'<option value="">AUTO — Pair 예시 따름</option>':'';
+    ['basic','popular','special'].forEach(group=>{
+      const rows=items.filter(r=>r[3]===group && !(panelMode && r[0]===''));
+      if(!rows.length)return;
+      h+='<optgroup label="'+escHtml(GROUP_LABELS[group]||group)+'">';
+      rows.forEach(r=>{h+='<option value="'+escHtml(r[0])+'">'+escHtml(r[1]+' — '+r[2])+'</option>';});
+      h+='</optgroup>';
+    });
+    return h;
+  }
+
+  function renderPairExample(n,keep=false){
+    const cat=document.getElementById('pair'+n+'Select').value;
+    const sel=document.getElementById('pair'+n+'Example');
+    const prev=keep?sel.value:'';
+    sel.innerHTML=groupedOptions(cat,false);
+    if(prev&&[...sel.options].some(o=>o.value===prev))sel.value=prev; else sel.value='';
+    document.getElementById('pair'+n+'ExampleCustom').classList.toggle('hidden',sel.value!=='__custom__');
+  }
+
+  function pairForPanel(n){return n<=2?1:n<=4?2:3;}
+  function renderPanelExample(n,keep=false){
+    const p=pairForPanel(n);
+    const cat=document.getElementById('pair'+p+'Select').value;
+    const sel=document.getElementById('panel'+n+'Example');
+    const prev=keep?sel.value:'';
+    sel.innerHTML=groupedOptions(cat,true);
+    if(prev&&[...sel.options].some(o=>o.value===prev))sel.value=prev;else sel.value='';
+    document.getElementById('panel'+n+'ExampleCustom').classList.toggle('hidden',sel.value!=='__custom__');
+  }
+
+  function renderOverrides(){
+    const grid=document.getElementById('overrideGrid');
+    let h='';
+    for(let n=1;n<=6;n++){
+      h+='<div class="override-card"><h3>Panel '+n+'</h3>'+
+        '<label>Panel Example <small>개별 예시</small></label><select id="panel'+n+'Example"></select>'+
+        '<input id="panel'+n+'ExampleCustom" class="custom-input hidden" placeholder="개별 예시 직접 입력">'+
+        '<label style="margin-top:8px">Scene / Location <small>장면/장소</small></label><input data-ov-panel="'+n+'" data-ov-key="scene" placeholder="AUTO">'+
+        '<label style="margin-top:7px">Outfit <small>의상</small></label><input data-ov-panel="'+n+'" data-ov-key="outfit" placeholder="AUTO">'+
+        '<label style="margin-top:7px">Action / Pose <small>행동/포즈</small></label><input data-ov-panel="'+n+'" data-ov-key="action" placeholder="AUTO">'+
+        '<label style="margin-top:7px">Camera / Lighting <small>카메라/조명</small></label><input data-ov-panel="'+n+'" data-ov-key="camera" placeholder="AUTO">'+
+        '<label style="margin-top:7px">Extra <small>추가 지시</small></label><input data-ov-panel="'+n+'" data-ov-key="extra" placeholder="AUTO">'+
+      '</div>';
+    }
+    grid.innerHTML=h;
+    for(let n=1;n<=6;n++){
+      renderPanelExample(n,false);
+      document.getElementById('panel'+n+'Example').addEventListener('change',()=>{
+        document.getElementById('panel'+n+'ExampleCustom').classList.toggle('hidden',document.getElementById('panel'+n+'Example').value!=='__custom__');
+        refreshCollagePrompt();
+      });
+      document.getElementById('panel'+n+'ExampleCustom').addEventListener('input',refreshCollagePrompt);
+    }
+    grid.querySelectorAll('[data-ov-panel]').forEach(inp=>inp.addEventListener('input',refreshCollagePrompt));
+  }
+
+  function updatePairCustomVisibility(){
+    [1,2,3].forEach(n=>{
+      const sel=document.getElementById('pair'+n+'Select');
+      document.getElementById('pair'+n+'Custom').classList.toggle('hidden',sel.value!=='__custom__');
+    });
+  }
+
+  function updateDependentExamples(pairNum){
+    renderPairExample(pairNum,false);
+    const panels=pairNum===1?[1,2]:pairNum===2?[3,4]:[5,6];
+    panels.forEach(n=>renderPanelExample(n,false));
+  }
+
+  function applyPreset(){
+    const p=PRESETS[document.getElementById('presetSelect').value];if(!p)return;
+    [1,2,3].forEach((n,i)=>{
+      document.getElementById('pair'+n+'Select').value=p.pairs[i];
+      document.getElementById('pair'+n+'Custom').value='';
+      updateDependentExamples(n);
+      document.getElementById('pair'+n+'ExampleCustom').value='';
+    });
+    updatePairCustomVisibility();
+    Object.keys(ADVANCED_OPTIONS).forEach(k=>{const el=document.getElementById('adv_'+k);if(el)el.value='';});
+    Object.entries(p.advanced||{}).forEach(([k,v])=>{const el=document.getElementById('adv_'+k);if(el)el.value=v;});
+    refreshCollagePrompt();setStatus('statusCollage','프리셋 적용 완료','ok');
+  }
+
+  function randomizePairs(){
+    const pool=[...RANDOM_POOL];
+    for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
+    document.getElementById('presetSelect').value='free';
+    [1,2,3].forEach((n,i)=>{
+      document.getElementById('pair'+n+'Select').value=pool[i];
+      document.getElementById('pair'+n+'Custom').value='';
+      updateDependentExamples(n);
+      const pairSel=document.getElementById('pair'+n+'Example');
+      const candidates=[...pairSel.options].map(o=>o.value).filter(v=>v&&v!=='__custom__');
+      pairSel.value=candidates.length&&Math.random()<0.75?candidates[Math.floor(Math.random()*candidates.length)]:'';
+    });
+    updatePairCustomVisibility();
+    const rand=a=>a[Math.floor(Math.random()*a.length)];
+    document.getElementById('adv_overall_intensity').value=rand(['sensual','bold']);
+    document.getElementById('adv_pair_gap').value=rand(['medium','strong']);
+    document.getElementById('adv_outfit_variety').value=rand(['high','extreme']);
+    document.getElementById('adv_scene_variety').value=rand(['high','extreme']);
+    document.getElementById('adv_pose_variety').value=rand(['high','extreme']);
+    document.getElementById('adv_camera_variety').value=rand(['high','extreme']);
+    document.getElementById('adv_unexpected_cuts').value=rand(['2','3']);
+    refreshCollagePrompt();setStatus('statusCollage','랜덤 조합 생성 완료 🎲','ok');
+  }
+
+  function exampleRecord(cat,value){
+    const list=EXAMPLE_MAP[cat]||[];
+    return list.find(r=>r[0]===value)||null;
+  }
+  function exampleText(cat,value,custom=''){
+    if(value==='__custom__')return custom.trim();
+    const r=exampleRecord(cat,value);return r?r[1]:'';
+  }
+
+  function getPair(n){
+    return{
+      key:document.getElementById('pair'+n+'Select').value,
+      custom:document.getElementById('pair'+n+'Custom').value.trim(),
+      exampleKey:document.getElementById('pair'+n+'Example').value,
+      exampleCustom:document.getElementById('pair'+n+'ExampleCustom').value.trim()
+    };
+  }
+  function getAdvanced(){const o={};Object.keys(ADVANCED_OPTIONS).forEach(k=>{const v=document.getElementById('adv_'+k).value;if(v)o[k]=v;});return o;}
+  function pairLabel(p,n){if(p.key==='__custom__')return p.custom||('Custom Pair '+n);return(CAT[p.key]||CAT.auto_random).eng;}
+
+  function pairInstruction(p,pairNum,a,b){
+    let txt='';
+    if(p.key==='__custom__'){
+      txt='PAIR '+pairNum+' — PANELS '+a+'-'+b+' — CUSTOM\nInterpret this pair as: '+(p.custom||'Create a fresh mature category of your choice.')+'.\nPanel '+a+' is the lighter or more restrained version. Panel '+b+' is the clearly stronger version.';
+    }else if(p.key==='auto_random'){
+      txt='PAIR '+pairNum+' — PANELS '+a+'-'+b+' — AUTO / RANDOM\nInvent a fresh mature category not duplicated by the other pairs. Panel '+a+' is lighter; Panel '+b+' is clearly stronger.';
+    }else{
+      const c=CAT[p.key];
+      txt='PAIR '+pairNum+' — PANELS '+a+'-'+b+' — '+c.eng+'\n'+c.guide+'\nPanel '+a+' should be comparatively lighter or more restrained. Panel '+b+' should be clearly bolder or stronger while remaining non-explicit.';
+    }
+    const ex=exampleText(p.key,p.exampleKey,p.exampleCustom);
+    if(ex)txt+='\nUse this pair-level example as the thematic anchor: '+ex+'.';
+    return txt;
+  }
+
+  function panelOverrideBlocks(){
+    const out=[];
+    for(let n=1;n<=6;n++){
+      const p=pairForPanel(n);
+      const cat=document.getElementById('pair'+p+'Select').value;
+      const exampleValue=document.getElementById('panel'+n+'Example').value;
+      const exampleCustom=document.getElementById('panel'+n+'ExampleCustom').value;
+      const ex=exampleText(cat,exampleValue,exampleCustom);
+      const vals={};
+      document.querySelectorAll('[data-ov-panel="'+n+'"]').forEach(inp=>{const v=inp.value.trim();if(v)vals[inp.dataset.ovKey]=v;});
+      if(ex||Object.keys(vals).length){
+        const lines=['[PANEL '+n+' OVERRIDE]'];
+        if(ex)lines.push('Panel Example Concept: '+ex);
+        if(vals.scene)lines.push('Scene / Location: '+vals.scene);
+        if(vals.outfit)lines.push('Outfit: '+vals.outfit);
+        if(vals.action)lines.push('Action / Pose: '+vals.action);
+        if(vals.camera)lines.push('Camera / Lighting: '+vals.camera);
+        if(vals.extra)lines.push('Extra: '+vals.extra);
+        out.push(lines.join('\n'));
+      }
+    }
+    return out;
+  }
+
+  function additionalSettings(adv,custom){
+    const map={
+      overall_intensity:'Overall sensual intensity',
+      pair_gap:'Pair intensity gap',
+      outfit_variety:'Outfit variety',
+      scene_variety:'Scene variety',
+      pose_variety:'Pose variety',
+      camera_variety:'Camera variety',
+      skin_exposure:'Visible non-intimate skin exposure',
+      separates_preference:'Separates preference',
+      one_piece_limit:'Maximum one-piece-like looks',
+      action_level:'Action balance',
+      direct_gaze_limit:'Maximum direct-camera gazes',
+      smile_limit:'Maximum obvious smiles',
+      unexpected_cuts:'Minimum unexpected coherent cuts',
+      source_influence:'SOURCE influence outside source-editorial panels'
+    };
+    const lines=[];
+    Object.entries(adv).forEach(([k,v])=>lines.push('- '+(map[k]||k)+': '+v+'.'));
+    if(custom)lines.push('- Additional custom instruction: '+custom+'.');
+    if(!lines.length)lines.push('- Use balanced defaults.');
+    return lines.join('\n');
+  }
+
+  function buildCollagePrompt(){
+    const s=selectedSource(),p1=getPair(1),p2=getPair(2),p3=getPair(3),adv=getAdvanced(),custom=document.getElementById('collageCustom').value.trim();
+    const parts=[
+      '[INPUT]\n\nSOURCE MOBILE SUIT: ['+s.mech+']\n\nUse the attached clearly adult anthropomorphized character as the absolute identity reference.',
+      '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman in all six panels. Preserve the exact same face, apparent adult age, eyes, nose, mouth, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. No face drift, age drift, hairstyle redesign, or body redesign. Only identity repeats.',
+      '[OUTPUT]\n\nCreate ONE SINGLE 3:2 LANDSCAPE image as a clean 3-column × 2-row collage:\n1 | 2 | 3\n4 | 5 | 6\nExactly six equal, approximately square panels. Only small numerals 1–6 in the upper-left corners. No captions, titles, labels, subtitles, logos-as-text, or other words. Exactly one woman per panel.',
+      '[PAIR STRUCTURE]\n\nPair 1 = Panel 1 < Panel 2 = '+pairLabel(p1,1)+'\nPair 2 = Panel 3 < Panel 4 = '+pairLabel(p2,2)+'\nPair 3 = Panel 5 < Panel 6 = '+pairLabel(p3,3)+'\n\nWithin each pair, the first panel is relatively lighter or more restrained and the second panel is clearly stronger, bolder, more visually striking, or more intense.',
+      '[GLOBAL DIVERSITY]\n\nCreate six substantially different scenes. The six panels should differ in location, action, outfit silhouette, body configuration, camera distance, camera angle, lighting, and atmosphere. Changing only colors or props does not count. At least four panels should show meaningful action and at least two should feel caught midway. Review recent generations in this conversation and avoid substantial repetition of recent outfits, scenes, poses, and compositions.',
+      pairInstruction(p1,1,1,2),
+      pairInstruction(p2,2,3,4),
+      pairInstruction(p3,3,5,6),
+      '[ADDITIONAL SETTINGS]\n\n'+additionalSettings(adv,custom)
+    ];
+    const ovs=panelOverrideBlocks();
+    if(ovs.length)parts.push('[PANEL OVERRIDES]\n\n'+ovs.join('\n\n'));
+    parts.push('[NON-EXPLICIT LIMITS]\n\nThe character must clearly read as an adult. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.');
+    parts.push('[FINAL CHECK]\n\nVerify: exactly six panels; 3×2 landscape layout; same adult woman in all panels; only numbers 1–6 appear; selected pair categories and examples are followed; individual Panel Example selections override pair-level examples when present; the second panel of each pair is clearly stronger than the first; outfits, scenes, actions, poses, and camera treatments remain varied; no explicit nudity or sexual activity.');
+    return parts.join('\n\n==================================================\n\n');
+  }
+  function refreshCollagePrompt(){textCollage.value=buildCollagePrompt();}
+
+  // ---- SOURCE recommendations ----
+  function recommendationLabel(cat,ex){
+    const c=CAT[cat];
+    const r=exampleRecord(cat,ex);
+    return{catLabel:c?c.ko:cat,exLabel:r?r[2]:ex};
+  }
+
+  function sourceRecommendations(){
+    const s=selectedSource();
+    const m=MECH_META[s.mech]||{output:80,firepower:80,armor:80,mobility:80,temperament:'냉정',system:'시작기'};
+    const name=s.mech;
+    let occ='test_engineer';
+    let editorial='metallic_asymmetry';
+    let lifeCat='everyday_basic';
+    let lifeEx='cafe_takeout';
+
+    if(/스타게이저/.test(name)){occ='observatory_engineer';editorial='orbital_ring';lifeCat='swimwear';lifeEx='moonlit_pool';}
+    else if(/아스트레이/.test(name)){occ='mobility_tuner';editorial='deconstructed_frame';lifeCat='active';lifeEx='dance_transition';}
+    else if(/데스사이즈|블리츠/.test(name)){occ='field_surveyor';editorial='stealth_monochrome';lifeCat='private_evening';lifeEx='after_party';}
+    else if(/헤비암즈|버스터|캘러미티|도벤 울프|ZZ/.test(name)){occ='industrial_inspector';editorial='heavy_architecture';lifeCat='homewear';lifeEx='late_night_kitchen';}
+    else if(/즈고크|하이곡그|어비스/.test(name)){occ='marine_technician';editorial='transformation_drape';lifeCat='swimwear';lifeEx='shoreline_walk';}
+    else if(/V2|V건담/.test(name)){occ='aviation_control';editorial='wing_light';lifeCat='active';lifeEx='parkour_stairs';}
+    else if(/윙 건담|톨기스|에피온/.test(name)){occ='aviation_control';editorial='aerodynamic_couture';lifeCat='private_evening';lifeEx='balcony_night';}
+    else if(/큐베레이|크샤트리야|판넬|뉴 건담|사자비|지옹|페넥스|유니콘/.test(name)){occ='drone_operator';editorial='floating_panel';lifeCat='private_evening';lifeEx='low_back_evening';}
+    else{
+      if(['사이코뮤'].includes(m.system)){occ='drone_operator';editorial='floating_panel';}
+      else if(['GN드라이브','GUND','AGE시스템'].includes(m.system)){occ='robotics_researcher';editorial='luminous_circuit';}
+      else if(['미노프스키드라이브','제로시스템','플래시시스템'].includes(m.system)){occ='aviation_control';editorial='aerodynamic_couture';}
+      else if(m.mobility>=92){occ='test_engineer';editorial='aerodynamic_couture';}
+      else if(m.armor>=90){occ='industrial_inspector';editorial='heavy_architecture';}
+      else if(m.firepower>=92){occ='test_engineer';editorial='metallic_asymmetry';}
+
+      if(m.temperament==='폭주'){lifeCat='active';lifeEx=m.mobility>=85?'dance_transition':'boxing_fitness';}
+      else if(m.temperament==='오만'){lifeCat='private_evening';lifeEx='after_party';}
+      else if(m.temperament==='헌신'){lifeCat='everyday_sensual';lifeEx='window_light';}
+      else{lifeCat=m.mobility>=88?'swimwear':'everyday_basic';lifeEx=m.mobility>=88?'rooftop_infinity_pool':'bookstore';}
+    }
+
+    const reason=m.system+' · 기동 '+m.mobility+' · 장갑 '+m.armor+' · '+m.temperament;
+    return[
+      {pair:1,cat:'occupation_basic',ex:occ,kind:'직업 추천',reason:reason},
+      {pair:2,cat:'source_editorial',ex:editorial,kind:'SOURCE 패션 추천',reason:reason},
+      {pair:3,cat:lifeCat,ex:lifeEx,kind:'라이프스타일 추천',reason:reason}
+    ];
+  }
+
+  function renderRecommendations(){
+    const recs=sourceRecommendations();
+    const s=selectedSource();
+    const m=MECH_META[s.mech];
+    document.getElementById('recMeta').textContent=m?(m.system+' · 기동 '+m.mobility):'자동 추천';
+    document.getElementById('recGrid').innerHTML=recs.map((r,i)=>{
+      const lab=recommendationLabel(r.cat,r.ex);
+      return'<div class="rec-card"><b>'+escHtml(r.kind)+'</b>'+
+        '<div class="rec-title">'+escHtml(lab.catLabel)+' → '+escHtml(lab.exLabel)+'</div>'+
+        '<div class="rec-reason">'+escHtml(r.reason)+'</div>'+
+        '<button class="small" type="button" data-rec-index="'+i+'">Pair '+r.pair+' 적용</button></div>';
+    }).join('');
+    document.querySelectorAll('[data-rec-index]').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const r=recs[Number(btn.dataset.recIndex)];
+        document.getElementById('pair'+r.pair+'Select').value=r.cat;
+        document.getElementById('pair'+r.pair+'Custom').value='';
+        updatePairCustomVisibility();
+        updateDependentExamples(r.pair);
+        const exSel=document.getElementById('pair'+r.pair+'Example');
+        if([...exSel.options].some(o=>o.value===r.ex))exSel.value=r.ex;
+        refreshCollagePrompt();
+        setStatus('statusCollage','SOURCE 추천을 Pair '+r.pair+'에 적용했습니다.','ok');
+      });
+    });
+  }
+
+  // ---- Anthropomorphization ----
+  function renderParamCards(){
+    const basic=document.getElementById('basicParams'),adv=document.getElementById('advancedParams');
+    function card(def){
+      const opts=def.options.map(o=>'<option value="'+escHtml(o[0])+'">'+escHtml(o[1])+'</option>').join('');
+      return'<div class="param-card"><label>'+escHtml(def.label)+' <small>'+escHtml(def.ko)+'</small></label>'+
+        '<select data-param-select="'+escHtml(def.key)+'">'+opts+'</select>'+
+        '<input class="custom-input hidden" data-param-custom="'+escHtml(def.key)+'" placeholder="직접 입력"></div>';
+    }
+    basic.innerHTML=PARAM_DEFS.filter(d=>d.basic).map(card).join('');
+    adv.innerHTML=PARAM_DEFS.filter(d=>!d.basic).map(card).join('');
+    document.querySelectorAll('[data-param-select]').forEach(sel=>sel.addEventListener('change',()=>{
+      const inp=document.querySelector('[data-param-custom="'+CSS.escape(sel.dataset.paramSelect)+'"]');
+      if(inp)inp.classList.toggle('hidden',sel.value!=='__custom__');
+      refreshAnthroPrompt();
+    }));
+    document.querySelectorAll('[data-param-custom]').forEach(inp=>inp.addEventListener('input',refreshAnthroPrompt));
+  }
+
+  function getParamValues(){
+    const out=[];
+    PARAM_DEFS.forEach(def=>{
+      const sel=document.querySelector('[data-param-select="'+CSS.escape(def.key)+'"]');if(!sel)return;
+      let v=sel.value;
+      if(v==='__custom__'){const inp=document.querySelector('[data-param-custom="'+CSS.escape(def.key)+'"]');v=(inp&&inp.value||'').trim();}
+      if(v)out.push([def.key,v]);
+    });
+    const sp=document.getElementById('specialInput').value.trim();if(sp)out.push(['special characteristics',sp]);
+    return out;
+  }
+
+  function buildAnthroPrompt(){
+    const s=selectedSource(),gender=document.getElementById('genderInput').value||'female';
+    const lines=['gender: '+gender,'mobile suit name: '+s.mech,'series: '+s.series];
+    getParamValues().forEach(p=>lines.push(p[0]+': '+p[1]));
+    const block='PARAMETERS = [\n'+lines.join(',\n')+'\n]';
+    return templateC.replace('PARAMETERS = [\ngender,\nmobile suit name,\nseries\n]',block);
+  }
+  function refreshAnthroPrompt(){textAnthro.value=buildAnthroPrompt();}
+  function resetAnthro(){
+    document.getElementById('genderInput').value='female';
+    document.querySelectorAll('[data-param-select]').forEach(s=>s.value='');
+    document.querySelectorAll('[data-param-custom]').forEach(i=>{i.value='';i.classList.add('hidden');});
+    document.getElementById('specialInput').value='';
+    refreshAnthroPrompt();setStatus('statusAnthro','외형 설정 AUTO 초기화 완료','ok');
+  }
+
+  function resetCollage(){
+    document.getElementById('collageCustom').value='';
+    document.querySelectorAll('[data-ov-panel]').forEach(i=>i.value='');
+    for(let n=1;n<=6;n++){
+      document.getElementById('panel'+n+'Example').value='';
+      document.getElementById('panel'+n+'ExampleCustom').value='';
+      document.getElementById('panel'+n+'ExampleCustom').classList.add('hidden');
+    }
+    document.getElementById('presetSelect').value='A';
+    applyPreset();
+    setStatus('statusCollage','콜라주 초기화 완료','ok');
+  }
+
+  async function copyToClipboard(value){
+    let err=null;
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      try{await navigator.clipboard.writeText(value);return;}catch(e){err=e;}
+    }
+    const t=document.createElement('textarea');
+    t.value=value;t.setAttribute('readonly','');t.style.position='fixed';t.style.left='-9999px';t.style.opacity='0';
+    document.body.appendChild(t);t.focus();t.select();t.setSelectionRange(0,t.value.length);
+    let ok=false;try{ok=document.execCommand('copy');}catch(e){}
+    t.remove();if(!ok)throw(err||new Error('copy unavailable'));
+  }
+
+  async function copyPrompt(textId,statusId){
+    if(textId==='textCollage')refreshCollagePrompt();else refreshAnthroPrompt();
+    const ta=document.getElementById(textId);
+    try{await copyToClipboard(ta.value);setStatus(statusId,'클립보드 복사 완료 ✓','ok');}
+    catch(e){
+      const viewId=textId==='textCollage'?'viewCollage':'viewAnthro';
+      document.getElementById(viewId).classList.remove('hidden');
+      const btn=document.querySelector('[data-toggle="'+viewId+'"]');if(btn)btn.textContent='텍스트 닫기';
+      ta.focus();ta.select();ta.setSelectionRange(0,ta.value.length);
+      setStatus(statusId,'자동 복사가 막혀 전체 선택했습니다.','warn');
+    }
+  }
+
+  function toggleView(viewId,btn){
+    const el=document.getElementById(viewId),closing=!el.classList.contains('hidden');
+    el.classList.toggle('hidden',closing);btn.textContent=closing?'텍스트 보기':'텍스트 닫기';
+    if(!closing){if(viewId==='viewCollage')refreshCollagePrompt();else refreshAnthroPrompt();}
+  }
+
+  function applySource(){
+    updateSelInfo();renderRecommendations();refreshCollagePrompt();refreshAnthroPrompt();
+    setStatus('statusCollage','기체 적용 완료','ok');setStatus('statusAnthro','기체 적용 완료','ok');
+  }
+
+  // Init
+  fillSeries();
+  if([...seriesPicker.options].some(o=>o.value==='V'))seriesPicker.value='V';
+  fillMechs('V2건담');
+  updateSelInfo();
+  renderPresetSelect();
+  renderPairSelects();
+  renderAdvancedGrid();
+  renderParamCards();
+
+  // Pair example selects must exist before overrides are rendered.
+  [1,2,3].forEach(n=>renderPairExample(n,false));
+  renderOverrides();
+
+  document.getElementById('presetSelect').value='A';
+  applyPreset();
+  renderRecommendations();
+  refreshAnthroPrompt();
+
+  // Events
+  seriesPicker.addEventListener('change',()=>{fillMechs();updateSelInfo();renderRecommendations();});
+  mechPicker.addEventListener('change',()=>{updateSelInfo();renderRecommendations();});
+  document.getElementById('applySource').addEventListener('click',applySource);
+
+  tabs.collage[0].addEventListener('click',()=>showTab('collage'));
+  tabs.anthro[0].addEventListener('click',()=>showTab('anthro'));
+
+  document.getElementById('presetSelect').addEventListener('change',applyPreset);
+  document.getElementById('randomizeBtn').addEventListener('click',randomizePairs);
+
+  [1,2,3].forEach(n=>{
+    document.getElementById('pair'+n+'Select').addEventListener('change',()=>{
+      document.getElementById('pair'+n+'Custom').value='';
+      updatePairCustomVisibility();
+      updateDependentExamples(n);
+      refreshCollagePrompt();
+    });
+    document.getElementById('pair'+n+'Custom').addEventListener('input',refreshCollagePrompt);
+    document.getElementById('pair'+n+'Example').addEventListener('change',()=>{
+      document.getElementById('pair'+n+'ExampleCustom').classList.toggle('hidden',document.getElementById('pair'+n+'Example').value!=='__custom__');
+      refreshCollagePrompt();
+    });
+    document.getElementById('pair'+n+'ExampleCustom').addEventListener('input',refreshCollagePrompt);
+  });
+
+  document.getElementById('collageCustom').addEventListener('input',refreshCollagePrompt);
+  Object.keys(ADVANCED_OPTIONS).forEach(k=>document.getElementById('adv_'+k).addEventListener('change',refreshCollagePrompt));
+  document.getElementById('applyCollage').addEventListener('click',()=>{refreshCollagePrompt();setStatus('statusCollage','콜라주 설정 적용 완료','ok');});
+  document.getElementById('resetCollage').addEventListener('click',resetCollage);
+
+  document.getElementById('genderInput').addEventListener('change',refreshAnthroPrompt);
+  document.getElementById('applyAnthro').addEventListener('click',()=>{refreshAnthroPrompt();setStatus('statusAnthro','PARAMETERS 적용 완료','ok');});
+  document.getElementById('resetAnthro').addEventListener('click',resetAnthro);
+  document.getElementById('specialInput').addEventListener('input',refreshAnthroPrompt);
+
+  document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>copyPrompt(b.dataset.copy,b.dataset.status)));
+  document.querySelectorAll('[data-toggle]').forEach(b=>b.addEventListener('click',()=>toggleView(b.dataset.toggle,b)));
+
+  showTab('collage');
+  refreshCollagePrompt();
+  refreshAnthroPrompt();
+})();
+</script>
+</body>
+</html>
