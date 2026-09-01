@@ -66,6 +66,13 @@ button.small{min-height:38px;padding:7px 9px;font-size:12px}
 .save-bar{margin-top:10px;display:flex;gap:8px;align-items:center;justify-content:space-between;
   padding:8px 10px;border-radius:9px;background:var(--card2);border:1px solid var(--line);
   font-size:11.5px;color:var(--muted);line-height:1.4}
+.ko-sum{margin:0 12px;padding:10px 11px;border-radius:10px;background:var(--card2);border:1px solid var(--line)}
+.ks-t{font-size:11px;color:var(--muted);margin-bottom:6px}
+.ks-r{font-size:12px;line-height:1.6;color:var(--text)}
+.ks-r b{font-weight:700;margin-right:5px}
+.ks-r i{font-style:normal;font-size:10.5px;color:var(--muted);border:1px solid var(--line);border-radius:9px;padding:1px 6px;margin-left:4px}
+.ks-r u{text-decoration:none;display:block;font-size:11px;color:var(--muted);margin:1px 0 3px 2px}
+.ks-f{margin-top:7px;padding-top:7px;border-top:1px solid var(--line);font-size:11px;color:var(--muted);line-height:1.5}
 .used-box{display:flex;flex-wrap:wrap;gap:5px}
 .uchip{display:inline-flex;align-items:baseline;gap:5px;padding:4px 8px;border-radius:20px;
   background:var(--card);border:1px solid var(--line);font-size:11px;color:var(--text)}
@@ -86,6 +93,8 @@ button.small{min-height:38px;padding:7px 9px;font-size:12px}
 .grp>summary{list-style:none;cursor:pointer;padding:11px 12px;display:flex;flex-direction:column;gap:2px}
 .grp>summary::-webkit-details-marker{display:none}
 .grp>summary span{font-size:13px;font-weight:700;color:var(--text)}
+.grp>summary em{font-style:normal;font-size:11px;font-weight:600;color:var(--muted)}
+.grp>summary em.on{color:var(--accent)}
 .grp>summary i{font-style:normal;font-size:11px;color:var(--muted);line-height:1.4}
 .grp[open]>summary{border-bottom:1px solid var(--line)}
 .grp-in{padding:10px 11px 12px}
@@ -127,6 +136,7 @@ button.small{min-height:38px;padding:7px 9px;font-size:12px}
 .pair-sep{height:7px}
 details.box{margin-top:10px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
 details.box summary{cursor:pointer;padding:12px;font-size:14px;font-weight:750;background:var(--card2)}
+details.box summary small{display:block;margin-top:2px;font-size:11px;font-weight:500;color:var(--muted)}
 details.box .inside{padding:10px}
 .override-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
 .override-card input,.override-card select{margin-top:7px}
@@ -199,6 +209,9 @@ details.box .inside{padding:10px}
     </div>
 
     <div class="form-section">
+      <details class="box" id="secBasic" open>
+      <summary>프리셋 · 랜덤 · Pair 구성</summary>
+      <div class="inside">
       <div class="preset-row">
         <div class="field">
           <label>Preset <small>프리셋</small></label>
@@ -206,6 +219,7 @@ details.box .inside{padding:10px}
         </div>
         <button id="randomizeBtn" type="button">🎲 랜덤 조합</button>
         <select id="randomMode" aria-label="랜덤 성격" style="margin-top:6px"></select>
+        <button id="undoCollage" type="button" class="hidden" style="margin-top:6px">↩ 직전 조합으로</button>
         <label style="display:flex;align-items:center;gap:6px;margin:6px 0 0;cursor:pointer;font-size:11.5px;color:var(--muted)">
           <input type="checkbox" id="randomAvoidUsed" checked style="width:auto;margin:0;flex:none">
           <span>이미 쓴 카테고리는 빼고 뽑기</span>
@@ -217,13 +231,12 @@ details.box .inside{padding:10px}
         <input id="collageCustom" type="text" placeholder="예: moonlit pool preferred, avoid black mini dresses">
       </div>
 
-      <div class="rec-wrap">
-        <div class="rec-head">
-          <strong>SOURCE 추천 예시</strong>
-          <span id="recMeta"></span>
-        </div>
+      <details class="box" id="secRec">
+      <summary>SOURCE 추천 예시 <small id="recMeta"></small></summary>
+      <div class="inside">
         <div id="recGrid" class="rec-grid"></div>
       </div>
+      </details>
 
       <div class="param-note" style="margin-top:10px">
         <b>Pair 로 묶는다는 것</b> — 두 패널을 같은 주제의 <b>약한 컷 / 강한 컷</b> 한 쌍으로 만든다.
@@ -286,8 +299,11 @@ details.box .inside{padding:10px}
         </div>
       </div>
 
+      </div>
+      </details>
+
       <details class="box">
-        <summary>콜라주 고급 설정 펼치기</summary>
+        <summary>콜라주 고급 설정</summary>
         <div class="inside">
           <div id="collageAdvancedGrid" class="grid2"></div>
           <div class="grid2" style="margin-top:10px">
@@ -323,7 +339,7 @@ details.box .inside{padding:10px}
       </details>
 
       <details class="box">
-        <summary>Panel 1~6 개별 예시 / Override 펼치기</summary>
+        <summary>Panel 1~6 개별 예시 / Override</summary>
         <div class="inside">
           <div class="help" style="margin-top:0;margin-bottom:10px">
             Panel Example은 해당 Pair의 카테고리에 맞춰 자동으로 메뉴가 바뀐다. 표정과 앞/옆/뒷태 방향도 패널별로 지정할 수 있다. 비워두면 Pair 예시와 전체 모드를 따른다.
@@ -332,6 +348,8 @@ details.box .inside{padding:10px}
         </div>
       </details>
     </div>
+
+    <div class="ko-sum" id="koSum"></div>
 
     <div class="save-bar" style="align-items:flex-start;flex-direction:column;gap:6px">
       <div style="display:flex;justify-content:space-between;width:100%;align-items:center;gap:8px">
@@ -379,7 +397,8 @@ details.box .inside{padding:10px}
         탭마다 설정을 따로 기억한다. 여성 쪽에서 잡은 값이 남성 쪽으로 넘어가지 않는다.
       </div>
 
-      <div id="paramGroups" style="margin-top:10px"></div>
+      <div class="param-note" id="paramTotal" style="margin:10px 0 0"></div>
+      <div id="paramGroups" style="margin-top:8px"></div>
 
       <div class="field" id="underboobField" style="margin-top:10px">
         <label style="display:flex;align-items:center;gap:8px;margin:0;cursor:pointer">
@@ -795,6 +814,7 @@ details.box .inside{padding:10px}
 
   function applyPreset(){
     const p=PRESETS[document.getElementById('presetSelect').value];if(!p)return;
+    if(READY)pushCollageUndo();
     [1,2,3].forEach((n,i)=>{
       document.getElementById('pair'+n+'Select').value=p.pairs[i];
       document.getElementById('pair'+n+'Custom').value='';
@@ -835,7 +855,21 @@ details.box .inside{padding:10px}
       adv:{overall_intensity:'sensual',outfit_variety:'extreme',separates_preference:'prefer separates',
            one_piece_limit:'2',source_influence:'balanced'}}
   };
+  /* 콜라주도 한 단계 되돌릴 수 있어야 한다. 랜덤을 굴리면 직전 조합이 그냥 사라진다 */
+  let COLPREV=null;
+  function pushCollageUndo(){
+    COLPREV=snapCollage();
+    const b=document.getElementById('undoCollage'); if(b)b.classList.remove('hidden');
+  }
+  function undoCollage(){
+    if(!COLPREV)return;
+    const now=snapCollage();
+    applyCollage(COLPREV); COLPREV=now;
+    refreshCollagePrompt();
+    setStatus('statusCollage','직전 조합으로 되돌렸다. 한 번 더 누르면 원래대로 돌아온다.','ok');
+  }
   function randomizePairs(){
+    pushCollageUndo();
     const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
     const modeKey=document.getElementById('randomMode').value||'variety';
     const M=RANDOM_MODES[modeKey]||RANDOM_MODES.variety;
@@ -1257,8 +1291,56 @@ details.box .inside{padding:10px}
     updatePairCustomVisibility();
     [1,2,3].forEach(n=>{updateCatNote(n);updateExNote(n);});
   }
+  /* 지금 설정이 무엇을 만들지 한글로 요약한다.
+     영어 원문을 띄워도 확인이 안 되니, 읽히는 형태로 보여주는 게 목적이다. */
+  function koSummary(){
+    const EX=Object.fromEntries(EXPRESSION_OPTIONS.map(o=>[o[0],(o[1]||'').split(' — ')[1]||o[1]]));
+    const OR=Object.fromEntries(ORIENTATION_OPTIONS.map(o=>[o[0],(o[1]||'').split(' — ')[1]||o[1]]));
+    const PO=Object.fromEntries(POSE_OPTIONS.map(o=>[o[0],(o[1]||'').split(' — ')[1]||o[1]]));
+    const exKo=(cat,v)=>{const r=(EXAMPLE_MAP[cat]||[]).find(x=>x[0]===v);return r?r[2]:'';};
+    const catKo=c=>c==='__custom__'?'직접 입력':((CAT[c]||{}).ko||c);
+    const moodOf=n=>{
+      const p=pairForPanel(n),g=(id,map)=>{
+        const el=document.querySelector('[data-ov-panel="'+n+'"][data-ov-key="'+id+'"]');
+        let v=el?el.value:''; if(!v){const pe=document.getElementById('pair'+p+(id==='expression'?'Expr':id==='orientation'?'Orient':'Pose'));v=pe?pe.value:'';}
+        return v?map[v]||v:'';
+      };
+      return [g('expression',EX),g('orientation',OR),g('pose',PO)].filter(Boolean).join(' · ');
+    };
+    const rows=[];
+    [1,2,3].forEach(p=>{
+      const a=(p-1)*2+1,b=a+1;
+      if(pairUsed(p)){
+        const c=document.getElementById('pair'+p+'Select').value;
+        const e=document.getElementById('pair'+p+'Example').value;
+        const m=moodOf(a), m2=moodOf(b);
+        rows.push('<b>패널 '+a+'·'+b+'</b> '+escHtml(catKo(c))+(e?' — '+escHtml(exKo(c,e)):'')+
+          ' <i>약→강</i>'+(m?'<u>'+escHtml(m)+'</u>':'')+
+          (m2&&m2!==m?'<u>패널 '+b+': '+escHtml(m2)+'</u>':''));
+      }else{
+        [a,b].forEach(n=>{
+          const c=panelCat(n), e=document.getElementById('panel'+n+'Example').value, m=moodOf(n);
+          rows.push('<b>패널 '+n+'</b> '+escHtml(catKo(c))+(e?' — '+escHtml(exKo(c,e)):'')+
+            ' <i>단독</i>'+(m?'<u>'+escHtml(m)+'</u>':''));
+        });
+      }
+    });
+    const flags=[];
+    if(document.getElementById('carryIdentity').checked&&carryValues().length)
+      flags.push('의인화 설정 '+carryValues().length+'개 전달');
+    if(document.getElementById('avoidUsed').checked&&usedOf(mechKey()).length)
+      flags.push('이미 쓴 조합 '+usedOf(mechKey()).length+'가지 회피');
+    const adv=Object.keys(getAdvanced()).length; if(adv)flags.push('고급 '+adv+'축 지정');
+    const gx=document.getElementById('globalExpressionMode').value;
+    const go=document.getElementById('globalOrientationMix').value;
+    if(gx)flags.push('표정 모드 '+gx);
+    if(go)flags.push('시점 모드 '+go);
+    return '<div class="ks-t">지금 설정 요약</div>'+rows.map(r=>'<div class="ks-r">'+r+'</div>').join('')+
+      (flags.length?'<div class="ks-f">'+escHtml(flags.join(' · '))+'</div>':'');
+  }
   function refreshCollagePrompt(){
     textCollage.value=buildCollagePrompt();
+    const ks=document.getElementById('koSum'); if(ks)ks.innerHTML=koSummary();
     if(READY){STORE.collage=snapCollage();
       STORE.last={series:seriesPicker.value,mech:mechKey()};saveStore();}
   }
@@ -1511,7 +1593,7 @@ details.box .inside{padding:10px}
       const orphan=subs.filter(x=>!tops.some(t=>t.key===x.sub));
       if(orphan.length)inner+='<div class="param-grid">'+orphan.map(card).join('')+'</div>';
       return '<details class="grp" data-grp="'+g+'"'+(isOpen?' open':'')+'>'+
-        '<summary><span>'+escHtml(ko)+'</span><i>'+escHtml(desc)+'</i></summary>'+
+        '<summary><span>'+escHtml(ko)+'<em data-grp-n="'+g+'"></em></span><i>'+escHtml(desc)+'</i></summary>'+
         '<div class="grp-in">'+inner+'</div></details>';
     }).join('');
     document.querySelectorAll('[data-param-select]').forEach(sel=>sel.addEventListener('change',()=>{
@@ -1521,6 +1603,7 @@ details.box .inside{padding:10px}
          순서가 뒤바뀌면 한 박자 전 값으로 검색하게 된다 */
       refreshAnthroPrompt();
       refreshSubHints();
+      refreshGroupCounts();
       updatePreview(sel.dataset.paramSelect);
       const k=sel.dataset.paramSelect;
       if(k==='eye color')updatePreview('second eye color');
@@ -1534,6 +1617,29 @@ details.box .inside{padding:10px}
     }));
     PARAM_DEFS.forEach(dd=>updatePreview(dd.key));
     refreshSubHints();
+    refreshGroupCounts();
+  }
+  function refreshGroupCounts(){
+    let all=0;
+    GROUP_META.forEach(([g])=>{
+      const el=document.querySelector('[data-grp-n="'+g+'"]'); if(!el)return;
+      let n=0;
+      PARAM_DEFS.filter(d=>d.group===g).forEach(d=>{
+        const sel=document.querySelector('[data-param-select="'+CSS.escape(d.key)+'"]');
+        if(!sel||!sel.value)return;
+        if(sel.value==='__custom__'){
+          const inp=document.querySelector('[data-param-custom="'+CSS.escape(d.key)+'"]');
+          if(!inp||!inp.value.trim())return;
+        }
+        n++;
+      });
+      all+=n;
+      el.textContent=n?'  '+n+' 지정':'';
+      el.className=n?'on':'';
+    });
+    const tot=document.getElementById('paramTotal');
+    if(tot)tot.textContent=all?'전체 '+all+'개 지정됨 — 비워둔 항목은 기체 원본에서 자동으로 채워진다':
+      '전부 AUTO — 기체 원본에서 모두 자동으로 결정된다';
   }
   function refreshSubHints(){
     document.querySelectorAll('[data-sub-of]').forEach(box=>{
@@ -2196,6 +2302,7 @@ details.box .inside{padding:10px}
 
   document.getElementById('presetSelect').addEventListener('change',applyPreset);
   document.getElementById('randomizeBtn').addEventListener('click',randomizePairs);
+  document.getElementById('undoCollage').addEventListener('click',undoCollage);
 
   [1,2,3].forEach(n=>{
     document.getElementById('pair'+n+'Select').addEventListener('change',()=>{
