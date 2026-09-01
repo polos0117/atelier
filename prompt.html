@@ -61,6 +61,8 @@ button.small{min-height:38px;padding:7px 9px;font-size:12px}
 .save-bar .sb-drop{flex:none;font-size:11px;padding:5px 9px}
 .save-bar .sb-drop.hidden{display:none}
 .axis-note{margin-top:6px;font-size:11px;line-height:1.45;color:var(--muted)}
+.rec-btns{display:flex;gap:6px;margin-top:6px}
+.rec-btns .small{flex:none}
 .pair-card.off>*:not(h3):not(label){opacity:.4;pointer-events:none}
 .pair-card.off .param-preview{display:none}
 .override-card.solo{border-color:rgba(122,162,216,.5)}
@@ -1094,75 +1096,116 @@ details.box .inside{padding:10px}
   /* ══ SOURCE 추천 ══
      기체명 표는 손으로 적은 정밀 추천이고, 나머지는 성능·기질·계통에서 규칙으로 끌어낸다.
      어느 쪽이든 "왜 이 카테고리인지"를 카드에 같이 적는다. 근거 없는 추천은 무시당한다. */
+  /* 규칙마다 후보를 여러 개 둔다. 하나만 두면 같은 기체를 열 때마다 같은 답이 나와
+     두 번째 일상컷부터는 쓸모가 없어진다. 이미 뽑아본 예시는 자동으로 건너뛴다. */
   const NAME_RULES=[
-    [/스타게이저/,'observatory_engineer','orbital_ring','swimwear','moonlit_pool','천문 관측기'],
-    [/아스트레이/,'mobility_tuner','deconstructed_frame','active','dance_transition','정비·개조 기체'],
-    [/데스사이즈|블리츠/,'field_surveyor','stealth_monochrome','private_evening','after_party','은신 기체'],
-    [/헤비암즈|버스터|캘러미티|도벤 울프|ZZ/,'industrial_inspector','heavy_architecture','homewear','late_night_kitchen','중화력 포격기'],
-    [/즈고크|하이곡그|어비스|아그이|갓즈고크/,'marine_technician','transformation_drape','swimwear','shoreline_walk','수중 운용기'],
-    [/V2|V건담/,'aviation_control','wing_light','active','parkour_stairs','고기동 소형기'],
-    [/나드레|버체|세라비|엑시아|듀나메스|캘딤/,'robotics_researcher','luminous_circuit','everyday_sensual','morning_stretch','GN 드라이브 계열'],
-    [/윙|톨기스/,'test_engineer','aerodynamic_couture','active','surf_prep','변형 비행 기체'],
-    [/자쿠|겔구그|돔|구프|캠퍼|리크|리젤|기라/,'mobility_tuner','camo_couture','everyday_basic','hardware_store','양산 주력기'],
-    [/사이코|퀴베레이|엘메스|지옹|나이팅게일|알파 아질/,'robotics_researcher','floating_panel','private_evening','penthouse_window','사이코뮤 탑재기'],
-    [/짐|건캐논|건탱크/,'industrial_inspector','ceramic_plate','everyday_basic','commute_train','연방 양산기']
+    [/스타게이저/,[['occupation_basic','observatory_engineer'],['occupation_sensual','night_observatory'],['occupation_basic','aviation_control'],['occupation_sensual','drone_director']],
+      [['source_editorial','orbital_ring'],['source_editorial','luminous_circuit'],['source_editorial','wing_light']],
+      [['swimwear','moonlit_pool'],['wildcard','observatory_night'],['private_evening','balcony_night']],'천문 관측기'],
+    [/아스트레이/,[['occupation_basic','mobility_tuner'],['occupation_sensual','prototype_consultant'],['occupation_basic','test_engineer'],['occupation_sensual','fashion_test_engineer']],
+      [['source_editorial','deconstructed_frame'],['source_editorial','metallic_asymmetry'],['source_editorial','cyber_street']],
+      [['active','dance_transition'],['everyday_basic','hardware_store'],['wildcard','arcade_night']],'정비·개조 기체'],
+    [/데스사이즈|블리츠/,[['occupation_basic','field_surveyor'],['occupation_basic','drone_operator'],['occupation_sensual','night_lab'],['occupation_sensual','hightech_inspector']],
+      [['source_editorial','stealth_monochrome'],['source_editorial','deconstructed_frame'],['source_editorial','cyber_street']],
+      [['private_evening','after_party'],['everyday_sensual','fridge_light'],['wildcard','neon_alley']],'은신 기체'],
+    [/헤비암즈|버스터|캘러미티|도벤 울프|ZZ/,[['occupation_basic','industrial_inspector'],['occupation_basic','architecture_engineer'],['occupation_basic','stage_rigging'],['occupation_basic','renewable_engineer']],
+      [['source_editorial','heavy_architecture'],['source_editorial','ceramic_plate'],['source_editorial','metallic_asymmetry']],
+      [['homewear','late_night_kitchen'],['everyday_basic','hardware_store'],['active','boxing_fitness']],'중화력 포격기'],
+    [/즈고크|하이곡그|어비스|아그이|갓즈고크/,[['occupation_basic','marine_technician'],['occupation_sensual','luxury_yacht_tech'],['occupation_basic','rescue_paramedic'],['occupation_basic','field_surveyor']],
+      [['source_editorial','transformation_drape'],['source_editorial','aerodynamic_couture'],['source_editorial','floating_panel']],
+      [['swimwear','shoreline_walk'],['swimwear','outdoor_shower'],['wildcard','ferry_deck']],'수중 운용기'],
+    [/V2|V건담/,[['occupation_basic','aviation_control'],['occupation_sensual','flight_supervisor'],['occupation_sensual','drone_director'],['occupation_basic','test_engineer']],
+      [['source_editorial','wing_light'],['source_editorial','aerodynamic_couture'],['source_editorial','thruster_flare']],
+      [['active','parkour_stairs'],['active','roller_skating'],['everyday_sensual','morning_stretch']],'고기동 소형기'],
+    [/나드레|버체|세라비|엑시아|듀나메스|캘딤/,[['occupation_basic','robotics_researcher'],['occupation_basic','test_engineer'],['occupation_sensual','night_lab'],['occupation_sensual','drone_director']],
+      [['source_editorial','luminous_circuit'],['source_editorial','orbital_ring'],['source_editorial','floating_panel']],
+      [['everyday_sensual','morning_stretch'],['homewear','sunroom_lounge'],['private_evening','hotel_evening']],'GN 드라이브 계열'],
+    [/윙|톨기스/,[['occupation_basic','test_engineer'],['occupation_basic','aviation_control'],['occupation_sensual','flight_supervisor'],['occupation_sensual','prototype_consultant']],
+      [['source_editorial','aerodynamic_couture'],['source_editorial','wing_light'],['source_editorial','ceremonial_whitegold']],
+      [['active','surf_prep'],['active','climbing_warmup'],['wildcard','rooftop_cinema']],'변형 비행 기체'],
+    [/자쿠|겔구그|돔|구프|캠퍼|리크|리젤|기라/,[['occupation_basic','mobility_tuner'],['occupation_basic','industrial_inspector'],['occupation_basic','rescue_paramedic'],['occupation_basic','field_surveyor']],
+      [['source_editorial','camo_couture'],['source_editorial','heavy_architecture'],['source_editorial','stealth_monochrome']],
+      [['everyday_basic','hardware_store'],['everyday_basic','midnight_laundromat'],['homewear','laundry_lounge']],'양산 주력기'],
+    [/사이코|퀴베레이|엘메스|지옹|나이팅게일|알파 아질/,[['occupation_basic','robotics_researcher'],['occupation_sensual','drone_director'],['occupation_sensual','night_lab'],['occupation_sensual','hightech_inspector']],
+      [['source_editorial','floating_panel'],['source_editorial','luminous_circuit'],['source_editorial','orbital_ring']],
+      [['private_evening','penthouse_window'],['private_evening','opera_night'],['wildcard','futuristic_spa']],'사이코뮤 탑재기'],
+    [/짐|건캐논|건탱크/,[['occupation_basic','industrial_inspector'],['occupation_basic','architecture_engineer'],['occupation_basic','mobility_tuner'],['occupation_basic','rescue_paramedic']],
+      [['source_editorial','ceramic_plate'],['source_editorial','heavy_architecture'],['source_editorial','camo_couture']],
+      [['everyday_basic','commute_train'],['everyday_basic','grocery_run'],['homewear','soft_tank_shorts']],'연방 양산기']
   ];
+  const OB=x=>['occupation_basic',x], OS=x=>['occupation_sensual',x], SE=x=>['source_editorial',x];
+  const STAT_OCC={
+    output:[[OB('renewable_engineer'),OB('observatory_engineer'),OB('stage_rigging')],'고출력'],
+    firepower:[[OB('test_engineer'),OB('industrial_inspector'),OS('hightech_inspector')],'화력'],
+    armor:[[OB('industrial_inspector'),OB('architecture_engineer'),OB('marine_technician')],'중장갑'],
+    mobility:[[OB('aviation_control'),OB('drone_operator'),OB('rescue_paramedic')],'고기동']
+  };
+  const STAT_ED={
+    output:[[SE('luminous_circuit'),SE('thruster_flare'),SE('orbital_ring')],'출력'],
+    firepower:[[SE('metallic_asymmetry'),SE('heavy_architecture'),SE('cockpit_harness')],'화력'],
+    armor:[[SE('heavy_architecture'),SE('ceramic_plate'),SE('deconstructed_frame')],'장갑'],
+    mobility:[[SE('aerodynamic_couture'),SE('wing_light'),SE('transformation_drape')],'기동']
+  };
+  const TEMPER_LIFE={
+    '폭주':[[['everyday_sensual','morning_stretch'],['active','running_recovery'],['wildcard','rain_editorial']],'폭주 기질 — 절제보다 생동감'],
+    '냉정':[[['everyday_basic','bookstore'],['everyday_basic','cafe_takeout'],['homewear','window_vanity']],'냉정 기질 — 담담한 생활 장면'],
+    '오만':[[['private_evening','penthouse_window'],['private_evening','opera_night'],['source_editorial','couture_gala']],'오만 기질 — 격식 있는 사적 시간']
+  };
+
+  /* 다시 굴리기 — 기체별로 몇 번째 후보를 보고 있는지 기억한다 */
+  let RECSPIN={};
+  function spinOf(k){return RECSPIN[mechKey()+'|'+k]||0;}
+  function bumpSpin(k){RECSPIN[mechKey()+'|'+k]=(spinOf(k)+1);}
+
   function sourceRecommendations(){
     const name=selectedSource().mech;
     const m=MECH_META[name]||{output:80,firepower:80,armor:80,mobility:80,temperament:'냉정',system:'시작기'};
-    let occ,editorial,lifeCat,lifeEx,src='',why={};
+    const usedEx={},usedCat={};
+    usedOf(mechKey()).forEach(r=>{usedCat[r.cat]=1; if(r.ex)usedEx[r.cat+'|'+r.ex]=1;});
 
+    let occList,edList,lifeList,src='',why={};
     const hit=NAME_RULES.find(r=>r[0].test(name));
     if(hit){
-      occ=hit[1];editorial=hit[2];lifeCat=hit[3];lifeEx=hit[4];src=hit[5];
-      why.occ=src+' — 기체 설정에서 직접 끌어낸 직업';
-      why.ed=src+' — 기체 고유 형태를 패션으로 옮김';
-      why.life=src+' — 기체 성격에 맞는 상황';
+      occList=hit[1];edList=hit[2];lifeList=hit[3];src=hit[4];
+      why.occ=src;why.ed=src+' — 고유 형태를 재단으로';why.life=src+' 에 어울리는 상황';
     }else{
-      /* 네 능력치 중 가장 높은 것이 그 기체의 성격을 대표한다고 본다 */
       const stats=[['output',m.output,'출력'],['firepower',m.firepower,'화력'],
-                   ['armor',m.armor,'장갑'],['mobility',m.mobility,'기동']];
-      stats.sort((a,b)=>b[1]-a[1]);
-      const top=stats[0];
-      const OCC={output:['renewable_engineer','고출력'],firepower:['test_engineer','화력'],
-                 armor:['industrial_inspector','중장갑'],mobility:['aviation_control','고기동']};
-      const ED={output:['luminous_circuit','출력'],firepower:['metallic_asymmetry','화력'],
-                armor:['heavy_architecture','장갑'],mobility:['aerodynamic_couture','기동']};
-      occ=OCC[top[0]][0]; editorial=ED[top[0]][0];
-      why.occ=top[2]+' '+top[1]+' 이 가장 높다';
-      why.ed=top[2]+' 중심 실루엣을 재단으로 옮김';
-
-      if(m.system==='사이코뮤'){occ='robotics_researcher';why.occ='사이코뮤 탑재기';
-        editorial='floating_panel';why.ed='사이코뮤 — 몸에서 떠 있는 판넬 구조';}
-      else if(m.system==='양산'){occ='mobility_tuner';why.occ='양산기 — 정비·운용이 일상인 기체';}
-
-      const LIFE={'폭주':['everyday_sensual','morning_stretch','폭주 기질 — 절제보다 생동감'],
-                  '냉정':['everyday_basic','bookstore','냉정 기질 — 담담한 생활 장면'],
-                  '오만':['private_evening','penthouse_window','오만 기질 — 격식 있는 사적 시간']};
-      const L=LIFE[m.temperament]||LIFE['냉정'];
-      lifeCat=L[0];lifeEx=L[1];why.life=L[2];
-      if(m.mobility>=88){lifeCat='active';lifeEx='running_recovery';why.life='기동 '+m.mobility+' — 움직임이 살아나는 컷';}
+                   ['armor',m.armor,'장갑'],['mobility',m.mobility,'기동']].sort((a,b)=>b[1]-a[1]);
+      const top=stats[0][0];
+      occList=STAT_OCC[top][0].slice(); edList=STAT_ED[top][0].slice();
+      why.occ=stats[0][2]+' '+stats[0][1]+' 이 가장 높다';
+      why.ed=STAT_ED[top][1]+' 중심 실루엣을 재단으로';
+      if(m.system==='사이코뮤'){occList=[OB('robotics_researcher'),OS('drone_director'),OS('night_lab')];why.occ='사이코뮤 탑재기';
+        edList=[SE('floating_panel'),SE('luminous_circuit'),SE('orbital_ring')];why.ed='사이코뮤 — 떠 있는 판넬 구조';}
+      else if(m.system==='양산'){occList=[OB('mobility_tuner'),OB('industrial_inspector'),OB('field_surveyor')];why.occ='양산기 — 정비·운용이 일상';}
+      const T=TEMPER_LIFE[m.temperament]||TEMPER_LIFE['냉정'];
+      lifeList=T[0].slice(); why.life=T[1];
+      if(m.mobility>=88){lifeList=[['active','running_recovery'],['active','parkour_stairs'],['active','dance_transition']];
+        why.life='기동 '+m.mobility+' — 움직임이 살아나는 컷';}
     }
 
-    /* 이미 쓴 카테고리는 추천하지 않는다 */
-    const used={}; usedOf(mechKey()).forEach(r=>used[r.cat]=1);
-    const swap=(cat,alts)=>{
-      if(!used[cat])return [cat,''];
-      const a=alts.find(x=>!used[x]);
-      return a?[a,' (원래 추천은 이미 써봐서 대체)']:[cat,' (이미 써본 카테고리)'];
+    /* 후보는 전부 [카테고리, 예시] 쌍이다. 유효하지 않은 쌍은 버리고,
+       아직 안 써본 것을 우선하되 다시 굴린 횟수만큼 밀어낸다. */
+    const valid=l=>l.filter(x=>(EXAMPLE_MAP[x[0]]||[]).some(r=>r[0]===x[1]));
+    const choose=(list,slot,fallback)=>{
+      let l=valid(list); if(!l.length)l=valid(fallback)||[];
+      if(!l.length)return {cat:fallback[0][0],ex:'',note:'',n:0};
+      const freshEx=l.filter(x=>!usedEx[x[0]+'|'+x[1]]);
+      const freshCat=freshEx.filter(x=>!usedCat[x[0]]);
+      const pool=freshCat.length?freshCat:(freshEx.length?freshEx:l);
+      const pickd=pool[spinOf(slot)%pool.length];
+      const note=freshCat.length?'':(freshEx.length?' · 카테고리는 써봤지만 예시는 새것':' · 이미 써본 조합');
+      return {cat:pickd[0],ex:pickd[1],note:note,n:l.length};
     };
-    const [c1,n1]=swap('occupation_basic',['occupation_sensual','everyday_basic']);
-    const [c2,n2]=swap('source_editorial',['adult_roleplay','wildcard']);
-    const [c3,n3]=swap(lifeCat,['everyday_basic','homewear','active','private_evening','swimwear']);
-    const fix=(cat,ex)=>{
-      const rows=EXAMPLE_MAP[cat]||[];
-      return rows.some(r=>r[0]===ex)?ex:'';
-    };
+    const r1=choose(occList,'occ',[OB('test_engineer'),OB('drone_operator')]);
+    const r2=choose(edList,'ed',[SE('runway'),SE('couture_gala')]);
+    const r3=choose(lifeList,'life',[['everyday_basic','cafe_takeout']]);
     const tag=hit?'기체 고유':'성능 기반';
+    const more=r=>r.n>1?' · 후보 '+r.n+'개':'';
     return[
-      {pair:1,cat:c1,ex:fix(c1,occ),kind:'직업 · '+tag,reason:why.occ+n1},
-      {pair:2,cat:c2,ex:fix(c2,editorial),kind:'SOURCE 패션 · '+tag,reason:why.ed+n2},
-      {pair:3,cat:c3,ex:fix(c3,lifeEx),kind:'라이프스타일 · '+tag,reason:why.life+n3}
+      {pair:1,cat:r1.cat,ex:r1.ex,kind:'직업 · '+tag,slot:'occ',reason:why.occ+r1.note+more(r1)},
+      {pair:2,cat:r2.cat,ex:r2.ex,kind:'SOURCE 패션 · '+tag,slot:'ed',reason:why.ed+r2.note+more(r2)},
+      {pair:3,cat:r3.cat,ex:r3.ex,kind:'라이프스타일 · '+tag,slot:'life',reason:why.life+r3.note+more(r3)}
     ];
   }
 
@@ -1176,8 +1219,12 @@ details.box .inside{padding:10px}
       return'<div class="rec-card"><b>'+escHtml(r.kind)+'</b>'+
         '<div class="rec-title">'+escHtml(lab.catLabel)+' → '+escHtml(lab.exLabel)+'</div>'+
         '<div class="rec-reason">'+escHtml(r.reason)+'</div>'+
-        '<button class="small" type="button" data-rec-index="'+i+'">Pair '+r.pair+' 적용</button></div>';
+        '<div class="rec-btns"><button class="small" type="button" data-rec-index="'+i+'">Pair '+r.pair+' 적용</button>'+
+        '<button class="small" type="button" data-rec-spin="'+escHtml(r.slot)+'" title="같은 근거 안에서 다른 후보로">↻ 다시</button></div></div>';
     }).join('');
+    document.querySelectorAll('[data-rec-spin]').forEach(btn=>{
+      btn.addEventListener('click',()=>{bumpSpin(btn.dataset.recSpin);renderRecommendations();});
+    });
     document.querySelectorAll('[data-rec-index]').forEach(btn=>{
       btn.addEventListener('click',()=>{
         const r=recs[Number(btn.dataset.recIndex)];
