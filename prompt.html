@@ -215,6 +215,11 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
         <label class="mini-check">
           <input type="checkbox" id="onlyRemaining"><span>초상 미완성 기체만 보기</span>
         </label>
+        <div class="field" style="margin-top:10px">
+          <label>Art Style <small>화풍 · 이 기체의 모든 그림에 적용</small></label>
+          <select id="artStyle"></select>
+          <div class="param-preview hidden" id="artNote"></div>
+        </div>
         <button id="applySource" class="primary apply" type="button">기체 선택 적용</button>
         <div class="quick-note">기본은 AUTO로 두고, 마음에 안 드는 요소만 선택하면 된다. 표정·앞뒷태는 패널별로 따로 잡을 수 있다.</div>
       </div>
@@ -1559,6 +1564,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman as the attached reference. Preserve the exact same face, apparent adult age, eyes, nose, mouth, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. No face drift, age drift, hairstyle redesign, or body redesign.'
     ];
     if(document.getElementById('sgCarry').checked)parts.push(carryBlock());
+    parts.push(styleBlock());
     parts.push('[OUTPUT]\n\nCreate ONE SINGLE image in '+sgVal('sgAspect')+
       ' aspect. Exactly one woman. No collage, no panels, no split frames, no numerals, no captions, titles, labels, or any other text.');
     let dir='[DIRECTION]\n\n';
@@ -1604,7 +1610,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     const mood=[EX[sgVal('sgExpr')],OR[sgVal('sgOrient')],PO[sgVal('sgPose')]].filter(Boolean).join(' · ');
     const rows=['<b>한 장</b>'+escHtml((CAT[cat]||{}).ko||cat)+(exKo?' — '+escHtml(exKo[2]):'')+
       ' <i>'+escHtml(sgVal('sgAspect'))+'</i>'+(mood?'<u>'+escHtml(mood)+'</u>':'')];
-    const flags=[];
+    const flags=['화풍 '+styleRow()[1]];
     const ax=LOCAL_AXES.filter(k=>{const el=document.querySelector('[data-sg-axis="'+k+'"]');return el&&el.value;}).length;
     if(ax)flags.push('세부 강도 '+ax+'개');
     if(document.getElementById('sgCarry').checked&&carryValues().length)
@@ -1693,6 +1699,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman in all six panels. Preserve the exact same face, apparent adult age, eyes, nose, mouth, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. No face drift, age drift, hairstyle redesign, or body redesign. Only identity repeats.',
       (document.getElementById('carryIdentity')&&document.getElementById('carryIdentity').checked?carryBlock():''),
       '[OUTPUT]\n\nCreate ONE SINGLE 3:2 LANDSCAPE image as a clean 3-column × 2-row collage:\n1 | 2 | 3\n4 | 5 | 6\nExactly six equal, approximately square panels. Only small numerals 1–6 in the upper-left corners. No captions, titles, labels, subtitles, logos-as-text, or other words. Exactly one woman per panel.',
+      styleBlock(),
       structureBlock(),
       diversityBlock(),
       directionBlocks(),
@@ -1960,7 +1967,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     });
     const localN=document.querySelectorAll('#panelCollage details.mini select').length&&
       [...document.querySelectorAll('#panelCollage details.mini select')].filter(e=>e.value).length;
-    const flags=[];
+    const flags=['화풍 '+styleRow()[1]];
     if(localN)flags.push('세부 강도 '+localN+'곳 지정');
     if(SUPPRESSED.length)flags.push('직접 지정이 있어 전역 '+
       SUPPRESSED.map(k=>(ADVANCED_LABELS[k]||[k])[1]||k).join('·')+' 제외');
@@ -2574,11 +2581,64 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   /* ══ 저장 ══
      기체별·성별별로 의인화 설정을, 그리고 콜라주 설정 한 벌을 브라우저에 남긴다.
      localStorage가 막힌 환경에서도 앱이 죽지 않도록 전부 try로 감싼다. */
+  /* ══ 화풍 ══
+     기체마다 따로 기억한다. 초상과 일상컷의 결이 어긋나면 한 카드 안에서 따로 놀기 때문에
+     세 생성기 모두 같은 값을 쓴다. */
+  const ART_STYLES=[
+    ['semi_real_paint','반실사 회화','지금까지의 기본값. 사실적인 질감 위에 붓자국이 남는 유화풍',
+     'semi-realistic digital oil painting; realistic skin texture and material rendering with visible painterly brush strokes; grounded anatomy and lighting; rich surface detail'],
+    ['semi_anime','세미리얼 애니풍','깨끗한 선과 2~3단계 음영. 초상과 결이 맞아 카드 안에서 따로 놀지 않는다',
+     'semi-realistic anime illustration; clean confident linework, anime facial structure with large expressive eyes, simplified two-to-three step shading with soft gradients, saturated but harmonious colours; rendered as an illustration rather than a photograph — no photographic skin pores, no camera grain, no lens blur'],
+    ['photoreal','사진풍','실제 사진에 가까운 렌더. 배경과 소품의 정보량이 가장 많다',
+     'photorealistic render; camera-like depth of field, real fabric and skin texture, natural photographic lighting; no visible linework and no cel shading'],
+    ['cel_anime','셀화 애니','경계가 뚜렷한 평면 음영과 굵은 외곽선',
+     'flat cel-shaded anime; hard-edged shadow shapes, bold clean outlines, minimal gradients, poster-like colour blocking'],
+    ['painterly','회화적 컨셉아트','거친 붓질과 흐릿한 경계. 표면 묘사보다 명암 구성이 앞선다',
+     'loose painterly concept art; broad visible brush work, edges deliberately left unresolved in places, strong value composition prioritised over surface detail'],
+    ['retro_anime','레트로 애니','80~90년대 셀 애니메이션. 필름 그레인과 손으로 그린 배경',
+     '1980s–90s cel animation look; subtle film grain, slightly muted analogue palette, hand-painted background, visible colour separation'],
+    ['ink_wash','수묵 담채','먹선과 옅은 채색. 여백이 많고 색이 절제됨',
+     'ink-and-wash illustration; expressive brush outlines, translucent washes of colour, generous negative space, restrained palette']
+  ];
+  function styleKey(){
+    const el=document.getElementById('artStyle');
+    return (el&&el.value)||'semi_real_paint';
+  }
+  function styleRow(){return ART_STYLES.find(x=>x[0]===styleKey())||ART_STYLES[0];}
+  function styleBlock(){
+    const r=styleRow();
+    return '[ART STYLE]\n\n'+r[3]+
+      '\n\nThis art style governs the entire image and overrides any conflicting style wording elsewhere in this prompt.';
+  }
+  function fillArtStyle(){
+    const el=document.getElementById('artStyle'); if(!el)return;
+    el.innerHTML=ART_STYLES.map(r=>'<option value="'+r[0]+'">'+escHtml(r[1])+'</option>').join('');
+  }
+  function loadStyleForMech(){
+    const el=document.getElementById('artStyle'); if(!el)return;
+    const rec=(STORE.style||{})[mechKey()] || ((BASE.style||{})[mechKey()]);
+    el.value=rec&&ART_STYLES.some(x=>x[0]===rec)?rec:'semi_real_paint';
+    renderArtNote();
+  }
+  function saveStyle(){
+    if(!READY)return;
+    const k=mechKey(); if(!k)return;
+    STORE.style=STORE.style||{};
+    if(styleKey()==='semi_real_paint')delete STORE.style[k]; else STORE.style[k]=styleKey();
+    saveStore();
+  }
+  function renderArtNote(){
+    const box=document.getElementById('artNote'); if(!box)return;
+    const r=styleRow();
+    box.classList.remove('hidden');
+    box.innerHTML='<div class="pp-txt"><b>'+escHtml(r[1])+'</b>'+escHtml(r[2])+'</div>';
+  }
+
   const IMG_BASE='https://polos0117.github.io/atelier/';
   const STORE_KEY='atelier_toolkit_v1';
   const DATA_URL='toolkit-data.json';     /* 저장소에 커밋해 두는 기반 기록 */
-  let STORE={last:{},anthro:{},collage:null,used:{}};
-  let BASE={mechs:{},used:{}};            /* git 파일에서 읽어온 것 */
+  let STORE={last:{},anthro:{},collage:null,used:{},style:{}};
+  let BASE={mechs:{},used:{},style:{}};   /* git 파일에서 읽어온 것 */
   let STORE_OK=true, READY=false;
   try{
     const raw=localStorage.getItem(STORE_KEY);
@@ -2780,6 +2840,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       out.push(['age clarity',CUTE_LOCK.replace('{C}',fc2[1])]);
     const eth=out.find(p=>p[0]==='facial ethnicity');
     if(eth)out.push(['ethnic consistency',ETHNIC_LOCK.replace('{E}',eth[1])]);
+    const sty=styleRow();
+    out.push(['art style',sty[3]+'; this overrides the semi-realistic oil painting wording used elsewhere in this prompt']);
     const sp=document.getElementById('specialInput').value.trim();if(sp)out.push(['special characteristics',sp]);
     const ub=document.getElementById('underboobInput');
     if(ub&&ub.checked&&(document.getElementById('genderInput').value||'female')==='female'){
@@ -2870,6 +2932,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   fillPairMood();
   fillPairAdv();
   fillSingle();
+  fillArtStyle();
   document.getElementById('randomMode').innerHTML=Object.entries(RANDOM_MODES)
     .map(([k,v])=>'<option value="'+k+'">'+escHtml(v.ko+' — '+v.desc)+'</option>').join('');
   document.getElementById('randomMode').value='variety';
@@ -2910,6 +2973,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   }
   if(STORE.collage)applyCollage(STORE.collage);
   if(STORE.single)applySingle(STORE.single);
+  loadStyleForMech();
   loadAnthroForMech();
   READY=true;
 
@@ -2932,10 +2996,11 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   // Events
   seriesPicker.addEventListener('change',()=>{
     fillMechs();updateSelInfo();renderRecommendations();
-    loadAnthroForMech();refreshCollagePrompt();refreshSinglePrompt();renderUsed();renderCarry();
+    loadAnthroForMech();loadStyleForMech();refreshCollagePrompt();refreshSinglePrompt();renderUsed();renderCarry();
   });
   mechPicker.addEventListener('change',()=>{
     updateSelInfo();renderRecommendations();
+    loadStyleForMech();
     const had=loadAnthroForMech();
     setStatus('statusAnthro',had?'"'+mechKey()+'" 의 저장된 설정을 불러왔다':
       '"'+mechKey()+'" 는 저장된 설정이 없어 현재 값을 그대로 둔다','ok');
@@ -3027,6 +3092,11 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   document.getElementById('resetAnthro').addEventListener('click',resetAnthro);
   document.getElementById('dropAnthro').addEventListener('click',dropAnthroForMech);
   document.getElementById('undoAnthro').addEventListener('click',undoAnthro);
+  document.getElementById('artStyle').addEventListener('change',()=>{
+    renderArtNote(); saveStyle();
+    refreshCollagePrompt(); refreshSinglePrompt(); refreshAnthroPrompt();
+    setStatus('statusAnthro','화풍을 "'+styleRow()[1]+'" 로 바꿨다. 세 생성기에 모두 적용된다','ok');
+  });
   document.getElementById('onlyRemaining').addEventListener('change',()=>{
     fillMechs(mechPicker.value);updateSelInfo();loadAnthroForMech();});
   document.getElementById('exportStore').addEventListener('click',()=>{
@@ -3052,6 +3122,10 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       /* prev 는 이 브라우저 안에서만 쓰는 되돌리기용이라 파일에 넣지 않는다 */
       merged.mechs[k]=o;
     });
+    merged.style={};
+    Object.keys(Object.assign({},BASE.style||{},STORE.style||{})).forEach(k=>{
+      const v=(STORE.style||{})[k]||(BASE.style||{})[k];
+      if(v&&v!=='semi_real_paint')merged.style[k]=v;});
     const uk={};Object.keys(BASE.used||{}).forEach(k=>uk[k]=1);Object.keys(STORE.used||{}).forEach(k=>uk[k]=1);
     Object.keys(uk).forEach(k=>{const u=usedOf(k);if(u.length)merged.used[k]=u;});
     box.value=JSON.stringify(merged,null,1);
