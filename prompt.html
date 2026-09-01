@@ -157,6 +157,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
 .mini-note{font-size:10.5px;color:var(--muted);line-height:1.45}
 .mini-in label{margin-bottom:4px}
 .card-rnd{width:100%;margin-top:8px;font-size:11.5px}
+.card-rnd.sub{margin-top:5px;font-size:11px;opacity:.85}
 .ptabs{display:flex;align-items:center;gap:4px;margin-bottom:10px;flex-wrap:wrap}
 .ptab{flex:1 1 0;min-width:0;padding:8px 4px;font-size:12px;min-height:0}
 .ptab.on{background:var(--accent);color:#fff;border-color:var(--accent)}
@@ -300,6 +301,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
           <label style="margin-top:7px">Pose <small>포즈</small></label><select id="pair1Pose"></select>
           <div id="pair1AdvBox"></div>
           <button type="button" class="card-rnd" data-rnd-pair="1">🎲 이 Pair 전체 랜덤</button>
+          <button type="button" class="card-rnd sub" data-rnd-axis-pair="1">🎲 세부 강도만 랜덤</button>
         </div>
 
         <div class="pair-card">
@@ -320,6 +322,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
           <label style="margin-top:7px">Pose <small>포즈</small></label><select id="pair2Pose"></select>
           <div id="pair2AdvBox"></div>
           <button type="button" class="card-rnd" data-rnd-pair="2">🎲 이 Pair 전체 랜덤</button>
+          <button type="button" class="card-rnd sub" data-rnd-axis-pair="2">🎲 세부 강도만 랜덤</button>
         </div>
 
         <div class="pair-card">
@@ -340,6 +343,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
           <label style="margin-top:7px">Pose <small>포즈</small></label><select id="pair3Pose"></select>
           <div id="pair3AdvBox"></div>
           <button type="button" class="card-rnd" data-rnd-pair="3">🎲 이 Pair 전체 랜덤</button>
+          <button type="button" class="card-rnd sub" data-rnd-axis-pair="3">🎲 세부 강도만 랜덤</button>
         </div>
       </div>
       </div>
@@ -829,6 +833,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
         '<label style="margin-top:7px">Extra <small>추가 지시</small></label><input data-ov-panel="'+n+'" data-ov-key="extra" placeholder="AUTO">'+
         localAxisBox('panel',n)+
         '<button type="button" class="card-rnd" data-rnd-panel="'+n+'">🎲 이 패널 전체 랜덤</button>'+
+        '<button type="button" class="card-rnd sub" data-rnd-axis-panel="'+n+'">🎲 세부 강도만 랜덤</button>'+
       '</div>';
     }
     grid.innerHTML='<div class="ptabs" id="ptabs">'+
@@ -837,6 +842,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       '</div>'+h;
     grid.querySelectorAll('[data-rnd-panel]').forEach(b=>
       b.addEventListener('click',()=>randomizeOnePanel(Number(b.dataset.rndPanel))));
+    grid.querySelectorAll('[data-rnd-axis-panel]').forEach(b=>
+      b.addEventListener('click',()=>rollAxes('panel',Number(b.dataset.rndAxisPanel))));
     grid.querySelectorAll('[data-ptab]').forEach(b=>b.addEventListener('click',()=>{
       const t=b.dataset.ptab;
       grid.querySelectorAll('[data-ptab]').forEach(x=>x.classList.toggle('on',x===b));
@@ -1012,6 +1019,26 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     if(skipPanel){const p=pairForPanel(skipPanel);
       if(!pairUsed(p)){const a=(p-1)*2+1;[a,a+1].forEach(x=>{if(x!==skipPanel)out.push(panelCat(x));});}}
     return out;
+  }
+  /* 세부 강도만 굴린다. 매번 전부 채우면 지시가 과해지므로
+     축마다 1/4 확률로 AUTO(전역 따름)를 남긴다. */
+  function rollAxes(scope,n){
+    pushCollageUndo();
+    const keys=scope==='pair'?PAIR_ONLY.concat(LOCAL_AXES):LOCAL_AXES;
+    let set=0;
+    keys.forEach(k=>{
+      const el=scope==='pair'
+        ? document.getElementById('pair'+n+'Adv_'+k)
+        : document.querySelector('[data-ov-panel="'+n+'"][data-ov-key="adv_'+k+'"]');
+      if(!el)return;
+      const vals=(ADVANCED_OPTIONS[k]||[]).filter(v=>v!=='AUTO');
+      if(!vals.length)return;
+      if(Math.random()<0.25){el.value='';}
+      else{el.value=vals[Math.floor(Math.random()*vals.length)];set++;}
+    });
+    refreshCollagePrompt();
+    setStatus('statusCollage',(scope==='pair'?'Pair '+n:'패널 '+n)+
+      ' 세부 강도를 굴렸다 — '+set+'개 지정, 나머지는 전역 설정을 따른다','ok');
   }
   function randomizeOnePair(n){
     pushCollageUndo();
@@ -2583,6 +2610,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   document.getElementById('undoCollage').addEventListener('click',undoCollage);
   document.querySelectorAll('[data-rnd-pair]').forEach(b=>
     b.addEventListener('click',()=>randomizeOnePair(Number(b.dataset.rndPair))));
+  document.querySelectorAll('[data-rnd-axis-pair]').forEach(b=>
+    b.addEventListener('click',()=>rollAxes('pair',Number(b.dataset.rndAxisPair))));
   document.querySelectorAll('#buildTabs .mtab').forEach(b=>b.addEventListener('click',()=>{
     const m=b.dataset.bmode;
     document.querySelectorAll('#buildTabs .mtab').forEach(x=>x.classList.toggle('on',x===b));
