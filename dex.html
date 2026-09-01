@@ -992,15 +992,16 @@ function shotOf(c){var ss=shots(c);return ss.length?ss[pageOf(c)]:null}
 /* ── 툴킷 설정 읽기 ──
    prompt.html 이 남긴 기록을 그대로 읽는다. 저장소 파일(toolkit-data.json)이 기반이고
    같은 브라우저의 localStorage 가 그 위를 덮는다. 쓰지는 않는다. */
-var TK={base:{},local:{}};
+var TK={base:{},local:{},baseUsed:{},localUsed:{}};
 function tkLoad(){
   try{
     var o=JSON.parse(localStorage.getItem("atelier_toolkit_v1")||"null");
     if(o&&o.anthro)TK.local=o.anthro;
+    if(o&&o.used)TK.localUsed=o.used;
   }catch(e){}
   return fetch("toolkit-data.json",{cache:"no-cache"})
     .then(function(r){return r.ok?r.json():null})
-    .then(function(j){if(j&&j.mechs)TK.base=j.mechs})
+    .then(function(j){if(j){if(j.mechs)TK.base=j.mechs; if(j.used)TK.baseUsed=j.used;}})
     .catch(function(){});
 }
 function tkReady(){ /* 기록이 도착하면 현재 화면을 다시 그린다 */
@@ -1012,6 +1013,18 @@ function tkOf(name){
   if(!b)return a;
   return (a.t||0)>=(b.t||0)?a:b;
 }
+/* 콜라주로 어떤 카테고리를 뽑아봤는지 — 채택이 아니라 복사 기록이다 */
+function tkUsed(name){
+  var m={},add=function(arr){(arr||[]).forEach(function(r){
+    if(!r.cat)return; m[r.cat]=(m[r.cat]||0)+(r.n||1);})};
+  add((TK.baseUsed||{})[name]); add((TK.localUsed||{})[name]);
+  return Object.keys(m).map(function(k){
+    return (TK_CAT[k]||k)+(m[k]>1?" "+m[k]+"회":"")});
+}
+var TK_CAT={adult_roleplay:"성인 역할극",occupation_basic:"직업(기본)",occupation_sensual:"직업(섹시)",
+  everyday_basic:"일상(기본)",everyday_sensual:"일상(섹시)",swimwear:"수영복",active:"액티브",
+  source_editorial:"SOURCE 에디토리얼",homewear:"홈웨어",private_evening:"프라이빗 이브닝",
+  lingerie:"란제리",everyday:"일상",wildcard:"와일드카드",auto_random:"자동/랜덤"};
 var TK_LABEL={"facial ethnicity":"계통","apparent age":"나이","body type":"체형",
   "hair color":"머리색","hair length":"머리길이","hairstyle":"헤어","eye color":"눈색",
   "facial hair":"수염","face shape":"얼굴형","facial character":"인상","skin tone":"피부"};
@@ -1207,6 +1220,8 @@ function open(n,start){
       var tk=tkSummary(c[0]);
       h+='<div class="dt-tk"><b>툴킷 설정</b>'+
          (tk?esc(tk).replace(/\n/g,"<br>"):"저장된 설정이 없다.")+
+         (function(){var u=tkUsed(c[0]);return u.length?
+           '<div style="margin-top:6px;opacity:.85">일상컷 복사 기록 · '+esc(u.join(", "))+'</div>':""})()+
          '<div style="margin-top:6px"><a href="prompt.html?mech='+encodeURIComponent(c[0])+
          '" target="_blank" rel="noopener">툴킷에서 열기 →</a></div></div>';
     }

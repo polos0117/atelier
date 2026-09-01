@@ -52,6 +52,12 @@ button.small{min-height:38px;padding:7px 9px;font-size:12px}
 .save-bar{margin-top:10px;display:flex;gap:8px;align-items:center;justify-content:space-between;
   padding:8px 10px;border-radius:9px;background:var(--card2);border:1px solid var(--line);
   font-size:11.5px;color:var(--muted);line-height:1.4}
+.used-box{display:flex;flex-wrap:wrap;gap:5px}
+.uchip{display:inline-flex;align-items:baseline;gap:5px;padding:4px 8px;border-radius:20px;
+  background:var(--card);border:1px solid var(--line);font-size:11px;color:var(--text)}
+.uchip i{font-style:normal;color:var(--muted)}
+.uchip u{text-decoration:none;color:var(--muted);font-size:10px;opacity:.8}
+.uz{font-size:10.5px;color:var(--muted);line-height:1.45}
 .save-bar .sb-drop{flex:none;font-size:11px;padding:5px 9px}
 .save-bar .sb-drop.hidden{display:none}
 .axis-note{margin-top:6px;font-size:11px;line-height:1.45;color:var(--muted)}
@@ -251,6 +257,19 @@ details.box .inside{padding:10px}
           <div id="overrideGrid" class="override-grid"></div>
         </div>
       </details>
+    </div>
+
+    <div class="save-bar" style="align-items:flex-start;flex-direction:column;gap:6px">
+      <div style="display:flex;justify-content:space-between;width:100%;align-items:center;gap:8px">
+        <span class="sb-txt" id="usedHead"></span>
+        <button type="button" class="sb-drop hidden" id="clearUse">기록 삭제</button>
+      </div>
+      <div id="usedBox" class="used-box"></div>
+      <label style="display:flex;align-items:center;gap:7px;margin:0;cursor:pointer;font-size:11.5px">
+        <input type="checkbox" id="avoidUsed" style="width:auto;margin:0;flex:none">
+        <span>이미 복사한 조합을 프롬프트에서 피하기</span>
+      </label>
+      <span class="uz">채택 여부가 아니라 <b>복사한 적이 있다</b>는 기록이다. 6장 중 전부 버렸어도 남는다.</span>
     </div>
 
     <div class="controls">
@@ -733,12 +752,76 @@ details.box .inside{padding:10px}
       pairInstruction(p3,3,5,6),
       '[ADDITIONAL SETTINGS]\n\n'+additionalSettings(adv,custom)
     ];
+    const av=document.getElementById('avoidUsed');
+    if(av&&av.checked){
+      const list=usedOf(mechKey()).filter(r=>r.cat);
+      if(list.length){
+        const names=list.map(r=>{
+          const c=CAT[r.cat],n=c?c.eng:r.cat;
+          return r.ex?n+' ('+r.ex.replace(/_/g,' ')+')':n;});
+        parts.push('[ALREADY USED FOR THIS CHARACTER]\n\n'+
+          'These category and example combinations have already been generated for this same character in earlier sessions:\n'+
+          names.map(n=>'- '+n).join('\n')+
+          '\n\nDo not repeat them. Choose visibly different scenes, outfits, locations, and framing from the ones these would produce, even where the selected categories overlap.');
+      }
+    }
     const ovs=panelOverrideBlocks();
     if(ovs.length)parts.push('[PANEL OVERRIDES]\n\n'+ovs.join('\n\n'));
     parts.push('[NON-EXPLICIT LIMITS]\n\nThe character must clearly read as an adult. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.');
     parts.push('[FINAL CHECK]\n\nVerify: exactly six panels; 3×2 landscape layout; same adult woman in all panels; only numbers 1–6 appear; selected pair categories and examples are followed; individual Panel Example selections override pair-level examples when present; the second panel of each pair is clearly stronger than the first; expressions are meaningfully varied and do not collapse into blank faces; front/side/back body orientation is intentionally distributed; outfits, scenes, actions, poses, and camera treatments remain varied; no panel substantially repeats a recent thumbnail-level concept; no explicit nudity or sexual activity.');
     return parts.join('\n\n==================================================\n\n');
   }
+  /* ══ 콜라주 사용 기록 ══
+     "이 기체로 이 카테고리 프롬프트를 복사했다"는 사실만 남긴다.
+     6장 중 무엇을 채택했는지는 알 수 없으므로, 채택 기록이 아니라 복사 기록이다. */
+  function usedOf(k){
+    const a=(STORE.used||{})[k]||[], b=((BASE.used||{})[k])||[];
+    const m={};
+    b.concat(a).forEach(r=>{
+      const key=r.cat+'|'+(r.ex||'');
+      const o=m[key]||(m[key]={cat:r.cat,ex:r.ex||'',n:0,t:0});
+      o.n+=r.n||1; o.t=Math.max(o.t,r.t||0);
+    });
+    return Object.values(m).sort((x,y)=>y.t-x.t);
+  }
+  function recordUse(){
+    const k=mechKey(); if(!k)return;
+    const now=Date.now(), arr=(STORE.used[k]||(STORE.used[k]=[]));
+    [1,2,3].forEach(n=>{
+      const cat=document.getElementById('pair'+n+'Select').value;
+      if(!cat||cat==='__custom__')return;
+      const ex=document.getElementById('pair'+n+'Example').value||'';
+      const hit=arr.find(r=>r.cat===cat&&(r.ex||'')===ex);
+      if(hit){hit.n=(hit.n||1)+1;hit.t=now;}else arr.push({cat:cat,ex:ex,n:1,t:now});
+    });
+    saveStore(); renderUsed();
+  }
+  function clearUse(){
+    const k=mechKey(); if(!k)return;
+    delete STORE.used[k]; saveStore(); renderUsed();
+    setStatus('statusCollage','"'+k+'" 의 복사 기록을 지웠다','ok');
+  }
+  function renderUsed(){
+    const box=document.getElementById('usedBox'); if(!box)return;
+    const k=mechKey(),list=usedOf(k);
+    const head=document.getElementById('usedHead');
+    if(head)head.textContent='"'+k+'" 로 복사한 조합 '+list.length+'가지';
+    document.getElementById('clearUse').classList.toggle('hidden',!(STORE.used||{})[k]);
+    if(!list.length){box.innerHTML='<span class="uz">아직 없다. 프롬프트를 복사하면 여기에 쌓인다.</span>';return;}
+    const d=t=>{const x=new Date(t);return (x.getMonth()+1)+'/'+x.getDate();};
+    box.innerHTML=list.map(r=>{
+      const c=CAT[r.cat],ex=r.ex?exLabel(r.cat,r.ex):'';
+      return '<span class="uchip"><b>'+escHtml(c?c.ko:r.cat)+'</b>'+
+        (ex?'<i>'+escHtml(ex)+'</i>':'')+
+        '<u>'+(r.n>1?r.n+'회 · ':'')+d(r.t)+'</u></span>';
+    }).join('');
+  }
+  function exLabel(cat,ex){
+    const rows=EXAMPLE_MAP[cat]||[];
+    const r=rows.find(x=>x[0]===ex);
+    return r?r[2]:ex;
+  }
+
   function snapCollage(){
     const o={pair:{},adv:{},ov:{},panel:{}};
     [1,2,3].forEach(n=>{o.pair[n]={
@@ -1121,12 +1204,13 @@ details.box .inside{padding:10px}
   const IMG_BASE='https://polos0117.github.io/atelier/';
   const STORE_KEY='atelier_toolkit_v1';
   const DATA_URL='toolkit-data.json';     /* 저장소에 커밋해 두는 기반 기록 */
-  let STORE={last:{},anthro:{},collage:null};
-  let BASE={mechs:{}};                    /* git 파일에서 읽어온 것 */
+  let STORE={last:{},anthro:{},collage:null,used:{}};
+  let BASE={mechs:{},used:{}};            /* git 파일에서 읽어온 것 */
   let STORE_OK=true, READY=false;
   try{
     const raw=localStorage.getItem(STORE_KEY);
     if(raw){const o=JSON.parse(raw);if(o&&typeof o==='object')STORE=Object.assign(STORE,o);}
+    if(!STORE.used)STORE.used={};
   }catch(e){STORE_OK=false;}
   /* 같은 기체가 양쪽에 있으면 t(마지막 수정 시각)가 늦은 쪽을 쓴다.
      git 파일을 새로 커밋하면 오래된 로컬 기록이 자연히 밀려난다. */
@@ -1392,26 +1476,27 @@ details.box .inside{padding:10px}
   refreshAnthroPrompt();
   refreshCollagePrompt();
   updateSaveBar();
+  renderUsed();
 
   /* 저장소 기록과 이미지 현황은 네트워크라 늦게 온다. 도착하면 다시 그린다. */
   Promise.all([loadBase(),loadShots()]).then(()=>{
     fillMechs(mechPicker.value);
     if(!STORE.anthro[mechKey()])loadAnthroForMech();
-    updateSaveBar(); updateDoneStat();
+    updateSaveBar(); updateDoneStat(); renderUsed();
     PARAM_DEFS.forEach(dd=>updatePreview(dd.key));
   });
 
   // Events
   seriesPicker.addEventListener('change',()=>{
     fillMechs();updateSelInfo();renderRecommendations();
-    loadAnthroForMech();refreshCollagePrompt();
+    loadAnthroForMech();refreshCollagePrompt();renderUsed();
   });
   mechPicker.addEventListener('change',()=>{
     updateSelInfo();renderRecommendations();
     const had=loadAnthroForMech();
     setStatus('statusAnthro',had?'"'+mechKey()+'" 의 저장된 설정을 불러왔다':
       '"'+mechKey()+'" 는 저장된 설정이 없어 현재 값을 그대로 둔다','ok');
-    refreshCollagePrompt();
+    refreshCollagePrompt();renderUsed();
   });
   document.getElementById('applySource').addEventListener('click',applySource);
 
@@ -1453,8 +1538,10 @@ details.box .inside{padding:10px}
     fillMechs(mechPicker.value);updateSelInfo();loadAnthroForMech();});
   document.getElementById('exportStore').addEventListener('click',()=>{
     const box=document.getElementById('exportBox');
-    const merged={version:1,updated:new Date().toISOString().slice(0,10),mechs:{}};
+    const merged={version:1,updated:new Date().toISOString().slice(0,10),mechs:{},used:{}};
     allKeys().forEach(k=>{const r=recOf(k);if(r)merged.mechs[k]=r;});
+    const uk={};Object.keys(BASE.used||{}).forEach(k=>uk[k]=1);Object.keys(STORE.used||{}).forEach(k=>uk[k]=1);
+    Object.keys(uk).forEach(k=>{const u=usedOf(k);if(u.length)merged.used[k]=u;});
     box.value=JSON.stringify(merged,null,1);
     box.classList.remove('hidden'); box.select();
     try{document.execCommand('copy');setStatus('statusAnthro',
@@ -1464,7 +1551,12 @@ details.box .inside{padding:10px}
   document.getElementById('specialInput').addEventListener('input',refreshAnthroPrompt);
   document.getElementById('underboobInput').addEventListener('change',refreshAnthroPrompt);
 
-  document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>copyPrompt(b.dataset.copy,b.dataset.status)));
+  document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{
+    copyPrompt(b.dataset.copy,b.dataset.status);
+    if(b.dataset.copy==='textCollage')recordUse();
+  }));
+  document.getElementById('clearUse').addEventListener('click',clearUse);
+  document.getElementById('avoidUsed').addEventListener('change',refreshCollagePrompt);
   document.querySelectorAll('[data-toggle]').forEach(b=>b.addEventListener('click',()=>toggleView(b.dataset.toggle,b)));
 
   showTab('collage');
