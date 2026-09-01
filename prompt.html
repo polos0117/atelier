@@ -248,6 +248,13 @@ details.box .inside{padding:10px}
 
       <div id="basicParams" class="param-grid" style="margin-top:10px"></div>
 
+      <div class="field" style="margin-top:10px">
+        <label style="display:flex;align-items:center;gap:8px;margin:0;cursor:pointer">
+          <input id="underboobInput" type="checkbox" style="width:auto;margin:0;flex:none">
+          <span>Underboob Armor <small>흉갑 하단 노출 · 여성일 때만 반영</small></span>
+        </label>
+      </div>
+
       <details class="box">
         <summary>고급 외형 설정 펼치기</summary>
         <div class="inside">
@@ -692,6 +699,9 @@ details.box .inside{padding:10px}
     document.querySelectorAll('[data-param-custom]').forEach(inp=>inp.addEventListener('input',refreshAnthroPrompt));
   }
 
+  const UNDERBOOB_NEG='no fully covered lower breast, no simple abdomen gap, no detached breast cups, no floating armor, no exposed cleavage-only design';
+  const UNDERBOOB_POS='the chest armor ends slightly above the natural inframammary fold, revealing a narrow crescent of the lower breast on both sides; the exposed underboob must be directly continuous with the breast contour, not a separate cutout or gap; nipples and areola remain fully covered; the armor hugs the upper and outer breast naturally and transitions smoothly into the sternum sensor and side armor';
+
   function getParamValues(){
     const out=[];
     PARAM_DEFS.forEach(def=>{
@@ -701,6 +711,11 @@ details.box .inside{padding:10px}
       if(v)out.push([def.key,v]);
     });
     const sp=document.getElementById('specialInput').value.trim();if(sp)out.push(['special characteristics',sp]);
+    const ub=document.getElementById('underboobInput');
+    if(ub&&ub.checked&&(document.getElementById('genderInput').value||'female')==='female'){
+      out.push(['chest armor negatives',UNDERBOOB_NEG]);
+      out.push(['chest armor design',UNDERBOOB_POS]);
+    }
     return out;
   }
 
@@ -717,6 +732,7 @@ details.box .inside{padding:10px}
     document.querySelectorAll('[data-param-select]').forEach(s=>s.value='');
     document.querySelectorAll('[data-param-custom]').forEach(i=>{i.value='';i.classList.add('hidden');});
     document.getElementById('specialInput').value='';
+    document.getElementById('underboobInput').checked=false;
     refreshAnthroPrompt();setStatus('statusAnthro','외형 설정 AUTO 초기화 완료','ok');
   }
 
@@ -828,6 +844,7 @@ details.box .inside{padding:10px}
   document.getElementById('applyAnthro').addEventListener('click',()=>{refreshAnthroPrompt();setStatus('statusAnthro','PARAMETERS 적용 완료','ok');});
   document.getElementById('resetAnthro').addEventListener('click',resetAnthro);
   document.getElementById('specialInput').addEventListener('input',refreshAnthroPrompt);
+  document.getElementById('underboobInput').addEventListener('change',refreshAnthroPrompt);
 
   document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>copyPrompt(b.dataset.copy,b.dataset.status)));
   document.querySelectorAll('[data-toggle]').forEach(b=>b.addEventListener('click',()=>toggleView(b.dataset.toggle,b)));
