@@ -49,6 +49,11 @@ button.small{min-height:38px;padding:7px 9px;font-size:12px}
 .gender-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:4px;border-radius:10px;background:var(--card2);border:1px solid var(--line)}
 .gender-tabs .gt{border:0;background:transparent;color:var(--muted);font-size:13px;font-weight:700;padding:9px 6px;border-radius:7px;cursor:pointer}
 .gender-tabs .gt.on{background:var(--card);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.save-bar{margin-top:10px;display:flex;gap:8px;align-items:center;justify-content:space-between;
+  padding:8px 10px;border-radius:9px;background:var(--card2);border:1px solid var(--line);
+  font-size:11.5px;color:var(--muted);line-height:1.4}
+.save-bar .sb-drop{flex:none;font-size:11px;padding:5px 9px}
+.save-bar .sb-drop.hidden{display:none}
 .axis-note{margin-top:6px;font-size:11px;line-height:1.45;color:var(--muted)}
 .param-preview{margin-top:8px;display:flex;gap:10px;align-items:center;padding:8px 9px;border-radius:8px;background:var(--card);border:1px solid var(--line)}
 .param-preview.hidden{display:none}
@@ -284,6 +289,11 @@ details.box .inside{padding:10px}
 
       <div class="param-note">
         AUTO 항목은 최종 PARAMETERS에서 생략돼. 직접 입력을 고르면 원하는 값을 자유롭게 넣을 수 있어.
+      </div>
+
+      <div class="save-bar" id="saveBar">
+        <span class="sb-txt"></span>
+        <button type="button" class="sb-drop hidden" id="dropAnthro">이 기체 기록 삭제</button>
       </div>
 
       <div class="param-actions">
@@ -656,7 +666,64 @@ details.box .inside{padding:10px}
     parts.push('[FINAL CHECK]\n\nVerify: exactly six panels; 3×2 landscape layout; same adult woman in all panels; only numbers 1–6 appear; selected pair categories and examples are followed; individual Panel Example selections override pair-level examples when present; the second panel of each pair is clearly stronger than the first; expressions are meaningfully varied and do not collapse into blank faces; front/side/back body orientation is intentionally distributed; outfits, scenes, actions, poses, and camera treatments remain varied; no panel substantially repeats a recent thumbnail-level concept; no explicit nudity or sexual activity.');
     return parts.join('\n\n==================================================\n\n');
   }
-  function refreshCollagePrompt(){textCollage.value=buildCollagePrompt();}
+  function snapCollage(){
+    const o={pair:{},adv:{},ov:{},panel:{}};
+    [1,2,3].forEach(n=>{o.pair[n]={
+      cat:document.getElementById('pair'+n+'Select').value,
+      catCustom:document.getElementById('pair'+n+'Custom').value,
+      ex:document.getElementById('pair'+n+'Example').value,
+      exCustom:document.getElementById('pair'+n+'ExampleCustom').value};});
+    Object.keys(ADVANCED_OPTIONS).forEach(k=>{const el=document.getElementById('adv_'+k);if(el)o.adv[k]=el.value;});
+    for(let n=1;n<=6;n++){
+      const e=document.getElementById('panel'+n+'Example'),c=document.getElementById('panel'+n+'ExampleCustom');
+      if(e)o.panel[n]={ex:e.value,exCustom:c?c.value:''};
+    }
+    document.querySelectorAll('[data-ov-panel]').forEach(el=>{
+      o.ov[el.dataset.ovPanel+'|'+el.dataset.ovKey]=el.value;});
+    o.custom=document.getElementById('collageCustom').value;
+    o.expr=document.getElementById('globalExpressionMode').value;
+    o.orient=document.getElementById('globalOrientationMix').value;
+    o.preset=document.getElementById('presetSelect').value;
+    return o;
+  }
+  function applyCollage(o){
+    if(!o)return;
+    const set=(id,v)=>{const el=document.getElementById(id);
+      if(el&&v!==undefined&&[...(el.options||[])].concat([1]).length)el.value=v;};
+    if(o.preset)set('presetSelect',o.preset);
+    [1,2,3].forEach(n=>{
+      const r=o.pair&&o.pair[n]; if(!r)return;
+      const cs=document.getElementById('pair'+n+'Select');
+      if([...cs.options].some(t=>t.value===r.cat))cs.value=r.cat;
+      document.getElementById('pair'+n+'Custom').value=r.catCustom||'';
+      renderPairExample(n,false);
+      const es=document.getElementById('pair'+n+'Example');
+      if([...es.options].some(t=>t.value===r.ex))es.value=r.ex;
+      document.getElementById('pair'+n+'ExampleCustom').value=r.exCustom||'';
+    });
+    Object.entries(o.adv||{}).forEach(([k,v])=>set('adv_'+k,v));
+    for(let n=1;n<=6;n++){
+      const r=o.panel&&o.panel[n]; if(!r)continue;
+      renderPanelExample(n,false);
+      const e=document.getElementById('panel'+n+'Example');
+      if(e&&[...e.options].some(t=>t.value===r.ex))e.value=r.ex;
+      const c=document.getElementById('panel'+n+'ExampleCustom');
+      if(c){c.value=r.exCustom||'';c.classList.toggle('hidden',(e&&e.value)!=='__custom__');}
+    }
+    document.querySelectorAll('[data-ov-panel]').forEach(el=>{
+      const v=(o.ov||{})[el.dataset.ovPanel+'|'+el.dataset.ovKey];
+      if(v!==undefined)el.value=v;});
+    if(o.custom!==undefined)document.getElementById('collageCustom').value=o.custom;
+    if(o.expr!==undefined)set('globalExpressionMode',o.expr);
+    if(o.orient!==undefined)set('globalOrientationMix',o.orient);
+    updatePairCustomVisibility();
+    [1,2,3].forEach(n=>{updateCatNote(n);updateExNote(n);});
+  }
+  function refreshCollagePrompt(){
+    textCollage.value=buildCollagePrompt();
+    if(READY){STORE.collage=snapCollage();
+      STORE.last={series:seriesPicker.value,mech:mechKey()};saveStore();}
+  }
 
   // ---- SOURCE recommendations ----
   function recommendationLabel(cat,ex){
@@ -950,6 +1017,28 @@ details.box .inside{padding:10px}
 
   /* 성별별 설정을 따로 보관한다. 탭을 옮길 때 현재 화면을 저장하고
      반대쪽에 저장돼 있던 값을 복원한다. */
+  /* ══ 저장 ══
+     기체별·성별별로 의인화 설정을, 그리고 콜라주 설정 한 벌을 브라우저에 남긴다.
+     localStorage가 막힌 환경에서도 앱이 죽지 않도록 전부 try로 감싼다. */
+  const STORE_KEY='atelier_toolkit_v1';
+  let STORE={last:{},anthro:{},collage:null};
+  let STORE_OK=true, READY=false;
+  try{
+    const raw=localStorage.getItem(STORE_KEY);
+    if(raw){const o=JSON.parse(raw);if(o&&typeof o==='object')STORE=Object.assign(STORE,o);}
+  }catch(e){STORE_OK=false;}
+  let saveTimer=null;
+  function saveStore(){
+    if(!STORE_OK)return;
+    clearTimeout(saveTimer);
+    saveTimer=setTimeout(()=>{
+      try{localStorage.setItem(STORE_KEY,JSON.stringify(STORE));}
+      catch(e){STORE_OK=false;setStatus('statusAnthro','저장 공간이 가득 찼거나 막혀 있다. 기록이 남지 않는다.','warn');}
+    },250);
+  }
+  function mechKey(){return (mechPicker&&mechPicker.value)||'';}
+  function savedCount(){return Object.keys(STORE.anthro||{}).length;}
+
   const GSTATE={female:null,male:null};
   function snapParams(){
     const o={sel:{},cus:{},sp:'',ub:false};
@@ -974,6 +1063,51 @@ details.box .inside{padding:10px}
     if(sp)sp.value=o.sp||''; if(ub)ub.checked=!!o.ub;
     Object.keys(FIG_KEYS).forEach(updatePreview);
   }
+  function emptySnap(o){
+    if(!o)return true;
+    if(o.sp||o.ub)return false;
+    return !Object.values(o.sel||{}).some(v=>v)&&!Object.values(o.cus||{}).some(v=>v);
+  }
+  function persistAnthro(){
+    if(!READY)return;
+    const k=mechKey(); if(!k)return;
+    const cur=curGender(),other=cur==='female'?'male':'female';
+    const rec={}; rec[cur]=snapParams();
+    if(GSTATE[other])rec[other]=GSTATE[other];
+    /* 값이 하나도 없으면 기록을 만들지 않는다. 그냥 지나친 기체마다 빈 기록이 생기면
+       나중에 그 기체로 돌아왔을 때 빈 값이 덮어씌워진다. */
+    if(emptySnap(rec[cur])&&emptySnap(rec[other])){
+      if(STORE.anthro[k])delete STORE.anthro[k];
+    }else{
+      STORE.anthro[k]=rec;
+    }
+    STORE.last={series:seriesPicker.value,mech:k};
+    saveStore(); updateSaveBar();
+  }
+  function loadAnthroForMech(){
+    const k=mechKey(),rec=STORE.anthro[k];
+    if(!rec){updateSaveBar();return false;}
+    GSTATE.female=rec.female||null; GSTATE.male=rec.male||null;
+    applyParams(GSTATE[curGender()]);
+    refreshAnthroPrompt(); updateSaveBar();
+    return true;
+  }
+  function dropAnthroForMech(){
+    const k=mechKey(); if(!k||!STORE.anthro[k])return;
+    delete STORE.anthro[k]; GSTATE.female=GSTATE.male=null;
+    saveStore(); updateSaveBar();
+    setStatus('statusAnthro','"'+k+'" 기록을 지웠다. 화면의 값은 그대로 남아 있다.','ok');
+  }
+  function updateSaveBar(){
+    const bar=document.getElementById('saveBar'); if(!bar)return;
+    const k=mechKey(),has=!!STORE.anthro[k];
+    bar.querySelector('.sb-txt').textContent=
+      !STORE_OK?'이 브라우저에서는 저장이 막혀 있다':
+      (has?'"'+k+'" 설정이 저장돼 있다':'"'+k+'" 는 아직 저장된 설정이 없다')+
+      ' · 기록된 기체 '+savedCount()+'기';
+    bar.querySelector('.sb-drop').classList.toggle('hidden',!has);
+  }
+
   function setGender(g){
     const cur=curGender();
     if(g===cur)return;
@@ -1015,7 +1149,7 @@ details.box .inside{padding:10px}
     const block='PARAMETERS = [\n'+lines.join(',\n')+'\n]';
     return templateC.replace('PARAMETERS = [\ngender,\nmobile suit name,\nseries\n]',block);
   }
-  function refreshAnthroPrompt(){textAnthro.value=buildAnthroPrompt();}
+  function refreshAnthroPrompt(){textAnthro.value=buildAnthroPrompt();persistAnthro();}
   function resetAnthro(){
     document.querySelectorAll('[data-param-select]').forEach(s=>s.value='');
     document.querySelectorAll('[data-param-custom]').forEach(i=>{i.value='';i.classList.add('hidden');});
@@ -1095,12 +1229,38 @@ details.box .inside{padding:10px}
 
   document.getElementById('presetSelect').value='A';
   applyPreset();
+
+  // 저장된 상태 복원 — READY 이전이라 이 과정에서는 저장이 일어나지 않는다
+  if(STORE.last&&STORE.last.series){
+    const sp=document.getElementById('seriesPicker');
+    if([...sp.options].some(o=>o.value===STORE.last.series)){
+      sp.value=STORE.last.series; fillMechs();
+      if(STORE.last.mech&&[...mechPicker.options].some(o=>o.value===STORE.last.mech))
+        mechPicker.value=STORE.last.mech;
+      updateSelInfo();
+    }
+  }
+  if(STORE.collage)applyCollage(STORE.collage);
+  loadAnthroForMech();
+  READY=true;
+
   renderRecommendations();
   refreshAnthroPrompt();
+  refreshCollagePrompt();
+  updateSaveBar();
 
   // Events
-  seriesPicker.addEventListener('change',()=>{fillMechs();updateSelInfo();renderRecommendations();});
-  mechPicker.addEventListener('change',()=>{updateSelInfo();renderRecommendations();});
+  seriesPicker.addEventListener('change',()=>{
+    fillMechs();updateSelInfo();renderRecommendations();
+    loadAnthroForMech();refreshCollagePrompt();
+  });
+  mechPicker.addEventListener('change',()=>{
+    updateSelInfo();renderRecommendations();
+    const had=loadAnthroForMech();
+    setStatus('statusAnthro',had?'"'+mechKey()+'" 의 저장된 설정을 불러왔다':
+      '"'+mechKey()+'" 는 저장된 설정이 없어 현재 값을 그대로 둔다','ok');
+    refreshCollagePrompt();
+  });
   document.getElementById('applySource').addEventListener('click',applySource);
 
   tabs.collage[0].addEventListener('click',()=>showTab('collage'));
@@ -1136,6 +1296,7 @@ details.box .inside{padding:10px}
     b.addEventListener('click',()=>setGender(b.dataset.gender)));
   document.getElementById('applyAnthro').addEventListener('click',()=>{refreshAnthroPrompt();setStatus('statusAnthro','PARAMETERS 적용 완료','ok');});
   document.getElementById('resetAnthro').addEventListener('click',resetAnthro);
+  document.getElementById('dropAnthro').addEventListener('click',dropAnthroForMech);
   document.getElementById('specialInput').addEventListener('input',refreshAnthroPrompt);
   document.getElementById('underboobInput').addEventListener('change',refreshAnthroPrompt);
 
