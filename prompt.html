@@ -144,6 +144,7 @@ details.box .inside{padding:10px}
 .rec-head span{font-size:11px;color:var(--muted)}
 .rec-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .rec-card b{display:block;font-size:12px;margin-bottom:4px}
+.rec-card .rec-cat{margin-bottom:5px;font-size:11.5px;padding:6px 7px}
 .rec-card .rec-title{font-size:12px;line-height:1.4}
 .rec-card .rec-reason{margin-top:5px;color:var(--muted);font-size:11px;line-height:1.35}
 .rec-card>button{width:100%;margin-top:8px}
@@ -224,6 +225,11 @@ details.box .inside{padding:10px}
         <div id="recGrid" class="rec-grid"></div>
       </div>
 
+      <div class="param-note" style="margin-top:10px">
+        <b>Pair 로 묶는다는 것</b> — 두 패널을 같은 주제의 <b>약한 컷 / 강한 컷</b> 한 쌍으로 만든다.
+        예를 들어 Pair 1을 수영복으로 두면 패널 1은 얌전한 수영복 장면, 패널 2는 같은 수영복 주제를 더 과감하게 잡는다.
+        체크를 풀면 그 두 패널이 서로 무관해져서 각자 다른 카테고리를 고를 수 있다 — 강약 관계도 만들지 않는다.
+      </div>
       <div class="grid3" style="margin-top:10px">
         <div class="pair-card">
           <h3>PAIR 1 <small style="color:var(--muted);font-weight:500">Panel 1 &lt; Panel 2</small></h3>
@@ -1354,9 +1360,14 @@ details.box .inside{padding:10px}
   };
 
   /* 다시 굴리기 — 기체별로 몇 번째 후보를 보고 있는지 기억한다 */
-  let RECSPIN={};
+  let RECSPIN={}, RECCAT={};
   function spinOf(k){return RECSPIN[mechKey()+'|'+k]||0;}
   function bumpSpin(k){RECSPIN[mechKey()+'|'+k]=(spinOf(k)+1);}
+  function catOverride(k){return RECCAT[mechKey()+'|'+k]||'';}
+  function setCatOverride(k,v){
+    if(v)RECCAT[mechKey()+'|'+k]=v; else delete RECCAT[mechKey()+'|'+k];
+    RECSPIN[mechKey()+'|'+k]=0;   /* 카테고리를 바꾸면 후보 순번은 처음부터 */
+  }
 
   function sourceRecommendations(){
     const name=selectedSource().mech;
@@ -1400,13 +1411,22 @@ details.box .inside{padding:10px}
     const valid=l=>l.filter(x=>(EXAMPLE_MAP[x[0]]||[]).some(r=>r[0]===x[1]));
     const choose=(list,slot,fallback)=>{
       let l=valid(list); if(!l.length)l=valid(fallback)||[];
+      /* 카테고리를 직접 고른 경우: 그 안의 후보만 남기고,
+         하나도 없으면 그 카테고리의 예시 목록에서 뽑는다 */
+      const forced=catOverride(slot);
+      if(forced){
+        const inCat=l.filter(x=>x[0]===forced);
+        l=inCat.length?inCat:(EXAMPLE_MAP[forced]||[])
+          .filter(r=>r[0]&&r[0]!=='__custom__').map(r=>[forced,r[0]]);
+        if(!l.length)return {cat:forced,ex:'',note:' · 이 카테고리엔 예시가 없다',n:0,forced:1};
+      }
       if(!l.length)return {cat:fallback[0][0],ex:'',note:'',n:0};
       const freshEx=l.filter(x=>!usedEx[x[0]+'|'+x[1]]);
       const freshCat=freshEx.filter(x=>!usedCat[x[0]]);
       const pool=freshCat.length?freshCat:(freshEx.length?freshEx:l);
       const pickd=pool[spinOf(slot)%pool.length];
       const note=freshCat.length?'':(freshEx.length?' · 카테고리는 써봤지만 예시는 새것':' · 이미 써본 조합');
-      return {cat:pickd[0],ex:pickd[1],note:note,n:l.length};
+      return {cat:pickd[0],ex:pickd[1],note:note,n:l.length,forced:forced?1:0};
     };
     const r1=choose(occList,'occ',[OB('test_engineer'),OB('drone_operator')]);
     const r2=choose(edList,'ed',[SE('runway'),SE('couture_gala')]);
@@ -1414,9 +1434,9 @@ details.box .inside{padding:10px}
     const tag=hit?'기체 고유':'성능 기반';
     const more=r=>r.n>1?' · 후보 '+r.n+'개':'';
     return[
-      {pair:1,cat:r1.cat,ex:r1.ex,kind:'직업 · '+tag,slot:'occ',reason:why.occ+r1.note+more(r1)},
-      {pair:2,cat:r2.cat,ex:r2.ex,kind:'SOURCE 패션 · '+tag,slot:'ed',reason:why.ed+r2.note+more(r2)},
-      {pair:3,cat:r3.cat,ex:r3.ex,kind:'라이프스타일 · '+tag,slot:'life',reason:why.life+r3.note+more(r3)}
+      {pair:1,cat:r1.cat,ex:r1.ex,kind:'직업 · '+tag,slot:'occ',forced:r1.forced,reason:why.occ+r1.note+more(r1)},
+      {pair:2,cat:r2.cat,ex:r2.ex,kind:'SOURCE 패션 · '+tag,slot:'ed',forced:r2.forced,reason:why.ed+r2.note+more(r2)},
+      {pair:3,cat:r3.cat,ex:r3.ex,kind:'라이프스타일 · '+tag,slot:'life',forced:r3.forced,reason:why.life+r3.note+more(r3)}
     ];
   }
 
@@ -1427,12 +1447,21 @@ details.box .inside{padding:10px}
     document.getElementById('recMeta').textContent=m?(m.system+' · 기동 '+m.mobility):'자동 추천';
     document.getElementById('recGrid').innerHTML=recs.map((r,i)=>{
       const lab=recommendationLabel(r.cat,r.ex);
+      const catOpts=CATS.filter(c=>c[0]!=='__custom__')
+        .map(c=>'<option value="'+escHtml(c[0])+'"'+(c[0]===r.cat?' selected':'')+'>'+escHtml(c[2])+'</option>').join('');
       return'<div class="rec-card"><b>'+escHtml(r.kind)+'</b>'+
-        '<div class="rec-title">'+escHtml(lab.catLabel)+' → '+escHtml(lab.exLabel)+'</div>'+
-        '<div class="rec-reason">'+escHtml(r.reason)+'</div>'+
+        '<select class="rec-cat" data-rec-cat="'+escHtml(r.slot)+'">'+catOpts+'</select>'+
+        '<div class="rec-title">'+escHtml(lab.exLabel)+'</div>'+
+        '<div class="rec-reason">'+escHtml(r.reason)+(r.forced?' · 카테고리 직접 지정':'')+'</div>'+
         '<div class="rec-btns"><button class="small" type="button" data-rec-index="'+i+'">Pair '+r.pair+' 적용</button>'+
         '<button class="small" type="button" data-rec-spin="'+escHtml(r.slot)+'" title="같은 근거 안에서 다른 후보로">↻ 다시</button></div></div>';
     }).join('');
+    document.querySelectorAll('[data-rec-cat]').forEach(sel=>{
+      sel.addEventListener('change',()=>{
+        setCatOverride(sel.dataset.recCat,sel.value);
+        renderRecommendations();
+      });
+    });
     document.querySelectorAll('[data-rec-spin]').forEach(btn=>{
       btn.addEventListener('click',()=>{bumpSpin(btn.dataset.recSpin);renderRecommendations();});
     });
