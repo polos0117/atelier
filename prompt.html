@@ -1361,6 +1361,46 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     return lines.join('\n');
   }
 
+  /* 직접 지정한 항목까지 "알아서 다양하게 하라"고 또 시키면 지시가 겹친다.
+     Pair 를 다 풀었는데 강약 확인을 요구하는 것처럼 정면으로 모순되는 문장도 있어
+     상황에 따라 문장을 골라 넣는다. */
+  function fixedAll(key){
+    for(let n=1;n<=6;n++){
+      const pe=document.querySelector('[data-ov-panel="'+n+'"][data-ov-key="'+key+'"]');
+      let v=pe?pe.value:'';
+      if(!v){const id={expression:'Expr',orientation:'Orient',pose:'Pose'}[key];
+        const pa=document.getElementById('pair'+pairForPanel(n)+id); v=pa?pa.value:'';}
+      if(!v)return false;
+    }
+    return true;
+  }
+  function diversityBlock(){
+    const anyPair=[1,2,3].some(pairUsed);
+    const parts=['Create six substantially different scenes. The six panels should differ in location, action, outfit silhouette, body configuration, camera distance, camera angle, lighting, and atmosphere.',
+      'Changing only colors, accessories, minor straps, mirrored poses, hand positions, or room props does NOT count as meaningful novelty.',
+      'If several outfits would look almost identical as black silhouettes, redesign them.'];
+    if(!getAdvanced().action_level)
+      parts.push('At least four panels should show meaningful action and at least two should feel caught midway.');
+    if(!fixedAll('expression'))
+      parts.push('Avoid defaulting to the same blank neutral face across the collage.');
+    if(!fixedAll('orientation'))
+      parts.push('Deliberately vary front-facing, side, and rear-three-quarter body orientation.');
+    parts.push('Avoid repeating the same dominant sensual mechanism across multiple panels.');
+    return '[GLOBAL DIVERSITY]\n\n'+parts.join(' ')+(anyPair?'':'');
+  }
+  function finalCheckBlock(){
+    const v=['exactly six panels','3×2 landscape layout','same adult woman in all panels',
+      'only numbers 1–6 appear','the selected category and example for each panel is followed'];
+    if([1,2,3].some(pairUsed))
+      v.push('within each linked pair, the second panel is clearly stronger than the first');
+    if(![1,2,3].every(pairUsed))
+      v.push('panels marked independent share no lighter/stronger relationship');
+    if(!fixedAll('expression'))v.push('expressions are meaningfully varied and do not collapse into blank faces');
+    if(!fixedAll('orientation'))v.push('front/side/back body orientation is intentionally distributed');
+    v.push('outfits, scenes, actions, poses, and camera treatments remain varied');
+    v.push('no explicit nudity or sexual activity');
+    return '[FINAL CHECK]\n\nVerify: '+v.join('; ')+'.';
+  }
   function buildCollagePrompt(){
     const s=selectedSource(),adv=getAdvanced(),custom=document.getElementById('collageCustom').value.trim();
     const parts=[
@@ -1369,7 +1409,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       (document.getElementById('carryIdentity')&&document.getElementById('carryIdentity').checked?carryBlock():''),
       '[OUTPUT]\n\nCreate ONE SINGLE 3:2 LANDSCAPE image as a clean 3-column × 2-row collage:\n1 | 2 | 3\n4 | 5 | 6\nExactly six equal, approximately square panels. Only small numerals 1–6 in the upper-left corners. No captions, titles, labels, subtitles, logos-as-text, or other words. Exactly one woman per panel.',
       structureBlock(),
-      '[GLOBAL DIVERSITY / RECENT-USE AVOIDANCE]\n\nCreate six substantially different scenes. The six panels should differ in location, action, outfit silhouette, body configuration, camera distance, camera angle, lighting, and atmosphere. Changing only colors, accessories, minor straps, mirrored poses, hand positions, or room props does NOT count as meaningful novelty. Review recent generations available in this conversation and treat recently used outfit structures, scene archetypes, action families, pose families, and camera compositions as already-used concepts. If a proposed panel resembles a recent result at thumbnail size, discard it and invent another. If several outfits would look almost identical as black silhouettes, redesign them. At least four panels should show meaningful action and at least two should feel caught midway. Avoid defaulting to the same blank neutral face across the collage, and deliberately vary front-facing, side, and rear-three-quarter body orientation. Avoid repeating the same dominant sensual mechanism across multiple panels.',
+      diversityBlock(),
       directionBlocks(),
       '[ADDITIONAL SETTINGS]\n\n'+additionalSettings(adv,custom)
     ];
@@ -1389,7 +1429,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     const ovs=panelOverrideBlocks();
     if(ovs.length)parts.push('[PANEL OVERRIDES]\n\n'+ovs.join('\n\n'));
     parts.push('[NON-EXPLICIT LIMITS]\n\nThe character must clearly read as an adult. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.');
-    parts.push('[FINAL CHECK]\n\nVerify: exactly six panels; 3×2 landscape layout; same adult woman in all panels; only numbers 1–6 appear; selected pair categories and examples are followed; individual Panel Example selections override pair-level examples when present; the second panel of each pair is clearly stronger than the first; expressions are meaningfully varied and do not collapse into blank faces; front/side/back body orientation is intentionally distributed; outfits, scenes, actions, poses, and camera treatments remain varied; no panel substantially repeats a recent thumbnail-level concept; no explicit nudity or sexual activity.');
+    parts.push(finalCheckBlock());
     return parts.filter(Boolean).join('\n\n==================================================\n\n');
   }
   /* ══ 콜라주 사용 기록 ══
