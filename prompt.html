@@ -46,6 +46,11 @@ button.small{min-height:38px;padding:7px 9px;font-size:12px}
 .field,.pair-card,.override-card,.param-card,.rec-card{border:1px solid var(--line);border-radius:10px;background:var(--card2);padding:9px}
 .field label,.param-card label,.override-card label,.pair-card label{display:block;margin-bottom:6px;font-size:12px;font-weight:700;color:var(--text)}
 .field label small,.param-card label small,.override-card label small,.pair-card label small{color:var(--muted);font-weight:500;margin-left:5px}
+.param-preview{margin-top:8px;display:flex;gap:10px;align-items:center;padding:8px 9px;border-radius:8px;background:var(--card);border:1px solid var(--line)}
+.param-preview.hidden{display:none}
+.param-preview svg{flex:none;display:block}
+.param-preview .pp-txt{font-size:11.5px;line-height:1.5;color:var(--muted)}
+.param-preview .pp-txt b{display:block;color:var(--text);font-size:12px;margin-bottom:2px}
 .help,.param-note{margin-top:8px;padding:9px 10px;border-radius:9px;background:var(--card2);color:var(--muted);font-size:12px;line-height:1.45}
 .preset-row{display:grid;grid-template-columns:1fr auto;gap:8px}
 .pair-card h3,.override-card h3{margin:0 0 8px;font-size:14px}
@@ -687,16 +692,165 @@ details.box .inside{padding:10px}
       const opts=def.options.map(o=>'<option value="'+escHtml(o[0])+'">'+escHtml(o[1])+'</option>').join('');
       return'<div class="param-card"><label>'+escHtml(def.label)+' <small>'+escHtml(def.ko)+'</small></label>'+
         '<select data-param-select="'+escHtml(def.key)+'">'+opts+'</select>'+
-        '<input class="custom-input hidden" data-param-custom="'+escHtml(def.key)+'" placeholder="직접 입력"></div>';
+        '<input class="custom-input hidden" data-param-custom="'+escHtml(def.key)+'" placeholder="직접 입력">'+
+        (FIG_KEYS[def.key]?'<div class="param-preview hidden" data-param-preview="'+escHtml(def.key)+'"></div>':'')+'</div>';
     }
     basic.innerHTML=PARAM_DEFS.filter(d=>d.basic).map(card).join('');
     adv.innerHTML=PARAM_DEFS.filter(d=>!d.basic).map(card).join('');
     document.querySelectorAll('[data-param-select]').forEach(sel=>sel.addEventListener('change',()=>{
       const inp=document.querySelector('[data-param-custom="'+CSS.escape(sel.dataset.paramSelect)+'"]');
       if(inp)inp.classList.toggle('hidden',sel.value!=='__custom__');
+      updatePreview(sel.dataset.paramSelect);
       refreshAnthroPrompt();
     }));
     document.querySelectorAll('[data-param-custom]').forEach(inp=>inp.addEventListener('input',refreshAnthroPrompt));
+    Object.keys(FIG_KEYS).forEach(updatePreview);
+  }
+
+  /* ══ 파라미터 도식 ══
+     체형은 어깨·가슴·허리·골반 반폭(px)과 키·굵기 배율로,
+     헤어는 길이단계·질감·볼륨·묶음코드로 그린다. 손으로 그리지 않아야
+     옵션끼리 폭 차이가 그대로 비교된다. */
+  const BODY_FIG={
+    'slender':[18,16,11,17,1.00,.85,'가늘고 굴곡이 완만한 체형. 어깨와 골반 폭이 비슷하고 전체적으로 얇다.'],
+    'athletic':[22,18,14,19,1.00,1.00,'어깨가 적당히 넓고 허리가 단단한 운동형. 굴곡보다 균형이 먼저 보인다.'],
+    'curvy':[19,22,13,25,1.00,1.00,'가슴과 골반이 허리보다 확실히 넓은 곡선형.'],
+    'glamorous':[20,25,13,26,1.02,1.00,'굴곡이 크고 화려한 체형. curvy보다 상하체 볼륨이 한 단계 더 크다.'],
+    'muscular':[26,22,18,22,1.00,1.20,'근육량이 뚜렷해 어깨와 사지가 굵다. 허리도 얇지 않다.'],
+    'heavy-built':[26,25,25,26,0.98,1.25,'상하체가 고르게 두껍고 묵직한 중후한 체격.'],
+    'tall and lean':[19,16,12,17,1.12,.85,'키가 크면서 폭은 좁다. slender를 세로로 늘린 형태.'],
+    'petite':[17,17,12,18,0.86,.95,'키가 작고 전체 비율이 아담하다. 폭은 평균이라 마른 인상은 아니다.'],
+    'hourglass':[20,23,12,23,1.00,1.00,'가슴과 골반 폭이 같고 허리만 크게 들어간 모래시계형.'],
+    'voluptuous':[20,27,15,28,1.00,1.10,'가슴·골반 볼륨이 가장 큰 육감형. 허리는 상대적으로만 얇다.'],
+    'toned':[21,18,13,19,1.00,.95,'군살 없이 잔근육이 잡힌 체형. muscular보다 가늘고 선이 곱다.'],
+    'wiry':[18,15,11,15,1.00,.80,'얇지만 단단한 체형. 굴곡이 거의 없고 힘줄이 도드라진다.'],
+    'soft-figured':[21,23,22,25,0.98,1.15,'허리 굴곡이 적고 전체적으로 부드럽게 살집이 있다.'],
+    'pear-shaped':[17,17,14,26,1.00,1.05,'상체는 좁고 골반·허벅지에 무게가 실린 형태.'],
+    'inverted triangle':[26,21,14,17,1.00,1.00,'어깨가 가장 넓고 아래로 갈수록 좁아진다. pear의 반대.'],
+    'stocky':[24,22,21,23,0.88,1.20,'키는 작고 폭은 넓은 다부진 체격.'],
+    'statuesque':[22,21,14,22,1.15,1.00,'장신에 골격이 당당한 조각상 같은 체형.']
+  };
+  /* [길이단계, 질감, 볼륨, 묶음코드, 앞머리, 설명] */
+  const HAIR_FIG={
+    'bob':[1,'straight',2,'','blunt','턱선 근처에서 일자로 떨어지는 단정한 길이.'],
+    'pixie cut':[0,'straight',1,'','wispy','귀와 목덜미가 드러나는 아주 짧은 컷.'],
+    'layered':[2,'wavy',4,'','side','층을 내 끝으로 갈수록 가벼워지는 컷.'],
+    'ponytail':[3,'straight',2,'mid','side','뒤로 모아 한 갈래로 묶은 기본형.'],
+    'twin tail':[3,'straight',2,'twin','blunt','좌우 높은 위치에서 두 갈래로 묶는다.'],
+    'wolf cut':[2,'wavy',6,'','wispy','윗머리는 짧고 아랫머리는 길어 층감이 강하다.'],
+    'slicked back':[1,'flat',0,'','none','이마를 완전히 드러내고 뒤로 붙여 넘긴 스타일.'],
+    'wavy':[3,'wavy',4,'','side','전체가 완만한 S자 웨이브.'],
+    'straight':[3,'straight',2,'','blunt','굴곡 없이 곧게 떨어지는 생머리.'],
+    'side ponytail':[2,'straight',2,'sidetail','side','한쪽 어깨로 넘겨 묶는다.'],
+    'high ponytail':[3,'straight',2,'high','wispy','정수리 가까이 높게 묶어 얼굴선이 당겨진다.'],
+    'braid':[4,'braid',2,'mid','side','뒤로 한 갈래 땋아 내린다.'],
+    'twin braids':[4,'braid',2,'twin','blunt','좌우로 나눠 두 갈래로 땋는다.'],
+    'crown braid':[0,'braid',3,'crown','none','머리를 둘러 땋아 왕관처럼 올린다.'],
+    'chignon':[0,'straight',2,'lowbun','side','목덜미에 매끈하게 말아 붙인 단정한 번.'],
+    'messy bun':[0,'wavy',4,'midbun','wispy','대충 올려 묶어 잔머리가 빠져나온 번.'],
+    'top knot':[0,'straight',2,'topbun','none','정수리에 높이 올려 묶은 번.'],
+    'low bun':[0,'straight',2,'lowbun','blunt','목덜미 낮은 위치의 번. 시뇽보다 느슨하다.'],
+    'half-up':[3,'straight',3,'half','side','윗머리만 묶고 아랫머리는 내린다.'],
+    'space buns':[0,'straight',2,'twinbun','blunt','양쪽에 동그란 번을 두 개 만든다.'],
+    'hime cut':[4,'straight',3,'','hime','일자 앞머리 + 얼굴 옆 사이드를 턱선에서 자른 형태.'],
+    'asymmetric cut':[2,'asym',3,'','side','좌우 길이가 확연히 다른 비대칭컷.'],
+    'undercut':[1,'straight',2,'','side','옆과 뒤를 짧게 밀고 윗머리만 남긴다.'],
+    'side-shaved long hair':[3,'shave',3,'','side','한쪽만 밀고 나머지는 길게 남긴다.'],
+    'curly':[2,'curly',6,'','wispy','굵고 탄력 있는 곱슬. 옆 볼륨이 크다.'],
+    'tight curls':[1,'coily',8,'','none','잔곱슬이 둥글게 부풀어 오른 형태.'],
+    'locs':[3,'locs',3,'','none','가닥이 굵게 뭉쳐 늘어지는 로크스.'],
+    'ringlet curls':[3,'ringlet',4,'','side','세로로 말린 드릴 형태의 컬.'],
+    'finger waves':[1,'fwave',2,'','none','머리에 붙은 얕은 물결의 레트로 웨이브.'],
+    'feathered':[2,'wavy',4,'','side','끝을 가볍게 쳐서 바깥으로 흐르게 한 컷.'],
+    'blunt cut':[2,'straight',2,'','blunt','끝을 층 없이 일자로 자른 컷.'],
+    'wet-look slick':[2,'flat',1,'','none','젖은 듯 광이 나게 붙여 넘긴 스타일.'],
+    'windswept':[2,'wind',4,'','wispy','한쪽으로 바람에 날린 듯한 흐름.']
+  };
+
+  function bodySVG(k){
+    const f=BODY_FIG[k];if(!f)return'';
+    const sh=f[0],bu=f[1],wa=f[2],hi=f[3],ht=f[4],th=f[5];
+    const cx=45,top=14,H=150*ht,sy=top+22*ht;
+    const yB=sy+20*ht,yW=sy+40*ht,yH=sy+58*ht,yE=top+H-10;
+    const P=(x,y)=>x.toFixed(1)+','+y.toFixed(1);
+    const R=[P(cx+sh,sy),P(cx+bu,yB),P(cx+wa,yW),P(cx+hi,yH),P(cx+hi*.72*th,yE)];
+    const L=[P(cx-hi*.72*th,yE),P(cx-hi,yH),P(cx-wa,yW),P(cx-bu,yB),P(cx-sh,sy)];
+    return '<svg width="82" height="173" viewBox="0 0 90 190" aria-hidden="true">'+
+      '<circle cx="'+cx+'" cy="'+top+'" r="10.5" fill="none" stroke="currentColor" stroke-width="1.6" opacity=".85"/>'+
+      '<path d="M'+R.join(' L')+' L'+L.join(' L')+' Z" fill="currentColor" fill-opacity=".13" '+
+      'stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" opacity=".85"/>'+
+      '<line x1="'+(cx-wa-4)+'" y1="'+yW+'" x2="'+(cx+wa+4)+'" y2="'+yW+
+      '" stroke="currentColor" stroke-width="1" stroke-dasharray="2 3" opacity=".45"/></svg>';
+  }
+
+  function hairSVG(k){
+    const f=HAIR_FIG[k];if(!f)return'';
+    const len=f[0],tex=f[1],vol=f[2],tie=f[3],fr=f[4];
+    const cx=45,hy=42,rx=20,ry=24, out=rx+vol;
+    /* 묶거나 올린 머리는 덩어리를 머리에 붙여 짧게 잡아야
+       꼬리·번이 실루엣에 묻히지 않는다 */
+    const GATHER={mid:1,high:1,sidetail:1,twin:1,topbun:1,midbun:1,lowbun:1,twinbun:1,crown:1};
+    const bot=GATHER[tie]?hy+ry-2:hy+ry+len*17;
+    // 옆선: 질감에 따라 흔들림을 준다
+    const amp={straight:0,flat:0,wavy:3.5,curly:5,coily:7,ringlet:4.5,locs:2.5,braid:0,fwave:2.5,wind:3,asym:0,shave:0}[tex]||0;
+    const step={coily:9,curly:11,ringlet:9,fwave:8}[tex]||14;
+    const L=(tex==='asym')?bot-24:bot, Rr=(tex==='shave')?hy+6:bot;
+    // 좌우 옆선 좌표를 만들어 하나의 닫힌 경로로 잇는다
+    let y=hy-6,i=0;const pts=[];
+    while(y<Rr){y=Math.min(y+step,Rr);const w=out+(amp?Math.sin(i*1.5)*amp:0);pts.push([cx+w,y]);i++;}
+    y=hy-6;i=0;const ptsL=[];
+    while(y<L){y=Math.min(y+step,L);const w=out+(amp?Math.sin(i*1.5)*amp:0);ptsL.push([cx-w,y]);i++;}
+    const path='M'+(cx-out)+','+(hy-4)+' Q'+cx+','+(hy-ry-10)+' '+(cx+out)+','+(hy-4)+
+      pts.map(p=>' L'+p[0].toFixed(1)+','+p[1].toFixed(1)).join('')+
+      ' L'+cx+','+(Math.max(L,Rr)+4)+
+      ptsL.slice().reverse().map(p=>' L'+p[0].toFixed(1)+','+p[1].toFixed(1)).join('')+' Z';
+    let extra='';
+    const bun=(x,y,r)=>'<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="currentColor" fill-opacity=".3" stroke="currentColor" stroke-width="1.7"/>';
+    const knot=(x,y)=>'<circle cx="'+x+'" cy="'+y+'" r="2.8" fill="currentColor" opacity=".85"/>';
+    /* 꼬리는 머리 실루엣 바깥에서 시작해야 보인다 */
+    const tail=(x,y,dx,l)=>'<path d="M'+x+','+y+' q'+dx+','+(l*.45)+' '+(dx*.6)+','+l+
+      '" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" opacity=".55"/>';
+    const TL=18+len*13;
+    if(tie==='mid')extra=tail(cx,hy+ry-4,7,TL)+knot(cx,hy+ry-5);
+    if(tie==='high')extra=tail(cx+3,hy-ry+2,13,TL+6)+knot(cx,hy-ry+2);
+    if(tie==='sidetail')extra=tail(cx+out-4,hy+10,11,TL)+knot(cx+out-5,hy+9);
+    if(tie==='twin')extra=tail(cx-out+3,hy-2,-11,TL)+tail(cx+out-3,hy-2,11,TL)+
+      knot(cx-out+3,hy-3)+knot(cx+out-3,hy-3);
+    if(tie==='half')extra=knot(cx,hy+6);
+    if(tie==='topbun')extra=bun(cx,hy-ry-6,9)+knot(cx,hy-ry+2);
+    if(tie==='midbun')extra=bun(cx,hy-ry-3,10.5)+knot(cx,hy-ry+4);
+    if(tie==='lowbun')extra=bun(cx,hy+ry+7,9.5)+knot(cx,hy+ry-1);
+    if(tie==='twinbun')extra=bun(cx-out-3,hy-10,7.5)+bun(cx+out+3,hy-10,7.5);
+    if(tie==='crown')extra='<path d="M'+(cx-out)+','+(hy-6)+' Q'+cx+','+(hy-ry-12)+' '+(cx+out)+','+(hy-6)+
+      '" fill="none" stroke="currentColor" stroke-width="4" stroke-dasharray="5 3" opacity=".85"/>';
+    if(tex==='shave')extra+='<path d="M'+(cx+4)+','+(hy-10)+' L'+(cx+rx+2)+','+(hy+10)+
+      '" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2" opacity=".5"/>';
+    if(tex==='braid'&&tie&&tie!=='crown')extra+='<path d="M'+cx+','+(hy+ry)+' l0,30" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity=".5" fill="none"/>';
+    let fringe='';
+    if(fr==='blunt'||fr==='hime')fringe='<path d="M'+(cx-rx+1)+','+(hy-6)+' L'+(cx+rx-1)+','+(hy-6)+
+      '" stroke="currentColor" stroke-width="5" stroke-linecap="round" opacity=".55"/>';
+    if(fr==='side')fringe='<path d="M'+(cx-rx+1)+','+(hy-8)+' Q'+cx+','+(hy+2)+' '+(cx+rx-2)+','+(hy-10)+
+      '" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" opacity=".55"/>';
+    if(fr==='wispy')fringe='<path d="M'+(cx-12)+','+(hy-8)+' l-3,9 M'+cx+','+(hy-10)+' l2,9 M'+(cx+12)+','+(hy-8)+
+      ' l3,8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".55"/>';
+    return '<svg width="90" height="140" viewBox="0 0 90 140" aria-hidden="true">'+
+      '<path d="'+path+'" fill="currentColor" fill-opacity=".15" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" opacity=".9"/>'+
+      '<ellipse cx="'+cx+'" cy="'+hy+'" rx="'+rx+'" ry="'+ry+'" fill="var(--card)" stroke="currentColor" stroke-width="1.6" opacity=".9"/>'+
+      fringe+extra+
+      '<path d="M'+(cx-13)+','+(hy+ry+2)+' q13,9 26,0 l7,6 -40,0 Z" fill="currentColor" fill-opacity=".13" stroke="currentColor" stroke-width="1.4" opacity=".7"/></svg>';
+  }
+
+  const FIG_KEYS={'body type':[BODY_FIG,bodySVG],'hairstyle':[HAIR_FIG,hairSVG]};
+
+  function updatePreview(key){
+    const box=document.querySelector('[data-param-preview="'+CSS.escape(key)+'"]');if(!box)return;
+    const sel=document.querySelector('[data-param-select="'+CSS.escape(key)+'"]');
+    const cfg=FIG_KEYS[key],v=sel?sel.value:'';
+    if(!cfg||!v||v==='__custom__'||!cfg[0][v]){box.classList.add('hidden');box.innerHTML='';return;}
+    const label=sel.options[sel.selectedIndex].text.split(' — ')[0];
+    box.classList.remove('hidden');
+    box.innerHTML=cfg[1](v)+'<div class="pp-txt"><b>'+escHtml(label)+'</b>'+
+      escHtml(cfg[0][v][cfg[0][v].length-1])+'</div>';
   }
 
   const YOUTHFUL_LOCK='a clearly adult woman or man in their twenties with a youthful, soft-featured baby face; rounder cheeks, larger eyes, and a softer jawline than the standard adult face, while body proportions, height, and overall presence remain unmistakably those of a grown adult; never a child, teenager, or underage appearance';
@@ -737,6 +891,7 @@ details.box .inside{padding:10px}
     document.getElementById('genderInput').value='female';
     document.querySelectorAll('[data-param-select]').forEach(s=>s.value='');
     document.querySelectorAll('[data-param-custom]').forEach(i=>{i.value='';i.classList.add('hidden');});
+    Object.keys(FIG_KEYS).forEach(updatePreview);
     document.getElementById('specialInput').value='';
     document.getElementById('underboobInput').checked=false;
     refreshAnthroPrompt();setStatus('statusAnthro','외형 설정 AUTO 초기화 완료','ok');
