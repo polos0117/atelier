@@ -138,7 +138,17 @@ details.box{margin-top:10px;border:1px solid var(--line);border-radius:10px;over
 details.box summary{cursor:pointer;padding:12px;font-size:14px;font-weight:750;background:var(--card2)}
 details.box summary small{display:block;margin-top:2px;font-size:11px;font-weight:500;color:var(--muted)}
 details.box .inside{padding:10px}
-.override-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.override-grid{display:block}
+.rnd-tgt{margin-top:8px;padding:8px 9px;border-radius:9px;background:var(--card);border:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:5px 10px;align-items:center}
+.rnd-tgt>span{width:100%;font-size:10.5px;color:var(--muted)}
+.rnd-tgt label{display:flex;align-items:center;gap:5px;margin:0;cursor:pointer;font-size:11.5px;color:var(--text)}
+.rnd-tgt input{width:auto;margin:0;flex:none}
+.ptabs{display:flex;align-items:center;gap:4px;margin-bottom:10px;flex-wrap:wrap}
+.ptab{flex:1 1 0;min-width:0;padding:8px 4px;font-size:12px;min-height:0}
+.ptab.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.psep{width:1px;height:20px;background:var(--line);flex:none;margin:0 3px}
+.override-card[hidden]{display:none}
 .override-card input,.override-card select{margin-top:7px}
 .override-card label+select,.override-card label+input{margin-top:0}
 .controls{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px}
@@ -220,6 +230,15 @@ details.box .inside{padding:10px}
         <button id="randomizeBtn" type="button">🎲 랜덤 조합</button>
         <select id="randomMode" aria-label="랜덤 성격" style="margin-top:6px"></select>
         <button id="undoCollage" type="button" class="hidden" style="margin-top:6px">↩ 직전 조합으로</button>
+        <div class="rnd-tgt" id="randomTargets">
+          <span>랜덤으로 정할 것</span>
+          <label><input type="checkbox" data-rt="cat" checked><span>카테고리</span></label>
+          <label><input type="checkbox" data-rt="ex" checked><span>예시</span></label>
+          <label><input type="checkbox" data-rt="adv" checked><span>고급 설정</span></label>
+          <label><input type="checkbox" data-rt="expr"><span>표정</span></label>
+          <label><input type="checkbox" data-rt="orient"><span>시점</span></label>
+          <label><input type="checkbox" data-rt="pose"><span>포즈</span></label>
+        </div>
         <label style="display:flex;align-items:center;gap:6px;margin:6px 0 0;cursor:pointer;font-size:11.5px;color:var(--muted)">
           <input type="checkbox" id="randomAvoidUsed" checked style="width:auto;margin:0;flex:none">
           <span>이미 쓴 카테고리는 빼고 뽑기</span>
@@ -739,11 +758,14 @@ details.box .inside{padding:10px}
     const orientOpts=ORIENTATION_OPTIONS.map(o=>'<option value="'+escHtml(o[0])+'">'+escHtml(o[1])+'</option>').join('');
     const poseOpts=POSE_OPTIONS.map(o=>'<option value="'+escHtml(o[0])+'">'+escHtml(o[1])+'</option>').join('');
     for(let n=1;n<=6;n++){
-      h+='<div class="override-card"><h3>Panel '+n+'</h3>'+
+      h+='<div class="override-card" data-panel-card="'+n+'"'+(n===1?'':' hidden')+'><h3>Panel '+n+
+        ' <small style="color:var(--muted);font-weight:500">'+(n%2?'약한 컷':'강한 컷')+' · Pair '+pairForPanel(n)+'</small></h3>'+
         '<label>Category <small>개별 카테고리</small></label><select id="panel'+n+'Cat"></select>'+
         '<input id="panel'+n+'CatCustom" class="custom-input hidden" placeholder="카테고리 직접 입력">'+
+        '<div class="param-preview hidden" data-pcat-note="'+n+'"></div>'+
         '<label style="margin-top:8px">Panel Example <small>개별 예시</small></label><select id="panel'+n+'Example"></select>'+
         '<input id="panel'+n+'ExampleCustom" class="custom-input hidden" placeholder="개별 예시 직접 입력">'+
+        '<div class="param-preview hidden" data-pex-note="'+n+'"></div>'+
         '<label style="margin-top:8px">Expression <small>표정</small></label><select data-ov-panel="'+n+'" data-ov-key="expression">'+exprOpts+'</select>'+
         '<label style="margin-top:7px">Body Orientation <small>앞/옆/뒷태 방향</small></label><select data-ov-panel="'+n+'" data-ov-key="orientation">'+orientOpts+'</select>'+
         '<label style="margin-top:7px">Pose <small>포즈</small></label><select data-ov-panel="'+n+'" data-ov-key="pose">'+poseOpts+'</select>'+
@@ -754,18 +776,27 @@ details.box .inside{padding:10px}
         '<label style="margin-top:7px">Extra <small>추가 지시</small></label><input data-ov-panel="'+n+'" data-ov-key="extra" placeholder="AUTO">'+
       '</div>';
     }
-    grid.innerHTML=h;
+    grid.innerHTML='<div class="ptabs" id="ptabs">'+
+      [1,2,3,4,5,6].map(n=>(n%2&&n>1?'<span class="psep"></span>':'')+
+        '<button type="button" class="ptab'+(n===1?' on':'')+'" data-ptab="'+n+'">P'+n+'</button>').join('')+
+      '</div>'+h;
+    grid.querySelectorAll('[data-ptab]').forEach(b=>b.addEventListener('click',()=>{
+      const t=b.dataset.ptab;
+      grid.querySelectorAll('[data-ptab]').forEach(x=>x.classList.toggle('on',x===b));
+      grid.querySelectorAll('[data-panel-card]').forEach(c=>{c.hidden=c.dataset.panelCard!==t;});
+    }));
     for(let n=1;n<=6;n++){
       renderPanelCat(n,false);
       renderPanelExample(n,false);
       document.getElementById('panel'+n+'Cat').addEventListener('change',()=>{
         const c=document.getElementById('panel'+n+'Cat');
         document.getElementById('panel'+n+'CatCustom').classList.toggle('hidden',c.value!=='__custom__');
-        renderPanelExample(n,false); refreshCollagePrompt();
+        renderPanelExample(n,false); updatePanelNotes(n); refreshCollagePrompt();
       });
       document.getElementById('panel'+n+'CatCustom').addEventListener('input',refreshCollagePrompt);
       document.getElementById('panel'+n+'Example').addEventListener('change',()=>{
         document.getElementById('panel'+n+'ExampleCustom').classList.toggle('hidden',document.getElementById('panel'+n+'Example').value!=='__custom__');
+        updatePanelNotes(n);
         refreshCollagePrompt();
       });
       document.getElementById('panel'+n+'ExampleCustom').addEventListener('input',refreshCollagePrompt);
@@ -774,6 +805,28 @@ details.box .inside{padding:10px}
     grid.querySelectorAll('select[data-ov-panel]').forEach(inp=>inp.addEventListener('change',refreshCollagePrompt));
   }
 
+  /* 패널 쪽에도 같은 설명을 붙인다 */
+  function updatePanelNotes(n){
+    const cat=panelCat(n);
+    const cb=document.querySelector('[data-pcat-note="'+n+'"]');
+    if(cb){
+      const t=CAT_KO[cat];
+      if(!t){cb.classList.add('hidden');cb.innerHTML='';}
+      else{cb.classList.remove('hidden');
+        cb.innerHTML='<div class="pp-txt"><b>'+escHtml((CAT[cat]||{}).ko||cat)+'</b>'+escHtml(t)+'</div>';}
+    }
+    const eb=document.querySelector('[data-pex-note="'+n+'"]');
+    if(eb){
+      const sel=document.getElementById('panel'+n+'Example');
+      const v=sel?sel.value:'', t=EX_NOTE[v];
+      if(!v||!t){eb.classList.add('hidden');eb.innerHTML='';}
+      else{
+        const lab=(sel.options[sel.selectedIndex].text||'').split(' — ').slice(1).join(' — ')||v;
+        eb.classList.remove('hidden');
+        eb.innerHTML='<div class="pp-txt"><b>'+escHtml(lab)+'</b>'+escHtml(t)+'</div>';
+      }
+    }
+  }
   function updateExNote(n){
     const box=document.querySelector('[data-ex-note="'+n+'"]');
     const sel=document.getElementById('pair'+n+'Example');
@@ -809,7 +862,7 @@ details.box .inside{padding:10px}
     updateExNote(pairNum);
     syncPairMode();
     const panels=pairNum===1?[1,2]:pairNum===2?[3,4]:[5,6];
-    panels.forEach(n=>renderPanelExample(n,false));
+    panels.forEach(n=>{renderPanelExample(n,false);updatePanelNotes(n);});
   }
 
   function applyPreset(){
@@ -871,23 +924,39 @@ details.box .inside{padding:10px}
   function randomizePairs(){
     pushCollageUndo();
     const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+    const T={}; document.querySelectorAll('[data-rt]').forEach(el=>T[el.dataset.rt]=el.checked);
+    const pickRnd=arr=>arr[Math.floor(Math.random()*arr.length)];
+    /* 표정·시점·포즈는 Pair 단위로 굴린다. AUTO 항목은 후보에서 뺀다 */
+    const rollMood=()=>{
+      [1,2,3].forEach(n=>{
+        if(T.expr){const o=EXPRESSION_OPTIONS.filter(x=>x[0]);
+          document.getElementById('pair'+n+'Expr').value=pickRnd(o)[0];}
+        if(T.orient){const o=ORIENTATION_OPTIONS.filter(x=>x[0]);
+          document.getElementById('pair'+n+'Orient').value=pickRnd(o)[0];}
+        if(T.pose){const o=POSE_OPTIONS.filter(x=>x[0]);
+          document.getElementById('pair'+n+'Pose').value=pickRnd(o)[0];}
+      });
+    };
     const modeKey=document.getElementById('randomMode').value||'variety';
     const M=RANDOM_MODES[modeKey]||RANDOM_MODES.variety;
     /* 기체친화형은 추천 세 장을 그대로 쓴다 */
     if(M.useRec){
       const recs=sourceRecommendations();
       document.getElementById('presetSelect').value='free';
-      recs.forEach(r=>{
+      if(T.cat)recs.forEach(r=>{
         const cs=document.getElementById('pair'+r.pair+'Select');
         if([...cs.options].some(o=>o.value===r.cat))cs.value=r.cat;
         document.getElementById('pair'+r.pair+'Custom').value='';
         updateDependentExamples(r.pair);
-        const es=document.getElementById('pair'+r.pair+'Example');
-        if(r.ex&&[...es.options].some(o=>o.value===r.ex))es.value=r.ex;
+        if(T.ex){const es=document.getElementById('pair'+r.pair+'Example');
+          if(r.ex&&[...es.options].some(o=>o.value===r.ex))es.value=r.ex;}
       });
       updatePairCustomVisibility();
-      Object.keys(ADVANCED_OPTIONS).forEach(k=>{const el=document.getElementById('adv_'+k);if(el)el.value='';});
-      Object.entries(M.adv).forEach(([k,v])=>{const el=document.getElementById('adv_'+k);if(el)el.value=v;});
+      if(T.adv){
+        Object.keys(ADVANCED_OPTIONS).forEach(k=>{const el=document.getElementById('adv_'+k);if(el)el.value='';});
+        Object.entries(M.adv).forEach(([k,v])=>{const el=document.getElementById('adv_'+k);if(el)el.value=v;});
+      }
+      rollMood();
       refreshCollagePrompt();
       setStatus('statusCollage','기체친화형 — 추천 세 장을 그대로 넣었다','ok');
       return;
@@ -910,16 +979,23 @@ details.box .inside{padding:10px}
     }
     document.getElementById('presetSelect').value='free';
     [1,2,3].forEach((n,i)=>{
-      document.getElementById('pair'+n+'Select').value=pool[i];
-      document.getElementById('pair'+n+'Custom').value='';
-      updateDependentExamples(n);
-      const pairSel=document.getElementById('pair'+n+'Example');
-      const candidates=[...pairSel.options].map(o=>o.value).filter(v=>v&&v!=='__custom__');
-      pairSel.value=candidates.length&&Math.random()<0.75?candidates[Math.floor(Math.random()*candidates.length)]:'';
+      if(T.cat){
+        document.getElementById('pair'+n+'Select').value=pool[i];
+        document.getElementById('pair'+n+'Custom').value='';
+        updateDependentExamples(n);
+      }
+      if(T.ex){
+        const pairSel=document.getElementById('pair'+n+'Example');
+        const candidates=[...pairSel.options].map(o=>o.value).filter(v=>v&&v!=='__custom__');
+        pairSel.value=candidates.length&&Math.random()<0.75?candidates[Math.floor(Math.random()*candidates.length)]:'';
+      }
     });
     updatePairCustomVisibility();
-    Object.keys(ADVANCED_OPTIONS).forEach(k=>{const el=document.getElementById('adv_'+k);if(el)el.value='';});
-    Object.entries(M.adv).forEach(([k,v])=>{const el=document.getElementById('adv_'+k);if(el)el.value=v;});
+    rollMood();
+    if(T.adv){
+      Object.keys(ADVANCED_OPTIONS).forEach(k=>{const el=document.getElementById('adv_'+k);if(el)el.value='';});
+      Object.entries(M.adv).forEach(([k,v])=>{const el=document.getElementById('adv_'+k);if(el)el.value=v;});
+    }
     setTimeout(()=>setStatus('statusCollage',note+(note.endsWith('— ')?M.desc:''),'ok'),0);
     refreshCollagePrompt();setStatus('statusCollage','랜덤 조합 생성 완료 🎲','ok');
   }
@@ -1227,6 +1303,7 @@ details.box .inside{padding:10px}
     o.carry=document.getElementById('carryIdentity').checked;
     o.ravoid=document.getElementById('randomAvoidUsed').checked;
     o.rmode=document.getElementById('randomMode').value;
+    o.rtgt={}; document.querySelectorAll('[data-rt]').forEach(el=>o.rtgt[el.dataset.rt]=el.checked);
     o.use=[1,2,3].map(pairUsed);
     o.mood={}; [1,2,3].forEach(n=>{o.mood[n]={
       e:document.getElementById('pair'+n+'Expr').value,
@@ -1270,6 +1347,8 @@ details.box .inside{padding:10px}
     if(o.carry!==undefined)document.getElementById('carryIdentity').checked=!!o.carry;
     if(o.ravoid!==undefined)document.getElementById('randomAvoidUsed').checked=!!o.ravoid;
     if(o.rmode)set('randomMode',o.rmode);
+    if(o.rtgt)document.querySelectorAll('[data-rt]').forEach(el=>{
+      if(o.rtgt[el.dataset.rt]!==undefined)el.checked=!!o.rtgt[el.dataset.rt];});
     if(o.mood)[1,2,3].forEach(n=>{
       const r2=o.mood[n]; if(!r2)return;
       const setv=(id,v)=>{const el=document.getElementById(id);
@@ -1279,6 +1358,7 @@ details.box .inside{padding:10px}
     if(o.use)[1,2,3].forEach((n,i)=>{const el=document.getElementById('pair'+n+'Use');
       if(el&&o.use[i]!==undefined)el.checked=!!o.use[i];});
     syncPairMode();
+    for(let n=1;n<=6;n++)updatePanelNotes(n);
     if(o.pcat)for(let n=1;n<=6;n++){
       const r=o.pcat[n]; if(!r)continue;
       renderPanelCat(n,false);
@@ -2314,7 +2394,7 @@ details.box .inside{padding:10px}
     document.getElementById('pair'+n+'Custom').addEventListener('input',refreshCollagePrompt);
     document.getElementById('pair'+n+'Use').addEventListener('change',()=>{
       syncPairMode();
-      [(n-1)*2+1,(n-1)*2+2].forEach(x=>{renderPanelCat(x,false);renderPanelExample(x,false);});
+      [(n-1)*2+1,(n-1)*2+2].forEach(x=>{renderPanelCat(x,false);renderPanelExample(x,false);updatePanelNotes(x);});
       refreshCollagePrompt();
     });
     document.getElementById('pair'+n+'Example').addEventListener('change',()=>{
