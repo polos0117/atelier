@@ -71,18 +71,48 @@
     "sel": {
      "facial ethnicity": "Southeast Asian",
      "human-mechanical balance": "more mechanical",
-     "body type": "rangy",
+     "body type": "statuesque",
      "height impression": "average",
-     "shoulder build": "average",
+     "shoulder build": "broad",
      "torso / chest build": "v-taper",
      "leg proportion": "very long",
      "eye color": "teal",
-     "facial hair": "mustache",
+     "facial hair": "clean-shaven",
      "hair color": "ash blonde",
      "bangs": "long side bangs covering one eye"
     }
    },
-   "t": 1788281719221
+   "t": 1788286316376
+  },
+  "엘메스": {
+   "female": {
+    "sel": {
+     "facial ethnicity": "Mediterranean",
+     "human-mechanical balance": "more human",
+     "height impression": "average",
+     "waist / hip silhouette": "curvy",
+     "facial character": "boyish",
+     "expression": "gentle",
+     "hairstyle": "hime cut",
+     "bangs": "choppy bangs",
+     "hair accent": "a prominent cowlick",
+     "armor coverage": "open"
+    },
+    "ub": true
+   },
+   "male": {
+    "sel": {
+     "facial ethnicity": "Mediterranean",
+     "human-mechanical balance": "more human",
+     "body type": "broad-shouldered",
+     "height impression": "tall",
+     "shoulder build": "broad",
+     "waist / hip silhouette": "athletic",
+     "leg proportion": "powerful",
+     "facial character": "refined"
+    }
+   },
+   "t": 1788288319153
   }
  },
  "used": {
@@ -152,6 +182,160 @@
     "ex": "",
     "n": 1,
     "t": 1788276645723
+   }
+  ],
+  "∀건담": [
+   {
+    "cat": "occupation_sensual",
+    "ex": "broadcast_director",
+    "n": 2,
+    "t": 1788285945919
+   },
+   {
+    "cat": "everyday_sensual",
+    "ex": "balcony_plants",
+    "n": 2,
+    "t": 1788285945919
+   },
+   {
+    "cat": "adult_roleplay",
+    "ex": "adult_maid",
+    "n": 2,
+    "t": 1788285945919
+   },
+   {
+    "cat": "everyday_sensual",
+    "ex": "",
+    "n": 3,
+    "t": 1788285385182
+   },
+   {
+    "cat": "private_evening",
+    "ex": "night_drive",
+    "n": 3,
+    "t": 1788285385182
+   },
+   {
+    "cat": "lingerie",
+    "ex": "slip_lingerie",
+    "n": 1,
+    "t": 1788285385182
+   },
+   {
+    "cat": "lingerie",
+    "ex": "lace_set",
+    "n": 2,
+    "t": 1788284585184
+   },
+   {
+    "cat": "active",
+    "ex": "aerial_silk",
+    "n": 1,
+    "t": 1788284031619
+   },
+   {
+    "cat": "source_editorial",
+    "ex": "cockpit_harness",
+    "n": 1,
+    "t": 1788284031619
+   },
+   {
+    "cat": "occupation_basic",
+    "ex": "aviation_control",
+    "n": 1,
+    "t": 1788284031619
+   },
+   {
+    "cat": "swimwear",
+    "ex": "",
+    "n": 1,
+    "t": 1788283509632
+   },
+   {
+    "cat": "adult_roleplay",
+    "ex": "cheer_costume",
+    "n": 1,
+    "t": 1788283509632
+   },
+   {
+    "cat": "occupation_sensual",
+    "ex": "deep_dive_specialist",
+    "n": 1,
+    "t": 1788283509632
+   }
+  ],
+  "엘메스": [
+   {
+    "cat": "source_editorial",
+    "ex": "runway",
+    "n": 1,
+    "t": 1788287196055
+   },
+   {
+    "cat": "everyday_basic",
+    "ex": "commute_train",
+    "n": 1,
+    "t": 1788287196055
+   },
+   {
+    "cat": "homewear",
+    "ex": "after_bath",
+    "n": 1,
+    "t": 1788287196055
+   },
+   {
+    "cat": "private_evening",
+    "ex": "wine_bar",
+    "n": 1,
+    "t": 1788287196055
+   },
+   {
+    "cat": "occupation_sensual",
+    "ex": "fashion_project",
+    "n": 1,
+    "t": 1788287196055
+   },
+   {
+    "cat": "wildcard",
+    "ex": "winter_lodge",
+    "n": 1,
+    "t": 1788287196055
+   },
+   {
+    "cat": "swimwear",
+    "ex": "moonlit_pool",
+    "n": 1,
+    "t": 1788286965647
+   },
+   {
+    "cat": "lingerie",
+    "ex": "open_shirt_lingerie",
+    "n": 1,
+    "t": 1788286965647
+   },
+   {
+    "cat": "occupation_basic",
+    "ex": "forensic_engineer",
+    "n": 1,
+    "t": 1788286965647
+   },
+   {
+    "cat": "active",
+    "ex": "fencing_motion",
+    "n": 1,
+    "t": 1788286965647
+   },
+   {
+    "cat": "everyday_sensual",
+    "ex": "balcony_plants",
+    "n": 1,
+    "t": 1788286965647
+   },
+   {
+    "cat": "adult_roleplay",
+    "ex": "vinyl_stage",
+    "n": 1,
+    "t": 1788286965647
    }
   ]
  }
