@@ -27,7 +27,7 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"No
 .srcbox-in .top-grid{margin-top:10px}
 .mini-check{display:flex;align-items:center;gap:7px;margin:8px 0 0;cursor:pointer;font-size:11.5px;color:var(--muted)}
 .mini-check input{width:auto;margin:0;flex:none}
-.tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0 0}
+.tabs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:8px 0 0}
 .tabs .tab{padding:8px 6px;font-size:13px;min-height:0}
 .page-head h1{margin:0 0 9px}
 .quick-note{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.35}
@@ -190,7 +190,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   button.small{min-height:42px}
 
   .top-grid,.grid2,.grid3,.override-grid,.param-grid,.controls,.param-actions,.preset-row,.rec-grid{grid-template-columns:1fr}
-  .tabs{grid-template-columns:1fr 1fr}
+  .tabs{grid-template-columns:1fr 1fr 1fr}
   .prompt-view textarea{height:66vh;min-height:390px;font-size:12px}
 }
 @media(prefers-color-scheme:light){
@@ -222,6 +222,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
 
     <div class="tabs">
       <button id="tabCollage" class="tab active" type="button">콜라주</button>
+      <button id="tabSingle" class="tab" type="button">단일 컷</button>
       <button id="tabAnthro" class="tab" type="button">의인화</button>
     </div>
   </div>
@@ -428,6 +429,113 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     </div>
   </section>
 
+  <section id="panelSingle" class="panel hidden">
+    <div class="panel-head">
+      <strong>SINGLE CUT GENERATOR</strong>
+      <span>콜라주 없이 한 장만 뽑는다 · 카테고리 · 예시 · 표정 · 시점 · 포즈 · 세부 강도</span>
+    </div>
+
+    <div class="form-section">
+      <div class="field">
+        <label>Category <small>카테고리</small></label>
+        <select id="sgCat"></select>
+        <input id="sgCatCustom" class="custom-input hidden" type="text" placeholder="카테고리 직접 입력">
+        <div class="param-preview hidden" id="sgCatNote"></div>
+      </div>
+
+      <div class="field" style="margin-top:9px">
+        <label>Example Menu <small>예시 메뉴</small></label>
+        <select id="sgEx"></select>
+        <input id="sgExCustom" class="custom-input hidden" type="text" placeholder="예시 직접 입력">
+        <div class="param-preview hidden" id="sgExNote"></div>
+      </div>
+
+      <div class="param-grid" style="margin-top:9px">
+        <div class="field">
+          <label>Aspect <small>화면 비율</small></label>
+          <select id="sgAspect">
+            <option value="2:3 vertical">2:3 세로 — 전신·인물 중심</option>
+            <option value="3:2 horizontal">3:2 가로 — 배경·상황 중심</option>
+            <option value="1:1 square">1:1 정사각</option>
+            <option value="4:5 vertical">4:5 세로 — 살짝 넓은 세로</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Framing <small>화각</small></label>
+          <select id="sgFrame">
+            <option value="">AUTO — 자동</option>
+            <option value="full body">full body — 전신</option>
+            <option value="three-quarter body">three-quarter — 무릎 위</option>
+            <option value="waist up">waist up — 상반신</option>
+            <option value="close-up portrait">close-up — 얼굴 근접</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Expression <small>표정</small></label>
+          <select id="sgExpr"></select>
+        </div>
+        <div class="field">
+          <label>Body Orientation <small>앞/옆/뒷태</small></label>
+          <select id="sgOrient"></select>
+        </div>
+        <div class="field">
+          <label>Pose <small>포즈</small></label>
+          <select id="sgPose"></select>
+        </div>
+        <div class="field">
+          <label>Scene / Location <small>장면·장소</small></label>
+          <input id="sgScene" type="text" placeholder="AUTO">
+        </div>
+        <div class="field">
+          <label>Outfit <small>의상</small></label>
+          <input id="sgOutfit" type="text" placeholder="AUTO">
+        </div>
+        <div class="field">
+          <label>Camera / Lighting <small>카메라·조명</small></label>
+          <input id="sgCamera" type="text" placeholder="AUTO">
+        </div>
+      </div>
+
+      <div id="sgAdvBox" style="margin-top:9px"></div>
+
+      <div class="field" style="margin-top:9px">
+        <label>Custom Instruction <small>추가 지시</small></label>
+        <input id="sgCustom" type="text" placeholder="예: rain outside the window, warm lamp light">
+      </div>
+
+      <div class="param-actions">
+        <button id="sgRandom" type="button">🎲 전체 랜덤</button>
+        <button id="sgRandomAxis" type="button">🎲 세부 강도만 랜덤</button>
+      </div>
+      <button id="sgUndo" type="button" class="card-rnd hidden">↩ 직전 설정으로</button>
+
+      <div class="save-bar" style="align-items:flex-start;flex-direction:column;gap:6px;margin-top:10px">
+        <label style="display:flex;align-items:center;gap:7px;margin:0;cursor:pointer;font-size:11.5px">
+          <input type="checkbox" id="sgCarry" style="width:auto;margin:0;flex:none">
+          <span>이 기체의 의인화 설정을 정체성에 넘기기</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:7px;margin:0;cursor:pointer;font-size:11.5px">
+          <input type="checkbox" id="sgAvoid" style="width:auto;margin:0;flex:none">
+          <span>이미 복사한 조합을 프롬프트에서 피하기</span>
+        </label>
+        <span class="uz">복사하면 콜라주와 같은 기록에 쌓인다. 한 장이므로 조합 하나만 적립된다.</span>
+      </div>
+    </div>
+
+    <div class="ko-sum" id="sgSum"></div>
+
+    <div class="controls">
+      <button id="applySingle" type="button">설정 반영</button>
+      <button class="primary" type="button" data-copy="textSingle" data-status="statusSingle">클립보드 복사</button>
+      <button type="button" data-toggle="viewSingle">텍스트 보기</button>
+      <button id="resetSingle" type="button">단일 컷 리셋</button>
+    </div>
+    <div id="statusSingle" class="status">준비됨</div>
+    <div id="viewSingle" class="prompt-view hidden">
+      <textarea id="textSingle" spellcheck="false"></textarea>
+    </div>
+  </section>
+
   <section id="panelAnthro" class="panel hidden">
     <div class="panel-head">
       <strong>ANTHROPOMORPHIZATION GENERATOR</strong>
@@ -597,6 +705,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
 
   const tabs={
     collage:[document.getElementById('tabCollage'),document.getElementById('panelCollage')],
+    single:[document.getElementById('tabSingle'),document.getElementById('panelSingle')],
     anthro:[document.getElementById('tabAnthro'),document.getElementById('panelAnthro')]
   };
 
@@ -692,11 +801,14 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   }
   function localAxisBox(scope,n){
     const keys=scope==='pair'?PAIR_ONLY.concat(LOCAL_AXES):LOCAL_AXES;
-    const inner=keys.map(k=>axisSelect(k,
-      scope==='pair'?'id="pair'+n+'Adv_'+k+'"':'data-ov-panel="'+n+'" data-ov-key="adv_'+k+'"')).join('');
+    const attr=k=>scope==='pair'?'id="pair'+n+'Adv_'+k+'"':
+                 scope==='single'?'data-sg-axis="'+k+'"':
+                 'data-ov-panel="'+n+'" data-ov-key="adv_'+k+'"';
+    const inner=keys.map(k=>axisSelect(k,attr(k))).join('');
+    const note=scope==='single'?'비워두면 지정하지 않는다. 한 장이라 전역 설정과 무관하게 이 컷에만 적용된다.'
+      :'비워두면 전역 설정을 따른다. 여기 값이 있으면 이 '+(scope==='pair'?'Pair':'패널')+'에서만 전역을 덮는다.';
     return '<details class="mini"><summary>세부 강도 설정</summary><div class="mini-in">'+
-      '<div class="mini-note">비워두면 전역 설정을 따른다. 여기 값이 있으면 이 '+
-      (scope==='pair'?'Pair':'패널')+'에서만 전역을 덮는다.</div>'+inner+'</div></details>';
+      '<div class="mini-note">'+note+'</div>'+inner+'</div></details>';
   }
   function fillPairAdv(){
     [1,2,3].forEach(n=>{
@@ -1256,9 +1368,11 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
 
   function panelOverrideBlocks(){
     const out=[];
-    const exprMap=Object.fromEntries(EXPRESSION_OPTIONS);
-    const orientMap=Object.fromEntries(ORIENTATION_OPTIONS);
-    const poseMap=Object.fromEntries(POSE_OPTIONS);
+    /* 라벨은 "sleepy — 졸린 느낌" 형태다. 프롬프트에는 영문만 넣는다 */
+    const en=a2=>Object.fromEntries(a2.map(o=>[o[0],(o[1]||'').split(' — ')[0]]));
+    const exprMap=en(EXPRESSION_OPTIONS);
+    const orientMap=en(ORIENTATION_OPTIONS);
+    const poseMap=en(POSE_OPTIONS);
     for(let n=1;n<=6;n++){
       const cat=panelCat(n);
       const exampleValue=document.getElementById('panel'+n+'Example').value;
@@ -1401,6 +1515,177 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     v.push('no explicit nudity or sexual activity');
     return '[FINAL CHECK]\n\nVerify: '+v.join('; ')+'.';
   }
+  /* ══ 단일 컷 ══
+     콜라주의 여섯 칸 규칙(강약 쌍, 다양성, 개수 제한)은 전부 뺀다.
+     한 장에서는 셀 대상이 없어 그 지시들이 의미를 잃는다. */
+  const SG={cat:'sgCat',ex:'sgEx',expr:'sgExpr',orient:'sgOrient',pose:'sgPose'};
+  function sgVal(id){const e=document.getElementById(id);return e?e.value:'';}
+  function fillSingle(){
+    const mk=a2=>a2.map(o=>'<option value="'+escHtml(o[0])+'">'+escHtml(o[1])+'</option>').join('');
+    document.getElementById('sgCat').innerHTML=CATS.map(r=>
+      '<option value="'+escHtml(r[0])+'">'+escHtml(r[1]+' — '+r[2])+'</option>').join('');
+    document.getElementById('sgExpr').innerHTML=mk(EXPRESSION_OPTIONS);
+    document.getElementById('sgOrient').innerHTML=mk(ORIENTATION_OPTIONS);
+    document.getElementById('sgPose').innerHTML=mk(POSE_OPTIONS);
+    document.getElementById('sgAdvBox').innerHTML=localAxisBox('single',0);
+    renderSgEx(false);
+  }
+  function renderSgEx(keep){
+    const sel=document.getElementById('sgEx'), prev=keep?sel.value:'';
+    sel.innerHTML=groupedOptions(sgVal('sgCat'),false);
+    if(prev&&[...sel.options].some(o=>o.value===prev))sel.value=prev; else sel.value='';
+    document.getElementById('sgExCustom').classList.toggle('hidden',sel.value!=='__custom__');
+  }
+  function sgNotes(){
+    const cat=sgVal('sgCat');
+    const cb=document.getElementById('sgCatNote'), t=CAT_KO[cat];
+    if(!t){cb.classList.add('hidden');cb.innerHTML='';}
+    else{cb.classList.remove('hidden');
+      cb.innerHTML='<div class="pp-txt"><b>'+escHtml((CAT[cat]||{}).ko||cat)+'</b>'+escHtml(t)+'</div>';}
+    const eb=document.getElementById('sgExNote'), sel=document.getElementById('sgEx');
+    const v=sel.value, n=EX_NOTE[v];
+    if(!v||!n){eb.classList.add('hidden');eb.innerHTML='';}
+    else{const lab=(sel.options[sel.selectedIndex].text||'').split(' — ').slice(1).join(' — ')||v;
+      eb.classList.remove('hidden');
+      eb.innerHTML='<div class="pp-txt"><b>'+escHtml(lab)+'</b>'+escHtml(n)+'</div>';}
+    document.getElementById('sgCatCustom').classList.toggle('hidden',cat!=='__custom__');
+  }
+  function buildSinglePrompt(){
+    const src=selectedSource(), cat=sgVal('sgCat');
+    const en=a2=>Object.fromEntries(a2.map(o=>[o[0],(o[1]||'').split(' — ')[0]]));
+    const EX=en(EXPRESSION_OPTIONS), OR=en(ORIENTATION_OPTIONS), PO=en(POSE_OPTIONS);
+    const parts=[
+      '[INPUT]\n\nSOURCE MOBILE SUIT: ['+src.mech+']\n\nUse the attached clearly adult anthropomorphized character as the absolute identity reference.',
+      '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman as the attached reference. Preserve the exact same face, apparent adult age, eyes, nose, mouth, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. No face drift, age drift, hairstyle redesign, or body redesign.'
+    ];
+    if(document.getElementById('sgCarry').checked)parts.push(carryBlock());
+    parts.push('[OUTPUT]\n\nCreate ONE SINGLE image in '+sgVal('sgAspect')+
+      ' aspect. Exactly one woman. No collage, no panels, no split frames, no numerals, no captions, titles, labels, or any other text.');
+    let dir='[DIRECTION]\n\n';
+    if(cat==='__custom__')dir+='Interpret this cut as: '+
+      (document.getElementById('sgCatCustom').value.trim()||'a fresh mature concept of your choice')+'.';
+    else if(cat==='auto_random')dir+='Invent a fresh mature concept of your own choosing.';
+    else dir+=(CAT[cat]||{}).eng+'\n'+(CAT[cat]||{}).guide;
+    const ex=exampleText(cat,sgVal('sgEx'),document.getElementById('sgExCustom').value.trim());
+    if(ex)dir+='\nUse this as the thematic anchor: '+ex+'.';
+    parts.push(dir);
+    const lines=[];
+    const fr=sgVal('sgFrame'); if(fr)lines.push('Framing: '+fr+'.');
+    const e2=sgVal('sgExpr'); if(e2)lines.push('Expression: '+(EX[e2]||e2)+'.');
+    const o2=sgVal('sgOrient'); if(o2)lines.push('Body orientation: '+(OR[o2]||o2)+'.');
+    const p2=sgVal('sgPose'); if(p2)lines.push('Pose: '+(PO[p2]||p2)+'.');
+    ['sgScene|Scene / Location','sgOutfit|Outfit','sgCamera|Camera / Lighting'].forEach(x=>{
+      const [id,lab]=x.split('|'); const v=document.getElementById(id).value.trim();
+      if(v)lines.push(lab+': '+v+'.');
+    });
+    LOCAL_AXES.forEach(k=>{
+      const el=document.querySelector('[data-sg-axis="'+k+'"]');
+      if(el&&el.value)lines.push((ADV_EN[k]||k)+': '+el.value+'.');
+    });
+    const cu=document.getElementById('sgCustom').value.trim(); if(cu)lines.push('Additional instruction: '+cu+'.');
+    if(lines.length)parts.push('[SETTINGS]\n\n'+lines.map(l=>'- '+l).join('\n'));
+    if(document.getElementById('sgAvoid').checked){
+      const list=usedOf(mechKey()).filter(r=>r.cat);
+      if(list.length)parts.push('[ALREADY USED FOR THIS CHARACTER]\n\n'+
+        'These concepts have already been generated for this same character:\n'+
+        list.map(r=>'- '+((CAT[r.cat]||{}).eng||r.cat)+(r.ex?' ('+r.ex.replace(/_/g,' ')+')':'')).join('\n')+
+        '\n\nDo not repeat them. Choose a visibly different scene, outfit, and framing.');
+    }
+    parts.push('[NON-EXPLICIT LIMITS]\n\nThe character must clearly read as an adult. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.');
+    parts.push('[FINAL CHECK]\n\nVerify: exactly one image and one woman; the requested aspect ratio; no text anywhere in the frame; the selected category and example are followed; no explicit nudity or sexual activity.');
+    return parts.filter(Boolean).join('\n\n==================================================\n\n');
+  }
+  function sgSummary(){
+    const EX=Object.fromEntries(EXPRESSION_OPTIONS.map(o=>[o[0],(o[1]||'').split(' — ')[1]||o[1]]));
+    const OR=Object.fromEntries(ORIENTATION_OPTIONS.map(o=>[o[0],(o[1]||'').split(' — ')[1]||o[1]]));
+    const PO=Object.fromEntries(POSE_OPTIONS.map(o=>[o[0],(o[1]||'').split(' — ')[1]||o[1]]));
+    const cat=sgVal('sgCat'), v=sgVal('sgEx');
+    const exKo=(EXAMPLE_MAP[cat]||[]).find(x=>x[0]===v);
+    const mood=[EX[sgVal('sgExpr')],OR[sgVal('sgOrient')],PO[sgVal('sgPose')]].filter(Boolean).join(' · ');
+    const rows=['<b>한 장</b>'+escHtml((CAT[cat]||{}).ko||cat)+(exKo?' — '+escHtml(exKo[2]):'')+
+      ' <i>'+escHtml(sgVal('sgAspect'))+'</i>'+(mood?'<u>'+escHtml(mood)+'</u>':'')];
+    const flags=[];
+    const ax=LOCAL_AXES.filter(k=>{const el=document.querySelector('[data-sg-axis="'+k+'"]');return el&&el.value;}).length;
+    if(ax)flags.push('세부 강도 '+ax+'개');
+    if(document.getElementById('sgCarry').checked&&carryValues().length)
+      flags.push('의인화 설정 '+carryValues().length+'개 전달');
+    if(document.getElementById('sgAvoid').checked&&usedOf(mechKey()).length)
+      flags.push('이미 쓴 조합 '+usedOf(mechKey()).length+'가지 회피');
+    return '<div class="ks-t">지금 설정 요약</div>'+rows.map(r=>'<div class="ks-r">'+r+'</div>').join('')+
+      (flags.length?'<div class="ks-f">'+escHtml(flags.join(' · '))+'</div>':'');
+  }
+  let SGPREV=null;
+  function refreshSinglePrompt(){
+    const t=document.getElementById('textSingle'); if(!t)return;
+    sgNotes();
+    t.value=buildSinglePrompt();
+    const b2=document.getElementById('sgSum'); if(b2)b2.innerHTML=sgSummary();
+    if(READY){STORE.single=snapSingle();saveStore();}
+  }
+  function snapSingle(){
+    const o={sel:{},txt:{},axes:{}};
+    ['sgCat','sgEx','sgAspect','sgFrame','sgExpr','sgOrient','sgPose'].forEach(id=>o.sel[id]=sgVal(id));
+    ['sgCatCustom','sgExCustom','sgScene','sgOutfit','sgCamera','sgCustom'].forEach(id=>
+      o.txt[id]=document.getElementById(id).value);
+    LOCAL_AXES.forEach(k=>{const el=document.querySelector('[data-sg-axis="'+k+'"]');if(el)o.axes[k]=el.value;});
+    o.carry=document.getElementById('sgCarry').checked;
+    o.avoid=document.getElementById('sgAvoid').checked;
+    return o;
+  }
+  function applySingle(o){
+    if(!o)return;
+    const set=(id,v)=>{const el=document.getElementById(id);
+      if(el&&v!==undefined&&[...el.options].some(x=>x.value===v))el.value=v;};
+    if(o.sel){set('sgCat',o.sel.sgCat);renderSgEx(false);
+      ['sgEx','sgAspect','sgFrame','sgExpr','sgOrient','sgPose'].forEach(id=>set(id,o.sel[id]));}
+    Object.entries(o.txt||{}).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.value=v||'';});
+    Object.entries(o.axes||{}).forEach(([k,v])=>{const el=document.querySelector('[data-sg-axis="'+k+'"]');
+      if(el&&[...el.options].some(x=>x.value===v))el.value=v;});
+    if(o.carry!==undefined)document.getElementById('sgCarry').checked=!!o.carry;
+    if(o.avoid!==undefined)document.getElementById('sgAvoid').checked=!!o.avoid;
+  }
+  function sgPushUndo(){SGPREV=snapSingle();document.getElementById('sgUndo').classList.remove('hidden');}
+  function sgUndo(){
+    if(!SGPREV)return;
+    const now=snapSingle(); applySingle(SGPREV); SGPREV=now;
+    refreshSinglePrompt();
+    setStatus('statusSingle','직전 설정으로 되돌렸다. 한 번 더 누르면 원래대로.','ok');
+  }
+  function sgRandomize(axesOnly){
+    sgPushUndo();
+    const T=rndTargets(), pick=a2=>a2[Math.floor(Math.random()*a2.length)];
+    if(!axesOnly){
+      if(T.cat){const c=pick(freshPool([]));
+        const cs=document.getElementById('sgCat');
+        if([...cs.options].some(o=>o.value===c))cs.value=c;
+        renderSgEx(false);}
+      if(T.ex){const es=document.getElementById('sgEx');
+        const cand=[...es.options].map(o=>o.value).filter(v=>v&&v!=='__custom__');
+        es.value=cand.length?pick(cand):'';}
+      if(T.expr)document.getElementById('sgExpr').value=pick(EXPRESSION_OPTIONS.filter(x=>x[0]))[0];
+      if(T.orient)document.getElementById('sgOrient').value=pick(ORIENTATION_OPTIONS.filter(x=>x[0]))[0];
+      if(T.pose)document.getElementById('sgPose').value=pick(POSE_OPTIONS.filter(x=>x[0]))[0];
+    }
+    if(axesOnly||T.adv){
+      LOCAL_AXES.forEach(k=>{
+        const el=document.querySelector('[data-sg-axis="'+k+'"]'); if(!el)return;
+        const vals=(ADVANCED_OPTIONS[k]||[]).filter(v=>v!=='AUTO');
+        el.value=(Math.random()<0.25||!vals.length)?'':vals[Math.floor(Math.random()*vals.length)];
+      });
+    }
+    refreshSinglePrompt();
+    setStatus('statusSingle',axesOnly?'세부 강도를 굴렸다':'단일 컷 설정을 굴렸다','ok');
+  }
+  function sgRecordUse(){
+    const k=mechKey(); if(!k)return;
+    const cat=sgVal('sgCat'); if(!cat||cat==='__custom__')return;
+    const ex=sgVal('sgEx')||'', now=Date.now();
+    const arr=(STORE.used[k]||(STORE.used[k]=[]));
+    const hit=arr.find(r=>r.cat===cat&&(r.ex||'')===ex);
+    if(hit){hit.n=(hit.n||1)+1;hit.t=now;}else arr.push({cat:cat,ex:ex,n:1,t:now});
+    saveStore(); renderUsed(); refreshSinglePrompt();
+  }
+
   function buildCollagePrompt(){
     const s=selectedSource(),adv=getAdvanced(),custom=document.getElementById('collageCustom').value.trim();
     const parts=[
@@ -2584,6 +2869,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   renderPairSelects();
   fillPairMood();
   fillPairAdv();
+  fillSingle();
   document.getElementById('randomMode').innerHTML=Object.entries(RANDOM_MODES)
     .map(([k,v])=>'<option value="'+k+'">'+escHtml(v.ko+' — '+v.desc)+'</option>').join('');
   document.getElementById('randomMode').value='variety';
@@ -2623,12 +2909,14 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     }
   }
   if(STORE.collage)applyCollage(STORE.collage);
+  if(STORE.single)applySingle(STORE.single);
   loadAnthroForMech();
   READY=true;
 
   renderRecommendations();
   refreshAnthroPrompt();
   refreshCollagePrompt();
+  refreshSinglePrompt();
   updateSaveBar();
   renderUsed();
   renderCarry();
@@ -2644,14 +2932,14 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   // Events
   seriesPicker.addEventListener('change',()=>{
     fillMechs();updateSelInfo();renderRecommendations();
-    loadAnthroForMech();refreshCollagePrompt();renderUsed();renderCarry();
+    loadAnthroForMech();refreshCollagePrompt();refreshSinglePrompt();renderUsed();renderCarry();
   });
   mechPicker.addEventListener('change',()=>{
     updateSelInfo();renderRecommendations();
     const had=loadAnthroForMech();
     setStatus('statusAnthro',had?'"'+mechKey()+'" 의 저장된 설정을 불러왔다':
       '"'+mechKey()+'" 는 저장된 설정이 없어 현재 값을 그대로 둔다','ok');
-    refreshCollagePrompt();renderUsed();renderCarry();
+    refreshCollagePrompt();refreshSinglePrompt();renderUsed();renderCarry();
   });
   document.getElementById('applySource').addEventListener('click',()=>{
     applySource(); document.getElementById('srcBox').open=false;
@@ -2659,6 +2947,31 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   mechPicker.addEventListener('change',()=>{document.getElementById('srcBox').open=false;});
 
   tabs.collage[0].addEventListener('click',()=>showTab('collage'));
+  tabs.single[0].addEventListener('click',()=>showTab('single'));
+  document.getElementById('sgCat').addEventListener('change',()=>{renderSgEx(false);refreshSinglePrompt();});
+  ['sgEx','sgAspect','sgFrame','sgExpr','sgOrient','sgPose'].forEach(id=>
+    document.getElementById(id).addEventListener('change',()=>{
+      if(id==='sgEx')document.getElementById('sgExCustom').classList.toggle('hidden',sgVal('sgEx')!=='__custom__');
+      refreshSinglePrompt();}));
+  ['sgCatCustom','sgExCustom','sgScene','sgOutfit','sgCamera','sgCustom'].forEach(id=>
+    document.getElementById(id).addEventListener('input',refreshSinglePrompt));
+  ['sgCarry','sgAvoid'].forEach(id=>
+    document.getElementById(id).addEventListener('change',refreshSinglePrompt));
+  document.querySelectorAll('[data-sg-axis]').forEach(el=>
+    el.addEventListener('change',refreshSinglePrompt));
+  document.getElementById('sgRandom').addEventListener('click',()=>sgRandomize(false));
+  document.getElementById('sgRandomAxis').addEventListener('click',()=>sgRandomize(true));
+  document.getElementById('sgUndo').addEventListener('click',sgUndo);
+  document.getElementById('applySingle').addEventListener('click',()=>{
+    refreshSinglePrompt();setStatus('statusSingle','단일 컷 설정 적용 완료','ok');});
+  document.getElementById('resetSingle').addEventListener('click',()=>{
+    sgPushUndo();
+    document.getElementById('sgCat').selectedIndex=0; renderSgEx(false);
+    ['sgFrame','sgExpr','sgOrient','sgPose'].forEach(id=>document.getElementById(id).value='');
+    ['sgCatCustom','sgExCustom','sgScene','sgOutfit','sgCamera','sgCustom'].forEach(id=>
+      document.getElementById(id).value='');
+    document.querySelectorAll('[data-sg-axis]').forEach(el=>el.value='');
+    refreshSinglePrompt(); setStatus('statusSingle','단일 컷 설정을 초기화했다','ok');});
   tabs.anthro[0].addEventListener('click',()=>showTab('anthro'));
 
   document.getElementById('presetSelect').addEventListener('change',applyPreset);
@@ -2753,6 +3066,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{
     copyPrompt(b.dataset.copy,b.dataset.status);
     if(b.dataset.copy==='textCollage')recordUse();
+    if(b.dataset.copy==='textSingle')sgRecordUse();
   }));
   document.getElementById('clearUse').addEventListener('click',clearUse);
   document.getElementById('avoidUsed').addEventListener('change',refreshCollagePrompt);
