@@ -149,6 +149,13 @@ details.box .inside{padding:10px}
 .mode-tabs .mtab{border:0;background:transparent;color:var(--muted);font-size:12.5px;font-weight:700;
   padding:8px 6px;border-radius:7px;min-height:0}
 .mode-tabs .mtab.on{background:var(--card);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.22)}
+details.mini{margin-top:9px;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--card)}
+details.mini>summary{cursor:pointer;padding:8px 10px;font-size:11.5px;font-weight:700;color:var(--muted);list-style:none}
+details.mini>summary::-webkit-details-marker{display:none}
+details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)}
+.mini-in{padding:8px 10px 10px}
+.mini-note{font-size:10.5px;color:var(--muted);line-height:1.45}
+.mini-in label{margin-bottom:4px}
 .card-rnd{width:100%;margin-top:8px;font-size:11.5px}
 .ptabs{display:flex;align-items:center;gap:4px;margin-bottom:10px;flex-wrap:wrap}
 .ptab{flex:1 1 0;min-width:0;padding:8px 4px;font-size:12px;min-height:0}
@@ -291,6 +298,7 @@ details.box .inside{padding:10px}
           <label>Expression <small>표정 · 이 Pair 공통</small></label><select id="pair1Expr"></select>
           <label style="margin-top:7px">Body Orientation <small>앞/옆/뒷태</small></label><select id="pair1Orient"></select>
           <label style="margin-top:7px">Pose <small>포즈</small></label><select id="pair1Pose"></select>
+          <div id="pair1AdvBox"></div>
           <button type="button" class="card-rnd" data-rnd-pair="1">🎲 이 Pair 전체 랜덤</button>
         </div>
 
@@ -310,6 +318,7 @@ details.box .inside{padding:10px}
           <label>Expression <small>표정 · 이 Pair 공통</small></label><select id="pair2Expr"></select>
           <label style="margin-top:7px">Body Orientation <small>앞/옆/뒷태</small></label><select id="pair2Orient"></select>
           <label style="margin-top:7px">Pose <small>포즈</small></label><select id="pair2Pose"></select>
+          <div id="pair2AdvBox"></div>
           <button type="button" class="card-rnd" data-rnd-pair="2">🎲 이 Pair 전체 랜덤</button>
         </div>
 
@@ -329,6 +338,7 @@ details.box .inside{padding:10px}
           <label>Expression <small>표정 · 이 Pair 공통</small></label><select id="pair3Expr"></select>
           <label style="margin-top:7px">Body Orientation <small>앞/옆/뒷태</small></label><select id="pair3Orient"></select>
           <label style="margin-top:7px">Pose <small>포즈</small></label><select id="pair3Pose"></select>
+          <div id="pair3AdvBox"></div>
           <button type="button" class="card-rnd" data-rnd-pair="3">🎲 이 Pair 전체 랜덤</button>
         </div>
       </div>
@@ -661,6 +671,35 @@ details.box .inside{padding:10px}
   function renderPresetSelect(){
     document.getElementById('presetSelect').innerHTML=Object.entries(PRESETS).map(([k,v])=>'<option value="'+escHtml(k)+'">'+escHtml(v.label)+'</option>').join('');
   }
+  /* Pair·패널 단위로 의미가 있는 축만 고른다.
+     다양성·개수 제한 계열(의상/장면/포즈/카메라 다양성, 원피스·시선·미소 최대, 예상 밖 컷)은
+     여섯 컷 전체를 세는 값이라 칸마다 걸면 서로 모순된다. 그건 전역에만 둔다. */
+  const LOCAL_AXES=['overall_intensity','skin_exposure','action_level','source_influence','separates_preference'];
+  const PAIR_ONLY=['pair_gap'];
+  function axisSelect(key,attrs){
+    const lab=ADVANCED_LABELS[key]||[key,''], ko=ADV_VAL[key]||{};
+    const opts=(ADVANCED_OPTIONS[key]||[]).map(v=>{
+      const val=v==='AUTO'?'':v;
+      const txt=v==='AUTO'?'전역 설정 따름':(ko[v]?v+' — '+ko[v]:v);
+      return '<option value="'+escHtml(val)+'">'+escHtml(txt)+'</option>';
+    }).join('');
+    return '<label style="margin-top:7px">'+escHtml(lab[0])+' <small>'+escHtml(lab[1])+'</small></label>'+
+      '<select '+attrs+'>'+opts+'</select>';
+  }
+  function localAxisBox(scope,n){
+    const keys=scope==='pair'?PAIR_ONLY.concat(LOCAL_AXES):LOCAL_AXES;
+    const inner=keys.map(k=>axisSelect(k,
+      scope==='pair'?'id="pair'+n+'Adv_'+k+'"':'data-ov-panel="'+n+'" data-ov-key="adv_'+k+'"')).join('');
+    return '<details class="mini"><summary>세부 강도 설정</summary><div class="mini-in">'+
+      '<div class="mini-note">비워두면 전역 설정을 따른다. 여기 값이 있으면 이 '+
+      (scope==='pair'?'Pair':'패널')+'에서만 전역을 덮는다.</div>'+inner+'</div></details>';
+  }
+  function fillPairAdv(){
+    [1,2,3].forEach(n=>{
+      const host=document.getElementById('pair'+n+'AdvBox');
+      if(host&&!host.innerHTML)host.innerHTML=localAxisBox('pair',n);
+    });
+  }
   function fillPairMood(){
     const mk=arr=>arr.map(o=>'<option value="'+escHtml(o[0])+'">'+escHtml(o[1])+'</option>').join('');
     [1,2,3].forEach(n=>{
@@ -788,6 +827,7 @@ details.box .inside{padding:10px}
         '<label style="margin-top:7px">Action / Pose <small>행동/포즈</small></label><input data-ov-panel="'+n+'" data-ov-key="action" placeholder="AUTO">'+
         '<label style="margin-top:7px">Camera / Lighting <small>카메라/조명</small></label><input data-ov-panel="'+n+'" data-ov-key="camera" placeholder="AUTO">'+
         '<label style="margin-top:7px">Extra <small>추가 지시</small></label><input data-ov-panel="'+n+'" data-ov-key="extra" placeholder="AUTO">'+
+        localAxisBox('panel',n)+
         '<button type="button" class="card-rnd" data-rnd-panel="'+n+'">🎲 이 패널 전체 랜덤</button>'+
       '</div>';
     }
@@ -1133,6 +1173,9 @@ details.box .inside{padding:10px}
     }
     const ex=exampleText(p.key,p.exampleKey,p.exampleCustom);
     if(ex)txt+='\nUse this pair-level example as the thematic anchor: '+ex+'.';
+    const pg=document.getElementById('pair'+pairNum+'Adv_pair_gap');
+    if(pg&&pg.value)txt+='\nIntensity gap between these two panels: '+pg.value+
+      ' (overrides the global pair-gap setting for this pair only).';
     return txt;
   }
 
@@ -1201,12 +1244,19 @@ details.box .inside{padding:10px}
       });
       /* 패널에 값이 없으면 그 Pair 값을 물려받는다 */
       const pp=pairForPanel(n);
+      const axes=[];
+      LOCAL_AXES.forEach(k=>{
+        const pe=document.querySelector('[data-ov-panel="'+n+'"][data-ov-key="adv_'+k+'"]');
+        let v=pe?pe.value:'';
+        if(!v){const pa=document.getElementById('pair'+pp+'Adv_'+k); v=pa?pa.value:'';}
+        if(v)axes.push([k,v]);
+      });
       [['expression','Expr'],['orientation','Orient'],['pose','Pose']].forEach(([k,id])=>{
         if(vals[k])return;
         const el=document.getElementById('pair'+pp+id);
         if(el&&el.value)vals[k]=el.value;
       });
-      if(ex||Object.keys(vals).length){
+      if(ex||Object.keys(vals).length||axes.length){
         const lines=['[PANEL '+n+' OVERRIDE]'];
         if(ex)lines.push('Panel Example Concept: '+ex);
         if(vals.expression)lines.push('Expression: '+(exprMap[vals.expression]||vals.expression));
@@ -1217,12 +1267,29 @@ details.box .inside{padding:10px}
         if(vals.action)lines.push('Action / Pose: '+vals.action);
         if(vals.camera)lines.push('Camera / Lighting: '+vals.camera);
         if(vals.extra)lines.push('Extra: '+vals.extra);
+        axes.forEach(([k,v])=>lines.push((ADV_EN[k]||k)+': '+v+' (overrides the global setting for this panel only)'));
         out.push(lines.join('\n'));
       }
     }
     return out;
   }
 
+  const ADV_EN={
+    overall_intensity:'Overall sensual intensity',
+    pair_gap:'Pair intensity gap',
+    outfit_variety:'Outfit variety',
+    scene_variety:'Scene variety',
+    pose_variety:'Pose variety',
+    camera_variety:'Camera variety',
+    skin_exposure:'Visible non-intimate skin exposure',
+    separates_preference:'Separates preference',
+    one_piece_limit:'Maximum one-piece-like looks',
+    action_level:'Action balance',
+    direct_gaze_limit:'Maximum direct-camera gazes',
+    smile_limit:'Maximum obvious smiles',
+    unexpected_cuts:'Minimum unexpected coherent cuts',
+    source_influence:'SOURCE influence outside source-editorial panels'
+  };
   function additionalSettings(adv,custom){
     const map={
       overall_intensity:'Overall sensual intensity',
@@ -1406,6 +1473,9 @@ details.box .inside{padding:10px}
     o.rmode=document.getElementById('randomMode').value;
     o.rtgt={}; document.querySelectorAll('[data-rt]').forEach(el=>o.rtgt[el.dataset.rt]=el.checked);
     o.use=[1,2,3].map(pairUsed);
+    o.padv={}; [1,2,3].forEach(n=>{o.padv[n]={};
+      PAIR_ONLY.concat(LOCAL_AXES).forEach(k2=>{
+        const el=document.getElementById('pair'+n+'Adv_'+k2); if(el)o.padv[n][k2]=el.value;});});
     o.mood={}; [1,2,3].forEach(n=>{o.mood[n]={
       e:document.getElementById('pair'+n+'Expr').value,
       o:document.getElementById('pair'+n+'Orient').value,
@@ -1450,6 +1520,11 @@ details.box .inside{padding:10px}
     if(o.rmode)set('randomMode',o.rmode);
     if(o.rtgt)document.querySelectorAll('[data-rt]').forEach(el=>{
       if(o.rtgt[el.dataset.rt]!==undefined)el.checked=!!o.rtgt[el.dataset.rt];});
+    if(o.padv)[1,2,3].forEach(n=>{
+      const r2=o.padv[n]||{};
+      Object.entries(r2).forEach(([k2,v])=>{const el=document.getElementById('pair'+n+'Adv_'+k2);
+        if(el&&[...el.options].some(x=>x.value===v))el.value=v;});
+    });
     if(o.mood)[1,2,3].forEach(n=>{
       const r2=o.mood[n]; if(!r2)return;
       const setv=(id,v)=>{const el=document.getElementById(id);
@@ -1506,7 +1581,10 @@ details.box .inside{padding:10px}
         });
       }
     });
+    const localN=document.querySelectorAll('#panelCollage details.mini select').length&&
+      [...document.querySelectorAll('#panelCollage details.mini select')].filter(e=>e.value).length;
     const flags=[];
+    if(localN)flags.push('세부 강도 '+localN+'곳 지정');
     if(document.getElementById('carryIdentity').checked&&carryValues().length)
       flags.push('의인화 설정 '+carryValues().length+'개 전달');
     if(document.getElementById('avoidUsed').checked&&usedOf(mechKey()).length)
@@ -2404,6 +2482,7 @@ details.box .inside{padding:10px}
   renderPresetSelect();
   renderPairSelects();
   fillPairMood();
+  fillPairAdv();
   document.getElementById('randomMode').innerHTML=Object.entries(RANDOM_MODES)
     .map(([k,v])=>'<option value="'+k+'">'+escHtml(v.ko+' — '+v.desc)+'</option>').join('');
   document.getElementById('randomMode').value='variety';
@@ -2514,6 +2593,9 @@ details.box .inside{padding:10px}
     document.getElementById('pair'+n+'ExampleCustom').addEventListener('input',refreshCollagePrompt);
     ['Expr','Orient','Pose'].forEach(id=>
       document.getElementById('pair'+n+id).addEventListener('change',refreshCollagePrompt));
+    PAIR_ONLY.concat(LOCAL_AXES).forEach(k2=>{
+      const el=document.getElementById('pair'+n+'Adv_'+k2);
+      if(el)el.addEventListener('change',refreshCollagePrompt);});
   });
 
   document.getElementById('collageCustom').addEventListener('input',refreshCollagePrompt);
