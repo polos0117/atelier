@@ -996,16 +996,18 @@ function shotOf(c){var ss=shots(c);return ss.length?ss[pageOf(c)]:null}
 /* ── 툴킷 설정 읽기 ──
    prompt.html 이 남긴 기록을 그대로 읽는다. 저장소 파일(toolkit-data.json)이 기반이고
    같은 브라우저의 localStorage 가 그 위를 덮는다. 쓰지는 않는다. */
-var TK={base:{},local:{},baseUsed:{},localUsed:{}};
+var TK={base:{},local:{},baseUsed:{},localUsed:{},baseStyle:{},localStyle:{}};
 function tkLoad(){
   try{
     var o=JSON.parse(localStorage.getItem("atelier_toolkit_v1")||"null");
     if(o&&o.anthro)TK.local=o.anthro;
     if(o&&o.used)TK.localUsed=o.used;
+    if(o&&o.style)TK.localStyle=o.style;
   }catch(e){}
   return fetch("toolkit-data.json",{cache:"no-cache"})
     .then(function(r){return r.ok?r.json():null})
-    .then(function(j){if(j){if(j.mechs)TK.base=j.mechs; if(j.used)TK.baseUsed=j.used;}})
+    .then(function(j){if(j){if(j.mechs)TK.base=j.mechs; if(j.used)TK.baseUsed=j.used;
+      if(j.style)TK.baseStyle=j.style;}})
     .catch(function(){});
 }
 function tkReady(){ /* 기록이 도착하면 현재 화면을 다시 그린다 */
@@ -1024,6 +1026,14 @@ function tkUsed(name){
   add((TK.baseUsed||{})[name]); add((TK.localUsed||{})[name]);
   return Object.keys(m).map(function(k){
     return (TK_CAT[k]||k)+(m[k]>1?" "+m[k]+"회":"")});
+}
+/* 화풍 — 기본값(시네마틱 세미리얼)은 기록에 안 남으므로 없으면 기본값으로 본다 */
+var TK_ART={cinematic_semi_real:"시네마틱 세미리얼",semi_real_paint:"반실사 회화",
+  photoreal:"사진풍",anime_illust:"애니 일러스트",cel_anime:"셀화 애니",
+  painterly:"회화적 컨셉아트",retro_anime:"레트로 애니",ink_wash:"수묵 담채"};
+function tkStyle(name){
+  var v=TK.localStyle[name]||TK.baseStyle[name]||"cinematic_semi_real";
+  return TK_ART[v]||v;
 }
 var TK_CAT={adult_roleplay:"성인 역할극",occupation_basic:"직업(기본)",occupation_sensual:"직업(섹시)",
   everyday_basic:"일상(기본)",everyday_sensual:"일상(섹시)",swimwear:"수영복",active:"액티브",
@@ -1151,6 +1161,7 @@ function drawWork(){
        (pr?'<div class="pr">'+esc(pr)+'</div>':"")+
        (nt?'<div class="nt">'+esc(nt)+'</div>':"")+
        (tk?'<div class="tk">'+esc(tk).replace(/\n/g,"<br>")+'</div>':"")+
+       '<div class="tk" style="border-left-color:rgba(143,180,217,.25)">화풍 · '+esc(tkStyle(c[0]))+'</div>'+
        '<div class="lnk"><a href="prompt.html?mech='+encodeURIComponent(c[0])+
        '" target="_blank" rel="noopener">툴킷에서 열기 →</a></div>'+
        '</div>';
@@ -1223,6 +1234,7 @@ function open(n,start){
     if(t==="기체"){
       var tk=tkSummary(c[0]);
       h+='<div class="dt-tk"><b>툴킷 설정</b>'+
+         '<div style="margin-bottom:3px">화풍 · '+esc(tkStyle(c[0]))+'</div>'+
          (tk?esc(tk).replace(/\n/g,"<br>"):"저장된 설정이 없다.")+
          (function(){var u=tkUsed(c[0]);return u.length?
            '<div style="margin-top:6px;opacity:.85">일상컷 복사 기록 · '+esc(u.join(", "))+'</div>':""})()+
