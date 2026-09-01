@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Gundam Prompt Toolkit v8.1</title>
+<title>Gundam Prompt Toolkit v8.2</title>
 <style>
 :root{
   color-scheme:light dark;
@@ -93,7 +93,7 @@ details.box .inside{padding:10px}
 <body>
 <div class="wrap">
   <div class="page-head">
-    <h1>Gundam Prompt Toolkit v8.1</h1>
+    <h1>Gundam Prompt Toolkit v8.2</h1>
 
     <div class="top-grid">
       <select id="seriesPicker" aria-label="시리즈 선택"></select>
@@ -106,13 +106,13 @@ details.box .inside{padding:10px}
       <button id="tabCollage" class="tab active" type="button">콜라주</button>
       <button id="tabAnthro" class="tab" type="button">의인화</button>
     </div>
-    <div class="quick-note">기본은 AUTO로 두고, 마음에 안 드는 요소만 선택하면 됩니다.</div>
+    <div class="quick-note">기본은 AUTO로 두고, 마음에 안 드는 요소만 선택하면 됩니다. 표정/앞뒷태도 패널별로 보정 가능.</div>
   </div>
 
   <section id="panelCollage" class="panel">
     <div class="panel-head">
       <strong>COLLAGE GENERATOR</strong>
-      <span>Pair 카테고리 + 예시 선택 · Panel 개별 Override · SOURCE 추천</span>
+      <span>Pair 카테고리 + 예시 선택 · 표정/앞뒤태 제어 · Panel 개별 Override · SOURCE 추천</span>
     </div>
 
     <div class="form-section">
@@ -176,6 +176,35 @@ details.box .inside{padding:10px}
         <summary>콜라주 고급 설정 펼치기</summary>
         <div class="inside">
           <div id="collageAdvancedGrid" class="grid2"></div>
+          <div class="grid2" style="margin-top:10px">
+            <div class="field">
+              <label>Expression Mode <small>표정 모드</small></label>
+              <select id="globalExpressionMode">
+                <option value="">AUTO — 자동</option>
+                <option value="balanced">balanced — 균형형</option>
+                <option value="lively">lively — 생기 있는 표정</option>
+                <option value="sensual">sensual — 자연스러운 섹시</option>
+                <option value="dramatic">dramatic — 드라마틱</option>
+                <option value="candid">candid — 생활감 있는 표정</option>
+                <option value="playful">playful — 장난기</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Body Orientation Mix <small>앞/옆/뒷태 비율</small></label>
+              <select id="globalOrientationMix">
+                <option value="">AUTO — 자동</option>
+                <option value="front_balanced">front_balanced — 앞태 중심 균형</option>
+                <option value="mixed_balanced">mixed_balanced — 앞뒤 균형 믹스</option>
+                <option value="rear_accent">rear_accent — 뒷태 포인트 포함</option>
+                <option value="dynamic_mix">dynamic_mix — 방향 다양화</option>
+                <option value="elegant_backline">elegant_backline — 등/허리 라인 강조</option>
+              </select>
+            </div>
+          </div>
+          <div class="help">
+            무표정 반복을 줄이기 위해 표정 모드와 앞/옆/뒷태 방향 분배를 직접 지정할 수 있어.
+            개별 Panel 설정이 있으면 그 값이 우선해.
+          </div>
         </div>
       </details>
 
@@ -183,7 +212,7 @@ details.box .inside{padding:10px}
         <summary>Panel 1~6 개별 예시 / Override 펼치기</summary>
         <div class="inside">
           <div class="help" style="margin-top:0;margin-bottom:10px">
-            Panel Example은 해당 Pair의 카테고리에 맞춰 자동으로 메뉴가 바뀐다. 비워두면 Pair 예시를 그대로 따른다.
+            Panel Example은 해당 Pair의 카테고리에 맞춰 자동으로 메뉴가 바뀐다. 표정과 앞/옆/뒷태 방향도 패널별로 지정할 수 있다. 비워두면 Pair 예시와 전체 모드를 따른다.
           </div>
           <div id="overrideGrid" class="override-grid"></div>
         </div>
@@ -267,6 +296,36 @@ details.box .inside{padding:10px}
   const EXAMPLE_MAP = {"auto_random": [["", "AUTO", "자동", "basic"], ["seasonal_night", "Seasonal Night Mood", "계절감 있는 야간 무드", "basic"], ["travel_cut", "Travel / Resort Vibe", "여행 / 리조트 무드", "popular"], ["festival_night", "Night Festival", "야간 페스티벌", "popular"], ["unexpected_contrast", "Unexpected Contrast Concept", "예상 밖 대비 콘셉트", "special"], ["retro_future", "Retro-Future Lifestyle", "레트로 퓨처 라이프", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "adult_roleplay": [["", "AUTO", "자동", "basic"], ["event_staff", "Adult Event Staff Costume", "성인 이벤트 스태프 코스튬", "basic"], ["uniform_inspired", "Stylized Uniform-inspired Look", "스타일화된 유니폼풍 룩", "basic"], ["adult_police", "Adult Police Costume", "성인 경찰 코스튬", "popular"], ["adult_nurse", "Adult Nurse Costume", "성인 간호사 코스튬", "popular"], ["adult_maid", "Adult Maid Costume", "성인 메이드 코스튬", "popular"], ["adult_secretary", "Adult Secretary Costume", "성인 비서 코스튬", "popular"], ["bunny", "Bunny Costume", "바니 코스튬", "popular"], ["flight_attendant", "Flight-attendant-inspired Costume", "승무원풍 코스튬", "popular"], ["casino_dealer", "Casino Dealer / Hostess Styling", "카지노 딜러 / 호스티스 스타일", "popular"], ["lab_roleplay", "Laboratory Roleplay Fashion", "연구실 역할극 패션", "special"], ["ceremonial_instructor", "Ceremonial Instructor Styling", "세리머니얼 인스트럭터 스타일", "special"], ["retro_racer", "Retro Grid / Racing Costume", "레트로 레이싱 코스튬", "special"], ["vinyl_stage", "Vinyl Stage Fashion", "비닐 스테이지 패션", "special"], ["masquerade", "Masquerade Costume Fashion", "마스커레이드 코스튬 패션", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "occupation_basic": [["", "AUTO — source-appropriate profession", "AUTO — 기체에 어울리는 직업 자동", "basic"], ["office_project", "Technical Project Manager", "기술 프로젝트 매니저", "basic"], ["field_surveyor", "Field Surveyor / Recon Specialist", "현장 조사 / 정찰 전문", "basic"], ["industrial_inspector", "Industrial Safety Inspector", "산업 안전 점검관", "basic"], ["drone_operator", "Drone Operator / Remote Systems", "드론 운용 / 원격 시스템", "popular"], ["aviation_control", "Aviation Dispatch / Flight Control", "항공 디스패치 / 비행 관제", "popular"], ["rescue_paramedic", "Rescue Paramedic", "구조 구급대원", "popular"], ["test_engineer", "Experimental Test Engineer", "실험기 테스트 엔지니어", "popular"], ["robotics_researcher", "Robotics Researcher", "로보틱스 연구원", "popular"], ["mobility_tuner", "Mobility Mechanic / Performance Tuner", "모빌리티 정비사 / 퍼포먼스 튜너", "popular"], ["marine_technician", "Marine Systems Technician", "해양 시스템 기술자", "special"], ["observatory_engineer", "Observatory Systems Engineer", "천문 관측 시스템 엔지니어", "special"], ["architecture_engineer", "Structural / Architecture Engineer", "구조 / 건축 엔지니어", "special"], ["renewable_engineer", "High-output Energy Systems Engineer", "고출력 에너지 시스템 엔지니어", "special"], ["stage_rigging", "Stage Rigging / Motion Systems Engineer", "무대 리깅 / 모션 시스템 엔지니어", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "occupation_sensual": [["", "AUTO — source-appropriate profession", "AUTO — 기체에 어울리는 직업 자동", "basic"], ["fashion_project", "Fashion-forward Technical Project Lead", "패션감 있는 기술 프로젝트 리드", "basic"], ["night_lab", "Night-shift Lab Specialist", "야간 근무 연구실 스페셜리스트", "basic"], ["fashion_test_engineer", "Fashion-forward Test Engineer", "패션감 있는 테스트 엔지니어", "popular"], ["flight_supervisor", "Flight Operations Supervisor", "비행 운항 슈퍼바이저", "popular"], ["elite_paramedic", "Elite Rescue Medic", "엘리트 구조 메딕", "popular"], ["drone_director", "Remote Drone Director", "원격 드론 디렉터", "popular"], ["hightech_inspector", "High-tech Systems Inspector", "하이테크 시스템 인스펙터", "popular"], ["prototype_consultant", "Prototype Mobility Consultant", "프로토타입 모빌리티 컨설턴트", "special"], ["luxury_yacht_tech", "Luxury Yacht Tech Specialist", "럭셔리 요트 기술 전문가", "special"], ["night_observatory", "Night Observatory Engineer", "야간 천문대 엔지니어", "special"], ["motion_stage_director", "Kinetic Stage Systems Director", "키네틱 무대 시스템 디렉터", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "swimwear": [["", "AUTO", "자동", "basic"], ["classic_bikini", "Classic Bikini", "클래식 비키니", "basic"], ["sport_onepiece", "Sporty One-piece", "스포티 원피스", "basic"], ["highleg_onepiece", "High-leg One-piece", "하이레그 원피스", "popular"], ["monokini", "Monokini", "모노키니", "popular"], ["triangle_bikini", "Triangle Bikini", "트라이앵글 비키니", "popular"], ["bandeau_bikini", "Bandeau Bikini", "반두 비키니", "popular"], ["halter_bikini", "Halter Bikini", "홀터 비키니", "popular"], ["asymmetric_swim", "Asymmetric One-shoulder Swimwear", "비대칭 원숄더 수영복", "popular"], ["crossstrap_swim", "Cross-strap Swimwear", "크로스 스트랩 수영복", "popular"], ["moonlit_pool", "Moonlit Outdoor Pool", "달빛 야외풀", "special"], ["rooftop_infinity_pool", "Rooftop Infinity Pool", "루프탑 인피니티 풀", "special"], ["outdoor_shower", "Outdoor Shower / Rinse-off", "야외 샤워 / 린스오프", "special"], ["cabana_daybed", "Resort Cabana / Daybed", "리조트 카바나 / 데이베드", "special"], ["thermal_spa", "Modern Thermal Spa Pool", "모던 온천 / 스파 풀", "special"], ["shoreline_walk", "Wet Shoreline Walk", "젖은 해변 산책", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "active": [["", "AUTO", "자동", "basic"], ["warmup", "Warm-up / Cool-down", "워밍업 / 쿨다운", "basic"], ["stretch", "Mobility Stretch Session", "모빌리티 스트레칭", "basic"], ["dance_transition", "Dance Practice Transition", "댄스 연습 중 전환 동작", "popular"], ["pilates", "Pilates / Core Session", "필라테스 / 코어 세션", "popular"], ["tennis_active", "Tennis-inspired Active Fashion", "테니스풍 액티브 패션", "popular"], ["basketball_jersey", "Loose Basketball Jersey Fashion", "루즈 농구저지 패션", "popular"], ["boxing_fitness", "Boxing Fitness Styling", "복싱 피트니스 스타일", "popular"], ["running_recovery", "Post-run Recovery", "러닝 후 리커버리", "popular"], ["parkour_stairs", "Stair / Parkour Transition", "계단 / 파쿠르 전환 동작", "special"], ["roller_skating", "Roller-skating Fashion", "롤러스케이트 패션", "special"], ["fencing_motion", "Fencing-inspired Movement Fashion", "펜싱풍 무브먼트 패션", "special"], ["climbing_warmup", "Climbing Warm-up", "클라이밍 워밍업", "special"], ["surf_prep", "Surf Preparation", "서핑 준비 장면", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "source_editorial": [["", "AUTO — strongest source motif", "AUTO — 기체 대표 모티프 자동", "basic"], ["couture_gala", "Couture Gala Look", "쿠튀르 갈라 룩", "basic"], ["runway", "Runway Editorial", "런웨이 에디토리얼", "basic"], ["aerodynamic_couture", "Aerodynamic Layered Couture", "공기역학적 레이어드 쿠튀르", "popular"], ["metallic_asymmetry", "Metallic Asymmetric Tailoring", "메탈릭 비대칭 테일러링", "popular"], ["ceremonial_whitegold", "Ceremonial White / Gold Look", "의전풍 화이트 / 골드 룩", "popular"], ["cyber_street", "Cyber Street Editorial", "사이버 스트리트 에디토리얼", "popular"], ["deconstructed_frame", "Deconstructed Frame-line Couture", "프레임 라인 해체형 쿠튀르", "special"], ["floating_panel", "Floating-panel Inspired Couture", "플로팅 패널 영감 쿠튀르", "special"], ["luminous_circuit", "Luminous Circuit Editorial", "루미너스 서킷 에디토리얼", "special"], ["wing_light", "Wing-light / Kinetic Layer Editorial", "윙 라이트 / 키네틱 레이어 에디토리얼", "special"], ["heavy_architecture", "Heavy Architectural Tailoring", "중량감 있는 아키텍처럴 테일러링", "special"], ["stealth_monochrome", "Stealth Monochrome Editorial", "스텔스 모노크롬 에디토리얼", "special"], ["transformation_drape", "Transforming Drape Construction", "변형 구조 드레이프", "special"], ["orbital_ring", "Orbital Ring / Halo Geometry", "궤도 링 / 헤일로 지오메트리", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "homewear": [["", "AUTO", "자동", "basic"], ["soft_tank_shorts", "Soft Tank Top + Shorts", "소프트 탱크탑 + 쇼츠", "basic"], ["satin_lounge", "Satin Lounge Set", "새틴 라운지 세트", "basic"], ["offshoulder_knit", "Off-shoulder Knit Homewear", "오프숄더 니트 홈웨어", "popular"], ["camisole_wrap", "Camisole + Wrap Bottom", "캐미솔 + 랩 바텀", "popular"], ["bralette_cardigan", "Bralette + Open Cardigan", "브라렛 + 오픈 가디건", "popular"], ["one_shoulder_lounge", "One-shoulder Lounge Set", "원숄더 라운지 세트", "popular"], ["backless_lounge", "Backless Lounge Look", "백리스 라운지 룩", "special"], ["after_bath", "After-bath Homewear", "목욕 후 홈웨어", "special"], ["window_vanity", "Window-side Vanity Moment", "창가 화장대 순간", "special"], ["late_night_kitchen", "Late-night Kitchen Homewear", "늦은 밤 주방 홈웨어", "special"], ["laundry_lounge", "Laundry / Bedding Lounge Scene", "빨래 / 침구 정리 라운지 장면", "special"], ["sunroom_lounge", "Sunroom Lounge Fashion", "선룸 라운지 패션", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "private_evening": [["", "AUTO", "자동", "basic"], ["slip_dress", "Slip Dress Evening", "슬립 드레스 이브닝", "basic"], ["cocktail_mini", "Cocktail Mini Dress", "칵테일 미니드레스", "basic"], ["one_shoulder_satin", "One-shoulder Satin Evening", "원숄더 새틴 이브닝", "popular"], ["low_back_evening", "Low-back Evening Dress", "로우백 이브닝 드레스", "popular"], ["after_party", "After-party Styling", "애프터파티 스타일링", "popular"], ["hotel_evening", "Hotel Room Evening", "호텔룸 이브닝", "popular"], ["balcony_night", "Night Balcony Mood", "야간 발코니 무드", "popular"], ["mirror_touchup", "Mirror Touch-up", "거울 앞 메이크업 수정", "special"], ["opera_night", "Opera / Theater Night Styling", "오페라 / 극장 나이트 스타일", "special"], ["penthouse_window", "Penthouse Window Mood", "펜트하우스 창가 무드", "special"], ["silk_robe_evening", "Silk Robe over Evening Base", "이브닝 베이스 위 실크 로브", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "lingerie": [["", "AUTO", "자동", "basic"], ["lace_set", "Lace Lingerie Set", "레이스 란제리 세트", "basic"], ["satin_set", "Satin Lingerie Set", "새틴 란제리 세트", "basic"], ["bralette_highwaist", "Bralette + High-waist Bottom", "브라렛 + 하이웨이스트 바텀", "popular"], ["bustier_inspired", "Bustier-inspired Lingerie", "뷔스티에풍 란제리", "popular"], ["bodysuit", "Lingerie Bodysuit", "란제리 보디수트", "popular"], ["garter_set", "Garter-inspired Styling", "가터풍 스타일링", "popular"], ["corset_lingerie", "Corset-inspired Lingerie", "코르셋풍 란제리", "popular"], ["open_shirt_lingerie", "Open Shirt over Lingerie", "란제리 위 오픈 셔츠", "special"], ["night_robe", "Night Robe + Lingerie", "나이트 로브 + 란제리", "special"], ["back_strap", "Back-strap Lingerie", "백스트랩 란제리", "special"], ["asymmetric_lingerie", "Asymmetric Lingerie Set", "비대칭 란제리 세트", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "everyday_basic": [["", "AUTO", "자동", "basic"], ["commute_train", "Train / Subway Commute", "지하철 / 기차 통근", "basic"], ["grocery_run", "Grocery Run", "장보기", "basic"], ["simple_cooking", "Simple Cooking", "간단한 요리", "basic"], ["cafe_takeout", "Coffee / Takeout Run", "커피 / 테이크아웃", "popular"], ["laundry", "Laundry / Folding Clothes", "세탁 / 빨래 개기", "popular"], ["rain_walk", "Rainy Day Walk", "비 오는 날 걷기", "popular"], ["station_wait", "Waiting at Station", "역에서 기다리기", "popular"], ["bookstore", "Bookstore Browsing", "서점 구경", "popular"], ["parcel_pickup", "Parcel / Convenience-store Pickup", "택배 / 편의점 픽업", "popular"], ["midnight_laundromat", "Midnight Laundromat", "심야 코인세탁방", "special"], ["greenhouse", "Greenhouse / Plant Shop", "온실 / 식물가게", "special"], ["pottery_class", "Pottery / Craft Class", "도예 / 공예 클래스", "special"], ["record_store", "Vinyl Record Store", "레코드숍", "special"], ["hardware_store", "Hardware / Home-improvement Store", "철물 / 홈센터", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "everyday_sensual": [["", "AUTO", "자동", "basic"], ["morning_stretch", "Morning Stretch", "아침 스트레칭", "basic"], ["window_light", "Window-light Casual Moment", "창가 자연광 캐주얼 순간", "basic"], ["late_snack", "Late-night Snack / Drink", "늦은 밤 간식 / 음료", "popular"], ["high_shelf", "Reaching to a High Shelf", "높은 선반 손 뻗기", "popular"], ["hair_tie", "Tying Hair after Shower", "샤워 후 머리 묶기", "popular"], ["laundry_soft", "Laundry with Soft Fashion Reveal", "소프트 패션 리빌 세탁 장면", "popular"], ["sunroom_relax", "Sunroom Relaxation", "선룸 휴식", "popular"], ["balcony_plants", "Watering Balcony Plants", "발코니 식물 물주기", "popular"], ["rainy_return", "Returning Home after Rain", "비 맞고 귀가한 순간", "special"], ["floor_organizing", "Floor-level Closet Organizing", "바닥에 앉아 옷장 정리", "special"], ["after_work_change", "Changing Outer Layers after Work", "퇴근 후 겉옷 정리", "special"], ["fridge_light", "Refrigerator-light Late-night Moment", "냉장고 불빛 늦은 밤 순간", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "wildcard": [["", "AUTO", "자동", "basic"], ["festival_night", "Night Festival Cut", "야간 페스티벌 컷", "basic"], ["rain_editorial", "Rain Editorial", "비 오는 에디토리얼", "popular"], ["arcade_night", "Night Arcade Styling", "야간 아케이드 스타일", "popular"], ["ferry_deck", "Ferry / Ship Deck Fashion", "페리 / 선박 데크 패션", "popular"], ["retro_motel", "Retro Motel Mood", "레트로 모텔 무드", "special"], ["desert_resort", "Desert Resort Fashion", "사막 리조트 패션", "special"], ["futuristic_spa", "Futuristic Spa", "퓨처리스틱 스파", "special"], ["observatory_night", "Night Observatory", "야간 천문대", "special"], ["greenhouse_afterdark", "Greenhouse after Dark", "심야 온실", "special"], ["rooftop_cinema", "Rooftop Cinema", "루프탑 시네마", "special"], ["winter_lodge", "Winter Lodge Fashion", "겨울 로지 패션", "special"], ["art_studio", "After-hours Art Studio", "영업 종료 후 아트 스튜디오", "special"], ["__custom__", "CUSTOM", "직접 입력", "special"]], "__custom__": [["", "AUTO", "자동", "basic"], ["__custom__", "CUSTOM", "직접 입력", "special"]]};
   const GROUP_LABELS = {"basic": "기본 / Standard", "popular": "대중 / Popular", "special": "특수 / Unusual"};
 
+  const EXPRESSION_OPTIONS = [
+    ['', 'AUTO — 자동'],
+    ['calm', 'calm — 차분함'],
+    ['focused', 'focused — 집중'],
+    ['soft_smile', 'soft smile — 옅은 미소'],
+    ['half_smile', 'half-smile — 은은한 미소'],
+    ['playful', 'playful — 장난기'],
+    ['confident', 'confident — 자신감'],
+    ['sensual', 'sensual — 자연스러운 섹시'],
+    ['provocative', 'provocative — 도발적이되 비노출'],
+    ['sleepy', 'sleepy — 졸린 느낌'],
+    ['candid', 'candid — 생활감'],
+    ['mildly_annoyed', 'mildly annoyed — 약간 짜증'],
+    ['surprised', 'surprised — 놀람'],
+    ['curious', 'curious — 호기심'],
+    ['serious', 'serious — 진지함']
+  ];
+  const ORIENTATION_OPTIONS = [
+    ['', 'AUTO — 자동'],
+    ['front', 'front — 정면'],
+    ['front_3q', 'front three-quarter — 앞 3/4'],
+    ['side', 'side profile — 측면'],
+    ['rear_3q', 'rear three-quarter — 뒤 3/4'],
+    ['back', 'back view — 뒷태'],
+    ['over_shoulder', 'over shoulder — 뒤돌아보기'],
+    ['seated_twist', 'seated twist — 앉은 비틀기'],
+    ['walking_away', 'walking away — 멀어지는 방향'],
+    ['turning_midmotion', 'turning mid-motion — 움직임 중 회전']
+  ];
+
   const seriesPicker=document.getElementById('seriesPicker');
   const mechPicker=document.getElementById('mechPicker');
   const selInfo=document.getElementById('selInfo');
@@ -347,10 +406,14 @@ details.box .inside{padding:10px}
   function renderOverrides(){
     const grid=document.getElementById('overrideGrid');
     let h='';
+    const exprOpts=EXPRESSION_OPTIONS.map(o=>'<option value="'+escHtml(o[0])+'">'+escHtml(o[1])+'</option>').join('');
+    const orientOpts=ORIENTATION_OPTIONS.map(o=>'<option value="'+escHtml(o[0])+'">'+escHtml(o[1])+'</option>').join('');
     for(let n=1;n<=6;n++){
       h+='<div class="override-card"><h3>Panel '+n+'</h3>'+
         '<label>Panel Example <small>개별 예시</small></label><select id="panel'+n+'Example"></select>'+
         '<input id="panel'+n+'ExampleCustom" class="custom-input hidden" placeholder="개별 예시 직접 입력">'+
+        '<label style="margin-top:8px">Expression <small>표정</small></label><select data-ov-panel="'+n+'" data-ov-key="expression">'+exprOpts+'</select>'+
+        '<label style="margin-top:7px">Body Orientation <small>앞/옆/뒷태 방향</small></label><select data-ov-panel="'+n+'" data-ov-key="orientation">'+orientOpts+'</select>'+
         '<label style="margin-top:8px">Scene / Location <small>장면/장소</small></label><input data-ov-panel="'+n+'" data-ov-key="scene" placeholder="AUTO">'+
         '<label style="margin-top:7px">Outfit <small>의상</small></label><input data-ov-panel="'+n+'" data-ov-key="outfit" placeholder="AUTO">'+
         '<label style="margin-top:7px">Action / Pose <small>행동/포즈</small></label><input data-ov-panel="'+n+'" data-ov-key="action" placeholder="AUTO">'+
@@ -368,6 +431,7 @@ details.box .inside{padding:10px}
       document.getElementById('panel'+n+'ExampleCustom').addEventListener('input',refreshCollagePrompt);
     }
     grid.querySelectorAll('[data-ov-panel]').forEach(inp=>inp.addEventListener('input',refreshCollagePrompt));
+    grid.querySelectorAll('select[data-ov-panel]').forEach(inp=>inp.addEventListener('change',refreshCollagePrompt));
   }
 
   function updatePairCustomVisibility(){
@@ -458,6 +522,8 @@ details.box .inside{padding:10px}
 
   function panelOverrideBlocks(){
     const out=[];
+    const exprMap=Object.fromEntries(EXPRESSION_OPTIONS);
+    const orientMap=Object.fromEntries(ORIENTATION_OPTIONS);
     for(let n=1;n<=6;n++){
       const p=pairForPanel(n);
       const cat=document.getElementById('pair'+p+'Select').value;
@@ -465,10 +531,15 @@ details.box .inside{padding:10px}
       const exampleCustom=document.getElementById('panel'+n+'ExampleCustom').value;
       const ex=exampleText(cat,exampleValue,exampleCustom);
       const vals={};
-      document.querySelectorAll('[data-ov-panel="'+n+'"]').forEach(inp=>{const v=inp.value.trim();if(v)vals[inp.dataset.ovKey]=v;});
+      document.querySelectorAll('[data-ov-panel="'+n+'"]').forEach(inp=>{
+        const v=(inp.value||'').trim();
+        if(v)vals[inp.dataset.ovKey]=v;
+      });
       if(ex||Object.keys(vals).length){
         const lines=['[PANEL '+n+' OVERRIDE]'];
         if(ex)lines.push('Panel Example Concept: '+ex);
+        if(vals.expression)lines.push('Expression: '+(exprMap[vals.expression]||vals.expression));
+        if(vals.orientation)lines.push('Body Orientation: '+(orientMap[vals.orientation]||vals.orientation));
         if(vals.scene)lines.push('Scene / Location: '+vals.scene);
         if(vals.outfit)lines.push('Outfit: '+vals.outfit);
         if(vals.action)lines.push('Action / Pose: '+vals.action);
@@ -499,6 +570,10 @@ details.box .inside{padding:10px}
     };
     const lines=[];
     Object.entries(adv).forEach(([k,v])=>lines.push('- '+(map[k]||k)+': '+v+'.'));
+    const expr=document.getElementById('globalExpressionMode').value;
+    const orient=document.getElementById('globalOrientationMix').value;
+    if(expr)lines.push('- Global expression mode: '+expr+'. Use varied expressions and avoid repeated blank faces.');
+    if(orient)lines.push('- Global body-orientation mix: '+orient+'. Deliberately vary front-facing, side, and back-emphasis shots.');
     if(custom)lines.push('- Additional custom instruction: '+custom+'.');
     if(!lines.length)lines.push('- Use balanced defaults.');
     return lines.join('\n');
@@ -511,7 +586,7 @@ details.box .inside{padding:10px}
       '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman in all six panels. Preserve the exact same face, apparent adult age, eyes, nose, mouth, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. No face drift, age drift, hairstyle redesign, or body redesign. Only identity repeats.',
       '[OUTPUT]\n\nCreate ONE SINGLE 3:2 LANDSCAPE image as a clean 3-column × 2-row collage:\n1 | 2 | 3\n4 | 5 | 6\nExactly six equal, approximately square panels. Only small numerals 1–6 in the upper-left corners. No captions, titles, labels, subtitles, logos-as-text, or other words. Exactly one woman per panel.',
       '[PAIR STRUCTURE]\n\nPair 1 = Panel 1 < Panel 2 = '+pairLabel(p1,1)+'\nPair 2 = Panel 3 < Panel 4 = '+pairLabel(p2,2)+'\nPair 3 = Panel 5 < Panel 6 = '+pairLabel(p3,3)+'\n\nWithin each pair, the first panel is relatively lighter or more restrained and the second panel is clearly stronger, bolder, more visually striking, or more intense.',
-      '[GLOBAL DIVERSITY / RECENT-USE AVOIDANCE]\n\nCreate six substantially different scenes. The six panels should differ in location, action, outfit silhouette, body configuration, camera distance, camera angle, lighting, and atmosphere. Changing only colors, accessories, minor straps, mirrored poses, hand positions, or room props does NOT count as meaningful novelty. Review recent generations available in this conversation and treat recently used outfit structures, scene archetypes, action families, pose families, and camera compositions as already-used concepts. If a proposed panel resembles a recent result at thumbnail size, discard it and invent another. If several outfits would look almost identical as black silhouettes, redesign them. At least four panels should show meaningful action and at least two should feel caught midway. Avoid repeating the same dominant sensual mechanism across multiple panels.',
+      '[GLOBAL DIVERSITY / RECENT-USE AVOIDANCE]\n\nCreate six substantially different scenes. The six panels should differ in location, action, outfit silhouette, body configuration, camera distance, camera angle, lighting, and atmosphere. Changing only colors, accessories, minor straps, mirrored poses, hand positions, or room props does NOT count as meaningful novelty. Review recent generations available in this conversation and treat recently used outfit structures, scene archetypes, action families, pose families, and camera compositions as already-used concepts. If a proposed panel resembles a recent result at thumbnail size, discard it and invent another. If several outfits would look almost identical as black silhouettes, redesign them. At least four panels should show meaningful action and at least two should feel caught midway. Avoid defaulting to the same blank neutral face across the collage, and deliberately vary front-facing, side, and rear-three-quarter body orientation. Avoid repeating the same dominant sensual mechanism across multiple panels.',
       pairInstruction(p1,1,1,2),
       pairInstruction(p2,2,3,4),
       pairInstruction(p3,3,5,6),
@@ -520,7 +595,7 @@ details.box .inside{padding:10px}
     const ovs=panelOverrideBlocks();
     if(ovs.length)parts.push('[PANEL OVERRIDES]\n\n'+ovs.join('\n\n'));
     parts.push('[NON-EXPLICIT LIMITS]\n\nThe character must clearly read as an adult. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.');
-    parts.push('[FINAL CHECK]\n\nVerify: exactly six panels; 3×2 landscape layout; same adult woman in all panels; only numbers 1–6 appear; selected pair categories and examples are followed; individual Panel Example selections override pair-level examples when present; the second panel of each pair is clearly stronger than the first; outfits, scenes, actions, poses, and camera treatments remain varied; no panel substantially repeats a recent thumbnail-level concept; no explicit nudity or sexual activity.');
+    parts.push('[FINAL CHECK]\n\nVerify: exactly six panels; 3×2 landscape layout; same adult woman in all panels; only numbers 1–6 appear; selected pair categories and examples are followed; individual Panel Example selections override pair-level examples when present; the second panel of each pair is clearly stronger than the first; expressions are meaningfully varied and do not collapse into blank faces; front/side/back body orientation is intentionally distributed; outfits, scenes, actions, poses, and camera treatments remain varied; no panel substantially repeats a recent thumbnail-level concept; no explicit nudity or sexual activity.');
     return parts.join('\n\n==================================================\n\n');
   }
   function refreshCollagePrompt(){textCollage.value=buildCollagePrompt();}
@@ -647,12 +722,15 @@ details.box .inside{padding:10px}
 
   function resetCollage(){
     document.getElementById('collageCustom').value='';
+    document.getElementById('globalExpressionMode').value='';
+    document.getElementById('globalOrientationMix').value='';
     document.querySelectorAll('[data-ov-panel]').forEach(i=>i.value='');
     for(let n=1;n<=6;n++){
       document.getElementById('panel'+n+'Example').value='';
       document.getElementById('panel'+n+'ExampleCustom').value='';
       document.getElementById('panel'+n+'ExampleCustom').classList.add('hidden');
     }
+    document.querySelectorAll('select[data-ov-key="expression"], select[data-ov-key="orientation"]').forEach(el=>el.value='');
     document.getElementById('presetSelect').value='A';
     applyPreset();
     setStatus('statusCollage','콜라주 초기화 완료','ok');
@@ -740,6 +818,8 @@ details.box .inside{padding:10px}
   });
 
   document.getElementById('collageCustom').addEventListener('input',refreshCollagePrompt);
+  document.getElementById('globalExpressionMode').addEventListener('change',refreshCollagePrompt);
+  document.getElementById('globalOrientationMix').addEventListener('change',refreshCollagePrompt);
   Object.keys(ADVANCED_OPTIONS).forEach(k=>document.getElementById('adv_'+k).addEventListener('change',refreshCollagePrompt));
   document.getElementById('applyCollage').addEventListener('click',()=>{refreshCollagePrompt();setStatus('statusCollage','콜라주 설정 적용 완료','ok');});
   document.getElementById('resetCollage').addEventListener('click',resetCollage);
