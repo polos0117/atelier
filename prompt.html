@@ -1567,11 +1567,20 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     parts.push(styleBlock());
     parts.push('[OUTPUT]\n\nCreate ONE SINGLE image in '+sgVal('sgAspect')+
       ' aspect. Exactly one woman. No collage, no panels, no split frames, no numerals, no captions, titles, labels, or any other text.');
+    /* 카테고리 안내문은 콜라주 기준으로 쓰여 있어 "이 쌍은" 같은 말이 섞인다.
+       한 장짜리에는 쌍도 다른 패널도 없으므로 단일 컷 문장으로 바꿔 넣는다. */
+    const soloGuide=g=>String(g||'')
+      .replace(/This pair is/g,'This cut is')
+      .replace(/This pair should/g,'This cut should')
+      .replace(/this pair/g,'this cut')
+      .replace(/not already used by the other pairs/g,'not already used for this character')
+      .replace(/the other pairs/g,'the other cuts')
+      .replace(/\bpairs\b/g,'cuts').replace(/\bpair\b/g,'cut');
     let dir='[DIRECTION]\n\n';
     if(cat==='__custom__')dir+='Interpret this cut as: '+
       (document.getElementById('sgCatCustom').value.trim()||'a fresh mature concept of your choice')+'.';
     else if(cat==='auto_random')dir+='Invent a fresh mature concept of your own choosing.';
-    else dir+=(CAT[cat]||{}).eng+'\n'+(CAT[cat]||{}).guide;
+    else dir+=(CAT[cat]||{}).eng+'\n'+soloGuide((CAT[cat]||{}).guide);
     const ex=exampleText(cat,sgVal('sgEx'),document.getElementById('sgExCustom').value.trim());
     if(ex)dir+='\nUse this as the thematic anchor: '+ex+'.';
     parts.push(dir);
