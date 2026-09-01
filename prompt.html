@@ -1334,9 +1334,11 @@ details.box .inside{padding:10px}
     document.querySelectorAll('[data-param-select]').forEach(sel=>sel.addEventListener('change',()=>{
       const inp=document.querySelector('[data-param-custom="'+CSS.escape(sel.dataset.paramSelect)+'"]');
       if(inp)inp.classList.toggle('hidden',sel.value!=='__custom__');
-      updatePreview(sel.dataset.paramSelect);
-      refreshSubHints();
+      /* 저장을 먼저 한다. 갤러리가 현재 기록을 훑기 때문에
+         순서가 뒤바뀌면 한 박자 전 값으로 검색하게 된다 */
       refreshAnthroPrompt();
+      refreshSubHints();
+      updatePreview(sel.dataset.paramSelect);
     }));
     document.querySelectorAll('[data-param-custom]').forEach(inp=>inp.addEventListener('input',refreshAnthroPrompt));
     PARAM_DEFS.forEach(dd=>updatePreview(dd.key));
@@ -1539,15 +1541,18 @@ details.box .inside{padding:10px}
 
   /* 이 값으로 실제 뽑아둔 기체들 — 내 도식보다 이게 훨씬 정확한 예시다 */
   function galleryFor(key,val){
+    /* 지금 보고 있는 성별의 기록만 본다. 반대 성별까지 섞으면
+       여성 설정을 고르는 중에 남성체 그림이 딸려 나온다. */
+    const g=curGender(), v=g==='female'?'f':'m', me=mechKey();
     const hits=[];
     allKeys().forEach(k=>{
-      const r=recOf(k); if(!r)return;
-      ['female','male'].forEach(g=>{
-        const sel=r[g]&&r[g].sel; if(!sel||sel[key]!==val)return;
-        const o=SHOT[k]; if(!o)return;
-        const v=g==='female'?'f':'m';
-        if(o[v])hits.push({card:k,file:k+'_'+v+'.webp'});
-      });
+      /* 지금 편집 중인 기체는 뺀다. 고르는 즉시 기록이 갱신되니
+         무엇을 골라도 자기 그림이 예시로 뜨는데, 그 그림은 지금 값으로 뽑은 게 아니다 */
+      if(k===me)return;
+      const r=recOf(k); if(!r||!r[g])return;
+      const sel=r[g].sel; if(!sel||sel[key]!==val)return;
+      const o=SHOT[k]; if(!o||!o[v])return;
+      hits.push({card:k,file:k+'_'+v+'.webp'});
     });
     return hits.slice(0,8);
   }
