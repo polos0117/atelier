@@ -2585,13 +2585,17 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
      기체마다 따로 기억한다. 초상과 일상컷의 결이 어긋나면 한 카드 안에서 따로 놀기 때문에
      세 생성기 모두 같은 값을 쓴다. */
   const ART_STYLES=[
-    ['cinematic_semi_real','시네마틱 세미리얼','기본값. 얼굴만 살짝 이상화하고 재질·조명은 실사. 초상과 일상컷의 결이 맞는다',
-     'high-end semi-realistic character render; photorealistic materials, fabric and skin; cinematic fashion-photography lighting with shallow depth of field and detailed environmental light; polished editorial look. '+
-     'Only the face is mildly idealised — slightly larger and cleaner eyes, smoother features — while the body, clothing, materials, and lighting stay fully photographic. '+
-     'Do not push the overall image toward flat illustration, cel shading, or heavy anime stylisation.'],
+    ['cinematic_semi_real','세미리얼 페인팅','기본값. 회화적 질감의 피부·머리 + 애니풍 미형 얼굴 + 사진 조명. 겨울 산장 컷의 결',
+     'high-end semi-realistic digital painting; refined anime-influenced facial design blended with realistic anatomy; '+
+     'softly painterly skin and hair rendering; detailed but non-CGI materials; cinematic photographic lighting and shallow depth of field; '+
+     'rich environmental rendering; polished premium character illustration. '+
+     'Avoid pure photorealism, 3D render, game-cinematic CGI, plastic skin, and hyper-real photographic skin texture.'],
+    ['game_cgi','게임 시네마틱 CGI','매끈한 피부와 선명한 재질 반사. 고급 게임 컷신 같은 3D 렌더',
+     'high-end 3D character render in the style of a premium game cinematic; smooth polished skin, crisp material reflections, '+
+     'precise fabric shading, clean studio-grade lighting; reads as a rendered character rather than a photograph or a painting'],
     ['semi_real_paint','반실사 회화','사실적인 질감 위에 붓자국이 남는 유화풍. 이전 기본값',
      'semi-realistic digital oil painting; realistic skin texture and material rendering with visible painterly brush strokes; grounded anatomy and lighting; rich surface detail'],
-    ['photoreal','사진풍','이상화 없이 완전한 실사. 배경과 소품의 정보량이 가장 많다',
+    ['photoreal','사진풍','실제 사진. 이상화도 렌더 느낌도 없다',
      'photorealistic render; camera-like depth of field, real fabric and skin texture, natural photographic lighting; no facial idealisation, no visible linework, no cel shading'],
     ['anime_illust','애니 일러스트','선과 평면 음영이 뚜렷한 완전한 일러스트. 실사에서 확실히 벗어난다',
      'anime illustration; clean confident linework, anime facial structure with large expressive eyes, two-to-three step shading with soft gradients, saturated but harmonious colours; rendered as an illustration rather than a photograph — no photographic skin pores, no camera grain, no lens blur'],
