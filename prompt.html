@@ -156,6 +156,10 @@ details.box .inside{padding:10px}
           <select id="presetSelect"></select>
         </div>
         <button id="randomizeBtn" type="button">🎲 랜덤 조합</button>
+        <label style="display:flex;align-items:center;gap:6px;margin:6px 0 0;cursor:pointer;font-size:11.5px;color:var(--muted)">
+          <input type="checkbox" id="randomAvoidUsed" checked style="width:auto;margin:0;flex:none">
+          <span>이미 쓴 카테고리는 빼고 뽑기</span>
+        </label>
       </div>
 
       <div class="field" style="margin-top:9px">
@@ -630,8 +634,23 @@ details.box .inside{padding:10px}
   }
 
   function randomizePairs(){
-    const pool=[...RANDOM_POOL];
-    for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
+    const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+    let pool=shuffle([...RANDOM_POOL]), note='';
+    const av=document.getElementById('randomAvoidUsed');
+    if(av&&av.checked){
+      const used={}; usedOf(mechKey()).forEach(r=>used[r.cat]=1);
+      const fresh=pool.filter(c=>!used[c]), rest=shuffle(pool.filter(c=>used[c]));
+      if(fresh.length>=3){
+        pool=fresh;
+        note='안 써본 카테고리 '+fresh.length+'개 중에서 뽑았다';
+      }else if(fresh.length){
+        /* 남은 게 3개가 안 되면 모자란 만큼만 기존에서 채운다 */
+        pool=fresh.concat(rest);
+        note='안 써본 건 '+fresh.length+'개뿐이라 나머지 '+(3-fresh.length)+'개는 이미 쓴 것에서 채웠다';
+      }else{
+        note='이 기체는 모든 카테고리를 이미 써봤다. 전체에서 뽑았으니 프롬프트 회피 쪽을 켜는 게 낫다';
+      }
+    }
     document.getElementById('presetSelect').value='free';
     [1,2,3].forEach((n,i)=>{
       document.getElementById('pair'+n+'Select').value=pool[i];
@@ -648,6 +667,7 @@ details.box .inside{padding:10px}
     document.getElementById('adv_outfit_variety').value=rand(['high','extreme']);
     document.getElementById('adv_scene_variety').value=rand(['high','extreme']);
     document.getElementById('adv_pose_variety').value=rand(['high','extreme']);
+    if(note)setTimeout(()=>setStatus('statusCollage',note,'ok'),0);
     document.getElementById('adv_camera_variety').value=rand(['high','extreme']);
     document.getElementById('adv_unexpected_cuts').value=rand(['2','3']);
     refreshCollagePrompt();setStatus('statusCollage','랜덤 조합 생성 완료 🎲','ok');
@@ -900,6 +920,7 @@ details.box .inside{padding:10px}
     o.preset=document.getElementById('presetSelect').value;
     o.avoid=document.getElementById('avoidUsed').checked;
     o.carry=document.getElementById('carryIdentity').checked;
+    o.ravoid=document.getElementById('randomAvoidUsed').checked;
     return o;
   }
   function applyCollage(o){
@@ -934,6 +955,7 @@ details.box .inside{padding:10px}
     if(o.orient!==undefined)set('globalOrientationMix',o.orient);
     if(o.avoid!==undefined)document.getElementById('avoidUsed').checked=!!o.avoid;
     if(o.carry!==undefined)document.getElementById('carryIdentity').checked=!!o.carry;
+    if(o.ravoid!==undefined)document.getElementById('randomAvoidUsed').checked=!!o.ravoid;
     updatePairCustomVisibility();
     [1,2,3].forEach(n=>{updateCatNote(n);updateExNote(n);});
   }
