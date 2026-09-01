@@ -61,6 +61,9 @@ button.small{min-height:38px;padding:7px 9px;font-size:12px}
 .save-bar .sb-drop{flex:none;font-size:11px;padding:5px 9px}
 .save-bar .sb-drop.hidden{display:none}
 .axis-note{margin-top:6px;font-size:11px;line-height:1.45;color:var(--muted)}
+.pair-card.off>*:not(h3):not(label){opacity:.4;pointer-events:none}
+.pair-card.off .param-preview{display:none}
+.override-card.solo{border-color:rgba(122,162,216,.5)}
 .grp{border:1px solid var(--line);border-radius:11px;background:var(--card2);margin-bottom:9px;overflow:hidden}
 .grp>summary{list-style:none;cursor:pointer;padding:11px 12px;display:flex;flex-direction:column;gap:2px}
 .grp>summary::-webkit-details-marker{display:none}
@@ -189,6 +192,7 @@ details.box .inside{padding:10px}
       <div class="grid3" style="margin-top:10px">
         <div class="pair-card">
           <h3>PAIR 1 <small style="color:var(--muted);font-weight:500">Panel 1 &lt; Panel 2</small></h3>
+          <label style="display:flex;align-items:center;gap:7px;margin:0 0 8px;cursor:pointer;font-size:11.5px;color:var(--muted);font-weight:500"><input type="checkbox" class="pair-use" id="pair1Use" checked style="width:auto;margin:0;flex:none"><span>이 Pair 로 묶기</span></label>
           <label>Category <small>카테고리</small></label>
           <select id="pair1Select" aria-label="Pair 1 카테고리"></select>
           <input id="pair1Custom" class="custom-input hidden" type="text" placeholder="카테고리 직접 입력">
@@ -202,6 +206,7 @@ details.box .inside{padding:10px}
 
         <div class="pair-card">
           <h3>PAIR 2 <small style="color:var(--muted);font-weight:500">Panel 3 &lt; Panel 4</small></h3>
+          <label style="display:flex;align-items:center;gap:7px;margin:0 0 8px;cursor:pointer;font-size:11.5px;color:var(--muted);font-weight:500"><input type="checkbox" class="pair-use" id="pair2Use" checked style="width:auto;margin:0;flex:none"><span>이 Pair 로 묶기</span></label>
           <label>Category <small>카테고리</small></label>
           <select id="pair2Select" aria-label="Pair 2 카테고리"></select>
           <input id="pair2Custom" class="custom-input hidden" type="text" placeholder="카테고리 직접 입력">
@@ -215,6 +220,7 @@ details.box .inside{padding:10px}
 
         <div class="pair-card">
           <h3>PAIR 3 <small style="color:var(--muted);font-weight:500">Panel 5 &lt; Panel 6</small></h3>
+          <label style="display:flex;align-items:center;gap:7px;margin:0 0 8px;cursor:pointer;font-size:11.5px;color:var(--muted);font-weight:500"><input type="checkbox" class="pair-use" id="pair3Use" checked style="width:auto;margin:0;flex:none"><span>이 Pair 로 묶기</span></label>
           <label>Category <small>카테고리</small></label>
           <select id="pair3Select" aria-label="Pair 3 카테고리"></select>
           <input id="pair3Custom" class="custom-input hidden" type="text" placeholder="카테고리 직접 입력">
@@ -546,9 +552,47 @@ details.box .inside{padding:10px}
   }
 
   function pairForPanel(n){return n<=2?1:n<=4?2:3;}
-  function renderPanelExample(n,keep=false){
+  function pairUsed(n){const el=document.getElementById('pair'+n+'Use');return !el||el.checked;}
+  /* 패널이 실제로 따를 카테고리 — Pair 로 묶여 있으면 Pair 것, 아니면 개별 선택 */
+  function panelCat(n){
     const p=pairForPanel(n);
-    const cat=document.getElementById('pair'+p+'Select').value;
+    if(pairUsed(p))return document.getElementById('pair'+p+'Select').value;
+    const el=document.getElementById('panel'+n+'Cat');
+    return (el&&el.value)||'auto_random';
+  }
+  function panelCatCustom(n){
+    const p=pairForPanel(n);
+    if(pairUsed(p))return document.getElementById('pair'+p+'Custom').value.trim();
+    const el=document.getElementById('panel'+n+'CatCustom');
+    return el?el.value.trim():'';
+  }
+  function renderPanelCat(n,keep=true){
+    const sel=document.getElementById('panel'+n+'Cat'); if(!sel)return;
+    const prev=keep?sel.value:'';
+    sel.innerHTML=CATS.map(r=>'<option value="'+escHtml(r[0])+'">'+escHtml(r[1]+' — '+r[2])+'</option>').join('');
+    if(prev&&[...sel.options].some(o=>o.value===prev))sel.value=prev;
+    else sel.value=document.getElementById('pair'+pairForPanel(n)+'Select').value;
+  }
+  /* Pair 를 쓰면 Pair 쪽이, 안 쓰면 패널 쪽이 살아난다 */
+  function syncPairMode(){
+    [1,2,3].forEach(p=>{
+      const on=pairUsed(p),card=document.getElementById('pair'+p+'Select').closest('.pair-card');
+      if(card)card.classList.toggle('off',!on);
+      ['Select','Custom','Example','ExampleCustom'].forEach(k=>{
+        const el=document.getElementById('pair'+p+k); if(el)el.disabled=!on;
+      });
+    });
+    for(let n=1;n<=6;n++){
+      const on=!pairUsed(pairForPanel(n));
+      const c=document.getElementById('panel'+n+'Cat'),cc=document.getElementById('panel'+n+'CatCustom');
+      if(c){c.disabled=!on;c.title=on?'':'Pair 를 따른다';}
+      if(cc)cc.classList.toggle('hidden',!(on&&c&&c.value==='__custom__'));
+      const card=c&&c.closest('.override-card');
+      if(card)card.classList.toggle('solo',on);
+    }
+  }
+  function renderPanelExample(n,keep=false){
+    const cat=panelCat(n);
     const sel=document.getElementById('panel'+n+'Example');
     const prev=keep?sel.value:'';
     sel.innerHTML=groupedOptions(cat,true);
@@ -563,7 +607,9 @@ details.box .inside{padding:10px}
     const orientOpts=ORIENTATION_OPTIONS.map(o=>'<option value="'+escHtml(o[0])+'">'+escHtml(o[1])+'</option>').join('');
     for(let n=1;n<=6;n++){
       h+='<div class="override-card"><h3>Panel '+n+'</h3>'+
-        '<label>Panel Example <small>개별 예시</small></label><select id="panel'+n+'Example"></select>'+
+        '<label>Category <small>개별 카테고리</small></label><select id="panel'+n+'Cat"></select>'+
+        '<input id="panel'+n+'CatCustom" class="custom-input hidden" placeholder="카테고리 직접 입력">'+
+        '<label style="margin-top:8px">Panel Example <small>개별 예시</small></label><select id="panel'+n+'Example"></select>'+
         '<input id="panel'+n+'ExampleCustom" class="custom-input hidden" placeholder="개별 예시 직접 입력">'+
         '<label style="margin-top:8px">Expression <small>표정</small></label><select data-ov-panel="'+n+'" data-ov-key="expression">'+exprOpts+'</select>'+
         '<label style="margin-top:7px">Body Orientation <small>앞/옆/뒷태 방향</small></label><select data-ov-panel="'+n+'" data-ov-key="orientation">'+orientOpts+'</select>'+
@@ -576,7 +622,14 @@ details.box .inside{padding:10px}
     }
     grid.innerHTML=h;
     for(let n=1;n<=6;n++){
+      renderPanelCat(n,false);
       renderPanelExample(n,false);
+      document.getElementById('panel'+n+'Cat').addEventListener('change',()=>{
+        const c=document.getElementById('panel'+n+'Cat');
+        document.getElementById('panel'+n+'CatCustom').classList.toggle('hidden',c.value!=='__custom__');
+        renderPanelExample(n,false); refreshCollagePrompt();
+      });
+      document.getElementById('panel'+n+'CatCustom').addEventListener('input',refreshCollagePrompt);
       document.getElementById('panel'+n+'Example').addEventListener('change',()=>{
         document.getElementById('panel'+n+'ExampleCustom').classList.toggle('hidden',document.getElementById('panel'+n+'Example').value!=='__custom__');
         refreshCollagePrompt();
@@ -620,6 +673,7 @@ details.box .inside{padding:10px}
     updateCatNote(pairNum);
     renderPairExample(pairNum,false);
     updateExNote(pairNum);
+    syncPairMode();
     const panels=pairNum===1?[1,2]:pairNum===2?[3,4]:[5,6];
     panels.forEach(n=>renderPanelExample(n,false));
   }
@@ -713,13 +767,60 @@ details.box .inside{padding:10px}
     return txt;
   }
 
+  function panelLabel(n){
+    const cat=panelCat(n);
+    if(cat==='__custom__')return panelCatCustom(n)||('Custom Panel '+n);
+    return (CAT[cat]||CAT.auto_random).eng;
+  }
+  function structureBlock(){
+    const rows=[];
+    [1,2,3].forEach(p=>{
+      const a=(p-1)*2+1,b=a+1;
+      if(pairUsed(p)){
+        rows.push('Pair '+p+' = Panel '+a+' < Panel '+b+' = '+pairLabel(getPair(p),p));
+      }else{
+        rows.push('Panel '+a+' = '+panelLabel(a)+'   (independent)');
+        rows.push('Panel '+b+' = '+panelLabel(b)+'   (independent)');
+      }
+    });
+    let txt='[PANEL STRUCTURE]\n\n'+rows.join('\n');
+    if([1,2,3].some(pairUsed))
+      txt+='\n\nWithin each pair, the first panel is relatively lighter or more restrained and the second panel is clearly stronger, bolder, more visually striking, or more intense.';
+    if(![1,2,3].every(pairUsed))
+      txt+='\n\nPanels marked independent are not paired. Do not build a lighter/stronger relationship between them — treat each as its own separate concept.';
+    return txt;
+  }
+  function panelDirection(n){
+    const cat=panelCat(n);
+    let txt='PANEL '+n+' — ';
+    if(cat==='__custom__'){
+      txt+='CUSTOM\nInterpret this panel as: '+(panelCatCustom(n)||'Create a fresh mature category of your choice.')+'.';
+    }else if(cat==='auto_random'){
+      txt+='AUTO / RANDOM\nInvent a fresh mature category not duplicated by any other panel.';
+    }else{
+      const c=CAT[cat]; txt+=c.eng+'\n'+c.guide;
+    }
+    const ex=exampleText(cat,document.getElementById('panel'+n+'Example').value,
+                         document.getElementById('panel'+n+'ExampleCustom').value.trim());
+    if(ex)txt+='\nUse this as the thematic anchor: '+ex+'.';
+    return txt;
+  }
+  function directionBlocks(){
+    const out=[];
+    [1,2,3].forEach(p=>{
+      const a=(p-1)*2+1,b=a+1;
+      if(pairUsed(p))out.push(pairInstruction(getPair(p),p,a,b));
+      else{out.push(panelDirection(a));out.push(panelDirection(b));}
+    });
+    return out.join('\n\n');
+  }
+
   function panelOverrideBlocks(){
     const out=[];
     const exprMap=Object.fromEntries(EXPRESSION_OPTIONS);
     const orientMap=Object.fromEntries(ORIENTATION_OPTIONS);
     for(let n=1;n<=6;n++){
-      const p=pairForPanel(n);
-      const cat=document.getElementById('pair'+p+'Select').value;
+      const cat=panelCat(n);
       const exampleValue=document.getElementById('panel'+n+'Example').value;
       const exampleCustom=document.getElementById('panel'+n+'ExampleCustom').value;
       const ex=exampleText(cat,exampleValue,exampleCustom);
@@ -773,17 +874,15 @@ details.box .inside{padding:10px}
   }
 
   function buildCollagePrompt(){
-    const s=selectedSource(),p1=getPair(1),p2=getPair(2),p3=getPair(3),adv=getAdvanced(),custom=document.getElementById('collageCustom').value.trim();
+    const s=selectedSource(),adv=getAdvanced(),custom=document.getElementById('collageCustom').value.trim();
     const parts=[
       '[INPUT]\n\nSOURCE MOBILE SUIT: ['+s.mech+']\n\nUse the attached clearly adult anthropomorphized character as the absolute identity reference.',
       '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman in all six panels. Preserve the exact same face, apparent adult age, eyes, nose, mouth, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. No face drift, age drift, hairstyle redesign, or body redesign. Only identity repeats.',
       (document.getElementById('carryIdentity')&&document.getElementById('carryIdentity').checked?carryBlock():''),
       '[OUTPUT]\n\nCreate ONE SINGLE 3:2 LANDSCAPE image as a clean 3-column × 2-row collage:\n1 | 2 | 3\n4 | 5 | 6\nExactly six equal, approximately square panels. Only small numerals 1–6 in the upper-left corners. No captions, titles, labels, subtitles, logos-as-text, or other words. Exactly one woman per panel.',
-      '[PAIR STRUCTURE]\n\nPair 1 = Panel 1 < Panel 2 = '+pairLabel(p1,1)+'\nPair 2 = Panel 3 < Panel 4 = '+pairLabel(p2,2)+'\nPair 3 = Panel 5 < Panel 6 = '+pairLabel(p3,3)+'\n\nWithin each pair, the first panel is relatively lighter or more restrained and the second panel is clearly stronger, bolder, more visually striking, or more intense.',
+      structureBlock(),
       '[GLOBAL DIVERSITY / RECENT-USE AVOIDANCE]\n\nCreate six substantially different scenes. The six panels should differ in location, action, outfit silhouette, body configuration, camera distance, camera angle, lighting, and atmosphere. Changing only colors, accessories, minor straps, mirrored poses, hand positions, or room props does NOT count as meaningful novelty. Review recent generations available in this conversation and treat recently used outfit structures, scene archetypes, action families, pose families, and camera compositions as already-used concepts. If a proposed panel resembles a recent result at thumbnail size, discard it and invent another. If several outfits would look almost identical as black silhouettes, redesign them. At least four panels should show meaningful action and at least two should feel caught midway. Avoid defaulting to the same blank neutral face across the collage, and deliberately vary front-facing, side, and rear-three-quarter body orientation. Avoid repeating the same dominant sensual mechanism across multiple panels.',
-      pairInstruction(p1,1,1,2),
-      pairInstruction(p2,2,3,4),
-      pairInstruction(p3,3,5,6),
+      directionBlocks(),
       '[ADDITIONAL SETTINGS]\n\n'+additionalSettings(adv,custom)
     ];
     const av=document.getElementById('avoidUsed');
@@ -926,6 +1025,9 @@ details.box .inside{padding:10px}
     o.avoid=document.getElementById('avoidUsed').checked;
     o.carry=document.getElementById('carryIdentity').checked;
     o.ravoid=document.getElementById('randomAvoidUsed').checked;
+    o.use=[1,2,3].map(pairUsed);
+    o.pcat={}; for(let n=1;n<=6;n++){const c=document.getElementById('panel'+n+'Cat');
+      if(c)o.pcat[n]={cat:c.value,custom:(document.getElementById('panel'+n+'CatCustom')||{}).value||''};}
     return o;
   }
   function applyCollage(o){
@@ -961,6 +1063,18 @@ details.box .inside{padding:10px}
     if(o.avoid!==undefined)document.getElementById('avoidUsed').checked=!!o.avoid;
     if(o.carry!==undefined)document.getElementById('carryIdentity').checked=!!o.carry;
     if(o.ravoid!==undefined)document.getElementById('randomAvoidUsed').checked=!!o.ravoid;
+    if(o.use)[1,2,3].forEach((n,i)=>{const el=document.getElementById('pair'+n+'Use');
+      if(el&&o.use[i]!==undefined)el.checked=!!o.use[i];});
+    syncPairMode();
+    if(o.pcat)for(let n=1;n<=6;n++){
+      const r=o.pcat[n]; if(!r)continue;
+      renderPanelCat(n,false);
+      const c=document.getElementById('panel'+n+'Cat');
+      if(c&&[...c.options].some(t=>t.value===r.cat))c.value=r.cat;
+      const cc=document.getElementById('panel'+n+'CatCustom'); if(cc)cc.value=r.custom||'';
+      renderPanelExample(n,false);
+    }
+    syncPairMode();
     updatePairCustomVisibility();
     [1,2,3].forEach(n=>{updateCatNote(n);updateExNote(n);});
   }
@@ -977,42 +1091,78 @@ details.box .inside{padding:10px}
     return{catLabel:c?c.ko:cat,exLabel:r?r[2]:ex};
   }
 
+  /* ══ SOURCE 추천 ══
+     기체명 표는 손으로 적은 정밀 추천이고, 나머지는 성능·기질·계통에서 규칙으로 끌어낸다.
+     어느 쪽이든 "왜 이 카테고리인지"를 카드에 같이 적는다. 근거 없는 추천은 무시당한다. */
+  const NAME_RULES=[
+    [/스타게이저/,'observatory_engineer','orbital_ring','swimwear','moonlit_pool','천문 관측기'],
+    [/아스트레이/,'mobility_tuner','deconstructed_frame','active','dance_transition','정비·개조 기체'],
+    [/데스사이즈|블리츠/,'field_surveyor','stealth_monochrome','private_evening','after_party','은신 기체'],
+    [/헤비암즈|버스터|캘러미티|도벤 울프|ZZ/,'industrial_inspector','heavy_architecture','homewear','late_night_kitchen','중화력 포격기'],
+    [/즈고크|하이곡그|어비스|아그이|갓즈고크/,'marine_technician','transformation_drape','swimwear','shoreline_walk','수중 운용기'],
+    [/V2|V건담/,'aviation_control','wing_light','active','parkour_stairs','고기동 소형기'],
+    [/나드레|버체|세라비|엑시아|듀나메스|캘딤/,'robotics_researcher','luminous_circuit','everyday_sensual','morning_stretch','GN 드라이브 계열'],
+    [/윙|톨기스/,'test_engineer','aerodynamic_couture','active','surf_prep','변형 비행 기체'],
+    [/자쿠|겔구그|돔|구프|캠퍼|리크|리젤|기라/,'mobility_tuner','camo_couture','everyday_basic','hardware_store','양산 주력기'],
+    [/사이코|퀴베레이|엘메스|지옹|나이팅게일|알파 아질/,'robotics_researcher','floating_panel','private_evening','penthouse_window','사이코뮤 탑재기'],
+    [/짐|건캐논|건탱크/,'industrial_inspector','ceramic_plate','everyday_basic','commute_train','연방 양산기']
+  ];
   function sourceRecommendations(){
-    const s=selectedSource();
-    const m=MECH_META[s.mech]||{output:80,firepower:80,armor:80,mobility:80,temperament:'냉정',system:'시작기'};
-    const name=s.mech;
-    let occ='test_engineer';
-    let editorial='metallic_asymmetry';
-    let lifeCat='everyday_basic';
-    let lifeEx='cafe_takeout';
+    const name=selectedSource().mech;
+    const m=MECH_META[name]||{output:80,firepower:80,armor:80,mobility:80,temperament:'냉정',system:'시작기'};
+    let occ,editorial,lifeCat,lifeEx,src='',why={};
 
-    if(/스타게이저/.test(name)){occ='observatory_engineer';editorial='orbital_ring';lifeCat='swimwear';lifeEx='moonlit_pool';}
-    else if(/아스트레이/.test(name)){occ='mobility_tuner';editorial='deconstructed_frame';lifeCat='active';lifeEx='dance_transition';}
-    else if(/데스사이즈|블리츠/.test(name)){occ='field_surveyor';editorial='stealth_monochrome';lifeCat='private_evening';lifeEx='after_party';}
-    else if(/헤비암즈|버스터|캘러미티|도벤 울프|ZZ/.test(name)){occ='industrial_inspector';editorial='heavy_architecture';lifeCat='homewear';lifeEx='late_night_kitchen';}
-    else if(/즈고크|하이곡그|어비스/.test(name)){occ='marine_technician';editorial='transformation_drape';lifeCat='swimwear';lifeEx='shoreline_walk';}
-    else if(/V2|V건담/.test(name)){occ='aviation_control';editorial='wing_light';lifeCat='active';lifeEx='parkour_stairs';}
-    else if(/윙 건담|톨기스|에피온/.test(name)){occ='aviation_control';editorial='aerodynamic_couture';lifeCat='private_evening';lifeEx='balcony_night';}
-    else if(/큐베레이|크샤트리야|판넬|뉴 건담|사자비|지옹|페넥스|유니콘/.test(name)){occ='drone_operator';editorial='floating_panel';lifeCat='private_evening';lifeEx='low_back_evening';}
-    else{
-      if(['사이코뮤'].includes(m.system)){occ='drone_operator';editorial='floating_panel';}
-      else if(['GN드라이브','GUND','AGE시스템'].includes(m.system)){occ='robotics_researcher';editorial='luminous_circuit';}
-      else if(['미노프스키드라이브','제로시스템','플래시시스템'].includes(m.system)){occ='aviation_control';editorial='aerodynamic_couture';}
-      else if(m.mobility>=92){occ='test_engineer';editorial='aerodynamic_couture';}
-      else if(m.armor>=90){occ='industrial_inspector';editorial='heavy_architecture';}
-      else if(m.firepower>=92){occ='test_engineer';editorial='metallic_asymmetry';}
+    const hit=NAME_RULES.find(r=>r[0].test(name));
+    if(hit){
+      occ=hit[1];editorial=hit[2];lifeCat=hit[3];lifeEx=hit[4];src=hit[5];
+      why.occ=src+' — 기체 설정에서 직접 끌어낸 직업';
+      why.ed=src+' — 기체 고유 형태를 패션으로 옮김';
+      why.life=src+' — 기체 성격에 맞는 상황';
+    }else{
+      /* 네 능력치 중 가장 높은 것이 그 기체의 성격을 대표한다고 본다 */
+      const stats=[['output',m.output,'출력'],['firepower',m.firepower,'화력'],
+                   ['armor',m.armor,'장갑'],['mobility',m.mobility,'기동']];
+      stats.sort((a,b)=>b[1]-a[1]);
+      const top=stats[0];
+      const OCC={output:['renewable_engineer','고출력'],firepower:['test_engineer','화력'],
+                 armor:['industrial_inspector','중장갑'],mobility:['aviation_control','고기동']};
+      const ED={output:['luminous_circuit','출력'],firepower:['metallic_asymmetry','화력'],
+                armor:['heavy_architecture','장갑'],mobility:['aerodynamic_couture','기동']};
+      occ=OCC[top[0]][0]; editorial=ED[top[0]][0];
+      why.occ=top[2]+' '+top[1]+' 이 가장 높다';
+      why.ed=top[2]+' 중심 실루엣을 재단으로 옮김';
 
-      if(m.temperament==='폭주'){lifeCat='active';lifeEx=m.mobility>=85?'dance_transition':'boxing_fitness';}
-      else if(m.temperament==='오만'){lifeCat='private_evening';lifeEx='after_party';}
-      else if(m.temperament==='헌신'){lifeCat='everyday_sensual';lifeEx='window_light';}
-      else{lifeCat=m.mobility>=88?'swimwear':'everyday_basic';lifeEx=m.mobility>=88?'rooftop_infinity_pool':'bookstore';}
+      if(m.system==='사이코뮤'){occ='robotics_researcher';why.occ='사이코뮤 탑재기';
+        editorial='floating_panel';why.ed='사이코뮤 — 몸에서 떠 있는 판넬 구조';}
+      else if(m.system==='양산'){occ='mobility_tuner';why.occ='양산기 — 정비·운용이 일상인 기체';}
+
+      const LIFE={'폭주':['everyday_sensual','morning_stretch','폭주 기질 — 절제보다 생동감'],
+                  '냉정':['everyday_basic','bookstore','냉정 기질 — 담담한 생활 장면'],
+                  '오만':['private_evening','penthouse_window','오만 기질 — 격식 있는 사적 시간']};
+      const L=LIFE[m.temperament]||LIFE['냉정'];
+      lifeCat=L[0];lifeEx=L[1];why.life=L[2];
+      if(m.mobility>=88){lifeCat='active';lifeEx='running_recovery';why.life='기동 '+m.mobility+' — 움직임이 살아나는 컷';}
     }
 
-    const reason=m.system+' · 기동 '+m.mobility+' · 장갑 '+m.armor+' · '+m.temperament;
+    /* 이미 쓴 카테고리는 추천하지 않는다 */
+    const used={}; usedOf(mechKey()).forEach(r=>used[r.cat]=1);
+    const swap=(cat,alts)=>{
+      if(!used[cat])return [cat,''];
+      const a=alts.find(x=>!used[x]);
+      return a?[a,' (원래 추천은 이미 써봐서 대체)']:[cat,' (이미 써본 카테고리)'];
+    };
+    const [c1,n1]=swap('occupation_basic',['occupation_sensual','everyday_basic']);
+    const [c2,n2]=swap('source_editorial',['adult_roleplay','wildcard']);
+    const [c3,n3]=swap(lifeCat,['everyday_basic','homewear','active','private_evening','swimwear']);
+    const fix=(cat,ex)=>{
+      const rows=EXAMPLE_MAP[cat]||[];
+      return rows.some(r=>r[0]===ex)?ex:'';
+    };
+    const tag=hit?'기체 고유':'성능 기반';
     return[
-      {pair:1,cat:'occupation_basic',ex:occ,kind:'직업 추천',reason:reason},
-      {pair:2,cat:'source_editorial',ex:editorial,kind:'SOURCE 패션 추천',reason:reason},
-      {pair:3,cat:lifeCat,ex:lifeEx,kind:'라이프스타일 추천',reason:reason}
+      {pair:1,cat:c1,ex:fix(c1,occ),kind:'직업 · '+tag,reason:why.occ+n1},
+      {pair:2,cat:c2,ex:fix(c2,editorial),kind:'SOURCE 패션 · '+tag,reason:why.ed+n2},
+      {pair:3,cat:c3,ex:fix(c3,lifeEx),kind:'라이프스타일 · '+tag,reason:why.life+n3}
     ];
   }
 
@@ -1620,6 +1770,7 @@ details.box .inside{padding:10px}
 
   document.getElementById('presetSelect').value='A';
   applyPreset();
+  syncPairMode();
 
   // 저장된 상태 복원 — READY 이전이라 이 과정에서는 저장이 일어나지 않는다
   /* ?mech=걍 형태의 딥링크가 저장된 마지막 상태보다 우선한다 */
@@ -1692,6 +1843,11 @@ details.box .inside{padding:10px}
       refreshCollagePrompt();
     });
     document.getElementById('pair'+n+'Custom').addEventListener('input',refreshCollagePrompt);
+    document.getElementById('pair'+n+'Use').addEventListener('change',()=>{
+      syncPairMode();
+      [(n-1)*2+1,(n-1)*2+2].forEach(x=>{renderPanelCat(x,false);renderPanelExample(x,false);});
+      refreshCollagePrompt();
+    });
     document.getElementById('pair'+n+'Example').addEventListener('change',()=>{
       document.getElementById('pair'+n+'ExampleCustom').classList.toggle('hidden',document.getElementById('pair'+n+'Example').value!=='__custom__');
       updateExNote(n);
