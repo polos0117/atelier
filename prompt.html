@@ -144,6 +144,12 @@ details.box .inside{padding:10px}
 .rnd-tgt>span{width:100%;font-size:10.5px;color:var(--muted)}
 .rnd-tgt label{display:flex;align-items:center;gap:5px;margin:0;cursor:pointer;font-size:11.5px;color:var(--text)}
 .rnd-tgt input{width:auto;margin:0;flex:none}
+.mode-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px;padding:4px;
+  border-radius:10px;background:var(--card2);border:1px solid var(--line)}
+.mode-tabs .mtab{border:0;background:transparent;color:var(--muted);font-size:12.5px;font-weight:700;
+  padding:8px 6px;border-radius:7px;min-height:0}
+.mode-tabs .mtab.on{background:var(--card);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.22)}
+.card-rnd{width:100%;margin-top:8px;font-size:11.5px}
 .ptabs{display:flex;align-items:center;gap:4px;margin-bottom:10px;flex-wrap:wrap}
 .ptab{flex:1 1 0;min-width:0;padding:8px 4px;font-size:12px;min-height:0}
 .ptab.on{background:var(--accent);color:#fff;border-color:var(--accent)}
@@ -262,6 +268,12 @@ details.box .inside{padding:10px}
         예를 들어 Pair 1을 수영복으로 두면 패널 1은 얌전한 수영복 장면, 패널 2는 같은 수영복 주제를 더 과감하게 잡는다.
         체크를 풀면 그 두 패널이 서로 무관해져서 각자 다른 카테고리를 고를 수 있다 — 강약 관계도 만들지 않는다.
       </div>
+      <div class="mode-tabs" id="buildTabs">
+        <button type="button" class="mtab on" data-bmode="pair">Pair 구성</button>
+        <button type="button" class="mtab" data-bmode="panel">Panel 개별</button>
+      </div>
+
+      <div id="pairArea">
       <div class="grid3" style="margin-top:10px">
         <div class="pair-card">
           <h3>PAIR 1 <small style="color:var(--muted);font-weight:500">Panel 1 &lt; Panel 2</small></h3>
@@ -279,6 +291,7 @@ details.box .inside{padding:10px}
           <label>Expression <small>표정 · 이 Pair 공통</small></label><select id="pair1Expr"></select>
           <label style="margin-top:7px">Body Orientation <small>앞/옆/뒷태</small></label><select id="pair1Orient"></select>
           <label style="margin-top:7px">Pose <small>포즈</small></label><select id="pair1Pose"></select>
+          <button type="button" class="card-rnd" data-rnd-pair="1">🎲 이 Pair 전체 랜덤</button>
         </div>
 
         <div class="pair-card">
@@ -297,6 +310,7 @@ details.box .inside{padding:10px}
           <label>Expression <small>표정 · 이 Pair 공통</small></label><select id="pair2Expr"></select>
           <label style="margin-top:7px">Body Orientation <small>앞/옆/뒷태</small></label><select id="pair2Orient"></select>
           <label style="margin-top:7px">Pose <small>포즈</small></label><select id="pair2Pose"></select>
+          <button type="button" class="card-rnd" data-rnd-pair="2">🎲 이 Pair 전체 랜덤</button>
         </div>
 
         <div class="pair-card">
@@ -315,7 +329,16 @@ details.box .inside{padding:10px}
           <label>Expression <small>표정 · 이 Pair 공통</small></label><select id="pair3Expr"></select>
           <label style="margin-top:7px">Body Orientation <small>앞/옆/뒷태</small></label><select id="pair3Orient"></select>
           <label style="margin-top:7px">Pose <small>포즈</small></label><select id="pair3Pose"></select>
+          <button type="button" class="card-rnd" data-rnd-pair="3">🎲 이 Pair 전체 랜덤</button>
         </div>
+      </div>
+      </div>
+
+      <div id="panelArea" hidden>
+        <div class="help" style="margin:10px 0">
+          패널별로 카테고리·예시·표정·시점·포즈를 따로 잡는다. 비워두면 그 패널이 속한 Pair 값을 따른다.
+        </div>
+        <div id="overrideGrid" class="override-grid"></div>
       </div>
 
       </div>
@@ -357,15 +380,6 @@ details.box .inside{padding:10px}
         </div>
       </details>
 
-      <details class="box">
-        <summary>Panel 1~6 개별 예시 / Override</summary>
-        <div class="inside">
-          <div class="help" style="margin-top:0;margin-bottom:10px">
-            Panel Example은 해당 Pair의 카테고리에 맞춰 자동으로 메뉴가 바뀐다. 표정과 앞/옆/뒷태 방향도 패널별로 지정할 수 있다. 비워두면 Pair 예시와 전체 모드를 따른다.
-          </div>
-          <div id="overrideGrid" class="override-grid"></div>
-        </div>
-      </details>
     </div>
 
     <div class="ko-sum" id="koSum"></div>
@@ -774,12 +788,15 @@ details.box .inside{padding:10px}
         '<label style="margin-top:7px">Action / Pose <small>행동/포즈</small></label><input data-ov-panel="'+n+'" data-ov-key="action" placeholder="AUTO">'+
         '<label style="margin-top:7px">Camera / Lighting <small>카메라/조명</small></label><input data-ov-panel="'+n+'" data-ov-key="camera" placeholder="AUTO">'+
         '<label style="margin-top:7px">Extra <small>추가 지시</small></label><input data-ov-panel="'+n+'" data-ov-key="extra" placeholder="AUTO">'+
+        '<button type="button" class="card-rnd" data-rnd-panel="'+n+'">🎲 이 패널 전체 랜덤</button>'+
       '</div>';
     }
     grid.innerHTML='<div class="ptabs" id="ptabs">'+
       [1,2,3,4,5,6].map(n=>(n%2&&n>1?'<span class="psep"></span>':'')+
         '<button type="button" class="ptab'+(n===1?' on':'')+'" data-ptab="'+n+'">P'+n+'</button>').join('')+
       '</div>'+h;
+    grid.querySelectorAll('[data-rnd-panel]').forEach(b=>
+      b.addEventListener('click',()=>randomizeOnePanel(Number(b.dataset.rndPanel))));
     grid.querySelectorAll('[data-ptab]').forEach(b=>b.addEventListener('click',()=>{
       const t=b.dataset.ptab;
       grid.querySelectorAll('[data-ptab]').forEach(x=>x.classList.toggle('on',x===b));
@@ -921,6 +938,90 @@ details.box .inside{padding:10px}
     refreshCollagePrompt();
     setStatus('statusCollage','직전 조합으로 되돌렸다. 한 번 더 누르면 원래대로 돌아온다.','ok');
   }
+  /* 카드 하나만 굴린다. 랜덤 대상 체크박스와 성격 풀을 그대로 따른다 */
+  function rndTargets(){const T={};document.querySelectorAll('[data-rt]').forEach(el=>T[el.dataset.rt]=el.checked);return T;}
+  function modePool(){
+    const M=RANDOM_MODES[document.getElementById('randomMode').value]||RANDOM_MODES.variety;
+    return (M.pool||RANDOM_POOL).slice();
+  }
+  const pickOne=a=>a[Math.floor(Math.random()*a.length)];
+  function rollMoodFor(idsFn){
+    const T=rndTargets();
+    if(T.expr){const o=EXPRESSION_OPTIONS.filter(x=>x[0]);idsFn('expr',pickOne(o)[0]);}
+    if(T.orient){const o=ORIENTATION_OPTIONS.filter(x=>x[0]);idsFn('orient',pickOne(o)[0]);}
+    if(T.pose){const o=POSE_OPTIONS.filter(x=>x[0]);idsFn('pose',pickOne(o)[0]);}
+  }
+  function freshPool(exclude){
+    const used={}; if(document.getElementById('randomAvoidUsed').checked)
+      usedOf(mechKey()).forEach(r=>used[r.cat]=1);
+    /* 지금 다른 칸이 쓰고 있는 카테고리도 뺀다. 하나만 굴렸는데
+       옆 Pair 와 같은 게 나오면 굴린 의미가 없다 */
+    (exclude||[]).forEach(c=>{if(c)used[c]=1});
+    const p=modePool();
+    let f=p.filter(c=>!used[c]);
+    if(!f.length){const u2={};(exclude||[]).forEach(c=>{if(c)u2[c]=1});f=p.filter(c=>!u2[c]);}
+    return f.length?f:p;
+  }
+  function siblingCats(skipPair,skipPanel){
+    const out=[];
+    [1,2,3].forEach(n=>{
+      if(n===skipPair)return;
+      if(pairUsed(n))out.push(document.getElementById('pair'+n+'Select').value);
+      else{const a=(n-1)*2+1;[a,a+1].forEach(x=>{if(x!==skipPanel)out.push(panelCat(x));});}
+    });
+    if(skipPanel){const p=pairForPanel(skipPanel);
+      if(!pairUsed(p)){const a=(p-1)*2+1;[a,a+1].forEach(x=>{if(x!==skipPanel)out.push(panelCat(x));});}}
+    return out;
+  }
+  function randomizeOnePair(n){
+    pushCollageUndo();
+    const T=rndTargets();
+    if(T.cat){
+      const c=pickOne(freshPool(siblingCats(n)));
+      const cs=document.getElementById('pair'+n+'Select');
+      if([...cs.options].some(o=>o.value===c))cs.value=c;
+      document.getElementById('pair'+n+'Custom').value='';
+      updateDependentExamples(n);
+    }
+    if(T.ex){
+      const es=document.getElementById('pair'+n+'Example');
+      const cand=[...es.options].map(o=>o.value).filter(v=>v&&v!=='__custom__');
+      es.value=cand.length?pickOne(cand):'';
+      updateExNote(n);
+    }
+    rollMoodFor((k,v)=>{
+      const id={expr:'Expr',orient:'Orient',pose:'Pose'}[k];
+      document.getElementById('pair'+n+id).value=v;
+    });
+    updatePairCustomVisibility();
+    refreshCollagePrompt();
+    setStatus('statusCollage','Pair '+n+' 만 다시 굴렸다','ok');
+  }
+  function randomizeOnePanel(n){
+    pushCollageUndo();
+    const T=rndTargets();
+    if(!pairUsed(pairForPanel(n))&&T.cat){
+      const c=pickOne(freshPool(siblingCats(null,n)));
+      const cs=document.getElementById('panel'+n+'Cat');
+      if(cs&&[...cs.options].some(o=>o.value===c))cs.value=c;
+      renderPanelExample(n,false);
+    }
+    if(T.ex){
+      const es=document.getElementById('panel'+n+'Example');
+      const cand=[...es.options].map(o=>o.value).filter(v=>v&&v!=='__custom__');
+      es.value=cand.length?pickOne(cand):'';
+    }
+    rollMoodFor((k,v)=>{
+      const key={expr:'expression',orient:'orientation',pose:'pose'}[k];
+      const el=document.querySelector('[data-ov-panel="'+n+'"][data-ov-key="'+key+'"]');
+      if(el)el.value=v;
+    });
+    updatePanelNotes(n);
+    refreshCollagePrompt();
+    setStatus('statusCollage','패널 '+n+' 만 다시 굴렸다'+
+      (pairUsed(pairForPanel(n))?' (Pair 로 묶여 있어 카테고리는 Pair 를 따른다)':''),'ok');
+  }
+
   function randomizePairs(){
     pushCollageUndo();
     const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
@@ -2383,6 +2484,14 @@ details.box .inside{padding:10px}
   document.getElementById('presetSelect').addEventListener('change',applyPreset);
   document.getElementById('randomizeBtn').addEventListener('click',randomizePairs);
   document.getElementById('undoCollage').addEventListener('click',undoCollage);
+  document.querySelectorAll('[data-rnd-pair]').forEach(b=>
+    b.addEventListener('click',()=>randomizeOnePair(Number(b.dataset.rndPair))));
+  document.querySelectorAll('#buildTabs .mtab').forEach(b=>b.addEventListener('click',()=>{
+    const m=b.dataset.bmode;
+    document.querySelectorAll('#buildTabs .mtab').forEach(x=>x.classList.toggle('on',x===b));
+    document.getElementById('pairArea').hidden=(m!=='pair');
+    document.getElementById('panelArea').hidden=(m!=='panel');
+  }));
 
   [1,2,3].forEach(n=>{
     document.getElementById('pair'+n+'Select').addEventListener('change',()=>{
