@@ -2585,12 +2585,16 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
      기체마다 따로 기억한다. 초상과 일상컷의 결이 어긋나면 한 카드 안에서 따로 놀기 때문에
      세 생성기 모두 같은 값을 쓴다. */
   const ART_STYLES=[
-    ['semi_real_paint','반실사 회화','지금까지의 기본값. 사실적인 질감 위에 붓자국이 남는 유화풍',
+    ['cinematic_semi_real','시네마틱 세미리얼','기본값. 얼굴만 살짝 이상화하고 재질·조명은 실사. 초상과 일상컷의 결이 맞는다',
+     'high-end semi-realistic character render; photorealistic materials, fabric and skin; cinematic fashion-photography lighting with shallow depth of field and detailed environmental light; polished editorial look. '+
+     'Only the face is mildly idealised — slightly larger and cleaner eyes, smoother features — while the body, clothing, materials, and lighting stay fully photographic. '+
+     'Do not push the overall image toward flat illustration, cel shading, or heavy anime stylisation.'],
+    ['semi_real_paint','반실사 회화','사실적인 질감 위에 붓자국이 남는 유화풍. 이전 기본값',
      'semi-realistic digital oil painting; realistic skin texture and material rendering with visible painterly brush strokes; grounded anatomy and lighting; rich surface detail'],
-    ['semi_anime','세미리얼 애니풍','깨끗한 선과 2~3단계 음영. 초상과 결이 맞아 카드 안에서 따로 놀지 않는다',
-     'semi-realistic anime illustration; clean confident linework, anime facial structure with large expressive eyes, simplified two-to-three step shading with soft gradients, saturated but harmonious colours; rendered as an illustration rather than a photograph — no photographic skin pores, no camera grain, no lens blur'],
-    ['photoreal','사진풍','실제 사진에 가까운 렌더. 배경과 소품의 정보량이 가장 많다',
-     'photorealistic render; camera-like depth of field, real fabric and skin texture, natural photographic lighting; no visible linework and no cel shading'],
+    ['photoreal','사진풍','이상화 없이 완전한 실사. 배경과 소품의 정보량이 가장 많다',
+     'photorealistic render; camera-like depth of field, real fabric and skin texture, natural photographic lighting; no facial idealisation, no visible linework, no cel shading'],
+    ['anime_illust','애니 일러스트','선과 평면 음영이 뚜렷한 완전한 일러스트. 실사에서 확실히 벗어난다',
+     'anime illustration; clean confident linework, anime facial structure with large expressive eyes, two-to-three step shading with soft gradients, saturated but harmonious colours; rendered as an illustration rather than a photograph — no photographic skin pores, no camera grain, no lens blur'],
     ['cel_anime','셀화 애니','경계가 뚜렷한 평면 음영과 굵은 외곽선',
      'flat cel-shaded anime; hard-edged shadow shapes, bold clean outlines, minimal gradients, poster-like colour blocking'],
     ['painterly','회화적 컨셉아트','거친 붓질과 흐릿한 경계. 표면 묘사보다 명암 구성이 앞선다',
@@ -2600,9 +2604,10 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     ['ink_wash','수묵 담채','먹선과 옅은 채색. 여백이 많고 색이 절제됨',
      'ink-and-wash illustration; expressive brush outlines, translucent washes of colour, generous negative space, restrained palette']
   ];
+  const DEFAULT_STYLE='cinematic_semi_real';
   function styleKey(){
     const el=document.getElementById('artStyle');
-    return (el&&el.value)||'semi_real_paint';
+    return (el&&el.value)||DEFAULT_STYLE;
   }
   function styleRow(){return ART_STYLES.find(x=>x[0]===styleKey())||ART_STYLES[0];}
   function styleBlock(){
@@ -2617,14 +2622,14 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   function loadStyleForMech(){
     const el=document.getElementById('artStyle'); if(!el)return;
     const rec=(STORE.style||{})[mechKey()] || ((BASE.style||{})[mechKey()]);
-    el.value=rec&&ART_STYLES.some(x=>x[0]===rec)?rec:'semi_real_paint';
+    el.value=rec&&ART_STYLES.some(x=>x[0]===rec)?rec:DEFAULT_STYLE;
     renderArtNote();
   }
   function saveStyle(){
     if(!READY)return;
     const k=mechKey(); if(!k)return;
     STORE.style=STORE.style||{};
-    if(styleKey()==='semi_real_paint')delete STORE.style[k]; else STORE.style[k]=styleKey();
+    if(styleKey()===DEFAULT_STYLE)delete STORE.style[k]; else STORE.style[k]=styleKey();
     saveStore();
   }
   function renderArtNote(){
@@ -3125,7 +3130,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     merged.style={};
     Object.keys(Object.assign({},BASE.style||{},STORE.style||{})).forEach(k=>{
       const v=(STORE.style||{})[k]||(BASE.style||{})[k];
-      if(v&&v!=='semi_real_paint')merged.style[k]=v;});
+      if(v&&v!==DEFAULT_STYLE)merged.style[k]=v;});
     const uk={};Object.keys(BASE.used||{}).forEach(k=>uk[k]=1);Object.keys(STORE.used||{}).forEach(k=>uk[k]=1);
     Object.keys(uk).forEach(k=>{const u=usedOf(k);if(u.length)merged.used[k]=u;});
     box.value=JSON.stringify(merged,null,1);
