@@ -1,7 +1,7 @@
 {
  "version": 1,
- "updated": "2026-09-01",
- "note": "prompt.html 의 '기록 내보내기' 결과를 이 파일에 덮어쓴다. 기체별 의인화 설정의 기준 기록.",
+ "updated": "2026-09-02",
+ "note": "prompt.html 의 '기록 내보내기' 결과를 이 파일에 덮어쓴다. 기체별 의인화 설정과 콜라주 복사 기록.",
  "mechs": {
   "건담 나드레": {
    "male": {
@@ -21,19 +21,138 @@
    "female": {
     "sel": {
      "apparent age": "30s",
-     "body type": "voluptuous",
-     "height impression": "tall",
      "facial ethnicity": "Japanese",
      "human-mechanical balance": "more human",
-     "armor coverage": "balanced",
+     "body type": "voluptuous",
+     "height impression": "tall",
      "torso / chest build": "full bust",
      "waist / hip silhouette": "broad-hipped",
-     "leg proportion": "long"
+     "leg proportion": "long",
+     "armor coverage": "balanced"
     },
     "ub": true
    },
-   "t": 1788275909914
+   "male": {
+    "sel": {
+     "apparent age": "30s",
+     "body type": "burly",
+     "height impression": "tall",
+     "facial ethnicity": "Japanese",
+     "lower-body treatment": "layered plates",
+     "shoulder build": "broad",
+     "torso / chest build": "powerful",
+     "leg proportion": "long"
+    }
+   },
+   "t": 1788279823274
+  },
+  "∀건담": {
+   "female": {
+    "sel": {
+     "facial ethnicity": "Middle Eastern",
+     "human-mechanical balance": "balanced",
+     "body type": "glamorous",
+     "height impression": "very tall",
+     "shoulder build": "broad",
+     "torso / chest build": "full bust",
+     "waist / hip silhouette": "athletic",
+     "leg proportion": "very long",
+     "eye color": "teal",
+     "hair color": "ash blonde",
+     "hairstyle": "feathered",
+     "bangs": "long side bangs covering one eye",
+     "armor coverage": "open",
+     "head crest integration": "headband-like",
+     "silhouette character": "elegant"
+    },
+    "ub": true
+   },
+   "male": {
+    "sel": {
+     "facial ethnicity": "Southeast Asian",
+     "human-mechanical balance": "more mechanical",
+     "body type": "rangy",
+     "height impression": "average",
+     "shoulder build": "average",
+     "torso / chest build": "v-taper",
+     "leg proportion": "very long",
+     "eye color": "teal",
+     "facial hair": "mustache",
+     "hair color": "ash blonde",
+     "bangs": "long side bangs covering one eye"
+    }
+   },
+   "t": 1788281719221
   }
  },
- "used": {}
+ "used": {
+  "지옹": [
+   {
+    "cat": "wildcard",
+    "ex": "rain_editorial",
+    "n": 1,
+    "t": 1788278058650
+   },
+   {
+    "cat": "active",
+    "ex": "archery_draw",
+    "n": 1,
+    "t": 1788278058650
+   },
+   {
+    "cat": "lingerie",
+    "ex": "__custom__",
+    "n": 1,
+    "t": 1788278058650
+   },
+   {
+    "cat": "swimwear",
+    "ex": "wrap_swim",
+    "n": 2,
+    "t": 1788277822662
+   },
+   {
+    "cat": "homewear",
+    "ex": "sunroom_lounge",
+    "n": 1,
+    "t": 1788277822662
+   },
+   {
+    "cat": "adult_roleplay",
+    "ex": "adult_maid",
+    "n": 1,
+    "t": 1788277822662
+   },
+   {
+    "cat": "occupation_sensual",
+    "ex": "",
+    "n": 1,
+    "t": 1788277162576
+   },
+   {
+    "cat": "source_editorial",
+    "ex": "thruster_flare",
+    "n": 1,
+    "t": 1788277162576
+   },
+   {
+    "cat": "occupation_basic",
+    "ex": "drone_operator",
+    "n": 1,
+    "t": 1788276645723
+   },
+   {
+    "cat": "lingerie",
+    "ex": "open_shirt_lingerie",
+    "n": 1,
+    "t": 1788276645723
+   },
+   {
+    "cat": "swimwear",
+    "ex": "",
+    "n": 1,
+    "t": 1788276645723
+   }
+  ]
+ }
 }
