@@ -110,6 +110,15 @@ main{padding:12px}
 .row .pr{color:var(--dim);font-size:11.5px;margin-top:4px;line-height:1.45;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .row .nt{color:#9AA7B6;font-size:11px;margin-top:3px;font-style:italic}
+.row .tk{color:#8FB4D9;font-size:11px;margin-top:5px;line-height:1.5;
+  border-left:2px solid rgba(143,180,217,.45);padding-left:7px}
+.row .lnk{margin-top:6px}
+.row .lnk a{color:#8FB4D9;font-size:11px;text-decoration:none}
+.row .lnk a:hover{text-decoration:underline}
+.dt-tk{margin-top:10px;padding:9px 10px;border-radius:9px;background:rgba(143,180,217,.09);
+  border:1px solid rgba(143,180,217,.25);font-size:11.5px;line-height:1.55;color:#B7CDE4}
+.dt-tk b{display:block;color:#DCE7F2;font-size:11px;margin-bottom:3px}
+.dt-tk a{color:#8FB4D9;text-decoration:none}
 .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:80;
   background:var(--plate);color:var(--void);font-size:13px;font-weight:700;
   padding:9px 16px;border-radius:99px;pointer-events:none}
@@ -980,6 +989,45 @@ function pageOf(c){
 }
 function shotOf(c){var ss=shots(c);return ss.length?ss[pageOf(c)]:null}
 
+/* ── 툴킷 설정 읽기 ──
+   prompt.html 이 남긴 기록을 그대로 읽는다. 저장소 파일(toolkit-data.json)이 기반이고
+   같은 브라우저의 localStorage 가 그 위를 덮는다. 쓰지는 않는다. */
+var TK={base:{},local:{}};
+function tkLoad(){
+  try{
+    var o=JSON.parse(localStorage.getItem("atelier_toolkit_v1")||"null");
+    if(o&&o.anthro)TK.local=o.anthro;
+  }catch(e){}
+  return fetch("toolkit-data.json",{cache:"no-cache"})
+    .then(function(r){return r.ok?r.json():null})
+    .then(function(j){if(j&&j.mechs)TK.base=j.mechs})
+    .catch(function(){});
+}
+function tkReady(){ /* 기록이 도착하면 현재 화면을 다시 그린다 */
+  if(typeof draw==="function")draw();
+}
+function tkOf(name){
+  var a=TK.local[name],b=TK.base[name];
+  if(!a)return b||null;
+  if(!b)return a;
+  return (a.t||0)>=(b.t||0)?a:b;
+}
+var TK_LABEL={"facial ethnicity":"계통","apparent age":"나이","body type":"체형",
+  "hair color":"머리색","hair length":"머리길이","hairstyle":"헤어","eye color":"눈색",
+  "facial hair":"수염","face shape":"얼굴형","facial character":"인상","skin tone":"피부"};
+function tkSummary(name){
+  var r=tkOf(name); if(!r)return "";
+  var out=[];
+  ["female","male"].forEach(function(g){
+    var sel=r[g]&&r[g].sel; if(!sel)return;
+    var bits=[];
+    for(var k in TK_LABEL)if(sel[k])bits.push(TK_LABEL[k]+" "+sel[k]);
+    if(r[g].ub)bits.push("언더부스트");
+    if(bits.length)out.push((g==="female"?"여":"남")+" · "+bits.join(" / "));
+  });
+  return out.join("\n");
+}
+
 /* ── 작업 현황: image-list 의 f/m/c/e 를 대신해 IMG 에서 직접 센다 ── */
 function stat(c){
   var s=IMG[c[0]]||{};
@@ -1075,7 +1123,7 @@ function drawWork(){
 
   var arr=onlyLeft?pool.filter(function(c){return !stat(c).done}):pool,h="";
   for(i=0;i<arr.length;i++){
-    var c=arr[i],st=stat(c),nt=NOTE[c[0]]||"",pr=PROMPT[c[0]]||"";
+    var c=arr[i],st=stat(c),nt=NOTE[c[0]]||"",pr=PROMPT[c[0]]||"",tk=tkSummary(c[0]);
     h+='<div class="row'+(st.done?" done":"")+'" tabindex="0" data-n="'+esc(c[0])+
        '" style="--cc:'+ccOf(c)+'"><div class="top"><span class="nm">'+esc(c[0])+'</span>'+
        '<span class="tag'+(st.m?" hit":"")+'">남</span>'+
@@ -1085,6 +1133,9 @@ function drawWork(){
        '</div>'+
        (pr?'<div class="pr">'+esc(pr)+'</div>':"")+
        (nt?'<div class="nt">'+esc(nt)+'</div>':"")+
+       (tk?'<div class="tk">'+esc(tk).replace(/\n/g,"<br>")+'</div>':"")+
+       '<div class="lnk"><a href="prompt.html?mech='+encodeURIComponent(c[0])+
+       '" target="_blank" rel="noopener">툴킷에서 열기 →</a></div>'+
        '</div>';
   }
   var g=document.getElementById("grid");
@@ -1150,6 +1201,14 @@ function open(n,start){
         h+='<div class="vs"><button data-v="m"'+(v==="m"?' class="on"':"")+
            '>남</button><button data-v="f"'+(v==="f"?' class="on"':"")+'>여</button></div>';
       h+='</div>';
+    }
+
+    if(t==="기체"){
+      var tk=tkSummary(c[0]);
+      h+='<div class="dt-tk"><b>툴킷 설정</b>'+
+         (tk?esc(tk).replace(/\n/g,"<br>"):"저장된 설정이 없다.")+
+         '<div style="margin-top:6px"><a href="prompt.html?mech='+encodeURIComponent(c[0])+
+         '" target="_blank" rel="noopener">툴킷에서 열기 →</a></div></div>';
     }
 
     h+='<div class="sec">능력</div>';
@@ -1292,6 +1351,7 @@ addEventListener("keydown",function(e){
 
 draw();
 loadFileList(false).then(function(n){if(n)draw()});
+tkLoad().then(tkReady);
 document.getElementById("tot").onclick=function(){
   var el=this; el.textContent="…";
   loadFileList(true).then(function(n){draw();toast(n?n+"장 새로 잡았다":"새 그림 없음")});

@@ -55,7 +55,14 @@ button.small{min-height:38px;padding:7px 9px;font-size:12px}
 .save-bar .sb-drop{flex:none;font-size:11px;padding:5px 9px}
 .save-bar .sb-drop.hidden{display:none}
 .axis-note{margin-top:6px;font-size:11px;line-height:1.45;color:var(--muted)}
-.param-preview{margin-top:8px;display:flex;gap:10px;align-items:center;padding:8px 9px;border-radius:8px;background:var(--card);border:1px solid var(--line)}
+.param-preview{margin-top:8px;display:block;padding:8px 9px;border-radius:8px;background:var(--card);border:1px solid var(--line)}
+.param-preview .pp-main{display:flex;gap:10px;align-items:center}
+.pp-gal{margin-top:8px;border-top:1px solid var(--line);padding-top:7px}
+.pp-gal-t{font-size:11px;color:var(--muted);margin-bottom:5px}
+.pp-gal-r{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
+.pp-gal-r a{flex:none;width:52px;text-decoration:none;color:var(--muted)}
+.pp-gal-r img{width:52px;height:70px;object-fit:cover;object-position:50% 18%;border-radius:5px;display:block;background:var(--card2)}
+.pp-gal-r span{display:block;font-size:9.5px;line-height:1.25;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .param-preview.hidden{display:none}
 .param-preview svg{flex:none;display:block}
 .param-preview .pp-txt{font-size:11.5px;line-height:1.5;color:var(--muted)}
@@ -112,6 +119,13 @@ details.box .inside{padding:10px}
     <div class="top-grid">
       <select id="seriesPicker" aria-label="시리즈 선택"></select>
       <select id="mechPicker" aria-label="기체 선택"></select>
+    </div>
+    <div class="save-bar" style="margin-top:8px">
+      <label style="display:flex;align-items:center;gap:7px;margin:0;cursor:pointer;font-size:11.5px;color:var(--muted)">
+        <input type="checkbox" id="onlyRemaining" style="width:auto;margin:0;flex:none">
+        <span>초상 미완성 기체만 보기</span>
+      </label>
+      <span class="sb-txt" id="doneStat" style="text-align:right"></span>
     </div>
     <button id="applySource" class="primary apply" type="button">기체 선택 적용</button>
     <div id="selInfo" class="selection">선택 정보 로딩 중…</div>
@@ -295,6 +309,12 @@ details.box .inside{padding:10px}
         <span class="sb-txt"></span>
         <button type="button" class="sb-drop hidden" id="dropAnthro">이 기체 기록 삭제</button>
       </div>
+      <div class="save-bar">
+        <span class="sb-txt">저장소에 커밋할 기록을 내보낸다. 복사한 내용을 <code>toolkit-data.json</code> 으로 올리면 다른 기기에서도 보인다.</span>
+        <button type="button" class="sb-drop" id="exportStore">기록 내보내기</button>
+      </div>
+      <textarea id="exportBox" class="hidden" spellcheck="false"
+        style="width:100%;margin-top:8px;min-height:120px;font-size:11px"></textarea>
 
       <div class="param-actions">
         <button id="applyAnthro" type="button">외형 설정 반영</button>
@@ -376,10 +396,63 @@ details.box .inside{padding:10px}
 
   function rowsForSeries(key){return MECH.filter(r=>r[1].includes(key));}
   function fillSeries(){seriesPicker.innerHTML=SERIES_ORDER.map(k=>'<option value="'+escHtml(k)+'">'+escHtml(SER_NAME[k]||k)+'</option>').join('');}
+  /* ══ 저장소 파일 목록 → 기체별 이미지 보유 현황 ══
+     도감(dex.html)이 쓰는 캐시 키를 그대로 재사용한다. 도감을 먼저 열어봤다면
+     10분 안에는 추가 요청 없이 그 결과를 그대로 쓴다. */
+  const LIST_KEY='dex_filelist_v1', LIST_TTL=6e5;
+  let SHOT={};   /* 카드명 → {m,f,c} */
+  function digestFiles(names){
+    const key={}; MECH.forEach(r=>key[r[0].replace(/ /g,'_')]=r[0]);
+    const out={};
+    names.forEach(n=>{
+      const m=/^(.+)_(m|f|casual(\d+)|extra(\d+))\.webp$/i.exec(n); if(!m)return;
+      const card=key[m[1].replace(/ /g,'_')]; if(!card)return;
+      const o=out[card]||(out[card]={m:false,f:false,c:0});
+      const kind=m[2].toLowerCase();
+      if(kind==='m')o.m=true; else if(kind==='f')o.f=true;
+      else if(kind.indexOf('casual')===0)o.c++;
+    });
+    return out;
+  }
+  function loadShots(){
+    const mm=/^https?:\/\/([^.]+)\.github\.io\/([^\/]+)\//.exec(location.href);
+    try{
+      const c=JSON.parse(localStorage.getItem(LIST_KEY));
+      if(c&&Date.now()-c.t<LIST_TTL){SHOT=digestFiles(c.n);return Promise.resolve();}
+    }catch(e){}
+    if(!mm)return Promise.resolve();
+    return fetch('https://api.github.com/repos/'+mm[1]+'/'+mm[2]+'/contents/')
+      .then(r=>r.ok?r.json():null).then(j=>{
+        if(!j)return;
+        const n=j.filter(x=>x.type==='file').map(x=>x.name);
+        try{localStorage.setItem(LIST_KEY,JSON.stringify({t:Date.now(),n:n}))}catch(e){}
+        SHOT=digestFiles(n);
+      }).catch(()=>{});
+  }
+  function doneOf(name){const o=SHOT[name];return !!(o&&o.m&&o.f);}
+  function updateDoneStat(){
+    const el=document.getElementById('doneStat'); if(!el)return;
+    const n=Object.keys(SHOT).length;
+    if(!n){el.textContent='이미지 현황을 아직 못 읽었다';return;}
+    const done=MECH.filter(r=>doneOf(r[0])).length;
+    el.textContent='초상 완료 '+done+' / '+MECH.length+'기 · 잔여 '+(MECH.length-done);
+  }
+
   function fillMechs(preferred=''){
-    const rows=rowsForSeries(seriesPicker.value);
-    mechPicker.innerHTML=rows.map(r=>'<option value="'+escHtml(r[0])+'">'+escHtml(r[0])+'</option>').join('');
+    let rows=rowsForSeries(seriesPicker.value);
+    const only=document.getElementById('onlyRemaining');
+    if(only&&only.checked&&Object.keys(SHOT).length){
+      const left=rows.filter(r=>!doneOf(r[0]));
+      if(left.length)rows=left;
+    }
+    mechPicker.innerHTML=rows.map(r=>{
+      const o=SHOT[r[0]],mark=!Object.keys(SHOT).length?'':
+        (o&&o.m&&o.f?'✓ ':(o&&(o.m||o.f)?'◐ ':'· '));
+      const cas=o&&o.c?' (일상 '+o.c+')':'';
+      return '<option value="'+escHtml(r[0])+'">'+escHtml(mark+r[0]+cas)+'</option>';
+    }).join('');
     if(preferred&&rows.some(r=>r[0]===preferred))mechPicker.value=preferred;
+    updateDoneStat();
   }
   function selectedSource(){const key=seriesPicker.value;return{seriesKey:key,series:SER_NAME[key]||key,mech:mechPicker.value};}
   function updateSelInfo(){const s=selectedSource();selInfo.innerHTML='<b>'+escHtml(s.series)+'</b> · '+escHtml(s.mech);}
@@ -807,7 +880,7 @@ details.box .inside{padding:10px}
       return'<div class="param-card"><label>'+escHtml(def.label)+' <small>'+escHtml(def.ko)+'</small></label>'+
         '<select data-param-select="'+escHtml(def.key)+'">'+opts+'</select>'+
         '<input class="custom-input hidden" data-param-custom="'+escHtml(def.key)+'" placeholder="직접 입력">'+
-        (FIG_KEYS[def.key]?'<div class="param-preview hidden" data-param-preview="'+escHtml(def.key)+'"></div>':'')+'</div>';
+        '<div class="param-preview hidden" data-param-preview="'+escHtml(def.key)+'"></div></div>';
     }
     const fit=d=>!d.sex||d.sex===curGender();
     basic.innerHTML=PARAM_DEFS.filter(d=>d.basic&&fit(d)).map(card).join('');
@@ -819,7 +892,7 @@ details.box .inside{padding:10px}
       refreshAnthroPrompt();
     }));
     document.querySelectorAll('[data-param-custom]').forEach(inp=>inp.addEventListener('input',refreshAnthroPrompt));
-    Object.keys(FIG_KEYS).forEach(updatePreview);
+    PARAM_DEFS.forEach(dd=>updatePreview(dd.key));
   }
 
   /* ══ 파라미터 도식 ══
@@ -999,15 +1072,40 @@ details.box .inside{padding:10px}
 
   const FIG_KEYS={'body type':[BODY_FIG,bodySVG],'hairstyle':[HAIR_FIG,hairSVG]};
 
+  /* 이 값으로 실제 뽑아둔 기체들 — 내 도식보다 이게 훨씬 정확한 예시다 */
+  function galleryFor(key,val){
+    const hits=[];
+    allKeys().forEach(k=>{
+      const r=recOf(k); if(!r)return;
+      ['female','male'].forEach(g=>{
+        const sel=r[g]&&r[g].sel; if(!sel||sel[key]!==val)return;
+        const o=SHOT[k]; if(!o)return;
+        const v=g==='female'?'f':'m';
+        if(o[v])hits.push({card:k,file:k+'_'+v+'.webp'});
+      });
+    });
+    return hits.slice(0,8);
+  }
   function updatePreview(key){
     const box=document.querySelector('[data-param-preview="'+CSS.escape(key)+'"]');if(!box)return;
     const sel=document.querySelector('[data-param-select="'+CSS.escape(key)+'"]');
-    const cfg=FIG_KEYS[key],v=sel?sel.value:'';
-    if(!cfg||!v||v==='__custom__'||!cfg[0][v]){box.classList.add('hidden');box.innerHTML='';return;}
-    const label=sel.options[sel.selectedIndex].text.split(' — ')[0];
-    box.classList.remove('hidden');
-    box.innerHTML=cfg[1](v)+'<div class="pp-txt"><b>'+escHtml(label)+'</b>'+
+    const v=sel?sel.value:'';
+    if(!v||v==='__custom__'){box.classList.add('hidden');box.innerHTML='';return;}
+    const cfg=FIG_KEYS[key];
+    const label=(sel.options[sel.selectedIndex].text||'').split(' — ')[0];
+    let head='';
+    if(cfg&&cfg[0][v])head=cfg[1](v)+'<div class="pp-txt"><b>'+escHtml(label)+'</b>'+
       escHtml(cfg[0][v][cfg[0][v].length-1])+'</div>';
+    const hits=galleryFor(key,v);
+    let gal='';
+    if(hits.length)gal='<div class="pp-gal"><div class="pp-gal-t">이 설정으로 뽑은 기체 '+hits.length+'기</div>'+
+      '<div class="pp-gal-r">'+hits.map(h=>
+        '<a href="?mech='+encodeURIComponent(h.card)+'" title="'+escHtml(h.card)+'">'+
+        '<img loading="lazy" src="'+IMG_BASE+encodeURIComponent(h.file)+'" alt="">'+
+        '<span>'+escHtml(h.card)+'</span></a>').join('')+'</div></div>';
+    if(!head&&!gal){box.classList.add('hidden');box.innerHTML='';return;}
+    box.classList.remove('hidden');
+    box.innerHTML='<div class="pp-main">'+(head||'<div class="pp-txt"><b>'+escHtml(label)+'</b></div>')+'</div>'+gal;
   }
 
   const YOUTHFUL_LOCK='a clearly adult woman or man in their twenties with a youthful, soft-featured baby face; rounder cheeks, larger eyes, and a softer jawline than the standard adult face, while body proportions, height, and overall presence remain unmistakably those of a grown adult; never a child, teenager, or underage appearance';
@@ -1020,13 +1118,33 @@ details.box .inside{padding:10px}
   /* ══ 저장 ══
      기체별·성별별로 의인화 설정을, 그리고 콜라주 설정 한 벌을 브라우저에 남긴다.
      localStorage가 막힌 환경에서도 앱이 죽지 않도록 전부 try로 감싼다. */
+  const IMG_BASE='https://polos0117.github.io/atelier/';
   const STORE_KEY='atelier_toolkit_v1';
+  const DATA_URL='toolkit-data.json';     /* 저장소에 커밋해 두는 기반 기록 */
   let STORE={last:{},anthro:{},collage:null};
+  let BASE={mechs:{}};                    /* git 파일에서 읽어온 것 */
   let STORE_OK=true, READY=false;
   try{
     const raw=localStorage.getItem(STORE_KEY);
     if(raw){const o=JSON.parse(raw);if(o&&typeof o==='object')STORE=Object.assign(STORE,o);}
   }catch(e){STORE_OK=false;}
+  /* 같은 기체가 양쪽에 있으면 t(마지막 수정 시각)가 늦은 쪽을 쓴다.
+     git 파일을 새로 커밋하면 오래된 로컬 기록이 자연히 밀려난다. */
+  function recOf(k){
+    const a=STORE.anthro[k],b=BASE.mechs[k];
+    if(!a)return b||null;
+    if(!b)return a;
+    return (a.t||0)>=(b.t||0)?a:b;
+  }
+  function allKeys(){
+    const o={};Object.keys(BASE.mechs||{}).forEach(k=>o[k]=1);
+    Object.keys(STORE.anthro||{}).forEach(k=>o[k]=1);return Object.keys(o);
+  }
+  function loadBase(){
+    return fetch(DATA_URL,{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(j=>{
+      if(j&&j.mechs)BASE=j;
+    }).catch(()=>{});
+  }
   let saveTimer=null;
   function saveStore(){
     if(!STORE_OK)return;
@@ -1061,7 +1179,7 @@ details.box .inside{padding:10px}
     });
     const sp=document.getElementById('specialInput'),ub=document.getElementById('underboobInput');
     if(sp)sp.value=o.sp||''; if(ub)ub.checked=!!o.ub;
-    Object.keys(FIG_KEYS).forEach(updatePreview);
+    PARAM_DEFS.forEach(dd=>updatePreview(dd.key));
   }
   function emptySnap(o){
     if(!o)return true;
@@ -1076,16 +1194,26 @@ details.box .inside{padding:10px}
     if(GSTATE[other])rec[other]=GSTATE[other];
     /* 값이 하나도 없으면 기록을 만들지 않는다. 그냥 지나친 기체마다 빈 기록이 생기면
        나중에 그 기체로 돌아왔을 때 빈 값이 덮어씌워진다. */
-    if(emptySnap(rec[cur])&&emptySnap(rec[other])){
+    /* 빈 값을 걷어낸 뒤 비교한다. 저장소 파일이 축약형으로 적혀 있어도 같게 본다 */
+    const sig=o=>{
+      if(!o)return '';
+      const pick=x=>Object.keys(x||{}).filter(q=>x[q]).sort().map(q=>q+'='+x[q]).join(';');
+      return pick(o.sel)+'|'+pick(o.cus)+'|'+(o.sp||'')+'|'+(o.ub?1:0);
+    };
+    const b=BASE.mechs&&BASE.mechs[k];
+    const same=b&&sig(b.female)===sig(rec.female)&&sig(b.male)===sig(rec.male);
+    if((emptySnap(rec[cur])&&emptySnap(rec[other]))||same){
+      /* 저장소 기록과 똑같으면 로컬 사본을 남기지 않는다.
+         남겨두면 나중에 갱신된 저장소 파일보다 오래된 로컬이 이겨버린다. */
       if(STORE.anthro[k])delete STORE.anthro[k];
     }else{
-      STORE.anthro[k]=rec;
+      rec.t=Date.now(); STORE.anthro[k]=rec;
     }
     STORE.last={series:seriesPicker.value,mech:k};
     saveStore(); updateSaveBar();
   }
   function loadAnthroForMech(){
-    const k=mechKey(),rec=STORE.anthro[k];
+    const k=mechKey(),rec=recOf(k);
     if(!rec){updateSaveBar();return false;}
     GSTATE.female=rec.female||null; GSTATE.male=rec.male||null;
     applyParams(GSTATE[curGender()]);
@@ -1100,11 +1228,13 @@ details.box .inside{padding:10px}
   }
   function updateSaveBar(){
     const bar=document.getElementById('saveBar'); if(!bar)return;
-    const k=mechKey(),has=!!STORE.anthro[k];
+    const k=mechKey(),has=!!recOf(k);
+    const inBase=!!(BASE.mechs&&BASE.mechs[k]);
     bar.querySelector('.sb-txt').textContent=
       !STORE_OK?'이 브라우저에서는 저장이 막혀 있다':
-      (has?'"'+k+'" 설정이 저장돼 있다':'"'+k+'" 는 아직 저장된 설정이 없다')+
-      ' · 기록된 기체 '+savedCount()+'기';
+      (has?'"'+k+'" 설정 있음'+(inBase?' (저장소 기록)':' (이 브라우저)'):'"'+k+'" 는 아직 설정이 없다')+
+      ' · 전체 '+allKeys().length+'기 (저장소 '+Object.keys(BASE.mechs||{}).length+
+      ' / 로컬 '+Object.keys(STORE.anthro||{}).length+')';
     bar.querySelector('.sb-drop').classList.toggle('hidden',!has);
   }
 
@@ -1153,7 +1283,7 @@ details.box .inside{padding:10px}
   function resetAnthro(){
     document.querySelectorAll('[data-param-select]').forEach(s=>s.value='');
     document.querySelectorAll('[data-param-custom]').forEach(i=>{i.value='';i.classList.add('hidden');});
-    Object.keys(FIG_KEYS).forEach(updatePreview);
+    PARAM_DEFS.forEach(dd=>updatePreview(dd.key));
     document.getElementById('specialInput').value='';
     document.getElementById('underboobInput').checked=false;
     GSTATE[curGender()]=null;
@@ -1231,7 +1361,21 @@ details.box .inside{padding:10px}
   applyPreset();
 
   // 저장된 상태 복원 — READY 이전이라 이 과정에서는 저장이 일어나지 않는다
-  if(STORE.last&&STORE.last.series){
+  /* ?mech=걍 형태의 딥링크가 저장된 마지막 상태보다 우선한다 */
+  const QS=new URLSearchParams(location.search);
+  const qMech=QS.get('mech')||'', qSeries=QS.get('series')||'';
+  if(qMech){
+    const owner=MECH.find(r=>r[0]===qMech);
+    if(owner){
+      const sers=owner[owner.length-1]||[];
+      const want=qSeries||sers[0];
+      const sp=document.getElementById('seriesPicker');
+      if(want&&[...sp.options].some(o=>o.value===want)){sp.value=want;fillMechs(qMech);}
+      else fillMechs(qMech);
+      if([...mechPicker.options].some(o=>o.value===qMech))mechPicker.value=qMech;
+      updateSelInfo();
+    }
+  }else if(STORE.last&&STORE.last.series){
     const sp=document.getElementById('seriesPicker');
     if([...sp.options].some(o=>o.value===STORE.last.series)){
       sp.value=STORE.last.series; fillMechs();
@@ -1248,6 +1392,14 @@ details.box .inside{padding:10px}
   refreshAnthroPrompt();
   refreshCollagePrompt();
   updateSaveBar();
+
+  /* 저장소 기록과 이미지 현황은 네트워크라 늦게 온다. 도착하면 다시 그린다. */
+  Promise.all([loadBase(),loadShots()]).then(()=>{
+    fillMechs(mechPicker.value);
+    if(!STORE.anthro[mechKey()])loadAnthroForMech();
+    updateSaveBar(); updateDoneStat();
+    PARAM_DEFS.forEach(dd=>updatePreview(dd.key));
+  });
 
   // Events
   seriesPicker.addEventListener('change',()=>{
@@ -1297,6 +1449,18 @@ details.box .inside{padding:10px}
   document.getElementById('applyAnthro').addEventListener('click',()=>{refreshAnthroPrompt();setStatus('statusAnthro','PARAMETERS 적용 완료','ok');});
   document.getElementById('resetAnthro').addEventListener('click',resetAnthro);
   document.getElementById('dropAnthro').addEventListener('click',dropAnthroForMech);
+  document.getElementById('onlyRemaining').addEventListener('change',()=>{
+    fillMechs(mechPicker.value);updateSelInfo();loadAnthroForMech();});
+  document.getElementById('exportStore').addEventListener('click',()=>{
+    const box=document.getElementById('exportBox');
+    const merged={version:1,updated:new Date().toISOString().slice(0,10),mechs:{}};
+    allKeys().forEach(k=>{const r=recOf(k);if(r)merged.mechs[k]=r;});
+    box.value=JSON.stringify(merged,null,1);
+    box.classList.remove('hidden'); box.select();
+    try{document.execCommand('copy');setStatus('statusAnthro',
+      Object.keys(merged.mechs).length+'기 기록을 복사했다. toolkit-data.json 으로 커밋하면 된다.','ok');}
+    catch(e){setStatus('statusAnthro','아래 칸의 내용을 직접 복사해라','warn');}
+  });
   document.getElementById('specialInput').addEventListener('input',refreshAnthroPrompt);
   document.getElementById('underboobInput').addEventListener('change',refreshAnthroPrompt);
 
