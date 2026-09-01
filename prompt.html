@@ -1408,12 +1408,21 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   function recordUse(){
     const k=mechKey(); if(!k)return;
     const now=Date.now(), arr=(STORE.used[k]||(STORE.used[k]=[]));
-    [1,2,3].forEach(n=>{
-      const cat=document.getElementById('pair'+n+'Select').value;
+    const add=(cat,ex)=>{
       if(!cat||cat==='__custom__')return;
-      const ex=document.getElementById('pair'+n+'Example').value||'';
-      const hit=arr.find(r=>r.cat===cat&&(r.ex||'')===ex);
-      if(hit){hit.n=(hit.n||1)+1;hit.t=now;}else arr.push({cat:cat,ex:ex,n:1,t:now});
+      const hit=arr.find(r=>r.cat===cat&&(r.ex||'')===(ex||''));
+      if(hit){hit.n=(hit.n||1)+1;hit.t=now;}else arr.push({cat:cat,ex:ex||'',n:1,t:now});
+    };
+    /* 묶인 Pair 는 한 번, 푼 Pair 는 두 패널을 각각 남긴다.
+       Pair 셀렉트만 읽으면 패널별로 고른 카테고리가 통째로 새어나간다. */
+    [1,2,3].forEach(n=>{
+      if(pairUsed(n)){
+        add(document.getElementById('pair'+n+'Select').value,
+            document.getElementById('pair'+n+'Example').value);
+      }else{
+        const a2=(n-1)*2+1;
+        [a2,a2+1].forEach(x=>add(panelCat(x),document.getElementById('panel'+x+'Example').value));
+      }
     });
     saveStore(); renderUsed();
   }
