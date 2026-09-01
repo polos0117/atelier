@@ -331,7 +331,10 @@ details.box .inside{padding:10px}
 
       <div class="save-bar" id="saveBar">
         <span class="sb-txt"></span>
-        <button type="button" class="sb-drop hidden" id="dropAnthro">이 기체 기록 삭제</button>
+        <span style="display:flex;gap:6px;flex:none">
+          <button type="button" class="sb-drop hidden" id="undoAnthro">직전 값으로</button>
+          <button type="button" class="sb-drop hidden" id="dropAnthro">이 브라우저 수정 되돌리기</button>
+        </span>
       </div>
       <div class="save-bar">
         <span class="sb-txt">저장소에 커밋할 기록을 내보낸다. 복사한 내용을 <code>toolkit-data.json</code> 으로 올리면 다른 기기에서도 보인다.</span>
@@ -1351,24 +1354,58 @@ details.box .inside{padding:10px}
          남겨두면 나중에 갱신된 저장소 파일보다 오래된 로컬이 이겨버린다. */
       if(STORE.anthro[k])delete STORE.anthro[k];
     }else{
-      rec.t=Date.now(); STORE.anthro[k]=rec;
+      const old=STORE.anthro[k];
+      let prev=old&&old.prev;
+      if(ENTRY.key===k&&!ENTRY.taken&&ENTRY.rec&&
+         (Object.keys(ENTRY.rec.female||{}).length||Object.keys(ENTRY.rec.male||{}).length)){
+        prev=ENTRY.rec; ENTRY.taken=true;
+      }
+      rec.t=Date.now();
+      if(prev)rec.prev=prev;
+      STORE.anthro[k]=rec;
     }
     STORE.last={series:seriesPicker.value,mech:k};
     saveStore(); updateSaveBar();
   }
+  /* 이 기체를 열었을 때의 상태. 첫 수정이 일어날 때 직전 값으로 보관한다.
+     매 입력마다 쌓으면 '한 글자 전'으로 돌아가는 쓸모없는 되돌리기가 된다. */
+  let ENTRY={key:'',rec:null,taken:false};
+  function stripPrev(r){
+    if(!r)return null;
+    const o={}; ['female','male','t'].forEach(x=>{if(r[x]!==undefined)o[x]=r[x]});
+    return o;
+  }
   function loadAnthroForMech(){
     const k=mechKey(),rec=recOf(k);
+    ENTRY={key:k,rec:stripPrev(rec),taken:false};
     if(!rec){updateSaveBar();return false;}
     GSTATE.female=rec.female||null; GSTATE.male=rec.male||null;
     applyParams(GSTATE[curGender()]);
     refreshAnthroPrompt(); updateSaveBar();
     return true;
   }
+  function undoAnthro(){
+    const k=mechKey(),cur=STORE.anthro[k];
+    if(!cur||!cur.prev)return;
+    const back=cur.prev, now=stripPrev(cur);
+    GSTATE.female=back.female||null; GSTATE.male=back.male||null;
+    applyParams(GSTATE[curGender()]);
+    /* 되돌린 직후엔 방금 버린 값이 직전 값이 된다 — 한 번 더 누르면 원위치 */
+    const nrec=Object.assign({},back); nrec.t=Date.now(); nrec.prev=now;
+    STORE.anthro[k]=nrec; ENTRY={key:k,rec:stripPrev(nrec),taken:true};
+    saveStore(); textAnthro.value=buildAnthroPrompt(); updateSaveBar(); renderCarry();
+    setStatus('statusAnthro','직전 값으로 되돌렸다. 한 번 더 누르면 원래대로 돌아온다.','ok');
+  }
   function dropAnthroForMech(){
     const k=mechKey(); if(!k||!STORE.anthro[k])return;
-    delete STORE.anthro[k]; GSTATE.female=GSTATE.male=null;
-    saveStore(); updateSaveBar();
-    setStatus('statusAnthro','"'+k+'" 기록을 지웠다. 화면의 값은 그대로 남아 있다.','ok');
+    delete STORE.anthro[k];
+    const b=BASE.mechs&&BASE.mechs[k];
+    GSTATE.female=b&&b.female||null; GSTATE.male=b&&b.male||null;
+    applyParams(GSTATE[curGender()]);
+    ENTRY={key:k,rec:stripPrev(b),taken:false};
+    saveStore(); textAnthro.value=buildAnthroPrompt(); updateSaveBar(); renderCarry();
+    setStatus('statusAnthro',b?'"'+k+'" 의 저장소 기록 상태로 돌아갔다':
+      '"'+k+'" 의 이 브라우저 기록을 비웠다','ok');
   }
   function updateSaveBar(){
     const bar=document.getElementById('saveBar'); if(!bar)return;
@@ -1379,7 +1416,11 @@ details.box .inside{padding:10px}
       (has?'"'+k+'" 설정 있음'+(inBase?' (저장소 기록)':' (이 브라우저)'):'"'+k+'" 는 아직 설정이 없다')+
       ' · 전체 '+allKeys().length+'기 (저장소 '+Object.keys(BASE.mechs||{}).length+
       ' / 로컬 '+Object.keys(STORE.anthro||{}).length+')';
-    bar.querySelector('.sb-drop').classList.toggle('hidden',!has);
+    const loc=(STORE.anthro||{})[k];
+    const drop=document.getElementById('dropAnthro'),undo=document.getElementById('undoAnthro');
+    drop.classList.toggle('hidden',!loc);
+    drop.textContent=(BASE.mechs&&BASE.mechs[k])?'저장소 값으로 되돌리기':'이 브라우저 기록 비우기';
+    undo.classList.toggle('hidden',!(loc&&loc.prev));
   }
 
   function setGender(g){
@@ -1595,6 +1636,7 @@ details.box .inside{padding:10px}
   document.getElementById('applyAnthro').addEventListener('click',()=>{refreshAnthroPrompt();setStatus('statusAnthro','PARAMETERS 적용 완료','ok');});
   document.getElementById('resetAnthro').addEventListener('click',resetAnthro);
   document.getElementById('dropAnthro').addEventListener('click',dropAnthroForMech);
+  document.getElementById('undoAnthro').addEventListener('click',undoAnthro);
   document.getElementById('onlyRemaining').addEventListener('change',()=>{
     fillMechs(mechPicker.value);updateSelInfo();loadAnthroForMech();});
   document.getElementById('exportStore').addEventListener('click',()=>{
@@ -1617,6 +1659,7 @@ details.box .inside{padding:10px}
       const f=trim(r.female),m=trim(r.male);
       if(!f&&!m)return;
       const o={}; if(f)o.female=f; if(m)o.male=m; o.t=r.t||Date.now();
+      /* prev 는 이 브라우저 안에서만 쓰는 되돌리기용이라 파일에 넣지 않는다 */
       merged.mechs[k]=o;
     });
     const uk={};Object.keys(BASE.used||{}).forEach(k=>uk[k]=1);Object.keys(STORE.used||{}).forEach(k=>uk[k]=1);
