@@ -75,8 +75,10 @@ button.small{min-height:38px;padding:7px 9px;font-size:12px}
 .save-bar .sb-drop{flex:none;font-size:11px;padding:5px 9px}
 .save-bar .sb-drop.hidden{display:none}
 .axis-note{margin-top:6px;font-size:11px;line-height:1.45;color:var(--muted)}
-.rec-btns{display:flex;gap:6px;margin-top:6px}
-.rec-btns .small{flex:none}
+.rec-btns{display:flex;gap:6px;margin-top:6px;width:100%}
+.rec-btns button{margin-top:0;min-width:0;white-space:nowrap}
+.rec-btns [data-rec-index]{flex:1 1 auto;overflow:hidden;text-overflow:ellipsis}
+.rec-btns [data-rec-spin]{flex:0 0 auto;padding-left:9px;padding-right:9px}
 .pair-card.off>*:not(h3):not(label){opacity:.4;pointer-events:none}
 .pair-card.off .param-preview{display:none}
 .override-card.solo{border-color:rgba(122,162,216,.5)}
@@ -144,7 +146,7 @@ details.box .inside{padding:10px}
 .rec-card b{display:block;font-size:12px;margin-bottom:4px}
 .rec-card .rec-title{font-size:12px;line-height:1.4}
 .rec-card .rec-reason{margin-top:5px;color:var(--muted);font-size:11px;line-height:1.35}
-.rec-card button{width:100%;margin-top:8px}
+.rec-card>button{width:100%;margin-top:8px}
 .hidden{display:none!important}
 @media(max-width:760px){
   select,input{font-size:16px}
