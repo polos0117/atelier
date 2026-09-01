@@ -1251,7 +1251,8 @@ details.box .inside{padding:10px}
     return o;
   }
   function applyParams(o){
-    if(!o)o={sel:{},cus:{},sp:'',ub:false};
+    /* 저장소 파일은 빈 값을 걷어낸 축약형이라 sel/cus 가 아예 없을 수 있다 */
+    o=o||{}; o={sel:o.sel||{},cus:o.cus||{},sp:o.sp||'',ub:!!o.ub};
     document.querySelectorAll('[data-param-select]').forEach(x=>{
       const v=o.sel[x.dataset.paramSelect];
       x.value=[...x.options].some(t=>t.value===v)?v:'';   // 반대 성별 전용값이면 AUTO로 되돌린다
@@ -1538,8 +1539,26 @@ details.box .inside{padding:10px}
     fillMechs(mechPicker.value);updateSelInfo();loadAnthroForMech();});
   document.getElementById('exportStore').addEventListener('click',()=>{
     const box=document.getElementById('exportBox');
+    /* 빈 값을 걷어내고 내보낸다. 파일이 몇 배로 짧아지고 눈으로 읽을 수 있다 */
+    const trim=o=>{
+      if(!o)return null;
+      const pick=x=>{const y={};Object.keys(x||{}).forEach(q=>{if(x[q])y[q]=x[q]});return y;};
+      const sel=pick(o.sel),cus=pick(o.cus);
+      if(!Object.keys(sel).length&&!Object.keys(cus).length&&!o.sp&&!o.ub)return null;
+      const r={sel:sel};
+      if(Object.keys(cus).length)r.cus=cus;
+      if(o.sp)r.sp=o.sp;
+      if(o.ub)r.ub=true;
+      return r;
+    };
     const merged={version:1,updated:new Date().toISOString().slice(0,10),mechs:{},used:{}};
-    allKeys().forEach(k=>{const r=recOf(k);if(r)merged.mechs[k]=r;});
+    allKeys().forEach(k=>{
+      const r=recOf(k); if(!r)return;
+      const f=trim(r.female),m=trim(r.male);
+      if(!f&&!m)return;
+      const o={}; if(f)o.female=f; if(m)o.male=m; o.t=r.t||Date.now();
+      merged.mechs[k]=o;
+    });
     const uk={};Object.keys(BASE.used||{}).forEach(k=>uk[k]=1);Object.keys(STORE.used||{}).forEach(k=>uk[k]=1);
     Object.keys(uk).forEach(k=>{const u=usedOf(k);if(u.length)merged.used[k]=u;});
     box.value=JSON.stringify(merged,null,1);

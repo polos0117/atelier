@@ -2,5 +2,38 @@
  "version": 1,
  "updated": "2026-09-01",
  "note": "prompt.html 의 '기록 내보내기' 결과를 이 파일에 덮어쓴다. 기체별 의인화 설정의 기준 기록.",
- "mechs": {}
+ "mechs": {
+  "건담 나드레": {
+   "male": {
+    "sel": {
+     "apparent age": "20s",
+     "body type": "toned",
+     "height impression": "very tall",
+     "facial ethnicity": "Latin American",
+     "facial hair": "chinstrap beard",
+     "hairstyle": "locs",
+     "shoulder build": "broad"
+    }
+   },
+   "t": 1788275909914
+  },
+  "지옹": {
+   "female": {
+    "sel": {
+     "apparent age": "30s",
+     "body type": "voluptuous",
+     "height impression": "tall",
+     "facial ethnicity": "Japanese",
+     "human-mechanical balance": "more human",
+     "armor coverage": "balanced",
+     "torso / chest build": "full bust",
+     "waist / hip silhouette": "broad-hipped",
+     "leg proportion": "long"
+    },
+    "ub": true
+   },
+   "t": 1788275909914
+  }
+ },
+ "used": {}
 }
