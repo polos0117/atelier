@@ -269,6 +269,11 @@ details.box .inside{padding:10px}
         <input type="checkbox" id="avoidUsed" style="width:auto;margin:0;flex:none">
         <span>이미 복사한 조합을 프롬프트에서 피하기</span>
       </label>
+      <label style="display:flex;align-items:center;gap:7px;margin:0;cursor:pointer;font-size:11.5px">
+        <input type="checkbox" id="carryIdentity" style="width:auto;margin:0;flex:none">
+        <span>이 기체의 의인화 설정을 정체성에 넘기기</span>
+      </label>
+      <span class="uz" id="carryPreview"></span>
       <span class="uz">채택 여부가 아니라 <b>복사한 적이 있다</b>는 기록이다. 6장 중 전부 버렸어도 남는다.</span>
     </div>
 
@@ -744,6 +749,7 @@ details.box .inside{padding:10px}
     const parts=[
       '[INPUT]\n\nSOURCE MOBILE SUIT: ['+s.mech+']\n\nUse the attached clearly adult anthropomorphized character as the absolute identity reference.',
       '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman in all six panels. Preserve the exact same face, apparent adult age, eyes, nose, mouth, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. No face drift, age drift, hairstyle redesign, or body redesign. Only identity repeats.',
+      (document.getElementById('carryIdentity')&&document.getElementById('carryIdentity').checked?carryBlock():''),
       '[OUTPUT]\n\nCreate ONE SINGLE 3:2 LANDSCAPE image as a clean 3-column × 2-row collage:\n1 | 2 | 3\n4 | 5 | 6\nExactly six equal, approximately square panels. Only small numerals 1–6 in the upper-left corners. No captions, titles, labels, subtitles, logos-as-text, or other words. Exactly one woman per panel.',
       '[PAIR STRUCTURE]\n\nPair 1 = Panel 1 < Panel 2 = '+pairLabel(p1,1)+'\nPair 2 = Panel 3 < Panel 4 = '+pairLabel(p2,2)+'\nPair 3 = Panel 5 < Panel 6 = '+pairLabel(p3,3)+'\n\nWithin each pair, the first panel is relatively lighter or more restrained and the second panel is clearly stronger, bolder, more visually striking, or more intense.',
       '[GLOBAL DIVERSITY / RECENT-USE AVOIDANCE]\n\nCreate six substantially different scenes. The six panels should differ in location, action, outfit silhouette, body configuration, camera distance, camera angle, lighting, and atmosphere. Changing only colors, accessories, minor straps, mirrored poses, hand positions, or room props does NOT count as meaningful novelty. Review recent generations available in this conversation and treat recently used outfit structures, scene archetypes, action families, pose families, and camera compositions as already-used concepts. If a proposed panel resembles a recent result at thumbnail size, discard it and invent another. If several outfits would look almost identical as black silhouettes, redesign them. At least four panels should show meaningful action and at least two should feel caught midway. Avoid defaulting to the same blank neutral face across the collage, and deliberately vary front-facing, side, and rear-three-quarter body orientation. Avoid repeating the same dominant sensual mechanism across multiple panels.',
@@ -769,7 +775,7 @@ details.box .inside{padding:10px}
     if(ovs.length)parts.push('[PANEL OVERRIDES]\n\n'+ovs.join('\n\n'));
     parts.push('[NON-EXPLICIT LIMITS]\n\nThe character must clearly read as an adult. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.');
     parts.push('[FINAL CHECK]\n\nVerify: exactly six panels; 3×2 landscape layout; same adult woman in all panels; only numbers 1–6 appear; selected pair categories and examples are followed; individual Panel Example selections override pair-level examples when present; the second panel of each pair is clearly stronger than the first; expressions are meaningfully varied and do not collapse into blank faces; front/side/back body orientation is intentionally distributed; outfits, scenes, actions, poses, and camera treatments remain varied; no panel substantially repeats a recent thumbnail-level concept; no explicit nudity or sexual activity.');
-    return parts.join('\n\n==================================================\n\n');
+    return parts.filter(Boolean).join('\n\n==================================================\n\n');
   }
   /* ══ 콜라주 사용 기록 ══
      "이 기체로 이 카테고리 프롬프트를 복사했다"는 사실만 남긴다.
@@ -822,6 +828,55 @@ details.box .inside{padding:10px}
     return r?r[2]:ex;
   }
 
+  /* ══ 의인화 → 콜라주 정체성 전달 ══
+     전부 넘기지 않는다. 장갑 구조나 하체 처리는 현대 의상에 의미가 없고,
+     첨부 이미지가 이미 잘 잡아주는 항목까지 글로 적으면 지시가 충돌한다.
+     이미지가 유독 못 잡아 흘러버리는 항목만 고른다. */
+  const CARRY=[
+    ['facial ethnicity','ethnicity'],
+    ['apparent age','apparent age'],
+    ['facial character','facial impression'],
+    ['face shape','face shape'],
+    ['eye shape','eye shape'],
+    ['eye color','eye color'],
+    ['skin tone','skin tone'],
+    ['hair color','hair color'],
+    ['hair length','hair length'],
+    ['hairstyle','hairstyle'],
+    ['bangs','bangs'],
+    ['body type','body type'],
+    ['height impression','height impression'],
+    ['facial hair','facial hair']
+  ];
+  function carryValues(){
+    const r=recOf(mechKey()); if(!r)return [];
+    const g=r.female?'female':(r.male?'male':null); if(!g)return [];
+    const sel=(r[g]&&r[g].sel)||{};
+    const out=[];
+    CARRY.forEach(([k,en])=>{ if(sel[k])out.push([en,sel[k]]); });
+    return out;
+  }
+  function carryBlock(){
+    const v=carryValues(); if(!v.length)return '';
+    return '[CHARACTER IDENTITY SPEC]\n\n'+
+      'The attached anthropomorphized reference image was generated from this specification:\n'+
+      v.map(x=>'- '+x[0]+': '+x[1]).join('\n')+
+      '\n\nPrecedence: the attached image remains the primary reference. Use this list to resolve anything the image leaves ambiguous, '+
+      'and to prevent drift across panels — especially ethnicity, facial structure, and apparent age, which tend to slide toward a generic default over six panels. '+
+      'Where the image and this list clearly disagree, follow the image.';
+  }
+  function renderCarry(){
+    const el=document.getElementById('carryPreview'); if(!el)return;
+    const v=carryValues(),k=mechKey();
+    const on=document.getElementById('carryIdentity');
+    if(!v.length){
+      el.textContent='"'+k+'" 는 의인화 설정이 없어 넘길 게 없다. 의인화 탭에서 값을 잡으면 여기에 뜬다.';
+      if(on)on.disabled=true; return;
+    }
+    if(on)on.disabled=false;
+    el.textContent='넘길 항목 '+v.length+'개 — '+v.map(x=>x[0]+' '+x[1]).join(' / ');
+  }
+
   function snapCollage(){
     const o={pair:{},adv:{},ov:{},panel:{}};
     [1,2,3].forEach(n=>{o.pair[n]={
@@ -840,6 +895,8 @@ details.box .inside{padding:10px}
     o.expr=document.getElementById('globalExpressionMode').value;
     o.orient=document.getElementById('globalOrientationMix').value;
     o.preset=document.getElementById('presetSelect').value;
+    o.avoid=document.getElementById('avoidUsed').checked;
+    o.carry=document.getElementById('carryIdentity').checked;
     return o;
   }
   function applyCollage(o){
@@ -872,6 +929,8 @@ details.box .inside{padding:10px}
     if(o.custom!==undefined)document.getElementById('collageCustom').value=o.custom;
     if(o.expr!==undefined)set('globalExpressionMode',o.expr);
     if(o.orient!==undefined)set('globalOrientationMix',o.orient);
+    if(o.avoid!==undefined)document.getElementById('avoidUsed').checked=!!o.avoid;
+    if(o.carry!==undefined)document.getElementById('carryIdentity').checked=!!o.carry;
     updatePairCustomVisibility();
     [1,2,3].forEach(n=>{updateCatNote(n);updateExNote(n);});
   }
@@ -1364,7 +1423,7 @@ details.box .inside{padding:10px}
     const block='PARAMETERS = [\n'+lines.join(',\n')+'\n]';
     return templateC.replace('PARAMETERS = [\ngender,\nmobile suit name,\nseries\n]',block);
   }
-  function refreshAnthroPrompt(){textAnthro.value=buildAnthroPrompt();persistAnthro();}
+  function refreshAnthroPrompt(){textAnthro.value=buildAnthroPrompt();persistAnthro();renderCarry();}
   function resetAnthro(){
     document.querySelectorAll('[data-param-select]').forEach(s=>s.value='');
     document.querySelectorAll('[data-param-custom]').forEach(i=>{i.value='';i.classList.add('hidden');});
@@ -1478,26 +1537,27 @@ details.box .inside{padding:10px}
   refreshCollagePrompt();
   updateSaveBar();
   renderUsed();
+  renderCarry();
 
   /* 저장소 기록과 이미지 현황은 네트워크라 늦게 온다. 도착하면 다시 그린다. */
   Promise.all([loadBase(),loadShots()]).then(()=>{
     fillMechs(mechPicker.value);
     if(!STORE.anthro[mechKey()])loadAnthroForMech();
-    updateSaveBar(); updateDoneStat(); renderUsed();
+    updateSaveBar(); updateDoneStat(); renderUsed(); renderCarry();
     PARAM_DEFS.forEach(dd=>updatePreview(dd.key));
   });
 
   // Events
   seriesPicker.addEventListener('change',()=>{
     fillMechs();updateSelInfo();renderRecommendations();
-    loadAnthroForMech();refreshCollagePrompt();renderUsed();
+    loadAnthroForMech();refreshCollagePrompt();renderUsed();renderCarry();
   });
   mechPicker.addEventListener('change',()=>{
     updateSelInfo();renderRecommendations();
     const had=loadAnthroForMech();
     setStatus('statusAnthro',had?'"'+mechKey()+'" 의 저장된 설정을 불러왔다':
       '"'+mechKey()+'" 는 저장된 설정이 없어 현재 값을 그대로 둔다','ok');
-    refreshCollagePrompt();renderUsed();
+    refreshCollagePrompt();renderUsed();renderCarry();
   });
   document.getElementById('applySource').addEventListener('click',applySource);
 
@@ -1576,6 +1636,7 @@ details.box .inside{padding:10px}
   }));
   document.getElementById('clearUse').addEventListener('click',clearUse);
   document.getElementById('avoidUsed').addEventListener('change',refreshCollagePrompt);
+  document.getElementById('carryIdentity').addEventListener('change',refreshCollagePrompt);
   document.querySelectorAll('[data-toggle]').forEach(b=>b.addEventListener('click',()=>toggleView(b.dataset.toggle,b)));
 
   showTab('collage');
