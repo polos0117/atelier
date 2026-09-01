@@ -202,6 +202,7 @@ details.box .inside{padding:10px}
           <select id="presetSelect"></select>
         </div>
         <button id="randomizeBtn" type="button">🎲 랜덤 조합</button>
+        <select id="randomMode" aria-label="랜덤 성격" style="margin-top:6px"></select>
         <label style="display:flex;align-items:center;gap:6px;margin:6px 0 0;cursor:pointer;font-size:11.5px;color:var(--muted)">
           <input type="checkbox" id="randomAvoidUsed" checked style="width:auto;margin:0;flex:none">
           <span>이미 쓴 카테고리는 빼고 뽑기</span>
@@ -233,6 +234,10 @@ details.box .inside{padding:10px}
           <label>Example Menu <small>예시 메뉴</small></label>
           <select id="pair1Example" aria-label="Pair 1 예시"></select>
           <input id="pair1ExampleCustom" class="custom-input hidden" type="text" placeholder="예시 직접 입력">
+          <div class="pair-sep"></div>
+          <label>Expression <small>표정 · 이 Pair 공통</small></label><select id="pair1Expr"></select>
+          <label style="margin-top:7px">Body Orientation <small>앞/옆/뒷태</small></label><select id="pair1Orient"></select>
+          <label style="margin-top:7px">Pose <small>포즈</small></label><select id="pair1Pose"></select>
           <div class="param-preview hidden" data-ex-note="1"></div>
         </div>
 
@@ -247,6 +252,10 @@ details.box .inside{padding:10px}
           <label>Example Menu <small>예시 메뉴</small></label>
           <select id="pair2Example" aria-label="Pair 2 예시"></select>
           <input id="pair2ExampleCustom" class="custom-input hidden" type="text" placeholder="예시 직접 입력">
+          <div class="pair-sep"></div>
+          <label>Expression <small>표정 · 이 Pair 공통</small></label><select id="pair2Expr"></select>
+          <label style="margin-top:7px">Body Orientation <small>앞/옆/뒷태</small></label><select id="pair2Orient"></select>
+          <label style="margin-top:7px">Pose <small>포즈</small></label><select id="pair2Pose"></select>
           <div class="param-preview hidden" data-ex-note="2"></div>
         </div>
 
@@ -261,6 +270,10 @@ details.box .inside{padding:10px}
           <label>Example Menu <small>예시 메뉴</small></label>
           <select id="pair3Example" aria-label="Pair 3 예시"></select>
           <input id="pair3ExampleCustom" class="custom-input hidden" type="text" placeholder="예시 직접 입력">
+          <div class="pair-sep"></div>
+          <label>Expression <small>표정 · 이 Pair 공통</small></label><select id="pair3Expr"></select>
+          <label style="margin-top:7px">Body Orientation <small>앞/옆/뒷태</small></label><select id="pair3Orient"></select>
+          <label style="margin-top:7px">Pose <small>포즈</small></label><select id="pair3Pose"></select>
           <div class="param-preview hidden" data-ex-note="3"></div>
         </div>
       </div>
@@ -438,7 +451,23 @@ details.box .inside{padding:10px}
     ['mildly_annoyed', 'mildly annoyed — 약간 짜증'],
     ['surprised', 'surprised — 놀람'],
     ['curious', 'curious — 호기심'],
-    ['serious', 'serious — 진지함']
+    ['serious', 'serious — 진지함'],
+    ['amused', 'amused — 재미있어하는'],
+    ['bored', 'bored — 심드렁함'],
+    ['pensive', 'pensive — 생각에 잠긴'],
+    ['smug', 'smug — 우쭐한'],
+    ['gentle', 'gentle — 온화함'],
+    ['determined', 'determined — 결의에 찬'],
+    ['exhausted', 'exhausted — 지친'],
+    ['nostalgic', 'nostalgic — 아련한'],
+    ['unimpressed', 'unimpressed — 시큰둥함'],
+    ['flustered', 'flustered — 당황한'],
+    ['proud', 'proud — 자랑스러운'],
+    ['wistful', 'wistful — 그리운 듯한'],
+    ['mischievous', 'mischievous — 짓궂은'],
+    ['relieved', 'relieved — 안도한'],
+    ['cold_smile', 'cold smile — 차가운 미소'],
+    ['laughing', 'laughing — 소리내어 웃는']
   ];
   const ORIENTATION_OPTIONS = [
     ['', 'AUTO — 자동'],
@@ -450,7 +479,40 @@ details.box .inside{padding:10px}
     ['over_shoulder', 'over shoulder — 뒤돌아보기'],
     ['seated_twist', 'seated twist — 앉은 비틀기'],
     ['walking_away', 'walking away — 멀어지는 방향'],
-    ['turning_midmotion', 'turning mid-motion — 움직임 중 회전']
+    ['turning_midmotion', 'turning mid-motion — 움직임 중 회전'],
+    ['low_angle', 'low angle — 아래에서 올려다본 각도'],
+    ['high_angle', 'high angle — 위에서 내려다본 각도'],
+    ['leaning_forward', 'leaning forward — 앞으로 기울인 상체'],
+    ['leaning_back', 'leaning back — 뒤로 젖힌 상체'],
+    ['crouching', 'crouching — 쪼그린 자세'],
+    ['reclining', 'reclining — 기대 누운 자세'],
+    ['reaching_up', 'reaching up — 위로 손 뻗기'],
+    ['looking_down', 'looking down — 시선을 아래로'],
+    ['looking_away', 'looking away — 시선을 밖으로'],
+    ['back_to_camera', 'back to camera — 완전히 등진 자세'],
+    ['profile_close', 'close profile — 측면 근접'],
+    ['three_quarter_back', 'three-quarter back — 뒤 3/4 강조']
+  ];
+  const POSE_OPTIONS = [
+    ['', 'AUTO — 자동'],
+    ['standing_relaxed', 'standing relaxed — 편하게 선 자세'],
+    ['standing_formal', 'standing formal — 반듯하게 선 자세'],
+    ['contrapposto', 'contrapposto — 무게를 한쪽에 실은 자세'],
+    ['hand_on_hip', 'hand on hip — 허리에 손'],
+    ['arms_crossed', 'arms crossed — 팔짱'],
+    ['sitting', 'sitting — 앉은 자세'],
+    ['sitting_floor', 'sitting on floor — 바닥에 앉음'],
+    ['kneeling', 'kneeling — 무릎 꿇은 자세'],
+    ['leaning_wall', 'leaning on a wall — 벽에 기댐'],
+    ['leaning_furniture', 'leaning on furniture — 가구에 기댐'],
+    ['walking', 'walking — 걷는 중'],
+    ['mid_stride', 'mid-stride — 걸음 중간'],
+    ['stretching', 'stretching — 기지개'],
+    ['bending_over', 'bending over — 허리를 숙임'],
+    ['on_tiptoe', 'on tiptoe — 발끝을 세움'],
+    ['hands_in_hair', 'hands in hair — 머리를 만지는'],
+    ['carrying_something', 'carrying something — 무언가를 든 자세'],
+    ['mid_action', 'mid-action — 동작 한가운데']
   ];
 
   const seriesPicker=document.getElementById('seriesPicker');
@@ -538,6 +600,14 @@ details.box .inside{padding:10px}
 
   function renderPresetSelect(){
     document.getElementById('presetSelect').innerHTML=Object.entries(PRESETS).map(([k,v])=>'<option value="'+escHtml(k)+'">'+escHtml(v.label)+'</option>').join('');
+  }
+  function fillPairMood(){
+    const mk=arr=>arr.map(o=>'<option value="'+escHtml(o[0])+'">'+escHtml(o[1])+'</option>').join('');
+    [1,2,3].forEach(n=>{
+      document.getElementById('pair'+n+'Expr').innerHTML=mk(EXPRESSION_OPTIONS);
+      document.getElementById('pair'+n+'Orient').innerHTML=mk(ORIENTATION_OPTIONS);
+      document.getElementById('pair'+n+'Pose').innerHTML=mk(POSE_OPTIONS);
+    });
   }
   function renderPairSelects(){
     [1,2,3].forEach(n=>{
@@ -640,6 +710,7 @@ details.box .inside{padding:10px}
     let h='';
     const exprOpts=EXPRESSION_OPTIONS.map(o=>'<option value="'+escHtml(o[0])+'">'+escHtml(o[1])+'</option>').join('');
     const orientOpts=ORIENTATION_OPTIONS.map(o=>'<option value="'+escHtml(o[0])+'">'+escHtml(o[1])+'</option>').join('');
+    const poseOpts=POSE_OPTIONS.map(o=>'<option value="'+escHtml(o[0])+'">'+escHtml(o[1])+'</option>').join('');
     for(let n=1;n<=6;n++){
       h+='<div class="override-card"><h3>Panel '+n+'</h3>'+
         '<label>Category <small>개별 카테고리</small></label><select id="panel'+n+'Cat"></select>'+
@@ -648,6 +719,7 @@ details.box .inside{padding:10px}
         '<input id="panel'+n+'ExampleCustom" class="custom-input hidden" placeholder="개별 예시 직접 입력">'+
         '<label style="margin-top:8px">Expression <small>표정</small></label><select data-ov-panel="'+n+'" data-ov-key="expression">'+exprOpts+'</select>'+
         '<label style="margin-top:7px">Body Orientation <small>앞/옆/뒷태 방향</small></label><select data-ov-panel="'+n+'" data-ov-key="orientation">'+orientOpts+'</select>'+
+        '<label style="margin-top:7px">Pose <small>포즈</small></label><select data-ov-panel="'+n+'" data-ov-key="pose">'+poseOpts+'</select>'+
         '<label style="margin-top:8px">Scene / Location <small>장면/장소</small></label><input data-ov-panel="'+n+'" data-ov-key="scene" placeholder="AUTO">'+
         '<label style="margin-top:7px">Outfit <small>의상</small></label><input data-ov-panel="'+n+'" data-ov-key="outfit" placeholder="AUTO">'+
         '<label style="margin-top:7px">Action / Pose <small>행동/포즈</small></label><input data-ov-panel="'+n+'" data-ov-key="action" placeholder="AUTO">'+
@@ -727,22 +799,71 @@ details.box .inside{padding:10px}
     refreshCollagePrompt();setStatus('statusCollage','프리셋 적용 완료','ok');
   }
 
+  /* 랜덤 성격 — 뽑는 카테고리 풀과 고급 14축 값을 함께 정한다.
+     랜덤이 하나뿐이면 매번 같은 결이 나와 결국 안 쓰게 된다. */
+  const RANDOM_MODES={
+    stable:{ko:'안정형',desc:'실패가 적은 무난한 조합',
+      pool:['adult_roleplay','occupation_basic','everyday_basic','homewear','swimwear','private_evening'],
+      adv:{overall_intensity:'sensual',pair_gap:'small',outfit_variety:'normal',scene_variety:'normal',pose_variety:'normal'}},
+    variety:{ko:'다양성형',desc:'여섯 컷이 서로 최대한 다르게',
+      pool:null,
+      adv:{overall_intensity:'sensual',pair_gap:'medium',outfit_variety:'extreme',scene_variety:'extreme',
+           pose_variety:'extreme',camera_variety:'extreme',unexpected_cuts:'2'}},
+    bold:{ko:'과감형',desc:'강도와 노출을 한 단계 올림',
+      pool:['lingerie','private_evening','swimwear','adult_roleplay','occupation_sensual','everyday_sensual'],
+      adv:{overall_intensity:'bold',pair_gap:'strong',skin_exposure:'bold',outfit_variety:'high',smile_limit:'1'}},
+    experimental:{ko:'실험형',desc:'예상 밖 조합 위주. 통제력은 가장 낮음',
+      pool:['wildcard','source_editorial','auto_random','active','occupation_sensual'],
+      adv:{overall_intensity:'bold',pair_gap:'extreme',scene_variety:'extreme',camera_variety:'extreme',
+           unexpected_cuts:'3',direct_gaze_limit:'1'}},
+    source:{ko:'기체친화형',desc:'추천 근거를 그대로 세 Pair 에 적용',
+      pool:null,useRec:true,
+      adv:{overall_intensity:'sensual',source_influence:'strong',outfit_variety:'high',scene_variety:'high'}},
+    life:{ko:'생활형',desc:'직업과 일상 비중을 높임',
+      pool:['occupation_basic','occupation_sensual','everyday_basic','everyday_sensual','homewear','active'],
+      adv:{overall_intensity:'restrained',pair_gap:'medium',action_level:'balanced',scene_variety:'high'}},
+    fashion:{ko:'패션형',desc:'의상과 스타일 중심',
+      pool:['source_editorial','adult_roleplay','lingerie','private_evening','homewear'],
+      adv:{overall_intensity:'sensual',outfit_variety:'extreme',separates_preference:'prefer separates',
+           one_piece_limit:'2',source_influence:'balanced'}}
+  };
   function randomizePairs(){
     const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
-    let pool=shuffle([...RANDOM_POOL]), note='';
+    const modeKey=document.getElementById('randomMode').value||'variety';
+    const M=RANDOM_MODES[modeKey]||RANDOM_MODES.variety;
+    /* 기체친화형은 추천 세 장을 그대로 쓴다 */
+    if(M.useRec){
+      const recs=sourceRecommendations();
+      document.getElementById('presetSelect').value='free';
+      recs.forEach(r=>{
+        const cs=document.getElementById('pair'+r.pair+'Select');
+        if([...cs.options].some(o=>o.value===r.cat))cs.value=r.cat;
+        document.getElementById('pair'+r.pair+'Custom').value='';
+        updateDependentExamples(r.pair);
+        const es=document.getElementById('pair'+r.pair+'Example');
+        if(r.ex&&[...es.options].some(o=>o.value===r.ex))es.value=r.ex;
+      });
+      updatePairCustomVisibility();
+      Object.keys(ADVANCED_OPTIONS).forEach(k=>{const el=document.getElementById('adv_'+k);if(el)el.value='';});
+      Object.entries(M.adv).forEach(([k,v])=>{const el=document.getElementById('adv_'+k);if(el)el.value=v;});
+      refreshCollagePrompt();
+      setStatus('statusCollage','기체친화형 — 추천 세 장을 그대로 넣었다','ok');
+      return;
+    }
+    let pool=shuffle([...(M.pool||RANDOM_POOL)]), note=M.ko+' — ';
     const av=document.getElementById('randomAvoidUsed');
     if(av&&av.checked){
       const used={}; usedOf(mechKey()).forEach(r=>used[r.cat]=1);
       const fresh=pool.filter(c=>!used[c]), rest=shuffle(pool.filter(c=>used[c]));
       if(fresh.length>=3){
         pool=fresh;
-        note='안 써본 카테고리 '+fresh.length+'개 중에서 뽑았다';
+        note+='안 써본 카테고리 '+fresh.length+'개 중에서 뽑았다';
       }else if(fresh.length){
         /* 남은 게 3개가 안 되면 모자란 만큼만 기존에서 채운다 */
         pool=fresh.concat(rest);
-        note='안 써본 건 '+fresh.length+'개뿐이라 나머지 '+(3-fresh.length)+'개는 이미 쓴 것에서 채웠다';
+        note+='안 써본 건 '+fresh.length+'개뿐이라 나머지 '+(3-fresh.length)+'개는 이미 쓴 것에서 채웠다';
       }else{
-        note='이 기체는 모든 카테고리를 이미 써봤다. 전체에서 뽑았으니 프롬프트 회피 쪽을 켜는 게 낫다';
+        note+='모든 카테고리를 이미 써봤다. 프롬프트 회피 쪽을 켜는 게 낫다';
       }
     }
     document.getElementById('presetSelect').value='free';
@@ -755,15 +876,9 @@ details.box .inside{padding:10px}
       pairSel.value=candidates.length&&Math.random()<0.75?candidates[Math.floor(Math.random()*candidates.length)]:'';
     });
     updatePairCustomVisibility();
-    const rand=a=>a[Math.floor(Math.random()*a.length)];
-    document.getElementById('adv_overall_intensity').value=rand(['sensual','bold']);
-    document.getElementById('adv_pair_gap').value=rand(['medium','strong']);
-    document.getElementById('adv_outfit_variety').value=rand(['high','extreme']);
-    document.getElementById('adv_scene_variety').value=rand(['high','extreme']);
-    document.getElementById('adv_pose_variety').value=rand(['high','extreme']);
-    if(note)setTimeout(()=>setStatus('statusCollage',note,'ok'),0);
-    document.getElementById('adv_camera_variety').value=rand(['high','extreme']);
-    document.getElementById('adv_unexpected_cuts').value=rand(['2','3']);
+    Object.keys(ADVANCED_OPTIONS).forEach(k=>{const el=document.getElementById('adv_'+k);if(el)el.value='';});
+    Object.entries(M.adv).forEach(([k,v])=>{const el=document.getElementById('adv_'+k);if(el)el.value=v;});
+    setTimeout(()=>setStatus('statusCollage',note+(note.endsWith('— ')?M.desc:''),'ok'),0);
     refreshCollagePrompt();setStatus('statusCollage','랜덤 조합 생성 완료 🎲','ok');
   }
 
@@ -854,6 +969,7 @@ details.box .inside{padding:10px}
     const out=[];
     const exprMap=Object.fromEntries(EXPRESSION_OPTIONS);
     const orientMap=Object.fromEntries(ORIENTATION_OPTIONS);
+    const poseMap=Object.fromEntries(POSE_OPTIONS);
     for(let n=1;n<=6;n++){
       const cat=panelCat(n);
       const exampleValue=document.getElementById('panel'+n+'Example').value;
@@ -864,11 +980,19 @@ details.box .inside{padding:10px}
         const v=(inp.value||'').trim();
         if(v)vals[inp.dataset.ovKey]=v;
       });
+      /* 패널에 값이 없으면 그 Pair 값을 물려받는다 */
+      const pp=pairForPanel(n);
+      [['expression','Expr'],['orientation','Orient'],['pose','Pose']].forEach(([k,id])=>{
+        if(vals[k])return;
+        const el=document.getElementById('pair'+pp+id);
+        if(el&&el.value)vals[k]=el.value;
+      });
       if(ex||Object.keys(vals).length){
         const lines=['[PANEL '+n+' OVERRIDE]'];
         if(ex)lines.push('Panel Example Concept: '+ex);
         if(vals.expression)lines.push('Expression: '+(exprMap[vals.expression]||vals.expression));
         if(vals.orientation)lines.push('Body Orientation: '+(orientMap[vals.orientation]||vals.orientation));
+        if(vals.pose)lines.push('Pose: '+(poseMap[vals.pose]||vals.pose));
         if(vals.scene)lines.push('Scene / Location: '+vals.scene);
         if(vals.outfit)lines.push('Outfit: '+vals.outfit);
         if(vals.action)lines.push('Action / Pose: '+vals.action);
@@ -1060,7 +1184,12 @@ details.box .inside{padding:10px}
     o.avoid=document.getElementById('avoidUsed').checked;
     o.carry=document.getElementById('carryIdentity').checked;
     o.ravoid=document.getElementById('randomAvoidUsed').checked;
+    o.rmode=document.getElementById('randomMode').value;
     o.use=[1,2,3].map(pairUsed);
+    o.mood={}; [1,2,3].forEach(n=>{o.mood[n]={
+      e:document.getElementById('pair'+n+'Expr').value,
+      o:document.getElementById('pair'+n+'Orient').value,
+      p:document.getElementById('pair'+n+'Pose').value};});
     o.pcat={}; for(let n=1;n<=6;n++){const c=document.getElementById('panel'+n+'Cat');
       if(c)o.pcat[n]={cat:c.value,custom:(document.getElementById('panel'+n+'CatCustom')||{}).value||''};}
     return o;
@@ -1098,6 +1227,13 @@ details.box .inside{padding:10px}
     if(o.avoid!==undefined)document.getElementById('avoidUsed').checked=!!o.avoid;
     if(o.carry!==undefined)document.getElementById('carryIdentity').checked=!!o.carry;
     if(o.ravoid!==undefined)document.getElementById('randomAvoidUsed').checked=!!o.ravoid;
+    if(o.rmode)set('randomMode',o.rmode);
+    if(o.mood)[1,2,3].forEach(n=>{
+      const r2=o.mood[n]; if(!r2)return;
+      const setv=(id,v)=>{const el=document.getElementById(id);
+        if(el&&[...el.options].some(x=>x.value===v))el.value=v;};
+      setv('pair'+n+'Expr',r2.e); setv('pair'+n+'Orient',r2.o); setv('pair'+n+'Pose',r2.p);
+    });
     if(o.use)[1,2,3].forEach((n,i)=>{const el=document.getElementById('pair'+n+'Use');
       if(el&&o.use[i]!==undefined)el.checked=!!o.use[i];});
     syncPairMode();
@@ -1949,6 +2085,10 @@ details.box .inside{padding:10px}
   updateSelInfo();
   renderPresetSelect();
   renderPairSelects();
+  fillPairMood();
+  document.getElementById('randomMode').innerHTML=Object.entries(RANDOM_MODES)
+    .map(([k,v])=>'<option value="'+k+'">'+escHtml(v.ko+' — '+v.desc)+'</option>').join('');
+  document.getElementById('randomMode').value='variety';
   renderAdvancedGrid();
   renderParamCards();
 
@@ -2045,6 +2185,8 @@ details.box .inside{padding:10px}
       refreshCollagePrompt();
     });
     document.getElementById('pair'+n+'ExampleCustom').addEventListener('input',refreshCollagePrompt);
+    ['Expr','Orient','Pose'].forEach(id=>
+      document.getElementById('pair'+n+id).addEventListener('change',refreshCollagePrompt));
   });
 
   document.getElementById('collageCustom').addEventListener('input',refreshCollagePrompt);
