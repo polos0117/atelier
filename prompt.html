@@ -119,7 +119,8 @@ button.small{min-height:38px;padding:7px 9px;font-size:12px}
 .sw-big.two i{width:30px;height:44px}
 .param-preview{margin-top:8px;display:block;padding:8px 9px;border-radius:8px;background:var(--card);border:1px solid var(--line)}
 .param-preview .pp-main{display:flex;gap:10px;align-items:center}
-.st-shot{flex:none;display:block;width:74px}
+.st-shots{flex:none;display:flex;gap:5px}
+.st-shot{display:block;width:74px}
 .st-shot img{width:74px;height:104px;object-fit:cover;object-position:50% 22%;border-radius:7px;display:block;background:var(--card2)}
 .st-cap{display:block;margin-top:4px;font-size:10px;color:var(--muted);opacity:.85}
 #artNote{display:flex;gap:10px;align-items:flex-start}
@@ -2721,20 +2722,21 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   /* 화풍마다 실제로 그 결로 뽑힌 이미지를 하나씩 붙인다.
      글로 설명하는 것보다 한 장 보는 편이 훨씬 빠르다. 없는 화풍은 설명만 나온다. */
   const STYLE_SAMPLE={
-    cinematic_semi_real:'엘메스_casual3.webp',
-    game_keyart:'style-game_keyart.webp',
-    glossy_kr_game:'style-glossy_kr_game.webp',
-    game_cgi:'∀건담_casual4.webp',
-    semi_real_paint:'∀건담_casual3.webp'
+    cinematic_semi_real:['style-cinematic_semi_real.webp','엘메스_casual3.webp'],
+    game_keyart:['style-game_keyart.webp'],
+    glossy_kr_game:['style-glossy_kr_game.webp'],
+    game_cgi:['∀건담_casual4.webp'],
+    semi_real_paint:['∀건담_casual3.webp']
   };
   function renderArtNote(){
     const box=document.getElementById('artNote'); if(!box)return;
-    const r=styleRow(), f=STYLE_SAMPLE[r[0]];
+    const r=styleRow(), list=STYLE_SAMPLE[r[0]]||[];
     box.classList.remove('hidden');
-    box.innerHTML=(f?'<a class="st-shot" href="'+IMG_BASE+encodeURIComponent(f)+
-        '" target="_blank" rel="noopener"><img loading="lazy" src="'+IMG_BASE+encodeURIComponent(f)+'" alt=""></a>':'')+
+    const shots=list.map(f=>'<a class="st-shot" href="'+IMG_BASE+encodeURIComponent(f)+
+      '" target="_blank" rel="noopener"><img loading="lazy" src="'+IMG_BASE+encodeURIComponent(f)+'" alt=""></a>').join('');
+    box.innerHTML=(shots?'<div class="st-shots">'+shots+'</div>':'')+
       '<div class="pp-txt"><b>'+escHtml(r[1])+'</b>'+escHtml(r[2])+
-      (f?'<span class="st-cap">이 화풍으로 뽑은 실제 결과 · 눌러서 크게 보기</span>':
+      (list.length?'<span class="st-cap">이 화풍으로 뽑은 실제 결과 '+list.length+'장 · 눌러서 크게 보기</span>':
           '<span class="st-cap">아직 샘플이 없다. 뽑아보고 마음에 들면 샘플로 넣어줄 수 있다.</span>')+'</div>';
   }
 
