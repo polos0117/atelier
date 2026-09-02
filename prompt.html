@@ -2625,23 +2625,26 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
      기체마다 따로 기억한다. 초상과 일상컷의 결이 어긋나면 한 카드 안에서 따로 놀기 때문에
      세 생성기 모두 같은 값을 쓴다. */
   const ART_STYLES=[
-    ['cinematic_semi_real','세미리얼 페인팅','기본값. 재질·조명은 사진급, 얼굴만 애니로 정제. 얼굴 지시가 화면 전체로 번지지 않게 범위를 못박았다',
-     'high-end semi-realistic character illustration; photographically detailed materials and cinematic lighting combined with a stylised, anime-informed face. '+
-     'MATERIALS AND LIGHT: individually resolved hair strands and fine flyaway hairs; fabric fibers, knit texture, stitching, leather, metal, glass, wood, '+
-     'and environmental surfaces rendered with photographic detail; armour and mechanical parts keep real surface response with believable reflection, wear, and edge highlights; '+
-     'skin on the neck, body, hands, and limbs keeps realistic texture with fine natural grain and restrained specular response; '+
-     'soft naturalistic cinematic lighting with realistic falloff, gentle reflected light, delicate hair rim light, photographic highlight rolloff, and shallow depth of field. '+
-     'FACE: the face must read clearly as an anime character and never as a live-action person. '+
-     'Eyes are moderately larger than real human proportion — clearly stylised but still adult and grounded, never doll-like or oversized — '+
-     'with clean anime eye geometry, a crisp upper lash line, and defined irises; '+
-     'the nose is small and suggested with minimal shading rather than fully modelled; cheekbone and eye-socket depth are reduced; '+
-     'facial planes are simplified and smooth but still hold believable structure, lips softly defined, jawline delicate and tapered; '+
-     'keep this stylisation consistent regardless of how mechanical or SF the outfit is — a mecha-styled costume must not push the face further toward flat anime; '+
-     'facial skin stays smooth with almost no visible pores and gentle tonal transitions — while keeping mature adult beauty and anatomical plausibility. '+
-     'This facial treatment applies to the face alone and must not flatten or simplify hair, clothing, armour, materials, background, or lighting. '+
-     'Avoid flat illustration rendering of materials, cel shading, colour-blocked armour panels, waxy or plastic skin, game-cinematic CGI lighting, '+
-     'generic 3D-render appearance, ordinary live-action facial realism, hyper-detailed facial pores, deep nasolabial folds, '+
-     'oversized doll-like eyes, chibi or youthful facial proportions, and an overly flattened cartoon face.'],
+    ['cinematic_semi_real','세미리얼 페인팅','기본값. 회화적 세미리얼 전체 렌더링 + 살짝 이상화된 얼굴. 선명도를 부위별로 달리해 균일한 가챠 키비주얼을 피한다',
+     'high-end painterly semi-realistic character illustration with cinematic photographic lighting and subtly anime-informed facial idealization. '+
+     'The overall image must read first as a sophisticated semi-realistic digital painting, not as an anime illustration, gacha-game character render, or live-action photograph. '+
+     'FACE: preserve mature adult facial anatomy and believable three-dimensional facial volume. Use only restrained anime influence — '+
+     'slightly enlarged expressive eyes, subtly refined eye shape, a delicate nose, softly shaped lips, and a graceful tapered jaw, without obvious anime construction. '+
+     'Eye size should remain close to believable human proportion. '+
+     'Avoid crisp anime eye outlines, oversized irises, graphic eyelashes, simplified triangular noses, excessively small mouths, doll-like proportions, and strongly stylised V-shaped faces. '+
+     'Facial features should emerge naturally through soft light, value transitions, and painted form rather than line-art-like definition. '+
+     'SKIN AND FORM: skin should have softly painted dimensionality, delicate subsurface warmth, restrained natural texture, and smooth but not plastic transitions. '+
+     'Preserve subtle facial plane changes around the eyelids, cheeks, nose bridge, lips, and chin. '+
+     'Avoid hyper-visible pores and photographic skin noise, but also avoid airbrushed anime skin. '+
+     'Use soft edge hierarchy — sharper detail around selected eyes, lips, jewellery, and illuminated hair strands, with gentler edges across cheeks, jaw transitions, shadows, and secondary forms. '+
+     'HAIR AND MATERIALS: richly rendered individual hair masses with selected fine strands and flyaways, combining painterly grouping with realistic highlights '+
+     'rather than uniformly sharp strand-by-strand rendering. Fabrics, knitwear, leather, metal, wood, glass, and environmental materials retain convincing physical texture and tactile detail. '+
+     'LIGHTING: naturalistic cinematic illumination with strong environmental integration, broad soft key light, warm reflected bounce, subtle rim illumination, '+
+     'atmospheric shadow colour, realistic falloff, delicate bloom on bright highlights, and shallow depth of field. '+
+     'The character must feel embedded in the environment rather than rendered separately and composited over a background. '+
+     'RENDERING CHARACTER: painterly realism with controlled detail density, soft transitions, selective sharpness, slightly romanticised colour treatment, and natural optical softness. '+
+     'Avoid cel shading, graphic anime linework, uniformly razor-sharp detail, generic 3D-render surfaces, Unreal or Octane style CGI, glossy plastic skin, '+
+     'excessively clean game-character rendering, and strongly anime-dominant facial proportions.'],
     ['game_keyart','게임 키아트 2.5D','인물 중심. 완전한 애니 얼굴 + 에어브러시 피부 + 날린 배경. 수영장 컷의 결',
      'premium mobile-game key-art illustration in a 2.5D style; '+
      'fully anime facial construction with large detailed irises, visible double-eyelid lines, a nose suggested mainly by shadow, and softly glossy defined lips; '+
