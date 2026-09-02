@@ -1564,7 +1564,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     const EX=en(EXPRESSION_OPTIONS), OR=en(ORIENTATION_OPTIONS), PO=en(POSE_OPTIONS);
     const parts=[
       '[INPUT]\n\nSOURCE MOBILE SUIT: ['+src.mech+']\n\nUse the attached clearly adult anthropomorphized character as the absolute identity reference.',
-      '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman as the attached reference. Preserve the exact same face, apparent adult age, eyes, nose, mouth, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. No face drift, age drift, hairstyle redesign, or body redesign.'
+      '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman as the attached reference. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign.'
     ];
     if(document.getElementById('sgCarry').checked)parts.push(carryBlock());
     parts.push(styleBlock());
@@ -1736,7 +1736,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     const s=selectedSource(),adv=getAdvanced(),custom=document.getElementById('collageCustom').value.trim();
     const parts=[
       '[INPUT]\n\nSOURCE MOBILE SUIT: ['+s.mech+']\n\nUse the attached clearly adult anthropomorphized character as the absolute identity reference.',
-      '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman in all six panels. Preserve the exact same face, apparent adult age, eyes, nose, mouth, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. No face drift, age drift, hairstyle redesign, or body redesign. Only identity repeats.',
+      '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman in all six panels. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign. Only identity repeats.',
       (document.getElementById('carryIdentity')&&document.getElementById('carryIdentity').checked?carryBlock():''),
       '[OUTPUT]\n\nCreate ONE SINGLE 3:2 LANDSCAPE image as a clean 3-column × 2-row collage:\n1 | 2 | 3\n4 | 5 | 6\nExactly six equal, approximately square panels. Only small numerals 1–6 in the upper-left corners. No captions, titles, labels, subtitles, logos-as-text, or other words. Exactly one woman per panel.',
       styleBlock(),
@@ -2625,17 +2625,22 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
      기체마다 따로 기억한다. 초상과 일상컷의 결이 어긋나면 한 카드 안에서 따로 놀기 때문에
      세 생성기 모두 같은 값을 쓴다. */
   const ART_STYLES=[
-    ['cinematic_semi_real','세미리얼 페인팅','기본값. 애니풍 미형 얼굴 + 사진급 피부·머리·직물·환경 재질 + 자연스러운 사진 조명',
-     'high-end anime-influenced photographic digital illustration; '+
-     'refined anime-inspired facial design blended with realistic adult anatomy; '+
-     'preserve stylized facial beauty with expressive eyes, clean facial planes, a refined nose, lips, and jawline rather than converting the character into an ordinary live-action person; '+
-     'highly resolved realistic skin with fine natural texture, subtle pores, soft subsurface response, restrained specular highlights, and natural tonal transitions; '+
-     'individually resolved hair strands and fine flyaway hairs; '+
-     'photographically detailed fabric fibers, knit texture, stitching, leather, metal, glass, wood, and environmental materials; '+
-     'soft naturalistic cinematic lighting with realistic light falloff, gentle reflected light, delicate hair rim light, photographic highlight rolloff, and shallow depth of field with natural lens behavior; '+
-     'rich environmental detail and premium editorial composition. '+
-     'Material rendering becomes realistic while character design remains stylized. '+
-     'Avoid painterly brushstroke-heavy skin, coarse concept-art rendering, waxy or plastic skin, excessive metallic gloss, overprocessed HDR, game-cinematic CGI lighting, generic 3D-render appearance, and ordinary live-action facial realism.'],
+    ['cinematic_semi_real','세미리얼 페인팅','기본값. 얼굴은 애니 7 : 실사 3, 피부·의상·환경은 실사 8 : 애니 2',
+     'high-end anime-dominant photographic digital illustration; '+
+     'distinctly anime-stylized adult facial design combined with realistically rendered body, clothing, materials, and environment. '+
+     'FACE STYLE PRIORITY: the face must read immediately as a premium modern anime character rather than a live-action person — '+
+     'moderately enlarged expressive eyes with elegant anime eye geometry, cleaner and slightly simplified facial planes, '+
+     'a petite refined nose, softly simplified lips, a delicate tapered jawline, and subtly stylized proportions, '+
+     'while preserving mature adult beauty and anatomical plausibility. '+
+     'Keep the eyes, nose, mouth, and jaw recognizably derived from the reference character, but reinterpret them through anime-style facial design. '+
+     'Facial skin is smooth and refined with restrained realistic texture, very subtle pores, soft tonal transitions, and minimal micro-detail, preserving an illustrated anime aesthetic. '+
+     'Skin on the neck, body, hands, and exposed limbs may retain more photographic material realism. '+
+     'Hair, clothing, accessories, architecture, and environmental materials remain highly realistic and photographically detailed, '+
+     'with individually resolved hair strands, fabric fibers, stitching, leather, metal, glass, and wood. '+
+     'Soft naturalistic cinematic lighting with realistic falloff, gentle reflected light, delicate hair rim light, photographic highlight rolloff, and shallow depth of field. '+
+     'Avoid ordinary live-action facial realism, photographic facial proportions, hyper-detailed facial pores, deep nasolabial folds, '+
+     'realistic eye socket depth, small live-action-style eyes, heavy facial skin microtexture, generic fashion-model facial realism, '+
+     'waxy or plastic skin, excessive metallic gloss, overprocessed HDR, game-cinematic CGI lighting, and generic 3D-render appearance.'],
     ['game_cgi','게임 시네마틱 CGI','매끈한 피부와 선명한 재질 반사. 고급 게임 컷신 같은 3D 렌더',
      'high-end 3D character render in the style of a premium game cinematic; smooth polished skin, crisp material reflections, '+
      'precise fabric shading, clean studio-grade lighting; reads as a rendered character rather than a photograph or a painting'],
