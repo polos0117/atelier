@@ -313,6 +313,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
           <div id="pair1AdvBox"></div>
           <button type="button" class="card-rnd" data-rnd-pair="1">🎲 이 Pair 전체 랜덤</button>
           <button type="button" class="card-rnd sub" data-rnd-axis-pair="1">🎲 세부 강도만 랜덤</button>
+          <button type="button" class="card-rnd sub" data-pair-to-single="1">→ 이 설정으로 단일 컷 만들기</button>
         </div>
 
         <div class="pair-card">
@@ -334,6 +335,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
           <div id="pair2AdvBox"></div>
           <button type="button" class="card-rnd" data-rnd-pair="2">🎲 이 Pair 전체 랜덤</button>
           <button type="button" class="card-rnd sub" data-rnd-axis-pair="2">🎲 세부 강도만 랜덤</button>
+          <button type="button" class="card-rnd sub" data-pair-to-single="2">→ 이 설정으로 단일 컷 만들기</button>
         </div>
 
         <div class="pair-card">
@@ -355,6 +357,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
           <div id="pair3AdvBox"></div>
           <button type="button" class="card-rnd" data-rnd-pair="3">🎲 이 Pair 전체 랜덤</button>
           <button type="button" class="card-rnd sub" data-rnd-axis-pair="3">🎲 세부 강도만 랜덤</button>
+          <button type="button" class="card-rnd sub" data-pair-to-single="3">→ 이 설정으로 단일 컷 만들기</button>
         </div>
       </div>
       </div>
@@ -957,6 +960,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
         localAxisBox('panel',n)+
         '<button type="button" class="card-rnd" data-rnd-panel="'+n+'">🎲 이 패널 전체 랜덤</button>'+
         '<button type="button" class="card-rnd sub" data-rnd-axis-panel="'+n+'">🎲 세부 강도만 랜덤</button>'+
+        '<button type="button" class="card-rnd sub" data-to-single="'+n+'">→ 이 설정으로 단일 컷 만들기</button>'+
       '</div>';
     }
     grid.innerHTML='<div class="ptabs" id="ptabs">'+
@@ -967,6 +971,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       b.addEventListener('click',()=>randomizeOnePanel(Number(b.dataset.rndPanel))));
     grid.querySelectorAll('[data-rnd-axis-panel]').forEach(b=>
       b.addEventListener('click',()=>rollAxes('panel',Number(b.dataset.rndAxisPanel))));
+    grid.querySelectorAll('[data-to-single]').forEach(b=>
+      b.addEventListener('click',()=>panelToSingle(Number(b.dataset.toSingle))));
     grid.querySelectorAll('[data-ptab]').forEach(b=>b.addEventListener('click',()=>{
       const t=b.dataset.ptab;
       grid.querySelectorAll('[data-ptab]').forEach(x=>x.classList.toggle('on',x===b));
@@ -1700,6 +1706,62 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     refreshSinglePrompt();
     setStatus('statusSingle',axesOnly?'세부 강도를 굴렸다':'단일 컷 설정을 굴렸다','ok');
   }
+  /* 콜라주에서 방향을 찾고 단일 컷으로 마무리하는 흐름을 잇는다.
+     카테고리·예시·표정·시점·포즈·세부 강도를 그대로 옮기고 단일 탭으로 넘어간다. */
+  function toSingle(cat,exVal,catCustom,exCustom,mood,axes,label){
+    sgPushUndo();
+    const cs=document.getElementById('sgCat');
+    if(cat&&[...cs.options].some(o=>o.value===cat))cs.value=cat;
+    document.getElementById('sgCatCustom').value=catCustom||'';
+    renderSgEx(false);
+    const es=document.getElementById('sgEx');
+    if(exVal&&[...es.options].some(o=>o.value===exVal))es.value=exVal;
+    document.getElementById('sgExCustom').value=exCustom||'';
+    [['sgExpr',mood.expr],['sgOrient',mood.orient],['sgPose',mood.pose]].forEach(([id,v])=>{
+      const el=document.getElementById(id);
+      if(el&&v&&[...el.options].some(o=>o.value===v))el.value=v; else if(el&&!v)el.value='';
+    });
+    LOCAL_AXES.forEach(k=>{
+      const el=document.querySelector('[data-sg-axis="'+k+'"]');
+      if(el)el.value=(axes[k]&&[...el.options].some(o=>o.value===axes[k]))?axes[k]:'';
+    });
+    showTab('single');
+    refreshSinglePrompt();
+    setStatus('statusSingle',label+' 설정을 단일 컷으로 가져왔다. 화면 비율과 화각만 정하면 된다.','ok');
+  }
+  function panelToSingle(n){
+    const p=pairForPanel(n);
+    const g=(key,id)=>{
+      const pe=document.querySelector('[data-ov-panel="'+n+'"][data-ov-key="'+key+'"]');
+      let v=pe?pe.value:'';
+      if(!v){const pa=document.getElementById('pair'+p+id);v=pa?pa.value:'';}
+      return v;
+    };
+    const axes={};
+    LOCAL_AXES.forEach(k=>{
+      const pe=document.querySelector('[data-ov-panel="'+n+'"][data-ov-key="adv_'+k+'"]');
+      let v=pe?pe.value:'';
+      if(!v){const pa=document.getElementById('pair'+p+'Adv_'+k);v=pa?pa.value:'';}
+      axes[k]=v;
+    });
+    toSingle(panelCat(n),document.getElementById('panel'+n+'Example').value,
+      panelCatCustom(n),document.getElementById('panel'+n+'ExampleCustom').value,
+      {expr:g('expression','Expr'),orient:g('orientation','Orient'),pose:g('pose','Pose')},
+      axes,'패널 '+n);
+  }
+  function pairToSingle(p){
+    const axes={};
+    LOCAL_AXES.forEach(k=>{const el=document.getElementById('pair'+p+'Adv_'+k);axes[k]=el?el.value:'';});
+    toSingle(document.getElementById('pair'+p+'Select').value,
+      document.getElementById('pair'+p+'Example').value,
+      document.getElementById('pair'+p+'Custom').value,
+      document.getElementById('pair'+p+'ExampleCustom').value,
+      {expr:document.getElementById('pair'+p+'Expr').value,
+       orient:document.getElementById('pair'+p+'Orient').value,
+       pose:document.getElementById('pair'+p+'Pose').value},
+      axes,'Pair '+p);
+  }
+
   function sgRecordUse(){
     const k=mechKey(); if(!k)return;
     const cat=sgVal('sgCat'); if(!cat||cat==='__custom__')return;
@@ -3156,6 +3218,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     b.addEventListener('click',()=>randomizeOnePair(Number(b.dataset.rndPair))));
   document.querySelectorAll('[data-rnd-axis-pair]').forEach(b=>
     b.addEventListener('click',()=>rollAxes('pair',Number(b.dataset.rndAxisPair))));
+  document.querySelectorAll('[data-pair-to-single]').forEach(b=>
+    b.addEventListener('click',()=>pairToSingle(Number(b.dataset.pairToSingle))));
   document.querySelectorAll('#buildTabs .mtab').forEach(b=>b.addEventListener('click',()=>{
     const m=b.dataset.bmode;
     document.querySelectorAll('#buildTabs .mtab').forEach(x=>x.classList.toggle('on',x===b));
