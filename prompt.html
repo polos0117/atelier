@@ -3073,6 +3073,135 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     return (el&&el.value)||DEFAULT_STYLE;
   }
   function styleRow(){return ART_STYLES.find(x=>x[0]===styleKey())||ART_STYLES[0];}
+  /* ---- v9.0 아키텍처 파일럿: 이 두 화풍만 MODE별로 본문을 분리한다.
+     나머지 9개 화풍은 기존 ART_STYLES[3] 통합 본문을 그대로 쓴다. ---- */
+  const MODE = { ANTHRO:'anthro', LIFESTYLE:'lifestyle' };
+  const PILOT_STYLES = ['cinematic_semi_real','game_keyart'];
+
+  const STYLE_CORES = {
+    cinematic_semi_real: [
+      'high-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization.',
+      'The final image must read first as a sophisticated semi-realistic digital painting, not as an anime illustration, mobile-game key art, 3D character render, or live-action photograph.',
+
+      'FACE: preserve mature adult facial anatomy, believable skull structure, and convincing three-dimensional facial volume.',
+      'Anime influence is restrained and limited to subtle idealization: slightly more expressive eyes, refined eye shape, a delicate but anatomically plausible nose, softly shaped lips, and a graceful jaw.',
+      'Eye size remains close to believable adult human proportion.',
+      'Facial structure specified in PARAMETERS remains authoritative and must not be replaced by a recurring anime beauty template.',
+      'Build facial features through painted light, value transitions, and soft form rather than crisp graphic linework.',
+      'Eyelids, lash lines, irises, lips, cheeks, nose, and jaw all belong to the same painted surface language.',
+      'Avoid graphic eyelashes, oversized irises, simplified triangular noses, tiny doll-like mouths, extreme V-shaped jaws, and separately drawn anime eyes sitting on top of realistic skin.',
+
+      'SKIN: softly painted dimensionality, subtle subsurface warmth, restrained natural texture, and smooth but non-plastic transitions.',
+      'Do not render photographic pore noise, but retain believable facial planes and natural variation.',
+      'Highlights on skin are painted light rather than glossy CG reflections.',
+
+      'HAIR: construct hair from painterly grouped masses with selected fine strands and flyaways.',
+      'Use natural highlight grouping rather than uniformly sharp strand-by-strand photographic rendering.',
+
+      'CLOTHING, ACCESSORIES, AND SURFACES: preserve convincing material identity, but render fabric, leather, and other worn surfaces through the same painterly visual language as the face.',
+      'Reflections and specular highlights are selectively simplified and painted rather than physically perfect PBR reflections.',
+
+      'LIGHTING: broad cinematic key light, natural reflected bounce, restrained rim illumination, atmospheric shadow colour, realistic falloff, and subtle bloom.',
+      'The subject and environment share one coherent lighting system.',
+
+      'EDGE AND DETAIL HIERARCHY: use selective sharpness.',
+      'Important focal edges, hardware, and a few illuminated hair strands may be crisp while skin, secondary forms, and distant elements remain softer.',
+      'Avoid uniformly razor-sharp rendering.',
+
+      'Avoid cel shading, graphic anime linework, airbrushed gacha-game skin, glossy plastic skin, generic Unreal or Octane style CGI, physically perfect PBR reflections, and excessively clean mobile-game character rendering.'
+    ].join(' '),
+
+    game_keyart: [
+      'premium 2.5D mobile-game character illustration with strongly volumetric painted rendering.',
+      'The final image must read as high-end illustrated game key art occupying the visual middle ground between flat anime drawing and full 3D CGI.',
+      'Forms are built primarily through smooth gradients, soft ambient occlusion, controlled specular highlights, dimensional light, and carefully modelled volume rather than graphic outlines or flat cel shading.',
+
+      'FACE: use clearly anime-informed facial construction combined with strong soft three-dimensional modelling.',
+      'The face must retain visible volumetric form in the forehead, eyelids, eye sockets, nose bridge, cheeks, lips, jaw, and chin, built through smooth painted gradients rather than flat cel shapes or graphic linework.',
+      'Eyes may be large and expressive, but they must sit naturally inside a softly modelled three-dimensional face rather than appearing as flat anime eye artwork placed over the skin.',
+      'Use restrained eyelid and lash definition, a softly simplified nose, and clean lips, while preserving the face shape, ethnicity, maturity, and individual identity defined in PARAMETERS.',
+      'The face should carry less micro-detail than the clothing and equipment, but it must not become flat.',
+
+      'SKIN: smooth high-end 2.5D game-illustration skin with long airbrushed gradients, soft subsurface-like warmth, rounded form shading, gentle ambient occlusion, and controlled glossy highlights.',
+      'Skin must feel volumetric and luminous, not flat, cel-shaded, photographic, or plastic.',
+      'Do not use photographic pores, realistic skin grain, or raw 3D shader noise.',
+
+      'HAIR: construct hair from layered grouped locks with clearly modelled volume, broad glossy highlight bands, soft internal shadowing, and a limited number of separated strands and flyaways.',
+      'Hair must feel more dimensional than flat anime hair, but remain illustrated rather than photographically strand-rendered.',
+
+      'CLOTHING, ACCESSORIES, AND SURFACES: use clean but volumetric rendering with clear form separation, rounded light falloff, stylized reflections, ambient occlusion, and controlled glossy highlights.',
+      'Edges may be crisp where necessary, but form must be described primarily through three-dimensional light and material response rather than heavy outlines, flat graphic colouring, or simple cel blocks.',
+
+      'LIGHTING: use bright, controlled dimensional key light, soft fill and bounce, decisive rim separation, selective coloured accent light, and believable but stylized light falloff.',
+      'Lighting must create clear three-dimensional form across face, skin, hair, and clothing.',
+
+      'BACKGROUND: use strong subject isolation with simplified atmospheric space, glow, bokeh, soft environmental shapes, or reduced background detail.',
+      'The background may suggest depth and real spatial lighting but must remain subordinate to the character.',
+
+      'RENDERING BALANCE: the result should feel more volumetric than conventional 2D anime illustration but more illustrated and stylized than a fully rendered 3D game character.',
+      'Use polished 2.5D modelling and shading without crossing into photorealism.',
+
+      'Avoid flat anime rendering, cel-shaded skin, purely 2D character-sheet rendering, visible comic-style outlines, flat graphic facial construction, uniformly hard-edged shadows, heavy line-art dependence, simple television-anime shading, photographic skin texture, fully photorealistic CGI, raw Unreal or Octane rendering, hyper-real PBR material noise, plastic 3D skin, perfect ray-traced reflections, and generic game-engine asset presentation.'
+    ].join(' ')
+  };
+
+  const ANTHRO_STYLE_EXTENSIONS = {
+    cinematic_semi_real: [
+      'ARMOR AND MECHANICAL SURFACES: preserve convincing material identity and clear mechanical structure, but render metal, composite, and painted armor through the same painterly visual language as the face.',
+      'MECHANICAL PAINTERLY LOCK: mechanical armor may be highly detailed and precisely constructed, but high detail must not change the rendering language into CGI or PBR. Panel geometry, weapons, backpack structures, joints, and hard-surface forms may remain crisp and mechanically legible, while their lighting and material response must still read as painted illustration. Do not use uniform PBR roughness, ray-traced-looking reflections, perfectly smooth metallic gradients, or the polished surface language of a rendered 3D game asset. Mechanical complexity controls WHAT is depicted, not HOW realistically it is rendered.',
+      'Selected mechanical focal edges may be somewhat sharper than skin, but the overall armor surface must retain the same painterly edge hierarchy and optical softness as the rest of the illustration; it must never look like a separate 3D render composited onto a painted character.',
+      'Even highly polished armor uses painted interpretations of reflection rather than physically exact reflections \u2014 specular highlights may be strong where appropriate, but stay selective, broken, and compositionally designed rather than continuous ray-traced surface response.'
+    ].join(' '),
+
+    game_keyart: [
+      'ARMOR AND MECHANICAL SURFACES: use clean but volumetric hard-surface rendering with clear panel separation, rounded light falloff, stylized reflections, ambient occlusion, and controlled glossy highlights.',
+      'Preserve source-specific armor geometry and equipment structure without turning the surfaces into fully realistic PBR assets.',
+      'Metal, composite, and painted armor should be visibly distinct, but their reflections and specular behaviour remain stylized and art-directed.',
+      'REFERENCE FIDELITY: preserve the geometry and equipment established by the source reference or PARAMETERS and render them through this style rather than replacing them; do not copy the reference image\'s own rendering language \u2014 its cel-animation, photographic, or CGI look \u2014 into the final image.',
+      'Do not simplify the source mobile suit into generic mobile-game heroine armor \u2014 this style may beautify and polish the rendering, but it must not replace source-specific mechanical geometry with generic fantasy-mecha costume design.'
+    ].join(' ')
+  };
+
+  const LIFESTYLE_STYLE_EXTENSIONS = {
+    cinematic_semi_real: [
+      'Clothing, skin, hair, and environment in this scene all follow the semi-real painterly surface logic established above.',
+      'Fabrics, leather, denim, knitwear, and other materials retain tactile detail and natural folds, described through the same painterly value language as skin and hair.',
+      'Wet skin or swimwear may show localized highlights without turning the entire figure into glossy plastic.',
+      'The character must feel embedded in the environment, with consistent light and atmosphere across figure and background.'
+    ].join(' '),
+
+    game_keyart: [
+      'Fabrics, swimwear, leather, and accessories in this scene retain the same polished 2.5D game-illustration treatment established above \u2014 clear form, rounded light falloff, and controlled glossy highlights.',
+      'Skin remains smooth and volumetric rather than flat or photographic.',
+      'The environment is simplified and atmospherically blurred, keeping the character as the clear subject.',
+      'The scene may be glamorous and glossy, but stays lifestyle-focused \u2014 do not introduce armor, mechanical parts, weapons, or sci-fi hardware into the scene.'
+    ].join(' ')
+  };
+
+  const TRANSLATION_PROFILES = {
+    more_human:
+      'Prioritize adult human anatomy and a graceful, naturally humanized translation of the source mobile suit. ' +
+      'Preserve its design language and identity, but adapt visible body armor freely so the figure reads as human first. ' +
+      'Avoid literal one-to-one reconstruction of robot-body geometry onto the human form.',
+    balanced:
+      'Balance recognizable mechanical structure with human anatomy. ' +
+      'Preserve more of the source armor language while still integrating it coherently into the humanoid body, ' +
+      'so the figure reads as clearly human and clearly the source mobile suit at once.',
+    more_mechanical:
+      'Keep a stronger source armor presence and more explicit hard-surface structure across the body, ' +
+      'while the figure still remains a humanoid anthropomorphization rather than a full robot body.'
+  };
+  function translationProfileKey(){
+    const sel=document.querySelector('[data-param-select="human-mechanical balance"]');
+    const v=sel?sel.value:'';
+    if(v==='more human')return 'more_human';
+    if(v==='more mechanical'||v==='very mechanical')return 'more_mechanical';
+    return 'balanced';
+  }
+  function translationProfileBlock(){
+    return '[TRANSLATION PROFILE]\n\n'+TRANSLATION_PROFILES[translationProfileKey()];
+  }
+
   const LIFESTYLE_REFERENCE_LOCK =
     '[LIFESTYLE REFERENCE LOCK]\n\n' +
     'The attached character image is authoritative for the character\'s visible appearance and equipment state in this image. ' +
@@ -3100,11 +3229,20 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     'If any common instruction conflicts with the selected ART STYLE, the selected ART STYLE wins for rendering language only.';
   function styleBlock(){
     const r=styleRow();
-    return '[ART STYLE]\n\n'+r[3]+
+    const core=PILOT_STYLES.includes(r[0])?STYLE_CORES[r[0]]:r[3];
+    return '[ART STYLE]\n\n'+core+
       '\n\nThis art style governs all rendering, facial stylization, lighting, and material treatment throughout this prompt.';
   }
-  function anthroStyleBlock(){ return styleBlock()+'\n\n'+ANTHRO_STYLE_LOCK; }
-  function lifestyleStyleBlock(){ return styleBlock()+'\n\n'+LIFESTYLE_STYLE_LOCK; }
+  function anthroStyleBlock(){
+    const k=styleKey();
+    const ext=PILOT_STYLES.includes(k)?'\n\n'+ANTHRO_STYLE_EXTENSIONS[k]:'';
+    return styleBlock()+ext+'\n\n'+ANTHRO_STYLE_LOCK;
+  }
+  function lifestyleStyleBlock(){
+    const k=styleKey();
+    const ext=PILOT_STYLES.includes(k)?'\n\n'+LIFESTYLE_STYLE_EXTENSIONS[k]:'';
+    return styleBlock()+ext+'\n\n'+LIFESTYLE_STYLE_LOCK;
+  }
   function fillArtStyle(){
     const el=document.getElementById('artStyle'); if(!el)return;
     el.innerHTML=ART_STYLES.map(r=>'<option value="'+r[0]+'">'+escHtml(r[1])+'</option>').join('');
@@ -3383,7 +3521,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     /* 화풍은 27개 파라미터 중 하나로 묻히면 힘이 약하다.
        콜라주·단일과 같이 독립 블록으로 올려 앞에 세운다. */
     const out2=templateC.replace('PARAMETERS = [\ngender,\nmobile suit name,\nseries\n]',block);
-    return anthroStyleBlock()+'\n\n==================================================\n\n'+out2;
+    const tp=PILOT_STYLES.includes(styleKey())?'\n\n'+translationProfileBlock():'';
+    return anthroStyleBlock()+tp+'\n\n==================================================\n\n'+out2;
   }
   function refreshAnthroPrompt(){textAnthro.value=buildAnthroPrompt();persistAnthro();renderCarry();}
   function resetAnthro(){
