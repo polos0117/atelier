@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Gundam Prompt Toolkit v8.3</title>
+<title>Gundam Prompt Toolkit v8.4</title>
 <style>
 :root{
   color-scheme:light dark;
@@ -250,13 +250,23 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   </div>
 
 
-  <div class="ver-badge">Gundam Prompt Toolkit <b>v8.3</b> <span>화풍 프리셋 재정비</span></div>
+  <div class="ver-badge">Gundam Prompt Toolkit <b>v8.4</b> <span>일상컷 메카 재생성 방지 + 화풍 레퍼런스 강화</span></div>
   <details class="srcbox verbox" id="verBox">
     <summary>
-      <span class="sel-line" style="white-space:normal;overflow:visible">v8.3 변경 내역</span>
+      <span class="sel-line" style="white-space:normal;overflow:visible">v8.4 변경 내역</span>
       <span class="sb-txt">패치 노트</span>
     </summary>
     <div class="vb-in">
+      <b>v8.4 &middot; 일상컷 메카 재생성 방지 + 화풍 레퍼런스 강화</b>
+      <ul>
+        <li>의인화용 STYLE LOCK과 일상컷(콜라주·단일컷)용 STYLE LOCK을 분리했다. 일상컷 화풍 지시에서 armor · weapon 언급을 빼서 화풍이 메카 의미론을 다시 불러오지 않는다</li>
+        <li>LIFESTYLE REFERENCE LOCK 신설. 수영장 · 홈웨어 같은 일상컷에서 기준 이미지에 없던 갑옷 · 방패 · 메카 파츠가 새로 생기던 문제를 막는다</li>
+        <li>기체명(SOURCE MOBILE SUIT)은 이제 직업 · 로어 맥락용 메타데이터로만 쓰이고, 장비 복원 근거로 쓰지 말라고 못 박았다</li>
+        <li>세미리얼 페인팅에 MECHANICAL PAINTERLY LOCK 추가. 장갑이 정교해도 CGI/PBR 렌더로 안 튀게 잠근다</li>
+        <li>게임 키아트 2.5D를 다시 정의했다. 평면 애니로 처지던 문제를 고쳐 "평면 애니와 풀 3D CGI 사이" 볼륨감 있는 키아트로 좁혔다</li>
+        <li>REFERENCE IMAGE AUTHORITY 추가. 업로드 레퍼런스가 실루엣 · 비율 · 장비 배치의 1차 권위를 갖고, 화풍은 렌더링 언어만 정하며 캐논 기억은 레퍼런스에 안 보일 때만 보조로 쓰인다</li>
+        <li>로브형 · 망토형 · 드레스형 하체 장갑을 원기체 레퍼런스나 PARAMETERS가 뒷받침할 때만 허용하도록 제한했다</li>
+      </ul>
       <b>v8.3 &middot; 화풍 프리셋 재정비</b>
       <ul>
         <li>11개 화풍을 전면 재작성. 화풍마다 얼굴 · 피부 · 머리 · 장갑 · 조명 · 배경 · 금지사항을 따로 정의한다</li>
