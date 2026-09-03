@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Gundam Prompt Toolkit v9.0</title>
+<title>Gundam Prompt Toolkit v9.1</title>
 <style>
 :root{
   color-scheme:light dark;
@@ -250,13 +250,21 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   </div>
 
 
-  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.0</b> <span>화풍 아키텍처 파일럿 — 의인화/일상컷 본문 분리</span></div>
+  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.1</b> <span>구조 완성 — 11개 화풍 전체 이관</span></div>
   <details class="srcbox verbox" id="verBox">
     <summary>
-      <span class="sel-line" style="white-space:normal;overflow:visible">v9.0 변경 내역</span>
+      <span class="sel-line" style="white-space:normal;overflow:visible">v9.1 변경 내역</span>
       <span class="sb-txt">패치 노트</span>
     </summary>
     <div class="vb-in">
+      <b>v9.1 &middot; 구조 완성 — 11개 화풍 전체 이관</b>
+      <ul>
+        <li>세미리얼·게임 키아트 2개만 쓰던 새 구조를 11개 화풍 전체로 확장했다. 모든 화풍이 STYLE_PROFILES 한 경로로 통일됐다</li>
+        <li>나머지 9개 화풍에서도 갑옷·무기 관련 문장을 의인화 전용으로 분리했다 — 일상컷에서 문구가 안 보여도 실제로는 이번에 처음 빠진 화풍이 많다</li>
+        <li>TRANSLATION PROFILE(Human ↔ Mechanical Balance 문단화)이 이제 11개 화풍 전체 의인화에 적용된다</li>
+        <li>모드 누수 자동 점검을 넣었다. 일상컷 프롬프트에 의인화 문구가 섞이거나 그 반대인 경우 콘솔에 경고가 뜬다</li>
+        <li>세미리얼·게임 키아트의 실제 문구는 이번 패치에서 한 글자도 바뀌지 않았다 — 구조만 옮겼다</li>
+      </ul>
       <b>v9.0 &middot; 화풍 아키텍처 파일럿</b>
       <ul>
         <li>세미리얼·게임 키아트 2.5D 두 화풍만 STYLE CORE(공통) · ANTHRO EXTENSION(의인화 전용 갑옷 규정) · LIFESTYLE EXTENSION(일상컷 전용 소재 규정)으로 분리했다</li>
