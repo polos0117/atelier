@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-09-02",
+ "updated": "2026-09-03",
  "note": "prompt.html 의 '기록 내보내기' 결과를 이 파일에 덮어쓴다. style 은 기체별 화풍 — 기본값(cinematic_semi_real)은 기록하지 않는다. 지금까지 완료된 기체는 전부 이전 기본값인 semi_real_paint 로 채워 넣었다.",
  "mechs": {
   "건담 나드레": {
@@ -113,10 +113,124 @@
     }
    },
    "t": 1788288319153
+  },
+  "더블오 퀀터": {
+   "female": {
+    "sel": {
+     "apparent age": "youthful adult",
+     "facial ethnicity": "Korean",
+     "human-mechanical balance": "more human",
+     "body type": "hourglass",
+     "height impression": "tall",
+     "shoulder build": "broad",
+     "torso / chest build": "full",
+     "waist / hip silhouette": "hourglass",
+     "leg proportion": "very long",
+     "facial character": "doll-like",
+     "skin tone": "light",
+     "armor coverage": "high",
+     "silhouette character": "aerodynamic"
+    },
+    "ub": true
+   },
+   "male": {
+    "sel": {
+     "apparent age": "youthful adult",
+     "facial ethnicity": "Korean",
+     "human-mechanical balance": "very mechanical",
+     "body type": "broad-shouldered",
+     "height impression": "tall",
+     "shoulder build": "average",
+     "torso / chest build": "balanced",
+     "leg proportion": "long",
+     "facial character": "androgynous"
+    }
+   },
+   "t": 1788347318809
+  },
+  "GQuuuuuuX": {
+   "female": {
+    "sel": {
+     "apparent age": "20s",
+     "facial ethnicity": "East Asian",
+     "human-mechanical balance": "balanced",
+     "body type": "curvy",
+     "height impression": "very tall",
+     "shoulder build": "narrow",
+     "torso / chest build": "balanced",
+     "waist / hip silhouette": "athletic",
+     "leg proportion": "very long",
+     "facial character": "stoic",
+     "armor coverage": "open",
+     "silhouette character": "experimental"
+    }
+   },
+   "male": {
+    "sel": {
+     "apparent age": "20s",
+     "facial ethnicity": "Japanese",
+     "human-mechanical balance": "more mechanical",
+     "body type": "rangy",
+     "height impression": "very tall",
+     "shoulder build": "average",
+     "torso / chest build": "slim",
+     "waist / hip silhouette": "athletic",
+     "leg proportion": "very long",
+     "facial character": "melancholic"
+    }
+   },
+   "t": 1788357973474
+  },
+  "스트라이크 루즈": {
+   "female": {
+    "sel": {
+     "apparent age": "youthful adult",
+     "facial ethnicity": "Slavic",
+     "body type": "petite",
+     "height impression": "short",
+     "shoulder build": "narrow",
+     "torso / chest build": "slim",
+     "waist / hip silhouette": "athletic",
+     "leg proportion": "long",
+     "hairstyle": "wolf cut",
+     "hair length": "medium",
+     "bangs": "choppy bangs",
+     "armor coverage": "open"
+    }
+   },
+   "male": {
+    "sel": {
+     "apparent age": "youthful adult",
+     "facial ethnicity": "Slavic",
+     "height impression": "short",
+     "torso / chest build": "balanced",
+     "waist / hip silhouette": "balanced",
+     "leg proportion": "balanced"
+    }
+   },
+   "t": 1788417592638
   }
  },
  "used": {
   "지옹": [
+   {
+    "cat": "occupation_sensual",
+    "ex": "",
+    "n": 3,
+    "t": 1788291174229
+   },
+   {
+    "cat": "private_evening",
+    "ex": "one_shoulder_satin",
+    "n": 1,
+    "t": 1788291174229
+   },
+   {
+    "cat": "wildcard",
+    "ex": "futuristic_spa",
+    "n": 1,
+    "t": 1788291174229
+   },
    {
     "cat": "wildcard",
     "ex": "rain_editorial",
@@ -337,6 +451,378 @@
     "n": 1,
     "t": 1788286965647
    }
+  ],
+  "더블오 퀀터": [
+   {
+    "cat": "everyday_basic",
+    "ex": "cafe_takeout",
+    "n": 4,
+    "t": 1788336235622
+   },
+   {
+    "cat": "active",
+    "ex": "",
+    "n": 3,
+    "t": 1788335530073
+   },
+   {
+    "cat": "swimwear",
+    "ex": "",
+    "n": 2,
+    "t": 1788335530073
+   },
+   {
+    "cat": "source_editorial",
+    "ex": "",
+    "n": 2,
+    "t": 1788335530073
+   },
+   {
+    "cat": "everyday_basic",
+    "ex": "",
+    "n": 2,
+    "t": 1788335530073
+   },
+   {
+    "cat": "occupation_sensual",
+    "ex": "broadcast_director",
+    "n": 2,
+    "t": 1788335530073
+   },
+   {
+    "cat": "active",
+    "ex": "aerial_silk",
+    "n": 1,
+    "t": 1788304665179
+   },
+   {
+    "cat": "swimwear",
+    "ex": "sport_onepiece",
+    "n": 1,
+    "t": 1788304665179
+   },
+   {
+    "cat": "source_editorial",
+    "ex": "luminous_circuit",
+    "n": 1,
+    "t": 1788304665179
+   },
+   {
+    "cat": "everyday_basic",
+    "ex": "hardware_store",
+    "n": 1,
+    "t": 1788304665179
+   },
+   {
+    "cat": "traditional",
+    "ex": "qipao_daily",
+    "n": 1,
+    "t": 1788304665179
+   },
+   {
+    "cat": "occupation_sensual",
+    "ex": "",
+    "n": 1,
+    "t": 1788303793396
+   },
+   {
+    "cat": "everyday_sensual",
+    "ex": "window_rain",
+    "n": 1,
+    "t": 1788303793396
+   },
+   {
+    "cat": "occupation_basic",
+    "ex": "port_operations",
+    "n": 1,
+    "t": 1788303793396
+   },
+   {
+    "cat": "lingerie",
+    "ex": "__custom__",
+    "n": 1,
+    "t": 1788303793396
+   },
+   {
+    "cat": "swimwear",
+    "ex": "monokini",
+    "n": 1,
+    "t": 1788298143859
+   },
+   {
+    "cat": "adult_roleplay",
+    "ex": "flight_attendant",
+    "n": 1,
+    "t": 1788297910753
+   },
+   {
+    "cat": "active",
+    "ex": "archery_draw",
+    "n": 1,
+    "t": 1788297646020
+   },
+   {
+    "cat": "occupation_sensual",
+    "ex": "auction_specialist",
+    "n": 1,
+    "t": 1788297646020
+   },
+   {
+    "cat": "homewear",
+    "ex": "oversized_shirt",
+    "n": 1,
+    "t": 1788297646020
+   },
+   {
+    "cat": "wildcard",
+    "ex": "futuristic_spa",
+    "n": 1,
+    "t": 1788297646020
+   },
+   {
+    "cat": "private_evening",
+    "ex": "velvet_evening",
+    "n": 1,
+    "t": 1788297646020
+   },
+   {
+    "cat": "lingerie",
+    "ex": "slip_lingerie",
+    "n": 1,
+    "t": 1788297646020
+   }
+  ],
+  "GQuuuuuuX": [
+   {
+    "cat": "occupation_sensual",
+    "ex": "helicopter_pilot",
+    "n": 4,
+    "t": 1788357112179
+   },
+   {
+    "cat": "occupation_sensual",
+    "ex": "gallery_curator",
+    "n": 1,
+    "t": 1788354969274
+   },
+   {
+    "cat": "adult_roleplay",
+    "ex": "uniform_inspired",
+    "n": 1,
+    "t": 1788354776666
+   },
+   {
+    "cat": "source_editorial",
+    "ex": "deconstructed_frame",
+    "n": 1,
+    "t": 1788354744099
+   },
+   {
+    "cat": "occupation_sensual",
+    "ex": "",
+    "n": 3,
+    "t": 1788354089787
+   },
+   {
+    "cat": "swimwear",
+    "ex": "__custom__",
+    "n": 1,
+    "t": 1788351664712
+   },
+   {
+    "cat": "traditional",
+    "ex": "kimono_formal",
+    "n": 1,
+    "t": 1788351450421
+   },
+   {
+    "cat": "wildcard",
+    "ex": "",
+    "n": 1,
+    "t": 1788351061693
+   },
+   {
+    "cat": "private_evening",
+    "ex": "heritage_evening",
+    "n": 1,
+    "t": 1788351061693
+   },
+   {
+    "cat": "occupation_basic",
+    "ex": "",
+    "n": 1,
+    "t": 1788351061693
+   },
+   {
+    "cat": "occupation_sensual",
+    "ex": "fashion_project",
+    "n": 1,
+    "t": 1788351061693
+   },
+   {
+    "cat": "everyday_basic",
+    "ex": "pottery_class",
+    "n": 1,
+    "t": 1788351061693
+   },
+   {
+    "cat": "everyday_sensual",
+    "ex": "mirror_selfie",
+    "n": 1,
+    "t": 1788351061693
+   },
+   {
+    "cat": "wildcard",
+    "ex": "rooftop_cinema",
+    "n": 1,
+    "t": 1788349576866
+   },
+   {
+    "cat": "adult_roleplay",
+    "ex": "circus_ringmaster",
+    "n": 1,
+    "t": 1788349576866
+   },
+   {
+    "cat": "occupation_basic",
+    "ex": "industrial_inspector",
+    "n": 1,
+    "t": 1788349576866
+   },
+   {
+    "cat": "lingerie",
+    "ex": "open_shirt_lingerie",
+    "n": 1,
+    "t": 1788349576866
+   },
+   {
+    "cat": "swimwear",
+    "ex": "yukata_poolside",
+    "n": 1,
+    "t": 1788349576866
+   },
+   {
+    "cat": "homewear",
+    "ex": "sunroom_lounge",
+    "n": 1,
+    "t": 1788349576866
+   },
+   {
+    "cat": "active",
+    "ex": "pilates",
+    "n": 1,
+    "t": 1788349368854
+   },
+   {
+    "cat": "traditional",
+    "ex": "yukata_daily",
+    "n": 1,
+    "t": 1788349368854
+   },
+   {
+    "cat": "source_editorial",
+    "ex": "heritage_couture",
+    "n": 1,
+    "t": 1788349368854
+   }
+  ],
+  "스트라이크 루즈": [
+   {
+    "cat": "occupation_sensual",
+    "ex": "broadcast_director",
+    "n": 1,
+    "t": 1788417394143
+   },
+   {
+    "cat": "source_editorial",
+    "ex": "ceremonial_whitegold",
+    "n": 1,
+    "t": 1788417394143
+   },
+   {
+    "cat": "lingerie",
+    "ex": "satin_set",
+    "n": 1,
+    "t": 1788417394143
+   },
+   {
+    "cat": "adult_roleplay",
+    "ex": "adult_maid",
+    "n": 1,
+    "t": 1788417232819
+   },
+   {
+    "cat": "wildcard",
+    "ex": "",
+    "n": 1,
+    "t": 1788413516413
+   },
+   {
+    "cat": "private_evening",
+    "ex": "",
+    "n": 1,
+    "t": 1788413516413
+   },
+   {
+    "cat": "occupation_basic",
+    "ex": "",
+    "n": 1,
+    "t": 1788413516413
+   },
+   {
+    "cat": "occupation_sensual",
+    "ex": "",
+    "n": 1,
+    "t": 1788413516413
+   },
+   {
+    "cat": "swimwear",
+    "ex": "sarong_wrap",
+    "n": 1,
+    "t": 1788413516413
+   },
+   {
+    "cat": "everyday_sensual",
+    "ex": "",
+    "n": 1,
+    "t": 1788413516413
+   },
+   {
+    "cat": "lingerie",
+    "ex": "hanbok_slip",
+    "n": 1,
+    "t": 1788411774563
+   },
+   {
+    "cat": "lingerie",
+    "ex": "back_strap",
+    "n": 2,
+    "t": 1788409115351
+   },
+   {
+    "cat": "lingerie",
+    "ex": "kebaya_lace",
+    "n": 1,
+    "t": 1788407863750
+   },
+   {
+    "cat": "traditional",
+    "ex": "barong_inspired",
+    "n": 1,
+    "t": 1788407510732
+   },
+   {
+    "cat": "occupation_basic",
+    "ex": "railway_engineer",
+    "n": 1,
+    "t": 1788407211026
+   },
+   {
+    "cat": "occupation_sensual",
+    "ex": "helicopter_pilot",
+    "n": 18,
+    "t": 1788403328561
+   }
   ]
  },
  "style": {
@@ -368,7 +854,7 @@
   "걍": "semi_real_paint",
   "캠퍼": "semi_real_paint",
   "지옹": "semi_real_paint",
-  "엘메스": "semi_real_paint",
+  "엘메스": "game_cgi",
   "노이에 질": "semi_real_paint",
   "하이잭": "semi_real_paint",
   "마라사이": "semi_real_paint",
@@ -492,6 +978,8 @@
   "드레드노트 건담": "semi_real_paint",
   "건담 아스트레이 골드프레임 아마츠 하나": "semi_real_paint",
   "스타게이저 건담": "semi_real_paint",
-  "건담 아스트레이 미라쥬 프레임": "semi_real_paint"
+  "건담 아스트레이 미라쥬 프레임": "semi_real_paint",
+  "GQuuuuuuX": "game_keyart",
+  "스트라이크 루즈": "glossy_kr_game"
  }
 }
