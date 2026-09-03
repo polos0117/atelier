@@ -1678,7 +1678,9 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     }
     parts.push('[NON-EXPLICIT LIMITS]\n\nThe character must clearly read as an adult. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.');
     parts.push('[FINAL CHECK]\n\nVerify: exactly one image and one woman; the requested aspect ratio; no text anywhere in the frame; the selected category and example are followed; no explicit nudity or sexual activity.');
-    return parts.filter(Boolean).join('\n\n==================================================\n\n');
+    const full=parts.filter(Boolean).join('\n\n==================================================\n\n');
+    auditPrompt(MODE.LIFESTYLE,full);
+    return full;
   }
   function sgSummary(){
     const EX=Object.fromEntries(EXPRESSION_OPTIONS.map(o=>[o[0],(o[1]||'').split(' — ')[1]||o[1]]));
@@ -1885,7 +1887,9 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     if(ovs.length)parts.push('[PANEL OVERRIDES]\n\n'+ovs.join('\n\n'));
     parts.push('[NON-EXPLICIT LIMITS]\n\nThe character must clearly read as an adult. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.');
     parts.push(finalCheckBlock());
-    return parts.filter(Boolean).join('\n\n==================================================\n\n');
+    const full=parts.filter(Boolean).join('\n\n==================================================\n\n');
+    auditPrompt(MODE.LIFESTYLE,full);
+    return full;
   }
   /* ══ 콜라주 사용 기록 ══
      "이 기체로 이 카테고리 프롬프트를 복사했다"는 사실만 남긴다.
@@ -3079,10 +3083,9 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     return (el&&el.value)||DEFAULT_STYLE;
   }
   function styleRow(){return ART_STYLES.find(x=>x[0]===styleKey())||ART_STYLES[0];}
-  /* ---- v9.0 아키텍처 파일럿: 이 두 화풍만 MODE별로 본문을 분리한다.
-     나머지 9개 화풍은 기존 ART_STYLES[3] 통합 본문을 그대로 쓴다. ---- */
+  /* ---- v9.1: 11개 화풍 전부 STYLE CORE / ANTHRO EXTENSION / LIFESTYLE EXTENSION로 분리.
+     PILOT_STYLES 분기는 제거했다 — 모든 화풍이 STYLE_PROFILES 한 경로만 쓴다. ---- */
   const MODE = { ANTHRO:'anthro', LIFESTYLE:'lifestyle' };
-  const PILOT_STYLES = ['cinematic_semi_real','game_keyart'];
 
   const STYLE_CORES = {
     cinematic_semi_real: [
@@ -3208,6 +3211,182 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     return '[TRANSLATION PROFILE]\n\n'+TRANSLATION_PROFILES[translationProfileKey()];
   }
 
+  const STYLE_PROFILES = {
+    cinematic_semi_real: { core: STYLE_CORES.cinematic_semi_real, anthro: ANTHRO_STYLE_EXTENSIONS.cinematic_semi_real, lifestyle: LIFESTYLE_STYLE_EXTENSIONS.cinematic_semi_real },
+    game_keyart: { core: STYLE_CORES.game_keyart, anthro: ANTHRO_STYLE_EXTENSIONS.game_keyart, lifestyle: LIFESTYLE_STYLE_EXTENSIONS.game_keyart },
+    glossy_kr_game: {
+      core: [
+        "high-gloss stylised character illustration in the visual language of premium Korean mobile-game key art.",
+        "The rendering is strongly stylised, glamorous, saturated, and highly polished, but the character design, body proportions, armor silhouette, and costume structure remain controlled by PARAMETERS and the source mobile suit.",
+        "FACE: strongly stylised but clearly adult anime-informed facial rendering.",
+        "Use elegant eye shapes, deliberate lash definition, a refined small nose, softly glossy lips, and polished beauty rendering.",
+        "The exact eye geometry, face shape, ethnicity, maturity, and facial character must still follow PARAMETERS rather than collapsing into one recurring glamour face.",
+        "SKIN: exceptionally smooth airbrushed gradients with bright designed specular highlights and deep saturated shadow colour.",
+        "Skin appears polished and luminous rather than photographic.",
+        "HAIR: glossy grouped locks with strong highlight ribbons, saturated colour separation, and selected sharp strands.",
+        "Hair should feel illustrated and lacquered rather than photographically rendered.",
+        "DECORATIVE DETAIL: straps, trim, fittings, chains, ribbons, jewellery, or ornamental accents may appear only where the canonical design or explicit PARAMETERS support them.",
+        "Do not add generic baroque decoration merely because of the selected art style.",
+        "LIGHTING: theatrical key light, strong coloured rim light, deep jewel-toned shadows, controlled bloom, and dramatic contrast.",
+        "BACKGROUND: simplified atmospheric glow, bokeh, gradients, or broad decorative light shapes.",
+        "Avoid photographic realism, muted colour, flat cel shading, low-gloss rendering, plain unrendered surfaces, unrelated fantasy ornament, and generic baroque redesign of the source mobile suit."
+      ].join(' '),
+      anthro: [
+        "ARMOR, CLOTHING, AND MECHANICAL SURFACES: thick glossy rendering with strong stylized specular highlights, saturated colour, crisp edge accents, and luxurious material separation.",
+        "Metal, painted armor, latex-like surfaces, fabric, and glass may each reflect light differently, but all remain part of the same highly stylised illustration.",
+        "Do not convert source-specific mechanical design into generic fantasy costume."
+      ].join(' '),
+      lifestyle: "Clothing, fabric, and accessories in this scene follow the same high-gloss stylised rendering established above — strong specular highlights, saturated colour, and luxurious material separation. Do not introduce armor, mechanical parts, weapons, or other source mobile-suit equipment into this scene."
+    },
+    game_cgi: {
+      core: [
+        "high-end stylized 3D character render in the visual language of a premium game cinematic.",
+        "The final image must unmistakably read as sophisticated CGI rather than live-action photography, 2D anime illustration, painterly concept art, or mobile-game 2.5D key art.",
+        "FACE: preserve clearly adult anatomy and the facial structure defined by PARAMETERS while allowing tasteful game-character idealization.",
+        "Use believable three-dimensional eyelids, nose, lips, cheeks, jaw, and eye sockets rather than flat anime line construction.",
+        "Eyes may be slightly idealized but remain physically integrated into the modeled face.",
+        "SKIN: smooth high-end digital skin shading with controlled subsurface scattering, fine but restrained surface variation, realistic roughness transitions, and carefully shaped specular response.",
+        "Avoid waxy skin, porcelain plastic skin, excessive pore detail, and live-action photographic imperfection.",
+        "HAIR: modeled strand groups and layered hair cards or groom-like masses with physically coherent highlights.",
+        "Avoid flat painted hair bands and avoid hyper-photographic individual-strand noise.",
+        "LIGHTING: cinematic studio-quality key, fill, bounce, rim, volumetric separation, controlled bloom, and believable reflected light.",
+        "Use physically coherent three-dimensional lighting throughout the character.",
+        "Avoid painterly brushwork, flat anime shading, cel outlines, photographic live-action skin, crude plastic surfaces, excessive ray-traced mirror reflections, and generic unlit character-viewer presentation."
+      ].join(' '),
+      anthro: [
+        "ARMOR AND MECHANICAL SURFACES: clean premium PBR-style material separation with convincing painted metal, exposed metal, composite, rubber, glass, and emissive sensors.",
+        "Use controlled reflections, roughness variation, subtle edge wear, and clear mechanical segmentation.",
+        "Materials should feel intentionally art-directed rather than like a raw photoreal asset render."
+      ].join(' '),
+      lifestyle: "Clothing, fabric, and accessories in this scene follow the same premium stylized 3D material logic established above. Do not introduce armor, mechanical parts, weapons, or other source mobile-suit equipment into this scene."
+    },
+    semi_real_paint: {
+      core: [
+        "semi-realistic digital oil painting with visibly painted surfaces, grounded adult anatomy, and resolved character design.",
+        "The image must read as a finished digital painting rather than a photograph, CGI render, anime key visual, or loose unfinished concept sketch.",
+        "FACE AND SKIN: realistic adult facial structure with softly idealized beauty, painted through layered colour, subtle brush texture, and believable value transitions.",
+        "Retain visible but controlled painterly texture across cheeks, lips, eyelids, neck, and exposed skin.",
+        "Do not use photographic pore detail or perfectly airbrushed game skin.",
+        "HAIR: painted in coherent masses with visible brush grouping and selected strands.",
+        "Highlights should feel brushed into the hair rather than physically ray-traced.",
+        "EDGE HANDLING: most important forms remain resolved and readable, while selected secondary edges may soften into surrounding values.",
+        "LIGHTING: grounded directional illumination with believable volume and colour bounce, interpreted through painterly value and colour rather than photographic optics.",
+        "Avoid loose unresolved concept-art brushwork, perfectly clean CGI material rendering, glossy mobile-game airbrushing, flat cel shading, and fully photographic skin."
+      ].join(' '),
+      anthro: [
+        "ARMOR, FABRIC, AND MECHANICAL PARTS: preserve convincing material differences and rich surface detail while allowing visible brush texture across painted metal, composite, fabric, and worn surfaces.",
+        "Specular highlights and reflections are interpreted through painting and need not be physically perfect.",
+        "Do not leave major anatomy or signature mechanical structures vague or unfinished."
+      ].join(' '),
+      lifestyle: "Clothing, fabric, and other worn materials in this scene follow the same semi-realistic painted surface logic established above. Do not introduce armor, mechanical parts, weapons, or other source mobile-suit equipment into this scene."
+    },
+    photoreal: {
+      core: [
+        "high-end photorealistic live-action character photography with believable practical and mechanical materials.",
+        "The final image must read as a real photograph captured by a camera, not as digital painting, anime illustration, mobile-game key art, or visible CGI character rendering.",
+        "FACE AND SKIN: realistic adult human facial anatomy, natural skin texture, subtle pores, fine tonal variation, believable lips, eyelids, lashes, and eyes.",
+        "Beauty styling may be polished and editorial, but do not reshape the face into anime proportions or plastic game-character anatomy.",
+        "HAIR: naturally photographed hair with believable strand grouping, flyaways, translucency, and real light interaction.",
+        "LIGHTING: real photographic key, fill, bounce, rim, practical reflections, natural falloff, and physically believable exposure.",
+        "Use realistic camera depth of field and lens behaviour only where compositionally appropriate.",
+        "Avoid painterly brush texture, anime eye construction, cel shading, game-render skin, Unreal-style CGI appearance, artificial plastic gloss, excessive cinematic bloom, and impossible illustrated reflections."
+      ].join(' '),
+      anthro: [
+        "ARMOR AND MECHANICAL SURFACES: appear as physically fabricated real-world materials with believable scale, seams, joints, painted surfaces, metal, composite, rubber, glass, and practical wear.",
+        "Reflections follow the photographed environment rather than stylized illustrated highlight shapes."
+      ].join(' '),
+      lifestyle: "Clothing, fabric, and accessories in this scene are photographed with the same practical, real-world material logic established above. Do not introduce armor, mechanical parts, weapons, or other source mobile-suit equipment into this scene."
+    },
+    anime_illust: {
+      core: [
+        "polished modern anime character illustration with clean confident linework, clearly anime facial construction, and controlled two-to-three-step shading supported by soft gradients.",
+        "The image must read unmistakably as a finished 2D anime illustration rather than photography, 3D CGI, painterly concept art, or glossy 2.5D game rendering.",
+        "FACE: clearly anime, with expressive eyes, simplified but elegant nose and mouth construction, clean eyelid definition, and adult facial proportions appropriate to PARAMETERS.",
+        "Preserve individual face shape, ethnicity, maturity, and facial character rather than reusing one generic anime face.",
+        "SKIN: smooth illustrated colour with clean shadow shapes and restrained soft gradients.",
+        "No photographic pores, realistic skin noise, or wet CG-style specular response.",
+        "HAIR: defined graphic locks with clean directional flow, selective internal strand lines, and stylized highlight shapes.",
+        "LIGHTING: illustrated key and rim lighting expressed through designed colour shapes and gradients rather than physically perfect reflections.",
+        "Avoid photographic skin, camera grain, realistic lens blur, 3D-render materials, loose brushwork, thick glossy mobile-game rendering, and completely flat low-detail television animation."
+      ].join(' '),
+      anthro: [
+        "ARMOR, COSTUME, AND MECHANICAL PARTS: retain crisp source-specific geometry, clean outlines, controlled cel-like shading, and simplified illustrated highlights.",
+        "Mechanical surfaces must remain part of the same 2D drawing and must not become photoreal PBR objects."
+      ].join(' '),
+      lifestyle: "Clothing, fabric, and accessories in this scene follow the same clean 2D illustrated rendering established above. Do not introduce armor, mechanical parts, weapons, or other source mobile-suit equipment into this scene."
+    },
+    cel_anime: {
+      core: [
+        "flat cel-shaded anime character illustration with bold clean outlines, hard-edged shadow shapes, minimal gradients, and strong poster-like colour blocking.",
+        "The entire image must use a consistent cel-animation rendering language.",
+        "FACE: clearly adult anime facial construction with simplified eyes, nose, mouth, and clean graphic shapes.",
+        "Follow the facial geometry and character identity defined in PARAMETERS without realistic skin rendering.",
+        "SKIN: flat local colour with one primary shadow tone and only minimal highlight accents.",
+        "No pores, subsurface scattering, glossy airbrushing, or photographic tonal modelling.",
+        "HAIR: clean graphic masses separated into major locks with simple highlight shapes and hard colour boundaries.",
+        "LIGHTING: communicate form through deliberate cel-shadow shapes and limited rim-colour bands rather than realistic cinematic falloff.",
+        "Avoid soft painterly modelling, airbrushed game skin, realistic material reflections, photographic lighting, CGI shading, excessive gradients, and dense micro-detail."
+      ].join(' '),
+      anthro: [
+        "ARMOR AND MECHANICAL PARTS: preserve canonical geometry through bold outlines, hard shadow blocks, simplified metal colour separation, and minimal reflected-light detail.",
+        "Do not introduce realistic PBR reflections or painterly texture."
+      ].join(' '),
+      lifestyle: "Clothing, fabric, and accessories in this scene follow the same flat cel-shaded rendering established above. Do not introduce armor, mechanical parts, weapons, or other source mobile-suit equipment into this scene."
+    },
+    painterly: {
+      core: [
+        "loose painterly concept-art illustration built from broad visible brushwork, strong value composition, atmospheric colour masses, and selectively unresolved edges.",
+        "The image should feel like confident high-level production concept art rather than a polished game render, anime key visual, photograph, or detailed digital oil portrait.",
+        "FACE AND FIGURE: maintain readable adult anatomy, expression, and identity, but describe secondary facial detail economically through brush shape and value rather than precise linework.",
+        "HAIR, SKIN, FABRIC, AND ARMOR: all materials are interpreted through broad painted masses and selective texture.",
+        "Do not individually render every pore, strand, panel scratch, screw, or micro-reflection.",
+        "LIGHTING: prioritize large readable light and shadow masses, colour temperature, silhouette separation, and atmosphere over physically exact reflection behaviour.",
+        "Avoid photorealistic surface rendering, polished PBR materials, airbrushed mobile-game skin, crisp anime linework, uniformly finished edges, and excessive micro-detail."
+      ].join(' '),
+      anthro: [
+        "MECHANICAL IDENTITY: where mobile-suit armor, weapons, or mechanical equipment are part of the scene, the major armor silhouette, crest, weapon shape, backpack, binders, shields, and signature source structures remain clearly recognizable even when small surface detail is simplified; this does not require adding such equipment to scenes that do not call for it.",
+        "Important silhouette-defining mechanical edges may remain resolved while secondary edges dissolve into painterly atmosphere."
+      ].join(' '),
+      lifestyle: "Clothing, fabric, and other worn materials in this scene are interpreted through the same broad painterly masses established above. Do not introduce armor, mechanical parts, weapons, or other source mobile-suit equipment into this scene."
+    },
+    retro_anime: {
+      core: [
+        "authentic late-1980s to mid-1990s hand-drawn cel-animation illustration.",
+        "The image should evoke photographed painted cels and hand-painted animation backgrounds rather than modern digital anime, glossy mobile-game art, CGI, or photography.",
+        "FACE: period-appropriate adult anime construction with restrained eye size, clean hand-drawn eyelids, simplified nose and mouth, and expressive but not modern moe-style proportions.",
+        "Retain the individual facial identity specified by PARAMETERS.",
+        "LINEWORK: thin-to-medium hand-inked outlines with slight natural variation rather than perfectly vector-clean digital lines.",
+        "SHADING: one or two hard-edged cel shadow tones with very limited gradient use.",
+        "Highlights are simple painted shapes rather than glossy modern specular streaks.",
+        "COLOUR: slightly muted analogue palette, visible colour separation, gentle film response, and restrained saturation compared with modern game art.",
+        "BACKGROUND: hand-painted animation-background feeling with simplified perspective, soft painted atmosphere, and subtle analogue grain.",
+        "Avoid modern gacha-game gloss, photoreal materials, PBR reflection, digital bloom overload, modern jewelled irises, hyper-clean vector outlines, and contemporary 3D anime rendering."
+      ].join(' '),
+      anthro: [
+        "HAIR AND MECHANICAL PARTS: simplified into clear animation-friendly colour regions while preserving the source mobile suit silhouette and signature equipment."
+      ].join(' '),
+      lifestyle: "Clothing and accessories in this scene follow the same hand-drawn cel-animation colour regions established above. Do not introduce armor, mechanical parts, weapons, or other source mobile-suit equipment into this scene."
+    },
+    ink_wash: {
+      core: [
+        "ink-and-wash character illustration combining expressive brush outlines, diluted ink values, translucent restrained colour washes, and generous negative space.",
+        "The final image must clearly read as traditional-media-inspired ink painting rather than digital CGI, polished anime key art, photorealism, or oil painting.",
+        "FACE AND FIGURE: keep adult anatomy and identity readable using economical brush contours, soft wash modelling, and selective facial detail.",
+        "Do not over-render eyes, lips, skin texture, or small facial features.",
+        "SKIN AND HAIR: describe form through paper tone, diluted wash, broken brush edges, and selective dark accents rather than smooth airbrushing or realistic specular highlights.",
+        "COLOUR: use restrained translucent accent colours derived from the canonical palette rather than fully saturated opaque local colour.",
+        "BACKGROUND: use open paper-like negative space, atmospheric ink blooms, sparse environmental suggestions, and selective calligraphic shadow masses.",
+        "Do not force a dark cinematic studio background when it conflicts with this style.",
+        "Avoid glossy reflections, photographic skin, CGI lighting, dense mechanical micro-detail, hard digital gradients, game-render bloom, flat modern cel shading, and cluttered fully painted backgrounds."
+      ].join(' '),
+      anthro: [
+        "ARMOR AND MECHANICAL STRUCTURE: preserve the essential silhouette, crest, equipment, panel rhythm, and mechanical identity of the mobile suit, but translate material rendering into expressive ink lines, dry-brush texture, diluted wash, and simplified tonal masses.",
+        "Metal must not become glossy CGI or physically reflective PBR material."
+      ].join(' '),
+      lifestyle: "Clothing and other worn materials in this scene are translated into the same expressive ink lines and diluted wash established above. Do not introduce armor, mechanical parts, weapons, or other source mobile-suit equipment into this scene."
+    },
+  };
+
   const LIFESTYLE_REFERENCE_LOCK =
     '[LIFESTYLE REFERENCE LOCK]\n\n' +
     'The attached character image is authoritative for the character\'s visible appearance and equipment state in this image. ' +
@@ -3235,19 +3414,30 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     'If any common instruction conflicts with the selected ART STYLE, the selected ART STYLE wins for rendering language only.';
   function styleBlock(){
     const r=styleRow();
-    const core=PILOT_STYLES.includes(r[0])?STYLE_CORES[r[0]]:r[3];
-    return '[ART STYLE]\n\n'+core+
+    return '[ART STYLE]\n\n'+STYLE_PROFILES[r[0]].core+
       '\n\nThis art style governs all rendering, facial stylization, lighting, and material treatment throughout this prompt.';
   }
   function anthroStyleBlock(){
-    const k=styleKey();
-    const ext=PILOT_STYLES.includes(k)?'\n\n'+ANTHRO_STYLE_EXTENSIONS[k]:'';
-    return styleBlock()+ext+'\n\n'+ANTHRO_STYLE_LOCK;
+    const profile=STYLE_PROFILES[styleKey()];
+    return styleBlock()+'\n\n[ANTHRO STYLE EXTENSION]\n\n'+profile.anthro+'\n\n'+ANTHRO_STYLE_LOCK;
   }
   function lifestyleStyleBlock(){
-    const k=styleKey();
-    const ext=PILOT_STYLES.includes(k)?'\n\n'+LIFESTYLE_STYLE_EXTENSIONS[k]:'';
-    return styleBlock()+ext+'\n\n'+LIFESTYLE_STYLE_LOCK;
+    const profile=STYLE_PROFILES[styleKey()];
+    return styleBlock()+'\n\n[LIFESTYLE STYLE EXTENSION]\n\n'+profile.lifestyle+'\n\n'+LIFESTYLE_STYLE_LOCK;
+  }
+  /* MODE 누수 감지용 최소 점검 — UI에는 노출하지 않고 콘솔 경고만 남긴다 */
+  function auditPrompt(mode,prompt){
+    const errors=[];
+    if(mode===MODE.LIFESTYLE){
+      ['[ANTHRO STYLE EXTENSION]','[TRANSLATION PROFILE]'].forEach(tok=>{
+        if(prompt.includes(tok))errors.push('Lifestyle prompt contains anthro block: '+tok);
+      });
+    }
+    if(mode===MODE.ANTHRO){
+      if(prompt.includes('[LIFESTYLE STYLE EXTENSION]'))errors.push('Anthro prompt contains lifestyle block');
+    }
+    if(errors.length)console.warn('[promptAudit]',errors);
+    return errors;
   }
   function fillArtStyle(){
     const el=document.getElementById('artStyle'); if(!el)return;
@@ -3527,8 +3717,10 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     /* 화풍은 27개 파라미터 중 하나로 묻히면 힘이 약하다.
        콜라주·단일과 같이 독립 블록으로 올려 앞에 세운다. */
     const out2=templateC.replace('PARAMETERS = [\ngender,\nmobile suit name,\nseries\n]',block);
-    const tp=PILOT_STYLES.includes(styleKey())?'\n\n'+translationProfileBlock():'';
-    return anthroStyleBlock()+tp+'\n\n==================================================\n\n'+out2;
+    const full=anthroStyleBlock()+'\n\n'+translationProfileBlock()+
+      '\n\n==================================================\n\n'+out2;
+    auditPrompt(MODE.ANTHRO,full);
+    return full;
   }
   function refreshAnthroPrompt(){textAnthro.value=buildAnthroPrompt();persistAnthro();renderCarry();}
   function resetAnthro(){
