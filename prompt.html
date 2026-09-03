@@ -1612,11 +1612,12 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     const en=a2=>Object.fromEntries(a2.map(o=>[o[0],(o[1]||'').split(' — ')[0]]));
     const EX=en(EXPRESSION_OPTIONS), OR=en(ORIENTATION_OPTIONS), PO=en(POSE_OPTIONS);
     const parts=[
-      '[INPUT]\n\nSOURCE MOBILE SUIT: ['+src.mech+']\n\nUse the attached clearly adult anthropomorphized character as the absolute identity reference.',
-      '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman as the attached reference. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign.'
+      '[INPUT]\n\nSOURCE MOBILE SUIT: ['+src.mech+']\n\nThis name is identity-provenance metadata only, used for lore, personality, and occupation context. It must not be used to reconstruct, restore, or invent mobile-suit armor, weapons, shields, backpacks, mechanical limbs, or other canonical equipment.\n\nUse the attached clearly adult anthropomorphized character as the absolute identity and equipment reference for this image.',
+      '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman as the attached reference. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign.',
+      LIFESTYLE_REFERENCE_LOCK
     ];
     if(document.getElementById('sgCarry').checked)parts.push(carryBlock());
-    parts.push(styleBlock());
+    parts.push(lifestyleStyleBlock());
     parts.push('[OUTPUT]\n\nCreate ONE SINGLE image in '+sgVal('sgAspect')+
       ' aspect. Exactly one woman. No collage, no panels, no split frames, no numerals, no captions, titles, labels, or any other text.');
     /* 카테고리 안내문은 콜라주 기준으로 쓰여 있어 "이 쌍은" 같은 말이 섞인다.
@@ -1840,11 +1841,12 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   function buildCollagePrompt(){
     const s=selectedSource(),adv=getAdvanced(),custom=document.getElementById('collageCustom').value.trim();
     const parts=[
-      '[INPUT]\n\nSOURCE MOBILE SUIT: ['+s.mech+']\n\nUse the attached clearly adult anthropomorphized character as the absolute identity reference.',
+      '[INPUT]\n\nSOURCE MOBILE SUIT: ['+s.mech+']\n\nThis name is identity-provenance metadata only, used for lore, personality, and occupation context. It must not be used to reconstruct, restore, or invent mobile-suit armor, weapons, shields, backpacks, mechanical limbs, or other canonical equipment.\n\nUse the attached clearly adult anthropomorphized character as the absolute identity and equipment reference for this image.',
       '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman in all six panels. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign. Only identity repeats.',
+      LIFESTYLE_REFERENCE_LOCK,
       (document.getElementById('carryIdentity')&&document.getElementById('carryIdentity').checked?carryBlock():''),
       '[OUTPUT]\n\nCreate ONE SINGLE 3:2 LANDSCAPE image as a clean 3-column × 2-row collage:\n1 | 2 | 3\n4 | 5 | 6\nExactly six equal, approximately square panels. Only small numerals 1–6 in the upper-left corners. No captions, titles, labels, subtitles, logos-as-text, or other words. Exactly one woman per panel.',
-      styleBlock(),
+      lifestyleStyleBlock(),
       structureBlock(),
       diversityBlock(),
       directionBlocks(),
@@ -2761,7 +2763,11 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
 
         'ARMOR, CLOTHING, AND MECHANICAL SURFACES: preserve convincing material identity and clear mechanical structure, but render metal, composite, fabric, glass, and painted armor through the same painterly visual language as the face.',
         'Reflections and specular highlights are selectively simplified and painted rather than physically perfect PBR reflections.',
-        'Mechanical detail may remain sharper than skin, but it must never look like a separate 3D render composited onto a painted character.',
+        'MECHANICAL PAINTERLY LOCK: mechanical armor may be highly detailed and precisely constructed, but high detail must not change the rendering language into CGI or PBR. Panel geometry, weapons, backpack structures, joints, and hard-surface forms may remain crisp and mechanically legible, while their lighting and material response must still read as painted illustration. Do not use uniform PBR roughness, ray-traced-looking reflections, perfectly smooth metallic gradients, or the polished surface language of a rendered 3D game asset. Mechanical complexity controls WHAT is depicted, not HOW realistically it is rendered.',
+
+        'Selected mechanical focal edges may be somewhat sharper than skin, but the overall armor surface must retain the same painterly edge hierarchy and optical softness as the rest of the illustration; it must never look like a separate 3D render composited onto a painted character.',
+
+        'Even highly polished armor uses painted interpretations of reflection rather than physically exact reflections \u2014 specular highlights may be strong where appropriate, but stay selective, broken, and compositionally designed rather than continuous ray-traced surface response.',
 
         'LIGHTING: broad cinematic key light, natural reflected bounce, restrained rim illumination, atmospheric shadow colour, realistic falloff, and subtle bloom.',
         'The subject and environment share one coherent lighting system.',
@@ -2980,7 +2986,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
         'HAIR, SKIN, FABRIC, AND ARMOR: all materials are interpreted through broad painted masses and selective texture.',
         'Do not individually render every pore, strand, panel scratch, screw, or micro-reflection.',
 
-        'MECHANICAL IDENTITY: the major armor silhouette, crest, weapon shape, backpack, binders, shields, and signature source structures remain clearly recognizable even when small surface detail is simplified.',
+        'MECHANICAL IDENTITY: where mobile-suit armor, weapons, or mechanical equipment are part of the scene, the major armor silhouette, crest, weapon shape, backpack, binders, shields, and signature source structures remain clearly recognizable even when small surface detail is simplified; this does not require adding such equipment to scenes that do not call for it.',
         'Important silhouette-defining mechanical edges may remain resolved while secondary edges dissolve into painterly atmosphere.',
 
         'LIGHTING: prioritize large readable light and shadow masses, colour temperature, silhouette separation, and atmosphere over physically exact reflection behaviour.',
@@ -3046,21 +3052,38 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     return (el&&el.value)||DEFAULT_STYLE;
   }
   function styleRow(){return ART_STYLES.find(x=>x[0]===styleKey())||ART_STYLES[0];}
-  const STYLE_LOCK =
+  const LIFESTYLE_REFERENCE_LOCK =
+    '[LIFESTYLE REFERENCE LOCK]\n\n' +
+    'The attached character image is authoritative for the character\'s visible appearance and equipment state in this image. ' +
+    'The source mobile suit name above is identity-origin metadata only and must not be used to reconstruct, restore, or invent mobile-suit equipment. ' +
+    'Do not add armor, mechanical limbs, shields, weapons, backpacks, binders, thrusters, crests, hardpoints, or other mobile-suit equipment unless that specific element is clearly visible in the attached character reference or explicitly requested for this image. ' +
+    'Canonical mobile-suit equipment that is absent from the attached character reference must remain absent. ' +
+    'For civilian, casual, homewear, swimwear, activewear, fashion, and other lifestyle scenes, translate only the character\'s established human identity into the requested scene \u2014 do not revert the character toward her original mobile-suit form.';
+  const ANTHRO_STYLE_LOCK =
     '[STYLE LOCK]\n\n' +
     'The selected ART STYLE controls the rendering language of the entire image without exception: ' +
     'facial construction, skin, hair, armor, mechanical components, fabric, weapons, lighting, background treatment, ' +
     'edge handling, shading, reflections, speculars, texture, and detail density. ' +
     'Common instructions elsewhere in this prompt define subject matter, composition, mechanical identity, and equipment structure only; ' +
     'they must not introduce a different rendering language. ' +
+    'Mechanical complexity controls WHAT is depicted, not HOW realistically it is rendered. ' +
     'Mechanical parts must not default to CGI or PBR rendering unless the selected ART STYLE itself explicitly calls for it. ' +
     'If any common instruction conflicts with the selected ART STYLE, the selected ART STYLE wins.';
+  const LIFESTYLE_STYLE_LOCK =
+    '[STYLE LOCK]\n\n' +
+    'The selected ART STYLE controls the rendering language of the entire image: ' +
+    'facial construction, skin, hair, clothing, fabric, props, lighting, background treatment, ' +
+    'edge handling, shading, reflections, speculars, texture, and detail density. ' +
+    'It governs HOW the scene is rendered only \u2014 it must not redesign, reconstruct, or reintroduce the source mobile suit\'s armor, weapons, shield, backpack, mechanical limbs, or other canonical equipment. ' +
+    'The attached character reference controls visible character identity and visible equipment state. ' +
+    'If any common instruction conflicts with the selected ART STYLE, the selected ART STYLE wins for rendering language only.';
   function styleBlock(){
     const r=styleRow();
     return '[ART STYLE]\n\n'+r[3]+
-      '\n\nThis art style governs all rendering, facial stylization, lighting, and material treatment throughout this prompt.'+
-      '\n\n'+STYLE_LOCK;
+      '\n\nThis art style governs all rendering, facial stylization, lighting, and material treatment throughout this prompt.';
   }
+  function anthroStyleBlock(){ return styleBlock()+'\n\n'+ANTHRO_STYLE_LOCK; }
+  function lifestyleStyleBlock(){ return styleBlock()+'\n\n'+LIFESTYLE_STYLE_LOCK; }
   function fillArtStyle(){
     const el=document.getElementById('artStyle'); if(!el)return;
     el.innerHTML=ART_STYLES.map(r=>'<option value="'+r[0]+'">'+escHtml(r[1])+'</option>').join('');
@@ -3339,7 +3362,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     /* 화풍은 27개 파라미터 중 하나로 묻히면 힘이 약하다.
        콜라주·단일과 같이 독립 블록으로 올려 앞에 세운다. */
     const out2=templateC.replace('PARAMETERS = [\ngender,\nmobile suit name,\nseries\n]',block);
-    return styleBlock()+'\n\n==================================================\n\n'+out2;
+    return anthroStyleBlock()+'\n\n==================================================\n\n'+out2;
   }
   function refreshAnthroPrompt(){textAnthro.value=buildAnthroPrompt();persistAnthro();renderCarry();}
   function resetAnthro(){
