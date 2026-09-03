@@ -2650,10 +2650,16 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
         const ov=os?os.value:'';
         if(COLOR_HEX[ov]){
           const L=key==='eye color'?v:ov, R=key==='eye color'?ov:v;
-          head='<span class="sw-big two"><i style="background:'+COLOR_HEX[L]+'"></i>'+
-               '<i style="background:'+COLOR_HEX[R]+'"></i></span>'+
-               '<div class="pp-txt"><b>오드아이</b>오른쪽 '+escHtml(L)+' · 왼쪽 '+escHtml(R)+
-               ' — 좌우가 바뀌거나 한 색으로 섞이지 않게 프롬프트에 못 박는다</div>';
+          if(L===R){
+            head='<span class="sw-big"><i style="background:'+COLOR_HEX[L]+'"></i></span>'+
+                 '<div class="pp-txt"><b>양쪽 동일 색상</b>양쪽 눈 '+escHtml(L)+
+                 ' — 오드아이가 아니라 같은 색을 유지하라고 프롬프트에 넣는다</div>';
+          }else{
+            head='<span class="sw-big two"><i style="background:'+COLOR_HEX[L]+'"></i>'+
+                 '<i style="background:'+COLOR_HEX[R]+'"></i></span>'+
+                 '<div class="pp-txt"><b>오드아이</b>오른쪽 '+escHtml(L)+' · 왼쪽 '+escHtml(R)+
+                 ' — 좌우가 바뀌거나 한 색으로 섞이지 않게 프롬프트에 못 박는다</div>';
+          }
         }
       }
       if(!head)head='<span class="sw-big"><i style="background:'+COLOR_HEX[v]+'"></i></span>'+
@@ -2735,7 +2741,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       '게임 키아트 2.5D',
       '완전한 애니 얼굴 + 에어브러시 피부 + 선명한 의상·메카. 얼굴은 단순하고 부드럽게, 장비는 또렷하게 처리하는 2.5D 모바일게임 키아트.',
       [
-        'premium mobile-game single-character key-art illustration rendered in a polished 2.5D style.',
+        'premium mobile-game key-art illustration rendered in a polished 2.5D style.',
         'The image must read as high-end illustrated game key art, not as live-action photography, a 3D CGI render, flat television anime, or loose concept art.',
 
         'FACE: use clearly anime facial construction with controlled restraint.',
@@ -3009,7 +3015,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     'edge handling, shading, reflections, speculars, texture, and detail density. ' +
     'Common instructions elsewhere in this prompt define subject matter, composition, mechanical identity, and equipment structure only; ' +
     'they must not introduce a different rendering language. ' +
-    'Mechanical parts receive no separate CGI or PBR exemption. ' +
+    'Mechanical parts must not default to CGI or PBR rendering unless the selected ART STYLE itself explicitly calls for it. ' +
     'If any common instruction conflicts with the selected ART STYLE, the selected ART STYLE wins.';
   function styleBlock(){
     const r=styleRow();
