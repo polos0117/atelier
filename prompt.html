@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Gundam Prompt Toolkit v8.4</title>
+<title>Gundam Prompt Toolkit v9.0</title>
 <style>
 :root{
   color-scheme:light dark;
@@ -250,13 +250,19 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   </div>
 
 
-  <div class="ver-badge">Gundam Prompt Toolkit <b>v8.4</b> <span>일상컷 메카 재생성 방지 + 화풍 레퍼런스 강화</span></div>
+  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.0</b> <span>화풍 아키텍처 파일럿 — 의인화/일상컷 본문 분리</span></div>
   <details class="srcbox verbox" id="verBox">
     <summary>
-      <span class="sel-line" style="white-space:normal;overflow:visible">v8.4 변경 내역</span>
+      <span class="sel-line" style="white-space:normal;overflow:visible">v9.0 변경 내역</span>
       <span class="sb-txt">패치 노트</span>
     </summary>
     <div class="vb-in">
+      <b>v9.0 &middot; 화풍 아키텍처 파일럿</b>
+      <ul>
+        <li>세미리얼·게임 키아트 2.5D 두 화풍만 STYLE CORE(공통) · ANTHRO EXTENSION(의인화 전용 갑옷 규정) · LIFESTYLE EXTENSION(일상컷 전용 소재 규정)으로 분리했다</li>
+        <li>같은 화풍이라도 일상컷 프롬프트에는 이제 갑옷 · 무기 · 백팩 언급이 아예 안 들어간다. 다른 9개 화풍은 기존 방식 그대로, 회귀 없음을 함수 단위 테스트로 확인했다</li>
+        <li>TRANSLATION PROFILE 신설. Human ↔ Mechanical Balance 값(More Human / Balanced / More Mechanical)에 맞춰 인간화 정도를 문단 단위로 지시한다 — 두 파일럿 화풍의 의인화에서만 적용</li>
+      </ul>
       <b>v8.4 &middot; 일상컷 메카 재생성 방지 + 화풍 레퍼런스 강화</b>
       <ul>
         <li>의인화용 STYLE LOCK과 일상컷(콜라주·단일컷)용 STYLE LOCK을 분리했다. 일상컷 화풍 지시에서 armor · weapon 언급을 빼서 화풍이 메카 의미론을 다시 불러오지 않는다</li>
