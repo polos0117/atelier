@@ -127,7 +127,7 @@ header{
 .tab b{font-weight:500;font-size:11px;opacity:.65;margin-left:4px}
 .tab.on{color:var(--ink);border-bottom-color:var(--plate)}
 
-.ctl{display:flex;gap:6px;padding:7px 0 0}
+.ctl{display:flex;gap:6px;padding:7px 0 0;flex-wrap:wrap}
 .ctl:last-of-type{padding-bottom:9px}
 .sw.grow{flex:1 1 auto}
 .sw.grow button{flex:1 1 0;padding:7px 4px}
@@ -277,6 +277,7 @@ main{padding:12px}
   <div class="ctl">
     <input type="search" id="q" placeholder="이름 검색" autocomplete="off">
     <select id="ser"></select>
+    <select id="styleSel" hidden></select>
   </div>
 </header>
 
@@ -287,9 +288,10 @@ main{padding:12px}
 /* ══ 게임 파일에서 추출한 데이터 (build-dex.py 자동 생성) ══ */
 __DATA__
 /* ══ 도감 전용 코드 ══ */
-var POOL={"기체":MECH,"파일럿":PILOT,"지휘관":CREW,"함":SHIP};
-var TABS=["기체","파일럿","지휘관","함"];
+var POOL={"기체":MECH,"파일럿":PILOT,"지휘관":CREW,"함":SHIP,"화풍":MECH};
+var TABS=["기체","파일럿","지휘관","함","화풍"];
 var tab="기체", ser="", q="", vari="f", mode="p";   /* p 의인화 · c 일상 · x 특별 컷 */
+var styleSel="";   /* 화풍 탭에서 고른 화풍 키, 빈 값이면 전체 */
 var MODE_NAME={p:"의인화",c:"일상",x:"특별 컷",w:"작업"};
 var onlyLeft=true;   /* 작업 모드: 남은 것만 볼지 */
 
@@ -410,8 +412,11 @@ function tkUsed(name){
 var TK_ART={cinematic_semi_real:"세미리얼 페인팅",game_keyart:"게임 키아트 2.5D",glossy_kr_game:"한국형 글로시 게임 일러스트",game_cgi:"게임 시네마틱 CGI",semi_real_paint:"반실사 회화",
   photoreal:"사진풍",anime_illust:"애니 일러스트",cel_anime:"셀화 애니",
   painterly:"회화적 컨셉아트",retro_anime:"레트로 애니",ink_wash:"수묵 담채"};
+function tkStyleKey(name){
+  return TK.localStyle[name]||TK.baseStyle[name]||"cinematic_semi_real";
+}
 function tkStyle(name){
-  var v=TK.localStyle[name]||TK.baseStyle[name]||"cinematic_semi_real";
+  var v=tkStyleKey(name);
   return TK_ART[v]||v;
 }
 var TK_CAT={adult_roleplay:"성인 역할극",occupation_basic:"직업(기본)",occupation_sensual:"직업(섹시)",
@@ -449,6 +454,7 @@ function list(){
   for(i=0;i<arr.length;i++){
     var c=arr[i];
     if(ser&&serOf(c).indexOf(ser)<0)continue;
+    if(styleSel&&tkStyleKey(c[0])!==styleSel)continue;
     if(q&&c[0].toLowerCase().indexOf(q)<0)continue;
     /* 일상·특별 컷은 그림이 있는 카드만 모아 보여준다 */
     if(mode==="c"||mode==="x"){if(!shots(c).length)continue}
@@ -481,8 +487,26 @@ function drawSer(){
   if(!cnt[ser])ser="";
   sel.innerHTML=h; sel.value=ser;
 }
+function drawStyleSel(){
+  var sel=document.getElementById("styleSel");
+  if(tab!=="화풍"){sel.hidden=true;return}
+  sel.hidden=false;
+  var arr=POOL[tab]||[],cnt={},i;
+  for(i=0;i<arr.length;i++){
+    if((mode==="c"||mode==="x")&&!shots(arr[i]).length)continue;
+    if(mode==="w"&&onlyLeft&&stat(arr[i]).done)continue;
+    if(ser&&serOf(arr[i]).indexOf(ser)<0)continue;
+    var k=tkStyleKey(arr[i][0]);
+    cnt[k]=(cnt[k]||0)+1;
+  }
+  var h='<option value="">전체 화풍</option>',k;
+  for(k in TK_ART)if(cnt[k])h+='<option value="'+k+'"'+(k===styleSel?" selected":"")+'>'+
+    esc(TK_ART[k])+" "+cnt[k]+"</option>";
+  if(!cnt[styleSel])styleSel="";
+  sel.innerHTML=h; sel.value=styleSel;
+}
 function draw(){
-  drawTabs(); drawSer();
+  drawTabs(); drawSer(); drawStyleSel();
   if(mode==="w"){drawWork();return}
   document.getElementById("prog").hidden=true;
   document.getElementById("fsw").hidden=true;
@@ -517,6 +541,7 @@ function drawWork(){
   for(i=0;i<all.length;i++){
     var c=all[i];
     if(ser&&serOf(c).indexOf(ser)<0)continue;
+    if(styleSel&&tkStyleKey(c[0])!==styleSel)continue;
     if(q&&c[0].toLowerCase().indexOf(q)<0)continue;
     pool.push(c);
   }
@@ -580,7 +605,7 @@ function copyPrompt(name){
 function find(n){var arr=POOL[tab],i;for(i=0;i<arr.length;i++)if(arr[i][0]===n)return arr[i];return null}
 function open(n,start){
   var c=find(n); if(!c)return;
-  var cc=ccOf(c), s=IMG[c[0]], t=tab;
+  var cc=ccOf(c), s=IMG[c[0]], t=(tab==="화풍"?"기체":tab);
   var labels=STAT_LABEL[t]||["","","",""];
   var v=vari;
   /* 리스트에서 고른 그림을 그대로 대표 그림으로 띄운다 */
@@ -678,7 +703,7 @@ function zoom(u){
 /* ── 이벤트 ── */
 document.getElementById("tabs").onclick=function(e){
   var b=e.target.closest(".tab"); if(!b)return;
-  tab=b.dataset.t; ser=""; draw(); scrollTo(0,0);
+  tab=b.dataset.t; ser=""; styleSel=""; draw(); scrollTo(0,0);
 };
 /* ── 격자 안에서 그림 넘기기 ── */
 var grid=document.getElementById("grid");
@@ -734,6 +759,7 @@ grid.addEventListener("touchend",function(e){
 },{passive:true});
 document.getElementById("q").oninput=function(){q=this.value.trim().toLowerCase();draw()};
 document.getElementById("ser").onchange=function(){ser=this.value;draw()};
+document.getElementById("styleSel").onchange=function(){styleSel=this.value;draw()};
 document.getElementById("msw").onclick=function(e){
   var b=e.target.closest("button"); if(!b)return;
   mode=b.dataset.m;
