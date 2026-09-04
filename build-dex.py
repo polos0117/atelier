@@ -356,11 +356,19 @@ function fc(f){return FAC[f]||"#79849A"}
 function ccOf(c){return fc(c[1][c[1].length-1])}
 function esc(s){return String(s).replace(/[&<>"]/g,function(x){
   return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[x]})}
-function picOf(c,v){var s=IMG[c[0]]; if(!s)return null; return s[v]||s[flip(v)]||null}
+/* 한 기체가 여러 화풍 이미지를 가질 수 있다.
+   기본 화풍은 IMG[이름] 그대로(기존 자료 무변화), 추가 화풍은 IMG[이름].byStyle[화풍키]에 얹는다.
+   화풍 탭에서 특정 화풍을 고른 상태면 그 버킷을, 아니면 기본 버킷을 쓴다. */
+function styleBucket(c){
+  var s=IMG[c[0]]; if(!s)return null;
+  if(tab==="화풍"&&styleSel&&s.byStyle&&s.byStyle[styleSel])return s.byStyle[styleSel];
+  return s;
+}
+function picOf(c,v){var s=styleBucket(c); if(!s)return null; return s[v]||s[flip(v)]||null}
 
 /* 현재 보기 모드에서 이 카드가 내놓을 그림들 */
 function shots(c){
-  var s=IMG[c[0]]; if(!s)return [];
+  var s=styleBucket(c); if(!s)return [];
   if(mode==="c")return s.casual||[];
   if(mode==="x")return s.extra||[];
   var p=picOf(c,vari); return p?[p]:[];
@@ -415,6 +423,13 @@ var TK_ART={cinematic_semi_real:"세미리얼 페인팅",game_keyart:"게임 키
 function tkStyleKey(name){
   return TK.localStyle[name]||TK.baseStyle[name]||"cinematic_semi_real";
 }
+/* 기본 화풍 + IMG[이름].byStyle에 실제로 이미지가 있는 추가 화풍들 전부 */
+function tkStyleKeys(name){
+  var out=[tkStyleKey(name)];
+  var extra=(IMG[name]&&IMG[name].byStyle)||{};
+  for(var k in extra)if(out.indexOf(k)<0)out.push(k);
+  return out;
+}
 function tkStyle(name){
   var v=tkStyleKey(name);
   return TK_ART[v]||v;
@@ -441,7 +456,7 @@ function tkSummary(name){
 
 /* ── 작업 현황: image-list 의 f/m/c/e 를 대신해 IMG 에서 직접 센다 ── */
 function stat(c){
-  var s=IMG[c[0]]||{};
+  var s=styleBucket(c)||{};
   return {m:!!s.m, f:!!s.f,
           c:(s.casual||[]).length, x:(s.extra||[]).length,
           done:!!(s.m&&s.f)};
@@ -454,7 +469,7 @@ function list(){
   for(i=0;i<arr.length;i++){
     var c=arr[i];
     if(ser&&serOf(c).indexOf(ser)<0)continue;
-    if(styleSel&&tkStyleKey(c[0])!==styleSel)continue;
+    if(styleSel&&tkStyleKeys(c[0]).indexOf(styleSel)<0)continue;
     if(q&&c[0].toLowerCase().indexOf(q)<0)continue;
     /* 일상·특별 컷은 그림이 있는 카드만 모아 보여준다 */
     if(mode==="c"||mode==="x"){if(!shots(c).length)continue}
@@ -496,8 +511,8 @@ function drawStyleSel(){
     if((mode==="c"||mode==="x")&&!shots(arr[i]).length)continue;
     if(mode==="w"&&onlyLeft&&stat(arr[i]).done)continue;
     if(ser&&serOf(arr[i]).indexOf(ser)<0)continue;
-    var k=tkStyleKey(arr[i][0]);
-    cnt[k]=(cnt[k]||0)+1;
+    var ks=tkStyleKeys(arr[i][0]),j;
+    for(j=0;j<ks.length;j++)cnt[ks[j]]=(cnt[ks[j]]||0)+1;
   }
   var h='<option value="">전체 화풍</option>',k;
   for(k in TK_ART)if(cnt[k])h+='<option value="'+k+'"'+(k===styleSel?" selected":"")+'>'+
@@ -541,7 +556,7 @@ function drawWork(){
   for(i=0;i<all.length;i++){
     var c=all[i];
     if(ser&&serOf(c).indexOf(ser)<0)continue;
-    if(styleSel&&tkStyleKey(c[0])!==styleSel)continue;
+    if(styleSel&&tkStyleKeys(c[0]).indexOf(styleSel)<0)continue;
     if(q&&c[0].toLowerCase().indexOf(q)<0)continue;
     pool.push(c);
   }
@@ -605,7 +620,7 @@ function copyPrompt(name){
 function find(n){var arr=POOL[tab],i;for(i=0;i<arr.length;i++)if(arr[i][0]===n)return arr[i];return null}
 function open(n,start){
   var c=find(n); if(!c)return;
-  var cc=ccOf(c), s=IMG[c[0]], t=(tab==="화풍"?"기체":tab);
+  var cc=ccOf(c), s=styleBucket(c), t=(tab==="화풍"?"기체":tab);
   var labels=STAT_LABEL[t]||["","","",""];
   var v=vari;
   /* 리스트에서 고른 그림을 그대로 대표 그림으로 띄운다 */
