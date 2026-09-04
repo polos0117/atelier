@@ -3244,6 +3244,18 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     'When the source contains oversized, elongated, offset, floating-looking, or non-human mechanical structures, preserve their silhouette function by translating them into external armor shells, shoulder frames, elongated forearm armor, backpack assemblies, binders, dorsal fins, external mechanical supports, or other non-biological equipment around the humanoid body. ' +
     'Source geometry controls silhouette identity; humanoid translation controls anatomical integration.';
 
+  const SOURCE_ARM_MAPPING =
+    '[SOURCE ARM MAPPING] Each visible source-side arm assembly must map to exactly one humanoid arm. ' +
+    'Do not interpret layered shoulder armor, outer arm shells, thruster housings, or elongated side structures as additional limbs. ' +
+    'If multiple mechanical masses surround one source arm, merge them around the same single humanoid arm as layered armor, external framing, shoulder-adjacent equipment, or fixed mechanical shells. ' +
+    'Do not create a second hand, wrist, elbow, or manipulator to represent secondary mechanical masses around the same source arm.';
+
+  const UPPER_LIMB_TOPOLOGY_LOCK =
+    '[UPPER-LIMB TOPOLOGY LOCK] The humanoid character must have exactly one left arm and one right arm, for a total of two arms, unless PARAMETERS explicitly request additional arms. ' +
+    'This two-arm limit applies to biological arms, armored arms, robotic arms, prosthetic arms, auxiliary arms, sub-arms, manipulators, articulated shoulder-mounted arms, and detached mechanical arm-like structures. ' +
+    'Do not preserve the source silhouette by adding a second articulated arm-like structure beside either human arm. ' +
+    'Never create an additional hand, claw, wrist, elbow, or independently articulated arm unless PARAMETERS explicitly request it.';
+
   const MORPHOLOGY_PROFILES = {
     standard_humanoid:
       MORPHOLOGY_COMMON + ' ' +
@@ -3252,13 +3264,15 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       MORPHOLOGY_COMMON + ' ' +
       'This source relies on its silhouette and external equipment \u2014 shoulders, limbs, backpack, wings, or binders \u2014 for identity. ' +
       'Preserve that silhouette\'s mass, direction, and rhythm strongly rather than smoothing it into conventional human proportions; keep rear or lateral equipment as clearly external structure rather than absorbing it into ordinary body armor. ' +
-      'Keep a believable adult human shoulder span. Translate oversized shoulder masses as external equipment, not as anatomical shoulder width. Preserve normal clavicle width and arm-joint placement. Keep arm sockets close to the torso.',
+      'Keep a believable adult human shoulder span. Translate oversized shoulder masses as external equipment, not as anatomical shoulder width. Preserve normal clavicle width and arm-joint placement. Keep arm sockets close to the torso. ' +
+      SOURCE_ARM_MAPPING,
     aggressive_restructure:
       MORPHOLOGY_COMMON + ' ' +
       'Ordinary humanoid translation would lose too much of this source\'s identity. ' +
       'Keep a coherent human skeleton, but allow more freedom in body proportion, armor mass, and equipment placement so the source\'s unusual, defining silhouette survives intact \u2014 do not default to a generic mecha-girl proportion. ' +
       'Do not solve large mechanical masses by excessively widening the anatomical shoulders or upper torso \u2014 redistribute bulk into external equipment rather than body width. ' +
-      'Keep a believable adult human shoulder span. Translate oversized shoulder masses as external equipment, not as anatomical shoulder width. Preserve normal clavicle width and arm-joint placement.'
+      'Keep a believable adult human shoulder span. Translate oversized shoulder masses as external equipment, not as anatomical shoulder width. Preserve normal clavicle width and arm-joint placement. ' +
+      UPPER_LIMB_TOPOLOGY_LOCK + ' ' + SOURCE_ARM_MAPPING
   };
   function morphModeKey(){
     const el=document.getElementById('morphMode');
