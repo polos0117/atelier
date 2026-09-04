@@ -3287,14 +3287,33 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     'Keep a believable adult human shoulder span; translate oversized shoulder masses as external or mounted structure without widening the biological clavicle or ribcage, and preserve normal clavicle width and arm-joint placement. ' +
     'Shoulder-adjacent mass may remain externally large, but if it belongs structurally to the source arm assembly, it must remain part of that same single arm chain rather than being detached into a second articulated appendage.';
 
+  /* v2: 위 AGGRESSIVE_SHOULDER_GUARD의 'may remain externally large'가 거대 숄더 포드를 그대로
+     남겨도 된다는 허가로 읽혀서, torso-pod-arm 구조가 유지되는 문제가 확인됨.
+     그래서 aggressive_restructure 조립에서는 이 상수 대신 아래 세 개를 쓴다. */
+  const AGGRESSIVE_SHOULDER_JOINT_ANCHOR =
+    '[SHOULDER JOINT ANCHOR] Each arm must originate directly from a compact humanoid shoulder socket located close to the ribcage; the actual shoulder root must remain compact. ' +
+    'Do not place a giant mechanical pod, shell, housing, or armored volume between the torso and the upper arm. ' +
+    'The upper arm must visibly connect directly to the character\'s shoulder joint. ' +
+    'Preserve a normal clavicle span and a readable neck-to-shoulder transition. ' +
+    'Do not move the arm socket laterally outward just to preserve the source machine\'s original shoulder width.';
+
+  const AGGRESSIVE_MASS_REDISTRIBUTION =
+    '[UPPER-BODY MASS REDISTRIBUTION] Do not preserve oversized source shoulder masses at their original literal size or literal placement when doing so would distort humanoid anatomy. ' +
+    'Compress exaggerated shoulder housings into compact shoulder caps. ' +
+    'Redistribute the remaining source mass longitudinally and rearward into upper-arm armor, elongated forearm armor, lateral arm shells, rear binders, dorsal structures, backpack masses, or fixed external framing. ' +
+    'Source mass may migrate, compress, split, or redistribute across the humanoid armor system when literal placement would damage anatomy.';
+
+  const AGGRESSIVE_SILHOUETTE_FIDELITY =
+    'Preserve the source machine\'s silhouette identity, directional emphasis, and overall visual weight, but allow major source masses to migrate, compress, split, or redistribute across the humanoid armor system when literal placement would distort anatomy.';
+
   const SOURCE_ARM_OWNERSHIP_MAPPING =
     '[SOURCE ARM OWNERSHIP MAPPING] Each source-side arm assembly maps to exactly one humanoid upper limb: the left source arm assembly becomes one left shoulder, upper arm, elbow, forearm, wrist, and hand; the right source arm assembly becomes one right shoulder, upper arm, elbow, forearm, wrist, and hand. ' +
     'If multiple armor masses surround one source arm, merge them into the same arm chain as layered armor or fixed structure. ' +
     'Do not convert those masses into auxiliary arms, sub-arms, manipulators, detached robotic limbs, or second hands.';
 
   const MORPHOLOGY_PRECEDENCE =
-    '[MORPHOLOGY PRECEDENCE] Morphology controls limb count, limb ownership, and joint topology. ' +
-    'The TRANSLATION PROFILE below may adjust humanization, skin exposure, body elegance, armor integration, and proportions, but it must not add, remove, duplicate, or reassign limbs, and must not create an inner humanoid arm beside a source-derived arm.';
+    '[MORPHOLOGY PRECEDENCE] Morphology controls limb count, limb ownership, joint topology, joint anchoring, and mechanical mass placement. ' +
+    'The TRANSLATION PROFILE below may adjust humanization, skin exposure, body elegance, armor integration, and proportions, but it must not add, remove, duplicate, or reassign limbs, must not create an inner humanoid arm beside a source-derived arm, and must not widen the anatomical shoulders.';
 
   const MORPHOLOGY_PROFILES = {
     standard_humanoid:
@@ -3307,7 +3326,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       'Keep a believable adult human shoulder span. Translate oversized shoulder masses as external equipment, not as anatomical shoulder width. Preserve normal clavicle width and arm-joint placement. Keep arm sockets close to the torso. ' +
       SOURCE_ARM_MAPPING,
     aggressive_restructure:
-      AGGRESSIVE_MORPHOLOGY_CORE + ' ' + AGGRESSIVE_SHOULDER_GUARD + ' ' + SOURCE_ARM_OWNERSHIP_MAPPING + ' ' + MORPHOLOGY_PRECEDENCE
+      AGGRESSIVE_MORPHOLOGY_CORE + ' ' + AGGRESSIVE_SHOULDER_JOINT_ANCHOR + ' ' + AGGRESSIVE_MASS_REDISTRIBUTION + ' ' + AGGRESSIVE_SILHOUETTE_FIDELITY + ' ' +
+      SOURCE_ARM_OWNERSHIP_MAPPING + ' ' + LIMB_OWNERSHIP_LOCK + ' ' + MORPHOLOGY_PRECEDENCE
   };
   function morphModeKey(){
     const el=document.getElementById('morphMode');
