@@ -530,6 +530,23 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     </div>
 
     <div class="form-section">
+      <div class="rnd-tgt" id="sgRandomTargets">
+        <span>랜덤으로 정할 것</span>
+        <label><input type="checkbox" data-srt="cat" checked><span>카테고리</span></label>
+        <label><input type="checkbox" data-srt="ex" checked><span>예시</span></label>
+        <label><input type="checkbox" data-srt="adv" checked><span>고급 설정</span></label>
+        <label><input type="checkbox" data-srt="aspect" checked><span>화면 비율</span></label>
+        <label><input type="checkbox" data-srt="frame" checked><span>화각</span></label>
+        <label><input type="checkbox" data-srt="expr"><span>표정</span></label>
+        <label><input type="checkbox" data-srt="orient"><span>시점</span></label>
+        <label><input type="checkbox" data-srt="pose"><span>포즈</span></label>
+      </div>
+      <div class="param-actions">
+        <button id="sgRandom" type="button">🎲 전체 랜덤</button>
+        <button id="sgRandomAxis" type="button">🎲 세부 강도만 랜덤</button>
+      </div>
+      <button id="sgUndo" type="button" class="card-rnd hidden">↩ 직전 설정으로</button>
+
       <div class="field">
         <label>Category <small>카테고리</small></label>
         <select id="sgCat"></select>
@@ -597,22 +614,6 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
         <input id="sgCustom" type="text" placeholder="예: rain outside the window, warm lamp light">
       </div>
 
-      <div class="rnd-tgt" id="sgRandomTargets">
-        <span>랜덤으로 정할 것</span>
-        <label><input type="checkbox" data-srt="cat" checked><span>카테고리</span></label>
-        <label><input type="checkbox" data-srt="ex" checked><span>예시</span></label>
-        <label><input type="checkbox" data-srt="adv" checked><span>고급 설정</span></label>
-        <label><input type="checkbox" data-srt="aspect" checked><span>화면 비율</span></label>
-        <label><input type="checkbox" data-srt="frame" checked><span>화각</span></label>
-        <label><input type="checkbox" data-srt="expr"><span>표정</span></label>
-        <label><input type="checkbox" data-srt="orient"><span>시점</span></label>
-        <label><input type="checkbox" data-srt="pose"><span>포즈</span></label>
-      </div>
-      <div class="param-actions">
-        <button id="sgRandom" type="button">🎲 전체 랜덤</button>
-        <button id="sgRandomAxis" type="button">🎲 세부 강도만 랜덤</button>
-      </div>
-      <button id="sgUndo" type="button" class="card-rnd hidden">↩ 직전 설정으로</button>
 
       <div class="save-bar" style="align-items:flex-start;flex-direction:column;gap:6px;margin-top:10px">
         <label style="display:flex;align-items:center;gap:7px;margin:0;cursor:pointer;font-size:11.5px">
@@ -1811,12 +1812,14 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
         const opts=[...document.getElementById('sgAspect').options].map(o=>o.value).filter(Boolean);
         if(opts.length)document.getElementById('sgAspect').value=pick(opts);
       }
-      if(T.frame){
-        const opts=[...document.getElementById('sgFrame').options].map(o=>o.value).filter(Boolean);
-        if(opts.length)document.getElementById('sgFrame').value=pick(opts);
-      }
     }
-    if(axesOnly||T.adv){
+    /* 화각은 세부 강도만 굴릴 때도 같이 굴러간다 — axesOnly 여부와 무관하게 락 체크만 본다 */
+    if(T.frame){
+      const opts=[...document.getElementById('sgFrame').options].map(o=>o.value).filter(Boolean);
+      if(opts.length)document.getElementById('sgFrame').value=pick(opts);
+    }
+    /* '세부 강도만 랜덤' 버튼도 고급 설정 락을 그대로 따른다 — 락 걸려 있으면 눌러도 그대로 */
+    if(T.adv){
       LOCAL_AXES.forEach(k=>{
         const el=document.querySelector('[data-sg-axis="'+k+'"]'); if(!el)return;
         const vals=(ADVANCED_OPTIONS[k]||[]).filter(v=>v!=='AUTO');
