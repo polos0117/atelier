@@ -3256,6 +3256,14 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     'Do not preserve the source silhouette by adding a second articulated arm-like structure beside either human arm. ' +
     'Never create an additional hand, claw, wrist, elbow, or independently articulated arm unless PARAMETERS explicitly request it.';
 
+  const LIMB_OWNERSHIP_LOCK =
+    '[LIMB OWNERSHIP LOCK] The source mobile suit\'s left arm assembly becomes the character\'s one and only left arm; the source mobile suit\'s right arm assembly becomes the character\'s one and only right arm. ' +
+    'Do not create a separate inner pair of humanoid arms in addition to those source-derived arm assemblies. ' +
+    'The hands attached to the source-derived left and right arm assemblies are the character\'s only hands. ' +
+    'The final character must contain exactly two shoulders, two arms, two elbows, two wrists, and two hands in total. ' +
+    'Do not preserve both a normal humanoid arm and a separate source-mechanical arm on the same side. ' +
+    'For each side, choose exactly one arm representation and integrate the source mechanical mass into that same arm rather than treating it as separate external equipment.';
+
   const MORPHOLOGY_PROFILES = {
     standard_humanoid:
       MORPHOLOGY_COMMON + ' ' +
@@ -3272,7 +3280,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       'Keep a coherent human skeleton, but allow more freedom in body proportion, armor mass, and equipment placement so the source\'s unusual, defining silhouette survives intact \u2014 do not default to a generic mecha-girl proportion. ' +
       'Do not solve large mechanical masses by excessively widening the anatomical shoulders or upper torso \u2014 redistribute bulk into external equipment rather than body width. ' +
       'Keep a believable adult human shoulder span. Translate oversized shoulder masses as external equipment, not as anatomical shoulder width. Preserve normal clavicle width and arm-joint placement. ' +
-      UPPER_LIMB_TOPOLOGY_LOCK + ' ' + SOURCE_ARM_MAPPING
+      UPPER_LIMB_TOPOLOGY_LOCK + ' ' + SOURCE_ARM_MAPPING + ' ' + LIMB_OWNERSHIP_LOCK
   };
   function morphModeKey(){
     const el=document.getElementById('morphMode');
