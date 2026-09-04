@@ -329,7 +329,6 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
           <label><input type="checkbox" data-rt="cat" checked><span>카테고리</span></label>
           <label><input type="checkbox" data-rt="ex" checked><span>예시</span></label>
           <label><input type="checkbox" data-rt="adv" checked><span>고급 설정</span></label>
-          <label><input type="checkbox" data-rt="aspect" checked><span>화면 비율</span></label>
           <label><input type="checkbox" data-rt="frame" checked><span>화각</span></label>
           <label><input type="checkbox" data-rt="expr"><span>표정</span></label>
           <label><input type="checkbox" data-rt="orient"><span>시점</span></label>
@@ -471,9 +470,20 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
                 <option value="elegant_backline">elegant_backline — 등/허리 라인 강조</option>
               </select>
             </div>
+            <div class="field">
+              <label>Framing <small>화각 · 전체 기준</small></label>
+              <select id="clgFrame">
+                <option value="">AUTO — 자동</option>
+                <option value="full body">full body — 전신</option>
+                <option value="three-quarter body">three-quarter — 무릎 위</option>
+                <option value="waist up">waist up — 상반신</option>
+                <option value="close-up portrait">close-up — 얼굴 근접</option>
+              </select>
+            </div>
           </div>
           <div class="help">
             무표정 반복을 줄이기 위해 표정 모드와 앞/옆/뒷태 방향 분배를 직접 지정할 수 있어.
+            화각은 여섯 칸 전체의 기준 거리이고, 카메라 변주 축이 그 기준에서 얼마나 벗어날지를 정해.
             개별 Panel 설정이 있으면 그 값이 우선해.
           </div>
         </div>
@@ -1326,6 +1336,10 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
         if(T.pose){const o=POSE_OPTIONS.filter(x=>x[0]);
           document.getElementById('pair'+n+'Pose').value=pickRnd(o)[0];}
       });
+      if(T.frame){
+        const o=[...document.getElementById('clgFrame').options].map(x=>x.value).filter(Boolean);
+        if(o.length)document.getElementById('clgFrame').value=pickRnd(o);
+      }
     };
     const modeKey=document.getElementById('randomMode').value||'variety';
     const M=RANDOM_MODES[modeKey]||RANDOM_MODES.variety;
@@ -1582,6 +1596,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     const orient=document.getElementById('globalOrientationMix').value;
     if(expr)lines.push('- Global expression mode: '+expr+'. Use varied expressions and avoid repeated blank faces.');
     if(orient)lines.push('- Global body-orientation mix: '+orient+'. Deliberately vary front-facing, side, and back-emphasis shots.');
+    const frameBase=document.getElementById('clgFrame')&&document.getElementById('clgFrame').value;
+    if(frameBase)lines.push('- Baseline framing across all six panels: '+frameBase+'. Camera-distance and angle variation should happen around this baseline rather than replacing it, unless an individual panel explicitly overrides it.');
     if(custom)lines.push('- Additional custom instruction: '+custom+'.');
     if(!lines.length)lines.push('- Use balanced defaults.');
     return lines.join('\n');
@@ -2064,6 +2080,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     o.custom=document.getElementById('collageCustom').value;
     o.expr=document.getElementById('globalExpressionMode').value;
     o.orient=document.getElementById('globalOrientationMix').value;
+    o.clgFrame=document.getElementById('clgFrame')?document.getElementById('clgFrame').value:'';
     o.preset=document.getElementById('presetSelect').value;
     o.avoid=document.getElementById('avoidUsed').checked;
     o.carry=document.getElementById('carryIdentity').checked;
@@ -2112,6 +2129,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     if(o.custom!==undefined)document.getElementById('collageCustom').value=o.custom;
     if(o.expr!==undefined)set('globalExpressionMode',o.expr);
     if(o.orient!==undefined)set('globalOrientationMix',o.orient);
+    if(o.clgFrame!==undefined)set('clgFrame',o.clgFrame);
     if(o.avoid!==undefined)document.getElementById('avoidUsed').checked=!!o.avoid;
     if(o.carry!==undefined)document.getElementById('carryIdentity').checked=!!o.carry;
     if(o.ravoid!==undefined)document.getElementById('randomAvoidUsed').checked=!!o.ravoid;
@@ -2192,8 +2210,10 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     const adv=Object.keys(getAdvanced()).length; if(adv)flags.push('고급 '+adv+'축 지정');
     const gx=document.getElementById('globalExpressionMode').value;
     const go=document.getElementById('globalOrientationMix').value;
+    const gf=document.getElementById('clgFrame')&&document.getElementById('clgFrame').value;
     if(gx)flags.push('표정 모드 '+gx);
     if(go)flags.push('시점 모드 '+go);
+    if(gf)flags.push('화각 '+gf);
     return '<div class="ks-t">지금 설정 요약</div>'+rows.map(r=>'<div class="ks-r">'+r+'</div>').join('')+
       (flags.length?'<div class="ks-f">'+escHtml(flags.join(' · '))+'</div>':'');
   }
@@ -3888,6 +3908,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     document.getElementById('collageCustom').value='';
     document.getElementById('globalExpressionMode').value='';
     document.getElementById('globalOrientationMix').value='';
+    if(document.getElementById('clgFrame'))document.getElementById('clgFrame').value='';
     document.querySelectorAll('[data-ov-panel]').forEach(i=>i.value='');
     for(let n=1;n<=6;n++){
       document.getElementById('panel'+n+'Example').value='';
@@ -4098,6 +4119,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   document.getElementById('collageCustom').addEventListener('input',refreshCollagePrompt);
   document.getElementById('globalExpressionMode').addEventListener('change',refreshCollagePrompt);
   document.getElementById('globalOrientationMix').addEventListener('change',refreshCollagePrompt);
+  document.getElementById('clgFrame').addEventListener('change',refreshCollagePrompt);
   Object.keys(ADVANCED_OPTIONS).forEach(k=>document.getElementById('adv_'+k).addEventListener('change',refreshCollagePrompt));
   document.getElementById('applyCollage').addEventListener('click',()=>{refreshCollagePrompt();setStatus('statusCollage','콜라주 설정 적용 완료','ok');});
   document.getElementById('resetCollage').addEventListener('click',resetCollage);
