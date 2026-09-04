@@ -248,6 +248,9 @@ main{padding:12px}
   cursor:pointer;background:#11161C}
 .gal img.on{border-color:var(--cc);box-shadow:0 0 0 2px var(--cc) inset}
 
+.stylesw{margin-bottom:10px}
+.stylesw select{width:100%;background:var(--panel);border:1px solid var(--rule);color:var(--ink);
+  font:inherit;font-size:13px;border-radius:6px;padding:8px 10px}
 .zoom{position:fixed;inset:0;z-index:70;background:rgba(8,10,13,.95);
   display:flex;align-items:center;justify-content:center;padding:16px;cursor:zoom-out}
 .zoom img{max-width:100%;max-height:100%;border-radius:4px}
@@ -288,8 +291,8 @@ main{padding:12px}
 /* ══ 게임 파일에서 추출한 데이터 (build-dex.py 자동 생성) ══ */
 __DATA__
 /* ══ 도감 전용 코드 ══ */
-var POOL={"기체":MECH,"파일럿":PILOT,"지휘관":CREW,"함":SHIP,"화풍":MECH};
-var TABS=["기체","파일럿","지휘관","함","화풍"];
+var POOL={"기체":MECH,"파일럿":PILOT,"지휘관":CREW,"함":SHIP};
+var TABS=["기체","파일럿","지휘관","함"];
 var tab="기체", ser="", q="", vari="f", mode="p";   /* p 의인화 · c 일상 · x 특별 컷 */
 var styleSel="";   /* 화풍 탭에서 고른 화풍 키, 빈 값이면 전체 */
 var MODE_NAME={p:"의인화",c:"일상",x:"특별 컷",w:"작업"};
@@ -361,7 +364,7 @@ function esc(s){return String(s).replace(/[&<>"]/g,function(x){
    화풍 탭에서 특정 화풍을 고른 상태면 그 버킷을, 아니면 기본 버킷을 쓴다. */
 function styleBucket(c){
   var s=IMG[c[0]]; if(!s)return null;
-  if(tab==="화풍"&&styleSel&&s.byStyle&&s.byStyle[styleSel])return s.byStyle[styleSel];
+  if(tab==="기체"&&styleSel&&s.byStyle&&s.byStyle[styleSel])return s.byStyle[styleSel];
   return s;
 }
 function picOf(c,v){var s=styleBucket(c); if(!s)return null; return s[v]||s[flip(v)]||null}
@@ -504,7 +507,7 @@ function drawSer(){
 }
 function drawStyleSel(){
   var sel=document.getElementById("styleSel");
-  if(tab!=="화풍"){sel.hidden=true;return}
+  if(tab!=="기체"){sel.hidden=true;return}
   sel.hidden=false;
   var arr=POOL[tab]||[],cnt={},i;
   for(i=0;i<arr.length;i++){
@@ -620,11 +623,21 @@ function copyPrompt(name){
 function find(n){var arr=POOL[tab],i;for(i=0;i<arr.length;i++)if(arr[i][0]===n)return arr[i];return null}
 function open(n,start){
   var c=find(n); if(!c)return;
-  var cc=ccOf(c), s=styleBucket(c), t=(tab==="화풍"?"기체":tab);
+  var cc=ccOf(c), t=tab;
   var labels=STAT_LABEL[t]||["","","",""];
   var v=vari;
+  /* 이 기체가 가진 화풍 전부. 시트 안에서 독립적으로 넘겨볼 수 있다(밖의 필터와 별개). */
+  var styleKeys=(t==="기체")?tkStyleKeys(c[0]):[];
+  var curStyle=(styleSel&&styleKeys.indexOf(styleSel)>=0)?styleSel:(styleKeys[0]||"");
+  function bucketFor(key){
+    var base=IMG[c[0]]; if(!base)return null;
+    if(key&&key!==styleKeys[0]&&base.byStyle&&base.byStyle[key])return base.byStyle[key];
+    return base;
+  }
+  var s=bucketFor(curStyle);
+  function localPicOf(vv){return (s&&(s[vv]||s[flip(vv)]))||null}
   /* 리스트에서 고른 그림을 그대로 대표 그림으로 띄운다 */
-  var cur=start||picOf(c,v)||null;
+  var cur=start||localPicOf(v)||null;
   if(start&&s){if(s.m&&imgURL(s.m)===imgURL(start))v="m";
                else if(s.f&&imgURL(s.f)===imgURL(start))v="f"}
 
@@ -642,6 +655,14 @@ function open(n,start){
                      if(c[9])h+='<span class="chip">'+esc(c[9])+'</span>'}
     h+='</div></div>';
 
+    if(styleKeys.length>1){
+      h+='<div class="stylesw"><select id="sheetStyleSel">';
+      styleKeys.forEach(function(k){
+        h+='<option value="'+k+'"'+(k===curStyle?' selected':'')+'>'+esc(TK_ART[k]||k)+'</option>';
+      });
+      h+='</select></div>';
+    }
+
     if(cur){
       h+='<div class="art"><img src="'+imgURL(cur)+'" alt="" data-z="'+esc(imgURL(cur))+'">';
       if(s&&s.m&&s.f&&isPortrait(cur))
@@ -653,7 +674,7 @@ function open(n,start){
     if(t==="기체"){
       var tk=tkSummary(c[0]);
       h+='<div class="dt-tk"><b>툴킷 설정</b>'+
-         '<div style="margin-bottom:3px">화풍 · '+esc(tkStyle(c[0]))+'</div>'+
+         '<div style="margin-bottom:3px">화풍 · '+esc(TK_ART[curStyle]||curStyle||tkStyle(c[0]))+'</div>'+
          (tk?esc(tk).replace(/\n/g,"<br>"):"저장된 설정이 없다.")+
          (function(){var u=tkUsed(c[0]);return u.length?
            '<div style="margin-top:6px;opacity:.85">일상컷 복사 기록 · '+esc(u.join(", "))+'</div>':""})()+
@@ -689,6 +710,11 @@ function open(n,start){
     sh.innerHTML='<div class="bar"><button data-x="1" aria-label="닫기">&times;</button>'+
       '<span class="t">'+esc(c[0])+'</span></div><div class="wrap">'+body()+'</div>';
     sh.scrollTop=y;
+    var ssEl=sh.querySelector("#sheetStyleSel");
+    if(ssEl)ssEl.onchange=function(){
+      curStyle=this.value; s=bucketFor(curStyle); cur=localPicOf(v);
+      render(true);
+    };
   }
   render(false);
   sh.addEventListener("click",function(e){
@@ -696,7 +722,7 @@ function open(n,start){
         pick=e.target.closest("img[data-s]"),
         z=e.target.closest(".art img");
     if(b&&b.dataset.x){close();return}
-    if(b&&b.dataset.v){v=b.dataset.v;cur=picOf(c,v);render(true);return}
+    if(b&&b.dataset.v){v=b.dataset.v;cur=localPicOf(v);render(true);return}
     if(pick){cur=pick.dataset.s;render(true);sh.scrollTop=0;return}
     if(z){zoom(z.dataset.z);return}
   });
