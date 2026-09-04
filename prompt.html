@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Gundam Prompt Toolkit v9.1</title>
+<title>Gundam Prompt Toolkit v9.2</title>
 <style>
 :root{
   color-scheme:light dark;
@@ -250,13 +250,20 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   </div>
 
 
-  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.1</b> <span>구조 완성 — 11개 화풍 전체 이관</span></div>
+  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.2</b> <span>Morphology Mode 추가</span></div>
   <details class="srcbox verbox" id="verBox">
     <summary>
-      <span class="sel-line" style="white-space:normal;overflow:visible">v9.1 변경 내역</span>
+      <span class="sel-line" style="white-space:normal;overflow:visible">v9.2 변경 내역</span>
       <span class="sb-txt">패치 노트</span>
     </summary>
     <div class="vb-in">
+      <b>v9.2 &middot; Morphology Mode 추가</b>
+      <ul>
+        <li>의인화 탭에 Morphology Mode 셀렉트 신설 — 표준형 / 실루엣·장비 강조형 / 강변형형 3종</li>
+        <li>바이아란처럼 인간형과 거리가 있는 기체를 위한 것. 기체별 자동 분류는 하지 않고 사용자가 직접 고른다 — 정답 하나를 강제하지 않는다</li>
+        <li>일상컷(콜라주·단일컷)에는 이 블록이 구조적으로 아예 조립되지 않는다 — 넣고 무시하는 게 아니라 애초에 그 함수가 이 블록을 모른다</li>
+        <li>세미리얼·게임 키아트 골든 페어와 나머지 9개 화풍 전부 무변화</li>
+      </ul>
       <b>v9.1 &middot; 구조 완성 — 11개 화풍 전체 이관</b>
       <ul>
         <li>세미리얼·게임 키아트 2개만 쓰던 새 구조를 11개 화풍 전체로 확장했다. 모든 화풍이 STYLE_PROFILES 한 경로로 통일됐다</li>
