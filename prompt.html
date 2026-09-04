@@ -587,6 +587,17 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
         <input id="sgCustom" type="text" placeholder="예: rain outside the window, warm lamp light">
       </div>
 
+      <div class="rnd-tgt" id="sgRandomTargets">
+        <span>랜덤으로 정할 것</span>
+        <label><input type="checkbox" data-srt="cat" checked><span>카테고리</span></label>
+        <label><input type="checkbox" data-srt="ex" checked><span>예시</span></label>
+        <label><input type="checkbox" data-srt="adv" checked><span>고급 설정</span></label>
+        <label><input type="checkbox" data-srt="aspect" checked><span>화면 비율</span></label>
+        <label><input type="checkbox" data-srt="frame" checked><span>화각</span></label>
+        <label><input type="checkbox" data-srt="expr"><span>표정</span></label>
+        <label><input type="checkbox" data-srt="orient"><span>시점</span></label>
+        <label><input type="checkbox" data-srt="pose"><span>포즈</span></label>
+      </div>
       <div class="param-actions">
         <button id="sgRandom" type="button">🎲 전체 랜덤</button>
         <button id="sgRandomAxis" type="button">🎲 세부 강도만 랜덤</button>
@@ -1197,6 +1208,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   }
   /* 카드 하나만 굴린다. 랜덤 대상 체크박스와 성격 풀을 그대로 따른다 */
   function rndTargets(){const T={};document.querySelectorAll('[data-rt]').forEach(el=>T[el.dataset.rt]=el.checked);return T;}
+  function sgRndTargets(){const T={};document.querySelectorAll('[data-srt]').forEach(el=>T[el.dataset.srt]=el.checked);return T;}
   function modePool(){
     const M=RANDOM_MODES[document.getElementById('randomMode').value]||RANDOM_MODES.variety;
     return (M.pool||RANDOM_POOL).slice();
@@ -1767,7 +1779,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   }
   function sgRandomize(axesOnly){
     sgPushUndo();
-    const T=rndTargets(), pick=a2=>a2[Math.floor(Math.random()*a2.length)];
+    const T=sgRndTargets(), pick=a2=>a2[Math.floor(Math.random()*a2.length)];
     if(!axesOnly){
       if(T.cat){const c=pick(freshPool([]));
         const cs=document.getElementById('sgCat');
