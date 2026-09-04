@@ -3264,6 +3264,38 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     'Do not preserve both a normal humanoid arm and a separate source-mechanical arm on the same side. ' +
     'For each side, choose exactly one arm representation and integrate the source mechanical mass into that same arm rather than treating it as separate external equipment.';
 
+  /* aggressive_restructure 전용: MORPHOLOGY_COMMON을 상속하지 않는다.
+     '팔 주변 매스는 외장 장비로' 라는 일반 문구가 arm ownership 지시와 충돌해서
+     source arm이 external shell로도, 별도 인간 팔로도 동시에 생기는 4팔 현상을 유발했다.
+     그래서 팔은 독자적인 topology-first 규칙으로, 팔이 아닌 부분만 기존 방식(외장 번역)을 쓴다. */
+  const AGGRESSIVE_MORPHOLOGY_CORE =
+    '[AGGRESSIVE MORPHOLOGY TOPOLOGY] First identify the source mobile suit\'s dominant body morphology and silhouette logic. ' +
+    'Preserve a normal humanoid biological skeleton for the torso and legs unless PARAMETERS explicitly request otherwise. ' +
+    'For any oversized, elongated, offset, or non-human structure that is NOT part of an arm assembly \u2014 such as dorsal structures, backpack masses, leg armor, or shoulder-adjacent bulk not tied to the arm chain \u2014 translate it into external armor shells, backpack assemblies, binders, dorsal fins, or other non-biological equipment around the humanoid body. ' +
+    'Determine arm limb ownership before designing the rest of the humanoid body. ' +
+    'Create exactly one left upper-limb chain and one right upper-limb chain. ' +
+    'The source mobile suit\'s left arm assembly defines the character\'s complete left arm chain: shoulder joint, upper arm, elbow, forearm, wrist, and hand. ' +
+    'The source mobile suit\'s right arm assembly defines the character\'s complete right arm chain: shoulder joint, upper arm, elbow, forearm, wrist, and hand. ' +
+    'Do not first create a normal inner humanoid arm and then preserve the source arm as external equipment. ' +
+    'There is no second inner arm behind, beneath, beside, or inside either source-derived arm assembly. ' +
+    'The source-derived mechanical arm occupies the normal humanoid arm socket directly. ' +
+    'For each side, all mechanical masses belonging to that source arm must be integrated into the same single arm chain rather than split into a separate external mechanical arm. ' +
+    'The final humanoid must contain exactly two shoulders, two upper arms, two elbows, two forearms, two wrists, and two hands. ' +
+    'Large source arm geometry may alter the size, armor mass, and silhouette of that same arm, but must not create an additional articulated limb.';
+
+  const AGGRESSIVE_SHOULDER_GUARD =
+    'Keep a believable adult human shoulder span; translate oversized shoulder masses as external or mounted structure without widening the biological clavicle or ribcage, and preserve normal clavicle width and arm-joint placement. ' +
+    'Shoulder-adjacent mass may remain externally large, but if it belongs structurally to the source arm assembly, it must remain part of that same single arm chain rather than being detached into a second articulated appendage.';
+
+  const SOURCE_ARM_OWNERSHIP_MAPPING =
+    '[SOURCE ARM OWNERSHIP MAPPING] Each source-side arm assembly maps to exactly one humanoid upper limb: the left source arm assembly becomes one left shoulder, upper arm, elbow, forearm, wrist, and hand; the right source arm assembly becomes one right shoulder, upper arm, elbow, forearm, wrist, and hand. ' +
+    'If multiple armor masses surround one source arm, merge them into the same arm chain as layered armor or fixed structure. ' +
+    'Do not convert those masses into auxiliary arms, sub-arms, manipulators, detached robotic limbs, or second hands.';
+
+  const MORPHOLOGY_PRECEDENCE =
+    '[MORPHOLOGY PRECEDENCE] Morphology controls limb count, limb ownership, and joint topology. ' +
+    'The TRANSLATION PROFILE below may adjust humanization, skin exposure, body elegance, armor integration, and proportions, but it must not add, remove, duplicate, or reassign limbs, and must not create an inner humanoid arm beside a source-derived arm.';
+
   const MORPHOLOGY_PROFILES = {
     standard_humanoid:
       MORPHOLOGY_COMMON + ' ' +
@@ -3275,12 +3307,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       'Keep a believable adult human shoulder span. Translate oversized shoulder masses as external equipment, not as anatomical shoulder width. Preserve normal clavicle width and arm-joint placement. Keep arm sockets close to the torso. ' +
       SOURCE_ARM_MAPPING,
     aggressive_restructure:
-      MORPHOLOGY_COMMON + ' ' +
-      'Ordinary humanoid translation would lose too much of this source\'s identity. ' +
-      'Keep a coherent human skeleton, but allow more freedom in body proportion, armor mass, and equipment placement so the source\'s unusual, defining silhouette survives intact \u2014 do not default to a generic mecha-girl proportion. ' +
-      'Do not solve large mechanical masses by excessively widening the anatomical shoulders or upper torso \u2014 redistribute bulk into external equipment rather than body width. ' +
-      'Keep a believable adult human shoulder span. Translate oversized shoulder masses as external equipment, not as anatomical shoulder width. Preserve normal clavicle width and arm-joint placement. ' +
-      UPPER_LIMB_TOPOLOGY_LOCK + ' ' + SOURCE_ARM_MAPPING + ' ' + LIMB_OWNERSHIP_LOCK
+      AGGRESSIVE_MORPHOLOGY_CORE + ' ' + AGGRESSIVE_SHOULDER_GUARD + ' ' + SOURCE_ARM_OWNERSHIP_MAPPING + ' ' + MORPHOLOGY_PRECEDENCE
   };
   function morphModeKey(){
     const el=document.getElementById('morphMode');
