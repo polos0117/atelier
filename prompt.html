@@ -627,6 +627,16 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
         탭마다 설정을 따로 기억한다. 여성 쪽에서 잡은 값이 남성 쪽으로 넘어가지 않는다.
       </div>
 
+      <div class="field" style="margin-top:10px">
+        <label>Morphology Mode <small>형태 번역 전략 · 인간형과 거리가 있는 기체에 사용</small></label>
+        <select id="morphMode">
+          <option value="standard_humanoid">표준형 — 일반적인 사람형 MS</option>
+          <option value="silhouette_equipment_emphasis">실루엣/장비 강조형 — 어깨·팔다리·바인더 등 외곽 인상이 중요할 때</option>
+          <option value="aggressive_restructure">강변형형 — 일반 의인화로는 원본 느낌이 죽는 난형 기체용</option>
+        </select>
+        <div class="param-note" style="margin-top:4px">정답은 하나가 아니다 — 결과가 미묘하면 다른 모드로 다시 생성해본다.</div>
+      </div>
+
       <div class="param-note" id="paramTotal" style="margin:10px 0 0"></div>
       <div id="paramGroups" style="margin-top:8px"></div>
 
@@ -3219,6 +3229,36 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     return '[TRANSLATION PROFILE]\n\n'+TRANSLATION_PROFILES[translationProfileKey()];
   }
 
+  /* ---- Morphology Mode: Anthro 전용, 사용자 선택형. 자동 분류 없음. ---- */
+  const MORPHOLOGY_COMMON =
+    'First identify the source mobile suit\'s dominant body morphology and silhouette logic before translating it into humanoid form. ' +
+    'Preserve a normal humanoid biological skeleton unless PARAMETERS explicitly request otherwise. ' +
+    'Do not reproduce unusual source geometry as extra biological arms, legs, torsos, or duplicate human limbs. ' +
+    'When the source contains oversized, elongated, offset, floating-looking, or non-human mechanical structures, preserve their silhouette function by translating them into external armor shells, shoulder frames, elongated forearm armor, backpack assemblies, binders, dorsal fins, external mechanical supports, or other non-biological equipment around the humanoid body. ' +
+    'Source geometry controls silhouette identity; humanoid translation controls anatomical integration.';
+
+  const MORPHOLOGY_PROFILES = {
+    standard_humanoid:
+      MORPHOLOGY_COMMON + ' ' +
+      'This source already maps cleanly onto a humanoid body. Avoid unnecessary structural reinterpretation \u2014 translate its recognizable armor language and proportions naturally.',
+    silhouette_equipment_emphasis:
+      MORPHOLOGY_COMMON + ' ' +
+      'This source relies on its silhouette and external equipment \u2014 shoulders, limbs, backpack, wings, or binders \u2014 for identity. ' +
+      'Preserve that silhouette\'s mass, direction, and rhythm strongly rather than smoothing it into conventional human proportions; keep rear or lateral equipment as clearly external structure rather than absorbing it into ordinary body armor.',
+    aggressive_restructure:
+      MORPHOLOGY_COMMON + ' ' +
+      'Ordinary humanoid translation would lose too much of this source\'s identity. ' +
+      'Keep a coherent human skeleton, but allow more freedom in body proportion, armor mass, and equipment placement so the source\'s unusual, defining silhouette survives intact \u2014 do not default to a generic mecha-girl proportion.'
+  };
+  function morphModeKey(){
+    const el=document.getElementById('morphMode');
+    const v=el?el.value:'';
+    return MORPHOLOGY_PROFILES[v]?v:'standard_humanoid';
+  }
+  function morphologyAdapterBlock(){
+    return '[SOURCE MORPHOLOGY ADAPTER]\n\n'+MORPHOLOGY_PROFILES[morphModeKey()];
+  }
+
   const STYLE_PROFILES = {
     cinematic_semi_real: { core: STYLE_CORES.cinematic_semi_real, anthro: ANTHRO_STYLE_EXTENSIONS.cinematic_semi_real, lifestyle: LIFESTYLE_STYLE_EXTENSIONS.cinematic_semi_real },
     game_keyart: { core: STYLE_CORES.game_keyart, anthro: ANTHRO_STYLE_EXTENSIONS.game_keyart, lifestyle: LIFESTYLE_STYLE_EXTENSIONS.game_keyart },
@@ -3438,7 +3478,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   function auditPrompt(mode,prompt){
     const errors=[];
     if(mode===MODE.LIFESTYLE){
-      ['[ANTHRO STYLE EXTENSION]','[TRANSLATION PROFILE]'].forEach(tok=>{
+      ['[ANTHRO STYLE EXTENSION]','[TRANSLATION PROFILE]','[SOURCE MORPHOLOGY ADAPTER]'].forEach(tok=>{
         if(prompt.includes(tok))errors.push('Lifestyle prompt contains anthro block: '+tok);
       });
     }
@@ -3726,7 +3766,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     /* 화풍은 27개 파라미터 중 하나로 묻히면 힘이 약하다.
        콜라주·단일과 같이 독립 블록으로 올려 앞에 세운다. */
     const out2=templateC.replace('PARAMETERS = [\ngender,\nmobile suit name,\nseries\n]',block);
-    const full=anthroStyleBlock()+'\n\n'+translationProfileBlock()+
+    const full=anthroStyleBlock()+'\n\n'+morphologyAdapterBlock()+'\n\n'+translationProfileBlock()+
       '\n\n==================================================\n\n'+out2;
     auditPrompt(MODE.ANTHRO,full);
     return full;
