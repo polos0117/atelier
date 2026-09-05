@@ -74,6 +74,7 @@ ALIAS_MECH = {
     "건담 Mk-Ⅱ 에우고 사양": "건담 Mk-II",
     "건담 Mk-Ⅱ 티탄즈 사양": "건담 Mk-II 티탄즈사양",
     "큐베레이 Mk-Ⅱ": "큐베레이 Mk-II 플기",
+    "건담 NT-1 Alex": "건담 NT-1",
 }
 
 
@@ -106,6 +107,15 @@ PERSON = {"람바랄": "란바랄", "화유이리": "파유이리", "케리레�
           "포무라사메": "포우", "그레미토토": "글레미"}
 
 
+# 규칙으로는 맞아 보이지만 넣으면 틀리는 짝. 왜 뺐는지 같이 적어 둔다.
+REJECT = {
+    "플 투|큐베레이 Mk-II 플기":
+        "공식은 큐베레이 Mk-Ⅱ 를 한 항목으로 싣고 엘피 플과 플 투를 함께 적는데, "
+        "저장소는 플기·플투기 두 장으로 나눠 두었다. 플기는 엘피 플의 기체이고 "
+        "두 짝 모두 이미 BOND 에 .20 으로 있다.",
+}
+
+
 def find_pilot(name, idx):
     """공식은 성까지 쓰고 저장소는 줄여 쓴다. 뒷부분만 쓰기도 한다
     (팝티머스 시로코 → 시로코). 후보가 하나뿐일 때만 믿는다."""
@@ -136,7 +146,7 @@ def main():
     BOND = bond_map(src)
     midx, pidx = index([r[0] for r in MECH]), index([r[0] for r in PILOT])
 
-    ready, no_pilot, no_mech, known = [], [], [], []
+    ready, no_pilot, no_mech, known, rejected = [], [], [], [], []
     seen_pairs = set()
     for code, mechs in sorted(rel.items()):
         for oname, e in sorted(mechs.items()):
@@ -156,6 +166,10 @@ def main():
                     continue
                 seen_pairs.add(key)
                 row["key"] = key
+                if key in REJECT:
+                    row["reason"] = REJECT[key]
+                    rejected.append(row)
+                    continue
                 if key in BOND:
                     row["weight"] = BOND[key]
                     known.append(row)
@@ -179,11 +193,12 @@ def main():
                    "series_done": sorted(rel), "mechs_scanned": sum(len(v) for v in rel.values())},
         "summary": {"ready": len(ready), "no_pilot": len(no_pilot),
                     "no_mech": len(no_mech), "known": len(known),
-                    "bond_existing": len(BOND)},
+                    "rejected": len(rejected), "bond_existing": len(BOND)},
         "ready": ready,
         "no_pilot": no_pilot,
         "no_mech": no_mech,
         "known": known,
+        "rejected": rejected,
         "multi_mech_pilots": 多,
     }
     json.dump(res, open(a.out, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
@@ -191,7 +206,7 @@ def main():
     s = res["summary"]
     print(f"[완료] {a.out}")
     print(f"  바로 넣을 수 있음 {s['ready']} · 파일럿 카드 없음 {s['no_pilot']} · "
-          f"기체 카드 없음 {s['no_mech']} · 이미 있음 {s['known']}")
+          f"기체 카드 없음 {s['no_mech']} · 이미 있음 {s['known']} · 뺀 것 {s['rejected']}")
     print(f"  (기존 BOND {s['bond_existing']} 쌍)")
 
     if a.report:

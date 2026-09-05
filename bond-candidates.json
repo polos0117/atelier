@@ -16,166 +16,14 @@
   "mechs_scanned": 139
  },
  "summary": {
-  "ready": 19,
+  "ready": 0,
   "no_pilot": 43,
   "no_mech": 1,
-  "known": 73,
-  "bond_existing": 230
+  "known": 91,
+  "rejected": 1,
+  "bond_existing": 247
  },
- "ready": [
-  {
-   "series": "0080",
-   "official_mech": "건담 NT-1 Alex",
-   "official_pilot": "크리스티나 맥켄지",
-   "mech": "건담 NT-1 Alex",
-   "pilot": "크리스티나 맥켄지",
-   "key": "크리스티나 맥켄지|건담 NT-1 Alex"
-  },
-  {
-   "series": "0080",
-   "official_mech": "자쿠II 개량형",
-   "official_pilot": "버나드 와이즈먼",
-   "mech": "자쿠II 개량형",
-   "pilot": "버나드 와이즈먼",
-   "key": "버나드 와이즈먼|자쿠II 개량형"
-  },
-  {
-   "series": "0083",
-   "official_mech": "건담 시작 1호기 풀 버니언",
-   "official_pilot": "코우 우라키",
-   "mech": "건담 시작 1호기 풀 버니언",
-   "pilot": "코우 우라키",
-   "key": "코우 우라키|건담 시작 1호기 풀 버니언"
-  },
-  {
-   "series": "0083",
-   "official_mech": "겔구그M(지휘관용)",
-   "official_pilot": "시마 가라하우",
-   "mech": "겔구그M (지휘관용)",
-   "pilot": "시마 가라하우",
-   "key": "시마 가라하우|겔구그M (지휘관용)"
-  },
-  {
-   "series": "0083",
-   "official_mech": "발 바로",
-   "official_pilot": "케리 레즈너",
-   "mech": "발 바로",
-   "pilot": "켈리 레즈너",
-   "key": "켈리 레즈너|발 바로"
-  },
-  {
-   "series": "08MS",
-   "official_mech": "볼 K형",
-   "official_pilot": "시로 아마다",
-   "mech": "볼 K형",
-   "pilot": "시로 아마다",
-   "key": "시로 아마다|볼 K형"
-  },
-  {
-   "series": "CCA",
-   "official_mech": "α 아지르",
-   "official_pilot": "퀘스 파라야",
-   "mech": "알파 아질",
-   "pilot": "퀘스 파라야",
-   "key": "퀘스 파라야|알파 아질"
-  },
-  {
-   "series": "CCA",
-   "official_mech": "기라 도가",
-   "official_pilot": "레즌 슈나이더",
-   "mech": "기라 도가",
-   "pilot": "레즌",
-   "key": "레즌|기라 도가"
-  },
-  {
-   "series": "CCA",
-   "official_mech": "리 가지",
-   "official_pilot": "아무로 레이",
-   "mech": "리가지",
-   "pilot": "아무로",
-   "key": "아무로|리가지"
-  },
-  {
-   "series": "CCA",
-   "official_mech": "리 가지",
-   "official_pilot": "케라 수",
-   "mech": "리가지",
-   "pilot": "케라 스",
-   "key": "케라 스|리가지"
-  },
-  {
-   "series": "ZZ",
-   "official_mech": "갈루스J",
-   "official_pilot": "마슈마 세로",
-   "mech": "갈루스J",
-   "pilot": "마슈마 세로",
-   "key": "마슈마 세로|갈루스J"
-  },
-  {
-   "series": "ZZ",
-   "official_mech": "강화형 ZZ건담",
-   "official_pilot": "쥬도 아시타",
-   "mech": "강화형 ZZ건담",
-   "pilot": "쥬도 아시타",
-   "key": "쥬도 아시타|강화형 ZZ건담"
-  },
-  {
-   "series": "ZZ",
-   "official_mech": "바우",
-   "official_pilot": "그레미 토토",
-   "mech": "바우",
-   "pilot": "글레미",
-   "key": "글레미|바우"
-  },
-  {
-   "series": "ZZ",
-   "official_mech": "자쿠Ⅲ 개량형",
-   "official_pilot": "마슈마 세로",
-   "mech": "자쿠III 개량형",
-   "pilot": "마슈마 세로",
-   "key": "마슈마 세로|자쿠III 개량형"
-  },
-  {
-   "series": "ZZ",
-   "official_mech": "즈사",
-   "official_pilot": "마슈마 세로",
-   "mech": "즈사",
-   "pilot": "마슈마 세로",
-   "key": "마슈마 세로|즈사"
-  },
-  {
-   "series": "ZZ",
-   "official_mech": "퀸 만사",
-   "official_pilot": "플 투",
-   "mech": "퀸 만사",
-   "pilot": "플 투",
-   "key": "플 투|퀸 만사"
-  },
-  {
-   "series": "ZZ",
-   "official_mech": "큐베레이 Mk-Ⅱ",
-   "official_pilot": "플 투",
-   "mech": "큐베레이 Mk-II 플기",
-   "pilot": "플 투",
-   "key": "플 투|큐베레이 Mk-II 플기"
-  },
-  {
-   "series": "ZZ",
-   "official_mech": "풀 아머 ZZ건담",
-   "official_pilot": "쥬도 아시타",
-   "mech": "풀 아머 ZZ건담",
-   "pilot": "쥬도 아시타",
-   "key": "쥬도 아시타|풀 아머 ZZ건담"
-  },
-  {
-   "series": "ZZ",
-   "official_mech": "함마 함마",
-   "official_pilot": "마슈마 세로",
-   "mech": "함마 함마",
-   "pilot": "마슈마 세로",
-   "key": "마슈마 세로|함마 함마"
-  }
- ],
+ "ready": [],
  "no_pilot": [
   {
    "series": "0079",
@@ -688,6 +536,24 @@
    "weight": 0.18
   },
   {
+   "series": "0080",
+   "official_mech": "건담 NT-1 Alex",
+   "official_pilot": "크리스티나 맥켄지",
+   "mech": "건담 NT-1",
+   "pilot": "크리스티나 맥켄지",
+   "key": "크리스티나 맥켄지|건담 NT-1",
+   "weight": 0.2
+  },
+  {
+   "series": "0080",
+   "official_mech": "자쿠II 개량형",
+   "official_pilot": "버나드 와이즈먼",
+   "mech": "자쿠II 개량형",
+   "pilot": "버나드 와이즈먼",
+   "key": "버나드 와이즈먼|자쿠II 개량형",
+   "weight": 0.2
+  },
+  {
    "series": "0083",
    "official_mech": "거베라 테트라",
    "official_pilot": "시마 가라하우",
@@ -703,6 +569,15 @@
    "mech": "건담 시작 1호기 제피랜서스",
    "pilot": "코우 우라키",
    "key": "코우 우라키|건담 시작 1호기 제피랜서스",
+   "weight": 0.2
+  },
+  {
+   "series": "0083",
+   "official_mech": "건담 시작 1호기 풀 버니언",
+   "official_pilot": "코우 우라키",
+   "mech": "건담 시작 1호기 풀 버니언",
+   "pilot": "코우 우라키",
+   "key": "코우 우라키|건담 시작 1호기 풀 버니언",
    "weight": 0.2
   },
   {
@@ -734,12 +609,30 @@
   },
   {
    "series": "0083",
+   "official_mech": "겔구그M(지휘관용)",
+   "official_pilot": "시마 가라하우",
+   "mech": "겔구그M (지휘관용)",
+   "pilot": "시마 가라하우",
+   "key": "시마 가라하우|겔구그M (지휘관용)",
+   "weight": 0.18
+  },
+  {
+   "series": "0083",
    "official_mech": "노이에 질",
    "official_pilot": "아나벨 가토",
    "mech": "노이에 질",
    "pilot": "아나벨 가토",
    "key": "아나벨 가토|노이에 질",
    "weight": 0.18
+  },
+  {
+   "series": "0083",
+   "official_mech": "발 바로",
+   "official_pilot": "케리 레즈너",
+   "mech": "발 바로",
+   "pilot": "켈리 레즈너",
+   "key": "켈리 레즈너|발 바로",
+   "weight": 0.2
   },
   {
    "series": "08MS",
@@ -761,6 +654,15 @@
   },
   {
    "series": "08MS",
+   "official_mech": "볼 K형",
+   "official_pilot": "시로 아마다",
+   "mech": "볼 K형",
+   "pilot": "시로 아마다",
+   "key": "시로 아마다|볼 K형",
+   "weight": 0.12
+  },
+  {
+   "series": "08MS",
    "official_mech": "육전형 건담",
    "official_pilot": "시로 아마다",
    "mech": "육전형 건담",
@@ -770,11 +672,47 @@
   },
   {
    "series": "CCA",
+   "official_mech": "α 아지르",
+   "official_pilot": "퀘스 파라야",
+   "mech": "알파 아질",
+   "pilot": "퀘스 파라야",
+   "key": "퀘스 파라야|알파 아질",
+   "weight": 0.2
+  },
+  {
+   "series": "CCA",
    "official_mech": "ν 건담",
    "official_pilot": "아무로 레이",
    "mech": "뉴 건담",
    "pilot": "아무로",
    "key": "아무로|뉴 건담",
+   "weight": 0.2
+  },
+  {
+   "series": "CCA",
+   "official_mech": "기라 도가",
+   "official_pilot": "레즌 슈나이더",
+   "mech": "기라 도가",
+   "pilot": "레즌",
+   "key": "레즌|기라 도가",
+   "weight": 0.2
+  },
+  {
+   "series": "CCA",
+   "official_mech": "리 가지",
+   "official_pilot": "아무로 레이",
+   "mech": "리가지",
+   "pilot": "아무로",
+   "key": "아무로|리가지",
+   "weight": 0.15
+  },
+  {
+   "series": "CCA",
+   "official_mech": "리 가지",
+   "official_pilot": "케라 수",
+   "mech": "리가지",
+   "pilot": "케라 스",
+   "key": "케라 스|리가지",
    "weight": 0.2
   },
   {
@@ -1130,6 +1068,24 @@
   },
   {
    "series": "ZZ",
+   "official_mech": "갈루스J",
+   "official_pilot": "마슈마 세로",
+   "mech": "갈루스J",
+   "pilot": "마슈마 세로",
+   "key": "마슈마 세로|갈루스J",
+   "weight": 0.15
+  },
+  {
+   "series": "ZZ",
+   "official_mech": "강화형 ZZ건담",
+   "official_pilot": "쥬도 아시타",
+   "mech": "강화형 ZZ건담",
+   "pilot": "쥬도 아시타",
+   "key": "쥬도 아시타|강화형 ZZ건담",
+   "weight": 0.2
+  },
+  {
+   "series": "ZZ",
    "official_mech": "건담 Mk-Ⅱ",
    "official_pilot": "엘 비안노",
    "mech": "건담 Mk-II",
@@ -1139,33 +1095,83 @@
   },
   {
    "series": "ZZ",
+   "official_mech": "바우",
+   "official_pilot": "그레미 토토",
+   "mech": "바우",
+   "pilot": "글레미",
+   "key": "글레미|바우",
+   "weight": 0.2
+  },
+  {
+   "series": "ZZ",
+   "official_mech": "자쿠Ⅲ 개량형",
+   "official_pilot": "마슈마 세로",
+   "mech": "자쿠III 개량형",
+   "pilot": "마슈마 세로",
+   "key": "마슈마 세로|자쿠III 개량형",
+   "weight": 0.15
+  },
+  {
+   "series": "ZZ",
+   "official_mech": "즈사",
+   "official_pilot": "마슈마 세로",
+   "mech": "즈사",
+   "pilot": "마슈마 세로",
+   "key": "마슈마 세로|즈사",
+   "weight": 0.15
+  },
+  {
+   "series": "ZZ",
+   "official_mech": "퀸 만사",
+   "official_pilot": "플 투",
+   "mech": "퀸 만사",
+   "pilot": "플 투",
+   "key": "플 투|퀸 만사",
+   "weight": 0.2
+  },
+  {
+   "series": "ZZ",
    "official_mech": "큐베레이 Mk-Ⅱ",
    "official_pilot": "엘피 플",
    "mech": "큐베레이 Mk-II 플기",
    "pilot": "엘피 플",
    "key": "엘피 플|큐베레이 Mk-II 플기",
    "weight": 0.2
+  },
+  {
+   "series": "ZZ",
+   "official_mech": "풀 아머 ZZ건담",
+   "official_pilot": "쥬도 아시타",
+   "mech": "풀 아머 ZZ건담",
+   "pilot": "쥬도 아시타",
+   "key": "쥬도 아시타|풀 아머 ZZ건담",
+   "weight": 0.2
+  },
+  {
+   "series": "ZZ",
+   "official_mech": "함마 함마",
+   "official_pilot": "마슈마 세로",
+   "mech": "함마 함마",
+   "pilot": "마슈마 세로",
+   "key": "마슈마 세로|함마 함마",
+   "weight": 0.2
+  }
+ ],
+ "rejected": [
+  {
+   "series": "ZZ",
+   "official_mech": "큐베레이 Mk-Ⅱ",
+   "official_pilot": "플 투",
+   "mech": "큐베레이 Mk-II 플기",
+   "pilot": "플 투",
+   "key": "플 투|큐베레이 Mk-II 플기",
+   "reason": "공식은 큐베레이 Mk-Ⅱ 를 한 항목으로 싣고 엘피 플과 플 투를 함께 적는데, 저장소는 플기·플투기 두 장으로 나눠 두었다. 플기는 엘피 플의 기체이고 두 짝 모두 이미 BOND 에 .20 으로 있다."
   }
  ],
  "multi_mech_pilots": {
-  "코우 우라키": [
-   "건담 시작 1호기 제피랜서스",
-   "건담 시작 1호기 풀 버니언",
-   "건담 시작 3호기 스테이멘",
-   "시작 3호기 덴드로비움"
-  ],
-  "시마 가라하우": [
-   "가베라 테트라",
-   "겔구그M (지휘관용)"
-  ],
-  "시로 아마다": [
-   "건담 Ez8",
-   "볼 K형",
-   "육전형 건담"
-  ],
-  "퀘스 파라야": [
-   "알파 아질",
-   "야크트 도가"
+  "마 쿠베": [
+   "걍",
+   "앗잠"
   ],
   "아무로": [
    "RX-78-2 건담",
@@ -1173,25 +1179,6 @@
    "디제",
    "리가지",
    "릭 디아스"
-  ],
-  "마슈마 세로": [
-   "갈루스J",
-   "자쿠III 개량형",
-   "즈사",
-   "함마 함마"
-  ],
-  "쥬도 아시타": [
-   "ZZ건담",
-   "강화형 ZZ건담",
-   "풀 아머 ZZ건담"
-  ],
-  "플 투": [
-   "퀸 만사",
-   "큐베레이 Mk-II 플기"
-  ],
-  "마 쿠베": [
-   "걍",
-   "앗잠"
   ],
   "카이 시덴": [
    "건캐논",
@@ -1214,9 +1201,28 @@
    "샤아 전용 즈고크",
    "지옹"
   ],
+  "시마 가라하우": [
+   "가베라 테트라",
+   "겔구그M (지휘관용)"
+  ],
+  "코우 우라키": [
+   "건담 시작 1호기 제피랜서스",
+   "건담 시작 1호기 풀 버니언",
+   "건담 시작 3호기 스테이멘",
+   "시작 3호기 덴드로비움"
+  ],
   "아나벨 가토": [
    "건담 시작 2호기 사이살리스",
    "노이에 질"
+  ],
+  "시로 아마다": [
+   "건담 Ez8",
+   "볼 K형",
+   "육전형 건담"
+  ],
+  "퀘스 파라야": [
+   "알파 아질",
+   "야크트 도가"
   ],
   "카미유": [
    "Z건담",
@@ -1252,6 +1258,17 @@
   "시로코": [
    "디 오",
    "멧사라"
+  ],
+  "쥬도 아시타": [
+   "ZZ건담",
+   "강화형 ZZ건담",
+   "풀 아머 ZZ건담"
+  ],
+  "마슈마 세로": [
+   "갈루스J",
+   "자쿠III 개량형",
+   "즈사",
+   "함마 함마"
   ]
  }
 }
