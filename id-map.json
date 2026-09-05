@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-09-05T13:47:47Z",
+ "generated": "2026-09-05T14:11:38Z",
  "source": {
   "api": "https://soshage.com/ggetapi/ko/{entity}",
   "entities": {
@@ -10,7 +10,7 @@
   },
   "cards": {
    "file": "play.html",
-   "MECH": 272,
+   "MECH": 806,
    "PILOT": 181
   }
  },
@@ -25,10 +25,10 @@
  },
  "summary": {
   "mech": {
-   "matched": 212,
-   "review": 26,
-   "unmatched": 34,
-   "total": 272
+   "matched": 473,
+   "review": 135,
+   "unmatched": 198,
+   "total": 806
   },
   "pilot": {
    "matched": 114,
@@ -2649,6 +2649,3184 @@
    "series": [
     "기동전사 건담 SEED DESTINY"
    ]
+  },
+  {
+   "dex": "0건담",
+   "match": "exact",
+   "api_name": "0건담",
+   "ids": [
+    1370001300
+   ],
+   "models": "GN-000",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "AEU 이낙트",
+   "match": "exact",
+   "api_name": "AEU 이낙트",
+   "ids": [
+    1370003800,
+    1370003810
+   ],
+   "models": "AEU-09",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "AEU 이낙트 우주형(카타론 컬러)",
+   "match": "exact",
+   "api_name": "AEU 이낙트 우주형 (카타론 컬러)",
+   "ids": [
+    1370007610
+   ],
+   "models": "AEU-09OP",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "AEU 헬리온",
+   "match": "exact",
+   "api_name": "AEU 헬리온",
+   "ids": [
+    1370005400,
+    1370005410
+   ],
+   "models": "AEU-05",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "GN 아머 TYPE-D",
+   "match": "exact",
+   "api_name": "GN 아머 TYPE-D",
+   "ids": [
+    1370002100
+   ],
+   "models": "GN-002+GNR-001D",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "GN 아머 TYPE-E",
+   "match": "exact",
+   "api_name": "GN 아머 TYPE-E",
+   "ids": [
+    1370001900
+   ],
+   "models": "GN-001+GNR-001E",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "GN 아처",
+   "match": "exact",
+   "api_name": "GN 아처",
+   "ids": [
+    1370009300
+   ],
+   "models": "GNR-101R",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "가가",
+   "match": "exact",
+   "api_name": "가가",
+   "ids": [
+    1370011000
+   ],
+   "models": "GNZ-004",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "가데스",
+   "match": "exact",
+   "api_name": "가데스",
+   "ids": [
+    1370010610
+   ],
+   "models": "GNZ-007",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "건담 쓰로네 드라이",
+   "match": "exact",
+   "api_name": "건담 쓰로네 드라이",
+   "ids": [
+    1370001600
+   ],
+   "models": "GNW-003",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "건담 쓰로네 쯔바이",
+   "match": "exact",
+   "api_name": "건담 쓰로네 쯔바이",
+   "ids": [
+    1370001500
+   ],
+   "models": "GNW-002",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "건담 엑시아 리페어",
+   "match": "exact",
+   "api_name": "건담 엑시아 리페어",
+   "ids": [
+    1370006100
+   ],
+   "models": "GN-001RE",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "건담 엑시아 리페어II",
+   "match": "exact",
+   "api_name": "건담 엑시아 리페어Ⅱ",
+   "ids": [
+    1370008700
+   ],
+   "models": "GN-001REII",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "그라함 전용 유니온 플래그 커스텀",
+   "match": "exact",
+   "api_name": "그라함 전용 유니온 플래그 커스텀",
+   "ids": [
+    1370003200
+   ],
+   "models": "SVMS-01E",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "그라함 전용 유니온 플래그 커스텀Ⅱ(GN플래그)",
+   "match": "exact",
+   "api_name": "그라함 전용 유니온 플래그 커스텀Ⅱ (GN플래그)",
+   "ids": [
+    1370005600
+   ],
+   "models": "SVMS-01X",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "레그넌트",
+   "match": "exact",
+   "api_name": "레그넌트",
+   "ids": [
+    1370010800
+   ],
+   "models": "GNMA-0001V",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "마스라오",
+   "match": "exact",
+   "api_name": "마스라오",
+   "ids": [
+    1370009900
+   ],
+   "models": "GNX-U02X",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "사세스 전용 AEU 이낙트 커스텀(아그릿사형)",
+   "match": "exact",
+   "api_name": "사세스 전용 AEU 이낙트 커스텀 (모랄리아 개발실험형)",
+   "ids": [
+    1370004400
+   ],
+   "models": "AEU-09Y812",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "세라핌 건담",
+   "match": "exact",
+   "api_name": "세라핌 건담",
+   "ids": [
+    1370007200
+   ],
+   "models": "GN-009",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "스사노오",
+   "match": "exact",
+   "api_name": "스사노오",
+   "ids": [
+    1370010100
+   ],
+   "models": "GNX-Y901TW",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "아그릿사",
+   "match": "exact",
+   "api_name": "아그릿사",
+   "ids": [
+    1370004600
+   ],
+   "models": "AEU-MA07013",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "아르케 건담",
+   "match": "exact",
+   "api_name": "아르케 건담",
+   "ids": [
+    1370010300
+   ],
+   "models": "GNW-20000",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "안프",
+   "match": "exact",
+   "api_name": "안프",
+   "ids": [
+    1370003100,
+    1370003110
+   ],
+   "models": "MSER-04",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "알바아론",
+   "match": "exact",
+   "api_name": "알바아론",
+   "ids": [
+    1370004700
+   ],
+   "models": "GNMS-XCVII",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "알바토레",
+   "match": "exact",
+   "api_name": "알바토레",
+   "ids": [
+    1370004800
+   ],
+   "models": "GNMA-XCVII",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "어헤드 근접 전투형(사키가케)",
+   "match": "exact",
+   "api_name": "어헤드 근접전투형 (사키가케)",
+   "ids": [
+    1370008100
+   ],
+   "models": "GNX-704T/AC",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "어헤드 뇌양자파 대응형(스말트론)",
+   "match": "exact",
+   "api_name": "어헤드 뇌양자파 대응형 (스멀트론)",
+   "ids": [
+    1370008000
+   ],
+   "models": "GNX-704T/SP",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "엠프러스",
+   "match": "exact",
+   "api_name": "엠프러스",
+   "ids": [
+    1370010700
+   ],
+   "models": "GNMA-Y0001",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "오라이저",
+   "match": "exact",
+   "api_name": "오라이저",
+   "ids": [
+    1370007410
+   ],
+   "models": "GNR-010",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "오버 플래그",
+   "match": "exact",
+   "api_name": "오버 플래그",
+   "ids": [
+    1370003400
+   ],
+   "models": "SVMS-01O",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "유니온 리알도",
+   "match": "exact",
+   "api_name": "유니온 리알도",
+   "ids": [
+    1370005200,
+    1370005210
+   ],
+   "models": "VMS-15",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "유니온 리알도 우주형(카타론 사양)",
+   "match": "exact",
+   "api_name": "유니온 리알도 우주형 (카타론 컬러)",
+   "ids": [
+    1370007510
+   ],
+   "models": "VMS-15OP",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "유니온 플래그",
+   "match": "exact",
+   "api_name": "유니온 플래그",
+   "ids": [
+    1370004900,
+    1370004910
+   ],
+   "models": "SVMS-01",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "유니온 플래그 육전 중장갑형(셸 플래그)",
+   "match": "exact",
+   "api_name": "유니온 플래그 육전 중장갑형(셸 플래그)",
+   "ids": [
+    1370003710
+   ],
+   "models": "SVMS-01SG",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "티에렌 고기동 B형(방진 사양)",
+   "match": "exact",
+   "api_name": "티에렌 고기동 B형",
+   "ids": [
+    1370002600
+   ],
+   "models": "MSJ-06II-C/B",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "티에렌 고기동형",
+   "match": "exact",
+   "api_name": "티에렌 고기동형",
+   "ids": [
+    1370002800,
+    1370002810
+   ],
+   "models": "MSJ-06II-C",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "티에렌 우주형",
+   "match": "exact",
+   "api_name": "티에렌 우주형",
+   "ids": [
+    1370002400,
+    1370002410
+   ],
+   "models": "MSJ-06II-E",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "티에렌 장거리 사격형",
+   "match": "exact",
+   "api_name": "티에렌 장거리 사격형",
+   "ids": [
+    1370002900
+   ],
+   "models": "MSJ-06II-LC",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "티에렌 전 영역 대응형(세르게이 전용 티에렌 타오츠)",
+   "match": "exact",
+   "api_name": "티에렌 전영역 대응형",
+   "ids": [
+    1370009810
+   ],
+   "models": "MSJ-06III-A",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "티에렌 타오츠",
+   "match": "exact",
+   "api_name": "티에렌 타오츠",
+   "ids": [
+    1370003000
+   ],
+   "models": "MSJ-06II-SP",
+   "series": [
+    "기동전사 건담 00"
+   ]
+  },
+  {
+   "dex": "G 아머",
+   "match": "exact",
+   "api_name": "G아머(선더볼트 Ver.)",
+   "ids": [
+    1031003500
+   ],
+   "models": "-",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "건담",
+   "match": "exact",
+   "api_name": "건담",
+   "ids": [
+    1001000100,
+    1001000150
+   ],
+   "models": "RX-78-2",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "곡그",
+   "match": "exact",
+   "api_name": "곡그",
+   "ids": [
+    1001001800
+   ],
+   "models": "MSM-03",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "돕",
+   "match": "exact",
+   "api_name": "돕",
+   "ids": [
+    1001003300
+   ],
+   "models": "-",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "마젤라 어택",
+   "match": "exact",
+   "api_name": "마젤라 어택",
+   "ids": [
+    1001003100,
+    1001003110
+   ],
+   "models": "HT-01B",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "브라우 브로",
+   "match": "exact",
+   "api_name": "브라우 브로",
+   "ids": [
+    1001002800
+   ],
+   "models": "MAN-03",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "비그로",
+   "match": "exact",
+   "api_name": "비그로",
+   "ids": [
+    1001002600
+   ],
+   "models": "MA-05",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "샤아 전용 겔구그",
+   "match": "exact",
+   "api_name": "샤아 전용 겔구그",
+   "ids": [
+    1001001610
+   ],
+   "models": "MS-14S",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "샤아 전용 자쿠II",
+   "match": "exact",
+   "api_name": "샤아 전용 자쿠Ⅱ",
+   "ids": [
+    1001001110
+   ],
+   "models": "MS-06S",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "샤아 전용 즈고크",
+   "match": "exact",
+   "api_name": "샤아 전용 즈고크",
+   "ids": [
+    1001002110
+   ],
+   "models": "MSM-07S",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "앗가이",
+   "match": "exact",
+   "api_name": "앗가이",
+   "ids": [
+    1001001900
+   ],
+   "models": "MSM-04",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "앗잠",
+   "match": "exact",
+   "api_name": "앗잠",
+   "ids": [
+    1001002300
+   ],
+   "models": "MAX-03",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "자쿠I",
+   "match": "exact",
+   "api_name": "자쿠Ⅰ",
+   "ids": [
+    1001000800,
+    1001000810
+   ],
+   "models": "MS-05",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "자쿠레로",
+   "match": "exact",
+   "api_name": "자쿠레로",
+   "ids": [
+    1001002500
+   ],
+   "models": "MA-04X",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "족크",
+   "match": "exact",
+   "api_name": "족크",
+   "ids": [
+    1001002200
+   ],
+   "models": "MSM-10",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "즈고크",
+   "match": "exact",
+   "api_name": "즈고크",
+   "ids": [
+    1001002000
+   ],
+   "models": "MSM-07",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "코어 파이터",
+   "match": "exact",
+   "api_name": "코어 파이터",
+   "ids": [
+    1001000400,
+    1001000410
+   ],
+   "models": "FF-X7",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "겔구그J",
+   "match": "exact",
+   "api_name": "겔구그J",
+   "ids": [
+    1017000800
+   ],
+   "models": "MS-14JG",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "릭 돔II",
+   "match": "exact",
+   "api_name": "릭 돔Ⅱ",
+   "ids": [
+    1017000700
+   ],
+   "models": "MS-09R-2",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "양산형 건캐논",
+   "match": "exact",
+   "api_name": "양산형 건캐논",
+   "ids": [
+    1017000300,
+    1017000310
+   ],
+   "models": "RX-77D",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "건담 시작 1호기 풀 버니언",
+   "match": "exact",
+   "api_name": "건담 시작 1호기 풀 버니언",
+   "ids": [
+    1060000200
+   ],
+   "models": "RX-78GP01Fb",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "겔구그M (지휘관용)",
+   "match": "exact",
+   "api_name": "겔구그M",
+   "ids": [
+    1060001300
+   ],
+   "models": "MS-14F",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "돔 트로펜",
+   "match": "exact",
+   "api_name": "돔 트로펜",
+   "ids": [
+    1060002300
+   ],
+   "models": "MS-09F/TROP",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "드라체",
+   "match": "exact",
+   "api_name": "드라체",
+   "ids": [
+    1060001600
+   ],
+   "models": "MS-21C",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "발 바로",
+   "match": "exact",
+   "api_name": "발 바로",
+   "ids": [
+    1060001700
+   ],
+   "models": "MA-06",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "자멜",
+   "match": "exact",
+   "api_name": "자멜",
+   "ids": [
+    1060001200
+   ],
+   "models": "YMS-16M",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "자쿠II F2형",
+   "match": "exact",
+   "api_name": "자쿠Ⅱ F2형",
+   "ids": [
+    1060002200
+   ],
+   "models": "MS-06F-2",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "짐 캐논II",
+   "match": "exact",
+   "api_name": "짐 캐논Ⅱ",
+   "ids": [
+    1060000900
+   ],
+   "models": "RGC-83",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "파워드 짐",
+   "match": "exact",
+   "api_name": "파워드 짐",
+   "ids": [
+    1060000700
+   ],
+   "models": "RGM-79",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "고기동 시작형 자쿠",
+   "match": "exact",
+   "api_name": "고기동 시작형 자쿠",
+   "ids": [
+    1013001000
+   ],
+   "models": "MS-06RD-4",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "구프 플라이트 타입",
+   "match": "exact",
+   "api_name": "구프 플라이트 타입",
+   "ids": [
+    1013000900
+   ],
+   "models": "MS-07H-8",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "볼 K형",
+   "match": "exact",
+   "api_name": "볼 K형",
+   "ids": [
+    1013000700,
+    1013000710
+   ],
+   "models": "RB-79K",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "압사라스II",
+   "match": "exact",
+   "api_name": "압사라스Ⅱ",
+   "ids": [
+    1013001100
+   ],
+   "models": "-",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "양산형 건탱크",
+   "match": "exact",
+   "api_name": "양산형 건탱크",
+   "ids": [
+    1013001500,
+    1013001510
+   ],
+   "models": "RX-75",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "Gandamu AGE-1 Furatto",
+   "match": "model",
+   "api_name": "건담 AGE-1 플랫",
+   "ids": [
+    1400008110
+   ],
+   "models": "AGE-1F",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "G바운서",
+   "match": "exact",
+   "api_name": "G바운서",
+   "ids": [
+    1400001500
+   ],
+   "models": "WMS-GB5",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "G에그제스",
+   "match": "exact",
+   "api_name": "G-에그제스",
+   "ids": [
+    1400004800
+   ],
+   "models": "WMS-GEX1",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "가프란",
+   "match": "exact",
+   "api_name": "가프란",
+   "ids": [
+    1400003400
+   ],
+   "models": "ovv-f",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "건담 AGE-1 그랜서",
+   "match": "model",
+   "api_name": "건담 AGE-1 노멀",
+   "ids": [
+    1400000100,
+    1400000110,
+    1400000150
+   ],
+   "models": "AGE-1",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "건담 AGE-1 노멀",
+   "match": "model",
+   "api_name": "건담 AGE-1 노멀",
+   "ids": [
+    1400000100,
+    1400000110,
+    1400000150
+   ],
+   "models": "AGE-1",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "건담 AGE-1 스팔로",
+   "match": "model",
+   "api_name": "건담 AGE-1 노멀",
+   "ids": [
+    1400000100,
+    1400000110,
+    1400000150
+   ],
+   "models": "AGE-1",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "건담 AGE-1 타이터스",
+   "match": "model",
+   "api_name": "건담 AGE-1 노멀",
+   "ids": [
+    1400000100,
+    1400000110,
+    1400000150
+   ],
+   "models": "AGE-1",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "건담 AGE-2 노멀",
+   "match": "model",
+   "api_name": "건담 AGE-2 노멀",
+   "ids": [
+    1400000500,
+    1400000550
+   ],
+   "models": "AGE-2",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "건담 AGE-2 다크 하운드",
+   "match": "model",
+   "api_name": "건담 AGE-2 노멀",
+   "ids": [
+    1400000500,
+    1400000550
+   ],
+   "models": "AGE-2",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "건담 AGE-2 더블 불릿",
+   "match": "model",
+   "api_name": "건담 AGE-2 노멀",
+   "ids": [
+    1400000500,
+    1400000550
+   ],
+   "models": "AGE-2",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "데스페라도",
+   "match": "exact",
+   "api_name": "데스페라도",
+   "ids": [
+    1400004200,
+    1400004210
+   ],
+   "models": "CMS-328",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "데퍼스",
+   "match": "exact",
+   "api_name": "데퍼스",
+   "ids": [
+    1400004000
+   ],
+   "models": "xvm-gz",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "도라도",
+   "match": "exact",
+   "api_name": "도라도",
+   "ids": [
+    1400004400
+   ],
+   "models": "ovm-e",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "샬돌",
+   "match": "exact",
+   "api_name": "샬돌",
+   "ids": [
+    1400003200
+   ],
+   "models": "CMS-B/67",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "아델 캐논",
+   "match": "exact",
+   "api_name": "아델 캐논",
+   "ids": [
+    1400007400
+   ],
+   "models": "RGE-G1100C",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "제노아스",
+   "match": "exact",
+   "api_name": "제노아스",
+   "ids": [
+    1400001800
+   ],
+   "models": "RGE-B790",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "제노아스 커스텀",
+   "match": "exact",
+   "api_name": "제노아스 커스텀",
+   "ids": [
+    1400001900
+   ],
+   "models": "RGE-B790CW",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "제노아스Ⅱ",
+   "match": "exact",
+   "api_name": "제노아스Ⅱ",
+   "ids": [
+    1400006700
+   ],
+   "models": "RGE-B890",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "제다스M",
+   "match": "exact",
+   "api_name": "제다스M",
+   "ids": [
+    1400002600
+   ],
+   "models": "xvv-xcm",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "제다스R",
+   "match": "exact",
+   "api_name": "제다스R",
+   "ids": [
+    1400002400
+   ],
+   "models": "xvv-xcr",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "제이드라",
+   "match": "exact",
+   "api_name": "제이드라",
+   "ids": [
+    1400004300
+   ],
+   "models": "xvm-zgc",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "크로노스",
+   "match": "exact",
+   "api_name": "크로노스",
+   "ids": [
+    1400004700
+   ],
+   "models": "xvm-dgc",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "파르시아",
+   "match": "exact",
+   "api_name": "파르시아",
+   "ids": [
+    1400003810
+   ],
+   "models": "xvb-xd",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "짐Ⅲ",
+   "match": "exact",
+   "api_name": "짐Ⅲ",
+   "ids": [
+    1095000400,
+    1095000410
+   ],
+   "models": "RGM-86R",
+   "series": [
+    "기동전사 건담 ZZ"
+   ]
+  },
+  {
+   "dex": "M1 어스트레이 (SHRIKE 장비형)",
+   "match": "exact",
+   "api_name": "M1 어스트레이",
+   "ids": [
+    1300001600
+   ],
+   "models": "MBF-M1",
+   "series": [
+    "기동전사 건담 SEED"
+   ]
+  },
+  {
+   "dex": "Murasame",
+   "match": "exact",
+   "api_name": "무라사메",
+   "ids": [
+    1330001300
+   ],
+   "models": "MVF-M11C",
+   "series": [
+    "기동전사 건담 SEED DESTINY"
+   ]
+  },
+  {
+   "dex": "가즈우트",
+   "match": "exact",
+   "api_name": "가즈우트",
+   "ids": [
+    1330001900
+   ],
+   "models": "TFA-4DE",
+   "series": [
+    "기동전사 건담 SEED DESTINY"
+   ]
+  },
+  {
+   "dex": "건너 자쿠 워리어",
+   "match": "exact",
+   "api_name": "건너 자쿠 워리어",
+   "ids": [
+    1330003000
+   ],
+   "models": "ZGMF-1000/A1",
+   "series": [
+    "기동전사 건담 SEED DESTINY"
+   ]
+  },
+  {
+   "dex": "게이츠R",
+   "match": "exact",
+   "api_name": "게이츠R",
+   "ids": [
+    1330002000
+   ],
+   "models": "ZGMF-600R",
+   "series": [
+    "기동전사 건담 SEED DESTINY"
+   ]
+  },
+  {
+   "dex": "겔즈 게",
+   "match": "exact",
+   "api_name": "겔즈 게",
+   "ids": [
+    1330002500
+   ],
+   "models": "YMFG-X7D",
+   "series": [
+    "기동전사 건담 SEED DESTINY"
+   ]
+  },
+  {
+   "dex": "대거L",
+   "match": "exact",
+   "api_name": "대거L",
+   "ids": [
+    1330001700
+   ],
+   "models": "GAT-02L2",
+   "series": [
+    "기동전사 건담 SEED DESTINY"
+   ]
+  },
+  {
+   "dex": "디스트로이 건담",
+   "match": "exact",
+   "api_name": "디스트로이 건담",
+   "ids": [
+    1330002700
+   ],
+   "models": "GFAS-X1",
+   "series": [
+    "기동전사 건담 SEED DESTINY"
+   ]
+  },
+  {
+   "dex": "바비",
+   "match": "exact",
+   "api_name": "바비",
+   "ids": [
+    1330002200
+   ],
+   "models": "AMA-953",
+   "series": [
+    "기동전사 건담 SEED DESTINY"
+   ]
+  },
+  {
+   "dex": "블래스트 임펄스 건담",
+   "match": "exact",
+   "api_name": "블래스트 임펄스 건담",
+   "ids": [
+    1330000500
+   ],
+   "models": "ZGMF-X56S/γ",
+   "series": [
+    "기동전사 건담 SEED DESTINY"
+   ]
+  },
+  {
+   "dex": "소드 임펄스 건담",
+   "match": "exact",
+   "api_name": "소드 임펄스 건담",
+   "ids": [
+    1330000400
+   ],
+   "models": "ZGMF-X56S/β",
+   "series": [
+    "기동전사 건담 SEED DESTINY"
+   ]
+  },
+  {
+   "dex": "슬래시 자쿠 팬텀",
+   "match": "exact",
+   "api_name": "슬래시 자쿠 팬텀 (이자크 쥴 전용기)",
+   "ids": [
+    1330003710
+   ],
+   "models": "ZGMF-1001/K",
+   "series": [
+    "기동전사 건담 SEED DESTINY"
+   ]
+  },
+  {
+   "dex": "애쉬",
+   "match": "exact",
+   "api_name": "애쉬",
+   "ids": [
+    1330003900
+   ],
+   "models": "UMF/SSO-3",
+   "series": [
+    "기동전사 건담 SEED DESTINY"
+   ]
+  },
+  {
+   "dex": "에그자스",
+   "match": "exact",
+   "api_name": "에그자스",
+   "ids": [
+    1330002400
+   ],
+   "models": "TS-MA4F",
+   "series": [
+    "기동전사 건담 SEED DESTINY"
+   ]
+  },
+  {
+   "dex": "윈담",
+   "match": "exact",
+   "api_name": "윈담",
+   "ids": [
+    1330001600
+   ],
+   "models": "GAT-04",
+   "series": [
+    "기동전사 건담 SEED DESTINY"
+   ]
+  },
+  {
+   "dex": "잠자자",
+   "match": "exact",
+   "api_name": "잠자자",
+   "ids": [
+    1330002600
+   ],
+   "models": "YMAF-X6BD",
+   "series": [
+    "기동전사 건담 SEED DESTINY"
+   ]
+  },
+  {
+   "dex": "포스 임펄스 건담",
+   "match": "exact",
+   "api_name": "포스 임펄스 건담",
+   "ids": [
+    1330000300,
+    1330000350
+   ],
+   "models": "ZGMF-X56S/α",
+   "series": [
+    "기동전사 건담 SEED DESTINY"
+   ]
+  },
+  {
+   "dex": "건담 샌드록 개량형",
+   "match": "exact",
+   "api_name": "건담 샌드록 개량형",
+   "ids": [
+    1210003400
+   ],
+   "models": "XXXG-01SR2",
+   "series": [
+    "신기동전기 건담 W"
+   ]
+  },
+  {
+   "dex": "건담 헤비암즈 개량형",
+   "match": "exact",
+   "api_name": "건담 헤비암즈 개량형",
+   "ids": [
+    1210003500
+   ],
+   "models": "XXXG-01H2",
+   "series": [
+    "신기동전기 건담 W"
+   ]
+  },
+  {
+   "dex": "G캐논",
+   "match": "exact",
+   "api_name": "G캐논",
+   "ids": [
+    1162000600
+   ],
+   "models": "F71",
+   "series": [
+    "기동전사 건담 F91"
+   ]
+  },
+  {
+   "dex": "건탱크 R-44",
+   "match": "exact",
+   "api_name": "건탱크 R44",
+   "ids": [
+    1162001900
+   ],
+   "models": "RXR-44",
+   "series": [
+    "기동전사 건담 F91"
+   ]
+  },
+  {
+   "dex": "다기 이루스",
+   "match": "exact",
+   "api_name": "다기 이루스",
+   "ids": [
+    1162001400
+   ],
+   "models": "XM-06",
+   "series": [
+    "기동전사 건담 F91"
+   ]
+  },
+  {
+   "dex": "에비루 S",
+   "match": "exact",
+   "api_name": "에비루 S",
+   "ids": [
+    1162002000
+   ],
+   "models": "XM-03",
+   "series": [
+    "기동전사 건담 F91"
+   ]
+  },
+  {
+   "dex": "건담 슈피겔",
+   "match": "exact",
+   "api_name": "건담 슈피겔",
+   "ids": [
+    1200001100
+   ],
+   "models": "GF13-021NG",
+   "series": [
+    "기동무투전 G건담"
+   ]
+  },
+  {
+   "dex": "네델 건담",
+   "match": "exact",
+   "api_name": "네델 건담",
+   "ids": [
+    1200003500,
+    1200003510
+   ],
+   "models": "GF13-066NO",
+   "series": [
+    "기동무투전 G건담"
+   ]
+  },
+  {
+   "dex": "네로스 건담",
+   "match": "exact",
+   "api_name": "네로스 건담",
+   "ids": [
+    1200001600
+   ],
+   "models": "GF13-055NI",
+   "series": [
+    "기동무투전 G건담"
+   ]
+  },
+  {
+   "dex": "노벨 건담",
+   "match": "exact",
+   "api_name": "노벨 건담",
+   "ids": [
+    1200004700
+   ],
+   "models": "GF13-050NSW",
+   "series": [
+    "기동무투전 G건담"
+   ]
+  },
+  {
+   "dex": "라이징 건담",
+   "match": "exact",
+   "api_name": "라이징 건담",
+   "ids": [
+    1200004800
+   ],
+   "models": "JMF1336R",
+   "series": [
+    "기동무투전 G건담"
+   ]
+  },
+  {
+   "dex": "럼버 건담",
+   "match": "exact",
+   "api_name": "럼버 건담",
+   "ids": [
+    1200003700
+   ],
+   "models": "GF13-037NCA",
+   "series": [
+    "기동무투전 G건담"
+   ]
+  },
+  {
+   "dex": "만다라 건담",
+   "match": "exact",
+   "api_name": "만다라 건담",
+   "ids": [
+    1200003600
+   ],
+   "models": "GF13-044NNP",
+   "series": [
+    "기동무투전 G건담"
+   ]
+  },
+  {
+   "dex": "머메이드 건담",
+   "match": "exact",
+   "api_name": "머메이드 건담",
+   "ids": [
+    1200003800
+   ],
+   "models": "GF13-026ND",
+   "series": [
+    "기동무투전 G건담"
+   ]
+  },
+  {
+   "dex": "볼트 건담",
+   "match": "exact",
+   "api_name": "볼트 건담",
+   "ids": [
+    1200000900
+   ],
+   "models": "GF13-013NR",
+   "series": [
+    "기동무투전 G건담"
+   ]
+  },
+  {
+   "dex": "셔플 다이아",
+   "match": "exact",
+   "api_name": "셔플 다이아",
+   "ids": [
+    1200002900
+   ],
+   "models": "-",
+   "series": [
+    "기동무투전 G건담"
+   ]
+  },
+  {
+   "dex": "셔플 스페이드",
+   "match": "exact",
+   "api_name": "셔플 스페이드",
+   "ids": [
+    1200002700
+   ],
+   "models": "-",
+   "series": [
+    "기동무투전 G건담"
+   ]
+  },
+  {
+   "dex": "셔플 조커",
+   "match": "exact",
+   "api_name": "셔플 조커",
+   "ids": [
+    1200002400
+   ],
+   "models": "-",
+   "series": [
+    "기동무투전 G건담"
+   ]
+  },
+  {
+   "dex": "셔플 클럽",
+   "match": "exact",
+   "api_name": "셔플 클럽",
+   "ids": [
+    1200002500
+   ],
+   "models": "-",
+   "series": [
+    "기동무투전 G건담"
+   ]
+  },
+  {
+   "dex": "제스타 건담",
+   "match": "affix",
+   "api_name": "제스타",
+   "ids": [
+    1125002300
+   ],
+   "models": "RGM-96X",
+   "series": [
+    "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "존불 건담",
+   "match": "exact",
+   "api_name": "존불 건담",
+   "ids": [
+    1200001500
+   ],
+   "models": "GF13-003NEL",
+   "series": [
+    "기동무투전 G건담"
+   ]
+  },
+  {
+   "dex": "쿠론 건담",
+   "match": "exact",
+   "api_name": "쿠론 건담",
+   "ids": [
+    1200001200
+   ],
+   "models": "GF13-001NH",
+   "series": [
+    "기동무투전 G건담"
+   ]
+  },
+  {
+   "dex": "하얀 건담",
+   "match": "exact",
+   "api_name": "하얀 건담(GQ)",
+   "ids": [
+    1055000610
+   ],
+   "models": "RX-78-02",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "구스타프 칼 00형",
+   "match": "exact",
+   "api_name": "구스타프 칼 00형",
+   "ids": [
+    1150001000
+   ],
+   "models": "FD-03-00",
+   "series": [
+    "기동전사 건담 역습의 샤아"
+   ]
+  },
+  {
+   "dex": "멧사 F01형",
+   "match": "exact",
+   "api_name": "멧사 F01형",
+   "ids": [
+    1150000600
+   ],
+   "models": "Me02R-F01",
+   "series": [
+    "기동전사 건담 역습의 샤아"
+   ]
+  },
+  {
+   "dex": "멧사 F02형",
+   "match": "exact",
+   "api_name": "멧사 F02형(마인레이어 장비)",
+   "ids": [
+    1150000700
+   ],
+   "models": "Me02R-F02",
+   "series": [
+    "기동전사 건담 역습의 샤아"
+   ]
+  },
+  {
+   "dex": "멧사 F형 네이키드 지휘관기",
+   "match": "exact",
+   "api_name": "멧사 F형 네이키드(지휘관기)",
+   "ids": [
+    1150000410
+   ],
+   "models": "Me02R-Fc",
+   "series": [
+    "기동전사 건담 역습의 샤아"
+   ]
+  },
+  {
+   "dex": "가름 로디",
+   "match": "exact",
+   "api_name": "가름 로디",
+   "ids": [
+    1430006100
+   ],
+   "models": "UGY-R45",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "건담 구시온 리베이크 풀 시티",
+   "match": "exact",
+   "api_name": "건담 구시온 리베이크 풀시티",
+   "ids": [
+    1430003800
+   ],
+   "models": "ASW-G-11",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "건담 키마리스 트루퍼",
+   "match": "exact",
+   "api_name": "건담 키마리스 트루퍼",
+   "ids": [
+    1430000800
+   ],
+   "models": "ASW-G-66",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "게이레일",
+   "match": "exact",
+   "api_name": "게이레일",
+   "ids": [
+    1430006500
+   ],
+   "models": "EB-04",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "게이레일 샤르흐리히터",
+   "match": "exact",
+   "api_name": "게이레일 샤르흐리히터",
+   "ids": [
+    1430006600
+   ],
+   "models": "EB-04jc4",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "그레이즈 리터",
+   "match": "exact",
+   "api_name": "그레이즈 리터",
+   "ids": [
+    1430002100
+   ],
+   "models": "EB-06r",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "그레이즈 실트",
+   "match": "exact",
+   "api_name": "그레이즈 실트",
+   "ids": [
+    1430005100
+   ],
+   "models": "EB-06Q",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "그레이즈 카이",
+   "match": "exact",
+   "api_name": "그레이즈 카이",
+   "ids": [
+    1430001900
+   ],
+   "models": "EB-06/tc",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "그림게르데",
+   "match": "exact",
+   "api_name": "그림게르데",
+   "ids": [
+    1430002700
+   ],
+   "models": "V08-1228",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "라이덴고",
+   "match": "exact",
+   "api_name": "라이덴고",
+   "ids": [
+    1430004300
+   ],
+   "models": "STH-16/tc",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "랜드맨 로디",
+   "match": "exact",
+   "api_name": "랜드맨 로디",
+   "ids": [
+    1430004400
+   ],
+   "models": "UGY-R41",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "레긴레이즈 줄리아",
+   "match": "exact",
+   "api_name": "레긴레이즈 줄리아",
+   "ids": [
+    1430007700
+   ],
+   "models": "EB-08jjc",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "로우에이",
+   "match": "exact",
+   "api_name": "로우에이",
+   "ids": [
+    1430001200
+   ],
+   "models": "STH-05R",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "맨 로디",
+   "match": "exact",
+   "api_name": "맨 로디",
+   "ids": [
+    1430002900,
+    1430002910
+   ],
+   "models": "UGY-R41",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "스피너 로디",
+   "match": "exact",
+   "api_name": "스피너 로디",
+   "ids": [
+    1430001300
+   ],
+   "models": "UGY-R38",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "유고",
+   "match": "exact",
+   "api_name": "유고",
+   "ids": [
+    1430005800
+   ],
+   "models": "IPP-66305",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "질다",
+   "match": "exact",
+   "api_name": "질다",
+   "ids": [
+    1430006400
+   ],
+   "models": "IPP-0032",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "철화단 모빌워커",
+   "match": "exact",
+   "api_name": "철화단 모빌워커",
+   "ids": [
+    1430003000
+   ],
+   "models": "TK-53",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "햐쿠렌",
+   "match": "exact",
+   "api_name": "햐쿠렌",
+   "ids": [
+    1430001000
+   ],
+   "models": "STH-05",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "햐쿠리",
+   "match": "exact",
+   "api_name": "햐쿠리",
+   "ids": [
+    1430000900
+   ],
+   "models": "STH-14s",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "헤키쟈",
+   "match": "exact",
+   "api_name": "헤키쟈",
+   "ids": [
+    1430004600
+   ],
+   "models": "STH-20",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "헬름비게 린카",
+   "match": "exact",
+   "api_name": "헬름비게 린카",
+   "ids": [
+    1430005500
+   ],
+   "models": "V08Re-0526",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "흐로엑크 그레이즈",
+   "match": "exact",
+   "api_name": "흐로엑크 그레이즈",
+   "ids": [
+    1430006700
+   ],
+   "models": "AEB-06L",
+   "series": [
+    "기동전사 건담 철혈의 오펀스"
+   ]
+  },
+  {
+   "dex": "디제",
+   "match": "exact",
+   "api_name": "디제",
+   "ids": [
+    1080001200
+   ],
+   "models": "MSK-008",
+   "series": [
+    "기동전사 Z건담"
+   ]
+  },
+  {
+   "dex": "제스타 셰자르 부대 사양",
+   "match": "exact",
+   "api_name": "제스타(셰자르 부대 사양)",
+   "ids": [
+    1144000800
+   ],
+   "models": "RGM-96X",
+   "series": [
+    "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "게이츠",
+   "match": "exact",
+   "api_name": "게이츠",
+   "ids": [
+    1300002700
+   ],
+   "models": "ZGMF-600",
+   "series": [
+    "기동전사 건담 SEED"
+   ]
+  },
+  {
+   "dex": "군",
+   "match": "exact",
+   "api_name": "군",
+   "ids": [
+    1300003000
+   ],
+   "models": "UMF-4A",
+   "series": [
+    "기동전사 건담 SEED"
+   ]
+  },
+  {
+   "dex": "딘",
+   "match": "exact",
+   "api_name": "딘",
+   "ids": [
+    1300003100
+   ],
+   "models": "AMF-101",
+   "series": [
+    "기동전사 건담 SEED"
+   ]
+  },
+  {
+   "dex": "라고우",
+   "match": "exact",
+   "api_name": "라고우",
+   "ids": [
+    1300001900
+   ],
+   "models": "TMF/A-803",
+   "series": [
+    "기동전사 건담 SEED"
+   ]
+  },
+  {
+   "dex": "런처 스트라이크 건담",
+   "match": "exact",
+   "api_name": "런처 스트라이크 건담",
+   "ids": [
+    1300000400
+   ],
+   "models": "GAT-X105+AQM/E-X03",
+   "series": [
+    "기동전사 건담 SEED"
+   ]
+  },
+  {
+   "dex": "뫼비우스 제로",
+   "match": "exact",
+   "api_name": "뫼비우스 제로",
+   "ids": [
+    1300004100
+   ],
+   "models": "TS-MA2mod.00",
+   "series": [
+    "기동전사 건담 SEED"
+   ]
+  },
+  {
+   "dex": "소드 스트라이크 건담",
+   "match": "exact",
+   "api_name": "소드 스트라이크 건담",
+   "ids": [
+    1300000300
+   ],
+   "models": "GAT-X105+AQM/E-X02",
+   "series": [
+    "기동전사 건담 SEED"
+   ]
+  },
+  {
+   "dex": "스카이 글래스퍼",
+   "match": "exact",
+   "api_name": "스카이 글래스퍼",
+   "ids": [
+    1300003200,
+    1300003210
+   ],
+   "models": "FX-550",
+   "series": [
+    "기동전사 건담 SEED"
+   ]
+  },
+  {
+   "dex": "스트라이크 대거",
+   "match": "exact",
+   "api_name": "스트라이크 대거",
+   "ids": [
+    1300001700,
+    1300001710
+   ],
+   "models": "GAT-01",
+   "series": [
+    "기동전사 건담 SEED"
+   ]
+  },
+  {
+   "dex": "시구",
+   "match": "exact",
+   "api_name": "시구",
+   "ids": [
+    1300002600
+   ],
+   "models": "ZGMF-515",
+   "series": [
+    "기동전사 건담 SEED"
+   ]
+  },
+  {
+   "dex": "에일 스트라이크 건담",
+   "match": "exact",
+   "api_name": "에일 스트라이크 건담",
+   "ids": [
+    1300000200
+   ],
+   "models": "GAT-X105+AQM/E-X01",
+   "series": [
+    "기동전사 건담 SEED"
+   ]
+  },
+  {
+   "dex": "자우트",
+   "match": "exact",
+   "api_name": "자우트",
+   "ids": [
+    1300002100,
+    1300002110
+   ],
+   "models": "TFA-2",
+   "series": [
+    "기동전사 건담 SEED"
+   ]
+  },
+  {
+   "dex": "장거리 강행 정찰 복좌형 진",
+   "match": "exact",
+   "api_name": "장거리 강행 정찰 복좌형 진",
+   "ids": [
+    1300002500
+   ],
+   "models": "ZGMF-LRR704B",
+   "series": [
+    "기동전사 건담 SEED"
+   ]
+  },
+  {
+   "dex": "조노",
+   "match": "exact",
+   "api_name": "조노",
+   "ids": [
+    1300002900
+   ],
+   "models": "UMF-5",
+   "series": [
+    "기동전사 건담 SEED"
+   ]
+  },
+  {
+   "dex": "퍼펙트 스트라이크 건담",
+   "match": "exact",
+   "api_name": "퍼펙트 스트라이크 건담",
+   "ids": [
+    1300000500
+   ],
+   "models": "GAT-X105+AQM/E-YM1",
+   "series": [
+    "기동전사 건담 SEED"
+   ]
+  },
+  {
+   "dex": "건담 헤드",
+   "match": "exact",
+   "api_name": "건담 헤드",
+   "ids": [
+    1031001400
+   ],
+   "models": "RGM-79/GH",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "건캐논 아쿠아",
+   "match": "exact",
+   "api_name": "건캐논 아쿠아",
+   "ids": [
+    1031001300
+   ],
+   "models": "RX-77AQ",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "달레",
+   "match": "exact",
+   "api_name": "달레",
+   "ids": [
+    1031003000
+   ],
+   "models": "SRf-06",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "수중형 볼",
+   "match": "exact",
+   "api_name": "수중형 볼",
+   "ids": [
+    1031001900
+   ],
+   "models": "RB-79[M]",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "수중형 짐",
+   "match": "exact",
+   "api_name": "수중형 짐",
+   "ids": [
+    1031001700
+   ],
+   "models": "RGM-79[M]",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "육전형 건담 S형",
+   "match": "exact",
+   "api_name": "육전형 건담 S형",
+   "ids": [
+    1031001500
+   ],
+   "models": "RX-79[GS]",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "짐 캐논",
+   "match": "exact",
+   "api_name": "짐 캐논 (선더볼트 Ver.)",
+   "ids": [
+    1031000700
+   ],
+   "models": "RGC-80",
+   "series": [
+    "기동전사 건담"
+   ]
+  },
+  {
+   "dex": "가 조움",
+   "match": "exact",
+   "api_name": "가 조움",
+   "ids": [
+    1095000700
+   ],
+   "models": "AMX-008",
+   "series": [
+    "기동전사 건담 ZZ"
+   ]
+  },
+  {
+   "dex": "가자D",
+   "match": "exact",
+   "api_name": "가자D",
+   "ids": [
+    1095000500,
+    1095000510
+   ],
+   "models": "AMX-006",
+   "series": [
+    "기동전사 건담 ZZ"
+   ]
+  },
+  {
+   "dex": "갈루스K",
+   "match": "exact",
+   "api_name": "갈루스K",
+   "ids": [
+    1125003600
+   ],
+   "models": "AMX-101K",
+   "series": [
+    "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "건캐논 디텍터",
+   "match": "exact",
+   "api_name": "건캐논 디텍터",
+   "ids": [
+    1125002800
+   ],
+   "models": "MSA-005K",
+   "series": [
+    "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "네모",
+   "match": "exact",
+   "api_name": "네모",
+   "ids": [
+    1080001300,
+    1080001310
+   ],
+   "models": "MSA-003",
+   "series": [
+    "기동전사 Z건담"
+   ]
+  },
+  {
+   "dex": "드라이센",
+   "match": "exact",
+   "api_name": "드라이센",
+   "ids": [
+    1095003700
+   ],
+   "models": "AMX-009",
+   "series": [
+    "기동전사 건담 ZZ"
+   ]
+  },
+  {
+   "dex": "드왓지",
+   "match": "exact",
+   "api_name": "드왓지",
+   "ids": [
+    1095003500,
+    1095003510
+   ],
+   "models": "MS-09G",
+   "series": [
+    "기동전사 건담 ZZ"
+   ]
+  },
+  {
+   "dex": "로젠 줄루",
+   "match": "exact",
+   "api_name": "로젠 줄루",
+   "ids": [
+    1125005300
+   ],
+   "models": "YAMS-132",
+   "series": [
+    "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "로토",
+   "match": "exact",
+   "api_name": "로토",
+   "ids": [
+    1125002900
+   ],
+   "models": "D-50C",
+   "series": [
+    "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "리겔구",
+   "match": "exact",
+   "api_name": "리겔구",
+   "ids": [
+    1095001900
+   ],
+   "models": "MS-14J",
+   "series": [
+    "기동전사 건담 ZZ"
+   ]
+  },
+  {
+   "dex": "바이아란 커스텀",
+   "match": "exact",
+   "api_name": "바이아란 커스텀",
+   "ids": [
+    1125002700
+   ],
+   "models": "RX-160S",
+   "series": [
+    "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "샴블로",
+   "match": "exact",
+   "api_name": "샴블로",
+   "ids": [
+    1125003800
+   ],
+   "models": "AMA-X7",
+   "series": [
+    "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "스타크 제간",
+   "match": "exact",
+   "api_name": "스타크 제간",
+   "ids": [
+    1125002200
+   ],
+   "models": "RGM-89S",
+   "series": [
+    "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "실버 불릿",
+   "match": "exact",
+   "api_name": "실버 불릿",
+   "ids": [
+    1125004900
+   ],
+   "models": "ARX-014",
+   "series": [
+    "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "안크샤",
+   "match": "exact",
+   "api_name": "안크샤",
+   "ids": [
+    1125002500
+   ],
+   "models": "RAS-96",
+   "series": [
+    "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "이프리트 슈나이드",
+   "match": "exact",
+   "api_name": "이프리트 슈나이드",
+   "ids": [
+    1125004100
+   ],
+   "models": "MS-08TX/S",
+   "series": [
+    "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "자쿠Ⅰ 스나이퍼 타입",
+   "match": "exact",
+   "api_name": "자쿠Ⅰ 스나이퍼 타입",
+   "ids": [
+    1125003900
+   ],
+   "models": "MS-05L",
+   "series": [
+    "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "제 줄루",
+   "match": "exact",
+   "api_name": "제 줄루",
+   "ids": [
+    1125003400
+   ],
+   "models": "AMS-129M",
+   "series": [
+    "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "제간 A2형 (제네럴 레빌 배치기)",
+   "match": "exact",
+   "api_name": "제간 A2형 (제네럴 레빌 배치기)",
+   "ids": [
+    1144001900
+   ],
+   "models": "RGM-89A2",
+   "series": [
+    "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "제스타",
+   "match": "exact",
+   "api_name": "제스타",
+   "ids": [
+    1125002300
+   ],
+   "models": "RGM-96X",
+   "series": [
+    "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "제스타 캐논",
+   "match": "exact",
+   "api_name": "제스타 캐논",
+   "ids": [
+    1125002400
+   ],
+   "models": "RGM-96X",
+   "series": [
+    "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "조고크",
+   "match": "exact",
+   "api_name": "조고크 (지온 잔당군)",
+   "ids": [
+    1125004500
+   ],
+   "models": "MSM-08",
+   "series": [
+    "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "즈사",
+   "match": "exact",
+   "api_name": "즈사",
+   "ids": [
+    1095001000,
+    1095001010
+   ],
+   "models": "AMX-102",
+   "series": [
+    "기동전사 건담 ZZ"
+   ]
+  },
+  {
+   "dex": "짐Ⅱ 세미 스트라이커",
+   "match": "exact",
+   "api_name": "짐Ⅱ 세미스트라이커",
+   "ids": [
+    1125001900
+   ],
+   "models": "RMS-179",
+   "series": [
+    "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "프로토 스타크 제간",
+   "match": "exact",
+   "api_name": "프로토 스타크 제간",
+   "ids": [
+    1125002100
+   ],
+   "models": "RGM-89S",
+   "series": [
+    "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "빅토리 건담",
+   "match": "exact",
+   "api_name": "빅토리 건담",
+   "ids": [
+    1175000110
+   ],
+   "models": "LM312V04",
+   "series": [
+    "기동전사 V건담"
+   ]
+  },
+  {
+   "dex": "자벨린",
+   "match": "exact",
+   "api_name": "자벨린",
+   "ids": [
+    1175000510
+   ],
+   "models": "RGM-122",
+   "series": [
+    "기동전사 V건담"
+   ]
+  },
+  {
+   "dex": "제임스건",
+   "match": "exact",
+   "api_name": "제임스건",
+   "ids": [
+    1175000410
+   ],
+   "models": "RGM-119",
+   "series": [
+    "기동전사 V건담"
+   ]
+  },
+  {
+   "dex": "마그아낙",
+   "match": "exact",
+   "api_name": "마그아낙",
+   "ids": [
+    1210002200
+   ],
+   "models": "WMS-03",
+   "series": [
+    "신기동전기 건담 W"
+   ]
+  },
+  {
+   "dex": "메리크리우스",
+   "match": "exact",
+   "api_name": "메리크리우스",
+   "ids": [
+    1210002600
+   ],
+   "models": "OZ-13MSX2",
+   "series": [
+    "신기동전기 건담 W"
+   ]
+  },
+  {
+   "dex": "바이에이트",
+   "match": "exact",
+   "api_name": "바이에이트",
+   "ids": [
+    1210002500
+   ],
+   "models": "OZ-13MSX1",
+   "series": [
+    "신기동전기 건담 W"
+   ]
+  },
+  {
+   "dex": "비르고Ⅱ",
+   "match": "exact",
+   "api_name": "비르고Ⅱ",
+   "ids": [
+    1210002400
+   ],
+   "models": "OZ-03MD",
+   "series": [
+    "신기동전기 건담 W"
+   ]
+  },
+  {
+   "dex": "에어리즈",
+   "match": "exact",
+   "api_name": "에어리즈",
+   "ids": [
+    1210001900
+   ],
+   "models": "OZ-07AMS",
+   "series": [
+    "신기동전기 건담 W"
+   ]
+  },
+  {
+   "dex": "트라고스",
+   "match": "exact",
+   "api_name": "트라고스",
+   "ids": [
+    1210001810
+   ],
+   "models": "OZ-07MS",
+   "series": [
+    "신기동전기 건담 W"
+   ]
+  },
+  {
+   "dex": "건담 르브리스 양산형 시험 모델",
+   "match": "exact",
+   "api_name": "건담 르브리스 양산형 시험 모델",
+   "ids": [
+    1500000300
+   ],
+   "models": "XGF-01",
+   "series": [
+    "기동전사 건담 수성의 마녀 PROLOGUE"
+   ]
+  },
+  {
+   "dex": "데미 개리슨",
+   "match": "exact",
+   "api_name": "데미 개리슨",
+   "ids": [
+    1501001100
+   ],
+   "models": "MSJ-OP122",
+   "series": [
+    "기동전사 건담 수성의 마녀"
+   ]
+  },
+  {
+   "dex": "데미 트레이너 추추 전용기",
+   "match": "exact",
+   "api_name": "데미 트레이너 추추 전용기",
+   "ids": [
+    1501000600
+   ],
+   "models": "MSJ-105CC",
+   "series": [
+    "기동전사 건담 수성의 마녀"
+   ]
+  },
+  {
+   "dex": "딜란자 구엘 전용기",
+   "match": "exact",
+   "api_name": "딜란자 구엘 전용기",
+   "ids": [
+    1501000300
+   ],
+   "models": "MD-0032G",
+   "series": [
+    "기동전사 건담 수성의 마녀"
+   ]
+  },
+  {
+   "dex": "하인그라",
+   "match": "exact",
+   "api_name": "하인그라",
+   "ids": [
+    1500000400
+   ],
+   "models": "CCP-068",
+   "series": [
+    "기동전사 건담 수성의 마녀 PROLOGUE"
+   ]
+  },
+  {
+   "dex": "하인드리",
+   "match": "exact",
+   "api_name": "하인드리",
+   "ids": [
+    1501000900
+   ],
+   "models": "CFP-010",
+   "series": [
+    "기동전사 건담 수성의 마녀"
+   ]
+  },
+  {
+   "dex": "G팔콘",
+   "match": "exact",
+   "api_name": "G팔콘",
+   "ids": [
+    1230004700
+   ],
+   "models": "-",
+   "series": [
+    "기동신세기 건담 X"
+   ]
+  },
+  {
+   "dex": "건담 DX",
+   "match": "exact",
+   "api_name": "건담 DX",
+   "ids": [
+    1230003800,
+    1230003850
+   ],
+   "models": "GX-9901-DX",
+   "series": [
+    "기동신세기 건담 X"
+   ]
+  },
+  {
+   "dex": "건담 레오파드 디스트로이",
+   "match": "exact",
+   "api_name": "건담 레오파드 디스트로이",
+   "ids": [
+    1230004200
+   ],
+   "models": "GT-9600-D",
+   "series": [
+    "기동신세기 건담 X"
+   ]
+  },
+  {
+   "dex": "건담 버사고",
+   "match": "exact",
+   "api_name": "건담 버사고",
+   "ids": [
+    1230000900
+   ],
+   "models": "NRX-0013",
+   "series": [
+    "기동신세기 건담 X"
+   ]
+  },
+  {
+   "dex": "건담 버사고 체스트 브레이크",
+   "match": "exact",
+   "api_name": "건담 버사고 체스트 브레이크",
+   "ids": [
+    1230003900,
+    1230003950
+   ],
+   "models": "NRX-0013-CB",
+   "series": [
+    "기동신세기 건담 X"
+   ]
+  },
+  {
+   "dex": "건담 아슈타론",
+   "match": "exact",
+   "api_name": "건담 아슈타론",
+   "ids": [
+    1230000700
+   ],
+   "models": "NRX-0015",
+   "series": [
+    "기동신세기 건담 X"
+   ]
+  },
+  {
+   "dex": "건담 아슈타론 허밋 크랩",
+   "match": "exact",
+   "api_name": "건담 아슈타론 허밋크랩",
+   "ids": [
+    1230004300
+   ],
+   "models": "NRX-0015-HC",
+   "series": [
+    "기동신세기 건담 X"
+   ]
+  },
+  {
+   "dex": "건담 에어 마스터 버스트",
+   "match": "exact",
+   "api_name": "건담 에어 마스터 버스트",
+   "ids": [
+    1230004000
+   ],
+   "models": "GW-9800-B",
+   "series": [
+    "기동신세기 건담 X"
+   ]
+  },
+  {
+   "dex": "건담X 디바이더",
+   "match": "exact",
+   "api_name": "건담X 디바이더",
+   "ids": [
+    1230000200
+   ],
+   "models": "GX-9900-DV",
+   "series": [
+    "기동신세기 건담 X"
+   ]
+  },
+  {
+   "dex": "도트레스",
+   "match": "exact",
+   "api_name": "도트레스",
+   "ids": [
+    1230001200,
+    1230001210
+   ],
+   "models": "DT-6800",
+   "series": [
+    "기동신세기 건담 X"
+   ]
+  },
+  {
+   "dex": "벨티고",
+   "match": "exact",
+   "api_name": "벨티고",
+   "ids": [
+    1230000600
+   ],
+   "models": "RMSN-008",
+   "series": [
+    "기동신세기 건담 X"
+   ]
+  },
+  {
+   "dex": "제니스",
+   "match": "exact",
+   "api_name": "제니스",
+   "ids": [
+    1230001700,
+    1230001710
+   ],
+   "models": "RMS-006",
+   "series": [
+    "기동신세기 건담 X"
+   ]
+  },
+  {
+   "dex": "크라우다",
+   "match": "exact",
+   "api_name": "크라우다",
+   "ids": [
+    1230004800
+   ],
+   "models": "RMS-019",
+   "series": [
+    "기동신세기 건담 X"
+   ]
+  },
+  {
+   "dex": "파이론",
+   "match": "exact",
+   "api_name": "파이론",
+   "ids": [
+    1230002910
+   ],
+   "models": "ENG-002",
+   "series": [
+    "기동신세기 건담 X"
+   ]
+  },
+  {
+   "dex": "가르발디β",
+   "match": "exact",
+   "api_name": "가르발디β",
+   "ids": [
+    1080003300,
+    1080003310
+   ],
+   "models": "RMS-117",
+   "series": [
+    "기동전사 Z건담"
+   ]
+  },
+  {
+   "dex": "가자C",
+   "match": "exact",
+   "api_name": "가자C",
+   "ids": [
+    1080004000
+   ],
+   "models": "AMX-003",
+   "series": [
+    "기동전사 Z건담"
+   ]
+  },
+  {
+   "dex": "건담 Mk-Ⅱ 에우고 사양",
+   "match": "exact",
+   "api_name": "건담 Mk-Ⅱ (에우고 사양)",
+   "ids": [
+    1080000600
+   ],
+   "models": "RX-178",
+   "series": [
+    "기동전사 Z건담"
+   ]
+  },
+  {
+   "dex": "멧사라",
+   "match": "exact",
+   "api_name": "멧사라",
+   "ids": [
+    1080002800
+   ],
+   "models": "PMX-000",
+   "series": [
+    "기동전사 Z건담"
+   ]
+  },
+  {
+   "dex": "바잠",
+   "match": "exact",
+   "api_name": "바잠",
+   "ids": [
+    1080002000,
+    1080002010
+   ],
+   "models": "RMS-154",
+   "series": [
+    "기동전사 Z건담"
+   ]
+  },
+  {
+   "dex": "사이코 건담 Mk-II",
+   "match": "exact",
+   "api_name": "사이코 건담 Mk-Ⅱ",
+   "ids": [
+    1095003200
+   ],
+   "models": "MRX-010",
+   "series": [
+    "기동전사 건담 ZZ"
+   ]
+  },
+  {
+   "dex": "앗시마",
+   "match": "exact",
+   "api_name": "앗시마",
+   "ids": [
+    1080003400
+   ],
+   "models": "NRX-044",
+   "series": [
+    "기동전사 Z건담"
+   ]
+  },
+  {
+   "dex": "하이잭 커스텀",
+   "match": "exact",
+   "api_name": "하이잭 커스텀",
+   "ids": [
+    1080001800,
+    1080001810
+   ],
+   "models": "RMS-106CS",
+   "series": [
+    "기동전사 Z건담"
+   ]
+  },
+  {
+   "dex": "R자자",
+   "match": "exact",
+   "api_name": "R자자",
+   "ids": [
+    1095001200
+   ],
+   "models": "AMX-104",
+   "series": [
+    "기동전사 건담 ZZ"
+   ]
+  },
+  {
+   "dex": "갈루스J",
+   "match": "exact",
+   "api_name": "갈루스 J",
+   "ids": [
+    1095000900,
+    1095000910
+   ],
+   "models": "AMX-101",
+   "series": [
+    "기동전사 건담 ZZ"
+   ]
+  },
+  {
+   "dex": "강화형 ZZ건담",
+   "match": "exact",
+   "api_name": "강화형 ZZ건담",
+   "ids": [
+    1095004500
+   ],
+   "models": "MSZ-010S",
+   "series": [
+    "기동전사 건담 ZZ"
+   ]
+  },
+  {
+   "dex": "바우",
+   "match": "exact",
+   "api_name": "바우",
+   "ids": [
+    1095001300
+   ],
+   "models": "AMX-107",
+   "series": [
+    "기동전사 건담 ZZ"
+   ]
+  },
+  {
+   "dex": "양산형 큐베레이",
+   "match": "exact",
+   "api_name": "양산형 큐베레이",
+   "ids": [
+    1095002800
+   ],
+   "models": "AMX-004G",
+   "series": [
+    "기동전사 건담 ZZ"
+   ]
+  },
+  {
+   "dex": "자쿠III 개량형",
+   "match": "exact",
+   "api_name": "자쿠Ⅲ 개량형",
+   "ids": [
+    1095001800
+   ],
+   "models": "AMX-011S",
+   "series": [
+    "기동전사 건담 ZZ"
+   ]
+  },
+  {
+   "dex": "퀸 만사",
+   "match": "exact",
+   "api_name": "퀸 만사",
+   "ids": [
+    1095003400
+   ],
+   "models": "NZ-000",
+   "series": [
+    "기동전사 건담 ZZ"
+   ]
+  },
+  {
+   "dex": "풀 아머 ZZ건담",
+   "match": "exact",
+   "api_name": "풀 아머 ZZ건담",
+   "ids": [
+    1095000300,
+    1095000350
+   ],
+   "models": "FA-010S",
+   "series": [
+    "기동전사 건담 ZZ"
+   ]
+  },
+  {
+   "dex": "함마 함마",
+   "match": "exact",
+   "api_name": "함마 함마",
+   "ids": [
+    1095001100
+   ],
+   "models": "AMX-103",
+   "series": [
+    "기동전사 건담 ZZ"
+   ]
   }
  ],
  "pilot": [
@@ -4505,6 +7683,2872 @@
       "score": 0.714
      }
     ]
+   },
+   {
+    "dex": "AEU 이낙트 지휘관형",
+    "candidates": [
+     {
+      "api_name": "AEU 이낙트",
+      "ids": [
+       1370003800,
+       1370003810
+      ],
+      "models": "AEU-09",
+      "score": 0.75
+     },
+     {
+      "api_name": "AEU 이낙트 (데모 컬러)",
+      "ids": [
+       1370004200
+      ],
+      "models": "AEU-09T",
+      "score": 0.75
+     },
+     {
+      "api_name": "AEU 이낙트 (지휘관기)",
+      "ids": [
+       1370004010
+      ],
+      "models": "AEU-09T",
+      "score": 0.75
+     },
+     {
+      "api_name": "AEU 이낙트 우주형 (카타론 컬러)",
+      "ids": [
+       1370007610
+      ],
+      "models": "AEU-09OP",
+      "score": 0.737
+     }
+    ]
+   },
+   {
+    "dex": "GN-XIII",
+    "candidates": [
+     {
+      "api_name": "짐Ⅲ",
+      "ids": [
+       1095000400,
+       1095000410
+      ],
+      "models": "RGM-86R",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "가뎃사(리바이브 전용기)",
+    "candidates": [
+     {
+      "api_name": "가뎃사 (리바이브 기)",
+      "ids": [
+       1370008300
+      ],
+      "models": "GNZ-003",
+      "score": 1.0
+     },
+     {
+      "api_name": "가뎃사 (힐링 기)",
+      "ids": [
+       1370010410
+      ],
+      "models": "GNZ-003",
+      "score": 1.0
+     }
+    ]
+   },
+   {
+    "dex": "가랏조(브링 전용기)",
+    "candidates": [
+     {
+      "api_name": "가랏조 (브링 기)",
+      "ids": [
+       1370008500
+      ],
+      "models": "GNZ-005",
+      "score": 1.0
+     },
+     {
+      "api_name": "가랏조 (힐링 기)",
+      "ids": [
+       1370010500
+      ],
+      "models": "GNZ-005",
+      "score": 1.0
+     },
+     {
+      "api_name": "가 조움",
+      "ids": [
+       1095000700
+      ],
+      "models": "AMX-008",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "리본즈 건담/리본즈 캐논",
+    "candidates": [
+     {
+      "api_name": "리본즈 건담",
+      "ids": [
+       1370011100
+      ],
+      "models": "CB-0000G/C",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "유니온 리알도 호버 탱크",
+    "candidates": [
+     {
+      "api_name": "유니온 리알도",
+      "ids": [
+       1370005200,
+       1370005210
+      ],
+      "models": "VMS-15",
+      "score": 0.75
+     },
+     {
+      "api_name": "유니온 리알도 우주형 (카타론 컬러)",
+      "ids": [
+       1370007510
+      ],
+      "models": "VMS-15OP",
+      "score": 0.632
+     }
+    ]
+   },
+   {
+    "dex": "티에렌 우주 지휘관형",
+    "candidates": [
+     {
+      "api_name": "티에렌 우주형",
+      "ids": [
+       1370002400,
+       1370002410
+      ],
+      "models": "MSJ-06II-E",
+      "score": 0.8
+     },
+     {
+      "api_name": "티에렌 우주형(지휘관기)",
+      "ids": [
+       1370002510
+      ],
+      "models": "MSJ-06II-ET",
+      "score": 0.8
+     },
+     {
+      "api_name": "티에렌 우주형 (카타론 컬러)",
+      "ids": [
+       1370009710
+      ],
+      "models": "MSJ-06II-E",
+      "score": 0.8
+     },
+     {
+      "api_name": "티에렌 지상형",
+      "ids": [
+       1370002300,
+       1370002310
+      ],
+      "models": "MSJ-06II-A",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "그라브로",
+    "candidates": [
+     {
+      "api_name": "그라블로(선더볼트 Ver.)",
+      "ids": [
+       1031002900
+      ],
+      "models": "MAM-07",
+      "score": 0.75
+     },
+     {
+      "api_name": "브라우 브로",
+      "ids": [
+       1001002800
+      ],
+      "models": "MAN-03",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "건담 NT-1 Alex",
+    "candidates": [
+     {
+      "api_name": "건담 NT-1",
+      "ids": [
+       1017000100,
+       1017000110
+      ],
+      "models": "RX-78NT-1",
+      "score": 0.714
+     },
+     {
+      "api_name": "건담 NT-1 (초밤 아머 장비형)",
+      "ids": [
+       1017000200
+      ],
+      "models": "RX-78NT-1",
+      "score": 0.714
+     }
+    ]
+   },
+   {
+    "dex": "짐 커맨드 우주전 사양",
+    "candidates": [
+     {
+      "api_name": "짐 커맨드",
+      "ids": [
+       1017000400,
+       1017000410
+      ],
+      "models": "RGM-79GS",
+      "score": 0.615
+     }
+    ]
+   },
+   {
+    "dex": "겔구그M 양산형",
+    "candidates": [
+     {
+      "api_name": "겔구그M",
+      "ids": [
+       1060001300
+      ],
+      "models": "MS-14F",
+      "score": 0.727
+     },
+     {
+      "api_name": "겔구그M (지휘관용)",
+      "ids": [
+       1060001410
+      ],
+      "models": "MS-14Fs",
+      "score": 0.727
+     },
+     {
+      "api_name": "겔구그",
+      "ids": [
+       1001001500
+      ],
+      "models": "MS-14A",
+      "score": 0.6
+     },
+     {
+      "api_name": "겔구그 (선더볼트 Ver.)",
+      "ids": [
+       1031000800
+      ],
+      "models": "MS-14",
+      "score": 0.6
+     },
+     {
+      "api_name": "겔구그 (아나벨 가토 전용)",
+      "ids": [
+       1060002110
+      ],
+      "models": "MS-14A",
+      "score": 0.6
+     },
+     {
+      "api_name": "겔구그 (헤르베르트 폰 카스펜 전용)",
+      "ids": [
+       1009000800,
+       1009000810
+      ],
+      "models": "MS-14",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "짐 개",
+    "candidates": [
+     {
+      "api_name": "짐 개량형",
+      "ids": [
+       1060001900
+      ],
+      "models": "RGM-79C",
+      "score": 0.667
+     },
+     {
+      "api_name": "짐",
+      "ids": [
+       1001000600,
+       1001000610
+      ],
+      "models": "RGM-79",
+      "score": 0.667
+     },
+     {
+      "api_name": "짐 (선더볼트 Ver.)",
+      "ids": [
+       1031000200
+      ],
+      "models": "RGM-79",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "제트 코어 부스터",
+    "candidates": [
+     {
+      "api_name": "코어 부스터",
+      "ids": [
+       1001000500
+      ],
+      "models": "FF-X7-Bst",
+      "score": 0.833
+     }
+    ]
+   },
+   {
+    "dex": "G에그제스 잭엣지",
+    "candidates": [
+     {
+      "api_name": "G-에그제스",
+      "ids": [
+       1400004800
+      ],
+      "models": "WMS-GEX1",
+      "score": 0.769
+     }
+    ]
+   },
+   {
+    "dex": "건담 AGE-3 노멀",
+    "candidates": [
+     {
+      "api_name": "건담 AGE-2 노멀",
+      "ids": [
+       1400000500,
+       1400000550
+      ],
+      "models": "AGE-2",
+      "score": 0.875
+     },
+     {
+      "api_name": "건담 AGE-1 노멀",
+      "ids": [
+       1400000100,
+       1400000110,
+       1400000150
+      ],
+      "models": "AGE-1",
+      "score": 0.875
+     },
+     {
+      "api_name": "건담 AGE-1 플랫",
+      "ids": [
+       1400008110
+      ],
+      "models": "AGE-1F",
+      "score": 0.625
+     }
+    ]
+   },
+   {
+    "dex": "건담 AGE-3 포트리스",
+    "candidates": [
+     {
+      "api_name": "건담 AGE-1 스팔로",
+      "ids": [
+       1400000300
+      ],
+      "models": "AGE-1S",
+      "score": 0.632
+     },
+     {
+      "api_name": "건담 AGE-1 타이터스",
+      "ids": [
+       1400000200
+      ],
+      "models": "AGE-1T",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "기라가",
+    "candidates": [
+     {
+      "api_name": "기라 도가",
+      "ids": [
+       1110000700
+      ],
+      "models": "AMS-119",
+      "score": 0.857
+     },
+     {
+      "api_name": "기라 도가(레즌 슈나이더 전용기)",
+      "ids": [
+       1110000810
+      ],
+      "models": "AMS-119",
+      "score": 0.857
+     },
+     {
+      "api_name": "기라 도가(사이코뮤 시험형)",
+      "ids": [
+       1114001000
+      ],
+      "models": "AMS-120X",
+      "score": 0.857
+     },
+     {
+      "api_name": "기라 도가  (소데츠키)",
+      "ids": [
+       1125003000
+      ],
+      "models": "AMS-119",
+      "score": 0.857
+     },
+     {
+      "api_name": "기라 도가(안젤로 자우퍼 전용기)",
+      "ids": [
+       1133001410
+      ],
+      "models": "AMS-119",
+      "score": 0.857
+     },
+     {
+      "api_name": "기라 도가 (중무장 사양 / 소데츠키)",
+      "ids": [
+       1125003100
+      ],
+      "models": "AMS-119",
+      "score": 0.857
+     },
+     {
+      "api_name": "기라 도가(풀 프론탈 전용기)",
+      "ids": [
+       1133001310
+      ],
+      "models": "AMS-119C",
+      "score": 0.857
+     },
+     {
+      "api_name": "기라 도가 개량형",
+      "ids": [
+       1114000900
+      ],
+      "models": "AMS-119S",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "바쿠토",
+    "candidates": [
+     {
+      "api_name": "바쿠 (400mm경 13연장 미사일 포드 장비)",
+      "ids": [
+       1300004700
+      ],
+      "models": "TMF/A-802",
+      "score": 0.8
+     },
+     {
+      "api_name": "바쿠 (450mm 2연장 레일건 장비)",
+      "ids": [
+       1300002000
+      ],
+      "models": "TMF/A-802",
+      "score": 0.8
+     },
+     {
+      "api_name": "바크토",
+      "ids": [
+       1400003600
+      ],
+      "models": "ovv-a",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "샬돌 개",
+    "candidates": [
+     {
+      "api_name": "샬돌",
+      "ids": [
+       1400003200
+      ],
+      "models": "CMS-B/67",
+      "score": 0.8
+     },
+     {
+      "api_name": "샬돌 개량형",
+      "ids": [
+       1400002100
+      ],
+      "models": "RGE-C350",
+      "score": 0.75
+     },
+     {
+      "api_name": "샬돌M",
+      "ids": [
+       1400003300,
+       1400003310
+      ],
+      "models": "CMS-B/67M",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "샬돌 로그",
+    "candidates": [
+     {
+      "api_name": "샬돌",
+      "ids": [
+       1400003200
+      ],
+      "models": "CMS-B/67",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "제노아스 O 커스텀",
+    "candidates": [
+     {
+      "api_name": "제노아스 커스텀",
+      "ids": [
+       1400001900
+      ],
+      "models": "RGE-B790CW",
+      "score": 0.933
+     },
+     {
+      "api_name": "제노아스 폭스 커스텀",
+      "ids": [
+       1409000700
+      ],
+      "models": "RGE-B790CF",
+      "score": 0.824
+     },
+     {
+      "api_name": "제노아스",
+      "ids": [
+       1400001800
+      ],
+      "models": "RGE-B790",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "클란셰 커스텀",
+    "candidates": [
+     {
+      "api_name": "바이아란 커스텀",
+      "ids": [
+       1125002700
+      ],
+      "models": "RX-160S",
+      "score": 0.615
+     },
+     {
+      "api_name": "짐 커스텀",
+      "ids": [
+       1060000800
+      ],
+      "models": "RGM-79N",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "폰 파르시아",
+    "candidates": [
+     {
+      "api_name": "파르시아",
+      "ids": [
+       1400003810
+      ],
+      "models": "xvb-xd",
+      "score": 0.889
+     }
+    ]
+   },
+   {
+    "dex": "대거",
+    "candidates": [
+     {
+      "api_name": "대거L",
+      "ids": [
+       1330001700
+      ],
+      "models": "GAT-02L2",
+      "score": 0.8
+     },
+     {
+      "api_name": "대거L(돕펠호른 연장 무반동포 장비)",
+      "ids": [
+       1330004600
+      ],
+      "models": "GAT-02L2+AQM/E-M11",
+      "score": 0.8
+     },
+     {
+      "api_name": "대거L(제트 스트라이커 장비)",
+      "ids": [
+       1330004500
+      ],
+      "models": "GAT-02L2+AQM/E-A4E1",
+      "score": 0.8
+     },
+     {
+      "api_name": "듀얼 대거",
+      "ids": [
+       1304000800
+      ],
+      "models": "GAT-01D1",
+      "score": 0.667
+     },
+     {
+      "api_name": "듀얼 대거 (포르테스트라 장비형)",
+      "ids": [
+       1304000900
+      ],
+      "models": "GAT-01D1",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "블레이즈 자쿠 팬텀",
+    "candidates": [
+     {
+      "api_name": "블레이즈 자쿠 팬텀 (디아카 앨스먼 전용기)",
+      "ids": [
+       1330006010
+      ],
+      "models": "ZGMF-1001/M",
+      "score": 1.0
+     },
+     {
+      "api_name": "블레이즈 자쿠 팬텀 (레이 자 바렐 전용기)",
+      "ids": [
+       1330003610
+      ],
+      "models": "ZGMF-1001/M",
+      "score": 1.0
+     },
+     {
+      "api_name": "블레이즈 자쿠 워리어",
+      "ids": [
+       1330003300
+      ],
+      "models": "ZGMF-1000/M",
+      "score": 0.706
+     },
+     {
+      "api_name": "자쿠 팬텀",
+      "ids": [
+       1330003500
+      ],
+      "models": "ZGMF-1001",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "이지스함 (오브)",
+    "candidates": [
+     {
+      "api_name": "이지스 건담",
+      "ids": [
+       1300000600
+      ],
+      "models": "GAT-X303",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "진 하이머누버 2형",
+    "candidates": [
+     {
+      "api_name": "진 하이머누버",
+      "ids": [
+       1304001000
+      ],
+      "models": "ZGMF-1017M",
+      "score": 0.857
+     },
+     {
+      "api_name": "진 하이메뉴버 2형",
+      "ids": [
+       1330002300
+      ],
+      "models": "ZGMF-1017M2",
+      "score": 0.75
+     }
+    ]
+   },
+   {
+    "dex": "윙 건담 0",
+    "candidates": [
+     {
+      "api_name": "윙 건담",
+      "ids": [
+       1210000100
+      ],
+      "models": "XXXG-01W",
+      "score": 0.857
+     },
+     {
+      "api_name": "윙 건담(EW Ver.)",
+      "ids": [
+       1211000300,
+       1211000360
+      ],
+      "models": "XXXG-01W",
+      "score": 0.857
+     },
+     {
+      "api_name": "윙 건담 제로",
+      "ids": [
+       1210000300
+      ],
+      "models": "XXXG-00W0",
+      "score": 0.667
+     },
+     {
+      "api_name": "윙 건담 제로 (EW Ver.)",
+      "ids": [
+       1219000100,
+       1219000150
+      ],
+      "models": "XXXG-00W0",
+      "score": 0.667
+     },
+     {
+      "api_name": "건담 F90",
+      "ids": [
+       1155000100,
+       1155000110
+      ],
+      "models": "F90",
+      "score": 0.667
+     },
+     {
+      "api_name": "건담 F90(A.D.S. 혼합 장착 시)",
+      "ids": [
+       1155000200,
+       1155000250
+      ],
+      "models": "F90",
+      "score": 0.667
+     },
+     {
+      "api_name": "건담 F90(화성 독립 지온군 사양)",
+      "ids": [
+       1155000700
+      ],
+      "models": "OMS-90R",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "토라스",
+    "candidates": [
+     {
+      "api_name": "토라스 (OZ사양)",
+      "ids": [
+       1210002700
+      ],
+      "models": "OZ-12SMS",
+      "score": 1.0
+     },
+     {
+      "api_name": "토라스 (생크 킹덤 사양)",
+      "ids": [
+       1210002900
+      ],
+      "models": "OZ-12SMS",
+      "score": 1.0
+     },
+     {
+      "api_name": "토라스 (화이트 팽 사양)",
+      "ids": [
+       1210003110
+      ],
+      "models": "OZ-12SMS",
+      "score": 1.0
+     }
+    ]
+   },
+   {
+    "dex": "검은 부대 전용 베르가 기로스",
+    "candidates": [
+     {
+      "api_name": "베르가 기로스",
+      "ids": [
+       1162001200
+      ],
+      "models": "XM-05",
+      "score": 0.667
+     },
+     {
+      "api_name": "베르가 기로스(블랙 뱅가드 사양)",
+      "ids": [
+       1162001310
+      ],
+      "models": "XM-05",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "제간 A타입",
+    "candidates": [
+     {
+      "api_name": "제간 A2형 (제네럴 레빌 배치기)",
+      "ids": [
+       1144001900
+      ],
+      "models": "RGM-89A2",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "Blast Impulse Gundam SpecⅡ",
+    "candidates": [
+     {
+      "api_name": "블래스트 임펄스 건담",
+      "ids": [
+       1330000500
+      ],
+      "models": "ZGMF-X56S/γ",
+      "score": 0.75
+     }
+    ]
+   },
+   {
+    "dex": "DINN-F",
+    "candidates": [
+     {
+      "api_name": "딘",
+      "ids": [
+       1300003100
+      ],
+      "models": "AMF-101",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "DINN-R",
+    "candidates": [
+     {
+      "api_name": "딘",
+      "ids": [
+       1300003100
+      ],
+      "models": "AMF-101",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "Duel Blitz Gundam",
+    "candidates": [
+     {
+      "api_name": "블리츠 건담",
+      "ids": [
+       1300001100
+      ],
+      "models": "GAT-X207",
+      "score": 0.833
+     },
+     {
+      "api_name": "듀얼 건담",
+      "ids": [
+       1300000800
+      ],
+      "models": "GAT-X102",
+      "score": 0.727
+     },
+     {
+      "api_name": "블루 듀얼 건담",
+      "ids": [
+       1336000300
+      ],
+      "models": "GAT-X1022",
+      "score": 0.615
+     }
+    ]
+   },
+   {
+    "dex": "Force Impulse Gundam SpecⅡ",
+    "candidates": [
+     {
+      "api_name": "포스 임펄스 건담",
+      "ids": [
+       1330000300,
+       1330000350
+      ],
+      "models": "ZGMF-X56S/α",
+      "score": 0.7
+     }
+    ]
+   },
+   {
+    "dex": "GELGOOG Menace (Runamaria 기)",
+    "candidates": [
+     {
+      "api_name": "겔구그",
+      "ids": [
+       1001001500
+      ],
+      "models": "MS-14A",
+      "score": 0.667
+     },
+     {
+      "api_name": "겔구그 (선더볼트 Ver.)",
+      "ids": [
+       1031000800
+      ],
+      "models": "MS-14",
+      "score": 0.667
+     },
+     {
+      "api_name": "겔구그 (아나벨 가토 전용)",
+      "ids": [
+       1060002110
+      ],
+      "models": "MS-14A",
+      "score": 0.667
+     },
+     {
+      "api_name": "겔구그 (헤르베르트 폰 카스펜 전용)",
+      "ids": [
+       1009000800,
+       1009000810
+      ],
+      "models": "MS-14",
+      "score": 0.667
+     },
+     {
+      "api_name": "겔구그M",
+      "ids": [
+       1060001300
+      ],
+      "models": "MS-14F",
+      "score": 0.6
+     },
+     {
+      "api_name": "겔구그M (지휘관용)",
+      "ids": [
+       1060001410
+      ],
+      "models": "MS-14Fs",
+      "score": 0.6
+     },
+     {
+      "api_name": "겔구그J",
+      "ids": [
+       1017000800
+      ],
+      "models": "MS-14JG",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "GINN-F",
+    "candidates": [
+     {
+      "api_name": "진",
+      "ids": [
+       1300002200,
+       1300002210
+      ],
+      "models": "ZGMF-1017",
+      "score": 0.667
+     },
+     {
+      "api_name": "진 (D 장비)",
+      "ids": [
+       1300002400,
+       1300002410
+      ],
+      "models": "ZGMF-1017",
+      "score": 0.667
+     },
+     {
+      "api_name": "진 (M69 바루루스 개량형 특화중입자포 장비)",
+      "ids": [
+       1300002300,
+       1300002310
+      ],
+      "models": "ZGMF-1017",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "GINN-R",
+    "candidates": [
+     {
+      "api_name": "진",
+      "ids": [
+       1300002200,
+       1300002210
+      ],
+      "models": "ZGMF-1017",
+      "score": 0.667
+     },
+     {
+      "api_name": "진 (D 장비)",
+      "ids": [
+       1300002400,
+       1300002410
+      ],
+      "models": "ZGMF-1017",
+      "score": 0.667
+     },
+     {
+      "api_name": "진 (M69 바루루스 개량형 특화중입자포 장비)",
+      "ids": [
+       1300002300,
+       1300002310
+      ],
+      "models": "ZGMF-1017",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "Infinite Justice Gundam TypeⅡ",
+    "candidates": [
+     {
+      "api_name": "인피니트 저스티스 건담",
+      "ids": [
+       1330002800,
+       1330002850
+      ],
+      "models": "ZGMF-X19A",
+      "score": 0.769
+     },
+     {
+      "api_name": "인피니트 저스티스 건담(미티어)",
+      "ids": [
+       1330006900
+      ],
+      "models": "ZGMF-X19A",
+      "score": 0.769
+     }
+    ]
+   },
+   {
+    "dex": "Lightning Buster Gundam",
+    "candidates": [
+     {
+      "api_name": "버스터 건담",
+      "ids": [
+       1300001000
+      ],
+      "models": "GAT-X103",
+      "score": 0.714
+     }
+    ]
+   },
+   {
+    "dex": "Murasame Kai (Mu 기)",
+    "candidates": [
+     {
+      "api_name": "무라사메",
+      "ids": [
+       1330001300
+      ],
+      "models": "MVF-M11C",
+      "score": 0.8
+     },
+     {
+      "api_name": "무라사메 (앤드류 발트펠드 전용기)",
+      "ids": [
+       1330005710
+      ],
+      "models": "MVF-M11C",
+      "score": 0.8
+     },
+     {
+      "api_name": "마라사이",
+      "ids": [
+       1080001900,
+       1080001910
+      ],
+      "models": "RMS-108",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "Strike Freedom Gundam TypeⅡ",
+    "candidates": [
+     {
+      "api_name": "스트라이크 프리덤 건담",
+      "ids": [
+       1330000100,
+       1330000150
+      ],
+      "models": "ZGMF-X20A",
+      "score": 0.769
+     },
+     {
+      "api_name": "스트라이크 프리덤 건담 (미티어)",
+      "ids": [
+       1330006700
+      ],
+      "models": "ZGMF-X20A",
+      "score": 0.769
+     },
+     {
+      "api_name": "스트라이크 건담",
+      "ids": [
+       1300000100
+      ],
+      "models": "GAT-X105",
+      "score": 0.609
+     }
+    ]
+   },
+   {
+    "dex": "Sword Impulse Gundam SpecⅡ",
+    "candidates": [
+     {
+      "api_name": "소드 임펄스 건담",
+      "ids": [
+       1330000400
+      ],
+      "models": "ZGMF-X56S/β",
+      "score": 0.7
+     }
+    ]
+   },
+   {
+    "dex": "건담 제브라",
+    "candidates": [
+     {
+      "api_name": "윙 건담 제로",
+      "ids": [
+       1210000300
+      ],
+      "models": "XXXG-00W0",
+      "score": 0.6
+     },
+     {
+      "api_name": "윙 건담 제로 (EW Ver.)",
+      "ids": [
+       1219000100,
+       1219000150
+      ],
+      "models": "XXXG-00W0",
+      "score": 0.6
+     },
+     {
+      "api_name": "건담 라지엘",
+      "ids": [
+       1375000210
+      ],
+      "models": "GN-XXX",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "마타도르 건담",
+    "candidates": [
+     {
+      "api_name": "델타 건담",
+      "ids": [
+       1133000100
+      ],
+      "models": "MSN-001",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "미라주 건담",
+    "candidates": [
+     {
+      "api_name": "세라핌 건담",
+      "ids": [
+       1370007200
+      ],
+      "models": "GN-009",
+      "score": 0.6
+     },
+     {
+      "api_name": "세라비 건담",
+      "ids": [
+       1370007000
+      ],
+      "models": "GN-008",
+      "score": 0.6
+     },
+     {
+      "api_name": "만다라 건담",
+      "ids": [
+       1200003600
+      ],
+      "models": "GF13-044NNP",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "바이킹 건담",
+    "candidates": [
+     {
+      "api_name": "턴에이 건담",
+      "ids": [
+       1240000110
+      ],
+      "models": "WD-M01",
+      "score": 0.6
+     },
+     {
+      "api_name": "이지스 건담",
+      "ids": [
+       1300000600
+      ],
+      "models": "GAT-X303",
+      "score": 0.6
+     },
+     {
+      "api_name": "세이버 건담",
+      "ids": [
+       1330000800
+      ],
+      "models": "ZGMF-X23S",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "사왕쟁패 그랜드 건담",
+    "candidates": [
+     {
+      "api_name": "그랜드 건담",
+      "ids": [
+       1200005000
+      ],
+      "models": "-",
+      "score": 0.714
+     }
+    ]
+   },
+   {
+    "dex": "소오강호 월터 건담",
+    "candidates": [
+     {
+      "api_name": "월터 건담",
+      "ids": [
+       1200004900
+      ],
+      "models": "-",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "스컬 건담",
+    "candidates": [
+     {
+      "api_name": "할파스 건담",
+      "ids": [
+       1850000610,
+       1850000650
+      ],
+      "models": "GGH-001",
+      "score": 0.667
+     },
+     {
+      "api_name": "피닉스 건담",
+      "ids": [
+       1850000100
+      ],
+      "models": "GGF-001",
+      "score": 0.667
+     },
+     {
+      "api_name": "피닉스 건담 (능력 해방)",
+      "ids": [
+       1850000200,
+       1850000250
+      ],
+      "models": "GGF-001",
+      "score": 0.667
+     },
+     {
+      "api_name": "카오스 건담",
+      "ids": [
+       1330000900
+      ],
+      "models": "ZGMF-X24S",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "아라크노 건담",
+    "candidates": [
+     {
+      "api_name": "아틀라스 건담",
+      "ids": [
+       1031001200,
+       1031001250
+      ],
+      "models": "RX-78AL",
+      "score": 0.667
+     },
+     {
+      "api_name": "스트라이크 건담",
+      "ids": [
+       1300000100
+      ],
+      "models": "GAT-X105",
+      "score": 0.615
+     },
+     {
+      "api_name": "크시 건담",
+      "ids": [
+       1150000100,
+       1150000150
+      ],
+      "models": "RX-105",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "아수라 건담",
+    "candidates": [
+     {
+      "api_name": "아틀라스 건담",
+      "ids": [
+       1031001200,
+       1031001250
+      ],
+      "models": "RX-78AL",
+      "score": 0.727
+     },
+     {
+      "api_name": "풀아머 건담",
+      "ids": [
+       1007001160
+      ],
+      "models": "FA-78-1",
+      "score": 0.6
+     },
+     {
+      "api_name": "풀 아머 건담 (선더볼트 Ver.)",
+      "ids": [
+       1031000100,
+       1031000150
+      ],
+      "models": "FA-78",
+      "score": 0.6
+     },
+     {
+      "api_name": "아르케 건담",
+      "ids": [
+       1370010300
+      ],
+      "models": "GNW-20000",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "제우스 건담",
+    "candidates": [
+     {
+      "api_name": "제임스건",
+      "ids": [
+       1175000410
+      ],
+      "models": "RGM-119",
+      "score": 0.667
+     },
+     {
+      "api_name": "할파스 건담",
+      "ids": [
+       1850000610,
+       1850000650
+      ],
+      "models": "GGH-001",
+      "score": 0.6
+     },
+     {
+      "api_name": "피닉스 건담",
+      "ids": [
+       1850000100
+      ],
+      "models": "GGF-001",
+      "score": 0.6
+     },
+     {
+      "api_name": "피닉스 건담 (능력 해방)",
+      "ids": [
+       1850000200,
+       1850000250
+      ],
+      "models": "GGF-001",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "천검절도 건담 헤븐즈 소드",
+    "candidates": [
+     {
+      "api_name": "건담 헤븐즈 소드",
+      "ids": [
+       1200005100
+      ],
+      "models": "-",
+      "score": 0.778
+     }
+    ]
+   },
+   {
+    "dex": "코브라 건담",
+    "candidates": [
+     {
+      "api_name": "세라핌 건담",
+      "ids": [
+       1370007200
+      ],
+      "models": "GN-009",
+      "score": 0.6
+     },
+     {
+      "api_name": "세라비 건담",
+      "ids": [
+       1370007000
+      ],
+      "models": "GN-008",
+      "score": 0.6
+     },
+     {
+      "api_name": "사이코 건담",
+      "ids": [
+       1080003800,
+       1080003860
+      ],
+      "models": "MRX-009",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "테무진 건담",
+    "candidates": [
+     {
+      "api_name": "무사 건담",
+      "ids": [
+       1700000100
+      ],
+      "models": "-",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "테킬라 건담",
+    "candidates": [
+     {
+      "api_name": "세라핌 건담",
+      "ids": [
+       1370007200
+      ],
+      "models": "GN-009",
+      "score": 0.6
+     },
+     {
+      "api_name": "세라비 건담",
+      "ids": [
+       1370007000
+      ],
+      "models": "GN-008",
+      "score": 0.6
+     },
+     {
+      "api_name": "만다라 건담",
+      "ids": [
+       1200003600
+      ],
+      "models": "GF13-044NNP",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "파라오 건담 XIII세",
+    "candidates": [
+     {
+      "api_name": "건담X",
+      "ids": [
+       1230000100
+      ],
+      "models": "GX-9900"
+     }
+    ]
+   },
+   {
+    "dex": "01건담",
+    "candidates": [
+     {
+      "api_name": "0건담",
+      "ids": [
+       1370001300
+      ],
+      "models": "GN-000",
+      "score": 0.857
+     },
+     {
+      "api_name": "0건담(실전배치형 / GN 드라이브 탑재 사양)",
+      "ids": [
+       1370009600
+      ],
+      "models": "GN-000",
+      "score": 0.857
+     },
+     {
+      "api_name": "0건담(실전배치형 / GN 콘덴서 탑재 사양)",
+      "ids": [
+       1370009500
+      ],
+      "models": "GN-000",
+      "score": 0.857
+     },
+     {
+      "api_name": "1.5건담",
+      "ids": [
+       1378000110
+      ],
+      "models": "CB-001.5",
+      "score": 0.75
+     },
+     {
+      "api_name": "건담",
+      "ids": [
+       1001000100,
+       1001000150
+      ],
+      "models": "RX-78-2",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "겔구그 보카타 기",
+    "candidates": [
+     {
+      "api_name": "겔구그",
+      "ids": [
+       1001001500
+      ],
+      "models": "MS-14A",
+      "score": 0.6
+     },
+     {
+      "api_name": "겔구그 (선더볼트 Ver.)",
+      "ids": [
+       1031000800
+      ],
+      "models": "MS-14",
+      "score": 0.6
+     },
+     {
+      "api_name": "겔구그 (아나벨 가토 전용)",
+      "ids": [
+       1060002110
+      ],
+      "models": "MS-14A",
+      "score": 0.6
+     },
+     {
+      "api_name": "겔구그 (헤르베르트 폰 카스펜 전용)",
+      "ids": [
+       1009000800,
+       1009000810
+      ],
+      "models": "MS-14",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "겔구그 스가이 기",
+    "candidates": [
+     {
+      "api_name": "겔구그",
+      "ids": [
+       1001001500
+      ],
+      "models": "MS-14A",
+      "score": 0.6
+     },
+     {
+      "api_name": "겔구그 (선더볼트 Ver.)",
+      "ids": [
+       1031000800
+      ],
+      "models": "MS-14",
+      "score": 0.6
+     },
+     {
+      "api_name": "겔구그 (아나벨 가토 전용)",
+      "ids": [
+       1060002110
+      ],
+      "models": "MS-14A",
+      "score": 0.6
+     },
+     {
+      "api_name": "겔구그 (헤르베르트 폰 카스펜 전용)",
+      "ids": [
+       1009000800,
+       1009000810
+      ],
+      "models": "MS-14",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "경캐논",
+    "candidates": [
+     {
+      "api_name": "짐 캐논 (선더볼트 Ver.)",
+      "ids": [
+       1031000700
+      ],
+      "models": "RGC-80",
+      "score": 0.667
+     },
+     {
+      "api_name": "건캐논",
+      "ids": [
+       1001000200
+      ],
+      "models": "RX-77-2",
+      "score": 0.667
+     },
+     {
+      "api_name": "건캐논 (선더볼트 Ver.)",
+      "ids": [
+       1031000500
+      ],
+      "models": "RX-77",
+      "score": 0.667
+     },
+     {
+      "api_name": "G캐논",
+      "ids": [
+       1162000600
+      ],
+      "models": "F71",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "무사이 [팔메르]",
+    "candidates": [
+     {
+      "api_name": "무라사메",
+      "ids": [
+       1330001300
+      ],
+      "models": "MVF-M11C",
+      "score": 0.6
+     },
+     {
+      "api_name": "무라사메 (앤드류 발트펠드 전용기)",
+      "ids": [
+       1330005710
+      ],
+      "models": "MVF-M11C",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "자쿠",
+    "candidates": [
+     {
+      "api_name": "자쿠Ⅰ",
+      "ids": [
+       1001000800,
+       1001000810
+      ],
+      "models": "MS-05",
+      "score": 0.8
+     },
+     {
+      "api_name": "자쿠Ⅰ (선더볼트 Ver.)",
+      "ids": [
+       1031001000
+      ],
+      "models": "MS-05",
+      "score": 0.8
+     },
+     {
+      "api_name": "전사 자쿠",
+      "ids": [
+       1705001100
+      ],
+      "models": "-",
+      "score": 0.667
+     },
+     {
+      "api_name": "자쿠 팬텀",
+      "ids": [
+       1330003500
+      ],
+      "models": "ZGMF-1001",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "오디세우스 건담",
+    "candidates": [
+     {
+      "api_name": "카오스 건담",
+      "ids": [
+       1330000900
+      ],
+      "models": "ZGMF-X24S",
+      "score": 0.667
+     },
+     {
+      "api_name": "아리오스 건담",
+      "ids": [
+       1370006600
+      ],
+      "models": "GN-007",
+      "score": 0.615
+     }
+    ]
+   },
+   {
+    "dex": "건담 프레임",
+    "candidates": [
+     {
+      "api_name": "건담 나드레",
+      "ids": [
+       1370001100
+      ],
+      "models": "GN-004",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "그레이즈 지휘관기",
+    "candidates": [
+     {
+      "api_name": "그레이즈",
+      "ids": [
+       1430001400,
+       1430001410
+      ],
+      "models": "EB-06",
+      "score": 0.667
+     },
+     {
+      "api_name": "그레이즈 (결전 사양)",
+      "ids": [
+       1430001500
+      ],
+      "models": "EB-06",
+      "score": 0.667
+     },
+     {
+      "api_name": "그레이즈 (다인슬레이브 부대 사양/아리안로드 함대 소속기)",
+      "ids": [
+       1430004910
+      ],
+      "models": "-",
+      "score": 0.667
+     },
+     {
+      "api_name": "그레이즈 (에드먼턴 컬러)",
+      "ids": [
+       1430001810
+      ],
+      "models": "EB-06j",
+      "score": 0.667
+     },
+     {
+      "api_name": "그레이즈(우주형)",
+      "ids": [
+       1430001610
+      ],
+      "models": "EB-06",
+      "score": 0.667
+     },
+     {
+      "api_name": "그레이즈 (이오쿠 기)",
+      "ids": [
+       1430005010
+      ],
+      "models": "EB-06",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "슈발베 그레이즈(맥길리스 전용기)",
+    "candidates": [
+     {
+      "api_name": "슈발베 그레이즈 (가엘리오 전용기)",
+      "ids": [
+       1430002500
+      ],
+      "models": "EB-05s",
+      "score": 1.0
+     },
+     {
+      "api_name": "슈발베 그레이즈 (맥길리스 전용기)",
+      "ids": [
+       1430002600
+      ],
+      "models": "EB-05s",
+      "score": 1.0
+     },
+     {
+      "api_name": "슈발베 그레이즈 (아인 전용기)",
+      "ids": [
+       1430002400
+      ],
+      "models": "EB-05s",
+      "score": 1.0
+     },
+     {
+      "api_name": "그레이즈",
+      "ids": [
+       1430001400,
+       1430001410
+      ],
+      "models": "EB-06",
+      "score": 0.727
+     },
+     {
+      "api_name": "그레이즈 (결전 사양)",
+      "ids": [
+       1430001500
+      ],
+      "models": "EB-06",
+      "score": 0.727
+     },
+     {
+      "api_name": "그레이즈 (다인슬레이브 부대 사양/아리안로드 함대 소속기)",
+      "ids": [
+       1430004910
+      ],
+      "models": "-",
+      "score": 0.727
+     },
+     {
+      "api_name": "그레이즈 (에드먼턴 컬러)",
+      "ids": [
+       1430001810
+      ],
+      "models": "EB-06j",
+      "score": 0.727
+     },
+     {
+      "api_name": "그레이즈(우주형)",
+      "ids": [
+       1430001610
+      ],
+      "models": "EB-06",
+      "score": 0.727
+     },
+     {
+      "api_name": "그레이즈 (이오쿠 기)",
+      "ids": [
+       1430005010
+      ],
+      "models": "EB-06",
+      "score": 0.727
+     },
+     {
+      "api_name": "그레이즈 카이",
+      "ids": [
+       1430001900
+      ],
+      "models": "EB-06/tc",
+      "score": 0.615
+     }
+    ]
+   },
+   {
+    "dex": "시덴 카이 시노 전용기(류세이고)",
+    "candidates": [
+     {
+      "api_name": "시덴 카이 (류세이고)",
+      "ids": [
+       1430004200
+      ],
+      "models": "STH-16/tc",
+      "score": 0.615
+     }
+    ]
+   },
+   {
+    "dex": "II세컨드 네오 지옹",
+    "candidates": [
+     {
+      "api_name": "Ⅱ네오 지옹",
+      "ids": [
+       1144001000
+      ],
+      "models": "NZ-999",
+      "score": 0.8
+     },
+     {
+      "api_name": "네오 지옹",
+      "ids": [
+       1125001500
+      ],
+      "models": "NZ-999",
+      "score": 0.615
+     }
+    ]
+   },
+   {
+    "dex": "유니콘 건담 3호기 페넥스",
+    "candidates": [
+     {
+      "api_name": "유니콘 건담 3호기 페넥스 (디스트로이 모드)",
+      "ids": [
+       1144000500,
+       1144000550
+      ],
+      "models": "RX-0",
+      "score": 1.0
+     },
+     {
+      "api_name": "유니콘 건담 3호기 페넥스 (유니콘 모드)",
+      "ids": [
+       1144000400
+      ],
+      "models": "RX-0",
+      "score": 1.0
+     },
+     {
+      "api_name": "유니콘 건담 (디스트로이 모드)",
+      "ids": [
+       1125000200,
+       1125000250
+      ],
+      "models": "RX-0",
+      "score": 0.625
+     },
+     {
+      "api_name": "유니콘 건담 (디스트로이 모드 / 각성) (EX)",
+      "ids": [
+       1125001450
+      ],
+      "models": "RX-0",
+      "score": 0.625
+     },
+     {
+      "api_name": "유니콘 건담 (유니콘 모드)",
+      "ids": [
+       1125000100
+      ],
+      "models": "RX-0",
+      "score": 0.625
+     }
+    ]
+   },
+   {
+    "dex": "제간(D형) 호위대 사양",
+    "candidates": [
+     {
+      "api_name": "제간 D형 호위대 사양",
+      "ids": [
+       1144001600
+      ],
+      "models": "RGM-89D-ESC",
+      "score": 0.875
+     }
+    ]
+   },
+   {
+    "dex": "뫼비우스",
+    "candidates": [
+     {
+      "api_name": "뫼비우스 (리니어 건 장비형)",
+      "ids": [
+       1300003900,
+       1300003910
+      ],
+      "models": "TS-MA2",
+      "score": 1.0
+     },
+     {
+      "api_name": "뫼비우스 (핵미사일 장비형)",
+      "ids": [
+       1300004000
+      ],
+      "models": "TS-MA2",
+      "score": 1.0
+     },
+     {
+      "api_name": "뫼비우스 제로",
+      "ids": [
+       1300004100
+      ],
+      "models": "TS-MA2mod.00",
+      "score": 0.8
+     }
+    ]
+   },
+   {
+    "dex": "바쿠",
+    "candidates": [
+     {
+      "api_name": "바쿠 (400mm경 13연장 미사일 포드 장비)",
+      "ids": [
+       1300004700
+      ],
+      "models": "TMF/A-802",
+      "score": 1.0
+     },
+     {
+      "api_name": "바쿠 (450mm 2연장 레일건 장비)",
+      "ids": [
+       1300002000
+      ],
+      "models": "TMF/A-802",
+      "score": 1.0
+     }
+    ]
+   },
+   {
+    "dex": "진 트레이너",
+    "candidates": [
+     {
+      "api_name": "데미 트레이너",
+      "ids": [
+       1501001000,
+       1501001010
+      ],
+      "models": "MSJ-121",
+      "score": 0.727
+     }
+    ]
+   },
+   {
+    "dex": "플랫",
+    "candidates": [
+     {
+      "api_name": "건담 AGE-1 플랫",
+      "ids": [
+       1400008110
+      ],
+      "models": "AGE-1F"
+     }
+    ]
+   },
+   {
+    "dex": "고기동형",
+    "candidates": [
+     {
+      "api_name": "티에렌 고기동형",
+      "ids": [
+       1370002800,
+       1370002810
+      ],
+      "models": "MSJ-06II-C",
+      "score": 0.727
+     },
+     {
+      "api_name": "겔구그 고기동형 (조니 라이덴 전용)",
+      "ids": [
+       1007000710
+      ],
+      "models": "MS-14B",
+      "score": 0.727
+     },
+     {
+      "api_name": "티에렌 고기동 B형",
+      "ids": [
+       1370002600
+      ],
+      "models": "MSJ-06II-C/B",
+      "score": 0.667
+     },
+     {
+      "api_name": "티에렌 고기동 B형(지휘관기)",
+      "ids": [
+       1370002710
+      ],
+      "models": "MSJ-06II-C/BT",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "구 자쿠(자쿠I)",
+    "candidates": [
+     {
+      "api_name": "자쿠Ⅰ",
+      "ids": [
+       1001000800,
+       1001000810
+      ],
+      "models": "MS-05",
+      "score": 0.667
+     },
+     {
+      "api_name": "자쿠Ⅰ (선더볼트 Ver.)",
+      "ids": [
+       1031001000
+      ],
+      "models": "MS-05",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "코르벳 부스터",
+    "candidates": [
+     {
+      "api_name": "코어 부스터",
+      "ids": [
+       1001000500
+      ],
+      "models": "FF-X7-Bst",
+      "score": 0.727
+     }
+    ]
+   },
+   {
+    "dex": "데저트 겔구그",
+    "candidates": [
+     {
+      "api_name": "겔구그",
+      "ids": [
+       1001001500
+      ],
+      "models": "MS-14A",
+      "score": 0.667
+     },
+     {
+      "api_name": "겔구그 (선더볼트 Ver.)",
+      "ids": [
+       1031000800
+      ],
+      "models": "MS-14",
+      "score": 0.667
+     },
+     {
+      "api_name": "겔구그 (아나벨 가토 전용)",
+      "ids": [
+       1060002110
+      ],
+      "models": "MS-14A",
+      "score": 0.667
+     },
+     {
+      "api_name": "겔구그 (헤르베르트 폰 카스펜 전용)",
+      "ids": [
+       1009000800,
+       1009000810
+      ],
+      "models": "MS-14",
+      "score": 0.667
+     },
+     {
+      "api_name": "겔구그M",
+      "ids": [
+       1060001300
+      ],
+      "models": "MS-14F",
+      "score": 0.6
+     },
+     {
+      "api_name": "겔구그M (지휘관용)",
+      "ids": [
+       1060001410
+      ],
+      "models": "MS-14Fs",
+      "score": 0.6
+     },
+     {
+      "api_name": "겔구그J",
+      "ids": [
+       1017000800
+      ],
+      "models": "MS-14JG",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "데저트 자쿠",
+    "candidates": [
+     {
+      "api_name": "전사 데저트 자쿠",
+      "ids": [
+       1705004600
+      ],
+      "models": "-",
+      "score": 0.833
+     }
+    ]
+   },
+   {
+    "dex": "리젤 C형 (제네럴 레빌 배치기)",
+    "candidates": [
+     {
+      "api_name": "리젤 C형(디펜서 a유닛)",
+      "ids": [
+       1133000700
+      ],
+      "models": "RGZ-95C",
+      "score": 1.0
+     },
+     {
+      "api_name": "리젤 C형(디펜서 b유닛)",
+      "ids": [
+       1133000900
+      ],
+      "models": "RGZ-95C",
+      "score": 1.0
+     },
+     {
+      "api_name": "리젤C형(제네럴 레빌 배치기)",
+      "ids": [
+       1144001800
+      ],
+      "models": "RGZ-95C",
+      "score": 1.0
+     },
+     {
+      "api_name": "리젤",
+      "ids": [
+       1125000300
+      ],
+      "models": "RGZ-95",
+      "score": 0.667
+     },
+     {
+      "api_name": "리젤(대장기)",
+      "ids": [
+       1125000510
+      ],
+      "models": "RGZ-95",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "슈트룸 갈루스",
+    "candidates": [
+     {
+      "api_name": "슈투름갈루스",
+      "ids": [
+       1125006000
+      ],
+      "models": "AMX-101E",
+      "score": 0.667
+     },
+     {
+      "api_name": "갈루스K",
+      "ids": [
+       1125003600
+      ],
+      "models": "AMX-101K",
+      "score": 0.6
+     },
+     {
+      "api_name": "갈루스 J",
+      "ids": [
+       1095000900,
+       1095000910
+      ],
+      "models": "AMX-101",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "아쿠아 짐",
+    "candidates": [
+     {
+      "api_name": "건캐논 아쿠아",
+      "ids": [
+       1031001300
+      ],
+      "models": "RX-77AQ",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "유니콘 건담 2호기 Banshee Norn (유니콘 모드)",
+    "candidates": [
+     {
+      "api_name": "유니콘 건담 (디스트로이 모드)",
+      "ids": [
+       1125000200,
+       1125000250
+      ],
+      "models": "RX-0"
+     },
+     {
+      "api_name": "유니콘 건담 (디스트로이 모드 / 각성) (EX)",
+      "ids": [
+       1125001450
+      ],
+      "models": "RX-0"
+     },
+     {
+      "api_name": "유니콘 건담 (유니콘 모드)",
+      "ids": [
+       1125000100
+      ],
+      "models": "RX-0"
+     }
+    ]
+   },
+   {
+    "dex": "유니콘 건담 2호기 밴시 (유니콘 모드)",
+    "candidates": [
+     {
+      "api_name": "유니콘 건담 3호기 페넥스 (디스트로이 모드)",
+      "ids": [
+       1144000500,
+       1144000550
+      ],
+      "models": "RX-0",
+      "score": 0.667
+     },
+     {
+      "api_name": "유니콘 건담 3호기 페넥스 (유니콘 모드)",
+      "ids": [
+       1144000400
+      ],
+      "models": "RX-0",
+      "score": 0.667
+     },
+     {
+      "api_name": "유니콘 건담 (디스트로이 모드)",
+      "ids": [
+       1125000200,
+       1125000250
+      ],
+      "models": "RX-0",
+      "score": 0.667
+     },
+     {
+      "api_name": "유니콘 건담 (디스트로이 모드 / 각성) (EX)",
+      "ids": [
+       1125001450
+      ],
+      "models": "RX-0",
+      "score": 0.667
+     },
+     {
+      "api_name": "유니콘 건담 (유니콘 모드)",
+      "ids": [
+       1125000100
+      ],
+      "models": "RX-0",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "자쿠 마리너",
+    "candidates": [
+     {
+      "api_name": "자쿠 워리어",
+      "ids": [
+       1330001800
+      ],
+      "models": "ZGMF-1000",
+      "score": 0.6
+     },
+     {
+      "api_name": "자쿠 워리어 (라이브 사양)",
+      "ids": [
+       1330005900
+      ],
+      "models": "ZGMF-1000",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "제타 플러스",
+    "candidates": [
+     {
+      "api_name": "델타 플러스",
+      "ids": [
+       1125001600
+      ],
+      "models": "MSN-001A1",
+      "score": 0.8
+     }
+    ]
+   },
+   {
+    "dex": "주악그",
+    "candidates": [
+     {
+      "api_name": "주락그",
+      "ids": [
+       1230002110
+      ],
+      "models": "RMS-007G",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "짐Ⅱ",
+    "candidates": [
+     {
+      "api_name": "짐Ⅱ (에우고 사양)",
+      "ids": [
+       1080001400,
+       1080001410
+      ],
+      "models": "RGM-79R",
+      "score": 1.0
+     },
+     {
+      "api_name": "짐Ⅱ (지구연방군 사양)",
+      "ids": [
+       1080001500,
+       1080001510
+      ],
+      "models": "RMS-179",
+      "score": 1.0
+     },
+     {
+      "api_name": "짐Ⅲ",
+      "ids": [
+       1095000400,
+       1095000410
+      ],
+      "models": "RGM-86R",
+      "score": 0.857
+     },
+     {
+      "api_name": "짐 캐논Ⅱ",
+      "ids": [
+       1060000900
+      ],
+      "models": "RGC-83",
+      "score": 0.75
+     }
+    ]
+   },
+   {
+    "dex": "크샤트리아 리페어드",
+    "candidates": [
+     {
+      "api_name": "크샤트리야 리페어드",
+      "ids": [
+       1125005500
+      ],
+      "models": "NZ-666",
+      "score": 0.889
+     }
+    ]
+   },
+   {
+    "dex": "크샤트리야 베세룽",
+    "candidates": [
+     {
+      "api_name": "크샤트리야",
+      "ids": [
+       1125003500
+      ],
+      "models": "NZ-666",
+      "score": 0.769
+     }
+    ]
+   },
+   {
+    "dex": "풀 아머 유니콘 건담 (유니콘 모드)",
+    "candidates": [
+     {
+      "api_name": "풀아머 유니콘 건담(디스트로이 모드)",
+      "ids": [
+       1125004800
+      ],
+      "models": "RX-0",
+      "score": 1.0
+     },
+     {
+      "api_name": "풀아머 유니콘 건담(유니콘 모드)",
+      "ids": [
+       1125004700
+      ],
+      "models": "RX-0",
+      "score": 1.0
+     },
+     {
+      "api_name": "풀아머 건담",
+      "ids": [
+       1007001160
+      ],
+      "models": "FA-78-1",
+      "score": 0.769
+     },
+     {
+      "api_name": "풀 아머 건담 (선더볼트 Ver.)",
+      "ids": [
+       1031000100,
+       1031000150
+      ],
+      "models": "FA-78",
+      "score": 0.769
+     },
+     {
+      "api_name": "유니콘 건담 (디스트로이 모드)",
+      "ids": [
+       1125000200,
+       1125000250
+      ],
+      "models": "RX-0",
+      "score": 0.769
+     },
+     {
+      "api_name": "유니콘 건담 (디스트로이 모드 / 각성) (EX)",
+      "ids": [
+       1125001450
+      ],
+      "models": "RX-0",
+      "score": 0.769
+     },
+     {
+      "api_name": "유니콘 건담 (유니콘 모드)",
+      "ids": [
+       1125000100
+      ],
+      "models": "RX-0",
+      "score": 0.769
+     }
+    ]
+   },
+   {
+    "dex": "건블래스터",
+    "candidates": [
+     {
+      "api_name": "건담 맥스터",
+      "ids": [
+       1200000300
+      ],
+      "models": "GF13-006NA",
+      "score": 0.6
+     },
+     {
+      "api_name": "건담 맥스터  (슈퍼 모드)",
+      "ids": [
+       1200000410
+      ],
+      "models": "GF13-006NA",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "돔트리아",
+    "candidates": [
+     {
+      "api_name": "트리아이나",
+      "ids": [
+       1431001200
+      ],
+      "models": "TMPM02/AC",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "빅토리 건담 헥사",
+    "candidates": [
+     {
+      "api_name": "빅토리 건담",
+      "ids": [
+       1175000110
+      ],
+      "models": "LM312V04",
+      "score": 0.833
+     }
+    ]
+   },
+   {
+    "dex": "건담 칼리번",
+    "candidates": [
+     {
+      "api_name": "건담 캘리번",
+      "ids": [
+       1501002000
+      ],
+      "models": "X-EX01",
+      "score": 0.8
+     },
+     {
+      "api_name": "건담 캘리번(최종결전 시) (EX)",
+      "ids": [
+       1501002250
+      ],
+      "models": "X-EX01",
+      "score": 0.8
+     }
+    ]
+   },
+   {
+    "dex": "딜란자 라우더 전용기",
+    "candidates": [
+     {
+      "api_name": "딜란자 구엘 전용기",
+      "ids": [
+       1501000300
+      ],
+      "models": "MD-0032G",
+      "score": 0.706
+     },
+     {
+      "api_name": "딜란자 구엘 전용기(최종결전 시)",
+      "ids": [
+       1501003910
+      ],
+      "models": "MD-0032G",
+      "score": 0.706
+     }
+    ]
+   },
+   {
+    "dex": "딜란자 소르",
+    "candidates": [
+     {
+      "api_name": "딜란자",
+      "ids": [
+       1501000700
+      ],
+      "models": "MD-0031",
+      "score": 0.75
+     }
+    ]
+   },
+   {
+    "dex": "조워트 헤비",
+    "candidates": [
+     {
+      "api_name": "조워트",
+      "ids": [
+       1501000800
+      ],
+      "models": "F/D-19",
+      "score": 0.75
+     }
+    ]
+   },
+   {
+    "dex": "하인드리 슈트룸",
+    "candidates": [
+     {
+      "api_name": "하인드리",
+      "ids": [
+       1501000900
+      ],
+      "models": "CFP-010",
+      "score": 0.727
+     }
+    ]
+   },
+   {
+    "dex": "볼리노크 사만",
+    "candidates": [
+     {
+      "api_name": "보리노크 사만",
+      "ids": [
+       1080003000
+      ],
+      "models": "PMX-002",
+      "score": 0.833
+     }
+    ]
+   },
+   {
+    "dex": "팔라스 아테네",
+    "candidates": [
+     {
+      "api_name": "파라스 아테네",
+      "ids": [
+       1080003100
+      ],
+      "models": "PMX-001",
+      "score": 0.833
+     }
+    ]
+   },
+   {
+    "dex": "하이잭 연방군 사양",
+    "candidates": [
+     {
+      "api_name": "하이잭 (지구연방군 사양)",
+      "ids": [
+       1080001710
+      ],
+      "models": "RMS-106"
+     },
+     {
+      "api_name": "하이잭 (티탄즈 사양)",
+      "ids": [
+       1080001600,
+       1080001610
+      ],
+      "models": "RMS-106"
+     }
+    ]
+   },
+   {
+    "dex": "가즈L",
+    "candidates": [
+     {
+      "api_name": "가즈엘",
+      "ids": [
+       1095002300
+      ],
+      "models": "AMX-117L",
+      "score": 0.667
+     },
+     {
+      "api_name": "가즈알",
+      "ids": [
+       1095002200
+      ],
+      "models": "AMX-117R",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "가즈R",
+    "candidates": [
+     {
+      "api_name": "가즈엘",
+      "ids": [
+       1095002300
+      ],
+      "models": "AMX-117L",
+      "score": 0.667
+     },
+     {
+      "api_name": "가즈알",
+      "ids": [
+       1095002200
+      ],
+      "models": "AMX-117R",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "슈트룸 디아스",
+    "candidates": [
+     {
+      "api_name": "슈투름디아스",
+      "ids": [
+       1095001700
+      ],
+      "models": "RMS-099B",
+      "score": 0.667
+     },
+     {
+      "api_name": "릭 디아스",
+      "ids": [
+       1080001100,
+       1080001110
+      ],
+      "models": "RMS-099",
+      "score": 0.6
+     },
+     {
+      "api_name": "릭 디아스 (레드)",
+      "ids": [
+       1080001000
+      ],
+      "models": "RMS-099",
+      "score": 0.6
+     }
+    ]
+   },
+   {
+    "dex": "큐베레이 Mk-Ⅱ",
+    "candidates": [
+     {
+      "api_name": "큐베레이 Mk-Ⅱ(엘피 플 전용기)",
+      "ids": [
+       1095002600,
+       1095002660
+      ],
+      "models": "AMX-004-2",
+      "score": 1.0
+     },
+     {
+      "api_name": "큐베레이 Mk-Ⅱ(플 투 전용기)",
+      "ids": [
+       1095002700
+      ],
+      "models": "AMX-004-3",
+      "score": 1.0
+     },
+     {
+      "api_name": "큐베레이",
+      "ids": [
+       1080004200
+      ],
+      "models": "AMX-004",
+      "score": 0.667
+     },
+     {
+      "api_name": "큐베레이 (ZZ Ver.)",
+      "ids": [
+       1095002500,
+       1095002550
+      ],
+      "models": "AMX-004",
+      "score": 0.667
+     }
+    ]
    }
   ],
   "pilot": [
@@ -4889,7 +10933,171 @@
    "GN-X IV",
    "GQuuuuuuX",
    "GFreD",
-   "키케로가"
+   "키케로가",
+   "리안",
+   "슈웨자이",
+   "트릴로바이트",
+   "판톤",
+   "짐 한랭지 사양",
+   "볼 개수형 (BALL type C)",
+   "Aderu Maku II",
+   "Erumeda",
+   "Gara",
+   "Giraga Kai",
+   "Gurudorin",
+   "Jira",
+   "Tieruva",
+   "Urozzo",
+   "Zamudoragu",
+   "Zeidarusu",
+   "Zeno",
+   "건담 AGE-3 오비탈",
+   "건담 레길레스",
+   "고멜",
+   "다나진",
+   "레간너",
+   "베이건 기어",
+   "베이건 기어 시드",
+   "시드",
+   "아델 마크Ⅱ(우주용)",
+   "질스베인",
+   "클란셰",
+   "AWACS 딘",
+   "Agamemnon-class space carrier (MS 탑재형)",
+   "Archangel-class mobile assault ship 아크엔젤",
+   "Compton-class large land battleship",
+   "Drake-class space destroyer (MS 탑재형)",
+   "Eternal-class MS carrier 이터널",
+   "Gondwana-class space supercarrier",
+   "Hannibal-class land warship",
+   "Nazca-class high-speed destroyer (Neutron Stampeder 장비)",
+   "Nelson-class space warship (MS 탑재형)",
+   "Takemikazuchi-class mobile carrier",
+   "ZGMF-1017 GINN Ceremonial Decoration Type",
+   "거티 루",
+   "유클리드",
+   "포비든 보텍스",
+   "잠스 갈",
+   "제간 B타입",
+   "Archangel-class mobile assault ship Akuenjeru",
+   "Birdy",
+   "Black Knight Squad Cal-re.A",
+   "Black Knight Squad Rud-ro.A (Riderado 기)",
+   "Black Knight Squad Shi-ve.A",
+   "Blue",
+   "Class BALDR Battleship:Cruise Interplanetary",
+   "Class VANAHEIMR Battleship:Cruise Interplanetary Guruveigu",
+   "Eternal-class MS carrier Etanaru",
+   "Izumo-class space warship Kusanagi",
+   "Kyabaria Aifuriddo",
+   "Laurasia-class frigate",
+   "Proud Defender",
+   "Supa Minerva-class planetary assault ship Mireniamu",
+   "Z'Gok",
+   "Zeus Silhouette",
+   "건담 매그너트",
+   "모빌 호스 풍운재기",
+   "미너렛 건담",
+   "파라오 건담 IV세",
+   "군경 자쿠",
+   "군경 자쿠 특수 부대 사양",
+   "그와진 [그와란]",
+   "릭 돔 가이아 기/오르테가 기",
+   "마젤란 [Police 사양]",
+   "마젤란 [레나운]",
+   "민간 자쿠",
+   "살라미스 [Police 사양]",
+   "샤론의 장미",
+   "샤리아 전용 릭 돔",
+   "세이라 전용 경캐논",
+   "소돈",
+   "에그자베 전용 걍(하쿠지 장비)",
+   "자쿠 (The) Pomeranians 사양",
+   "자쿠 연방 노획기",
+   "자쿠 팻 마브 사양",
+   "자쿠 포 스네이크 아이즈 사양",
+   "치베",
+   "치베 [구형]",
+   "치베 [퍼플 위도우]",
+   "페가수스",
+   "육전용 제간 A형 맨 헌터용",
+   "케사리아",
+   "하운젠 356편",
+   "류세이고(그레이즈 카이2)",
+   "시덴 오르가 전용기",
+   "쿠탄 3형",
+   "해머 헤드",
+   "Lesseps-class large land battleship",
+   "M1 ASTRAY",
+   "Vosgulov-class submarine carrier",
+   "굴",
+   "도미니언",
+   "미스트랄",
+   "미티어",
+   "갤롭",
+   "갸반 전용 볼자논",
+   "고드윈",
+   "곳조",
+   "레트 부대 플랫",
+   "모빌 리브",
+   "뭇투",
+   "밴디트",
+   "베로나",
+   "실버 스모",
+   "아스피테",
+   "와드",
+   "웨일즈",
+   "윌겜",
+   "이겔",
+   "잔다름",
+   "즈산",
+   "캐논 일프트",
+   "강습 양륙함 스파르탄",
+   "도 다이",
+   "리유즈 P(사이코) 디바이스 실험용 고기동형 자쿠",
+   "빅 건",
+   "짐 타입 C",
+   "EWAC 제간",
+   "Toro Hachi",
+   "가란시에르",
+   "가루다",
+   "제네럴 레빌",
+   "V대쉬 건담",
+   "V대시 건담 헥사",
+   "가운랜드",
+   "갈그이유",
+   "갤릭슨",
+   "겐가오조",
+   "고트라탄",
+   "곳조라",
+   "근위 사단용 리그 샷코",
+   "돗고라",
+   "리그 샷코",
+   "리그 콘티오",
+   "리칼",
+   "린호스",
+   "린호스 Jr.",
+   "메메도자",
+   "브룩켕",
+   "비르케나우",
+   "산도쥬",
+   "샤이탄",
+   "샷코",
+   "아비골",
+   "아인라드",
+   "잔 다르크",
+   "잔넥",
+   "쟈바코",
+   "조로아트",
+   "조리디아",
+   "콘티오",
+   "톰리아트",
+   "화이트 아크",
+   "캔서",
+   "파이시즈",
+   "GUNDVÖLVA",
+   "건드 노드",
+   "액트 자쿠"
   ],
   "pilot": [
    "포우",
