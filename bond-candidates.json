@@ -17,11 +17,11 @@
  },
  "summary": {
   "ready": 0,
-  "no_pilot": 43,
+  "no_pilot": 20,
   "no_mech": 1,
-  "known": 91,
+  "known": 114,
   "rejected": 1,
-  "bond_existing": 247
+  "bond_existing": 270
  },
  "ready": [],
  "no_pilot": [
@@ -68,41 +68,6 @@
    "pilot": null
   },
   {
-   "series": "0080",
-   "official_mech": "즈고크E",
-   "official_pilot": "하디 슈타이너",
-   "mech": "즈고크 E",
-   "pilot": null
-  },
-  {
-   "series": "0080",
-   "official_mech": "캠퍼",
-   "official_pilot": "미하일 카민스키",
-   "mech": "캠퍼",
-   "pilot": null
-  },
-  {
-   "series": "0080",
-   "official_mech": "하이 곡그",
-   "official_pilot": "미하일 카민스키",
-   "mech": "하이곡그",
-   "pilot": null
-  },
-  {
-   "series": "0080",
-   "official_mech": "하이 곡그",
-   "official_pilot": "가브리엘 라미레스 가르시아",
-   "mech": "하이곡그",
-   "pilot": null
-  },
-  {
-   "series": "0080",
-   "official_mech": "하이 곡그",
-   "official_pilot": "앤디 스트라우스",
-   "mech": "하이곡그",
-   "pilot": null
-  },
-  {
    "series": "0083",
    "official_mech": "돔 트로펜",
    "official_pilot": "아담스키",
@@ -118,30 +83,9 @@
   },
   {
    "series": "0083",
-   "official_mech": "릭 돔II",
-   "official_pilot": "카리우스",
-   "mech": "릭 돔II",
-   "pilot": null
-  },
-  {
-   "series": "0083",
    "official_mech": "자멜",
    "official_pilot": "밥",
    "mech": "자멜",
-   "pilot": null
-  },
-  {
-   "series": "0083",
-   "official_mech": "자쿠II F2형",
-   "official_pilot": "노이엔 비터",
-   "mech": "자쿠II F2형",
-   "pilot": null
-  },
-  {
-   "series": "0083",
-   "official_mech": "짐 캐논II",
-   "official_pilot": "척 키스",
-   "mech": "짐 캐논II",
    "pilot": null
   },
   {
@@ -154,71 +98,8 @@
   {
    "series": "0083",
    "official_mech": "짐 커스텀",
-   "official_pilot": "사우스 버닝",
-   "mech": "짐 커스텀",
-   "pilot": null
-  },
-  {
-   "series": "0083",
-   "official_mech": "짐 커스텀",
    "official_pilot": "알파 A. 베이트",
    "mech": "짐 커스텀",
-   "pilot": null
-  },
-  {
-   "series": "0083",
-   "official_mech": "짐 커스텀",
-   "official_pilot": "베르나르도 몬시아",
-   "mech": "짐 커스텀",
-   "pilot": null
-  },
-  {
-   "series": "0083",
-   "official_mech": "파워드 짐",
-   "official_pilot": "딕 알렌",
-   "mech": "파워드 짐",
-   "pilot": null
-  },
-  {
-   "series": "08MS",
-   "official_mech": "고기동 시작형 자쿠",
-   "official_pilot": "아이나 사할린",
-   "mech": "고기동 시작형 자쿠",
-   "pilot": null
-  },
-  {
-   "series": "08MS",
-   "official_mech": "압사라스II",
-   "official_pilot": "아이나 사할린",
-   "mech": "압사라스II",
-   "pilot": null
-  },
-  {
-   "series": "08MS",
-   "official_mech": "압사라스III",
-   "official_pilot": "아이나 사할린",
-   "mech": "아프사라스 III",
-   "pilot": null
-  },
-  {
-   "series": "08MS",
-   "official_mech": "압사라스III",
-   "official_pilot": "기니어스 사할린",
-   "mech": "아프사라스 III",
-   "pilot": null
-  },
-  {
-   "series": "08MS",
-   "official_mech": "육전형 건담",
-   "official_pilot": "카렌 조슈아",
-   "mech": "육전형 건담",
-   "pilot": null
-  },
-  {
-   "series": "08MS",
-   "official_mech": "육전형 건담",
-   "official_pilot": "테리 샌더스 Jr.",
-   "mech": "육전형 건담",
    "pilot": null
   },
   {
@@ -258,13 +139,6 @@
   },
   {
    "series": "ZZ",
-   "official_mech": "R자자",
-   "official_pilot": "캐라 슨",
-   "mech": "R자자",
-   "pilot": null
-  },
-  {
-   "series": "ZZ",
    "official_mech": "가 조움",
    "official_pilot": "고튼 고",
    "mech": "가 조움",
@@ -286,44 +160,9 @@
   },
   {
    "series": "ZZ",
-   "official_mech": "건담 Mk-Ⅱ",
-   "official_pilot": "몬도 아가케",
-   "mech": "건담 Mk-II",
-   "pilot": null
-  },
-  {
-   "series": "ZZ",
-   "official_mech": "게마르크",
-   "official_pilot": "캐라 슨",
-   "mech": "게마르크",
-   "pilot": null
-  },
-  {
-   "series": "ZZ",
-   "official_mech": "도벤 울프",
-   "official_pilot": "라칸 다카란",
-   "mech": "도벤 울프",
-   "pilot": null
-  },
-  {
-   "series": "ZZ",
-   "official_mech": "드라이센",
-   "official_pilot": "라칸 다카란",
-   "mech": "드라이센",
-   "pilot": null
-  },
-  {
-   "series": "ZZ",
    "official_mech": "리겔구",
    "official_pilot": "이리아 파좀",
    "mech": "리겔구",
-   "pilot": null
-  },
-  {
-   "series": "ZZ",
-   "official_mech": "자쿠Ⅲ",
-   "official_pilot": "라칸 다카란",
-   "mech": "자쿠 III",
    "pilot": null
   }
  ],
@@ -333,7 +172,7 @@
    "official_mech": "짐 개량형",
    "official_pilot": "사우스 버닝",
    "mech": null,
-   "pilot": null
+   "pilot": "사우스 버닝"
   }
  ],
  "known": [
@@ -554,6 +393,51 @@
    "weight": 0.2
   },
   {
+   "series": "0080",
+   "official_mech": "즈고크E",
+   "official_pilot": "하디 슈타이너",
+   "mech": "즈고크 E",
+   "pilot": "하디 슈타이너",
+   "key": "하디 슈타이너|즈고크 E",
+   "weight": 0.2
+  },
+  {
+   "series": "0080",
+   "official_mech": "캠퍼",
+   "official_pilot": "미하일 카민스키",
+   "mech": "캠퍼",
+   "pilot": "미하일 카민스키",
+   "key": "미하일 카민스키|캠퍼",
+   "weight": 0.2
+  },
+  {
+   "series": "0080",
+   "official_mech": "하이 곡그",
+   "official_pilot": "미하일 카민스키",
+   "mech": "하이곡그",
+   "pilot": "미하일 카민스키",
+   "key": "미하일 카민스키|하이곡그",
+   "weight": 0.15
+  },
+  {
+   "series": "0080",
+   "official_mech": "하이 곡그",
+   "official_pilot": "가브리엘 라미레스 가르시아",
+   "mech": "하이곡그",
+   "pilot": "가브리엘 라미레스 가르시아",
+   "key": "가브리엘 라미레스 가르시아|하이곡그",
+   "weight": 0.15
+  },
+  {
+   "series": "0080",
+   "official_mech": "하이 곡그",
+   "official_pilot": "앤디 스트라우스",
+   "mech": "하이곡그",
+   "pilot": "앤디 스트라우스",
+   "key": "앤디 스트라우스|하이곡그",
+   "weight": 0.15
+  },
+  {
    "series": "0083",
    "official_mech": "거베라 테트라",
    "official_pilot": "시마 가라하우",
@@ -627,11 +511,65 @@
   },
   {
    "series": "0083",
+   "official_mech": "릭 돔II",
+   "official_pilot": "카리우스",
+   "mech": "릭 돔II",
+   "pilot": "카리우스",
+   "key": "카리우스|릭 돔II",
+   "weight": 0.2
+  },
+  {
+   "series": "0083",
    "official_mech": "발 바로",
    "official_pilot": "케리 레즈너",
    "mech": "발 바로",
    "pilot": "켈리 레즈너",
    "key": "켈리 레즈너|발 바로",
+   "weight": 0.2
+  },
+  {
+   "series": "0083",
+   "official_mech": "자쿠II F2형",
+   "official_pilot": "노이엔 비터",
+   "mech": "자쿠II F2형",
+   "pilot": "노이엔 비터",
+   "key": "노이엔 비터|자쿠II F2형",
+   "weight": 0.18
+  },
+  {
+   "series": "0083",
+   "official_mech": "짐 캐논II",
+   "official_pilot": "척 키스",
+   "mech": "짐 캐논II",
+   "pilot": "척 키스",
+   "key": "척 키스|짐 캐논II",
+   "weight": 0.18
+  },
+  {
+   "series": "0083",
+   "official_mech": "짐 커스텀",
+   "official_pilot": "사우스 버닝",
+   "mech": "짐 커스텀",
+   "pilot": "사우스 버닝",
+   "key": "사우스 버닝|짐 커스텀",
+   "weight": 0.2
+  },
+  {
+   "series": "0083",
+   "official_mech": "짐 커스텀",
+   "official_pilot": "베르나르도 몬시아",
+   "mech": "짐 커스텀",
+   "pilot": "베르나르도 몬시아",
+   "key": "베르나르도 몬시아|짐 커스텀",
+   "weight": 0.15
+  },
+  {
+   "series": "0083",
+   "official_mech": "파워드 짐",
+   "official_pilot": "딕 알렌",
+   "mech": "파워드 짐",
+   "pilot": "딕 알렌",
+   "key": "딕 알렌|파워드 짐",
    "weight": 0.2
   },
   {
@@ -642,6 +580,15 @@
    "pilot": "시로 아마다",
    "key": "시로 아마다|건담 Ez8",
    "weight": 0.2
+  },
+  {
+   "series": "08MS",
+   "official_mech": "고기동 시작형 자쿠",
+   "official_pilot": "아이나 사할린",
+   "mech": "고기동 시작형 자쿠",
+   "pilot": "아이나 사할린",
+   "key": "아이나 사할린|고기동 시작형 자쿠",
+   "weight": 0.15
   },
   {
    "series": "08MS",
@@ -660,6 +607,51 @@
    "pilot": "시로 아마다",
    "key": "시로 아마다|볼 K형",
    "weight": 0.12
+  },
+  {
+   "series": "08MS",
+   "official_mech": "압사라스II",
+   "official_pilot": "아이나 사할린",
+   "mech": "압사라스II",
+   "pilot": "아이나 사할린",
+   "key": "아이나 사할린|압사라스II",
+   "weight": 0.18
+  },
+  {
+   "series": "08MS",
+   "official_mech": "압사라스III",
+   "official_pilot": "아이나 사할린",
+   "mech": "아프사라스 III",
+   "pilot": "아이나 사할린",
+   "key": "아이나 사할린|아프사라스 III",
+   "weight": 0.2
+  },
+  {
+   "series": "08MS",
+   "official_mech": "압사라스III",
+   "official_pilot": "기니어스 사할린",
+   "mech": "아프사라스 III",
+   "pilot": "기니어스 사할린",
+   "key": "기니어스 사할린|아프사라스 III",
+   "weight": 0.18
+  },
+  {
+   "series": "08MS",
+   "official_mech": "육전형 건담",
+   "official_pilot": "카렌 조슈아",
+   "mech": "육전형 건담",
+   "pilot": "카렌 조슈아",
+   "key": "카렌 조슈아|육전형 건담",
+   "weight": 0.18
+  },
+  {
+   "series": "08MS",
+   "official_mech": "육전형 건담",
+   "official_pilot": "테리 샌더스 Jr.",
+   "mech": "육전형 건담",
+   "pilot": "테리 샌더스 Jr.",
+   "key": "테리 샌더스 Jr.|육전형 건담",
+   "weight": 0.18
   },
   {
    "series": "08MS",
@@ -1059,6 +1051,15 @@
   },
   {
    "series": "ZZ",
+   "official_mech": "R자자",
+   "official_pilot": "캐라 슨",
+   "mech": "R자자",
+   "pilot": "캐라 슨",
+   "key": "캐라 슨|R자자",
+   "weight": 0.2
+  },
+  {
+   "series": "ZZ",
    "official_mech": "ZZ건담",
    "official_pilot": "쥬도 아시타",
    "mech": "ZZ건담",
@@ -1095,12 +1096,57 @@
   },
   {
    "series": "ZZ",
+   "official_mech": "건담 Mk-Ⅱ",
+   "official_pilot": "몬도 아가케",
+   "mech": "건담 Mk-II",
+   "pilot": "몬도 아가케",
+   "key": "몬도 아가케|건담 Mk-II",
+   "weight": 0.15
+  },
+  {
+   "series": "ZZ",
+   "official_mech": "게마르크",
+   "official_pilot": "캐라 슨",
+   "mech": "게마르크",
+   "pilot": "캐라 슨",
+   "key": "캐라 슨|게마르크",
+   "weight": 0.18
+  },
+  {
+   "series": "ZZ",
+   "official_mech": "도벤 울프",
+   "official_pilot": "라칸 다카란",
+   "mech": "도벤 울프",
+   "pilot": "라칸 다카란",
+   "key": "라칸 다카란|도벤 울프",
+   "weight": 0.2
+  },
+  {
+   "series": "ZZ",
+   "official_mech": "드라이센",
+   "official_pilot": "라칸 다카란",
+   "mech": "드라이센",
+   "pilot": "라칸 다카란",
+   "key": "라칸 다카란|드라이센",
+   "weight": 0.18
+  },
+  {
+   "series": "ZZ",
    "official_mech": "바우",
    "official_pilot": "그레미 토토",
    "mech": "바우",
    "pilot": "글레미",
    "key": "글레미|바우",
    "weight": 0.2
+  },
+  {
+   "series": "ZZ",
+   "official_mech": "자쿠Ⅲ",
+   "official_pilot": "라칸 다카란",
+   "mech": "자쿠 III",
+   "pilot": "라칸 다카란",
+   "key": "라칸 다카란|자쿠 III",
+   "weight": 0.15
   },
   {
    "series": "ZZ",
@@ -1201,6 +1247,10 @@
    "샤아 전용 즈고크",
    "지옹"
   ],
+  "미하일 카민스키": [
+   "캠퍼",
+   "하이곡그"
+  ],
   "시마 가라하우": [
    "가베라 테트라",
    "겔구그M (지휘관용)"
@@ -1219,6 +1269,11 @@
    "건담 Ez8",
    "볼 K형",
    "육전형 건담"
+  ],
+  "아이나 사할린": [
+   "고기동 시작형 자쿠",
+   "아프사라스 III",
+   "압사라스II"
   ],
   "퀘스 파라야": [
    "알파 아질",
@@ -1259,6 +1314,10 @@
    "디 오",
    "멧사라"
   ],
+  "캐라 슨": [
+   "R자자",
+   "게마르크"
+  ],
   "쥬도 아시타": [
    "ZZ건담",
    "강화형 ZZ건담",
@@ -1269,6 +1328,11 @@
    "자쿠III 개량형",
    "즈사",
    "함마 함마"
+  ],
+  "라칸 다카란": [
+   "도벤 울프",
+   "드라이센",
+   "자쿠 III"
   ]
  }
 }
