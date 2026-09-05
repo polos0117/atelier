@@ -549,6 +549,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       <div class="param-actions">
         <button id="sgRandom" type="button">🎲 전체 랜덤</button>
         <button id="sgRandomAxis" type="button">🎲 세부 강도만 랜덤</button>
+        <button id="sgRandomSkipAxes" type="button">🎲 세부 강도 빼고 랜덤</button>
       </div>
       <button id="sgUndo" type="button" class="card-rnd hidden">↩ 직전 설정으로</button>
 
@@ -1807,10 +1808,10 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     refreshSinglePrompt();
     setStatus('statusSingle','직전 설정으로 되돌렸다. 한 번 더 누르면 원래대로.','ok');
   }
-  function sgRandomize(axesOnly){
+  function sgRandomize(mode){  /* 'all' | 'axesOnly' | 'skipAxes' */
     sgPushUndo();
     const T=sgRndTargets(), pick=a2=>a2[Math.floor(Math.random()*a2.length)];
-    if(!axesOnly){
+    if(mode!=='axesOnly'){
       if(T.cat){const c=pick(freshPool([]));
         const cs=document.getElementById('sgCat');
         if([...cs.options].some(o=>o.value===c))cs.value=c;
@@ -1831,8 +1832,9 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       const opts=[...document.getElementById('sgFrame').options].map(o=>o.value).filter(Boolean);
       if(opts.length)document.getElementById('sgFrame').value=pick(opts);
     }
-    /* '세부 강도만 랜덤' 버튼도 고급 설정 락을 그대로 따른다 — 락 걸려 있으면 눌러도 그대로 */
-    if(T.adv){
+    /* '세부 강도만 랜덤' 버튼도 고급 설정 락을 그대로 따른다 — 락 걸려 있으면 눌러도 그대로.
+       'skipAxes' 모드에서는 체크 상태와 무관하게 세부 강도 자체를 건드리지 않는다. */
+    if(mode!=='skipAxes'&&T.adv){
       LOCAL_AXES.forEach(k=>{
         const el=document.querySelector('[data-sg-axis="'+k+'"]'); if(!el)return;
         const vals=(ADVANCED_OPTIONS[k]||[]).filter(v=>v!=='AUTO');
@@ -1840,7 +1842,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       });
     }
     refreshSinglePrompt();
-    setStatus('statusSingle',axesOnly?'세부 강도를 굴렸다':'단일 컷 설정을 굴렸다','ok');
+    setStatus('statusSingle',mode==='axesOnly'?'세부 강도를 굴렸다':(mode==='skipAxes'?'세부 강도는 그대로 두고 나머지를 굴렸다':'단일 컷 설정을 굴렸다'),'ok');
   }
   /* 콜라주에서 방향을 찾고 단일 컷으로 마무리하는 흐름을 잇는다.
      카테고리·예시·표정·시점·포즈·세부 강도를 그대로 옮기고 단일 탭으로 넘어간다. */
@@ -4105,8 +4107,9 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     document.getElementById(id).addEventListener('change',refreshSinglePrompt));
   document.querySelectorAll('[data-sg-axis]').forEach(el=>
     el.addEventListener('change',refreshSinglePrompt));
-  document.getElementById('sgRandom').addEventListener('click',()=>sgRandomize(false));
-  document.getElementById('sgRandomAxis').addEventListener('click',()=>sgRandomize(true));
+  document.getElementById('sgRandom').addEventListener('click',()=>sgRandomize('all'));
+  document.getElementById('sgRandomAxis').addEventListener('click',()=>sgRandomize('axesOnly'));
+  document.getElementById('sgRandomSkipAxes').addEventListener('click',()=>sgRandomize('skipAxes'));
   document.getElementById('sgUndo').addEventListener('click',sgUndo);
   document.getElementById('applySingle').addEventListener('click',()=>{
     refreshSinglePrompt();setStatus('statusSingle','단일 컷 설정 적용 완료','ok');});
