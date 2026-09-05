@@ -3856,6 +3856,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
      그쪽에만 있는 값(예: underboob)은 applyParams()가 알아서 AUTO로 되돌린다. */
   function copyGenderToOther(){
     const cur=curGender(), other=cur==='female'?'male':'female';
+    if(!confirm((other==='female'?'여성':'남성')+' 쪽 설정을 지금 보고 있는 '+(cur==='female'?'여성':'남성')+' 설정으로 덮어쓴다. '+
+      (other==='female'?'여성':'남성')+' 쪽에 이미 만들어둔 설정이 있다면 사라진다. 계속할까?')) return;
     GSTATE[cur]=snapParams();
     GSTATE[other]=JSON.parse(JSON.stringify(GSTATE[cur]));
     setStatus('statusAnthro',(cur==='female'?'여성':'남성')+' 설정을 '+(other==='female'?'여성':'남성')+' 쪽에 복사했다 — 그 탭으로 넘어가면 적용된다','ok');
