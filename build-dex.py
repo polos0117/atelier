@@ -705,8 +705,8 @@ function open(n,start){
         '(이미지를 가져오지 않는다 — 검색 결과 페이지로 이동만 한다).</p>'+
         '<div class="lnk"><a href="https://www.google.com/search?tbm=isch&q='+qn+'+건담" '+
         'target="_blank" rel="noopener">구글 이미지에서 찾아보기 →</a></div>'+
-        '<div class="lnk"><a href="https://gundam.fandom.com/wiki/Special:Search?query='+qn+'" '+
-        'target="_blank" rel="noopener">건담 위키(mahq)에서 찾아보기 →</a></div>';
+        '<div class="lnk"><a href="https://www.google.com/search?q=site%3Agundam.fandom.com+'+qn+'+건담" '+
+        'target="_blank" rel="noopener">건담 위키에서 찾아보기 →</a></div>';
     }
     return h;
   }
