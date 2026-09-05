@@ -209,6 +209,26 @@
     }
    },
    "t": 1788417592638
+  },
+  "프리덤": {
+   "female": {
+    "sel": {
+     "apparent age": "youthful adult",
+     "facial ethnicity": "Japanese",
+     "human-mechanical balance": "more human",
+     "body type": "slender",
+     "height impression": "very tall",
+     "shoulder build": "average",
+     "torso / chest build": "full bust",
+     "waist / hip silhouette": "athletic",
+     "leg proportion": "very long",
+     "eye color": "crimson",
+     "second eye color": "crimson",
+     "hair color": "blue"
+    },
+    "ub": true
+   },
+   "t": 1788588895963
   }
  },
  "used": {
@@ -985,6 +1005,7 @@
   "바이아란": "painterly",
   "건담 하루트": "cinematic_semi_real",
   "조워트": "glossy_kr_game",
-  "라파엘 건담": "cinematic_semi_real"
+  "라파엘 건담": "cinematic_semi_real",
+  "프리덤": "cinematic_semi_real"
  }
 }
