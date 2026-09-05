@@ -12,60 +12,18 @@
  },
  "summary": {
   "ready": 0,
-  "no_pilot": 24,
+  "no_pilot": 8,
   "no_mech": 0,
-  "known": 40,
-  "bond_existing": 214
+  "known": 56,
+  "bond_existing": 230
  },
  "ready": [],
  "no_pilot": [
   {
    "series": "0079",
-   "official_mech": "건캐논",
-   "official_pilot": "하야토 코바야시",
-   "mech": "건캐논",
-   "pilot": null
-  },
-  {
-   "series": "0079",
-   "official_mech": "건탱크",
-   "official_pilot": "하야토 코바야시",
-   "mech": "건탱크",
-   "pilot": null
-  },
-  {
-   "series": "0079",
-   "official_mech": "건탱크",
-   "official_pilot": "류 호세이",
-   "mech": "건탱크",
-   "pilot": null
-  },
-  {
-   "series": "0079",
    "official_mech": "건탱크",
    "official_pilot": "조브 존",
    "mech": "건탱크",
-   "pilot": null
-  },
-  {
-   "series": "0079",
-   "official_mech": "돔",
-   "official_pilot": "오르테가",
-   "mech": "돔",
-   "pilot": null
-  },
-  {
-   "series": "0079",
-   "official_mech": "돔",
-   "official_pilot": "맛슈",
-   "mech": "돔",
-   "pilot": null
-  },
-  {
-   "series": "0079",
-   "official_mech": "브라우 브로",
-   "official_pilot": "샤리아 불",
-   "mech": "브라우 브로",
    "pilot": null
   },
   {
@@ -104,41 +62,6 @@
    "pilot": null
   },
   {
-   "series": "0079",
-   "official_mech": "자쿠II",
-   "official_pilot": "쿠쿠루스 도안",
-   "mech": "자쿠II",
-   "pilot": null
-  },
-  {
-   "series": "0079",
-   "official_mech": "코어 파이터",
-   "official_pilot": "류 호세이",
-   "mech": "코어 파이터",
-   "pilot": null
-  },
-  {
-   "series": "Z",
-   "official_mech": "가르발디β",
-   "official_pilot": "라일라 미라 라이라",
-   "mech": "가르발디β",
-   "pilot": null
-  },
-  {
-   "series": "Z",
-   "official_mech": "가브스레이",
-   "official_pilot": "마우어 파라오",
-   "mech": "가브스레이",
-   "pilot": null
-  },
-  {
-   "series": "Z",
-   "official_mech": "건담 Mk-Ⅱ 티탄즈 사양",
-   "official_pilot": "카크리콘 카클러",
-   "mech": "건담 Mk-II 티탄즈사양",
-   "pilot": null
-  },
-  {
    "series": "Z",
    "official_mech": "릭 디아스",
    "official_pilot": "아볼리",
@@ -147,44 +70,9 @@
   },
   {
    "series": "Z",
-   "official_mech": "릭 디아스",
-   "official_pilot": "로베르토",
-   "mech": "릭 디아스",
-   "pilot": null
-  },
-  {
-   "series": "Z",
-   "official_mech": "마라사이",
-   "official_pilot": "카크리콘 카클러",
-   "mech": "마라사이",
-   "pilot": null
-  },
-  {
-   "series": "Z",
-   "official_mech": "바운드 독",
-   "official_pilot": "게츠",
-   "mech": "바운드 독",
-   "pilot": null
-  },
-  {
-   "series": "Z",
-   "official_mech": "앗시마",
-   "official_pilot": "브란 블루타크",
-   "mech": "앗시마",
-   "pilot": null
-  },
-  {
-   "series": "Z",
    "official_mech": "앗시마",
    "official_pilot": "아지스 아지바",
    "mech": "앗시마",
-   "pilot": null
-  },
-  {
-   "series": "Z",
-   "official_mech": "하이잭",
-   "official_pilot": "카크리콘 카클러",
-   "mech": "하이잭",
    "pilot": null
   }
  ],
@@ -210,12 +98,39 @@
   },
   {
    "series": "0079",
+   "official_mech": "건캐논",
+   "official_pilot": "하야토 코바야시",
+   "mech": "건캐논",
+   "pilot": "하야토 코바야시",
+   "key": "하야토 코바야시|건캐논",
+   "weight": 0.12
+  },
+  {
+   "series": "0079",
    "official_mech": "건탱크",
    "official_pilot": "카이 시덴",
    "mech": "건탱크",
    "pilot": "카이 시덴",
    "key": "카이 시덴|건탱크",
    "weight": 0.12
+  },
+  {
+   "series": "0079",
+   "official_mech": "건탱크",
+   "official_pilot": "하야토 코바야시",
+   "mech": "건탱크",
+   "pilot": "하야토 코바야시",
+   "key": "하야토 코바야시|건탱크",
+   "weight": 0.2
+  },
+  {
+   "series": "0079",
+   "official_mech": "건탱크",
+   "official_pilot": "류 호세이",
+   "mech": "건탱크",
+   "pilot": "류 호세이",
+   "key": "류 호세이|건탱크",
+   "weight": 0.2
   },
   {
    "series": "0079",
@@ -237,12 +152,39 @@
   },
   {
    "series": "0079",
+   "official_mech": "돔",
+   "official_pilot": "오르테가",
+   "mech": "돔",
+   "pilot": "오르테가",
+   "key": "오르테가|돔",
+   "weight": 0.18
+  },
+  {
+   "series": "0079",
+   "official_mech": "돔",
+   "official_pilot": "맛슈",
+   "mech": "돔",
+   "pilot": "맛슈",
+   "key": "맛슈|돔",
+   "weight": 0.18
+  },
+  {
+   "series": "0079",
    "official_mech": "돕",
    "official_pilot": "가르마 자비",
    "mech": "돕",
    "pilot": "가르마",
    "key": "가르마|돕",
    "weight": 0.18
+  },
+  {
+   "series": "0079",
+   "official_mech": "브라우 브로",
+   "official_pilot": "샤리아 불",
+   "mech": "브라우 브로",
+   "pilot": "샤리아 불",
+   "key": "샤리아 불|브라우 브로",
+   "weight": 0.2
   },
   {
    "series": "0079",
@@ -300,11 +242,29 @@
   },
   {
    "series": "0079",
+   "official_mech": "자쿠II",
+   "official_pilot": "쿠쿠루스 도안",
+   "mech": "자쿠II",
+   "pilot": "쿠쿠루스 도안",
+   "key": "쿠쿠루스 도안|자쿠II",
+   "weight": 0.2
+  },
+  {
+   "series": "0079",
    "official_mech": "지옹",
    "official_pilot": "샤아 아즈나블",
    "mech": "지옹",
    "pilot": "샤아",
    "key": "샤아|지옹",
+   "weight": 0.18
+  },
+  {
+   "series": "0079",
+   "official_mech": "코어 파이터",
+   "official_pilot": "류 호세이",
+   "mech": "코어 파이터",
+   "pilot": "류 호세이",
+   "key": "류 호세이|코어 파이터",
    "weight": 0.18
   },
   {
@@ -327,12 +287,30 @@
   },
   {
    "series": "Z",
+   "official_mech": "가르발디β",
+   "official_pilot": "라일라 미라 라이라",
+   "mech": "가르발디β",
+   "pilot": "라일라 미라 라이라",
+   "key": "라일라 미라 라이라|가르발디β",
+   "weight": 0.2
+  },
+  {
+   "series": "Z",
    "official_mech": "가브스레이",
    "official_pilot": "제리드 메사",
    "mech": "가브스레이",
    "pilot": "제리드 메사",
    "key": "제리드 메사|가브스레이",
    "weight": 0.18
+  },
+  {
+   "series": "Z",
+   "official_mech": "가브스레이",
+   "official_pilot": "마우어 파라오",
+   "mech": "가브스레이",
+   "pilot": "마우어 파라오",
+   "key": "마우어 파라오|가브스레이",
+   "weight": 0.2
   },
   {
    "series": "Z",
@@ -391,6 +369,15 @@
   {
    "series": "Z",
    "official_mech": "건담 Mk-Ⅱ 티탄즈 사양",
+   "official_pilot": "카크리콘 카클러",
+   "mech": "건담 Mk-II 티탄즈사양",
+   "pilot": "카크리콘 카클러",
+   "key": "카크리콘 카클러|건담 Mk-II 티탄즈사양",
+   "weight": 0.12
+  },
+  {
+   "series": "Z",
+   "official_mech": "건담 Mk-Ⅱ 티탄즈 사양",
    "official_pilot": "제리드 메사",
    "mech": "건담 Mk-II 티탄즈사양",
    "pilot": "제리드 메사",
@@ -427,6 +414,15 @@
   {
    "series": "Z",
    "official_mech": "릭 디아스",
+   "official_pilot": "로베르토",
+   "mech": "릭 디아스",
+   "pilot": "로베르토",
+   "key": "로베르토|릭 디아스",
+   "weight": 0.18
+  },
+  {
+   "series": "Z",
+   "official_mech": "릭 디아스",
    "official_pilot": "아무로 레이",
    "mech": "릭 디아스",
    "pilot": "아무로",
@@ -449,6 +445,15 @@
    "mech": "마라사이",
    "pilot": "사라 자비아로프",
    "key": "사라 자비아로프|마라사이",
+   "weight": 0.15
+  },
+  {
+   "series": "Z",
+   "official_mech": "마라사이",
+   "official_pilot": "카크리콘 카클러",
+   "mech": "마라사이",
+   "pilot": "카크리콘 카클러",
+   "key": "카크리콘 카클러|마라사이",
    "weight": 0.15
   },
   {
@@ -489,6 +494,15 @@
   },
   {
    "series": "Z",
+   "official_mech": "바운드 독",
+   "official_pilot": "게츠",
+   "mech": "바운드 독",
+   "pilot": "게츠",
+   "key": "게츠|바운드 독",
+   "weight": 0.18
+  },
+  {
+   "series": "Z",
    "official_mech": "바이아란",
    "official_pilot": "제리드 메사",
    "mech": "바이아란",
@@ -525,6 +539,15 @@
   },
   {
    "series": "Z",
+   "official_mech": "앗시마",
+   "official_pilot": "브란 블루타크",
+   "mech": "앗시마",
+   "pilot": "브란 블루타크",
+   "key": "브란 블루타크|앗시마",
+   "weight": 0.2
+  },
+  {
+   "series": "Z",
    "official_mech": "큐베레이",
    "official_pilot": "하만 칸",
    "mech": "큐베레이",
@@ -540,6 +563,15 @@
    "pilot": "제리드 메사",
    "key": "제리드 메사|하이잭",
    "weight": 0.12
+  },
+  {
+   "series": "Z",
+   "official_mech": "하이잭",
+   "official_pilot": "카크리콘 카클러",
+   "mech": "하이잭",
+   "pilot": "카크리콘 카클러",
+   "key": "카크리콘 카클러|하이잭",
+   "weight": 0.18
   },
   {
    "series": "Z",
@@ -560,6 +592,14 @@
   "카이 시덴": [
    "건캐논",
    "건탱크"
+  ],
+  "하야토 코바야시": [
+   "건캐논",
+   "건탱크"
+  ],
+  "류 호세이": [
+   "건탱크",
+   "코어 파이터"
   ],
   "샤아": [
    "릭 디아스",
@@ -594,6 +634,11 @@
   "에마 신": [
    "건담 Mk-II",
    "건담 Mk-II 티탄즈사양"
+  ],
+  "카크리콘 카클러": [
+   "건담 Mk-II 티탄즈사양",
+   "마라사이",
+   "하이잭"
   ],
   "시로코": [
    "디 오",
