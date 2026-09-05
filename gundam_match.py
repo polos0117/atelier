@@ -38,7 +38,46 @@ SHIP_NAMES = {
     "잔지발급 케르게렌", "메가 라이더", "아 바오아 쿠", "넬 아가마",
 }
 # 기체 로스터에서 빼는 것들 — 마스코트, 차량, 시설
-EXCLUDE_NAMES = {"하로", "호버 트럭", "미데아", "학원함", "트로이아 스테이션"}
+EXCLUDE_NAMES = {"하로", "붉은 하로", "HARO", "호버 트럭", "미데아", "학원함",
+                 "트로이아 스테이션", "전투 바이크", "카미온", "콘치"}
+
+# 장비·사양 배리에이션. ROSTER_CHECK 은 원칙적으로 제외하되 공식 사이트가
+# 독립 항목으로 취급하면 넣는다 했으니, 자동으로 버리지 않고 따로 모아 둔다.
+VARIANT = re.compile(
+    r"(전용기?\b|전용\s|사양|컬러|장비|지휘관|양산형|개량형|커스텀|"
+    r"우주형|지상전|육전|고기동|중무장|타입|형태|Ver\.|\bSP\b|"
+    r"[(（][^)）]*[)）]|\[[^\]]*\])")
+
+
+def is_variant(name):
+    return bool(VARIANT.search(name))
+
+
+# 공식 사이트는 일부 시리즈(SEED FREEDOM 등)를 영문 이름으로 싣는다.
+# 저장소는 한글이라 낱말 단위로 옮겨 붙여야 대조가 된다.
+EN_TOKENS = {
+    "gundam": "건담", "freedom": "프리덤", "justice": "저스티스",
+    "strike": "스트라이크", "rising": "라이징", "immortal": "이모탈",
+    "mighty": "마이티", "destiny": "데스티니", "impulse": "임펄스",
+    "force": "포스", "sword": "소드", "blast": "블래스트",
+    "infinite": "인피니트", "duel": "듀엘", "blitz": "블리츠",
+    "lightning": "라이트닝", "buster": "버스터", "akatsuki": "아카츠키",
+    "murasame": "무라사메", "rouge": "루즈", "black": "블랙",
+    "knight": "나이트", "squad": "스쿼드", "gelgoog": "겔구그",
+    "gyan": "걍", "zgok": "즈고크", "proud": "프라우드",
+    "defender": "디펜더", "zeus": "제우스", "silhouette": "실루엣",
+    "ginn": "진", "dinn": "딘", "kai": "카이", "menace": "메나스",
+    "strom": "슈트롬", "kusanagi": "쿠사나기", "archangel": "아크엔젤",
+    "eternal": "이터널", "minerva": "미네르바", "izumo": "이즈모",
+}
+EN_WORD = re.compile(r"[A-Za-z][A-Za-z']*")
+
+
+def romaji(s):
+    """영문 낱말을 아는 만큼 한글로 옮긴다. 모르는 낱말은 그대로 둔다."""
+    if not EN_WORD.search(s):
+        return s
+    return EN_WORD.sub(lambda m: EN_TOKENS.get(m.group(0).lower(), m.group(0)), s)
 
 
 def _sub(s):
@@ -53,7 +92,7 @@ def norm(s, keep_paren=False):
     s = unicodedata.normalize("NFKC", s or "")
     if not keep_paren:
         s = PAREN.sub("", s)
-    s = _sub(s.lower())
+    s = _sub(romaji(s).lower())
     return re.sub(r"[^0-9a-z가-힣]", "", s)
 
 

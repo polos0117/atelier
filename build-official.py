@@ -25,7 +25,7 @@ import os
 import re
 from datetime import datetime, timezone
 
-from gundam_match import norm, affixes, is_ship, is_excluded, close
+from gundam_match import norm, affixes, is_ship, is_excluded, is_variant, close
 
 SOURCES = ["play.html", "dex.html"]
 CACHE = "official/mecha"
@@ -104,7 +104,7 @@ def main():
             continue
         done.append(code)
         off = json.load(open(f, encoding="utf-8"))
-        add_m, add_s, skip, seen = [], [], [], []
+        add_m, add_s, var, skip, seen = [], [], [], [], []
         for fac, names in off.items():
             for n in names:
                 if is_excluded(n):
@@ -125,13 +125,19 @@ def main():
                 row = {"name": n, "faction": fac}
                 if cand:
                     row["near"] = cand
-                (add_s if ship else add_m).append(row)
+                if ship:
+                    add_s.append(row)
+                elif is_variant(n):
+                    var.append(row)      # 배리에이션은 따로 모은다
+                else:
+                    add_m.append(row)
         out[code] = {
             "official_total": sum(len(v) for v in off.values()),
             "factions": list(off),
             "matched": len(seen),
             "add_mech": add_m,
             "add_ship": add_s,
+            "variants": var,
             "excluded": skip,
         }
 
@@ -145,7 +151,8 @@ def main():
                  "기존 카드로, 같은 대상인지 사람이 봐야 한다. 함선은 SHIP 으로 "
                  "돌리고 마스코트·차량은 제외했다."),
         "summary": {c: {"공식": v["official_total"], "보유": v["matched"],
-                        "기체추가": len(v["add_mech"]), "함선추가": len(v["add_ship"])}
+                        "기체추가": len(v["add_mech"]), "함선추가": len(v["add_ship"]),
+                        "배리에이션": len(v["variants"])}
                     for c, v in out.items()},
         "series": out,
     }
@@ -154,10 +161,11 @@ def main():
     print(f"[완료] {a.out}  (대조 {len(done)} 시리즈 / 남은 {len(res['source']['series_pending'])})")
     tm = sum(len(v["add_mech"]) for v in out.values())
     ts = sum(len(v["add_ship"]) for v in out.values())
-    print(f"  기체 추가 후보 {tm} · 함선 추가 후보 {ts}")
+    tv = sum(len(v["variants"]) for v in out.values())
+    print(f"  기체 추가 후보 {tm} · 함선 추가 후보 {ts} · 배리에이션(보류) {tv}")
     for c, v in res["summary"].items():
         print(f"  {c:9} 공식 {v['공식']:>3}  보유 {v['보유']:>3}  "
-              f"기체+{v['기체추가']:<3} 함선+{v['함선추가']}")
+              f"기체+{v['기체추가']:<3} 함선+{v['함선추가']:<2} 배리에이션 {v['배리에이션']}")
 
     if a.report:
         for c, v in out.items():
