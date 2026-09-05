@@ -673,6 +673,138 @@
    "pilots": []
   }
  },
+ "AGE": {
+  "건담 AGE-1 그랜서": {
+   "models": "AGE-1G",
+   "faction": "지구연방군",
+   "pilots": [
+    "플리트 아스노"
+   ]
+  },
+  "건담 AGE-1 스팔로": {
+   "models": "AGE-1S",
+   "faction": "지구연방군",
+   "pilots": [
+    "플리트 아스노"
+   ]
+  },
+  "건담 AGE-1 타이터스": {
+   "models": "AGE-1T",
+   "faction": "지구연방군",
+   "pilots": [
+    "플리트 아스노"
+   ]
+  },
+  "건담 AGE-2 다크 하운드": {
+   "models": "AGE-2DH",
+   "faction": "비시디언",
+   "pilots": [
+    "캡틴 애시"
+   ]
+  },
+  "건담 AGE-2 더블 불릿": {
+   "models": "AGE-2DB",
+   "faction": "지구연방군",
+   "pilots": [
+    "아세무 아스노"
+   ]
+  },
+  "건담 AGE-3 오비탈": {
+   "models": "AGE-3O",
+   "faction": "지구연방군",
+   "pilots": [
+    "키오 아스노"
+   ]
+  },
+  "건담 AGE-3 포트리스": {
+   "models": "AGE-3F",
+   "faction": "지구연방군",
+   "pilots": [
+    "키오 아스노"
+   ]
+  },
+  "건담 레길레스": {
+   "models": "xvm-fzc",
+   "faction": "베이건(키오편/3세대편)",
+   "pilots": [
+    "제하트 가레트",
+    "페자르 이젤칸트"
+   ]
+  },
+  "다나진": {
+   "models": "ovv-af",
+   "faction": "베이건(키오편/3세대편)",
+   "pilots": []
+  },
+  "다나진(보라색)": {
+   "models": "ovv-af",
+   "faction": "베이건(키오편/3세대편)",
+   "pilots": [
+    "고돔 타이남",
+    "그라트 오토"
+   ]
+  },
+  "데퍼스": {
+   "models": "xvm-gz",
+   "faction": "UE(언노운 에너미)(플리트편)",
+   "pilots": [
+    "기라 조이"
+   ]
+  },
+  "레간나": {
+   "models": "ovm-lce",
+   "faction": "베이건(키오편/3세대편)",
+   "pilots": []
+  },
+  "아델": {
+   "models": "RGE-G1100",
+   "faction": "지구연방군(아세무편)",
+   "pilots": []
+  },
+  "아델(디바 컬러)": {
+   "models": "RGE-G1100",
+   "faction": "지구연방군(아세무편)",
+   "pilots": [
+    "아리사 건헤일",
+    "맥스 하트웨이"
+   ]
+  },
+  "제다스": {
+   "models": "xvv-xc",
+   "faction": "베이건",
+   "pilots": [
+    "데실 가레트"
+   ]
+  },
+  "제이드라": {
+   "models": "xvm-zgc",
+   "faction": "베이건",
+   "pilots": [
+    "제하트 가레트"
+   ]
+  },
+  "질스베인": {
+   "models": "xvm-zgc",
+   "faction": "베이건(키오편/3세대편)",
+   "pilots": [
+    "딘 아논"
+   ]
+  },
+  "크로노스": {
+   "models": "xvm-dgc",
+   "faction": "베이건",
+   "pilots": [
+    "데실 가레트"
+   ]
+  },
+  "파르시아": {
+   "models": "xvb-xd",
+   "faction": "베이건",
+   "pilots": [
+    "유린 루셸"
+   ]
+  }
+ },
  "ASTRAY": {
   "105 슬로터 대거": {
    "models": "GAT-01A2R",
@@ -864,6 +996,30 @@
    ]
   }
  },
+ "F91": {
+  "데난 게": {
+   "models": "XM-02",
+   "faction": "크로스본 뱅가드",
+   "pilots": []
+  },
+  "데난 존": {
+   "models": "XM-01",
+   "faction": "크로스본 뱅가드",
+   "pilots": []
+  },
+  "제간 노멀 타입": {
+   "models": "RGM-89J",
+   "faction": "지구연방군",
+   "pilots": []
+  },
+  "헤비건": {
+   "models": "RGM-109",
+   "faction": "지구연방군",
+   "pilots": [
+    "비르기토 피리요"
+   ]
+  }
+ },
  "GQ": {
   "01건담": {
    "models": "RX-78-01",
@@ -876,6 +1032,11 @@
    "pilots": [
     "냐안"
    ]
+  },
+  "릭 돔": {
+   "models": "MS-09",
+   "faction": "",
+   "pilots": []
   },
   "키케로가 [MS 형태]": {
    "models": "MAN-03",
@@ -1022,6 +1183,68 @@
    ]
   }
  },
+ "TA": {
+  "마히로": {
+   "models": "G-838",
+   "faction": "깅가남 함대",
+   "pilots": [
+    "스웨슨 스테로"
+   ]
+  },
+  "볼자논": {
+   "models": "MS-06",
+   "faction": "루자나 미리샤",
+   "pilots": [
+    "소시에 하임",
+    "갸반 구니",
+    "에임즈",
+    "존"
+   ]
+  },
+  "워돔": {
+   "models": "JMA0530",
+   "faction": "디아나 카운터",
+   "pilots": [
+    "포 에이지"
+   ]
+  }
+ },
+ "TB": {
+  "건담 헤드": {
+   "models": "RGM-79/GH",
+   "faction": "지구연방군",
+   "pilots": [
+    "알리시아"
+   ]
+  },
+  "건캐논 아쿠아": {
+   "models": "RX-77AQ",
+   "faction": "지구연방군",
+   "pilots": [
+    "비앙카 칼라일"
+   ]
+  },
+  "릭 돔": {
+   "models": "MS-09R",
+   "faction": "지온 공국군",
+   "pilots": [
+    "피셔 네스",
+    "후버"
+   ]
+  },
+  "볼": {
+   "models": "RB-79",
+   "faction": "지구연방군",
+   "pilots": []
+  },
+  "짐": {
+   "models": "RGM-79",
+   "faction": "지구연방군",
+   "pilots": [
+    "이오 플레밍"
+   ]
+  }
+ },
  "UNICORN": {
   "구스타프 칼": {
    "models": "FD-03",
@@ -1079,6 +1302,73 @@
    "faction": "네오 지온",
    "pilots": [
     "마리다 크루즈"
+   ]
+  }
+ },
+ "V": {
+  "V건담": {
+   "models": "LM312V04",
+   "faction": "리가 밀리티어",
+   "pilots": [
+    "웃소 에빈"
+   ]
+  },
+  "V건담 헥사": {
+   "models": "LM312V06",
+   "faction": "리가 밀리티어",
+   "pilots": []
+  },
+  "V대쉬 건담": {
+   "models": "LM312V04+SD-VB03A",
+   "faction": "리가 밀리티어",
+   "pilots": [
+    "웃소 에빈",
+    "마베트 핑거햇"
+   ]
+  },
+  "V대시 건담 헥사": {
+   "models": "LM312V06+SD-VB03A",
+   "faction": "리가 밀리티어",
+   "pilots": []
+  },
+  "건이지": {
+   "models": "LM111E02",
+   "faction": "리가 밀리티어",
+   "pilots": []
+  },
+  "게드라프": {
+   "models": "ZM-S24G",
+   "faction": "잔스칼",
+   "pilots": [
+    "카테지나 루스"
+   ]
+  },
+  "겐가오조": {
+   "models": "ZMT-S28S",
+   "faction": "잔스칼",
+   "pilots": [
+    "파라 그리폰"
+   ]
+  },
+  "리그 콘티오": {
+   "models": "ZMT-S34S",
+   "faction": "잔스칼",
+   "pilots": [
+    "크로노클 어셔"
+   ]
+  },
+  "잔넥": {
+   "models": "ZMT-S29",
+   "faction": "잔스칼",
+   "pilots": [
+    "파라 그리폰"
+   ]
+  },
+  "콘티오": {
+   "models": "ZM-S14S",
+   "faction": "잔스칼",
+   "pilots": [
+    "크로노클 어셔"
    ]
   }
  },
@@ -1153,6 +1443,81 @@
    "pilots": [
     "엘란 케레스"
    ]
+  }
+ },
+ "X": {
+  "건담 DX": {
+   "models": "GX-9901-DX",
+   "faction": "프리덴",
+   "pilots": [
+    "가로드 란"
+   ]
+  },
+  "건담 레오파드 디스트로이": {
+   "models": "GT-9600-D",
+   "faction": "프리덴",
+   "pilots": [
+    "로아비 로이"
+   ]
+  },
+  "건담 버사고": {
+   "models": "NRX-0013",
+   "faction": "프로스트 형제",
+   "pilots": [
+    "샤기아 프로스트"
+   ]
+  },
+  "건담 버사고 체스트 브레이크": {
+   "models": "NRX-0013-CB",
+   "faction": "프로스트 형제",
+   "pilots": [
+    "샤기아 프로스트"
+   ]
+  },
+  "건담 아슈타론": {
+   "models": "NRX-0015",
+   "faction": "프로스트 형제",
+   "pilots": [
+    "오르바 프로스트"
+   ]
+  },
+  "건담 아슈타론 허밋 크랩": {
+   "models": "NRX-0015-HC",
+   "faction": "프로스트 형제",
+   "pilots": [
+    "오르바 프로스트"
+   ]
+  },
+  "건담 에어 마스터 버스트": {
+   "models": "GW-9800-B",
+   "faction": "프리덴",
+   "pilots": [
+    "윗츠 수"
+   ]
+  },
+  "건담X 디바이더": {
+   "models": "GX-9900-DV",
+   "faction": "프리덴",
+   "pilots": [
+    "가로드 란"
+   ]
+  },
+  "도트레스": {
+   "models": "DT-6800",
+   "faction": "신연방",
+   "pilots": []
+  },
+  "벨티고": {
+   "models": "RMSN-008",
+   "faction": "우주혁명군",
+   "pilots": [
+    "카리스 노틸러스"
+   ]
+  },
+  "크라우다": {
+   "models": "RMS-019",
+   "faction": "우주혁명군",
+   "pilots": []
   }
  },
  "Z": {
