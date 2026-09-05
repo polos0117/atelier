@@ -673,6 +673,53 @@
    "pilots": []
   }
  },
+ "ASTRAY": {
+  "105 슬로터 대거": {
+   "models": "GAT-01A2R",
+   "faction": "지구연합군",
+   "pilots": []
+  },
+  "베르데 버스터 건담": {
+   "models": "GAT-X103AP",
+   "faction": "지구연합군",
+   "pilots": [
+    "샴스 코자"
+   ]
+  },
+  "블루 듀얼 건담": {
+   "models": "GAT-2",
+   "faction": "지구연합군",
+   "pilots": [
+    "뮤디 홀크로프트"
+   ]
+  },
+  "스타게이저": {
+   "models": "GSX-401FW",
+   "faction": "DSSD",
+   "pilots": [
+    "스웬 칼 바얀",
+    "솔 뤼네 랑주",
+    "셀레네 맥그리프"
+   ]
+  },
+  "스트라이크 느와르 건담": {
+   "models": "GAT-X105E",
+   "faction": "지구연합군",
+   "pilots": [
+    "스웬 칼 바얀"
+   ]
+  },
+  "시빌리언 어스트레이 DSSD 커스텀": {
+   "models": "UT-1D",
+   "faction": "DSSD",
+   "pilots": []
+  },
+  "케르베로스 바쿠 하운드": {
+   "models": "TMF/A-802W2",
+   "faction": "자프트",
+   "pilots": []
+  }
+ },
  "CCA": {
   "α 아지르": {
    "models": "NZ-333",
@@ -817,6 +864,32 @@
    ]
   }
  },
+ "GQ": {
+  "01건담": {
+   "models": "RX-78-01",
+   "faction": "지구연방군",
+   "pilots": []
+  },
+  "GFreD": {
+   "models": "gMS-κ",
+   "faction": "재야",
+   "pilots": [
+    "냐안"
+   ]
+  },
+  "키케로가 [MS 형태]": {
+   "models": "MAN-03",
+   "faction": "지온 공국군",
+   "pilots": [
+    "샤리아 불"
+   ]
+  },
+  "하얀 건담": {
+   "models": "RX-78-02",
+   "faction": "지구연방군",
+   "pilots": []
+  }
+ },
  "HATHAWAY": {
   "갸르세종": {
    "models": "",
@@ -832,6 +905,55 @@
    "pilots": [
     "레인 에임"
    ]
+  }
+ },
+ "IBO": {
+  "건담 구시온 리베이크 풀 시티": {
+   "models": "ASW-G-11",
+   "faction": "철화단",
+   "pilots": [
+    "아키히로 앨트랜드"
+   ]
+  },
+  "건담 키마리스 트루퍼": {
+   "models": "ASW-G-66",
+   "faction": "철화단",
+   "pilots": [
+    "가엘리오 보드윈"
+   ]
+  },
+  "건담 프레임": {
+   "models": "",
+   "faction": "건담",
+   "pilots": []
+  },
+  "그레이즈": {
+   "models": "EB-06",
+   "faction": "걀라르호른",
+   "pilots": [
+    "크랭크 젠트",
+    "아인 달튼"
+   ]
+  },
+  "그레이즈(알레스 소속기)": {
+   "models": "EB-06",
+   "faction": "걀라르호른",
+   "pilots": []
+  },
+  "그레이즈(지상전 사양)": {
+   "models": "EB-06j",
+   "faction": "걀라르호른",
+   "pilots": []
+  },
+  "시덴": {
+   "models": "STH-16",
+   "faction": "철화단",
+   "pilots": []
+  },
+  "하슈말": {
+   "models": "",
+   "faction": "기타",
+   "pilots": []
   }
  },
  "NT": {
@@ -980,11 +1102,49 @@
   }
  },
  "WM": {
+  "건담 르브리스 울": {
+   "models": "EDM-GA-01",
+   "faction": "폴드의 새벽",
+   "pilots": [
+    "소피 플로네"
+   ]
+  },
   "건담 칼리번": {
    "models": "X-EX01",
    "faction": "옥스어스",
    "pilots": [
     "슬레타 머큐리"
+   ]
+  },
+  "데미 바딩": {
+   "models": "MSJ-R122",
+   "faction": "브리온",
+   "pilots": [
+    "추아츄리 판런치"
+   ]
+  },
+  "데미 트레이너": {
+   "models": "MSJ-121",
+   "faction": "아스티카시아",
+   "pilots": []
+  },
+  "베귀르베우": {
+   "models": "CEK-040",
+   "faction": "그라스레",
+   "pilots": [
+    "케난지 에이버리"
+   ]
+  },
+  "베귀르펜테": {
+   "models": "CEK-077",
+   "faction": "그라스레",
+   "pilots": [
+    "사비나 팔딘",
+    "르네 코스터",
+    "이리샤 플라노",
+    "메이지 메이",
+    "에나오 재즈",
+    "케난지 에이버리"
    ]
   },
   "조워트": {
