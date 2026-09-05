@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-09-04",
+ "updated": "2026-09-05",
  "note": "prompt.html 의 '기록 내보내기' 결과를 이 파일에 덮어쓴다. style 은 기체별 화풍 — 기본값(cinematic_semi_real)은 기록하지 않는다. 지금까지 완료된 기체는 전부 이전 기본값인 semi_real_paint 로 채워 넣었다.",
  "mechs": {
   "건담 나드레": {
@@ -984,6 +984,7 @@
   "건이지": "cinematic_semi_real",
   "바이아란": "painterly",
   "건담 하루트": "cinematic_semi_real",
-  "조워트": "glossy_kr_game"
+  "조워트": "glossy_kr_game",
+  "라파엘 건담": "cinematic_semi_real"
  }
 }
