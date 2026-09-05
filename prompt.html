@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Gundam Prompt Toolkit v9.2</title>
+<title>Gundam Prompt Toolkit v9.3</title>
 <style>
 :root{
   color-scheme:light dark;
@@ -250,13 +250,22 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   </div>
 
 
-  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.2</b> <span>Morphology Mode 추가</span></div>
+  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.3</b> <span>랜덤·화풍 라벨 정리</span></div>
   <details class="srcbox verbox" id="verBox">
     <summary>
-      <span class="sel-line" style="white-space:normal;overflow:visible">v9.2 변경 내역</span>
+      <span class="sel-line" style="white-space:normal;overflow:visible">v9.3 변경 내역</span>
       <span class="sb-txt">패치 노트</span>
     </summary>
     <div class="vb-in">
+      <b>v9.3 &middot; 랜덤 · 화풍 라벨 정리</b>
+      <ul>
+        <li>화풍 이름을 갈랐다 — <b>세미리얼 시네마틱</b>(cinematic_semi_real) / <b>세미리얼 유화</b>(semi_real_paint). 기존 "세미리얼 페인팅 / 반실사 회화"는 서로 같은 말처럼 읽혀 구분이 안 됐다. 내부 키와 저장된 기록은 무변화</li>
+        <li>단일 컷에 자체 <b>랜덤 성격</b> 셀렉트를 붙였다. 예전에는 단일 컷 랜덤이 콜라주 패널의 셀렉트를 몰래 따라가서, 단일 패널만 보고 있으면 왜 같은 카테고리가 반복되는지 알 방법이 없었다. 기체친화형은 세 Pair 에 추천을 꽂는 모드라 단일 목록에서 뺐다</li>
+        <li>"이미 쓴 조합 피하기"도 패널별로 분리했다. 단일은 sgAvoid, 콜라주는 기존 체크박스를 각자 본다</li>
+        <li>랜덤을 굴리면 <b>카테고리 후보가 몇 종 남았는지</b> 상태줄에 찍는다. 회피를 켜두면 이미 쓴 카테고리가 빠지면서 후보가 한두 종까지 줄어드는데, 지금까지는 아무 표시가 없어 랜덤이 고장난 것처럼 보였다. 2종 이하로 줄면 경고색으로 뜬다</li>
+        <li>다양성형 설명에서 "여섯 컷" 표현을 단일 컷 목록에서만 "카테고리 전체에서 고르게"로 바꿨다. 콜라주 쪽 문구는 그대로</li>
+        <li>설정 예시 갤러리 엑박 수정 — 파일명을 카드 이름으로 조립하던 것을 실제 파일명을 쓰도록 고쳤다. 이름에 띄어쓰기가 있는 카드 76기가 전부 안 뜨던 문제</li>
+      </ul>
       <b>v9.2 &middot; Morphology Mode 추가</b>
       <ul>
         <li>의인화 탭에 Morphology Mode 셀렉트 신설 — 표준형 / 실루엣·장비 강조형 / 강변형형 3종</li>
@@ -1196,7 +1205,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     stable:{ko:'안정형',desc:'실패가 적은 무난한 조합',
       pool:['adult_roleplay','occupation_basic','everyday_basic','homewear','swimwear','private_evening'],
       adv:{overall_intensity:'sensual',pair_gap:'small',outfit_variety:'normal',scene_variety:'normal',pose_variety:'normal'}},
-    variety:{ko:'다양성형',desc:'여섯 컷이 서로 최대한 다르게',
+    variety:{ko:'다양성형',desc:'여섯 컷이 서로 최대한 다르게',descOne:'카테고리 전체에서 고르게',
       pool:null,
       adv:{overall_intensity:'sensual',pair_gap:'medium',outfit_variety:'extreme',scene_variety:'extreme',
            pose_variety:'extreme',camera_variety:'extreme',unexpected_cuts:'2'}},
@@ -1820,10 +1829,22 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   function sgRandomize(mode){  /* 'all' | 'axesOnly' | 'skipAxes' */
     sgPushUndo();
     const T=sgRndTargets(), pick=a2=>a2[Math.floor(Math.random()*a2.length)];
+    let poolNote='', narrow=false;
     if(mode!=='axesOnly'){
-      if(T.cat){const c=pick(freshPool([],'single'));
+      if(T.cat){
+        /* 후보가 몇 종 남았는지 보여준다. 회피를 켜두면 이미 쓴 카테고리가
+           빠지면서 후보가 한두 종까지 줄어드는데, 말해주지 않으면
+           랜덤이 고장난 것처럼 보인다. */
+        const p=freshPool([],'single'), c=pick(p);
         const cs=document.getElementById('sgCat');
         if([...cs.options].some(o=>o.value===c))cs.value=c;
+        const av=document.getElementById('sgAvoid');
+        const skipped=(av&&av.checked)
+          ? Object.keys(usedOf(mechKey()).reduce((m,r)=>{if(r.cat)m[r.cat]=1;return m;},{})).length : 0;
+        const full=modePool('single').length;
+        narrow=p.length<=2&&full>2;
+        poolNote=' — 카테고리 후보 '+p.length+'/'+full+'종'+
+          (skipped&&p.length<full?' (이미 쓴 '+skipped+'종 제외 · 회피 끄면 전체)':'');
         renderSgEx(false);}
       if(T.ex){const es=document.getElementById('sgEx');
         const cand=[...es.options].map(o=>o.value).filter(v=>v&&v!=='__custom__');
@@ -1851,7 +1872,9 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       });
     }
     refreshSinglePrompt();
-    setStatus('statusSingle',mode==='axesOnly'?'세부 강도를 굴렸다':(mode==='skipAxes'?'세부 강도는 그대로 두고 나머지를 굴렸다':'단일 컷 설정을 굴렸다'),'ok');
+    setStatus('statusSingle',
+      (mode==='axesOnly'?'세부 강도를 굴렸다':(mode==='skipAxes'?'세부 강도는 그대로 두고 나머지를 굴렸다':'단일 컷 설정을 굴렸다'))+poolNote,
+      narrow?'warn':'ok');
   }
   /* 콜라주에서 방향을 찾고 단일 컷으로 마무리하는 흐름을 잇는다.
      카테고리·예시·표정·시점·포즈·세부 강도를 그대로 옮기고 단일 탭으로 넘어간다. */
@@ -4031,7 +4054,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   /* 단일 컷용 성격. useRec 모드는 세 Pair 에 추천을 꽂는 방식이라 한 장짜리에는 의미가 없다 */
   document.getElementById('sgRandomMode').innerHTML=Object.entries(RANDOM_MODES)
     .filter(([,v])=>!v.useRec)
-    .map(([k,v])=>'<option value="'+k+'">'+escHtml(v.ko+' — '+v.desc)+'</option>').join('');
+    .map(([k,v])=>'<option value="'+k+'">'+escHtml(v.ko+' — '+(v.descOne||v.desc))+'</option>').join('');
   document.getElementById('sgRandomMode').value='variety';
   renderAdvancedGrid();
   renderParamCards();
