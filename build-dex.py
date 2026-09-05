@@ -419,8 +419,8 @@ function tkUsed(name){
   return Object.keys(m).map(function(k){
     return (TK_CAT[k]||k)+(m[k]>1?" "+m[k]+"회":"")});
 }
-/* 화풍 — 기본값(시네마틱 세미리얼)은 기록에 안 남으므로 없으면 기본값으로 본다 */
-var TK_ART={cinematic_semi_real:"세미리얼 페인팅",game_keyart:"게임 키아트 2.5D",glossy_kr_game:"한국형 글로시 게임 일러스트",game_cgi:"게임 시네마틱 CGI",semi_real_paint:"반실사 회화",
+/* 화풍 — 기본값(세미리얼 시네마틱)은 기록에 안 남으므로 없으면 기본값으로 본다 */
+var TK_ART={cinematic_semi_real:"세미리얼 시네마틱",game_keyart:"게임 키아트 2.5D",glossy_kr_game:"한국형 글로시 게임 일러스트",game_cgi:"게임 시네마틱 CGI",semi_real_paint:"세미리얼 유화",
   photoreal:"사진풍",anime_illust:"애니 일러스트",cel_anime:"셀화 애니",
   painterly:"회화적 컨셉아트",retro_anime:"레트로 애니",ink_wash:"수묵 담채"};
 function tkStyleKey(name){
