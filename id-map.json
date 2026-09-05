@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-09-05T14:39:30Z",
+ "generated": "2026-09-05T16:08:51Z",
  "source": {
   "api": "https://soshage.com/ggetapi/ko/{entity}",
   "entities": {
@@ -11,7 +11,7 @@
   "cards": {
    "file": "play.html",
    "MECH": 798,
-   "PILOT": 181
+   "PILOT": 193
   }
  },
  "note": "카드 1건에 API id 가 여러 개 붙는다. 기체는 통상판과 (EX) 판, 인물은 시리즈별 참전분이 각각 별개 id 이기 때문이다. review 는 사람이 확인해 id-map.overrides.json 에 옮겨 적는다.",
@@ -31,10 +31,10 @@
    "total": 798
   },
   "pilot": {
-   "matched": 114,
-   "review": 25,
-   "unmatched": 42,
-   "total": 181
+   "matched": 121,
+   "review": 26,
+   "unmatched": 46,
+   "total": 193
   }
  },
  "mech": [
@@ -6787,6 +6787,63 @@
    "ids": [
     1305001400
    ]
+  },
+  {
+   "dex": "하야토 코바야시",
+   "match": "exact",
+   "api_name": "하야토 코바야시",
+   "ids": [
+    1001000300
+   ]
+  },
+  {
+   "dex": "류 호세이",
+   "match": "exact",
+   "api_name": "류 호세이",
+   "ids": [
+    1001000500
+   ]
+  },
+  {
+   "dex": "오르테가",
+   "match": "exact",
+   "api_name": "오르테가",
+   "ids": [
+    1001004200,
+    1055000700
+   ]
+  },
+  {
+   "dex": "맛슈",
+   "match": "exact",
+   "api_name": "맛슈",
+   "ids": [
+    1001004300
+   ]
+  },
+  {
+   "dex": "마우어 파라오",
+   "match": "exact",
+   "api_name": "마우어 파라오",
+   "ids": [
+    1080002000
+   ]
+  },
+  {
+   "dex": "브란 블루타크",
+   "match": "exact",
+   "api_name": "브란 블루타크",
+   "ids": [
+    1080003400
+   ]
+  },
+  {
+   "dex": "로베르토",
+   "match": "exact",
+   "api_name": "로베르토",
+   "ids": [
+    1080000400
+   ]
   }
  ],
  "review": {
@@ -10739,6 +10796,18 @@
       "score": 0.667
      }
     ]
+   },
+   {
+    "dex": "샤리아 불",
+    "candidates": [
+     {
+      "api_name": "샤리아 블 (GQ)(0079)",
+      "ids": [
+       1055001400
+      ],
+      "score": 0.75
+     }
+    ]
    }
   ]
  },
@@ -10985,7 +11054,11 @@
    "해리 오드",
    "김 깅가남",
    "코린 난더",
-   "로우 규레"
+   "로우 규레",
+   "쿠쿠루스 도안",
+   "카크리콘 카클러",
+   "라일라 미라 라이라",
+   "게츠"
   ]
  }
 }

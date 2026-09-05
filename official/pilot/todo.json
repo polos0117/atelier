@@ -1,15 +1,7 @@
 {
- "note": "공식 상세 페이지에서 아직 탑승 관계를 안 받은 기체. https://kr.gundam-official.com/mecha/<id> 를 마크다운(1크레딧)으로 받아 '파일럿 //' 절을 official/pilot/relations.json 에 옮겨 적으면 된다. includeTags 는 쓰지 않는다(엔진 실패). 간헐적 실패는 proxy=stealth 로 재시도.",
- "remaining_total": 81,
- "by_series": {
-  "0079": 2,
-  "Z": 2,
-  "ZZ": 24,
-  "CCA": 9,
-  "08MS": 12,
-  "0083": 20,
-  "0080": 12
- },
+ "note": "UC 계열 7 개 시리즈는 다 받았다. urls 는 받은 기록으로 남겨 둔다. 남은 21 개 시리즈는 series/<슬러그>/mecha 목록부터 다시 받아 이름→URL 을 official/url/<코드>.json 에 넣는 일이 먼저다. 상세는 https://kr.gundam-official.com/mecha/<id> 를 마크다운(1크레딧)으로 받아 '파일럿 //' 절을 옮겨 적는다. includeTags 는 쓰지 않는다(엔진 실패). 간헐적 실패는 proxy=stealth 로 재시도.",
+ "remaining_total": 0,
+ "by_series": {},
  "urls": {
   "0079": {
    "걍": "tl1l13jnoi8duqaah9gnh8cv",
@@ -106,5 +98,40 @@
    "릭 돔II": "gyb0g1f2ro1nmz81rlim17f2",
    "겔구그J": "do0zl971lkpyevvcrhqkkr5o"
   }
- }
+ },
+ "done": {
+  "series": [
+   "0079",
+   "0080",
+   "0083",
+   "08MS",
+   "CCA",
+   "Z",
+   "ZZ"
+  ],
+  "mechs": 139
+ },
+ "pending_series": [
+  "SEED",
+  "DESTINY",
+  "FREEDOM",
+  "00",
+  "00M",
+  "IBO",
+  "WM",
+  "W",
+  "EW",
+  "UNICORN",
+  "NT",
+  "HATHAWAY",
+  "G",
+  "X",
+  "AGE",
+  "F91",
+  "V",
+  "TB",
+  "TA",
+  "ASTRAY",
+  "GQ"
+ ]
 }

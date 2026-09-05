@@ -1,10 +1,119 @@
 {
  "0079": {
+  "G 아머": {
+   "models": "",
+   "faction": "지구연방군",
+   "pilots": []
+  },
+  "걍": {
+   "models": "YMS-15",
+   "faction": "지온 공국군",
+   "pilots": [
+    "마 쿠베"
+   ]
+  },
   "건담": {
    "models": "RX-78-2",
    "faction": "지구연방군",
    "pilots": [
     "아무로 레이"
+   ]
+  },
+  "건캐논": {
+   "models": "RX-77",
+   "faction": "지구연방군",
+   "pilots": [
+    "카이 시덴",
+    "하야토 코바야시"
+   ]
+  },
+  "건탱크": {
+   "models": "RX-75",
+   "faction": "지구연방군",
+   "pilots": [
+    "카이 시덴",
+    "하야토 코바야시",
+    "류 호세이",
+    "조브 존"
+   ]
+  },
+  "겔구그": {
+   "models": "MS-14",
+   "faction": "지온 공국군",
+   "pilots": []
+  },
+  "곡그": {
+   "models": "MSM-03",
+   "faction": "지온 공국군",
+   "pilots": []
+  },
+  "구프": {
+   "models": "MS-07B",
+   "faction": "지온 공국군",
+   "pilots": [
+    "람바 랄"
+   ]
+  },
+  "그라브로": {
+   "models": "MAM-07",
+   "faction": "지온 공국군",
+   "pilots": []
+  },
+  "돔": {
+   "models": "MS-09",
+   "faction": "지온 공국군",
+   "pilots": [
+    "가이아",
+    "오르테가",
+    "맛슈"
+   ]
+  },
+  "돕": {
+   "models": "",
+   "faction": "지온 공국군",
+   "pilots": [
+    "가르마 자비"
+   ]
+  },
+  "릭 돔": {
+   "models": "MS-09R",
+   "faction": "지온 공국군",
+   "pilots": []
+  },
+  "마젤라 어택": {
+   "models": "",
+   "faction": "지온 공국군",
+   "pilots": []
+  },
+  "볼": {
+   "models": "RB-79",
+   "faction": "지구연방군",
+   "pilots": []
+  },
+  "브라우 브로": {
+   "models": "MAN-03",
+   "faction": "지온 공국군",
+   "pilots": [
+    "샤리아 불"
+   ]
+  },
+  "비그로": {
+   "models": "MA-05",
+   "faction": "지온 공국군",
+   "pilots": []
+  },
+  "빅 잠": {
+   "models": "MA-08",
+   "faction": "지온 공국군",
+   "pilots": [
+    "도즐 자비"
+   ]
+  },
+  "샤아 전용 겔구그": {
+   "models": "MS-14S",
+   "faction": "지온 공국군",
+   "pilots": [
+    "샤아 아즈나블"
    ]
   },
   "샤아 전용 자쿠II": {
@@ -14,18 +123,23 @@
     "샤아 아즈나블"
    ]
   },
-  "지옹": {
-   "models": "MSN-02",
+  "샤아 전용 즈고크": {
+   "models": "MSM-07S",
    "faction": "지온 공국군",
    "pilots": [
     "샤아 아즈나블"
    ]
   },
-  "구프": {
-   "models": "MS-07B",
+  "앗가이": {
+   "models": "MSM-04",
+   "faction": "지온 공국군",
+   "pilots": []
+  },
+  "앗잠": {
+   "models": "MAX-03",
    "faction": "지온 공국군",
    "pilots": [
-    "람바 랄"
+    "마 쿠베"
    ]
   },
   "엘메스": {
@@ -35,17 +149,44 @@
     "라라아 슨"
    ]
   },
-  "겔구그": {
-   "models": "MS-14",
+  "자쿠I": {
+   "models": "MS-05",
+   "faction": "지온 공국군",
+   "pilots": [
+    "가뎀"
+   ]
+  },
+  "자쿠II": {
+   "models": "MS-06",
+   "faction": "지온 공국군",
+   "pilots": [
+    "데님",
+    "진",
+    "크라운",
+    "코즌 그레이엄",
+    "쿠쿠루스 도안"
+   ]
+  },
+  "자쿠레로": {
+   "models": "MA-04X",
    "faction": "지온 공국군",
    "pilots": []
   },
-  "건캐논": {
-   "models": "RX-77",
-   "faction": "지구연방군",
+  "족크": {
+   "models": "MSM-10",
+   "faction": "지온 공국군",
+   "pilots": []
+  },
+  "즈고크": {
+   "models": "MSM-07",
+   "faction": "지온 공국군",
+   "pilots": []
+  },
+  "지옹": {
+   "models": "MSN-02",
+   "faction": "지온 공국군",
    "pilots": [
-    "카이 시덴",
-    "하야토 코바야시"
+    "샤아 아즈나블"
    ]
   },
   "짐": {
@@ -59,134 +200,364 @@
    "pilots": [
     "류 호세이"
    ]
+  }
+ },
+ "0080": {
+  "건담 NT-1 Alex": {
+   "models": "RX-78NT-1",
+   "faction": "지구연방군",
+   "pilots": [
+    "크리스티나 맥켄지"
+   ]
   },
-  "G 아머": {
+  "겔구그J": {
+   "models": "MS-14JG",
+   "faction": "지온 공국군",
+   "pilots": []
+  },
+  "릭 돔II": {
+   "models": "MS-09R-2",
+   "faction": "지온 공국군",
+   "pilots": []
+  },
+  "양산형 건캐논": {
+   "models": "RX-77D",
+   "faction": "지구연방군",
+   "pilots": []
+  },
+  "자쿠II 개량형": {
+   "models": "MS-06FZ",
+   "faction": "지온 공국군",
+   "pilots": [
+    "버나드 와이즈먼"
+   ]
+  },
+  "즈고크E": {
+   "models": "MSM-07E",
+   "faction": "지온 공국군",
+   "pilots": [
+    "하디 슈타이너"
+   ]
+  },
+  "짐 스나이퍼II": {
+   "models": "RGM-79SP",
+   "faction": "지구연방군",
+   "pilots": []
+  },
+  "짐 커맨드": {
+   "models": "RGM-79G",
+   "faction": "지구연방군",
+   "pilots": []
+  },
+  "짐 커맨드 우주전 사양": {
+   "models": "RGM-79GS",
+   "faction": "지구연방군",
+   "pilots": []
+  },
+  "짐 한랭지 사양": {
+   "models": "RGM-79D",
+   "faction": "지구연방군",
+   "pilots": []
+  },
+  "캠퍼": {
+   "models": "MS-18E",
+   "faction": "지온 공국군",
+   "pilots": [
+    "미하일 카민스키"
+   ]
+  },
+  "하이 곡그": {
+   "models": "MSM-03C",
+   "faction": "지온 공국군",
+   "pilots": [
+    "미하일 카민스키",
+    "가브리엘 라미레스 가르시아",
+    "앤디 스트라우스"
+   ]
+  }
+ },
+ "0083": {
+  "거베라 테트라": {
+   "models": "AGX-04",
+   "faction": "지온 공국군",
+   "pilots": [
+    "시마 가라하우"
+   ]
+  },
+  "건담 시작 1호기 제피랜더스": {
+   "models": "RX-78GP01",
+   "faction": "지구연방군",
+   "pilots": [
+    "코우 우라키"
+   ]
+  },
+  "건담 시작 1호기 풀 버니언": {
+   "models": "RX-78GP01-Fb",
+   "faction": "지구연방군",
+   "pilots": [
+    "코우 우라키"
+   ]
+  },
+  "건담 시작 2호기 사이살리스": {
+   "models": "RX-78GP02A",
+   "faction": "지구연방군",
+   "pilots": [
+    "아나벨 가토"
+   ]
+  },
+  "건담 시작 3호기 덴드로비움": {
+   "models": "RX-78GP03",
+   "faction": "지구연방군",
+   "pilots": [
+    "코우 우라키"
+   ]
+  },
+  "건담 시작 3호기/스테이멘": {
+   "models": "RX-78GP03S",
+   "faction": "지구연방군",
+   "pilots": [
+    "코우 우라키"
+   ]
+  },
+  "겔구그M 양산형": {
+   "models": "MS-14F",
+   "faction": "지온 공국군",
+   "pilots": []
+  },
+  "겔구그M(지휘관용)": {
+   "models": "MS-14Fs",
+   "faction": "지온 공국군",
+   "pilots": [
+    "시마 가라하우"
+   ]
+  },
+  "노이에 질": {
+   "models": "AMA-X2",
+   "faction": "지온 공국군",
+   "pilots": [
+    "아나벨 가토"
+   ]
+  },
+  "돔 트로펜": {
+   "models": "MS-09F/TROP",
+   "faction": "지온 공국군",
+   "pilots": [
+    "아담스키",
+    "게이리"
+   ]
+  },
+  "드라체": {
+   "models": "MS-21C",
+   "faction": "지온 공국군",
+   "pilots": []
+  },
+  "릭 돔II": {
+   "models": "MS-09R-2",
+   "faction": "지온 공국군",
+   "pilots": [
+    "카리우스"
+   ]
+  },
+  "발 바로": {
+   "models": "MA-06",
+   "faction": "지온 공국군",
+   "pilots": [
+    "케리 레즈너"
+   ]
+  },
+  "볼 개수형": {
+   "models": "RB-79C",
+   "faction": "지구연방군",
+   "pilots": []
+  },
+  "자멜": {
+   "models": "YMS-16M",
+   "faction": "지온 공국군",
+   "pilots": [
+    "밥"
+   ]
+  },
+  "자쿠II F2형": {
+   "models": "MS-06F-2",
+   "faction": "지온 공국군",
+   "pilots": [
+    "노이엔 비터"
+   ]
+  },
+  "짐 개량형": {
+   "models": "RGM-79C",
+   "faction": "지구연방군",
+   "pilots": [
+    "사우스 버닝"
+   ]
+  },
+  "짐 캐논II": {
+   "models": "RGC-83",
+   "faction": "지구연방군",
+   "pilots": [
+    "척 키스",
+    "챕 아델"
+   ]
+  },
+  "짐 커스텀": {
+   "models": "RGM-79N",
+   "faction": "지구연방군",
+   "pilots": [
+    "사우스 버닝",
+    "알파 A. 베이트",
+    "베르나르도 몬시아"
+   ]
+  },
+  "파워드 짐": {
+   "models": "RGM-79",
+   "faction": "지구연방군",
+   "pilots": [
+    "딕 알렌"
+   ]
+  }
+ },
+ "08MS": {
+  "건담 Ez8": {
+   "models": "RX-79[G]Ez-8",
+   "faction": "지구연방군",
+   "pilots": [
+    "시로 아마다"
+   ]
+  },
+  "고기동 시작형 자쿠": {
+   "models": "MS-06RD-4",
+   "faction": "지온 공국군",
+   "pilots": [
+    "아이나 사할린"
+   ]
+  },
+  "구프 커스텀": {
+   "models": "MS-07B-3",
+   "faction": "지온 공국군",
+   "pilots": [
+    "노리스 팩커드"
+   ]
+  },
+  "구프 플라이트 타입": {
+   "models": "MS-07H-8",
+   "faction": "지온 공국군",
+   "pilots": []
+  },
+  "마젤라 어택": {
+   "models": "HT-01B",
+   "faction": "지온 공국군",
+   "pilots": []
+  },
+  "볼 K형": {
+   "models": "RB-79K",
+   "faction": "지구연방군",
+   "pilots": [
+    "시로 아마다"
+   ]
+  },
+  "압사라스II": {
    "models": "",
-   "faction": "지구연방군",
-   "pilots": []
-  },
-  "볼": {
-   "models": "RB-79",
-   "faction": "지구연방군",
-   "pilots": []
-  },
-  "자쿠II": {
-   "models": "MS-06",
    "faction": "지온 공국군",
    "pilots": [
-    "데님",
-    "진",
-    "크라운",
-    "코즌 그레이엄",
-    "쿠쿠루스 도안"
+    "아이나 사할린"
    ]
   },
-  "자쿠I": {
-   "models": "MS-05",
+  "압사라스III": {
+   "models": "",
    "faction": "지온 공국군",
    "pilots": [
-    "가뎀"
+    "아이나 사할린",
+    "기니어스 사할린"
    ]
   },
-  "건탱크": {
+  "양산형 건탱크": {
    "models": "RX-75",
    "faction": "지구연방군",
-   "pilots": [
-    "카이 시덴",
-    "하야토 코바야시",
-    "류 호세이",
-    "조브 존"
-   ]
-  },
-  "돔": {
-   "models": "MS-09",
-   "faction": "지온 공국군",
-   "pilots": [
-    "가이아",
-    "오르테가",
-    "맛슈"
-   ]
-  },
-  "곡그": {
-   "models": "MSM-03",
-   "faction": "지온 공국군",
    "pilots": []
   },
-  "즈고크": {
-   "models": "MSM-07",
-   "faction": "지온 공국군",
-   "pilots": []
-  },
-  "샤아 전용 즈고크": {
-   "models": "MSM-07S",
-   "faction": "지온 공국군",
+  "육전형 건담": {
+   "models": "RX-79[G]",
+   "faction": "지구연방군",
    "pilots": [
-    "샤아 아즈나블"
+    "카렌 조슈아",
+    "테리 샌더스 Jr.",
+    "시로 아마다"
    ]
   },
-  "릭 돔": {
-   "models": "MS-09R",
-   "faction": "지온 공국군",
-   "pilots": []
-  },
-  "샤아 전용 겔구그": {
-   "models": "MS-14S",
-   "faction": "지온 공국군",
+  "육전형 짐": {
+   "models": "RGM-79[G]",
+   "faction": "지구연방군",
    "pilots": [
-    "샤아 아즈나블"
+    "샐리",
+    "롭",
+    "마이크"
    ]
   },
-  "앗가이": {
-   "models": "MSM-04",
-   "faction": "지온 공국군",
-   "pilots": []
-  },
-  "빅 잠": {
-   "models": "MA-08",
-   "faction": "지온 공국군",
-   "pilots": [
-    "도즐 자비"
-   ]
-  },
-  "브라우 브로": {
-   "models": "MAN-03",
-   "faction": "지온 공국군",
-   "pilots": [
-    "샤리아 불"
-   ]
-  },
-  "족크": {
-   "models": "MSM-10",
-   "faction": "지온 공국군",
-   "pilots": []
-  },
-  "앗잠": {
-   "models": "MAX-03",
-   "faction": "지온 공국군",
-   "pilots": [
-    "마 쿠베"
-   ]
-  },
-  "그라브로": {
-   "models": "MAM-07",
-   "faction": "지온 공국군",
-   "pilots": []
-  },
-  "돕": {
+  "제트 코어 부스터": {
    "models": "",
-   "faction": "지온 공국군",
+   "faction": "지구연방군",
+   "pilots": []
+  }
+ },
+ "CCA": {
+  "α 아지르": {
+   "models": "NZ-333",
+   "faction": "네오 지온",
    "pilots": [
-    "가르마 자비"
+    "퀘스 파라야"
    ]
   },
-  "비그로": {
-   "models": "MA-05",
-   "faction": "지온 공국군",
+  "ν 건담": {
+   "models": "RX-93",
+   "faction": "지구연방",
+   "pilots": [
+    "아무로 레이"
+   ]
+  },
+  "기라 도가": {
+   "models": "AMS-119",
+   "faction": "네오 지온",
+   "pilots": [
+    "레즌 슈나이더"
+   ]
+  },
+  "리 가지": {
+   "models": "RGZ-91",
+   "faction": "지구연방",
+   "pilots": [
+    "아무로 레이",
+    "케라 수"
+   ]
+  },
+  "사자비": {
+   "models": "MSN-04",
+   "faction": "네오 지온",
+   "pilots": [
+    "샤아 아즈나블"
+   ]
+  },
+  "야크트 도가(규네이 전용기)": {
+   "models": "MSN-0",
+   "faction": "네오 지온",
+   "pilots": [
+    "규네이 거스"
+   ]
+  },
+  "야크트 도가(퀘스 전용기)": {
+   "models": "MSN-0",
+   "faction": "네오 지온",
+   "pilots": [
+    "퀘스 파라야"
+   ]
+  },
+  "제간": {
+   "models": "RGM-89",
+   "faction": "지구연방",
    "pilots": []
   },
-  "자쿠레로": {
-   "models": "MA-04X",
-   "faction": "지온 공국군",
+  "짐III": {
+   "models": "RGM-86R",
+   "faction": "지구연방",
    "pilots": []
   }
  },
@@ -198,11 +569,33 @@
     "카미유 비단"
    ]
   },
-  "백식": {
-   "models": "MSN-00100",
-   "faction": "에우고",
+  "가르발디β": {
+   "models": "",
+   "faction": "지구연방군",
    "pilots": [
-    "크와트로 바지나/샤아 아즈나블"
+    "제리드 메사",
+    "라일라 미라 라이라"
+   ]
+  },
+  "가브스레이": {
+   "models": "RX-110",
+   "faction": "티탄즈",
+   "pilots": [
+    "제리드 메사",
+    "마우어 파라오"
+   ]
+  },
+  "가자C": {
+   "models": "AMX-003",
+   "faction": "액시즈",
+   "pilots": []
+  },
+  "갸프랑": {
+   "models": "",
+   "faction": "티탄즈",
+   "pilots": [
+    "야잔 게이블",
+    "로자미아 바담"
    ]
   },
   "건담 Mk-Ⅱ 에우고 사양": {
@@ -223,6 +616,11 @@
     "제리드 메사"
    ]
   },
+  "네모": {
+   "models": "MSA-003",
+   "faction": "에우고",
+   "pilots": []
+  },
   "디 오": {
    "models": "PMX-003",
    "faction": "티탄즈",
@@ -230,28 +628,11 @@
     "팝티머스 시로코"
    ]
   },
-  "하이잭": {
-   "models": "RMS-106",
-   "faction": "티탄즈",
+  "디제": {
+   "models": "MSK-008",
+   "faction": "카라바",
    "pilots": [
-    "제리드 메사",
-    "카크리콘 카클러"
-   ]
-  },
-  "마라사이": {
-   "models": "RMS-108",
-   "faction": "티탄즈",
-   "pilots": [
-    "제리드 메사",
-    "사라 자비아로프",
-    "카크리콘 카클러"
-   ]
-  },
-  "함브라비": {
-   "models": "RX-139",
-   "faction": "티탄즈",
-   "pilots": [
-    "야잔 게이블"
+    "아무로 레이"
    ]
   },
   "릭 디아스": {
@@ -264,12 +645,28 @@
     "아무로 레이"
    ]
   },
+  "마라사이": {
+   "models": "RMS-108",
+   "faction": "티탄즈",
+   "pilots": [
+    "제리드 메사",
+    "사라 자비아로프",
+    "카크리콘 카클러"
+   ]
+  },
   "메타스": {
    "models": "MSA-005",
    "faction": "에우고",
    "pilots": [
     "화 유이리",
     "레코아 론드"
+   ]
+  },
+  "멧사라": {
+   "models": "",
+   "faction": "티탄즈",
+   "pilots": [
+    "팝티머스 시로코"
    ]
   },
   "바운드 독": {
@@ -280,24 +677,65 @@
     "게츠"
    ]
   },
-  "가브스레이": {
-   "models": "RX-110",
+  "바이아란": {
+   "models": "RX-160",
    "faction": "티탄즈",
    "pilots": [
-    "제리드 메사",
-    "마우어 파라오"
+    "제리드 메사"
    ]
   },
-  "멧사라": {
-   "models": "",
+  "바잠": {
+   "models": "RMS-154",
    "faction": "티탄즈",
+   "pilots": []
+  },
+  "백식": {
+   "models": "MSN-00100",
+   "faction": "에우고",
    "pilots": [
-    "팝티머스 시로코"
+    "크와트로 바지나/샤아 아즈나블"
    ]
   },
   "볼리노크 사만": {
    "models": "PMX-002",
    "faction": "티탄즈",
+   "pilots": []
+  },
+  "사이코 건담": {
+   "models": "MRX-009",
+   "faction": "지구연방군",
+   "pilots": [
+    "포 무라사메"
+   ]
+  },
+  "사이코 건담 Mk-II": {
+   "models": "MRX-010",
+   "faction": "지구연방군",
+   "pilots": [
+    "로자미아 바담"
+   ]
+  },
+  "앗시마": {
+   "models": "",
+   "faction": "티탄즈",
+   "pilots": [
+    "브란 블루타크",
+    "아지스 아지바"
+   ]
+  },
+  "액트 자쿠": {
+   "models": "MS-11",
+   "faction": "지구연방군",
+   "pilots": []
+  },
+  "짐II(지구연방군)": {
+   "models": "RMS-179",
+   "faction": "지구연방군",
+   "pilots": []
+  },
+  "짐Ⅱ(에우고)": {
+   "models": "RGM-79R",
+   "faction": "에우고",
    "pilots": []
   },
   "큐베레이": {
@@ -312,63 +750,17 @@
    "faction": "티탄즈",
    "pilots": []
   },
-  "사이코 건담": {
-   "models": "MRX-009",
+  "하이잭": {
+   "models": "RMS-106",
+   "faction": "티탄즈",
+   "pilots": [
+    "제리드 메사",
+    "카크리콘 카클러"
+   ]
+  },
+  "하이잭 연방군 사양": {
+   "models": "RMS-106",
    "faction": "지구연방군",
-   "pilots": [
-    "포 무라사메"
-   ]
-  },
-  "앗시마": {
-   "models": "",
-   "faction": "티탄즈",
-   "pilots": [
-    "브란 블루타크",
-    "아지스 아지바"
-   ]
-  },
-  "갸프랑": {
-   "models": "",
-   "faction": "티탄즈",
-   "pilots": [
-    "야잔 게이블",
-    "로자미아 바담"
-   ]
-  },
-  "바이아란": {
-   "models": "RX-160",
-   "faction": "티탄즈",
-   "pilots": [
-    "제리드 메사"
-   ]
-  },
-  "디제": {
-   "models": "MSK-008",
-   "faction": "카라바",
-   "pilots": [
-    "아무로 레이"
-   ]
-  },
-  "네모": {
-   "models": "MSA-003",
-   "faction": "에우고",
-   "pilots": []
-  },
-  "사이코 건담 Mk-II": {
-   "models": "MRX-010",
-   "faction": "지구연방군",
-   "pilots": [
-    "로자미아 바담"
-   ]
-  },
-  "짐Ⅱ(에우고)": {
-   "models": "RGM-79R",
-   "faction": "에우고",
-   "pilots": []
-  },
-  "바잠": {
-   "models": "RMS-154",
-   "faction": "티탄즈",
    "pilots": []
   },
   "하이잭 커스텀": {
@@ -376,23 +768,176 @@
    "faction": "티탄즈",
    "pilots": []
   },
-  "하이잭 연방군 사양": {
-   "models": "RMS-106",
-   "faction": "지구연방군",
-   "pilots": []
-  },
-  "가르발디β": {
-   "models": "",
-   "faction": "지구연방군",
+  "함브라비": {
+   "models": "RX-139",
+   "faction": "티탄즈",
    "pilots": [
-    "제리드 메사",
-    "라일라 미라 라이라"
+    "야잔 게이블"
+   ]
+  }
+ },
+ "ZZ": {
+  "R자자": {
+   "models": "AMX-104",
+   "faction": "네오 지온",
+   "pilots": [
+    "캐라 슨"
    ]
   },
-  "가자C": {
-   "models": "AMX-003",
-   "faction": "액시즈",
+  "ZZ건담": {
+   "models": "MSZ-010",
+   "faction": "에우고",
+   "pilots": [
+    "쥬도 아시타"
+   ]
+  },
+  "가 조움": {
+   "models": "AMX-008",
+   "faction": "네오 지온",
+   "pilots": [
+    "고튼 고"
+   ]
+  },
+  "가자D": {
+   "models": "AMX-006",
+   "faction": "네오 지온",
    "pilots": []
+  },
+  "가즈L": {
+   "models": "AMX-117L",
+   "faction": "네오 지온",
+   "pilots": [
+    "랜스 기렌"
+   ]
+  },
+  "가즈R": {
+   "models": "AMX-117R",
+   "faction": "네오 지온",
+   "pilots": [
+    "니 기렌"
+   ]
+  },
+  "갈루스J": {
+   "models": "AMX-101",
+   "faction": "네오 지온",
+   "pilots": [
+    "마슈마 세로"
+   ]
+  },
+  "강화형 ZZ건담": {
+   "models": "MSZ-010S",
+   "faction": "에우고",
+   "pilots": [
+    "쥬도 아시타"
+   ]
+  },
+  "건담 Mk-Ⅱ": {
+   "models": "RX-178",
+   "faction": "에우고",
+   "pilots": [
+    "엘 비안노",
+    "몬도 아가케"
+   ]
+  },
+  "게마르크": {
+   "models": "AMX-015",
+   "faction": "네오 지온",
+   "pilots": [
+    "캐라 슨"
+   ]
+  },
+  "도벤 울프": {
+   "models": "AMX-014",
+   "faction": "네오 지온",
+   "pilots": [
+    "라칸 다카란"
+   ]
+  },
+  "드라이센": {
+   "models": "AMX-009",
+   "faction": "네오 지온",
+   "pilots": [
+    "라칸 다카란"
+   ]
+  },
+  "리겔구": {
+   "models": "MS-14J",
+   "faction": "네오 지온",
+   "pilots": [
+    "이리아 파좀"
+   ]
+  },
+  "바우": {
+   "models": "AMX-107",
+   "faction": "네오 지온",
+   "pilots": [
+    "그레미 토토"
+   ]
+  },
+  "슈트룸 디아스": {
+   "models": "RMS-099B",
+   "faction": "네오 지온",
+   "pilots": []
+  },
+  "양산형 큐베레이": {
+   "models": "AMX-004G",
+   "faction": "네오 지온",
+   "pilots": []
+  },
+  "자쿠Ⅲ": {
+   "models": "AMX-011",
+   "faction": "네오 지온",
+   "pilots": [
+    "라칸 다카란"
+   ]
+  },
+  "자쿠Ⅲ 개량형": {
+   "models": "AMX-011S",
+   "faction": "네오 지온",
+   "pilots": [
+    "마슈마 세로"
+   ]
+  },
+  "즈사": {
+   "models": "AMX-102",
+   "faction": "네오 지온",
+   "pilots": [
+    "마슈마 세로"
+   ]
+  },
+  "짐III": {
+   "models": "RGM-86R",
+   "faction": "에우고",
+   "pilots": []
+  },
+  "퀸 만사": {
+   "models": "NZ-000",
+   "faction": "네오 지온",
+   "pilots": [
+    "플 투"
+   ]
+  },
+  "큐베레이 Mk-Ⅱ": {
+   "models": "AMX-004-3",
+   "faction": "네오 지온",
+   "pilots": [
+    "엘피 플",
+    "플 투"
+   ]
+  },
+  "풀 아머 ZZ건담": {
+   "models": "FA-010S",
+   "faction": "에우고",
+   "pilots": [
+    "쥬도 아시타"
+   ]
+  },
+  "함마 함마": {
+   "models": "AMX-103",
+   "faction": "네오 지온",
+   "pilots": [
+    "마슈마 세로"
+   ]
   }
  }
 }
