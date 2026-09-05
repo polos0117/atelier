@@ -1,4 +1,82 @@
 {
+ "00": {
+  "0건담": {
+   "models": "GN-000",
+   "faction": "솔레스탈 빙",
+   "pilots": []
+  },
+  "건담 쓰로네 드라이": {
+   "models": "GNW-003",
+   "faction": "솔레스탈 빙",
+   "pilots": [
+    "네나 트리니티"
+   ]
+  },
+  "건담 쓰로네 아인": {
+   "models": "GNW-001",
+   "faction": "솔레스탈 빙",
+   "pilots": [
+    "요한 트리니티"
+   ]
+  },
+  "건담 쓰로네 쯔바이": {
+   "models": "GNW-002",
+   "faction": "솔레스탈 빙",
+   "pilots": [
+    "미하엘 트리니티",
+    "아리 알 사세스"
+   ]
+  },
+  "건담 엑시아 리페어": {
+   "models": "GN-001RE",
+   "faction": "솔레스탈 빙",
+   "pilots": [
+    "세츠나 F 세이에이"
+   ]
+  },
+  "건담 엑시아 리페어II": {
+   "models": "GN-001REⅡ",
+   "faction": "솔레스탈 빙",
+   "pilots": [
+    "세츠나 F 세이에이"
+   ]
+  },
+  "마스라오": {
+   "models": "GNX-U02X",
+   "faction": "어로우즈",
+   "pilots": [
+    "미스터 부시도"
+   ]
+  },
+  "세라핌 건담": {
+   "models": "GN-009",
+   "faction": "솔레스탈 빙",
+   "pilots": [
+    "티에리아 아데"
+   ]
+  },
+  "아르케 건담": {
+   "models": "GNW-20000",
+   "faction": "리본즈의 사병",
+   "pilots": [
+    "아리 알 사세스"
+   ]
+  },
+  "알바아론": {
+   "models": "GNMS-XCVII",
+   "faction": "유엔군",
+   "pilots": [
+    "알레한드로 코너"
+   ]
+  },
+  "알바토레": {
+   "models": "GNMA-XCVII",
+   "faction": "유엔군",
+   "pilots": [
+    "알레한드로 코너"
+   ]
+  }
+ },
  "0079": {
   "G 아머": {
    "models": "",
@@ -559,6 +637,114 @@
    "models": "RGM-86R",
    "faction": "지구연방",
    "pilots": []
+  }
+ },
+ "DESTINY": {
+  "돔 트루퍼": {
+   "models": "ZGMF-XX09T",
+   "faction": "클라인파",
+   "pilots": [
+    "Hilda Haken",
+    "Herbert Von Reinhard",
+    "Maas Symeon"
+   ]
+  },
+  "디스트로이 건담": {
+   "models": "GFAS-X1",
+   "faction": "지구연합군",
+   "pilots": [
+    "스텔라 루셰",
+    "스팅 오클레이"
+   ]
+  },
+  "블래스트 임펄스 건담": {
+   "models": "ZGMF-X56S/γ",
+   "faction": "자프트",
+   "pilots": [
+    "Shinn Asuka",
+    "Lunamaria Hawke"
+   ]
+  },
+  "블레이즈 자쿠 팬텀(레이 전용기)": {
+   "models": "ZGMF-1001/M",
+   "faction": "자프트",
+   "pilots": [
+    "레이 자 바렐",
+    "하이네 베스텐플루스",
+    "Dearka Elthman"
+   ]
+  },
+  "소드 임펄스 건담": {
+   "models": "ZGMF-X56S/β",
+   "faction": "자프트",
+   "pilots": [
+    "Shinn Asuka",
+    "Lunamaria Hawke"
+   ]
+  },
+  "슬래시 자쿠 팬텀": {
+   "models": "ZGMF-1001/K",
+   "faction": "자프트",
+   "pilots": [
+    "Yzak Jule"
+   ]
+  },
+  "자쿠 워리어": {
+   "models": "ZGMF-1000",
+   "faction": "자프트",
+   "pilots": [
+    "Lunamaria Hawke",
+    "Athrun Zala",
+    "미아 캠벨"
+   ]
+  },
+  "포스 임펄스 건담": {
+   "models": "ZGMF-X56S/α",
+   "faction": "자프트",
+   "pilots": [
+    "Shinn Asuka",
+    "Lunamaria Hawke"
+   ]
+  }
+ },
+ "SEED": {
+  "런처 스트라이크 건담": {
+   "models": "GAT-X105+AQM/E-X03",
+   "faction": "지구연합군",
+   "pilots": [
+    "Kira Yamato",
+    "Mu La Flaga"
+   ]
+  },
+  "소드 스트라이크 건담": {
+   "models": "GAT-X105+AQM/E-X02",
+   "faction": "지구연합군",
+   "pilots": [
+    "Kira Yamato",
+    "Mu La Flaga"
+   ]
+  },
+  "에일 스트라이크 건담": {
+   "models": "GAT-X105+AQM/E-X01",
+   "faction": "지구연합군",
+   "pilots": [
+    "Kira Yamato",
+    "Mu La Flaga"
+   ]
+  },
+  "진": {
+   "models": "ZGMF-1017",
+   "faction": "자프트",
+   "pilots": [
+    "미겔 아이만"
+   ]
+  },
+  "퍼펙트 스트라이크 건담": {
+   "models": "GAT-X105+AQM/E-YM1",
+   "faction": "지구연합군",
+   "pilots": [
+    "Mu La Flaga"
+   ]
   }
  },
  "Z": {
