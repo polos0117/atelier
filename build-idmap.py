@@ -3,8 +3,8 @@
 """
 도감 카드 ↔ soshage(G Generation Eternal) ID 매핑표 생성기
 
-dex.html 의 MECH / PILOT 이름과 soshage 공개 API 의 unit / character 를
-대조해 id-map.json 을 만든다.
+게임 파일(play.html)의 MECH / PILOT 이름과 soshage 공개 API 의 unit / character
+를 대조해 id-map.json 을 만든다.
 
 매핑은 1:1 이 아니다.
   - 기체: 같은 기체가 통상판과 (EX) 판으로 나뉜다. 식별자는 이름이 아니라 models(형식번호)다.
@@ -19,6 +19,7 @@ dex.html 의 MECH / PILOT 이름과 soshage 공개 API 의 unit / character 를
     python3 build-idmap.py                # API 를 받아 캐시에 저장하고 생성
     python3 build-idmap.py --offline      # 캐시만 사용(네트워크 없이 재생성)
     python3 build-idmap.py --report       # 검토·미수록 목록을 자세히 찍는다
+    python3 build-idmap.py --source dex.html
 """
 import argparse
 import difflib
@@ -34,7 +35,9 @@ from datetime import datetime, timezone
 API = "https://soshage.com/ggetapi/ko/{}"
 ENTITIES = ["unit", "character", "series"]
 CACHE = ".cache/soshage"
-DEX = "dex.html"
+# 카드 데이터의 원본은 게임 파일이다. dex.html 은 build-dex.py 가 거기서 뽑아낸
+# 생성물이라, 게임 파일이 갱신되고 도감을 아직 안 만들었으면 뒤처져 있다.
+SOURCES = ["play.html", "dex.html"]
 OUT = "id-map.json"
 OVERRIDES = "id-map.overrides.json"
 
@@ -111,11 +114,19 @@ def fetch(entity, cache_dir, offline):
     return data
 
 
-def dex_block(src, name):
-    """dex.html 의 `var NAME=[...];` 배열을 JSON 으로 읽는다."""
+def pick_source(explicit):
+    """카드 데이터를 읽을 파일을 고른다."""
+    for p in ([explicit] if explicit else SOURCES):
+        if os.path.exists(p):
+            return p
+    raise SystemExit(f"[실패] 카드 원본을 찾지 못했다: {explicit or ' / '.join(SOURCES)}")
+
+
+def dex_block(src, name, path):
+    """`var NAME=[...];` 배열을 JSON 으로 읽는다."""
     m = re.search(r"var\s+" + name + r"\s*=(\[.*?\n\]);", src, re.S)
     if not m:
-        raise SystemExit(f"[실패] {DEX} 에서 {name} 을 찾지 못했다.")
+        raise SystemExit(f"[실패] {path} 에서 {name} 을 찾지 못했다.")
     return json.loads(m.group(1))
 
 
@@ -248,7 +259,7 @@ def match(card, groups, idx, models, kind):
     if near:
         cand, score = [], {}
         for n in near:
-            for k in base[n]:
+            for k in sorted(base[n]):   # 집합 순회 순서에 결과가 흔들리지 않게 고정한다
                 cand.append(k)
                 score[k] = round(difflib.SequenceMatcher(None, q, n).ratio(), 3)
         return None, None, cand, score
@@ -318,12 +329,15 @@ def main():
     ap.add_argument("--cache-dir", default=CACHE)
     ap.add_argument("--out", default=OUT)
     ap.add_argument("--overrides", default=OVERRIDES)
+    ap.add_argument("--source", help=f"카드 원본 HTML (기본: {' → '.join(SOURCES)} 순으로 찾는다)")
     ap.add_argument("--report", action="store_true", help="검토·미수록 목록을 자세히 찍는다")
     a = ap.parse_args()
 
     data = {e: fetch(e, a.cache_dir, a.offline) for e in ENTITIES}
-    src = open(DEX, encoding="utf-8").read()
-    MECH, PILOT = dex_block(src, "MECH"), dex_block(src, "PILOT")
+    path = pick_source(a.source)
+    src = open(path, encoding="utf-8").read()
+    MECH = dex_block(src, "MECH", path)
+    PILOT = dex_block(src, "PILOT", path)
     ov = load_overrides(a.overrides)
 
     sidx = series_index(data["series"])
@@ -344,7 +358,7 @@ def main():
         "source": {
             "api": API.format("{entity}"),
             "entities": {e: len(data[e]) for e in ENTITIES},
-            "dex": {"MECH": len(MECH), "PILOT": len(PILOT)},
+            "cards": {"file": path, "MECH": len(MECH), "PILOT": len(PILOT)},
         },
         "note": (
             "카드 1건에 API id 가 여러 개 붙는다. 기체는 통상판과 (EX) 판, "
@@ -377,7 +391,7 @@ def main():
         json.dump(out, f, ensure_ascii=False, indent=1)
 
     s = out["summary"]
-    print(f"[완료] {a.out}")
+    print(f"[완료] {a.out}  (카드 원본: {path})")
     for k in ("mech", "pilot"):
         v = s[k]
         print(f"  {k:6} 매칭 {v['matched']:>3}/{v['total']:<3} "
