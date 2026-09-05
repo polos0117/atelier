@@ -3,7 +3,7 @@
 """건담 공식 사이트 목록 ↔ 저장소 로스터 대조
 
 kr.gundam-official.com 의 `series/<슬러그>/mecha` 목록을 받아 둔 캐시와
-play.html 의 MECH / SHIP 을 대조해, 저장소에 없는 것만 골라낸다.
+data/ 의 기체 · 함선과 대조해, 저장소에 없는 것만 골라낸다.
 ROSTER_CHECK.md 가 손으로 하던 대조를 그대로 자동화한 것이다.
 
 공식 목록은 기체와 함선을 한 페이지에 섞어 싣고 마스코트(하로)나 차량도
@@ -22,31 +22,19 @@ official-slugs.json 이 저장소 시리즈 코드와 공식 사이트 슬러그
 import argparse
 import json
 import os
+
+import roster
 import re
 from datetime import datetime, timezone
 
 from gundam_match import norm, affixes, is_ship, is_excluded, is_variant, close
 
-SOURCES = ["play.html", "dex.html"]
 CACHE = "official/mecha"
 CACHE_C = "official/character"
 SLUGS = "official-slugs.json"
 ROSTER_OV = "roster-overrides.json"
 OUT = "official-diff.json"
 
-
-def pick_source():
-    for p in SOURCES:
-        if os.path.exists(p):
-            return p
-    raise SystemExit("[실패] 카드 원본을 찾지 못했다: " + " / ".join(SOURCES))
-
-
-def block(src, name, path):
-    m = re.search(r"var\s+" + name + r"\s*=(\[.*?\n\]);", src, re.S)
-    if not m:
-        raise SystemExit(f"[실패] {path} 에서 {name} 을 찾지 못했다.")
-    return json.loads(m.group(1))
 
 
 def index(rows):
@@ -92,10 +80,9 @@ def main():
     ap.add_argument("--out", default=OUT)
     a = ap.parse_args()
 
-    path = pick_source()
-    src = open(path, encoding="utf-8").read()
-    MECH, SHIP = block(src, "MECH", path), block(src, "SHIP", path)
-    PILOT, CREW = block(src, "PILOT", path), block(src, "CREW", path)
+    path = roster.DIR
+    MECH, SHIP = roster.rows("mech"), roster.rows("ship")
+    PILOT, CREW = roster.rows("pilot"), roster.rows("crew")
     midx, sidx = index(MECH), index(SHIP)
     mpool, spool = set(midx), set(sidx)
     # 인물은 PILOT 과 CREW 를 함께 본다. 공식 목록은 탑승자와 비탑승자를

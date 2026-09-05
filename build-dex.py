@@ -11,9 +11,32 @@
 """
 import re, sys, os, json
 
-# 게임 파일에서 그대로 가져올 선언들
-BLOCKS = ["MECH", "PILOT", "SHIP", "CREW", "SER_NAME", "FAC",
-          "IMG_BASE", "IMG", "ASPECT", "STAT_LABEL"]
+import roster
+
+# 로스터는 data/ 에서 만든다
+DATA_BLOCKS = ["MECH", "PILOT", "SHIP", "CREW", "SER_NAME", "FAC", "IMG"]
+# 규칙·표시에 딸린 것은 게임 파일에 그대로 있다
+CODE_BLOCKS = ["IMG_BASE", "ASPECT", "STAT_LABEL"]
+BLOCKS = DATA_BLOCKS + CODE_BLOCKS
+
+
+def js(name, v):
+    return "var %s=%s;" % (name, json.dumps(v, ensure_ascii=False,
+                                            separators=(",", ":")))
+
+
+def data_blocks():
+    """예전에 게임 파일에서 통째로 베껴 오던 선언들을 data/ 로 다시 만든다."""
+    ser = roster.series()
+    return "\n".join([
+        js("MECH", roster.rows("mech")),
+        js("PILOT", roster.rows("pilot")),
+        js("SHIP", roster.rows("ship")),
+        js("CREW", roster.rows("crew")),
+        js("SER_NAME", ser["name"]),
+        js("FAC", ser["faction_color"]),
+        js("IMG", roster.img()),
+    ])
 
 
 def prompts(path="image-list.html", ren=None):
@@ -223,6 +246,7 @@ main{padding:12px}
 .chips{display:flex;flex-wrap:wrap;gap:5px}
 .chip{font-size:11px;padding:3px 8px;border-radius:99px;border:1px solid var(--rule);
   color:var(--dim);letter-spacing:.02em}
+.chip.mono{font-family:var(--mono,ui-monospace,monospace);letter-spacing:.04em;opacity:.75}
 .chip.f{border-color:var(--cc);color:var(--plate)}
 
 .art{position:relative;border:1px solid var(--rule);border-radius:6px;overflow:hidden;
@@ -650,7 +674,9 @@ function open(n,start){
     c[1].forEach(function(f){h+='<span class="chip f">'+esc(f)+'</span>'});
     serOf(c).forEach(function(k){h+='<span class="chip">'+esc(SER_NAME[k]||k)+'</span>'});
     if(t==="기체"){if(c[6])h+='<span class="chip">'+esc(c[6])+'</span>';
-                   if(c[7])h+='<span class="chip">'+esc(c[7])+'</span>'}
+                   if(c[7])h+='<span class="chip">'+esc(c[7])+'</span>';
+                   /* 형식번호 — 이름이 갈려도 같은 기체인지는 이걸로 가린다 */
+                   if(c[9])h+='<span class="chip mono">'+esc(c[9])+'</span>'}
     if(t==="파일럿"){if(c[6])h+='<span class="chip">'+esc(c[6])+'</span>';
                      if(c[9])h+='<span class="chip">'+esc(c[9])+'</span>'}
     h+='</div></div>';
@@ -853,7 +879,7 @@ def main():
     path = sys.argv[1]
     src = open(path, encoding="utf-8").read()
 
-    data = "\n".join(extract(src, b) for b in BLOCKS)
+    data = data_blocks() + "\n" + "\n".join(extract(src, b) for b in CODE_BLOCKS)
     ren = json.loads(re.search(r"var RENAME_MAP=(\{.*?\});", src, re.S).group(1))
     data += "\n" + prompts(sys.argv[2] if len(sys.argv) > 2 else "image-list.html", ren)
     out = TEMPLATE.replace("__DATA__", data)

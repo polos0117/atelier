@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""공식 사이트 대조 결과를 play.html 의 로스터에 넣는다.
+"""공식 사이트 대조 결과를 data/ 의 로스터에 넣는다.
 
 official-diff.json 이 골라낸 추가 후보(기체·함선)를 카드로 만들어
-play.html 의 MECH / SHIP 에 붙이고, 드래프트 등장 비중을 WEIGHT 에 적는다.
+data/mech.json · ship.json 에 붙이고, 드래프트 등장 비중을 weight 에 적는다.
 
 카드를 다 넣되 드래프트에서 비중을 두는 방식이다. 도감은 완비되고
 팩에 잡히는 체감은 지금과 비슷하게 남는다.
@@ -24,19 +24,20 @@ play.html 의 MECH / SHIP 에 붙이고, 드래프트 등장 비중을 WEIGHT �
 
 사용법:
     python3 build-roster.py --dry-run   # 무엇이 들어갈지만 본다
-    python3 build-roster.py             # play.html 을 고친다
+    python3 build-roster.py             # data/ 를 고친다
 """
 import argparse
 import hashlib
 import json
 import os
 import re
+import roster
 from collections import defaultdict
 
 from gundam_match import norm, affixes
 
 DIFF = "official-diff.json"
-TARGET = "play.html"
+TARGET = roster.DIR
 OVERRIDES = "roster-overrides.json"
 SOSHAGE = ".cache/soshage/unit.json"
 
@@ -231,61 +232,50 @@ def build_rows(mech, ship, sx, series_fallback):
     return mrows, srows, weight
 
 
-def js_rows(rows):
-    return "".join(json.dumps(r, ensure_ascii=False) + ",\n" for r in rows)
+def merge(mrows, srows, weight, dry):
+    """새 카드를 data/ 의 로스터에 넣는다. 이미 있는 이름은 건드리지 않는다.
 
+    예전에는 play.html 의 자바스크립트 배열 끝에 줄을 붙였다. 지금은 카드가
+    레코드라 형식번호 같은 나중 정보가 붙어 있을 수 있어, 있는 카드는 그대로 두고
+    없는 것만 더한다."""
+    added = {}
+    for kind, rows, cols in (("mech", mrows, "mech"), ("ship", srows, "ship")):
+        cards = roster.cards(kind)
+        have = {c["name"] for c in cards}
+        new = []
+        for r in rows:
+            if r[0] in have:
+                continue
+            c = {"name": r[0], "factions": r[1], "stats": r[2:6], "temper": r[6]}
+            if cols == "mech":
+                c["system"], c["series"] = r[7], r[8]
+            else:
+                c["series"] = r[6]
+                c["stats"] = r[2:6]
+                c["temper"] = "냉정"
+            c["weight"] = weight.get(r[0], 1.0)
+            new.append(c)
+        added[kind] = new
+        if new and not dry:
+            roster.put_cards(kind, cards + new)
 
-def patch(src, mrows, srows, weight):
-    """MECH / SHIP 끝에 새 줄을 붙이고 WEIGHT 를 넣는다."""
-    def append(block, rows):
-        m = re.search(r"(var\s+" + block + r"\s*=\[.*?)(\n\];)", src_holder[0], re.S)
-        if not m:
-            raise SystemExit(f"[실패] {block} 을 찾지 못했다.")
-        # 배열 안에는 주석을 넣지 않는다. build-idmap.py 와 build-official.py 가
-        # 이 블록을 json 으로 읽기 때문에 주석이 있으면 파싱이 깨진다.
-        src_holder[0] = (src_holder[0][:m.end(1)] + ",\n"
-                         + js_rows(rows).rstrip(",\n") + m.group(2)
-                         + src_holder[0][m.end(2):])
-    src_holder = [src]
-    append("MECH", mrows)
-    append("SHIP", srows)
-
-    # 새 세력 색
-    fac_add = "".join(f'"{k}":"{v}",' for k, v in NEW_FAC.items())
-    src_holder[0] = src_holder[0].replace(
-        'var FAC={', 'var FAC={' + fac_add, 1)
-
-    # 드래프트 비중. 적지 않은 카드는 1 로 본다.
-    w = ("\n/* 드래프트 팩에 뜨는 비중. 적지 않은 카드는 1 이다.\n"
-         "   도감에는 다 있고 팩에서만 굵기를 달리한다. */\n"
-         "var WEIGHT=" + json.dumps(weight, ensure_ascii=False) + ";\n"
-         "function wOf(c){var w=WEIGHT[c[0]];return w===undefined?1:w}\n")
-    src_holder[0] = src_holder[0].replace("\nvar MECH_SET=null;", w + "\nvar MECH_SET=null;", 1)
-
-    # 균등 셔플을 가중 추출로 바꾼다.
-    # random^(1/w) 를 키로 정렬하면 비복원 가중 추출이 된다(Efraimidis-Spirakis).
-    old = ("  for(i=idx.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),"
-           "t=idx[i];idx[i]=idx[j];idx[j]=t}")
-    new = ("  var key={};for(i=0;i<idx.length;i++)"
-           "key[idx[i]]=Math.pow(Math.random(),1/wOf(src[idx[i]]));\n"
-           "  idx.sort(function(a,b){return key[b]-key[a]});")
-    if old not in src_holder[0]:
-        raise SystemExit("[실패] drawPack 의 셔플부를 찾지 못했다.")
-    src_holder[0] = src_holder[0].replace(old, new, 1)
-    return src_holder[0]
+    ser = roster.series()
+    fac_new = {k: v for k, v in NEW_FAC.items() if k not in ser["faction_color"]}
+    if fac_new and not dry:
+        ser["faction_color"].update(fac_new)
+        roster.write("series", ser)
+    return added, fac_new
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
-    ap.add_argument("--target", default=TARGET)
     a = ap.parse_args()
 
     diff = json.load(open(DIFF, encoding="utf-8"))
     ov = json.load(open(OVERRIDES, encoding="utf-8")) if os.path.exists(OVERRIDES) else {}
     sx = load_soshage()
 
-    src = open(a.target, encoding="utf-8").read()
     # 시리즈별로 가장 흔한 세력을 기본값으로 쓴다(분류 머리말만 있는 시리즈용)
     fallback = {}
     for code, v in diff["series"].items():
@@ -307,11 +297,11 @@ def main():
     if a.dry_run:
         for r in mrows[:6]:
             print("   ", json.dumps(r, ensure_ascii=False))
-        return
 
-    out = patch(src, mrows, srows, weight)
-    open(a.target, "w", encoding="utf-8").write(out)
-    print(f"[완료] {a.target} 갱신")
+    added, fac_new = merge(mrows, srows, weight, a.dry_run)
+    print("  이미 있는 것을 뺀 실제 추가: 기체 %d · 함선 %d · 세력 %d"
+          % (len(added["mech"]), len(added["ship"]), len(fac_new)))
+    print("[%s] %s" % ("모의" if a.dry_run else "완료", roster.DIR))
 
 
 if __name__ == "__main__":

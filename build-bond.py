@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """공식 사이트 탑승 관계에서 인연(BOND) 후보를 뽑는다.
 
-official/pilot/relations.json 이 가진 '이 기체에 누가 탔는가' 를 play.html 의
+official/pilot/relations.json 이 가진 '이 기체에 누가 탔는가' 를 data/ 의
 PILOT / MECH 카드 이름으로 옮겨, BOND 에 아직 없는 짝만 골라낸다.
 
 BOND 는 "파일럿|기체" 를 키로 쓰고 값은 0.12~0.22 의 보정치다. 지금은 손으로
@@ -28,25 +28,12 @@ import os
 import re
 from collections import defaultdict
 
+import roster
 from gundam_match import norm, affixes
 
 REL = "official/pilot/relations.json"
-TARGET = "play.html"
+TARGET = roster.DIR
 OUT = "bond-candidates.json"
-
-
-def block(src, name):
-    m = re.search(r"var\s+" + name + r"\s*=(\[.*?\n\]);", src, re.S)
-    if not m:
-        raise SystemExit(f"[실패] {name} 을 찾지 못했다.")
-    return json.loads(m.group(1))
-
-
-def bond_map(src):
-    m = re.search(r"var\s+BOND=\{(.*?)\n?\};", src, re.S)
-    if not m:
-        raise SystemExit("[실패] BOND 를 찾지 못했다.")
-    return {k: float(v) for k, v in re.findall(r'"([^"]+)"\s*:\s*([\d.]+)', m.group(1))}
 
 
 def index(names):
@@ -85,6 +72,7 @@ ALIAS_MECH = {
     "고트라탄": "고틀라탄",
     "리그 샷코": "리그 샤코",
     "샷코": "샤코",
+    "빅토리 건담": "V건담",
     "키케로가 [MS 형태]": "키케로가",
     "유니콘 건담 3호기 페넥스(유니콘 모드)": "페넥스",
 }
@@ -157,9 +145,8 @@ def main():
     if not os.path.exists(REL):
         raise SystemExit(f"[실패] {REL} 이 없다.")
     rel = json.load(open(REL, encoding="utf-8"))
-    src = open(TARGET, encoding="utf-8").read()
-    MECH, PILOT = block(src, "MECH"), block(src, "PILOT")
-    BOND = bond_map(src)
+    MECH, PILOT = roster.rows("mech"), roster.rows("pilot")
+    BOND = roster.bonds()
     midx, pidx = index([r[0] for r in MECH]), index([r[0] for r in PILOT])
 
     ready, no_pilot, no_mech, known, rejected = [], [], [], [], []

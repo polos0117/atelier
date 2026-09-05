@@ -3,7 +3,7 @@
  "note": "공식 사이트 탑승 관계에서 뽑은 인연 후보다. 값(0.12~0.22)은 밸런스 판단이라 비워 둔다. ready 는 파일럿·기체 카드가 둘 다 있고 BOND 에 없는 짝, no_pilot 은 파일럿 카드가 없어 먼저 로스터 판단이 필요한 짝, known 은 이미 BOND 에 있어 공식 자료로 뒷받침된 짝이다.",
  "source": {
   "relations": "official/pilot/relations.json",
-  "cards": "play.html",
+  "cards": "data",
   "series_done": [
    "00",
    "0079",
@@ -35,471 +35,14 @@
   "mechs_scanned": 277
  },
  "summary": {
-  "ready": 57,
+  "ready": 0,
   "no_pilot": 85,
   "no_mech": 3,
-  "known": 121,
+  "known": 178,
   "rejected": 1,
-  "bond_existing": 270
+  "bond_existing": 327
  },
- "ready": [
-  {
-   "series": "00",
-   "official_mech": "건담 쓰로네 드라이",
-   "official_pilot": "네나 트리니티",
-   "mech": "건담 쓰로네 드라이",
-   "pilot": "넨나 트리니티",
-   "key": "넨나 트리니티|건담 쓰로네 드라이"
-  },
-  {
-   "series": "00",
-   "official_mech": "건담 엑시아 리페어",
-   "official_pilot": "세츠나 F 세이에이",
-   "mech": "건담 엑시아 리페어",
-   "pilot": "세츠나 F. 세이에이",
-   "key": "세츠나 F. 세이에이|건담 엑시아 리페어"
-  },
-  {
-   "series": "00",
-   "official_mech": "건담 엑시아 리페어II",
-   "official_pilot": "세츠나 F 세이에이",
-   "mech": "건담 엑시아 리페어II",
-   "pilot": "세츠나 F. 세이에이",
-   "key": "세츠나 F. 세이에이|건담 엑시아 리페어II"
-  },
-  {
-   "series": "00",
-   "official_mech": "세라핌 건담",
-   "official_pilot": "티에리아 아데",
-   "mech": "세라핌 건담",
-   "pilot": "티에리아 아데",
-   "key": "티에리아 아데|세라핌 건담"
-  },
-  {
-   "series": "00M",
-   "official_mech": "GN-XIV",
-   "official_pilot": "패트릭 콜라사워",
-   "mech": "GN-X IV",
-   "pilot": "패트릭 콜라사워",
-   "key": "패트릭 콜라사워|GN-X IV"
-  },
-  {
-   "series": "00M",
-   "official_mech": "GN-XIV",
-   "official_pilot": "안드레이 스미르노프",
-   "mech": "GN-X IV",
-   "pilot": "안드레이 스미르노프",
-   "key": "안드레이 스미르노프|GN-X IV"
-  },
-  {
-   "series": "00M",
-   "official_mech": "건담 사바냐",
-   "official_pilot": "록온 스트라토스",
-   "mech": "건담 사바냐",
-   "pilot": "록온 스트라토스",
-   "key": "록온 스트라토스|건담 사바냐"
-  },
-  {
-   "series": "00M",
-   "official_mech": "건담 하루트",
-   "official_pilot": "알렐루야 합티즘",
-   "mech": "건담 하루트",
-   "pilot": "알렐루야 합티즘",
-   "key": "알렐루야 합티즘|건담 하루트"
-  },
-  {
-   "series": "00M",
-   "official_mech": "건담 하루트",
-   "official_pilot": "소마 필리스(마리 파파시)",
-   "mech": "건담 하루트",
-   "pilot": "소마 필리스",
-   "key": "소마 필리스|건담 하루트"
-  },
-  {
-   "series": "00M",
-   "official_mech": "브레이브 지휘관용 시험기",
-   "official_pilot": "그라함 에이커",
-   "mech": "브레이브 지휘관용 시험기",
-   "pilot": "그라함 에이커",
-   "key": "그라함 에이커|브레이브 지휘관용 시험기"
-  },
-  {
-   "series": "AGE",
-   "official_mech": "건담 AGE-1 그랜서",
-   "official_pilot": "플리트 아스노",
-   "mech": "건담 AGE-1 그랜서",
-   "pilot": "플리트 아스노",
-   "key": "플리트 아스노|건담 AGE-1 그랜서"
-  },
-  {
-   "series": "AGE",
-   "official_mech": "건담 AGE-1 스팔로",
-   "official_pilot": "플리트 아스노",
-   "mech": "건담 AGE-1 스팔로",
-   "pilot": "플리트 아스노",
-   "key": "플리트 아스노|건담 AGE-1 스팔로"
-  },
-  {
-   "series": "AGE",
-   "official_mech": "건담 AGE-1 타이터스",
-   "official_pilot": "플리트 아스노",
-   "mech": "건담 AGE-1 타이터스",
-   "pilot": "플리트 아스노",
-   "key": "플리트 아스노|건담 AGE-1 타이터스"
-  },
-  {
-   "series": "AGE",
-   "official_mech": "건담 AGE-2 더블 불릿",
-   "official_pilot": "아세무 아스노",
-   "mech": "건담 AGE-2 더블 불릿",
-   "pilot": "아세무 아스노",
-   "key": "아세무 아스노|건담 AGE-2 더블 불릿"
-  },
-  {
-   "series": "AGE",
-   "official_mech": "건담 AGE-3 오비탈",
-   "official_pilot": "키오 아스노",
-   "mech": "건담 AGE-3 오비탈",
-   "pilot": "키오 아스노",
-   "key": "키오 아스노|건담 AGE-3 오비탈"
-  },
-  {
-   "series": "AGE",
-   "official_mech": "건담 AGE-3 포트리스",
-   "official_pilot": "키오 아스노",
-   "mech": "건담 AGE-3 포트리스",
-   "pilot": "키오 아스노",
-   "key": "키오 아스노|건담 AGE-3 포트리스"
-  },
-  {
-   "series": "AGE",
-   "official_mech": "건담 레길레스",
-   "official_pilot": "제하트 가레트",
-   "mech": "건담 레길레스",
-   "pilot": "제하트 갈렛",
-   "key": "제하트 갈렛|건담 레길레스"
-  },
-  {
-   "series": "AGE",
-   "official_mech": "건담 레길레스",
-   "official_pilot": "페자르 이젤칸트",
-   "mech": "건담 레길레스",
-   "pilot": "이젤칸트",
-   "key": "이젤칸트|건담 레길레스"
-  },
-  {
-   "series": "AGE",
-   "official_mech": "제이드라",
-   "official_pilot": "제하트 가레트",
-   "mech": "제이드라",
-   "pilot": "제하트 갈렛",
-   "key": "제하트 갈렛|제이드라"
-  },
-  {
-   "series": "DESTINY",
-   "official_mech": "디스트로이 건담",
-   "official_pilot": "스텔라 루셰",
-   "mech": "디스트로이 건담",
-   "pilot": "스텔라 루셰",
-   "key": "스텔라 루셰|디스트로이 건담"
-  },
-  {
-   "series": "DESTINY",
-   "official_mech": "디스트로이 건담",
-   "official_pilot": "스팅 오클레이",
-   "mech": "디스트로이 건담",
-   "pilot": "스팅 오클레이",
-   "key": "스팅 오클레이|디스트로이 건담"
-  },
-  {
-   "series": "DESTINY",
-   "official_mech": "블래스트 임펄스 건담",
-   "official_pilot": "Shinn Asuka",
-   "mech": "블래스트 임펄스 건담",
-   "pilot": "신 아스카",
-   "key": "신 아스카|블래스트 임펄스 건담"
-  },
-  {
-   "series": "DESTINY",
-   "official_mech": "블래스트 임펄스 건담",
-   "official_pilot": "Lunamaria Hawke",
-   "mech": "블래스트 임펄스 건담",
-   "pilot": "루나마리아 호크",
-   "key": "루나마리아 호크|블래스트 임펄스 건담"
-  },
-  {
-   "series": "DESTINY",
-   "official_mech": "블레이즈 자쿠 팬텀(레이 전용기)",
-   "official_pilot": "레이 자 바렐",
-   "mech": "블레이즈 자쿠 팬텀",
-   "pilot": "레이 자 바렐",
-   "key": "레이 자 바렐|블레이즈 자쿠 팬텀"
-  },
-  {
-   "series": "DESTINY",
-   "official_mech": "블레이즈 자쿠 팬텀(레이 전용기)",
-   "official_pilot": "하이네 베스텐플루스",
-   "mech": "블레이즈 자쿠 팬텀",
-   "pilot": "하이네 베스텐플루스",
-   "key": "하이네 베스텐플루스|블레이즈 자쿠 팬텀"
-  },
-  {
-   "series": "DESTINY",
-   "official_mech": "블레이즈 자쿠 팬텀(레이 전용기)",
-   "official_pilot": "Dearka Elthman",
-   "mech": "블레이즈 자쿠 팬텀",
-   "pilot": "디아카 앨스먼",
-   "key": "디아카 앨스먼|블레이즈 자쿠 팬텀"
-  },
-  {
-   "series": "DESTINY",
-   "official_mech": "소드 임펄스 건담",
-   "official_pilot": "Shinn Asuka",
-   "mech": "소드 임펄스 건담",
-   "pilot": "신 아스카",
-   "key": "신 아스카|소드 임펄스 건담"
-  },
-  {
-   "series": "DESTINY",
-   "official_mech": "소드 임펄스 건담",
-   "official_pilot": "Lunamaria Hawke",
-   "mech": "소드 임펄스 건담",
-   "pilot": "루나마리아 호크",
-   "key": "루나마리아 호크|소드 임펄스 건담"
-  },
-  {
-   "series": "DESTINY",
-   "official_mech": "슬래시 자쿠 팬텀",
-   "official_pilot": "Yzak Jule",
-   "mech": "슬래시 자쿠 팬텀",
-   "pilot": "이자크 쥴",
-   "key": "이자크 쥴|슬래시 자쿠 팬텀"
-  },
-  {
-   "series": "DESTINY",
-   "official_mech": "자쿠 워리어",
-   "official_pilot": "Lunamaria Hawke",
-   "mech": "자쿠 워리어",
-   "pilot": "루나마리아 호크",
-   "key": "루나마리아 호크|자쿠 워리어"
-  },
-  {
-   "series": "DESTINY",
-   "official_mech": "자쿠 워리어",
-   "official_pilot": "Athrun Zala",
-   "mech": "자쿠 워리어",
-   "pilot": "아스란 자라",
-   "key": "아스란 자라|자쿠 워리어"
-  },
-  {
-   "series": "DESTINY",
-   "official_mech": "포스 임펄스 건담",
-   "official_pilot": "Shinn Asuka",
-   "mech": "포스 임펄스 건담",
-   "pilot": "신 아스카",
-   "key": "신 아스카|포스 임펄스 건담"
-  },
-  {
-   "series": "DESTINY",
-   "official_mech": "포스 임펄스 건담",
-   "official_pilot": "Lunamaria Hawke",
-   "mech": "포스 임펄스 건담",
-   "pilot": "루나마리아 호크",
-   "key": "루나마리아 호크|포스 임펄스 건담"
-  },
-  {
-   "series": "GQ",
-   "official_mech": "키케로가 [MS 형태]",
-   "official_pilot": "샤리아 불",
-   "mech": "키케로가",
-   "pilot": "샤리아 불",
-   "key": "샤리아 불|키케로가"
-  },
-  {
-   "series": "HATHAWAY",
-   "official_mech": "오디세우스 건담",
-   "official_pilot": "레인 에임",
-   "mech": "오디세우스 건담",
-   "pilot": "레인 에임",
-   "key": "레인 에임|오디세우스 건담"
-  },
-  {
-   "series": "IBO",
-   "official_mech": "건담 구시온 리베이크 풀 시티",
-   "official_pilot": "아키히로 앨트랜드",
-   "mech": "건담 구시온 리베이크 풀 시티",
-   "pilot": "아키히로 앨트랜드",
-   "key": "아키히로 앨트랜드|건담 구시온 리베이크 풀 시티"
-  },
-  {
-   "series": "IBO",
-   "official_mech": "건담 키마리스 트루퍼",
-   "official_pilot": "가엘리오 보드윈",
-   "mech": "건담 키마리스 트루퍼",
-   "pilot": "가엘리오 보드윈",
-   "key": "가엘리오 보드윈|건담 키마리스 트루퍼"
-  },
-  {
-   "series": "IBO",
-   "official_mech": "그레이즈",
-   "official_pilot": "아인 달튼",
-   "mech": "그레이즈",
-   "pilot": "아인 달튼",
-   "key": "아인 달튼|그레이즈"
-  },
-  {
-   "series": "SEED",
-   "official_mech": "런처 스트라이크 건담",
-   "official_pilot": "Kira Yamato",
-   "mech": "런처 스트라이크 건담",
-   "pilot": "키라 야마토",
-   "key": "키라 야마토|런처 스트라이크 건담"
-  },
-  {
-   "series": "SEED",
-   "official_mech": "소드 스트라이크 건담",
-   "official_pilot": "Kira Yamato",
-   "mech": "소드 스트라이크 건담",
-   "pilot": "키라 야마토",
-   "key": "키라 야마토|소드 스트라이크 건담"
-  },
-  {
-   "series": "SEED",
-   "official_mech": "에일 스트라이크 건담",
-   "official_pilot": "Kira Yamato",
-   "mech": "에일 스트라이크 건담",
-   "pilot": "키라 야마토",
-   "key": "키라 야마토|에일 스트라이크 건담"
-  },
-  {
-   "series": "TB",
-   "official_mech": "짐",
-   "official_pilot": "이오 플레밍",
-   "mech": "짐",
-   "pilot": "이오 플레밍",
-   "key": "이오 플레밍|짐"
-  },
-  {
-   "series": "UNICORN",
-   "official_mech": "로젠 줄루",
-   "official_pilot": "안젤로 자우퍼",
-   "mech": "로젠 줄루",
-   "pilot": "안젤로 자우퍼",
-   "key": "안젤로 자우퍼|로젠 줄루"
-  },
-  {
-   "series": "V",
-   "official_mech": "V대쉬 건담",
-   "official_pilot": "웃소 에빈",
-   "mech": "V대쉬 건담",
-   "pilot": "우소 에빈",
-   "key": "우소 에빈|V대쉬 건담"
-  },
-  {
-   "series": "V",
-   "official_mech": "게드라프",
-   "official_pilot": "카테지나 루스",
-   "mech": "게드라프",
-   "pilot": "카테지나 루스",
-   "key": "카테지나 루스|게드라프"
-  },
-  {
-   "series": "V",
-   "official_mech": "겐가오조",
-   "official_pilot": "파라 그리폰",
-   "mech": "겐가오조",
-   "pilot": "파라 그리폰",
-   "key": "파라 그리폰|겐가오조"
-  },
-  {
-   "series": "V",
-   "official_mech": "잔넥",
-   "official_pilot": "파라 그리폰",
-   "mech": "잔넥",
-   "pilot": "파라 그리폰",
-   "key": "파라 그리폰|잔넥"
-  },
-  {
-   "series": "WM",
-   "official_mech": "건담 르브리스 울",
-   "official_pilot": "소피 플로네",
-   "mech": "건담 르브리스 울",
-   "pilot": "소피 프로네",
-   "key": "소피 프로네|건담 르브리스 울"
-  },
-  {
-   "series": "WM",
-   "official_mech": "데미 바딩",
-   "official_pilot": "추아츄리 판런치",
-   "mech": "데미 바딩",
-   "pilot": "추아츄리 판런치",
-   "key": "추아츄리 판런치|데미 바딩"
-  },
-  {
-   "series": "WM",
-   "official_mech": "조워트",
-   "official_pilot": "엘란 케레스",
-   "mech": "조워트",
-   "pilot": "엘란 케레스",
-   "key": "엘란 케레스|조워트"
-  },
-  {
-   "series": "X",
-   "official_mech": "건담 레오파드 디스트로이",
-   "official_pilot": "로아비 로이",
-   "mech": "건담 레오파드 디스트로이",
-   "pilot": "로아비 로이",
-   "key": "로아비 로이|건담 레오파드 디스트로이"
-  },
-  {
-   "series": "X",
-   "official_mech": "건담 버사고",
-   "official_pilot": "샤기아 프로스트",
-   "mech": "건담 버사고",
-   "pilot": "샤기아 프로스트",
-   "key": "샤기아 프로스트|건담 버사고"
-  },
-  {
-   "series": "X",
-   "official_mech": "건담 버사고 체스트 브레이크",
-   "official_pilot": "샤기아 프로스트",
-   "mech": "건담 버사고 체스트 브레이크",
-   "pilot": "샤기아 프로스트",
-   "key": "샤기아 프로스트|건담 버사고 체스트 브레이크"
-  },
-  {
-   "series": "X",
-   "official_mech": "건담 아슈타론",
-   "official_pilot": "오르바 프로스트",
-   "mech": "건담 아슈타론",
-   "pilot": "올바 프로스트",
-   "key": "올바 프로스트|건담 아슈타론"
-  },
-  {
-   "series": "X",
-   "official_mech": "건담 아슈타론 허밋 크랩",
-   "official_pilot": "오르바 프로스트",
-   "mech": "건담 아슈타론 허밋 크랩",
-   "pilot": "올바 프로스트",
-   "key": "올바 프로스트|건담 아슈타론 허밋 크랩"
-  },
-  {
-   "series": "X",
-   "official_mech": "건담 에어 마스터 버스트",
-   "official_pilot": "윗츠 수",
-   "mech": "건담 에어 마스터 버스트",
-   "pilot": "위츠 수",
-   "key": "위츠 수|건담 에어 마스터 버스트"
-  },
-  {
-   "series": "X",
-   "official_mech": "건담X 디바이더",
-   "official_pilot": "가로드 란",
-   "mech": "건담X 디바이더",
-   "pilot": "가로드 란",
-   "key": "가로드 란|건담X 디바이더"
-  }
- ],
+ "ready": [],
  "no_pilot": [
   {
    "series": "00",
@@ -1123,12 +666,48 @@
  "known": [
   {
    "series": "00",
+   "official_mech": "건담 쓰로네 드라이",
+   "official_pilot": "네나 트리니티",
+   "mech": "건담 쓰로네 드라이",
+   "pilot": "넨나 트리니티",
+   "key": "넨나 트리니티|건담 쓰로네 드라이",
+   "weight": 0.2
+  },
+  {
+   "series": "00",
+   "official_mech": "건담 엑시아 리페어",
+   "official_pilot": "세츠나 F 세이에이",
+   "mech": "건담 엑시아 리페어",
+   "pilot": "세츠나 F. 세이에이",
+   "key": "세츠나 F. 세이에이|건담 엑시아 리페어",
+   "weight": 0.15
+  },
+  {
+   "series": "00",
+   "official_mech": "건담 엑시아 리페어II",
+   "official_pilot": "세츠나 F 세이에이",
+   "mech": "건담 엑시아 리페어II",
+   "pilot": "세츠나 F. 세이에이",
+   "key": "세츠나 F. 세이에이|건담 엑시아 리페어II",
+   "weight": 0.15
+  },
+  {
+   "series": "00",
    "official_mech": "리본즈 건담/리본즈 캐논",
    "official_pilot": "리본즈 알마크",
    "mech": "리본즈 건담",
    "pilot": "리본즈 알마크",
    "key": "리본즈 알마크|리본즈 건담",
    "weight": 0.2
+  },
+  {
+   "series": "00",
+   "official_mech": "세라핌 건담",
+   "official_pilot": "티에리아 아데",
+   "mech": "세라핌 건담",
+   "pilot": "티에리아 아데",
+   "key": "티에리아 아데|세라핌 건담",
+   "weight": 0.15
   },
   {
    "series": "0079",
@@ -1527,6 +1106,60 @@
    "weight": 0.2
   },
   {
+   "series": "00M",
+   "official_mech": "GN-XIV",
+   "official_pilot": "패트릭 콜라사워",
+   "mech": "GN-X IV",
+   "pilot": "패트릭 콜라사워",
+   "key": "패트릭 콜라사워|GN-X IV",
+   "weight": 0.15
+  },
+  {
+   "series": "00M",
+   "official_mech": "GN-XIV",
+   "official_pilot": "안드레이 스미르노프",
+   "mech": "GN-X IV",
+   "pilot": "안드레이 스미르노프",
+   "key": "안드레이 스미르노프|GN-X IV",
+   "weight": 0.15
+  },
+  {
+   "series": "00M",
+   "official_mech": "건담 사바냐",
+   "official_pilot": "록온 스트라토스",
+   "mech": "건담 사바냐",
+   "pilot": "록온 스트라토스",
+   "key": "록온 스트라토스|건담 사바냐",
+   "weight": 0.2
+  },
+  {
+   "series": "00M",
+   "official_mech": "건담 하루트",
+   "official_pilot": "알렐루야 합티즘",
+   "mech": "건담 하루트",
+   "pilot": "알렐루야 합티즘",
+   "key": "알렐루야 합티즘|건담 하루트",
+   "weight": 0.2
+  },
+  {
+   "series": "00M",
+   "official_mech": "건담 하루트",
+   "official_pilot": "소마 필리스(마리 파파시)",
+   "mech": "건담 하루트",
+   "pilot": "소마 필리스",
+   "key": "소마 필리스|건담 하루트",
+   "weight": 0.18
+  },
+  {
+   "series": "00M",
+   "official_mech": "브레이브 지휘관용 시험기",
+   "official_pilot": "그라함 에이커",
+   "mech": "브레이브 지휘관용 시험기",
+   "pilot": "그라함 에이커",
+   "key": "그라함 에이커|브레이브 지휘관용 시험기",
+   "weight": 0.2
+  },
+  {
    "series": "08MS",
    "official_mech": "건담 Ez8",
    "official_pilot": "시로 아마다",
@@ -1617,6 +1250,87 @@
    "weight": 0.18
   },
   {
+   "series": "AGE",
+   "official_mech": "건담 AGE-1 그랜서",
+   "official_pilot": "플리트 아스노",
+   "mech": "건담 AGE-1 그랜서",
+   "pilot": "플리트 아스노",
+   "key": "플리트 아스노|건담 AGE-1 그랜서",
+   "weight": 0.18
+  },
+  {
+   "series": "AGE",
+   "official_mech": "건담 AGE-1 스팔로",
+   "official_pilot": "플리트 아스노",
+   "mech": "건담 AGE-1 스팔로",
+   "pilot": "플리트 아스노",
+   "key": "플리트 아스노|건담 AGE-1 스팔로",
+   "weight": 0.18
+  },
+  {
+   "series": "AGE",
+   "official_mech": "건담 AGE-1 타이터스",
+   "official_pilot": "플리트 아스노",
+   "mech": "건담 AGE-1 타이터스",
+   "pilot": "플리트 아스노",
+   "key": "플리트 아스노|건담 AGE-1 타이터스",
+   "weight": 0.18
+  },
+  {
+   "series": "AGE",
+   "official_mech": "건담 AGE-2 더블 불릿",
+   "official_pilot": "아세무 아스노",
+   "mech": "건담 AGE-2 더블 불릿",
+   "pilot": "아세무 아스노",
+   "key": "아세무 아스노|건담 AGE-2 더블 불릿",
+   "weight": 0.18
+  },
+  {
+   "series": "AGE",
+   "official_mech": "건담 AGE-3 오비탈",
+   "official_pilot": "키오 아스노",
+   "mech": "건담 AGE-3 오비탈",
+   "pilot": "키오 아스노",
+   "key": "키오 아스노|건담 AGE-3 오비탈",
+   "weight": 0.18
+  },
+  {
+   "series": "AGE",
+   "official_mech": "건담 AGE-3 포트리스",
+   "official_pilot": "키오 아스노",
+   "mech": "건담 AGE-3 포트리스",
+   "pilot": "키오 아스노",
+   "key": "키오 아스노|건담 AGE-3 포트리스",
+   "weight": 0.18
+  },
+  {
+   "series": "AGE",
+   "official_mech": "건담 레길레스",
+   "official_pilot": "제하트 가레트",
+   "mech": "건담 레길레스",
+   "pilot": "제하트 갈렛",
+   "key": "제하트 갈렛|건담 레길레스",
+   "weight": 0.2
+  },
+  {
+   "series": "AGE",
+   "official_mech": "건담 레길레스",
+   "official_pilot": "페자르 이젤칸트",
+   "mech": "건담 레길레스",
+   "pilot": "이젤칸트",
+   "key": "이젤칸트|건담 레길레스",
+   "weight": 0.15
+  },
+  {
+   "series": "AGE",
+   "official_mech": "제이드라",
+   "official_pilot": "제하트 가레트",
+   "mech": "제이드라",
+   "pilot": "제하트 갈렛",
+   "key": "제하트 갈렛|제이드라",
+   "weight": 0.18
+  },
+  {
    "series": "CCA",
    "official_mech": "α 아지르",
    "official_pilot": "퀘스 파라야",
@@ -1689,6 +1403,132 @@
    "weight": 0.2
   },
   {
+   "series": "DESTINY",
+   "official_mech": "디스트로이 건담",
+   "official_pilot": "스텔라 루셰",
+   "mech": "디스트로이 건담",
+   "pilot": "스텔라 루셰",
+   "key": "스텔라 루셰|디스트로이 건담",
+   "weight": 0.18
+  },
+  {
+   "series": "DESTINY",
+   "official_mech": "디스트로이 건담",
+   "official_pilot": "스팅 오클레이",
+   "mech": "디스트로이 건담",
+   "pilot": "스팅 오클레이",
+   "key": "스팅 오클레이|디스트로이 건담",
+   "weight": 0.15
+  },
+  {
+   "series": "DESTINY",
+   "official_mech": "블래스트 임펄스 건담",
+   "official_pilot": "Shinn Asuka",
+   "mech": "블래스트 임펄스 건담",
+   "pilot": "신 아스카",
+   "key": "신 아스카|블래스트 임펄스 건담",
+   "weight": 0.18
+  },
+  {
+   "series": "DESTINY",
+   "official_mech": "블래스트 임펄스 건담",
+   "official_pilot": "Lunamaria Hawke",
+   "mech": "블래스트 임펄스 건담",
+   "pilot": "루나마리아 호크",
+   "key": "루나마리아 호크|블래스트 임펄스 건담",
+   "weight": 0.15
+  },
+  {
+   "series": "DESTINY",
+   "official_mech": "블레이즈 자쿠 팬텀(레이 전용기)",
+   "official_pilot": "레이 자 바렐",
+   "mech": "블레이즈 자쿠 팬텀",
+   "pilot": "레이 자 바렐",
+   "key": "레이 자 바렐|블레이즈 자쿠 팬텀",
+   "weight": 0.18
+  },
+  {
+   "series": "DESTINY",
+   "official_mech": "블레이즈 자쿠 팬텀(레이 전용기)",
+   "official_pilot": "하이네 베스텐플루스",
+   "mech": "블레이즈 자쿠 팬텀",
+   "pilot": "하이네 베스텐플루스",
+   "key": "하이네 베스텐플루스|블레이즈 자쿠 팬텀",
+   "weight": 0.18
+  },
+  {
+   "series": "DESTINY",
+   "official_mech": "블레이즈 자쿠 팬텀(레이 전용기)",
+   "official_pilot": "Dearka Elthman",
+   "mech": "블레이즈 자쿠 팬텀",
+   "pilot": "디아카 앨스먼",
+   "key": "디아카 앨스먼|블레이즈 자쿠 팬텀",
+   "weight": 0.15
+  },
+  {
+   "series": "DESTINY",
+   "official_mech": "소드 임펄스 건담",
+   "official_pilot": "Shinn Asuka",
+   "mech": "소드 임펄스 건담",
+   "pilot": "신 아스카",
+   "key": "신 아스카|소드 임펄스 건담",
+   "weight": 0.18
+  },
+  {
+   "series": "DESTINY",
+   "official_mech": "소드 임펄스 건담",
+   "official_pilot": "Lunamaria Hawke",
+   "mech": "소드 임펄스 건담",
+   "pilot": "루나마리아 호크",
+   "key": "루나마리아 호크|소드 임펄스 건담",
+   "weight": 0.15
+  },
+  {
+   "series": "DESTINY",
+   "official_mech": "슬래시 자쿠 팬텀",
+   "official_pilot": "Yzak Jule",
+   "mech": "슬래시 자쿠 팬텀",
+   "pilot": "이자크 쥴",
+   "key": "이자크 쥴|슬래시 자쿠 팬텀",
+   "weight": 0.2
+  },
+  {
+   "series": "DESTINY",
+   "official_mech": "자쿠 워리어",
+   "official_pilot": "Lunamaria Hawke",
+   "mech": "자쿠 워리어",
+   "pilot": "루나마리아 호크",
+   "key": "루나마리아 호크|자쿠 워리어",
+   "weight": 0.2
+  },
+  {
+   "series": "DESTINY",
+   "official_mech": "자쿠 워리어",
+   "official_pilot": "Athrun Zala",
+   "mech": "자쿠 워리어",
+   "pilot": "아스란 자라",
+   "key": "아스란 자라|자쿠 워리어",
+   "weight": 0.15
+  },
+  {
+   "series": "DESTINY",
+   "official_mech": "포스 임펄스 건담",
+   "official_pilot": "Shinn Asuka",
+   "mech": "포스 임펄스 건담",
+   "pilot": "신 아스카",
+   "key": "신 아스카|포스 임펄스 건담",
+   "weight": 0.18
+  },
+  {
+   "series": "DESTINY",
+   "official_mech": "포스 임펄스 건담",
+   "official_pilot": "Lunamaria Hawke",
+   "mech": "포스 임펄스 건담",
+   "pilot": "루나마리아 호크",
+   "key": "루나마리아 호크|포스 임펄스 건담",
+   "weight": 0.15
+  },
+  {
    "series": "EW",
    "official_mech": "윙 건담 0",
    "official_pilot": "히이로 유이",
@@ -1696,6 +1536,51 @@
    "pilot": "히이로 유이",
    "key": "히이로 유이|윙 건담 제로 EW",
    "weight": 0.2
+  },
+  {
+   "series": "GQ",
+   "official_mech": "키케로가 [MS 형태]",
+   "official_pilot": "샤리아 불",
+   "mech": "키케로가",
+   "pilot": "샤리아 불",
+   "key": "샤리아 불|키케로가",
+   "weight": 0.2
+  },
+  {
+   "series": "HATHAWAY",
+   "official_mech": "오디세우스 건담",
+   "official_pilot": "레인 에임",
+   "mech": "오디세우스 건담",
+   "pilot": "레인 에임",
+   "key": "레인 에임|오디세우스 건담",
+   "weight": 0.18
+  },
+  {
+   "series": "IBO",
+   "official_mech": "건담 구시온 리베이크 풀 시티",
+   "official_pilot": "아키히로 앨트랜드",
+   "mech": "건담 구시온 리베이크 풀 시티",
+   "pilot": "아키히로 앨트랜드",
+   "key": "아키히로 앨트랜드|건담 구시온 리베이크 풀 시티",
+   "weight": 0.2
+  },
+  {
+   "series": "IBO",
+   "official_mech": "건담 키마리스 트루퍼",
+   "official_pilot": "가엘리오 보드윈",
+   "mech": "건담 키마리스 트루퍼",
+   "pilot": "가엘리오 보드윈",
+   "key": "가엘리오 보드윈|건담 키마리스 트루퍼",
+   "weight": 0.2
+  },
+  {
+   "series": "IBO",
+   "official_mech": "그레이즈",
+   "official_pilot": "아인 달튼",
+   "mech": "그레이즈",
+   "pilot": "아인 달튼",
+   "key": "아인 달튼|그레이즈",
+   "weight": 0.15
   },
   {
    "series": "NT",
@@ -1716,12 +1601,102 @@
    "weight": 0.2
   },
   {
+   "series": "SEED",
+   "official_mech": "런처 스트라이크 건담",
+   "official_pilot": "Kira Yamato",
+   "mech": "런처 스트라이크 건담",
+   "pilot": "키라 야마토",
+   "key": "키라 야마토|런처 스트라이크 건담",
+   "weight": 0.18
+  },
+  {
+   "series": "SEED",
+   "official_mech": "소드 스트라이크 건담",
+   "official_pilot": "Kira Yamato",
+   "mech": "소드 스트라이크 건담",
+   "pilot": "키라 야마토",
+   "key": "키라 야마토|소드 스트라이크 건담",
+   "weight": 0.18
+  },
+  {
+   "series": "SEED",
+   "official_mech": "에일 스트라이크 건담",
+   "official_pilot": "Kira Yamato",
+   "mech": "에일 스트라이크 건담",
+   "pilot": "키라 야마토",
+   "key": "키라 야마토|에일 스트라이크 건담",
+   "weight": 0.18
+  },
+  {
+   "series": "TB",
+   "official_mech": "짐",
+   "official_pilot": "이오 플레밍",
+   "mech": "짐",
+   "pilot": "이오 플레밍",
+   "key": "이오 플레밍|짐",
+   "weight": 0.12
+  },
+  {
+   "series": "UNICORN",
+   "official_mech": "로젠 줄루",
+   "official_pilot": "안젤로 자우퍼",
+   "mech": "로젠 줄루",
+   "pilot": "안젤로 자우퍼",
+   "key": "안젤로 자우퍼|로젠 줄루",
+   "weight": 0.2
+  },
+  {
    "series": "V",
    "official_mech": "V건담",
    "official_pilot": "웃소 에빈",
    "mech": "V건담",
    "pilot": "우소 에빈",
    "key": "우소 에빈|V건담",
+   "weight": 0.2
+  },
+  {
+   "series": "V",
+   "official_mech": "V대쉬 건담",
+   "official_pilot": "웃소 에빈",
+   "mech": "V대쉬 건담",
+   "pilot": "우소 에빈",
+   "key": "우소 에빈|V대쉬 건담",
+   "weight": 0.18
+  },
+  {
+   "series": "V",
+   "official_mech": "게드라프",
+   "official_pilot": "카테지나 루스",
+   "mech": "게드라프",
+   "pilot": "카테지나 루스",
+   "key": "카테지나 루스|게드라프",
+   "weight": 0.15
+  },
+  {
+   "series": "V",
+   "official_mech": "겐가오조",
+   "official_pilot": "파라 그리폰",
+   "mech": "겐가오조",
+   "pilot": "파라 그리폰",
+   "key": "파라 그리폰|겐가오조",
+   "weight": 0.2
+  },
+  {
+   "series": "V",
+   "official_mech": "잔넥",
+   "official_pilot": "파라 그리폰",
+   "mech": "잔넥",
+   "pilot": "파라 그리폰",
+   "key": "파라 그리폰|잔넥",
+   "weight": 0.15
+  },
+  {
+   "series": "WM",
+   "official_mech": "건담 르브리스 울",
+   "official_pilot": "소피 플로네",
+   "mech": "건담 르브리스 울",
+   "pilot": "소피 프로네",
+   "key": "소피 프로네|건담 르브리스 울",
    "weight": 0.2
   },
   {
@@ -1734,6 +1709,24 @@
    "weight": 0.2
   },
   {
+   "series": "WM",
+   "official_mech": "데미 바딩",
+   "official_pilot": "추아츄리 판런치",
+   "mech": "데미 바딩",
+   "pilot": "추아츄리 판런치",
+   "key": "추아츄리 판런치|데미 바딩",
+   "weight": 0.18
+  },
+  {
+   "series": "WM",
+   "official_mech": "조워트",
+   "official_pilot": "엘란 케레스",
+   "mech": "조워트",
+   "pilot": "엘란 케레스",
+   "key": "엘란 케레스|조워트",
+   "weight": 0.15
+  },
+  {
    "series": "X",
    "official_mech": "건담 DX",
    "official_pilot": "가로드 란",
@@ -1741,6 +1734,69 @@
    "pilot": "가로드 란",
    "key": "가로드 란|더블 엑스",
    "weight": 0.2
+  },
+  {
+   "series": "X",
+   "official_mech": "건담 레오파드 디스트로이",
+   "official_pilot": "로아비 로이",
+   "mech": "건담 레오파드 디스트로이",
+   "pilot": "로아비 로이",
+   "key": "로아비 로이|건담 레오파드 디스트로이",
+   "weight": 0.18
+  },
+  {
+   "series": "X",
+   "official_mech": "건담 버사고",
+   "official_pilot": "샤기아 프로스트",
+   "mech": "건담 버사고",
+   "pilot": "샤기아 프로스트",
+   "key": "샤기아 프로스트|건담 버사고",
+   "weight": 0.18
+  },
+  {
+   "series": "X",
+   "official_mech": "건담 버사고 체스트 브레이크",
+   "official_pilot": "샤기아 프로스트",
+   "mech": "건담 버사고 체스트 브레이크",
+   "pilot": "샤기아 프로스트",
+   "key": "샤기아 프로스트|건담 버사고 체스트 브레이크",
+   "weight": 0.2
+  },
+  {
+   "series": "X",
+   "official_mech": "건담 아슈타론",
+   "official_pilot": "오르바 프로스트",
+   "mech": "건담 아슈타론",
+   "pilot": "올바 프로스트",
+   "key": "올바 프로스트|건담 아슈타론",
+   "weight": 0.18
+  },
+  {
+   "series": "X",
+   "official_mech": "건담 아슈타론 허밋 크랩",
+   "official_pilot": "오르바 프로스트",
+   "mech": "건담 아슈타론 허밋 크랩",
+   "pilot": "올바 프로스트",
+   "key": "올바 프로스트|건담 아슈타론 허밋 크랩",
+   "weight": 0.2
+  },
+  {
+   "series": "X",
+   "official_mech": "건담 에어 마스터 버스트",
+   "official_pilot": "윗츠 수",
+   "mech": "건담 에어 마스터 버스트",
+   "pilot": "위츠 수",
+   "key": "위츠 수|건담 에어 마스터 버스트",
+   "weight": 0.2
+  },
+  {
+   "series": "X",
+   "official_mech": "건담X 디바이더",
+   "official_pilot": "가로드 란",
+   "mech": "건담X 디바이더",
+   "pilot": "가로드 란",
+   "key": "가로드 란|건담X 디바이더",
+   "weight": 0.18
   },
   {
    "series": "Z",
@@ -2227,59 +2283,6 @@
    "건담 엑시아 리페어",
    "건담 엑시아 리페어II"
   ],
-  "플리트 아스노": [
-   "건담 AGE-1 그랜서",
-   "건담 AGE-1 스팔로",
-   "건담 AGE-1 타이터스"
-  ],
-  "키오 아스노": [
-   "건담 AGE-3 오비탈",
-   "건담 AGE-3 포트리스"
-  ],
-  "제하트 갈렛": [
-   "건담 레길레스",
-   "제이드라"
-  ],
-  "신 아스카": [
-   "블래스트 임펄스 건담",
-   "소드 임펄스 건담",
-   "포스 임펄스 건담"
-  ],
-  "루나마리아 호크": [
-   "블래스트 임펄스 건담",
-   "소드 임펄스 건담",
-   "자쿠 워리어",
-   "포스 임펄스 건담"
-  ],
-  "샤리아 불": [
-   "브라우 브로",
-   "키케로가"
-  ],
-  "키라 야마토": [
-   "런처 스트라이크 건담",
-   "소드 스트라이크 건담",
-   "에일 스트라이크 건담"
-  ],
-  "우소 에빈": [
-   "V건담",
-   "V대쉬 건담"
-  ],
-  "파라 그리폰": [
-   "겐가오조",
-   "잔넥"
-  ],
-  "샤기아 프로스트": [
-   "건담 버사고",
-   "건담 버사고 체스트 브레이크"
-  ],
-  "올바 프로스트": [
-   "건담 아슈타론",
-   "건담 아슈타론 허밋 크랩"
-  ],
-  "가로드 란": [
-   "건담X 디바이더",
-   "더블 엑스"
-  ],
   "마 쿠베": [
    "걍",
    "앗잠"
@@ -2302,6 +2305,10 @@
   "류 호세이": [
    "건탱크",
    "코어 파이터"
+  ],
+  "샤리아 불": [
+   "브라우 브로",
+   "키케로가"
   ],
   "샤아": [
    "릭 디아스",
@@ -2340,9 +2347,58 @@
    "아프사라스 III",
    "압사라스II"
   ],
+  "플리트 아스노": [
+   "건담 AGE-1 그랜서",
+   "건담 AGE-1 스팔로",
+   "건담 AGE-1 타이터스"
+  ],
+  "키오 아스노": [
+   "건담 AGE-3 오비탈",
+   "건담 AGE-3 포트리스"
+  ],
+  "제하트 갈렛": [
+   "건담 레길레스",
+   "제이드라"
+  ],
   "퀘스 파라야": [
    "알파 아질",
    "야크트 도가"
+  ],
+  "신 아스카": [
+   "블래스트 임펄스 건담",
+   "소드 임펄스 건담",
+   "포스 임펄스 건담"
+  ],
+  "루나마리아 호크": [
+   "블래스트 임펄스 건담",
+   "소드 임펄스 건담",
+   "자쿠 워리어",
+   "포스 임펄스 건담"
+  ],
+  "키라 야마토": [
+   "런처 스트라이크 건담",
+   "소드 스트라이크 건담",
+   "에일 스트라이크 건담"
+  ],
+  "우소 에빈": [
+   "V건담",
+   "V대쉬 건담"
+  ],
+  "파라 그리폰": [
+   "겐가오조",
+   "잔넥"
+  ],
+  "가로드 란": [
+   "건담X 디바이더",
+   "더블 엑스"
+  ],
+  "샤기아 프로스트": [
+   "건담 버사고",
+   "건담 버사고 체스트 브레이크"
+  ],
+  "올바 프로스트": [
+   "건담 아슈타론",
+   "건담 아슈타론 허밋 크랩"
   ],
   "카미유": [
    "Z건담",

@@ -3,8 +3,8 @@
 """
 도감 카드 ↔ soshage(G Generation Eternal) ID 매핑표 생성기
 
-게임 파일(play.html)의 MECH / PILOT 이름과 soshage 공개 API 의 unit / character
-를 대조해 id-map.json 을 만든다.
+data/ 의 기체 · 파일럿 이름과 soshage 공개 API 의 unit / character 를 대조해
+id-map.json 을 만든다.
 
 매핑은 1:1 이 아니다.
   - 기체: 같은 기체가 통상판과 (EX) 판으로 나뉜다. 식별자는 이름이 아니라 models(형식번호)다.
@@ -19,7 +19,7 @@
     python3 build-idmap.py                # API 를 받아 캐시에 저장하고 생성
     python3 build-idmap.py --offline      # 캐시만 사용(네트워크 없이 재생성)
     python3 build-idmap.py --report       # 검토·미수록 목록을 자세히 찍는다
-    python3 build-idmap.py --source dex.html
+    python3 build-idmap.py --source dex.html   # 옛 HTML 에서 읽고 싶을 때
 """
 import argparse
 import difflib
@@ -29,15 +29,15 @@ import re
 import sys
 import unicodedata
 import urllib.request
+import roster
 from collections import defaultdict
 from datetime import datetime, timezone
 
 API = "https://soshage.com/ggetapi/ko/{}"
 ENTITIES = ["unit", "character", "series"]
 CACHE = ".cache/soshage"
-# 카드 데이터의 원본은 게임 파일이다. dex.html 은 build-dex.py 가 거기서 뽑아낸
-# 생성물이라, 게임 파일이 갱신되고 도감을 아직 안 만들었으면 뒤처져 있다.
-SOURCES = ["play.html", "dex.html"]
+# 카드 데이터의 원본은 data/ 다. play.html 도 dex.html 도 거기서 읽는다.
+SOURCES = ["data/"]
 OUT = "id-map.json"
 OVERRIDES = "id-map.overrides.json"
 
@@ -69,13 +69,6 @@ def fetch(entity, cache_dir, offline):
     print(f"  → {len(data)}건, {os.path.getsize(path) / 1e6:.1f}MB", file=sys.stderr)
     return data
 
-
-def pick_source(explicit):
-    """카드 데이터를 읽을 파일을 고른다."""
-    for p in ([explicit] if explicit else SOURCES):
-        if os.path.exists(p):
-            return p
-    raise SystemExit(f"[실패] 카드 원본을 찾지 못했다: {explicit or ' / '.join(SOURCES)}")
 
 
 def dex_block(src, name, path):
@@ -285,15 +278,18 @@ def main():
     ap.add_argument("--cache-dir", default=CACHE)
     ap.add_argument("--out", default=OUT)
     ap.add_argument("--overrides", default=OVERRIDES)
-    ap.add_argument("--source", help=f"카드 원본 HTML (기본: {' → '.join(SOURCES)} 순으로 찾는다)")
+    ap.add_argument("--source", help="카드 원본 HTML (기본은 data/ 를 읽는다)")
     ap.add_argument("--report", action="store_true", help="검토·미수록 목록을 자세히 찍는다")
     a = ap.parse_args()
 
     data = {e: fetch(e, a.cache_dir, a.offline) for e in ENTITIES}
-    path = pick_source(a.source)
-    src = open(path, encoding="utf-8").read()
-    MECH = dex_block(src, "MECH", path)
-    PILOT = dex_block(src, "PILOT", path)
+    if a.source:
+        src = open(a.source, encoding="utf-8").read()
+        path = a.source
+        MECH, PILOT = dex_block(src, "MECH", path), dex_block(src, "PILOT", path)
+    else:
+        path = roster.DIR
+        MECH, PILOT = roster.rows("mech"), roster.rows("pilot")
     ov = load_overrides(a.overrides)
 
     sidx = series_index(data["series"])
