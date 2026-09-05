@@ -1,0 +1,581 @@
+{
+ "version": 1,
+ "note": "공식 사이트 탑승 관계에서 뽑은 인연 후보다. 값(0.12~0.22)은 밸런스 판단이라 비워 둔다. ready 는 파일럿·기체 카드가 둘 다 있고 BOND 에 없는 짝, no_pilot 은 파일럿 카드가 없어 먼저 로스터 판단이 필요한 짝, known 은 이미 BOND 에 있어 공식 자료로 뒷받침된 짝이다.",
+ "source": {
+  "relations": "official/pilot/relations.json",
+  "cards": "play.html",
+  "series_done": [
+   "0079",
+   "Z"
+  ],
+  "mechs_scanned": 58
+ },
+ "summary": {
+  "ready": 21,
+  "no_pilot": 25,
+  "no_mech": 0,
+  "known": 18,
+  "bond_existing": 193
+ },
+ "ready": [
+  {
+   "series": "0079",
+   "official_mech": "건탱크",
+   "official_pilot": "카이 시덴",
+   "mech": "건탱크",
+   "pilot": "카이 시덴",
+   "key": "카이 시덴|건탱크"
+  },
+  {
+   "series": "0079",
+   "official_mech": "돕",
+   "official_pilot": "가르마 자비",
+   "mech": "돕",
+   "pilot": "가르마",
+   "key": "가르마|돕"
+  },
+  {
+   "series": "0079",
+   "official_mech": "샤아 전용 겔구그",
+   "official_pilot": "샤아 아즈나블",
+   "mech": "샤아 전용 겔구그",
+   "pilot": "샤아",
+   "key": "샤아|샤아 전용 겔구그"
+  },
+  {
+   "series": "0079",
+   "official_mech": "샤아 전용 즈고크",
+   "official_pilot": "샤아 아즈나블",
+   "mech": "샤아 전용 즈고크",
+   "pilot": "샤아",
+   "key": "샤아|샤아 전용 즈고크"
+  },
+  {
+   "series": "0079",
+   "official_mech": "앗잠",
+   "official_pilot": "마 쿠베",
+   "mech": "앗잠",
+   "pilot": "마 쿠베",
+   "key": "마 쿠베|앗잠"
+  },
+  {
+   "series": "Z",
+   "official_mech": "가르발디β",
+   "official_pilot": "제리드 메사",
+   "mech": "가르발디β",
+   "pilot": "제리드 메사",
+   "key": "제리드 메사|가르발디β"
+  },
+  {
+   "series": "Z",
+   "official_mech": "갸프랑",
+   "official_pilot": "로자미아 바담",
+   "mech": "갸프랑",
+   "pilot": "로자미아",
+   "key": "로자미아|갸프랑"
+  },
+  {
+   "series": "Z",
+   "official_mech": "건담 Mk-Ⅱ 에우고 사양",
+   "official_pilot": "카미유 비단",
+   "mech": "건담 Mk-II",
+   "pilot": "카미유",
+   "key": "카미유|건담 Mk-II"
+  },
+  {
+   "series": "Z",
+   "official_mech": "건담 Mk-Ⅱ 에우고 사양",
+   "official_pilot": "에마 신",
+   "mech": "건담 Mk-II",
+   "pilot": "에마 신",
+   "key": "에마 신|건담 Mk-II"
+  },
+  {
+   "series": "Z",
+   "official_mech": "건담 Mk-Ⅱ 티탄즈 사양",
+   "official_pilot": "카미유 비단",
+   "mech": "건담 Mk-II 티탄즈사양",
+   "pilot": "카미유",
+   "key": "카미유|건담 Mk-II 티탄즈사양"
+  },
+  {
+   "series": "Z",
+   "official_mech": "건담 Mk-Ⅱ 티탄즈 사양",
+   "official_pilot": "제리드 메사",
+   "mech": "건담 Mk-II 티탄즈사양",
+   "pilot": "제리드 메사",
+   "key": "제리드 메사|건담 Mk-II 티탄즈사양"
+  },
+  {
+   "series": "Z",
+   "official_mech": "디제",
+   "official_pilot": "아무로 레이",
+   "mech": "디제",
+   "pilot": "아무로",
+   "key": "아무로|디제"
+  },
+  {
+   "series": "Z",
+   "official_mech": "릭 디아스",
+   "official_pilot": "크와트로 바지나/샤아 아즈나블",
+   "mech": "릭 디아스",
+   "pilot": "샤아",
+   "key": "샤아|릭 디아스"
+  },
+  {
+   "series": "Z",
+   "official_mech": "릭 디아스",
+   "official_pilot": "아무로 레이",
+   "mech": "릭 디아스",
+   "pilot": "아무로",
+   "key": "아무로|릭 디아스"
+  },
+  {
+   "series": "Z",
+   "official_mech": "마라사이",
+   "official_pilot": "사라 자비아로프",
+   "mech": "마라사이",
+   "pilot": "사라 자비아로프",
+   "key": "사라 자비아로프|마라사이"
+  },
+  {
+   "series": "Z",
+   "official_mech": "메타스",
+   "official_pilot": "레코아 론드",
+   "mech": "메타스",
+   "pilot": "레코아",
+   "key": "레코아|메타스"
+  },
+  {
+   "series": "Z",
+   "official_mech": "멧사라",
+   "official_pilot": "팝티머스 시로코",
+   "mech": "멧사라",
+   "pilot": "시로코",
+   "key": "시로코|멧사라"
+  },
+  {
+   "series": "Z",
+   "official_mech": "바운드 독",
+   "official_pilot": "제리드 메사",
+   "mech": "바운드 독",
+   "pilot": "제리드 메사",
+   "key": "제리드 메사|바운드 독"
+  },
+  {
+   "series": "Z",
+   "official_mech": "바이아란",
+   "official_pilot": "제리드 메사",
+   "mech": "바이아란",
+   "pilot": "제리드 메사",
+   "key": "제리드 메사|바이아란"
+  },
+  {
+   "series": "Z",
+   "official_mech": "사이코 건담 Mk-II",
+   "official_pilot": "로자미아 바담",
+   "mech": "사이코 건담 Mk-II",
+   "pilot": "로자미아",
+   "key": "로자미아|사이코 건담 Mk-II"
+  },
+  {
+   "series": "Z",
+   "official_mech": "하이잭",
+   "official_pilot": "제리드 메사",
+   "mech": "하이잭",
+   "pilot": "제리드 메사",
+   "key": "제리드 메사|하이잭"
+  }
+ ],
+ "no_pilot": [
+  {
+   "series": "0079",
+   "official_mech": "건캐논",
+   "official_pilot": "하야토 코바야시",
+   "mech": "건캐논",
+   "pilot": null
+  },
+  {
+   "series": "0079",
+   "official_mech": "건탱크",
+   "official_pilot": "하야토 코바야시",
+   "mech": "건탱크",
+   "pilot": null
+  },
+  {
+   "series": "0079",
+   "official_mech": "건탱크",
+   "official_pilot": "류 호세이",
+   "mech": "건탱크",
+   "pilot": null
+  },
+  {
+   "series": "0079",
+   "official_mech": "건탱크",
+   "official_pilot": "조브 존",
+   "mech": "건탱크",
+   "pilot": null
+  },
+  {
+   "series": "0079",
+   "official_mech": "돔",
+   "official_pilot": "오르테가",
+   "mech": "돔",
+   "pilot": null
+  },
+  {
+   "series": "0079",
+   "official_mech": "돔",
+   "official_pilot": "맛슈",
+   "mech": "돔",
+   "pilot": null
+  },
+  {
+   "series": "0079",
+   "official_mech": "브라우 브로",
+   "official_pilot": "샤리아 불",
+   "mech": "브라우 브로",
+   "pilot": null
+  },
+  {
+   "series": "0079",
+   "official_mech": "자쿠I",
+   "official_pilot": "가뎀",
+   "mech": "자쿠I",
+   "pilot": null
+  },
+  {
+   "series": "0079",
+   "official_mech": "자쿠II",
+   "official_pilot": "데님",
+   "mech": "자쿠II",
+   "pilot": null
+  },
+  {
+   "series": "0079",
+   "official_mech": "자쿠II",
+   "official_pilot": "진",
+   "mech": "자쿠II",
+   "pilot": null
+  },
+  {
+   "series": "0079",
+   "official_mech": "자쿠II",
+   "official_pilot": "크라운",
+   "mech": "자쿠II",
+   "pilot": null
+  },
+  {
+   "series": "0079",
+   "official_mech": "자쿠II",
+   "official_pilot": "코즌 그레이엄",
+   "mech": "자쿠II",
+   "pilot": null
+  },
+  {
+   "series": "0079",
+   "official_mech": "자쿠II",
+   "official_pilot": "쿠쿠루스 도안",
+   "mech": "자쿠II",
+   "pilot": null
+  },
+  {
+   "series": "0079",
+   "official_mech": "코어 파이터",
+   "official_pilot": "류 호세이",
+   "mech": "코어 파이터",
+   "pilot": null
+  },
+  {
+   "series": "Z",
+   "official_mech": "가르발디β",
+   "official_pilot": "라일라 미라 라이라",
+   "mech": "가르발디β",
+   "pilot": null
+  },
+  {
+   "series": "Z",
+   "official_mech": "가브스레이",
+   "official_pilot": "마우어 파라오",
+   "mech": "가브스레이",
+   "pilot": null
+  },
+  {
+   "series": "Z",
+   "official_mech": "건담 Mk-Ⅱ 티탄즈 사양",
+   "official_pilot": "카크리콘 카클러",
+   "mech": "건담 Mk-II 티탄즈사양",
+   "pilot": null
+  },
+  {
+   "series": "Z",
+   "official_mech": "릭 디아스",
+   "official_pilot": "아볼리",
+   "mech": "릭 디아스",
+   "pilot": null
+  },
+  {
+   "series": "Z",
+   "official_mech": "릭 디아스",
+   "official_pilot": "로베르토",
+   "mech": "릭 디아스",
+   "pilot": null
+  },
+  {
+   "series": "Z",
+   "official_mech": "마라사이",
+   "official_pilot": "카크리콘 카클러",
+   "mech": "마라사이",
+   "pilot": null
+  },
+  {
+   "series": "Z",
+   "official_mech": "바운드 독",
+   "official_pilot": "게츠",
+   "mech": "바운드 독",
+   "pilot": null
+  },
+  {
+   "series": "Z",
+   "official_mech": "사이코 건담",
+   "official_pilot": "포 무라사메",
+   "mech": "사이코 건담",
+   "pilot": null
+  },
+  {
+   "series": "Z",
+   "official_mech": "앗시마",
+   "official_pilot": "브란 블루타크",
+   "mech": "앗시마",
+   "pilot": null
+  },
+  {
+   "series": "Z",
+   "official_mech": "앗시마",
+   "official_pilot": "아지스 아지바",
+   "mech": "앗시마",
+   "pilot": null
+  },
+  {
+   "series": "Z",
+   "official_mech": "하이잭",
+   "official_pilot": "카크리콘 카클러",
+   "mech": "하이잭",
+   "pilot": null
+  }
+ ],
+ "no_mech": [],
+ "known": [
+  {
+   "series": "0079",
+   "official_mech": "건담",
+   "official_pilot": "아무로 레이",
+   "mech": "RX-78-2 건담",
+   "pilot": "아무로",
+   "key": "아무로|RX-78-2 건담",
+   "weight": 0.15
+  },
+  {
+   "series": "0079",
+   "official_mech": "건캐논",
+   "official_pilot": "카이 시덴",
+   "mech": "건캐논",
+   "pilot": "카이 시덴",
+   "key": "카이 시덴|건캐논",
+   "weight": 0.18
+  },
+  {
+   "series": "0079",
+   "official_mech": "구프",
+   "official_pilot": "람바 랄",
+   "mech": "구프",
+   "pilot": "란바 랄",
+   "key": "란바 랄|구프",
+   "weight": 0.15
+  },
+  {
+   "series": "0079",
+   "official_mech": "돔",
+   "official_pilot": "가이아",
+   "mech": "돔",
+   "pilot": "가이아",
+   "key": "가이아|돔",
+   "weight": 0.18
+  },
+  {
+   "series": "0079",
+   "official_mech": "빅 잠",
+   "official_pilot": "도즐 자비",
+   "mech": "빅잠",
+   "pilot": "도즐",
+   "key": "도즐|빅잠",
+   "weight": 0.2
+  },
+  {
+   "series": "0079",
+   "official_mech": "샤아 전용 자쿠II",
+   "official_pilot": "샤아 아즈나블",
+   "mech": "샤아 전용 자쿠",
+   "pilot": "샤아",
+   "key": "샤아|샤아 전용 자쿠",
+   "weight": 0.15
+  },
+  {
+   "series": "0079",
+   "official_mech": "엘메스",
+   "official_pilot": "라라아 슨",
+   "mech": "엘메스",
+   "pilot": "라라아",
+   "key": "라라아|엘메스",
+   "weight": 0.18
+  },
+  {
+   "series": "0079",
+   "official_mech": "지옹",
+   "official_pilot": "샤아 아즈나블",
+   "mech": "지옹",
+   "pilot": "샤아",
+   "key": "샤아|지옹",
+   "weight": 0.18
+  },
+  {
+   "series": "Z",
+   "official_mech": "Z건담",
+   "official_pilot": "카미유 비단",
+   "mech": "Z건담",
+   "pilot": "카미유",
+   "key": "카미유|Z건담",
+   "weight": 0.2
+  },
+  {
+   "series": "Z",
+   "official_mech": "가브스레이",
+   "official_pilot": "제리드 메사",
+   "mech": "가브스레이",
+   "pilot": "제리드 메사",
+   "key": "제리드 메사|가브스레이",
+   "weight": 0.18
+  },
+  {
+   "series": "Z",
+   "official_mech": "갸프랑",
+   "official_pilot": "야잔 게이블",
+   "mech": "갸프랑",
+   "pilot": "야잔",
+   "key": "야잔|갸프랑",
+   "weight": 0.15
+  },
+  {
+   "series": "Z",
+   "official_mech": "건담 Mk-Ⅱ 티탄즈 사양",
+   "official_pilot": "에마 신",
+   "mech": "건담 Mk-II 티탄즈사양",
+   "pilot": "에마 신",
+   "key": "에마 신|건담 Mk-II 티탄즈사양",
+   "weight": 0.18
+  },
+  {
+   "series": "Z",
+   "official_mech": "디 오",
+   "official_pilot": "팝티머스 시로코",
+   "mech": "디 오",
+   "pilot": "시로코",
+   "key": "시로코|디 오",
+   "weight": 0.2
+  },
+  {
+   "series": "Z",
+   "official_mech": "마라사이",
+   "official_pilot": "제리드 메사",
+   "mech": "마라사이",
+   "pilot": "제리드 메사",
+   "key": "제리드 메사|마라사이",
+   "weight": 0.15
+  },
+  {
+   "series": "Z",
+   "official_mech": "메타스",
+   "official_pilot": "화 유이리",
+   "mech": "메타스",
+   "pilot": "파 유이리",
+   "key": "파 유이리|메타스",
+   "weight": 0.18
+  },
+  {
+   "series": "Z",
+   "official_mech": "백식",
+   "official_pilot": "크와트로 바지나/샤아 아즈나블",
+   "mech": "백식",
+   "pilot": "샤아",
+   "key": "샤아|백식",
+   "weight": 0.2
+  },
+  {
+   "series": "Z",
+   "official_mech": "큐베레이",
+   "official_pilot": "하만 칸",
+   "mech": "큐베레이",
+   "pilot": "하만 칸",
+   "key": "하만 칸|큐베레이",
+   "weight": 0.2
+  },
+  {
+   "series": "Z",
+   "official_mech": "함브라비",
+   "official_pilot": "야잔 게이블",
+   "mech": "함브라비",
+   "pilot": "야잔",
+   "key": "야잔|함브라비",
+   "weight": 0.18
+  }
+ ],
+ "multi_mech_pilots": {
+  "카이 시덴": [
+   "건캐논",
+   "건탱크"
+  ],
+  "샤아": [
+   "릭 디아스",
+   "백식",
+   "샤아 전용 겔구그",
+   "샤아 전용 자쿠",
+   "샤아 전용 즈고크",
+   "지옹"
+  ],
+  "제리드 메사": [
+   "가르발디β",
+   "가브스레이",
+   "건담 Mk-II 티탄즈사양",
+   "마라사이",
+   "바운드 독",
+   "바이아란",
+   "하이잭"
+  ],
+  "로자미아": [
+   "갸프랑",
+   "사이코 건담 Mk-II"
+  ],
+  "카미유": [
+   "Z건담",
+   "건담 Mk-II",
+   "건담 Mk-II 티탄즈사양"
+  ],
+  "에마 신": [
+   "건담 Mk-II",
+   "건담 Mk-II 티탄즈사양"
+  ],
+  "아무로": [
+   "RX-78-2 건담",
+   "디제",
+   "릭 디아스"
+  ],
+  "시로코": [
+   "디 오",
+   "멧사라"
+  ],
+  "야잔": [
+   "갸프랑",
+   "함브라비"
+  ]
+ }
+}

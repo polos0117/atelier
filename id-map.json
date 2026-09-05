@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-09-05T14:11:38Z",
+ "generated": "2026-09-05T14:39:30Z",
  "source": {
   "api": "https://soshage.com/ggetapi/ko/{entity}",
   "entities": {
@@ -10,7 +10,7 @@
   },
   "cards": {
    "file": "play.html",
-   "MECH": 806,
+   "MECH": 798,
    "PILOT": 181
   }
  },
@@ -25,10 +25,10 @@
  },
  "summary": {
   "mech": {
-   "matched": 473,
-   "review": 135,
+   "matched": 468,
+   "review": 132,
    "unmatched": 198,
-   "total": 806
+   "total": 798
   },
   "pilot": {
    "matched": 114,
@@ -3150,19 +3150,6 @@
    ]
   },
   {
-   "dex": "건담",
-   "match": "exact",
-   "api_name": "건담",
-   "ids": [
-    1001000100,
-    1001000150
-   ],
-   "models": "RX-78-2",
-   "series": [
-    "기동전사 건담"
-   ]
-  },
-  {
    "dex": "곡그",
    "match": "exact",
    "api_name": "곡그",
@@ -3231,18 +3218,6 @@
     1001001610
    ],
    "models": "MS-14S",
-   "series": [
-    "기동전사 건담"
-   ]
-  },
-  {
-   "dex": "샤아 전용 자쿠II",
-   "match": "exact",
-   "api_name": "샤아 전용 자쿠Ⅱ",
-   "ids": [
-    1001001110
-   ],
-   "models": "MS-06S",
    "series": [
     "기동전사 건담"
    ]
@@ -3615,20 +3590,6 @@
    ]
   },
   {
-   "dex": "건담 AGE-1 노멀",
-   "match": "model",
-   "api_name": "건담 AGE-1 노멀",
-   "ids": [
-    1400000100,
-    1400000110,
-    1400000150
-   ],
-   "models": "AGE-1",
-   "series": [
-    "기동전사 건담 AGE"
-   ]
-  },
-  {
    "dex": "건담 AGE-1 스팔로",
    "match": "model",
    "api_name": "건담 AGE-1 노멀",
@@ -3652,19 +3613,6 @@
     1400000150
    ],
    "models": "AGE-1",
-   "series": [
-    "기동전사 건담 AGE"
-   ]
-  },
-  {
-   "dex": "건담 AGE-2 노멀",
-   "match": "model",
-   "api_name": "건담 AGE-2 노멀",
-   "ids": [
-    1400000500,
-    1400000550
-   ],
-   "models": "AGE-2",
    "series": [
     "기동전사 건담 AGE"
    ]
@@ -5640,18 +5588,6 @@
     1080004000
    ],
    "models": "AMX-003",
-   "series": [
-    "기동전사 Z건담"
-   ]
-  },
-  {
-   "dex": "건담 Mk-Ⅱ 에우고 사양",
-   "match": "exact",
-   "api_name": "건담 Mk-Ⅱ (에우고 사양)",
-   "ids": [
-    1080000600
-   ],
-   "models": "RX-178",
    "series": [
     "기동전사 Z건담"
    ]
@@ -8028,38 +7964,6 @@
     ]
    },
    {
-    "dex": "건담 AGE-3 노멀",
-    "candidates": [
-     {
-      "api_name": "건담 AGE-2 노멀",
-      "ids": [
-       1400000500,
-       1400000550
-      ],
-      "models": "AGE-2",
-      "score": 0.875
-     },
-     {
-      "api_name": "건담 AGE-1 노멀",
-      "ids": [
-       1400000100,
-       1400000110,
-       1400000150
-      ],
-      "models": "AGE-1",
-      "score": 0.875
-     },
-     {
-      "api_name": "건담 AGE-1 플랫",
-      "ids": [
-       1400008110
-      ],
-      "models": "AGE-1F",
-      "score": 0.625
-     }
-    ]
-   },
-   {
     "dex": "건담 AGE-3 포트리스",
     "candidates": [
      {
@@ -9622,27 +9526,6 @@
     ]
    },
    {
-    "dex": "II세컨드 네오 지옹",
-    "candidates": [
-     {
-      "api_name": "Ⅱ네오 지옹",
-      "ids": [
-       1144001000
-      ],
-      "models": "NZ-999",
-      "score": 0.8
-     },
-     {
-      "api_name": "네오 지옹",
-      "ids": [
-       1125001500
-      ],
-      "models": "NZ-999",
-      "score": 0.615
-     }
-    ]
-   },
-   {
     "dex": "유니콘 건담 3호기 페넥스",
     "candidates": [
      {
@@ -10508,45 +10391,6 @@
       ],
       "models": "RMS-099",
       "score": 0.6
-     }
-    ]
-   },
-   {
-    "dex": "큐베레이 Mk-Ⅱ",
-    "candidates": [
-     {
-      "api_name": "큐베레이 Mk-Ⅱ(엘피 플 전용기)",
-      "ids": [
-       1095002600,
-       1095002660
-      ],
-      "models": "AMX-004-2",
-      "score": 1.0
-     },
-     {
-      "api_name": "큐베레이 Mk-Ⅱ(플 투 전용기)",
-      "ids": [
-       1095002700
-      ],
-      "models": "AMX-004-3",
-      "score": 1.0
-     },
-     {
-      "api_name": "큐베레이",
-      "ids": [
-       1080004200
-      ],
-      "models": "AMX-004",
-      "score": 0.667
-     },
-     {
-      "api_name": "큐베레이 (ZZ Ver.)",
-      "ids": [
-       1095002500,
-       1095002550
-      ],
-      "models": "AMX-004",
-      "score": 0.667
      }
     ]
    }

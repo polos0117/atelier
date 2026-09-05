@@ -186,6 +186,13 @@ def collect(diff, sx, ov):
                 fac = FACTION.get(r["faction"], r["faction"])
                 box[key] = {"name": name, "series": [code],
                             "faction": fac, "variant": kind == "var"}
+    # 이미 저장소에 다른 이름으로 있는 것은 뺀다. 공식 '건담' 은 저장소의
+    # 'RX-78-2 건담' 이고 '건담 AGE-1 노멀' 은 '건담 AGE-1' 이다. 이름이 너무
+    # 달라 자동 대조가 못 잡으므로 사람이 적어 준다.
+    skip = {norm(x) for x in ov.get("skip", [])}
+    mech = {k: v for k, v in mech.items() if k not in skip}
+    ship = {k: v for k, v in ship.items() if k not in skip}
+
     # 사람이 정한 값이 먼저다
     for key, e in mech.items():
         o = ov.get("mech", {}).get(e["name"])

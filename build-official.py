@@ -31,6 +31,7 @@ SOURCES = ["play.html", "dex.html"]
 CACHE = "official/mecha"
 CACHE_C = "official/character"
 SLUGS = "official-slugs.json"
+ROSTER_OV = "roster-overrides.json"
 OUT = "official-diff.json"
 
 
@@ -104,6 +105,10 @@ def main():
     ppool = set(pidx)
 
     slugs = json.load(open(SLUGS, encoding="utf-8")) if os.path.exists(SLUGS) else {}
+    # 저장소에 다른 이름으로 이미 있어 카드를 안 만드는 것들. 보유로 친다.
+    skip = set()
+    if os.path.exists(ROSTER_OV):
+        skip = {norm(x) for x in json.load(open(ROSTER_OV, encoding="utf-8")).get("skip", [])}
     out, done = {}, []
     for code in sorted(slugs):
         f = os.path.join(CACHE, code + ".json")
@@ -111,11 +116,14 @@ def main():
             continue
         done.append(code)
         off = json.load(open(f, encoding="utf-8"))
-        add_m, add_s, var, skip, seen = [], [], [], [], []
+        add_m, add_s, var, skipped, seen = [], [], [], [], []
         for fac, names in off.items():
             for n in names:
                 if is_excluded(n):
-                    skip.append(n)
+                    skipped.append(n)
+                    continue
+                if norm(n) in skip:
+                    seen.append({"official": n, "dex": "(roster-overrides.json 의 skip)"})
                     continue
                 ship = is_ship(n)
                 hit = lookup(n, sidx if ship else midx) or lookup(n, midx if ship else sidx)
@@ -145,7 +153,7 @@ def main():
             "add_mech": add_m,
             "add_ship": add_s,
             "variants": var,
-            "excluded": skip,
+            "excluded": skipped,
         }
 
     # ---- 인물 대조
