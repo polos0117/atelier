@@ -663,8 +663,9 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
         <button type="button" class="gt" data-gender="male">남성 / Male</button>
       </div>
       <input type="hidden" id="genderInput" value="female">
-      <div class="param-note" style="margin-top:8px">
-        탭마다 설정을 따로 기억한다. 여성 쪽에서 잡은 값이 남성 쪽으로 넘어가지 않는다.
+      <div class="param-note" style="margin-top:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span>탭마다 설정을 따로 기억한다. 여성 쪽에서 잡은 값이 남성 쪽으로 자동으로 넘어가지 않는다.</span>
+        <button type="button" id="copyGenderBtn" class="card-rnd sub" style="flex:none">지금 보는 설정 → 반대 성별에 복사</button>
       </div>
 
       <div class="field" style="margin-top:10px">
@@ -3850,6 +3851,15 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     undo.classList.toggle('hidden',!(loc&&loc.prev));
   }
 
+  /* 지금 보고 있는 성별 설정을 반대 성별 저장분에 덮어쓴다.
+     화면은 안 바뀐다 — 반대 성별 탭으로 넘어가는 순간 적용되고,
+     그쪽에만 있는 값(예: underboob)은 applyParams()가 알아서 AUTO로 되돌린다. */
+  function copyGenderToOther(){
+    const cur=curGender(), other=cur==='female'?'male':'female';
+    GSTATE[cur]=snapParams();
+    GSTATE[other]=JSON.parse(JSON.stringify(GSTATE[cur]));
+    setStatus('statusAnthro',(cur==='female'?'여성':'남성')+' 설정을 '+(other==='female'?'여성':'남성')+' 쪽에 복사했다 — 그 탭으로 넘어가면 적용된다','ok');
+  }
   function setGender(g){
     const cur=curGender();
     if(g===cur)return;
@@ -4158,6 +4168,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   document.getElementById('applyCollage').addEventListener('click',()=>{refreshCollagePrompt();setStatus('statusCollage','콜라주 설정 적용 완료','ok');});
   document.getElementById('resetCollage').addEventListener('click',resetCollage);
 
+  document.getElementById('copyGenderBtn').addEventListener('click',copyGenderToOther);
   document.querySelectorAll('#genderTabs .gt').forEach(b=>
     b.addEventListener('click',()=>setGender(b.dataset.gender)));
   document.getElementById('applyAnthro').addEventListener('click',()=>{refreshAnthroPrompt();setStatus('statusAnthro','PARAMETERS 적용 완료','ok');});
