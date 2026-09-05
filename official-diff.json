@@ -1,0 +1,904 @@
+{
+ "version": 1,
+ "generated": "2026-09-05T13:38:14Z",
+ "source": {
+  "cards": "play.html",
+  "official": "kr.gundam-official.com",
+  "series_done": [
+   "0079",
+   "0080",
+   "0083",
+   "08MS",
+   "CCA",
+   "Z",
+   "ZZ"
+  ],
+  "series_pending": [
+   "00",
+   "00M",
+   "AGE",
+   "ASTRAY",
+   "DESTINY",
+   "EW",
+   "F91",
+   "FREEDOM",
+   "G",
+   "GQ",
+   "HATHAWAY",
+   "IBO",
+   "NT",
+   "SEED",
+   "TA",
+   "TB",
+   "UNICORN",
+   "V",
+   "W",
+   "WM",
+   "X"
+  ]
+ },
+ "note": "공식 사이트 목록에서 저장소에 없는 것만 뽑았다. near 는 표기가 비슷한 기존 카드로, 같은 대상인지 사람이 봐야 한다. 함선은 SHIP 으로 돌리고 마스코트·차량은 제외했다.",
+ "summary": {
+  "0079": {
+   "공식": 40,
+   "보유": 16,
+   "기체추가": 18,
+   "함선추가": 5
+  },
+  "0080": {
+   "공식": 12,
+   "보유": 6,
+   "기체추가": 6,
+   "함선추가": 0
+  },
+  "0083": {
+   "공식": 25,
+   "보유": 10,
+   "기체추가": 13,
+   "함선추가": 2
+  },
+  "08MS": {
+   "공식": 18,
+   "보유": 7,
+   "기체추가": 9,
+   "함선추가": 1
+  },
+  "CCA": {
+   "공식": 12,
+   "보유": 9,
+   "기체추가": 1,
+   "함선추가": 2
+  },
+  "Z": {
+   "공식": 38,
+   "보유": 19,
+   "기체추가": 16,
+   "함선추가": 3
+  },
+  "ZZ": {
+   "공식": 31,
+   "보유": 9,
+   "기체추가": 21,
+   "함선추가": 1
+  }
+ },
+ "series": {
+  "0079": {
+   "official_total": 40,
+   "factions": [
+    "지구연방군",
+    "지온 공국군"
+   ],
+   "matched": 16,
+   "add_mech": [
+    {
+     "name": "건담",
+     "faction": "지구연방군",
+     "near": [
+      {
+       "dex": "RX-78-2 건담",
+       "score": null
+      },
+      {
+       "dex": "V2건담",
+       "score": null
+      },
+      {
+       "dex": "짐",
+       "score": 0.8
+      },
+      {
+       "dex": "진",
+       "score": 0.8
+      },
+      {
+       "dex": "윙 건담",
+       "score": 0.8
+      }
+     ]
+    },
+    {
+     "name": "코어 파이터",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "G 아머",
+     "faction": "지구연방군",
+     "near": [
+      {
+       "dex": "풀아머 건담",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "샤아 전용 자쿠II",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "샤아 전용 자쿠",
+       "score": 0.857
+      }
+     ]
+    },
+    {
+     "name": "자쿠I",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "자쿠II",
+       "score": 0.857
+      },
+      {
+       "dex": "자쿠 III",
+       "score": 0.75
+      }
+     ]
+    },
+    {
+     "name": "곡그",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "하이곡그",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "즈고크",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "즈고크 E",
+       "score": 0.857
+      }
+     ]
+    },
+    {
+     "name": "샤아 전용 즈고크",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "샤아 전용 자쿠",
+       "score": 0.615
+      }
+     ]
+    },
+    {
+     "name": "앗가이",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "가이아 건담",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "족크",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "샤아 전용 겔구그",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "샤아 전용 자쿠",
+       "score": 0.615
+      },
+      {
+       "dex": "겔구그",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "앗잠",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "그라브로",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "돕",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "마젤라 어택",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "비그로",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "자쿠레로",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "브라우 브로",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "건담 플라우로스",
+       "score": 0.6
+      }
+     ]
+    }
+   ],
+   "add_ship": [
+    {
+     "name": "살라미스급 우주 순양함",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "마젤란급 우주 전함",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "가우 공격항모",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "잔지발급 기동 순양함",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "그와진급 대형 우주 전함",
+     "faction": "지온 공국군"
+    }
+   ],
+   "excluded": [
+    "하로"
+   ]
+  },
+  "0080": {
+   "official_total": 12,
+   "factions": [
+    "지구연방군",
+    "지온 공국군"
+   ],
+   "matched": 6,
+   "add_mech": [
+    {
+     "name": "건담 NT-1 Alex",
+     "faction": "지구연방군",
+     "near": [
+      {
+       "dex": "건담 NT-1",
+       "score": 0.714
+      }
+     ]
+    },
+    {
+     "name": "짐 한랭지 사양",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "짐 커맨드 우주전 사양",
+     "faction": "지구연방군",
+     "near": [
+      {
+       "dex": "짐 커맨드",
+       "score": 0.615
+      }
+     ]
+    },
+    {
+     "name": "양산형 건캐논",
+     "faction": "지구연방군",
+     "near": [
+      {
+       "dex": "건캐논",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "릭 돔II",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "릭 돔",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "겔구그J",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "겔구그",
+       "score": 0.857
+      },
+      {
+       "dex": "겔구그 예거",
+       "score": 0.667
+      }
+     ]
+    }
+   ],
+   "add_ship": [],
+   "excluded": []
+  },
+  "0083": {
+   "official_total": 25,
+   "factions": [
+    "지구연방군",
+    "지온 공국군"
+   ],
+   "matched": 10,
+   "add_mech": [
+    {
+     "name": "짐 캐논II",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "짐 개",
+     "faction": "지구연방군",
+     "near": [
+      {
+       "dex": "짐",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "파워드 짐",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "건담 시작 1호기 풀 버니언",
+     "faction": "지구연방군",
+     "near": [
+      {
+       "dex": "건담 시작 1호기 제피랜서스",
+       "score": 0.609
+      }
+     ]
+    },
+    {
+     "name": "볼 개수형 (BALL type C)",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "자쿠II F2형",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "자쿠II",
+       "score": 0.727
+      },
+      {
+       "dex": "자쿠II 개량형",
+       "score": 0.714
+      },
+      {
+       "dex": "자쿠 III",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "자멜",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "돔 트로펜",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "겔구그M (지휘관용)",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "겔구그",
+       "score": 0.857
+      },
+      {
+       "dex": "겔구그 예거",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "겔구그M 양산형",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "겔구그",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "릭 돔II",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "릭 돔",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "발 바로",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "드라체",
+     "faction": "지온 공국군"
+    }
+   ],
+   "add_ship": [
+    {
+     "name": "살라미스 개량형",
+     "faction": "지구연방군",
+     "near": [
+      {
+       "dex": "살라미스",
+       "score": 0.727
+      }
+     ]
+    },
+    {
+     "name": "릴리 마를렌",
+     "faction": "지온 공국군"
+    }
+   ],
+   "excluded": []
+  },
+  "08MS": {
+   "official_total": 18,
+   "factions": [
+    "지구연방군",
+    "지온 공국군"
+   ],
+   "matched": 7,
+   "add_mech": [
+    {
+     "name": "볼 K형",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "제트 코어 부스터",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "양산형 건탱크",
+     "faction": "지구연방군",
+     "near": [
+      {
+       "dex": "건탱크",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "고기동 시작형 자쿠",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "압사라스II",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "아프사라스 III",
+       "score": 0.933
+      }
+     ]
+    },
+    {
+     "name": "자쿠I",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "자쿠II",
+       "score": 0.857
+      },
+      {
+       "dex": "자쿠 III",
+       "score": 0.75
+      }
+     ]
+    },
+    {
+     "name": "마젤라 어택",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "앗가이",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "가이아 건담",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "구프 플라이트 타입",
+     "faction": "지온 공국군"
+    }
+   ],
+   "add_ship": [
+    {
+     "name": "잔지발급 케르게렌",
+     "faction": "지온 공국군"
+    }
+   ],
+   "excluded": [
+    "호버 트럭"
+   ]
+  },
+  "CCA": {
+   "official_total": 12,
+   "factions": [
+    "지구연방",
+    "네오 지온"
+   ],
+   "matched": 9,
+   "add_mech": [
+    {
+     "name": "짐Ⅲ",
+     "faction": "지구연방",
+     "near": [
+      {
+       "dex": "자쿠 III",
+       "score": 0.667
+      },
+      {
+       "dex": "톨기스 III",
+       "score": 0.6
+      }
+     ]
+    }
+   ],
+   "add_ship": [
+    {
+     "name": "클랍급 순양함",
+     "faction": "지구연방"
+    },
+    {
+     "name": "레우룰라",
+     "faction": "네오 지온",
+     "near": [
+      {
+       "dex": "레우루라",
+       "score": 0.75
+      }
+     ]
+    }
+   ],
+   "excluded": []
+  },
+  "Z": {
+   "official_total": 38,
+   "factions": [
+    "에우고",
+    "티탄즈",
+    "액시즈",
+    "지구연방군",
+    "카라바"
+   ],
+   "matched": 19,
+   "add_mech": [
+    {
+     "name": "건담 Mk-Ⅱ 에우고 사양",
+     "faction": "에우고",
+     "near": [
+      {
+       "dex": "건담 Mk-II 티탄즈사양",
+       "score": 0.727
+      },
+      {
+       "dex": "건담 Mk-II",
+       "score": 0.706
+      }
+     ]
+    },
+    {
+     "name": "네모",
+     "faction": "에우고"
+    },
+    {
+     "name": "짐Ⅱ(에우고)",
+     "faction": "에우고",
+     "near": [
+      {
+       "dex": "짐 스나이퍼II",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "앗시마",
+     "faction": "티탄즈"
+    },
+    {
+     "name": "바잠",
+     "faction": "티탄즈"
+    },
+    {
+     "name": "하이잭 커스텀",
+     "faction": "티탄즈",
+     "near": [
+      {
+       "dex": "하이잭",
+       "score": 0.667
+      },
+      {
+       "dex": "짐 커스텀",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "멧사라",
+     "faction": "티탄즈"
+    },
+    {
+     "name": "팔라스 아테네",
+     "faction": "티탄즈"
+    },
+    {
+     "name": "볼리노크 사만",
+     "faction": "티탄즈"
+    },
+    {
+     "name": "가자C",
+     "faction": "액시즈"
+    },
+    {
+     "name": "사이코 건담 Mk-II",
+     "faction": "지구연방군",
+     "near": [
+      {
+       "dex": "건담 Mk-II",
+       "score": 0.8
+      },
+      {
+       "dex": "사이코 건담",
+       "score": 0.714
+      }
+     ]
+    },
+    {
+     "name": "하이잭 연방군 사양",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "가르발디β",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "액트 자쿠",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "짐Ⅱ(지구연방군)",
+     "faction": "지구연방군",
+     "near": [
+      {
+       "dex": "짐 스나이퍼II",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "디제",
+     "faction": "카라바"
+    }
+   ],
+   "add_ship": [
+    {
+     "name": "래디시",
+     "faction": "에우고"
+    },
+    {
+     "name": "그완반",
+     "faction": "액시즈"
+    },
+    {
+     "name": "아우둠라",
+     "faction": "카라바"
+    }
+   ],
+   "excluded": []
+  },
+  "ZZ": {
+   "official_total": 31,
+   "factions": [
+    "에우고",
+    "네오 지온"
+   ],
+   "matched": 9,
+   "add_mech": [
+    {
+     "name": "짐Ⅲ",
+     "faction": "에우고",
+     "near": [
+      {
+       "dex": "자쿠 III",
+       "score": 0.667
+      },
+      {
+       "dex": "톨기스 III",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "풀 아머 ZZ건담",
+     "faction": "에우고",
+     "near": [
+      {
+       "dex": "풀아머 건담",
+       "score": 0.833
+      },
+      {
+       "dex": "ZZ건담",
+       "score": 0.727
+      }
+     ]
+    },
+    {
+     "name": "강화형 ZZ건담",
+     "faction": "에우고",
+     "near": [
+      {
+       "dex": "ZZ건담",
+       "score": 0.727
+      }
+     ]
+    },
+    {
+     "name": "가자C",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "가자D",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "갈루스J",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "즈사",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "함마 함마",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "R자자",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "바우",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "가 조움",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "드라이센",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "슈트룸 디아스",
+     "faction": "네오 지온",
+     "near": [
+      {
+       "dex": "릭 디아스",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "자쿠III 개량형",
+     "faction": "네오 지온",
+     "near": [
+      {
+       "dex": "자쿠II 개량형",
+       "score": 0.933
+      }
+     ]
+    },
+    {
+     "name": "가즈L",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "가즈R",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "리겔구",
+     "faction": "네오 지온",
+     "near": [
+      {
+       "dex": "겔구그",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "사이코 건담 Mk-II",
+     "faction": "네오 지온",
+     "near": [
+      {
+       "dex": "건담 Mk-II",
+       "score": 0.8
+      },
+      {
+       "dex": "사이코 건담",
+       "score": 0.714
+      }
+     ]
+    },
+    {
+     "name": "퀸 만사",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "큐베레이 Mk-Ⅱ",
+     "faction": "네오 지온",
+     "near": [
+      {
+       "dex": "큐베레이 Mk-II 플기",
+       "score": 0.889
+      },
+      {
+       "dex": "큐베레이 Mk-II 플투기",
+       "score": 0.842
+      }
+     ]
+    },
+    {
+     "name": "양산형 큐베레이",
+     "faction": "네오 지온",
+     "near": [
+      {
+       "dex": "큐베레이",
+       "score": 0.727
+      }
+     ]
+    }
+   ],
+   "add_ship": [
+    {
+     "name": "메가 라이더",
+     "faction": "에우고"
+    }
+   ],
+   "excluded": []
+  }
+ }
+}

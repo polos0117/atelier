@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-09-05T13:22:44Z",
+ "generated": "2026-09-05T13:36:14Z",
  "source": {
   "api": "https://soshage.com/ggetapi/ko/{entity}",
   "entities": {
@@ -25,8 +25,8 @@
  },
  "summary": {
   "mech": {
-   "matched": 211,
-   "review": 27,
+   "matched": 212,
+   "review": 26,
    "unmatched": 34,
    "total": 272
   },
@@ -1424,6 +1424,18 @@
     1110000200
    ],
    "models": "RGZ-91",
+   "series": [
+    "기동전사 건담 역습의 샤아"
+   ]
+  },
+  {
+   "dex": "알파 아질",
+   "match": "exact",
+   "api_name": "α 아질",
+   "ids": [
+    1110000600
+   ],
+   "models": "NZ-333",
    "series": [
     "기동전사 건담 역습의 샤아"
    ]
@@ -3814,22 +3826,6 @@
       ],
       "models": "ASW-G-08",
       "score": 0.75
-     }
-    ]
-   },
-   {
-    "dex": "알파 아질",
-    "candidates": [
-     {
-      "api_name": "α 아질",
-      "ids": [
-       1110000600,
-       1114000800,
-       1114000801,
-       1114000802
-      ],
-      "models": "NZ-333",
-      "score": 0.667
      }
     ]
    },

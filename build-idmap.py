@@ -41,56 +41,12 @@ SOURCES = ["play.html", "dex.html"]
 OUT = "id-map.json"
 OVERRIDES = "id-map.overrides.json"
 
-# 표기 치환. 저장소는 원작 표기, API 는 게임 내 표기를 쓴다.
-# 양쪽 문자열에 똑같이 적용하므로 방향은 상관없다.
-TRANSLIT = {
-    "ν": "뉴", "Ξ": "크시", "∀": "턴에이", "the o": "디오",
-    # 같은 기체의 음역만 다른 것들. 확인한 것만 넣는다.
-    "어스트레이": "아스트레이", "압사라스": "아프사라스", "거베라": "가베라",
-    "바체": "버체", "어헤드": "아헤드", "켈딤": "캘딤",
-    "쓰로네": "스로네", "내러티브": "나라티브", "듀얼": "듀엘",
-}
-
-# 기체 이름 앞뒤에 붙었다 말았다 하는 말. 붙인 형/뗀 형 양쪽으로 대조한다.
-# API 는 '건담 에피온', 저장소는 '에피온' 처럼 갈린다.
-TAIL = "건담"
-
-PAREN = re.compile(r"[(（][^)）]*[)）]")
-# (EX) 만 떼는 용도. 통상판과 (EX) 판은 같은 기체지만,
-# (에우고 사양)/(티탄즈 사양) 이나 (디스트로이 모드) 는 저장소가 따로 세는 별개 카드다.
-EX_MARK = re.compile(r"\s*[(（]\s*EX\s*[)）]\s*", re.I)
-EW = re.compile(r"[(（]\s*EW\s*Ver\.?[^)）]*[)）]", re.I)
+from gundam_match import (        # 이름 대조 규칙은 공용 모듈에 모아 두었다
+    TRANSLIT, TAIL, PAREN, EX_MARK, EW, norm, affixes,
+)
 
 FUZZY_CUTOFF = 0.60   # 이 아래는 후보로도 내놓지 않는다
 FUZZY_TOP = 3
-
-
-def _sub(s):
-    for a, b in TRANSLIT.items():
-        s = s.replace(a, b)
-    return s
-
-
-def norm(s, keep_paren=False):
-    """대조용 정규화. 구두점·공백을 버리고 표기를 통일한다.
-    전각 로마숫자(Ⅱ)는 NFKC 가 II 로 펴준다."""
-    s = unicodedata.normalize("NFKC", s or "")
-    if not keep_paren:
-        s = PAREN.sub("", s)
-    s = _sub(s.lower())
-    return re.sub(r"[^0-9a-z가-힣]", "", s)
-
-
-def affixes(q):
-    """'건담' 을 떼거나 앞뒤로 붙인 형들."""
-    out = {q}
-    if q.endswith(TAIL) and len(q) > len(TAIL):
-        out.add(q[: -len(TAIL)])
-    if q.startswith(TAIL) and len(q) > len(TAIL):
-        out.add(q[len(TAIL):])
-    out.add(q + TAIL)
-    out.add(TAIL + q)
-    return {x for x in out if x}
 
 
 # ---------------------------------------------------------------- 입력
