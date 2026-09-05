@@ -34,7 +34,8 @@ SEED ASTRAY 스타게이저)은 자동 대조에서도 추가 후보 0 으로 �
 2. Firecrawl 로 `series/<슬러그>/mecha` 를 받아 `official/mecha/<코드>.json` 에 넣는다
    (`{"세력": ["이름", ...]}` 꼴. 이 환경에서 공식 사이트는 직접 접근이 막혀 있다)
 3. `python3 build-official.py --report` 로 대조하고, `python3 build-roster.py` 로 카드를 만든다
-4. `python3 build-dex.py play.html` 로 도감을 다시 만든다
+4. `python3 build-dex.py play.html` 로 도감을, `python3 build-prompt.py` 로
+   툴킷(prompt.html)의 기체 사본을 다시 만든다. 둘 다 play.html 을 원본으로 삼는다
 
 ## 참고
 
