@@ -29,6 +29,7 @@ from gundam_match import norm, affixes, is_ship, is_excluded, is_variant, close
 
 SOURCES = ["play.html", "dex.html"]
 CACHE = "official/mecha"
+CACHE_C = "official/character"
 SLUGS = "official-slugs.json"
 OUT = "official-diff.json"
 
@@ -93,8 +94,14 @@ def main():
     path = pick_source()
     src = open(path, encoding="utf-8").read()
     MECH, SHIP = block(src, "MECH", path), block(src, "SHIP", path)
+    PILOT, CREW = block(src, "PILOT", path), block(src, "CREW", path)
     midx, sidx = index(MECH), index(SHIP)
     mpool, spool = set(midx), set(sidx)
+    # 인물은 PILOT 과 CREW 를 함께 본다. 공식 목록은 탑승자와 비탑승자를
+    # 한 페이지에 싣기 때문에 어느 쪽 카드가 될지는 사람이 정해야 한다.
+    pidx = index(PILOT)
+    pidx.update({k: v for k, v in index(CREW).items() if k not in pidx})
+    ppool = set(pidx)
 
     slugs = json.load(open(SLUGS, encoding="utf-8")) if os.path.exists(SLUGS) else {}
     out, done = {}, []
@@ -141,6 +148,39 @@ def main():
             "excluded": skip,
         }
 
+    # ---- 인물 대조
+    cout = {}
+    for code in sorted(slugs):
+        f = os.path.join(CACHE_C, code + ".json")
+        if not os.path.exists(f):
+            continue
+        off = json.load(open(f, encoding="utf-8"))
+        add, seen = [], 0
+        for fac, names in off.items():
+            for n in names:
+                q = norm(n)
+                if q in pidx:
+                    seen += 1
+                    continue
+                # 성을 생략한 저장소 표기 — '아무로' ↔ 공식 '아무로 레이'
+                pre = sorted({v for k, v in pidx.items()
+                              if len(k) >= 2 and (q.startswith(k) or k.startswith(q))})
+                if len(pre) == 1:
+                    seen += 1
+                    continue
+                row = {"name": n, "faction": fac}
+                cand = [{"dex": d, "score": None} for d in pre]
+                got = {c["dex"] for c in cand}
+                for k, v in close(q, ppool):
+                    if pidx[k] not in got:
+                        cand.append({"dex": pidx[k], "score": v})
+                        got.add(pidx[k])
+                if cand:
+                    row["near"] = cand
+                add.append(row)
+        cout[code] = {"official_total": sum(len(v) for v in off.values()),
+                      "matched": seen, "add_person": add}
+
     res = {
         "version": 1,
         "generated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -155,6 +195,10 @@ def main():
                         "배리에이션": len(v["variants"])}
                     for c, v in out.items()},
         "series": out,
+        "character_summary": {c: {"공식": v["official_total"], "보유": v["matched"],
+                                  "인물추가": len(v["add_person"])}
+                              for c, v in cout.items()},
+        "character": cout,
     }
     json.dump(res, open(a.out, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
@@ -166,6 +210,11 @@ def main():
     for c, v in res["summary"].items():
         print(f"  {c:9} 공식 {v['공식']:>3}  보유 {v['보유']:>3}  "
               f"기체+{v['기체추가']:<3} 함선+{v['함선추가']:<2} 배리에이션 {v['배리에이션']}")
+
+    tp = sum(len(v["add_person"]) for v in cout.values())
+    tc = sum(v["matched"] for v in cout.values())
+    print(f"  인물: 공식 {sum(v['official_total'] for v in cout.values())} / "
+          f"보유 {tc} / 추가 후보 {tp}")
 
     if a.report:
         for c, v in out.items():

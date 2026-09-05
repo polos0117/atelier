@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-09-05T13:47:30Z",
+ "generated": "2026-09-05T13:58:55Z",
  "source": {
   "cards": "play.html",
   "official": "kr.gundam-official.com",
@@ -5026,6 +5026,3949 @@
     }
    ],
    "excluded": []
+  }
+ },
+ "character_summary": {
+  "00": {
+   "공식": 58,
+   "보유": 16,
+   "인물추가": 42
+  },
+  "0079": {
+   "공식": 46,
+   "보유": 13,
+   "인물추가": 33
+  },
+  "0080": {
+   "공식": 7,
+   "보유": 3,
+   "인물추가": 4
+  },
+  "0083": {
+   "공식": 35,
+   "보유": 6,
+   "인물추가": 29
+  },
+  "00M": {
+   "공식": 23,
+   "보유": 13,
+   "인물추가": 10
+  },
+  "08MS": {
+   "공식": 20,
+   "보유": 3,
+   "인물추가": 17
+  },
+  "AGE": {
+   "공식": 96,
+   "보유": 4,
+   "인물추가": 92
+  },
+  "ASTRAY": {
+   "공식": 6,
+   "보유": 0,
+   "인물추가": 6
+  },
+  "CCA": {
+   "공식": 11,
+   "보유": 10,
+   "인물추가": 1
+  },
+  "DESTINY": {
+   "공식": 41,
+   "보유": 7,
+   "인물추가": 34
+  },
+  "EW": {
+   "공식": 12,
+   "보유": 8,
+   "인물추가": 4
+  },
+  "F91": {
+   "공식": 36,
+   "보유": 5,
+   "인물추가": 31
+  },
+  "FREEDOM": {
+   "공식": 36,
+   "보유": 0,
+   "인물추가": 36
+  },
+  "G": {
+   "공식": 35,
+   "보유": 5,
+   "인물추가": 30
+  },
+  "GQ": {
+   "공식": 50,
+   "보유": 8,
+   "인물추가": 42
+  },
+  "HATHAWAY": {
+   "공식": 22,
+   "보유": 3,
+   "인물추가": 19
+  },
+  "IBO": {
+   "공식": 68,
+   "보유": 12,
+   "인물추가": 56
+  },
+  "NT": {
+   "공식": 21,
+   "보유": 4,
+   "인물추가": 17
+  },
+  "SEED": {
+   "공식": 38,
+   "보유": 4,
+   "인물추가": 34
+  },
+  "TA": {
+   "공식": 36,
+   "보유": 4,
+   "인물추가": 32
+  },
+  "TB": {
+   "공식": 0,
+   "보유": 0,
+   "인물추가": 0
+  },
+  "UNICORN": {
+   "공식": 35,
+   "보유": 4,
+   "인물추가": 31
+  },
+  "V": {
+   "공식": 59,
+   "보유": 2,
+   "인물추가": 57
+  },
+  "W": {
+   "공식": 22,
+   "보유": 9,
+   "인물추가": 13
+  },
+  "WM": {
+   "공식": 56,
+   "보유": 11,
+   "인물추가": 45
+  },
+  "X": {
+   "공식": 16,
+   "보유": 3,
+   "인물추가": 13
+  },
+  "Z": {
+   "공식": 45,
+   "보유": 18,
+   "인물추가": 27
+  },
+  "ZZ": {
+   "공식": 27,
+   "보유": 9,
+   "인물추가": 18
+  }
+ },
+ "character": {
+  "00": {
+   "official_total": 58,
+   "matched": 16,
+   "add_person": [
+    {
+     "name": "밀레이나 바스티",
+     "faction": "솔레스탈 빙",
+     "near": [
+      {
+       "dex": "이안 바스티",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "린다 바스티",
+     "faction": "솔레스탈 빙",
+     "near": [
+      {
+       "dex": "이안 바스티",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "어뉴 리터너",
+     "faction": "솔레스탈 빙"
+    },
+    {
+     "name": "리히텐달 체리",
+     "faction": "솔레스탈 빙"
+    },
+    {
+     "name": "JB 모레노",
+     "faction": "솔레스탈 빙"
+    },
+    {
+     "name": "왕 류밍",
+     "faction": "에이전트"
+    },
+    {
+     "name": "홍롱",
+     "faction": "에이전트"
+    },
+    {
+     "name": "네나 트리니티",
+     "faction": "에이전트",
+     "near": [
+      {
+       "dex": "넨나 트리니티",
+       "score": 0.833
+      }
+     ]
+    },
+    {
+     "name": "요한 트리니티",
+     "faction": "팀 트리니티",
+     "near": [
+      {
+       "dex": "넨나 트리니티",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "미하엘 트리니티",
+     "faction": "팀 트리니티",
+     "near": [
+      {
+       "dex": "넨나 트리니티",
+       "score": 0.615
+      }
+     ]
+    },
+    {
+     "name": "알레한드로 코너",
+     "faction": "감시자"
+    },
+    {
+     "name": "이오리아 쉔베르그",
+     "faction": "CB 창설자"
+    },
+    {
+     "name": "리제네 레제타",
+     "faction": "이노베이터"
+    },
+    {
+     "name": "리바이브 리바이벌",
+     "faction": "이노베이터"
+    },
+    {
+     "name": "힐링 케어",
+     "faction": "이노베이터"
+    },
+    {
+     "name": "브링 스태비티",
+     "faction": "이노베이터"
+    },
+    {
+     "name": "디바인 노바",
+     "faction": "이노베이터"
+    },
+    {
+     "name": "시린 박티아르",
+     "faction": "카타론"
+    },
+    {
+     "name": "클라우스 그라드",
+     "faction": "카타론"
+    },
+    {
+     "name": "아베드",
+     "faction": "카타론"
+    },
+    {
+     "name": "야엘",
+     "faction": "카타론"
+    },
+    {
+     "name": "리안",
+     "faction": "카타론"
+    },
+    {
+     "name": "모세",
+     "faction": "카타론"
+    },
+    {
+     "name": "요셉",
+     "faction": "카타론"
+    },
+    {
+     "name": "다비드",
+     "faction": "카타론"
+    },
+    {
+     "name": "호머 카타기리",
+     "faction": "어로우즈"
+    },
+    {
+     "name": "아서 굿맨",
+     "faction": "어로우즈"
+    },
+    {
+     "name": "커티 마네킹",
+     "faction": "어로우즈"
+    },
+    {
+     "name": "리 저장",
+     "faction": "어로우즈"
+    },
+    {
+     "name": "애버 린트",
+     "faction": "어로우즈"
+    },
+    {
+     "name": "미스터 부시도",
+     "faction": "어로우즈"
+    },
+    {
+     "name": "빌리 카타기리",
+     "faction": "어로우즈"
+    },
+    {
+     "name": "버락 지닌",
+     "faction": "어로우즈"
+    },
+    {
+     "name": "루이스 할레비",
+     "faction": "어로우즈"
+    },
+    {
+     "name": "세르게이 스미르노프",
+     "faction": "지구연합",
+     "near": [
+      {
+       "dex": "안드레이 스미르노프",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "팡 허큐리",
+     "faction": "지구연합"
+    },
+    {
+     "name": "레이프 에이프먼",
+     "faction": "구 유니온"
+    },
+    {
+     "name": "하워드 메이슨",
+     "faction": "구 유니온"
+    },
+    {
+     "name": "대릴 더치",
+     "faction": "구 유니온"
+    },
+    {
+     "name": "아리 알 사세스",
+     "faction": "용병",
+     "near": [
+      {
+       "dex": "알리 알 사셰스",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "사지 크로스로드",
+     "faction": "민간인"
+    },
+    {
+     "name": "키누에 크로스로드",
+     "faction": "민간인"
+    }
+   ]
+  },
+  "0079": {
+   "official_total": 46,
+   "matched": 13,
+   "add_person": [
+    {
+     "name": "하야토 코바야시",
+     "faction": "지구연방군",
+     "near": [
+      {
+       "dex": "카츠 코바야시",
+       "score": 0.615
+      }
+     ]
+    },
+    {
+     "name": "세이라 마스",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "프라우 보우",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "류 호세이",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "오무르 항",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "왓케인",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "조브 존",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "파올로 카시아스",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "마틸다 아잔",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "슬레거 로우",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "우디",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "템 레이",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "카츠 하윈",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "레츠 코팬",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "키카 키타모토",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "레빌",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "데님",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "진",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "가뎀",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "크라운",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "람바 랄",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "란바 랄",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "클라우레 하몬",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "코즌 그레이엄",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "클램프",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "쿠쿠루스 도안",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "오르테가",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "오르가 이츠카",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "맛슈",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "우라간",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "미하루 라토키에",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "콘스콘",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "마리간",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "드렌",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "샤리아 불",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "샤아",
+       "score": 0.667
+      }
+     ]
+    }
+   ]
+  },
+  "0080": {
+   "official_total": 7,
+   "matched": 3,
+   "add_person": [
+    {
+     "name": "하디 슈타이너",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "미하일 카민스키",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "가브리엘 라미레스 가르시아",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "앤디 스트라우스",
+     "faction": "지온 공국군"
+    }
+   ]
+  },
+  "0083": {
+   "official_total": 35,
+   "matched": 6,
+   "add_person": [
+    {
+     "name": "척 키스",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "사우스 버닝",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "알파 A. 베이트",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "베르나르도 몬시아",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "챕 아델",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "이반 파사로프",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "딕 알렌",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "라반 커크스",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "호킨스 머네리",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "Y 비콕",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "윌리엄 모리스",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "재클린 시몬",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "피커 스콧",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "아크람 할리다",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "모라 바시트",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "니나 퍼플튼",
+     "faction": "애너하임",
+     "near": [
+      {
+       "dex": "니나 퍼플턴",
+       "score": 0.8
+      }
+     ]
+    },
+    {
+     "name": "닉 오빌",
+     "faction": "애너하임"
+    },
+    {
+     "name": "폴라 기리쉬",
+     "faction": "애너하임"
+    },
+    {
+     "name": "루셋 오데비",
+     "faction": "애너하임"
+    },
+    {
+     "name": "클레나 핵셀",
+     "faction": "애너하임"
+    },
+    {
+     "name": "밥",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "아담스키",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "게이리",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "노이엔 비터",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "카리우스",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "쿠르트",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "케리 레즈너",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "켈리 레즈너",
+       "score": 0.8
+      }
+     ]
+    },
+    {
+     "name": "빌리 그라들",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "데트로프 코셀",
+     "faction": "지온 공국군"
+    }
+   ]
+  },
+  "00M": {
+   "official_total": 23,
+   "matched": 13,
+   "add_person": [
+    {
+     "name": "밀레이나 바스티",
+     "faction": "솔레스탈 빙",
+     "near": [
+      {
+       "dex": "이안 바스티",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "린다 바스티",
+     "faction": "솔레스탈 빙",
+     "near": [
+      {
+       "dex": "이안 바스티",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "데카르트 샤먼",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "빌리 카타기리",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "커티 마네킹",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "클라우스 그라드",
+     "faction": "기타"
+    },
+    {
+     "name": "시린 박티아르",
+     "faction": "기타"
+    },
+    {
+     "name": "사지 크로스로드",
+     "faction": "기타"
+    },
+    {
+     "name": "루이스 할레비",
+     "faction": "기타"
+    },
+    {
+     "name": "미나 카마인",
+     "faction": "기타"
+    }
+   ]
+  },
+  "08MS": {
+   "official_total": 20,
+   "matched": 3,
+   "add_person": [
+    {
+     "name": "미켈 니노리치",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "테리 샌더스 Jr.",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "카렌 조슈아",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "엘레도어 마시스",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "샐리",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "롭",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "마이크",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "지단 니커드",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "코지마",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "이산 라이어",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "아이나 사할린",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "아이나 사하린",
+       "score": 0.833
+      }
+     ]
+    },
+    {
+     "name": "기니어스 사할린",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "톱",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "아스",
+     "faction": "지온 공국군",
+     "near": [
+      {
+       "dex": "아스란 자라",
+       "score": null
+      },
+      {
+       "dex": "아스토니지 메드쓰",
+       "score": null
+      },
+      {
+       "dex": "신 아스카",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "유리 켈러네",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "본 아브스트",
+     "faction": "지온 공국군"
+    },
+    {
+     "name": "키키 로지타",
+     "faction": "민간인(게릴라)"
+    }
+   ]
+  },
+  "AGE": {
+   "official_total": 96,
+   "matched": 4,
+   "add_person": [
+    {
+     "name": "유린 루셸",
+     "faction": "플리트의 동료들"
+    },
+    {
+     "name": "에밀리 아몬드",
+     "faction": "플리트의 동료들"
+    },
+    {
+     "name": "디케 건헤일",
+     "faction": "플리트의 동료들"
+    },
+    {
+     "name": "바르가스 다이슨",
+     "faction": "플리트의 동료들"
+    },
+    {
+     "name": "그로덱 아이노아",
+     "faction": "지구연방군(플리트 편)"
+    },
+    {
+     "name": "미레이스 아로이",
+     "faction": "지구연방군(플리트 편)"
+    },
+    {
+     "name": "라간 드레이스",
+     "faction": "지구연방군(플리트 편)"
+    },
+    {
+     "name": "아담스 티넬",
+     "faction": "지구연방군(플리트 편)"
+    },
+    {
+     "name": "헨드릭 브루저",
+     "faction": "지구연방군(플리트 편)"
+    },
+    {
+     "name": "디안 폰로이드",
+     "faction": "지구연방군(플리트 편)"
+    },
+    {
+     "name": "이노 레진",
+     "faction": "지구연방군(플리트 편)"
+    },
+    {
+     "name": "월트 베트",
+     "faction": "지구연방군(플리트 편)"
+    },
+    {
+     "name": "에드워드 오타와",
+     "faction": "지구연방군(플리트 편)"
+    },
+    {
+     "name": "오네트 코리",
+     "faction": "지구연방군(플리트 편)"
+    },
+    {
+     "name": "스트라 구아바란",
+     "faction": "지구연방군(플리트 편)"
+    },
+    {
+     "name": "데실 가레트",
+     "faction": "기타(플리트 편)"
+    },
+    {
+     "name": "야크 도레",
+     "faction": "기타(플리트 편)"
+    },
+    {
+     "name": "돈 보야지",
+     "faction": "기타(플리트 편)"
+    },
+    {
+     "name": "라크트 엘파멜",
+     "faction": "기타(플리트 편)"
+    },
+    {
+     "name": "이워크 브라이어",
+     "faction": "기타(플리트 편)"
+    },
+    {
+     "name": "무크레드 마도나",
+     "faction": "기타(플리트 편)"
+    },
+    {
+     "name": "라라팔리 마도나",
+     "faction": "기타(플리트 편)"
+    },
+    {
+     "name": "알자크 버밍스",
+     "faction": "기타(플리트 편)"
+    },
+    {
+     "name": "기라 조이",
+     "faction": "기타(플리트 편)"
+    },
+    {
+     "name": "아라벨 조이",
+     "faction": "기타(플리트 편)"
+    },
+    {
+     "name": "로마리 스톤",
+     "faction": "지구연방군(아세무 편)",
+     "near": [
+      {
+       "dex": "소마 필리스",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "프레데릭 알그레아스",
+     "faction": "지구연방군(아세무 편)"
+    },
+    {
+     "name": "아리사 건헤일",
+     "faction": "지구연방군(아세무 편)"
+    },
+    {
+     "name": "맥스 하트웨이",
+     "faction": "지구연방군(아세무 편)"
+    },
+    {
+     "name": "오브라이트 로레인",
+     "faction": "지구연방군(아세무 편)",
+     "near": [
+      {
+       "dex": "브라이트",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "알란 라이트니",
+     "faction": "지구연방군(아세무 편)",
+     "near": [
+      {
+       "dex": "브라이트",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "이리샤 무라이",
+     "faction": "지구연방군(아세무 편)"
+    },
+    {
+     "name": "윌나 자니스티",
+     "faction": "지구연방군(아세무 편)"
+    },
+    {
+     "name": "엘 토니즈",
+     "faction": "지구연방군(아세무 편)"
+    },
+    {
+     "name": "오디오 브란",
+     "faction": "지구연방군(아세무 편)"
+    },
+    {
+     "name": "레미 루스",
+     "faction": "지구연방군(아세무 편)"
+    },
+    {
+     "name": "제하트 가레트",
+     "faction": "베이건(아세무 편)"
+    },
+    {
+     "name": "메델 잔트",
+     "faction": "베이건(아세무 편)"
+    },
+    {
+     "name": "다즈 로덴",
+     "faction": "베이건(아세무 편)"
+    },
+    {
+     "name": "이고르 에반스",
+     "faction": "베이건(아세무 편)"
+    },
+    {
+     "name": "돌 프로스트",
+     "faction": "베이건(아세무 편)",
+     "near": [
+      {
+       "dex": "올바 프로스트",
+       "score": 0.727
+      },
+      {
+       "dex": "샤기아 프로스트",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "그린 라이즈",
+     "faction": "베이건(아세무 편)"
+    },
+    {
+     "name": "레오 루이스",
+     "faction": "베이건(아세무 편)"
+    },
+    {
+     "name": "자파 로그",
+     "faction": "베이건(아세무 편)"
+    },
+    {
+     "name": "밍크 레이덴",
+     "faction": "베이건(아세무 편)"
+    },
+    {
+     "name": "젤 브란트",
+     "faction": "베이건(아세무 편)"
+    },
+    {
+     "name": "레시 아도넬",
+     "faction": "베이건(아세무 편)"
+    },
+    {
+     "name": "네드 칸",
+     "faction": "베이건(아세무 편)"
+    },
+    {
+     "name": "마실 보이드",
+     "faction": "콜로니 토르디아"
+    },
+    {
+     "name": "샤위 벨튼",
+     "faction": "콜로니 토르디아"
+    },
+    {
+     "name": "로드 아브스",
+     "faction": "콜로니 토르디아"
+    },
+    {
+     "name": "유노아 아스노",
+     "faction": "콜로니 토르디아",
+     "near": [
+      {
+       "dex": "아세무 아스노",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "에밀리 아스노",
+     "faction": "콜로니 토르디아",
+     "near": [
+      {
+       "dex": "플리트 아스노",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "조세 마리스",
+     "faction": "콜로니 토르디아",
+     "near": [
+      {
+       "dex": "소마 필리스",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "한스 루지",
+     "faction": "콜로니 토르디아"
+    },
+    {
+     "name": "웬디 하츠",
+     "faction": "지구(키오 편)"
+    },
+    {
+     "name": "우트비트 건헤일",
+     "faction": "지구(키오 편)"
+    },
+    {
+     "name": "로디 마도나",
+     "faction": "지구(키오 편)"
+    },
+    {
+     "name": "나토라 에이나스",
+     "faction": "지구(키오 편)"
+    },
+    {
+     "name": "세릭 어비스",
+     "faction": "지구(키오 편)"
+    },
+    {
+     "name": "샤나루아 멀렌",
+     "faction": "지구(키오 편)"
+    },
+    {
+     "name": "조나단 기스타브",
+     "faction": "지구(키오 편)"
+    },
+    {
+     "name": "데렉 잭로우",
+     "faction": "지구(키오 편)"
+    },
+    {
+     "name": "레블스 라몬드",
+     "faction": "지구(키오 편)"
+    },
+    {
+     "name": "케인 로이스",
+     "faction": "지구(키오 편)"
+    },
+    {
+     "name": "로지 밀리우",
+     "faction": "지구(키오 편)"
+    },
+    {
+     "name": "유우",
+     "faction": "지구(키오 편)"
+    },
+    {
+     "name": "타쿠",
+     "faction": "지구(키오 편)"
+    },
+    {
+     "name": "루카",
+     "faction": "지구(키오 편)",
+     "near": [
+      {
+       "dex": "루 루카",
+       "score": 0.8
+      }
+     ]
+    },
+    {
+     "name": "알리 레인",
+     "faction": "지구(키오 편)"
+    },
+    {
+     "name": "에이라 로즈",
+     "faction": "지구(키오 편)"
+    },
+    {
+     "name": "칼 도슨",
+     "faction": "지구(키오 편)"
+    },
+    {
+     "name": "오트로 반타",
+     "faction": "지구(키오 편)"
+    },
+    {
+     "name": "이산 셰로우",
+     "faction": "지구(키오 편)"
+    },
+    {
+     "name": "웡 카스트로파",
+     "faction": "지구(키오 편)"
+    },
+    {
+     "name": "페자르 이젤칸트",
+     "faction": "베이건(키오 편)",
+     "near": [
+      {
+       "dex": "이젤칸트",
+       "score": 0.727
+      }
+     ]
+    },
+    {
+     "name": "자날드 베이하트",
+     "faction": "베이건(키오 편)"
+    },
+    {
+     "name": "고돔 타이남",
+     "faction": "베이건(키오 편)"
+    },
+    {
+     "name": "그라트 오토",
+     "faction": "베이건(키오 편)"
+    },
+    {
+     "name": "데몬 라지",
+     "faction": "베이건(키오 편)"
+    },
+    {
+     "name": "프람 나라",
+     "faction": "베이건(키오 편)"
+    },
+    {
+     "name": "레일 라이트",
+     "faction": "베이건(키오 편)",
+     "near": [
+      {
+       "dex": "브라이트",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "다레스트 군",
+     "faction": "베이건(키오 편)"
+    },
+    {
+     "name": "도레네 이젤칸트",
+     "faction": "베이건(키오 편)",
+     "near": [
+      {
+       "dex": "이젤칸트",
+       "score": 0.727
+      }
+     ]
+    },
+    {
+     "name": "딘 아논",
+     "faction": "베이건(키오 편)"
+    },
+    {
+     "name": "루우 아논",
+     "faction": "베이건(키오 편)"
+    },
+    {
+     "name": "지라드 스프리건",
+     "faction": "베이건(키오 편)"
+    },
+    {
+     "name": "아론 시몬즈",
+     "faction": "베이건(키오 편)"
+    },
+    {
+     "name": "팔크 오크라무드",
+     "faction": "베이건(키오 편)"
+    },
+    {
+     "name": "제라 긴스",
+     "faction": "베이건(키오 편)"
+    },
+    {
+     "name": "캡틴 애시",
+     "faction": "우주 해적 비시디언"
+    },
+    {
+     "name": "라독 혼",
+     "faction": "우주 해적 비시디언"
+    }
+   ]
+  },
+  "ASTRAY": {
+   "official_total": 6,
+   "matched": 0,
+   "add_person": [
+    {
+     "name": "셀레네 맥그리프",
+     "faction": "전체"
+    },
+    {
+     "name": "스웬 칼 바얀",
+     "faction": "전체"
+    },
+    {
+     "name": "에드먼드 뒤클로",
+     "faction": "전체"
+    },
+    {
+     "name": "솔 뤼네 랑주",
+     "faction": "전체"
+    },
+    {
+     "name": "뮤디 홀크로프트",
+     "faction": "전체"
+    },
+    {
+     "name": "샴스 코자",
+     "faction": "전체"
+    }
+   ]
+  },
+  "CCA": {
+   "official_total": 11,
+   "matched": 10,
+   "add_person": [
+    {
+     "name": "케라 수",
+     "faction": "지구연방",
+     "near": [
+      {
+       "dex": "케라 스",
+       "score": 0.667
+      }
+     ]
+    }
+   ]
+  },
+  "DESTINY": {
+   "official_total": 41,
+   "matched": 7,
+   "add_person": [
+    {
+     "name": "Shinn Asuka",
+     "faction": "전체"
+    },
+    {
+     "name": "Lunamaria Hawke",
+     "faction": "전체"
+    },
+    {
+     "name": "Athrun Zala",
+     "faction": "전체"
+    },
+    {
+     "name": "Arthur Trine",
+     "faction": "전체"
+    },
+    {
+     "name": "길버트 듀랜달",
+     "faction": "전체"
+    },
+    {
+     "name": "Meyrin Hawke",
+     "faction": "전체"
+    },
+    {
+     "name": "Vino Dupré",
+     "faction": "전체"
+    },
+    {
+     "name": "욜란 켄트",
+     "faction": "전체"
+    },
+    {
+     "name": "Madd Aves",
+     "faction": "전체"
+    },
+    {
+     "name": "미아 캠벨",
+     "faction": "전체"
+    },
+    {
+     "name": "Yzak Jule",
+     "faction": "전체"
+    },
+    {
+     "name": "Dearka Elthman",
+     "faction": "전체"
+    },
+    {
+     "name": "Abbey Windsor",
+     "faction": "전체"
+    },
+    {
+     "name": "로드 지브릴",
+     "faction": "전체"
+    },
+    {
+     "name": "Cagalli Yula Athha",
+     "faction": "전체"
+    },
+    {
+     "name": "유우나 로마 세이란",
+     "faction": "전체"
+    },
+    {
+     "name": "우나트 에마 세이란",
+     "faction": "전체"
+    },
+    {
+     "name": "Ledonir Kisaka",
+     "faction": "전체"
+    },
+    {
+     "name": "토다카",
+     "faction": "전체"
+    },
+    {
+     "name": "Amagi",
+     "faction": "전체"
+    },
+    {
+     "name": "마르키오",
+     "faction": "전체"
+    },
+    {
+     "name": "Kira Yamato",
+     "faction": "전체"
+    },
+    {
+     "name": "Lacus Clyne",
+     "faction": "전체"
+    },
+    {
+     "name": "Murrue Ramius",
+     "faction": "전체"
+    },
+    {
+     "name": "Mu La Flaga",
+     "faction": "전체"
+    },
+    {
+     "name": "Miriallia Haw",
+     "faction": "전체"
+    },
+    {
+     "name": "Arnold Neumann",
+     "faction": "전체"
+    },
+    {
+     "name": "Dalida Lolaha Chandra II",
+     "faction": "전체"
+    },
+    {
+     "name": "코지로 머독",
+     "faction": "전체"
+    },
+    {
+     "name": "Andrew Waldfeld",
+     "faction": "전체"
+    },
+    {
+     "name": "Martin DaCosta",
+     "faction": "전체"
+    },
+    {
+     "name": "Hilda Haken",
+     "faction": "전체"
+    },
+    {
+     "name": "Herbert Von Reinhard",
+     "faction": "전체"
+    },
+    {
+     "name": "Maas Symeon",
+     "faction": "전체"
+    }
+   ]
+  },
+  "EW": {
+   "official_total": 12,
+   "matched": 8,
+   "add_person": [
+    {
+     "name": "리리나 도리안",
+     "faction": "전체",
+     "near": [
+      {
+       "dex": "릴리나 도리안",
+       "score": 0.833
+      }
+     ]
+    },
+    {
+     "name": "데킴 버튼",
+     "faction": "전체"
+    },
+    {
+     "name": "마리메이어 크슈리나다",
+     "faction": "전체"
+    },
+    {
+     "name": "샐리 포",
+     "faction": "전체"
+    }
+   ]
+  },
+  "F91": {
+   "official_total": 36,
+   "matched": 5,
+   "add_person": [
+    {
+     "name": "리즈 아노",
+     "faction": "민간인, 기타",
+     "near": [
+      {
+       "dex": "플리트 아스노",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "드와이트 카무리",
+     "faction": "민간인, 기타"
+    },
+    {
+     "name": "조지 아즈마",
+     "faction": "민간인, 기타"
+    },
+    {
+     "name": "샘 에르그",
+     "faction": "민간인, 기타"
+    },
+    {
+     "name": "도로시 무어",
+     "faction": "민간인, 기타"
+    },
+    {
+     "name": "벨도 로드리게스",
+     "faction": "민간인, 기타"
+    },
+    {
+     "name": "미겐 마우진",
+     "faction": "민간인, 기타"
+    },
+    {
+     "name": "리아 마리바",
+     "faction": "민간인, 기타"
+    },
+    {
+     "name": "코춘 하인",
+     "faction": "민간인, 기타"
+    },
+    {
+     "name": "아서 융",
+     "faction": "민간인, 기타"
+    },
+    {
+     "name": "레즐리 아노",
+     "faction": "민간인, 기타"
+    },
+    {
+     "name": "시오 페어차일드",
+     "faction": "민간인, 기타",
+     "near": [
+      {
+       "dex": "세실리 페어차일드",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "나디아 로나",
+     "faction": "민간인, 기타",
+     "near": [
+      {
+       "dex": "디아나 소렐",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "코즈모 에이게스",
+     "faction": "민간인, 기타"
+    },
+    {
+     "name": "엘름",
+     "faction": "민간인, 기타"
+    },
+    {
+     "name": "민미 에디토",
+     "faction": "민간인, 기타"
+    },
+    {
+     "name": "로이 융",
+     "faction": "민간인, 기타"
+    },
+    {
+     "name": "마이처 로나",
+     "faction": "크로스본 뱅가드"
+    },
+    {
+     "name": "안나마리 브루제",
+     "faction": "크로스본 뱅가드",
+     "near": [
+      {
+       "dex": "안나마리 부르제",
+       "score": 0.714
+      }
+     ]
+    },
+    {
+     "name": "질레 크루거",
+     "faction": "크로스본 뱅가드"
+    },
+    {
+     "name": "레알리 에드베리",
+     "faction": "지구연방군",
+     "near": [
+      {
+       "dex": "레아리 에다베리",
+       "score": 0.714
+      }
+     ]
+    },
+    {
+     "name": "비르기토 피리요",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "모니카 아노",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "그루스 에라스",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "난토 루스",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "마누엘라 파노파",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "케인 슨",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "제시카 엔그로",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "마누 소프",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "디나 조크",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "케니 하하",
+     "faction": "지구연방군"
+    }
+   ]
+  },
+  "FREEDOM": {
+   "official_total": 36,
+   "matched": 0,
+   "add_person": [
+    {
+     "name": "Kira Yamato",
+     "faction": "COMPASS"
+    },
+    {
+     "name": "Lacus Clyne",
+     "faction": "COMPASS"
+    },
+    {
+     "name": "Shinn Asuka",
+     "faction": "COMPASS"
+    },
+    {
+     "name": "Lunamaria Hawke",
+     "faction": "COMPASS"
+    },
+    {
+     "name": "Agnes Giebenrath",
+     "faction": "COMPASS"
+    },
+    {
+     "name": "Alexei Konoe",
+     "faction": "COMPASS"
+    },
+    {
+     "name": "Arthur Trine",
+     "faction": "COMPASS"
+    },
+    {
+     "name": "Albert Heinlein",
+     "faction": "COMPASS"
+    },
+    {
+     "name": "Hilda Haken",
+     "faction": "COMPASS"
+    },
+    {
+     "name": "Maas Symeon",
+     "faction": "COMPASS"
+    },
+    {
+     "name": "Herbert Von Reinhard",
+     "faction": "COMPASS"
+    },
+    {
+     "name": "Abbey Windsor",
+     "faction": "COMPASS"
+    },
+    {
+     "name": "Murrue Ramius",
+     "faction": "COMPASS"
+    },
+    {
+     "name": "Mu La Flaga",
+     "faction": "COMPASS"
+    },
+    {
+     "name": "Arnold Neumann",
+     "faction": "COMPASS"
+    },
+    {
+     "name": "Dalida Lolaha Chandra II",
+     "faction": "COMPASS"
+    },
+    {
+     "name": "Lio Mao",
+     "faction": "COMPASS"
+    },
+    {
+     "name": "Athrun Zala",
+     "faction": "Terminal"
+    },
+    {
+     "name": "Meyrin Hawke",
+     "faction": "Terminal"
+    },
+    {
+     "name": "Cagalli Yula Athha",
+     "faction": "Orb United Emirates"
+    },
+    {
+     "name": "Toyah Mashima",
+     "faction": "Orb United Emirates"
+    },
+    {
+     "name": "Erica Simmons",
+     "faction": "Orb United Emirates"
+    },
+    {
+     "name": "Yzak Jule",
+     "faction": "P.L.A.N.T./Z.A.F.T."
+    },
+    {
+     "name": "Dearka Elthman",
+     "faction": "P.L.A.N.T./Z.A.F.T."
+    },
+    {
+     "name": "Walter de Lament",
+     "faction": "P.L.A.N.T./Z.A.F.T."
+    },
+    {
+     "name": "Hari Jagannath",
+     "faction": "P.L.A.N.T./Z.A.F.T."
+    },
+    {
+     "name": "Aura Maha Khyber",
+     "faction": "Kingdom of Foundation"
+    },
+    {
+     "name": "Orphee Lam Tao",
+     "faction": "Kingdom of Foundation"
+    },
+    {
+     "name": "Shura Serpentine",
+     "faction": "Kingdom of Foundation"
+    },
+    {
+     "name": "Ingrid Tradoll",
+     "faction": "Kingdom of Foundation"
+    },
+    {
+     "name": "Redelard Tradoll",
+     "faction": "Kingdom of Foundation"
+    },
+    {
+     "name": "Daniel Harper",
+     "faction": "Kingdom of Foundation"
+    },
+    {
+     "name": "Liu Shenqiang",
+     "faction": "Kingdom of Foundation"
+    },
+    {
+     "name": "Griffin Arbalest",
+     "faction": "Kingdom of Foundation"
+    },
+    {
+     "name": "Foster",
+     "faction": "Earth Alliance"
+    },
+    {
+     "name": "Michael",
+     "faction": "Earth Alliance"
+    }
+   ]
+  },
+  "G": {
+   "official_total": 35,
+   "matched": 5,
+   "add_person": [
+    {
+     "name": "우르베 이시카와",
+     "faction": "네오 재팬"
+    },
+    {
+     "name": "미카무라 박사",
+     "faction": "네오 재팬",
+     "near": [
+      {
+       "dex": "레인 미카무라",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "쿄우지 캇슈",
+     "faction": "네오 재팬"
+    },
+    {
+     "name": "캇슈 박사",
+     "faction": "네오 재팬"
+    },
+    {
+     "name": "웡 윤화",
+     "faction": "네오 홍콩"
+    },
+    {
+     "name": "슈바르츠 브루더",
+     "faction": "네오 도이치"
+    },
+    {
+     "name": "셜리 렌",
+     "faction": "네오 아메리카"
+    },
+    {
+     "name": "자넷 스미스",
+     "faction": "네오 아메리카"
+    },
+    {
+     "name": "캐스 로나리",
+     "faction": "네오 아메리카"
+    },
+    {
+     "name": "버니 히긴즈",
+     "faction": "네오 아메리카"
+    },
+    {
+     "name": "즈이센",
+     "faction": "네오 차이나"
+    },
+    {
+     "name": "케이운",
+     "faction": "네오 차이나"
+    },
+    {
+     "name": "죠르쥬 드 상드",
+     "faction": "네오 프랑스",
+     "near": [
+      {
+       "dex": "죠르쥬 드 사드",
+       "score": 0.833
+      }
+     ]
+    },
+    {
+     "name": "마리아 루이제",
+     "faction": "네오 프랑스"
+    },
+    {
+     "name": "레이몬드 비숍",
+     "faction": "네오 프랑스"
+    },
+    {
+     "name": "아르고 갈스키",
+     "faction": "네오 러시아",
+     "near": [
+      {
+       "dex": "아르고 가르스키",
+       "score": 0.769
+      }
+     ]
+    },
+    {
+     "name": "나스타샤 자비코프",
+     "faction": "네오 러시아"
+    },
+    {
+     "name": "아렌비 비어즐리",
+     "faction": "네오 스웨덴"
+    },
+    {
+     "name": "퀸 더 스페이드",
+     "faction": "셔플 동맹"
+    },
+    {
+     "name": "블랙 조커",
+     "faction": "셔플 동맹"
+    },
+    {
+     "name": "잭 인 다이아",
+     "faction": "셔플 동맹"
+    },
+    {
+     "name": "클럽 에이스",
+     "faction": "셔플 동맹"
+    },
+    {
+     "name": "미켈로 채리엇",
+     "faction": "세계의 건담 파이터"
+    },
+    {
+     "name": "앤드류 그래험",
+     "faction": "세계의 건담 파이터"
+    },
+    {
+     "name": "젠틀 채프먼",
+     "faction": "세계의 건담 파이터"
+    },
+    {
+     "name": "키랄 메키렐",
+     "faction": "세계의 건담 파이터"
+    },
+    {
+     "name": "한스 홀거",
+     "faction": "세계의 건담 파이터"
+    },
+    {
+     "name": "로마리오 모니니",
+     "faction": "세계의 건담 파이터"
+    },
+    {
+     "name": "갈라 가라",
+     "faction": "세계의 건담 파이터"
+    },
+    {
+     "name": "라세츠 다가츠",
+     "faction": "세계의 건담 파이터"
+    }
+   ]
+  },
+  "GQ": {
+   "official_total": 50,
+   "matched": 8,
+   "add_person": [
+    {
+     "name": "냐안",
+     "faction": "전체"
+    },
+    {
+     "name": "샤리아 불",
+     "faction": "전체",
+     "near": [
+      {
+       "dex": "샤아",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "엑자베 오리베",
+     "faction": "전체"
+    },
+    {
+     "name": "코모리 하코트",
+     "faction": "전체"
+    },
+    {
+     "name": "라싯",
+     "faction": "전체"
+    },
+    {
+     "name": "코왈",
+     "faction": "전체"
+    },
+    {
+     "name": "탕기",
+     "faction": "전체"
+    },
+    {
+     "name": "오실로",
+     "faction": "전체"
+    },
+    {
+     "name": "세파",
+     "faction": "전체"
+    },
+    {
+     "name": "베노와",
+     "faction": "전체"
+    },
+    {
+     "name": "안키",
+     "faction": "전체"
+    },
+    {
+     "name": "제지",
+     "faction": "전체"
+    },
+    {
+     "name": "나부",
+     "faction": "전체"
+    },
+    {
+     "name": "케인",
+     "faction": "전체"
+    },
+    {
+     "name": "Pomeranian",
+     "faction": "전체"
+    },
+    {
+     "name": "Araga",
+     "faction": "전체"
+    },
+    {
+     "name": "Ragouchi",
+     "faction": "전체"
+    },
+    {
+     "name": "Tamaki Yuzuriha",
+     "faction": "전체"
+    },
+    {
+     "name": "Wado",
+     "faction": "전체"
+    },
+    {
+     "name": "Chaichi",
+     "faction": "전체"
+    },
+    {
+     "name": "Mako Nagawara",
+     "faction": "전체"
+    },
+    {
+     "name": "캄란 블룸",
+     "faction": "전체"
+    },
+    {
+     "name": "시이코 스가이",
+     "faction": "전체"
+    },
+    {
+     "name": "보카타",
+     "faction": "전체"
+    },
+    {
+     "name": "모스크 한",
+     "faction": "전체"
+    },
+    {
+     "name": "오르테가",
+     "faction": "전체",
+     "near": [
+      {
+       "dex": "오르가 이츠카",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "두 무라사메",
+     "faction": "전체"
+    },
+    {
+     "name": "게이츠 캐퍼",
+     "faction": "전체"
+    },
+    {
+     "name": "시무스 알 바하로프",
+     "faction": "전체"
+    },
+    {
+     "name": "아사브",
+     "faction": "전체"
+    },
+    {
+     "name": "미겔 세르베토",
+     "faction": "전체"
+    },
+    {
+     "name": "바니",
+     "faction": "전체"
+    },
+    {
+     "name": "칸차나",
+     "faction": "전체"
+    },
+    {
+     "name": "마리간",
+     "faction": "전체"
+    },
+    {
+     "name": "레오 레오니",
+     "faction": "전체"
+    },
+    {
+     "name": "티르자 레오니",
+     "faction": "전체"
+    },
+    {
+     "name": "데님",
+     "faction": "전체"
+    },
+    {
+     "name": "드렌",
+     "faction": "전체"
+    },
+    {
+     "name": "파올로 카시아스",
+     "faction": "전체"
+    },
+    {
+     "name": "Furanagan",
+     "faction": "전체"
+    },
+    {
+     "name": "우라간",
+     "faction": "전체"
+    },
+    {
+     "name": "토크완",
+     "faction": "전체"
+    }
+   ]
+  },
+  "HATHAWAY": {
+   "official_total": 22,
+   "matched": 3,
+   "add_person": [
+    {
+     "name": "케네스 슬렉",
+     "faction": "전체",
+     "near": [
+      {
+       "dex": "케네스 슬레그",
+       "score": 0.727
+      }
+     ]
+    },
+    {
+     "name": "가우만 노빌",
+     "faction": "전체"
+    },
+    {
+     "name": "에메랄다 주빈",
+     "faction": "전체"
+    },
+    {
+     "name": "레이몬드 케인",
+     "faction": "전체"
+    },
+    {
+     "name": "이라무 마사무",
+     "faction": "전체"
+    },
+    {
+     "name": "케리아 데이스",
+     "faction": "전체"
+    },
+    {
+     "name": "미헷샤 헨스",
+     "faction": "전체"
+    },
+    {
+     "name": "미츠다 켄지",
+     "faction": "전체"
+    },
+    {
+     "name": "펜서 메인",
+     "faction": "전체"
+    },
+    {
+     "name": "골프",
+     "faction": "전체"
+    },
+    {
+     "name": "시베트 안한",
+     "faction": "전체"
+    },
+    {
+     "name": "헨드릭스 하이요",
+     "faction": "전체"
+    },
+    {
+     "name": "맥시밀리언 니콜라이",
+     "faction": "전체"
+    },
+    {
+     "name": "줄리아 스가",
+     "faction": "전체"
+    },
+    {
+     "name": "메이스 플라워",
+     "faction": "전체"
+    },
+    {
+     "name": "핸드리 요크샌",
+     "faction": "전체"
+    },
+    {
+     "name": "게이스 H. 휴게스트",
+     "faction": "전체"
+    },
+    {
+     "name": "하이재커",
+     "faction": "전체"
+    },
+    {
+     "name": "맨 헌터",
+     "faction": "전체"
+    }
+   ]
+  },
+  "IBO": {
+   "official_total": 68,
+   "matched": 12,
+   "add_person": [
+    {
+     "name": "올가 이츠카",
+     "faction": "철화단",
+     "near": [
+      {
+       "dex": "오르가 이츠카",
+       "score": 0.727
+      }
+     ]
+    },
+    {
+     "name": "타카키 우노",
+     "faction": "철화단"
+    },
+    {
+     "name": "야마기 길머튼",
+     "faction": "철화단"
+    },
+    {
+     "name": "라이드 매스",
+     "faction": "철화단"
+    },
+    {
+     "name": "채드 채던",
+     "faction": "철화단"
+    },
+    {
+     "name": "단테 모그로",
+     "faction": "철화단"
+    },
+    {
+     "name": "나디 유키노조 카사파",
+     "faction": "철화단"
+    },
+    {
+     "name": "아트라 믹스타",
+     "faction": "철화단"
+    },
+    {
+     "name": "토도 미르코넨",
+     "faction": "철화단"
+    },
+    {
+     "name": "덱스터 크라스터",
+     "faction": "철화단"
+    },
+    {
+     "name": "후미탄 아드모스",
+     "faction": "크리세"
+    },
+    {
+     "name": "노먼 번스타인",
+     "faction": "크리세"
+    },
+    {
+     "name": "사쿠라 프레첼",
+     "faction": "크리세"
+    },
+    {
+     "name": "쿠키 그리폰",
+     "faction": "크리세",
+     "near": [
+      {
+       "dex": "파라 그리폰",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "크래커 그리폰",
+     "faction": "크리세"
+    },
+    {
+     "name": "크랭크 젠트",
+     "faction": "걀라르호른 사관"
+    },
+    {
+     "name": "코랄 콘래드",
+     "faction": "걀라르호른 사관"
+    },
+    {
+     "name": "이즈나리오 파리드",
+     "faction": "걀라르호른 사관"
+    },
+    {
+     "name": "알미리아 보드윈",
+     "faction": "걀라르호른 사관"
+    },
+    {
+     "name": "카르타 이슈",
+     "faction": "걀라르호른 사관"
+    },
+    {
+     "name": "맥머드 바리스턴",
+     "faction": "테이와즈 간부"
+    },
+    {
+     "name": "아미다 아르카",
+     "faction": "터빈즈",
+     "near": [
+      {
+       "dex": "아미다 아루카",
+       "score": 0.833
+      }
+     ]
+    },
+    {
+     "name": "래프터 프랭클랜드",
+     "faction": "터빈즈"
+    },
+    {
+     "name": "아지 그루민",
+     "faction": "터빈즈"
+    },
+    {
+     "name": "에코 터빈",
+     "faction": "터빈즈"
+    },
+    {
+     "name": "쿠달 카델",
+     "faction": "브루어스 간부"
+    },
+    {
+     "name": "마사히로 앨트랜드",
+     "faction": "브루어스 간부",
+     "near": [
+      {
+       "dex": "아키히로 앨트랜드",
+       "score": 0.75
+      }
+     ]
+    },
+    {
+     "name": "브룩 카바얀",
+     "faction": "브루어스 간부"
+    },
+    {
+     "name": "마루바 알케이",
+     "faction": "CGS"
+    },
+    {
+     "name": "사사이 얀커스",
+     "faction": "CGS"
+    },
+    {
+     "name": "하에다 군넬",
+     "faction": "CGS"
+    },
+    {
+     "name": "사바랭 까늘레",
+     "faction": "도르트 2"
+    },
+    {
+     "name": "나보나 밍고",
+     "faction": "도르트 2"
+    },
+    {
+     "name": "앙리 플뢰르",
+     "faction": "아브라우"
+    },
+    {
+     "name": "마키나에 토고노스케",
+     "faction": "아브라우"
+    },
+    {
+     "name": "라스커 알레지",
+     "faction": "아브라우"
+    },
+    {
+     "name": "노블리스 고든",
+     "faction": "기타"
+    },
+    {
+     "name": "가면의 남자",
+     "faction": "기타"
+    },
+    {
+     "name": "이스루기 카미체",
+     "faction": "걀라르호른 사관(2기)"
+    },
+    {
+     "name": "러스탈 엘리언",
+     "faction": "걀라르호른 사관(2기)",
+     "near": [
+      {
+       "dex": "라스탈 엘리온",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "이오쿠 쿠잔",
+     "faction": "걀라르호른 사관(2기)"
+    },
+    {
+     "name": "비다르",
+     "faction": "걀라르호른 사관(2기)"
+    },
+    {
+     "name": "야마진 토카",
+     "faction": "걀라르호른 사관(2기)",
+     "near": [
+      {
+       "dex": "키라 야마토",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "라이자 엔자",
+     "faction": "걀라르호른 사관(2기)"
+    },
+    {
+     "name": "애스턴 앨트랜드",
+     "faction": "철화단(2기)"
+    },
+    {
+     "name": "델마 앨트랜드",
+     "faction": "철화단(2기)"
+    },
+    {
+     "name": "허쉬 미디",
+     "faction": "철화단(2기)"
+    },
+    {
+     "name": "잭 로우",
+     "faction": "철화단(2기)"
+    },
+    {
+     "name": "데인 우하이",
+     "faction": "철화단(2기)"
+    },
+    {
+     "name": "라디체 리로트",
+     "faction": "철화단(2기)"
+    },
+    {
+     "name": "산드발 로이터",
+     "faction": "기타(2기)"
+    },
+    {
+     "name": "자슬레이 도노미콜스",
+     "faction": "기타(2기)"
+    },
+    {
+     "name": "아리움 교잔",
+     "faction": "기타(2기)"
+    },
+    {
+     "name": "마카나이 토고노스케",
+     "faction": "기타(2기)"
+    },
+    {
+     "name": "가란 모사",
+     "faction": "기타(2기)"
+    },
+    {
+     "name": "쿠쿠비타 우그",
+     "faction": "기타(2기)"
+    }
+   ]
+  },
+  "NT": {
+   "official_total": 21,
+   "matched": 4,
+   "add_person": [
+    {
+     "name": "졸탄 아카넨",
+     "faction": "전체",
+     "near": [
+      {
+       "dex": "졸탄 앗카넨",
+       "score": 0.8
+      }
+     ]
+    },
+    {
+     "name": "브릭 테크라트",
+     "faction": "전체",
+     "near": [
+      {
+       "dex": "브라이트",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "루오 우밍",
+     "faction": "전체"
+    },
+    {
+     "name": "이아고 하카나",
+     "faction": "전체"
+    },
+    {
+     "name": "프랑슨",
+     "faction": "전체"
+    },
+    {
+     "name": "아마자",
+     "faction": "전체"
+    },
+    {
+     "name": "델라오",
+     "faction": "전체"
+    },
+    {
+     "name": "파벨",
+     "faction": "전체"
+    },
+    {
+     "name": "타만",
+     "faction": "전체"
+    },
+    {
+     "name": "아바에프",
+     "faction": "전체"
+    },
+    {
+     "name": "마사 비스트 카바인",
+     "faction": "전체"
+    },
+    {
+     "name": "스테파니 루오",
+     "faction": "전체"
+    },
+    {
+     "name": "마우리",
+     "faction": "전체",
+     "near": [
+      {
+       "dex": "마우아",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "에스코라 게다",
+     "faction": "전체"
+    },
+    {
+     "name": "마루가",
+     "faction": "전체"
+    },
+    {
+     "name": "모나한 바하로",
+     "faction": "전체"
+    },
+    {
+     "name": "에릭 유고",
+     "faction": "전체"
+    }
+   ]
+  },
+  "SEED": {
+   "official_total": 38,
+   "matched": 4,
+   "add_person": [
+    {
+     "name": "Kira Yamato",
+     "faction": "전체"
+    },
+    {
+     "name": "Murrue Ramius",
+     "faction": "전체"
+    },
+    {
+     "name": "Mu La Flaga",
+     "faction": "전체"
+    },
+    {
+     "name": "프레이 알스터",
+     "faction": "전체"
+    },
+    {
+     "name": "Miriallia Haw",
+     "faction": "전체"
+    },
+    {
+     "name": "톨 케니히",
+     "faction": "전체"
+    },
+    {
+     "name": "사이 아가일",
+     "faction": "전체"
+    },
+    {
+     "name": "카즈이 버스커크",
+     "faction": "전체"
+    },
+    {
+     "name": "Arnold Neumann",
+     "faction": "전체"
+    },
+    {
+     "name": "Dalida Lolaha Chandra II",
+     "faction": "전체"
+    },
+    {
+     "name": "재키 토노무라",
+     "faction": "전체"
+    },
+    {
+     "name": "로메로 팔",
+     "faction": "전체"
+    },
+    {
+     "name": "코지로 머독",
+     "faction": "전체"
+    },
+    {
+     "name": "무르타 아즈라엘",
+     "faction": "전체",
+     "near": [
+      {
+       "dex": "무루타 아즈라엘",
+       "score": 0.857
+      }
+     ]
+    },
+    {
+     "name": "올가 서브낙",
+     "faction": "전체",
+     "near": [
+      {
+       "dex": "올가 사브낙",
+       "score": 0.8
+      }
+     ]
+    },
+    {
+     "name": "클로토 브엘",
+     "faction": "전체",
+     "near": [
+      {
+       "dex": "클로토 뷰엘",
+       "score": 0.8
+      }
+     ]
+    },
+    {
+     "name": "샤니 앤드러스",
+     "faction": "전체",
+     "near": [
+      {
+       "dex": "샤니 앤드라스",
+       "score": 0.833
+      }
+     ]
+    },
+    {
+     "name": "Cagalli Yula Athha",
+     "faction": "전체"
+    },
+    {
+     "name": "Ledonir Kisaka",
+     "faction": "전체"
+    },
+    {
+     "name": "Erica Simmons",
+     "faction": "전체"
+    },
+    {
+     "name": "아사기 콜드웰",
+     "faction": "전체"
+    },
+    {
+     "name": "마유라 라바트",
+     "faction": "전체"
+    },
+    {
+     "name": "쥬리 우 니엔",
+     "faction": "전체"
+    },
+    {
+     "name": "Lacus Clyne",
+     "faction": "전체"
+    },
+    {
+     "name": "Athrun Zala",
+     "faction": "전체"
+    },
+    {
+     "name": "Yzak Jule",
+     "faction": "전체"
+    },
+    {
+     "name": "Dearka Elthman",
+     "faction": "전체"
+    },
+    {
+     "name": "미겔 아이만",
+     "faction": "전체"
+    },
+    {
+     "name": "프레데릭 아데스",
+     "faction": "전체"
+    },
+    {
+     "name": "Andrew Waldfeld",
+     "faction": "전체"
+    },
+    {
+     "name": "아이샤",
+     "faction": "전체"
+    },
+    {
+     "name": "Martin DaCosta",
+     "faction": "전체"
+    },
+    {
+     "name": "시겔 클라인",
+     "faction": "전체"
+    },
+    {
+     "name": "패트릭 자라",
+     "faction": "전체",
+     "near": [
+      {
+       "dex": "패트릭 콜라사워",
+       "score": 0.667
+      }
+     ]
+    }
+   ]
+  },
+  "TA": {
+   "official_total": 36,
+   "matched": 4,
+   "add_person": [
+    {
+     "name": "키엘 하임",
+     "faction": "잉그렛사 미리샤"
+    },
+    {
+     "name": "소시에 하임",
+     "faction": "잉그렛사 미리샤"
+    },
+    {
+     "name": "구엔 서드 라인포드",
+     "faction": "잉그렛사 미리샤"
+    },
+    {
+     "name": "야니 오비스",
+     "faction": "잉그렛사 미리샤"
+    },
+    {
+     "name": "미하엘 게른",
+     "faction": "잉그렛사 미리샤"
+    },
+    {
+     "name": "라다람 쿤",
+     "faction": "잉그렛사 미리샤"
+    },
+    {
+     "name": "메셰 쿤",
+     "faction": "잉그렛사 미리샤"
+    },
+    {
+     "name": "시드 문저",
+     "faction": "잉그렛사 미리샤"
+    },
+    {
+     "name": "조셉 요트",
+     "faction": "잉그렛사 미리샤"
+    },
+    {
+     "name": "포 에이지",
+     "faction": "디아나 카운터"
+    },
+    {
+     "name": "필 애크먼",
+     "faction": "디아나 카운터"
+    },
+    {
+     "name": "미란 렉스",
+     "faction": "디아나 카운터"
+    },
+    {
+     "name": "코렌 난다",
+     "faction": "디아나 카운터"
+    },
+    {
+     "name": "브루노",
+     "faction": "디아나 카운터"
+    },
+    {
+     "name": "야곱",
+     "faction": "디아나 카운터"
+    },
+    {
+     "name": "릴리 볼자노",
+     "faction": "루자나 미리샤"
+    },
+    {
+     "name": "Marigan Chusa",
+     "faction": "루자나 미리샤"
+    },
+    {
+     "name": "갸반 구니",
+     "faction": "루자나 미리샤"
+    },
+    {
+     "name": "에임즈",
+     "faction": "루자나 미리샤"
+    },
+    {
+     "name": "존",
+     "faction": "루자나 미리샤"
+    },
+    {
+     "name": "캔서 카프카",
+     "faction": "레트 부대"
+    },
+    {
+     "name": "무론 무론",
+     "faction": "레트 부대"
+    },
+    {
+     "name": "테테스 할레",
+     "faction": "달의 세력"
+    },
+    {
+     "name": "Mimu Midokarudo",
+     "faction": "달의 세력"
+    },
+    {
+     "name": "스웨슨 스테로",
+     "faction": "달의 세력"
+    },
+    {
+     "name": "아그리파 멘테너",
+     "faction": "달의 세력"
+    },
+    {
+     "name": "메리벨 가제트",
+     "faction": "달의 세력"
+    },
+    {
+     "name": "프랑 돌",
+     "faction": "기타"
+    },
+    {
+     "name": "키스 레지에",
+     "faction": "기타"
+    },
+    {
+     "name": "윌 게임",
+     "faction": "기타"
+    },
+    {
+     "name": "도나 로로이",
+     "faction": "기타",
+     "near": [
+      {
+       "dex": "로아비 로이",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "하메트 로로이",
+     "faction": "기타"
+    }
+   ]
+  },
+  "TB": {
+   "official_total": 0,
+   "matched": 0,
+   "add_person": []
+  },
+  "UNICORN": {
+   "official_total": 35,
+   "matched": 4,
+   "add_person": [
+    {
+     "name": "버나지 링크스",
+     "faction": "민간",
+     "near": [
+      {
+       "dex": "바나지 링크스",
+       "score": 0.833
+      }
+     ]
+    },
+    {
+     "name": "오드리 번 (미네바 라오 자비)",
+     "faction": "민간"
+    },
+    {
+     "name": "타쿠야 이레이",
+     "faction": "민간"
+    },
+    {
+     "name": "미콧 바치",
+     "faction": "민간"
+    },
+    {
+     "name": "마리다 크루즈",
+     "faction": "네오 지온",
+     "near": [
+      {
+       "dex": "마리다 크루스",
+       "score": 0.833
+      }
+     ]
+    },
+    {
+     "name": "스베로아 진네만",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "플래스트 스콜",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "길보아 산트",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "빌 도슨",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "토무라",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "미히로 오이왓켄",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "오토 미타스",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "레이엄 보린네어",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "하산",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "다구자 맥클",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "콘로이 하겐센",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "메란",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "나이젤 가레트",
+     "faction": "지구연방군",
+     "near": [
+      {
+       "dex": "이젤칸트",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "대릴 맥기네스",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "왓츠 스테프니",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "에이블스",
+     "faction": "지구연방군",
+     "near": [
+      {
+       "dex": "에이파 시냅스",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "카디아스 비스트",
+     "faction": "비스트 재단"
+    },
+    {
+     "name": "가엘 창",
+     "faction": "비스트 재단"
+    },
+    {
+     "name": "사이암 비스트",
+     "faction": "비스트 재단"
+    },
+    {
+     "name": "알베르토",
+     "faction": "애너하임 일렉트로닉스사"
+    },
+    {
+     "name": "마사 비스트 카바인",
+     "faction": "애너하임 일렉트로닉스사"
+    },
+    {
+     "name": "아론 테르지에프",
+     "faction": "애너하임 일렉트로닉스사"
+    },
+    {
+     "name": "리카르도 마세나스",
+     "faction": "지구연방정부",
+     "near": [
+      {
+       "dex": "리디 마세나스",
+       "score": 0.714
+      }
+     ]
+    },
+    {
+     "name": "로난 마세나스",
+     "faction": "지구연방정부",
+     "near": [
+      {
+       "dex": "리디 마세나스",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "로니 가베이",
+     "faction": "지온 잔당군"
+    },
+    {
+     "name": "욤 커크스",
+     "faction": "지온 잔당군"
+    }
+   ]
+  },
+  "V": {
+   "official_total": 59,
+   "matched": 2,
+   "add_person": [
+    {
+     "name": "웃소 에빈",
+     "faction": "주인공 일행",
+     "near": [
+      {
+       "dex": "우소 에빈",
+       "score": 0.75
+      }
+     ]
+    },
+    {
+     "name": "샤크티 카린",
+     "faction": "주인공 일행"
+    },
+    {
+     "name": "마베트 핑거햇",
+     "faction": "주인공 일행",
+     "near": [
+      {
+       "dex": "마베트 핑거하트",
+       "score": 0.769
+      }
+     ]
+    },
+    {
+     "name": "오델로 헨리크",
+     "faction": "라겐의 아이들"
+    },
+    {
+     "name": "워렌 트레이스",
+     "faction": "라겐의 아이들",
+     "near": [
+      {
+       "dex": "펠트 그레이스",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "카를르만 두카투스",
+     "faction": "라겐의 아이들"
+    },
+    {
+     "name": "수지 릴렌",
+     "faction": "라겐의 아이들"
+    },
+    {
+     "name": "Furandasu",
+     "faction": "라겐의 아이들"
+    },
+    {
+     "name": "토마슈 매서릭",
+     "faction": "하일랜드의 아이들"
+    },
+    {
+     "name": "카렐 마사리크",
+     "faction": "하일랜드의 아이들"
+    },
+    {
+     "name": "엘리샤 클란스키",
+     "faction": "하일랜드의 아이들"
+    },
+    {
+     "name": "마르티나 클란스키",
+     "faction": "하일랜드의 아이들"
+    },
+    {
+     "name": "한게르그 에빈",
+     "faction": "리가 밀리티어"
+    },
+    {
+     "name": "뮤라 미겔",
+     "faction": "리가 밀리티어"
+    },
+    {
+     "name": "진 자하남",
+     "faction": "리가 밀리티어"
+    },
+    {
+     "name": "로베르토 고메스",
+     "faction": "리가 밀리티어"
+    },
+    {
+     "name": "오이 늉",
+     "faction": "리가 밀리티어"
+    },
+    {
+     "name": "오티스 아킨즈",
+     "faction": "리가 밀리티어"
+    },
+    {
+     "name": "레오니드 알모도바르",
+     "faction": "리가 밀리티어"
+    },
+    {
+     "name": "로메로 말라바르",
+     "faction": "리가 밀리티어"
+    },
+    {
+     "name": "에스텔 채버리",
+     "faction": "리가 밀리티어"
+    },
+    {
+     "name": "올리퍼 이노에",
+     "faction": "리가 밀리티어"
+    },
+    {
+     "name": "쥰코 젠코",
+     "faction": "리가 밀리티어"
+    },
+    {
+     "name": "코니 프랜시스",
+     "faction": "리가 밀리티어"
+    },
+    {
+     "name": "페기 리",
+     "faction": "리가 밀리티어"
+    },
+    {
+     "name": "유카 마일러스",
+     "faction": "리가 밀리티어"
+    },
+    {
+     "name": "케이트 부쉬",
+     "faction": "리가 밀리티어"
+    },
+    {
+     "name": "마헬리아 메릴",
+     "faction": "리가 밀리티어"
+    },
+    {
+     "name": "헬렌 잭슨",
+     "faction": "리가 밀리티어"
+    },
+    {
+     "name": "프란체스카 오하라",
+     "faction": "리가 밀리티어"
+    },
+    {
+     "name": "미리엘라 커튼",
+     "faction": "리가 밀리티어"
+    },
+    {
+     "name": "크로노클 어셔",
+     "faction": "잔스칼 제국",
+     "near": [
+      {
+       "dex": "크로노클 아샤",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "마리아 피아 아모니아",
+     "faction": "잔스칼 제국",
+     "near": [
+      {
+       "dex": "마리아 피어 아마리아",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "폰세 카가치",
+     "faction": "잔스칼 제국"
+    },
+    {
+     "name": "타시로 바고",
+     "faction": "잔스칼 제국"
+    },
+    {
+     "name": "무타마 스간",
+     "faction": "잔스칼 제국"
+    },
+    {
+     "name": "루페 시노",
+     "faction": "잔스칼 제국"
+    },
+    {
+     "name": "두커 이크",
+     "faction": "잔스칼 제국"
+    },
+    {
+     "name": "알베오 피피니덴",
+     "faction": "잔스칼 제국"
+    },
+    {
+     "name": "게틀 데프레",
+     "faction": "잔스칼 제국"
+    },
+    {
+     "name": "가리 탄",
+     "faction": "잔스칼 제국",
+     "near": [
+      {
+       "dex": "카가리",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "라이올 사바트",
+     "faction": "잔스칼 제국",
+     "near": [
+      {
+       "dex": "브라이트",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "와타리 기라",
+     "faction": "잔스칼 제국"
+    },
+    {
+     "name": "렌다 데 팔로마",
+     "faction": "잔스칼 제국"
+    },
+    {
+     "name": "크완 리",
+     "faction": "잔스칼 제국"
+    },
+    {
+     "name": "고드왈드 하인",
+     "faction": "잔스칼 제국"
+    },
+    {
+     "name": "고즈 발",
+     "faction": "잔스칼 제국"
+    },
+    {
+     "name": "키스할 바그와트",
+     "faction": "잔스칼 제국"
+    },
+    {
+     "name": "카린가 워겔",
+     "faction": "잔스칼 제국"
+    },
+    {
+     "name": "네네카 니브로",
+     "faction": "잔스칼 제국"
+    },
+    {
+     "name": "Kuransuki",
+     "faction": "기타"
+    },
+    {
+     "name": "바츨라프 마사리크",
+     "faction": "기타"
+    },
+    {
+     "name": "벨 클란스키",
+     "faction": "기타"
+    },
+    {
+     "name": "만델라 슨",
+     "faction": "기타"
+    },
+    {
+     "name": "Robu Oresukesu",
+     "faction": "기타"
+    },
+    {
+     "name": "즈브로프 시모네프",
+     "faction": "기타"
+    },
+    {
+     "name": "무바라크 스탄",
+     "faction": "지구연방군"
+    }
+   ]
+  },
+  "W": {
+   "official_total": 22,
+   "matched": 9,
+   "add_person": [
+    {
+     "name": "리리나 도리안",
+     "faction": "전체",
+     "near": [
+      {
+       "dex": "릴리나 도리안",
+       "score": 0.833
+      }
+     ]
+    },
+    {
+     "name": "샐리 포",
+     "faction": "전체"
+    },
+    {
+     "name": "라시드 쿠라마",
+     "faction": "전체"
+    },
+    {
+     "name": "도로시 카탈로니아",
+     "faction": "전체"
+    },
+    {
+     "name": "캐서린 블룸",
+     "faction": "전체"
+    },
+    {
+     "name": "하워드",
+     "faction": "전체"
+    },
+    {
+     "name": "델마이유 후작",
+     "faction": "전체"
+    },
+    {
+     "name": "닥터 J",
+     "faction": "전체"
+    },
+    {
+     "name": "프로페서 G",
+     "faction": "전체"
+    },
+    {
+     "name": "독토르 S",
+     "faction": "전체"
+    },
+    {
+     "name": "H 교수",
+     "faction": "전체"
+    },
+    {
+     "name": "츠바로프",
+     "faction": "전체"
+    },
+    {
+     "name": "캉즈",
+     "faction": "전체"
+    }
+   ]
+  },
+  "WM": {
+   "official_total": 56,
+   "matched": 11,
+   "add_person": [
+    {
+     "name": "마틴 업몬트",
+     "faction": "지구 기숙사",
+     "near": [
+      {
+       "dex": "마르탱 업몬트",
+       "score": 0.727
+      }
+     ]
+    },
+    {
+     "name": "누노 칼건",
+     "faction": "지구 기숙사"
+    },
+    {
+     "name": "오제로 가벨",
+     "faction": "지구 기숙사"
+    },
+    {
+     "name": "틸 네이스",
+     "faction": "지구 기숙사",
+     "near": [
+      {
+       "dex": "규네이 거스",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "릴리크 카도카 리파티",
+     "faction": "지구 기숙사"
+    },
+    {
+     "name": "아리야 마프바쥬",
+     "faction": "지구 기숙사"
+    },
+    {
+     "name": "라우더 닐",
+     "faction": "제타크 기숙사의"
+    },
+    {
+     "name": "페르시 롤로",
+     "faction": "제타크 기숙사의"
+    },
+    {
+     "name": "페트라 잇타",
+     "faction": "제타크 기숙사의"
+    },
+    {
+     "name": "카밀 케이싱크",
+     "faction": "제타크 기숙사의"
+    },
+    {
+     "name": "사비나 팔딘",
+     "faction": "글래스레이 기숙사"
+    },
+    {
+     "name": "르네 코스터",
+     "faction": "글래스레이 기숙사"
+    },
+    {
+     "name": "이리샤 플라노",
+     "faction": "글래스레이 기숙사"
+    },
+    {
+     "name": "메이지 메이",
+     "faction": "글래스레이 기숙사"
+    },
+    {
+     "name": "에나오 재즈",
+     "faction": "글래스레이 기숙사"
+    },
+    {
+     "name": "고도이 하이마노",
+     "faction": "신세 개발 공사"
+    },
+    {
+     "name": "새리우스 제네리",
+     "faction": "그래슬리 디펜스 시스템즈"
+    },
+    {
+     "name": "빔 제타크",
+     "faction": "제타크 헤비 머시너리",
+     "near": [
+      {
+       "dex": "구엘 제타크",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "뉴겐",
+     "faction": "페일 테크놀로지스"
+    },
+    {
+     "name": "칼",
+     "faction": "페일 테크놀로지스"
+    },
+    {
+     "name": "네볼라",
+     "faction": "페일 테크놀로지스"
+    },
+    {
+     "name": "골네리",
+     "faction": "페일 테크놀로지스"
+    },
+    {
+     "name": "벨메리아 윈스턴",
+     "faction": "페일 테크놀로지스"
+    },
+    {
+     "name": "라잔 자히",
+     "faction": "카테드랄"
+    },
+    {
+     "name": "세실리아 도트",
+     "faction": "브리온 기숙사",
+     "near": [
+      {
+       "dex": "세세리아 도트",
+       "score": 0.833
+      }
+     ]
+    },
+    {
+     "name": "로지 찬테",
+     "faction": "브리온 기숙사"
+    },
+    {
+     "name": "펑 쥔",
+     "faction": "우주 의회 연합"
+    },
+    {
+     "name": "구스턴 파르체",
+     "faction": "우주 의회 연합"
+    },
+    {
+     "name": "Naji Geor Hija",
+     "faction": "Dawn of Fold"
+    },
+    {
+     "name": "소피 플로네",
+     "faction": "Dawn of Fold",
+     "near": [
+      {
+       "dex": "소피 프로네",
+       "score": 0.8
+      }
+     ]
+    },
+    {
+     "name": "올컷",
+     "faction": "Dawn of Fold"
+    },
+    {
+     "name": "벳시 엔리크",
+     "faction": "Dawn of Fold"
+    },
+    {
+     "name": "그리스탄 딤발리",
+     "faction": "Dawn of Fold"
+    },
+    {
+     "name": "필립 쿠",
+     "faction": "Dawn of Fold"
+    },
+    {
+     "name": "마체이 가오",
+     "faction": "Dawn of Fold"
+    },
+    {
+     "name": "자릴 리 나랑카",
+     "faction": "Dawn of Fold"
+    },
+    {
+     "name": "케난지 에이버리",
+     "faction": "도미니코스 부대"
+    },
+    {
+     "name": "시시아",
+     "faction": "도미니코스 부대"
+    },
+    {
+     "name": "세드 원체크",
+     "faction": "도미니코스 부대"
+    },
+    {
+     "name": "엘노라 사마야",
+     "faction": "바나디스 기관"
+    },
+    {
+     "name": "카르도 나보",
+     "faction": "바나디스 기관"
+    },
+    {
+     "name": "나일라 베르트랑",
+     "faction": "바나디스 기관"
+    },
+    {
+     "name": "웬디 올렌트",
+     "faction": "바나디스 기관"
+    },
+    {
+     "name": "나딤 사마야",
+     "faction": "옥스 어스 코퍼레이션"
+    },
+    {
+     "name": "에리크트 사마야",
+     "faction": "PROLOGUE"
+    }
+   ]
+  },
+  "X": {
+   "official_total": 16,
+   "matched": 3,
+   "add_person": [
+    {
+     "name": "티파 아딜",
+     "faction": "전체",
+     "near": [
+      {
+       "dex": "티파 아디르",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "쟈밀 니트",
+     "faction": "전체"
+    },
+    {
+     "name": "윗츠 수",
+     "faction": "전체",
+     "near": [
+      {
+       "dex": "위츠 수",
+       "score": 0.667
+      }
+     ]
+    },
+    {
+     "name": "토니야 맘므",
+     "faction": "전체"
+    },
+    {
+     "name": "사라 타이렐",
+     "faction": "전체"
+    },
+    {
+     "name": "신고 모리",
+     "faction": "전체"
+    },
+    {
+     "name": "키드 살사밀",
+     "faction": "전체"
+    },
+    {
+     "name": "테크스 파젠버그",
+     "faction": "전체"
+    },
+    {
+     "name": "오르바 프로스트",
+     "faction": "전체",
+     "near": [
+      {
+       "dex": "올바 프로스트",
+       "score": 0.769
+      }
+     ]
+    },
+    {
+     "name": "란슬로 다웰",
+     "faction": "전체"
+    },
+    {
+     "name": "에닐 엘",
+     "faction": "전체"
+    },
+    {
+     "name": "카리스 노틸러스",
+     "faction": "전체"
+    },
+    {
+     "name": "파라 시스",
+     "faction": "전체",
+     "near": [
+      {
+       "dex": "에이파 시냅스",
+       "score": 0.6
+      }
+     ]
+    }
+   ]
+  },
+  "Z": {
+   "official_total": 45,
+   "matched": 18,
+   "add_person": [
+    {
+     "name": "크와트로 바지나/샤아 아즈나블",
+     "faction": "에우고"
+    },
+    {
+     "name": "화 유이리",
+     "faction": "에우고",
+     "near": [
+      {
+       "dex": "파 유이리",
+       "score": 0.75
+      }
+     ]
+    },
+    {
+     "name": "아스토나지 멧소",
+     "faction": "에우고"
+    },
+    {
+     "name": "토레스",
+     "faction": "에우고"
+    },
+    {
+     "name": "아볼리",
+     "faction": "에우고"
+    },
+    {
+     "name": "로베르토",
+     "faction": "에우고"
+    },
+    {
+     "name": "신타",
+     "faction": "에우고"
+    },
+    {
+     "name": "쿰",
+     "faction": "에우고"
+    },
+    {
+     "name": "하야토 코바야시",
+     "faction": "카라바",
+     "near": [
+      {
+       "dex": "카츠 코바야시",
+       "score": 0.615
+      }
+     ]
+    },
+    {
+     "name": "벨토치카 이르마",
+     "faction": "카라바"
+    },
+    {
+     "name": "팝티머스 시로코",
+     "faction": "티탄즈",
+     "near": [
+      {
+       "dex": "시로코",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "단켈 쿠퍼",
+     "faction": "티탄즈"
+    },
+    {
+     "name": "람사스 하사",
+     "faction": "티탄즈"
+    },
+    {
+     "name": "자마이칸 대닝건",
+     "faction": "티탄즈"
+    },
+    {
+     "name": "카크리콘 카클러",
+     "faction": "티탄즈"
+    },
+    {
+     "name": "마우어 파라오",
+     "faction": "티탄즈"
+    },
+    {
+     "name": "브란 블루타크",
+     "faction": "티탄즈"
+    },
+    {
+     "name": "벤 우더",
+     "faction": "티탄즈"
+    },
+    {
+     "name": "게츠",
+     "faction": "티탄즈"
+    },
+    {
+     "name": "아지스 아지바",
+     "faction": "티탄즈"
+    },
+    {
+     "name": "포 무라사메",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "라일라 미라 라이라",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "힐다 비단",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "프랭클린 비단",
+     "faction": "지구연방군"
+    },
+    {
+     "name": "키카 코바야시",
+     "faction": "민간인",
+     "near": [
+      {
+       "dex": "카츠 코바야시",
+       "score": 0.833
+      }
+     ]
+    },
+    {
+     "name": "레츠 코바야시",
+     "faction": "민간인",
+     "near": [
+      {
+       "dex": "카츠 코바야시",
+       "score": 0.833
+      }
+     ]
+    },
+    {
+     "name": "프라우 코바야시",
+     "faction": "민간인",
+     "near": [
+      {
+       "dex": "카츠 코바야시",
+       "score": 0.615
+      }
+     ]
+    }
+   ]
+  },
+  "ZZ": {
+   "official_total": 27,
+   "matched": 9,
+   "add_person": [
+    {
+     "name": "리나 아시타",
+     "faction": "에우고",
+     "near": [
+      {
+       "dex": "쥬도 아시타",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "이노 압바브",
+     "faction": "에우고"
+    },
+    {
+     "name": "몬도 아가케",
+     "faction": "에우고"
+    },
+    {
+     "name": "화 유이리",
+     "faction": "에우고",
+     "near": [
+      {
+       "dex": "파 유이리",
+       "score": 0.75
+      }
+     ]
+    },
+    {
+     "name": "에마리 온스",
+     "faction": "에우고",
+     "near": [
+      {
+       "dex": "소마 필리스",
+       "score": 0.6
+      }
+     ]
+    },
+    {
+     "name": "고튼 고",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "캐라 슨",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "이리아 파좀",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "그레미 토토",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "라칸 다카란",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "랜스 기렌",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "니 기렌",
+     "faction": "네오 지온"
+    },
+    {
+     "name": "가데브 야신",
+     "faction": "기타"
+    },
+    {
+     "name": "디도 칼토하",
+     "faction": "기타"
+    },
+    {
+     "name": "에로 메로에",
+     "faction": "기타"
+    },
+    {
+     "name": "디저트 롬멜",
+     "faction": "기타"
+    },
+    {
+     "name": "사라사 문",
+     "faction": "기타"
+    },
+    {
+     "name": "라사라 문",
+     "faction": "기타"
+    }
+   ]
   }
  }
 }
