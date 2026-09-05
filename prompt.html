@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Gundam Prompt Toolkit v9.3</title>
+<title>Gundam Prompt Toolkit v9.4</title>
 <style>
 :root{
   color-scheme:light dark;
@@ -250,13 +250,20 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   </div>
 
 
-  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.3</b> <span>랜덤·화풍 라벨 정리</span></div>
+  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.4</b> <span>단일 컷 패널 재배치</span></div>
   <details class="srcbox verbox" id="verBox">
     <summary>
-      <span class="sel-line" style="white-space:normal;overflow:visible">v9.3 변경 내역</span>
+      <span class="sel-line" style="white-space:normal;overflow:visible">v9.4 변경 내역</span>
       <span class="sb-txt">패치 노트</span>
     </summary>
     <div class="vb-in">
+      <b>v9.4 &middot; 단일 컷 패널 재배치</b>
+      <ul>
+        <li>쓰는 빈도대로 다시 쌓았다. 랜덤 성격 셀렉트와 버튼 세 개가 맨 위로 올라오고, 카테고리 · 예시가 바로 따라온다</li>
+        <li>"랜덤으로 정할 것" 체크박스 8개를 접었다. 한 번 정하면 거의 안 건드리는데 화면 위쪽을 크게 차지하고 있었다. 접힌 채로도 <b>몇 개를 켜뒀는지</b> 요약 줄에 보인다</li>
+        <li>직접 입력 4개(장면 · 의상 · 카메라 · 추가 지시)를 한 블록으로 묶어 접었다. 값이 들어 있으면 <b>몇 개 입력됐는지</b> 요약 줄에 뜬다 — 접어둔 채로 잊고 왜 이렇게 나오는지 헤매는 일을 막는다</li>
+        <li>접힘 상태와 랜덤 대상 체크가 저장된다. 새로고침해도 펴둔 건 펴진 채로 돌아온다</li>
+      </ul>
       <b>v9.3 &middot; 랜덤 · 화풍 라벨 정리</b>
       <ul>
         <li>화풍 이름을 갈랐다 — <b>세미리얼 시네마틱</b>(cinematic_semi_real) / <b>세미리얼 유화</b>(semi_real_paint). 기존 "세미리얼 페인팅 / 반실사 회화"는 서로 같은 말처럼 읽혀 구분이 안 됐다. 내부 키와 저장된 기록은 무변화</li>
@@ -544,8 +551,18 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     </div>
 
     <div class="form-section">
+      <select id="sgRandomMode" aria-label="랜덤 성격"></select>
+      <div class="param-actions">
+        <button id="sgRandom" type="button">🎲 전체 랜덤</button>
+        <button id="sgRandomAxis" type="button">🎲 세부 강도만 랜덤</button>
+        <button id="sgRandomSkipAxes" type="button">🎲 세부 강도 빼고 랜덤</button>
+      </div>
+      <button id="sgUndo" type="button" class="card-rnd hidden">↩ 직전 설정으로</button>
+
+      <details class="box" id="sgTgtBox" style="margin-top:8px">
+        <summary><span id="sgTgtSum">랜덤으로 정할 것</span></summary>
+        <div class="inside">
       <div class="rnd-tgt" id="sgRandomTargets">
-        <span>랜덤으로 정할 것</span>
         <label><input type="checkbox" data-srt="cat" checked><span>카테고리</span></label>
         <label><input type="checkbox" data-srt="ex" checked><span>예시</span></label>
         <label><input type="checkbox" data-srt="adv" checked><span>고급 설정</span></label>
@@ -555,13 +572,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
         <label><input type="checkbox" data-srt="orient"><span>시점</span></label>
         <label><input type="checkbox" data-srt="pose"><span>포즈</span></label>
       </div>
-      <select id="sgRandomMode" aria-label="랜덤 성격" style="margin-top:6px"></select>
-      <div class="param-actions">
-        <button id="sgRandom" type="button">🎲 전체 랜덤</button>
-        <button id="sgRandomAxis" type="button">🎲 세부 강도만 랜덤</button>
-        <button id="sgRandomSkipAxes" type="button">🎲 세부 강도 빼고 랜덤</button>
-      </div>
-      <button id="sgUndo" type="button" class="card-rnd hidden">↩ 직전 설정으로</button>
+        </div>
+      </details>
 
       <div class="field">
         <label>Category <small>카테고리</small></label>
@@ -609,26 +621,31 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
           <label>Pose <small>포즈</small></label>
           <select id="sgPose"></select>
         </div>
-        <div class="field">
-          <label>Scene / Location <small>장면·장소</small></label>
-          <input id="sgScene" type="text" placeholder="AUTO">
-        </div>
-        <div class="field">
-          <label>Outfit <small>의상</small></label>
-          <input id="sgOutfit" type="text" placeholder="AUTO">
-        </div>
-        <div class="field">
-          <label>Camera / Lighting <small>카메라·조명</small></label>
-          <input id="sgCamera" type="text" placeholder="AUTO">
-        </div>
       </div>
+
+      <details class="box" id="sgTextBox" style="margin-top:9px">
+        <summary><span id="sgTextSum">직접 입력 — 장면 · 의상 · 카메라 · 추가 지시</span></summary>
+        <div class="inside">
+          <div class="field">
+            <label>Scene / Location <small>장면·장소</small></label>
+            <input id="sgScene" type="text" placeholder="AUTO">
+          </div>
+          <div class="field" style="margin-top:9px">
+            <label>Outfit <small>의상</small></label>
+            <input id="sgOutfit" type="text" placeholder="AUTO">
+          </div>
+          <div class="field" style="margin-top:9px">
+            <label>Camera / Lighting <small>카메라·조명</small></label>
+            <input id="sgCamera" type="text" placeholder="AUTO">
+          </div>
+          <div class="field" style="margin-top:9px">
+            <label>Custom Instruction <small>추가 지시</small></label>
+            <input id="sgCustom" type="text" placeholder="예: rain outside the window, warm lamp light">
+          </div>
+        </div>
+      </details>
 
       <div id="sgAdvBox" style="margin-top:9px"></div>
-
-      <div class="field" style="margin-top:9px">
-        <label>Custom Instruction <small>추가 지시</small></label>
-        <input id="sgCustom" type="text" placeholder="예: rain outside the window, warm lamp light">
-      </div>
 
 
       <div class="save-bar" style="align-items:flex-start;flex-direction:column;gap:6px;margin-top:10px">
@@ -1788,9 +1805,27 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       (flags.length?'<div class="ks-f">'+escHtml(flags.join(' · '))+'</div>':'');
   }
   let SGPREV=null;
+  /* 접어둔 블록은 안이 안 보이므로 요약 줄에 상태를 적는다.
+     안 그러면 켜둔 걸 잊고 왜 이렇게 나오는지 모르게 된다. */
+  const SG_FOLD={sgTgtBox:'tgt',sgTextBox:'text'};
+  function sgFoldSummaries(){
+    const t=document.getElementById('sgTgtSum');
+    if(t){
+      const all=[...document.querySelectorAll('[data-srt]')];
+      const on=all.filter(x=>x.checked).length;
+      t.textContent='랜덤으로 정할 것 — '+on+'/'+all.length+'개 켬';
+    }
+    const x=document.getElementById('sgTextSum');
+    if(x){
+      const ids=['sgScene','sgOutfit','sgCamera','sgCustom'];
+      const n=ids.filter(id=>{const e=document.getElementById(id);return e&&e.value.trim();}).length;
+      x.textContent='직접 입력 — 장면 · 의상 · 카메라 · 추가 지시'+(n?' · '+n+'개 입력됨':'');
+    }
+  }
   function refreshSinglePrompt(){
     const t=document.getElementById('textSingle'); if(!t)return;
     sgNotes();
+    sgFoldSummaries();
     t.value=buildSinglePrompt();
     const b2=document.getElementById('sgSum'); if(b2)b2.innerHTML=sgSummary();
     if(READY){STORE.single=snapSingle();saveStore();}
@@ -1804,6 +1839,9 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     o.carryFace=document.getElementById('sgCarryFace').checked;
     o.carryBody=document.getElementById('sgCarryBody').checked;
     o.avoid=document.getElementById('sgAvoid').checked;
+    o.tgt={}; document.querySelectorAll('[data-srt]').forEach(el=>o.tgt[el.dataset.srt]=el.checked);
+    o.open={}; Object.keys(SG_FOLD).forEach(id=>{
+      const el=document.getElementById(id); if(el)o.open[id]=el.open;});
     return o;
   }
   function applySingle(o){
@@ -1818,6 +1856,11 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     if(o.carryFace!==undefined)document.getElementById('sgCarryFace').checked=!!o.carryFace;
     if(o.carryBody!==undefined)document.getElementById('sgCarryBody').checked=!!o.carryBody;
     if(o.avoid!==undefined)document.getElementById('sgAvoid').checked=!!o.avoid;
+    if(o.tgt)document.querySelectorAll('[data-srt]').forEach(el=>{
+      if(o.tgt[el.dataset.srt]!==undefined)el.checked=!!o.tgt[el.dataset.srt];});
+    if(o.open)Object.keys(SG_FOLD).forEach(id=>{
+      const el=document.getElementById(id); if(el&&o.open[id]!==undefined)el.open=!!o.open[id];});
+    sgFoldSummaries();
   }
   function sgPushUndo(){SGPREV=snapSingle();document.getElementById('sgUndo').classList.remove('hidden');}
   function sgUndo(){
@@ -4142,6 +4185,12 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     document.getElementById(id).addEventListener('input',refreshSinglePrompt));
   ['sgCarryFace','sgCarryBody','sgAvoid'].forEach(id=>
     document.getElementById(id).addEventListener('change',refreshSinglePrompt));
+  /* 접힘 상태와 랜덤 대상도 저장 대상이다 — refreshSinglePrompt 가 STORE 에 넣는다 */
+  document.querySelectorAll('[data-srt]').forEach(el=>
+    el.addEventListener('change',refreshSinglePrompt));
+  Object.keys(SG_FOLD).forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.addEventListener('toggle',refreshSinglePrompt);});
   document.querySelectorAll('[data-sg-axis]').forEach(el=>
     el.addEventListener('change',refreshSinglePrompt));
   document.getElementById('sgRandom').addEventListener('click',()=>sgRandomize('all'));
