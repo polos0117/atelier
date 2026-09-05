@@ -12,9 +12,9 @@
  },
  "summary": {
   "ready": 0,
-  "no_pilot": 25,
+  "no_pilot": 24,
   "no_mech": 0,
-  "known": 39,
+  "known": 40,
   "bond_existing": 214
  },
  "ready": [],
@@ -164,13 +164,6 @@
    "official_mech": "바운드 독",
    "official_pilot": "게츠",
    "mech": "바운드 독",
-   "pilot": null
-  },
-  {
-   "series": "Z",
-   "official_mech": "사이코 건담",
-   "official_pilot": "포 무라사메",
-   "mech": "사이코 건담",
    "pilot": null
   },
   {
@@ -510,6 +503,15 @@
    "mech": "백식",
    "pilot": "샤아",
    "key": "샤아|백식",
+   "weight": 0.2
+  },
+  {
+   "series": "Z",
+   "official_mech": "사이코 건담",
+   "official_pilot": "포 무라사메",
+   "mech": "사이코 건담",
+   "pilot": "포우",
+   "key": "포우|사이코 건담",
    "weight": 0.2
   },
   {
