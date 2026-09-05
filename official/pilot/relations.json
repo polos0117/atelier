@@ -5,6 +5,25 @@
    "faction": "솔레스탈 빙",
    "pilots": []
   },
+  "GN 아머 TYPE-D": {
+   "models": "GN-002+GNR-001D",
+   "faction": "솔레스탈 빙",
+   "pilots": []
+  },
+  "GN 아머 TYPE-E": {
+   "models": "GN-001+GNR-001E",
+   "faction": "솔레스탈 빙",
+   "pilots": [
+    "랏세 아이온"
+   ]
+  },
+  "가데스": {
+   "models": "GNZ-007",
+   "faction": "이노베이터",
+   "pilots": [
+    "어뉴 리터너"
+   ]
+  },
   "건담 쓰로네 드라이": {
    "models": "GNW-003",
    "faction": "솔레스탈 빙",
@@ -41,6 +60,20 @@
     "세츠나 F 세이에이"
    ]
   },
+  "레그넌트": {
+   "models": "GNMA-0001V",
+   "faction": "이노베이터",
+   "pilots": [
+    "루이스 할레비"
+   ]
+  },
+  "리본즈 건담/리본즈 캐논": {
+   "models": "CB-0000G/C",
+   "faction": "이노베이터",
+   "pilots": [
+    "리본즈 알마크"
+   ]
+  },
   "마스라오": {
    "models": "GNX-U02X",
    "faction": "어로우즈",
@@ -53,6 +86,13 @@
    "faction": "솔레스탈 빙",
    "pilots": [
     "티에리아 아데"
+   ]
+  },
+  "스사노오": {
+   "models": "GNX-Y901TW",
+   "faction": "어로우즈",
+   "pilots": [
+    "미스터 부시도"
    ]
   },
   "아르케 건담": {
@@ -75,6 +115,18 @@
    "pilots": [
     "알레한드로 코너"
    ]
+  },
+  "엠프러스": {
+   "models": "GNMA-Y0001",
+   "faction": "이노베이터",
+   "pilots": [
+    "디바인 노바"
+   ]
+  },
+  "티에렌 지상형": {
+   "models": "MSJ-06II-A",
+   "faction": "인류혁신연맹",
+   "pilots": []
   }
  },
  "0079": {
@@ -494,6 +546,50 @@
    ]
   }
  },
+ "00M": {
+  "GN-XIV": {
+   "models": "GNX-803T",
+   "faction": "지구연방",
+   "pilots": [
+    "패트릭 콜라사워",
+    "안드레이 스미르노프"
+   ]
+  },
+  "가데라자": {
+   "models": "GNMA-Y0002V",
+   "faction": "지구연방",
+   "pilots": [
+    "데카르트 샤먼"
+   ]
+  },
+  "건담 사바냐": {
+   "models": "GN-010",
+   "faction": "솔레스탈 빙",
+   "pilots": [
+    "록온 스트라토스"
+   ]
+  },
+  "건담 하루트": {
+   "models": "GN-011",
+   "faction": "솔레스탈 빙",
+   "pilots": [
+    "알렐루야 합티즘",
+    "소마 필리스(마리 파파시)"
+   ]
+  },
+  "브레이브 일반용 시험기": {
+   "models": "GNX-Y903VS",
+   "faction": "지구연방",
+   "pilots": []
+  },
+  "브레이브 지휘관용 시험기": {
+   "models": "GNX-Y903VW",
+   "faction": "지구연방",
+   "pilots": [
+    "그라함 에이커"
+   ]
+  }
+ },
  "08MS": {
   "건담 Ez8": {
    "models": "RX-79[G]Ez-8",
@@ -707,6 +803,63 @@
    ]
   }
  },
+ "EW": {
+  "서펜트": {
+   "models": "MMS-01",
+   "faction": "마리메이아군",
+   "pilots": []
+  },
+  "윙 건담 0": {
+   "models": "XXXG-00W0",
+   "faction": "화이트팽",
+   "pilots": [
+    "히이로 유이"
+   ]
+  }
+ },
+ "HATHAWAY": {
+  "갸르세종": {
+   "models": "",
+   "faction": "마프티",
+   "pilots": [
+    "레이몬드 케인",
+    "시베트 안한"
+   ]
+  },
+  "오디세우스 건담": {
+   "models": "RX-104",
+   "faction": "지구연방",
+   "pilots": [
+    "레인 에임"
+   ]
+  }
+ },
+ "NT": {
+  "구스타프 칼": {
+   "models": "FD-03",
+   "faction": "지구연방",
+   "pilots": []
+  },
+  "내러티브 건담": {
+   "models": "RX-9",
+   "faction": "지구연방",
+   "pilots": [
+    "요나 바슈타"
+   ]
+  },
+  "실버 불릿 서프레서": {
+   "models": "ARX-014S",
+   "faction": "지구연방",
+   "pilots": []
+  },
+  "유니콘 건담 3호기 페넥스(유니콘 모드)": {
+   "models": "RX-0",
+   "faction": "지구연방",
+   "pilots": [
+    "리타 베르나르"
+   ]
+  }
+ },
  "SEED": {
   "런처 스트라이크 건담": {
    "models": "GAT-X105+AQM/E-X03",
@@ -744,6 +897,101 @@
    "faction": "지구연합군",
    "pilots": [
     "Mu La Flaga"
+   ]
+  }
+ },
+ "UNICORN": {
+  "구스타프 칼": {
+   "models": "FD-03",
+   "faction": "지구연방군",
+   "pilots": []
+  },
+  "로젠 줄루": {
+   "models": "YAMS-132",
+   "faction": "네오 지온",
+   "pilots": [
+    "안젤로 자우퍼"
+   ]
+  },
+  "리겔구": {
+   "models": "MS-14J",
+   "faction": "네오 지온",
+   "pilots": []
+  },
+  "샴블로": {
+   "models": "AMA-X7",
+   "faction": "지온 잔당군",
+   "pilots": [
+    "로니 가베이"
+   ]
+  },
+  "슈트룸 갈루스": {
+   "models": "AMX-101E",
+   "faction": "네오 지온",
+   "pilots": []
+  },
+  "자쿠 캐논": {
+   "models": "MS-06K",
+   "faction": "지온 잔당군",
+   "pilots": []
+  },
+  "제 줄루": {
+   "models": "AMS-129M",
+   "faction": "네오 지온",
+   "pilots": []
+  },
+  "제간": {
+   "models": "RGM-89D",
+   "faction": "지구연방군",
+   "pilots": []
+  },
+  "제간(ECOAS 사양기)": {
+   "models": "RGM-89De",
+   "faction": "지구연방군",
+   "pilots": [
+    "콘로이 하겐센"
+   ]
+  },
+  "크샤트리야 베세룽": {
+   "models": "NZ-666",
+   "faction": "네오 지온",
+   "pilots": [
+    "마리다 크루즈"
+   ]
+  }
+ },
+ "W": {
+  "리오": {
+   "models": "OZ-06MS",
+   "faction": "OZ",
+   "pilots": []
+  },
+  "비르고": {
+   "models": "OZ-02MD",
+   "faction": "OZ",
+   "pilots": []
+  },
+  "윙 건담 0": {
+   "models": "XXXG-00W0",
+   "faction": "화이트팽",
+   "pilots": [
+    "히이로 유이"
+   ]
+  }
+ },
+ "WM": {
+  "건담 칼리번": {
+   "models": "X-EX01",
+   "faction": "옥스어스",
+   "pilots": [
+    "슬레타 머큐리"
+   ]
+  },
+  "조워트": {
+   "models": "F/D-19",
+   "faction": "페일",
+   "pilots": [
+    "엘란 케레스"
    ]
   }
  },
