@@ -504,10 +504,15 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
         <span>이미 복사한 조합을 프롬프트에서 피하기</span>
       </label>
       <label style="display:flex;align-items:center;gap:7px;margin:0;cursor:pointer;font-size:11.5px">
-        <input type="checkbox" id="carryIdentity" style="width:auto;margin:0;flex:none">
-        <span>이 기체의 의인화 설정을 정체성에 넘기기</span>
+        <input type="checkbox" id="carryFace" style="width:auto;margin:0;flex:none">
+        <span>이 기체의 얼굴 설정을 정체성에 넘기기</span>
       </label>
-      <span class="uz" id="carryPreview"></span>
+      <label style="display:flex;align-items:center;gap:7px;margin:0;cursor:pointer;font-size:11.5px">
+        <input type="checkbox" id="carryBody" style="width:auto;margin:0;flex:none">
+        <span>이 기체의 체형 설정을 정체성에 넘기기</span>
+      </label>
+      <span class="uz" id="carryPreviewFace"></span>
+      <span class="uz" id="carryPreviewBody"></span>
       <span class="uz">채택 여부가 아니라 <b>복사한 적이 있다</b>는 기록이다. 6장 중 전부 버렸어도 남는다.</span>
     </div>
 
@@ -617,8 +622,12 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
 
       <div class="save-bar" style="align-items:flex-start;flex-direction:column;gap:6px;margin-top:10px">
         <label style="display:flex;align-items:center;gap:7px;margin:0;cursor:pointer;font-size:11.5px">
-          <input type="checkbox" id="sgCarry" style="width:auto;margin:0;flex:none">
-          <span>이 기체의 의인화 설정을 정체성에 넘기기</span>
+          <input type="checkbox" id="sgCarryFace" style="width:auto;margin:0;flex:none">
+          <span>이 기체의 얼굴 설정을 정체성에 넘기기</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:7px;margin:0;cursor:pointer;font-size:11.5px">
+          <input type="checkbox" id="sgCarryBody" style="width:auto;margin:0;flex:none">
+          <span>이 기체의 체형 설정을 정체성에 넘기기</span>
         </label>
         <label style="display:flex;align-items:center;gap:7px;margin:0;cursor:pointer;font-size:11.5px">
           <input type="checkbox" id="sgAvoid" style="width:auto;margin:0;flex:none">
@@ -1688,7 +1697,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman as the attached reference. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign.',
       LIFESTYLE_REFERENCE_LOCK
     ];
-    if(document.getElementById('sgCarry').checked)parts.push(carryBlock());
+    parts.push(carryBlock(document.getElementById('sgCarryFace').checked,document.getElementById('sgCarryBody').checked));
     parts.push(lifestyleStyleBlock());
     parts.push('[OUTPUT]\n\nCreate ONE SINGLE image in '+sgVal('sgAspect')+
       ' aspect. Exactly one woman. No collage, no panels, no split frames, no numerals, no captions, titles, labels, or any other text.');
@@ -1750,7 +1759,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     const flags=['화풍 '+styleRow()[1]];
     const ax=LOCAL_AXES.filter(k=>{const el=document.querySelector('[data-sg-axis="'+k+'"]');return el&&el.value;}).length;
     if(ax)flags.push('세부 강도 '+ax+'개');
-    if(document.getElementById('sgCarry').checked&&carryValues().length)
+    if((document.getElementById('sgCarryFace').checked&&carryValues(CARRY_FACE).length)||
+       (document.getElementById('sgCarryBody').checked&&carryValues(CARRY_BODY).length))
       flags.push('의인화 설정 '+carryValues().length+'개 전달');
     if(document.getElementById('sgAvoid').checked&&usedOf(mechKey()).length)
       flags.push('이미 쓴 조합 '+usedOf(mechKey()).length+'가지 회피');
@@ -1771,7 +1781,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     ['sgCatCustom','sgExCustom','sgScene','sgOutfit','sgCamera','sgCustom'].forEach(id=>
       o.txt[id]=document.getElementById(id).value);
     LOCAL_AXES.forEach(k=>{const el=document.querySelector('[data-sg-axis="'+k+'"]');if(el)o.axes[k]=el.value;});
-    o.carry=document.getElementById('sgCarry').checked;
+    o.carryFace=document.getElementById('sgCarryFace').checked;
+    o.carryBody=document.getElementById('sgCarryBody').checked;
     o.avoid=document.getElementById('sgAvoid').checked;
     return o;
   }
@@ -1784,7 +1795,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     Object.entries(o.txt||{}).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.value=v||'';});
     Object.entries(o.axes||{}).forEach(([k,v])=>{const el=document.querySelector('[data-sg-axis="'+k+'"]');
       if(el&&[...el.options].some(x=>x.value===v))el.value=v;});
-    if(o.carry!==undefined)document.getElementById('sgCarry').checked=!!o.carry;
+    if(o.carryFace!==undefined)document.getElementById('sgCarryFace').checked=!!o.carryFace;
+    if(o.carryBody!==undefined)document.getElementById('sgCarryBody').checked=!!o.carryBody;
     if(o.avoid!==undefined)document.getElementById('sgAvoid').checked=!!o.avoid;
   }
   function sgPushUndo(){SGPREV=snapSingle();document.getElementById('sgUndo').classList.remove('hidden');}
@@ -1928,7 +1940,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       '[INPUT]\n\nSOURCE MOBILE SUIT: ['+s.mech+']\n\nThis name is identity-provenance metadata only, used for lore, personality, and occupation context. It must not be used to reconstruct, restore, or invent mobile-suit armor, weapons, shields, backpacks, mechanical limbs, or other canonical equipment.\n\nUse the attached clearly adult anthropomorphized character as the absolute identity and equipment reference for this image.',
       '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman in all six panels. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign. Only identity repeats.',
       LIFESTYLE_REFERENCE_LOCK,
-      (document.getElementById('carryIdentity')&&document.getElementById('carryIdentity').checked?carryBlock():''),
+      carryBlock(document.getElementById('carryFace')&&document.getElementById('carryFace').checked,
+                 document.getElementById('carryBody')&&document.getElementById('carryBody').checked),
       '[OUTPUT]\n\nCreate ONE SINGLE 3:2 LANDSCAPE image as a clean 3-column × 2-row collage:\n1 | 2 | 3\n4 | 5 | 6\nExactly six equal, approximately square panels. Only small numerals 1–6 in the upper-left corners. No captions, titles, labels, subtitles, logos-as-text, or other words. Exactly one woman per panel.',
       lifestyleStyleBlock(),
       structureBlock(),
@@ -2021,7 +2034,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
      전부 넘기지 않는다. 장갑 구조나 하체 처리는 현대 의상에 의미가 없고,
      첨부 이미지가 이미 잘 잡아주는 항목까지 글로 적으면 지시가 충돌한다.
      이미지가 유독 못 잡아 흘러버리는 항목만 고른다. */
-  const CARRY=[
+  const CARRY_FACE=[
     ['facial ethnicity','ethnicity'],
     ['apparent age','apparent age'],
     ['facial character','facial impression'],
@@ -2033,41 +2046,52 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     ['hair length','hair length'],
     ['hairstyle','hairstyle'],
     ['bangs','bangs'],
+    ['facial hair','facial hair']
+  ];
+  const CARRY_BODY=[
     ['body type','body type'],
     ['height impression','height impression'],
-    ['facial hair','facial hair'],
     ['torso / chest build','torso / chest build'],
     ['waist / hip silhouette','waist / hip silhouette'],
     ['leg proportion','leg proportion'],
     ['shoulder build','shoulder build']
   ];
-  function carryValues(){
+  function carryValues(list){
     const r=recOf(mechKey()); if(!r)return [];
     const g=r.female?'female':(r.male?'male':null); if(!g)return [];
     const sel=(r[g]&&r[g].sel)||{};
     const out=[];
-    CARRY.forEach(([k,en])=>{ if(sel[k])out.push([en,sel[k]]); });
+    (list||CARRY_FACE.concat(CARRY_BODY)).forEach(([k,en])=>{ if(sel[k])out.push([en,sel[k]]); });
     return out;
   }
-  function carryBlock(){
-    const v=carryValues(); if(!v.length)return '';
+  function carryBlock(includeFace,includeBody){
+    const v=[];
+    if(includeFace)v.push(...carryValues(CARRY_FACE));
+    if(includeBody)v.push(...carryValues(CARRY_BODY));
+    if(!v.length)return '';
     return '[CHARACTER IDENTITY SPEC]\n\n'+
       'The attached anthropomorphized reference image was generated from this specification:\n'+
       v.map(x=>'- '+x[0]+': '+x[1]).join('\n')+
-      '\n\nPrecedence: the attached image remains the primary reference. Use this list to resolve anything the image leaves ambiguous, '+
-      'and to prevent drift across panels — especially ethnicity, facial structure, and apparent age, which tend to slide toward a generic default over six panels. '+
+      '\n\nPrecedence: the attached image remains the primary reference. Use this list to resolve anything the image leaves ambiguous'+
+      (includeBody?' — including body proportions that the mobile-suit armor in the reference image may obscure'+
+        (includeFace?', and to prevent facial drift across panels — especially ethnicity, facial structure, and apparent age, which tend to slide toward a generic default over six panels':'')+'. ':
+        (includeFace?', and to prevent drift across panels — especially ethnicity, facial structure, and apparent age, which tend to slide toward a generic default over six panels. ':'. '))+
       'Where the image and this list clearly disagree, follow the image.';
   }
   function renderCarry(){
-    const el=document.getElementById('carryPreview'); if(!el)return;
-    const v=carryValues(),k=mechKey();
-    const on=document.getElementById('carryIdentity');
-    if(!v.length){
-      el.textContent='"'+k+'" 는 의인화 설정이 없어 넘길 게 없다. 의인화 탭에서 값을 잡으면 여기에 뜬다.';
-      if(on)on.disabled=true; return;
-    }
-    if(on)on.disabled=false;
-    el.textContent='넘길 항목 '+v.length+'개 — '+v.map(x=>x[0]+' '+x[1]).join(' / ');
+    const k=mechKey();
+    const render1=(elId,onId,list)=>{
+      const el=document.getElementById(elId); if(!el)return;
+      const v=carryValues(list), on=document.getElementById(onId);
+      if(!v.length){
+        el.textContent='"'+k+'" 는 의인화 설정이 없어 넘길 게 없다. 의인화 탭에서 값을 잡으면 여기에 뜬다.';
+        if(on)on.disabled=true; return;
+      }
+      if(on)on.disabled=false;
+      el.textContent='넘길 항목 '+v.length+'개 — '+v.map(x=>x[0]+' '+x[1]).join(' / ');
+    };
+    render1('carryPreviewFace','carryFace',CARRY_FACE);
+    render1('carryPreviewBody','carryBody',CARRY_BODY);
   }
 
   function snapCollage(){
@@ -2090,7 +2114,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     o.clgFrame=document.getElementById('clgFrame')?document.getElementById('clgFrame').value:'';
     o.preset=document.getElementById('presetSelect').value;
     o.avoid=document.getElementById('avoidUsed').checked;
-    o.carry=document.getElementById('carryIdentity').checked;
+    o.carryFace=document.getElementById('carryFace').checked;
+    o.carryBody=document.getElementById('carryBody').checked;
     o.ravoid=document.getElementById('randomAvoidUsed').checked;
     o.rmode=document.getElementById('randomMode').value;
     o.rtgt={}; document.querySelectorAll('[data-rt]').forEach(el=>o.rtgt[el.dataset.rt]=el.checked);
@@ -2138,7 +2163,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     if(o.orient!==undefined)set('globalOrientationMix',o.orient);
     if(o.clgFrame!==undefined)set('clgFrame',o.clgFrame);
     if(o.avoid!==undefined)document.getElementById('avoidUsed').checked=!!o.avoid;
-    if(o.carry!==undefined)document.getElementById('carryIdentity').checked=!!o.carry;
+    if(o.carryFace!==undefined)document.getElementById('carryFace').checked=!!o.carryFace;
+    if(o.carryBody!==undefined)document.getElementById('carryBody').checked=!!o.carryBody;
     if(o.ravoid!==undefined)document.getElementById('randomAvoidUsed').checked=!!o.ravoid;
     if(o.rmode)set('randomMode',o.rmode);
     if(o.rtgt)document.querySelectorAll('[data-rt]').forEach(el=>{
@@ -2210,7 +2236,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     if(localN)flags.push('세부 강도 '+localN+'곳 지정');
     if(SUPPRESSED.length)flags.push('직접 지정이 있어 전역 '+
       SUPPRESSED.map(k=>(ADVANCED_LABELS[k]||[k])[1]||k).join('·')+' 제외');
-    if(document.getElementById('carryIdentity').checked&&carryValues().length)
+    if((document.getElementById('carryFace').checked&&carryValues(CARRY_FACE).length)||
+       (document.getElementById('carryBody').checked&&carryValues(CARRY_BODY).length))
       flags.push('의인화 설정 '+carryValues().length+'개 전달');
     if(document.getElementById('avoidUsed').checked&&usedOf(mechKey()).length)
       flags.push('이미 쓴 조합 '+usedOf(mechKey()).length+'가지 회피');
@@ -4062,7 +4089,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       refreshSinglePrompt();}));
   ['sgCatCustom','sgExCustom','sgScene','sgOutfit','sgCamera','sgCustom'].forEach(id=>
     document.getElementById(id).addEventListener('input',refreshSinglePrompt));
-  ['sgCarry','sgAvoid'].forEach(id=>
+  ['sgCarryFace','sgCarryBody','sgAvoid'].forEach(id=>
     document.getElementById(id).addEventListener('change',refreshSinglePrompt));
   document.querySelectorAll('[data-sg-axis]').forEach(el=>
     el.addEventListener('change',refreshSinglePrompt));
@@ -4189,7 +4216,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   }));
   document.getElementById('clearUse').addEventListener('click',clearUse);
   document.getElementById('avoidUsed').addEventListener('change',refreshCollagePrompt);
-  document.getElementById('carryIdentity').addEventListener('change',refreshCollagePrompt);
+  document.getElementById('carryFace').addEventListener('change',refreshCollagePrompt);
+  document.getElementById('carryBody').addEventListener('change',refreshCollagePrompt);
   document.querySelectorAll('[data-toggle]').forEach(b=>b.addEventListener('click',()=>toggleView(b.dataset.toggle,b)));
 
   showTab('collage');
