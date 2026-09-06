@@ -168,6 +168,6 @@
   "하이뉴 건담": {"m": "하이뉴_건담_m.webp", "f": "하이뉴_건담_f.webp", "face": {"m": [0.385, 0.085, 0.15], "f": [0.445, 0.11, 0.115]}, "casual": ["하이뉴_건담_casual1.webp"]},
   "하이잭": {"m": "하이잭_m.webp", "f": "하이잭_f.webp", "face": {"m": [0.44, 0.115, 0.105], "f": [0.435, 0.13, 0.115]}, "casual": ["하이잭_casual1.webp", "하이잭_casual2.webp"]},
   "하이페리온 건담": {"m": "하이페리온 건담_m.webp", "f": "하이페리온 건담_f.webp", "face": {"m": [0.435, 0.047, 0.13], "f": [0.44, 0.062, 0.13]}, "casual": ["하이페리온 건담_casual1.webp", "하이페리온 건담_casual2.webp", "하이페리온 건담_casual3.webp", "하이페리온 건담_casual4.webp", "하이페리온 건담_casual5.webp"]},
-  "함브라비": {"casual": ["함브라비_casual1.webp", "함브라비_casual2.webp"], "f": "함브라비_f.webp"}
+  "함브라비": {"f": "함브라비_f.webp", "face": {"f": [0.434, 0.086, 0.13]}, "casual": ["함브라비_casual1.webp", "함브라비_casual2.webp"]}
  }
 }
