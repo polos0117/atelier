@@ -1,0 +1,12 @@
+{
+ "version": 1,
+ "stats": ["통솔", "내정", "지력", "정치"],
+ "note": "군사 카드.",
+ "count": 4,
+ "cards": [
+  {"name": "순욱", "factions": ["위"], "stats": [70, 96, 92, 95], "temper": ["관도"], "series": ["관도"]},
+  {"name": "노숙", "factions": ["오"], "stats": [74, 88, 86, 90], "temper": ["적벽"], "series": ["적벽"]},
+  {"name": "법정", "factions": ["촉"], "stats": [68, 84, 90, 82], "temper": ["이릉"], "series": ["이릉"]},
+  {"name": "가후", "factions": ["위", "군웅"], "stats": [66, 78, 97, 80], "temper": ["동탁", "관도"], "series": ["동탁", "관도"]}
+ ]
+}

@@ -1,0 +1,18 @@
+{
+ "version": 1,
+ "stats": ["통솔", "무력", "지력", "정치"],
+ "note": "무장 카드. psy 는 신산 등급 0~3, line 은 병법 유파다.",
+ "count": 10,
+ "cards": [
+  {"name": "조조", "factions": ["위"], "stats": [95, 72, 91, 96], "temper": "오만", "psy": 3, "series": ["관도", "적벽"], "line": "병가"},
+  {"name": "관우", "factions": ["촉"], "stats": [90, 97, 75, 62], "temper": "오만", "psy": 1, "series": ["관도", "이릉"], "line": "병가"},
+  {"name": "장비", "factions": ["촉"], "stats": [80, 98, 45, 30], "temper": "폭주", "psy": 0, "series": ["관도", "이릉"], "line": ""},
+  {"name": "제갈량", "factions": ["촉"], "stats": [92, 38, 100, 94], "temper": "냉정", "psy": 3, "series": ["적벽", "북벌"], "line": "도가"},
+  {"name": "주유", "factions": ["오"], "stats": [94, 71, 96, 86], "temper": "냉정", "psy": 3, "series": ["적벽"], "line": "도가"},
+  {"name": "여포", "factions": ["군웅"], "stats": [60, 100, 26, 13], "temper": "폭주", "psy": 0, "series": ["동탁"], "line": ""},
+  {"name": "사마의", "factions": ["위"], "stats": [91, 63, 98, 93], "temper": "냉정", "psy": 3, "series": ["북벌"], "line": "도가"},
+  {"name": "조운", "factions": ["촉"], "stats": [91, 96, 76, 65], "temper": "헌신", "psy": 1, "series": ["적벽", "이릉"], "line": "병가"},
+  {"name": "육손", "factions": ["오"], "stats": [89, 68, 95, 85], "temper": "냉정", "psy": 2, "series": ["이릉"], "line": "유가"},
+  {"name": "장각", "factions": ["황건"], "stats": [71, 44, 88, 70], "temper": "폭주", "psy": 2, "series": ["황건"], "line": "도가"}
+ ]
+}

@@ -1,0 +1,14 @@
+{
+ "version": 1,
+ "stats": ["통솔", "성벽", "척후", "주둔"],
+ "note": "거점 카드.",
+ "count": 6,
+ "cards": [
+  {"name": "허창", "factions": ["위"], "stats": [88, 80, 84, 5], "temper": ["관도", "북벌"], "series": ["관도", "북벌"]},
+  {"name": "업성", "factions": ["위"], "stats": [82, 86, 74, 5], "temper": ["관도"], "series": ["관도"]},
+  {"name": "성도", "factions": ["촉"], "stats": [84, 78, 80, 5], "temper": ["이릉", "북벌"], "series": ["이릉", "북벌"]},
+  {"name": "건업", "factions": ["오"], "stats": [85, 76, 82, 5], "temper": ["적벽", "이릉"], "series": ["적벽", "이릉"]},
+  {"name": "하비", "factions": ["군웅"], "stats": [70, 72, 66, 4], "temper": ["동탁", "관도"], "series": ["동탁", "관도"]},
+  {"name": "낙양", "factions": ["한"], "stats": [76, 84, 70, 4], "temper": ["황건", "동탁"], "series": ["황건", "동탁"]}
+ ]
+}
