@@ -3937,6 +3937,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     /* 마지막으로 어느 성별로 작업했는지. 양쪽 다 잡아 둔 기체는 이게 없으면
        다시 열 때 늘 여성으로 돌아가, 남성으로 짜 둔 설정이 안 보인다 */
     rec.g=cur;
+    /* 형태 번역 전략. 기본값이면 안 적어 둔다 — 화풍과 같은 규칙이다 */
+    if(morphModeKey()!=='standard_humanoid')rec.mm=morphModeKey();
     /* 값이 하나도 없으면 기록을 만들지 않는다. 그냥 지나친 기체마다 빈 기록이 생기면
        나중에 그 기체로 돌아왔을 때 빈 값이 덮어씌워진다. */
     /* 빈 값을 걷어낸 뒤 비교한다. 저장소 파일이 축약형으로 적혀 있어도 같게 본다 */
@@ -3946,7 +3948,10 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       return pick(o.sel)+'|'+pick(o.cus)+'|'+(o.sp||'')+'|'+(o.ub?1:0);
     };
     const b=BASE.mechs&&BASE.mechs[k];
-    const same=b&&sig(b.female)===sig(rec.female)&&sig(b.male)===sig(rec.male);
+    /* 파라미터만 견주면 성별이나 형태 전략만 바꾼 경우를 '같다' 로 보고 안 남긴다.
+       그 둘만 바꾸는 것도 온전한 작업이라 함께 견준다 */
+    const same=b&&sig(b.female)===sig(rec.female)&&sig(b.male)===sig(rec.male)&&
+      (b.g||'')===(rec.g||'')&&(b.mm||'')===(rec.mm||'');
     if((emptySnap(rec[cur])&&emptySnap(rec[other]))||same){
       /* 저장소 기록과 똑같으면 로컬 사본을 남기지 않는다.
          남겨두면 나중에 갱신된 저장소 파일보다 오래된 로컬이 이겨버린다. */
@@ -3970,12 +3975,18 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   let ENTRY={key:'',rec:null,taken:false};
   function stripPrev(r){
     if(!r)return null;
-    const o={}; ['female','male','g','t'].forEach(x=>{if(r[x]!==undefined)o[x]=r[x]});
+    const o={}; ['female','male','g','mm','t'].forEach(x=>{if(r[x]!==undefined)o[x]=r[x]});
     return o;
+  }
+  function setMorphMode(v){
+    const el=document.getElementById('morphMode'); if(!el)return;
+    el.value=MORPHOLOGY_PROFILES[v]?v:'standard_humanoid';
   }
   function loadAnthroForMech(){
     const k=mechKey(),rec=recOf(k);
     ENTRY={key:k,rec:stripPrev(rec),taken:false};
+    /* 기록이 없으면 기본값으로 되돌린다. 안 그러면 앞서 보던 기체의 값이 남는다 */
+    setMorphMode(rec&&rec.mm);
     if(!rec){updateSaveBar();return false;}
     GSTATE.female=rec.female||null; GSTATE.male=rec.male||null;
     /* 한쪽 성별로만 잡아 둔 기체가 있다. 화면은 늘 여성으로 열리므로 남성만
@@ -4413,6 +4424,10 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     refreshCollagePrompt(); refreshSinglePrompt(); refreshAnthroPrompt();
     setStatus('statusAnthro','화풍을 "'+styleRow()[1]+'" 로 바꿨다. 세 생성기에 모두 적용된다','ok');
   });
+  document.getElementById('morphMode').addEventListener('change',()=>{
+    refreshAnthroPrompt(); persistAnthro();
+    setStatus('statusAnthro','형태 번역 전략을 바꿨다','ok');
+  });
   document.getElementById('onlyRemaining').addEventListener('change',()=>{
     fillMechs(mechPicker.value);updateSelInfo();loadAnthroForMech();});
   document.getElementById('exportStore').addEventListener('click',()=>{
@@ -4436,6 +4451,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       if(!f&&!m)return;
       const o={}; if(f)o.female=f; if(m)o.male=m;
       if(r.g&&o[r.g])o.g=r.g;
+      if(r.mm)o.mm=r.mm;
       o.t=r.t||Date.now();
       /* prev 는 이 브라우저 안에서만 쓰는 되돌리기용이라 파일에 넣지 않는다 */
       merged.mechs[k]=o;
