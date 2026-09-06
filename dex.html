@@ -331,12 +331,27 @@ function ccOf(c){return fc(c[1][c[1].length-1])}
 function esc(s){return String(s).replace(/[&<>"]/g,function(x){
   return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[x]})}
 /* 한 기체가 여러 화풍 이미지를 가질 수 있다.
-   기본 화풍은 IMG[이름] 그대로(기존 자료 무변화), 추가 화풍은 IMG[이름].byStyle[화풍키]에 얹는다.
-   화풍 탭에서 특정 화풍을 고른 상태면 그 버킷을, 아니면 기본 버킷을 쓴다. */
+   기본 몫은 IMG[이름] 그대로(기존 자료 무변화), 추가 화풍은 IMG[이름].byStyle[화풍키]에 얹는다.
+   기본 몫의 화풍이 무엇인지는 툴킷 기록(tkStyleKey)이 알고 있다.
+
+   처음부터 다른 화풍으로만 뽑은 기체는 기본 몫이 비어 있고 화풍 몫에만 그림이 있다.
+   예전에는 그럴 때 기본 몫을 그대로 돌려줘서 도감이 빈칸을 띄웠다.
+   그래서 이름으로 고르지 않고 그림이 실제로 든 몫을 고른다. */
+function hasPic(b){return !!(b&&(b.m||b.f))}
+function bucketOf(name,key){
+  var s=IMG[name]; if(!s)return null;
+  var bs=s.byStyle||{},k;
+  if(key){
+    if(hasPic(bs[key]))return bs[key];
+    /* 기본 몫에는 화풍 이름이 안 붙어 있다. 툴킷 기록과 맞을 때만 그 화풍으로 친다 */
+    return (key===tkStyleKey(name)&&hasPic(s))?s:null;
+  }
+  if(hasPic(s))return s;
+  for(k in bs)if(hasPic(bs[k]))return bs[k];
+  return null;
+}
 function styleBucket(c){
-  var s=IMG[c[0]]; if(!s)return null;
-  if(tab==="기체"&&styleSel&&s.byStyle&&s.byStyle[styleSel])return s.byStyle[styleSel];
-  return s;
+  return bucketOf(c[0],(tab==="기체"&&styleSel)?styleSel:"");
 }
 function picOf(c,v){var s=styleBucket(c); if(!s)return null; return s[v]||s[flip(v)]||null}
 
@@ -397,11 +412,13 @@ var TK_ART={cinematic_semi_real:"세미리얼 시네마틱",game_keyart:"게임 
 function tkStyleKey(name){
   return TK.localStyle[name]||TK.baseStyle[name]||"cinematic_semi_real";
 }
-/* 기본 화풍 + IMG[이름].byStyle에 실제로 이미지가 있는 추가 화풍들 전부 */
+/* 그림이 실제로 있는 화풍만. 기본 몫이 비어 있으면 기본 화풍은 목록에 안 넣는다 */
 function tkStyleKeys(name){
-  var out=[tkStyleKey(name)];
-  var extra=(IMG[name]&&IMG[name].byStyle)||{};
-  for(var k in extra)if(out.indexOf(k)<0)out.push(k);
+  var s=IMG[name]||{},bs=s.byStyle||{},out=[],k;
+  if(hasPic(s))out.push(tkStyleKey(name));
+  for(k in bs)if(hasPic(bs[k])&&out.indexOf(k)<0)out.push(k);
+  /* 그림이 한 장도 없어도 화풍 이름은 보여준다 — 아직 안 뽑은 기체다 */
+  if(!out.length)out.push(tkStyleKey(name));
   return out;
 }
 function tkStyle(name){
@@ -601,9 +618,7 @@ function open(n,start){
   var styleKeys=(t==="기체")?tkStyleKeys(c[0]):[];
   var curStyle=(styleSel&&styleKeys.indexOf(styleSel)>=0)?styleSel:(styleKeys[0]||"");
   function bucketFor(key){
-    var base=IMG[c[0]]; if(!base)return null;
-    if(key&&key!==styleKeys[0]&&base.byStyle&&base.byStyle[key])return base.byStyle[key];
-    return base;
+    return bucketOf(c[0],key)||bucketOf(c[0],"")||IMG[c[0]]||null;
   }
   var s=bucketFor(curStyle);
   function localPicOf(vv){return (s&&(s[vv]||s[flip(vv)]))||null}
