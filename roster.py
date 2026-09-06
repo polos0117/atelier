@@ -65,6 +65,11 @@ def series():
     return read("series")
 
 
+def styles():
+    """화풍 key → 이름. 차례를 지키려고 dict 로 돌려준다(3.7+ 는 넣은 차례를 지킨다)."""
+    return {r["key"]: r["name"] for r in read("style")["styles"]}
+
+
 def weights():
     """이름 → 드래프트 비중. 안 적힌 카드는 1.0 이다."""
     out = {}

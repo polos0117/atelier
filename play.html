@@ -480,6 +480,8 @@ h3{font-family:var(--disp);font-weight:900;font-size:12px;letter-spacing:.1em;co
 var MECH=[], PILOT=[], SHIP=[], CREW=[];
 var SER_NAME={}, FRANCHISE={}, SER_TAG={}, FAC={};
 var LORE={}, BOND={}, IMG={}, COMBO=[];
+/* 화풍 key → 한글 이름. 차례는 data/style.json 이 정한다 */
+var ART_NAME={}, ART_ORDER=[];
 var WEIGHT={}, TAG_COLOR={}, TAG_ROLE={}, GUNDAM_EXTRA={};
 /* 이름 → G 제네레이션 이터널 유닛·인물 id. 게임 규칙에는 쓰지 않고
    도감에서 보여 주기와 바깥 자료 대조에만 쓴다 */
@@ -525,7 +527,8 @@ function plainRow(c){
 
 function loadData(){
   return Promise.all(["mech.json","pilot.json","ship.json","crew.json",
-                      "bond.json","combo.json","img.json","series.json"].map(fetchJSON))
+                      "bond.json","combo.json","img.json","series.json",
+                      "style.json"].map(fetchJSON))
     .then(function(d){
       fill(MECH, absorb(d[0].cards,mechRow));
       fill(PILOT,absorb(d[1].cards,pilotRow));
@@ -538,6 +541,8 @@ function loadData(){
       fillMap(FRANCHISE,d[7].franchise);
       fillMap(SER_TAG,d[7].tag);
       fillMap(FAC,d[7].faction_color);
+      fill(ART_ORDER,d[8].styles.map(function(x){return x.key}));
+      d[8].styles.forEach(function(x){ART_NAME[x.key]=x.name});
     });
 }
 /* 파일럿: 이름, 소속이력, 지휘,조종,전술,정치, 기질, 감응등급, 시리즈, 감응계통 */
@@ -603,18 +608,30 @@ function mergeRepoFiles(names){
     if(!/\.webp$/i.test(n))continue;
     var m=/^(.+)_(m|f|casual(\d+)|extra(\d+))\.webp$/i.exec(n);
     if(!m)continue;
-    var card=key[m[1].replace(/ /g,"_")]; if(!card)continue;
-    var src=IMG[card]||(IMG[card]={}), kind=m[2].toLowerCase();
+    /* 카드 이름과 칸 사이에 화풍 key 가 끼어 있으면 그 화풍 몫으로 보낸다 */
+    var head=m[1],sty="",si2;
+    for(si2=0;si2<ART_ORDER.length;si2++)
+      if(head.toLowerCase().slice(-ART_ORDER[si2].length-1)==="_"+ART_ORDER[si2]){
+        sty=ART_ORDER[si2]; head=head.slice(0,-sty.length-1); break;
+      }
+    var card=key[head.replace(/ /g,"_")]; if(!card)continue;
+    var src=IMG[card]||(IMG[card]={});
+    if(sty)src=(src.byStyle||(src.byStyle={}))[sty]||(src.byStyle[sty]={});
+    var kind=m[2].toLowerCase();
     if(kind==="m"||kind==="f"){if(!src[kind]){src[kind]=n;added++} continue}
     var a=kind.indexOf("casual")===0?"casual":"extra", idx=parseInt(m[3]||m[4],10)-1;
     src[a]=src[a]||[];
     if(src[a].indexOf(n)<0){src[a][idx>=0?idx:src[a].length]=n;added++}
   }
-  for(var c in IMG)["casual","extra"].forEach(function(a){
-    if(!IMG[c][a])return;
-    IMG[c][a]=IMG[c][a].filter(Boolean);
-    if(!IMG[c][a].length)delete IMG[c][a];
-  });
+  for(var c in IMG){
+    var bs=IMG[c].byStyle||{},list=[IMG[c]],bk;
+    for(bk in bs)list.push(bs[bk]);
+    list.forEach(function(e){["casual","extra"].forEach(function(a){
+      if(!e[a])return;
+      e[a]=e[a].filter(Boolean);
+      if(!e[a].length)delete e[a];
+    })});
+  }
   return added;
 }
 /* 저장소 파일 목록으로 IMG 를 보강한다. IMG 를 받아 온 뒤에 돌아야 한다 */
@@ -646,6 +663,38 @@ function rollVariants(){
 }
 function flip(v){return v==="m"?"f":"m"}
 function seedOf(c){return VSEED[c[0]]||"m"}
+
+/* ══ 화풍 몫 ══
+   한 카드의 그림은 기본 몫(IMG[이름])과 화풍 몫(IMG[이름].byStyle[화풍])에 나뉘어 있다.
+   둘의 속이 같은 꼴이라 어느 쪽을 집든 그리는 쪽 코드는 그대로다.
+   화풍 그림은 아직 몇 장 없으니, 있는 것 중에서 판마다 하나를 뽑아 섞는다. */
+function artBuckets(name){
+  var src=IMG[name]; if(!src)return [];
+  var out=[],bs=src.byStyle||{},i,k;
+  if(src.m||src.f)out.push({k:"",b:src});
+  for(i=0;i<ART_ORDER.length;i++){
+    k=ART_ORDER[i];
+    if(bs[k]&&(bs[k].m||bs[k].f))out.push({k:k,b:bs[k]});
+  }
+  /* 목록에 없는 화풍이라도 그림이 있으면 버리지 않는다 */
+  for(k in bs)if(ART_ORDER.indexOf(k)<0&&(bs[k].m||bs[k].f))out.push({k:k,b:bs[k]});
+  return out;
+}
+var ASEED={};
+/* 판마다 한 번만 굴린다. 패를 다시 그릴 때마다 화풍이 바뀌면 눈이 어지럽다 */
+function rollArt(){
+  ASEED={};
+  for(var n in IMG){
+    var bk=artBuckets(n);
+    if(bk.length>1)ASEED[n]=bk[Math.floor(Math.random()*bk.length)].k;
+  }
+}
+function artBucket(name){
+  var bk=artBuckets(name); if(!bk.length)return null;
+  var want=ASEED[name]||"",i;
+  for(i=0;i<bk.length;i++)if(bk[i].k===want)return bk[i].b;
+  return bk[0].b;
+}
 function pilotView(c){return VIEW_P==="r"?seedOf(c):VIEW_P}
 /* 파일럿은 설정대로, 기체는 설정이 "반대"면 짝의 반대를 따른다 */
 function variantOf(card,partner){
@@ -689,7 +738,7 @@ function fbSwap(im){
   if(d)im.src=d;
 }
 function avHTML(card,type,partner,force){
-  var v=force||variantOf(card,partner),src=IMG[card[0]];
+  var v=force||variantOf(card,partner),src=artBucket(card[0]);
   if(src){
     var pic=src[v]||src[flip(v)];
     if(pic)return '<img src="'+imgURL(pic)+'" alt="" loading="lazy" decoding="async" data-fb="'+fbReg(card,v)+'" onerror="fbSwap(this)">';
@@ -705,18 +754,20 @@ var FACE_DEF=[.34,.03,.30];
    FACE_W  : 잘라낼 폭 (이미지 폭 대비)
    FACE_TOP: 얼굴 중심이 잘린 상자에서 위에서 몇 지점에 오게 할지 */
 var FACE_W=0.40, FACE_TOP=0.38;
-function faceOf(src,v){
-  var f=src&&src.face;
+/* 화풍 몫에는 얼굴 좌표가 없는 게 보통이라 기본 몫 것을 빌린다.
+   같은 인물을 같은 구도로 뽑았다면 대개 맞고, 어긋나면 그 화풍 몫에 face 를 적으면 된다 */
+function faceOf(src,v,base){
+  var f=(src&&src.face)||(base&&base.face);
   if(!f)return FACE_DEF;
   if(f.length===3&&typeof f[0]==="number")return f;
   return f[v]||f[flip(v)]||FACE_DEF;
 }
 function faceHTML(card,partner,type){
-  var v=variantOf(card,partner),src=IMG[card[0]];
+  var v=variantOf(card,partner),src=artBucket(card[0]);
   if(src){
     var pic=src[v]||src[flip(v)];
     if(pic){
-      var used=src[v]?v:flip(v), f=faceOf(src,used),
+      var used=src[v]?v:flip(v), f=faceOf(src,used,IMG[card[0]]),
           ar=ASPECT[type]||1.5,
           bw=f[2], bh=Math.min(.999,bw/ar),
           cx=f[0]+bw/2, cy=f[1]+bh/2,
@@ -733,7 +784,7 @@ function faceHTML(card,partner,type){
   return placeholder(card,v);
 }
 function bigHTML(card,v){
-  var src=IMG[card[0]];
+  var src=artBucket(card[0]);
   if(src){var pic=src[v]||src[flip(v)];if(pic)return '<img src="'+imgURL(pic)+'" alt="" loading="lazy" decoding="async" data-fb="'+fbReg(card,v)+'" onerror="fbSwap(this)">'}
   return placeholder(card,v);
 }
@@ -1141,6 +1192,7 @@ function reset(){
   round=0;seq=order();si=0;busy=false;log=[];openFoe={};
   rerolls=REROLL_MAX;aiRR=[0,REROLL_MAX,REROLL_MAX];curPack=null;packArr=[];packType=null;discard={함:[],기체:[],파일럿:[],지휘관:[]};shown={};
   rollVariants();
+  rollArt();
   rollField();
   render();
 }
@@ -1965,8 +2017,13 @@ function drawOvl(){
       w.appendChild(g);
     }
     if(srcx){
-      drawGal(srcx.extra,"다른 그림");
-      drawGal(srcx.casual,"일상");
+      /* 지금 판에서 고른 화풍만 크게 뜨지만, 갖고 있는 그림은 화풍별로 다 보여준다 */
+      var bks=artBuckets(c[0]),bi;
+      for(bi=0;bi<bks.length;bi++){
+        var tail=bks[bi].k?" · "+(ART_NAME[bks[bi].k]||bks[bi].k):"";
+        drawGal(bks[bi].b.extra,"다른 그림"+tail);
+        drawGal(bks[bi].b.casual,"일상"+tail);
+      }
     }
     if(!srcx)w.appendChild(el("div","note",
       '이 카드에는 아직 그림이 없다. <b>IMG["'+c[0]+'"]</b>에 남성체(m)·여성체(f)를 넣으면 여기에 뜬다.'

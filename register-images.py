@@ -9,6 +9,13 @@
     <카드 이름>_extra1.webp   특별컷 1
 카드 이름의 공백은 밑줄로 써도 된다(건담_데스사이즈_m.webp).
 
+카드 이름과 칸 사이에 화풍 key 를 끼우면 그 화풍 몫으로 들어간다.
+    <카드 이름>_<화풍>_f.webp        건이지_glossy_kr_game_f.webp
+화풍 key 는 data/style.json 에 적힌 열한 가지뿐이고, 그 밖의 토막이 끼면
+카드 이름으로 읽히다 실패해 "그런 카드가 없다"로 남는다 — 오타를 잡으려고
+일부러 통과시키지 않는다. 기본 화풍 그림은 지금까지처럼 카드 바로 밑에 들어가고,
+나머지는 byStyle[화풍] 밑에 같은 꼴로 쌓인다.
+
 얼굴 좌표(face)는 파일 이름에서 알 수 없다. 없으면 게임이 기본값
 FACE_DEF=[.34,.03,.30] 을 쓰므로 일단 뜨기는 뜨고, 잘라낸 자리가 어색하면
 사람이 img.json 에서 손봐야 한다. 그래서 이 스크립트는 없는 것만 더하고
@@ -35,6 +42,18 @@ PAT = re.compile(r"^(.+?)_(m|f|casual(\d+)|extra(\d+))\.webp$", re.I)
 SKIP = re.compile(r"^style-")
 
 
+def split_style(head, styles):
+    """'건이지_glossy_kr_game' → ('건이지', 'glossy_kr_game').
+
+    화풍이 안 붙었으면 style 자리가 None 이다. 이름 뒤가 아는 화풍일 때만
+    떼어내므로, 화풍처럼 생겼지만 목록에 없는 토막은 카드 이름의 일부로 남아
+    뒤에서 '그런 카드가 없다'로 걸린다."""
+    for k in styles:
+        if head.lower().endswith("_" + k):
+            return head[: -len(k) - 1], k
+    return head, None
+
+
 def card_index():
     """'공백을 밑줄로 바꾼 이름' → 카드 이름."""
     idx = {}
@@ -42,6 +61,37 @@ def card_index():
         for c in roster.cards(kind):
             idx[c["name"].replace(" ", "_")] = c["name"]
     return idx
+
+
+def buckets(img):
+    """카드 몫과 화풍 몫을 한 줄로 늘어놓는다. 둘의 속은 같은 꼴이다."""
+    for v in img.values():
+        yield v
+        for b in (v.get("byStyle") or {}).values():
+            yield b
+
+
+SLOTS = ("m", "f", "face", "casual", "extra")
+
+
+def tidy(img, styles):
+    """칸 차례를 고정한다. 파일이 붙는 차례대로 두면 같은 내용이라도 줄이
+    달라 보여서, 손으로 넣은 항목과 이 스크립트가 넣은 항목의 diff 가 지저분해진다."""
+    order = list(styles)
+
+    def one(b):
+        return {k: b[k] for k in SLOTS if k in b}
+
+    for v in img.values():
+        bs = v.pop("byStyle", None)
+        for k in [k for k in v if k not in SLOTS]:
+            del v[k]
+        v.update(one(dict(v)))
+        for k in [k for k in v if k not in SLOTS]:
+            del v[k]
+        if bs:
+            v["byStyle"] = {k: one(bs[k]) for k in sorted(bs, key=lambda x: (
+                order.index(x) if x in order else len(order), x))}
 
 
 def listed_files(img):
@@ -56,10 +106,8 @@ def listed_files(img):
             for f in d.get(k) or []:
                 out.add(f)
 
-    for v in img.values():
-        take(v)
-        for b in (v.get("byStyle") or {}).values():
-            take(b)
+    for b in buckets(img):
+        take(b)
     return out
 
 
@@ -72,6 +120,7 @@ def main():
     doc = roster.read("img")
     img = doc["img"]
     idx = card_index()
+    styles = roster.styles()
     disk = {f for f in os.listdir(".") if f.lower().endswith(".webp")}
     listed = listed_files(img)
 
@@ -83,11 +132,14 @@ def main():
         if not m:
             unknown.append((f, "이름 꼴이 안 맞는다"))
             continue
-        card = idx.get(m.group(1).replace(" ", "_"))
+        head, style = split_style(m.group(1), styles)
+        card = idx.get(head.replace(" ", "_"))
         if not card:
             unknown.append((f, "그런 카드가 없다"))
             continue
         e = img.setdefault(card, {})
+        if style:
+            e = e.setdefault("byStyle", {}).setdefault(style, {})
         kind = m.group(2).lower()
         if kind in ("m", "f"):
             if e.get(kind):
@@ -102,10 +154,10 @@ def main():
             if lst[n - 1]:
                 continue
             lst[n - 1] = f
-        added.append((card, f))
+        added.append((card + ("" if not style else " · " + styles[style]), f))
 
     # 자리를 메우려고 넣은 빈 칸은 도로 걷어낸다
-    for e in img.values():
+    for e in buckets(img):
         for slot in ("casual", "extra"):
             if slot in e:
                 e[slot] = [x for x in e[slot] if x]
@@ -115,7 +167,7 @@ def main():
     ghosts = sorted(listed_files(img) - disk)
     if a.prune and ghosts:
         gone = set(ghosts)
-        for e in img.values():
+        for e in buckets(img):
             for k in ("m", "f"):
                 if e.get(k) in gone:
                     del e[k]
@@ -125,6 +177,17 @@ def main():
                     if not e[k]:
                         del e[k]
 
+    # 그림이 다 빠진 화풍 칸은 남겨봐야 화풍만 하나 더 있는 것처럼 보인다
+    for v in img.values():
+        bs = v.get("byStyle")
+        if bs is None:
+            continue
+        for k in [k for k, b in bs.items() if not b]:
+            del bs[k]
+        if not bs:
+            del v["byStyle"]
+
+    tidy(img, styles)
     doc["img"] = dict(sorted(img.items()))
     doc["count"] = len(img)
     if not a.check:
