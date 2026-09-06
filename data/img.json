@@ -73,7 +73,7 @@
   "노이에 질": {"m": "노이에_질_m.webp", "f": "노이에_질_f.webp", "face": {"m": [0.42, 0.114, 0.166], "f": [0.42, 0.107, 0.166]}, "casual": ["노이에_질_casual1.webp"]},
   "뉴 건담": {"m": "뉴_건담_m.webp", "f": "뉴_건담_f.webp", "face": [0.393, 0.14, 0.21], "casual": ["뉴_건담_casual1.webp"]},
   "다릴 바르데": {"m": "다릴_바르데_m.webp", "f": "다릴_바르데_f.webp", "face": {"m": [0.403, 0.062, 0.195], "f": [0.433, 0.088, 0.186]}, "casual": ["다릴_바르데_casual1.webp"]},
-  "더블 엑스": {"casual": ["더블 엑스_casual1.webp", "더블 엑스_casual2.webp", "더블 엑스_casual3.webp", "더블 엑스_casual4.webp", "더블 엑스_casual5.webp", "더블 엑스_casual6.webp", "더블 엑스_casual7.webp"], "f": "더블 엑스_f.webp", "m": "더블 엑스_m.webp"},
+  "더블 엑스": {"m": "더블 엑스_m.webp", "f": "더블 엑스_f.webp", "face": {"m": [0.394, 0.157, 0.13], "f": [0.433, 0.123, 0.13]}, "casual": ["더블 엑스_casual1.webp", "더블 엑스_casual2.webp", "더블 엑스_casual3.webp", "더블 엑스_casual4.webp", "더블 엑스_casual5.webp", "더블 엑스_casual6.webp", "더블 엑스_casual7.webp"]},
   "더블오 건담": {"m": "더블오 건담_m.webp", "f": "더블오 건담_f.webp", "face": {"m": [0.415, 0.085, 0.105], "f": [0.4, 0.115, 0.11]}, "casual": ["더블오 건담_casual1.webp", "더블오 건담_casual2.webp"]},
   "더블오 라이저": {"m": "더블오_라이저_m.webp", "f": "더블오_라이저_f.webp", "face": {"m": [0.452, 0.108, 0.125], "f": [0.452, 0.098, 0.128]}, "casual": ["더블오_라이저_casual1.webp"]},
   "더블오 퀀터": {"m": "더블오 퀀터_m.webp", "f": "더블오 퀀터_f.webp", "face": {"m": [0.415, 0.107, 0.13], "f": [0.405, 0.11, 0.13]}, "casual": ["더블오 퀀터_casual1.webp", "더블오 퀀터_casual2.webp", "더블오 퀀터_casual3.webp", "더블오 퀀터_casual4.webp"]},
