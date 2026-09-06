@@ -3975,6 +3975,14 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     ENTRY={key:k,rec:stripPrev(rec),taken:false};
     if(!rec){updateSaveBar();return false;}
     GSTATE.female=rec.female||null; GSTATE.male=rec.male||null;
+    /* 한쪽 성별로만 잡아 둔 기체가 있다. 화면은 늘 여성으로 열리므로 남성만
+       기록된 기체를 열면 값이 GSTATE 에는 들어와 있는데 화면은 텅 비어
+       보였다. 기록이 있는 쪽으로 맞춰 연다 — carryValues 는 처음부터
+       있는 쪽을 골라 쓰고 있었으니 그쪽에 맞추는 셈이다. */
+    if(!GSTATE[curGender()]){
+      const other=curGender()==='female'?'male':'female';
+      if(GSTATE[other])setGender(other,true);
+    }
     applyParams(GSTATE[curGender()]);
     refreshAnthroPrompt(); updateSaveBar();
     return true;
@@ -4029,10 +4037,12 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     GSTATE[other]=JSON.parse(JSON.stringify(GSTATE[cur]));
     setStatus('statusAnthro',(cur==='female'?'여성':'남성')+' 설정을 '+(other==='female'?'여성':'남성')+' 쪽에 복사했다 — 그 탭으로 넘어가면 적용된다','ok');
   }
-  function setGender(g){
+  function setGender(g,keepCur){
     const cur=curGender();
     if(g===cur)return;
-    GSTATE[cur]=snapParams();
+    /* keepCur 는 기록을 열면서 성별을 맞출 때 쓴다. 그때는 화면이 아직 비어
+       있어서, 지금 화면을 담으면 빈 설정이 기록에 섞여 들어간다 */
+    if(!keepCur)GSTATE[cur]=snapParams();
     document.getElementById('genderInput').value=g;
     document.querySelectorAll('#genderTabs .gt').forEach(b=>b.classList.toggle('on',b.dataset.gender===g));
     document.getElementById('underboobField').classList.toggle('hidden',g!=='female');
