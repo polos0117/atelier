@@ -144,6 +144,37 @@ def main():
         print("  등록 못 한 파일 %d" % len(unknown))
         for f, why in unknown[:10]:
             print("     %-40s %s" % (f, why))
+    annotate(added, ghosts, unknown, a.prune and not a.check)
+
+
+def annotate(added, ghosts, unknown, pruned):
+    """GitHub Actions 로 돌 때는 실행 화면에도 남긴다.
+
+    등록 못 한 파일이 있어도 이 스크립트는 성공으로 끝난다. 초상 아홉 장 중
+    하나가 카드 이름과 안 맞아 빠져도 워크플로는 초록이라, 로그를 안 보면
+    모르고 지나간다. 그래서 경고로 띄워 실행 목록에 뜨게 한다."""
+    if not os.environ.get("GITHUB_ACTIONS"):
+        return
+    for f, why in unknown:
+        print("::warning file=%s::초상을 등록하지 못했다 — %s" % (f, why))
+    for f in ghosts:
+        print("::warning::%s 가 img.json 에 적혀 있는데 파일이 없다%s"
+              % (f, " (지웠다)" if pruned else " — --prune 으로 지운다"))
+    path = os.environ.get("GITHUB_STEP_SUMMARY")
+    if not path:
+        return
+    with open(path, "a", encoding="utf-8") as f:
+        f.write("### 초상 등록\n\n")
+        f.write("- 새로 등록 **%d**\n" % len(added))
+        for card, name in added:
+            f.write("  - `%s` ← %s\n" % (card, name))
+        if unknown:
+            f.write("- 등록 못 한 파일 **%d** — 카드 이름과 파일 이름이 맞는지 본다\n"
+                    % len(unknown))
+            for name, why in unknown:
+                f.write("  - `%s` — %s\n" % (name, why))
+        if ghosts:
+            f.write("- 적혀 있는데 파일이 없는 것 **%d**\n" % len(ghosts))
 
 
 if __name__ == "__main__":
