@@ -458,7 +458,23 @@ solely because a numeric value is present.
 `eye color` · `second eye color` · `expression` 은 예정대로 우선순위 문장에서
 빠졌다. 이제 인상과 우열을 다투지 않는다.
 
-## 7.1 하다가 찾은 것 둘
+## 7.1 눈금은 셋으로
+
+처음에는 `face length` 를 짧은/살짝 짧은/균형/살짝 긴/긴 다섯 단계로 냈다가
+셋으로 줄였다. 실제로 돌려 보니 차이가 또렷하지 않았고, 이유가 분명하다 —
+`medium` 과 `medium-large` 는 모델 안에서 거의 같은 자리에 떨어진다. 붙어 있는
+눈금은 잡음보다 작아서 고르는 뜻이 없고, 안 읽히는 값이 늘면 나머지 지시의
+무게까지 희석된다.
+
+눈금이 있는 열하나를 **상 · 중 · 하 셋**으로 맞췄다. `parting`(가르마 위치)과
+B/W/H 는 단계가 아니라 그대로 뒀다.
+
+**기존 항목은 건드리지 않았다.** `height impression` 의 `very tall` 이 기록에서
+다섯 번, `leg proportion` 의 `very long` 이 여섯 번 쓰이고 있다. 목록에서 빼면
+저장된 기록이 조용히 AUTO 로 풀린다. 새 항목은 아직 쓰인 적이 없어 자유롭게
+바꿀 수 있었다.
+
+## 7.2 하다가 찾은 것 둘
 
 **`carryValues()` 가 직접 입력한 값을 흘렸다.** 기록은 고른 값(`sel`)과 직접
 입력한 글(`cus`)을 따로 담는데, carry 는 `sel` 만 읽어서 '직접 입력' 을 고른
@@ -471,7 +487,7 @@ solely because a numeric value is present.
 `leg proportion` 밑에 달았다. 둘 다 그 자체가 하위라 화면에서 부모 밖으로
 밀려났다. UI 검사에서 잡아 `body type` 하위로 올렸다.
 
-## 7.2 검증
+## 7.3 검증
 
 | 확인 | 결과 |
 |---|---|
