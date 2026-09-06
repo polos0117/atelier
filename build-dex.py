@@ -15,7 +15,8 @@ import re, sys, os, json
 # 통째로 베껴 넣었는데, 그러면 도감 파일의 82% 가 data/ 사본이라 자료가 바뀔
 # 때마다 15 만 자를 다시 커밋해야 했고 다시 만드는 것을 잊기도 쉬웠다.
 # 규칙·표시에 딸린 선언만 게임 파일에서 가져온다.
-CODE_BLOCKS = ["IMG_BASE", "ASPECT", "STAT_LABEL"]
+# STAT_LABEL 은 더 이상 베껴 오지 않는다 — data/*.json 머리말에서 채운다
+CODE_BLOCKS = ["IMG_BASE", "ASPECT"]
 BLOCKS = CODE_BLOCKS
 
 
@@ -324,23 +325,35 @@ function rowOf(c,kind){
   if(kind==="pilot")return r.concat([c.psy,c.series,c.line||""]);
   return r.concat([c.series]);
 }
+/* 카드 종류 — 화면 이름과 자료 파일을 잇는 한 자리. 게임 쪽 KIND 와 같은 차례다 */
+var KIND=[["함","ship"],["기체","mech"],["파일럿","pilot"],["지휘관","crew"]];
+/* 능력치 이름표는 data/*.json 머리말이 이미 갖고 있다. 여기 또 적으면 둘이 갈린다 */
+var STAT_LABEL={};
 function loadData(){
-  return Promise.all(["mech.json","pilot.json","ship.json","crew.json",
-                      "series.json","img.json"].map(fetchJSON)).then(function(d){
-    fill(MECH, d[0].cards.map(function(c){return rowOf(c,"mech")}));
-    fill(PILOT,d[1].cards.map(function(c){return rowOf(c,"pilot")}));
-    fill(SHIP, d[2].cards.map(function(c){return rowOf(c,"ship")}));
-    fill(CREW, d[3].cards.map(function(c){return rowOf(c,"crew")}));
-    fillMap(SER_NAME,d[4].name);
-    fillMap(FAC,d[4].faction_color);
-    fillMap(IMG,d[5].img);
+  var MORE=["series.json","img.json"];
+  var files=KIND.map(function(k){return k[1]+".json"}).concat(MORE);
+  return Promise.all(files.map(fetchJSON)).then(function(d){
+    var by={},n=KIND.length;
+    KIND.forEach(function(k,i){by[k[1]]=d[i]; STAT_LABEL[k[0]]=d[i].stats});
+    MORE.forEach(function(f,i){by[f.replace(".json","")]=d[n+i]});
+    fill(MECH, by.mech.cards.map(function(c){return rowOf(c,"mech")}));
+    fill(PILOT,by.pilot.cards.map(function(c){return rowOf(c,"pilot")}));
+    fill(SHIP, by.ship.cards.map(function(c){return rowOf(c,"ship")}));
+    fill(CREW, by.crew.cards.map(function(c){return rowOf(c,"crew")}));
+    fillMap(SER_NAME,by.series.name);
+    fillMap(FAC,by.series.faction_color);
+    fillMap(IMG,by.img.img);
   });
 }
 
 __DATA__
 /* ══ 도감 전용 코드 ══ */
 var POOL={"기체":MECH,"파일럿":PILOT,"지휘관":CREW,"함":SHIP};
-var TABS=["기체","파일럿","지휘관","함"];
+/* 도감은 기체부터 본다. 게임(KIND)과 보는 차례만 다르고 종류는 같아야 하므로,
+   앞자리만 정해 두고 나머지는 KIND 에서 끌어온다 */
+var TAB_HEAD=["기체","파일럿","지휘관"];
+var TABS=TAB_HEAD.concat(KIND.map(function(k){return k[0]})
+  .filter(function(n){return TAB_HEAD.indexOf(n)<0}));
 var tab="기체", ser="", q="", vari="f", mode="p";   /* p 의인화 · c 일상 · x 특별 컷 */
 var styleSel="";   /* 화풍 탭에서 고른 화풍 키, 빈 값이면 전체 */
 var MODE_NAME={p:"의인화",c:"일상",x:"특별 컷",w:"작업"};

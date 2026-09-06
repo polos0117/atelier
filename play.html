@@ -480,6 +480,12 @@ h3{font-family:var(--disp);font-weight:900;font-size:12px;letter-spacing:.1em;co
 var MECH=[], PILOT=[], SHIP=[], CREW=[];
 var SER_NAME={}, FRANCHISE={}, SER_TAG={}, FAC={};
 var LORE={}, BOND={}, IMG={}, COMBO=[];
+/* 카드 종류 — 화면 이름과 자료 파일을 잇는 한 자리.
+   탭 목록·능력치 이름표가 여기서 갈라져 나온다 */
+var KIND=[["함","ship"],["기체","mech"],["파일럿","pilot"],["지휘관","crew"]];
+function kindNames(){return KIND.map(function(k){return k[0]})}
+/* 능력치 이름표는 data/*.json 머리말이 이미 갖고 있다. 여기 또 적으면 둘이 갈린다 */
+var STAT_LABEL={};
 /* 화풍 key → 한글 이름. 차례는 data/style.json 이 정한다 */
 var ART_NAME={}, ART_ORDER=[];
 var WEIGHT={}, TAG_COLOR={}, TAG_ROLE={}, GUNDAM_EXTRA={};
@@ -528,24 +534,29 @@ function plainRow(c){
 }
 
 function loadData(){
-  return Promise.all(["mech.json","pilot.json","ship.json","crew.json",
-                      "bond.json","combo.json","img.json","series.json",
-                      "style.json"].map(fetchJSON))
-    .then(function(d){
-      fill(MECH, absorb(d[0].cards,mechRow));
-      fill(PILOT,absorb(d[1].cards,pilotRow));
-      fill(SHIP, absorb(d[2].cards,plainRow));
-      fill(CREW, absorb(d[3].cards,plainRow));
-      fillMap(BOND,d[4].bonds);
-      fill(COMBO,d[5].combos);
-      fillMap(IMG,d[6].img);
-      fillMap(SER_NAME,d[7].name);
-      fillMap(FRANCHISE,d[7].franchise);
-      fillMap(SER_TAG,d[7].tag);
-      fillMap(FAC,d[7].faction_color);
-      fill(ART_ORDER,d[8].styles.map(function(x){return x.key}));
-      d[8].styles.forEach(function(x){ART_NAME[x.key]=x.name});
-    });
+  /* 카드 넷은 KIND 가 정한다. 그 뒤에 오는 파일만 여기서 이름을 댄다 */
+  var MORE=["bond.json","combo.json","img.json","series.json","style.json","field.json"];
+  var files=KIND.map(function(k){return k[1]+".json"}).concat(MORE);
+  return Promise.all(files.map(fetchJSON)).then(function(d){
+    var by={},n=KIND.length;
+    KIND.forEach(function(k,i){by[k[1]]=d[i]; STAT_LABEL[k[0]]=d[i].stats});
+    MORE.forEach(function(f,i){by[f.replace(".json","")]=d[n+i]});
+    fill(MECH, absorb(by.mech.cards, mechRow));
+    fill(PILOT,absorb(by.pilot.cards,pilotRow));
+    fill(SHIP, absorb(by.ship.cards, plainRow));
+    fill(CREW, absorb(by.crew.cards, plainRow));
+    fillMap(BOND,by.bond.bonds);
+    fill(COMBO,by.combo.combos);
+    fillMap(IMG,by.img.img);
+    fillMap(SER_NAME,by.series.name);
+    fillMap(FRANCHISE,by.series.franchise);
+    fillMap(SER_TAG,by.series.tag);
+    fillMap(FAC,by.series.faction_color);
+    fill(ART_ORDER,by.style.styles.map(function(x){return x.key}));
+    by.style.styles.forEach(function(x){ART_NAME[x.key]=x.name});
+    fill(FIELDS,by.field.fields.map(function(f){return [f.name,f.weight]}));
+    fillMap(TERR,by.field.grade); fillMap(TERR_WORD,by.field.word);
+  });
 }
 /* 파일럿: 이름, 소속이력, 지휘,조종,전술,정치, 기질, 감응등급, 시리즈, 감응계통 */
 
@@ -838,24 +849,22 @@ var NTB=[-.20,.10,.18,.25];
    수중은 넷 중 셋이 '보통' 이라 다 같이 굼뜬 판이 되며, 대기권은 열 중 일곱이
    부적합이라 날 수 있는 기체를 찾는 판이 된다. 어려운 전장을 드물게 둔 것은
    제약이 매 판 오면 제약이 아니라 세금이 되기 때문이다. */
-var FIELDS=[["우주",.34],["지상",.34],["수중",.20],["대기권",.12]];
-var FIELD="우주";
+var FIELDS=[];          /* [이름, 뽑힐 비율] — data/field.json 에서 채운다 */
+var FIELD="";
 function rollField(){
   var r=Math.random(),i;
   for(i=0;i<FIELDS.length;i++){r-=FIELDS[i][1];if(r<=0)return FIELD=FIELDS[i][0]}
   return FIELD=FIELDS[0][0];
 }
-/* 적합이 기본이고 못 맞추면 깎는다. 대부분이 우주·지상에 적합하니
-   적합에 웃돈을 주면 물가만 오른다 */
-var TERR={3:0,2:-.06,1:-.18};
+var TERR={};            /* 지형 등급 → 짝 점수 감점 */
+var TERR_WORD={};       /* 지형 등급 → 화면에 쓸 말 */
 function terrainOf(m){
   var t=m[10];
   return t&&TERR[t[FIELD]]!==undefined?TERR[t[FIELD]]:0;
 }
 function terrainWord(m){
   var t=m[10];
-  if(!t)return "";
-  return t[FIELD]===3?"적합":t[FIELD]===1?"부적합":"보통";
+  return t?(TERR_WORD[t[FIELD]]||""):"";
 }
 /* 계통이 맞으면 온전히, 다르면 절반만. 감응이 없으면 특수기를 못 다룬다 */
 function ntBonus(p,m){
@@ -1050,8 +1059,6 @@ function slotsOf(type){var n=0,i;for(i=0;i<SCHEDULE.length;i++)if(SCHEDULE[i]===
 var CAP_BONUS=Math.max(0,slotsOf("기체")-4);
 function capOf(t){return t.함.length?t.함[0][5]+CAP_BONUS:0}
 var TYPE_LABEL={"함":"모함 선정","기체":"기체 확보","파일럿":"파일럿 영입","지휘관":"지휘관 배치"};
-var STAT_LABEL={"기체":["출력","화력","장갑","기동"],"파일럿":["지휘","조종","전술","정치"],
-  "함":["지휘","방어","색적","정원"],"지휘관":["지휘","정비","전술","정치"]};
 var SEATS=["아군","적 1","적 2"],PACKN=9;
 var sharedPack=true;   // 한 팩을 셋이 나눠 집는다
 var pools,teams,round,seq,si,busy,log,openFoe={};
@@ -2032,7 +2039,7 @@ function drawOvl(){
       +'<br>갤러리용 그림은 <b>extra[]</b>, 일상 버전은 <b>casual[]</b> 에 넣는다.'));
   }else{
     var tabs=el("div","tabs");
-    ["함","기체","파일럿","지휘관","공적","통계"].forEach(function(t){
+    kindNames().concat(["공적","통계"]).forEach(function(t){
       var b3=el("button","tab"+(dexTab===t?" on":""),
         DEX_POOL[t]?t+" "+DEX_POOL[t].length:t);
       b3.onclick=function(){dexTab=t;dexScroll=0;drawOvl()};
