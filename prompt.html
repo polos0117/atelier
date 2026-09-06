@@ -773,7 +773,9 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   let MECH = [], MECH_META = {}, SER_NAME = {}, SERIES_ORDER = [];
   async function loadCards(){
     const get = async n => {
-      const r = await fetch('data/' + n);
+      /* 게임·도감과 같은 조건으로 받는다. Pages 의 10분 캐시에 걸리면
+         자료가 엇갈려 한동안 예전 목록으로 돈다 */
+      const r = await fetch('data/' + n, { cache: 'no-cache' });
       if (!r.ok) throw new Error(n + ' \u2014 ' + r.status);
       return r.json();
     };

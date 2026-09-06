@@ -307,7 +307,10 @@ var MECH=[], PILOT=[], SHIP=[], CREW=[];
 var SER_NAME={}, FAC={}, IMG={};
 var DATA_DIR="data/";
 function fetchJSON(n){
-  return fetch(DATA_DIR+n).then(function(r){
+  /* toolkit-data.json 과 같은 조건으로 받는다. 한쪽만 no-cache 면 Pages 의
+     10분 캐시 때문에 자료가 엇갈려, 새로 넣은 화풍 몫을 못 보고
+     예전 img.json 으로 필터가 도는 일이 생긴다 */
+  return fetch(DATA_DIR+n,{cache:"no-cache"}).then(function(r){
     if(!r.ok)throw new Error(n+" \u2014 "+r.status);
     return r.json();
   });
