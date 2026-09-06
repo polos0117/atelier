@@ -26,7 +26,11 @@ jobs:
   register:
     runs-on: ubuntu-latest
     steps:
+      # 되커밋이 밀렸을 때 아래에서 rebase 를 하므로 온전한 이력이 필요하다.
+      # 기본값인 얕은 클론(fetch-depth 1)이면 그 rebase 가 간헐적으로 깨진다.
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
