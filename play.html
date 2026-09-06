@@ -489,7 +489,9 @@ var GGE={};
 
 var DATA_DIR="data/";
 function fetchJSON(n){
-  return fetch(DATA_DIR+n).then(function(r){
+  /* 도감·툴킷과 같은 조건으로 받는다. Pages 의 10분 캐시에 걸리면
+     새로 올린 화풍 몫이 한동안 안 보인다 */
+  return fetch(DATA_DIR+n,{cache:"no-cache"}).then(function(r){
     if(!r.ok)throw new Error(n+" — "+r.status);
     return r.json();
   });
