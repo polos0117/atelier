@@ -3934,6 +3934,9 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     const cur=curGender(),other=cur==='female'?'male':'female';
     const rec={}; rec[cur]=snapParams();
     if(GSTATE[other])rec[other]=GSTATE[other];
+    /* 마지막으로 어느 성별로 작업했는지. 양쪽 다 잡아 둔 기체는 이게 없으면
+       다시 열 때 늘 여성으로 돌아가, 남성으로 짜 둔 설정이 안 보인다 */
+    rec.g=cur;
     /* 값이 하나도 없으면 기록을 만들지 않는다. 그냥 지나친 기체마다 빈 기록이 생기면
        나중에 그 기체로 돌아왔을 때 빈 값이 덮어씌워진다. */
     /* 빈 값을 걷어낸 뒤 비교한다. 저장소 파일이 축약형으로 적혀 있어도 같게 본다 */
@@ -3967,7 +3970,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   let ENTRY={key:'',rec:null,taken:false};
   function stripPrev(r){
     if(!r)return null;
-    const o={}; ['female','male','t'].forEach(x=>{if(r[x]!==undefined)o[x]=r[x]});
+    const o={}; ['female','male','g','t'].forEach(x=>{if(r[x]!==undefined)o[x]=r[x]});
     return o;
   }
   function loadAnthroForMech(){
@@ -3979,10 +3982,10 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
        기록된 기체를 열면 값이 GSTATE 에는 들어와 있는데 화면은 텅 비어
        보였다. 기록이 있는 쪽으로 맞춰 연다 — carryValues 는 처음부터
        있는 쪽을 골라 쓰고 있었으니 그쪽에 맞추는 셈이다. */
-    if(!GSTATE[curGender()]){
-      const other=curGender()==='female'?'male':'female';
-      if(GSTATE[other])setGender(other,true);
-    }
+    const want=(rec.g&&GSTATE[rec.g])?rec.g
+      :(!GSTATE[curGender()]&&GSTATE[curGender()==='female'?'male':'female']
+          ?(curGender()==='female'?'male':'female'):null);
+    if(want)setGender(want,true);
     applyParams(GSTATE[curGender()]);
     refreshAnthroPrompt(); updateSaveBar();
     return true;
@@ -4431,7 +4434,9 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       const r=recOf(k); if(!r)return;
       const f=trim(r.female),m=trim(r.male);
       if(!f&&!m)return;
-      const o={}; if(f)o.female=f; if(m)o.male=m; o.t=r.t||Date.now();
+      const o={}; if(f)o.female=f; if(m)o.male=m;
+      if(r.g&&o[r.g])o.g=r.g;
+      o.t=r.t||Date.now();
       /* prev 는 이 브라우저 안에서만 쓰는 되돌리기용이라 파일에 넣지 않는다 */
       merged.mechs[k]=o;
     });
