@@ -90,17 +90,48 @@ STATUS      = STABLE
 관찰:
 - ANTHRO 갑옷 광택이 game_keyart와 약간 가까운 편
 
-향후 조정 후보:
-```text
-glossy_kr_game.anthro만 소폭 조정 가능
+## 3.1 2026-09 수정 — 2.5D 복구
 
-목표:
+기준선 작성 이후, 결과가 애니/메카 키아트 쪽으로 밀린다는 관찰이 누적됐다.
+얼굴이 평평해지고 코·입술 볼륨이 줄고 장갑 하이라이트가 셀식으로 단순해지는 방향이었다.
+ANTHRO와 LIFESTYLE에서 같이 나타나서 mode 문제가 아니라 공통 DNA 문제로 봤다.
+
+코드에서 확인한 원인은 이 화풍의 core 문구 자체였다.
+
+```text
+"clearly adult anime-informed facial rendering"   → 애니화를 명시적으로 요구
+"a refined small nose"                            → 코 볼륨을 직접 깎음
+"exceptionally smooth airbrushed gradients"       → 평면화를 막는 반대말이 없음
+```
+
+game_keyart의 core에는 "must not become flat", "visible volumetric form in the
+forehead, eyelids, eye sockets, nose bridge, cheeks, lips, jaw" 같은 입체 가드가
+있는데 glossy_kr_game에는 하나도 없었다. 관찰된 드리프트는 모델의 변덕이 아니라
+문구대로 나온 결과다.
+
+수정 내용:
+```text
+core       세 문구를 고치고 끝에 STYLE SIGNATURE 문단을 붙였다
+           anime-informed → mature semi-real 2.5D modelling
+           small nose     → refined but dimensional nose
+           airbrushed     → 평면화 금지 단서를 덧붙임
+anthro     기계적/고채도 피사체에서도 얼굴을 단순화하지 않는다
+           하드서피스 재질 구분 유지
+           무광 장갑도 이 화풍이다 (무광은 재질, 화풍은 그대로)
+lifestyle  얼굴 2.5D + 헤어 층 유지
+           광택은 유지하되 균일한 wet specular만 방지
+```
+
+검증: 11개 화풍의 ANTHRO 프롬프트와 두 화풍의 LIFESTYLE 프롬프트를 수정 전후로
+전부 뽑아 비교했고, glossy_kr_game 외 10개는 바이트 단위로 동일했다.
+얼굴 구조 우선순위(REFERENCE > FACE GEOMETRY > AGE > FACIAL CHARACTER > 화풍)는
+1c2cbb6 에서 이미 STYLE LOCK 에 들어가 있어 이번에 손대지 않았다.
+
+남은 조정 후보:
+```text
 물리 반사 강화 X
 디자인된 광택 강화 O
-saturated reflection
-highlight ribbon
-jewel-toned shadow
-lacquered illustrated finish
+saturated reflection / highlight ribbon / jewel-toned shadow / lacquered finish
 ```
 
 COMMON / TRANSLATION 수정 금지.
@@ -300,7 +331,7 @@ STATUS      = LOCK
 |---|---|---|---|---|
 | cinematic_semi_real | PASS | PASS | GOLDEN / LOCK | 기준 |
 | game_keyart | PASS | PASS | GOLDEN / LOCK | 기준 |
-| glossy_kr_game | PASS | PASS | STABLE | anthro 광택 소폭 후보 |
+| glossy_kr_game | PASS | PASS | REVISED 2026-09 | core/anthro/lifestyle 2.5D 복구 (§3 참고) |
 | game_cgi | PASS | PASS | LOCK | 수정 없음 |
 | semi_real_paint | PASS | PASS | LOCK | 수정 없음 |
 | photoreal | PASS | PASS | LOCK | 수정 없음 |
@@ -421,7 +452,8 @@ COMMON 수정
 
 현재 수정 후보:
 ```text
-glossy_kr_game.anthro 광택 차별화 — 선택적
+glossy_kr_game 2.5D 복구 — 2026-09 적용 완료 (§3.1)
+glossy_kr_game.anthro 광택 차별화 — 선택적, 미적용
 painterly typography hallucination — 반복 시
 lifestyle small mechanical accessory carry — 반복 시
 ```

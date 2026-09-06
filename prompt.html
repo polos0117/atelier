@@ -3576,25 +3576,40 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       core: [
         "high-gloss stylised character illustration in the visual language of premium Korean mobile-game key art.",
         "The rendering is strongly stylised, glamorous, saturated, and highly polished, but the character design, body proportions, armor silhouette, and costume structure remain controlled by PARAMETERS and the source mobile suit.",
-        "FACE: strongly stylised but clearly adult anime-informed facial rendering.",
-        "Use elegant eye shapes, deliberate lash definition, a refined small nose, softly glossy lips, and polished beauty rendering.",
+        "FACE: strongly stylised but clearly adult facial rendering built on mature semi-real 2.5D modelling.",
+        "The face must keep dimensional volume in the cheeks, nose bridge, nose tip, lips, eyelids, and jaw rather than flattening into a modern anime or mecha key-art template.",
+        "Use elegant eye shapes, deliberate lash definition, a refined but dimensional nose, softly glossy lips with readable volume, and polished beauty rendering.",
         "The exact eye geometry, face shape, ethnicity, maturity, and facial character must still follow PARAMETERS rather than collapsing into one recurring glamour face.",
         "SKIN: exceptionally smooth airbrushed gradients with bright designed specular highlights and deep saturated shadow colour.",
-        "Skin appears polished and luminous rather than photographic.",
+        "Skin appears polished and luminous rather than photographic, but the facial planes underneath stay dimensional — gradients must not flatten the form into uniform airbrushed shading.",
         "HAIR: glossy grouped locks with strong highlight ribbons, saturated colour separation, and selected sharp strands.",
         "Hair should feel illustrated and lacquered rather than photographically rendered.",
         "DECORATIVE DETAIL: straps, trim, fittings, chains, ribbons, jewellery, or ornamental accents may appear only where the canonical design or explicit PARAMETERS support them.",
         "Do not add generic baroque decoration merely because of the selected art style.",
         "LIGHTING: theatrical key light, strong coloured rim light, deep jewel-toned shadows, controlled bloom, and dramatic contrast.",
         "BACKGROUND: simplified atmospheric glow, bokeh, gradients, or broad decorative light shapes.",
-        "Avoid photographic realism, muted colour, flat cel shading, low-gloss rendering, plain unrendered surfaces, unrelated fantasy ornament, and generic baroque redesign of the source mobile suit."
+        "Avoid photographic realism, muted colour, flat cel shading, low-gloss rendering, plain unrendered surfaces, unrelated fantasy ornament, and generic baroque redesign of the source mobile suit.",
+        /* 화풍이 흔들릴 때 돌아올 자리. 색·재질·장면이 바뀌어도 같은 화풍임을 끝에서 한 번 더 못박는다. */
+        "STYLE SIGNATURE: maintain a premium Korean game-illustration finish built on semi-real 2.5D form, mature dimensional facial modelling, refined luminous skin gradients, polished hair rendering, crisp focal detail, and strong material separation.",
+        "Do not drift toward flat modern anime rendering, generic mecha key-art facial simplification, or cel-like treatment merely because the subject, armor, palette, or scene becomes more mechanical or saturated.",
+        "Colour palette and material gloss may vary by subject, but the underlying rendering language must remain recognisably high-end glossy Korean game character art."
       ].join(' '),
       anthro: [
         "ARMOR, CLOTHING, AND MECHANICAL SURFACES: thick glossy rendering with strong stylized specular highlights, saturated colour, crisp edge accents, and luxurious material separation.",
         "Metal, painted armor, latex-like surfaces, fabric, and glass may each reflect light differently, but all remain part of the same highly stylised illustration.",
-        "Do not convert source-specific mechanical design into generic fantasy costume."
+        "Do not convert source-specific mechanical design into generic fantasy costume.",
+        "Even with highly mechanical silhouettes, saturated armor colour, or strong rim lighting, the exposed human face keeps the same mature semi-real 2.5D rendering — dimensional cheeks, nose bridge, nose tip, lips, eyelids, and jaw — instead of being simplified into a flatter anime or mecha key-art face.",
+        "Hard-surface armor keeps a nuanced material response: differentiate painted metal, matte coating, polished edges, dark mechanical joints, and reflective hard surfaces rather than reducing the whole armor system to uniformly clean cel-like highlights.",
+        /* 유광 화풍이라고 장갑까지 전부 번쩍여야 하는 건 아니다. 무광은 재질 이야기고 화풍은 그대로다. */
+        "A matte, military, pale, dark, or heavily saturated armor palette is still this style: matte describes the material, not the rendering language, which stays premium glossy Korean game illustration rather than concept art or anime key art."
       ].join(' '),
-      lifestyle: "Clothing, fabric, and accessories in this scene follow the same high-gloss stylised rendering established above — strong specular highlights, saturated colour, and luxurious material separation. Do not introduce armor, mechanical parts, weapons, or other source mobile-suit equipment into this scene."
+      lifestyle: [
+        "Clothing, fabric, and accessories in this scene follow the same high-gloss stylised rendering established above — strong specular highlights, saturated colour, and luxurious material separation.",
+        "The face keeps mature semi-real 2.5D construction rather than drifting toward cleaner flat anime beauty: nose, lips, cheeks, eyelids, and jaw stay softly dimensional with refined gradients, and hair keeps layered glossy strand groups with fine secondary detail.",
+        /* 광택을 빼는 게 아니라, 온몸이 균일하게 젖어 보이는 것만 막는다. */
+        "Use luminous glossy skin highlights selectively and with dimensional falloff — dry skin may still look polished and radiant, but avoid uniformly wet-looking specular coverage unless the scene explicitly involves water or moisture.",
+        "Do not introduce armor, mechanical parts, weapons, or other source mobile-suit equipment into this scene."
+      ].join(' ')
     },
     game_cgi: {
       core: [
