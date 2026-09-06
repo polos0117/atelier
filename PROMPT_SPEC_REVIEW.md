@@ -1,6 +1,7 @@
 # 체형 · 외모 설정 패치안 검토
 
 제안서 두 건을 툴킷(`prompt.html`) 실제 코드에 맞춰 본 결과다.
+반론(`PROMPT_SPEC_REVIEW_FINAL_RECOMMENDATION.md`)을 받아 §4·§5 를 개정했다.
 
 - `gundam_prompt_body_proportion_spec_patch.md` — 신체 치수 · 체형 비율
 - `gundam_prompt_face_appearance_spec_patch.md` — 얼굴 구조 · 인상 · 머리
@@ -220,44 +221,79 @@ keep the overall direction and apply the finer entry only as a mild adjustment
 
 그 반대 방향, 즉 **화풍이 얼굴 구조를 재설계하지 말라**는 규칙은 일부 화풍에만
 산발적으로 있다(`Retain the individual facial identity specified by PARAMETERS.`).
-COMMON 에 한 줄 넣으면 11 개 화풍 전부에 걸린다. **비용 대비 값이 가장 크다.**
+**비용 대비 값이 가장 크다.** 어디에 넣을지는 §5.1② 에서 정한다 — COMMON 도
+`[IDENTITY LOCK]` 도 아니고 `[STYLE LOCK]` 이다.
 
 **§12 `[REFERENCE ROLE]` 은 아예 없다.** 얼굴 크롭과 전신을 같이 붙였을 때
 어느 쪽이 얼굴 앵커인지 정하는 규칙이 없다.
 
 ---
 
-# 4. 가장 중요한 충돌 — 인상이 위인가 구조가 위인가
+# 4. 가장 중요한 충돌 — `sub` 가 두 가지 일을 겸한다
 
-얼굴 제안서 §9 의 핵심 주장은 이것이다.
+## 4.1 문제
 
-> `facial impression` 은 주도권이 아니라 **보조 태그**로 내린다.
-> 인상은 얼굴 구조를 덮어쓰지 못한다.
+얼굴 제안서 §9 의 핵심 주장은 "인상은 얼굴 구조를 덮어쓰지 못한다" 인데,
+현재 코드는 정확히 반대로 되어 있다.
 
-**현재 코드는 정확히 그 반대로 되어 있다.**
+1. `face shape` · `eye shape` · `eye color` · `second eye color` · `expression`
+   이 전부 `sub: 'facial character'` 로 **인상의 하위**에 달려 있다.
+2. §1.5 의 자동 문장이 **부모가 이긴다**고 명시한다.
 
-1. `face shape` · `eye shape` · `eye color` · `expression` 이 전부
-   `sub: 'facial character'` 로 **인상의 하위**에 달려 있다.
-2. §1.5 의 자동 문장이 **부모가 이긴다**고 명시한다 —
-   *"facial character defines the overall direction; the other, finer entries …
-   must not override or contradict it."*
+원인은 `sub` 하나가 두 가지를 동시에 맡고 있기 때문이다.
 
-즉 지금은 "인상이 방향을 정하고 눈매·얼굴형이 그 안에서 미세 조정" 이다.
-제안서는 "구조가 먼저고 인상은 그 위에 얹히는 보조 레이어" 를 요구한다.
+```
+sub = ① 화면에서 어느 카드 밑에 놓을지
+    + ② 프롬프트에서 누가 우선인지
+```
 
-**이건 문장 하나 넣는 문제가 아니라 위계를 뒤집는 문제다.** 세 가지 선택지가 있다.
+①은 지금 배치가 자연스럽다 — 인상을 먼저 고르고 세부를 잡는 흐름. ②는 아니다.
+특히 **`eye color` 까지 인상의 하위 의미로 취급하는 것은 말이 안 된다.**
+"인상이 방향을 정하니 눈동자 색은 그것과 모순되면 안 된다" 는 문장이 지금
+자동으로 붙고 있다.
 
-| 안 | 내용 | 대가 |
-|---|---|---|
-| **A** 그대로 둔다 | 인상이 부모 | 제안서 §9 의 핵심을 포기 |
-| **B** 문장만 바꾼다 | 위계는 두고, 얼굴에 한해 자동 문장을 "구조가 우선" 으로 뒤집는다 | UI 의 부모·자식 배치와 프롬프트의 우선순위가 어긋나 보인다 |
-| **C** 위계를 뒤집는다 | `face shape` 등을 최상위로 올리고 `facial character` 를 그 하위로 | 기존 프롬프트가 바뀐다. 화풍 기준선 재검증 필요 |
+## 4.2 해법 — 둘을 떼어 놓는다
 
-**B 를 권한다.** 사용자 눈에는 "인상을 먼저 고르고 세부를 잡는" 흐름이 자연스럽고,
-모델에게는 "구조가 먼저" 라고 말하는 편이 제안서가 지적한 과장 문제를 막는다.
-UI 흐름과 모델 지시는 원래 같을 필요가 없다.
+UI 계층은 그대로 두고, **얼굴 구조에 한해서만** 의미 우선순위를 분리한다.
+메타데이터를 바꿀 것 없이 열쇠 목록 하나면 된다.
 
----
+```js
+const FACE_GEOMETRY_KEYS = [
+  'face shape', 'face length', 'face width', 'jaw & chin',
+  'eye shape', 'eye size', 'eye tilt', 'nose character', 'lips'
+];
+```
+
+- 이 열쇠들은 자동 precedence 문장에서 "미세 조정" 쪽으로 묶지 않는다.
+  대신 **구조가 인상보다 우선**이라는 문장을 따로 붙인다.
+- `eye color` · `second eye color` · `expression` 은 여기 **넣지 않는다.**
+  구조가 아니라 색 · 표정 축이라 인상과 우열을 다툴 것이 없다. 지금처럼
+  묶어서 "인상을 거스르지 말라"고 말하는 쪽이 오히려 틀렸으므로, 이들은
+  precedence 문장 자체에서 빼는 편이 낫다.
+- **얼굴 밖(체형 · 머리 · 장갑)의 부모·자식 우선순위는 건드리지 않는다.**
+  `body type` 이 방향을 정하고 세부가 조정하는 것은 지금이 맞다.
+
+## 4.3 얼굴 의미 우선순위
+
+```
+참조 이미지
+  ↓
+명시된 얼굴 구조 (FACE_GEOMETRY_KEYS)
+  ↓
+나이 · 피부 · 개별 특징
+  ↓
+민족 · 지역 외모
+  ↓
+얼굴 인상 (facial character)
+  ↓
+표정 · 메이크업
+  ↓
+화풍 렌더링
+```
+
+`facial ethnicity` 는 지금 최상위이고 그대로 두되, **넓은 인상 단서**로만
+작동하도록 문장을 붙인다 — 참조 정체성이나 명시된 구조를 덮지 않고,
+지역 특징을 과장하지 않는다.
 
 # 5. 권고안
 
@@ -265,32 +301,93 @@ UI 흐름과 모델 지시는 원래 같을 필요가 없다.
 
 프롬프트 구조를 안 건드리고, 값이 비어 있으면 아무것도 안 바뀐다.
 
-1. **§10 보호 문장**을 COMMON 에 —
-   *선택된 화풍은 렌더링 언어와 양식화 정도를 바꿀 수 있으나, 인물의 기초
-   얼굴 구조와 정체성을 재설계해서는 안 된다.*
-2. **§9 인상 종속 문구** — `facial character` 를 골랐을 때 자동 문장을 얼굴에
-   한해 뒤집는다(§4 의 B 안).
-3. **§12 `[REFERENCE ROLE]`** — 참조 이미지가 둘 이상일 때만 출력.
-4. **체형 §6 우선순위 교정** — 현재 `carryBlock` 은 *"명확히 어긋나면 이미지를
-   따른다"* 로 끝난다. 포즈 · 원근 · 장갑 때문에 **애매할 때는 스펙이 이긴다**는
-   경우를 못 가린다. 한 문장 추가.
+### ① 얼굴 구조 우선 (§4.2)
 
-## 5.2 2단계 — 하위 파라미터 열둘 + 자유 입력 한 칸
+`FACE_GEOMETRY_KEYS` 를 두고, 얼굴에 한해 자동 precedence 문장을
+"구조 > 인상" 으로 바꾼다. 얼굴 밖은 그대로.
+
+### ② 화풍이 얼굴을 재설계하지 못하게 — **`[STYLE LOCK]` 에 넣는다**
+
+반론은 이 문장을 `[IDENTITY LOCK]` 에 두자고 했으나, **코드에서는 안 맞는다.**
+
+- `[IDENTITY LOCK]` 은 **생활컷 두 모드에만 있다.** 의인화 프롬프트는
+  `[ART STYLE]` + `[ANTHRO STYLE EXTENSION]` + `[STYLE LOCK]` +
+  `[SOURCE MORPHOLOGY ADAPTER]` + `[TRANSLATION PROFILE]` + `PARAMETERS` 로
+  짜여 있고 identity 블록이 없다. **얼굴을 처음 설계하는 곳이 바로 의인화다.**
+- 더구나 의인화의 `[STYLE LOCK]` 은 지금 이렇게 말한다 —
+  *"The selected ART STYLE controls the rendering language of the entire image
+  **without exception: facial construction**, skin, hair, armor …"*
+  얼굴 구조에 대한 화풍의 권한을 **명시적으로 선언**해 두었고 반대 추는 없다.
+
+보호 문장을 다른 블록에 두면 두 블록이 서로 모순되고, 모델은 둘 중 하나를
+고른다. 그러므로 **선언한 자리에서 한계를 함께 긋는 것**이 맞다.
+
+```
+… without exception: facial construction, skin, hair, armor, …
++ It governs how the face is rendered, not who the face is:
++ it must not redesign the underlying facial geometry, proportions, or identity
++ specified in PARAMETERS.
+```
+
+생활컷 쪽 `LIFESTYLE_STYLE_LOCK` 에도 같은 취지의 절을 맞춘다(그쪽은 이미
+*"governs HOW the scene is rendered only"* 가 있어 한 줄이면 된다).
+
+COMMON 으로 올리지 않는다 — `QA_BASELINE.md` 의 "COMMON 은 마지막 수단"
+원칙과 반론 §18.3 에 맞춘다.
+
+### ③ `[REFERENCE ROLE]` — 참조가 여럿일 때
+
+*"If multiple reference images of the same character are attached: 얼굴
+클로즈업이 얼굴 정체성의 앵커, 전신이 체형·머리·장비의 권위, 나머지는 불명확한
+부분을 푸는 데만, 여러 장을 평균 내지 말 것, 모두 같은 인물임."*
+
+조건문이라 한 장만 붙였을 때는 발동하지 않으므로 이미지 개수를 감지하는 UI 가
+필요 없다.
+
+### ④ 체형 참조 우선순위 교정
+
+현재 `carryBlock` 은 *"명확히 어긋나면 이미지를 따른다"* 로 끝난다. 장갑 ·
+포즈 · 원근 때문에 **애매할 때**를 못 가린다.
+
+```
+체형이 참조에서 뚜렷이 보이면      → 참조가 권위
+장갑·포즈·단축·가림으로 애매하면   → 명시된 체형값으로 푼다
+```
+
+## 5.2 2단계 — 하위 파라미터 열셋
 
 전부 기존 부모 밑 **하위로만** 들어간다. 최상위 15 는 그대로다.
 
 | 부모 | 새 하위 |
 |---|---|
-| `facial character` | `face length` · `jaw & chin` · `eye size` · `eye tilt` · `nose character` · `lips` |
+| `facial character` | `face length` · `face width` · `jaw & chin` · `eye size` · `eye tilt` · `nose character` · `lips` |
 | `hairstyle` | `hair texture` · `hair volume` · `parting` |
 | `torso / chest build` | `torso length` |
 | `leg proportion` | `lower-body build` |
 | `body type` | `body measurements (B/W/H)` — 자유 입력 |
 
+`face width` 는 반론 §9 를 받아 넣었다. `face shape + face length + jaw & chin`
+만으로는 "길고 좁은 얼굴 / 길고 넓은 얼굴" 이 안 갈린다.
+
 `face length` 등을 `face shape` 밑에 달고 싶지만 **중첩이 한 단만 되므로**
 (§1.3) `facial character` 하위로 평평하게 붙인다.
 
-B/W/H 는 숫자를 넣었을 때만 짧은 가드 블록이 따라 붙는다.
+### 같이 고쳐야 하는 것 — `CARRY_FACE` / `CARRY_BODY`
+
+**`PARAM_DEFS` 에만 넣으면 절반만 한 것이다.** 새 항목이 생활컷으로 안 넘어가
+의인화에서 잡은 얼굴이 일상컷에서 풀린다. 두 배열을 같이 늘린다.
+
+```js
+CARRY_FACE  += face length, face width, jaw & chin, eye size, eye tilt,
+               nose character, lips, hair texture, hair volume, parting
+CARRY_BODY  += torso length, lower-body build, body measurements (B/W/H)
+```
+
+배열이 `[['key','표시 이름'], …]` 쌍 꼴이므로 그 형태로 넣는다.
+
+### B/W/H 가드 블록
+
+숫자를 넣었을 때만 따라 붙고, 비우면 흔적도 남기지 않는다.
 
 ```
 [BODY MEASUREMENT NOTE]
@@ -320,10 +417,10 @@ solely because a numeric value is present.
 | | 최상위 | 하위 | 합 |
 |---|---|---|---|
 | 지금 | 15 | 15 | 30 |
-| 권고안 적용 후 | 15 | 27 | 42 |
+| 권고안 적용 후 | 15 | 28 | 43 |
 | 두 제안서를 항목대로 다 넣으면 | 15 | 40+ | 55~60 |
 
-권고안은 **최상위를 하나도 안 늘린다.** 늘어나는 열둘이 전부 기존 부모 밑으로
+권고안은 **최상위를 하나도 안 늘린다.** 늘어나는 열셋이 전부 기존 부모 밑으로
 접혀 들어가므로, 처음 여는 사람이 보는 화면은 지금과 같다.
 
 전부 `prompt.html` 한 파일이고, 대부분 `PARAM_DEFS` 에 항목을 더하는 일이다.
@@ -348,7 +445,42 @@ solely because a numeric value is present.
 # 7. 결정이 필요한 것
 
 1. **1단계만 먼저 할지, 2단계까지 한 번에 할지.**
-   1단계는 파라미터를 안 늘리고 문장 넷만 넣으므로 되돌리기 쉽다.
-2. **§4 의 위계 문제를 A · B · C 중 어느 것으로 갈지.** 권고는 B.
-3. **`prompt.html` 을 다른 작업이 동시에 고치고 있지 않은지.**
-   최근까지 v9.5 까지 개정되고 있었다. 같은 파일을 동시에 고치면 충돌한다.
+   1단계는 파라미터를 안 늘리고 문장 넷만 넣으므로 되돌리기 쉽다. 다만 1단계
+   ①(얼굴 구조 우선)은 새 하위 항목이 아직 없으면 `face shape` · `eye shape`
+   둘에만 걸리므로 체감이 작다. 효과를 보려면 2단계가 같이 있어야 한다.
+2. **`facial ethnicity` 를 넓은 단서로 낮추는 문장을 1단계에 같이 넣을지**(§4.3).
+3. **`prompt.html` 을 지금 다른 작업이 안 건드리는지.** 최근까지 v9.5 까지
+   개정되고 있었다. 같은 파일을 동시에 고치면 충돌한다.
+
+---
+
+# 부록. 반론에서 받아들인 것과 고친 것
+
+`PROMPT_SPEC_REVIEW_FINAL_RECOMMENDATION.md` 에 대한 답이다.
+
+**받아들였다**
+
+- §2 `sub` 가 UI 배치와 의미 우선순위를 겸한다는 진단. 1 차 검토의 "위계를
+  뒤집을까 말까(A/B/C)" 보다 정확한 문제 정의라, §4 를 이 틀로 다시 썼다.
+- §3 `FACE_GEOMETRY_KEYS` 화이트리스트 방식. 메타데이터를 안 바꿔도 된다.
+- §2 `eye color` 를 인상의 하위 의미로 두는 것이 말이 안 된다는 지적. 색 ·
+  표정은 precedence 문장에서 빼기로 했다.
+- §9 `face width` 추가. 1 차에서 뺐으나 "길고 좁은 / 길고 넓은" 구분 논거가
+  타당하다. 열둘 → 열셋.
+- §13 `CARRY_FACE` / `CARRY_BODY` 동시 확장을 필수로 못 박은 것.
+- §14 `facial ethnicity` 의 의미 권한을 낮추는 것.
+- §18.3 COMMON 을 마지막 수단으로 유지하는 것.
+
+**고쳤다 — §5 보호 문장의 위치**
+
+반론은 `[IDENTITY LOCK]` 에 두자고 했으나 코드에서 성립하지 않는다.
+`[IDENTITY LOCK]` 은 생활컷 두 모드에만 있고 **의인화에는 없다.** 얼굴을 처음
+설계하는 곳이 의인화이므로 정작 필요한 자리가 빈다. 게다가 의인화
+`[STYLE LOCK]` 이 *"without exception: facial construction"* 으로 화풍의 권한을
+명시해 두어, 다른 블록에서 반대말을 하면 두 블록이 충돌한다.
+**선언한 자리에서 한계를 함께 긋는다**(§5.1②).
+
+**그대로 둔 판단**
+
+- 거대 블록 신설과 재배치는 하지 않는다(반론 §18.1 과 같은 결론).
+- 미세 항목 여섯은 보류한다(반론 §15 와 같은 목록).
