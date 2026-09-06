@@ -28,6 +28,44 @@ SEED ASTRAY 스타게이저)은 자동 대조에서도 추가 후보 0 으로 �
 없다. 새 시리즈가 공식 사이트에 올라오면 `official-slugs.json` 에 슬러그를
 넣고 그 시리즈의 `mecha` 페이지를 받아 `build-official.py` 를 돌리면 된다.
 
+## 카드를 새로 넣을 때 — 어느 칸이 누구 것인가
+
+`data/*.json` 의 칸은 **손이 임자인 것**과 **`build-data.py` 가 임자인 것**으로
+갈린다. 뒤쪽에 손으로 적어 넣으면 다음 실행 때 지워진다. 지울 때 무엇을
+지웠는지 찍어 주기는 하지만, 처음부터 제자리에 넣는 편이 낫다.
+
+| 칸 | 임자 | 새 카드에 넣을 때 |
+|---|---|---|
+| `name` `factions` `stats` `temper` `system` `series` | 손 | 카드에 직접 |
+| `weight` `color` `role` `gundam` `lore` | 손 | 카드에 직접 |
+| `models` | build-data | **`data-overrides.json` 의 `models`** 에 |
+| `terrain` | build-data | 지어낸 값이 틀리면 **`data-overrides.json` 의 `terrain`** 에 |
+| `gge` `rarity` `tags` `large` `terrain_src` | build-data | **적지 않는다.** G 제네레이션에 실린 기체에만 있는 값이다 |
+
+`models` 를 카드에 직접 적으면 사라지는 것은, 그 칸의 값을 공식 사이트와
+소샤지에서 다시 만들기 때문이다. 바깥 자료에 없는 기체의 형식번호는
+`data-overrides.json` 에 적어야 남는다. 지형도 같다 — 안 적으면 계열
+중앙값으로 지어낸 값이 들어간다(`terrain_src` 가 그걸 알려 준다).
+
+없어도 되는 칸이다. `models` 가 없으면 도감에 형식 줄이 안 뜨고 이름이
+갈린 중복을 못 잡을 뿐, 게임은 그대로 돈다.
+
+## 초상을 새로 넣을 때
+
+파일을 저장소에 올리고 `python3 register-images.py` 를 돌린다. 이름 규칙은
+`<카드 이름>_m.webp` · `_f.webp` · `_casual3.webp` · `_extra1.webp` 이고
+카드 이름의 공백은 밑줄로 써도 된다.
+
+**이미 적힌 항목과 얼굴 좌표(`face`)는 건드리지 않는다.** 없는 것만 더하므로
+손으로 넣어 둔 것과 어긋나지 않는다. `face` 는 파일 이름에서 알 수 없어
+비어 있으면 게임이 기본값 `[.34,.03,.30]` 을 쓴다 — 뜨기는 뜨고, 잘린 자리가
+어색하면 `data/img.json` 에서 사람이 손본다.
+
+`play.html` 은 실행 중에도 GitHub 파일 목록을 받아 같은 규칙을 한 번 더
+돌린다(`mergeRepoFiles`). 그래서 `img.json` 에 안 적혀 있어도 화면에는 뜬다.
+다만 그쪽은 얼굴 좌표를 못 넣고 목록을 못 받으면 그만이라, 스크립트로
+파일에 굳혀 두는 편이 낫다. 그 함수는 빈 자리만 채우고 기존 값을 덮지 않는다.
+
 ## 자료가 어디 있나
 
 카드 자료의 원본은 **`data/*.json`** 이다. 예전에는 `play.html` 안에 자바스크립트
@@ -42,7 +80,7 @@ SEED ASTRAY 스타게이저)은 자동 대조에서도 추가 후보 0 으로 �
 | `data/ship.json` · `crew.json` | 모함 66 · 지휘관 33 |
 | `data/bond.json` | 전용기 연대 327 쌍 |
 | `data/combo.json` | 연대·혈연·악연 164 |
-| `data/img.json` | 초상 파일 목록 |
+| `data/img.json` | 초상 파일 목록. `register-images.py` 가 저장소의 `*.webp` 를 훑어 없는 것만 더한다 |
 | `data/series.json` | 시리즈 이름·정규화 단위·진영 색 |
 
 읽고 쓰는 길은 `roster.py` 하나다. 스크립트마다 정규식으로 뜯어 읽던 것을
@@ -147,7 +185,8 @@ UC 계열 기체는 날지 못하고 이후 작품 기체는 난다는 것이 �
    카드를 만든다. 카드는 `data/` 에 들어간다
 4. `python3 build-idmap.py` 로 G 제네레이션 id 를 다시 받고,
    `python3 build-data.py` 로 형식번호와 id 를 카드에 붙인다
-5. `python3 build-dex.py play.html` 로 도감을, `python3 build-prompt.py` 로
+5. 초상을 올렸으면 `python3 register-images.py` 로 `data/img.json` 에 등록한다
+6. `python3 build-dex.py play.html` 로 도감을, `python3 build-prompt.py` 로
    툴킷(prompt.html)의 기체 사본을 다시 만든다. 둘 다 `data/` 를 원본으로 삼는다
    (`build-dex.py` 는 `play.html` 에서 표시용 선언 셋만 더 가져온다)
 

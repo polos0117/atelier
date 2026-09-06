@@ -84,10 +84,13 @@ def lore():
     return out
 
 
+def one_line(v):
+    """줄바꿈 없이 한 줄로. 카드 한 장·항목 하나가 한 줄이면 diff 로 바로 읽힌다."""
+    return json.dumps(v, ensure_ascii=False, separators=(", ", ": "))
+
+
 def _render(obj):
-    """build-data.py 와 같은 모양으로 쓴다 — 카드 하나가 한 줄."""
-    def one(v):
-        return json.dumps(v, ensure_ascii=False, separators=(", ", ": "))
+    one = one_line
 
     def val(v, pad):
         if isinstance(v, list) and v and isinstance(v[0], dict):

@@ -30,6 +30,7 @@ import re
 import statistics
 
 import roster
+from roster import one_line
 from gundam_match import norm, affixes
 
 OVERRIDES = "data-overrides.json"
@@ -261,15 +262,19 @@ def main():
         return ov_models.get(n) or official.get(n) or soshage.get(n) or ""
 
     units, chars = api("unit"), api("character")
-    moved = []
+    moved, wiped = [], []
 
     def put(c, key, val):
+        """이 칸들의 임자는 이 스크립트다. 바깥 자료에 없으면 지운다.
+
+        그래서 카드에 손으로 적어 넣은 값은 다음 실행 때 사라진다. 조용히
+        없어지면 찾기 어려우니, 지울 때 무엇을 지웠는지 남겨 둔다."""
         if val:
             if c.get(key) != val:
                 moved.append((c["name"], key, c.get(key), val))
             c[key] = val
         elif key in c:
-            moved.append((c["name"], key, c[key], None))
+            (wiped if c[key] else moved).append((c["name"], key, c[key], None))
             del c[key]
 
     for c in mech:
@@ -321,6 +326,13 @@ def main():
     print("  파일럿 %d — G제네 id %s · 레어도 %s · 태그 %s"
           % (len(pilot), cover(pilot, "gge"), cover(pilot, "rarity"), cover(pilot, "tags")))
     print("  바뀐 항목 %d" % len(moved))
+    if wiped:
+        print("  ※ 손으로 적어 둔 값 %d 개를 지웠다. 이 칸의 임자는 이 스크립트이고"
+              " 바깥 자료에 없으면 지운다." % len(wiped))
+        print("     models 와 terrain 은 data-overrides.json 에 적으면 남는다."
+              " rarity·tags·gge 는 G 제네레이션에 실린 기체에만 있는 값이라 손으로 적을 것이 아니다.")
+        for n, k, was, _ in wiped[:12]:
+            print("       %-28s %s = %s" % (n, k, one_line(was) if not isinstance(was, str) else was))
     for n, k, was, now in moved[:20] if a.report else []:
         print("     %-28s %-6s %s → %s" % (n, k, was, now))
 
