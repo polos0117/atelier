@@ -8,7 +8,7 @@ play.html·dex.html 도 거기서 읽는데, 툴킷만 손으로 관리하고 �
 
 바꾸는 블록은 넷뿐이다.
   MECH          [이름, 시리즈[]] — 시리즈 고르개와 기체 고르개가 쓴다
-  MECH_META     능력치·세력·성격·특성·형식번호 — 프롬프트 본문에 얹는다
+  MECH_META     능력치·세력·성격·특성 — 프롬프트 본문에 얹는다
   SER_NAME      시리즈 코드 → 한글 이름
   SERIES_ORDER  고르개에 뜨는 차례
 
@@ -57,11 +57,14 @@ def main():
     ser_name = roster.series()["name"]
 
     mech = [[c["name"], c["series"]] for c in cards]
+    # 툴킷이 실제로 읽는 것만 넣는다. 형식번호도 한 번 넣어 봤으나
+    # 프롬프트를 만드는 데 쓰이는 데가 없어 도로 뺐다 — 1 만 자를 차지했다.
+    # 쓸 데가 생기면 여기 한 줄만 되살리면 된다.
     meta = {c["name"]: {"factions": c["factions"],
                         "output": c["stats"][0], "firepower": c["stats"][1],
                         "armor": c["stats"][2], "mobility": c["stats"][3],
                         "temperament": c["temper"], "system": c["system"],
-                        "series": c["series"], "models": c.get("models", "")}
+                        "series": c["series"]}
             for c in cards}
 
     m_mech = block(tgt, r"(  const MECH = )(\[.*?\]);\n", "prompt.html 의 MECH")
