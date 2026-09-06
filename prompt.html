@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Gundam Prompt Toolkit v9.4</title>
+<title>Gundam Prompt Toolkit v9.5</title>
 <style>
 :root{
   color-scheme:light dark;
@@ -250,13 +250,19 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   </div>
 
 
-  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.4</b> <span>단일 컷 패널 재배치</span></div>
+  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.5</b> <span>단일 컷 사용 이력 정리</span></div>
   <details class="srcbox verbox" id="verBox">
     <summary>
-      <span class="sel-line" style="white-space:normal;overflow:visible">v9.4 변경 내역</span>
+      <span class="sel-line" style="white-space:normal;overflow:visible">v9.5 변경 내역</span>
       <span class="sb-txt">패치 노트</span>
     </summary>
     <div class="vb-in">
+      <b>v9.5 &middot; 단일 컷 사용 이력 정리</b>
+      <ul>
+        <li>단일 컷의 <b>[ALREADY USED]</b> 를 같은 카테고리 안으로 좁혔다. 카테고리는 사람이 직접 고르는데 다른 카테고리 이력을 늘어놓아 봐야 쓰이지 않는다. 이제 같은 카테고리에서 이미 뽑은 예시만 보여 주고, 카테고리는 유지한 채 장면·의상·화각만 다르게 하라고 시킨다</li>
+        <li>지금 고른 조합을 목록에서 뺐다. 예전에는 이미 쓴 카테고리를 다시 고르면 [SETTINGS] 에 "Category: LINGERIE" 라고 적고 [ALREADY USED] 에 "LINGERIE … 반복하지 말라" 고 적어, 같은 것을 지시하면서 하지 말라고 하는 꼴이었다</li>
+        <li>직접 입력한 예시가 <code>(  custom  )</code> 로 새어 나오던 것을 막았다. <code>__custom__</code> 의 밑줄이 공백으로 바뀌어 나온 찌꺼기로, 내용이 남지 않아 모델에게 아무 정보도 못 줬다. 기록 단계에서 예시 없음으로 적고, 이미 쌓인 것은 표시할 때 거른다</li>
+      </ul>
       <b>v9.4 &middot; 단일 컷 패널 재배치</b>
       <ul>
         <li>쓰는 빈도대로 다시 쌓았다. 랜덤 성격 셀렉트와 버튼 세 개가 맨 위로 올라오고, 카테고리 · 예시가 바로 따라온다</li>
@@ -1803,11 +1809,23 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     const cu=document.getElementById('sgCustom').value.trim(); if(cu)lines.push('Additional instruction: '+cu+'.');
     if(lines.length)parts.push('[SETTINGS]\n\n'+lines.map(l=>'- '+l).join('\n'));
     if(document.getElementById('sgAvoid').checked){
-      const list=usedOf(mechKey()).filter(r=>r.cat);
+      /* 단일 컷은 카테고리를 사람이 직접 고른다. 다른 카테고리의 이력을 늘어놓아 봐야
+         쓰이지 않고, 지금 고른 조합까지 목록에 넣으면 [SETTINGS] 와 정면으로 부딪힌다
+         — 같은 것을 지시하면서 같은 것을 하지 말라고 적는 꼴이 된다.
+         그래서 같은 카테고리에서 이미 뽑은 다른 예시만 남기고, 카테고리는 유지한 채
+         장면·의상·화각만 다르게 하라고 시킨다. */
+      const cur=sgVal('sgCat'), curEx=sgVal('sgEx'), seen={}, list=[];
+      usedOf(mechKey()).forEach(r=>{
+        if(r.cat!==cur)return;
+        if(!r.ex||r.ex==='__custom__')return;   /* 직접 입력은 무엇이었는지 안 남아 쓸모가 없다 */
+        if(r.ex===curEx)return;
+        const t=r.ex.replace(/_/g,' ').trim();
+        if(!t||seen[t])return; seen[t]=1; list.push(t);
+      });
       if(list.length)parts.push('[ALREADY USED FOR THIS CHARACTER]\n\n'+
-        'These concepts have already been generated for this same character:\n'+
-        list.map(r=>'- '+((CAT[r.cat]||{}).eng||r.cat)+(r.ex?' ('+r.ex.replace(/_/g,' ')+')':'')).join('\n')+
-        '\n\nDo not repeat them. Choose a visibly different scene, outfit, and framing.');
+        'Within this same category ('+((CAT[cur]||{}).eng||cur)+'), these variations were already generated for this character:\n'+
+        list.map(t=>'- '+t).join('\n')+
+        '\n\nKeep the selected category, but make the scene, outfit, location, and framing visibly different from these.');
     }
     parts.push('[NON-EXPLICIT LIMITS]\n\nThe character must clearly read as an adult. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.');
     parts.push('[FINAL CHECK]\n\nVerify: exactly one image and one woman; the requested aspect ratio; no text anywhere in the frame; the selected category and example are followed; no explicit nudity or sexual activity.');
@@ -2009,7 +2027,10 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   function sgRecordUse(){
     const k=mechKey(); if(!k)return;
     const cat=sgVal('sgCat'); if(!cat||cat==='__custom__')return;
-    const ex=sgVal('sgEx')||'', now=Date.now();
+    /* 직접 입력한 예시는 내용이 남지 않아 '(  custom  )' 같은 찌꺼기만 만든다.
+       예시 없음으로 적는다 */
+    let ex=sgVal('sgEx')||''; if(ex==='__custom__')ex='';
+    const now=Date.now();
     const arr=(STORE.used[k]||(STORE.used[k]=[]));
     const hit=arr.find(r=>r.cat===cat&&(r.ex||'')===ex);
     if(hit){hit.n=(hit.n||1)+1;hit.t=now;}else arr.push({cat:cat,ex:ex,n:1,t:now});
