@@ -11,32 +11,12 @@
 """
 import re, sys, os, json
 
-import roster
-
-# 로스터는 data/ 에서 만든다
-DATA_BLOCKS = ["MECH", "PILOT", "SHIP", "CREW", "SER_NAME", "FAC", "IMG"]
-# 규칙·표시에 딸린 것은 게임 파일에 그대로 있다
+# 로스터는 도감이 실행할 때 data/*.json 에서 직접 받는다. 예전에는 여기서
+# 통째로 베껴 넣었는데, 그러면 도감 파일의 82% 가 data/ 사본이라 자료가 바뀔
+# 때마다 15 만 자를 다시 커밋해야 했고 다시 만드는 것을 잊기도 쉬웠다.
+# 규칙·표시에 딸린 선언만 게임 파일에서 가져온다.
 CODE_BLOCKS = ["IMG_BASE", "ASPECT", "STAT_LABEL"]
-BLOCKS = DATA_BLOCKS + CODE_BLOCKS
-
-
-def js(name, v):
-    return "var %s=%s;" % (name, json.dumps(v, ensure_ascii=False,
-                                            separators=(",", ":")))
-
-
-def data_blocks():
-    """예전에 게임 파일에서 통째로 베껴 오던 선언들을 data/ 로 다시 만든다."""
-    ser = roster.series()
-    return "\n".join([
-        js("MECH", roster.rows("mech")),
-        js("PILOT", roster.rows("pilot")),
-        js("SHIP", roster.rows("ship")),
-        js("CREW", roster.rows("crew")),
-        js("SER_NAME", ser["name"]),
-        js("FAC", ser["faction_color"]),
-        js("IMG", roster.img()),
-    ])
+BLOCKS = CODE_BLOCKS
 
 
 def prompts(path="image-list.html", ren=None):
@@ -316,6 +296,44 @@ main{padding:12px}
 
 <script>
 /* ══ 게임 파일에서 추출한 데이터 (build-dex.py 자동 생성) ══ */
+/* ═══════ 자료 ═══════
+   카드는 data/*.json 에서 실행할 때 받는다. 예전에는 이 파일 안에 박혀 있어
+   도감의 82% 가 data/ 사본이었고, 자료가 바뀌면 도감을 다시 만들어 커밋해야
+   했다. 지금은 받아 오므로 그럴 일이 없다 — 도감 코드가 바뀔 때만 다시 만든다.
+
+   POOL 처럼 선언 시점에 배열을 붙잡아 두는 곳이 있어, 참조를 갈아 끼우지 않고
+   안을 채운다. */
+var MECH=[], PILOT=[], SHIP=[], CREW=[];
+var SER_NAME={}, FAC={}, IMG={};
+var DATA_DIR="data/";
+function fetchJSON(n){
+  return fetch(DATA_DIR+n).then(function(r){
+    if(!r.ok)throw new Error(n+" \u2014 "+r.status);
+    return r.json();
+  });
+}
+function fill(dst,src){dst.length=0;dst.push.apply(dst,src);return dst}
+function fillMap(dst,src){for(var k in src)dst[k]=src[k];return dst}
+/* 게임 규칙 코드가 자리번호로 읽으므로 레코드를 예전 배열 꼴로 되돌린다 */
+function rowOf(c,kind){
+  var r=[c.name,c.factions,c.stats[0],c.stats[1],c.stats[2],c.stats[3],c.temper];
+  if(kind==="mech")return r.concat([c.system,c.series,c.models||"",c.terrain||null]);
+  if(kind==="pilot")return r.concat([c.psy,c.series,c.line||""]);
+  return r.concat([c.series]);
+}
+function loadData(){
+  return Promise.all(["mech.json","pilot.json","ship.json","crew.json",
+                      "series.json","img.json"].map(fetchJSON)).then(function(d){
+    fill(MECH, d[0].cards.map(function(c){return rowOf(c,"mech")}));
+    fill(PILOT,d[1].cards.map(function(c){return rowOf(c,"pilot")}));
+    fill(SHIP, d[2].cards.map(function(c){return rowOf(c,"ship")}));
+    fill(CREW, d[3].cards.map(function(c){return rowOf(c,"crew")}));
+    fillMap(SER_NAME,d[4].name);
+    fillMap(FAC,d[4].faction_color);
+    fillMap(IMG,d[5].img);
+  });
+}
+
 __DATA__
 /* ══ 도감 전용 코드 ══ */
 var POOL={"기체":MECH,"파일럿":PILOT,"지휘관":CREW,"함":SHIP};
@@ -871,9 +889,21 @@ addEventListener("keydown",function(e){
   if(z)z.remove(); else if(document.querySelector(".sheet"))history.back();
 });
 
-draw();
-loadFileList(false).then(function(n){if(n)draw()});
-tkLoad().then(tkReady);
+/* 카드를 받아 와야 그릴 수 있다. file:// 로 열면 브라우저가 fetch 를 막는다 */
+loadData().then(function(){
+  draw();
+  loadFileList(false).then(function(n){if(n)draw()});
+  tkLoad().then(tkReady);
+}).catch(function(e){
+  document.body.innerHTML=
+    '<div style="padding:2rem;font:14px/1.7 system-ui">'+
+    '<h2 style="margin:0 0 .8rem">자료를 못 읽었다</h2><p>'+
+    (location.protocol==="file:"
+      ? "브라우저가 file:// 에서는 data/ 를 읽지 못한다.<br>"+
+        "저장소 폴더에서 <code>python3 -m http.server</code> 로 띄우고 열어라."
+      : "data/ 를 읽지 못했다. 파일이 함께 올라갔는지 확인해라.")+
+    '</p><p style="opacity:.6">'+String(e&&e.message||e)+'</p></div>';
+});
 document.getElementById("tot").onclick=function(){
   var el=this; el.textContent="…";
   loadFileList(true).then(function(n){draw();toast(n?n+"장 새로 잡았다":"새 그림 없음")});
@@ -890,7 +920,7 @@ def main():
     path = sys.argv[1]
     src = open(path, encoding="utf-8").read()
 
-    data = data_blocks() + "\n" + "\n".join(extract(src, b) for b in CODE_BLOCKS)
+    data = "\n".join(extract(src, b) for b in CODE_BLOCKS)
     ren = json.loads(re.search(r"var RENAME_MAP=(\{.*?\});", src, re.S).group(1))
     data += "\n" + prompts(sys.argv[2] if len(sys.argv) > 2 else "image-list.html", ren)
     out = TEMPLATE.replace("__DATA__", data)

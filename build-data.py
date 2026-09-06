@@ -201,6 +201,22 @@ def fill_terrain(mech, override=None):
     return src
 
 
+def sync_series_order():
+    """툴킷 고르개 차례에 새 시리즈 코드를 뒤에 붙인다.
+
+    차례는 손으로 정한 것이라 그대로 두고, 목록에 없는 코드만 더한다.
+    예전에는 build-prompt.py 가 prompt.html 을 갈아끼울 때 했는데, 지금은
+    툴킷이 series.json 을 직접 읽으므로 여기가 임자다."""
+    ser = roster.read("series")
+    order = ser.get("order") or []
+    add = [c for c in ser["name"] if c not in order]
+    drop = [c for c in order if c not in ser["name"]]
+    if add or drop:
+        ser["order"] = [c for c in order if c in ser["name"]] + add
+        roster.write("series", ser)
+    return add, drop
+
+
 def crosscheck(mech, pilot):
     """새로 들어온 태그와 손으로 적어 둔 값이 어긋나는 곳을 짚는다.
 
@@ -335,6 +351,10 @@ def main():
             print("       %-28s %s = %s" % (n, k, one_line(was) if not isinstance(was, str) else was))
     for n, k, was, now in moved[:20] if a.report else []:
         print("     %-28s %-6s %s → %s" % (n, k, was, now))
+
+    o_add, o_drop = sync_series_order()
+    if o_add or o_drop:
+        print("  시리즈 차례 — 더함 %s · 뺌 %s" % (o_add or "없음", o_drop or "없음"))
 
     cc = crosscheck(mech, pilot)
     print("  손으로 적은 값과 대조 — " + " · ".join(

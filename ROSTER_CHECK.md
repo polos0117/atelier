@@ -126,39 +126,50 @@ UC 계열 기체는 날지 못하고 이후 작품 기체는 난다는 것이 �
 
 ```
 official/ ─┐
-           ├─→ build-roster · build-idmap · build-data ─→ data/*.json ─┐
-소샤지 API ─┘                                                          │
-                                          ┌────────────────────────────┤
-        play.html   실행할 때 fetch 로 읽는다 — 다시 만들 것이 없다     │
-        dex.html    build-dex.py 가 박아 넣는다 — 자료가 바뀌면 다시 ───┤
-        prompt.html build-prompt.py 가 네 블록만 갈아끼운다 ────────────┘
+           ├─→ build-roster · build-idmap · build-data ─→ data/*.json
+소샤지 API ─┘                                                 │
+                                                             ↓ 실행할 때 fetch
+                                            play.html · dex.html · prompt.html
 ```
+
+셋 다 실행할 때 `data/` 를 받는다. 어느 것도 자료 사본을 들고 있지 않으므로
+**자료가 바뀌어도 다시 만들 파일이 없다.** 화면 코드를 고칠 때만 `dex.html` 을
+`build-dex.py` 로 다시 만든다(도감은 통째로 생성물이다). `play.html` 과
+`prompt.html` 은 손으로 고치는 파일이다.
 
 `register-images.py` 는 저장소의 `*.webp` 를 `data/img.json` 에 등록한다.
 `play.html` 과 `dex.html` 이 그걸 읽는다.
 
-### prompt.html 로 가는 것
+`file://` 로는 셋 다 안 열린다. 브라우저가 `fetch` 를 막기 때문이고, 그때는
+왜 안 되는지와 어떻게 띄우는지를 화면에 적어 준다. GitHub Pages 로 보는 데는
+아무 문제가 없다.
 
-툴킷은 카드 자료를 **자체 사본으로** 들고 있다. `build-prompt.py` 가 네 블록만
-갈아끼우고 나머지 42 만 자(프롬프트 판형·옵션·저장 로직)는 건드리지 않는다.
+### prompt.html 이 받는 것
 
-| 블록 | 내용 | 툴킷이 쓰는 데 |
+툴킷은 `data/mech.json` 과 `data/series.json` 둘만 받아 필요한 꼴로 만든다.
+
+| 이름 | 내용 | 툴킷이 쓰는 데 |
 |---|---|---|
 | `MECH` | `[이름, 시리즈[]]` | 시리즈 고르개·기체 고르개 |
 | `MECH_META` | 능력치·세력·성격·계열·시리즈 | 프롬프트 추천과 본문에 얹는다 |
 | `SER_NAME` | 시리즈 코드 → 한글 이름 | 고르개 표시 |
-| `SERIES_ORDER` | 고르개에 뜨는 차례 | 기존 차례를 지키고 새 코드만 뒤에 붙인다 |
+| `SERIES_ORDER` | 고르개에 뜨는 차례 | `series.json` 의 `order` |
 
-`MECH_META` 에는 툴킷이 실제로 읽는 열만 넣는다. 형식번호도 한 번 넣어
-봤으나 프롬프트를 만드는 데 쓰이는 데가 없어 도로 뺐다 — 1 만 자를
-차지했다. 쓸 데가 생기면 `build-prompt.py` 에서 한 줄만 되살리면 된다.
+`MECH_META` 는 툴킷이 실제로 읽는 열만 만든다. 형식번호도 한 번 넣어 봤으나
+프롬프트를 만드는 데 쓰이는 데가 없어 뺐다 — 1 만 자를 차지했다.
+
+고르개 차례(`series.json` 의 `order`)는 손으로 정한 것이라 그대로 두고, 새
+시리즈 코드만 `build-data.py` 가 뒤에 붙인다.
+
+예전에는 이 넷이 통째로 박혀 있었고 `build-prompt.py` 가 게임 쪽 자료에 맞춰
+갈아끼웠다. 47 만 자 파일에 정규식으로 수술하는 방식이라 블록 앞뒤 모양이
+바뀌면 못 찾았고, 툴킷을 고칠 때마다 자료가 뒤처졌다. 그 스크립트는 이제 없다.
 
 ### 반대로 prompt.html 이 내놓는 것
 
 `toolkit-data.json` 은 흐름이 거꾸로다. 툴킷에서 '기록 내보내기' 로 뽑아
 저장소에 커밋하면, **도감이 그걸 실행 중에 읽어** 어느 기체가 어떤 화풍으로
-끝났는지 보여 준다. `build-prompt.py` 는 이 파일을 건드리지 않으므로 사람이
-덮어써야 한다.
+끝났는지 보여 준다. 사람이 덮어써야 하는 유일한 자료 파일이다.
 
 `image-list.html` 은 그 반대편이다. `build-dex.py` 가 여기서 프롬프트와 비고를
 뽑아 도감에 넣는다. 카드 이름이 바뀌면 `play.html` 의 `RENAME_MAP` 을 거쳐
@@ -216,13 +227,10 @@ official/ ─┐
 4. `python3 build-idmap.py` 로 G 제네레이션 id 를 다시 받고,
    `python3 build-data.py` 로 형식번호와 id 를 카드에 붙인다
 5. 초상을 올렸으면 `python3 register-images.py` 로 `data/img.json` 에 등록한다
-6. `python3 build-dex.py play.html` 로 도감을, `python3 build-prompt.py` 로
-   툴킷(prompt.html)의 기체 사본을 다시 만든다. 둘 다 `data/` 를 원본으로 삼는다
-   (`build-dex.py` 는 `play.html` 에서 표시용 선언 셋만 더 가져온다)
+6. 화면은 다시 만들 것이 없다. 셋 다 실행할 때 `data/` 를 읽는다.
 
-`build-dex.py` 는 `gundam-dex-x.html` 로 내놓는다. 실제로 쓰는 파일은 `dex.html`
-이니 `mv gundam-dex-x.html dex.html` 로 옮겨야 한다. 잊으면 도감이 안 바뀐다.
-`play.html` 은 실행할 때 `data/` 를 읽으므로 다시 만들 것이 없다.
+도감 **코드**를 고쳤을 때만 `python3 build-dex.py play.html` 을 돌린다.
+`gundam-dex-x.html` 로 나오므로 `mv gundam-dex-x.html dex.html` 로 옮겨야 한다.
 
 ## 로스터 대조 현황
 
