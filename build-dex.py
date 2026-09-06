@@ -495,9 +495,18 @@ function tkStyleKeys(name){
   if(!out.length)out.push(tkStyleKey(name));
   return out;
 }
+/* 지금 이 줄에 실제로 뜨는 그림이 어느 화풍인지.
+   화풍 필터를 걸면 그 화풍이고, 안 걸면 styleBucket 이 고르는 첫째 몫이다.
+   늘 기본 화풍만 찍으면 글로시 그림을 띄워놓고 세미리얼이라고 적는 일이 생긴다 */
+function shownStyleKey(name){
+  var ks=tkStyleKeys(name);
+  if(tab==="기체"&&styleSel&&ks.indexOf(styleSel)>=0)return styleSel;
+  return ks[0];
+}
 function tkStyle(name){
-  var v=tkStyleKey(name);
-  return TK_ART[v]||v;
+  var ks=tkStyleKeys(name),v=shownStyleKey(name),n=TK_ART[v]||v;
+  /* 다른 화풍도 있다는 것을 줄에서 알 수 있게 한다 */
+  return ks.length>1?n+" +"+(ks.length-1):n;
 }
 var TK_CAT={adult_roleplay:"성인 역할극",occupation_basic:"직업(기본)",occupation_sensual:"직업(섹시)",
   everyday_basic:"일상(기본)",everyday_sensual:"일상(섹시)",swimwear:"수영복",active:"액티브",
