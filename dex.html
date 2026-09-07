@@ -304,20 +304,27 @@ function mergeFiles(names){
     if(!/\.webp$/i.test(n))continue;
     var m=/^(.+)_(m|f|casual(\d+)|extra(\d+))\.webp$/i.exec(n);
     if(!m)continue;
-    var card=key[norm(m[1])]; if(!card)continue;
+    var head=m[1].replace(/_[mf]$/i,"");
+    var card=key[norm(head)]; if(!card)continue;
     var s=IMG[card]||(IMG[card]={});
     var kind=m[2].toLowerCase();
     if(kind==="m"||kind==="f"){ if(!s[kind]){s[kind]=n;added++} continue}
     var arr=kind.indexOf("casual")===0?"casual":"extra";
     var idx=parseInt(m[3]||m[4],10)-1;
-    s[arr]=s[arr]||[];
-    if(s[arr].indexOf(n)<0){s[arr][idx>=0?idx:s[arr].length]=n;added++}
+    /* 일상컷·특별컷도 성별을 나눈다. 표시가 없던 예전 이름은 여성으로 친다 */
+    var g=/_m$/i.test(m[1])?"m":"f";
+    var box=s[arr]; if(Object.prototype.toString.call(box)==="[object Array]")box=s[arr]={f:box};
+    box=s[arr]=box||{};
+    var lst=box[g]=box[g]||[];
+    if(lst.indexOf(n)<0){lst[idx>=0?idx:lst.length]=n;added++}
   }
   /* 빈 칸 정리 후 파일명 순으로 */
   for(var c in IMG)["casual","extra"].forEach(function(a){
-    if(!IMG[c][a])return;
-    IMG[c][a]=IMG[c][a].filter(Boolean);
-    if(!IMG[c][a].length)delete IMG[c][a];
+    var box=IMG[c][a]; if(!box)return;
+    if(Object.prototype.toString.call(box)==="[object Array]")box=IMG[c][a]={f:box};
+    var left=0,g;
+    for(g in box){box[g]=box[g].filter(Boolean); if(box[g].length)left++; else delete box[g]}
+    if(!left)delete IMG[c][a];
   });
   return added;
 }
@@ -367,12 +374,27 @@ function styleBucket(c){
   return bucketOf(c[0],(tab==="기체"&&styleSel)?styleSel:"");
 }
 function picOf(c,v){var s=styleBucket(c); if(!s)return null; return s[v]||s[flip(v)]||null}
+/* 일상컷·특별컷도 성별을 나눈다. {"f":[...],"m":[...]} 꼴이고, 성별 표시가 없던
+   예전 자료는 배열 그대로 올 수 있어 그때는 여성으로 친다 */
+function cuts(bucket,slot,v){
+  var box=bucket&&bucket[slot];
+  if(!box)return [];
+  if(Object.prototype.toString.call(box)==="[object Array]")return v==="f"?box:[];
+  return box[v]||[];
+}
+function cutCount(bucket,slot){
+  var box=bucket&&bucket[slot],n=0,g;
+  if(!box)return 0;
+  if(Object.prototype.toString.call(box)==="[object Array]")return box.length;
+  for(g in box)n+=box[g].length;
+  return n;
+}
 
 /* 현재 보기 모드에서 이 카드가 내놓을 그림들 */
 function shots(c){
   var s=styleBucket(c); if(!s)return [];
-  if(mode==="c")return s.casual||[];
-  if(mode==="x")return s.extra||[];
+  if(mode==="c")return cuts(s,"casual",vari);
+  if(mode==="x")return cuts(s,"extra",vari);
   var p=picOf(c,vari); return p?[p]:[];
 }
 /* 타일마다 몇 번째 그림을 보고 있는지 기억한다 (모드별로 따로) */
@@ -471,7 +493,7 @@ function tkSummary(name){
 function stat(c){
   var s=styleBucket(c)||{};
   return {m:!!s.m, f:!!s.f,
-          c:(s.casual||[]).length, x:(s.extra||[]).length,
+          c:cuts(s,"casual",vari).length, x:cuts(s,"extra",vari).length,
           done:!!(s.m&&s.f)};
 }
 
@@ -715,7 +737,17 @@ function open(n,start){
         (l[i]===cur?' class="on"':"")+' data-s="'+esc(l[i])+'">';
       return g+"</div>";
     }
-    if(s){h+=gal(s.extra,"다른 그림"); h+=gal(s.casual,"일상")}
+    /* 시트에서는 양쪽 성별을 다 보여준다. 목록은 토글한 성별만 거른다 */
+    if(s){
+      ["f","m"].forEach(function(g){
+        var tail=(cutCount(s,"extra")&&cuts(s,"extra",flip(g)).length)?(g==="f"?" · 여":" · 남"):"";
+        h+=gal(cuts(s,"extra",g),"다른 그림"+tail);
+      });
+      ["f","m"].forEach(function(g){
+        var tail=(cutCount(s,"casual")&&cuts(s,"casual",flip(g)).length)?(g==="f"?" · 여":" · 남"):"";
+        h+=gal(cuts(s,"casual",g),"일상"+tail);
+      });
+    }
     if(!s){
       var qn=encodeURIComponent(c[0]);
       h+='<div class="sec">그림</div><p style="color:var(--dim);font-size:13px">'+

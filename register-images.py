@@ -5,12 +5,17 @@
 파일 이름이 곧 등록 정보다.
     <카드 이름>_m.webp        남성체 초상
     <카드 이름>_f.webp        여성체 초상
-    <카드 이름>_casual3.webp  일상컷 3
-    <카드 이름>_extra1.webp   특별컷 1
+    <카드 이름>_f_casual3.webp  여성 일상컷 3
+    <카드 이름>_m_casual3.webp  남성 일상컷 3
+    <카드 이름>_f_extra1.webp   여성 특별컷 1
+일상컷·특별컷도 초상과 같이 성별을 나눈다. 성별 표시가 없는 예전 이름
+(<카드 이름>_casual3.webp)은 여성으로 친다 — 지금 있는 것이 전부 여성이라
+이름을 다시 붙이지 않고 규칙 한 줄로 받는다.
 카드 이름의 공백은 밑줄로 써도 된다(건담_데스사이즈_m.webp).
 
 카드 이름과 칸 사이에 화풍 key 를 끼우면 그 화풍 몫으로 들어간다.
     <카드 이름>_<화풍>_f.webp        건이지_glossy_kr_game_f.webp
+    <카드 이름>_<화풍>_m_casual1.webp  화풍과 성별을 같이 쓸 수도 있다
 화풍 key 는 data/style.json 에 적힌 열한 가지뿐이고, 그 밖의 토막이 끼면
 카드 이름으로 읽히다 실패해 "그런 카드가 없다"로 남는다 — 오타를 잡으려고
 일부러 통과시키지 않는다. 기본 화풍 그림은 지금까지처럼 카드 바로 밑에 들어가고,
@@ -42,6 +47,14 @@ PAT = re.compile(r"^(.+?)_(m|f|casual(\d+)|extra(\d+))\.webp$", re.I)
 SKIP = re.compile(r"^style-")
 
 
+def split_gender(head):
+    """'건이지_m' → ('건이지', 'm'). 표시가 없으면 여성으로 친다."""
+    for g in ("f", "m"):
+        if head.lower().endswith("_" + g):
+            return head[:-2], g
+    return head, "f"
+
+
 def split_style(head, styles):
     """'건이지_glossy_kr_game' → ('건이지', 'glossy_kr_game').
 
@@ -61,6 +74,12 @@ def card_index():
         for c in roster.cards(kind):
             idx[c["name"].replace(" ", "_")] = c["name"]
     return idx
+
+
+def shots(bucket, slot):
+    """일상컷·특별컷은 {"f": [...], "m": [...]} 꼴이다. 없는 성별은 칸이 없다."""
+    v = bucket.get(slot)
+    return v if isinstance(v, dict) else ({"f": v} if v else {})
 
 
 def buckets(img):
@@ -103,8 +122,9 @@ def listed_files(img):
             if d.get(k):
                 out.add(d[k])
         for k in ("casual", "extra"):
-            for f in d.get(k) or []:
-                out.add(f)
+            for lst in shots(d, k).values():
+                for f in lst or []:
+                    out.add(f)
 
     for b in buckets(img):
         take(b)
@@ -132,7 +152,8 @@ def main():
         if not m:
             unknown.append((f, "이름 꼴이 안 맞는다"))
             continue
-        head, style = split_style(m.group(1), styles)
+        head, gender = split_gender(m.group(1))
+        head, style = split_style(head, styles)
         card = idx.get(head.replace(" ", "_"))
         if not card:
             unknown.append((f, "그런 카드가 없다"))
@@ -148,21 +169,30 @@ def main():
         else:
             slot = "casual" if kind.startswith("casual") else "extra"
             n = int(m.group(3) or m.group(4))
-            lst = e.setdefault(slot, [])
+            box = e.setdefault(slot, {})
+            if not isinstance(box, dict):
+                box = e[slot] = {"f": box}
+            lst = box.setdefault(gender, [])
             while len(lst) < n:
                 lst.append(None)
             if lst[n - 1]:
                 continue
             lst[n - 1] = f
-        added.append((card + ("" if not style else " · " + styles[style]), f))
+        added.append((card + ("" if not style else " · " + styles[style])
+                      + ("" if kind in ("m", "f") else " · " + ("남" if gender == "m" else "여")), f))
 
     # 자리를 메우려고 넣은 빈 칸은 도로 걷어낸다
     for e in buckets(img):
         for slot in ("casual", "extra"):
-            if slot in e:
-                e[slot] = [x for x in e[slot] if x]
-                if not e[slot]:
-                    del e[slot]
+            if slot not in e:
+                continue
+            box = shots(e, slot)
+            box = {g: [x for x in lst if x] for g, lst in box.items()}
+            box = {g: lst for g, lst in box.items() if lst}
+            if box:
+                e[slot] = {g: box[g] for g in ("f", "m") if g in box}
+            else:
+                del e[slot]
 
     ghosts = sorted(listed_files(img) - disk)
     if a.prune and ghosts:
@@ -172,10 +202,15 @@ def main():
                 if e.get(k) in gone:
                     del e[k]
             for k in ("casual", "extra"):
-                if k in e:
-                    e[k] = [x for x in e[k] if x not in gone]
-                    if not e[k]:
-                        del e[k]
+                if k not in e:
+                    continue
+                box = {g: [x for x in lst if x not in gone]
+                       for g, lst in shots(e, k).items()}
+                box = {g: lst for g, lst in box.items() if lst}
+                if box:
+                    e[k] = box
+                else:
+                    del e[k]
 
     # 그림이 다 빠진 화풍 칸은 남겨봐야 화풍만 하나 더 있는 것처럼 보인다
     for v in img.values():
