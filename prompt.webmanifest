@@ -1,0 +1,24 @@
+{
+  "name": "Gundam Prompt Toolkit",
+  "short_name": "프롬프트",
+  "description": "카드 그림 프롬프트를 짜는 연장통. 홈 화면에 두면 저장한 것이 브라우저 청소에 쓸려가지 않는다.",
+  "id": "prompt",
+  "start_url": "prompt.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0f1115",
+  "theme_color": "#0f1115",
+  "lang": "ko",
+  "icons": [
+    {
+      "src": "icon-prompt-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-prompt-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "건담 도감",
+  "short_name": "도감",
+  "description": "모은 카드와 그림을 보는 도감. 홈 화면에 두면 저장한 것이 브라우저 청소에 쓸려가지 않는다.",
+  "id": "dex",
+  "start_url": "dex.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#11161C",
+  "theme_color": "#11161C",
+  "lang": "ko",
+  "icons": [
+    {
+      "src": "icon-dex-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-dex-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
