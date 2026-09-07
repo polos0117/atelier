@@ -1671,6 +1671,17 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       }
       return true;
     };
+    /* 한 칸이라도 직접 지정했나 */
+    const anySet=key=>{
+      for(let n=1;n<=6;n++){
+        const pe=document.querySelector('[data-ov-panel="'+n+'"][data-ov-key="'+key+'"]');
+        if(pe&&pe.value)return true;
+        const id={expression:'Expr',orientation:'Orient',pose:'Pose'}[key];
+        const pa=document.getElementById('pair'+pairForPanel(n)+id);
+        if(pa&&pa.value)return true;
+      }
+      return false;
+    };
     const drop={};
     if(allSet('expression'))drop.smile_limit=1;
     if(allSet('orientation')){drop.direct_gaze_limit=1;drop.camera_variety=1;}
@@ -1680,8 +1691,18 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     SUPPRESSED=Object.keys(drop).filter(k=>adv[k]);
     const expr=document.getElementById('globalExpressionMode').value;
     const orient=document.getElementById('globalOrientationMix').value;
-    if(expr)lines.push('- Global expression mode: '+expr+'. Use varied expressions and avoid repeated blank faces.');
-    if(orient)lines.push('- Global body-orientation mix: '+orient+'. Deliberately vary front-facing, side, and back-emphasis shots.');
+    /* 여섯 칸을 다 지정했으면 "다양하게 하라"는 지정값과 정면으로 부딪힌다. 그때는 빼고,
+       일부만 지정했으면 지정 안 한 칸에만 걸도록 범위를 좁힌다 */
+    if(expr&&!allSet('expression'))
+      lines.push('- Global expression mode: '+expr+
+        (anySet('expression')
+          ? '. Apply this only to panels that carry no explicit Expression setting; panels that specify one keep it exactly as written.'
+          : '. Use varied expressions and avoid repeated blank faces.'));
+    if(orient&&!allSet('orientation'))
+      lines.push('- Global body-orientation mix: '+orient+
+        (anySet('orientation')
+          ? '. Apply this only to panels that carry no explicit Body Orientation setting; panels that specify one keep it exactly as written.'
+          : '. Deliberately vary front-facing, side, and back-emphasis shots.'));
     const frameBase=document.getElementById('clgFrame')&&document.getElementById('clgFrame').value;
     if(frameBase)lines.push('- Baseline framing across all six panels: '+frameBase+'. Camera-distance and angle variation should happen around this baseline rather than replacing it, unless an individual panel explicitly overrides it.');
     if(custom)lines.push('- Additional custom instruction: '+custom+'.');
@@ -1770,7 +1791,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     const EX=en(EXPRESSION_OPTIONS), OR=en(ORIENTATION_OPTIONS), PO=en(POSE_OPTIONS);
     const parts=[
       '[INPUT]\n\nSOURCE MOBILE SUIT: ['+src.mech+']\n\nThis name is identity-provenance metadata only, used for lore, personality, and occupation context. It must not be used to reconstruct, restore, or invent mobile-suit armor, weapons, shields, backpacks, mechanical limbs, or other canonical equipment.\n\nUse the attached clearly adult anthropomorphized character as the absolute identity and equipment reference for this image.',
-      '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman as the attached reference. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign.',
+      '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman as the attached reference. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign. Facial expression is not identity. The brows, eyelids, eye openness, mouth shape and lip parting must follow the expression specified elsewhere in this prompt \u2014 "preserve mouth shape" refers to the resting structure and proportion of the lips, not to holding a neutral mouth. A specified expression must be clearly readable on the face.',
       LIFESTYLE_REFERENCE_LOCK
     ];
     parts.push(carryBlock(document.getElementById('sgCarryFace').checked,document.getElementById('sgCarryBody').checked));
@@ -2070,7 +2091,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     const s=selectedSource(),adv=getAdvanced(),custom=document.getElementById('collageCustom').value.trim();
     const parts=[
       '[INPUT]\n\nSOURCE MOBILE SUIT: ['+s.mech+']\n\nThis name is identity-provenance metadata only, used for lore, personality, and occupation context. It must not be used to reconstruct, restore, or invent mobile-suit armor, weapons, shields, backpacks, mechanical limbs, or other canonical equipment.\n\nUse the attached clearly adult anthropomorphized character as the absolute identity and equipment reference for this image.',
-      '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman in all six panels. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign. Only identity repeats.',
+      '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman in all six panels. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign. Only identity repeats. Facial expression is not identity. The brows, eyelids, eye openness, mouth shape and lip parting must follow the expression specified elsewhere in this prompt \u2014 "preserve mouth shape" refers to the resting structure and proportion of the lips, not to holding a neutral mouth. A specified expression must be clearly readable on the face.',
       LIFESTYLE_REFERENCE_LOCK,
       carryBlock(document.getElementById('carryFace')&&document.getElementById('carryFace').checked,
                  document.getElementById('carryBody')&&document.getElementById('carryBody').checked),
