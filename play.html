@@ -1266,8 +1266,17 @@ function take(type,card,ti){
   if(k>=0)pools[type].splice(k,1);
   log.unshift({r:round+1,ti:ti,type:type,c:card,fresh:true});
 }
+/* 버림패로 보낸다. pools 에서 빼는 것이 핵심이다 —
+   drawPack 은 뽑을 때 pools 에서 빼지 않으므로, 안 뺀 채 discard 에만 넣으면
+   같은 카드가 양쪽에 남는다. 순환이 끝나 pools 에 합류하는 순간 둘이 된다.
+   본편은 카드가 많아 합류 자체가 일어나지 않아 여태 드러나지 않았다. */
+function toDiscard(type,card){
+  var k=pools[type].indexOf(card);
+  if(k>=0)pools[type].splice(k,1);
+  discard[type].push(card);
+}
 function tossPack(type,pack,keep){
-  for(var i=0;i<pack.length;i++)if(pack[i]!==keep)discard[type].push(pack[i]);
+  for(var i=0;i<pack.length;i++)if(pack[i]!==keep)toDiscard(type,pack[i]);
 }
 function aiPick(type,pack,ti,wantGain){
   /* 신참은 가끔 헛발질하고, 에이스는 인연을 내다보며 팩을 물릴 줄 안다 */
@@ -1302,7 +1311,7 @@ function aiDraw(type,ti){
       log.unshift({r:round+1,ti:ti,type:type,rr:true,
         say:RR_SAY[Math.floor(Math.random()*RR_SAY.length)],fresh:true});
       var keep=packArr.filter(function(x){return x.by!==null}),n=packArr.length-keep.length,j;
-      for(j=0;j<packArr.length;j++)if(packArr[j].by===null)discard[type].push(packArr[j].c);
+      for(j=0;j<packArr.length;j++)if(packArr[j].by===null)toDiscard(type,packArr[j].c);
       packArr=keep.concat(drawPack(type).slice(0,n).map(function(c){return {c:c,by:null}}));
       open=openSlots();cards=open.map(function(i2){return packArr[i2].c});
       res=aiPick(type,cards,ti,true);
@@ -1352,7 +1361,7 @@ function ensurePack(type){
 function openSlots(){var r=[],i;for(i=0;i<packArr.length;i++)if(packArr[i].by===null)r.push(i);return r}
 /* 공유 팩에서 안 팔린 카드는 버림패로 — 순환이 끝나면 다시 섞인다 */
 function tossRest(type){
-  for(var i=0;i<packArr.length;i++)if(packArr[i].by===null)discard[type].push(packArr[i].c);
+  for(var i=0;i<packArr.length;i++)if(packArr[i].by===null)toDiscard(type,packArr[i].c);
   packArr=[];packType=null;
 }
 function el(tag,cls,html){var d=document.createElement(tag);if(cls)d.className=cls;
@@ -1612,7 +1621,7 @@ function renderPack(){
     log.unshift({r:round+1,ti:0,type:type,rr:true,say:"보급을 요청한다",fresh:true});
     if(sharedPack){
       var keep=packArr.filter(function(x){return x.by!==null}),n=packArr.length-keep.length,j;
-      for(j=0;j<packArr.length;j++)if(packArr[j].by===null)discard[type].push(packArr[j].c);
+      for(j=0;j<packArr.length;j++)if(packArr[j].by===null)toDiscard(type,packArr[j].c);
       var fresh=drawPack(type).slice(0,n);
       packArr=keep.concat(fresh.map(function(c){return {c:c,by:null}}));
     }else{tossPack(type,curPack,null);curPack=null}
