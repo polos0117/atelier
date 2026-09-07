@@ -170,6 +170,23 @@ official/ ─┐
 왜 안 되는지와 어떻게 띄우는지를 화면에 적어 준다. GitHub Pages 로 보는 데는
 아무 문제가 없다.
 
+### prompt.html 을 고쳤으면 판을 올린다
+
+`prompt.html` 에만 화면에 뜨는 판 번호와 패치 노트가 있다. **세 곳을 같이 고친다.**
+
+```
+<title>Gundam Prompt Toolkit v9.9</title>      머리
+<div class="ver-badge"> … <b>v9.9</b> …        배지
+<details id="verBox">  안의 맨 위에 항목 추가   패치 노트
+```
+
+문구 한 줄을 바꾸든 파라미터를 하나 더하든 올린다. 결과가 달라지는 자리라
+"저번과 왜 다르지" 를 되짚을 근거가 그 목록뿐이다. 실제로 v9.5 이후 열 번을
+고치고도 안 올려서, 나중에 v9.6~v9.9 를 한꺼번에 되짚어 채워야 했다.
+
+끝자리를 올리는 기준은 묶음 하나다 — 고친 곳이 여럿이어도 한 가지 이야기면 한 판이다.
+`play.html`·`dex.html` 에는 이 표시가 없다. 거기는 git 기록만 본다.
+
 ### prompt.html 이 받는 것
 
 툴킷은 `data/mech.json` 과 `data/series.json` 둘만 받아 필요한 꼴로 만든다.
