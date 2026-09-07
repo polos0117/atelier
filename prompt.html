@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Gundam Prompt Toolkit v9.12</title>
+<title>Gundam Prompt Toolkit v9.13</title>
 <meta name="theme-color" content="#0f1115">
 <!-- 홈 화면에 두면 브라우저가 저장 자리를 걷어가지 못한다 -->
 <link rel="manifest" href="prompt.webmanifest">
@@ -260,14 +260,21 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   </div>
 
 
-  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.12</b> <span>남자가 치파오를 입지 않게</span></div>
+  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.13</b> <span>단일 컷 복사가 제 프롬프트를 짜도록</span></div>
   <details class="srcbox verbox" id="verBox">
     <summary>
-      <span class="sel-line" style="white-space:normal;overflow:visible">v9.12 변경 내역</span>
+      <span class="sel-line" style="white-space:normal;overflow:visible">v9.13 변경 내역</span>
       <span class="sb-txt">패치 노트</span>
     </summary>
     <div class="vb-in">
-      <b>v9.12 &middot; 남자가 치파오를 입지 않게</b>
+      <b>v9.13 &middot; 단일 컷 복사가 제 프롬프트를 짜도록</b>
+      <ul>
+        <li><b>단일 컷 복사가 엉뚱한 것을 새로 짜고 있었다.</b> 세 모드 가운데 콜라주만 가려내고 나머지를 모두 의인화로 보냈다. 그래서 단일 컷을 복사하면 <b>의인화 프롬프트를 새로 짜 놓고 정작 복사는 단일 컷의 묵은 값</b>을 했다. 텍스트 보기도 같은 갈래였다</li>
+        <li>복사가 막혔을 때는 더 나빴다. <b>의인화 텍스트 상자를 열고</b>, 숨어 있는 단일 컷 상자를 고르려 들어 아무 일도 일어나지 않았다. 이제 제 상자를 연다</li>
+        <li><b>복사가 실제로 되었을 때만 "썼다" 로 기록한다.</b> 예전에는 자동 복사가 막혀 전체 선택만 해도 사용 기록이 늘어, 안 써 본 조합이 저절로 줄어들었다</li>
+        <li>여성으로 뽑는 프롬프트는 <b>세 시리즈 × 여섯 화풍 × 세 모드 54 항목, 71만 9천 글자가 바이트까지 그대로</b>다</li>
+      </ul>
+      <b style="opacity:.55">v9.12 &middot; 남자가 치파오를 입지 않게</b>
       <ul>
         <li>카테고리와 <b>예시 하나하나</b>에 성별을 달 수 있게 했다. 빈 값이면 남녀 공용이다. 카테고리 단위로만 가르면 전통의상 안의 치파오 · 사리 · 아바야가 그대로 남는다 — 그래서 예시까지 내려갔다</li>
         <li>여성 전용으로 찍은 것 — 카테고리 다섯(<b>란제리 · 수영복 · 홈웨어 · 프라이빗 이브닝 · 성인 역할극</b>)과 예시 116 개. 전통의상에서는 치파오 · 아오자이 · 사리 · 레헹가 · 살와르 카미즈 · 아바야 · 디른들 · 자수 블라우스 · 켄테 · 우이필 · 크바야를 뺐고, 남성형이 있는 한복 · 기모노 · 한푸 · 카프탄 · 토브 · 부부 · 안데스 · 킬트 · 바롱은 남겼다</li>
@@ -4379,23 +4386,38 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     t.remove();if(!ok)throw(err||new Error('copy unavailable'));
   }
 
+  /* 세 모드가 각기 다른 함수로 짜인다. 예전에는 콜라주만 가려내고 나머지를 모두
+     의인화로 보내, 단일 컷을 복사하면 의인화 프롬프트를 새로 짜 놓고 정작 복사는
+     단일 컷의 묵은 값을 했다. 복사가 막혔을 때도 엉뚱하게 의인화 상자를 열고,
+     숨어 있는 단일 컷 textarea 를 고르려 들어 조용히 실패했다. */
+  const PROMPT_OF={
+    textCollage:{refresh:function(){refreshCollagePrompt()},view:'viewCollage'},
+    textSingle :{refresh:function(){refreshSinglePrompt()}, view:'viewSingle'},
+    textAnthro :{refresh:function(){refreshAnthroPrompt()}, view:'viewAnthro'}
+  };
+  /* 복사가 실제로 되었는지 돌려준다 — 막혀서 전체 선택만 한 것을
+     "썼다" 고 기록하면 안 써 본 조합이 자꾸 줄어든다 */
   async function copyPrompt(textId,statusId){
-    if(textId==='textCollage')refreshCollagePrompt();else refreshAnthroPrompt();
+    const M=PROMPT_OF[textId]; if(M)M.refresh(); else refreshAnthroPrompt();
     const ta=document.getElementById(textId);
-    try{await copyToClipboard(ta.value);setStatus(statusId,'클립보드 복사 완료 ✓','ok');}
+    try{await copyToClipboard(ta.value);setStatus(statusId,'클립보드 복사 완료 ✓','ok');return true;}
     catch(e){
-      const viewId=textId==='textCollage'?'viewCollage':'viewAnthro';
+      const viewId=M?M.view:'viewAnthro';
       document.getElementById(viewId).classList.remove('hidden');
       const btn=document.querySelector('[data-toggle="'+viewId+'"]');if(btn)btn.textContent='텍스트 닫기';
       ta.focus();ta.select();ta.setSelectionRange(0,ta.value.length);
       setStatus(statusId,'자동 복사가 막혀 전체 선택했습니다.','warn');
+      return false;
     }
   }
 
+  const VIEW_REFRESH={viewCollage:function(){refreshCollagePrompt()},
+                      viewSingle :function(){refreshSinglePrompt()},
+                      viewAnthro :function(){refreshAnthroPrompt()}};
   function toggleView(viewId,btn){
     const el=document.getElementById(viewId),closing=!el.classList.contains('hidden');
     el.classList.toggle('hidden',closing);btn.textContent=closing?'텍스트 보기':'텍스트 닫기';
-    if(!closing){if(viewId==='viewCollage')refreshCollagePrompt();else refreshAnthroPrompt();}
+    if(!closing)(VIEW_REFRESH[viewId]||refreshAnthroPrompt)();
   }
 
   function applySource(){
@@ -4641,8 +4663,9 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   document.getElementById('specialInput').addEventListener('input',refreshAnthroPrompt);
   document.getElementById('underboobInput').addEventListener('change',refreshAnthroPrompt);
 
-  document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{
-    copyPrompt(b.dataset.copy,b.dataset.status);
+  document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',async()=>{
+    const copied=await copyPrompt(b.dataset.copy,b.dataset.status);
+    if(!copied)return;                       /* 막혀서 고르기만 했으면 쓴 것이 아니다 */
     if(b.dataset.copy==='textCollage')recordUse();
     if(b.dataset.copy==='textSingle')sgRecordUse();
   }));
