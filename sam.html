@@ -923,7 +923,9 @@ function probeStore(){
 function askPersist(){
   if(!(navigator.storage&&navigator.storage.persist)){alert("이 브라우저는 붙박이를 받지 않소");return}
   navigator.storage.persist().then(function(ok){
-    PERSIST=ok?"붙박이 — 브라우저가 함부로 못 걷어가오":"청하였으나 거절당했소";
+    PERSIST=ok?"붙박이 — 브라우저가 함부로 못 걷어가오"
+      :'<b style="color:var(--gold)">청하였으나 거절당했소</b> — 크롬은 <u>북마크에 넣거나 홈 화면에 추가한</u> '
+       +'사이트에만 붙박이를 주오. 그리 한 뒤 다시 청해 보시오';
     var d=$("diagBox"); if(d)d.innerHTML=diagInner();
   });
 }
