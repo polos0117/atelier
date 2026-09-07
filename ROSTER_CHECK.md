@@ -28,6 +28,7 @@ Firecrawl 이 렌더링해 주므로 이제는 받아서 자동으로 대조한�
 | `data/style.json` | 화풍 열하나. 초상 파일 이름의 화풍 토막과 화면에 뜨는 이름이 여기서 나온다 |
 | `data/field.json` | 전장 넷과 뽑힐 비율, 지형 등급별 감점과 화면에 쓸 말 |
 | `data/rule.json` | 판 진행 — 라운드마다 무엇을 뽑는지, 한 팩 장수, 정원 웃돈 기준 |
+| `data/tag.json` | 태그를 무엇에서 뽑을지(derive)와 태그로 걸리는 인연 열둘(combos) |
 
 읽고 쓰는 길은 `roster.py` 하나다. 스크립트마다 정규식으로 뜯어 읽던 것을
 없앴다. 게임 규칙 코드는 아직 자리번호로 읽으므로(`m[7]` 은 계열) `roster.rows()`
@@ -97,6 +98,7 @@ UC 계열 기체는 날지 못하고 이후 작품 기체는 난다는 것이 �
 | 카드 종류 넷 | `play.html` 의 `KIND` · `build-dex.py` 의 `KIND` | 받아올 파일 이름, 능력치 이름표, 도감 탭이 다 여기서 갈라진다 |
 | 전장·지형 감점 | `data/field.json` | `FIELDS`·`TERR`·`TERR_WORD` 로 채운다 |
 | 판 진행 차례 | `data/rule.json` | `SCHEDULE`·`PACKN`·`CAP_BONUS` 로 채운다 |
+| 태그 규칙·태그 인연 | `data/tag.json` | `TAG_RULE`·`TCOMBO` 로 채운다 |
 | 진영 색 | `data/series.json` 의 `faction_color` | `FAC` 로 채운다 |
 
 자료 묶음을 통째로 갈아 끼우려면 `play.html?set=이름` 으로 `data-이름/` 을 읽는다.

@@ -488,7 +488,9 @@ function kindNames(){return KIND.map(function(k){return k[0]})}
 var STAT_LABEL={};
 /* 화풍 key → 한글 이름. 차례는 data/style.json 이 정한다 */
 var ART_NAME={}, ART_ORDER=[];
-var WEIGHT={}, TAG_COLOR={}, TAG_ROLE={}, GUNDAM_EXTRA={};
+var WEIGHT={}, TAG_COLOR={}, TAG_ROLE={};
+/* 카드가 참으로 적어 둔 칸들. tag.json 의 flag 가 여기서 찾는다 */
+var FLAG={};
 /* 이름 → G 제네레이션 이터널 유닛·인물 id. 게임 규칙에는 쓰지 않고
    도감에서 보여 주기와 바깥 자료 대조에만 쓴다 */
 var GGE={};
@@ -520,7 +522,7 @@ function absorb(cards,row){
     if(c.lore)LORE[c.name]=c.lore;
     if(c.color)TAG_COLOR[c.name]=c.color;
     if(c.role)TAG_ROLE[c.name]=c.role;
-    if(c.gundam)GUNDAM_EXTRA[c.name]=1;
+    for(var fk in c)if(c[fk]===true)(FLAG[fk]=FLAG[fk]||{})[c.name]=1;
     if(c.gge)GGE[c.name]=c.gge;
   }
   return out;
@@ -540,7 +542,7 @@ function plainRow(c){
 function loadData(){
   /* 카드 넷은 KIND 가 정한다. 그 뒤에 오는 파일만 여기서 이름을 댄다 */
   var MORE=["bond.json","combo.json","img.json","series.json","style.json",
-            "field.json","rule.json"];
+            "field.json","rule.json","tag.json"];
   var files=KIND.map(function(k){return k[1]+".json"}).concat(MORE);
   return Promise.all(files.map(fetchJSON)).then(function(d){
     var by={},n=KIND.length;
@@ -561,6 +563,7 @@ function loadData(){
     by.style.styles.forEach(function(x){ART_NAME[x.key]=x.name});
     fill(FIELDS,by.field.fields.map(function(f){return [f.name,f.weight]}));
     fillMap(TERR,by.field.grade); fillMap(TERR_WORD,by.field.word);
+    fill(TAG_RULE,by.tag.derive); fill(TCOMBO,by.tag.combos);
     fill(SCHEDULE,by.rule.schedule); PACKN=by.rule.pack;
     CAP_BONUS=Math.max(0,slotsOf(by.rule.cap_from)-4);
   });
@@ -947,34 +950,31 @@ function pledges(t){
 function wOf(c){var w=WEIGHT[c[0]];return w===undefined?1:w}
 
 var MECH_SET=null;
+/* 무엇을 태그로 볼지는 data/tag.json 이 정한다. 예전에는 이름에 "자쿠"·"건담" 이
+   들어가는지를 여기서 직접 봤는데, 그러면 주제가 바뀌는 순간 태그가 한 장도 안
+   붙어 태그 인연이 통째로 죽는다. 규칙은 그대로 두고 무엇을 찾을지만 자료로 뺐다 */
+var TAG_RULE=[], TCOMBO=[];
+var FIELD_OF={color:TAG_COLOR, role:TAG_ROLE};
 function tagsOf(c){
   if(!MECH_SET){MECH_SET={};for(var z=0;z<MECH.length;z++)MECH_SET[MECH[z][0]]=1}
   var n=c[0];
   if(!MECH_SET[n])return [];      /* 태그는 기체에만 붙인다 */
-  var out=[];
-  if(TAG_COLOR[n])out.push(TAG_COLOR[n]);
-  if(TAG_ROLE[n])out.push(TAG_ROLE[n]);
-  if(n.indexOf("자쿠")>=0)out.push("자쿠");
-  else if(n.indexOf("짐")>=0)out.push("짐");
-  if(n.indexOf("건담")>=0||GUNDAM_EXTRA[n])out.push("건담");
-  if(c[7]==="양산")out.push("양산기");
+  var out=[],done={},i,r,hit;
+  for(i=0;i<TAG_RULE.length;i++){
+    r=TAG_RULE[i];
+    if(r.group&&done[r.group])continue;
+    if(r.tag_from_field){
+      var m=FIELD_OF[r.tag_from_field];
+      if(m&&m[n])out.push(m[n]);
+      continue;
+    }
+    hit=(r.name_has&&n.indexOf(r.name_has)>=0)||(r.flag&&FLAG[r.flag]&&FLAG[r.flag][n])||
+        (r.system&&c[7]===r.system);
+    if(hit){out.push(r.tag); if(r.group)done[r.group]=1}
+  }
   return out;
 }
-/* 태그로 걸리는 연대 — 이름이 아니라 태그 수를 센다 */
-var TCOMBO=[
- {n:"붉은 기체들",g:"적색",t:{2:26,3:56,4:92}},
- {n:"백색 편대",g:"백색",t:{4:55,5:100}},
- {n:"검은 기체들",g:"흑색",t:{2:30,3:66}},
- {n:"금빛 기체",g:"금색",t:{2:48,3:90}},
- {n:"푸른 기체들",g:"청색",t:{2:26,3:56}},
- {n:"녹빛 기체들",g:"녹색",t:{2:26,3:56}},
- {n:"건담이라는 이름",g:"건담",t:{4:45,5:85,6:135}},
- {n:"자쿠의 계보",g:"자쿠",t:{2:35,3:75}},
- {n:"짐의 계보",g:"짐",t:{2:35,3:75}},
- {n:"수의 논리",g:"양산기",t:{3:40,4:75}},
- {n:"주역의 자리",g:"주역기",t:{2:38,3:80}},
- {n:"숙적들",g:"숙적기",t:{2:38,3:80}}
-];
+/* 태그로 걸리는 연대 — 이름이 아니라 태그 수를 센다. 표는 data/tag.json 에 있다 */
 function tagPledges(t){
   var bag={},i,j,out=[];
   for(i=0;i<t.기체.length;i++){

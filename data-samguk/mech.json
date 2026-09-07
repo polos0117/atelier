@@ -4,15 +4,15 @@
  "note": "병종 카드. system 은 병과, temper 는 부대 성향, models 는 부대 표기다.",
  "count": 10,
  "cards": [
-  {"name": "호표기", "models": "魏騎", "factions": ["위"], "stats": [78, 88, 74, 86], "temper": "돌격", "system": "기병", "series": ["관도", "적벽"], "terrain": {"평지": 3, "산악": 1, "수상": 1, "성곽": 2}},
-  {"name": "청주병", "models": "魏步", "factions": ["위"], "stats": [86, 70, 72, 60], "temper": "견실", "system": "보병", "series": ["황건", "관도"], "terrain": {"평지": 3, "산악": 2, "수상": 1, "성곽": 3}},
+  {"name": "호표기", "models": "魏騎", "factions": ["위"], "stats": [78, 88, 74, 86], "temper": "돌격", "system": "기병", "series": ["관도", "적벽"], "terrain": {"평지": 3, "산악": 1, "수상": 1, "성곽": 2}, "color": "적색", "role": "주력"},
+  {"name": "청주병", "models": "魏步", "factions": ["위"], "stats": [86, 70, 72, 60], "temper": "견실", "system": "보병", "series": ["황건", "관도"], "terrain": {"평지": 3, "산악": 2, "수상": 1, "성곽": 3}, "color": "청색"},
   {"name": "백마의종", "models": "幽騎", "factions": ["군웅"], "stats": [62, 80, 58, 90], "temper": "기습", "system": "궁기병", "series": ["황건", "관도"], "terrain": {"평지": 3, "산악": 2, "수상": 1, "성곽": 1}},
   {"name": "백이병", "models": "蜀山", "factions": ["촉"], "stats": [58, 74, 66, 88], "temper": "기습", "system": "산악병", "series": ["이릉", "북벌"], "terrain": {"평지": 2, "산악": 3, "수상": 1, "성곽": 1}},
   {"name": "등갑군", "models": "藤甲", "factions": ["군웅"], "stats": [70, 66, 90, 52], "temper": "방어", "system": "보병", "series": ["북벌"], "terrain": {"평지": 2, "산악": 3, "수상": 1, "성곽": 2}},
-  {"name": "연노병", "models": "連弩", "factions": ["촉"], "stats": [64, 86, 60, 58], "temper": "견실", "system": "궁병", "series": ["북벌"], "terrain": {"평지": 3, "산악": 2, "수상": 1, "성곽": 3}},
-  {"name": "강동수군", "models": "吳水", "factions": ["오"], "stats": [80, 76, 70, 74], "temper": "견실", "system": "수군", "series": ["적벽", "이릉"], "terrain": {"평지": 1, "산악": 1, "수상": 3, "성곽": 1}},
+  {"name": "연노병", "models": "連弩", "factions": ["촉"], "stats": [64, 86, 60, 58], "temper": "견실", "system": "궁병", "series": ["북벌"], "terrain": {"평지": 3, "산악": 2, "수상": 1, "성곽": 3}, "color": "녹색"},
+  {"name": "강동수군", "models": "吳水", "factions": ["오"], "stats": [80, 76, 70, 74], "temper": "견실", "system": "수군", "series": ["적벽", "이릉"], "terrain": {"평지": 1, "산악": 1, "수상": 3, "성곽": 1}, "color": "적색"},
   {"name": "해적선단", "models": "江賊", "factions": ["오"], "stats": [58, 70, 54, 84], "temper": "기습", "system": "수군", "series": ["적벽"], "terrain": {"평지": 1, "산악": 1, "수상": 3, "성곽": 1}},
   {"name": "정란공성차", "models": "井闌", "factions": ["위"], "stats": [74, 90, 80, 34], "temper": "방어", "system": "공성", "series": ["관도", "이릉"], "terrain": {"평지": 2, "산악": 1, "수상": 1, "성곽": 3}},
-  {"name": "황건역사", "models": "黃巾", "factions": ["황건"], "stats": [92, 58, 56, 50], "temper": "돌격", "system": "보병", "series": ["황건"], "terrain": {"평지": 3, "산악": 2, "수상": 1, "성곽": 1}}
+  {"name": "황건역사", "models": "黃巾", "factions": ["황건"], "stats": [92, 58, 56, 50], "temper": "돌격", "system": "보병", "series": ["황건"], "terrain": {"평지": 3, "산악": 2, "수상": 1, "성곽": 1}, "color": "황색", "role": "주력"}
  ]
 }
