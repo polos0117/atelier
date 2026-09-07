@@ -88,6 +88,75 @@ UC 계열 기체는 날지 못하고 이후 작품 기체는 난다는 것이 �
 둘뿐이라 대기권 1 이 나왔다)는 `data-overrides.json` 의 `terrain` 에 이유와 함께
 적는다. 지금 일곱 자리.
 
+## 어느 파일이 무엇을 하나
+
+### 화면 (사람이 여는 것)
+
+| 파일 | 하는 일 |
+|---|---|
+| `index.html` | 들머리. 아래 넷으로 가는 링크만 있다 |
+| `play.html` | **드래프트 게임.** 실행할 때 `data/` 를 읽는다. 도감 · 공적 · 통계도 이 안에 있다 |
+| `dex.html` | **도감.** 카드를 훑고 초상 작업 현황을 본다. `build-dex.py` 가 만드는 **생성물이라 손으로 고치지 않는다** |
+| `prompt.html` | **초상 프롬프트 툴킷.** 의인화 · 콜라주 · 단일 컷 셋을 만든다. 화면에 판 번호와 패치 노트가 있다 |
+| `sam.html` | 삼국지 드래프트. 건담보다 먼저, git 을 쓰기 전에 만든 통짜 파일이다 → `TRY_SAMGUK.md` |
+| `image-list.html` · `mech-remaining.html` | 초상 작업 목록 · 남은 기체. 자료를 박아 만든 옛 화면으로, 도감이 같은 일을 한다 |
+
+### 자료 — `data/` (게임과 화면이 실행할 때 읽는 것)
+
+| 파일 | 하는 일 |
+|---|---|
+| `mech.json` | 기체 765. 능력치 · 세력 · 시리즈 · 형식번호 · G 제네레이션 id · 레어도 · 지형 · 태그 |
+| `pilot.json` · `ship.json` · `crew.json` | 파일럿 210 · 모함 79 · 지휘관 33 |
+| `bond.json` | 전용기 — `"파일럿\|기체"` → 보정치 0.12~0.22 |
+| `combo.json` | 인연 · 혈연 · 악연. `{n, m, t, k}` 꼴 |
+| `img.json` | 초상 파일 목록. 성별 · 화풍별로 나뉜다 |
+| `series.json` | 시리즈 이름 · 정규화 단위 · 진영 색 · 차례 |
+| `style.json` | 화풍 열하나 |
+| `field.json` | 전장과 뽑힐 비율 · 지형 등급 감점 |
+| `rule.json` | 판 진행 — 라운드 차례 · 팩 장수 |
+| `tag.json` | 태그를 뽑는 규칙과 태그로 걸리는 인연 |
+
+### 만드는 스크립트
+
+| 파일 | 하는 일 |
+|---|---|
+| `roster.py` | **자료를 읽고 쓰는 유일한 길.** 다른 스크립트는 전부 이걸 거친다 |
+| `build-roster.py` | 공식 사이트 대조 결과를 카드로 만들어 `data/` 에 넣는다 |
+| `build-official.py` | 공식 사이트 목록 ↔ 저장소 로스터 대조 → `official-diff.json` |
+| `build-idmap.py` | G 제네레이션 API 와 카드를 짝지어 `id-map.json` 을 만든다 |
+| `build-data.py` | 형식번호 · id · 레어도 · 지형 · 태그를 카드에 붙인다. `--check` · `--report` |
+| `build-bond.py` | 공식 탑승 관계에서 전용기 후보를 뽑는다 → `bond-candidates.json` |
+| `build-dex.py` | `play.html` 에서 코드를 떼어다 `dex.html` 을 만든다 |
+| `register-images.py` | 저장소의 `*.webp` 를 `data/img.json` 에 등록한다. `--check` · `--prune` |
+| `gundam_match.py` | 이름 대조 공용 규칙. 세 출처가 같은 기체를 다르게 적어서 한곳에 모았다 |
+
+### 사람이 손으로 적는 것
+
+| 파일 | 하는 일 |
+|---|---|
+| `data-overrides.json` | 자동으로 고른 형식번호 · 지형이 틀린 자리. `why` 에 근거를 적는다 |
+| `roster-overrides.json` | `build-roster.py` 가 규칙으로 매긴 능력치를 덮어쓴다 |
+| `id-map.overrides.json` | 자동 대조로 못 잡은 API id 짝 |
+| `official-slugs.json` | 시리즈 코드 ↔ 공식 사이트 슬러그 |
+
+### 중간 생성물 (사람이 읽고 판단하라고 만든 것)
+
+| 파일 | 하는 일 |
+|---|---|
+| `official-diff.json` | 공식에는 있고 저장소에 없는 것. `near` 는 같은 대상인지 사람이 봐야 한다 |
+| `id-map.json` | 카드 ↔ API id. `review` 는 확인이 필요한 짝 |
+| `bond-candidates.json` | 전용기 후보. 값은 밸런스 판단이라 비워 둔다 |
+| `toolkit-data.json` | 툴킷의 '기록 내보내기' 결과. 기체별 화풍 · 진행 상황 |
+
+### 그 밖에
+
+| 파일 | 하는 일 |
+|---|---|
+| `.github/workflows/register-images.yml` | `main` 에 `*.webp` 가 올라오면 `register-images.py` 를 돌려 `img.json` 을 갱신하고 되커밋 |
+| `data-samguk/` | 주제를 갈아 끼워 본 시험 자료 30 장. `play.html?set=samguk` |
+| `official/` | 공식 사이트에서 받아 둔 원본 목록 |
+| `.cache/soshage/` | G 제네레이션 API 응답 캐시 |
+
 ## 누가 무엇을 갖나
 
 셋이 붙어 있다. 같은 파일을 둘이 건드리면 충돌이 기본값이 되므로 파일로 나눈다.
