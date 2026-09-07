@@ -547,6 +547,161 @@ function plainRow(c){
   return [c.name,c.factions,c.stats[0],c.stats[1],c.stats[2],c.stats[3],c.series];
 }
 
+/* ═══════ 자료 검사 ═══════
+   받아 오기에 실패한 것은 boot() 이 잡지만, 잘 받아 온 자료가 서로 어긋나는 것은
+   여태 아무도 보지 않았다. 그러면 판이 한창일 때 엉뚱한 자리에서 터지거나,
+   더 나쁘게는 조용히 이상한 점수가 나온다.
+
+   판을 열기 전에 한 번 훑는다. 판을 못 세우는 것은 막고(fatal), 판은 서지만
+   무언가 빠진 것은 일러둔다(warning). 주제를 새로 만들 때 어디가 어긋났는지
+   화면에서 바로 보라고 두는 것이다. */
+var DATA_VER=1;
+function validateData(by){
+  var F=[],W=[],i,j,k;
+  var kinds=KIND.map(function(x){return x[0]}),        /* 함·기체·… */
+      keys=KIND.map(function(x){return x[1]});          /* ship·mech·… */
+
+  /* 1. 판(version) — 모르는 판이면 읽는 법이 달라졌을 수 있다 */
+  for(k in by)if(by[k]&&by[k].version!==undefined&&by[k].version!==DATA_VER)
+    W.push(k+".json 의 판이 "+by[k].version+" 이다. 이 화면은 "+DATA_VER+" 을 안다");
+
+  /* 2. 카드 넷의 뼈대 */
+  var seen={},dupIn=[],dupAcross=[];
+  for(i=0;i<keys.length;i++){
+    var f=by[keys[i]],nm=kinds[i]+"("+keys[i]+".json)";
+    if(!f||!f.cards||!f.cards.length){F.push(nm+" 에 카드가 없다");continue}
+    if(!f.stats||f.stats.length!==4)
+      F.push(nm+" 의 stats 가 넷이 아니다 — 카드는 늘 넷을 읽는다");
+    if(f.count!==undefined&&f.count!==f.cards.length)
+      W.push(nm+" 의 count 는 "+f.count+" 인데 실제는 "+f.cards.length+" 장이다");
+    var here={};
+    for(j=0;j<f.cards.length;j++){
+      var c=f.cards[j];
+      if(!c.name){F.push(nm+" 의 "+(j+1)+"번째 카드에 이름이 없다");continue}
+      if(!c.stats||c.stats.length!==4)
+        F.push(nm+" · "+c.name+" 의 능력치가 넷이 아니다");
+      else for(k=0;k<4;k++)if(typeof c.stats[k]!=="number")
+        F.push(nm+" · "+c.name+" 의 "+(k+1)+"번째 능력치가 숫자가 아니다");
+      if(c.weight!==undefined&&!(c.weight>0))
+        W.push(nm+" · "+c.name+" 의 나올 비율이 "+c.weight+" 다 — 0 이하면 영영 안 나온다");
+      if(here[c.name])dupIn.push(nm+" · "+c.name);
+      here[c.name]=1;
+      if(seen[c.name]&&seen[c.name]!==kinds[i])dupAcross.push(c.name+" ("+seen[c.name]+" · "+kinds[i]+")");
+      seen[c.name]=kinds[i];
+    }
+  }
+  if(dupIn.length)W.push("같은 종류 안에 이름이 겹친다 — "+dupIn.slice(0,6).join(", ")+
+    (dupIn.length>6?" 외 "+(dupIn.length-6):""));
+  if(dupAcross.length)W.push("종류를 건너 이름이 겹친다 — "+dupAcross.slice(0,6).join(", ")+
+    (dupAcross.length>6?" 외 "+(dupAcross.length-6):""));
+
+  /* 3. 라운드표 */
+  var R=by.rule;
+  if(!R||!R.schedule||!R.schedule.length)F.push("rule.json 에 라운드표가 없다");
+  else{
+    var bad=R.schedule.filter(function(t){return kinds.indexOf(t)<0});
+    if(bad.length)F.push("rule.json 의 라운드표에 모르는 종류가 있다 — "+
+      bad.filter(function(v,ix,a){return a.indexOf(v)===ix}).join(", "));
+  }
+  if(!R||!(R.pack>0))F.push("rule.json 의 pack 이 "+(R&&R.pack)+" 이다");
+  if(R&&R.cap_from&&kinds.indexOf(R.cap_from)<0)
+    W.push("rule.json 의 cap_from 이 '"+R.cap_from+"' 인데 그런 종류가 없다");
+
+  /* 4. 카드가 세 편을 대기에 넉넉한가 */
+  if(R&&R.schedule)for(i=0;i<kinds.length;i++){
+    var need=0;
+    for(j=0;j<R.schedule.length;j++)if(R.schedule[j]===kinds[i])need++;
+    need*=3;
+    var have=(by[keys[i]]&&by[keys[i]].cards)?by[keys[i]].cards.length:0;
+    if(have<need)W.push(kinds[i]+" 가 "+have+" 장인데 세 편이 "+need+" 장을 집는다 — 버림패가 되돌아온다");
+  }
+
+  /* 5. 전장과 지형 */
+  var FD=by.field;
+  if(!FD||!FD.fields||!FD.fields.length)F.push("field.json 에 전장이 없다");
+  else{
+    var wsum=0;
+    for(i=0;i<FD.fields.length;i++){
+      var fd=FD.fields[i];
+      if(!fd.name)F.push("field.json 의 "+(i+1)+"번째 전장에 이름이 없다");
+      if(!(fd.weight>0))F.push("field.json · "+fd.name+" 의 뽑힐 비율이 "+fd.weight+" 다");
+      else wsum+=fd.weight;
+    }
+    if(wsum>0&&Math.abs(wsum-1)>0.01)W.push("전장이 뽑힐 비율의 합이 "+wsum.toFixed(3)+" 다 — 1 이 아니면 마지막 전장이 몫을 더 갖거나 잃는다");
+    var grade=FD.grade||{};
+    if(by.mech&&by.mech.cards){
+      var miss={},badv={};
+      for(i=0;i<by.mech.cards.length;i++){
+        var t=by.mech.cards[i].terrain;
+        if(!t)continue;
+        for(j=0;j<FD.fields.length;j++){
+          var fn=FD.fields[j].name;
+          if(t[fn]===undefined)miss[fn]=(miss[fn]||0)+1;
+          else if(grade[t[fn]]===undefined&&grade[String(t[fn])]===undefined)badv[t[fn]]=(badv[t[fn]]||0)+1;
+        }
+      }
+      for(k in miss)W.push("전장 '"+k+"' 의 지형 적성이 없는 기체가 "+miss[k]+" 기다 — 그 판에서는 감점도 이점도 없다");
+      for(k in badv)W.push("field.json 의 grade 에 없는 지형 등급 '"+k+"' 이 "+badv[k]+" 번 쓰였다");
+    }
+  }
+
+  /* 6. 인연이 실재하는 카드를 가리키는가 */
+  if(by.bond&&by.bond.bonds){
+    var bmiss=[];
+    for(k in by.bond.bonds){
+      var pr=k.split("|");
+      if(pr.length!==2){bmiss.push(k+" (모양이 '파일럿|기체' 가 아니다)");continue}
+      if(!seen[pr[0]])bmiss.push(k+" ← "+pr[0]);
+      else if(!seen[pr[1]])bmiss.push(k+" ← "+pr[1]);
+    }
+    if(bmiss.length)W.push("전용기 짝이 없는 카드를 가리킨다 "+bmiss.length+"건 — "+
+      bmiss.slice(0,4).join(", ")+(bmiss.length>4?" 외":""));
+  }
+  if(by.combo&&by.combo.combos){
+    var cmiss=[];
+    for(i=0;i<by.combo.combos.length;i++){
+      var cb=by.combo.combos[i];
+      if(!cb.m||!cb.m.length){cmiss.push((cb.n||"이름없는 인연")+" (구성원이 없다)");continue}
+      for(j=0;j<cb.m.length;j++)if(!seen[cb.m[j]])cmiss.push(cb.n+" ← "+cb.m[j]);
+    }
+    if(cmiss.length)W.push("인연이 없는 카드를 가리킨다 "+cmiss.length+"건 — "+
+      cmiss.slice(0,4).join(", ")+(cmiss.length>4?" 외":""));
+  }
+
+  /* 7. 화풍 */
+  if(by.style&&by.style.styles){
+    var sk={},sdup=[];
+    for(i=0;i<by.style.styles.length;i++){
+      var st=by.style.styles[i];
+      if(!st.key){W.push("style.json 의 "+(i+1)+"번째 화풍에 key 가 없다");continue}
+      if(sk[st.key])sdup.push(st.key);
+      sk[st.key]=1;
+    }
+    if(sdup.length)W.push("화풍 key 가 겹친다 — "+sdup.join(", "));
+  }
+  return {fatal:F,warn:W};
+}
+/* 검사 결과를 화면에 내건다. 판을 못 세우면 그 자리에서 멈춘다 */
+function showDataReport(r){
+  if(r.fatal.length){
+    var li=function(a){return a.map(function(x){return '<li>'+x+'</li>'}).join('')};
+    document.body.innerHTML=
+      '<div style="padding:2rem;font:14px/1.7 system-ui;color:#ddd;background:#14161c;min-height:100vh">'+
+      '<h2 style="margin:0 0 .8rem">자료가 어긋나 판을 세울 수 없다</h2>'+
+      '<ul style="color:#e8837a;padding-left:1.2em">'+li(r.fatal)+'</ul>'+
+      (r.warn.length?'<h3 style="margin:1.4rem 0 .5rem;color:#aaa">그 밖에 일러둘 것</h3>'+
+        '<ul style="color:#c9a227;padding-left:1.2em">'+li(r.warn)+'</ul>':'')+
+      '<p style="color:#888;margin-top:1.4rem">'+DATA_DIR+' 를 고치고 다시 열어라.</p></div>';
+    return false;
+  }
+  if(r.warn.length){
+    for(var i=0;i<r.warn.length;i++)console.warn("[자료] "+r.warn[i]);
+    DATA_WARN=r.warn;
+  }
+  return true;
+}
+var DATA_WARN=[];
+
 function loadData(){
   /* 카드 넷은 KIND 가 정한다. 그 뒤에 오는 파일만 여기서 이름을 댄다 */
   var MORE=["bond.json","combo.json","img.json","series.json","style.json",
@@ -574,6 +729,7 @@ function loadData(){
     fill(TAG_RULE,by.tag.derive); fill(TCOMBO,by.tag.combos);
     fill(SCHEDULE,by.rule.schedule); PACKN=by.rule.pack;
     CAP_BONUS=Math.max(0,slotsOf(by.rule.cap_from)-4);
+    return by;
   });
 }
 /* 파일럿: 이름, 소속이력, 지휘,조종,전술,정치, 기질, 감응등급, 시리즈, 감응계통 */
@@ -2348,6 +2504,17 @@ function setup(){
   var tn=document.getElementById("turn");tn.textContent="설정";tn.className="turn";
   var a=document.getElementById("packArea"),box=el("div","setupbox");
 
+  /* 자료가 어긋난 것이 있으면 설정 화면 위에 접어 둔다. 판은 서지만 알고는 있어야 한다 */
+  if(DATA_WARN.length){
+    var wb=el("details");
+    wb.style.cssText="margin:0 0 12px;border:1px solid #6b5a1f;border-radius:8px;"+
+      "background:#241f12;color:#d9c98a;font-size:12px;line-height:1.7;padding:9px 11px";
+    wb.innerHTML='<summary style="cursor:pointer;font-weight:700">자료에 일러둘 것 '+
+      DATA_WARN.length+'건</summary><ul style="margin:8px 0 0;padding-left:1.1em">'+
+      DATA_WARN.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul>';
+    a.appendChild(wb);
+  }
+
   function optRow(label,desc,btns){
     var r=el("div","optrow");
     r.appendChild(el("div","optlab","<b>"+label+"</b><span>"+desc+"</span>"));
@@ -2408,7 +2575,8 @@ function setup(){
    읽어 들이는 즉시 setup() 을 불렀지만, 지금은 data/*.json 을 기다린다.
    file:// 로 열면 브라우저가 fetch 를 막는다 — 그때는 이유를 적어 준다 */
 function boot(){
-  loadData().then(function(){
+  loadData().then(function(by){
+    if(!showDataReport(validateData(by)))return;
     normalizeAll();
     refreshImages();
     cfgLoad();
