@@ -1385,11 +1385,40 @@ var RR_K=[-1,.80,.95];
 var RR_SAY=["이 보급으론 어림없다","다른 기체를 요청한다","목록을 다시 받겠다","쓸 만한 것이 보이지 않는군"];
 
 /* ═══════ 기록 ═══════ */
-var REC_KEY="gundam_draft_rec_v1";
-function recLoad(){
-  try{var r=JSON.parse(localStorage.getItem(REC_KEY));if(r&&r.v===1)return r}catch(e){}
+/* ═══════ 기록 자리 ═══════
+   주제마다 따로 쌓는다. 예전에는 자리가 하나뿐이라 ?set= 으로 다른 주제를 열어도
+   전적·도장·훈장·기용 기록이 건담 것에 섞여 들어갔다. 카드 이름부터 다르니
+   도장첩과 기용 기록은 아예 말이 안 되는 상태로 뒤섞인다.
+
+   건담은 예전 자리에 쌓아 둔 것이 있으므로, 새 자리가 비어 있을 때 한 번만
+   옮겨 온다. 옛 자리는 지우지 않고 그대로 둔다 — 옮기는 데 잘못이 있어도
+   되돌릴 수 있게. */
+var SET_NAME=(function(){
+  var m=/[?&]set=([A-Za-z0-9_-]+)/.exec(location.search);
+  return m?m[1]:"gundam";
+})();
+var REC_KEY="draft_rec_v1:"+SET_NAME;
+var REC_KEY_OLD="gundam_draft_rec_v1";   /* 주제를 가르기 전의 자리 */
+function blankRec(){
   return {v:1,games:0,first:0,second:0,third:0,best:0,stamps:{},feats:{},lv:{},seen:{},picks:{}};
 }
+function recLoad(){
+  var raw=null;
+  try{raw=localStorage.getItem(REC_KEY)}catch(e){}
+  if(raw===null&&SET_NAME==="gundam"){
+    /* 옛 자리에서 한 번만 옮겨 온다 */
+    try{
+      var o=localStorage.getItem(REC_KEY_OLD);
+      if(o!==null){
+        var m=JSON.parse(o);
+        if(m&&m.v===1){localStorage.setItem(REC_KEY,o);REC_MOVED=(m.games||0);return m}
+      }
+    }catch(e){}
+  }
+  try{var r=JSON.parse(raw);if(r&&r.v===1)return r}catch(e){}
+  return blankRec();
+}
+var REC_MOVED=-1;   /* 0 이상이면 이번에 옮겨 왔다는 뜻 */
 function recSave(){try{localStorage.setItem(REC_KEY,JSON.stringify(REC))}catch(e){}}
 var REC=recLoad();
 
@@ -2504,6 +2533,22 @@ function setup(){
   var tn=document.getElementById("turn");tn.textContent="설정";tn.className="turn";
   var a=document.getElementById("packArea"),box=el("div","setupbox");
 
+  /* 다른 주제로 열었으면 어느 자리에 쌓이는지 밝혀 둔다 — 건담 전적과 섞이지 않는다 */
+  if(SET_NAME!=="gundam"){
+    var sb=el("div","note");
+    sb.style.cssText="margin:0 0 12px;border:1px solid #2f4a5c;border-radius:8px;"+
+      "background:#16222b;color:#9fc4d8;font-size:12px;line-height:1.7;padding:9px 11px";
+    sb.innerHTML='주제 <b>'+SET_NAME+'</b> 로 열었다. 전적은 건담과 따로 쌓인다 '+
+      '(지금 '+REC.games+'판).';
+    a.appendChild(sb);
+  }else if(REC_MOVED>=0){
+    var mb=el("div","note");
+    mb.style.cssText="margin:0 0 12px;border:1px solid #3f5a3a;border-radius:8px;"+
+      "background:#18231a;color:#a9cba1;font-size:12px;line-height:1.7;padding:9px 11px";
+    mb.innerHTML='주제마다 전적을 따로 쌓게 되어, 여태 쌓인 <b>'+REC_MOVED+
+      '판</b>을 건담 자리로 옮겼다. 옛 자리도 그대로 두었다.';
+    a.appendChild(mb);
+  }
   /* 자료가 어긋난 것이 있으면 설정 화면 위에 접어 둔다. 판은 서지만 알고는 있어야 한다 */
   if(DATA_WARN.length){
     var wb=el("details");
