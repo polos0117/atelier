@@ -1121,6 +1121,11 @@ var TYPE_LABEL={"함":"모함 선정","기체":"기체 확보","파일럿":"파�
 var SEATS=["아군","적 1","적 2"],PACKN=9;   /* PACKN 은 data/rule.json 이 덮는다 */
 var sharedPack=true;   // 한 팩을 셋이 나눠 집는다
 var pools,teams,round,seq,si,busy,log,openFoe={};
+/* 적 함대의 차례는 타이머로 이어진다. 판이 끝나거나 새로 열리면 그 사이에 걸려
+   있던 타이머가 뒤늦게 깨어나 없는 라운드를 집거나 새 판에 끼어들 수 있다.
+   판마다 번호를 매겨, 제 판이 아닌 타이머는 조용히 물러나게 한다 */
+var gen=0;
+function schedStep(){var g=gen;setTimeout(function(){if(g===gen)step()},380)}
 
 /* ═══════ 설정 ═══════ */
 var AI_LV=1, AI_NAME=["신참","숙련","에이스"];
@@ -1255,6 +1260,7 @@ function seatName(ti){
 
 function newTeam(){return {"함":[],"기체":[],"파일럿":[],"지휘관":[]}}
 function reset(){
+  gen++;                          /* 걸려 있던 옛 타이머를 무효로 만든다 */
   rngReset(newSeed());            /* 씨앗 먼저 — 아래가 전부 이 씨앗에서 나온다 */
   pools={"함":SHIP.slice(),"기체":MECH.slice(),"파일럿":PILOT.slice(),"지휘관":CREW.slice()};
   teams=[newTeam(),newTeam(),newTeam()];
@@ -1685,7 +1691,7 @@ function renderBoard(){
 function render(){
   renderHead();renderPack();renderDock();renderBoard();
   if(round>=SCHEDULE.length){renderResult();return}
-  if(turnSeq()[si]!==0&&!busy){busy=true;setTimeout(step,380)}
+  if(turnSeq()[si]!==0&&!busy){busy=true;schedStep()}
 }
 function pick(c){
   if(busy)return;
@@ -1705,12 +1711,13 @@ function pick(c){
 }
 /* AI 차례는 전체를 다시 그리지 않고 로그와 명단만 갱신한다 */
 function step(){
+  if(round>=SCHEDULE.length){busy=false;return}   /* 판이 끝난 뒤 늦게 깨어난 타이머 */
   var type=SCHEDULE[round],who=turnSeq()[si];
   take(type,aiDraw(type,who),who);
   si++;
   if(si>=3){if(sharedPack)tossRest(SCHEDULE[round]);si=0;round++;busy=false;render();return}
   renderHead();renderBoard();renderPack();
-  if(turnSeq()[si]!==0){setTimeout(step,380);return}
+  if(turnSeq()[si]!==0){schedStep();return}
   busy=false;renderPack();renderDock();
 }
 function advance(){
