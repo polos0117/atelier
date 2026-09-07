@@ -1,7 +1,7 @@
 {
  "version": 1,
  "note": "초상 파일 목록. 카드 이름 → {m, f, face, casual[], extra[], byStyle{}} 이다. 파일 이름이 곧 등록 정보라 register-images.py 가 저장소의 *.webp 를 훑어 없는 것만 더한다 — 이미 적힌 것과 얼굴 좌표(face)는 건드리지 않으니 손으로 넣은 항목이 덮이지 않는다. face 는 파일 이름에서 알 수 없어 비면 게임이 기본값을 쓰고, 어색하면 사람이 여기서 손본다. play.html 은 실행 중에도 GitHub 파일 목록으로 같은 규칙을 한 번 더 돌리므로(mergeRepoFiles) 여기 안 적혀 있어도 화면에는 뜬다. 다만 그때는 얼굴 좌표가 기본값이고 목록을 못 받으면 그만이라, 파일로 굳혀 두는 편이 낫다.",
- "count": 168,
+ "count": 169,
  "img": {
   "GQuuuuuuX": {"m": "GQuuuuuuX_m.webp", "f": "GQuuuuuuX_f.webp", "face": {"m": [0.427, 0.055, 0.13], "f": [0.447, 0.09, 0.13]}, "casual": ["GQuuuuuuX_casual1.webp", "GQuuuuuuX_casual2.webp", "GQuuuuuuX_casual3.webp", "GQuuuuuuX_casual4.webp", "GQuuuuuuX_casual5.webp", "GQuuuuuuX_casual6.webp", "GQuuuuuuX_casual7.webp", "GQuuuuuuX_casual8.webp", "GQuuuuuuX_casual9.webp"]},
   "RX-78-2 건담": {"m": "RX-78-2_건담_m.webp", "f": "RX-78-2_건담_f.webp", "face": {"m": [0.442, 0.106, 0.14], "f": [0.427, 0.056, 0.15]}, "casual": ["RX-78-2_건담_casual1.webp"]},
@@ -120,6 +120,7 @@
   "스트라이크 루즈": {"m": "스트라이크 루즈_m.webp", "f": "스트라이크 루즈_f.webp", "face": {"m": [0.45, 0.242, 0.053], "f": [0.412, 0.142, 0.083]}, "casual": ["스트라이크 루즈_casual1.webp", "스트라이크 루즈_casual2.webp", "스트라이크 루즈_casual3.webp", "스트라이크 루즈_casual4.webp", "스트라이크 루즈_casual5.webp", "스트라이크 루즈_casual6.webp", "스트라이크 루즈_casual7.webp", "스트라이크 루즈_casual8.webp"]},
   "스트라이크 프리덤": {"m": "스트라이크_프리덤_m.webp", "f": "스트라이크_프리덤_f.webp", "face": {"m": [0.44, 0.29, 0.16], "f": [0.414, 0.169, 0.175]}, "casual": ["스트라이크_프리덤_casual1.webp"]},
   "시난주": {"m": "시난주_m.webp", "f": "시난주_f.webp", "face": {"m": [0.428, 0.098, 0.135], "f": [0.428, 0.088, 0.13]}, "casual": ["시난주_casual1.webp"]},
+  "시난주 스타인": {"byStyle": {"cinematic_semi_real": {"m": "시난주 스타인_cinematic_semi_real_m.webp", "f": "시난주 스타인_cinematic_semi_real_f.webp", "casual": ["시난주 스타인_cinematic_semi_real_casual1.webp", "시난주 스타인_cinematic_semi_real_casual2.webp", "시난주 스타인_cinematic_semi_real_casual3.webp", "시난주 스타인_cinematic_semi_real_casual4.webp", "시난주 스타인_cinematic_semi_real_casual5.webp", "시난주 스타인_cinematic_semi_real_casual6.webp"]}}},
   "시작 3호기 덴드로비움": {"m": "시작_3호기_덴드로비움_m.webp", "f": "시작_3호기_덴드로비움_f.webp", "face": {"m": [0.454, 0.189, 0.186], "f": [0.42, 0.14, 0.176]}, "casual": ["시작_3호기_덴드로비움_casual1.webp"]},
   "아리오스 건담": {"m": "아리오스_건담_m.webp", "f": "아리오스_건담_f.webp", "face": {"m": [0.452, 0.092, 0.125], "f": [0.455, 0.102, 0.125]}, "casual": ["아리오스_건담_casual1.webp"]},
   "아카츠키 건담": {"m": "아카츠키_건담_m.webp", "f": "아카츠키_건담_f.webp", "face": {"m": [0.38, 0.112, 0.17], "f": [0.435, 0.11, 0.16]}, "casual": ["아카츠키_건담_casual1.webp"]},
