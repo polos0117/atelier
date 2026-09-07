@@ -5,6 +5,14 @@
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>삼국지 드래프트 — 竹簡</title>
+<!-- 홈 화면에 두면 브라우저가 기록을 걷어가지 못한다 — 모바일에서 전적이 사라지던 까닭 -->
+<link rel="manifest" href="sam.webmanifest">
+<meta name="theme-color" content="#17130F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="竹簡">
+<link rel="apple-touch-icon" href="icon-sam-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
@@ -941,7 +949,14 @@ function diagInner(){
     '허나 <u>같은 기기에서 이 말이 또 뜨면</u>, 브라우저가 기록을 걷어간 것이오.</b>';
   else if(games===0) verdict='<b style="color:#e06">이 서랍은 '+(MARK&&MARK.n)+'번째로 여는데 전적이 비었소. '+
     '여기 있던 기록이 지워진 것이오.</b>';
+  var standalone=false;
+  try{ standalone = (window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)
+                 || navigator.standalone===true; }catch(e){}
+  if(!standalone) verdict=(verdict?verdict+'<br>':'')+
+    '<b style="color:var(--gold)">지금은 그냥 브라우저 창이오. 이 쪽을 <u>홈 화면에 추가</u>하고 '+
+    '그 아이콘으로 여시오 — 홈 화면 앱의 기록은 브라우저 청소에 쓸려가지 않소.</b>';
   return '주소 · '+w.o+
+    '<br>실행 방식 · '+(standalone?'홈 화면 앱':'브라우저 창')+
     '<br>이 서랍 · '+(MARK?(MARK.n+'번째 · 처음 '+new Date(MARK.first).toLocaleDateString()):"모름")+
       (MARK_NEW?' <b style="color:var(--gold)">(오늘 새로 남)</b>':'')+
     '<br>저장 상태 · '+st+
