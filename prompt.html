@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Gundam Prompt Toolkit v9.10</title>
+<title>Gundam Prompt Toolkit v9.11</title>
 <style>
 :root{
   color-scheme:light dark;
@@ -252,13 +252,20 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   </div>
 
 
-  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.10</b> <span>웃는 표정 둘로</span></div>
+  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.11</b> <span>일상컷도 성별을 따른다</span></div>
   <details class="srcbox verbox" id="verBox">
     <summary>
-      <span class="sel-line" style="white-space:normal;overflow:visible">v9.10 변경 내역</span>
+      <span class="sel-line" style="white-space:normal;overflow:visible">v9.11 변경 내역</span>
       <span class="sb-txt">패치 노트</span>
     </summary>
     <div class="vb-in">
+      <b>v9.11 &middot; 일상컷도 성별을 따른다</b>
+      <ul>
+        <li>성별을 남성으로 바꿔도 <b>단일 · 콜라주 프롬프트는 여전히 여성이라고 지시</b>하고 있었다. <code>clearly adult woman</code> 셋 · <code>her</code> 하나 · <code>bust</code> 하나가 문장에 박혀 있어, 남성 기록을 열고 뽑으면 참조 이미지와 지시가 어긋났다</li>
+        <li>다섯 자리를 성별에 따라 고르게 했다 — <code>woman/man</code> · <code>her/his</code> · <code>bust/chest</code>. 의인화 프롬프트는 원래 성별을 보고 있었고 이번에도 안 건드렸다</li>
+        <li>성별 탭을 누르면 <b>일상컷 프롬프트도 같이 다시 만든다</b>. 예전에는 의인화만 갱신해서, 성별을 바꾸고 바로 복사하면 옛 문장이 딸려 갔다</li>
+        <li>여성으로 뽑는 프롬프트는 세 모드 다 수정 전후 바이트가 같다</li>
+      </ul>
       <b>v9.10 &middot; 웃는 표정 둘로</b>
       <ul>
         <li>크게 웃는 표정을 <b>눈 감김 / 눈 뜬 채</b> 둘로 갈랐다. v9.9 의 설명이 "eyes squeezed nearly shut" 이라 눈을 감는 쪽으로만 나왔는데, 눈을 뜬 채 웃는 그림이 필요할 때 낼 방법이 없었다</li>
@@ -1811,7 +1818,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     return '[GLOBAL DIVERSITY]\n\n'+parts.join(' ')+(anyPair?'':'');
   }
   function finalCheckBlock(){
-    const v=['exactly six panels','3×2 landscape layout','same adult woman in all panels',
+    const v=['exactly six panels','3×2 landscape layout','same adult '+GW()+' in all panels',
       'only numbers 1–6 appear','the selected category and example for each panel is followed'];
     if([1,2,3].some(pairUsed))
       v.push('within each linked pair, the second panel is clearly stronger than the first');
@@ -1864,13 +1871,13 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     const EX=en(EXPRESSION_OPTIONS), OR=en(ORIENTATION_OPTIONS), PO=en(POSE_OPTIONS);
     const parts=[
       '[INPUT]\n\nSOURCE MOBILE SUIT: ['+src.mech+']\n\nThis name is identity-provenance metadata only, used for lore, personality, and occupation context. It must not be used to reconstruct, restore, or invent mobile-suit armor, weapons, shields, backpacks, mechanical limbs, or other canonical equipment.\n\nUse the attached clearly adult anthropomorphized character as the absolute identity and equipment reference for this image.',
-      '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman as the attached reference. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign. Facial expression is not identity. The brows, eyelids, eye openness, mouth shape and lip parting must follow the expression specified elsewhere in this prompt \u2014 "preserve mouth shape" refers to the resting structure and proportion of the lips, not to holding a neutral mouth. A specified expression must be clearly readable on the face.',
-      LIFESTYLE_REFERENCE_LOCK
+      '[IDENTITY LOCK]\n\nUse the SAME clearly adult '+GW()+' as the attached reference. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, '+GCHEST()+', waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign. Facial expression is not identity. The brows, eyelids, eye openness, mouth shape and lip parting must follow the expression specified elsewhere in this prompt \u2014 "preserve mouth shape" refers to the resting structure and proportion of the lips, not to holding a neutral mouth. A specified expression must be clearly readable on the face.',
+      lifestyleReferenceLock()
     ];
     parts.push(carryBlock(document.getElementById('sgCarryFace').checked,document.getElementById('sgCarryBody').checked));
     parts.push(lifestyleStyleBlock());
     parts.push('[OUTPUT]\n\nCreate ONE SINGLE image in '+sgVal('sgAspect')+
-      ' aspect. Exactly one woman. No collage, no panels, no split frames, no numerals, no captions, titles, labels, or any other text.');
+      ' aspect. Exactly one '+GW()+'. No collage, no panels, no split frames, no numerals, no captions, titles, labels, or any other text.');
     /* 카테고리 안내문은 콜라주 기준으로 쓰여 있어 "이 쌍은" 같은 말이 섞인다.
        한 장짜리에는 쌍도 다른 패널도 없으므로 단일 컷 문장으로 바꿔 넣는다. */
     const soloGuide=g=>String(g||'')
@@ -1926,7 +1933,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
         '\n\nKeep the selected category, but make the scene, outfit, location, and framing visibly different from these.');
     }
     parts.push('[NON-EXPLICIT LIMITS]\n\nThe character must clearly read as an adult. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.');
-    parts.push('[FINAL CHECK]\n\nVerify: exactly one image and one woman; the requested aspect ratio; no text anywhere in the frame; the selected category and example are followed; no explicit nudity or sexual activity.');
+    parts.push('[FINAL CHECK]\n\nVerify: exactly one image and one '+GW()+'; the requested aspect ratio; no text anywhere in the frame; the selected category and example are followed; no explicit nudity or sexual activity.');
     const full=parts.filter(Boolean).join('\n\n==================================================\n\n');
     auditPrompt(MODE.LIFESTYLE,full);
     return full;
@@ -2166,11 +2173,11 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     const s=selectedSource(),adv=getAdvanced(),custom=document.getElementById('collageCustom').value.trim();
     const parts=[
       '[INPUT]\n\nSOURCE MOBILE SUIT: ['+s.mech+']\n\nThis name is identity-provenance metadata only, used for lore, personality, and occupation context. It must not be used to reconstruct, restore, or invent mobile-suit armor, weapons, shields, backpacks, mechanical limbs, or other canonical equipment.\n\nUse the attached clearly adult anthropomorphized character as the absolute identity and equipment reference for this image.',
-      '[IDENTITY LOCK]\n\nUse the SAME clearly adult woman in all six panels. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign. Only identity repeats. Facial expression is not identity. The brows, eyelids, eye openness, mouth shape and lip parting must follow the expression specified elsewhere in this prompt \u2014 "preserve mouth shape" refers to the resting structure and proportion of the lips, not to holding a neutral mouth. A specified expression must be clearly readable on the face.',
-      LIFESTYLE_REFERENCE_LOCK,
+      '[IDENTITY LOCK]\n\nUse the SAME clearly adult '+GW()+' in all six panels. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, '+GCHEST()+', waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign. Only identity repeats. Facial expression is not identity. The brows, eyelids, eye openness, mouth shape and lip parting must follow the expression specified elsewhere in this prompt \u2014 "preserve mouth shape" refers to the resting structure and proportion of the lips, not to holding a neutral mouth. A specified expression must be clearly readable on the face.',
+      lifestyleReferenceLock(),
       carryBlock(document.getElementById('carryFace')&&document.getElementById('carryFace').checked,
                  document.getElementById('carryBody')&&document.getElementById('carryBody').checked),
-      '[OUTPUT]\n\nCreate ONE SINGLE 3:2 LANDSCAPE image as a clean 3-column × 2-row collage:\n1 | 2 | 3\n4 | 5 | 6\nExactly six equal, approximately square panels. Only small numerals 1–6 in the upper-left corners. No captions, titles, labels, subtitles, logos-as-text, or other words. Exactly one woman per panel.',
+      '[OUTPUT]\n\nCreate ONE SINGLE 3:2 LANDSCAPE image as a clean 3-column × 2-row collage:\n1 | 2 | 3\n4 | 5 | 6\nExactly six equal, approximately square panels. Only small numerals 1–6 in the upper-left corners. No captions, titles, labels, subtitles, logos-as-text, or other words. Exactly one '+GW()+' per panel.',
       lifestyleStyleBlock(),
       structureBlock(),
       diversityBlock(),
@@ -3858,14 +3865,22 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     },
   };
 
-  const LIFESTYLE_REFERENCE_LOCK =
+  /* 일상컷 문구의 성별 낱말. 예전에는 "woman"·"her" 가 박혀 있어서 남성 기록을
+     열어도 여성이라고 지시했다. curGender() 는 프롬프트를 만들 때 읽어야 하므로
+     상수로 두지 않고 함수로 둔다 */
+  const GW=()=>curGender()==='male'?'man':'woman';
+  const GPOSS=()=>curGender()==='male'?'his':'her';
+  const GCHEST=()=>curGender()==='male'?'chest':'bust';
+  function lifestyleReferenceLock(){return LIFESTYLE_REFERENCE_LOCK_BASE
+    .replace('{POSS}',GPOSS());}
+  const LIFESTYLE_REFERENCE_LOCK_BASE =
     '[LIFESTYLE REFERENCE LOCK]\n\n' +
     'The attached character image is authoritative for the character\'s visible appearance and equipment state in this image. ' +
     'The source mobile suit name above is identity-origin metadata only and must not be used to reconstruct, restore, or invent mobile-suit equipment. ' +
     'Lifestyle may retain small, non-functional, identity-defining accessories from the character reference when they read as wearable ornament rather than active mobile-suit equipment. ' +
     'Do not retain or reconstruct functional armor, weapons, shields, backpacks, binders, thrusters, mechanical limbs, or other combat/mechanical equipment. ' +
     'Canonical mobile-suit equipment that is absent from the attached character reference must remain absent. ' +
-    'For civilian, casual, homewear, swimwear, activewear, fashion, and other lifestyle scenes, translate only the character\'s established human identity into the requested scene \u2014 do not revert the character toward her original mobile-suit form.' +
+    'For civilian, casual, homewear, swimwear, activewear, fashion, and other lifestyle scenes, translate only the character\'s established human identity into the requested scene \u2014 do not revert the character toward {POSS} original mobile-suit form.' +
     /* 얼굴 크롭과 전신을 같이 붙이면 어느 쪽이 얼굴의 기준인지 알려 줘야 한다.
        조건문이라 한 장만 붙였을 때는 발동하지 않는다 — 장수를 세는 UI 가 필요 없다. */
     '\n\nIf multiple reference images of the same character are attached: '+
@@ -4176,6 +4191,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     renderParamCards();                 // 성별 전용 항목을 다시 추린다
     applyParams(GSTATE[g]);
     refreshAnthroPrompt();
+    /* 일상컷 문구에도 성별이 들어가므로 같이 다시 만든다 */
+    refreshCollagePrompt(); refreshSinglePrompt();
     setStatus('statusAnthro',(g==='female'?'여성':'남성')+' 설정으로 전환했다','ok');
   }
 
