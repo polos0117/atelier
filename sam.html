@@ -871,6 +871,79 @@ function recLoad(){
   return {v:1,games:0,win:0,lose:0,draw:0,best:0,bestLv:-1,stamps:{},feats:{},picks:{},by:{st:{},pk:{},fac:{},lv:{}},aist:{}};
 }
 function recSave(r){try{localStorage.setItem(REC_KEY,JSON.stringify(r))}catch(e){}}
+function saveText(){
+  return JSON.stringify({version:1,
+    note:(REPO_SAVE&&REPO_SAVE.note)||"",
+    saved:new Date().toISOString().slice(0,19)+"Z",
+    cfg:cfgSnap(), rec:REC}, null, 1);
+}
+function renderSaveBox(){
+  var b=$("saveBox"); if(!b)return;
+  var repoN=(REPO_SAVE&&REPO_SAVE.rec&&REPO_SAVE.rec.games)||0;
+  b.innerHTML='<div class="sub" style="text-align:left;margin-bottom:6px">기록 내보내기</div>'+
+    '<div style="font-size:11px;line-height:1.7;color:var(--paper3)">이 자리는 브라우저에만 남아 지워질 수 있소. 아래를 복사해 '+
+    '<b>data-sam/save.json</b> 에 통째로 덮어쓰고 올리면, 기록이 날아가도 되살아나오.'+
+    (RESTORED?'<br><b style="color:var(--gold)">이번에 저장소 기록으로 되살렸소.</b>':'')+
+    '<br>지금 · 대국 '+((REC&&REC.games)||0)+'  ·  저장소 · 대국 '+repoN+'</div>'+
+    '<textarea id="saveOut" readonly spellcheck="false" style="width:100%;height:120px;'+
+    'font-family:monospace;font-size:10px;margin-top:8px;background:var(--ink2);'+
+    'color:var(--paper);border:1px solid var(--line);border-radius:4px;padding:7px"></textarea>'+
+    '<button class="btn2" id="saveCopy" style="margin-top:6px">복 사</button>';
+  $("saveOut").value=saveText();
+  $("saveCopy").addEventListener("click",function(){
+    var t=$("saveOut");t.select();
+    var ok=false;
+    try{ok=document.execCommand("copy")}catch(e){}
+    if(!ok&&navigator.clipboard)navigator.clipboard.writeText(t.value).then(function(){ok=true});
+    this.textContent=ok?"복사했소":"직접 골라 복사하시오";
+  });
+}
+
+/* ══ 설정 저장 ══
+   예전에는 설정을 아예 안 남겨서 판을 새로 짤 때마다 열셋을 다시 골라야 했다 */
+var CFG_KEY="samgukji_draft_cfg_v1";
+function cfgSnap(){
+  return {mode:MODE,era:ERA,lv:AI_LV,pl:PLAYERS,st:AI_ST,st2:AI_ST2,
+          rule:ruleOn,ex:exhaustOn,fo:firstOrd,rr:REROLLS,ban:banOn,scn:SCN,
+          pk:(function(){var k;for(k in PACKS)if(PACKS[k]===PACK2)return k;return null})()};
+}
+function cfgApply(c){
+  if(!c)return;
+  var num=function(v,max){return typeof v==="number"&&v>=0&&v<max?v:null};
+  var x;
+  if((x=num(c.mode,2))!==null)MODE=x;
+  if((x=num(c.era,3))!==null)ERA=x;
+  if((x=num(c.lv,3))!==null)AI_LV=x;
+  if(c.pl===2||c.pl===3)PLAYERS=c.pl;
+  if((x=num(c.st,6))!==null)AI_ST=x;
+  if((x=num(c.st2,6))!==null)AI_ST2=x;
+  if(typeof c.rule==="boolean")ruleOn=c.rule;
+  if(typeof c.ex==="boolean")exhaustOn=c.ex;
+  if((x=num(c.fo,3))!==null)firstOrd=x;
+  if(RR_OPT.indexOf(c.rr)>=0)REROLLS=c.rr;
+  if(typeof c.ban==="boolean")banOn=c.ban;
+  if((x=num(c.scn,SCN_NAME.length))!==null)SCN=x;
+  PACK2=(c.pk&&PACKS[c.pk])?PACKS[c.pk]:null;
+}
+function cfgSave(){try{localStorage.setItem(CFG_KEY,JSON.stringify(cfgSnap()))}catch(e){}}
+function cfgLoad(){try{return JSON.parse(localStorage.getItem(CFG_KEY))}catch(e){return null}}
+
+/* ══ 저장소 백업 ══
+   Pages 는 정적이라 이 페이지가 저장소에 못 쓴다. 그래서 읽어서 되살리기만 하고,
+   백업은 사람이 戰錄 화면에서 내보내 파일에 붙여 넣는다.
+   판 수는 줄지 않으므로 많은 쪽을 쓴다 — 브라우저 기록이 날아가면 저장소 것이 살아난다 */
+var SAVE_URL="data-sam/save.json", REPO_SAVE=null, RESTORED=false;
+function loadRepoSave(){
+  if(typeof fetch!=="function")return Promise.resolve();
+  return fetch(SAVE_URL,{cache:"no-cache"}).then(function(r){
+    if(!r.ok)throw 0; return r.json();
+  }).then(function(d){
+    REPO_SAVE=d;
+    var mine=(REC&&REC.games)||0, theirs=(d.rec&&d.rec.games)||0;
+    if(theirs>mine&&d.rec){REC=d.rec;recSave(REC);RESTORED=true}
+    if(!cfgLoad()&&d.cfg)cfgApply(d.cfg);
+  }).catch(function(){});
+}
 var FEATS=[
  {id:"first_win",n:"첫 승전보",d:"처음으로 승리하다"},
  {id:"master",n:"고수를 꺾다",d:"적장 고수를 상대로 승리"},
@@ -1437,7 +1510,10 @@ function buildSetup(){
     PACK2=nx?PACKS[nx]:null;
     this.textContent=PACK2?PACK2.n:"본편 · 영웅집결";
   });
-  $("setupGo").addEventListener("click",function(){$("setup").classList.remove("on");start()});
+  /* 고를 때마다 남긴다. 어느 버튼을 눌렀든 같은 자리에서 담는다 */
+  ["sMode","sEra","sAI","sPl","sSt","sSt2","sRule","sEx","sFo","sRR","sBan","sScn","sPk"]
+    .forEach(function(id){var el=$(id); if(el)el.addEventListener("click",cfgSave)});
+  $("setupGo").addEventListener("click",function(){cfgSave();$("setup").classList.remove("on");start()});
   $("setupX").addEventListener("click",function(){$("setup").classList.remove("on")});
 }
 
@@ -1522,7 +1598,10 @@ function buildRec(){
   h+='</div></div>';
   h+='<button class="btn" id="recClose">록 을 덮 다</button>';
   h+='<button class="btn2" id="recReset" style="border-color:#A8402F;color:#C4685C;margin-top:10px">기 록 을 태 우 다</button>';
+  /* 저장소 백업 — Pages 가 정적이라 여기서 직접 못 쓴다. 사람이 옮겨 붙이는 자리다 */
+  h+='<div class="ledger" id="saveBox" style="margin-top:22px"></div>';
   $("recBody").innerHTML=h;
+  renderSaveBox();
   $("recClose").addEventListener("click",function(){$("rec").classList.remove("on")});
   $("recReset").addEventListener("click",function(){
     if(!this.dataset.arm){
@@ -2337,8 +2416,12 @@ $("tHint").addEventListener("click",function(){
   hintOn=!hintOn;this.classList.toggle("on",hintOn);
   renderPledges();if(packArr)renderPack(false);
 });
-start();
-if(!REC.games){buildSetup();$("setup").classList.add("on")}
+/* 저장소 백업을 먼저 읽어 되살린 뒤에 판을 연다. 못 읽어도 그냥 진행한다 */
+cfgApply(cfgLoad());
+loadRepoSave().then(function(){
+  start();
+  if(!REC.games){buildSetup();$("setup").classList.add("on")}
+});
 })();
 </script>
 </body>

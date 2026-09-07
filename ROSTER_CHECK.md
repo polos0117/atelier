@@ -154,6 +154,7 @@ UC 계열 기체는 날지 못하고 이후 작품 기체는 난다는 것이 �
 |---|---|
 | `.github/workflows/register-images.yml` | `main` 에 `*.webp` 가 올라오면 `register-images.py` 를 돌려 `img.json` 을 갱신하고 되커밋 |
 | `data-samguk/` | 주제를 갈아 끼워 본 시험 자료 30 장. `play.html?set=samguk` |
+| `data-sam/save.json` | 삼국지 드래프트의 설정과 전적 백업. `sam.html` 이 읽어 되살린다 — 쓰지는 못한다(정적 호스팅). 백업은 戰錄 화면의 "기록 내보내기" 로 뽑아 사람이 덮어쓴다 |
 | `official/` | 공식 사이트에서 받아 둔 원본 목록 |
 | `.cache/soshage/` | G 제네레이션 API 응답 캐시 |
 
