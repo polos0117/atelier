@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Gundam Prompt Toolkit v9.15</title>
+<title>Gundam Prompt Toolkit v9.16</title>
 <meta name="theme-color" content="#0f1115">
 <!-- 홈 화면에 두면 브라우저가 저장 자리를 걷어가지 못한다 -->
 <link rel="manifest" href="prompt.webmanifest">
@@ -260,14 +260,21 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   </div>
 
 
-  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.15</b> <span>남성 랜덤이 빈 카테고리를 내지 않게</span></div>
+  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.16</b> <span>앞 기체 얼굴이 다음 기체로 새지 않게</span></div>
   <details class="srcbox verbox" id="verBox">
     <summary>
-      <span class="sel-line" style="white-space:normal;overflow:visible">v9.15 변경 내역</span>
+      <span class="sel-line" style="white-space:normal;overflow:visible">v9.16 변경 내역</span>
       <span class="sb-txt">패치 노트</span>
     </summary>
     <div class="vb-in">
-      <b>v9.15 &middot; 남성 랜덤이 빈 카테고리를 내지 않게</b>
+      <b>v9.16 &middot; 앞 기체 얼굴이 다음 기체로 새지 않게</b>
+      <ul>
+        <li>저장된 설정이 없는 기체로 옮기면 <b>앞서 보던 기체의 얼굴 · 체형 · 머리가 그대로 남았다.</b> 코드 주석은 "기록이 없으면 기본값으로 되돌린다" 였는데 실제로는 그냥 나가고 있었다. 기체마다 성별을 따로 잡게 된 지금은 정체성이 섞이는 통로다</li>
+        <li>이제 <b>AUTO 로 되돌린다.</b> 다만 여러 기체를 잇달아 작업할 때는 이어 쓰는 편이 빠르므로, 버리지 않고 <b>직전 설정 가져오기</b> 단추 뒤에 둔다. 어느 기체 것인지도 단추에 적는다</li>
+        <li>확인 — 첫 기체에 머리색 · 체형 · 눈색을 넣고 기록 없는 기체로 옮기면 전에는 <b>셋 다 그대로 남았고</b> 지금은 셋 다 비워진다. 단추를 누르면 셋 다 되살아난다</li>
+        <li>여성 출력 54 항목 71만 9천 글자는 바이트까지 그대로</li>
+      </ul>
+      <b style="opacity:.55">v9.15 &middot; 남성 랜덤이 빈 카테고리를 내지 않게</b>
       <ul>
         <li>성별 거르개가 <b>화면 목록에만</b> 걸려 있었다. 랜덤 · 추천 · 프리셋처럼 제 손으로 고르는 길은 여전히 날 자료를 읽었다. 골라 온 값이 남성 목록에 없으니 <b>카테고리가 통째로 빈 채로 남았다</b></li>
         <li>남성으로 두고 돌려 보니 <b>랜덤 다섯 모드 · Pair 굴림 · 프리셋 둘에서 132 번 빈 카테고리</b>가 나왔고, 그때마다 <code>CAT[…].eng</code> 에서 <b>스크립트가 터졌다</b>. 랜덤을 누를 때마다 조용히 나던 오류다</li>
@@ -827,6 +834,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       <div class="param-actions">
         <button id="applyAnthro" type="button">외형 설정 반영</button>
         <button id="resetAnthro" type="button">외형 리셋</button>
+        <button id="prevAnthro" type="button" class="hidden">직전 기체 설정 가져오기</button>
       </div>
     </div>
 
@@ -4204,12 +4212,37 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     const el=document.getElementById('morphMode'); if(!el)return;
     el.value=MORPHOLOGY_PROFILES[v]?v:'standard_humanoid';
   }
+  /* 직전 기체에서 보던 값 — 기록 없는 기체로 옮겼을 때만 쓴다 */
+  let PREV_PARAMS=null, PREV_FROM='', PREV_KEY='';
+  function showPrevBtn(){
+    const b=document.getElementById('prevAnthro'); if(!b)return;
+    b.classList.toggle('hidden',!PREV_PARAMS);
+    if(PREV_PARAMS)b.textContent='직전 설정 가져오기'+(PREV_FROM?' ('+PREV_FROM+')':'');
+  }
+  function applyPrevParams(){
+    if(!PREV_PARAMS)return;
+    applyParams(PREV_PARAMS);
+    GSTATE[curGender()]=snapParams();
+    refreshAnthroPrompt(); updateSaveBar();
+    setStatus('statusAnthro','직전 기체'+(PREV_FROM?' "'+PREV_FROM+'"':'')+' 의 설정을 가져왔다','ok');
+  }
   function loadAnthroForMech(){
     const k=mechKey(),rec=recOf(k);
     ENTRY={key:k,rec:stripPrev(rec),taken:false};
     /* 기록이 없으면 기본값으로 되돌린다. 안 그러면 앞서 보던 기체의 값이 남는다 */
     setMorphMode(rec&&rec.mm);
-    if(!rec){updateSaveBar();return false;}
+    if(!rec){
+      /* 주석은 "기본값으로 되돌린다" 였는데 실제로는 그냥 나가고 있었다. 그래서 앞서
+         보던 기체의 얼굴·체형이 그대로 남아 다음 기체로 새어 들어갔다. 기체마다
+         성별을 따로 잡게 된 지금은 정체성이 섞이는 통로가 된다.
+         이어 쓰고 싶은 때가 있으므로 버리지 않고 단추 뒤에 둔다. */
+      PREV_PARAMS=snapParams(); PREV_FROM=PREV_KEY;
+      GSTATE.female=null; GSTATE.male=null;
+      applyParams(null);
+      showPrevBtn();
+      refreshAnthroPrompt(); updateSaveBar(); PREV_KEY=k; return false;
+    }
+    PREV_KEY=k; PREV_PARAMS=null; showPrevBtn();
     GSTATE.female=rec.female||null; GSTATE.male=rec.male||null;
     /* 한쪽 성별로만 잡아 둔 기체가 있다. 화면은 늘 여성으로 열리므로 남성만
        기록된 기체를 열면 값이 GSTATE 에는 들어와 있는데 화면은 텅 비어
@@ -4561,7 +4594,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     loadStyleForMech();
     const had=loadAnthroForMech();
     setStatus('statusAnthro',had?'"'+mechKey()+'" 의 저장된 설정을 불러왔다':
-      '"'+mechKey()+'" 는 저장된 설정이 없어 현재 값을 그대로 둔다','ok');
+      '"'+mechKey()+'" 는 저장된 설정이 없어 AUTO 로 되돌렸다'+
+      (PREV_PARAMS?' — 직전 설정을 쓰려면 아래 단추를 눌러라':''),'ok');
     refreshCollagePrompt();refreshSinglePrompt();renderUsed();renderCarry();
   });
   document.getElementById('applySource').addEventListener('click',()=>{
@@ -4659,6 +4693,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     b.addEventListener('click',()=>setGender(b.dataset.gender)));
   document.getElementById('applyAnthro').addEventListener('click',()=>{refreshAnthroPrompt();setStatus('statusAnthro','PARAMETERS 적용 완료','ok');});
   document.getElementById('resetAnthro').addEventListener('click',resetAnthro);
+  document.getElementById('prevAnthro').addEventListener('click',applyPrevParams);
   document.getElementById('dropAnthro').addEventListener('click',dropAnthroForMech);
   document.getElementById('undoAnthro').addEventListener('click',undoAnthro);
   document.getElementById('artStyle').addEventListener('change',()=>{
