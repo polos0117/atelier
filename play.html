@@ -1105,7 +1105,22 @@ function syncParts(m,p){
   return {t:t,n:n,s:s,o:o,b:b,g:g,raw:1+t+n+s+o+b+g,
     xline:!!(LINE[m[7]]&&p[7]>0&&p[9]!==LINE[m[7]])};
 }
-function sync(m,p){var r=syncParts(m,p).raw;return Math.max(.70,Math.min(1.45,r))}
+/* 지형은 상한 뒤에 얹는다.
+   예전에는 지형까지 한데 더한 뒤 [.70, 1.45] 로 잘랐다. 그러면 다른 보정만으로
+   이미 상한을 넘는 전용기 짝은 지형이 아무리 나빠도 결과가 같아, 최강 조합에는
+   전장 규칙이 걸리지 않았다.
+
+   이백 판 삼천육백 짝을 재어 보니 상한에 닿은 짝이 8.0%, 지형 감점이 걸린 짝이
+   29.3% 였고, 그 가운데 5.4% 는 감점이 통째로 사라졌다. 의도한 감점 96.1 중
+   89.5 만 실제로 깎여, 6.9% 가 상한에 먹히고 있었다.
+
+   상한을 지형 앞에서 걸면 잘리는 것은 "타고난 궁합" 뿐이고, 전장은 그 위에서
+   따로 값을 치른다. 바닥(0.70)은 그대로 지킨다. */
+function sync(m,p){
+  var P=syncParts(m,p);
+  var base=Math.max(.70,Math.min(1.45,P.raw-P.g));   /* 지형을 뺀 궁합에만 상한 */
+  return Math.max(.70,base+P.g);
+}
 function pairScore(m,p){return (mp(m)/100)*(pp(p)/100)*sync(m,p)*100}
 
 /* 진영 시너지 — 현소속 1.0 / 과거 0.5 */
