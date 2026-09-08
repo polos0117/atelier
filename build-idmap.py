@@ -246,6 +246,11 @@ def build(dex_rows, groups, idx, models, kind, overrides):
         # 사람이 확정해둔 짝이 먼저다.
         if card in overrides:
             target = overrides[card]
+            # null 은 "API 에 짝이 없다" 는 뜻이다. 형식번호나 이름 앞머리가
+            # 우연히 겹쳐 엉뚱한 유닛에 붙는 것을 사람이 막는 자리다.
+            if target is None:
+                unmatched.append(card)
+                continue
             keys = full.get(norm(target, keep_paren=True)) or base.get(norm(target))
             if keys and len(keys) == 1:
                 rows.append(entry(card, "override", groups[next(iter(keys))], kind))

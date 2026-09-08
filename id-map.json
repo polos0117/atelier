@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-09-06T01:10:18Z",
+ "generated": "2026-09-08T04:31:12Z",
  "source": {
   "api": "https://soshage.com/ggetapi/ko/{entity}",
   "entities": {
@@ -10,7 +10,7 @@
   },
   "cards": {
    "file": "data",
-   "MECH": 788,
+   "MECH": 765,
    "PILOT": 210
   }
  },
@@ -25,10 +25,10 @@
  },
  "summary": {
   "mech": {
-   "matched": 466,
-   "review": 127,
-   "unmatched": 195,
-   "total": 788
+   "matched": 470,
+   "review": 129,
+   "unmatched": 166,
+   "total": 765
   },
   "pilot": {
    "matched": 133,
@@ -3528,13 +3528,28 @@
    ]
   },
   {
-   "dex": "Gandamu AGE-1 Furatto",
-   "match": "model",
-   "api_name": "건담 AGE-1 플랫",
+   "dex": "엘메다",
+   "match": "exact",
+   "api_name": "엘메다",
    "ids": [
-    1400008110
+    1400002800,
+    1400002810
    ],
-   "models": "AGE-1F",
+   "models": "CMS-574E",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "건담 AGE-1 플랫",
+   "match": "model",
+   "api_name": "건담 AGE-1 노멀",
+   "ids": [
+    1400000100,
+    1400000110,
+    1400000150
+   ],
+   "models": "AGE-1",
    "series": [
     "기동전사 건담 AGE"
    ]
@@ -3559,6 +3574,44 @@
     1400004800
    ],
    "models": "WMS-GEX1",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "지라",
+   "match": "exact",
+   "api_name": "지라",
+   "ids": [
+    1400003100,
+    1400003110
+   ],
+   "models": "CMS-223Z",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "제이달스",
+   "match": "exact",
+   "api_name": "제이달스",
+   "ids": [
+    1400004500
+   ],
+   "models": "xvm-mzc",
+   "series": [
+    "기동전사 건담 AGE"
+   ]
+  },
+  {
+   "dex": "제노",
+   "match": "exact",
+   "api_name": "제노",
+   "ids": [
+    1400003000,
+    1400003010
+   ],
+   "models": "CMS-574X",
    "series": [
     "기동전사 건담 AGE"
    ]
@@ -3826,7 +3879,7 @@
    ]
   },
   {
-   "dex": "Murasame",
+   "dex": "무라사메",
    "match": "exact",
    "api_name": "무라사메",
    "ids": [
@@ -4248,18 +4301,6 @@
    ]
   },
   {
-   "dex": "제스타 건담",
-   "match": "affix",
-   "api_name": "제스타",
-   "ids": [
-    1125002300
-   ],
-   "models": "RGM-96X",
-   "series": [
-    "기동전사 건담 UC"
-   ]
-  },
-  {
    "dex": "존불 건담",
    "match": "exact",
    "api_name": "존불 건담",
@@ -4642,6 +4683,18 @@
    "models": "RGM-96X",
    "series": [
     "기동전사 건담 UC"
+   ]
+  },
+  {
+   "dex": "M1 어스트레이",
+   "match": "exact",
+   "api_name": "M1 어스트레이",
+   "ids": [
+    1300001600
+   ],
+   "models": "MBF-M1",
+   "series": [
+    "기동전사 건담 SEED"
    ]
   },
   {
@@ -7244,7 +7297,7 @@
     ]
    },
    {
-    "dex": "인피니트 저스티스 건담 이식",
+    "dex": "인피니트 저스티스 건담 TypeⅡ",
     "candidates": [
      {
       "api_name": "인피니트 저스티스 건담",
@@ -7253,7 +7306,7 @@
        1330002850
       ],
       "models": "ZGMF-X19A",
-      "score": 0.909
+      "score": 0.769
      },
      {
       "api_name": "인피니트 저스티스 건담(미티어)",
@@ -7261,29 +7314,12 @@
        1330006900
       ],
       "models": "ZGMF-X19A",
-      "score": 0.909
-     },
-     {
-      "api_name": "저스티스 건담",
-      "ids": [
-       1300004400,
-       1300004450
-      ],
-      "models": "ZGMF-X09A",
-      "score": 0.667
-     },
-     {
-      "api_name": "저스티스 건담 (미티어)",
-      "ids": [
-       1300004500
-      ],
-      "models": "ZGMF-X09A",
-      "score": 0.667
+      "score": 0.769
      }
     ]
    },
    {
-    "dex": "데스티니 건담 SpecII",
+    "dex": "데스티니 건담 SpecⅡ",
     "candidates": [
      {
       "api_name": "데스티니 건담",
@@ -8045,6 +8081,87 @@
     ]
    },
    {
+    "dex": "가라",
+    "candidates": [
+     {
+      "api_name": "메가 라이더",
+      "ids": [
+       1095004200
+      ],
+      "models": "FXA-08R"
+     }
+    ]
+   },
+   {
+    "dex": "기라가 개",
+    "candidates": [
+     {
+      "api_name": "기라 도가",
+      "ids": [
+       1110000700
+      ],
+      "models": "AMS-119",
+      "score": 0.75
+     },
+     {
+      "api_name": "기라 도가(레즌 슈나이더 전용기)",
+      "ids": [
+       1110000810
+      ],
+      "models": "AMS-119",
+      "score": 0.75
+     },
+     {
+      "api_name": "기라 도가(사이코뮤 시험형)",
+      "ids": [
+       1114001000
+      ],
+      "models": "AMS-120X",
+      "score": 0.75
+     },
+     {
+      "api_name": "기라 도가  (소데츠키)",
+      "ids": [
+       1125003000
+      ],
+      "models": "AMS-119",
+      "score": 0.75
+     },
+     {
+      "api_name": "기라 도가(안젤로 자우퍼 전용기)",
+      "ids": [
+       1133001410
+      ],
+      "models": "AMS-119",
+      "score": 0.75
+     },
+     {
+      "api_name": "기라 도가 (중무장 사양 / 소데츠키)",
+      "ids": [
+       1125003100
+      ],
+      "models": "AMS-119",
+      "score": 0.75
+     },
+     {
+      "api_name": "기라 도가(풀 프론탈 전용기)",
+      "ids": [
+       1133001310
+      ],
+      "models": "AMS-119C",
+      "score": 0.75
+     },
+     {
+      "api_name": "기라 도가 개량형",
+      "ids": [
+       1114000900
+      ],
+      "models": "AMS-119S",
+      "score": 0.727
+     }
+    ]
+   },
+   {
     "dex": "G에그제스 잭엣지",
     "candidates": [
      {
@@ -8462,7 +8579,20 @@
     ]
    },
    {
-    "dex": "Blast Impulse Gundam SpecⅡ",
+    "dex": "버디",
+    "candidates": [
+     {
+      "api_name": "데스 버디",
+      "ids": [
+       1200001900
+      ],
+      "models": "-",
+      "score": 0.667
+     }
+    ]
+   },
+   {
+    "dex": "블래스트 임펄스 건담 SpecⅡ",
     "candidates": [
      {
       "api_name": "블래스트 임펄스 건담",
@@ -8475,7 +8605,7 @@
     ]
    },
    {
-    "dex": "DINN-F",
+    "dex": "딘-F",
     "candidates": [
      {
       "api_name": "딘",
@@ -8488,7 +8618,7 @@
     ]
    },
    {
-    "dex": "DINN-R",
+    "dex": "딘-R",
     "candidates": [
      {
       "api_name": "딘",
@@ -8501,7 +8631,7 @@
     ]
    },
    {
-    "dex": "Duel Blitz Gundam",
+    "dex": "듀얼 블리츠 건담",
     "candidates": [
      {
       "api_name": "블리츠 건담",
@@ -8530,7 +8660,7 @@
     ]
    },
    {
-    "dex": "Force Impulse Gundam SpecⅡ",
+    "dex": "포스 임펄스 건담 SpecⅡ",
     "candidates": [
      {
       "api_name": "포스 임펄스 건담",
@@ -8544,7 +8674,7 @@
     ]
    },
    {
-    "dex": "GELGOOG Menace (Runamaria 기)",
+    "dex": "겔구그 메나스 (루나마리아 기)",
     "candidates": [
      {
       "api_name": "겔구그",
@@ -8606,7 +8736,7 @@
     ]
    },
    {
-    "dex": "GINN-F",
+    "dex": "진-F",
     "candidates": [
      {
       "api_name": "진",
@@ -8638,7 +8768,7 @@
     ]
    },
    {
-    "dex": "GINN-R",
+    "dex": "진-R",
     "candidates": [
      {
       "api_name": "진",
@@ -8670,29 +8800,7 @@
     ]
    },
    {
-    "dex": "Infinite Justice Gundam TypeⅡ",
-    "candidates": [
-     {
-      "api_name": "인피니트 저스티스 건담",
-      "ids": [
-       1330002800,
-       1330002850
-      ],
-      "models": "ZGMF-X19A",
-      "score": 0.769
-     },
-     {
-      "api_name": "인피니트 저스티스 건담(미티어)",
-      "ids": [
-       1330006900
-      ],
-      "models": "ZGMF-X19A",
-      "score": 0.769
-     }
-    ]
-   },
-   {
-    "dex": "Lightning Buster Gundam",
+    "dex": "라이트닝 버스터 건담",
     "candidates": [
      {
       "api_name": "버스터 건담",
@@ -8705,7 +8813,7 @@
     ]
    },
    {
-    "dex": "Murasame Kai (Mu 기)",
+    "dex": "무라사메 개 (무우 기)",
     "candidates": [
      {
       "api_name": "무라사메",
@@ -8713,7 +8821,7 @@
        1330001300
       ],
       "models": "MVF-M11C",
-      "score": 0.8
+      "score": 0.889
      },
      {
       "api_name": "무라사메 (앤드류 발트펠드 전용기)",
@@ -8721,21 +8829,12 @@
        1330005710
       ],
       "models": "MVF-M11C",
-      "score": 0.8
-     },
-     {
-      "api_name": "마라사이",
-      "ids": [
-       1080001900,
-       1080001910
-      ],
-      "models": "RMS-108",
-      "score": 0.6
+      "score": 0.889
      }
     ]
    },
    {
-    "dex": "Strike Freedom Gundam TypeⅡ",
+    "dex": "스트라이크 프리덤 건담 TypeⅡ",
     "candidates": [
      {
       "api_name": "스트라이크 프리덤 건담",
@@ -8765,7 +8864,7 @@
     ]
    },
    {
-    "dex": "Sword Impulse Gundam SpecⅡ",
+    "dex": "소드 임펄스 건담 SpecⅡ",
     "candidates": [
      {
       "api_name": "소드 임펄스 건담",
@@ -10793,17 +10892,11 @@
    "판톤",
    "짐 한랭지 사양",
    "볼 개수형 (BALL type C)",
-   "Aderu Maku II",
-   "Erumeda",
-   "Gara",
-   "Giraga Kai",
-   "Gurudorin",
-   "Jira",
-   "Tieruva",
-   "Urozzo",
-   "Zamudoragu",
-   "Zeidarusu",
-   "Zeno",
+   "아델 마크Ⅱ",
+   "그루드린",
+   "티에르바",
+   "우롯조",
+   "잠드라그",
    "건담 AGE-3 오비탈",
    "건담 레길레스",
    "고멜",
@@ -10816,41 +10909,21 @@
    "질스베인",
    "클란셰",
    "AWACS 딘",
-   "Agamemnon-class space carrier (MS 탑재형)",
-   "Archangel-class mobile assault ship 아크엔젤",
-   "Compton-class large land battleship",
-   "Drake-class space destroyer (MS 탑재형)",
-   "Eternal-class MS carrier 이터널",
-   "Gondwana-class space supercarrier",
-   "Hannibal-class land warship",
-   "Nazca-class high-speed destroyer (Neutron Stampeder 장비)",
-   "Nelson-class space warship (MS 탑재형)",
-   "Takemikazuchi-class mobile carrier",
-   "ZGMF-1017 GINN Ceremonial Decoration Type",
+   "진 의장용",
    "거티 루",
    "유클리드",
    "포비든 보텍스",
    "잠스 갈",
    "제간 B타입",
-   "Archangel-class mobile assault ship Akuenjeru",
-   "Birdy",
-   "Black Knight Squad Cal-re.A",
-   "Black Knight Squad Rud-ro.A (Riderado 기)",
-   "Black Knight Squad Shi-ve.A",
+   "블랙나이트 스쿼드 루드라 (리데라드 기)",
    "Blue",
-   "Class BALDR Battleship:Cruise Interplanetary",
-   "Class VANAHEIMR Battleship:Cruise Interplanetary Guruveigu",
-   "Eternal-class MS carrier Etanaru",
-   "Izumo-class space warship Kusanagi",
-   "Kyabaria Aifuriddo",
-   "Laurasia-class frigate",
-   "Proud Defender",
-   "Supa Minerva-class planetary assault ship Mireniamu",
-   "Z'Gok",
-   "Zeus Silhouette",
+   "캐벌리어 아이프리드",
+   "프라우드 디펜더",
+   "제우스 실루엣",
    "건담 매그너트",
    "모빌 호스 풍운재기",
    "미너렛 건담",
+   "제스터 건담",
    "파라오 건담 IV세",
    "군경 자쿠",
    "군경 자쿠 특수 부대 사양",
@@ -10880,9 +10953,6 @@
    "시덴 오르가 전용기",
    "쿠탄 3형",
    "해머 헤드",
-   "Lesseps-class large land battleship",
-   "M1 ASTRAY",
-   "Vosgulov-class submarine carrier",
    "굴",
    "도미니언",
    "미스트랄",
