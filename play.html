@@ -1320,7 +1320,28 @@ function assign(t){
   return out;
 }
 
-function evaluate(t,blind){
+/* ═══════ 적장의 눈 ═══════
+   인연을 얼마나 셈하는지가 난이도를 가르는 손잡이다. 예전에는 보거나 못 보거나
+   둘뿐이었고, 신참과 숙련이 함께 눈을 감았다. 그러면 힌트로 인연을 보고 두는
+   사람과 셈하는 것이 아예 달라진다.
+
+   그렇다고 숙련에게 온전히 보여 주면 에이스와 구별이 없어진다. 실제로 재어
+   보니 아군 승률이 60.7% 에서 36.0% 로 떨어져 에이스(31.3%)와 붙어 버렸다.
+   그래서 보는 정도를 단계로 두었다 — 신참은 못 보고, 숙련은 어렴풋이,
+   에이스는 온전히.
+
+   가중치를 반으로 줄여 보았으나 소용이 없었다. 어느 카드를 집을지는 순위로
+   정해지므로, 인연 점수를 반으로 깎아도 순위가 거의 그대로였다(32.7%).
+
+   그래서 무게가 아니라 종류로 갈랐다. 이름으로 맺힌 인연 — 아무로와 뉴 건담,
+   샤아와 사잔비 같은 것 — 은 연의를 아는 사람이면 누구나 안다. 반면 태그를
+   쌓아 만드는 인연 — 건담 여섯, 붉은 기체 넷 — 은 판을 세어 봐야 보인다.
+   숙련은 앞의 것만, 에이스는 둘 다 본다.
+
+   0 = 아무것도, 1 = 이름으로 맺힌 것만, 2 = 모두 */
+var PLEDGE_SEE=[0,1,2];
+function evaluate(t,see){
+  if(see===undefined)see=2;   /* 판정과 화면은 늘 온전히 센다 */
   var rows=[],total=0,i,units=assign(t),cap=capOf(t),over=0;
   var paired=units.filter(function(u){return u.m&&u.p});
   for(i=0;i<paired.length;i++){
@@ -1346,8 +1367,9 @@ function evaluate(t,blind){
   for(i=0;i<sy.rows.length;i++)
     rows.push(["결속 · "+sy.rows[i][0]+" "+sy.rows[i][1],Math.round(sy.rows[i][2]*.35)]);
   total+=sy.total*.35;
-  if(!blind){
+  if(see>0){
     var pg=pledges(t);
+    if(see<2)pg=pg.filter(function(g){return !g.tag});   /* 태그로 쌓는 것은 못 본다 */
     for(i=0;i<pg.length;i++){
       var pv=Math.round(pg[i].v*PLEDGE_MUL);
       var nm=pg[i].n.replace(/^(혈연|악연) · /,"");
@@ -1593,7 +1615,9 @@ function tossPack(type,pack,keep){
 }
 function aiPick(type,pack,ti,wantGain){
   /* 신참은 가끔 헛발질하고, 에이스는 인연을 내다보며 팩을 물릴 줄 안다 */
-  var blind=AI_LV<2, base=evaluate(teams[ti],blind).total;
+  /* 눈을 감는 것은 신참뿐이다. 숙련이 인연이라는 점수축을 통째로 무시하면
+     힌트를 보는 사람과 셈하는 것이 달라진다 */
+  var see=PLEDGE_SEE[AI_LV], base=evaluate(teams[ti],see).total;
   if(AI_LV===0&&rng()<.35){
     var rc=pack[rngInt(pack.length)];
     return wantGain?{c:rc,gain:0}:rc;
@@ -1601,7 +1625,7 @@ function aiPick(type,pack,ti,wantGain){
   var best=null,bs=-1e9,i;
   for(i=0;i<pack.length;i++){
     teams[ti][type].push(pack[i]);
-    var s=evaluate(teams[ti],blind).total;
+    var s=evaluate(teams[ti],see).total;
     if(AI_LV===2)s+=nearBonus(teams[ti],pack[i]);
     teams[ti][type].pop();
     if(s>bs){bs=s;best=pack[i]}
