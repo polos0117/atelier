@@ -728,7 +728,12 @@ function loadData(){
     fillMap(TERR,by.field.grade); fillMap(TERR_WORD,by.field.word);
     fill(TAG_RULE,by.tag.derive); fill(TCOMBO,by.tag.combos);
     fill(SCHEDULE,by.rule.schedule); PACKN=by.rule.pack;
-    CAP_BONUS=Math.max(0,slotsOf(by.rule.cap_from)-4);
+    /* 모함 정원에 얹는 여유. 기체 자리에서 cap_base 를 뺀 만큼이다.
+       예전에는 4 가 코드에 박혀 있었다. 그 값에서는 정원 4 이상이면 모두 여섯 조를
+       채우고도 남아, 일흔아홉 척 가운데 예순다섯이 이 축에서 구별되지 않았다.
+       주제를 만드는 쪽이 조절할 수 있도록 자료로 뺀다 — 없으면 예전대로 4 다. */
+    CAP_BONUS=Math.max(0,slotsOf(by.rule.cap_from)-(by.rule.cap_base===undefined?4:by.rule.cap_base));
+    calcExpPair();
     return by;
   });
 }
@@ -1386,6 +1391,30 @@ var SCHEDULE=[];   /* 라운드마다 무엇을 뽑는지 — data/rule.json 에
 function slotsOf(type){var n=0,i;for(i=0;i<SCHEDULE.length;i++)if(SCHEDULE[i]===type)n++;return n}
 var CAP_BONUS=0;   /* 자료를 받은 뒤 정한다 */
 function capOf(t){return t.함.length?t.함[0][5]+CAP_BONUS:0}
+/* ═══════ 정원의 앞일 ═══════
+   모함은 첫 라운드에 고른다. 그때는 기체도 파일럿도 없어 정원이 점수에 잡히지
+   않고, sp() 에도 정원이 들어가지 않는다. 그래서 적장은 정원이 모자라 뒷날 한
+   조가 60% 로 싸우게 될 것을 첫 수에서 보지 못한다.
+
+   재어 보니 정원을 빡빡하게 만들어도(cap_base 5) 고르는 배의 정원이 4.64 로
+   꿈쩍하지 않았다. 앞일을 못 보니 당연한 일이다.
+
+   모자랄 조 하나에 한 조 값의 40% 를 매긴다 — 정원을 넘긴 조는 60% 만 받으므로
+   잃는 것이 꼭 그만큼이다. 한 조 값은 로스터에서 한 번만 어림한다. */
+var EXP_PAIR=95;
+function calcExpPair(){
+  if(!MECH.length||!PILOT.length)return;
+  var m=MECH.map(mp).sort(function(a,b){return a-b}),
+      p=PILOT.map(pp).sort(function(a,b){return a-b});
+  EXP_PAIR=(m[m.length>>1]/100)*(p[p.length>>1]/100)*100;
+}
+function futurePairs(){return Math.min(slotsOf("기체"),slotsOf("파일럿"))}
+/* 이 모함을 골랐을 때 뒷날 잃을 값 (음수) */
+function capForesight(ship){
+  var need=futurePairs(), have=ship[5]+CAP_BONUS;
+  var miss=Math.max(0,need-have);
+  return miss?-miss*EXP_PAIR*0.40:0;
+}
 var TYPE_LABEL={"함":"모함 선정","기체":"기체 확보","파일럿":"파일럿 영입","지휘관":"지휘관 배치"};
 var SEATS=["아군","적 1","적 2"],PACKN=9;   /* PACKN 은 data/rule.json 이 덮는다 */
 var sharedPack=true;   // 한 팩을 셋이 나눠 집는다
@@ -1626,6 +1655,7 @@ function aiPick(type,pack,ti,wantGain){
   for(i=0;i<pack.length;i++){
     teams[ti][type].push(pack[i]);
     var s=evaluate(teams[ti],see).total;
+    if(AI_LV>0&&type==="함")s+=capForesight(pack[i]);   /* 신참은 앞일을 못 본다 */
     if(AI_LV===2)s+=nearBonus(teams[ti],pack[i]);
     teams[ti][type].pop();
     if(s>bs){bs=s;best=pack[i]}
@@ -1733,6 +1763,21 @@ function cardEl(c,type,onPick){
     '<div class="pd"><div class="fx">'+facHTML(c)+'</div>'+
     (tags?'<div style="margin-bottom:5px">'+tags+'</div>':"")+
     '<div class="stats">'+stats+'</div></div>';
+  /* 모함은 첫 라운드에 고르는데, 정원이 모자라면 뒷날 한 조가 60% 로 싸운다.
+     그 일은 증감 힌트에 잡히지 않는다 — 그때는 기체도 파일럿도 없기 때문이다.
+     그래서 점수를 건드리지 않고 말로만 알려 준다. 적장이 앞일을 보는 만큼
+     사람도 보아야 공평하다. */
+  if(type==="함"){
+    var need=futurePairs(), have=c[5]+CAP_BONUS, miss=Math.max(0,need-have);
+    /* 넉넉한 배가 대다수인 판에서는 "충분하다" 를 다 띄워야 소용이 없다.
+       모자란 배에만 적는다 */
+    if(miss){
+      var cn=el("div","dlt dn");
+      cn.style.margin="0 6px";
+      cn.innerHTML='▼ 정원 '+have+' <em>'+need+'조 가운데 '+miss+'조가 60%로 싸운다</em>';
+      b.appendChild(cn);
+    }
+  }
   var d=hintOn?delta(c,type):null;
   if(d){
     var dv=el("div","dlt"+(d.v<0?" dn":""));
