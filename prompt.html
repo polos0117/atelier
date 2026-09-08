@@ -3215,7 +3215,34 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     'the character remains a clearly adult woman or man with adult facial proportions and an adult body — '+
     'never a child, teenager, or underage appearance';
   const YOUTHFUL_LOCK='a clearly adult woman or man in their twenties with a youthful, soft-featured baby face; rounder cheeks, larger eyes, and a softer jawline than the standard adult face, while body proportions, height, and overall presence remain unmistakably those of a grown adult; never a child, teenager, or underage appearance';
-  const ETHNIC_LOCK='facial bone structure, eye shape, eyelid form, nose bridge, lip shape, and skin undertone must clearly read as {E}; do not default to generic Western or Caucasian features; keep the ethnicity consistent across every cut';
+  /* 민족 단서가 어느 이목구비를 맡는지 적어 둔다. 사람이 그 자리를 직접
+     지정했으면 민족 쪽은 손을 뗀다 — 안 그러면 한 목록 안에서 "코는 이렇게"
+     와 "콧대가 {E} 로 읽혀야 한다" 가 맞붙는다. 예전에는 둘 다 나갔고, 기하가
+     비어 있을 때가 많아 늘 민족 쪽이 이겼다. 얼굴이 민족별로만 갈린 까닭이다. */
+  const ETHNIC_PART=[
+    ['facial bone structure',['face shape','face length','face width','jaw & chin']],
+    ['eye shape',['eye shape','eye size','eye tilt']],
+    ['eyelid form',['eye shape','eye size','eye tilt']],
+    ['nose bridge',['nose character']],
+    ['lip shape',['lips']]
+  ];
+  /* 하나도 안 뺐을 때 예전 문장과 바이트까지 같아야 한다 — 그래야 기하를 적지
+     않은 편성의 출력이 이 손질로 흔들리지 않았음을 견줘 볼 수 있다 */
+  function andList(a){
+    return a.length<2?(a[0]||''):a.slice(0,-1).join(', ')+', and '+a[a.length-1];
+  }
+  function ethnicLock(e,pinned){
+    const free=ETHNIC_PART.filter(x=>!x[1].some(k=>pinned.indexOf(k)>=0)).map(x=>x[0]);
+    free.push('skin undertone');   /* 피부 언더톤은 기하 항목이 없어 늘 민족 몫이다 */
+    return andList(free)+' must clearly read as '+e+
+      '; do not default to generic Western or Caucasian features'+
+      (free.length<6
+        ? '. The facial features specified explicitly in this list are already decided — '+
+          'render them as written and let '+e+' show through the remaining features, '+
+          'colouring rather than reshaping what is specified'
+        : '')+
+      '; keep the ethnicity consistent across every cut';
+  }
   const UNDERBOOB_NEG='no fully covered lower breast, no simple abdomen gap, no detached breast cups, no floating armor, no exposed cleavage-only design';
   const UNDERBOOB_POS='the chest armor ends slightly above the natural inframammary fold, revealing a narrow crescent of the lower breast on both sides; the exposed underboob must be directly continuous with the breast contour, not a separate cutout or gap; nipples and areola remain fully covered; the armor hugs the upper and outer breast naturally and transitions smoothly into the sternum sensor and side armor';
 
@@ -4121,6 +4148,36 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     const o={};Object.keys(BASE.mechs||{}).forEach(k=>o[k]=1);
     Object.keys(STORE.anthro||{}).forEach(k=>o[k]=1);return Object.keys(o);
   }
+  /* ══ 이름 이사 ══
+     카드 이름이 바뀌면 브라우저에 남은 설정은 옛 이름 아래 그대로 남는다.
+     화면은 지금 이름으로 열리니 "설정이 없다" 로 보이고, 사람은 사라진 줄 안다.
+     실제로 "오 건담"·"건담 스로네 아인" 이 그렇게 남아 있었다.
+     표는 data/rename.json 하나뿐이고 play.html 도 같은 것을 읽는다. */
+  function migrateStoreNames(){
+    return fetch('data/rename.json',{cache:'no-cache'})
+      .then(r=>r.ok?r.json():null).then(j=>{
+        if(!j||!j.map)return;
+        const ren=j.ren||0;
+        if((STORE.ren||0)>=ren)return;
+        let moved=0;
+        /* 의인화 설정과 기체별 화풍 · 쓴 카테고리 — 전부 기체 이름이 열쇠다 */
+        ['anthro','style','used'].forEach(bag=>{
+          const src=STORE[bag]; if(!src)return;
+          Object.keys(src).forEach(k=>{
+            const nk=j.map[k];
+            if(!nk||nk===k)return;
+            /* 새 이름에 이미 무언가 있으면 덮지 않는다 — 늦게 손댄 쪽이 이긴다 */
+            const a=src[k],b=src[nk];
+            if(!b||((a&&a.t)||0)>((b&&b.t)||0))src[nk]=a;
+            delete src[k]; moved++;
+          });
+        });
+        STORE.ren=ren;
+        saveStore();
+        if(moved)setStatus('statusAnthro','이름이 바뀐 기록 '+moved+'건을 새 이름으로 옮겼다','ok');
+      }).catch(()=>{});
+  }
+
   function loadBase(){
     return fetch(DATA_URL,{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(j=>{
       if(j&&j.mechs)BASE=j;
@@ -4377,11 +4434,20 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
         'and stereotypical regional features must not be exaggerated']);
     }
     const geo=FACE_GEOMETRY.filter(has);
-    if(geo.length&&has('facial character')){
+    /* 예전에는 facial character 가 있을 때만 이 문장을 내보냈다. 인상이 없으면
+       우선순위를 말할 상대가 없다고 본 것인데, 실제로 기하를 여덟 개나 적고
+       인상만 비워 둔 편성에서 이 문장이 통째로 빠졌다. 기하를 덮는 것은 인상만이
+       아니다 — 화풍의 미인 틀, 민족 단서, 모델의 기본 얼굴이 모두 덮는다.
+       그러니 기하가 하나라도 있으면 내보내고, 인상이 있을 때만 그 몫을 덧붙인다. */
+    if(geo.length){
       out.push(['facial precedence',
-        'the explicit facial geometry in this list ('+geo.join(', ')+') defines the actual face; '+
-        'facial character is a secondary impression cue describing how that face should read. '+
-        'Do not alter the specified geometry, or the adult age structure, to exaggerate the impression']);
+        'the explicit facial geometry in this list ('+geo.join(', ')+') defines the actual face '+
+        'and must be preserved; do not replace it with a recurring attractive default face. '+
+        (has('facial character')
+          ? 'facial character is a secondary impression cue describing how that face should read. '+
+            'Do not alter the specified geometry, or the adult age structure, to exaggerate the impression'
+          : 'Where this list is silent, choose freely, but do not let that freedom pull the '+
+            'specified features back toward a template')]);
     }
     const e2=out.find(p=>p[0]==='second eye color');
     if(e2){
@@ -4405,7 +4471,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     if(fc2&&CUTE_SET[fc2[1]]&&!(age&&age[1]==='youthful adult'))
       out.push(['age clarity',CUTE_LOCK.replace('{C}',fc2[1])]);
     const eth=out.find(p=>p[0]==='facial ethnicity');
-    if(eth)out.push(['ethnic consistency',ETHNIC_LOCK.replace('{E}',eth[1])]);
+    if(eth)out.push(['ethnic consistency',ethnicLock(eth[1],geo)]);
     const sp=document.getElementById('specialInput').value.trim();if(sp)out.push(['special characteristics',sp]);
     const ub=document.getElementById('underboobInput');
     if(ub&&ub.checked&&(document.getElementById('genderInput').value||'female')==='female'){
@@ -4588,7 +4654,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   renderCarry();
 
   /* 저장소 기록과 이미지 현황은 네트워크라 늦게 온다. 도착하면 다시 그린다. */
-  Promise.all([loadBase(),loadShots()]).then(()=>{
+  Promise.all([migrateStoreNames(),loadBase(),loadShots()]).then(()=>{
     fillMechs(mechPicker.value);
     if(!STORE.anthro[mechKey()])loadAnthroForMech();
     updateSaveBar(); updateDoneStat(); renderUsed(); renderCarry();
