@@ -497,6 +497,10 @@ var STAT_LABEL={};
 /* 화풍 key → 한글 이름. 차례는 data/style.json 이 정한다 */
 var ART_NAME={}, ART_ORDER=[];
 var WEIGHT={}, TAG_COLOR={}, TAG_ROLE={};
+/* 이름 → 그 기체에 붙은 G 제네레이션 이터널 공식 태그. 가변기·모노아이처럼
+   우리가 따로 적을 까닭이 없는 갈래는 공식이 이미 나눠 두었으니 그대로 쓴다.
+   자료는 build-data.py 가 mech.json 의 tags 칸에 옮겨 적는다 */
+var GGE_TAG={};
 /* 카드가 참으로 적어 둔 칸들. tag.json 의 flag 가 여기서 찾는다 */
 var FLAG={}, NOFLAG={};   /* NOFLAG 는 자료가 "아니다" 라고 못박은 것 */
 /* 이름 → G 제네레이션 이터널 유닛·인물 id. 게임 규칙에는 쓰지 않고
@@ -538,6 +542,7 @@ function absorb(cards,row){
       else if(c[fk]===false)(NOFLAG[fk]=NOFLAG[fk]||{})[c.name]=1;
     }
     if(c.gge)GGE[c.name]=c.gge;
+    if(c.tags&&c.tags.length)GGE_TAG[c.name]=c.tags;
   }
   return out;
 }
@@ -1212,7 +1217,8 @@ function tagsOf(c){
       continue;
     }
     hit=(r.name_has&&n.indexOf(r.name_has)>=0)||(r.flag&&FLAG[r.flag]&&FLAG[r.flag][n])||
-        (r.system&&c[7]===r.system);
+        (r.system&&c[7]===r.system)||
+        (r.gge_tag&&(GGE_TAG[n]||[]).indexOf(r.gge_tag)>=0);
     /* 자료가 "아니다" 라고 못박았으면 이름이 무엇이든 붙이지 않는다 */
     if(hit&&r.flag&&NOFLAG[r.flag]&&NOFLAG[r.flag][n])hit=false;
     if(hit){out.push(r.tag); if(r.group)done[r.group]=1}
