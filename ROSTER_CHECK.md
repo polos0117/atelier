@@ -446,6 +446,33 @@ cy = f[1] + bh/2     실제 얼굴 중심 y
 남녀 좌표가 크게 다르면 둘 중 하나를 잘못 잰 것이다. 같은 기체의 두 컷은
 보통 가로 0.01, 세로 0.02 안에서 만난다.
 
+### 화풍은 어디서 받아 어디에 남기나
+
+**화풍은 배치를 주는 사람이 지정한다.** 그림만 보고 추측하지 않는다. 안 알려
+줬으면 물어본다 — `data/style.json` 의 열한 key 중 하나다.
+
+**받은 화풍은 두 곳에 남긴다. 한 곳만 적으면 반쪽이다.**
+
+| 어디 | 무엇이 되나 |
+|---|---|
+| 파일 이름의 화풍 토막 | `img.json` 의 `byStyle[화풍]` 으로 들어간다. 봇이 넣는다 |
+| `toolkit-data.json` 의 `style[카드]` | 도감 줄의 화풍 딱지, 툴킷이 새 그림을 뽑을 때 고르는 기본값 |
+
+`toolkit-data.json` 에 안 적으면 `tkStyleKey()` 가 기본값
+`cinematic_semi_real` 로 조용히 흘려보낸다. 판정해서 넣은 값인지 흘러든 값인지
+나중에 구분할 수 없으니, **기본값과 같은 화풍이라도 명시해서 적는다.**
+
+배치를 끝낼 때 빈칸이 없는지 본다.
+
+```python
+img = json.load(open('data/img.json', encoding='utf-8'))['img']
+st  = json.load(open('toolkit-data.json', encoding='utf-8'))['style']
+print([k for k in img if k not in st])      # [] 여야 한다
+```
+
+`semi_real_paint` 로 잡힌 152 기는 화풍 구분이 생기기 전에 일괄로 채운 값이다.
+판정해서 넣은 것이 아니니 그대로 두기로 했다 — 다시 훑지 않는다.
+
 ### 한 배치를 처리하는 차례
 
 1. 커버리지 검수 — 확대해서 본다. 애매한 것은 빼 둔다
@@ -456,7 +483,8 @@ cy = f[1] + bh/2     실제 얼굴 중심 y
    스크립트의 `split_gender` → `split_style` → 카드 조회를 그대로 재현해 본다.
    카드 이름에 공백이나 `β` 같은 글자가 있으면 여기서 걸린다
 6. webp 를 커밋한다. 워크플로가 `register-images.py` 를 돌려 등록한다
-7. 잰 `face` 를 `data/img.json` 에, 화풍을 `toolkit-data.json` 에 얹는다
+7. 잰 `face` 를 `data/img.json` 에, **받은 화풍을 `toolkit-data.json` 에** 얹는다
+8. 화풍 빈칸이 없는지 확인한다 (위 검사 코드)
 
 ### data/img.json 을 손으로 고칠 때
 

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Gundam Prompt Toolkit v9.16</title>
+<title>Gundam Prompt Toolkit v9.17</title>
 <meta name="theme-color" content="#0f1115">
 <!-- 홈 화면에 두면 브라우저가 저장 자리를 걷어가지 못한다 -->
 <link rel="manifest" href="prompt.webmanifest">
@@ -260,13 +260,19 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   </div>
 
 
-  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.16</b> <span>앞 기체 얼굴이 다음 기체로 새지 않게</span></div>
+  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.17</b> <span>화풍 기본값도 기록한다</span></div>
   <details class="srcbox verbox" id="verBox">
     <summary>
-      <span class="sel-line" style="white-space:normal;overflow:visible">v9.16 변경 내역</span>
+      <span class="sel-line" style="white-space:normal;overflow:visible">v9.17 변경 내역</span>
       <span class="sb-txt">패치 노트</span>
     </summary>
     <div class="vb-in">
+      <b>v9.17 &middot; 화풍 기본값도 기록한다</b>
+      <ul>
+        <li>화풍이 <b>기본값(세미리얼 시네마틱)과 같으면 기록에서 지우고 있었다.</b> 그래서 "판정해서 고른 세미리얼"과 "안 골라서 흘러든 세미리얼"이 파일에서 똑같아 보였다. 이제 고른 값을 그대로 적는다</li>
+        <li>내보내기도 기본값을 빼지 않는다. <code>toolkit-data.json</code> 의 <code>style</code> 항목 수가 초상이 있는 기체 수와 맞아떨어져야 빈칸을 셀 수 있다</li>
+        <li>손으로 적어 둔 <code>note</code> 머리말이 내보내기에 사라지던 것을 고쳤다</li>
+      </ul>
       <b>v9.16 &middot; 앞 기체 얼굴이 다음 기체로 새지 않게</b>
       <ul>
         <li>저장된 설정이 없는 기체로 옮기면 <b>앞서 보던 기체의 얼굴 · 체형 · 머리가 그대로 남았다.</b> 코드 주석은 "기록이 없으면 기본값으로 되돌린다" 였는데 실제로는 그냥 나가고 있었다. 기체마다 성별을 따로 잡게 된 지금은 정체성이 섞이는 통로다</li>
@@ -4055,7 +4061,9 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     if(!READY)return;
     const k=mechKey(); if(!k)return;
     STORE.style=STORE.style||{};
-    if(styleKey()===DEFAULT_STYLE)delete STORE.style[k]; else STORE.style[k]=styleKey();
+    /* 기본값도 적는다. 안 적으면 tkStyleKey() 가 기본값으로 흘려보내서,
+       판정해서 고른 값인지 안 골라서 흘러든 값인지 나중에 구분할 수 없다 */
+    STORE.style[k]=styleKey();
     saveStore();
   }
   /* 화풍마다 실제로 그 결로 뽑힌 이미지를 하나씩 붙인다.
@@ -4721,7 +4729,10 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       if(o.ub)r.ub=true;
       return r;
     };
-    const merged={version:1,updated:new Date().toISOString().slice(0,10),mechs:{},used:{}};
+    /* note 는 사람이 손으로 적어 둔 머리말이다. 내보내기가 통째로 덮어쓰는
+       파일이라 여기서 챙기지 않으면 커밋할 때마다 사라진다 */
+    const merged=Object.assign({version:1,updated:new Date().toISOString().slice(0,10)},
+                               BASE.note?{note:BASE.note}:{},{mechs:{},used:{}});
     allKeys().forEach(k=>{
       const r=recOf(k); if(!r)return;
       const f=trim(r.female),m=trim(r.male);
@@ -4736,7 +4747,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     merged.style={};
     Object.keys(Object.assign({},BASE.style||{},STORE.style||{})).forEach(k=>{
       const v=(STORE.style||{})[k]||(BASE.style||{})[k];
-      if(v&&v!==DEFAULT_STYLE)merged.style[k]=v;});
+      if(v)merged.style[k]=v;});
     const uk={};Object.keys(BASE.used||{}).forEach(k=>uk[k]=1);Object.keys(STORE.used||{}).forEach(k=>uk[k]=1);
     Object.keys(uk).forEach(k=>{const u=usedOf(k);if(u.length)merged.used[k]=u;});
     box.value=JSON.stringify(merged,null,1);
