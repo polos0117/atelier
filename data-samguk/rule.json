@@ -13,5 +13,15 @@
  ],
  "pack": 6,
  "cap_from": "기체",
- "cap_base": 4
+ "cap_base": 4,
+ "scale": {
+  "kinds": [
+   "기체",
+   "파일럿"
+  ],
+  "options": [
+   3
+  ],
+  "default": 3
+ }
 }

@@ -607,10 +607,13 @@ function validateData(by){
   if(R&&R.cap_from&&kinds.indexOf(R.cap_from)<0)
     W.push("rule.json 의 cap_from 이 '"+R.cap_from+"' 인데 그런 종류가 없다");
 
-  /* 4. 카드가 세 편을 대기에 넉넉한가 */
+  /* 4. 카드가 세 편을 대기에 넉넉한가 — 고를 수 있는 가장 큰 규모로 본다 */
+  var sc=(R&&R.scale)||{}, maxN=0;
+  if(sc.options&&sc.options.length)for(j=0;j<sc.options.length;j++)if(sc.options[j]>maxN)maxN=sc.options[j];
   if(R&&R.schedule)for(i=0;i<kinds.length;i++){
     var need=0;
     for(j=0;j<R.schedule.length;j++)if(R.schedule[j]===kinds[i])need++;
+    if(maxN&&sc.kinds&&sc.kinds.indexOf(kinds[i])>=0)need=maxN;
     need*=3;
     var have=(by[keys[i]]&&by[keys[i]].cards)?by[keys[i]].cards.length:0;
     if(have<need)W.push(kinds[i]+" 가 "+have+" 장인데 세 편이 "+need+" 장을 집는다 — 버림패가 되돌아온다");
@@ -727,12 +730,17 @@ function loadData(){
     fill(FIELDS,by.field.fields.map(function(f){return [f.name,f.weight]}));
     fillMap(TERR,by.field.grade); fillMap(TERR_WORD,by.field.word);
     fill(TAG_RULE,by.tag.derive); fill(TCOMBO,by.tag.combos);
-    fill(SCHEDULE,by.rule.schedule); PACKN=by.rule.pack;
-    /* 모함 정원에 얹는 여유. 기체 자리에서 cap_base 를 뺀 만큼이다.
-       예전에는 4 가 코드에 박혀 있었다. 그 값에서는 정원 4 이상이면 모두 여섯 조를
-       채우고도 남아, 일흔아홉 척 가운데 예순다섯이 이 축에서 구별되지 않았다.
-       주제를 만드는 쪽이 조절할 수 있도록 자료로 뺀다 — 없으면 예전대로 4 다. */
-    CAP_BONUS=Math.max(0,slotsOf(by.rule.cap_from)-(by.rule.cap_base===undefined?4:by.rule.cap_base));
+    fill(BASE_SCHEDULE,by.rule.schedule); PACKN=by.rule.pack;
+    var sc=by.rule.scale||{};
+    fill(SCALE_KINDS,sc.kinds||[]);
+    fill(SCALE_OPTS,(sc.options&&sc.options.length)?sc.options:[0]);
+    CAP_FROM=by.rule.cap_from; CAP_BASE=(by.rule.cap_base===undefined?4:by.rule.cap_base);
+    /* 고를 수 없는 주제면 원래 라운드표 그대로다 */
+    var baseN=0,bi;
+    for(bi=0;bi<BASE_SCHEDULE.length;bi++)if(SCALE_KINDS.indexOf(BASE_SCHEDULE[bi])>=0)baseN++;
+    baseN=SCALE_KINDS.length?Math.round(baseN/SCALE_KINDS.length):0;
+    if(!sc.options||!sc.options.length){fill(SCALE_OPTS,[baseN]);}
+    applyScale(sc["default"]!==undefined?sc["default"]:baseN);
     calcExpPair();
     return by;
   });
@@ -1402,6 +1410,31 @@ function evaluate(t,see){
 
 /* ═══════ 진행 ═══════ */
 var SCHEDULE=[];   /* 라운드마다 무엇을 뽑는지 — data/rule.json 에서 채운다 */
+/* ═══════ 편성 규모 ═══════
+   카드가 765 기까지 늘어 여섯 조는 좁아졌다. 몇 조를 꾸릴지 사람이 고르게 한다.
+   무엇이 늘어나는지는 rule.json 의 scale.kinds 가 정한다 — 함과 지휘관은 그대로다.
+
+   자리를 늘려도 정원이 빡빡해지지는 않는다. 웃돈이 자리 수에서 cap_base 를 뺀
+   값이라 자리를 따라 함께 커지기 때문이다. 정원을 살리려면 cap_base 를 올려야
+   하고, 그것은 별개의 손잡이다. */
+var BASE_SCHEDULE=[], SCALE_KINDS=[], SCALE_OPTS=[], SCALE=0, CAP_FROM="", CAP_BASE=4;
+function buildSchedule(n){
+  var out=[],i=0;
+  while(i<BASE_SCHEDULE.length){
+    var t=BASE_SCHEDULE[i],c=0;
+    while(i<BASE_SCHEDULE.length&&BASE_SCHEDULE[i]===t){c++;i++}
+    var k=(SCALE_KINDS.indexOf(t)>=0)?n:c;
+    for(var j=0;j<k;j++)out.push(t);
+  }
+  return out;
+}
+/* 규모가 바뀌면 라운드표와 정원 웃돈을 함께 다시 짠다 */
+function applyScale(n){
+  if(SCALE_OPTS.length&&SCALE_OPTS.indexOf(n)<0)n=SCALE_OPTS[0];
+  SCALE=n;
+  fill(SCHEDULE,buildSchedule(n));
+  CAP_BONUS=Math.max(0,slotsOf(CAP_FROM)-CAP_BASE);
+}
 /* 편성 규모에 맞춰 정원을 넉넉히 잡는다 — 기체 수에서 함 평균 정원을 뺀 만큼 */
 function slotsOf(type){var n=0,i;for(i=0;i<SCHEDULE.length;i++)if(SCHEDULE[i]===type)n++;return n}
 var CAP_BONUS=0;   /* 자료를 받은 뒤 정한다 */
@@ -1513,7 +1546,7 @@ var CFG_KEY="gundam_draft_cfg_v1";
 function cfgSave(){
   try{localStorage.setItem(CFG_KEY,JSON.stringify({
     lv:AI_LV, fog:fogOn, hint:hintOn, ex:exhaustOn,
-    rr:REROLL_MAX, shared:sharedPack, vp:VIEW_P, vm:VIEW_M, dv:dexVar
+    rr:REROLL_MAX, shared:sharedPack, vp:VIEW_P, vm:VIEW_M, dv:dexVar, sc:SCALE
   }))}catch(e){}
 }
 function cfgLoad(){
@@ -1529,6 +1562,8 @@ function cfgLoad(){
     if("mfr".indexOf(c.vp)>=0&&c.vp)VIEW_P=c.vp;
     if("mfrx".indexOf(c.vm)>=0&&c.vm)VIEW_M=c.vm;
     if("mfr".indexOf(c.dv)>=0&&c.dv)dexVar=c.dv;
+    /* 주제마다 고를 수 있는 규모가 다르다. 없는 값이면 그 주제의 기본을 지킨다 */
+    if(typeof c.sc==="number"&&SCALE_OPTS.indexOf(c.sc)>=0)applyScale(c.sc);
   }catch(e){}
 }
 
@@ -1603,6 +1638,7 @@ function seatName(ti){
 function newTeam(){return {"함":[],"기체":[],"파일럿":[],"지휘관":[]}}
 function reset(){
   gen++;                          /* 걸려 있던 옛 타이머를 무효로 만든다 */
+  applyScale(SCALE);              /* 규모가 바뀌었으면 라운드표부터 다시 짠다 */
   rngReset(newSeed());            /* 씨앗 먼저 — 아래가 전부 이 씨앗에서 나온다 */
   pools={"함":SHIP.slice(),"기체":MECH.slice(),"파일럿":PILOT.slice(),"지휘관":CREW.slice()};
   teams=[newTeam(),newTeam(),newTeam()];
@@ -2656,6 +2692,16 @@ function setup(){
     b.onclick=function(){AI_LV=i;cfgSave();setup()};return b;
   });
   box.appendChild(optRow("적 함대","신참은 실수하고 에이스는 인연까지 노린다",lvBtns));
+  /* 카드가 765 기까지 늘어 여섯 조는 좁아졌다. 몇 조를 꾸릴지 고르게 한다 */
+  if(SCALE_OPTS.length>1){
+    var scBtns=SCALE_OPTS.map(function(n){
+      var b=el("button","obtn"+(SCALE===n?" on":""),n+"조");
+      b.onclick=function(){applyScale(n);cfgSave();setup()};return b;
+    });
+    box.appendChild(optRow("편성 규모",
+      "한 편이 몇 조를 꾸릴지 — 지금 "+SCHEDULE.length+"라운드, 셋이 "+
+      (slotsOf(CAP_FROM)*3)+"기를 집는다",scBtns));
+  }
   function toggle(get,set){
     var b=el("button","obtn"+(get()?" on":""),get()?"켬":"끔");
     b.onclick=function(){set(!get());cfgSave();setup()};return [b];
