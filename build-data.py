@@ -354,6 +354,13 @@ def main():
     for n, k, was, now in moved[:20] if a.report else []:
         print("     %-28s %-6s %s → %s" % (n, k, was, now))
 
+    shared = roster.shared_gge()
+    if shared:
+        print("  ※ 한 공식 유닛에 카드가 둘 이상 붙었다 %d 묶음 —"
+              " id-map.overrides.json 으로 갈라라" % len(shared))
+        for names, ids in shared.items():
+            print("       " + " · ".join(names) + "  → " + str(ids))
+
     fold, same = roster.dup_names()
     if same:
         print("  ※ 똑같은 이름이 두 번 실렸다 — " + " · ".join(same))

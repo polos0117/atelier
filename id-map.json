@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-09-08T04:31:12Z",
+ "generated": "2026-09-08T11:57:05Z",
  "source": {
   "api": "https://soshage.com/ggetapi/ko/{entity}",
   "entities": {
@@ -10,7 +10,7 @@
   },
   "cards": {
    "file": "data",
-   "MECH": 765,
+   "MECH": 764,
    "PILOT": 210
   }
  },
@@ -25,10 +25,10 @@
  },
  "summary": {
   "mech": {
-   "matched": 470,
-   "review": 129,
-   "unmatched": 166,
-   "total": 765
+   "matched": 468,
+   "review": 128,
+   "unmatched": 168,
+   "total": 764
   },
   "pilot": {
    "matched": 133,
@@ -3542,14 +3542,12 @@
   },
   {
    "dex": "건담 AGE-1 플랫",
-   "match": "model",
-   "api_name": "건담 AGE-1 노멀",
+   "match": "override",
+   "api_name": "건담 AGE-1 플랫",
    "ids": [
-    1400000100,
-    1400000110,
-    1400000150
+    1400008110
    ],
-   "models": "AGE-1",
+   "models": "AGE-1F",
    "series": [
     "기동전사 건담 AGE"
    ]
@@ -3629,69 +3627,37 @@
    ]
   },
   {
-   "dex": "건담 AGE-1 그랜서",
-   "match": "model",
-   "api_name": "건담 AGE-1 노멀",
-   "ids": [
-    1400000100,
-    1400000110,
-    1400000150
-   ],
-   "models": "AGE-1",
-   "series": [
-    "기동전사 건담 AGE"
-   ]
-  },
-  {
    "dex": "건담 AGE-1 스팔로",
-   "match": "model",
-   "api_name": "건담 AGE-1 노멀",
+   "match": "override",
+   "api_name": "건담 AGE-1 스팔로",
    "ids": [
-    1400000100,
-    1400000110,
-    1400000150
+    1400000300
    ],
-   "models": "AGE-1",
+   "models": "AGE-1S",
    "series": [
     "기동전사 건담 AGE"
    ]
   },
   {
    "dex": "건담 AGE-1 타이터스",
-   "match": "model",
-   "api_name": "건담 AGE-1 노멀",
+   "match": "override",
+   "api_name": "건담 AGE-1 타이터스",
    "ids": [
-    1400000100,
-    1400000110,
-    1400000150
+    1400000200
    ],
-   "models": "AGE-1",
-   "series": [
-    "기동전사 건담 AGE"
-   ]
-  },
-  {
-   "dex": "건담 AGE-2 다크 하운드",
-   "match": "model",
-   "api_name": "건담 AGE-2 노멀",
-   "ids": [
-    1400000500,
-    1400000550
-   ],
-   "models": "AGE-2",
+   "models": "AGE-1T",
    "series": [
     "기동전사 건담 AGE"
    ]
   },
   {
    "dex": "건담 AGE-2 더블 불릿",
-   "match": "model",
-   "api_name": "건담 AGE-2 노멀",
+   "match": "override",
+   "api_name": "건담 AGE-2더블 불릿",
    "ids": [
-    1400000500,
-    1400000550
+    1400006400
    ],
-   "models": "AGE-2",
+   "models": "AGE-2DB",
    "series": [
     "기동전사 건담 AGE"
    ]
@@ -3868,14 +3834,14 @@
   },
   {
    "dex": "M1 어스트레이 (SHRIKE 장비형)",
-   "match": "exact",
-   "api_name": "M1 어스트레이",
+   "match": "override",
+   "api_name": "M1어스트레이 (슈라이크 장비)",
    "ids": [
-    1300001600
+    1330005500
    ],
-   "models": "MBF-M1",
+   "models": "MBF-M1+EF-24R",
    "series": [
-    "기동전사 건담 SEED"
+    "기동전사 건담 SEED DESTINY"
    ]
   },
   {
@@ -4687,7 +4653,7 @@
   },
   {
    "dex": "M1 어스트레이",
-   "match": "exact",
+   "match": "override",
    "api_name": "M1 어스트레이",
    "ids": [
     1300001600
@@ -7156,36 +7122,6 @@
       ],
       "models": "GN-0000",
       "score": 0.6
-     }
-    ]
-   },
-   {
-    "dex": "오 건담",
-    "candidates": [
-     {
-      "api_name": "건담",
-      "ids": [
-       1001000100,
-       1001000150
-      ],
-      "models": "RX-78-2",
-      "score": 0.8
-     },
-     {
-      "api_name": "카오스 건담",
-      "ids": [
-       1330000900
-      ],
-      "models": "ZGMF-X24S",
-      "score": 0.75
-     },
-     {
-      "api_name": "더블오 건담",
-      "ids": [
-       1370006200
-      ],
-      "models": "GN-0000",
-      "score": 0.75
      }
     ]
    },
@@ -10897,6 +10833,8 @@
    "티에르바",
    "우롯조",
    "잠드라그",
+   "건담 AGE-1 그랜서",
+   "건담 AGE-2 다크 하운드",
    "건담 AGE-3 오비탈",
    "건담 레길레스",
    "고멜",

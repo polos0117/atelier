@@ -153,6 +153,29 @@ def dup_names():
     return {k: v for k, v in fold.items() if len(set(v)) > 1}, same
 
 
+def shared_gge():
+    """{(카드 이름들): [겹치는 id…]} — 서로 다른 카드가 같은 공식 유닛에 붙은 것.
+
+    이름을 접어 보는 것보다 이쪽이 훨씬 잘 잡는다. 건담 AGE-1 의 네 장비형이
+    모두 "AGE-1 노멀" 한 유닛에 붙어 있던 적이 있는데, 이름은 넷 다 멀쩡히
+    달랐으므로 이름만 봐서는 알 길이 없었다. 잘못 붙으면 레어도·지형·태그가
+    통째로 남의 것이 되므로, 색과 건담 표까지 따라 틀린다.
+
+    한 카드가 통상판과 (EX) 판 여럿을 갖는 것은 정상이다. 여기서 보는 것은
+    반대쪽 — 한 유닛에 카드가 둘 이상 붙은 경우다."""
+    import collections
+    out = collections.defaultdict(set)
+    for k in KINDS:
+        bag = collections.defaultdict(list)
+        for c in cards(k):
+            for i in (c.get("gge") or []):
+                bag[i].append(c["name"])
+        for i, names in bag.items():
+            if len(names) > 1:
+                out[tuple(sorted(names))].add(i)
+    return {k: sorted(v) for k, v in out.items()}
+
+
 def index():
     """이름 → (종류, 레코드). 이름은 네 종류를 통틀어 유일하다.
 
