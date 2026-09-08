@@ -1,7 +1,7 @@
 {
  "version": 1,
  "updated": "2026-09-06",
- "note": "prompt.html 의 '기록 내보내기' 결과를 이 파일에 덮어쓴다. style 은 기체별 화풍 — v9.17 부터 기본값(cinematic_semi_real)도 그대로 적는다. 판정해서 고른 값인지 안 골라서 흘러든 값인지 구분하려면 빈칸이 없어야 한다. semi_real_paint 로 잡힌 152 기는 화풍 구분이 생기기 전에 일괄로 채운 값이라 다시 훑지 않는다.",
+ "note": "prompt.html 의 '기록 내보내기' 결과를 이 파일에 덮어쓴다. style 은 기체별 화풍 — 기본값(cinematic_semi_real)은 기록하지 않는다. 지금까지 완료된 기체는 전부 이전 기본값인 semi_real_paint 로 채워 넣었다.",
  "mechs": {
   "건담 나드레": {
    "male": {
@@ -1016,7 +1016,6 @@
   "빅잠": "cinematic_semi_real",
   "시난주 스타인": "cinematic_semi_real",
   "블루 듀얼 건담": "cinematic_semi_real",
-  "가르발디β": "cinematic_semi_real",
-  "건담 사바냐": "cinematic_semi_real"
+  "가르발디β": "cinematic_semi_real"
  }
 }
