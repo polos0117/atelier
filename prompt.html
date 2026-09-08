@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Gundam Prompt Toolkit v9.14</title>
+<title>Gundam Prompt Toolkit v9.15</title>
 <meta name="theme-color" content="#0f1115">
 <!-- 홈 화면에 두면 브라우저가 저장 자리를 걷어가지 못한다 -->
 <link rel="manifest" href="prompt.webmanifest">
@@ -260,14 +260,22 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   </div>
 
 
-  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.14</b> <span>남성으로 열면 남성 설정이 넘어가도록</span></div>
+  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.15</b> <span>남성 랜덤이 빈 카테고리를 내지 않게</span></div>
   <details class="srcbox verbox" id="verBox">
     <summary>
-      <span class="sel-line" style="white-space:normal;overflow:visible">v9.14 변경 내역</span>
+      <span class="sel-line" style="white-space:normal;overflow:visible">v9.15 변경 내역</span>
       <span class="sb-txt">패치 노트</span>
     </summary>
     <div class="vb-in">
-      <b>v9.14 &middot; 남성으로 열면 남성 설정이 넘어가도록</b>
+      <b>v9.15 &middot; 남성 랜덤이 빈 카테고리를 내지 않게</b>
+      <ul>
+        <li>성별 거르개가 <b>화면 목록에만</b> 걸려 있었다. 랜덤 · 추천 · 프리셋처럼 제 손으로 고르는 길은 여전히 날 자료를 읽었다. 골라 온 값이 남성 목록에 없으니 <b>카테고리가 통째로 빈 채로 남았다</b></li>
+        <li>남성으로 두고 돌려 보니 <b>랜덤 다섯 모드 · Pair 굴림 · 프리셋 둘에서 132 번 빈 카테고리</b>가 나왔고, 그때마다 <code>CAT[…].eng</code> 에서 <b>스크립트가 터졌다</b>. 랜덤을 누를 때마다 조용히 나던 오류다</li>
+        <li>고르는 길이 모두 지나는 판정 함수 <code>CAT_OK</code> · <code>EX_OK</code> · <code>CATS_OK</code> 를 두고, 랜덤 풀 · 추천 후보 · 카테고리 직접 지정 · 되받이 · 프리셋을 전부 그리로 보냈다</li>
+        <li>프리셋은 여성 전용 시절에 짠 것이라 남성에 없는 값이 온다. 이제 지금 성별의 첫 카테고리로 <b>갈음하고 몇 개를 갈음했는지 알린다</b> — 빈 채로 두지 않는다</li>
+        <li>확인 — 남성으로 두고 랜덤 일곱 모드 × 12 회, Pair 굴림 12 회, 프리셋 전부, 기체 스물넷의 SOURCE 추천과 다시 굴리기까지 돌려 <b>여성 전용 0 · 빈 카테고리 0 · 스크립트 오류 0</b>. 여성 출력 54 항목 71만 9천 글자는 바이트까지 그대로</li>
+      </ul>
+      <b style="opacity:.55">v9.14 &middot; 남성으로 열면 남성 설정이 넘어가도록</b>
       <ul>
         <li><b>남녀가 함께 저장된 기체에서 여성 설정이 무조건 이기고 있었다.</b> 화면을 남성으로 두어도 여성의 인종 · 얼굴 · 체형이 그대로 일상컷 프롬프트로 넘어가, 첨부한 참조 이미지와 지시가 어긋났다. 이제 지금 화면의 성별만 읽는다</li>
         <li>지금 성별에 기록이 없으면 <b>반대쪽을 끌어오지 않고 비운다.</b> 그 자리는 첨부 이미지가 정체성을 잡게 두는 편이 낫다. 전통의상 AUTO 의 인종도 같은 규칙을 따른다</li>
@@ -1090,6 +1098,16 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   const SEX_OK=x=>{const g=curGender()==='male'?'m':'f';return !x||x===g;};
   const CAT_ROWS=()=>CATS.filter(r=>SEX_OK(r[4]));
   const EX_ROWS=cat=>(EXAMPLE_MAP[cat]||EXAMPLE_MAP['__custom__']).filter(r=>SEX_OK(r[4]));
+  /* 여기까지는 화면 목록을 그리는 데만 쓰였다. 그래서 랜덤·추천·프리셋처럼
+     제 손으로 고르는 길은 여전히 날 자료를 읽어, 남성으로 두어도 란제리나
+     치파오가 튀어나왔다. 고르는 길이 모두 아래를 지나게 한다. */
+  const CAT_OK=cat=>{const r=CAT[cat];return !r||SEX_OK(r.sex)};
+  const EX_OK=(cat,ex)=>{
+    if(!ex||ex==='__custom__')return true;
+    const r=(EXAMPLE_MAP[cat]||[]).find(x=>x[0]===ex);
+    return !r||SEX_OK(r[4]);
+  };
+  const CATS_OK=list=>(list||[]).filter(CAT_OK);
 
   function renderPresetSelect(){
     document.getElementById('presetSelect').innerHTML=Object.entries(PRESETS).map(([k,v])=>'<option value="'+escHtml(k)+'">'+escHtml(v.label)+'</option>').join('');
@@ -1374,8 +1392,15 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   function applyPreset(){
     const p=PRESETS[document.getElementById('presetSelect').value];if(!p)return;
     if(READY)pushCollageUndo();
+    /* 프리셋은 여성 전용 시절에 짠 것이라 남성에서는 없는 값이 온다.
+       그대로 넣으면 select 가 빈 채로 남아, 프롬프트에 카테고리가 통째로 빠진다.
+       허락되지 않은 것은 지금 성별의 첫 카테고리로 갈음한다 */
+    let swapped=0;
     [1,2,3].forEach((n,i)=>{
-      document.getElementById('pair'+n+'Select').value=p.pairs[i];
+      let want=p.pairs[i];
+      if(!CAT_OK(want)){const alt=CAT_ROWS().find(r=>r[0]!=='auto_random'&&r[0]!=='__custom__');
+        if(alt){want=alt[0];swapped++}}
+      document.getElementById('pair'+n+'Select').value=want;
       document.getElementById('pair'+n+'Custom').value='';
       updateDependentExamples(n);
       document.getElementById('pair'+n+'ExampleCustom').value='';
@@ -1383,7 +1408,9 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     updatePairCustomVisibility();
     Object.keys(ADVANCED_OPTIONS).forEach(k=>{const el=document.getElementById('adv_'+k);if(el)el.value='';});
     Object.entries(p.advanced||{}).forEach(([k,v])=>{const el=document.getElementById('adv_'+k);if(el)el.value=v;});
-    refreshCollagePrompt();setStatus('statusCollage','프리셋 적용 완료','ok');
+    refreshCollagePrompt();
+    setStatus('statusCollage','프리셋 적용 완료'+
+      (swapped?' — 지금 성별에 없는 카테고리 '+swapped+'개는 갈음했다':''),'ok');
   }
 
   /* 랜덤 성격 — 뽑는 카테고리 풀과 고급 14축 값을 함께 정한다.
@@ -1436,7 +1463,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   function modePool(scope){
     const el=document.getElementById(scope==='single'?'sgRandomMode':'randomMode');
     const M=RANDOM_MODES[(el&&el.value)||'']||RANDOM_MODES.variety;
-    return (M.pool||RANDOM_POOL).slice();
+    return CATS_OK((M.pool||RANDOM_POOL).slice());
   }
   const pickOne=a=>a[Math.floor(Math.random()*a.length)];
   function rollMoodFor(idsFn){
@@ -1582,7 +1609,9 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       setStatus('statusCollage','기체친화형 — 추천 세 장을 그대로 넣었다','ok');
       return;
     }
-    let pool=shuffle([...(M.pool||RANDOM_POOL)]), note=M.ko+' — ';
+    let pool=shuffle(CATS_OK([...(M.pool||RANDOM_POOL)])), note=M.ko+' — ';
+    /* 성별을 걸러 셋이 안 되면 전체에서 채운다 — 빈 select 를 만드느니 낫다 */
+    if(pool.length<3)pool=shuffle(CATS_OK([...RANDOM_POOL]));
     const av=document.getElementById('randomAvoidUsed');
     if(av&&av.checked){
       const used={}; usedOf(mechKey()).forEach(r=>used[r.cat]=1);
@@ -2719,19 +2748,27 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
 
     /* 후보는 전부 [카테고리, 예시] 쌍이다. 유효하지 않은 쌍은 버리고,
        아직 안 써본 것을 우선하되 다시 굴린 횟수만큼 밀어낸다. */
-    const valid=l=>l.filter(x=>(EXAMPLE_MAP[x[0]]||[]).some(r=>r[0]===x[1]));
+    /* 실재하는 짝인지에 더해 지금 성별에 허락된 것인지도 본다 */
+    const valid=l=>l.filter(x=>CAT_OK(x[0])&&EX_OK(x[0],x[1])&&
+      (EXAMPLE_MAP[x[0]]||[]).some(r=>r[0]===x[1]));
     const choose=(list,slot,fallback)=>{
       let l=valid(list); if(!l.length)l=valid(fallback)||[];
+      /* 되받이마저 걸러져 비면 지금 성별에 허락된 일상에서 아무거나 집는다 */
+      if(!l.length){
+        const c=CATS_OK(['everyday_basic','occupation_basic','active','traditional'])[0];
+        const rows=c?EX_ROWS(c).filter(r=>r[0]&&r[0]!=='__custom__'):[];
+        l=rows.length?[[c,rows[0][0]]]:[];
+      }
       /* 카테고리를 직접 고른 경우: 그 안의 후보만 남기고,
          하나도 없으면 그 카테고리의 예시 목록에서 뽑는다 */
       const forced=catOverride(slot);
       if(forced){
         const inCat=l.filter(x=>x[0]===forced);
-        l=inCat.length?inCat:(EXAMPLE_MAP[forced]||[])
+        l=inCat.length?inCat:EX_ROWS(forced)
           .filter(r=>r[0]&&r[0]!=='__custom__').map(r=>[forced,r[0]]);
         if(!l.length)return {cat:forced,ex:'',note:' · 이 카테고리엔 예시가 없다',n:0,forced:1};
       }
-      if(!l.length)return {cat:fallback[0][0],ex:'',note:'',n:0};
+      if(!l.length)return {cat:(CATS_OK([fallback[0][0]])[0]||CAT_ROWS()[0][0]),ex:'',note:'',n:0};
       const freshEx=l.filter(x=>!usedEx[x[0]+'|'+x[1]]);
       const freshCat=freshEx.filter(x=>!usedCat[x[0]]);
       const pool=freshCat.length?freshCat:(freshEx.length?freshEx:l);
