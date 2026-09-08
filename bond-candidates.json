@@ -144,30 +144,30 @@
   },
   {
    "series": "0079",
-   "official_mech": "자쿠II",
+   "official_mech": "자쿠Ⅱ",
    "official_pilot": "데님",
-   "mech": "자쿠II",
+   "mech": "자쿠Ⅱ",
    "pilot": null
   },
   {
    "series": "0079",
-   "official_mech": "자쿠II",
+   "official_mech": "자쿠Ⅱ",
    "official_pilot": "진",
-   "mech": "자쿠II",
+   "mech": "자쿠Ⅱ",
    "pilot": null
   },
   {
    "series": "0079",
-   "official_mech": "자쿠II",
+   "official_mech": "자쿠Ⅱ",
    "official_pilot": "크라운",
-   "mech": "자쿠II",
+   "mech": "자쿠Ⅱ",
    "pilot": null
   },
   {
    "series": "0079",
-   "official_mech": "자쿠II",
+   "official_mech": "자쿠Ⅱ",
    "official_pilot": "코즌 그레이엄",
-   "mech": "자쿠II",
+   "mech": "자쿠Ⅱ",
    "pilot": null
   },
   {
@@ -193,9 +193,9 @@
   },
   {
    "series": "0083",
-   "official_mech": "짐 캐논II",
+   "official_mech": "짐 캐논Ⅱ",
    "official_pilot": "챕 아델",
-   "mech": "짐 캐논II",
+   "mech": "짐 캐논Ⅱ",
    "pilot": null
   },
   {
@@ -684,11 +684,11 @@
   },
   {
    "series": "00",
-   "official_mech": "건담 엑시아 리페어II",
+   "official_mech": "건담 엑시아 리페어Ⅱ",
    "official_pilot": "세츠나 F 세이에이",
-   "mech": "건담 엑시아 리페어II",
+   "mech": "건담 엑시아 리페어Ⅱ",
    "pilot": "세츠나 F. 세이에이",
-   "key": "세츠나 F. 세이에이|건담 엑시아 리페어II",
+   "key": "세츠나 F. 세이에이|건담 엑시아 리페어Ⅱ",
    "weight": 0.15
   },
   {
@@ -882,11 +882,11 @@
   },
   {
    "series": "0079",
-   "official_mech": "자쿠II",
+   "official_mech": "자쿠Ⅱ",
    "official_pilot": "쿠쿠루스 도안",
-   "mech": "자쿠II",
+   "mech": "자쿠Ⅱ",
    "pilot": "쿠쿠루스 도안",
-   "key": "쿠쿠루스 도안|자쿠II",
+   "key": "쿠쿠루스 도안|자쿠Ⅱ",
    "weight": 0.2
   },
   {
@@ -918,11 +918,11 @@
   },
   {
    "series": "0080",
-   "official_mech": "자쿠II 개량형",
+   "official_mech": "자쿠Ⅱ 개량형",
    "official_pilot": "버나드 와이즈먼",
-   "mech": "자쿠II 개량형",
+   "mech": "자쿠Ⅱ 개량형",
    "pilot": "버나드 와이즈먼",
-   "key": "버나드 와이즈먼|자쿠II 개량형",
+   "key": "버나드 와이즈먼|자쿠Ⅱ 개량형",
    "weight": 0.2
   },
   {
@@ -1044,11 +1044,11 @@
   },
   {
    "series": "0083",
-   "official_mech": "릭 돔II",
+   "official_mech": "릭 돔Ⅱ",
    "official_pilot": "카리우스",
-   "mech": "릭 돔II",
+   "mech": "릭 돔Ⅱ",
    "pilot": "카리우스",
-   "key": "카리우스|릭 돔II",
+   "key": "카리우스|릭 돔Ⅱ",
    "weight": 0.2
   },
   {
@@ -1062,20 +1062,20 @@
   },
   {
    "series": "0083",
-   "official_mech": "자쿠II F2형",
+   "official_mech": "자쿠Ⅱ F2형",
    "official_pilot": "노이엔 비터",
-   "mech": "자쿠II F2형",
+   "mech": "자쿠Ⅱ F2형",
    "pilot": "노이엔 비터",
-   "key": "노이엔 비터|자쿠II F2형",
+   "key": "노이엔 비터|자쿠Ⅱ F2형",
    "weight": 0.18
   },
   {
    "series": "0083",
-   "official_mech": "짐 캐논II",
+   "official_mech": "짐 캐논Ⅱ",
    "official_pilot": "척 키스",
-   "mech": "짐 캐논II",
+   "mech": "짐 캐논Ⅱ",
    "pilot": "척 키스",
-   "key": "척 키스|짐 캐논II",
+   "key": "척 키스|짐 캐논Ⅱ",
    "weight": 0.18
   },
   {
@@ -1197,29 +1197,29 @@
   },
   {
    "series": "08MS",
-   "official_mech": "압사라스II",
+   "official_mech": "압사라스Ⅱ",
    "official_pilot": "아이나 사할린",
-   "mech": "압사라스II",
+   "mech": "압사라스Ⅱ",
    "pilot": "아이나 사할린",
-   "key": "아이나 사할린|압사라스II",
+   "key": "아이나 사할린|압사라스Ⅱ",
    "weight": 0.18
   },
   {
    "series": "08MS",
    "official_mech": "압사라스III",
    "official_pilot": "아이나 사할린",
-   "mech": "아프사라스 III",
+   "mech": "압사라스Ⅲ",
    "pilot": "아이나 사할린",
-   "key": "아이나 사할린|아프사라스 III",
+   "key": "아이나 사할린|압사라스Ⅲ",
    "weight": 0.2
   },
   {
    "series": "08MS",
    "official_mech": "압사라스III",
    "official_pilot": "기니어스 사할린",
-   "mech": "아프사라스 III",
+   "mech": "압사라스Ⅲ",
    "pilot": "기니어스 사할린",
-   "key": "기니어스 사할린|아프사라스 III",
+   "key": "기니어스 사할린|압사라스Ⅲ",
    "weight": 0.18
   },
   {
@@ -1865,54 +1865,54 @@
    "series": "Z",
    "official_mech": "건담 Mk-Ⅱ 에우고 사양",
    "official_pilot": "카미유 비단",
-   "mech": "건담 Mk-II",
+   "mech": "건담 Mk-Ⅱ",
    "pilot": "카미유",
-   "key": "카미유|건담 Mk-II",
+   "key": "카미유|건담 Mk-Ⅱ",
    "weight": 0.18
   },
   {
    "series": "Z",
    "official_mech": "건담 Mk-Ⅱ 에우고 사양",
    "official_pilot": "에마 신",
-   "mech": "건담 Mk-II",
+   "mech": "건담 Mk-Ⅱ",
    "pilot": "에마 신",
-   "key": "에마 신|건담 Mk-II",
+   "key": "에마 신|건담 Mk-Ⅱ",
    "weight": 0.2
   },
   {
    "series": "Z",
    "official_mech": "건담 Mk-Ⅱ 티탄즈 사양",
    "official_pilot": "카미유 비단",
-   "mech": "건담 Mk-II 티탄즈사양",
+   "mech": "건담 Mk-Ⅱ 티탄즈사양",
    "pilot": "카미유",
-   "key": "카미유|건담 Mk-II 티탄즈사양",
+   "key": "카미유|건담 Mk-Ⅱ 티탄즈사양",
    "weight": 0.15
   },
   {
    "series": "Z",
    "official_mech": "건담 Mk-Ⅱ 티탄즈 사양",
    "official_pilot": "에마 신",
-   "mech": "건담 Mk-II 티탄즈사양",
+   "mech": "건담 Mk-Ⅱ 티탄즈사양",
    "pilot": "에마 신",
-   "key": "에마 신|건담 Mk-II 티탄즈사양",
+   "key": "에마 신|건담 Mk-Ⅱ 티탄즈사양",
    "weight": 0.18
   },
   {
    "series": "Z",
    "official_mech": "건담 Mk-Ⅱ 티탄즈 사양",
    "official_pilot": "카크리콘 카클러",
-   "mech": "건담 Mk-II 티탄즈사양",
+   "mech": "건담 Mk-Ⅱ 티탄즈사양",
    "pilot": "카크리콘 카클러",
-   "key": "카크리콘 카클러|건담 Mk-II 티탄즈사양",
+   "key": "카크리콘 카클러|건담 Mk-Ⅱ 티탄즈사양",
    "weight": 0.12
   },
   {
    "series": "Z",
    "official_mech": "건담 Mk-Ⅱ 티탄즈 사양",
    "official_pilot": "제리드 메사",
-   "mech": "건담 Mk-II 티탄즈사양",
+   "mech": "건담 Mk-Ⅱ 티탄즈사양",
    "pilot": "제리드 메사",
-   "key": "제리드 메사|건담 Mk-II 티탄즈사양",
+   "key": "제리드 메사|건담 Mk-Ⅱ 티탄즈사양",
    "weight": 0.12
   },
   {
@@ -2061,11 +2061,11 @@
   },
   {
    "series": "Z",
-   "official_mech": "사이코 건담 Mk-II",
+   "official_mech": "사이코 건담 Mk-Ⅱ",
    "official_pilot": "로자미아 바담",
-   "mech": "사이코 건담 Mk-II",
+   "mech": "사이코 건담 Mk-Ⅱ",
    "pilot": "로자미아",
-   "key": "로자미아|사이코 건담 Mk-II",
+   "key": "로자미아|사이코 건담 Mk-Ⅱ",
    "weight": 0.2
   },
   {
@@ -2153,18 +2153,18 @@
    "series": "ZZ",
    "official_mech": "건담 Mk-Ⅱ",
    "official_pilot": "엘 비안노",
-   "mech": "건담 Mk-II",
+   "mech": "건담 Mk-Ⅱ",
    "pilot": "엘 비안노",
-   "key": "엘 비안노|건담 Mk-II",
+   "key": "엘 비안노|건담 Mk-Ⅱ",
    "weight": 0.15
   },
   {
    "series": "ZZ",
    "official_mech": "건담 Mk-Ⅱ",
    "official_pilot": "몬도 아가케",
-   "mech": "건담 Mk-II",
+   "mech": "건담 Mk-Ⅱ",
    "pilot": "몬도 아가케",
-   "key": "몬도 아가케|건담 Mk-II",
+   "key": "몬도 아가케|건담 Mk-Ⅱ",
    "weight": 0.15
   },
   {
@@ -2207,18 +2207,18 @@
    "series": "ZZ",
    "official_mech": "자쿠Ⅲ",
    "official_pilot": "라칸 다카란",
-   "mech": "자쿠 III",
+   "mech": "자쿠Ⅲ",
    "pilot": "라칸 다카란",
-   "key": "라칸 다카란|자쿠 III",
+   "key": "라칸 다카란|자쿠Ⅲ",
    "weight": 0.15
   },
   {
    "series": "ZZ",
    "official_mech": "자쿠Ⅲ 개량형",
    "official_pilot": "마슈마 세로",
-   "mech": "자쿠III 개량형",
+   "mech": "자쿠Ⅲ 개량형",
    "pilot": "마슈마 세로",
-   "key": "마슈마 세로|자쿠III 개량형",
+   "key": "마슈마 세로|자쿠Ⅲ 개량형",
    "weight": 0.15
   },
   {
@@ -2243,9 +2243,9 @@
    "series": "ZZ",
    "official_mech": "큐베레이 Mk-Ⅱ",
    "official_pilot": "엘피 플",
-   "mech": "큐베레이 Mk-II 플기",
+   "mech": "큐베레이 Mk-Ⅱ 플기",
    "pilot": "엘피 플",
-   "key": "엘피 플|큐베레이 Mk-II 플기",
+   "key": "엘피 플|큐베레이 Mk-Ⅱ 플기",
    "weight": 0.2
   },
   {
@@ -2272,16 +2272,16 @@
    "series": "ZZ",
    "official_mech": "큐베레이 Mk-Ⅱ",
    "official_pilot": "플 투",
-   "mech": "큐베레이 Mk-II 플기",
+   "mech": "큐베레이 Mk-Ⅱ 플기",
    "pilot": "플 투",
-   "key": "플 투|큐베레이 Mk-II 플기",
+   "key": "플 투|큐베레이 Mk-Ⅱ 플기",
    "reason": "공식은 큐베레이 Mk-Ⅱ 를 한 항목으로 싣고 엘피 플과 플 투를 함께 적는데, 저장소는 플기·플투기 두 장으로 나눠 두었다. 플기는 엘피 플의 기체이고 두 짝 모두 이미 BOND 에 .20 으로 있다."
   }
  ],
  "multi_mech_pilots": {
   "세츠나 F. 세이에이": [
    "건담 엑시아 리페어",
-   "건담 엑시아 리페어II"
+   "건담 엑시아 리페어Ⅱ"
   ],
   "마 쿠베": [
    "걍",
@@ -2344,8 +2344,8 @@
   ],
   "아이나 사할린": [
    "고기동 시작형 자쿠",
-   "아프사라스 III",
-   "압사라스II"
+   "압사라스Ⅲ",
+   "압사라스Ⅱ"
   ],
   "플리트 아스노": [
    "건담 AGE-1 그랜서",
@@ -2402,13 +2402,13 @@
   ],
   "카미유": [
    "Z건담",
-   "건담 Mk-II",
-   "건담 Mk-II 티탄즈사양"
+   "건담 Mk-Ⅱ",
+   "건담 Mk-Ⅱ 티탄즈사양"
   ],
   "제리드 메사": [
    "가르발디β",
    "가브스레이",
-   "건담 Mk-II 티탄즈사양",
+   "건담 Mk-Ⅱ 티탄즈사양",
    "마라사이",
    "바운드 독",
    "바이아란",
@@ -2420,14 +2420,14 @@
   ],
   "로자미아": [
    "갸프랑",
-   "사이코 건담 Mk-II"
+   "사이코 건담 Mk-Ⅱ"
   ],
   "에마 신": [
-   "건담 Mk-II",
-   "건담 Mk-II 티탄즈사양"
+   "건담 Mk-Ⅱ",
+   "건담 Mk-Ⅱ 티탄즈사양"
   ],
   "카크리콘 카클러": [
-   "건담 Mk-II 티탄즈사양",
+   "건담 Mk-Ⅱ 티탄즈사양",
    "마라사이",
    "하이잭"
   ],
@@ -2446,14 +2446,14 @@
   ],
   "마슈마 세로": [
    "갈루스J",
-   "자쿠III 개량형",
+   "자쿠Ⅲ 개량형",
    "즈사",
    "함마 함마"
   ],
   "라칸 다카란": [
    "도벤 울프",
    "드라이센",
-   "자쿠 III"
+   "자쿠Ⅲ"
   ]
  }
 }

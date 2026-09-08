@@ -153,6 +153,18 @@ def dup_names():
     return {k: v for k, v in fold.items() if len(set(v)) > 1}, same
 
 
+def missing_art():
+    """img.json 이 가리키는데 저장소에 없는 그림 파일.
+
+    이름을 고치면 카드·인연·그림 파일이 함께 움직여야 하는데, 한 군데만
+    빠뜨려도 아무 소리 없이 초상만 안 뜬다. 판이 도는 데는 지장이 없으니
+    더 안 보인다. 그래서 여기서 센다."""
+    import re
+    s = open(path("img"), encoding="utf-8").read()
+    return sorted({n for n in re.findall(r'"([^"]+\.webp)"', s)
+                   if not os.path.exists(n)})
+
+
 def shared_gge():
     """{(카드 이름들): [겹치는 id…]} — 서로 다른 카드가 같은 공식 유닛에 붙은 것.
 

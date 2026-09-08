@@ -354,6 +354,13 @@ def main():
     for n, k, was, now in moved[:20] if a.report else []:
         print("     %-28s %-6s %s → %s" % (n, k, was, now))
 
+    gone = roster.missing_art()
+    if gone:
+        print("  ※ img.json 이 가리키는데 없는 그림 %d개 —"
+              " 이름을 고치면서 한쪽만 옮긴 자리다" % len(gone))
+        for n in gone[:10]:
+            print("       " + n)
+
     shared = roster.shared_gge()
     if shared:
         print("  ※ 한 공식 유닛에 카드가 둘 이상 붙었다 %d 묶음 —"
