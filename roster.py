@@ -12,6 +12,8 @@
 """
 import json
 import os
+import re
+import unicodedata
 
 DIR = "data"
 KINDS = ["mech", "pilot", "ship", "crew"]
@@ -121,10 +123,46 @@ def put_cards(kind, cs):
     write(kind, d)
 
 
+def _fold(n):
+    """같은 기체를 다르게 적은 것을 한 꼴로 모은다.
+
+    "오 건담" 과 "0건담" 이 나란히 실려 있던 적이 있다. 사이띄개가 있고 없고,
+    영문 O 와 숫자 0, 로마숫자와 아라비아숫자 — 눈으로는 다른 이름이라
+    아무도 못 보고 지나쳤다. 그래서 비교하기 전에 이만큼을 접어 둔다."""
+    s = unicodedata.normalize("NFKC", n).lower()
+    s = re.sub(r"[\s·・\-–—_.]", "", s)
+    s = s.replace("0", "o").replace("오", "o")
+    for a, b in (("iii", "3"), ("ii", "2"), ("ⅲ", "3"), ("ⅱ", "2"), ("ⅰ", "1")):
+        s = s.replace(a, b)
+    return s
+
+
+def dup_names():
+    """({접은꼴: [이름…]} 겹치는 것만, 똑같은 이름이 두 번 실린 것)
+
+    앞의 것은 사람이 볼 몫이다 — 정말 같은 기체일 수도 있고, 아라비아숫자만
+    다른 별개의 기체일 수도 있다. 뒤의 것은 그냥 잘못이다."""
+    seen, fold, same = set(), {}, []
+    for k in KINDS:
+        for c in cards(k):
+            n = c["name"]
+            if n in seen:
+                same.append(n)
+            seen.add(n)
+            fold.setdefault(_fold(n), []).append(n)
+    return {k: v for k, v in fold.items() if len(set(v)) > 1}, same
+
+
 def index():
-    """이름 → (종류, 레코드). 이름은 네 종류를 통틀어 유일하다."""
+    """이름 → (종류, 레코드). 이름은 네 종류를 통틀어 유일하다.
+
+    유일하다고 적어 놓고 조용히 덮어쓰고 있었다. 이제는 걸리면 선다."""
     out = {}
     for k in KINDS:
         for c in cards(k):
+            if c["name"] in out:
+                raise ValueError(
+                    "이름이 겹친다 — %s (%s · %s). data/ 에서 한쪽을 지워라"
+                    % (c["name"], out[c["name"]][0], k))
             out[c["name"]] = (k, c)
     return out

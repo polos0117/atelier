@@ -354,6 +354,15 @@ def main():
     for n, k, was, now in moved[:20] if a.report else []:
         print("     %-28s %-6s %s → %s" % (n, k, was, now))
 
+    fold, same = roster.dup_names()
+    if same:
+        print("  ※ 똑같은 이름이 두 번 실렸다 — " + " · ".join(same))
+    if fold:
+        print("  ※ 사이띄개·영문 O·로마숫자만 다른 이름 %d 쌍 — 같은 기체인지 보라"
+              % len(fold))
+        for v in fold.values():
+            print("       " + " ⟷ ".join(sorted(set(v))))
+
     o_add, o_drop = sync_series_order()
     if o_add or o_drop:
         print("  시리즈 차례 — 더함 %s · 뺌 %s" % (o_add or "없음", o_drop or "없음"))
