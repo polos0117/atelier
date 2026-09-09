@@ -441,10 +441,60 @@ body{
 h3{font-family:var(--disp);font-weight:900;font-size:12px;letter-spacing:.1em;color:var(--dim);
   margin:16px 0 7px;padding-bottom:5px;border-bottom:1px solid var(--line)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* Mobile workspace navigation — stays in document flow. */
+.workspace-nav{display:flex;gap:6px;margin:0 0 12px;align-items:center;flex-wrap:wrap}
+.workspace-nav a{flex:1;min-height:44px;display:flex;align-items:center;justify-content:center;border:1px solid currentColor;border-radius:10px;text-decoration:none;color:inherit;font:600 13px/1.3 system-ui;opacity:.7}
+.workspace-nav a[aria-current="page"]{opacity:1;background:rgba(125,160,205,.15)}
+button,a,input,select,textarea,summary{touch-action:manipulation}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid #79acfa;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation:none!important;transition:none!important}}
+
+body{--dim:#9BA8BC}
+.wrap{max-width:1100px;padding-bottom:calc(98px + env(safe-area-inset-bottom))}
+.top{align-items:center;flex-wrap:wrap}
+.gauge{max-width:100%;flex-wrap:wrap;height:auto;min-height:22px}
+.gauge i{flex-shrink:1}
+.rd{position:sticky;top:0;z-index:10;background:var(--void);padding:10px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.rd>div:first-child{flex-basis:50%}
+.dexbtn,.xbtn,.obtn,.tab,.btn,.jb,.selser{min-height:44px}
+.dexbtn,.xbtn,.jb{min-width:44px}
+.dexbtn{font-size:12px}
+.optrow{flex-wrap:wrap;gap:8px;padding:12px 0}
+.optlab{flex-basis:100%}
+.optlab span{font:12px/1.5 var(--body)}
+.optbtns{flex:1;flex-wrap:wrap}
+.optbtns .obtn{flex:1;padding:8px;font-size:13px}
+.setupbox{border-radius:12px}
+.card{border-radius:10px}
+.pack{gap:8px;grid-template-columns:repeat(3,minmax(0,1fr))}
+body.large-cards .pack{grid-template-columns:repeat(2,minmax(0,1fr))}
+.play-tools{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:8px 0 12px;color:var(--dim);font-size:12px}
+.play-tools button{background:var(--hull);color:var(--lume);border:1px solid var(--line);border-radius:8px;min-height:44px;padding:8px 12px;font:600 13px var(--body)}
+.play-nav{position:fixed;z-index:15;bottom:0;left:0;right:0;display:flex;gap:6px;background:var(--hull);border-top:1px solid var(--line);padding:8px max(12px,env(safe-area-inset-left)) calc(8px + env(safe-area-inset-bottom))}
+.play-nav button{flex:1;min-height:44px;border:1px solid var(--line);border-radius:10px;background:var(--plate);color:var(--lume);font:600 13px var(--body);cursor:pointer}
+.play-nav button:disabled{opacity:.35;cursor:default}
+.jump{display:none}
+#packArea,#dockArea,#boardArea,#endArea{min-width:0;scroll-margin-top:95px}
+.ovlh{position:sticky;top:0;background:var(--void);z-index:4;padding:8px 0}
+@media(max-width:599px){.wrap{max-width:560px}.tt{font-size:21px}.tabs{grid-template-columns:repeat(3,minmax(0,1fr))}.dexg{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:600px){
+ .optrow{flex-wrap:nowrap}.optlab{flex:1}.optbtns{flex:0 1 auto}
+ .battle-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:0 18px;align-items:start}
+ #packArea{grid-column:1;grid-row:1}#dockArea{grid-column:2;grid-row:1}
+ #boardArea,#endArea{grid-column:1/-1}
+ body:not(.battle-active) #packArea{grid-column:1/-1;max-width:760px;width:100%;margin:auto}
+ .pack{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .ovlw{max-width:760px}
+ .dexg{grid-template-columns:repeat(5,minmax(0,1fr))}
+ .play-nav{left:50%;transform:translateX(-50%);max-width:1100px;width:100%}
+}
+
 </style>
 </head>
 <body>
 <div class="wrap">
+<nav class="workspace-nav" aria-label="Atelier 화면 이동"><a href="prompt.html">프롬프트</a><a href="play.html" aria-current="page">드래프트</a><a href="dex.html">도감</a></nav>
   <div class="top">
     <div class="tt"><small>MOBILE SUIT DRAFT</small>기동전사 드래프트</div>
     <div class="gauge" id="gauge"></div>
@@ -459,14 +509,18 @@ h3{font-family:var(--disp);font-weight:900;font-size:12px;letter-spacing:.1em;co
     <div class="turn" id="turn">대기</div>
   </div>
 
+  <div class="play-tools"><span>카드를 편한 크기로 보세요</span><button type="button" id="playCardSize" aria-pressed="false">카드 크게</button></div>
+  <div class="battle-layout">
   <div id="packArea"></div>
   <div id="dockArea"></div>
   <div id="boardArea"></div>
   <div id="endArea"></div>
+  </div>
   <div id="ovlArea"></div>
   <div class="toastwrap" id="toastArea"></div>
 </div>
 
+<nav class="play-nav" aria-label="게임 화면 바로가기"><button type="button" data-jump="packArea">카드</button><button type="button" data-jump="dockArea" disabled>내 편성</button><button type="button" data-jump="boardArea" disabled>전황</button></nav>
 <script>
 "use strict";
 
@@ -2114,6 +2168,7 @@ function renderBoard(){
   a.appendChild(fo);
 }
 function render(){
+  document.body.classList.add("battle-active");
   renderHead();renderPack();renderDock();renderBoard();
   if(round>=SCHEDULE.length){renderResult();return}
   if(turnSeq()[si]!==0&&!busy){busy=true;schedStep()}
@@ -2674,6 +2729,7 @@ document.addEventListener("keydown",function(e){
 
 /* ═══════ 시작 화면 ═══════ */
 function setup(){
+  document.body.classList.remove("battle-active");
   ["packArea","dockArea","boardArea","endArea"].forEach(function(id){
     document.getElementById(id).innerHTML="";});
   document.getElementById("gauge").innerHTML="";
@@ -2774,6 +2830,23 @@ function setup(){
     "<br>교신 기록 "+Object.keys(REC.stamps).length+" · 훈장 "+Object.keys(REC.feats).length+"/"+FEATS.length));
   a.appendChild(box);
 }
+/* Viewing controls never mutate the draft or advance a turn. */
+function setPlayCardSize(large){
+  document.body.classList.toggle('large-cards',large);
+  var b=document.getElementById('playCardSize');
+  b.textContent=large?'카드 기본':'카드 크게';b.setAttribute('aria-pressed',String(large));
+}
+try{setPlayCardSize(localStorage.getItem('atelier_play_large_v1')!=='0')}catch(e){setPlayCardSize(true)}
+document.getElementById('playCardSize').onclick=function(){
+  var large=!document.body.classList.contains('large-cards');setPlayCardSize(large);
+  try{localStorage.setItem('atelier_play_large_v1',large?'1':'0')}catch(e){}
+};
+document.querySelectorAll('[data-jump]').forEach(function(b){
+  var target=document.getElementById(b.dataset.jump);
+  new MutationObserver(function(){b.disabled=!target.children.length}).observe(target,{childList:true});
+  b.onclick=function(){target.scrollIntoView({block:'start'})};
+});
+
 /* ═══════ 부팅 ═══════
    카드를 받아 와야 시작할 수 있다. 예전에는 자료가 이 파일 안에 있어
    읽어 들이는 즉시 setup() 을 불렀지만, 지금은 data/*.json 을 기다린다.
