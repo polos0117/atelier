@@ -362,6 +362,38 @@ body{
 button:focus-visible,.card:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 @media (max-width:340px){.pack{grid-template-columns:1fr}}
+
+/* Compact mobile dashboard: content stays readable and tap targets remain separate. */
+.board{position:sticky;top:0;z-index:9;background:#17130F;min-height:52px;margin-top:8px}
+.hidden-card{min-height:108px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#6b5b45}
+#draftSummary{position:sticky;top:52px;z-index:8;background:#17130F;padding:9px 4px;border-bottom:1px solid var(--line);font-size:11px;font-variant-numeric:tabular-nums}
+.candidate{min-width:0;position:relative;padding-bottom:27px;background:var(--paper2);border-radius:4px}
+.candidate .card{width:100%;height:100%;min-width:0;display:block;box-shadow:none}
+.card-detail{position:absolute;bottom:0;right:0;min-width:50px;height:30px;border:0;background:transparent;color:#493b28;font:500 11px var(--body);cursor:pointer}
+.helpbtn{min-width:40px;min-height:40px}.opt,.dtab{min-height:40px}
+.card:focus-visible,.card-detail:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.card .nm{padding-left:45px;font-size:18px;white-space:normal;overflow:visible;line-height:1.25;min-height:23px}
+.card .nm.ln{font-size:16px}.card .rl{padding-left:45px;letter-spacing:0;font-size:10px}
+.avc{width:38px;height:38px}.card .hint{height:30px;padding-right:38px}.hint .near{display:none}
+.stats{gap:3px}.card .fac{font-size:22px}.decree{margin:12px 0 10px}.decree .msg{font-size:15px}
+body[data-density="compact"] .wrap{padding:10px 10px 28px}
+body[data-density="compact"] .card{padding:8px 7px 7px}
+body[data-density="compact"] .avc{left:7px;top:7px}
+body[data-density="compact"] .rosters{gap:8px;margin-top:12px}
+body[data-density="compact"] .ros{padding:8px}
+body[data-density="compact"] .chip{font-size:10px;padding:3px 5px}
+body[data-density="comfortable"] .card{padding:13px 11px}
+body[data-density="comfortable"] .st b{font-size:13px}
+#detail{z-index:70}#detailBody{font-size:13px;line-height:1.65}#detailBody p{overflow-wrap:anywhere}
+@media(min-width:650px){
+ .wrap{max-width:1180px;display:grid;grid-template-columns:minmax(0,1.8fr) minmax(230px,1fr);gap:0 12px}
+ .top,.board,#draftSummary,.opts,.decree{grid-column:1/-1}
+ .draft-main{grid-column:1;min-width:0}.rosters{grid-column:2;grid-row:6;align-self:start;margin-top:0;max-height:calc(100dvh - 220px);overflow:auto;position:sticky;top:88px}
+ .pack{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(min-width:1000px){.wrap{grid-template-columns:minmax(0,3fr) minmax(240px,1fr)}.pack{grid-template-columns:repeat(4,minmax(0,1fr))}body[data-pack="9"] .pack{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:350px){.card .nm,.card .nm.ln{font-size:14px}.card .nm .tr{margin-right:2px;font-size:9px;width:13px}.pack{gap:6px}}
+
 </style>
 </head>
 <body>
@@ -421,7 +453,7 @@ button:focus-visible,.card:focus-visible{outline:2px solid var(--gold);outline-o
     <div id="bF2" style="display:none"><b id="sF2">0</b><span>敵 二</span></div>
   </div>
 
-  <div class="opts">
+  <div id="draftSummary" role="status"></div><div class="opts">
     <button class="opt on" id="tHint">결의 힌트</button>
     <button class="opt" id="tFog">적진 가리기</button>
     <button class="opt cyc" id="newBtn">新 · 새 대국</button>
@@ -429,14 +461,14 @@ button:focus-visible,.card:focus-visible{outline:2px solid var(--gold);outline-o
 
   <div class="decree">
     <div class="rd" id="rd">第 一 陣</div>
-    <div class="msg" id="msg">여섯 죽간 중 하나를 취하시오</div>
+    <div class="msg" id="msg">후보 죽간 중 하나를 취하시오</div>
     <div class="lorel" id="sub"></div>
   </div>
 
-  <div class="pack" id="pack"></div>
+  <div class="draft-main"><div class="pack" id="pack"></div>
   <button class="reroll" id="reroll">換 · 죽간을 다시 펴다</button>
 
-  <div class="rosters">
+  </div><div class="rosters">
     <div class="ros"><h3>我 軍 <em id="myct">0 / 11</em></h3><div class="chips" id="mine"></div></div>
     <div class="ros"><h3 id="foeTitle">敵 軍 <em id="opct">0 / 11</em></h3><div class="chips" id="foe"></div></div>
     <div class="ros" id="ros2" style="display:none"><h3>敵 二 <em id="opct2">0 / 11</em></h3><div class="chips" id="foe2"></div></div>
@@ -444,6 +476,7 @@ button:focus-visible,.card:focus-visible{outline:2px solid var(--gold);outline-o
   </div>
 </div>
 
+<div class="veil" id="detail" role="dialog" aria-modal="true" aria-label="장수 상세"><div class="res" id="detailBody"></div></div>
 <div id="toast"></div>
 <button class="totop" id="tobot" aria-label="맨 아래로">下</button>
 <button class="totop" id="totop" aria-label="맨 위로">上</button>
@@ -464,9 +497,9 @@ var C=[
 ["유비","촉","군주",78,73,75,80],["관우","촉","무장",95,97,75,62],["장비","촉","무장",88,98,45,30],
 ["조운","촉","무장",91,96,76,65],["마초","촉","무장",85,97,44,25],["황충","촉","무장",87,93,62,50],
 ["제갈량","촉","책사",92,38,100,95],["방통","촉","책사",76,34,97,80],["법정","촉","책사",70,30,92,70],
-["서서","촉","책사",74,60,93,72],["강유","촉","무장",90,89,90,75],["위연","촉","무장",82,91,68,40],
+["서서","촉","책사",74,60,93,72],["강유","촉","무장",90,89,90,75],["위연","촉","무장",86,91,68,40],
 ["마대","촉","무장",76,85,62,50],["관평","촉","무장",76,85,62,58],["장포","촉","무장",72,86,50,40],
-["관흥","촉","무장",73,84,55,48],["왕평","촉","무장",84,78,60,50],["유봉","촉","무장",70,78,52,45],["왕보","촉","문관",50,30,74,70],["조루","촉","무장",62,66,50,48],["요화","촉","무장",70,74,58,50],
+["관흥","촉","무장",73,84,55,48],["왕평","촉","무장",86,78,68,50],["유봉","촉","무장",70,78,52,45],["왕보","촉","문관",50,30,74,70],["조루","촉","무장",62,66,50,48],["요화","촉","무장",70,74,58,50],
 ["엄안","촉","무장",78,80,55,48],["장익","촉","무장",72,74,60,55],["진식","촉","무장",74,80,55,45],["관색","촉","무장",74,86,58,45],["종예","촉","문관",60,45,78,80],["이적","촉","문관",45,30,80,76],["제갈첨","촉","무장",60,60,70,65],["주창","촉","무장",70,84,45,35],
 ["간옹","촉","문관",30,20,72,78],["미부인","촉","문관",42,20,58,66],["감부인","촉","문관",40,18,55,70],["미축","촉","문관",25,15,60,85],["손건","촉","문관",30,22,68,78],
 ["이엄","촉","문관",68,72,76,70],["마량","촉","문관",62,40,87,86],["마속","촉","책사",58,52,88,72],["비의","촉","문관",40,25,85,88],["동윤","촉","문관",35,20,80,85],
@@ -486,7 +519,7 @@ var C=[
 ["육손","오","책사",92,56,95,88],["태사자","오","무장",84,93,66,58],["감녕","오","무장",82,94,62,40],
 ["황개","오","무장",80,83,66,62],["조무","오","무장",55,68,38,30],["정보","오","무장",82,82,70,68],["한당","오","무장",78,80,58,55],
 ["주태","오","무장",76,88,50,45],["서성","오","무장",80,76,66,62],["문호","위","무장",62,74,50,45],["당자","오","무장",70,72,68,60],["정봉","오","무장",82,85,62,55],
-["능통","오","무장",78,85,58,52],["능조","오","무장",70,78,48,42],["장흠","오","무장",74,78,56,50],["육항","오","무장",85,70,88,80],
+["능통","오","무장",78,85,58,52],["능조","오","무장",70,78,48,42],["장흠","오","무장",74,78,56,50],["육항","오","무장",91,70,90,80],
 ["장소","오","문관",30,20,88,95],["고옹","오","문관",35,20,82,92],["제갈근","오","문관",55,30,78,85],
 ["우번","오","문관",45,35,86,52],["감택","오","문관",48,25,82,76],["여범","오","문관",62,55,72,78],["보즐","오","문관",50,30,76,82],["장굉","오","문관",28,15,85,88],["전종","오","무장",78,74,70,68],["손환","오","무장",80,82,64,55],["주방","오","문관",62,40,84,78],["손상향","오","무장",65,80,60,55],["오국태","오","문관",52,22,70,82],["대교","오","문관",15,10,60,62],
 ["소교","오","문관",15,10,60,62],
@@ -499,10 +532,10 @@ var C=[
 ["공융","군웅","문관",25,20,78,70],["원담","군웅","무장",68,72,55,50],["원희","군웅","무장",60,62,48,46],["원상","군웅","무장",72,76,58,52],["봉기","군웅","책사",55,25,78,66],["신평","군웅","책사",50,22,74,70],["전풍","군웅","책사",55,25,94,80],["저수","군웅","책사",70,35,93,82],
 ["심배","군웅","책사",65,40,85,78],["곽도","군웅","책사",50,30,70,60],["안량","군웅","무장",76,92,40,30],
 ["문추","군웅","무장",75,91,38,28],["고람","군웅","무장",70,80,45,40],["장연","군웅","무장",72,78,50,45],
-["화웅","군웅","무장",68,85,35,25],["노식","군웅","무장",76,60,84,80],["황보숭","군웅","무장",84,70,74,68],["주준","군웅","무장",78,68,70,66],["올돌골","군웅","무장",60,92,20,15],["타사대왕","군웅","무장",62,74,52,30],["맹우","군웅","무장",52,60,38,30],["엄여","군웅","무장",50,66,30,28],["맹획","군웅","무장",74,86,40,35],["축융","군웅","무장",60,78,40,35],
+["화웅","군웅","무장",68,85,35,25],["노식","군웅","무장",85,60,84,80],["황보숭","군웅","무장",91,70,74,68],["주준","군웅","무장",84,68,70,66],["올돌골","군웅","무장",60,92,20,15],["타사대왕","군웅","무장",62,74,52,30],["맹우","군웅","무장",52,60,38,30],["엄여","군웅","무장",50,66,30,28],["맹획","군웅","무장",74,86,40,35],["축융","군웅","무장",60,78,40,35],
 ["좌자","군웅","책사",10,20,95,40],["화타","군웅","문관",10,15,90,60],["관녕","군웅","문관",25,15,84,88],["사마휘","군웅","책사",10,15,95,70],
 ["관로","군웅","책사",10,12,90,50],["이유","군웅","책사",55,30,86,74],["이각","군웅","무장",62,78,48,35],["곽사","군웅","무장",60,78,40,30],
-["서영","군웅","무장",70,80,50,40],["왕윤","군웅","문관",30,20,80,78],["황조","군웅","무장",60,62,50,48],["왕광","군웅","무장",62,66,52,50],["장훈","군웅","무장",72,78,52,48],["교유","군웅","책사",50,28,82,70],["양강","군웅","무장",68,80,45,40],["한윤","군웅","문관",40,25,70,78],["기령","군웅","무장",72,84,45,38],["순우경","군웅","무장",68,76,48,40],["호거아","군웅","무장",55,88,30,22],
+["서영","군웅","무장",82,80,50,40],["왕윤","군웅","문관",30,20,80,78],["황조","군웅","무장",60,62,50,48],["왕광","군웅","무장",62,66,52,50],["장훈","군웅","무장",72,78,52,48],["교유","군웅","책사",50,28,82,70],["양강","군웅","무장",68,80,45,40],["한윤","군웅","문관",40,25,70,78],["기령","군웅","무장",72,84,45,38],["순우경","군웅","무장",68,76,48,40],["호거아","군웅","무장",55,88,30,22],
 ["염포","군웅","책사",50,30,80,72],["양송","군웅","문관",30,20,62,40],["장로","군웅","군주",55,40,66,70],
 ["고순","군웅","무장",84,86,55,40],["국의","군웅","무장",80,80,62,45],
 ["진규","군웅","문관",40,25,85,80],["진등","군웅","문관",58,45,90,85],
@@ -528,7 +561,19 @@ var C=[
 ["마충","촉","무장",76,72,68,62],["장억","촉","무장",78,76,70,62],
 ["육개","오","문관",50,30,84,86],["손호","오","군주",52,45,60,30],["주연","오","무장",82,74,70,62],["손등","오","문관",60,40,78,82],["손준","오","무장",68,72,58,42],["손침","오","무장",70,72,60,40],
 ["종요","위","문관",58,28,88,90],["여건","위","무장",78,74,70,66],["제갈탄","위","무장",78,74,76,68],["미방","촉","무장",50,55,52,55],
-["여령기","군웅","무장",66,74,44,38]
+["여령기","군웅","무장",66,74,44,38],
+["진도","촉","무장",82,85,66,54],
+["유파","촉","문관",48,24,86,93],
+["양의","촉","문관",62,32,85,82],
+["동소","위","문관",62,28,88,88],
+["유복","위","문관",72,38,82,88],
+["신비","위","문관",54,30,83,85],
+["낙통","오","문관",70,58,78,83],
+["고담","오","문관",48,25,82,86],
+["장승","오","무장",76,70,78,78],
+["장양","군웅","군주",70,73,58,68],
+["사섭","군웅","군주",58,30,78,90],
+["왕준","위","무장",88,72,83,75]
 ];
 
 var LORE={"추씨":"장제의 미망인으로 완성의 화근이 되었다","화흠":"자리를 갈라 앉은 벗을 뒤로하고 조정에 나아갔다","관녕":"평생 벼슬을 마다하고 흰 모자를 벗지 않았다","여대":"아흔이 넘도록 남방을 다스렸다","하제":"산월을 평정하고 화려한 배를 몰았다","주치":"손씨 삼대를 처음부터 섬긴 옛 신하","우번":"바른 말이 지나쳐 남쪽 끝으로 쫓겨났다","감택":"고기잡이 아들로 태어나 경전을 다 외웠다","여범":"손책의 살림을 맡아 강동을 일으켰다","손등":"어질어 모두가 기대었으나 일찍 죽었다","손준":"제갈각을 베고 조정을 손에 쥐었다","미부인":"아두를 맡기고 우물에 몸을 던졌다","감부인":"난리 속에 아들을 낳아 길렀다","오국태":"감로사에서 유비를 사위로 삼았다","장춘화":"사마씨의 안살림을 쥐고 흔들리지 않았다","왕원희":"종회의 딴마음을 홀로 알아보았다","신헌영":"조카의 종군을 근심하여 살길을 일러주었다","왕이":"기성의 성벽에서 제 손으로 활을 잡았다","견씨":"낙수의 신녀에 비겨진 미색이었다","채옹":"동탁의 죽음에 곡하다 옥에서 죽었다","채문희":"호가 열여덟 박을 남기고 흉노 땅에서 돌아왔다","유우":"백성이 따랐으나 창끝을 들 줄 몰랐다","한현":"장사를 지키다 제 장수의 칼에 스러졌다","왕보":"맥성의 끝을 예견하고도 주공을 떠나지 않았다","조루":"맥성에서 주공과 함께 최후를 맞았다","문호":"아우와 함께 수춘의 성문을 지켰다","이유":"황제를 폐하고 세우는 붓끝이 되었다","장훈":"수춘에서 원술의 병권을 맡았다","교유":"패업을 권했으나 주인 없는 옥새만 남았다","양강":"기령과 나란히 회남을 지킨 장수","한윤":"옥새를 받들고 제위에 손을 빌렸다","관구검":"수춘에서 사마씨에 맞서 첫 횃불을 들었다","당자":"회남을 떠나 오의 장수가 되었다","전예":"북쪽 변경을 지켜 오환이 감히 넘보지 못했다","엄강":"백마의종의 선봉에서 계교의 이슬로 졌다","관정":"역경의 불길에 주공을 따라 뛰어들었다","전해":"청주에서 원소군과 두 해를 맞섰다","공손범":"형을 따라 발해의 병사를 이끌었다","장제":"완성의 기틀을 조카에게 남겼다","번조":"이각의 술자리에서 목이 베였다","장선":"완성에서 조조의 선봉을 맞았다","하후현":"형장에서도 낯빛 하나 바꾸지 않았다","동승":"옷섶에 감춘 조서 한 장에 목숨을 걸었다","염행":"젊은 마초를 창대로 꺾을 뻔했다","조무":"주공의 붉은 두건을 쓰고 대신 죽었다","타사대왕":"독천 네 갈래로 촉군의 길을 막았다","맹우":"형 대신 술잔을 받다 번번이 사로잡혔다","엄여":"형을 따라 오군에서 손책과 맞섰다","손호":"잔학으로 강동의 마지막을 재촉했다","조환":"옥새를 넘기고 진류왕으로 물러났다","유심":"소열묘 앞에서 처자와 함께 목숨을 끊었다","조휴":"석정에서 거짓 항복에 속아 울분으로 죽었다","주연":"이릉 뒤의 강릉을 반년이나 홀로 지켰다","노식":"유비와 공손찬을 가르친 유장(儒將)","황보숭":"광종에서 황건의 불길을 껐다","주준":"완성을 되찾아 황건을 몰아냈다","장패":"청주와 서주를 홀로 눌러 지켰다","올돌골":"등갑군을 이끌고 불길 속에 스러졌다","봉기":"원상을 세워 형제의 칼끝을 갈랐다","신평":"원담의 곁에서 집안의 몰락을 지켰다","원담":"아우와 싸우다 집안을 조조에게 바쳤다","원희":"형과 아우의 틈에서 유주로 밀려났다","원상":"아버지의 편애가 화의 씨앗이 되었다","조창":"수염 누런 아이라 불리며 북방을 평정했다","조식":"일곱 걸음에 시를 지어 목숨을 건졌다","조앙":"완성에서 아버지에게 말을 내어주고 죽었다","유엽":"한실의 핏줄로 위의 지낭이 되었다","유봉":"맥성의 부름을 외면하고 아버지의 눈물 속에 죽었다","나헌":"나라가 망한 뒤에도 영안성을 지켰다","염포":"왕호를 사양하게 하여 화를 면케 했다","양송":"뇌물이 닿는 곳마다 충신을 팔았다","마량":"마씨 다섯 형제 중 흰 눈썹이 으뜸이었다","마속":"가정을 잃고 눈물 속에 목이 베였다","진군":"구품의 사다리로 천하의 관리를 가려 뽑았다","양호":"덕으로 국경을 지켜 적장의 벗이 되었다","두예":"대나무를 쪼개듯 오를 평정하자 하였다","가충":"임금을 시해하고도 천수를 누렸다","가규":"죽어서도 위의 신하이고자 했다","사마염":"삼국의 끝에서 진의 문을 열었다","능조":"가벼운 배로 앞장서다 화살에 스러졌다","허유":"오소의 길을 조조에게 일러주었다","진림":"격문 한 장으로 조조의 두통을 고쳤다","괴량":"난을 다스림에 권모를 앞세우라 하였다","괴월":"형주의 안살림을 도맡은 지낭","채모":"형주 수군을 쥐고 처세를 거듭했다","유기":"계단을 치우고 살 길을 물었다","후성":"적토마를 훔쳐 조조에게 달아났다","송헌":"하비의 끝에서 창을 내려놓았다","위속":"주인을 묶어 성문을 열었다","황권":"항복하고도 세 나라의 예우를 받았다","오의":"누이를 유비의 황후로 보낸 국구","맹달":"세 번 주인을 바꾸다 성 아래서 죽었다","장송":"서천 지도를 소매에 품고 다녔다","장임":"충신은 두 주인을 섬기지 않는다 하였다","문흠":"회남에서 아들과 함께 창을 돌렸다","제갈탄":"회남에서 사마씨에 맞서 일어섰다","진식":"삼국지를 지은 진수의 아버지라 전한다","관색":"형주에서 이름만 전해지는 관우의 아들","손환":"스물다섯에 이릉에서 유비를 막았다","주방":"머리칼을 잘라 조휴를 속였다","기령":"삼첨도를 휘두른 원술의 으뜸 장수","순우경":"오소의 군량과 함께 불탔다","호거아":"완성에서 전위와 맞선 맹장","장굉":"장소와 더불어 강동의 붓을 나눠 쥐었다","종예":"오에 사신으로 가 손권을 설득했다","이적":"말재주로 손권을 무색하게 했다","전종":"오의 병권을 오래 맡은 장수","왕광":"하내에서 군을 일으켜 동탁에 맞섰다","여건":"청주의 병사를 다스려 후방을 굳혔다","진무":"쌍철극을 들고 손권의 곁을 지켰다","동습":"다섯 자루 칼을 걸고 배 위에서 죽었다","반장":"관우를 사로잡은 부대의 장수","고순":"함진영을 이끌어 서면 무너지지 않았다","국의":"선등사구로 백마의종을 깨뜨렸다","진규":"아들과 함께 여포를 속였다","진등":"서주에서 여포의 목을 조였다","포신":"조조를 세우고 황건에 스러졌다","도겸":"서주를 유비에게 넘기고 눈을 감았다","한복":"기주를 그대로 원소에게 내주었다","관해":"황건의 잔당으로 북해를 에워쌌다","장보":"장각의 아우, 지공장군이라 하였다","장량":"인공장군의 깃발을 들었다","우길":"손책의 눈앞에서 사라진 도인","엄백호":"강동의 덕왕이라 스스로 일컬었다","하진":"환관을 치려다 먼저 목이 떨어졌다","장막":"조조의 벗이었다가 등을 돌렸다","순심":"하북의 지모, 형과 길이 갈렸다","유요":"강동을 지키다 손책에게 밀렸다","문앙":"홀로 말을 돌려 수백 기를 물렸다","곽회":"옹주에서 북벌을 번번이 끊었다","진태":"강유를 산 위에 가두었다","사마사":"눈을 앓으면서도 조정을 쥐었다","사마소":"그 마음은 길 가는 사람도 안다","왕기":"회남의 반란을 잠재웠다","하후패":"촉으로 달아나 창끝을 돌렸다","제갈각":"아버지의 이름에 오만이 겹쳤다","주환":"유수에서 조인을 물리쳤다","등지":"오와 다시 손잡게 한 사신","이회":"남중을 다독여 후방을 굳혔다","부첨":"관을 지키다 끝내 물러서지 않았다","마충":"남중에서 촉의 남쪽을 지켰다","장억":"북벌의 선봉에서 팔을 잃고도 섰다","육개":"손호에게 스무 가지를 간하였다","손침":"어린 나이에 조정을 뒤흔들었다","종요":"글씨로도 이름을 남긴 재상","미방":"형과 달리 형주를 등졌다","유비":"돗자리를 팔던 손으로 촉을 열었다","관우":"다섯 관문을 지나 여섯 장수를 베었다","장비":"장판교에서 홀로 조조군을 멈춰 세웠다","조운":"품에 아두를 안고 백만 진중을 돌파했다","마초":"서량의 비단 갑옷, 조조가 수염을 잘랐다","황충":"노년에 정군산에서 하후연을 베었다","제갈량":"초려에서 천하삼분을 그렸다","방통":"연환계를 바치고 낙봉파에서 스러졌다","법정":"한중을 얻게 한 계책의 주인","서서":"어머니의 편지에 붓을 꺾고 떠났다","강유":"제갈량의 뜻을 홀로 아홉 번 이었다","위연":"뒤통수에 반골이 있다 하였다","마대":"서량의 창끝, 끝까지 촉에 남았다","관평":"아버지의 청룡도 곁을 떠나지 않았다","장포":"아비의 장팔사모를 물려받았다","관흥":"관가의 이름을 이릉까지 들고 갔다","왕평":"글은 열 자를 못 읽어도 진은 읽었다","요화":"촉의 처음과 끝을 모두 본 장수","엄안":"목은 벨 수 있어도 항복은 없다 했다","장익":"북벌을 말리면서도 끝까지 따랐다","제갈첨":"면죽에서 아버지의 이름값을 치렀다","주창":"관우의 청룡도를 지고 그림자처럼 따랐다","간옹":"농으로 유비의 마음을 풀어주던 사람","미축":"가산을 털어 유비의 유랑을 먹였다","손건":"발로 뛰며 유비의 말을 전했다","이엄":"탁고의 신하였으나 군량에서 무너졌다","비의":"위연과 양의 사이를 홀로 꿰맸다","동윤":"환관을 눌러 궁을 조용히 지켰다","장완":"제갈량이 남긴 다음 사람","황월영":"추녀로 소문났으나 재주는 남편에 견줬다","유선":"즐거워 촉이 생각나지 않는다 하였다","조조":"치세의 능신이요 난세의 간웅","하후돈":"제 눈알을 삼키고 다시 말을 몰았다","하후연":"사흘에 오백 리를 달리는 장수","조인":"번성을 지켜 관우의 북진을 끊었다","조홍":"천하에 나는 없어도 공은 있어야 한다 했다","장료":"팔백으로 십만을 흔들어 아이 울음을 그치게 했다","서황":"군을 다스림이 주아부 같다 하였다","장합":"진법과 지형을 읽어 촉장들이 꺼렸다","악진":"작은 몸으로 늘 선봉에 섰다","우금":"삼십 년 명성이 물 한 번에 잠겼다","전위":"쌍철극으로 문을 막고 선 채로 죽었다","허저":"웃통을 벗고 마초와 맞붙었다","방덕":"관을 지고 나가 관우와 싸웠다","순욱":"왕좌지재라 불린 조조의 장자방","순유":"열두 가지 기책을 품고도 말이 없었다","곽가":"곽가가 살았다면 적벽은 없었다","가후":"난세를 계산만으로 건넌 사람","정욱":"조조가 위태로울 때마다 곁에 있었다","사마의":"기다림으로 삼국을 모두 삼켰다","등애":"말을 더듬으며 음평의 벼랑을 넘었다","종회":"재주가 넘쳐 제 발에 걸렸다","조비":"붓으로도 형제를 이겼다","조예":"선대의 그늘에서 촉과 오를 막아냈다","만총":"법으로 다스리고 전장에도 섰다","이전":"학문을 좋아해 장수들이 어려워했다","문빙":"형주를 지키다 눈물로 항복했다","학소":"천 명으로 제갈량의 대군을 스무 날 막았다","조진":"조씨 일족의 마지막 기둥","왕랑":"말싸움으로 제갈량에게 지고 말았다","장수":"조조의 아들을 죽이고도 살아남았다","손견":"낙양의 잿더미에서 옥새를 건졌다","손책":"작은 패왕, 강동을 여섯 해에 갈랐다","손권":"형이 남긴 강동을 오십 년 지켰다","주유":"동남풍을 기다리며 적벽에 불을 놓았다","노숙":"촉과 오를 억지로 붙여놓은 사람","여몽":"책을 읽어 사흘 만에 다른 사람이 되었다","육손":"이릉에 불을 놓아 촉의 기세를 끝냈다","태사자":"손책과 맨몸으로 뒤엉켜 싸웠다","감녕":"방울을 달고 백 기로 조조 진영을 헤집었다","황개":"제 등을 내주고 적벽의 불씨를 만들었다","정보":"손씨 삼대를 모두 모신 노장","한당":"강동의 활, 세 주군의 진중에 있었다","주태":"손권을 구하느라 몸이 상처로 덮였다","서성":"갈대로 성을 세워 위군을 물렸다","정봉":"눈밭에서 갑옷을 벗고 돌격했다","능통":"아비의 원수와 한 진영에서 싸웠다","장흠":"가난한 시절부터 손책을 따랐다","육항":"아버지의 이름을 지킨 오의 마지막 기둥","장소":"직언으로 손권을 자주 화나게 했다","고옹":"말 없이 오의 정사를 스무 해 맡았다","제갈근":"동생과 각기 다른 나라를 섬겼다","보즐":"남쪽 끝까지 오의 이름을 넓혔다","손상향":"시녀에게도 칼을 채운 신부","대교":"손책의 곁, 강동의 봄","소교":"주유의 곁, 강동의 봄","여포":"사람 중에 여포요 말 중에 적토라","동탁":"낙양을 불태우고 스스로 무너졌다","원소":"사대에 걸쳐 삼공을 낸 집안의 주인","원술":"옥새 하나에 눈이 멀어 황제를 칭했다","공손찬":"흰 말을 몰아 북방을 눌렀다","유표":"형주를 지켰으나 나아가지 않았다","유장":"제 손으로 늑대를 집에 들였다","마등":"서량의 뿌리, 도성에서 목숨을 잃었다","한수":"마등과 형제였다가 원수가 되었다","장각":"누런 두건으로 천하를 흔들었다","초선":"미인계로 두 사내를 갈라놓았다","진궁":"조조를 살렸다가 조조를 등졌다","공융":"네 살에 배를 양보한 아이","전풍":"옳은 말을 하고 옥에서 죽었다","저수":"관도의 패배를 미리 다 보았다","심배":"업성을 지키다 북쪽을 보고 죽었다","곽도":"말로 제 진영을 갈라놓았다","안량":"관우의 첫 칼에 쓰러진 하북의 명장","문추":"안량의 원수를 갚으러 갔다가 뒤따랐다","고람":"관도에서 진영을 바꿔 살아남았다","장연":"흑산의 무리를 이끌고 산을 다스렸다","화웅":"술이 식기 전에 목이 떨어졌다","맹획":"일곱 번 잡히고 일곱 번 풀려났다","축융":"비도를 던지는 남만의 여왕","좌자":"술잔 속으로 사라진 방사","화타":"머리를 열자 하였다가 옥에 갇혔다","사마휘":"와룡과 봉추의 이름을 알려준 사람","관로":"점괘로 사람의 명을 읽었다","이각":"장안을 쥐고 황제를 끌고 다녔다","곽사":"이각과 다투다 도성을 망쳤다","서영":"조조와 손견을 모두 이겨본 장수","왕윤":"동탁을 무너뜨리고 자신도 무너졌다","황조":"손견을 잡고 손권에게 잡혔다","장로":"오두미도로 한중을 삼십 년 다스렸다","여령기":"아비의 창을 이어받아 하비의 성벽에 섰다"};
@@ -613,8 +658,28 @@ function facsOf(c){
 function facOf(c){var a=facsOf(c);return a[a.length-1]}
 function roleOf(c){return (PACK2&&PACK2.roleMap&&PACK2.roleMap[c[0]])||c[2]}
 function facInfo(f){return (PACK2&&PACK2.factions[f])||FAC[f]||{h:f.charAt(0),c:"var(--f-etc)"}}
+/* 2026-09: new officers use text seals until a portrait is supplied. */
+Object.assign(LORE,{
+ "진도":"유비를 따르며 정예 병사를 이끈 숙장","유파":"촉의 재정과 법제를 다듬은 실무가",
+ "양의":"북벌의 군무를 정리하였으나 동료와 화합하지 못했다","동소":"여러 진영을 거쳐 조조의 조정을 도왔다",
+ "유복":"회남의 행정과 방비를 다진 관리","신비":"곧은 간언으로 조정을 섬겼다",
+ "낙통":"백성의 어려움을 헤아려 간언한 오의 신하","고담":"고옹의 뒤를 이어 조정에서 재능을 보였다",
+ "장승":"장소의 아들로 문무를 함께 닦았다","장양":"하내에 터를 잡고 군웅 사이에서 뜻을 폈다",
+ "사섭":"교주를 오래 다스린 지방의 군주","왕준":"수군을 이끌고 오 정벌에 나섰다"
+});
+Object.assign(PACKS.gd200.facMap,{"동소":"조조군","유복":"조조군","신비":"원소군"});
+Object.assign(PACKS.jb208.facMap,{"동소":"조조군","신비":"조조군"});
+Object.assign(PACKS.end263.facMap,{"왕준":"진군"});
+Object.assign(PACKS.mx.career,{
+ "진도":["촉한"],"유파":["유장","촉한"],"양의":["조위","촉한"],
+ "동소":["원소","장양","조위"],"유복":["조위"],"신비":["원소","조위"],
+ "낙통":["동오"],"고담":["동오"],"장승":["동오"],"장양":["장양"],
+ "사섭":["교주"],"왕준":["조위","진"]
+});
+Object.assign(PACKS.mx.factions,{"장양":{h:"楊",c:"#8A7653"},"교주":{h:"交",c:"#4D887F"}});
+
 var LORD_MIN=2, LORD_MAX=14;
-var WT={"군주":[.9,.4,.9,.9],"무장":[1,1.2,.4,.2],"책사":[.6,.2,1.3,.7],"문관":[.3,.1,.9,1.2]};
+var WT={"군주":[.9,.4,.9,.9],"무장":[1,1.2,.4,.2],"책사":[.6,.2,1.3,.7],"문관":[.3,.1,1,1.3]};
 
 /* ───────── 결의 · 불화 ───────── */
 var COMBO=[
@@ -859,9 +924,36 @@ var COMBO=[
  {n:"불화 · 원가의 형제",m:["원소","원술"],t:{2:-45}},
  {n:"불화 · 제갈량과 위연",m:["제갈량","위연"],t:{2:-30}}
 ];
+COMBO.push(
+ {n:"백이의 숙위",m:["진도","조운"],t:{2:40}},
+ {n:"촉의 군정",m:["유파","양의","이엄"],t:{2:35,3:85}},
+ {n:"북벌의 군무",m:["양의","장완","비의"],t:{2:35,3:80}},
+ {n:"불화 · 양의와 위연",m:["양의","위연"],t:{2:-40}},
+ {n:"회남의 경영",m:["유복","만총","여건"],t:{2:35,3:80}},
+ {n:"위정의 간언",m:["동소","신비","진군"],t:{2:35,3:80}},
+ {n:"신씨 부녀",k:1,m:["신비","신헌영"],t:{2:40}},
+ {n:"강동의 간언",m:["낙통","우번","육개"],t:{2:35,3:80}},
+ {n:"고씨 부자",k:1,m:["고옹","고담"],t:{2:40}},
+ {n:"장씨의 문무",k:1,m:["장소","장승"],t:{2:40}},
+ {n:"하내의 옛 인연",m:["장양","동소","여포"],t:{2:35,3:75}},
+ {n:"교주의 귀부",m:["사섭","보즐"],t:{2:35}},
+ {n:"누선의 남정",m:["왕준","두예","양호"],t:{2:40,3:90}}
+);
 var SYN={2:22,3:68,4:122,5:180,6:238,7:295,8:355,9:410,10:460,11:505};   // 3~6인 구간을 올려 작은 무리도 값어치를 갖게 하되, 큰 세력은 그대로 두었다
 var ETC_BASE=.4, ETC={4:.75,6:1};   // 군웅은 기본 40%, 넷 이상 모이면 할거로 계수가 오른다
-var ROUNDS=11, PACK=6;
+var ROUNDS=11, PACK=8;
+var PACK_OPT=0, FAST=false, DENSITY="compact", recentShown={}, roundExcluded=[], gameTimers=[], setupBefore=null;
+function packSize(){return SCN>0?6:(PACK_OPT|| (PLAYERS===3?9:8))}
+function syncLayout(){document.body.dataset.density=DENSITY;document.body.dataset.pack=PACK;}
+function later(fn,ms){
+ var id=setTimeout(function run(){
+   gameTimers=gameTimers.filter(function(t){return t!==id});
+   if($("setup").classList.contains("on")||$("detail").classList.contains("on")){id=setTimeout(run,100);gameTimers.push(id);return}
+   fn();
+ },FAST?Math.min(ms,120):ms);gameTimers.push(id);return id;
+}
+function stopTimers(){gameTimers.forEach(clearTimeout);gameTimers=[]}
+
 
 /* ───────── 상태 ───────── */
 var pool,mine,foe,foe2,round,busy,rerolls,packArr,myTurn,turnQ=[];
@@ -1003,12 +1095,15 @@ function renderSaveBox(){
    예전에는 설정을 아예 안 남겨서 판을 새로 짤 때마다 열셋을 다시 골라야 했다 */
 var CFG_KEY="samgukji_draft_cfg_v1";
 function cfgSnap(){
-  return {mode:MODE,era:ERA,lv:AI_LV,pl:PLAYERS,st:AI_ST,st2:AI_ST2,
+  return {cards:PACK_OPT,fast:FAST,density:DENSITY,mode:MODE,era:ERA,lv:AI_LV,pl:PLAYERS,st:AI_ST,st2:AI_ST2,
           rule:ruleOn,ex:exhaustOn,fo:firstOrd,rr:REROLLS,ban:banOn,scn:SCN,
           pk:(function(){var k;for(k in PACKS)if(PACKS[k]===PACK2)return k;return null})()};
 }
 function cfgApply(c){
   if(!c)return;
+  if([0,6,8,9].indexOf(c.cards)>=0)PACK_OPT=c.cards;
+  if(typeof c.fast==="boolean")FAST=c.fast;
+  if(c.density==="compact"||c.density==="comfortable")DENSITY=c.density;
   var num=function(v,max){return typeof v==="number"&&v>=0&&v<max?v:null};
   var x;
   if((x=num(c.mode,2))!==null)MODE=x;
@@ -1193,7 +1288,7 @@ function threatScore(c,opp){
 }
 var MODE=0, MODE_NAME=["무작위 팩","티어 드래프트"];
 var TIER_NAME=["天","上","中","下"], TIER_CUT=[.12,.34,.66,1];
-var TIER_SCHEDULE=[0,0,1,1,1,1,2,2,2,3,3];
+var TIER_SCHEDULE=[0,1,1,1,2,0,1,2,2,3,3];
 var tierMap={};
 function buildTiers(list){
   tierMap={};
@@ -1205,21 +1300,8 @@ function buildTiers(list){
   }
 }
 function tierOf(c){return tierMap[c[0]]===undefined?2:tierMap[c[0]]}
-function drawTier(t,n){
-  refill(n*3);
-  var got=[],i,order=[t];
-  for(i=1;i<4;i++){if(t-i>=0)order.push(t-i);if(t+i<4)order.push(t+i)}
-  for(i=0;i<order.length&&got.length<n;i++){
-    var bag=[],j;
-    for(j=0;j<pool.length;j++)if(tierOf(pool[j])===order[i]&&!(exhaustOn&&shown[pool[j][0]]))bag.push(j);
-    while(bag.length&&got.length<n){
-      var pick=bag.splice(Math.floor(Math.random()*bag.length),1)[0];
-      got.push(pool[pick]);pool[pick]=null;
-    }
-  }
-  for(i=pool.length-1;i>=0;i--)if(pool[i]===null)pool.splice(i,1);
-  return mark(got);
-}
+function drawTier(t,n,exclude){return drawCards(n,t,exclude)}
+
 var ERA=0, ERA_NAME=["모든 시대","군웅할거","삼국정립"];
 var SCN=0, SCN_NAME=["시나리오 없음","적벽 · 조조군","이릉 · 육손군","오장원 · 사마의군","한중 · 유비군","관도 · 원소군"];
 var SCN_SET=[null,
@@ -1230,6 +1312,8 @@ var SCN_SET=[null,
  ["원소","안량","문추","고람","전풍","저수","심배","곽도","순심","한복","국의"]];
 var LATE=["강유","등애","종회","육항","제갈첨","조예","조비","학소","조진","비의","동윤","장완","사마의","육손","왕평","마대","관흥","장포","방덕","황월영","유선","여몽","정봉","서성","주태","문앙","곽회","진태","사마사","사마소","왕기","하후패","제갈각","주환","등지","이회","부첨","마충","장억","육개","손침","제갈탄","손환","주방","진식","관색","문흠","양호","두예","가충","가규","사마염","왕원희","신헌영","마량","마속","진군","나헌","조창","조식","유엽","손호","조환","유심","조휴","주연","올돌골","타사대왕","맹우"];
 var EARLY=["동탁","여포","초선","진궁","왕윤","화웅","이각","곽사","서영","장각","원소","원술","공손찬","안량","문추","고람","전풍","저수","심배","곽도","손견","손책","유표","유장","황조","곽가","전위","마등","공융","화타","사마휘","장수","한수","좌자","여령기","고순","국의","진규","진등","포신","도겸","한복","관해","장보","장량","우길","엄백호","하진","장막","순심","유요","기령","순우경","호거아","장임","장송","허유","진림","괴량","괴월","채모","유기","후성","송헌","위속","능조","염포","양송","유봉","조앙","원담","원희","원상","봉기","신평","노식","황보숭","주준","엄여"];
+LATE=LATE.concat(["양의","낙통","고담","장승","왕준"]);
+EARLY=EARLY.concat(["장양","유복","유파"]);
 function eraPool(){
   if(PACK2){
     if(PACK2.career)return C.slice();
@@ -1263,7 +1347,8 @@ function nearOf(team,c){
     var fires=false,next=0;
     for(k in cb.t){var n=+k;if(n===w)fires=true;if(n>w&&(!next||n<next))next=n}
     if(fires||!next)continue;
-    res.push(cb.n+" "+w+"/"+next);
+    var available=cb.m.filter(function(n){return n!==c[0]&&!team.some(function(x){return x[0]===n})&&(availability(n)==="가능"||availability(n)==="불확실")}).length;
+    if(w+available>=next)res.push(cb.n+" "+w+"/"+next);
   }
   return res;
 }
@@ -1295,8 +1380,24 @@ function pledges(team){
   return out;
 }
 
+function availability(n){
+ if(bans.me.concat(bans.foe,bans.foe2).indexOf(n)>=0)return "금지";
+ if(eraPool().every(function(c){return c[0]!==n}))return "미등장";
+ if((mine||[]).some(function(c){return c[0]===n}))return "아군";
+ if(fogOn)return "불확실";
+ if((foe||[]).concat(foe2||[]).some(function(c){return c[0]===n}))return "적 보유";
+ if(discard.some(function(c){return c[0]===n}))return fogOn?"불확실":"소진 · 재순환 대기";
+ return "가능";
+}
+function missingText(g){return g.miss.map(function(n){return n+" ["+availability(n)+"]"}).join(" · ")}
 function renderPledges(){
   var list=pledges(mine),box=$("pgs"),h="",i;
+  list.sort(function(a,b){
+   function rank(g){var possible=g.miss.filter(function(n){return availability(n)==="가능"||availability(n)==="불확실"}).length;
+     if(g.next&&g.have+possible<g.next)return 4;
+     return g.next&&g.next-g.have===1?0:g.got?1:2;}
+   return rank(a)-rank(b)||b.have-a.have;
+  });
   $("pgct").textContent=list.length?list.length+"건":"맺은 인연 없음";
   if(!list.length){box.innerHTML='<div class="pgempty">아직 맺은 인연이 없소</div>';return}
   for(i=0;i<list.length;i++){
@@ -1304,7 +1405,7 @@ function renderPledges(){
     var right=g.got?((g.got>0?"+":"")+g.got+(g.next?" → "+g.have+"/"+g.next:" 완성")):(g.have+"/"+g.next+" "+(g.nextV>0?"+":"")+g.nextV);
     var pct=g.got&&!g.next?100:Math.round(g.have/(g.next||g.gotk)*100);
     h+='<div class="'+cls+'"><div class="l1"><span class="nm2">'+(g.kin?"血 ":"")+g.n+'</span><span class="vv">'+right+'</span></div>';
-    if(hintOn&&g.next)h+='<div class="l2">남은 인물 · '+g.miss.slice(0,5).join(" · ")+(g.miss.length>5?" 외":"")+'</div>';
+    if(hintOn&&g.next)h+='<div class="l2">남은 인물 · '+missingText(g)+'</div>';
     h+='<div class="bar"><i style="width:'+pct+'%"></i></div></div>';
   }
   box.innerHTML=h;
@@ -1351,7 +1452,11 @@ var REROLLS=1, RR_OPT=[0,1,2,3];
 var $=function(id){return document.getElementById(id)};
 
 function lordRate(L){return Math.round((LORD_MIN+(L[3]+L[5]+L[6])/300*(LORD_MAX-LORD_MIN))*10)/10}
-function power(c){var w=WT[c[2]];return Math.round((c[3]*w[0]+c[4]*w[1]+c[5]*w[2]+c[6]*w[3])/2.5)}
+function martialBonus(c){
+ // Reward exceptional strength only where low intellect already reduces the base score.
+ return c[2]==="무장"&&c[4]>=95?Math.round((c[4]-90)*Math.max(0,70-c[5])/40):0;
+}
+function power(c){var w=WT[c[2]];return Math.round((c[3]*w[0]+c[4]*w[1]+c[5]*w[2]+c[6]*w[3])/2.5)+martialBonus(c)}
 
 function evaluate(team,partial){
   var out={rows:[],total:0},base=0,i,j;
@@ -1408,18 +1513,57 @@ function evaluate(team,partial){
 }
 
 function toss(c){if(exhaustOn)discard.push(c);else pool.push(c)}
-function mark(list){if(exhaustOn)for(var i=0;i<list.length;i++)shown[list[i][0]]=1;return list}
-function refill(n){ // 소진 모드에서 풀이 마르면 버림패를 다시 섞는다
-  if(exhaustOn&&pool.length<n){pool=pool.concat(discard);discard=[];shown={}}  // 죽간이 마르면 물러난 패를 다시 섞고 기억도 비운다
+function mark(list){for(var i=0;i<list.length;i++){recentShown[list[i][0]]=round;if(exhaustOn)shown[list[i][0]]=1}return list}
+function refill(n){
+ if(exhaustOn&&pool.length<n){pool=pool.concat(discard);discard=[];shown={}}
 }
-function draw(n){
-  refill(n);var r=[],i,guard=0;
-  while(r.length<n&&pool.length&&guard++<600){
-    var c=pool.splice(Math.floor(Math.random()*pool.length),1)[0];
-    if(exhaustOn&&shown[c[0]]){discard.push(c);continue}   // 이미 펼쳐진 죽간은 되돌리지 않는다
-    r.push(c);
-  }
-  return mark(r);
+function weightedCard(indices){
+ var weights=indices.map(function(i){var r=recentShown[pool[i][0]];return r===undefined?1:(round-r<=1?.18:round-r<=3?.45:1)});
+ var sum=weights.reduce(function(a,b){return a+b},0),v=Math.random()*sum;
+ for(var j=0;j<indices.length;j++){v-=weights[j];if(v<0)return indices[j]}return indices[indices.length-1];
+}
+function drawCards(n,t,exclude){
+ refill(n);var out=[];exclude=exclude||[];
+ while(out.length<n){
+   var bag=[],best=99;
+   for(var i=0;i<pool.length;i++){
+     var c=pool[i];if(exclude.indexOf(c[0])>=0||(exhaustOn&&shown[c[0]]))continue;
+     var d=t===null?0:Math.abs(tierOf(c)-t);
+     if(d<best){best=d;bag=[]}if(d===best)bag.push(i);
+   }
+   if(!bag.length)break;
+   out.push(pool.splice(weightedCard(bag),1)[0]);
+ }
+ return mark(out);
+}
+function draw(n,exclude){return drawCards(n,null,exclude)}
+function rawLegal(team,idxs){var n=counts(team);return idxs.filter(function(i){return !ruleOn||n[catOf(packArr[i].c)]<CAPS[catOf(packArr[i].c)]})}
+function ensureChoices(team){
+ if(!ruleOn)return 0;
+ var rem=openIdx(),need=Math.min(2,rem.length),changed=0;
+ while(rawLegal(team,rem).length<need){
+   var n=counts(team),bag=[],best=99,t=MODE===1?TIER_SCHEDULE[round]:null;
+   // Supplement only from the available pool; never recover a banned or drafted officer.
+   refill(1);
+   for(var i=0;i<pool.length;i++){
+     var c=pool[i];if(n[catOf(c)]>=CAPS[catOf(c)]||roundExcluded.indexOf(c[0])>=0||(exhaustOn&&shown[c[0]]))continue;
+     var d=t===null?0:Math.abs(tierOf(c)-t);if(d<best){best=d;bag=[]}if(d===best)bag.push(i);
+   }
+   if(!bag.length)break;
+   var dest=rem.filter(function(j){return n[catOf(packArr[j].c)]>=CAPS[catOf(packArr[j].c)]})[0];
+   if(dest===undefined)break;
+   var c=pool.splice(weightedCard(bag),1)[0],old=packArr[dest].c;
+   packArr[dest].c=c;mark([c]);toss(old);changed++;
+ }
+ return changed;
+}
+function replaceOpen(){
+ var rem=openIdx(),exclude=rem.map(function(i){return packArr[i].c[0]});
+ roundExcluded=Array.from(new Set(roundExcluded.concat(exclude)));
+ // Draw first: rerolled cards cannot immediately return, even in a small pool.
+ var fresh=MODE===1?drawTier(TIER_SCHEDULE[round],rem.length,roundExcluded):draw(rem.length,roundExcluded);
+ for(var i=0;i<fresh.length;i++){toss(packArr[rem[i]].c);packArr[rem[i]].c=fresh[i]}
+ return fresh.length;
 }
 
 /* ───────── 그리기 ───────── */
@@ -1582,13 +1726,17 @@ function buildDex(){
 
 /* ───────── 새 대국 설정 ───────── */
 function buildSetup(){
+  if(!setupBefore)setupBefore=cfgSnap();
   function row(label,small,id,val){
     return '<div class="srow"><div class="sl">'+label+'<small>'+small+'</small></div>'+
            '<button class="opt cyc" id="'+id+'">'+val+'</button></div>';
   }
   var h='<div class="verdict" style="margin-bottom:14px"><div class="big" style="font-size:30px;color:var(--gold)">新 對 局</div><svg class="orn"><use href="#orn-knot"/></svg>'+
         '<div class="sub">판을 새로 짜는 자리요 · 규칙은 우상단 ?</div></div>';
-  h+='<div class="intro">죽간 여섯이 펼쳐지면 적장과 <b>번갈아</b> 하나씩 취하오. 열한 진이 끝나면 전력과 인연을 셈하여 승부를 가리오.</div>';
+  h+='<div class="intro">죽간이 펼쳐지면 적장과 <b>번갈아</b> 하나씩 취하오. 열한 진이 끝나면 전력과 인연을 셈하여 승부를 가리오.</div>';
+  h+=row("후보 카드","자동: 2인 8장 · 3인 9장 · 시나리오 6장","sCards",PACK_OPT?PACK_OPT+"장":"자동");
+  h+=row("진행 속도","적장 선택과 다음 진의 대기 시간","sFast",FAST?"빠르게":"기본");
+  h+=row("화면 밀도","작은 글씨로 정보를 모아 보거나 여유롭게","sDensity",DENSITY==="compact"?"촘촘하게":"여유롭게");
   h+=row("드래프트 방식","티어는 진마다 같은 등급끼리 겨루오","sMode",MODE_NAME[MODE]);
   h+=row("시대","죽간더미의 얼굴이 달라지오","sEra",ERA_NAME[ERA]);
   h+=row("적장","고수는 아군의 인연을 노리오","sAI","적장 "+AI_NAME[AI_LV]);
@@ -1602,10 +1750,13 @@ function buildSetup(){
   h+=row("금지 드래프트","시작 전에 둘씩 지우오","sBan",banOn?"켜짐":"꺼짐");
   h+=row("시나리오","연의의 명진영에 도전하오","sScn",SCN_NAME[SCN]);
   h+=row("확장팩","그 해의 세력으로 죽간이 갈리오","sPk",PACK2?PACK2.n:"본편 · 영웅집결");
-  h+='<div style="text-align:center;font-size:10px;color:var(--paper3);margin-top:18px;font-family:var(--body);letter-spacing:.06em">版 2026.08.10 · 죽간 '+C.length+'인 · 결의 '+COMBO.length+'종</div>';
+  h+='<div style="text-align:center;font-size:10px;color:var(--paper3);margin-top:18px;font-family:var(--body);letter-spacing:.06em">版 2026.09.09 · 죽간 '+C.length+'인 · 결의 '+COMBO.length+'종</div>';
   h+='<button class="btn" id="setupGo" style="margin-top:14px">이 로 써 겨 루 다</button>';
   h+='<button class="btn2" id="setupX">돌 아 가 기</button>';
   $("setupBody").innerHTML=h;
+  $("sCards").addEventListener("click",function(){var a=[0,6,8,9];PACK_OPT=a[(a.indexOf(PACK_OPT)+1)%a.length];this.textContent=PACK_OPT?PACK_OPT+"장":"자동"});
+  $("sFast").addEventListener("click",function(){FAST=!FAST;this.textContent=FAST?"빠르게":"기본"});
+  $("sDensity").addEventListener("click",function(){DENSITY=DENSITY==="compact"?"comfortable":"compact";this.textContent=DENSITY==="compact"?"촘촘하게":"여유롭게"});
   $("sMode").addEventListener("click",function(){MODE=(MODE+1)%2;this.textContent=MODE_NAME[MODE]});
   $("sEra").addEventListener("click",function(){ERA=(ERA+1)%3;this.textContent=ERA_NAME[ERA]});
   $("sAI").addEventListener("click",function(){AI_LV=(AI_LV+1)%3;this.textContent="적장 "+AI_NAME[AI_LV]});
@@ -1628,14 +1779,13 @@ function buildSetup(){
     PACK2=nx?PACKS[nx]:null;
     this.textContent=PACK2?PACK2.n:"본편 · 영웅집결";
   });
-  /* 고를 때마다 남긴다. 어느 버튼을 눌렀든 같은 자리에서 담는다 */
-  ["sMode","sEra","sAI","sPl","sSt","sSt2","sRule","sEx","sFo","sRR","sBan","sScn","sPk"]
-    .forEach(function(id){var el=$(id); if(el)el.addEventListener("click",cfgSave)});
-  $("setupGo").addEventListener("click",function(){cfgSave();$("setup").classList.remove("on");start()});
-  $("setupX").addEventListener("click",function(){$("setup").classList.remove("on")});
+  /* 새 판을 시작할 때만 적용하며, 취소하면 진행 중인 설정으로 돌아간다. */
+  $("setupGo").addEventListener("click",function(){setupBefore=null;cfgSave();$("setup").classList.remove("on");start()});
+  $("setupX").addEventListener("click",closeSetup);
 }
 
 /* ───────── 전적 · 결의 도장 ───────── */
+function closeSetup(){if(setupBefore){cfgApply(setupBefore);setupBefore=null}$("setup").classList.remove("on");syncLayout()}
 function buildRec(){
   var h="",i,got=0;
   for(i=0;i<COMBO.length;i++)if(REC.stamps[COMBO[i].n])got++;
@@ -1824,7 +1974,7 @@ function buildLab(){
     }
   }
   h+='<div class="verdict" style="margin:16px 0 10px"><div class="sub" style="color:var(--gold)">試 算 · 셈으로 미리 보기</div></div>';
-  h+='<div class="ledger"><div class="row"><span>다섯 기질에게 각기 '+LAB_N+'판씩 두게 하여 미리 헤아려 보오. 실제로 겨룬 기록과는 별개요.</span></div></div>';
+  h+='<div class="ledger"><div class="row"><span>다섯 기질에게 각기 '+LAB_N+'판씩 두게 하여 미리 헤아려 보오. 실제로 겨룬 기록과는 별개요. 본편 전체 인물의 2인 무작위 팩을 쓰는 간이 실험으로, 보충·최근 등장 억제·교체·시나리오는 반영하지 않소.</span></div></div>';
   h+='<button class="btn" id="labGo">셈 하 여 보 다</button>';
   h+='<div id="labOut"></div>';
   h+='<button class="btn2" id="labClose" style="margin-top:10px">닫 다</button>';
@@ -1878,7 +2028,7 @@ function buildHelp(){
   for(cat in CAPS)cs.push(cat+" "+CAPS[cat]+"인");
   h+='<div class="hsec"><h4>편성 규칙</h4>'+
      '<p>상단 <b>편성 규칙</b>을 켜면 자리가 정해지오 — <span class="g">'+cs.join(" · ")+'</span>. 책사와 문관은 모두 <b>謀</b>로 묶소.</p>'+
-     '<p>자리가 찬 분류의 죽간은 회색 <span class="r">編</span> 표시로 잠기오. 다만 펼쳐진 죽간 중 고를 수 있는 것이 하나도 없으면 규칙을 풀어 전부 취할 수 있게 하오. 적장도 같은 규칙을 따르오.</p>'+
+     '<p>자리가 찬 분류의 죽간은 회색 <span class="r">編</span> 표시로 잠기오. 고를 수 있는 후보가 둘보다 적으면 남은 더미에서 역할에 맞는 후보를 보충하오. 보충할 인물도 없고 선택 가능한 후보가 없을 때만 예외를 표시하고 제한을 푸오. 적장도 같은 규칙을 따르오.</p>'+
      '<p>규칙을 끄면 '+ROUNDS+' 자리를 마음대로 채우되, 아래 <b>편성 감점</b>을 받게 되오. <b>규칙을 켠 동안에는 감점이 없소</b> — 주공이 끝내 나타나지 않는 것은 허물이 아니라 운이니, 그릇의 보탬을 얻지 못하는 것으로 족하오.</p></div>';
 
   h+='<div class="hsec"><h4>채점 · 하나. 인물 전력</h4>'+
@@ -1893,6 +2043,7 @@ function buildHelp(){
 
   var sy=[];
   for(k in SYN)sy.push(k+"인 <span class=g>+"+SYN[k]+"</span>");
+  h+='<div class="hsec"><h4>후보와 진행 저장</h4><p>자동 후보는 2인전 8장, 3인전 9장이오. 시나리오는 6장을 유지하오. 최근 본 인물은 덜 나오며, 교체는 남은 카드 수 안에서 이루어지고 방금 교체한 인물은 즉시 돌아오지 않소.</p><p>차례 사이에 진행을 자동 저장하므로 다시 열면 이어하오. 빠른 진행과 화면 밀도는 새 대국 설정에서 고를 수 있소.</p><p>무력 95 이상인 무장 중 지력 70 미만은 무력 특화 보탬을 받소: (무력−90)×(70−지력)÷40을 반올림하오. 티어는 인연 보너스를 제외한 개인 전력 기준이오.</p></div>';
   h+='<div class="hsec"><h4>채점 · 둘. 진영 결속</h4>'+
      '<p>같은 진영이 모일수록 크게 오르오.</p><div class="form">'+sy.join(" &nbsp;· &nbsp;")+'</div>'+
      '<p><b>군웅</b>은 뿌리가 제각각이라 결속이 <b>'+Math.round(ETC_BASE*100)+'%</b>만 붙소. '+
@@ -1928,7 +2079,7 @@ function buildHelp(){
      '<p><b>무작위 팩</b>은 죽간더미에서 아무나 '+PACK+'장을 펼치오. 운이 크게 따르는 방식이오.</p>'+
      '<p><b>티어 드래프트</b>는 인물을 전력에 따라 네 등급으로 나누고, 진마다 정해진 등급에서만 죽간을 펼치오. 양군이 같은 등급을 놓고 겨루니 운이 줄고 안목이 남소.</p>'+
      '<div class="form">'+tn.join("<br>")+'</div>'+
-     '<p>진행 차례는 <span class="g">'+sch.join(" · ")+'</span> 순이오. 초반에 <b>天級</b>이 두 번 나오니 첫 두 진에서 승부의 절반이 갈리오. 해당 등급의 죽간이 모자라면 이웃 등급에서 채우오.</p></div>';
+     '<p>진행 차례는 <span class="g">'+sch.join(" · ")+'</span> 순이오. <b>天級</b>은 첫 진과 여섯째 진에 나와 중반에도 방향을 바꿀 수 있소. 해당 등급의 죽간이 모자라면 이웃 등급에서 채우오.</p></div>';
   h+='<div class="hsec"><h4>적장과 시대</h4>'+
      '<p><b>적장</b>은 세 등급이오. 여기에 <b>기질</b>이 겹치오 — <span class="g">조조형</span>은 전력을, <span class="g">유비형</span>은 인연을, <span class="g">손권형</span>은 결속을 우선하고, <span class="g">여포형</span>은 오직 무력만 보오. <span class="g">사마의형</span>은 눈앞의 이득보다 <b>다 자랐을 때의 결의</b>를 헤아려 조용히 판을 짜오. <b>무작위</b>로 두면 적장의 기질을 판마다 새로 뽑으니, 초반의 수를 보고 상대를 짐작해야 하오. 기질은 강함이 아니라 <b>개성</b>이니, 여포형은 사나우나 다루기 쉬운 상대요. 고수는 나아가 아군이 <b>한 사람만 더하면 완성되는 결의</b>를 헤아려 그 길목을 먼저 막소. <span class="g">하수</span>는 눈에 띄는 것을 아무렇게나 집고, <span class="g">중수</span>는 제 이득을 셈하며 이따금 아군의 인연을 끊소. <span class="g">고수</span>는 아군의 진행 중인 결의를 거의 놓치지 않고 먼저 채가오.</p>'+
      '<p><b>확장팩 · 군웅할거 一九四</b>를 켜면 본편의 위·촉·오 대신 <b>그 해의 열 세력</b> — 조조군, 원소군, 여포군, 유표군, 손책군, 서주군, 공손찬군, 마등군, 원술군, 장수군 — 으로 죽간이 갈리오. 그 시절에 없던 인물은 나오지 않고, 세력 결속은 본편보다 <span class="g">더 무겁게</span> 셈하오. 적장들은 각기 <b>한 세력의 기치</b>를 받들어 제 세력 인물을 눈여겨보니, 원소군 적장 앞에서 전풍을 늦게 집는 것은 어리석은 일이오. 인원이 다섯에 못 미치는 세력은 적장의 기치로 나오지 않소. 이 해의 여포와 장수는 한 세력의 <b>주공</b>으로 셈하니 主 자리에 앉힐 수 있소 — 다만 그릇은 타고난 통솔과 지모를 따르고, <b>전력 또한 본디 소임의 잣대</b>로 셈하오 — 여포는 主 자리에 앉아도 무장의 창끝으로 평가받소. 본편의 채점과 기록은 조금도 달라지지 않소.</p>'+
@@ -1937,7 +2088,7 @@ function buildHelp(){
      '<p><b>대국 인원</b>을 셋으로 하면 <b>정립전</b>이오. 세 진영이 같은 죽간을 번갈아 취하고(선공은 진마다 도는 차례), 마지막에 세 합계를 견주어 수위를 가리오. 이때 승리는 <b>두 적장을 모두</b> 눌러야 하오. 금지 드래프트는 셋이 하나씩 지우고, 시나리오 대전에서는 쓰이지 않소.</p>'+
      '<p><b>금지 드래프트</b>를 켜면 첫 진에 앞서 죽간더미의 으뜸 열둘이 펼쳐지고, 아군과 적군이 번갈아 <b>두 사람씩</b> 지우오. 지워진 넷은 그 판에 나오지 않소. 천하의 으뜸을 내가 쓸 수 없다면, 적도 쓰지 못하게 하는 계책이오.</p>'+
      '<p><b>시나리오</b>를 고르면 적장이 드래프트 대신 <b>연의의 명진영</b>을 그대로 들고나오오 — 적벽의 조조군, 이릉의 육손군, 오장원의 사마의군, 한중의 유비군, 관도의 원소군. 아군만 죽간을 취하며, 그 열한 명은 죽간더미에서 빠지오. 이기면 과업 <span class="g">연의를 넘다</span>가 남소.</p>'+
-     '<p>매 판이 끝나면 <b>돌아보기</b>에 진마다 취한 죽간과 그때의 최선 수가 나란히 적히오. 놓친 점수를 셈해두었으니, 다음 판의 스승으로 삼으시오.</p>'+
+     '<p>매 판이 끝나면 <b>돌아보기</b>에 진마다 취한 죽간과 그때의 즉시 득점 1위가 나란히 적히오. 미래 인연과 견제 가치는 포함하지 않으니 전략의 정답은 아니오.</p>'+
      '<p><b>적진 가리기</b>를 켜면 적장의 편성과 점수가 안개에 덮이오. 채간 죽간은 흐려지고 자리(主·武·謀)만 드러나며, 점수판에는 <span class="g">霧</span> 한 글자만 남소. 승부는 마지막에야 밝혀지오. 안개 속에서는 적장의 견제도 절반으로 무디어지오 — 그도 아군의 패를 온전히 보지 못하는 셈이오.</p>'+
      '<p><b>시대</b>를 고르면 죽간더미가 달라지오. <span class="g">군웅할거</span>는 후기 인물이 아직 나서지 않았고, <span class="g">삼국정립</span>은 초기 군웅이 이미 스러진 뒤요. 시대를 바꾸면 판이 새로 시작되오.</p></div>';
   h+='<div class="hsec"><h4>판정</h4>'+
@@ -1966,6 +2117,8 @@ function etcTiers(){
 }
 function byName(n){for(var i=0;i<C.length;i++)if(C[i][0]===n)return C[i];return C[0]}
 
+$("detail").addEventListener("click",function(e){if(e.target===this)this.classList.remove("on")});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")$("detail").classList.remove("on")});
 /* ───────── 금지 페이즈 ───────── */
 var banCand=[],banQ=[];
 function banPhase(){
@@ -1999,10 +2152,11 @@ function renderBan(){
   });
 }
 function banStep(){
-  if(!banQ.length){setTimeout(function(){buildTiers(pool);nextRound()},820);return}
+  saveGame("ban",[]);
+  if(!banQ.length){later(function(){buildTiers(pool);nextRound()},820);return}
   var t=banQ[0];
   if(t==="me"){busy=false;$("msg").textContent="금할 인물을 고르시오"}
-  else setTimeout(aiBan,650);
+  else later(aiBan,650);
 }
 function myBan(i){
   if(busy||banCand[i].by||banQ[0]!=="me")return;
@@ -2046,7 +2200,7 @@ function board(){
   }else{
     $("sFoe").textContent=b;if(foe2)$("sF2").textContent=c2;
     if(foe2){
-      var top=Math.max(b,c2),rank=a>top?"首":(a>=Math.min(b,c2)?"次":"末");
+      var top=Math.max(b,c2),rank=a>top?"首":a===top?"共同首":(a>=Math.min(b,c2)?"次":"末");
       g.textContent=rank;g.className="gap "+(a>top?"lead":a<Math.min(b,c2)?"trail":"even");
     }else{
       var d=a-b;
@@ -2055,6 +2209,8 @@ function board(){
     }
   }
   renderPledges();
+  var ct=counts(mine);
+  $("draftSummary").textContent=(Math.min(round+1,ROUNDS))+"/"+ROUNDS+"진 · 후보 "+PACK+"장 · 主 "+ct.군주+"/1 · 武 "+ct.무장+"/5 · 謀 "+ct.참모+"/5";
 }
 
 function updateReroll(){
@@ -2075,7 +2231,7 @@ function renderPack(fresh){
       el.disabled=true;
       el.classList.add("taken","by-"+(e.by==="me"?"me":e.by==="foe"?"foe":"foe2"));
       el.querySelector(".seal").textContent=(e.by==="me"?"採":"奪");
-      if(fogOn&&e.by!=="me")el.classList.add("fogged");
+      if(fogOn&&e.by!=="me"){el.classList.add("fogged");el.innerHTML='<div class="hidden-card">敵 · 선택한 인물 비공개</div>';el.setAttribute("aria-label","적이 선택한 비공개 카드")}
     }else if(fresh){
       el.style.animationDelay=(i*45)+"ms";
     }else{
@@ -2087,13 +2243,30 @@ function renderPack(fresh){
       el.disabled=!myTurn||!ok;
       if(ok)el.addEventListener("click",function(){myPick(i)});
     }
-    box.appendChild(el);
+    var cell=document.createElement("div");cell.className="candidate";cell.appendChild(el);
+    var detail=document.createElement("button");detail.className="card-detail";detail.textContent="상세";
+    detail.setAttribute("aria-label",fogOn&&e.by&&e.by!=="me"?"가려진 카드":e.c[0]+" 상세 보기");
+    detail.disabled=!!(fogOn&&e.by&&e.by!=="me");
+    detail.onclick=function(){showDetail(e.c)};cell.appendChild(detail);box.appendChild(cell);
   });
   updateReroll();
 }
 
+function showDetail(c){
+ var h='<h3>'+c[0]+' · '+facOf(c)+' · '+roleOf(c)+'</h3><p>통솔 '+c[3]+' · 무력 '+c[4]+' · 지력 '+c[5]+' · 정치 '+c[6]+'</p><p>전력 '+power(c)+(martialBonus(c)?' · 무력 특화 +'+martialBonus(c):'')+'</p>';
+ if(!mine.concat(foe,foe2||[]).some(function(x){return x[0]===c[0]})){
+   var a=evaluate(mine,true),b=evaluate(mine.concat([c]),true),rows={};a.rows.forEach(function(r){rows[r.k]=r.v});
+   h+='<h4>선택 시 즉시 변화 '+(b.total-a.total)+'</h4>';
+   b.rows.forEach(function(r){var d=r.v-(rows[r.k]||0);if(d)h+='<p>'+r.k+' '+(d>0?'+':'')+d+'</p>'});
+   a.rows.forEach(function(r){if(!b.rows.some(function(x){return x.k===r.k}))h+='<p>'+r.k+' 제거 '+(-r.v)+'</p>'});
+ }
+ h+='<p>'+(LORE[c[0]]||'')+'</p><h4>관련 인연</h4>';
+ COMBO.filter(function(g){return g.m.indexOf(c[0])>=0}).forEach(function(g){h+='<p><b>'+g.n+'</b> · '+Object.keys(g.t).map(function(k){return k+'인 '+g.t[k]}).join(' / ')+'<br>'+g.m.filter(function(n){return n!==c[0]}).map(function(n){return n+' ['+availability(n)+']'}).join(' · ')+'</p>'});
+ $("detailBody").innerHTML=h+'<button class="btn" id="detailClose">닫기</button>';
+ $("detail").classList.add("on");$("detail").scrollTop=0;$("detailClose").onclick=function(){$("detail").classList.remove("on")};$("detailClose").focus();
+}
 function nextRound(){
-  busy=false;
+  roundExcluded=[];busy=false;
   chips($("mine"),mine,ROUNDS);chips($("foe"),foe,ROUNDS);
   if(foe2)chips($("foe2"),foe2,ROUNDS);
   $("myct").textContent=mine.length+" / "+ROUNDS;
@@ -2108,22 +2281,25 @@ function nextRound(){
   hist[round]={first:turnQ[0],me:"",foe:SCN>0?"—":"",foe2:"",rr:[]};
   $("rd").textContent="第 "+NUM[round]+" 陣 · "+(SCN>0?"對 "+SCN_NAME[SCN].split(" · ")[1]:"先攻 "+seatName(turnQ[0]))+
     (MODE===1?" · "+TIER_NAME[TIER_SCHEDULE[round]===undefined?3:TIER_SCHEDULE[round]]+"級":"");
-  renderPack(true);
   advanceTurn(true);
 }
 
 function advanceTurn(first){
   if(!turnQ.length){endRound();return}
+  var pending=turnQ[0],added=ensureChoices(seatTeam(pending));
+  saveGame("draft",turnQ);
   var t=turnQ.shift();
   if(t==="me"){
     myTurn=true;busy=false;
     renderPack(false);
-    $("msg").textContent=first?"여섯 죽간 중 하나를 취하시오":"이제 그대의 차례요 — 남은 죽간에서";
+    $("msg").textContent=(first?openIdx().length+"장 중 하나를 취하시오":"이제 그대의 차례요 — 남은 "+openIdx().length+"장");
+    if(added)$("sub").textContent="남은 역할에 맞는 후보 "+added+"장을 보충했소";
+    else if(ruleOn&&!rawLegal(mine,openIdx()).length)$("sub").textContent="편성 예외 · 남은 역할 후보가 없어 제한을 풀었소";
     updateReroll();
   }else{
-    myTurn=false;busy=true;updateReroll();
+    myTurn=false;busy=true;renderPack(false);updateReroll();
     if(first)$("msg").textContent=seatName(t)+" 적장이 먼저 고르는 차례요…";
-    setTimeout(function(){aiPick(t)},first?900:760);
+    later(function(){aiPick(t)},first?900:760);
   }
 }
 
@@ -2165,17 +2341,13 @@ function aiPick(seat){
     }
     if(bg0<rrBase(round)*RR_K[AI_LV]){
       aiRR[seat]--;hist[round].rr.push(seatName(seat));
-      var keep=[],ii;
-      for(ii=0;ii<packArr.length;ii++){
-        if(!packArr[ii].by)toss(packArr[ii].c);
-      }
-      var need=PACK;
-      var fr=(MODE===1)?drawTier(TIER_SCHEDULE[round]===undefined?3:TIER_SCHEDULE[round],need):draw(need);
-      packArr=keep.concat(fr.map(function(c){return {c:c,by:null}}));
+      var replaced=replaceOpen();
+      ensureChoices(team);
+      saveGame("draft",[seat].concat(turnQ));
       renderPack(true);
       $("msg").textContent=seatName(seat)+" 적장 — \""+RR_SAY[Math.floor(Math.random()*RR_SAY.length)]+"\"";
       $("sub").textContent=seatName(seat)+" 적장이 죽간을 물리고 다시 폈소";
-      setTimeout(function(){aiPick(seat)},780);
+      later(function(){aiPick(seat)},780);
       return;
     }
   }
@@ -2219,33 +2391,19 @@ function aiPick(seat){
 }
 
 function endRound(){
-  var box=$("pack");
-  Array.prototype.forEach.call(box.children,function(n,i){if(!packArr[i].by)n.classList.add("gone")});
+  Array.prototype.forEach.call($("pack").querySelectorAll(".card"),function(n,i){if(!packArr[i].by)n.classList.add("gone")});
   for(var i=0;i<packArr.length;i++)if(!packArr[i].by)toss(packArr[i].c);
-  updateReroll();
-  setTimeout(function(){
-    round++;
-    if(round>=ROUNDS)finish();else nextRound();
-  },920);
+  myTurn=false;busy=true;updateReroll();saveGame("next",[]);
+  later(completeRound,920);
 }
-
+function completeRound(){round++;if(round>=ROUNDS)finish();else nextRound()}
 function reroll(){
   if(busy||!myTurn||rerolls<1)return;
-  rerolls--;busy=true;myTurn=false;hist[round].rr.push("我");updateReroll();
-  var box=$("pack"),i,keep=[];
-  Array.prototype.forEach.call(box.children,function(n){n.classList.add("gone")});
-  $("msg").textContent="죽간을 거두고 다시 펴는 중…";
-  for(i=0;i<packArr.length;i++){
-    if(!packArr[i].by)toss(packArr[i].c);   // 이미 채간 죽간은 그 진영으로 갔으니 더미로 돌리지 않는다
-  }
-  keep=[];var need=PACK;
-  setTimeout(function(){
-    var fr=(MODE===1)?drawTier(TIER_SCHEDULE[round]===undefined?3:TIER_SCHEDULE[round],need):draw(need);
-    packArr=keep.concat(fr.map(function(c){return {c:c,by:null}}));
-    busy=false;myTurn=true;
-    renderPack(true);
-    $("msg").textContent="새 죽간이오 — 하나를 취하시오";
-  },280);
+  var n=replaceOpen();
+  if(!n){$("sub").textContent="새로 펼칠 후보가 없소 · 교체 횟수는 유지하오";return}
+  rerolls--;hist[round].rr.push("我");ensureChoices(mine);
+  saveGame("draft",["me"].concat(turnQ));renderPack(true);
+  $("msg").textContent="새 후보 "+n+"장이오 — 하나를 취하시오";
 }
 
 /* ───────── 결과 ───────── */
@@ -2300,7 +2458,8 @@ function finish(){
   var i,me=evaluate(mine),op1=evaluate(foe),op2=foe2?evaluate(foe2):null;
   var op=(op2&&op2.total>op1.total)?op2:op1;  // 최강 적 기준
   var opTeam=(op===op2)?foe2:foe;
-  REC.games++;
+  if(REC.lastMatch===matchId)return;
+  REC.lastMatch=matchId;REC.games++;
   if(me.total>op.total)REC.win++;else if(me.total<op.total)REC.lose++;else REC.draw++;
   if(me.total>REC.best){REC.best=me.total;REC.bestLv=AI_LV}
   for(i=0;i<COMBO.length;i++){
@@ -2308,12 +2467,12 @@ function finish(){
     for(kx in COMBO[i].t)if(hv>=+kx&&COMBO[i].t[kx]>0)fk=1;
     if(fk&&!REC.stamps[COMBO[i].n])REC.stamps[COMBO[i].n]=REC.games;
   }
-  recSave(REC);
   var d=me.total-op.total,cls=d>0?"win":d<0?"lose":"draw",word=d>0?"大 勝":d<0?"敗 北":"無 勝 負";
   if(op2){
     var rank=1+(op1.total>me.total?1:0)+(op2.total>me.total?1:0);
-    word=rank===1?"天 下 統 一":rank===2?"鼎 立 二 位":"鼎 立 末 位";
-    cls=rank===1?"win":rank===2?"draw":"lose";
+    var tied=(op1.total===me.total||op2.total===me.total);
+    word=rank===1?(tied?"共 同 一 位":"天 下 統 一"):rank===2?(tied?"共 同 二 位":"鼎 立 二 位"):"鼎 立 末 位";
+    cls=d>0?"win":d===0?"draw":"lose";
   }
   var h='<div class="verdict"><div class="big '+cls+'">'+word+'</div><svg class="orn"><use href="#orn-knot"/></svg><div class="sub">'+
         (d>0?"점수차 "+d+"점":d<0?"점수차 "+(-d)+"점":"동수")+'</div></div>';
@@ -2347,7 +2506,7 @@ function finish(){
        '<span class="rs '+cl+'">'+rs+'</span></div>';
   }
   h+='<div class="row tot"><span>합계</span><b>'+wn+'승 '+dw+'무 '+ls+'패</b></div>'+
-     '<div class="row" style="opacity:.6;font-size:10px"><span>같은 차례에 뽑은 인물끼리 견준 것이니, 승패와는 무관하오</span></div></div>';
+     '<div class="row" style="opacity:.6;font-size:10px"><span>전력이 높은 순으로 짝지은 참고 비교이며, 최종 승패와는 무관하오</span></div></div>';
 
   var iWon=me.total>op1.total&&(!op2||me.total>op2.total);
   var firedN=pledges(mine).filter(function(g){return g.got>0}).length;
@@ -2393,7 +2552,7 @@ function finish(){
   // 복기 — 진별 통합표 (돌아보기 + 전황 기록)
   var missed=0,rpMap={},rp;
   for(i=0;i<replay.length;i++){missed+=Math.max(0,replay[i].bg-replay[i].pg);rpMap[replay[i].rd]=replay[i]}
-  h+='<div class="ledger"><h4>복기 · 놓친 '+missed+'점</h4>';
+  h+='<div class="ledger"><h4>복기 · 즉시 득점 차이 '+missed+'점</h4><p class="pgempty">각 선택 당시의 점수만 비교합니다. 미래 인연과 견제의 가치는 포함하지 않으며, 합계는 최종 손실 점수가 아닙니다.</p>';
   if(bans.me.length||bans.foe.length)
     h+='<div class="hist"><span class="r1">禁</span><span class="r2">我 <b>'+bans.me.join("·")+'</b> / 敵 <span>'+bans.foe.join("·")+(bans.foe2.length?" · "+bans.foe2.join("·"):"")+'</span></span></div>';
   for(i=0;i<hist.length;i++){
@@ -2410,13 +2569,13 @@ function finish(){
          '<span class="pk">'+nm+'</span>';
       if(sk==="me"&&rp){
         h+='<span class="jd">'+(rp.pg>=0?"+":"")+rp.pg+
-           (same?' <b class="up">최선</b>':' <b class="dn">최선 '+rp.bn+' −'+(rp.bg-rp.pg)+'</b>')+'</span>';
+           (same?' <b class="up">즉시 득점 1위</b>':' <b class="dn">즉시 1위 '+rp.bn+' −'+(rp.bg-rp.pg)+'</b>')+'</span>';
       }else if(sk!=="me"){
         var w=g[sk+"Why"];
         if(w)h+='<span class="jd">이득 +'+w.g+(w.d>8?' · 견제 +'+w.d:'')+(w.s>15?' · 기질 +'+w.s:'')+'</span>';
       }
       h+='</div>';
-      if(sk==="me"&&rp&&!same&&rp.bwhy)h+='<div class="rwhy">最善의 까닭 · '+rp.bwhy+'</div>';
+      if(sk==="me"&&rp&&!same&&rp.bwhy)h+='<div class="rwhy">즉시 득점의 근거 · '+rp.bwhy+'</div>';
     }
     h+='</div>';
   }
@@ -2445,6 +2604,7 @@ function finish(){
   h+='</div>';
   h+='<button class="btn" id="again">다 시 겨 루 기</button>';
   h+='<button class="btn2" id="copy">편 성 을 옮 겨 적 다</button>';
+  clearGame();
   $("res").innerHTML=h;
   $("veil").classList.add("on");
   $("veil").scrollTop=0;
@@ -2457,7 +2617,49 @@ function finish(){
   });
 }
 
+var GAME_KEY="samgukji_draft_game_v2",matchId="";
+function clearGame(){try{localStorage.removeItem(GAME_KEY)}catch(e){}}
+function saveGame(phase,q){
+ if(!matchId||REC.lastMatch===matchId)return;
+ function names(a){return (a||[]).map(function(c){return c[0]})}
+ var v={v:2,id:matchId,phase:phase,cfg:cfgSnap(),hint:hintOn,fog:fogOn,round:round,
+ pool:names(pool),discard:names(discard),mine:names(mine),foe:names(foe),foe2:foe2?names(foe2):null,
+ pack:(packArr||[]).map(function(e){return {n:e.c[0],by:e.by}}),q:q.slice(),
+ shown:shown,recent:recentShown,excluded:roundExcluded,rerolls:rerolls,aiRR:aiRR,aiFac:aiFac,stA:ST_A,stB:ST_B,first:firstOff,
+ hist:hist,replay:replay,bans:bans,banQ:banQ,banCand:banCand.map(function(e){return {n:e.c[0],by:e.by}})};
+ try{localStorage.setItem(GAME_KEY,JSON.stringify(v))}catch(e){$("sub").textContent="진행 저장 공간이 부족하오 · 현재 창에서는 계속할 수 있소"}
+}
+function resumeGame(){
+ var before=cfgSnap();
+ try{
+  var v=JSON.parse(localStorage.getItem(GAME_KEY));if(!v)return false;
+  if(v.v!==2||v.id===REC.lastMatch||["draft","ban","next"].indexOf(v.phase)<0||!Number.isInteger(v.round)||v.round<0||v.round>=ROUNDS)throw Error("stale save");
+  var map={};C.forEach(function(c){map[c[0]]=c});
+  function cards(a){if(!Array.isArray(a))throw Error("bad roster");return a.map(function(n){if(!map[n])throw Error("unknown officer");return map[n]})}
+  function entries(a){return a.map(function(e){if(!map[e.n]||[null,"me","foe","foe2"].indexOf(e.by)<0)throw Error("bad card");return {c:map[e.n],by:e.by}})}
+  var restored={pool:cards(v.pool),discard:cards(v.discard),mine:cards(v.mine),foe:cards(v.foe),foe2:v.foe2?cards(v.foe2):null,pack:entries(v.pack),ban:entries(v.banCand)};
+  if(!Array.isArray(v.q)||v.q.some(function(t){return ["me","foe","foe2"].indexOf(t)<0})||!Array.isArray(v.hist)||!Array.isArray(v.replay)||!v.bans||!Array.isArray(v.banQ))throw Error("bad state");
+  cfgApply(v.cfg);PACK=packSize();matchId=v.id;round=v.round;
+  pool=restored.pool;discard=restored.discard;mine=restored.mine;foe=restored.foe;foe2=restored.foe2;packArr=restored.pack;
+  shown=v.shown||{};recentShown=v.recent||{};roundExcluded=v.excluded||[];rerolls=v.rerolls;aiRR=v.aiRR;aiFac=v.aiFac;ST_A=v.stA;ST_B=v.stB;firstOff=v.first;
+  hist=v.hist;replay=v.replay;bans=v.bans;banQ=v.banQ;banCand=restored.ban;turnQ=v.q;hintOn=v.hint;fogOn=v.fog;busy=false;myTurn=false;
+  buildTiers(eraPool().filter(function(c){return bans.me.concat(bans.foe,bans.foe2).indexOf(c[0])<0}));syncLayout();buildHelp();
+  $("ros2").style.display=foe2?"":"none";$("bF2").style.display=foe2?"":"none";$("board").classList.toggle("p3",!!foe2);
+  $("foeTitle").childNodes[0].textContent=foe2?"敵 一 ":"敵 軍 ";$("sFoeLb").textContent=foe2?"敵 一":"敵 軍";
+  $("tHint").classList.toggle("on",hintOn);$("tFog").classList.toggle("on",fogOn);
+  chips($("mine"),mine,ROUNDS);chips($("foe"),foe,ROUNDS);if(foe2)chips($("foe2"),foe2,ROUNDS);
+  $("myct").textContent=mine.length+" / "+ROUNDS;$("opct").textContent=foe.length+" / "+ROUNDS;if(foe2)$("opct2").textContent=foe2.length+" / "+ROUNDS;
+  board();tally();$("sub").textContent="진행 중이던 대국을 이어갑니다";$("rd").textContent="第 "+NUM[round]+" 陣 · 이어하기";
+  if(v.phase==="ban"){busy=true;renderBan();banStep()}
+  else if(v.phase==="next"){renderPack(false);busy=true;later(completeRound,300)}
+  else advanceTurn(false);
+  return true;
+ }catch(e){cfgApply(before);clearGame();return false}
+}
 function start(){
+  stopTimers();clearGame();matchId=Date.now().toString(36)+Math.random().toString(36).slice(2);
+  if(PACK2)SCN=0;
+  PACK=packSize();recentShown={};roundExcluded=[];packArr=[];turnQ=[];myTurn=false;syncLayout();buildHelp();
   ST_A=rollST(AI_ST);ST_B=rollST(AI_ST2);
   firstOff=(SCN>0)?0:((firstOrd===2)?Math.floor(Math.random()*(PLAYERS===3?3:2)):firstOrd);
   pool=eraPool();discard=[];shown={};mine=[];foe=[];round=0;busy=false;rerolls=REROLLS;hist=[];replay=[];
@@ -2516,7 +2718,7 @@ buildTiers(C);buildHelp();buildDex();
   new MutationObserver(sync).observe(document.body,{attributes:true,subtree:true,attributeFilter:["class"]});
 })();
 $("newBtn").addEventListener("click",function(){buildSetup();$("setup").classList.add("on");$("setup").scrollTop=0});
-$("setup").addEventListener("click",function(e){if(e.target===this)this.classList.remove("on")});
+$("setup").addEventListener("click",function(e){if(e.target===this)closeSetup()});
 $("recBtn").addEventListener("click",function(){buildRec();$("rec").classList.add("on");$("rec").scrollTop=0});
 $("rec").addEventListener("click",function(e){if(e.target===this)this.classList.remove("on")});
 $("dexBtn").addEventListener("click",function(){buildDex();$("dex").classList.add("on");$("dex").scrollTop=0});
@@ -2538,8 +2740,8 @@ $("tHint").addEventListener("click",function(){
 markTouch(); probeStore();
 cfgApply(cfgLoad());
 loadRepoSave().then(function(){
-  start();
-  if(!REC.games){buildSetup();$("setup").classList.add("on")}
+  var resumed=resumeGame();if(!resumed)start();
+  if(!resumed&&!REC.games){buildSetup();$("setup").classList.add("on")}
 });
 })();
 </script>
@@ -2610,3 +2812,4 @@ loadRepoSave().then(function(){
 </script>
 </body>
 </html>
+
