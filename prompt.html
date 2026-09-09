@@ -182,6 +182,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
 label.lab-lock{position:relative;padding-right:42px}
 .lab-lock .lockbtn{position:absolute;right:0;top:-5px}
 .lockbtn.mini{width:36px;height:28px;font-size:12px;border-radius:8px}
+.rnd-top{width:100%;margin-top:8px;font-size:12.5px}
 .lock-note{width:100%;font-size:11px;color:var(--accent);font-weight:700}
 .lock-clear{width:100%;margin-top:4px;min-height:34px;padding:6px;font-size:11px;font-weight:600}
 .lockbtn.on{background:color-mix(in srgb,var(--accent) 16%,var(--card));
@@ -826,6 +827,10 @@ label.lab-lock{position:relative;padding-right:42px}
       </div>
 
       <div class="param-note" id="paramTotal" style="margin:10px 0 0"></div>
+      <!-- 항목이 마흔이 넘어 아래 단추까지 한참 스크롤해야 한다. 위에도 하나 둔다.
+           설정(갈래·빈 칸만)은 아래 한 곳에만 두고 이 단추는 그것을 그대로 따른다 -->
+      <button id="randomAnthroTop" type="button" class="rnd-top">🎲 외형 랜덤</button>
+      <div class="status" id="statusAnthroTop" style="margin-top:4px"></div>
       <div id="paramGroups" style="margin-top:8px"></div>
 
       <div class="field" id="underboobField" style="margin-top:10px">
@@ -866,7 +871,7 @@ label.lab-lock{position:relative;padding-right:42px}
         <label><input type="checkbox" data-art="hair"><span>머리</span></label>
         <label><input type="checkbox" data-art="armor"><span>장갑</span></label>
         <label><input type="checkbox" data-art="shot"><span>연출</span></label>
-        <label style="width:100%;margin-top:2px"><input type="checkbox" id="anthroRndOnlyEmpty" checked><span>빈 칸(AUTO)만 채우기</span></label>
+        <label style="width:100%;margin-top:2px"><input type="checkbox" id="anthroRndOnlyEmpty"><span>빈 칸(AUTO)만 채우기 — 켜면 이미 값이 있는 칸은 건너뛴다</span></label>
         <span class="lock-note hidden" data-lock-count></span>
         <button type="button" class="lock-clear hidden" data-lock-clear>자물쇠 모두 풀기</button>
       </div>
@@ -4688,11 +4693,20 @@ label.lab-lock{position:relative;padding-right:42px}
     PARAM_DEFS.forEach(dd=>updatePreview(dd.key));
     refreshAnthroPrompt(); refreshSubHints(); refreshGroupCounts();
     const on=Object.keys(T).filter(k=>T[k]).length;
-    if(!on){setStatus('statusAnthro','굴릴 갈래를 하나도 안 골랐다','warn');return;}
-    setStatus('statusAnthro','외형을 굴렸다 — '+set+'칸 지정'+
+    const say=(m,k)=>{setStatus('statusAnthro',m,k);
+      if(document.getElementById('statusAnthroTop'))setStatus('statusAnthroTop',m,k);};
+    if(!on){say('굴릴 갈래를 하나도 안 골랐다 — 얼굴·체형 같은 것을 켜야 굴러간다','warn');return;}
+    if(!set){
+      /* 아무것도 안 바뀌면 고장으로 보인다. 왜 그대로인지를 먼저 말한다 */
+      say(skipFull?'한 칸도 안 바뀌었다 — "빈 칸(AUTO)만 채우기" 가 켜져 있어 이미 값이 있는 '
+            +skipFull+'칸을 건너뛰었다. 끄면 덮어쓴다'
+          :skipLock?'한 칸도 안 바뀌었다 — 고른 갈래가 전부 자물쇠('+skipLock+'칸)로 잠겨 있다'
+          :'한 칸도 안 바뀌었다 — 고른 갈래에 굴릴 칸이 없다','warn');
+      return;
+    }
+    say('외형을 굴렸다 — '+set+'칸 지정'+
       (skipLock?' · 자물쇠 '+skipLock+'칸 건너뜀':'')+
-      (skipFull?' · 이미 값이 있어 '+skipFull+'칸 그대로':'')+
-      (set?'':' (채울 빈 칸이 없다. "빈 칸만 채우기" 를 끄면 덮어쓴다)'),'ok');
+      (skipFull?' · 이미 값이 있어 '+skipFull+'칸 그대로':''),'ok');
   }
 
   function resetAnthro(){
@@ -4962,7 +4976,9 @@ label.lab-lock{position:relative;padding-right:42px}
   document.querySelectorAll('#genderTabs .gt').forEach(b=>
     b.addEventListener('click',()=>setGender(b.dataset.gender)));
   document.getElementById('applyAnthro').addEventListener('click',()=>{refreshAnthroPrompt();setStatus('statusAnthro','PARAMETERS 적용 완료','ok');});
-  document.getElementById('randomAnthro').addEventListener('click',randomizeAnthro);
+  ['randomAnthro','randomAnthroTop'].forEach(id=>{
+    const b2=document.getElementById(id); if(b2)b2.addEventListener('click',randomizeAnthro);
+  });
   document.getElementById('resetAnthro').addEventListener('click',resetAnthro);
   document.getElementById('prevAnthro').addEventListener('click',applyPrevParams);
   document.getElementById('dropAnthro').addEventListener('click',dropAnthroForMech);
