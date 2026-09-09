@@ -554,6 +554,48 @@ body[data-pack="6"] .title small,body[data-pack="6"] .tally{display:none}
 body[data-pack="6"] .title{font-size:21px}
 body[data-pack="6"] #draftSummary{padding:5px 0}
 
+
+/* Restore the original paper-card hierarchy, keeping only the new game flow. */
+body[data-pack="6"] #pack{gap:9px}
+#pack .candidate{background:transparent;border-radius:3px;display:block;padding:0}
+body[data-pack="6"] #pack .candidate .card{
+ display:block;width:100%;height:100%;padding:11px 11px 9px;min-height:146px;
+ box-shadow:0 2px 0 var(--paper3),0 8px 18px rgba(0,0,0,.45);
+ transition:box-shadow .1s ease-out,opacity .1s linear;animation:none;
+}
+body[data-pack="6"] #pack .candidate .card:active{transform:translateY(1px)}
+body[data-pack="6"] #pack .candidate .card .avc{
+ position:absolute;inset:auto;left:10px;top:9px;width:46px;height:46px;
+ margin:0;display:inline-flex;align-items:center;justify-content:center;border-radius:9px;visibility:visible;
+}
+body[data-pack="6"][data-art="off"] #pack .candidate .card .avc{width:38px;height:38px}
+body[data-pack="6"] #pack .candidate .card .nm{
+ padding-left:52px;margin:0;min-height:24px;font-size:21px;line-height:1.25;text-align:left;white-space:normal;
+}
+body[data-pack="6"] #pack .candidate .card .nm.ln{font-size:17.5px}
+body[data-pack="6"] #pack .candidate .card .nm .tr{display:inline-block}
+body[data-pack="6"] #pack .candidate .card .rl{padding-left:52px;margin-top:1px;min-height:20px;font-size:10.5px;line-height:1.35}
+body[data-pack="6"] #pack .candidate .card .emb{display:block;right:4px;top:24px;width:62px;height:62px;opacity:.12}
+body[data-pack="6"] #pack .candidate .card .fac{display:block;top:8px;right:9px;font-size:26px;opacity:.12}
+body[data-pack="6"] #pack .candidate .card .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin-top:9px;margin-bottom:0;padding-left:6px}
+body[data-pack="6"] #pack .candidate .card .st{display:block;text-align:center}
+body[data-pack="6"] #pack .candidate .card .st u{display:block;height:3px}
+body[data-pack="6"] #pack .candidate .card .st b{display:block;font-size:11px;line-height:14px;margin-top:3px}
+body[data-pack="6"] #pack .candidate .card .st span{display:block;font-size:8.5px;line-height:12px;text-align:center;margin:0}
+body[data-pack="6"] #pack .candidate .card .hint{margin-top:6px;padding:0 46px 0 6px;min-height:30px;height:30px;max-height:30px;font-size:10px;line-height:1.45}
+body[data-pack="6"] #pack .candidate .card .pw{position:absolute;inset:auto;bottom:9px;right:10px;font-size:15px;line-height:1.2;padding:0}
+body[data-pack="6"] #pack .candidate .card .pw em{display:inline;font-size:8.5px;margin-right:3px}
+body[data-pack="6"] #pack .candidate .card.taken{box-shadow:0 0 0 2px var(--gold)}
+body[data-pack="6"] #pack .candidate .card.by-foe{box-shadow:0 0 0 2px #4A6A99}
+body[data-pack="6"] #pack .candidate .card.by-foe2{box-shadow:0 0 0 2px #7A5A34}
+body[data-pack="6"] #pack .candidate .card.taken .seal{top:50%;left:50%;right:auto;bottom:auto;width:52px;height:52px;margin:-26px 0 0 -26px;font-size:29px;line-height:46px;border-width:3px;opacity:.88;transform:rotate(-8deg);animation:none}
+body[data-pack="6"] #pack .candidate .card.gone{transform:none}
+#detail.on .pick-portrait{animation:actionReveal .12s linear both}
+@media(max-width:390px){
+ body[data-pack="6"] #pack .candidate .card .nm{font-size:19px}
+ body[data-pack="6"] #pack .candidate .card .nm.ln{font-size:16px}
+}
+
 </style>
 </head>
 <body>
@@ -2499,8 +2541,8 @@ function playPickEffect(){
     try{if(node.getAnimations)node.getAnimations().forEach(function(a){a.cancel()});node.animate(frames,{duration:duration,easing:"ease-out"})}catch(e){}
   }
   // Read the final rendered nodes after turn advancement replaces the candidates.
-  pulse($("sMe"),[{color:"#fff0a6",transform:"scale(1.1)"},{color:"#E7DCC3",transform:"scale(1)"}],420);
-  pulse($("mine"),[{backgroundColor:"rgba(201,162,39,.22)"},{backgroundColor:"transparent"}],550);
+  pulse($("sMe"),[{color:"#fff0a6"},{color:"#E7DCC3"}],180);
+  pulse($("mine"),[{backgroundColor:"rgba(201,162,39,.16)"},{backgroundColor:"transparent"}],180);
 
 }
 function myPick(i){
