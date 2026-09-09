@@ -473,6 +473,20 @@ body[data-density="comfortable"] .st b{font-size:13px}
  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
 
+
+body[data-art="off"] .candidate .card .avc{display:none}
+body[data-art="off"] .candidate .card .nm,body[data-art="off"] .candidate .card .nm.ln,body[data-art="off"] .candidate .card .rl{padding-left:0}
+/* Portrait preference applies to both cover and inner screens. */
+body[data-art="on"] .candidate .card .avc{position:relative;inset:auto;float:none;display:block;width:100%;height:clamp(64px,11dvh,108px);margin:0 0 4px;border-radius:3px}
+body[data-art="on"] .candidate .card .avc img{width:100%;height:100%;object-fit:cover;object-position:50% 25%}
+body[data-art="on"] .candidate .card .nm,body[data-art="on"] .candidate .card .nm.ln{padding-left:0;min-height:0;text-align:center;font-size:14px;line-height:1.3}
+body[data-art="on"] .candidate .card .rl{padding-left:0;text-align:center}
+@media(max-width:599px){
+ body[data-pack="9"][data-art="on"] .candidate .card .avc{height:clamp(52px,8dvh,72px)}
+ body[data-pack="9"][data-art="on"] .candidate .card .nm{font-size:12px;min-height:16px}
+ body[data-pack="9"][data-art="on"] .candidate .card .stats{margin:2px 0;gap:0 2px}
+ body[data-pack="9"] .opts .opt{flex:1 1 20%;font-size:10px;padding:5px 2px}
+}
 </style>
 </head>
 <body>
@@ -533,6 +547,7 @@ body[data-density="comfortable"] .st b{font-size:13px}
   </div>
 
   <div id="draftSummary" role="status"></div><div class="opts">
+    <button class="opt" id="tArt">그림 보기</button>
     <button class="opt on" id="tHint">결의 힌트</button>
     <button class="opt" id="tFog">적진 가리기</button>
     <button class="opt cyc" id="newBtn">新 · 새 대국</button>
@@ -1021,9 +1036,9 @@ COMBO.push(
 var SYN={2:22,3:68,4:122,5:180,6:238,7:295,8:355,9:410,10:460,11:505};   // 3~6인 구간을 올려 작은 무리도 값어치를 갖게 하되, 큰 세력은 그대로 두었다
 var ETC_BASE=.4, ETC={4:.75,6:1};   // 군웅은 기본 40%, 넷 이상 모이면 할거로 계수가 오른다
 var ROUNDS=11, PACK=8;
-var PACK_OPT=0, FAST=false, QUICK_PICK=false, DENSITY="compact", recentShown={}, roundExcluded=[], gameTimers=[], setupBefore=null;
+var PACK_OPT=0, FAST=false, QUICK_PICK=false, CARD_ART=true, DENSITY="compact", recentShown={}, roundExcluded=[], gameTimers=[], setupBefore=null;
 function packSize(){return SCN>0?6:(PACK_OPT|| (PLAYERS===3?9:8))}
-function syncLayout(){document.body.dataset.density=DENSITY;document.body.dataset.pack=PACK;}
+function syncLayout(){var artButton=document.getElementById("tArt");if(artButton){artButton.textContent=CARD_ART?"그림 켜짐":"그림 꺼짐";artButton.setAttribute("aria-pressed",String(CARD_ART))}document.body.dataset.art=CARD_ART?"on":"off";document.body.dataset.density=DENSITY;document.body.dataset.pack=PACK;}
 function later(fn,ms){
  var id=setTimeout(function run(){
    gameTimers=gameTimers.filter(function(t){return t!==id});
@@ -1174,13 +1189,14 @@ function renderSaveBox(){
    예전에는 설정을 아예 안 남겨서 판을 새로 짤 때마다 열셋을 다시 골라야 했다 */
 var CFG_KEY="samgukji_draft_cfg_v1";
 function cfgSnap(){
-  return {cards:PACK_OPT,fast:FAST,quickPick:QUICK_PICK,density:DENSITY,mode:MODE,era:ERA,lv:AI_LV,pl:PLAYERS,st:AI_ST,st2:AI_ST2,
+  return {cards:PACK_OPT,fast:FAST,quickPick:QUICK_PICK,cardArt:CARD_ART,density:DENSITY,mode:MODE,era:ERA,lv:AI_LV,pl:PLAYERS,st:AI_ST,st2:AI_ST2,
           rule:ruleOn,ex:exhaustOn,fo:firstOrd,rr:REROLLS,ban:banOn,scn:SCN,
           pk:(function(){var k;for(k in PACKS)if(PACKS[k]===PACK2)return k;return null})()};
 }
 function cfgApply(c){
   if(!c)return;
   if([0,6,8,9].indexOf(c.cards)>=0)PACK_OPT=c.cards;
+  if(typeof c.cardArt==="boolean")CARD_ART=c.cardArt;
   if(typeof c.quickPick==="boolean")QUICK_PICK=c.quickPick;
   if(typeof c.fast==="boolean")FAST=c.fast;
   if(c.density==="compact"||c.density==="comfortable")DENSITY=c.density;
@@ -1815,6 +1831,7 @@ function buildSetup(){
         '<div class="sub">판을 새로 짜는 자리요 · 규칙은 우상단 ?</div></div>';
   h+='<div class="intro">죽간이 펼쳐지면 적장과 <b>번갈아</b> 하나씩 취하오. 열한 진이 끝나면 전력과 인연을 셈하여 승부를 가리오.</div>';
   h+=row("후보 카드","자동: 2인 8장 · 3인 9장 · 시나리오 6장","sCards",PACK_OPT?PACK_OPT+"장":"자동");
+  h+=row("후보 그림","켜면 초상을 크게, 끄면 능력치 중심으로 표시","sArt",CARD_ART?"켜짐":"꺼짐");
   h+=row("빠른 지명","끄면 이미지와 점수 변화를 확인하고 확정","sQuick",QUICK_PICK?"켜짐":"꺼짐");
   h+=row("진행 속도","적장 선택과 다음 진의 대기 시간","sFast",FAST?"빠르게":"기본");
   h+=row("화면 밀도","작은 글씨로 정보를 모아 보거나 여유롭게","sDensity",DENSITY==="compact"?"촘촘하게":"여유롭게");
@@ -1836,6 +1853,7 @@ function buildSetup(){
   h+='<button class="btn2" id="setupX">돌 아 가 기</button>';
   $("setupBody").innerHTML=h;
   $("sCards").addEventListener("click",function(){var a=[0,6,8,9];PACK_OPT=a[(a.indexOf(PACK_OPT)+1)%a.length];this.textContent=PACK_OPT?PACK_OPT+"장":"자동"});
+  $("sArt").onclick=function(){CARD_ART=!CARD_ART;this.textContent=CARD_ART?"켜짐":"꺼짐";syncLayout()};
   $("sQuick").onclick=function(){QUICK_PICK=!QUICK_PICK;this.textContent=QUICK_PICK?"켜짐":"꺼짐"};
   $("sFast").addEventListener("click",function(){FAST=!FAST;this.textContent=FAST?"빠르게":"기본"});
   $("sDensity").addEventListener("click",function(){DENSITY=DENSITY==="compact"?"comfortable":"compact";this.textContent=DENSITY==="compact"?"촘촘하게":"여유롭게"});
@@ -2822,6 +2840,7 @@ buildTiers(C);buildHelp();buildDex();
   });
   new MutationObserver(sync).observe(document.body,{attributes:true,subtree:true,attributeFilter:["class"]});
 })();
+$("tArt").onclick=function(){CARD_ART=!CARD_ART;syncLayout();cfgSave()};
 $("newBtn").addEventListener("click",function(){buildSetup();$("setup").classList.add("on");$("setup").scrollTop=0});
 $("setup").addEventListener("click",function(e){if(e.target===this)closeSetup()});
 $("recBtn").addEventListener("click",function(){buildRec();$("rec").classList.add("on");$("rec").scrollTop=0});
