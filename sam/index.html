@@ -457,6 +457,22 @@ body[data-density="comfortable"] .st b{font-size:13px}
  body[data-pack="9"] .reroll{margin:5px 0;min-height:36px}
 }
 
+
+/* Brief feedback; no blocking timers or changes to draft timing. */
+#detail.on .pick-portrait{animation:portraitReveal .24s ease-out both}
+#detail.on .pick-actions{animation:actionReveal .18s ease-out both}
+.verdict .big.win{animation:victoryGlow .8s ease-out both}
+@keyframes portraitReveal{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes actionReveal{from{opacity:.5}to{opacity:1}}
+@keyframes victoryGlow{from{text-shadow:0 0 22px #c9a227aa;transform:scale(.97)}to{text-shadow:none;transform:none}}
+/* Compact banners leave the centre of the candidate grid readable. */
+#toast{top:auto;bottom:calc(10px + env(safe-area-inset-bottom));gap:4px;max-height:24dvh;overflow:hidden}
+.tst{padding:6px 14px;animation-name:actionReveal,tstOut}
+.tst .tt{font-size:10px}.tst .tn{font-size:15px;margin-top:0}.tst .tv{font-size:11px;margin-top:0}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+
 </style>
 </head>
 <body>
@@ -2379,6 +2395,18 @@ function advanceTurn(first){
   }
 }
 
+function playPickEffect(){
+  if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  function pulse(node,frames,duration){
+    if(!node||typeof node.animate!=="function")return;
+    try{if(node.getAnimations)node.getAnimations().forEach(function(a){a.cancel()});node.animate(frames,{duration:duration,easing:"ease-out"})}catch(e){}
+  }
+  // Read the final rendered nodes after turn advancement replaces the candidates.
+  pulse($("sMe"),[{color:"#fff0a6",transform:"scale(1.1)"},{color:"#E7DCC3",transform:"scale(1)"}],420);
+  pulse($("mine"),[{backgroundColor:"rgba(201,162,39,.22)"},{backgroundColor:"transparent"}],550);
+  var seals=$("pack").querySelectorAll(".by-me .seal");
+  pulse(seals[seals.length-1],[{opacity:0,transform:"scale(1.3) rotate(-9deg)"},{opacity:1,transform:"scale(1) rotate(0deg)"}],260);
+}
 function myPick(i){
   if(busy||!myTurn||!packArr[i]||packArr[i].by||legalSet(mine,openIdx()).indexOf(i)<0)return;
   busy=true;myTurn=false;
@@ -2402,6 +2430,7 @@ function myPick(i){
   $("msg").textContent=packArr[i].c[0]+"을(를) 취하였소";
   board();renderPack(false);
   advanceTurn(false);
+  playPickEffect();
 }
 
 function aiPick(seat){
