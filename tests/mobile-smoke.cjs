@@ -112,6 +112,7 @@ let server;
   await page.locator('#playCardSize').click();const size=await page.locator('#playCardSize').getAttribute('aria-pressed');
   await page.reload();await page.waitForSelector('.setupbox');assert.equal(await page.locator('#playCardSize').getAttribute('aria-pressed'),size);
   await page.locator('.setupbox .btn.big').click();
+  if(await page.locator('body').evaluate(e=>e.classList.contains('tactical')))await page.locator('#viewMode').click();
   await page.waitForSelector('#packArea button.card:not(:disabled)');await fits('draft cards');
   const round=await page.locator('#rdl').innerText();
   await page.locator('[data-jump="dockArea"]').click();

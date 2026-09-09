@@ -519,6 +519,48 @@ body{font-size:var(--ui-font)}
 :root[data-density="relaxed"] .av .scrim b{font-size:14px}
 .st,.st b,.fx,.dlt,.dlt em{font-size:calc(var(--ui-font) - 2px)}
 .st span{width:24px}.st b{width:22px}
+
+/* Tactical mode: all candidates and team summaries, with detail on demand. */
+#tacticalArea{display:none}
+.mission-banner{padding:7px 9px;border:1px solid #e8a13a55;border-radius:8px;background:#e8a13a0c;font-size:11px;line-height:1.45;margin:6px 0}
+body.draft-running.tactical .workspace-nav,body.draft-running.tactical .density-control,body.draft-running.tactical .top,
+body.draft-running.tactical .play-tools,body.draft-running.tactical .battle-layout,body.draft-running.tactical .play-nav{display:none}
+body.draft-running.tactical .wrap{padding:4px 8px calc(8px + env(safe-area-inset-bottom));max-width:1100px}
+body.draft-running.tactical .rd{margin:0;padding:5px 0;flex-wrap:nowrap;position:static}
+body.draft-running.tactical .rd>div:first-child{flex:1;min-width:0}
+body.draft-running.tactical .rd .dexbtn{min-height:32px;padding:5px;font-size:11px}
+body.draft-running.tactical .turn{max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px}
+body.draft-running.tactical #tacticalArea{display:block}
+.tac-meta{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:11px;margin:5px 0}
+.tac-meta .btn{flex:0 0 auto;min-height:30px;padding:4px 8px;font-size:11px}
+body.draft-running.tactical .fld{display:inline-block;white-space:nowrap}
+.tac-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.tac-card{display:flex;flex-direction:column;align-items:stretch;min-width:0;padding:0 0 5px;border:1px solid var(--line);border-radius:8px;background:var(--hull);color:var(--lume);text-align:left;font-family:var(--body);cursor:pointer;overflow:hidden}
+.tac-card:disabled{cursor:default}.tac-card.taken{opacity:.42}
+.tac-art{height:clamp(44px,8dvh,78px);overflow:hidden;background:var(--void);position:relative}
+.tac-art img,.tac-art svg{width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block}
+.tac-card>b{font-size:11px;line-height:1.3;padding:4px 5px 0;min-height:32px;overflow-wrap:anywhere}
+.tac-card>span{font-size:10px;padding:2px 5px 0;color:var(--ok)}.tac-card>span.negative{color:var(--alert)}
+.tac-card .tac-faction{color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:13px}
+.tac-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px 3px;padding:3px 5px;font:10px/1.2 var(--mono)}
+.tac-stats span{white-space:nowrap;display:flex;justify-content:space-between;gap:2px}.tac-stats i{font-style:normal;color:var(--dim)}
+.tac-teams{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin-top:8px}
+.tac-team{display:flex;flex-direction:column;gap:3px;padding:7px 5px;min-width:0;border:1px solid var(--line);border-radius:8px;background:var(--hull);color:var(--lume);text-align:left;font:10px/1.35 var(--body);cursor:pointer}
+.tac-team strong{font:600 15px var(--mono);color:var(--amber)}.tac-team b{font-size:11px}.tac-team:disabled{cursor:default}
+.tac-recent{font-size:10px;color:var(--dim);margin-top:6px;overflow-wrap:anywhere}
+.tac-roster{display:none}
+#tacticalDialog{max-width:560px;width:calc(100% - 20px);max-height:90dvh;overflow:auto;background:var(--void);color:var(--lume);border:1px solid var(--line);border-radius:12px;padding:12px}
+#tacticalDialog::backdrop{background:#000b}
+.tac-dialog-head{position:sticky;top:-12px;background:var(--void);display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 0;z-index:2}
+.tac-dialog-head strong{min-width:0;overflow-wrap:anywhere}.tac-dialog-head button{flex:none}
+#tacticalDialog .btn.big{width:100%}
+@media(min-width:600px){
+ .tac-center{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:10px;align-items:stretch}
+ .tac-roster{display:block;border:1px solid var(--line);border-radius:8px;padding:9px;overflow:auto;max-height:460px;font-size:11px;min-width:0;overflow-wrap:anywhere}
+ .tac-roster p{margin:6px 0}.tac-pair{padding:6px 0;border-top:1px solid var(--line);line-height:1.4}
+ .tac-art{height:clamp(60px,10dvh,94px)}
+}
+@media(max-height:600px) and (min-width:600px){.tac-art{height:32px}.tac-roster{max-height:265px}.tac-card>b{min-height:22px}.tac-team{padding:4px}}
 </style>
 </head>
 <body>
@@ -535,10 +577,13 @@ body{font-size:var(--ui-font)}
       <div class="rdl" id="rdl">ROUND 01 / 16</div>
       <div class="rdt" id="rdt">모함 <em>선정</em></div>
     </div>
+    <button class="dexbtn" id="viewMode" type="button" aria-pressed="true">일반 보기</button>
     <button class="dexbtn" id="dexbtn">도감</button>
     <div class="turn" id="turn">대기</div>
   </div>
 
+  <div id="missionBanner" class="mission-banner" hidden></div>
+  <section id="tacticalArea" aria-label="드래프트 상황판"></section>
   <div class="play-tools"><span>카드를 편한 크기로 보세요</span><button type="button" id="playCardSize" aria-pressed="false">카드 크게</button></div>
   <div class="battle-layout">
   <div id="packArea"></div>
@@ -551,6 +596,7 @@ body{font-size:var(--ui-font)}
 </div>
 
 <nav class="play-nav" aria-label="게임 화면 바로가기"><button type="button" data-jump="packArea">카드</button><button type="button" data-jump="dockArea" disabled>내 편성</button><button type="button" data-jump="boardArea" disabled>전황</button></nav>
+<dialog id="tacticalDialog" aria-label="드래프트 상세"></dialog>
 <script>
 "use strict";
 
@@ -1513,7 +1559,39 @@ function evaluate(t,see){
       total+=pv;
     }
   }
+  var mission=objectiveScore(t);
+  if(OBJECTIVE){rows.push(['작전 · '+OBJECTIVE.name,mission]);total+=mission}
   return {rows:rows,total:Math.round(total)};
+}
+
+/* Public objectives add at most six points per planned pair. No card stats are changed. */
+function objectiveCount(t,o){
+  if(!o)return 0;
+  if(o.id==='mass')return t.기체.filter(function(c){return tagsOf(c).indexOf('양산기')>=0}).length;
+  if(o.id==='mixed'){
+    var bag={};t.기체.forEach(function(c){var f=c[1];if(f.length)bag[f[f.length-1]]=1});
+    return Object.keys(bag).length;
+  }
+  if(!t.지휘관.length)return 0;
+  var f=t.지휘관[0][1],current=f[f.length-1];
+  return t.기체.concat(t.파일럿).filter(function(c){return c[1][c[1].length-1]===current}).length;
+}
+function objectiveScore(t){
+  if(!OBJECTIVE)return 0;
+  return Math.round(OBJECTIVE.max*Math.min(OBJECTIVE.target,objectiveCount(t,OBJECTIVE))/OBJECTIVE.target);
+}
+function rollObjective(){
+  OBJECTIVE=null;if(!objectiveOn)return;
+  var n=futurePairs(),target=Math.max(2,Math.ceil(n/2));if(!n)return;
+  var opts=[{id:'command',name:'지휘 계통',rule:'첫 지휘관과 현 소속이 같은 기체·파일럿',target:target}];
+  if(MECH.filter(function(c){return tagsOf(c).indexOf('양산기')>=0}).length>=target*3)
+    opts.push({id:'mass',name:'양산 전력',rule:'양산기 태그의 기체',target:target});
+  var factions={};MECH.forEach(function(c){if(c[1].length)factions[c[1][c[1].length-1]]=1});
+  var mixedTarget=Math.max(3,Math.ceil(n/2));
+  if(Object.keys(factions).length>=mixedTarget)
+    opts.push({id:'mixed',name:'혼성 편대',rule:'기체의 서로 다른 현 소속',target:mixedTarget});
+  // Separate deterministic draw so enabling objectives does not reshuffle the draft pool.
+  OBJECTIVE=opts[(GAME_SEED>>>0)%opts.length];OBJECTIVE.max=n*6;
 }
 
 /* ═══════ 진행 ═══════ */
@@ -1525,15 +1603,22 @@ var SCHEDULE=[];   /* 라운드마다 무엇을 뽑는지 — data/rule.json 에
    자리를 늘려도 정원이 빡빡해지지는 않는다. 웃돈이 자리 수에서 cap_base 를 뺀
    값이라 자리를 따라 함께 커지기 때문이다. 정원을 살리려면 cap_base 를 올려야
    하고, 그것은 별개의 손잡이다. */
+var DRAFT_FLOW='cross', objectiveOn=true, OBJECTIVE=null;
 var BASE_SCHEDULE=[], SCALE_KINDS=[], SCALE_OPTS=[], SCALE=0, CAP_FROM="", CAP_BASE=4;
 function buildSchedule(n){
-  var out=[],i=0;
-  while(i<BASE_SCHEDULE.length){
-    var t=BASE_SCHEDULE[i],c=0;
-    while(i<BASE_SCHEDULE.length&&BASE_SCHEDULE[i]===t){c++;i++}
-    var k=(SCALE_KINDS.indexOf(t)>=0)?n:c;
-    for(var j=0;j<k;j++)out.push(t);
+  var count={},out=[];
+  BASE_SCHEDULE.forEach(function(t){count[t]=(count[t]||0)+1});
+  SCALE_KINDS.forEach(function(t){if(count[t])count[t]=n});
+  function put(t){if(count[t]>0){out.push(t);count[t]--;return true}return false}
+  if(DRAFT_FLOW==='classic'){BASE_SCHEDULE.forEach(function(t){while(count[t]>0)put(t)});return out}
+  while(put('함')){}                 // A flagship establishes capacity first.
+  put('지휘관');                     // One commander gives the early faction/relationship anchor.
+  var pairRounds=0;
+  while((count['기체']||0)+(count['파일럿']||0)>0){
+    put('기체');put('파일럿');pairRounds++;
+    if(pairRounds%2===0)put('지휘관');
   }
+  BASE_SCHEDULE.forEach(function(t){while(count[t]>0)put(t)});
   return out;
 }
 /* 규모가 바뀌면 라운드표와 정원 웃돈을 함께 다시 짠다 */
@@ -1659,7 +1744,7 @@ var CFG_KEY="gundam_draft_cfg_v1";
 function cfgSave(){
   try{localStorage.setItem(CFG_KEY,JSON.stringify({
     lv:AI_LV, fog:fogOn, hint:hintOn, ex:exhaustOn,
-    rr:REROLL_MAX, shared:sharedPack, vp:VIEW_P, vm:VIEW_M, dv:dexVar, sc:SCALE
+    rr:REROLL_MAX, flow:DRAFT_FLOW, objective:objectiveOn, shared:sharedPack, vp:VIEW_P, vm:VIEW_M, dv:dexVar, sc:SCALE
   }))}catch(e){}
 }
 function cfgLoad(){
@@ -1676,6 +1761,8 @@ function cfgLoad(){
     if("mfrx".indexOf(c.vm)>=0&&c.vm)VIEW_M=c.vm;
     if("mfr".indexOf(c.dv)>=0&&c.dv)dexVar=c.dv;
     /* 주제마다 고를 수 있는 규모가 다르다. 없는 값이면 그 주제의 기본을 지킨다 */
+    if(c.flow==='cross'||c.flow==='classic')DRAFT_FLOW=c.flow;
+    if(typeof c.objective==='boolean')objectiveOn=c.objective;
     if(typeof c.sc==="number"&&SCALE_OPTS.indexOf(c.sc)>=0)applyScale(c.sc);
   }catch(e){}
 }
@@ -1760,6 +1847,8 @@ function reset(){
   rollVariants();
   rollArt();
   rollField();
+  rollObjective();
+  resultDone=false;
   render();
 }
 function order(){
@@ -2187,6 +2276,7 @@ function takenEl(slot,type){
 function renderDock(){
   var a=document.getElementById("dockArea");a.innerHTML="";
   a.appendChild(dockEl(0));
+  renderTactical();
 }
 function renderBoard(){
   var a=document.getElementById("boardArea");a.innerHTML="";
@@ -2196,9 +2286,11 @@ function renderBoard(){
   var fo=el("div","foes");
   fo.appendChild(foeEl(1,who===1));fo.appendChild(foeEl(2,who===2));
   a.appendChild(fo);
+  renderTactical();
 }
 function render(){
   document.body.classList.add("battle-active");
+  document.body.classList.toggle("draft-running",round<SCHEDULE.length);
   renderHead();renderPack();renderDock();renderBoard();
   if(round>=SCHEDULE.length){renderResult();return}
   if(turnSeq()[si]!==0&&!busy){busy=true;schedStep()}
@@ -2759,6 +2851,8 @@ document.addEventListener("keydown",function(e){
 
 /* ═══════ 시작 화면 ═══════ */
 function setup(){
+  OBJECTIVE=null;document.body.classList.remove("draft-running");
+  document.getElementById("missionBanner").hidden=true;
   document.body.classList.remove("battle-active");
   ["packArea","dockArea","boardArea","endArea"].forEach(function(id){
     document.getElementById(id).innerHTML="";});
@@ -2828,6 +2922,11 @@ function setup(){
     });
     return optRow(label,desc,bs);
   }
+  box.appendChild(viewRow("드래프트 순서","교차는 모함 → 지휘관 → 기체·파일럿 순으로 조합을 쌓는다",
+    function(){return DRAFT_FLOW},function(v){DRAFT_FLOW=v;applyScale(SCALE)},
+    [["교차",'cross'],["종류별",'classic']]));
+  box.appendChild(optRow("공개 작전 목표","시작할 때 공개 · 세 팀 공통 · 최대 "+(futurePairs()*6)+"점",
+    toggle(function(){return objectiveOn},function(v){objectiveOn=v})));
   box.appendChild(viewRow("파일럿 초상","파일럿 카드를 어느 쪽으로 볼지",
     function(){return VIEW_P},function(v){VIEW_P=v},
     [["남",'m'],["여",'f'],["무작위",'r']]));
@@ -2860,6 +2959,95 @@ function setup(){
     "<br>교신 기록 "+Object.keys(REC.stamps).length+" · 훈장 "+Object.keys(REC.feats).length+"/"+FEATS.length));
   a.appendChild(box);
 }
+/* Situation board uses the same candidates, scores and pick() as the standard view. */
+var tacticalOn=true;
+try{tacticalOn=localStorage.getItem('atelier_tactical_v1')!=='0'}catch(e){}
+function setTactical(on){
+  tacticalOn=on;document.body.classList.toggle('tactical',on);
+  var b=document.getElementById('viewMode');b.textContent=on?'일반 보기':'상황판';b.setAttribute('aria-pressed',String(on));
+  if(teams)renderTactical();
+}
+function dialogBase(title){
+  var d=document.getElementById('tacticalDialog');if(d.open)d.close();d.innerHTML='';
+  var head=el('div','tac-dialog-head'),name=el('strong');name.textContent=title;
+  var close=el('button','btn sm','닫기');close.onclick=function(){d.close()};head.appendChild(name);head.appendChild(close);d.appendChild(head);
+  return d;
+}
+function inspectCandidate(c,type){
+  var stamp=gen,r=round,slot=si,d=dialogBase(c[0]);
+  var affiliation=el('p','note');affiliation.textContent='소속: '+c[1].join(' → ');d.appendChild(affiliation);
+  d.appendChild(el('div','lore',loreOf(c)||'카드 능력과 편성 효과를 확인하세요.'));
+  d.appendChild(el('div','dinfo',statRows(c,type)));
+  if(type==='기체')d.appendChild(el('p','note','태그: '+(tagsOf(c).join(' · ')||'없음')+' · '+FIELD+' '+terrainWord(c)));
+  if(hintOn){var gain=delta(c,type);d.appendChild(el('p','note','선택 시 '+(gain.v>=0?'+':'')+gain.v+'점'+(gain.why?'<br>'+gain.why:'')))}
+  if(OBJECTIVE){var before=objectiveScore(teams[0]);teams[0][type].push(c);var after=objectiveScore(teams[0]);teams[0][type].pop();
+    d.appendChild(el('p','note','공개 목표: '+OBJECTIVE.name+' · 이 카드로 '+(after>=before?'+':'')+(after-before)+'점'))}
+  var confirm=el('button','btn big','이 카드 지명');
+  confirm.onclick=function(){
+    if(gen!==stamp||round!==r||si!==slot||busy||turnSeq()[si]!==0){d.close();return}
+    var available=sharedPack?packArr.some(function(x){return x.c===c&&x.by===null}):curPack&&curPack.indexOf(c)>=0;
+    if(!available){d.close();return}d.close();pick(c);
+  };d.appendChild(confirm);d.showModal();
+}
+function inspectTeam(ti){
+  if(fogOn&&ti!==0&&round<SCHEDULE.length)return;
+  var d=dialogBase(seatName(ti));d.appendChild(dockEl(ti));
+  var score=el('div','note');evaluate(teams[ti]).rows.forEach(function(r){var line=el('div');line.textContent=r[0]+'  '+r[1];score.appendChild(line)});
+  d.appendChild(score);d.showModal();
+}
+function renderTactical(){
+  if(!teams)return;
+  var area=document.getElementById('tacticalArea'),banner=document.getElementById('missionBanner');
+  var done=round>=SCHEDULE.length;
+  banner.hidden=!OBJECTIVE;
+  if(OBJECTIVE)banner.textContent='공개 작전 · '+OBJECTIVE.name+' | '+OBJECTIVE.rule+' '+OBJECTIVE.target+' · 내 진행 '+
+    Math.min(OBJECTIVE.target,objectiveCount(teams[0],OBJECTIVE))+'/'+OBJECTIVE.target+' (+'+objectiveScore(teams[0])+'/'+OBJECTIVE.max+'점)';
+  if(!tacticalOn||done){area.innerHTML='';return}
+  area.innerHTML='';
+  var type=SCHEDULE[round],mine=turnSeq()[si]===0&&!busy;
+  var meta=el('div','tac-meta'),next=el('span');
+  next.textContent='다음 '+(SCHEDULE[round+1]||'결과')+' · '+(sharedPack?'공유 보급':'개별 보급');meta.appendChild(next);
+  var supply=el('button','btn sm','보급 '+rerolls+'/'+REROLL_MAX);supply.disabled=!mine||rerolls<1||round===SCHEDULE.length-1;
+  supply.onclick=function(){var b=document.querySelector('#packArea .row button');if(b&&!b.disabled)b.click()};meta.appendChild(supply);area.appendChild(meta);
+  var center=el('div','tac-center'),cards=el('div','tac-cards');
+  var slots=sharedPack?packArr:(curPack||[]).map(function(c){return {c:c,by:null}});
+  if(!sharedPack&&!mine)slots=[];
+  if(!slots.length)cards.appendChild(el('p','note','상대 지명 중 · 곧 내 보급이 도착합니다.'));
+  slots.forEach(function(x){
+    var c=x.c,card=el('button','tac-card'+(x.by!==null?' taken':''));card.type='button';card.disabled=!mine||x.by!==null;
+    card.setAttribute('aria-label',c[0]+(x.by!==null?' 지명됨':' 상세 및 지명'));
+    var art=el('div','tac-art');art.innerHTML=avHTML(c,type);card.appendChild(art);
+    var label=el('b');label.textContent=c[0];card.appendChild(label);
+    var faction=el('span','tac-faction');faction.textContent=c[1][c[1].length-1]||'소속 없음';faction.title=faction.textContent;card.appendChild(faction);
+    var stats=el('div','tac-stats');STAT_LABEL[type].forEach(function(label,i){var line=el('span'),key=el('i'),value=el('b');key.textContent=label;value.textContent=c[i+2];line.appendChild(key);line.appendChild(value);stats.appendChild(line)});card.appendChild(stats);
+    var note=el('span');
+    if(x.by!==null)note.textContent=(x.by===0?'아군':'적 '+x.by)+' 지명됨';
+    else if(hintOn&&mine){var g=delta(c,type);note.textContent=(g.v>=0?'+':'')+g.v+'점';note.className=g.v<0?'negative':''}
+    else note.textContent=mine?'눌러서 확인':'대기';
+    card.appendChild(note);card.onclick=function(){inspectCandidate(c,type)};cards.appendChild(card);
+  });
+  center.appendChild(cards);
+  var roster=el('aside','tac-roster'),rh=el('strong');rh.textContent='내 편성';roster.appendChild(rh);
+  ['함','지휘관'].forEach(function(k){var line=el('p');line.textContent=k+' · '+(teams[0][k].map(function(c){return c[0]}).join(', ')||'미정');roster.appendChild(line)});
+  assign(teams[0]).forEach(function(u){var line=el('div','tac-pair');line.textContent=(u.m?u.m[0]:'기체 대기')+' × '+(u.p?u.p[0]:'파일럿 대기');roster.appendChild(line)});
+  center.appendChild(roster);area.appendChild(center);
+  var summary=el('div','tac-teams');
+  [0,1,2].forEach(function(ti){var t=teams[ti],hidden=fogOn&&ti!==0;
+    var b=el('button','tac-team');b.disabled=hidden;
+    b.innerHTML='<b>'+(ti===0?'내 편성':'적 '+ti)+'</b><strong>'+(hidden?'???':evaluate(t).total+'점')+'</strong>';
+    var counts=el('span');counts.textContent=hidden?'관제 두절':'기체 '+t.기체.length+'/'+SCALE+' · 파일럿 '+t.파일럿.length+'/'+SCALE;
+    b.appendChild(counts);
+    var capacity=el('span');capacity.textContent=hidden?'':('정원 '+capOf(t)+' · 지휘관 '+t.지휘관.length+'/'+slotsOf('지휘관'));
+    b.appendChild(capacity);b.onclick=function(){inspectTeam(ti)};summary.appendChild(b);
+  });area.appendChild(summary);
+  var recent=el('div','tac-recent');
+  if(!fogOn&&log.length){var l=log[0];recent.textContent='최근 · '+(l.ti===0?'아군':'적 '+l.ti)+' '+(l.c?l.c[0]:'보급 요청')}
+  else recent.textContent='편성을 누르면 전체 목록과 점수 내역을 볼 수 있습니다.';
+  area.appendChild(recent);
+}
+document.getElementById('viewMode').onclick=function(){setTactical(!tacticalOn);window.scrollTo(0,0);try{localStorage.setItem('atelier_tactical_v1',tacticalOn?'1':'0')}catch(e){}};
+setTactical(tacticalOn);
+
 /* Viewing controls never mutate the draft or advance a turn. */
 function setPlayCardSize(large){
   document.body.classList.toggle('large-cards',large);
