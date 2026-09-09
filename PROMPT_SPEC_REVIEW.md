@@ -583,3 +583,61 @@ jaw & chin 8 · nose character 9 · lips 8. 되살린 값은 전부 정도가 �
 
 - 거대 블록 신설과 재배치는 하지 않는다(반론 §18.1 과 같은 결론).
 - 미세 항목 여섯은 보류한다(반론 §15 와 같은 목록).
+
+## 8. 카테고리 가이드 문구를 다시 썼다
+
+`PROMPT_TEXT_REVIEW.md` 의 제안을 받아 다섯 카테고리의 가이드 문구를 고쳤다.
+**이름표와 key 는 그대로 두고 그 뒤에 따라 나가는 문장만 바꿨다.**
+
+인용된 문구는 전부 실제 코드에 있었다 — `body-conscious styling`,
+`exposed non-intimate skin`, `noticeably sensual`, `shoulders, waist, back,
+hips, thighs`, `overall_intensity: bold/strong`, `skin_exposure: bold`.
+
+| 카테고리 | 무엇을 바꿨나 |
+|---|---|
+| lingerie | 분위기 말 대신 재단 · 원단 · 트림 · 끈 · 여밈 · 겹으로 적게 했다 |
+| swimwear | `noticeably sensual` 을 빼고, 안감과 움직임 중 고정, 공개된 장소를 못박았다 |
+| adult_roleplay | 무대 · 행사용 의상임을 앞세우고 표식 · 무기 금지를 유지했다 |
+| occupation_sensual | `body-conscious`·`exposed non-intimate skin` 을 뺐다. 직무에 맞는 재단과 실제 작업 동작으로 옮겼다 |
+| everyday_sensual | 신체 부위 열거(어깨 · 허리 · 등 · 골반 · 허벅지)를 빼고 핏 · 진행 중인 행동 · 눈높이 프레이밍으로 바꿨다 |
+
+`[NON-EXPLICIT LIMITS]` 에는 옷 상태를 긍정형으로 한 줄 **더했다**
+("securely fitted and fully opaque … mainstream fashion or lifestyle editorial").
+**금지 목록은 줄이지 않았다.** 제안서 §3.4 는 긴 금지 열거를 짧은 긍정형으로
+바꾸라고 했는데, 그 목록은 필터를 달래는 문장이 아니라 실제 가드라 그대로 뒀다.
+
+### 안 한 것
+
+제안서 §3.1 과 §4 의 되풀이 표현 가운데 **그림은 그대로인 채 이름만 바꾸는 것**은
+넣지 않았다. `babydoll` → `short flowing empire-waist lounge dress`,
+`bralette` → `softly structured sleeveless cropped top`, "상위 카테고리명을 지우고
+의복 구조만 남긴다" 같은 것들이다. 만들려는 그림이 같은데 표현만 고쳐 쓰는 것은
+제안서가 서두에 "우회는 제안하지 않는다" 고 적어 둔 것과 어긋난다.
+
+가른 기준 — **의도한 그림이 바뀌면 개선, 안 바뀌고 표현만 바뀌면 우회.**
+`outdoor shower` → 스파 라운지는 장면이 실제로 바뀌므로 앞쪽이고,
+`bralette` 되풀이는 뒤쪽이다.
+
+### 아직 열려 있는 것 — 어려 보이는 인상과 민감 카테고리
+
+제안서는 `youthful`·`cute`·`doll-like`·`innocent` 를 "차단을 부르는 신호" 중
+하나로 다룬다(§2-4, §6-2). 그 항목만은 필터 이야기가 아니다.
+
+기록을 재 보니 **다섯 기가 이미 그 조합으로 돌고 있다** — 더블오 퀀터 ·
+아류제우스 · 앗가이(youthful adult + cute/doll-like) · 스트라이크 루즈 ·
+가르발디β 가 lingerie · swimwear · adult_roleplay 를 함께 쓴다.
+
+그런데 막는 장치가 없다. `buildSinglePrompt` 와 `sgSummary` 는 `apparent age` 도
+`facial character` 도 아예 보지 않는다 — 의인화 탭과 콜라주 탭이 서로를 모른다.
+`YOUTHFUL_LOCK` 과 `CUTE_LOCK` 이 "성인이다" 라는 문장을 덧붙이기는 하지만
+조합 자체를 막지는 않는다. `youthful adult` 의 실제 문구가 `a youthful,
+soft-featured baby face; rounder cheeks, larger eyes, and a softer jawline` 이다.
+
+문구를 다듬어 통과시킬 일이 아니라 **두 탭을 이어 조합을 막아야 하는 자리다.**
+이번 범위 밖이라 손대지 않았다.
+
+### 재어 본 것
+
+golden 54 항목 가운데 의인화 18 항목은 **바이트까지 같다.** 달라진 36 항목
+(콜라주 18 · 단일 18)에서 바뀐 줄은 전부 카테고리 가이드 아니면 옷 상태 한 줄이다.
+
