@@ -423,6 +423,56 @@ body[data-density="comfortable"] .st b{font-size:13px}
 .candidate .card{height:auto;flex:1}
 .card-detail{position:static;align-self:flex-end;flex:none;height:32px}
 
+
+/* Compact comparison cards for the Fold cover screen. Details stay in the dialog. */
+.pick-portrait{display:block;width:100%;height:220px;object-fit:contain;background:#17130f;border-radius:8px}
+.pick-actions{position:sticky;bottom:-20px;background:var(--ink);padding:8px 0;z-index:2;display:grid;gap:6px}
+.pick-actions .btn,.pick-actions .btn2{margin:0;min-height:44px}
+.blocked-reason{font:600 10px/1.3 var(--body);color:#731711}.card.illegal{opacity:.7}.card.illegal::after{display:none}
+#draftSummary{top:0;font-size:11px;line-height:1.6}
+@media(max-width:599px){
+ body[data-pack="9"] .pack{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;grid-auto-rows:1fr}
+ body[data-pack="9"] .wrap{padding:6px 7px 20px}
+ body[data-pack="9"] .top{padding:0 0 4px;gap:4px}
+ body[data-pack="9"] .title{font-size:19px}
+ body[data-pack="9"] .title small,body[data-pack="9"] .tally{display:none}
+ body[data-pack="9"] .board{margin:5px 0;padding:5px}
+ body[data-pack="9"] .board b{font-size:22px}
+ body[data-pack="9"] .opts{margin:4px 0;gap:4px}
+ body[data-pack="9"] .decree{margin:5px 0}
+ body[data-pack="9"] .decree .msg{font-size:12px}
+ body[data-pack="9"] .decree .lorel{display:none}
+ body[data-pack="9"] .candidate .card{padding:5px;border-left-width:2px}
+ body[data-pack="9"] .card .emb,body[data-pack="9"] .card .fac,body[data-pack="9"] .card .pw,body[data-pack="9"] .card .tr{display:none}
+ body[data-pack="9"] .card .avc{position:static;width:26px;height:26px;float:left;margin:0 4px 3px 0}
+ body[data-pack="9"] .card .nm,body[data-pack="9"] .card .nm.ln{padding:0;font-size:12px;min-height:29px;line-height:1.2;overflow-wrap:anywhere}
+ body[data-pack="9"] .card .rl{padding:0;clear:both;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ body[data-pack="9"] .card .stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;margin:4px 0}
+ body[data-pack="9"] .st{display:flex;gap:2px;justify-content:space-between}
+ body[data-pack="9"] .st u{display:none}body[data-pack="9"] .st b{font-size:11px}body[data-pack="9"] .st span{font-size:10px;writing-mode:horizontal-tb}
+ body[data-pack="9"] .card .hint{height:29px;margin:2px 0 0;padding:2px 0;font-size:10px;line-height:13px;overflow:hidden}
+ body[data-pack="9"] .hint .ht{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+ body[data-pack="9"] .card-detail{height:26px;min-height:26px;width:100%;font-size:10px}
+ body[data-pack="9"] .hidden-card{min-height:95px;font-size:11px}
+ body[data-pack="9"] .reroll{margin:5px 0;min-height:36px}
+}
+
+
+/* Brief feedback; no blocking timers or changes to draft timing. */
+#detail.on .pick-portrait{animation:portraitReveal .24s ease-out both}
+#detail.on .pick-actions{animation:actionReveal .18s ease-out both}
+.verdict .big.win{animation:victoryGlow .8s ease-out both}
+@keyframes portraitReveal{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes actionReveal{from{opacity:.5}to{opacity:1}}
+@keyframes victoryGlow{from{text-shadow:0 0 22px #c9a227aa;transform:scale(.97)}to{text-shadow:none;transform:none}}
+/* Compact banners leave the centre of the candidate grid readable. */
+#toast{top:auto;bottom:calc(10px + env(safe-area-inset-bottom));gap:4px;max-height:24dvh;overflow:hidden}
+.tst{padding:6px 14px;animation-name:actionReveal,tstOut}
+.tst .tt{font-size:10px}.tst .tn{font-size:15px;margin-top:0}.tst .tv{font-size:11px;margin-top:0}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+
 </style>
 </head>
 <body>
@@ -971,7 +1021,7 @@ COMBO.push(
 var SYN={2:22,3:68,4:122,5:180,6:238,7:295,8:355,9:410,10:460,11:505};   // 3~6인 구간을 올려 작은 무리도 값어치를 갖게 하되, 큰 세력은 그대로 두었다
 var ETC_BASE=.4, ETC={4:.75,6:1};   // 군웅은 기본 40%, 넷 이상 모이면 할거로 계수가 오른다
 var ROUNDS=11, PACK=8;
-var PACK_OPT=0, FAST=false, DENSITY="compact", recentShown={}, roundExcluded=[], gameTimers=[], setupBefore=null;
+var PACK_OPT=0, FAST=false, QUICK_PICK=false, DENSITY="compact", recentShown={}, roundExcluded=[], gameTimers=[], setupBefore=null;
 function packSize(){return SCN>0?6:(PACK_OPT|| (PLAYERS===3?9:8))}
 function syncLayout(){document.body.dataset.density=DENSITY;document.body.dataset.pack=PACK;}
 function later(fn,ms){
@@ -1124,13 +1174,14 @@ function renderSaveBox(){
    예전에는 설정을 아예 안 남겨서 판을 새로 짤 때마다 열셋을 다시 골라야 했다 */
 var CFG_KEY="samgukji_draft_cfg_v1";
 function cfgSnap(){
-  return {cards:PACK_OPT,fast:FAST,density:DENSITY,mode:MODE,era:ERA,lv:AI_LV,pl:PLAYERS,st:AI_ST,st2:AI_ST2,
+  return {cards:PACK_OPT,fast:FAST,quickPick:QUICK_PICK,density:DENSITY,mode:MODE,era:ERA,lv:AI_LV,pl:PLAYERS,st:AI_ST,st2:AI_ST2,
           rule:ruleOn,ex:exhaustOn,fo:firstOrd,rr:REROLLS,ban:banOn,scn:SCN,
           pk:(function(){var k;for(k in PACKS)if(PACKS[k]===PACK2)return k;return null})()};
 }
 function cfgApply(c){
   if(!c)return;
   if([0,6,8,9].indexOf(c.cards)>=0)PACK_OPT=c.cards;
+  if(typeof c.quickPick==="boolean")QUICK_PICK=c.quickPick;
   if(typeof c.fast==="boolean")FAST=c.fast;
   if(c.density==="compact"||c.density==="comfortable")DENSITY=c.density;
   var num=function(v,max){return typeof v==="number"&&v>=0&&v<max?v:null};
@@ -1764,6 +1815,7 @@ function buildSetup(){
         '<div class="sub">판을 새로 짜는 자리요 · 규칙은 우상단 ?</div></div>';
   h+='<div class="intro">죽간이 펼쳐지면 적장과 <b>번갈아</b> 하나씩 취하오. 열한 진이 끝나면 전력과 인연을 셈하여 승부를 가리오.</div>';
   h+=row("후보 카드","자동: 2인 8장 · 3인 9장 · 시나리오 6장","sCards",PACK_OPT?PACK_OPT+"장":"자동");
+  h+=row("빠른 지명","끄면 이미지와 점수 변화를 확인하고 확정","sQuick",QUICK_PICK?"켜짐":"꺼짐");
   h+=row("진행 속도","적장 선택과 다음 진의 대기 시간","sFast",FAST?"빠르게":"기본");
   h+=row("화면 밀도","작은 글씨로 정보를 모아 보거나 여유롭게","sDensity",DENSITY==="compact"?"촘촘하게":"여유롭게");
   h+=row("드래프트 방식","티어는 진마다 같은 등급끼리 겨루오","sMode",MODE_NAME[MODE]);
@@ -1784,6 +1836,7 @@ function buildSetup(){
   h+='<button class="btn2" id="setupX">돌 아 가 기</button>';
   $("setupBody").innerHTML=h;
   $("sCards").addEventListener("click",function(){var a=[0,6,8,9];PACK_OPT=a[(a.indexOf(PACK_OPT)+1)%a.length];this.textContent=PACK_OPT?PACK_OPT+"장":"자동"});
+  $("sQuick").onclick=function(){QUICK_PICK=!QUICK_PICK;this.textContent=QUICK_PICK?"켜짐":"꺼짐"};
   $("sFast").addEventListener("click",function(){FAST=!FAST;this.textContent=FAST?"빠르게":"기본"});
   $("sDensity").addEventListener("click",function(){DENSITY=DENSITY==="compact"?"comfortable":"compact";this.textContent=DENSITY==="compact"?"촘촘하게":"여유롭게"});
   $("sMode").addEventListener("click",function(){MODE=(MODE+1)%2;this.textContent=MODE_NAME[MODE]});
@@ -2147,7 +2200,7 @@ function etcTiers(){
 function byName(n){for(var i=0;i<C.length;i++)if(C[i][0]===n)return C[i];return C[0]}
 
 $("detail").addEventListener("click",function(e){if(e.target===this)this.classList.remove("on")});
-document.addEventListener("keydown",function(e){if(e.key==="Escape")$("detail").classList.remove("on")});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeDetail();if(e.key==="Tab"&&$("detail").classList.contains("on")){var bs=$("detailBody").querySelectorAll("button:not(:disabled)"),first=bs[0],last=bs[bs.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
 /* ───────── 금지 페이즈 ───────── */
 var banCand=[],banQ=[];
 function banPhase(){
@@ -2243,6 +2296,8 @@ function board(){
 }
 
 function updateReroll(){
+  var ct=counts(mine);
+  $("draftSummary").textContent=(myTurn?"내 차례":"진행 중")+" · "+Math.min(round+1,ROUNDS)+"/"+ROUNDS+"진 · "+evaluate(mine,true).total+"점 · "+(ruleOn?"군 "+ct.군주+"/1 무 "+ct.무장+"/5 모 "+ct.참모+"/5":"자유 편성 "+mine.length+"명");
   var rb=$("reroll");
   rb.disabled=(rerolls<1||busy||!myTurn);
   rb.textContent=rerolls>0?"換 · 죽간을 다시 펴다 (남은 "+rerolls+"회)":"換 · 다시 펼 죽간이 없소";
@@ -2270,19 +2325,24 @@ function renderPack(fresh){
       var ok=legal.indexOf(i)>=0;
       if(!ok)el.classList.add("illegal");
       el.disabled=!myTurn||!ok;
-      if(ok)el.addEventListener("click",function(){myPick(i)});
+      if(ok)el.addEventListener("click",function(){if(QUICK_PICK)myPick(i);else showDetail(e.c,i)});
+      if(!ok){var reason=document.createElement("div");reason.className="blocked-reason";reason.textContent=catOf(e.c)+" 정원 초과";el.appendChild(reason);el.setAttribute("aria-label",e.c[0]+" · "+reason.textContent)}
     }
     var cell=document.createElement("div");cell.className="candidate";cell.appendChild(el);
     var detail=document.createElement("button");detail.className="card-detail";detail.textContent="상세";
     detail.setAttribute("aria-label",fogOn&&e.by&&e.by!=="me"?"가려진 카드":e.c[0]+" 상세 보기");
     detail.disabled=!!(fogOn&&e.by&&e.by!=="me");
-    detail.onclick=function(){showDetail(e.c)};cell.appendChild(detail);box.appendChild(cell);
+    detail.onclick=function(){showDetail(e.c,i)};cell.appendChild(detail);box.appendChild(cell);
   });
   updateReroll();
 }
 
-function showDetail(c){
- var h='<h3>'+c[0]+' · '+facOf(c)+' · '+roleOf(c)+'</h3><p>통솔 '+c[3]+' · 무력 '+c[4]+' · 지력 '+c[5]+' · 정치 '+c[6]+'</p><p>전력 '+power(c)+(martialBonus(c)?' · 무력 특화 +'+martialBonus(c):'')+'</p>';
+var detailOrigin=null;
+function closeDetail(){ $("detail").classList.remove("on");if(detailOrigin&&detailOrigin.isConnected)detailOrigin.focus(); }
+function showDetail(c,pickIndex){
+ detailOrigin=document.activeElement;
+ var canPick=typeof pickIndex==="number"&&myTurn&&!busy&&packArr[pickIndex]&&packArr[pickIndex].c===c&&!packArr[pickIndex].by&&legalSet(mine,openIdx()).indexOf(pickIndex)>=0;
+ var h='<img class="pick-portrait" src="'+((IMGL&&IMGL[c[0]])||IMG[c[0]]||'')+'" alt="'+c[0]+'" onerror="this.style.display=\'none\'"><h3>'+c[0]+' · '+facOf(c)+' · '+roleOf(c)+'</h3><p>통솔 '+c[3]+' · 무력 '+c[4]+' · 지력 '+c[5]+' · 정치 '+c[6]+'</p><p>전력 '+power(c)+(martialBonus(c)?' · 무력 특화 +'+martialBonus(c):'')+'</p>';
  if(!mine.concat(foe,foe2||[]).some(function(x){return x[0]===c[0]})){
    var a=evaluate(mine,true),b=evaluate(mine.concat([c]),true),rows={};a.rows.forEach(function(r){rows[r.k]=r.v});
    h+='<h4>선택 시 즉시 변화 '+(b.total-a.total)+'</h4>';
@@ -2291,8 +2351,11 @@ function showDetail(c){
  }
  h+='<p>'+(LORE[c[0]]||'')+'</p><h4>관련 인연</h4>';
  COMBO.filter(function(g){return g.m.indexOf(c[0])>=0}).forEach(function(g){h+='<p><b>'+g.n+'</b> · '+Object.keys(g.t).map(function(k){return k+'인 '+g.t[k]}).join(' / ')+'<br>'+g.m.filter(function(n){return n!==c[0]}).map(function(n){return n+' ['+availability(n)+']'}).join(' · ')+'</p>'});
- $("detailBody").innerHTML=h+'<button class="btn" id="detailClose">닫기</button>';
- $("detail").classList.add("on");$("detail").scrollTop=0;$("detailClose").onclick=function(){$("detail").classList.remove("on")};$("detailClose").focus();
+ var blocked=typeof pickIndex==="number"&&!canPick&&!packArr[pickIndex].by?(myTurn?catOf(c)+" 정원 초과":"적군이 선택 중입니다"):"";
+ h+='<p class="pick-warning">'+blocked+'</p>';
+ $("detailBody").innerHTML=h+'<div class="pick-actions">'+(canPick?'<button class="btn" id="pickConfirm">'+c[0]+' 지명 확정</button>':'')+'<button class="btn2" id="detailClose">닫기 · 후보 다시 보기</button></div>';
+ if(canPick){var snapshot=packArr;$("pickConfirm").onclick=function(){if(snapshot!==packArr||!myTurn||busy||packArr[pickIndex].by||legalSet(mine,openIdx()).indexOf(pickIndex)<0){closeDetail();return}closeDetail();myPick(pickIndex)}}
+ $("detail").classList.add("on");$("detail").scrollTop=0;$("detailClose").onclick=closeDetail;$("detailClose").focus();
 }
 function nextRound(){
   roundExcluded=[];busy=false;
@@ -2332,8 +2395,20 @@ function advanceTurn(first){
   }
 }
 
+function playPickEffect(){
+  if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  function pulse(node,frames,duration){
+    if(!node||typeof node.animate!=="function")return;
+    try{if(node.getAnimations)node.getAnimations().forEach(function(a){a.cancel()});node.animate(frames,{duration:duration,easing:"ease-out"})}catch(e){}
+  }
+  // Read the final rendered nodes after turn advancement replaces the candidates.
+  pulse($("sMe"),[{color:"#fff0a6",transform:"scale(1.1)"},{color:"#E7DCC3",transform:"scale(1)"}],420);
+  pulse($("mine"),[{backgroundColor:"rgba(201,162,39,.22)"},{backgroundColor:"transparent"}],550);
+  var seals=$("pack").querySelectorAll(".by-me .seal");
+  pulse(seals[seals.length-1],[{opacity:0,transform:"scale(1.3) rotate(-9deg)"},{opacity:1,transform:"scale(1) rotate(0deg)"}],260);
+}
 function myPick(i){
-  if(busy||!myTurn||packArr[i].by)return;
+  if(busy||!myTurn||!packArr[i]||packArr[i].by||legalSet(mine,openIdx()).indexOf(i)<0)return;
   busy=true;myTurn=false;
   var legal=legalSet(mine,openIdx()),baseT=evaluate(mine,true).total,bi=i,bg=-1e9,pg=0,li;
   for(li=0;li<legal.length;li++){
@@ -2355,6 +2430,7 @@ function myPick(i){
   $("msg").textContent=packArr[i].c[0]+"을(를) 취하였소";
   board();renderPack(false);
   advanceTurn(false);
+  playPickEffect();
 }
 
 function aiPick(seat){

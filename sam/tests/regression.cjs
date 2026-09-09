@@ -59,3 +59,12 @@ c=runtime();c.start();c.mine=c.C.filter(x=>x[2]==='무장').slice(0,5);c.pool=c.
 // Hidden enemies do not leak via availability labels.
 c=runtime();c.start();c.foe=[c.byName('관우')];c.fogOn=true;assert.equal(c.availability('관우'),'불확실');assert.equal(c.availability('장비'),'불확실');c.fogOn=false;assert.equal(c.availability('관우'),'적 보유');
 console.log(JSON.stringify({games:played,reloadPhases:3,officers:c.C.length,combos:c.COMBO.length,result:'PASS'}));
+// Inspecting and cancelling must never mutate picks, scores or the draft queue.
+c=runtime();c.start();while(!c.myTurn)c.queue.shift()();
+let idx=c.legalSet(c.mine,c.openIdx())[0],before=JSON.stringify([c.mine,c.foe,c.turnQ,c.packArr]);
+c.showDetail(c.packArr[idx].c,idx);assert.equal(JSON.stringify([c.mine,c.foe,c.turnQ,c.packArr]),before);
+c.closeDetail();assert.equal(JSON.stringify([c.mine,c.foe,c.turnQ,c.packArr]),before);
+c.showDetail(c.packArr[idx].c,idx);const confirm=c.document.getElementById('pickConfirm').onclick,chosen=c.packArr[idx].c[0];
+confirm();assert(c.mine.some(x=>x[0]===chosen));const count=c.mine.length;confirm();assert.equal(c.mine.length,count,'double confirm');
+c.cfgApply({quickPick:true});assert.equal(c.cfgSnap().quickPick,true);
+console.log('PASS: preview/cancel preserve draft, confirmation picks once, quick-pick preference');
