@@ -413,7 +413,7 @@ function loadFileList(force){
       if(c&&Date.now()-c.t<LIST_TTL)return Promise.resolve(mergeFiles(c.n));
     }catch(e){}
   }
-  return fetch("https://api.github.com/repos/"+GH.user+"/"+GH.repo+"/contents/")
+  return fetch("https://api.github.com/repos/"+GH.user+"/"+GH.repo+"/contents/img")
     .then(function(r){if(!r.ok)throw 0;return r.json()})
     .then(function(j){
       var n=j.filter(function(x){return x.type==="file"}).map(function(x){return x.name});

@@ -42,6 +42,11 @@ import re
 
 import roster
 
+# 초상 파일이 사는 곳. 예전에는 저장소 최상위였는데 GitHub 의 파일 목록 API 가
+# 1000개에서 잘려서, 그 앞에서 새 그림이 조용히 안 보이게 된다. img.json 에는
+# 폴더 없이 파일 이름만 적는다 — 경로는 화면 쪽 IMG_BASE 한 곳이 붙인다.
+IMG_DIR = "img"
+
 PAT = re.compile(r"^(.+?)_(m|f|casual(\d+)|extra(\d+))\.webp$", re.I)
 # 툴킷 화풍 견본. 카드 초상이 아니다
 SKIP = re.compile(r"^style-")
@@ -141,7 +146,7 @@ def main():
     img = doc["img"]
     idx = card_index()
     styles = roster.styles()
-    disk = {f for f in os.listdir(".") if f.lower().endswith(".webp")}
+    disk = {f for f in os.listdir(IMG_DIR) if f.lower().endswith(".webp")}
     listed = listed_files(img)
 
     added, unknown = [], []

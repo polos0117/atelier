@@ -1125,7 +1125,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       if(c&&Date.now()-c.t<LIST_TTL){SHOT=digestFiles(c.n);return Promise.resolve();}
     }catch(e){}
     if(!mm)return Promise.resolve();
-    return fetch('https://api.github.com/repos/'+mm[1]+'/'+mm[2]+'/contents/')
+    return fetch('https://api.github.com/repos/'+mm[1]+'/'+mm[2]+'/contents/img')
       .then(r=>r.ok?r.json():null).then(j=>{
         if(!j)return;
         const n=j.filter(x=>x.type==='file').map(x=>x.name);
@@ -4273,7 +4273,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       (shots?'<div class="st-shots">'+shots+'</div>':'');
   }
 
-  const IMG_BASE='https://polos0117.github.io/atelier/';
+  const IMG_BASE='https://polos0117.github.io/atelier/img/';
   const STORE_KEY='atelier_toolkit_v1';
   const DATA_URL='toolkit-data.json';     /* 저장소에 커밋해 두는 기반 기록 */
   let STORE={last:{},anthro:{},collage:null,used:{},style:{}};

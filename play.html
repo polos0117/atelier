@@ -806,7 +806,9 @@ function loreOf(c){return LORE[c[0]]||""}
    prep_images.py --inject 로 자동 생성한다.
 */
 /* 이미지 호스팅 주소. 옮길 때 이 한 줄만 고치면 된다. */
-var IMG_BASE="https://polos0117.github.io/atelier/";
+/* 초상은 img/ 아래에 있다. 예전에는 저장소 최상위에 쌓았는데, GitHub 의
+   파일 목록 API 가 1000개에서 잘려서 그 앞에서 조용히 새 그림이 안 보이게 된다 */
+var IMG_BASE="https://polos0117.github.io/atelier/img/";
 function imgURL(p){return IMG_BASE+encodeURIComponent(p)}
 
 /* ══ 저장소 파일 목록으로 IMG 자동 보강 ══
@@ -869,7 +871,7 @@ function refreshImages(){
     var c=JSON.parse(localStorage.getItem(K));
     if(c&&Date.now()-c.t<6e5){mergeRepoFiles(c.n);return}
   }catch(e){}
-  fetch("https://api.github.com/repos/"+GH_.u+"/"+GH_.r+"/contents/")
+  fetch("https://api.github.com/repos/"+GH_.u+"/"+GH_.r+"/contents/img")
     .then(function(r){if(!r.ok)throw 0;return r.json()})
     .then(function(j){
       var n=j.filter(function(x){return x.type==="file"}).map(function(x){return x.name});
