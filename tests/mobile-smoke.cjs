@@ -118,7 +118,21 @@ let server;
   await page.locator('[data-jump="dockArea"]').click();
   assert.equal(await page.locator('#rdl').innerText(),round,'navigation advanced draft');
   await page.locator('[data-jump="packArea"]').click();
-  await page.locator('#packArea button.card:not(:disabled)').first().click();
+  for(const shared of [true,false]){
+   await page.evaluate(shared=>{gen++;sharedPack=shared;reset()},shared);
+   await page.waitForFunction(()=>!busy&&turnSeq()[si]===0);
+   const before=await page.evaluate(()=>JSON.stringify({round,si,teams}));
+   await page.locator('#packArea button.card:not(:disabled)').first().click();
+   assert(await page.locator('#tacticalDialog').isVisible(),'normal view must confirm');
+   assert.equal(await page.locator('.pick-art img,.pick-art svg').count(),1);
+   assert.equal(await page.evaluate(()=>JSON.stringify({round,si,teams})),before,'preview picked a card');
+   await page.locator('.tac-dialog-head button').click();
+   assert.equal(await page.evaluate(()=>JSON.stringify({round,si,teams})),before,'cancel changed draft');
+   await page.locator('#packArea button.card:not(:disabled)').first().click();
+   await page.locator('#tacticalDialog .btn.big').click();
+   await page.waitForFunction(()=>teams[0].함.length===1);
+   assert(!await page.locator('#tacticalDialog').isVisible());
+  }
   await page.waitForFunction(()=>document.querySelector('#dockArea .ship:not(.empty)'));
   for(const width of [344,690,768]){await page.setViewportSize({width,height:882});await fits('active draft '+width);if(process.env.MOBILE_SCREENSHOTS)await page.screenshot({path:process.env.MOBILE_SCREENSHOTS+'/draft-'+width+'.png'});}
   assert.deepEqual(errors,[],'browser errors');

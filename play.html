@@ -2252,14 +2252,14 @@ function renderPack(){
     for(i=0;i<packArr.length;i++){
       var slot=packArr[i];
       if(slot.by===null){
-        var cd=cardEl(slot.c,type,mine?pick:null);
+        var cd=cardEl(slot.c,type,mine?confirmPick:null);
         if(!mine)cd.disabled=true;
         pk.appendChild(cd);
       }else pk.appendChild(takenEl(slot,type));
     }
   }else{
     if(!curPack)curPack=drawPack(type);
-    for(i=0;i<curPack.length;i++)pk.appendChild(cardEl(curPack[i],type,pick));
+    for(i=0;i<curPack.length;i++)pk.appendChild(cardEl(curPack[i],type,confirmPick));
   }
   a.appendChild(pk);
   if(!mine)return;
@@ -2312,6 +2312,10 @@ function render(){
   renderHead();renderPack();renderDock();renderBoard();
   if(round>=SCHEDULE.length){renderResult();return}
   if(turnSeq()[si]!==0&&!busy){busy=true;schedStep()}
+}
+function confirmPick(c){
+  if(busy||round>=SCHEDULE.length||turnSeq()[si]!==0)return;
+  inspectCandidate(c,SCHEDULE[round]);
 }
 function pick(c){
   if(busy)return;
@@ -3055,7 +3059,7 @@ function renderTactical(){
     if(x.by!==null)note.textContent=(x.by===0?'아군':'적 '+x.by)+' 지명됨';
     else if(hintOn&&mine){var g=delta(c,type);note.textContent=(g.v>=0?'+':'')+g.v+'점';note.className=g.v<0?'negative':''}
     else note.textContent=mine?'눌러서 확인':'대기';
-    card.appendChild(note);card.onclick=function(){inspectCandidate(c,type)};cards.appendChild(card);
+    card.appendChild(note);card.onclick=function(){confirmPick(c)};cards.appendChild(card);
   });
   center.appendChild(cards);
   var roster=el('aside','tac-roster'),rh=el('strong');rh.textContent='내 편성';roster.appendChild(rh);
