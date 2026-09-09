@@ -2807,19 +2807,31 @@ boot();
    본문을 통째로 다시 받으면 데이터가 아까우니 머리(HEAD)만 물어 표를 견준다.
    판이 한창일 수 있으니 제멋대로 갈아타지 않고, 띠를 띄워 누를 때 갈아탄다 */
 (function(){
-  var TAG=null, busy=false, shown=false;
-  function stamp(r){return r.headers.get("etag")||r.headers.get("last-modified")||null}
-  function look(){
-    if(busy||shown||!window.fetch)return; busy=true;
-    fetch(location.pathname+"?_="+Date.now(),{method:"HEAD",cache:"no-store"})
+  /* 표는 last-modified 를 먼저 본다. etag 는 CDN 마디마다 다르게 붙을 수 있어서
+     같은 판인데도 바뀐 것처럼 보인다 — 띠가 자꾸 뜨던 까닭이다.
+     본 표는 브라우저에 남긴다. 그래야 앱을 껐다 켜도 같은 판으로 다시 묻지 않는다.
+     살피는 간격도 둔다. 예전에는 앱을 오갈 때마다 물어봤다. */
+  var KEY="seen_build_v1:"+location.pathname, GAP=6e5;   /* 십 분 */
+  var TAG=null, busy=false, shown=false, last=0;
+  function remember(t){try{localStorage.setItem(KEY,t)}catch(e){}}
+  function recall(){try{return localStorage.getItem(KEY)}catch(e){return null}}
+  function stamp(r){return r.headers.get("last-modified")||r.headers.get("etag")||null}
+  function look(force){
+    if(busy||shown||!window.fetch)return;
+    var now=Date.now(); if(!force&&now-last<GAP)return; last=now; busy=true;
+    fetch(location.pathname+"?_="+now,{method:"HEAD",cache:"no-store"})
       .then(function(r){ busy=false; if(!r.ok)return;
         var t=stamp(r); if(!t)return;
-        if(TAG===null){TAG=t;return}
-        if(t!==TAG)band();
+        if(TAG===null){
+          /* 이 창이 처음 본 표. 지난번에 본 것과 같으면 조용히 넘어간다 */
+          TAG=t; remember(t); return;
+        }
+        if(t!==TAG&&t!==recall())band(t);
       }).catch(function(){busy=false});
   }
-  function band(){
+  function band(t){
     if(shown)return; shown=true;
+    remember(t);        /* 한 번 알렸으면 이 판으로는 다시 묻지 않는다 */
     var d=document.createElement("div");
     d.setAttribute("role","status");
     d.style.cssText="position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));"+
@@ -2839,9 +2851,9 @@ boot();
     b[1].onclick=function(){d.remove();shown=false;TAG=null};
     document.body.appendChild(d);
   }
-  look();
+  look(true);
+  /* 앱을 다시 열 때만 본다. focus 까지 걸면 한 번 오갈 때 두 번 물어본다 */
   document.addEventListener("visibilitychange",function(){if(!document.hidden)look()});
-  window.addEventListener("focus",look);
 })();
 </script>
 </body>
