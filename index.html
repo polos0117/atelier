@@ -55,34 +55,43 @@ a.item span{color:var(--dim);font-size:12.5px}
 <script>
 /* ══ 새 판 살피기 ══
    홈 화면 앱에는 주소창도 새로고침 단추도 없다. 그래서 스스로 살핀다.
-   본문을 통째로 다시 받으면 데이터가 아까우니 머리(HEAD)만 물어 표를 견준다.
+   본문을 통째로 다시 받으면 데이터가 아까우니 머리(HEAD)만 물어 견준다.
    판이 한창일 수 있으니 제멋대로 갈아타지 않고, 띠를 띄워 누를 때 갈아탄다 */
 (function(){
-  /* 표는 last-modified 를 먼저 본다. etag 는 CDN 마디마다 다르게 붙을 수 있어서
-     같은 판인데도 바뀐 것처럼 보인다 — 띠가 자꾸 뜨던 까닭이다.
-     본 표는 브라우저에 남긴다. 그래야 앱을 껐다 켜도 같은 판으로 다시 묻지 않는다.
-     살피는 간격도 둔다. 예전에는 앱을 오갈 때마다 물어봤다. */
-  var KEY="seen_build_v1:"+location.pathname, GAP=6e5;   /* 십 분 */
+  /* 견줄 자리를 "이 창이 처음 본 표" 로 잡으면 안 된다.
+     화면에 떠 있는 쪽이 캐시에서 온 옛 판이면 첫 살핌이 서버의 새 판을
+     "이미 본 것" 으로 적어 버려 영영 알리지 못한다. 안 뜨던 까닭이 이것이다.
+     그래서 지금 이 문서가 서버를 떠난 때(document.lastModified)를 기준 삼는다.
+     그보다 서버 쪽이 나중이면 새 판이다 — 캐시에서 왔든 아니든 맞게 걸린다.
+     표(etag)는 CDN 마디마다 다르게 붙어 같은 판도 바뀐 듯 보이니 뒷받침으로만 쓴다 */
+  var GAP=18e4, SLACK=2e3;              /* 삼 분에 한 번, 앞뒤 이 초는 봐준다 */
+  var KEY="skip_build_v1:"+location.pathname;
+  var MINE=Date.parse(document.lastModified); if(!isFinite(MINE))MINE=0;
   var TAG=null, busy=false, shown=false, last=0;
-  function remember(t){try{localStorage.setItem(KEY,t)}catch(e){}}
-  function recall(){try{return localStorage.getItem(KEY)}catch(e){return null}}
-  function stamp(r){return r.headers.get("last-modified")||r.headers.get("etag")||null}
+  function skipped(){try{return localStorage.getItem(KEY)}catch(e){return null}}
+  function noMore(t){try{localStorage.setItem(KEY,t)}catch(e){}}
+  /* 자리가 있으면 지금 판이 언제 것인지 적어 둔다. 눈으로 견줄 데가 있어야 한다 */
+  (function(){
+    var el=document.getElementById("buildStamp"); if(!el||!MINE)return;
+    var d=new Date(MINE), p=function(n){return(n<10?"0":"")+n};
+    el.textContent="판 "+p(d.getMonth()+1)+"-"+p(d.getDate())+" "+p(d.getHours())+":"+p(d.getMinutes());
+  })();
   function look(force){
     if(busy||shown||!window.fetch)return;
     var now=Date.now(); if(!force&&now-last<GAP)return; last=now; busy=true;
     fetch(location.pathname+"?_="+now,{method:"HEAD",cache:"no-store"})
       .then(function(r){ busy=false; if(!r.ok)return;
-        var t=stamp(r); if(!t)return;
-        if(TAG===null){
-          /* 이 창이 처음 본 표. 지난번에 본 것과 같으면 조용히 넘어간다 */
-          TAG=t; remember(t); return;
-        }
-        if(t!==TAG&&t!==recall())band(t);
+        var lm=r.headers.get("last-modified"), et=r.headers.get("etag");
+        var t=lm||et; if(!t||t===skipped())return;
+        var srv=lm?Date.parse(lm):NaN;
+        if(MINE&&isFinite(srv)){ if(srv>MINE+SLACK)band(t); return; }
+        /* 날짜를 못 얻는 자리에서만 예전처럼 표를 견준다 */
+        if(TAG===null){TAG=t;return}
+        if(t!==TAG)band(t);
       }).catch(function(){busy=false});
   }
   function band(t){
     if(shown)return; shown=true;
-    remember(t);        /* 한 번 알렸으면 이 판으로는 다시 묻지 않는다 */
     var d=document.createElement("div");
     d.setAttribute("role","status");
     d.style.cssText="position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));"+
@@ -99,7 +108,8 @@ a.item span{color:var(--dim);font-size:12.5px}
       var u=location.pathname+location.search;
       location.replace(u+(location.search?"&":"?")+"_v="+Date.now());
     };
-    b[1].onclick=function(){d.remove();shown=false;TAG=null};
+    /* 닫기를 눌렀으면 이 판으로는 다시 묻지 않는다. 그다음 판은 또 알린다 */
+    b[1].onclick=function(){d.remove();shown=false;noMore(t)};
     document.body.appendChild(d);
   }
   look(true);

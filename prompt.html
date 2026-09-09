@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Gundam Prompt Toolkit v9.17</title>
+<title>Gundam Prompt Toolkit v9.18</title>
 <meta name="theme-color" content="#0f1115">
 <!-- 홈 화면에 두면 브라우저가 저장 자리를 걷어가지 못한다 -->
 <link rel="manifest" href="prompt.webmanifest">
@@ -233,6 +233,7 @@ label.lab-lock{position:relative;padding-right:42px}
 .ver-badge b{color:var(--text);font-weight:600}
 .ver-badge span{opacity:.7}
 .ver-badge a{margin-left:auto;color:var(--accent);text-decoration:none;font-size:10.5px}
+.ver-badge .bstamp{margin-left:auto;opacity:.5;font-variant-numeric:tabular-nums;font-size:10.5px}
 .verbox{margin:0 0 10px}
 .verbox .vb-in{padding:0 11px 11px;max-height:52vh;overflow:auto;-webkit-overflow-scrolling:touch;font-size:11.5px;color:var(--muted);line-height:1.6}
 /* 판 제목만 블록이다. 예전에는 li 안의 굵은 글씨까지 블록이 되어 문장이 토막났다 */
@@ -278,14 +279,23 @@ label.lab-lock{position:relative;padding-right:42px}
   </div>
 
 
-  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.17</b> <span>내보내기가 손글씨를 지우지 않게</span></div>
+  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.18</b> <span>새 판 알림이 캐시에 먹히지 않게</span><span class="bstamp" id="buildStamp" title="지금 화면에 뜬 판이 서버를 떠난 때"></span></div>
   <details class="srcbox verbox" id="verBox">
     <summary>
-      <span class="sel-line" style="white-space:normal;overflow:visible">v9.17 변경 내역</span>
+      <span class="sel-line" style="white-space:normal;overflow:visible">v9.18 변경 내역</span>
       <span class="sb-txt">패치 노트</span>
     </summary>
     <div class="vb-in">
-      <b>v9.17 &middot; 내보내기가 손글씨를 지우지 않게</b>
+      <b>v9.18 &middot; 새 판 알림이 캐시에 먹히지 않게</b>
+      <ul>
+        <li><b>v9.17 을 쓰는 동안 갈아타기 띠가 한 번도 안 떴다.</b> 까닭은 견주는 자리가 틀려서였다. 예전 코드는 "이 창이 처음 본 서버 표"를 기준으로 삼았는데, 화면에 떠 있는 쪽이 <b>브라우저 캐시에서 온 옛 판</b>이면 첫 살핌이 서버의 새 판을 곧장 "이미 본 것"으로 적어 버렸다. 홈 화면 앱은 거의 늘 캐시에서 열리니, 사실상 영영 안 알리는 코드였다</li>
+        <li>이제 <b>지금 이 문서가 서버를 떠난 때</b>(<code>document.lastModified</code>)를 기준으로 삼는다. 그보다 서버 쪽이 나중이면 새 판이다 — 캐시에서 왔든 아니든 맞게 걸린다. 앞뒤 이 초는 봐준다</li>
+        <li>닫기(×)를 누르면 <b>그 판으로만</b> 다시 안 묻는다. 예전에는 살핀 표를 모두 남겨 두어, 한 번 지나간 판은 두 번 다시 알릴 수 없었다</li>
+        <li>판 번호로는 오늘 올린 것들을 가릴 수 없었으므로 <b>제목줄에 판 날짜를 적어 둔다.</b> 눈으로 견줄 데가 생겼다</li>
+        <li>확인 — 진짜 브라우저로 네 가지를 돌렸다. 하루 뒤 판 <b>알림 뜸</b> / 같은 판 조용 / 일 초 뒤 조용 / 십 초 뒤 알림 뜸. 프롬프트 출력은 54 항목 71만 7천 글자가 바이트까지 그대로다</li>
+        <li>같은 고침을 놀이 · 도감 · 첫 화면 · 삼국 쪽에도 함께 넣었다</li>
+      </ul>
+      <b style="opacity:.55">v9.17 &middot; 내보내기가 손글씨를 지우지 않게</b>
       <ul>
         <li><b>화풍이 기본값(세미리얼 시네마틱)과 같으면 기록에서 지우고 있었다.</b> 그래서 "판정해서 고른 세미리얼"과 "안 골라서 흘러든 세미리얼"이 파일에서 똑같아 보였다. 이제 고른 값을 그대로 적는다</li>
         <li>더 나빴던 것은 <b>내보내기가 그 손글씨를 지운다</b>는 점이다. 초상을 넣는 쪽은 <code>toolkit-data.json</code> 에 화풍을 손으로 적어 두는데, 내보내기가 파일을 통째로 덮어쓰면서 기본값으로 적힌 것을 빼 버렸다. 실제로 돌려 보니 <b>171 항목 가운데 12 기가 조용히 사라졌다</b> — 건이지 · 건담 하루트 · 라파엘 건담 · 프리덤 · 건담 데스사이즈 · 더블 엑스 외 여섯</li>
@@ -5057,34 +5067,43 @@ label.lab-lock{position:relative;padding-right:42px}
 <script>
 /* ══ 새 판 살피기 ══
    홈 화면 앱에는 주소창도 새로고침 단추도 없다. 그래서 스스로 살핀다.
-   본문을 통째로 다시 받으면 데이터가 아까우니 머리(HEAD)만 물어 표를 견준다.
+   본문을 통째로 다시 받으면 데이터가 아까우니 머리(HEAD)만 물어 견준다.
    판이 한창일 수 있으니 제멋대로 갈아타지 않고, 띠를 띄워 누를 때 갈아탄다 */
 (function(){
-  /* 표는 last-modified 를 먼저 본다. etag 는 CDN 마디마다 다르게 붙을 수 있어서
-     같은 판인데도 바뀐 것처럼 보인다 — 띠가 자꾸 뜨던 까닭이다.
-     본 표는 브라우저에 남긴다. 그래야 앱을 껐다 켜도 같은 판으로 다시 묻지 않는다.
-     살피는 간격도 둔다. 예전에는 앱을 오갈 때마다 물어봤다. */
-  var KEY="seen_build_v1:"+location.pathname, GAP=6e5;   /* 십 분 */
+  /* 견줄 자리를 "이 창이 처음 본 표" 로 잡으면 안 된다.
+     화면에 떠 있는 쪽이 캐시에서 온 옛 판이면 첫 살핌이 서버의 새 판을
+     "이미 본 것" 으로 적어 버려 영영 알리지 못한다. 안 뜨던 까닭이 이것이다.
+     그래서 지금 이 문서가 서버를 떠난 때(document.lastModified)를 기준 삼는다.
+     그보다 서버 쪽이 나중이면 새 판이다 — 캐시에서 왔든 아니든 맞게 걸린다.
+     표(etag)는 CDN 마디마다 다르게 붙어 같은 판도 바뀐 듯 보이니 뒷받침으로만 쓴다 */
+  var GAP=18e4, SLACK=2e3;              /* 삼 분에 한 번, 앞뒤 이 초는 봐준다 */
+  var KEY="skip_build_v1:"+location.pathname;
+  var MINE=Date.parse(document.lastModified); if(!isFinite(MINE))MINE=0;
   var TAG=null, busy=false, shown=false, last=0;
-  function remember(t){try{localStorage.setItem(KEY,t)}catch(e){}}
-  function recall(){try{return localStorage.getItem(KEY)}catch(e){return null}}
-  function stamp(r){return r.headers.get("last-modified")||r.headers.get("etag")||null}
+  function skipped(){try{return localStorage.getItem(KEY)}catch(e){return null}}
+  function noMore(t){try{localStorage.setItem(KEY,t)}catch(e){}}
+  /* 자리가 있으면 지금 판이 언제 것인지 적어 둔다. 눈으로 견줄 데가 있어야 한다 */
+  (function(){
+    var el=document.getElementById("buildStamp"); if(!el||!MINE)return;
+    var d=new Date(MINE), p=function(n){return(n<10?"0":"")+n};
+    el.textContent="판 "+p(d.getMonth()+1)+"-"+p(d.getDate())+" "+p(d.getHours())+":"+p(d.getMinutes());
+  })();
   function look(force){
     if(busy||shown||!window.fetch)return;
     var now=Date.now(); if(!force&&now-last<GAP)return; last=now; busy=true;
     fetch(location.pathname+"?_="+now,{method:"HEAD",cache:"no-store"})
       .then(function(r){ busy=false; if(!r.ok)return;
-        var t=stamp(r); if(!t)return;
-        if(TAG===null){
-          /* 이 창이 처음 본 표. 지난번에 본 것과 같으면 조용히 넘어간다 */
-          TAG=t; remember(t); return;
-        }
-        if(t!==TAG&&t!==recall())band(t);
+        var lm=r.headers.get("last-modified"), et=r.headers.get("etag");
+        var t=lm||et; if(!t||t===skipped())return;
+        var srv=lm?Date.parse(lm):NaN;
+        if(MINE&&isFinite(srv)){ if(srv>MINE+SLACK)band(t); return; }
+        /* 날짜를 못 얻는 자리에서만 예전처럼 표를 견준다 */
+        if(TAG===null){TAG=t;return}
+        if(t!==TAG)band(t);
       }).catch(function(){busy=false});
   }
   function band(t){
     if(shown)return; shown=true;
-    remember(t);        /* 한 번 알렸으면 이 판으로는 다시 묻지 않는다 */
     var d=document.createElement("div");
     d.setAttribute("role","status");
     d.style.cssText="position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));"+
@@ -5101,7 +5120,8 @@ label.lab-lock{position:relative;padding-right:42px}
       var u=location.pathname+location.search;
       location.replace(u+(location.search?"&":"?")+"_v="+Date.now());
     };
-    b[1].onclick=function(){d.remove();shown=false;TAG=null};
+    /* 닫기를 눌렀으면 이 판으로는 다시 묻지 않는다. 그다음 판은 또 알린다 */
+    b[1].onclick=function(){d.remove();shown=false;noMore(t)};
     document.body.appendChild(d);
   }
   look(true);
