@@ -561,6 +561,24 @@ body.draft-running.tactical .fld{display:inline-block;white-space:nowrap}
  .tac-art{height:clamp(60px,10dvh,94px)}
 }
 @media(max-height:600px) and (min-width:600px){.tac-art{height:32px}.tac-roster{max-height:265px}.tac-card>b{min-height:22px}.tac-team{padding:4px}}
+
+/* Selection artwork and short, non-blocking draft feedback. */
+.pick-art{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:8px;background:radial-gradient(ellipse at center,#263348,var(--void));height:clamp(170px,32dvh,300px)}
+.pick-art img,.pick-art svg{width:100%;height:100%;display:block;object-fit:contain}
+.pick-art::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 35%,#ffffff18 50%,transparent 65%);transform:translateX(120%);animation:pick-sheen .6s ease-out}
+#tacticalDialog[open]{animation:pick-open .18s ease-out}
+.pick-details{min-width:0}.pick-details .note{overflow-wrap:anywhere}
+.pick-actions{position:sticky;bottom:-12px;padding:10px 0 2px;background:var(--void);z-index:2}
+.tac-card:not(:disabled):active{transform:scale(.96);border-color:var(--amber)}
+.tac-card{transition:transform .12s,border-color .12s}
+.pick-feedback{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:max-content;max-width:calc(100% - 24px);box-sizing:border-box;padding:10px 18px;border:1px solid var(--amber);border-radius:8px;background:#101925f5;color:var(--lume);box-shadow:0 0 25px #e8a13a33;pointer-events:none;z-index:150;animation:pick-confirm .85s ease both;font-size:12px;text-align:center;overflow-wrap:anywhere}
+.pick-feedback strong{color:var(--amber);margin-right:8px}
+body.pick-flash .tac-team:first-child{animation:pick-team .65s ease-out}
+@keyframes pick-open{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes pick-sheen{from{transform:translateX(-120%)}to{transform:translateX(120%)}}
+@keyframes pick-confirm{0%{opacity:0;translate:0 8px}18%,75%{opacity:1;translate:0 0}100%{opacity:0;translate:0 -5px}}
+@keyframes pick-team{0%{border-color:var(--amber);box-shadow:0 0 16px #e8a13a70}100%{border-color:var(--line);box-shadow:none}}
+@media(min-width:600px){#tacticalDialog:has(.pick-content){max-width:720px}.pick-content{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}.pick-art{height:clamp(220px,55dvh,460px);position:sticky;top:42px}}
 </style>
 </head>
 <body>
@@ -2309,6 +2327,7 @@ function pick(c){
   justFired=fresh.map(function(g){return g.n});
   announce(fresh);
   advance();
+  showPickFeedback(c);
   setTimeout(function(){justFired=[]},900);
 }
 /* AI 차례는 전체를 다시 그리지 않고 로그와 명단만 갱신한다 */
@@ -2967,6 +2986,15 @@ function setTactical(on){
   var b=document.getElementById('viewMode');b.textContent=on?'일반 보기':'상황판';b.setAttribute('aria-pressed',String(on));
   if(teams)renderTactical();
 }
+var pickFeedbackTimer=null;
+function showPickFeedback(c){
+  clearTimeout(pickFeedbackTimer);
+  var previous=document.getElementById('pickFeedback');if(previous)previous.remove();
+  var notice=el('div','pick-feedback');notice.id='pickFeedback';notice.setAttribute('role','status');
+  var label=el('strong');label.textContent='지명 완료';notice.appendChild(label);notice.appendChild(document.createTextNode(c[0]));document.body.appendChild(notice);
+  document.body.classList.remove('pick-flash');void notice.offsetWidth;document.body.classList.add('pick-flash');
+  pickFeedbackTimer=setTimeout(function(){notice.remove();document.body.classList.remove('pick-flash')},900);
+}
 function dialogBase(title){
   var d=document.getElementById('tacticalDialog');if(d.open)d.close();d.innerHTML='';
   var head=el('div','tac-dialog-head'),name=el('strong');name.textContent=title;
@@ -2975,19 +3003,22 @@ function dialogBase(title){
 }
 function inspectCandidate(c,type){
   var stamp=gen,r=round,slot=si,d=dialogBase(c[0]);
-  var affiliation=el('p','note');affiliation.textContent='소속: '+c[1].join(' → ');d.appendChild(affiliation);
-  d.appendChild(el('div','lore',loreOf(c)||'카드 능력과 편성 효과를 확인하세요.'));
-  d.appendChild(el('div','dinfo',statRows(c,type)));
-  if(type==='기체')d.appendChild(el('p','note','태그: '+(tagsOf(c).join(' · ')||'없음')+' · '+FIELD+' '+terrainWord(c)));
-  if(hintOn){var gain=delta(c,type);d.appendChild(el('p','note','선택 시 '+(gain.v>=0?'+':'')+gain.v+'점'+(gain.why?'<br>'+gain.why:'')))}
+  var content=el('div','pick-content'),art=el('div','pick-art'),details=el('div','pick-details');
+  art.innerHTML=avHTML(c,type);var picture=art.querySelector('img');if(picture){picture.alt=c[0];picture.loading='eager'}
+  content.appendChild(art);content.appendChild(details);d.appendChild(content);
+  var affiliation=el('p','note');affiliation.textContent='소속: '+c[1].join(' → ');details.appendChild(affiliation);
+  details.appendChild(el('div','lore',loreOf(c)||'카드 능력과 편성 효과를 확인하세요.'));
+  details.appendChild(el('div','dinfo',statRows(c,type)));
+  if(type==='기체')details.appendChild(el('p','note','태그: '+(tagsOf(c).join(' · ')||'없음')+' · '+FIELD+' '+terrainWord(c)));
+  if(hintOn){var gain=delta(c,type);details.appendChild(el('p','note','선택 시 '+(gain.v>=0?'+':'')+gain.v+'점'+(gain.why?'<br>'+gain.why:'')))}
   if(OBJECTIVE){var before=objectiveScore(teams[0]);teams[0][type].push(c);var after=objectiveScore(teams[0]);teams[0][type].pop();
-    d.appendChild(el('p','note','공개 목표: '+OBJECTIVE.name+' · 이 카드로 '+(after>=before?'+':'')+(after-before)+'점'))}
+    details.appendChild(el('p','note','공개 목표: '+OBJECTIVE.name+' · 이 카드로 '+(after>=before?'+':'')+(after-before)+'점'))}
   var confirm=el('button','btn big','이 카드 지명');
   confirm.onclick=function(){
     if(gen!==stamp||round!==r||si!==slot||busy||turnSeq()[si]!==0){d.close();return}
     var available=sharedPack?packArr.some(function(x){return x.c===c&&x.by===null}):curPack&&curPack.indexOf(c)>=0;
     if(!available){d.close();return}d.close();pick(c);
-  };d.appendChild(confirm);d.showModal();
+  };var actions=el('div','pick-actions');actions.appendChild(confirm);d.appendChild(actions);d.showModal();
 }
 function inspectTeam(ti){
   if(fogOn&&ti!==0&&round<SCHEDULE.length)return;

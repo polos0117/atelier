@@ -58,10 +58,23 @@ let server;
   const before=await page.evaluate(()=>JSON.stringify({round,si,teams}));
   await page.locator('.tac-card:not(:disabled)').first().click();assert(await page.locator('#tacticalDialog').isVisible());
   assert.equal(await page.evaluate(()=>JSON.stringify({round,si,teams})),before,'inspect mutates game');
+  assert.equal(await page.locator('#tacticalDialog .pick-art img, #tacticalDialog .pick-art svg').count(),1);
+  for(const width of [344,690]){
+   await page.setViewportSize({width,height:829});
+   assert(await page.locator('#tacticalDialog').evaluate(e=>e.scrollWidth<=e.clientWidth),'popup horizontal overflow');
+   assert(await page.locator('.pick-actions').evaluate(e=>e.getBoundingClientRect().bottom<=innerHeight),'confirm below screen');
+   await page.locator('#tacticalDialog').evaluate(e=>Promise.all(e.getAnimations({subtree:true}).map(a=>a.finished)));
+   if(process.env.MOBILE_SCREENSHOTS)await page.screenshot({path:process.env.MOBILE_SCREENSHOTS+'/pick-popup-'+width+'.png'});
+  }
+  await page.emulateMedia({reducedMotion:'reduce'});
+  assert.equal(await page.locator('#tacticalDialog').evaluate(e=>getComputedStyle(e).animationName),'none');
+  await page.emulateMedia({reducedMotion:'no-preference'});
+
   await page.locator('#tacticalDialog .tac-dialog-head button').click();
   assert.equal(await page.evaluate(()=>JSON.stringify({round,si,teams})),before,'cancel mutates game');
   await page.locator('.tac-card:not(:disabled)').first().click();await page.locator('#tacticalDialog .btn.big').click();
   await page.waitForFunction(()=>teams[0].함.length===1&&!busy&&turnSeq()[si]===0);
+  await page.waitForFunction(()=>!document.getElementById('pickFeedback'));
   const snapshot=await page.evaluate(()=>JSON.stringify({round,si,teams}));
   await page.locator('#viewMode').click();await page.locator('#viewMode').click();
   assert.equal(await page.evaluate(()=>JSON.stringify({round,si,teams})),snapshot,'switching view mutates draft');
