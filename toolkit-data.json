@@ -919,6 +919,31 @@
       },
       "g": "female",
       "t": 1788973604215
+    },
+    "메싸": {
+      "female": {
+        "sel": {
+          "apparent age": "30s",
+          "armor coverage": "balanced",
+          "bangs": "side-swept bangs",
+          "body type": "muscular",
+          "eye shape": "narrow",
+          "face shape": "angular",
+          "facial character": "fierce",
+          "facial ethnicity": "Latin American",
+          "hair length": "short",
+          "hairstyle": "undercut",
+          "height impression": "very tall",
+          "human-mechanical balance": "more human",
+          "leg proportion": "long",
+          "shoulder build": "broad",
+          "torso / chest build": "full",
+          "waist / hip silhouette": "athletic"
+        },
+        "sp": "Clearly adult woman aged 35, deep auburn swept undercut, matching amber eyes, medium tan skin. Strong angular jaw and straight brows. Preserve brick red and dusty rose heavy armor, asymmetric spiked right shoulder and dorsal equipment; no generic Gundam V crest. Not the pilot."
+      },
+      "g": "female",
+      "t": 1788973610336
     }
   },
   "note": "prompt.html 의 '기록 내보내기' 결과를 이 파일에 덮어쓴다. style 은 기체별 화풍이며 기본값(cinematic_semi_real)이라도 적는다 — 판정해서 고른 값인지 안 골라서 흘러든 값인지 구분해야 하기 때문이다(v9.17 전에는 기본값을 빼서 내보낼 때마다 손으로 적어 둔 것이 사라졌다). semi_real_paint 로 잡힌 152 기는 화풍 구분이 생기기 전에 일괄로 채운 값이라 그대로 둔다. 이 머리말도 내보내기가 챙겨 넣는다.",
@@ -1099,7 +1124,8 @@
     "베귀르펜테": "glossy_kr_game",
     "건담 샌드록": "cinematic_semi_real",
     "건담 로즈": "glossy_kr_game",
-    "건담 AGE-FX": "anime_illust"
+    "건담 AGE-FX": "anime_illust",
+    "메싸": "game_keyart"
   },
   "updated": "2026-09-09",
   "used": {
@@ -2419,6 +2445,14 @@
         "ex": "",
         "n": 1,
         "t": 1788973610195
+      }
+    ],
+    "메싸": [
+      {
+        "cat": "active",
+        "ex": "",
+        "n": 1,
+        "t": 1788973616406
       }
     ]
   },
