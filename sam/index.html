@@ -501,6 +501,29 @@ body[data-art="off"] #pack .candidate .card .avc{visibility:hidden}
  body[data-pack="9"] #pack .candidate .card .hint{font-size:10px}
  body[data-pack="9"] .opts .opt{flex:1 1 20%;font-size:10px;padding:5px 2px}
 }
+
+/* Six candidates restore the readable two-column draft. */
+body[data-pack="6"] .wrap{display:block;max-width:850px}
+body[data-pack="6"] #pack{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+body[data-pack="6"] .rosters{position:static;max-height:none;overflow:visible;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:12px}
+body[data-pack="6"] #pack .candidate .card{grid-template-areas:"portrait name" "role role" "stats stats" "hint hint" "power power" "reason reason";padding:7px}
+body[data-pack="6"] #pack .candidate .card .nm{font-size:16px}
+body[data-pack="6"] #pack .candidate .card .stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+body[data-pack="6"] #pack .candidate .card .pw{font-size:17px;line-height:1.2}
+body[data-pack="6"] #pack .candidate .card .hint .ht{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+body[data-pack="6"] .top{gap:4px;padding-bottom:5px}
+body[data-pack="6"] .board{margin-top:5px;padding:5px}
+body[data-pack="6"] .decree{margin:6px 0}
+body[data-pack="6"] .decree .msg{font-size:13px}
+body[data-pack="6"] .lorel{min-height:0;margin-top:2px;font-size:11px}
+#lineup{z-index:75}.lineup-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.lineup-card{min-height:66px;padding:8px;background:var(--ink2);color:var(--paper);border:1px solid var(--line);border-radius:4px;font:600 14px var(--body);text-align:left}
+.lineup-card small{display:block;font-size:11px;margin:3px 0}.lineup-card b{font-size:11px}
+.lineup-card[aria-pressed="true"]{border-color:var(--gold);background:#393020}.lineup-card[aria-pressed="true"] b{color:var(--gold)}
+.lineup-summary{position:sticky;top:0;background:var(--ink);padding:10px 0;z-index:1}
+.lineup-actions{position:sticky;bottom:0;background:var(--ink);padding:8px 0;display:grid;gap:5px}.lineup-actions button{margin:0;min-height:44px}
+.lineup-actions button:disabled{opacity:.45}
+
 </style>
 </head>
 <body>
@@ -585,6 +608,7 @@ body[data-art="off"] #pack .candidate .card .avc{visibility:hidden}
 </div>
 
 <div class="veil" id="detail" role="dialog" aria-modal="true" aria-label="장수 상세"><div class="res" id="detailBody"></div></div>
+<div class="veil" id="lineup" role="dialog" aria-modal="true" aria-label="최종 11명 편성"><div class="res" id="lineupBody"></div></div>
 <div id="toast"></div>
 <button class="totop" id="tobot" aria-label="맨 아래로">下</button>
 <button class="totop" id="totop" aria-label="맨 위로">上</button>
@@ -1049,9 +1073,10 @@ COMBO.push(
 );
 var SYN={2:22,3:68,4:122,5:180,6:238,7:295,8:355,9:410,10:460,11:505};   // 3~6인 구간을 올려 작은 무리도 값어치를 갖게 하되, 큰 세력은 그대로 두었다
 var ETC_BASE=.4, ETC={4:.75,6:1};   // 군웅은 기본 40%, 넷 이상 모이면 할거로 계수가 오른다
-var ROUNDS=11, PACK=8;
+var ROUNDS=13, FINAL_SIZE=11, PACK=6;
+var lineupOpen=false,lineupChoice=[],lineupCache={},lineupCacheCount=0;
 var PACK_OPT=0, FAST=false, QUICK_PICK=false, CARD_ART=true, DENSITY="compact", recentShown={}, roundExcluded=[], gameTimers=[], setupBefore=null;
-function packSize(){return SCN>0?6:(PACK_OPT|| (PLAYERS===3?9:8))}
+function packSize(){return 6}
 function syncLayout(){var artButton=document.getElementById("tArt");if(artButton){artButton.textContent=CARD_ART?"그림 켜짐":"그림 꺼짐";artButton.setAttribute("aria-pressed",String(CARD_ART))}document.body.dataset.art=CARD_ART?"on":"off";document.body.dataset.density=DENSITY;document.body.dataset.pack=PACK;}
 function later(fn,ms){
  var id=setTimeout(function run(){
@@ -1315,10 +1340,10 @@ function checkFeats(won,diff,wn,ls){
   if(won&&SCN>0)give("boss_win");
   if(won&&PLAYERS===3)give("tri_win");
   if(won&&(cnt["군웅"]||0)>=8)give("etc8");
-  if(won){for(var f in cnt)if(cnt[f]===ROUNDS)give("one_fac")}
+  if(won){for(var f in cnt)if(cnt[f]===FINAL_SIZE)give("one_fac")}
   if(won&&lord&&lord[0]==="유선")give("liu_shan");
   if(won&&diff>=300)give("big_win");
-  if(won&&wn===ROUNDS&&ls===0)give("all_duel");
+  if(won&&wn===FINAL_SIZE&&ls===0)give("all_duel");
   if(fired.length>=6)give("combo6");
   if(kinN>=3)give("kin3");
   if(stampN>=25)give("stamp25");
@@ -1398,7 +1423,7 @@ function threatScore(c,opp){
 }
 var MODE=0, MODE_NAME=["무작위 팩","티어 드래프트"];
 var TIER_NAME=["天","上","中","下"], TIER_CUT=[.12,.34,.66,1];
-var TIER_SCHEDULE=[0,1,1,1,2,0,1,2,2,3,3];
+var TIER_SCHEDULE=[0,1,1,1,2,0,1,2,2,3,3,1,2];
 var tierMap={};
 function buildTiers(list){
   tierMap={};
@@ -1439,6 +1464,7 @@ var CAPS={"군주":1,"무장":5,"참모":5};
 function catOf(c){var r=roleOf(c);return r==="군주"?"군주":r==="무장"?"무장":"참모"}
 function counts(team){var o={"군주":0,"무장":0,"참모":0},i;for(i=0;i<team.length;i++)o[catOf(team[i])]++;return o}
 function legalSet(team,idxs){
+  if(team.length>=FINAL_SIZE)return idxs.slice();
   if(!ruleOn)return idxs.slice();
   var n=counts(team),ok=[],i;
   for(i=0;i<idxs.length;i++)if(n[catOf(packArr[idxs[i]].c)]<CAPS[catOf(packArr[idxs[i]].c)])ok.push(idxs[i]);
@@ -1464,6 +1490,7 @@ function nearOf(team,c){
 }
 
 function pledges(team){
+  if(team.length>FINAL_SIZE)team=bestLineup(team,true).team;
   var out=[],i,j,k;
   for(i=0;i<COMBO.length;i++){
     var cb=COMBO[i],have=[],miss=[];
@@ -1521,6 +1548,7 @@ function renderPledges(){
   box.innerHTML=h;
 }
 function firedSet(team){
+  if(team.length>FINAL_SIZE)team=bestLineup(team,true).team;
   var out={},i,k;
   for(i=0;i<COMBO.length;i++){
     var hv=comboHave(COMBO[i],team),best=0,bk=0;
@@ -1569,6 +1597,10 @@ function martialBonus(c){
 function power(c){var w=WT[c[2]];return Math.round((c[3]*w[0]+c[4]*w[1]+c[5]*w[2]+c[6]*w[3])/2.5)+martialBonus(c)}
 
 function evaluate(team,partial){
+ if(team.length>FINAL_SIZE)team=bestLineup(team,partial).team;
+ return evaluateRaw(team,partial);
+}
+function evaluateRaw(team,partial){
   var out={rows:[],total:0},base=0,i,j;
   for(i=0;i<team.length;i++)base+=power(team[i]);
   out.rows.push({k:"인물 전력 합",v:base});
@@ -1647,8 +1679,9 @@ function drawCards(n,t,exclude){
  return mark(out);
 }
 function draw(n,exclude){return drawCards(n,null,exclude)}
-function rawLegal(team,idxs){var n=counts(team);return idxs.filter(function(i){return !ruleOn||n[catOf(packArr[i].c)]<CAPS[catOf(packArr[i].c)]})}
+function rawLegal(team,idxs){if(team.length>=FINAL_SIZE)return idxs.slice();var n=counts(team);return idxs.filter(function(i){return !ruleOn||n[catOf(packArr[i].c)]<CAPS[catOf(packArr[i].c)]})}
 function ensureChoices(team){
+ if(team.length>=FINAL_SIZE)return 0;
  if(!ruleOn)return 0;
  var rem=openIdx(),need=Math.min(2,rem.length),changed=0;
  while(rawLegal(team,rem).length<need){
@@ -1843,8 +1876,8 @@ function buildSetup(){
   }
   var h='<div class="verdict" style="margin-bottom:14px"><div class="big" style="font-size:30px;color:var(--gold)">新 對 局</div><svg class="orn"><use href="#orn-knot"/></svg>'+
         '<div class="sub">판을 새로 짜는 자리요 · 규칙은 우상단 ?</div></div>';
-  h+='<div class="intro">죽간이 펼쳐지면 적장과 <b>번갈아</b> 하나씩 취하오. 열한 진이 끝나면 전력과 인연을 셈하여 승부를 가리오.</div>';
-  h+=row("후보 카드","자동: 2인 8장 · 3인 9장 · 시나리오 6장","sCards",PACK_OPT?PACK_OPT+"장":"자동");
+  h+='<div class="intro">죽간이 펼쳐지면 적장과 <b>번갈아</b> 하나씩 취하오. 열세 진이 끝나면 11명을 편성하여 전력과 인연으로 승부를 가리오.</div>';
+  h+='<div class="intro">후보 <b>6장</b> · <b>13번 지명</b> → 최종 <b>11명</b><br>첫 11번은 편성 규칙, 마지막 2번은 자유 예비 지명입니다.</div>';
   h+=row("후보 그림","이름 옆 작은 초상 표시 · 카드 배치는 유지","sArt",CARD_ART?"켜짐":"꺼짐");
   h+=row("빠른 지명","끄면 이미지와 점수 변화를 확인하고 확정","sQuick",QUICK_PICK?"켜짐":"꺼짐");
   h+=row("진행 속도","적장 선택과 다음 진의 대기 시간","sFast",FAST?"빠르게":"기본");
@@ -1866,7 +1899,6 @@ function buildSetup(){
   h+='<button class="btn" id="setupGo" style="margin-top:14px">이 로 써 겨 루 다</button>';
   h+='<button class="btn2" id="setupX">돌 아 가 기</button>';
   $("setupBody").innerHTML=h;
-  $("sCards").addEventListener("click",function(){var a=[0,6,8,9];PACK_OPT=a[(a.indexOf(PACK_OPT)+1)%a.length];this.textContent=PACK_OPT?PACK_OPT+"장":"자동"});
   $("sArt").onclick=function(){CARD_ART=!CARD_ART;this.textContent=CARD_ART?"켜짐":"꺼짐";syncLayout()};
   $("sQuick").onclick=function(){QUICK_PICK=!QUICK_PICK;this.textContent=QUICK_PICK?"켜짐":"꺼짐"};
   $("sFast").addEventListener("click",function(){FAST=!FAST;this.textContent=FAST?"빠르게":"기본"});
@@ -2143,7 +2175,7 @@ function buildHelp(){
   h+='<div class="hsec"><h4>편성 규칙</h4>'+
      '<p>상단 <b>편성 규칙</b>을 켜면 자리가 정해지오 — <span class="g">'+cs.join(" · ")+'</span>. 책사와 문관은 모두 <b>謀</b>로 묶소.</p>'+
      '<p>자리가 찬 분류의 죽간은 회색 <span class="r">編</span> 표시로 잠기오. 고를 수 있는 후보가 둘보다 적으면 남은 더미에서 역할에 맞는 후보를 보충하오. 보충할 인물도 없고 선택 가능한 후보가 없을 때만 예외를 표시하고 제한을 푸오. 적장도 같은 규칙을 따르오.</p>'+
-     '<p>규칙을 끄면 '+ROUNDS+' 자리를 마음대로 채우되, 아래 <b>편성 감점</b>을 받게 되오. <b>규칙을 켠 동안에는 감점이 없소</b> — 주공이 끝내 나타나지 않는 것은 허물이 아니라 운이니, 그릇의 보탬을 얻지 못하는 것으로 족하오.</p></div>';
+     '<p>규칙을 끄면 '+FINAL_SIZE+' 최종 자리를 마음대로 채우되, 아래 <b>편성 감점</b>을 받게 되오. <b>규칙을 켠 동안에는 감점이 없소</b> — 주공이 끝내 나타나지 않는 것은 허물이 아니라 운이니, 그릇의 보탬을 얻지 못하는 것으로 족하오.</p></div>';
 
   h+='<div class="hsec"><h4>채점 · 하나. 인물 전력</h4>'+
      '<p>같은 능력치라도 소임에 따라 값이 다르오. 네 능력치에 가중을 곱해 더한 뒤 2.5로 나누어 반올림하오.</p><div class="form">';
@@ -2157,7 +2189,7 @@ function buildHelp(){
 
   var sy=[];
   for(k in SYN)sy.push(k+"인 <span class=g>+"+SYN[k]+"</span>");
-  h+='<div class="hsec"><h4>후보와 진행 저장</h4><p>자동 후보는 2인전 8장, 3인전 9장이오. 시나리오는 6장을 유지하오. 최근 본 인물은 덜 나오며, 교체는 남은 카드 수 안에서 이루어지고 방금 교체한 인물은 즉시 돌아오지 않소.</p><p>차례 사이에 진행을 자동 저장하므로 다시 열면 이어하오. 빠른 진행과 화면 밀도는 새 대국 설정에서 고를 수 있소.</p><p>무력 95 이상인 무장 중 지력 70 미만은 무력 특화 보탬을 받소: (무력−90)×(70−지력)÷40을 반올림하오. 티어는 인연 보너스를 제외한 개인 전력 기준이오.</p></div>';
+  h+='<div class="hsec"><h4>후보와 진행 저장</h4><p>새 대국은 모두 후보 6장, 13번 지명이오. 첫 11번은 편성 규칙을 따르고 마지막 2번은 자유 예비 지명이오. 끝나면 11명을 확정하며 AI도 같은 조건으로 편성하오. 시나리오의 적군은 기존 고정 11명을 유지하오. 최근 본 인물은 덜 나오며, 교체는 남은 카드 수 안에서 이루어지고 방금 교체한 인물은 즉시 돌아오지 않소.</p><p>차례 사이에 진행을 자동 저장하므로 다시 열면 이어하오. 빠른 진행과 화면 밀도는 새 대국 설정에서 고를 수 있소.</p><p>무력 95 이상인 무장 중 지력 70 미만은 무력 특화 보탬을 받소: (무력−90)×(70−지력)÷40을 반올림하오. 티어는 인연 보너스를 제외한 개인 전력 기준이오.</p></div>';
   h+='<div class="hsec"><h4>채점 · 둘. 진영 결속</h4>'+
      '<p>같은 진영이 모일수록 크게 오르오.</p><div class="form">'+sy.join(" &nbsp;· &nbsp;")+'</div>'+
      '<p><b>군웅</b>은 뿌리가 제각각이라 결속이 <b>'+Math.round(ETC_BASE*100)+'%</b>만 붙소. '+
@@ -2206,7 +2238,7 @@ function buildHelp(){
      '<p><b>적진 가리기</b>를 켜면 적장의 편성과 점수가 안개에 덮이오. 채간 죽간은 흐려지고 자리(主·武·謀)만 드러나며, 점수판에는 <span class="g">霧</span> 한 글자만 남소. 승부는 마지막에야 밝혀지오. 안개 속에서는 적장의 견제도 절반으로 무디어지오 — 그도 아군의 패를 온전히 보지 못하는 셈이오.</p>'+
      '<p><b>시대</b>를 고르면 죽간더미가 달라지오. <span class="g">군웅할거</span>는 후기 인물이 아직 나서지 않았고, <span class="g">삼국정립</span>은 초기 군웅이 이미 스러진 뒤요. 시대를 바꾸면 판이 새로 시작되오.</p></div>';
   h+='<div class="hsec"><h4>판정</h4>'+
-     '<p>'+ROUNDS+'진이 끝나면 모든 진영의 합계를 견주어 높은 쪽이 이기오. 결과 화면에 <b>양쪽 채점표가 항목별로</b> 나오니 어디서 갈렸는지 짚어볼 수 있소.</p>'+
+     '<p>'+ROUNDS+'진이 끝나면 추천 편성에서 최종 11명을 확정하고 모든 진영의 합계를 견주어 높은 쪽이 이기오. 결과 화면에 <b>양쪽 채점표가 항목별로</b> 나오니 어디서 갈렸는지 짚어볼 수 있소.</p>'+
      '<p>상단 <b>점수판</b>은 진행 중의 합계요. 아직 편성이 끝나지 않았으므로 위의 편성 감점은 빼고 셈하오.</p>'+
      '<p>아군 편성 아래 <b>結義</b> 칸에는 혈연이 <span style="color:#6FA08A">옥빛</span>, 결의가 금빛, 불화가 붉게 나뉘어 적히오.  이미 맺은 인연과 <b>맺어가는 중인 인연</b>이 <span class="g">2/3</span>처럼 진행도로 적히오. 힌트를 켜면 아직 오지 않은 인물의 이름까지 일러주오.</p>'+
      '<p>죽간에도 <span class="g">◇ 오호대장군 2/3</span>처럼, 지금은 점수가 되지 않으나 <b>앞으로 이어질 인연</b>을 따로 적어두었소.</p>'+
@@ -2301,7 +2333,7 @@ function removeFromPool(c){
 }
 
 /* ───────── 한 판의 흐름 ───────── */
-var NUM=["一","二","三","四","五","六","七","八","九","十","十一","十二"];
+var NUM=["一","二","三","四","五","六","七","八","九","十","十一","十二","十三"];
 
 function board(){
   var a=evaluate(mine,true).total,b=evaluate(foe,true).total,
@@ -2329,7 +2361,7 @@ function board(){
 
 function updateReroll(){
   var ct=counts(mine);
-  $("draftSummary").textContent=(myTurn?"내 차례":"진행 중")+" · "+Math.min(round+1,ROUNDS)+"/"+ROUNDS+"진 · "+evaluate(mine,true).total+"점 · "+(ruleOn?"군 "+ct.군주+"/1 무 "+ct.무장+"/5 모 "+ct.참모+"/5":"자유 편성 "+mine.length+"명");
+  $("draftSummary").textContent=(myTurn?"내 차례":"진행 중")+" · "+Math.min(round+1,ROUNDS)+"/"+ROUNDS+"진 · "+(mine.length>FINAL_SIZE?"추천 ":"")+evaluate(mine,true).total+"점 · "+(ruleOn?"군 "+ct.군주+"/1 무 "+ct.무장+"/5 모 "+ct.참모+"/5":"자유 편성 "+mine.length+"명");
   var rb=$("reroll");
   rb.disabled=(rerolls<1||busy||!myTurn);
   rb.textContent=rerolls>0?"換 · 죽간을 다시 펴다 (남은 "+rerolls+"회)":"換 · 다시 펼 죽간이 없소";
@@ -2358,13 +2390,14 @@ function renderPack(fresh){
       if(!ok)el.classList.add("illegal");
       el.disabled=!myTurn||!ok;
       if(ok)el.addEventListener("click",function(){if(QUICK_PICK)myPick(i);else showDetail(e.c,i)});
-      if(!ok){var reason=document.createElement("div");reason.className="blocked-reason";reason.textContent=catOf(e.c)+" 정원 초과";el.appendChild(reason);el.setAttribute("aria-label",e.c[0]+" · "+reason.textContent)}
+      if(!ok){var reason=document.createElement("div");reason.className="blocked-reason";reason.textContent=catOf(e.c)+" 정원 초과 · 예비 지명에서 선택 가능";el.appendChild(reason);el.setAttribute("aria-label",e.c[0]+" · "+reason.textContent)}
     }
     var cell=document.createElement("div");cell.className="candidate";cell.appendChild(el);
-    var detail=document.createElement("button");detail.className="card-detail";detail.textContent="상세";
-    detail.setAttribute("aria-label",fogOn&&e.by&&e.by!=="me"?"가려진 카드":e.c[0]+" 상세 보기");
-    detail.disabled=!!(fogOn&&e.by&&e.by!=="me");
-    detail.onclick=function(){showDetail(e.c,i)};cell.appendChild(detail);box.appendChild(cell);
+    if(el.disabled&&!(fogOn&&e.by&&e.by!=="me")){
+      el.disabled=false;el.setAttribute("aria-label",e.c[0]+" · 정보 보기");
+      el.onclick=function(){showDetail(e.c,i)};
+    }
+    box.appendChild(cell);
   });
   updateReroll();
 }
@@ -2377,13 +2410,14 @@ function showDetail(c,pickIndex){
  var h='<img class="pick-portrait" src="'+((IMGL&&IMGL[c[0]])||IMG[c[0]]||'')+'" alt="'+c[0]+'" onerror="this.style.display=\'none\'"><h3>'+c[0]+' · '+facOf(c)+' · '+roleOf(c)+'</h3><p>통솔 '+c[3]+' · 무력 '+c[4]+' · 지력 '+c[5]+' · 정치 '+c[6]+'</p><p>전력 '+power(c)+(martialBonus(c)?' · 무력 특화 +'+martialBonus(c):'')+'</p>';
  if(!mine.concat(foe,foe2||[]).some(function(x){return x[0]===c[0]})){
    var a=evaluate(mine,true),b=evaluate(mine.concat([c]),true),rows={};a.rows.forEach(function(r){rows[r.k]=r.v});
-   h+='<h4>선택 시 즉시 변화 '+(b.total-a.total)+'</h4>';
+   h+='<h4>선택 시 추천 편성 변화 '+(b.total-a.total)+'</h4>';
    b.rows.forEach(function(r){var d=r.v-(rows[r.k]||0);if(d)h+='<p>'+r.k+' '+(d>0?'+':'')+d+'</p>'});
    a.rows.forEach(function(r){if(!b.rows.some(function(x){return x.k===r.k}))h+='<p>'+r.k+' 제거 '+(-r.v)+'</p>'});
  }
+ h+='<p>13번 지명 후 11명을 확정합니다. 예비 지명의 점수는 추천 11명 기준입니다.</p>';
  h+='<p>'+(LORE[c[0]]||'')+'</p><h4>관련 인연</h4>';
  COMBO.filter(function(g){return g.m.indexOf(c[0])>=0}).forEach(function(g){h+='<p><b>'+g.n+'</b> · '+Object.keys(g.t).map(function(k){return k+'인 '+g.t[k]}).join(' / ')+'<br>'+g.m.filter(function(n){return n!==c[0]}).map(function(n){return n+' ['+availability(n)+']'}).join(' · ')+'</p>'});
- var blocked=typeof pickIndex==="number"&&!canPick&&!packArr[pickIndex].by?(myTurn?catOf(c)+" 정원 초과":"적군이 선택 중입니다"):"";
+ var blocked=typeof pickIndex==="number"&&!canPick&&!packArr[pickIndex].by?(myTurn?catOf(c)+" 정원 초과 · 예비 지명에서 선택 가능":"적군이 선택 중입니다"):"";
  h+='<p class="pick-warning">'+blocked+'</p>';
  $("detailBody").innerHTML=h+'<div class="pick-actions">'+(canPick?'<button class="btn" id="pickConfirm">'+c[0]+' 지명 확정</button>':'')+'<button class="btn2" id="detailClose">닫기 · 후보 다시 보기</button></div>';
  if(canPick){var snapshot=packArr;$("pickConfirm").onclick=function(){if(snapshot!==packArr||!myTurn||busy||packArr[pickIndex].by||legalSet(mine,openIdx()).indexOf(pickIndex)<0){closeDetail();return}closeDetail();myPick(pickIndex)}}
@@ -2418,6 +2452,7 @@ function advanceTurn(first){
     renderPack(false);
     $("msg").textContent=(first?openIdx().length+"장 중 하나를 취하시오":"이제 그대의 차례요 — 남은 "+openIdx().length+"장");
     if(added)$("sub").textContent="남은 역할에 맞는 후보 "+added+"장을 보충했소";
+    else if(round>=FINAL_SIZE)$("sub").textContent="예비 지명 · 역할 제한 없이 선택하고 마지막에 11명을 편성합니다";
     else if(ruleOn&&!rawLegal(mine,openIdx()).length)$("sub").textContent="편성 예외 · 남은 역할 후보가 없어 제한을 풀었소";
     updateReroll();
   }else{
@@ -2591,7 +2626,65 @@ function fallback(txt){
   }catch(e){return false}
 }
 
+
+function lineupOverflow(team){
+ if(!ruleOn)return 0;
+ var n=counts(team),over=0;Object.keys(CAPS).forEach(function(k){over+=Math.max(0,n[k]-CAPS[k])});return over;
+}
+function bestLineup(team,partial){
+ if(team.length<=FINAL_SIZE)return {team:team.slice(),over:lineupOverflow(team),score:evaluateRaw(team,partial).total};
+ var key=(PACK2?PACK2.n:"")+"|"+ruleOn+"|"+!!partial+"|"+team.map(function(c){return c[0]}).join(",");
+ if(lineupCache[key])return lineupCache[key];
+ var best=null;
+ function visit(pos,picked){
+   if(picked.length===FINAL_SIZE){var over=lineupOverflow(picked);if(best&&over>best.over)return;
+     var score=evaluateRaw(picked,partial).total;
+     if(!best||over<best.over||score>best.score)best={team:picked.slice(),over:over,score:score};return;}
+   if(team.length-pos<FINAL_SIZE-picked.length)return;
+   for(var i=pos;i<team.length;i++){picked.push(team[i]);visit(i+1,picked);picked.pop()}
+ }
+ visit(0,[]);if(lineupCacheCount>300){lineupCache={};lineupCacheCount=0}lineupCacheCount++;lineupCache[key]=best;return best;
+}
+document.addEventListener("keydown",function(e){
+ if(e.key!=="Tab"||!lineupOpen)return;var buttons=$("lineupBody").querySelectorAll("button:not(:disabled)"),first=buttons[0],last=buttons[buttons.length-1];if(!first)return;
+ if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+});
+function beginLineup(restore){
+ myTurn=false;busy=true;lineupOpen=true;
+ if(!restore||lineupChoice.some(function(n){return !mine.some(function(c){return c[0]===n})})||new Set(lineupChoice).size!==lineupChoice.length)
+   lineupChoice=bestLineup(mine,false).team.map(function(c){return c[0]});
+ saveGame("lineup",[]);renderLineup();$("lineup").classList.add("on");$("lineupAuto").focus();
+}
+function renderLineup(){
+ var chosen=mine.filter(function(c){return lineupChoice.indexOf(c[0])>=0}),recommended=bestLineup(mine,false),over=lineupOverflow(chosen);
+ var valid=chosen.length===FINAL_SIZE&&over<=recommended.over;
+ var count=counts(chosen);
+ var h='<h3>최종 11명 편성</h3><p>13명 중 2명은 예비로 남깁니다. 먼저 제외할 장수를 누른 뒤 교체할 장수를 선택하세요.</p>'+
+ '<div class="lineup-summary" role="status">선택 '+chosen.length+'/11 · '+(chosen.length===11?evaluateRaw(chosen,false).total+'점':'편성 중')+'<br>군주 '+count.군주+'/1 · 무장 '+count.무장+'/5 · 참모 '+count.참모+'/5</div>';
+ if(recommended.over)h+='<p>지명한 장수로 정원을 맞출 수 없어 최소 '+recommended.over+'명의 정원 초과를 허용합니다.</p>';
+ if(!valid)h+='<p>11명을 선택하고 역할 정원을 맞춰주세요.</p>';
+ h+='<div class="lineup-grid">';
+ mine.forEach(function(c,i){var on=lineupChoice.indexOf(c[0])>=0;
+ h+='<button type="button" class="lineup-card" data-lineup="'+i+'" aria-pressed="'+on+'">'+c[0]+'<small>'+catOf(c)+' · 전력 '+power(c)+'</small><b>'+(on?'출전':'예비')+'</b></button>'});
+ h+='</div><div class="lineup-actions"><button class="btn2" id="lineupAuto">추천 편성 적용</button><button class="btn" id="lineupConfirm"'+(valid?'':' disabled')+'>11명 확정 · 결과 보기</button></div>';
+ $("lineupBody").innerHTML=h;
+ Array.prototype.forEach.call($("lineupBody").querySelectorAll("[data-lineup]"),function(b){b.onclick=function(){var idx=+b.dataset.lineup,n=mine[idx][0],at=lineupChoice.indexOf(n);if(at>=0)lineupChoice.splice(at,1);else if(lineupChoice.length<11)lineupChoice.push(n);saveGame("lineup",[]);renderLineup();var next=$("lineupBody").querySelector('[data-lineup="'+idx+'"]');if(next)next.focus()}});
+ $("lineupAuto").onclick=function(){lineupChoice=recommended.team.map(function(c){return c[0]});saveGame("lineup",[]);renderLineup();$("lineupAuto").focus()};
+ $("lineupConfirm").onclick=confirmLineup;
+}
+function confirmLineup(){
+ if(!lineupOpen)return;
+ var chosen=mine.filter(function(c){return lineupChoice.indexOf(c[0])>=0});
+ if(chosen.length!==11||lineupOverflow(chosen)>bestLineup(mine,false).over)return;
+ mine=chosen;foe=bestLineup(foe,false).team.slice();if(foe2)foe2=bestLineup(foe2,false).team.slice();
+ lineupOpen=false;$("lineup").classList.remove("on");board();
+ chips($("mine"),mine,11);chips($("foe"),foe,11);if(foe2)chips($("foe2"),foe2,11);
+ $("myct").textContent="11 / 11";$("opct").textContent=foe.length+" / 11";if(foe2)$("opct2").textContent="11 / 11";
+ finish();
+}
+
 function finish(){
+  if(mine.length>FINAL_SIZE){beginLineup();return;}
   var i,me=evaluate(mine),op1=evaluate(foe),op2=foe2?evaluate(foe2):null;
   var op=(op2&&op2.total>op1.total)?op2:op1;  // 최강 적 기준
   var opTeam=(op===op2)?foe2:foe;
@@ -2759,7 +2852,7 @@ function clearGame(){try{localStorage.removeItem(GAME_KEY)}catch(e){}}
 function saveGame(phase,q){
  if(!matchId||REC.lastMatch===matchId)return;
  function names(a){return (a||[]).map(function(c){return c[0]})}
- var v={v:2,id:matchId,phase:phase,cfg:cfgSnap(),hint:hintOn,fog:fogOn,round:round,
+ var v={v:2,rounds:ROUNDS,packSize:PACK,lineupChoice:lineupChoice,id:matchId,phase:phase,cfg:cfgSnap(),hint:hintOn,fog:fogOn,round:round,
  pool:names(pool),discard:names(discard),mine:names(mine),foe:names(foe),foe2:foe2?names(foe2):null,
  pack:(packArr||[]).map(function(e){return {n:e.c[0],by:e.by}}),q:q.slice(),
  shown:shown,recent:recentShown,excluded:roundExcluded,rerolls:rerolls,aiRR:aiRR,aiFac:aiFac,stA:ST_A,stB:ST_B,first:firstOff,
@@ -2767,16 +2860,17 @@ function saveGame(phase,q){
  try{localStorage.setItem(GAME_KEY,JSON.stringify(v))}catch(e){$("sub").textContent="진행 저장 공간이 부족하오 · 현재 창에서는 계속할 수 있소"}
 }
 function resumeGame(){
- var before=cfgSnap();
+ var before=cfgSnap(),beforeRounds=ROUNDS;
  try{
   var v=JSON.parse(localStorage.getItem(GAME_KEY));if(!v)return false;
-  if(v.v!==2||v.id===REC.lastMatch||["draft","ban","next"].indexOf(v.phase)<0||!Number.isInteger(v.round)||v.round<0||v.round>=ROUNDS)throw Error("stale save");
+  var savedRounds=v.rounds||11;
+  if([11,13].indexOf(savedRounds)<0||v.v!==2||v.id===REC.lastMatch||["draft","ban","next","lineup"].indexOf(v.phase)<0||!Number.isInteger(v.round)||v.round<0||v.round>(v.phase==="lineup"?savedRounds:savedRounds-1))throw Error("stale save");
   var map={};C.forEach(function(c){map[c[0]]=c});
   function cards(a){if(!Array.isArray(a))throw Error("bad roster");return a.map(function(n){if(!map[n])throw Error("unknown officer");return map[n]})}
   function entries(a){return a.map(function(e){if(!map[e.n]||[null,"me","foe","foe2"].indexOf(e.by)<0)throw Error("bad card");return {c:map[e.n],by:e.by}})}
   var restored={pool:cards(v.pool),discard:cards(v.discard),mine:cards(v.mine),foe:cards(v.foe),foe2:v.foe2?cards(v.foe2):null,pack:entries(v.pack),ban:entries(v.banCand)};
   if(!Array.isArray(v.q)||v.q.some(function(t){return ["me","foe","foe2"].indexOf(t)<0})||!Array.isArray(v.hist)||!Array.isArray(v.replay)||!v.bans||!Array.isArray(v.banQ))throw Error("bad state");
-  cfgApply(v.cfg);PACK=packSize();matchId=v.id;round=v.round;
+  cfgApply(v.cfg);ROUNDS=savedRounds;PACK=savedRounds===13?6:(v.packSize||restored.pack.length||6);matchId=v.id;round=v.round;lineupChoice=Array.isArray(v.lineupChoice)?v.lineupChoice:[];lineupCache={};lineupCacheCount=0;
   pool=restored.pool;discard=restored.discard;mine=restored.mine;foe=restored.foe;foe2=restored.foe2;packArr=restored.pack;
   shown=v.shown||{};recentShown=v.recent||{};roundExcluded=v.excluded||[];rerolls=v.rerolls;aiRR=v.aiRR;aiFac=v.aiFac;ST_A=v.stA;ST_B=v.stB;firstOff=v.first;
   hist=v.hist;replay=v.replay;bans=v.bans;banQ=v.banQ;banCand=restored.ban;turnQ=v.q;hintOn=v.hint;fogOn=v.fog;busy=false;myTurn=false;
@@ -2787,13 +2881,15 @@ function resumeGame(){
   chips($("mine"),mine,ROUNDS);chips($("foe"),foe,ROUNDS);if(foe2)chips($("foe2"),foe2,ROUNDS);
   $("myct").textContent=mine.length+" / "+ROUNDS;$("opct").textContent=foe.length+" / "+ROUNDS;if(foe2)$("opct2").textContent=foe2.length+" / "+ROUNDS;
   board();tally();$("sub").textContent="진행 중이던 대국을 이어갑니다";$("rd").textContent="第 "+NUM[round]+" 陣 · 이어하기";
-  if(v.phase==="ban"){busy=true;renderBan();banStep()}
+  if(v.phase==="lineup"){beginLineup(true)}
+  else if(v.phase==="ban"){busy=true;renderBan();banStep()}
   else if(v.phase==="next"){renderPack(false);busy=true;later(completeRound,300)}
   else advanceTurn(false);
   return true;
- }catch(e){cfgApply(before);clearGame();return false}
+ }catch(e){cfgApply(before);ROUNDS=beforeRounds;clearGame();return false}
 }
 function start(){
+  ROUNDS=13;lineupOpen=false;lineupChoice=[];lineupCache={};lineupCacheCount=0;$("lineup").classList.remove("on");
   stopTimers();clearGame();matchId=Date.now().toString(36)+Math.random().toString(36).slice(2);
   if(PACK2)SCN=0;
   PACK=packSize();recentShown={};roundExcluded=[];packArr=[];turnQ=[];myTurn=false;syncLayout();buildHelp();
