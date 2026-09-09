@@ -174,6 +174,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
 .lockwrap>select,.lockwrap>input{flex:1 1 auto;min-width:0}
 .lockbtn{flex:0 0 auto;width:44px;min-height:0;padding:0;font-size:15px;line-height:1;
   background:var(--card);border:1px solid var(--line);color:var(--muted);opacity:.7}
+.lab-lock{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.lockbtn.mini{width:38px;height:30px;font-size:13px}
 .lock-note{width:100%;font-size:11px;color:var(--accent);font-weight:700}
 .lock-clear{width:100%;margin-top:4px;min-height:34px;padding:6px;font-size:11px;font-weight:600}
 .lockbtn.on{background:color-mix(in srgb,var(--accent) 16%,var(--card));
@@ -851,7 +853,20 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       <textarea id="exportBox" class="hidden" spellcheck="false"
         style="width:100%;margin-top:8px;min-height:120px;font-size:11px"></textarea>
 
+      <div class="rnd-tgt" id="anthroRnd" style="margin-bottom:9px">
+        <span>🎲 랜덤으로 정할 것 — 자물쇠(🔒) 걸린 칸은 건너뛴다</span>
+        <label><input type="checkbox" data-art="base"><span>기본</span></label>
+        <label><input type="checkbox" data-art="build"><span>체형</span></label>
+        <label><input type="checkbox" data-art="face" checked><span>얼굴</span></label>
+        <label><input type="checkbox" data-art="hair"><span>머리</span></label>
+        <label><input type="checkbox" data-art="armor"><span>장갑</span></label>
+        <label><input type="checkbox" data-art="shot"><span>연출</span></label>
+        <label style="width:100%;margin-top:2px"><input type="checkbox" id="anthroRndOnlyEmpty" checked><span>빈 칸(AUTO)만 채우기</span></label>
+        <span class="lock-note hidden" data-lock-count></span>
+        <button type="button" class="lock-clear hidden" data-lock-clear>자물쇠 모두 풀기</button>
+      </div>
       <div class="param-actions">
+        <button id="randomAnthro" type="button">🎲 외형 랜덤</button>
         <button id="applyAnthro" type="button">외형 설정 반영</button>
         <button id="resetAnthro" type="button">외형 리셋</button>
         <button id="prevAnthro" type="button" class="hidden">직전 기체 설정 가져오기</button>
@@ -1499,6 +1514,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     if(el.id)return el.id;
     if(el.dataset.sgAxis)return 'sg:'+el.dataset.sgAxis;
     if(el.dataset.ovPanel)return 'ov:'+el.dataset.ovPanel+':'+el.dataset.ovKey;
+    if(el.dataset.paramSelect)return 'p:'+el.dataset.paramSelect;
     return '';
   }
   function setRnd(el,v){
@@ -1513,17 +1529,28 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     '#clgFrame','#sgCat','#sgEx','#sgExpr','#sgOrient','#sgPose','#sgAspect','#sgFrame',
     '[id^="adv_"]','[id^="pair1Adv_"]','[id^="pair2Adv_"]','[id^="pair3Adv_"]',
     '[data-sg-axis]','[data-ov-panel][data-ov-key]',
-    '[id^="panel"][id$="Cat"]','[id^="panel"][id$="Example"]'].join(',');
+    '[id^="panel"][id$="Cat"]','[id^="panel"][id$="Example"]',
+    '[data-param-select]'].join(',');
   /* 새로 그려진 칸에도 붙여야 하므로 여러 번 불러도 되게 짰다 */
   function wireLocks(){
     document.querySelectorAll(LOCK_SEL).forEach(el=>{
       if(el.tagName!=='SELECT')return;                 /* 자유 입력 칸은 굴리지 않는다 */
-      if(el.parentElement&&el.parentElement.classList.contains('lockwrap'))return;
       const k=lockKey(el); if(!k)return;
-      const wrap=document.createElement('div'); wrap.className='lockwrap';
-      el.parentNode.insertBefore(wrap,el); wrap.appendChild(el);
+      if(document.querySelector('.lockbtn[data-lock-for="'+CSS.escape(k)+'"]'))return;
       const b=document.createElement('button');
       b.type='button'; b.className='lockbtn'; b.dataset.lockFor=k;
+      /* 머리색·눈색은 셀렉트를 숨기고 견본판으로 고른다. 숨은 칸을 감싸 봐야
+         단추까지 같이 숨으므로, 그때는 이름표 오른쪽에 붙인다 */
+      const hidden=el.classList.contains('sw-hidden');
+      let wrap;
+      if(hidden){
+        const lab=el.parentNode.querySelector('label');
+        if(!lab)return;
+        lab.classList.add('lab-lock'); wrap=lab; b.classList.add('mini');
+      }else{
+        wrap=document.createElement('div'); wrap.className='lockwrap';
+        el.parentNode.insertBefore(wrap,el); wrap.appendChild(el);
+      }
       const paint=()=>{
         const on=!!LOCK[k];
         b.classList.toggle('on',on);
@@ -2965,6 +2992,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
         '<summary><span>'+escHtml(ko)+'<em data-grp-n="'+g+'"></em></span><i>'+escHtml(desc)+'</i></summary>'+
         '<div class="grp-in">'+inner+'</div></details>';
     }).join('');
+    if(typeof wireLocks==='function')wireLocks();
     document.querySelectorAll('[data-param-select]').forEach(sel=>sel.addEventListener('change',()=>{
       const inp=document.querySelector('[data-param-custom="'+CSS.escape(sel.dataset.paramSelect)+'"]');
       if(inp)inp.classList.toggle('hidden',sel.value!=='__custom__');
@@ -4609,6 +4637,41 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     return full;
   }
   function refreshAnthroPrompt(){textAnthro.value=buildAnthroPrompt();persistAnthro();renderCarry();}
+  /* ══ 외형 랜덤 ══
+     얼굴 구조 아홉 칸은 손으로 하나씩 열어야 해서 실제로는 잘 안 채워진다.
+     기록을 보면 민족은 늘 적혀 있는데 골격은 절반이 비어 있었고, 그러면 얼굴을
+     가르는 것이 민족 하나뿐이라 다 비슷해진다. 굴려서 채우는 길을 낸다.
+
+     보기는 화면에 실제로 뜬 것에서만 고른다 — allowed() 가 성별·수위로 이미
+     걸러 둔 목록이라, 여기서 규칙을 다시 쓰면 두 곳이 갈린다.
+     "직접 입력" 과 AUTO 는 후보에서 뺀다. */
+  function randomizeAnthro(){
+    const T={}; document.querySelectorAll('[data-art]').forEach(el=>T[el.dataset.art]=el.checked);
+    const onlyEmpty=document.getElementById('anthroRndOnlyEmpty').checked;
+    let set=0, skipLock=0, skipFull=0;
+    PARAM_DEFS.forEach(def=>{
+      if(!T[def.group||''])return;
+      const el=document.querySelector('[data-param-select="'+CSS.escape(def.key)+'"]');
+      if(!el)return;                                   /* 이 성별에 안 뜨는 칸 */
+      if(LOCK[lockKey(el)]){skipLock++;return;}
+      if(onlyEmpty&&el.value){skipFull++;return;}
+      const cand=[...el.options].map(o=>o.value).filter(v=>v&&v!=='__custom__');
+      if(!cand.length)return;
+      el.value=cand[Math.floor(Math.random()*cand.length)];
+      set++;
+      const inp=document.querySelector('[data-param-custom="'+CSS.escape(def.key)+'"]');
+      if(inp)inp.classList.add('hidden');
+    });
+    PARAM_DEFS.forEach(dd=>updatePreview(dd.key));
+    refreshAnthroPrompt(); refreshSubHints(); refreshGroupCounts();
+    const on=Object.keys(T).filter(k=>T[k]).length;
+    if(!on){setStatus('statusAnthro','굴릴 갈래를 하나도 안 골랐다','warn');return;}
+    setStatus('statusAnthro','외형을 굴렸다 — '+set+'칸 지정'+
+      (skipLock?' · 자물쇠 '+skipLock+'칸 건너뜀':'')+
+      (skipFull?' · 이미 값이 있어 '+skipFull+'칸 그대로':'')+
+      (set?'':' (채울 빈 칸이 없다. "빈 칸만 채우기" 를 끄면 덮어쓴다)'),'ok');
+  }
+
   function resetAnthro(){
     document.querySelectorAll('[data-param-select]').forEach(s=>s.value='');
     document.querySelectorAll('[data-param-custom]').forEach(i=>{i.value='';i.classList.add('hidden');});
@@ -4876,6 +4939,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   document.querySelectorAll('#genderTabs .gt').forEach(b=>
     b.addEventListener('click',()=>setGender(b.dataset.gender)));
   document.getElementById('applyAnthro').addEventListener('click',()=>{refreshAnthroPrompt();setStatus('statusAnthro','PARAMETERS 적용 완료','ok');});
+  document.getElementById('randomAnthro').addEventListener('click',randomizeAnthro);
   document.getElementById('resetAnthro').addEventListener('click',resetAnthro);
   document.getElementById('prevAnthro').addEventListener('click',applyPrevParams);
   document.getElementById('dropAnthro').addEventListener('click',dropAnthroForMech);
