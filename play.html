@@ -579,6 +579,27 @@ body.pick-flash .tac-team:first-child{animation:pick-team .65s ease-out}
 @keyframes pick-confirm{0%{opacity:0;translate:0 8px}18%,75%{opacity:1;translate:0 0}100%{opacity:0;translate:0 -5px}}
 @keyframes pick-team{0%{border-color:var(--amber);box-shadow:0 0 16px #e8a13a70}100%{border-color:var(--line);box-shadow:none}}
 @media(min-width:600px){#tacticalDialog:has(.pick-content){max-width:720px}.pick-content{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}.pick-art{height:clamp(220px,55dvh,460px);position:sticky;top:42px}}
+
+/* Shared comparison cards: identity, gain, fixed-position stats, then reason. */
+body.draft-running.tactical .rdl{font-size:9px;letter-spacing:1px}
+body.draft-running.tactical .rdl .fld{margin-left:4px}
+#packArea .pack .choice-card,.choice-card.tac-card{display:flex;flex-direction:column;gap:3px;padding:5px;text-align:left;border:1px solid var(--line);border-left:3px solid var(--choice-color);border-radius:8px;background:#192330;color:var(--lume);min-width:0;overflow:hidden}
+.choice-head{display:flex;align-items:center;gap:5px;min-height:34px}
+.choice-art{width:30px;height:34px;flex:none;overflow:hidden;border-radius:4px;background:var(--void)}
+.choice-art img,.choice-art svg{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.choice-name{font:700 12px/1.35 var(--body);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.choice-faction{font:10px/1.3 var(--body);color:#b3c4d5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.choice-gain{display:flex;justify-content:space-between;align-items:baseline;gap:3px;min-height:19px}
+.choice-gain small{font-size:9px;color:#a7b7c8}.choice-gain strong{font:700 16px var(--mono);color:var(--ok)}
+.choice-gain.negative strong{color:var(--alert)}
+.choice-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 6px;border-top:1px solid var(--line);padding-top:4px}
+.choice-stat{display:flex;justify-content:space-between;font:10px/1.3 var(--mono);gap:2px}.choice-stat i{font-style:normal;color:#a7b7c8}.choice-stat.strong b{color:var(--amber)}
+.choice-reason{font:10px/1.4 var(--body);color:#d4deea;min-height:28px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere;border-top:1px solid var(--line);padding-top:4px}
+.choice-card.taken{opacity:.42}.choice-card:disabled{cursor:default}
+.roster-strip{box-sizing:border-box;padding:5px 8px;margin:6px 0;border:1px solid #e8a13a55;border-radius:8px;background:#e8a13a08;max-height:94px;overflow:auto}
+.roster-strip header{display:flex;align-items:center;justify-content:space-between;font-size:11px;margin-bottom:3px}.roster-strip header button{font:10px var(--body);background:none;border:0;color:var(--amber);padding:3px;cursor:pointer}
+.roster-line{display:flex;align-items:center;gap:5px;white-space:nowrap;overflow-x:auto;font:10px/1.5 var(--body);margin-top:2px}.roster-line>b{color:var(--amber);position:sticky;left:0;background:#1b242e;min-width:32px}.roster-chip{padding:1px 5px;background:#253241;border-radius:3px;color:#e1eaf4}
+@media(min-width:600px){.choice-name{font-size:13px}.choice-art{width:38px;height:40px}.choice-stats{grid-template-columns:repeat(4,minmax(0,1fr))}.choice-stat{flex-direction:column;align-items:center}.tac-center+.roster-strip{display:none}}
 </style>
 </head>
 <body>
@@ -2012,6 +2033,35 @@ function facHTML(card){
   }
   return out.join('<span style="opacity:.4"> › </span>');
 }
+function choiceReason(c,type,g){
+  if(type==='함'){var n=futurePairs(),cap=c[5]+CAP_BONUS;return cap<n?'정원 '+cap+' · '+(n-cap)+'조 전력 감소':'정원 '+cap+' · '+n+'조 모두 출격'}
+  if(!hintOn)return '능력치 비교 · 눌러서 상세';
+  if(g&&g.fired.length)return g.fired.slice(0,2).map(function(x){return (x.v<0?'악연: ':'연대: ')+x.n}).join(' · ');
+  var mission='';
+  if(OBJECTIVE){var before=objectiveCount(teams[0],OBJECTIVE);teams[0][type].push(c);var after;try{after=objectiveCount(teams[0],OBJECTIVE)}finally{teams[0][type].pop()}
+    if(after>before&&before<OBJECTIVE.target)mission=OBJECTIVE.name+' · '+(after>=OBJECTIVE.target?'목표 달성':(OBJECTIVE.target-after)+'개 남음');}
+  if(g&&g.why){var partner=g.why.split(' 조 · ')[0];return partner+(g.why.indexOf('전용기')>=0?' · 전용 조합':' · 자동 편성')+(mission?' / '+mission:'')}
+  if(mission)return mission;
+  if(g&&g.near.length)return g.near[0]+' · 조합 준비';
+  return type==='지휘관'?'소속 결속 · 연대 기반':type==='기체'?'파일럿 확보 후 조합':'기체 확보 후 조합';
+}
+function choiceCard(c,type,onPick,tactical,by){
+  var b=el('button',(tactical?'tac-card':'card')+' choice-card'+(by!=null?' taken':''));b.type='button';b.disabled=!onPick||by!=null;
+  var faction=c[1][c[1].length-1]||'소속 없음';b.style.setProperty('--choice-color',fc(faction));
+  var head=el('div','choice-head'),art=el('div','choice-art'),name=el('b','choice-name');art.innerHTML=avHTML(c,type);name.textContent=c[0];head.appendChild(art);head.appendChild(name);b.appendChild(head);
+  var fac=el('div','choice-faction');fac.textContent=faction;b.appendChild(fac);
+  var g=hintOn&&onPick&&by==null?delta(c,type):null,gain=el('div','choice-gain'+(g&&g.v<0?' negative':'')),label=el('small'),value=el('strong');
+  label.textContent=by!=null?'지명됨':g?'선택 시':'선택';value.textContent=by!=null?(by===0?'아군':'적 '+by):g?((g.v>=0?'+':'')+g.v):onPick?'확인':'대기';gain.appendChild(label);gain.appendChild(value);b.appendChild(gain);
+  var stats=el('div','choice-stats'),max=Math.max.apply(null,c.slice(2,type==='함'?5:6));
+  STAT_LABEL[type].forEach(function(label,i){var row=el('div','choice-stat'+(c[i+2]===max?' strong':'')),key=el('i'),value=el('b');key.textContent=label;value.textContent=c[i+2];row.appendChild(key);row.appendChild(value);stats.appendChild(row)});b.appendChild(stats);
+  var reason=el('div','choice-reason');reason.textContent=by!=null?'지명 완료':onPick?choiceReason(c,type,g):'상대 지명 중';b.appendChild(reason);
+  b.setAttribute('aria-label',c[0]+' · '+reason.textContent);b.title=c[0]+' · '+reason.textContent;if(onPick)b.onclick=function(){onPick(c)};return b;
+}
+function rosterStrip(){
+  var strip=el('section','roster-strip'),head=el('header'),title=el('b'),detail=el('button');title.textContent='내 편성 · 후보와 비교';detail.textContent='전체 보기';detail.type='button';detail.onclick=function(){inspectTeam(0)};head.appendChild(title);head.appendChild(detail);strip.appendChild(head);
+  ['함','지휘관','기체','파일럿'].forEach(function(k){var row=el('div','roster-line'),label=el('b');label.textContent=k;row.appendChild(label);var list=teams[0][k];if(!list.length){var empty=el('span');empty.textContent='미정';row.appendChild(empty)}list.forEach(function(c){var chip=el('span','roster-chip');chip.textContent=c[0];row.appendChild(chip)});strip.appendChild(row)});return strip;
+}
+
 function cardEl(c,type,onPick){
   var b=el("button","card"),i,labels=STAT_LABEL[type],cur=c[1][c[1].length-1];
   b.style.setProperty("--fc",fc(cur));
@@ -2252,15 +2302,16 @@ function renderPack(){
     for(i=0;i<packArr.length;i++){
       var slot=packArr[i];
       if(slot.by===null){
-        var cd=cardEl(slot.c,type,mine?confirmPick:null);
+        var cd=choiceCard(slot.c,type,mine?confirmPick:null,false,null);
         if(!mine)cd.disabled=true;
         pk.appendChild(cd);
-      }else pk.appendChild(takenEl(slot,type));
+      }else pk.appendChild(choiceCard(slot.c,type,null,false,slot.by));
     }
   }else{
     if(!curPack)curPack=drawPack(type);
-    for(i=0;i<curPack.length;i++)pk.appendChild(cardEl(curPack[i],type,confirmPick));
+    for(i=0;i<curPack.length;i++)pk.appendChild(choiceCard(curPack[i],type,confirmPick,false,null));
   }
+  a.appendChild(rosterStrip());
   a.appendChild(pk);
   if(!mine)return;
   var rr=el("div","row");
@@ -3048,24 +3099,12 @@ function renderTactical(){
   var slots=sharedPack?packArr:(curPack||[]).map(function(c){return {c:c,by:null}});
   if(!sharedPack&&!mine)slots=[];
   if(!slots.length)cards.appendChild(el('p','note','상대 지명 중 · 곧 내 보급이 도착합니다.'));
-  slots.forEach(function(x){
-    var c=x.c,card=el('button','tac-card'+(x.by!==null?' taken':''));card.type='button';card.disabled=!mine||x.by!==null;
-    card.setAttribute('aria-label',c[0]+(x.by!==null?' 지명됨':' 상세 및 지명'));
-    var art=el('div','tac-art');art.innerHTML=avHTML(c,type);card.appendChild(art);
-    var label=el('b');label.textContent=c[0];card.appendChild(label);
-    var faction=el('span','tac-faction');faction.textContent=c[1][c[1].length-1]||'소속 없음';faction.title=faction.textContent;card.appendChild(faction);
-    var stats=el('div','tac-stats');STAT_LABEL[type].forEach(function(label,i){var line=el('span'),key=el('i'),value=el('b');key.textContent=label;value.textContent=c[i+2];line.appendChild(key);line.appendChild(value);stats.appendChild(line)});card.appendChild(stats);
-    var note=el('span');
-    if(x.by!==null)note.textContent=(x.by===0?'아군':'적 '+x.by)+' 지명됨';
-    else if(hintOn&&mine){var g=delta(c,type);note.textContent=(g.v>=0?'+':'')+g.v+'점';note.className=g.v<0?'negative':''}
-    else note.textContent=mine?'눌러서 확인':'대기';
-    card.appendChild(note);card.onclick=function(){confirmPick(c)};cards.appendChild(card);
-  });
+  slots.forEach(function(x){cards.appendChild(choiceCard(x.c,type,mine&&x.by===null?confirmPick:null,true,x.by))});
   center.appendChild(cards);
   var roster=el('aside','tac-roster'),rh=el('strong');rh.textContent='내 편성';roster.appendChild(rh);
   ['함','지휘관'].forEach(function(k){var line=el('p');line.textContent=k+' · '+(teams[0][k].map(function(c){return c[0]}).join(', ')||'미정');roster.appendChild(line)});
   assign(teams[0]).forEach(function(u){var line=el('div','tac-pair');line.textContent=(u.m?u.m[0]:'기체 대기')+' × '+(u.p?u.p[0]:'파일럿 대기');roster.appendChild(line)});
-  center.appendChild(roster);area.appendChild(center);
+  center.appendChild(roster);area.appendChild(center);area.appendChild(rosterStrip());
   var summary=el('div','tac-teams');
   [0,1,2].forEach(function(ti){var t=teams[ti],hidden=fogOn&&ti!==0;
     var b=el('button','tac-team');b.disabled=hidden;

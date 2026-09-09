@@ -52,8 +52,9 @@ let server;
   assert.equal(await page.locator('#tacticalArea .tac-card').count(),9);
   for(const width of [344,390,690,768]){
    await page.setViewportSize({width,height:829});await fits('tactical '+width);
-   assert(await page.locator('.tac-teams').evaluate(e=>e.getBoundingClientRect().bottom<=innerHeight),'summary below viewport '+width);
    if(process.env.MOBILE_SCREENSHOTS)await page.screenshot({path:process.env.MOBILE_SCREENSHOTS+'/tactical-'+width+'.png'});
+   assert(await page.locator('.tac-teams').evaluate(e=>e.getBoundingClientRect().bottom<=innerHeight),'summary below viewport '+width);
+
   }
   const before=await page.evaluate(()=>JSON.stringify({round,si,teams}));
   await page.locator('.tac-card:not(:disabled)').first().click();assert(await page.locator('#tacticalDialog').isVisible());
