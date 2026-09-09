@@ -641,3 +641,44 @@ soft-featured baby face; rounder cheeks, larger eyes, and a softer jawline` 이�
 golden 54 항목 가운데 의인화 18 항목은 **바이트까지 같다.** 달라진 36 항목
 (콜라주 18 · 단일 18)에서 바뀐 줄은 전부 카테고리 가이드 아니면 옷 상태 한 줄이다.
 
+## 9. 예시 메뉴가 내보내는 글도 고쳤다
+
+8 절은 카테고리 가이드만 바꿨다. 예시를 고르면 따라 나가는 글은 그대로였다.
+
+예시 한 줄은 `[key, 영문 라벨, 한글 라벨, 묶음, 성별]` 이고, 프롬프트로 나가는
+글은 **영문 라벨을 그대로** 썼다. 즉 라벨과 프롬프트가 한 칸을 겸하고 있어서,
+프롬프트를 고치면 목록에 뜨는 이름까지 바뀐다.
+
+여섯째 칸을 두어 갈랐다. 있으면 그 글이 나가고 없으면 예전처럼 라벨이 나간다.
+목록에 뜨는 것은 어느 쪽이든 `r[1]` 이라 **이름표는 그대로다.**
+
+    Babydoll — 베이비돌                        (목록은 그대로)
+    → a short flowing empire-waist lounge dress with narrow shoulder straps…   (프롬프트)
+
+제안서 §4 의 표대로 31 개에 글을 붙였다 — lingerie 9 · swimwear 6 ·
+adult_roleplay 9 · everyday_sensual 7. 글을 안 붙인 예시는 예전과 같다.
+
+### 곁가지 — 아무것도 안 고른 판에 "AUTO" 가 실려 나가고 있었다
+
+AUTO 줄은 key 가 빈 문자열이고 라벨이 `"AUTO"` 다. 그런데 프롬프트가 라벨을
+쓰다 보니, 예시를 안 고르면 이런 것들이 그대로 실렸다.
+
+    Use this pair-level example as the thematic anchor: AUTO.     ← Pair 마다 한 줄
+
+    [PANEL OVERRIDES]
+    [PANEL 1 OVERRIDE]
+    Panel Example Concept: AUTO
+    … 여섯 패널 모두
+
+`[PANEL OVERRIDES]` 는 패널별로 따로 잡은 것이 있을 때만 나와야 하는 자리인데,
+빈 값이 "AUTO" 로 읽혀 늘 채워진 것처럼 보였다. 아무 말도 아닌 스물두 줄이
+모든 콜라주 판에 들어가고 있었다.
+
+내가 만든 것이 아니다 — 손대기 전 기준선에도 72 곳에 있다. 안 골랐으면 아무것도
+내지 않게 고쳤다.
+
+  콜라주 한 판 평균 11,789 자 → 11,256 자
+  golden 전체 727,872 자 → 717,576 자 (10,296 자 줄었다)
+
+진짜로 패널 덮어쓰기를 넣으면 블록이 그대로 돌아오는 것을 확인했다.
+
