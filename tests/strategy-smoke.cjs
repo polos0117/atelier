@@ -13,7 +13,7 @@ let server;
    const file=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,base).pathname));
    if(!file.startsWith(root+path.sep)){res.writeHead(403);res.end();return;}
    fs.readFile(file,(err,data)=>{if(err){res.writeHead(404);res.end();return;}
-    const ext=path.extname(file);res.setHeader('Content-Type',({'.html':'text/html; charset=utf-8','.json':'application/json','.webp':'image/webp','.png':'image/png'})[ext]||'application/octet-stream');res.end(data);});
+    const ext=path.extname(file);res.setHeader('Content-Type',({'.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.html':'text/html; charset=utf-8','.json':'application/json','.webp':'image/webp','.png':'image/png'})[ext]||'application/octet-stream');res.end(data);});
   });
   await new Promise(resolve=>server.listen(8765,'127.0.0.1',resolve));
  }
@@ -129,7 +129,7 @@ let server;
    await page.locator('.tac-card:not(:disabled)').first().click();await page.locator('#tacticalDialog .btn.big').click();
   }
   await page.waitForFunction(()=>round>=SCHEDULE.length);
-  assert(await page.locator('#endArea .rank').count()===3);assert(!await page.locator('#tacticalArea').isVisible());
+  assert(await page.locator('#endArea .rank').count()===3);assert.equal(await page.locator('#endArea .mvp-card').count(),1);assert(!await page.locator('#tacticalArea').isVisible());
   assert.deepEqual(errors,[]);
   console.log('PASS: tactical preview/cancel/pick/view switch/team detail; 4 sizes × 2 schedules × 2 supply modes; objectives; full UI game.');
   console.log(JSON.stringify(results.map(g=>({n:g.n,flow:g.flow,shared:g.shared,scores:g.scores.map(t=>t.total),mission:g.scores.map(t=>t.mission)}))));
