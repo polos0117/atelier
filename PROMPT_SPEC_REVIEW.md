@@ -474,6 +474,44 @@ B/W/H 는 단계가 아니라 그대로 뒀다.
 저장된 기록이 조용히 AUTO 로 풀린다. 새 항목은 아직 쓰인 적이 없어 자유롭게
 바꿀 수 있었다.
 
+## 7.1.1 정정 — 눈금과 모양을 같이 뭉갰다
+
+7.1 의 판단은 절반만 맞았다. `medium` 과 `medium-large` 가 같은 자리에 떨어진다는
+것은 맞다. 그런데 셋으로 맞추면서 **눈금이 아닌 것까지 눈금으로 만들었다.**
+
+  뺀 값 가운데 눈금 — slightly short · slightly long · medium-large ·
+                     slightly upturned · narrow-to-medium
+  뺀 값 가운데 모양 — aquiline · broad low bridge · square chin ·
+                     fuller lower lip · wide mouth · small mouth · 매부리코 계열
+
+`aquiline` 은 `prominent defined nose` 를 조금 더 크게 한 것이 아니다. 콧대가
+볼록한 다른 코다. `wide mouth` 는 `full lips` 의 정도가 아니라 다른 축이다.
+이것들을 상·중·하 한 줄에 접으면 세 값 안에서만 고르게 되고, 스물한 기를 그리면
+비둘기집 원리로 반드시 겹친다.
+
+실제 설정 21 기 38 벌로 견주니 그대로 보인다.
+
+| 항목 | 성격 | 보기 | 쓰인 값 |
+|---|---|---|---|
+| face shape | 모양 | 7 | 11 벌에 4 종 |
+| eye shape | 모양 | 6 | 9 벌에 4 종 |
+| jaw & chin | 눈금으로 접힘 | 3 | 15 벌에 3 종 (60% 가 한 값) |
+| lips | 눈금으로 접힘 | 3 | **4 벌 모두 같은 값** |
+
+**모양은 퍼지고 눈금은 몰린다.** 그래서 눈금 축(face length · face width ·
+eye size · eye tilt)은 셋 그대로 두고, 잘못 접힌 모양 축 셋만 되살렸다 —
+jaw & chin 8 · nose character 9 · lips 8. 되살린 값은 전부 정도가 아니라
+생김새를 가리키는 말이라 서로 다른 자리에 떨어진다.
+
+`slightly` 계열은 되살리지 않았다. 그쪽은 7.1 이 옳다.
+
+값을 **더하기만 했고 빼지 않았다** — 7.1 이 경고한 대로, 목록에서 빼면 저장된
+기록이 조용히 AUTO 로 풀린다.
+
+남은 것 하나: `wide mouth` 와 `small mouth` 는 사실 `lips`(도톰함)와 다른 축이라
+한 목록에 있으면 "넓고 얇은 입" 을 못 적는다. `mouth width` 를 따로 내는 것이
+옳지만, 그것은 항목을 더하는 일이라 이번 범위 밖에 두었다.
+
 ## 7.2 하다가 찾은 것 둘
 
 **`carryValues()` 가 직접 입력한 값을 흘렸다.** 기록은 고른 값(`sel`)과 직접
