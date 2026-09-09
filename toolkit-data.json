@@ -1,514 +1,334 @@
 {
- "version": 1,
- "updated": "2026-09-09",
- "note": "prompt.html 의 '기록 내보내기' 결과를 이 파일에 덮어쓴다. style 은 기체별 화풍이며 기본값(cinematic_semi_real)이라도 적는다 — 판정해서 고른 값인지 안 골라서 흘러든 값인지 구분해야 하기 때문이다(v9.17 전에는 기본값을 빼서 내보낼 때마다 손으로 적어 둔 것이 사라졌다). semi_real_paint 로 잡힌 152 기는 화풍 구분이 생기기 전에 일괄로 채운 값이라 그대로 둔다. 이 머리말도 내보내기가 챙겨 넣는다.",
  "mechs": {
-  "건담 나드레": {
-   "male": {
-    "sel": {
-     "apparent age": "20s",
-     "body type": "toned",
-     "height impression": "very tall",
-     "facial ethnicity": "Latin American",
-     "facial hair": "chinstrap beard",
-     "hairstyle": "locs",
-     "shoulder build": "broad"
-    }
-   },
-   "t": 1788275909914
-  },
-  "지옹": {
+  "0건담": {
    "female": {
     "sel": {
-     "apparent age": "30s",
-     "facial ethnicity": "Japanese",
-     "human-mechanical balance": "more human",
-     "body type": "voluptuous",
-     "height impression": "tall",
-     "torso / chest build": "full bust",
-     "waist / hip silhouette": "broad-hipped",
-     "leg proportion": "long",
-     "armor coverage": "balanced"
-    },
-    "ub": true
-   },
-   "male": {
-    "sel": {
-     "apparent age": "30s",
-     "body type": "burly",
-     "height impression": "tall",
-     "facial ethnicity": "Japanese",
-     "lower-body treatment": "layered plates",
-     "shoulder build": "broad",
-     "torso / chest build": "powerful",
-     "leg proportion": "long"
-    }
-   },
-   "t": 1788279823274
-  },
-  "∀건담": {
-   "female": {
-    "sel": {
-     "facial ethnicity": "Middle Eastern",
+     "apparent age": "mature adult",
+     "armor coverage": "balanced",
      "human-mechanical balance": "balanced",
-     "body type": "glamorous",
-     "height impression": "very tall",
-     "shoulder build": "broad",
-     "torso / chest build": "full bust",
-     "waist / hip silhouette": "athletic",
-     "leg proportion": "very long",
-     "eye color": "teal",
-     "hair color": "ash blonde",
-     "hairstyle": "feathered",
-     "bangs": "long side bangs covering one eye",
-     "armor coverage": "open",
-     "head crest integration": "headband-like",
-     "silhouette character": "elegant"
-    },
-    "ub": true
-   },
-   "male": {
-    "sel": {
-     "facial ethnicity": "Southeast Asian",
-     "human-mechanical balance": "more mechanical",
-     "body type": "statuesque",
-     "height impression": "average",
-     "shoulder build": "broad",
-     "torso / chest build": "v-taper",
-     "leg proportion": "very long",
-     "eye color": "teal",
-     "facial hair": "clean-shaven",
-     "hair color": "ash blonde",
-     "bangs": "long side bangs covering one eye"
+     "silhouette character": "minimal",
+     "torso / chest build": "full"
     }
    },
-   "t": 1788286316376
-  },
-  "엘메스": {
-   "female": {
-    "sel": {
-     "facial ethnicity": "Mediterranean",
-     "human-mechanical balance": "more human",
-     "height impression": "average",
-     "waist / hip silhouette": "curvy",
-     "facial character": "boyish",
-     "expression": "gentle",
-     "hairstyle": "hime cut",
-     "bangs": "choppy bangs",
-     "hair accent": "a prominent cowlick",
-     "armor coverage": "open"
-    },
-    "ub": true
-   },
-   "male": {
-    "sel": {
-     "facial ethnicity": "Mediterranean",
-     "human-mechanical balance": "more human",
-     "body type": "broad-shouldered",
-     "height impression": "tall",
-     "shoulder build": "broad",
-     "waist / hip silhouette": "athletic",
-     "leg proportion": "powerful",
-     "facial character": "refined"
-    }
-   },
-   "t": 1788288319153
-  },
-  "더블오 퀀터": {
-   "female": {
-    "sel": {
-     "apparent age": "youthful adult",
-     "facial ethnicity": "Korean",
-     "human-mechanical balance": "more human",
-     "body type": "hourglass",
-     "height impression": "tall",
-     "shoulder build": "broad",
-     "torso / chest build": "full",
-     "waist / hip silhouette": "hourglass",
-     "leg proportion": "very long",
-     "facial character": "doll-like",
-     "skin tone": "light",
-     "armor coverage": "high",
-     "silhouette character": "aerodynamic"
-    },
-    "ub": true
-   },
-   "male": {
-    "sel": {
-     "apparent age": "youthful adult",
-     "facial ethnicity": "Korean",
-     "human-mechanical balance": "very mechanical",
-     "body type": "broad-shouldered",
-     "height impression": "tall",
-     "shoulder build": "average",
-     "torso / chest build": "balanced",
-     "leg proportion": "long",
-     "facial character": "androgynous"
-    }
-   },
-   "t": 1788347318809
+   "g": "female",
+   "t": 1788861992738
   },
   "GQuuuuuuX": {
    "female": {
     "sel": {
      "apparent age": "20s",
-     "facial ethnicity": "East Asian",
-     "human-mechanical balance": "balanced",
-     "body type": "curvy",
-     "height impression": "very tall",
-     "shoulder build": "narrow",
-     "torso / chest build": "balanced",
-     "waist / hip silhouette": "athletic",
-     "leg proportion": "very long",
-     "facial character": "stoic",
      "armor coverage": "open",
-     "silhouette character": "experimental"
+     "body type": "curvy",
+     "facial character": "stoic",
+     "facial ethnicity": "East Asian",
+     "height impression": "very tall",
+     "human-mechanical balance": "balanced",
+     "leg proportion": "very long",
+     "shoulder build": "narrow",
+     "silhouette character": "experimental",
+     "torso / chest build": "balanced",
+     "waist / hip silhouette": "athletic"
     }
    },
    "male": {
     "sel": {
      "apparent age": "20s",
-     "facial ethnicity": "Japanese",
-     "human-mechanical balance": "more mechanical",
      "body type": "rangy",
+     "facial character": "melancholic",
+     "facial ethnicity": "Japanese",
      "height impression": "very tall",
+     "human-mechanical balance": "more mechanical",
+     "leg proportion": "very long",
      "shoulder build": "average",
      "torso / chest build": "slim",
-     "waist / hip silhouette": "athletic",
-     "leg proportion": "very long",
-     "facial character": "melancholic"
+     "waist / hip silhouette": "athletic"
     }
    },
    "t": 1788357973474
   },
-  "스트라이크 루즈": {
+  "∀건담": {
    "female": {
     "sel": {
-     "apparent age": "youthful adult",
-     "facial ethnicity": "Slavic",
-     "body type": "petite",
-     "height impression": "short",
-     "shoulder build": "narrow",
-     "torso / chest build": "slim",
-     "waist / hip silhouette": "athletic",
-     "leg proportion": "long",
-     "hairstyle": "wolf cut",
-     "hair length": "medium",
-     "bangs": "choppy bangs",
-     "armor coverage": "open"
-    }
-   },
-   "male": {
-    "sel": {
-     "apparent age": "youthful adult",
-     "facial ethnicity": "Slavic",
-     "height impression": "short",
-     "torso / chest build": "balanced",
-     "waist / hip silhouette": "balanced",
-     "leg proportion": "balanced"
-    }
-   },
-   "t": 1788417592638
-  },
-  "프리덤": {
-   "female": {
-    "sel": {
-     "apparent age": "youthful adult",
-     "facial ethnicity": "Japanese",
-     "human-mechanical balance": "more human",
-     "body type": "slender",
-     "height impression": "very tall",
-     "shoulder build": "average",
-     "torso / chest build": "full bust",
-     "waist / hip silhouette": "athletic",
-     "leg proportion": "very long",
-     "eye color": "crimson",
-     "second eye color": "crimson",
-     "hair color": "blue"
-    },
-    "ub": true
-   },
-   "t": 1788588895963
-  },
-  "시난주 스타인": {
-   "female": {
-    "sel": {
-     "apparent age": "20s",
-     "facial ethnicity": "Chinese",
-     "human-mechanical balance": "more human",
-     "body type": "statuesque",
-     "height impression": "very tall",
-     "shoulder build": "broad",
-     "torso / chest build": "full",
-     "waist / hip silhouette": "hourglass",
-     "leg proportion": "very long",
-     "facial character": "sharp",
-     "eye color": "crimson",
-     "second eye color": "crimson",
-     "hair color": "silver",
-     "hairstyle": "slicked back",
-     "hair length": "short",
-     "bangs": "long side bangs covering one eye",
-     "hair accent": "a single antenna strand standing up"
-    },
-    "ub": true
-   },
-   "male": {
-    "sel": {
-     "apparent age": "20s",
-     "facial ethnicity": "Chinese",
-     "human-mechanical balance": "more human",
-     "body type": "statuesque",
-     "height impression": "very tall",
-     "shoulder build": "broad",
-     "leg proportion": "very long",
-     "facial character": "sharp",
-     "eye color": "crimson",
-     "second eye color": "crimson",
-     "hair color": "silver",
-     "hairstyle": "slicked back",
-     "hair length": "short",
-     "bangs": "long side bangs covering one eye",
-     "hair accent": "a single antenna strand standing up"
-    },
-    "ub": true
-   },
-   "g": "female",
-   "mm": "silhouette_equipment_emphasis",
-   "t": 1788765885304
-  },
-  "블루 듀얼 건담": {
-   "female": {
-    "sel": {
-     "apparent age": "20s",
-     "facial ethnicity": "Mediterranean",
-     "human-mechanical balance": "more human",
-     "body type": "athletic",
-     "height impression": "tall",
-     "shoulder build": "broad",
-     "torso / chest build": "full",
-     "torso length": "balanced",
-     "waist / hip silhouette": "athletic",
-     "leg proportion": "long",
-     "lower-body build": "full",
-     "facial character": "refined",
-     "face shape": "angular",
-     "eye shape": "narrow",
-     "eye color": "green",
-     "second eye color": "green",
-     "expression": "cold",
-     "face length": "long",
-     "jaw & chin": "balanced jawline",
-     "eye size": "medium",
-     "eye tilt": "upturned outer corners",
-     "nose character": "prominent defined nose",
-     "lips": "medium lips",
-     "skin tone": "pale",
-     "hair color": "navy",
-     "hairstyle": "top knot",
-     "hair length": "medium",
      "armor coverage": "open",
-     "silhouette character": "regal"
-    }
+     "bangs": "long side bangs covering one eye",
+     "body type": "glamorous",
+     "eye color": "teal",
+     "facial ethnicity": "Middle Eastern",
+     "hair color": "ash blonde",
+     "hairstyle": "feathered",
+     "head crest integration": "headband-like",
+     "height impression": "very tall",
+     "human-mechanical balance": "balanced",
+     "leg proportion": "very long",
+     "shoulder build": "broad",
+     "silhouette character": "elegant",
+     "torso / chest build": "full bust",
+     "waist / hip silhouette": "athletic"
+    },
+    "ub": true
    },
    "male": {
     "sel": {
-     "apparent age": "20s",
-     "facial ethnicity": "Mediterranean",
-     "human-mechanical balance": "more human",
-     "body type": "athletic",
-     "height impression": "tall",
+     "bangs": "long side bangs covering one eye",
+     "body type": "statuesque",
+     "eye color": "teal",
+     "facial ethnicity": "Southeast Asian",
+     "facial hair": "clean-shaven",
+     "hair color": "ash blonde",
+     "height impression": "average",
+     "human-mechanical balance": "more mechanical",
+     "leg proportion": "very long",
      "shoulder build": "broad",
-     "torso length": "balanced",
-     "waist / hip silhouette": "athletic",
-     "leg proportion": "long",
-     "lower-body build": "full",
-     "facial character": "refined",
-     "face shape": "angular",
-     "eye shape": "narrow",
-     "eye color": "green",
-     "second eye color": "green",
-     "expression": "cold",
-     "face length": "long",
-     "jaw & chin": "balanced jawline",
-     "eye size": "medium",
-     "eye tilt": "upturned outer corners",
-     "nose character": "prominent defined nose",
-     "lips": "medium lips",
-     "skin tone": "pale",
-     "hair color": "navy",
-     "hairstyle": "top knot",
-     "hair length": "medium",
-     "silhouette character": "regal"
+     "torso / chest build": "v-taper"
     }
    },
-   "g": "female",
-   "t": 1788827267487
+   "t": 1788286316376
   },
   "가르발디β": {
    "female": {
+    "cus": {
+     "hair color": "핫핑크"
+    },
     "sel": {
      "apparent age": "20s",
-     "facial ethnicity": "East Asian",
      "body type": "inverted triangle",
-     "height impression": "average",
-     "shoulder build": "broad",
-     "waist / hip silhouette": "hourglass",
-     "leg proportion": "long",
-     "facial character": "innocent",
      "eye color": "crimson",
-     "second eye color": "crimson",
-     "face length": "short",
-     "jaw & chin": "angular defined jaw",
      "eye size": "large",
      "eye tilt": "downturned outer corners",
-     "lips": "medium lips",
-     "skin tone": "light",
+     "face length": "short",
+     "facial character": "innocent",
+     "facial ethnicity": "East Asian",
      "hair color": "__custom__",
+     "hair length": "long",
      "hairstyle": "finger waves",
-     "hair length": "long"
-    },
-    "cus": {
-     "hair color": "핫핑크"
-    },
-    "ub": true
-   },
-   "male": {
-    "sel": {
-     "apparent age": "20s",
-     "facial ethnicity": "East Asian",
-     "body type": "inverted triangle",
      "height impression": "average",
-     "shoulder build": "broad",
-     "leg proportion": "long",
-     "facial character": "innocent",
-     "eye color": "crimson",
-     "second eye color": "crimson",
-     "face length": "short",
      "jaw & chin": "angular defined jaw",
-     "eye size": "large",
-     "eye tilt": "downturned outer corners",
+     "leg proportion": "long",
      "lips": "medium lips",
+     "second eye color": "crimson",
+     "shoulder build": "broad",
      "skin tone": "light",
-     "hair color": "__custom__",
-     "hair length": "long"
-    },
-    "cus": {
-     "hair color": "핫핑크"
+     "waist / hip silhouette": "hourglass"
     },
     "ub": true
    },
    "g": "female",
+   "male": {
+    "cus": {
+     "hair color": "핫핑크"
+    },
+    "sel": {
+     "apparent age": "20s",
+     "body type": "inverted triangle",
+     "eye color": "crimson",
+     "eye size": "large",
+     "eye tilt": "downturned outer corners",
+     "face length": "short",
+     "facial character": "innocent",
+     "facial ethnicity": "East Asian",
+     "hair color": "__custom__",
+     "hair length": "long",
+     "height impression": "average",
+     "jaw & chin": "angular defined jaw",
+     "leg proportion": "long",
+     "lips": "medium lips",
+     "second eye color": "crimson",
+     "shoulder build": "broad",
+     "skin tone": "light"
+    },
+    "ub": true
+   },
    "t": 1788832831038
+  },
+  "가브스레이": {
+   "female": {
+    "cus": {
+     "hair color": "갈색/올리브색 반반"
+    },
+    "sel": {
+     "armor coverage": "open",
+     "body type": "inverted triangle",
+     "eye color": "pink",
+     "hair color": "__custom__",
+     "second eye color": "pink",
+     "shoulder build": "broad",
+     "torso / chest build": "full"
+    }
+   },
+   "g": "female",
+   "male": {
+    "cus": {
+     "hair color": "갈색/올리브색 반반"
+    },
+    "sel": {
+     "body type": "inverted triangle",
+     "eye color": "pink",
+     "hair color": "__custom__",
+     "second eye color": "pink",
+     "shoulder build": "broad"
+    }
+   },
+   "t": 1788901461519
+  },
+  "건담 구시온 리베이크": {
+   "female": {
+    "sel": {
+     "apparent age": "20s",
+     "armor coverage": "open",
+     "bangs": "side-swept bangs",
+     "body type": "voluptuous",
+     "eye color": "orange",
+     "eye shape": "upturned",
+     "face length": "short",
+     "face shape": "angular",
+     "face width": "medium",
+     "facial character": "doll-like",
+     "hair accent": "two antenna strands standing up",
+     "hair color": "ash blonde",
+     "hair length": "long",
+     "hair texture": "thick",
+     "hair volume": "moderate",
+     "hairstyle": "asymmetric cut",
+     "head crest integration": "sensor ornament",
+     "height impression": "tall",
+     "human-mechanical balance": "more human",
+     "jaw & chin": "angular defined jaw",
+     "leg proportion": "very long",
+     "second eye color": "orange",
+     "shoulder build": "broad",
+     "silhouette character": "aggressive",
+     "skin tone": "pale",
+     "torso / chest build": "full bust",
+     "torso length": "balanced",
+     "waist / hip silhouette": "broad-hipped"
+    }
+   },
+   "g": "female",
+   "mm": "silhouette_equipment_emphasis",
+   "t": 1788910950292
+  },
+  "건담 나드레": {
+   "male": {
+    "sel": {
+     "apparent age": "20s",
+     "body type": "toned",
+     "facial ethnicity": "Latin American",
+     "facial hair": "chinstrap beard",
+     "hairstyle": "locs",
+     "height impression": "very tall",
+     "shoulder build": "broad"
+    }
+   },
+   "t": 1788275909914
   },
   "건담 사바냐": {
    "female": {
     "sel": {
      "apparent age": "20s",
-     "facial ethnicity": "Slavic",
-     "human-mechanical balance": "more human",
+     "armor coverage": "open",
+     "bangs": "curtain bangs",
      "body type": "tall and lean",
+     "eye color": "brown",
+     "eye shape": "narrow",
+     "eye size": "small",
+     "face length": "long",
+     "face shape": "elongated",
+     "face width": "narrow",
+     "facial character": "boyish",
+     "facial ethnicity": "Slavic",
+     "hair color": "teal",
+     "hair length": "long",
+     "hair texture": "fine",
+     "hairstyle": "windswept",
      "height impression": "very tall",
-     "shoulder build": "broad",
-     "torso / chest build": "full",
-     "waist / hip silhouette": "curvy",
+     "human-mechanical balance": "more human",
+     "jaw & chin": "angular defined jaw",
      "leg proportion": "very long",
      "lower-body build": "balanced",
-     "facial character": "boyish",
-     "face shape": "elongated",
-     "eye shape": "narrow",
-     "eye color": "brown",
      "second eye color": "brown",
-     "face length": "long",
-     "face width": "narrow",
-     "jaw & chin": "angular defined jaw",
-     "eye size": "small",
-     "hair color": "teal",
-     "hairstyle": "windswept",
-     "hair length": "long",
-     "bangs": "curtain bangs",
-     "hair texture": "fine",
-     "armor coverage": "open"
+     "shoulder build": "broad",
+     "torso / chest build": "full",
+     "waist / hip silhouette": "curvy"
     },
     "sp": "복부 장갑 일부 제거, 하체 장갑 일부 제거"
    },
+   "g": "female",
    "male": {
     "sel": {
      "apparent age": "20s",
-     "facial ethnicity": "Slavic",
-     "human-mechanical balance": "more human",
+     "bangs": "curtain bangs",
      "body type": "tall and lean",
+     "eye color": "brown",
+     "eye shape": "narrow",
+     "eye size": "small",
+     "face length": "long",
+     "face shape": "elongated",
+     "face width": "narrow",
+     "facial character": "boyish",
+     "facial ethnicity": "Slavic",
+     "hair color": "teal",
+     "hair length": "long",
+     "hair texture": "fine",
+     "hairstyle": "windswept",
      "height impression": "very tall",
-     "shoulder build": "average",
+     "human-mechanical balance": "more human",
+     "jaw & chin": "angular defined jaw",
      "leg proportion": "very long",
      "lower-body build": "balanced",
-     "facial character": "boyish",
-     "face shape": "elongated",
-     "eye shape": "narrow",
-     "eye color": "brown",
      "second eye color": "brown",
-     "face length": "long",
-     "face width": "narrow",
-     "jaw & chin": "angular defined jaw",
-     "eye size": "small",
-     "hair color": "teal",
-     "hairstyle": "windswept",
-     "hair length": "long",
-     "bangs": "curtain bangs",
-     "hair texture": "fine"
+     "shoulder build": "average"
     },
     "sp": "복부 장갑 일부 제거, 하체 장갑 일부 제거"
    },
-   "g": "female",
    "mm": "silhouette_equipment_emphasis",
    "t": 1788842117459
   },
-  "아류제우스": {
+  "건담 쓰로네 아인": {
    "female": {
     "sel": {
-     "apparent age": "youthful adult",
-     "human-mechanical balance": "balanced",
-     "body type": "glamorous",
-     "height impression": "average",
-     "shoulder build": "broad",
-     "torso / chest build": "full bust",
-     "torso length": "short",
-     "waist / hip silhouette": "broad-hipped",
-     "leg proportion": "very long",
-     "lower-body build": "full",
-     "facial character": "doll-like",
-     "face shape": "softly rounded",
-     "eye color": "pale blue",
-     "second eye color": "pale blue",
-     "face length": "short",
-     "face width": "medium",
-     "jaw & chin": "soft rounded jaw",
+     "apparent age": "20s",
      "armor coverage": "open",
-     "silhouette character": "regal"
-    }
-   },
-   "male": {
-    "sel": {
-     "apparent age": "youthful adult",
-     "human-mechanical balance": "balanced",
-     "height impression": "average",
-     "shoulder build": "broad",
-     "torso length": "short",
-     "leg proportion": "very long",
-     "lower-body build": "full",
-     "facial character": "doll-like",
-     "face shape": "softly rounded",
-     "eye color": "pale blue",
-     "second eye color": "pale blue",
+     "body type": "hourglass",
+     "eye color": "pink",
+     "eye shape": "sharp",
      "face length": "short",
-     "face width": "medium",
-     "jaw & chin": "soft rounded jaw",
-     "silhouette character": "regal"
+     "face width": "wide",
+     "facial character": "fierce",
+     "facial ethnicity": "Japanese",
+     "hair length": "medium",
+     "hair volume": "full",
+     "hairstyle": "undercut",
+     "human-mechanical balance": "balanced",
+     "jaw & chin": "angular defined jaw",
+     "second eye color": "pink",
+     "shoulder build": "broad",
+     "silhouette character": "aggressive",
+     "torso / chest build": "full",
+     "waist / hip silhouette": "hourglass"
     }
    },
    "g": "female",
+   "male": {
+    "sel": {
+     "apparent age": "20s",
+     "eye color": "pink",
+     "eye shape": "sharp",
+     "face length": "short",
+     "face width": "wide",
+     "facial character": "fierce",
+     "facial ethnicity": "Japanese",
+     "hair length": "medium",
+     "hair volume": "full",
+     "hairstyle": "undercut",
+     "human-mechanical balance": "balanced",
+     "jaw & chin": "angular defined jaw",
+     "second eye color": "pink",
+     "shoulder build": "broad",
+     "silhouette character": "aggressive"
+    }
+   },
    "mm": "silhouette_equipment_emphasis",
-   "t": 1788843208701
+   "t": 1788867697505
   },
   "구프 이그나이티드": {
    "female": {
@@ -517,125 +337,290 @@
      "human-mechanical balance": "balanced"
     }
    },
+   "g": "female",
    "male": {
     "sel": {
      "apparent age": "30s",
      "human-mechanical balance": "balanced"
     }
    },
-   "g": "female",
    "t": 1788861534373
   },
-  "0건담": {
+  "더블오 퀀터": {
    "female": {
     "sel": {
-     "apparent age": "mature adult",
-     "human-mechanical balance": "balanced",
+     "apparent age": "youthful adult",
+     "armor coverage": "high",
+     "body type": "hourglass",
+     "facial character": "doll-like",
+     "facial ethnicity": "Korean",
+     "height impression": "tall",
+     "human-mechanical balance": "more human",
+     "leg proportion": "very long",
+     "shoulder build": "broad",
+     "silhouette character": "aerodynamic",
+     "skin tone": "light",
      "torso / chest build": "full",
-     "armor coverage": "balanced",
-     "silhouette character": "minimal"
+     "waist / hip silhouette": "hourglass"
+    },
+    "ub": true
+   },
+   "male": {
+    "sel": {
+     "apparent age": "youthful adult",
+     "body type": "broad-shouldered",
+     "facial character": "androgynous",
+     "facial ethnicity": "Korean",
+     "height impression": "tall",
+     "human-mechanical balance": "very mechanical",
+     "leg proportion": "long",
+     "shoulder build": "average",
+     "torso / chest build": "balanced"
     }
    },
-   "g": "female",
-   "t": 1788861992738
+   "t": 1788347318809
   },
-  "건담 쓰로네 아인": {
+  "블루 듀얼 건담": {
    "female": {
     "sel": {
      "apparent age": "20s",
-     "facial ethnicity": "Japanese",
-     "human-mechanical balance": "balanced",
-     "body type": "hourglass",
-     "shoulder build": "broad",
-     "torso / chest build": "full",
-     "waist / hip silhouette": "hourglass",
-     "facial character": "fierce",
-     "eye shape": "sharp",
-     "eye color": "pink",
-     "second eye color": "pink",
-     "face length": "short",
-     "face width": "wide",
-     "jaw & chin": "angular defined jaw",
-     "hairstyle": "undercut",
-     "hair length": "medium",
-     "hair volume": "full",
      "armor coverage": "open",
-     "silhouette character": "aggressive"
+     "body type": "athletic",
+     "expression": "cold",
+     "eye color": "green",
+     "eye shape": "narrow",
+     "eye size": "medium",
+     "eye tilt": "upturned outer corners",
+     "face length": "long",
+     "face shape": "angular",
+     "facial character": "refined",
+     "facial ethnicity": "Mediterranean",
+     "hair color": "navy",
+     "hair length": "medium",
+     "hairstyle": "top knot",
+     "height impression": "tall",
+     "human-mechanical balance": "more human",
+     "jaw & chin": "balanced jawline",
+     "leg proportion": "long",
+     "lips": "medium lips",
+     "lower-body build": "full",
+     "nose character": "prominent defined nose",
+     "second eye color": "green",
+     "shoulder build": "broad",
+     "silhouette character": "regal",
+     "skin tone": "pale",
+     "torso / chest build": "full",
+     "torso length": "balanced",
+     "waist / hip silhouette": "athletic"
+    }
+   },
+   "g": "female",
+   "male": {
+    "sel": {
+     "apparent age": "20s",
+     "body type": "athletic",
+     "expression": "cold",
+     "eye color": "green",
+     "eye shape": "narrow",
+     "eye size": "medium",
+     "eye tilt": "upturned outer corners",
+     "face length": "long",
+     "face shape": "angular",
+     "facial character": "refined",
+     "facial ethnicity": "Mediterranean",
+     "hair color": "navy",
+     "hair length": "medium",
+     "hairstyle": "top knot",
+     "height impression": "tall",
+     "human-mechanical balance": "more human",
+     "jaw & chin": "balanced jawline",
+     "leg proportion": "long",
+     "lips": "medium lips",
+     "lower-body build": "full",
+     "nose character": "prominent defined nose",
+     "second eye color": "green",
+     "shoulder build": "broad",
+     "silhouette character": "regal",
+     "skin tone": "pale",
+     "torso length": "balanced",
+     "waist / hip silhouette": "athletic"
+    }
+   },
+   "t": 1788827267487
+  },
+  "스트라이크 루즈": {
+   "female": {
+    "sel": {
+     "apparent age": "youthful adult",
+     "armor coverage": "open",
+     "bangs": "choppy bangs",
+     "body type": "petite",
+     "facial ethnicity": "Slavic",
+     "hair length": "medium",
+     "hairstyle": "wolf cut",
+     "height impression": "short",
+     "leg proportion": "long",
+     "shoulder build": "narrow",
+     "torso / chest build": "slim",
+     "waist / hip silhouette": "athletic"
     }
    },
    "male": {
     "sel": {
+     "apparent age": "youthful adult",
+     "facial ethnicity": "Slavic",
+     "height impression": "short",
+     "leg proportion": "balanced",
+     "torso / chest build": "balanced",
+     "waist / hip silhouette": "balanced"
+    }
+   },
+   "t": 1788417592638
+  },
+  "시난주 스타인": {
+   "female": {
+    "sel": {
      "apparent age": "20s",
-     "facial ethnicity": "Japanese",
-     "human-mechanical balance": "balanced",
+     "bangs": "long side bangs covering one eye",
+     "body type": "statuesque",
+     "eye color": "crimson",
+     "facial character": "sharp",
+     "facial ethnicity": "Chinese",
+     "hair accent": "a single antenna strand standing up",
+     "hair color": "silver",
+     "hair length": "short",
+     "hairstyle": "slicked back",
+     "height impression": "very tall",
+     "human-mechanical balance": "more human",
+     "leg proportion": "very long",
+     "second eye color": "crimson",
      "shoulder build": "broad",
-     "facial character": "fierce",
-     "eye shape": "sharp",
-     "eye color": "pink",
-     "second eye color": "pink",
+     "torso / chest build": "full",
+     "waist / hip silhouette": "hourglass"
+    },
+    "ub": true
+   },
+   "g": "female",
+   "male": {
+    "sel": {
+     "apparent age": "20s",
+     "bangs": "long side bangs covering one eye",
+     "body type": "statuesque",
+     "eye color": "crimson",
+     "facial character": "sharp",
+     "facial ethnicity": "Chinese",
+     "hair accent": "a single antenna strand standing up",
+     "hair color": "silver",
+     "hair length": "short",
+     "hairstyle": "slicked back",
+     "height impression": "very tall",
+     "human-mechanical balance": "more human",
+     "leg proportion": "very long",
+     "second eye color": "crimson",
+     "shoulder build": "broad"
+    },
+    "ub": true
+   },
+   "mm": "silhouette_equipment_emphasis",
+   "t": 1788765885304
+  },
+  "아류제우스": {
+   "female": {
+    "sel": {
+     "apparent age": "youthful adult",
+     "armor coverage": "open",
+     "body type": "glamorous",
+     "eye color": "pale blue",
      "face length": "short",
-     "face width": "wide",
-     "jaw & chin": "angular defined jaw",
-     "hairstyle": "undercut",
-     "hair length": "medium",
-     "hair volume": "full",
-     "silhouette character": "aggressive"
+     "face shape": "softly rounded",
+     "face width": "medium",
+     "facial character": "doll-like",
+     "height impression": "average",
+     "human-mechanical balance": "balanced",
+     "jaw & chin": "soft rounded jaw",
+     "leg proportion": "very long",
+     "lower-body build": "full",
+     "second eye color": "pale blue",
+     "shoulder build": "broad",
+     "silhouette character": "regal",
+     "torso / chest build": "full bust",
+     "torso length": "short",
+     "waist / hip silhouette": "broad-hipped"
     }
    },
    "g": "female",
+   "male": {
+    "sel": {
+     "apparent age": "youthful adult",
+     "eye color": "pale blue",
+     "face length": "short",
+     "face shape": "softly rounded",
+     "face width": "medium",
+     "facial character": "doll-like",
+     "height impression": "average",
+     "human-mechanical balance": "balanced",
+     "jaw & chin": "soft rounded jaw",
+     "leg proportion": "very long",
+     "lower-body build": "full",
+     "second eye color": "pale blue",
+     "shoulder build": "broad",
+     "silhouette character": "regal",
+     "torso length": "short"
+    }
+   },
    "mm": "silhouette_equipment_emphasis",
-   "t": 1788867697505
+   "t": 1788843208701
   },
   "아르케 건담": {
    "female": {
     "sel": {
-     "body type": "tall and lean",
-     "height impression": "tall",
-     "shoulder build": "average",
-     "torso / chest build": "slim",
-     "face shape": "sharp",
-     "eye shape": "almond",
-     "eye color": "black",
-     "second eye color": "black",
-     "expression": "cold",
-     "face length": "long",
-     "face width": "narrow",
-     "jaw & chin": "angular defined jaw",
-     "eye size": "small",
-     "eye tilt": "upturned outer corners",
-     "nose character": "small delicate nose",
-     "hair color": "red",
-     "hairstyle": "crown braid",
-     "hair length": "medium",
      "armor coverage": "open",
-     "silhouette character": "aerodynamic"
-    },
-    "ub": true
-   },
-   "male": {
-    "sel": {
      "body type": "tall and lean",
-     "height impression": "tall",
-     "shoulder build": "average",
-     "torso / chest build": "slim",
-     "face shape": "sharp",
-     "eye shape": "almond",
-     "eye color": "black",
-     "second eye color": "black",
      "expression": "cold",
-     "face length": "long",
-     "face width": "narrow",
-     "jaw & chin": "angular defined jaw",
+     "eye color": "black",
+     "eye shape": "almond",
      "eye size": "small",
      "eye tilt": "upturned outer corners",
-     "nose character": "small delicate nose",
+     "face length": "long",
+     "face shape": "sharp",
+     "face width": "narrow",
      "hair color": "red",
      "hair length": "medium",
-     "silhouette character": "aerodynamic"
+     "hairstyle": "crown braid",
+     "height impression": "tall",
+     "jaw & chin": "angular defined jaw",
+     "nose character": "small delicate nose",
+     "second eye color": "black",
+     "shoulder build": "average",
+     "silhouette character": "aerodynamic",
+     "torso / chest build": "slim"
     },
     "ub": true
    },
    "g": "female",
+   "male": {
+    "sel": {
+     "body type": "tall and lean",
+     "expression": "cold",
+     "eye color": "black",
+     "eye shape": "almond",
+     "eye size": "small",
+     "eye tilt": "upturned outer corners",
+     "face length": "long",
+     "face shape": "sharp",
+     "face width": "narrow",
+     "hair color": "red",
+     "hair length": "medium",
+     "height impression": "tall",
+     "jaw & chin": "angular defined jaw",
+     "nose character": "small delicate nose",
+     "second eye color": "black",
+     "shoulder build": "average",
+     "silhouette character": "aerodynamic",
+     "torso / chest build": "slim"
+    },
+    "ub": true
+   },
    "mm": "silhouette_equipment_emphasis",
    "t": 1788868541297
   },
@@ -643,221 +628,487 @@
    "female": {
     "sel": {
      "apparent age": "youthful adult",
-     "facial ethnicity": "Japanese",
-     "human-mechanical balance": "more human",
+     "armor coverage": "open",
      "body type": "voluptuous",
+     "expression": "gentle",
+     "face shape": "softly rounded",
+     "facial character": "cute",
+     "facial ethnicity": "Japanese",
      "height impression": "very tall",
+     "human-mechanical balance": "more human",
+     "jaw & chin": "soft rounded jaw",
      "shoulder build": "average",
      "torso / chest build": "full",
-     "waist / hip silhouette": "balanced",
-     "facial character": "cute",
-     "face shape": "softly rounded",
-     "expression": "gentle",
-     "jaw & chin": "soft rounded jaw",
-     "armor coverage": "open"
-    }
-   },
-   "male": {
-    "sel": {
-     "apparent age": "youthful adult",
-     "facial ethnicity": "Japanese",
-     "human-mechanical balance": "more human",
-     "height impression": "very tall",
-     "shoulder build": "average",
-     "waist / hip silhouette": "balanced",
-     "facial character": "cute",
-     "face shape": "softly rounded",
-     "expression": "gentle",
-     "jaw & chin": "soft rounded jaw"
+     "waist / hip silhouette": "balanced"
     }
    },
    "g": "female",
+   "male": {
+    "sel": {
+     "apparent age": "youthful adult",
+     "expression": "gentle",
+     "face shape": "softly rounded",
+     "facial character": "cute",
+     "facial ethnicity": "Japanese",
+     "height impression": "very tall",
+     "human-mechanical balance": "more human",
+     "jaw & chin": "soft rounded jaw",
+     "shoulder build": "average",
+     "waist / hip silhouette": "balanced"
+    }
+   },
    "t": 1788872628454
+  },
+  "엘메스": {
+   "female": {
+    "sel": {
+     "armor coverage": "open",
+     "bangs": "choppy bangs",
+     "expression": "gentle",
+     "facial character": "boyish",
+     "facial ethnicity": "Mediterranean",
+     "hair accent": "a prominent cowlick",
+     "hairstyle": "hime cut",
+     "height impression": "average",
+     "human-mechanical balance": "more human",
+     "waist / hip silhouette": "curvy"
+    },
+    "ub": true
+   },
+   "male": {
+    "sel": {
+     "body type": "broad-shouldered",
+     "facial character": "refined",
+     "facial ethnicity": "Mediterranean",
+     "height impression": "tall",
+     "human-mechanical balance": "more human",
+     "leg proportion": "powerful",
+     "shoulder build": "broad",
+     "waist / hip silhouette": "athletic"
+    }
+   },
+   "t": 1788288319153
   },
   "육전형 짐": {
    "female": {
     "sel": {
      "apparent age": "20s",
-     "human-mechanical balance": "balanced",
+     "armor coverage": "open",
      "body type": "athletic",
-     "height impression": "tall",
-     "shoulder build": "average",
-     "torso / chest build": "balanced",
-     "waist / hip silhouette": "athletic",
-     "leg proportion": "long",
-     "eye color": "green",
-     "second eye color": "green",
      "expression": "calm",
+     "eye color": "green",
      "hair color": "orange",
-     "armor coverage": "open"
-    }
-   },
-   "male": {
-    "sel": {
-     "apparent age": "20s",
-     "human-mechanical balance": "balanced",
-     "body type": "athletic",
      "height impression": "tall",
+     "human-mechanical balance": "balanced",
+     "leg proportion": "long",
+     "second eye color": "green",
      "shoulder build": "average",
      "torso / chest build": "balanced",
-     "waist / hip silhouette": "athletic",
-     "leg proportion": "long",
-     "eye color": "green",
-     "second eye color": "green",
-     "expression": "calm",
-     "hair color": "orange"
+     "waist / hip silhouette": "athletic"
     }
    },
    "g": "female",
+   "male": {
+    "sel": {
+     "apparent age": "20s",
+     "body type": "athletic",
+     "expression": "calm",
+     "eye color": "green",
+     "hair color": "orange",
+     "height impression": "tall",
+     "human-mechanical balance": "balanced",
+     "leg proportion": "long",
+     "second eye color": "green",
+     "shoulder build": "average",
+     "torso / chest build": "balanced",
+     "waist / hip silhouette": "athletic"
+    }
+   },
    "t": 1788878860361
   },
-  "가브스레이": {
+  "지옹": {
    "female": {
     "sel": {
-     "body type": "inverted triangle",
-     "shoulder build": "broad",
-     "torso / chest build": "full",
-     "eye color": "pink",
-     "second eye color": "pink",
-     "hair color": "__custom__",
-     "armor coverage": "open"
+     "apparent age": "30s",
+     "armor coverage": "balanced",
+     "body type": "voluptuous",
+     "facial ethnicity": "Japanese",
+     "height impression": "tall",
+     "human-mechanical balance": "more human",
+     "leg proportion": "long",
+     "torso / chest build": "full bust",
+     "waist / hip silhouette": "broad-hipped"
     },
-    "cus": {
-     "hair color": "갈색/올리브색 반반"
-    }
+    "ub": true
    },
    "male": {
     "sel": {
-     "body type": "inverted triangle",
+     "apparent age": "30s",
+     "body type": "burly",
+     "facial ethnicity": "Japanese",
+     "height impression": "tall",
+     "leg proportion": "long",
+     "lower-body treatment": "layered plates",
      "shoulder build": "broad",
-     "eye color": "pink",
-     "second eye color": "pink",
-     "hair color": "__custom__"
-    },
-    "cus": {
-     "hair color": "갈색/올리브색 반반"
+     "torso / chest build": "powerful"
     }
    },
-   "g": "female",
-   "t": 1788901461519
+   "t": 1788279823274
   },
-  "건담 구시온 리베이크": {
+  "프리덤": {
+   "female": {
+    "sel": {
+     "apparent age": "youthful adult",
+     "body type": "slender",
+     "eye color": "crimson",
+     "facial ethnicity": "Japanese",
+     "hair color": "blue",
+     "height impression": "very tall",
+     "human-mechanical balance": "more human",
+     "leg proportion": "very long",
+     "second eye color": "crimson",
+     "shoulder build": "average",
+     "torso / chest build": "full bust",
+     "waist / hip silhouette": "athletic"
+    },
+    "ub": true
+   },
+   "t": 1788588895963
+  },
+  "데미 바딩": {
    "female": {
     "sel": {
      "apparent age": "20s",
-     "human-mechanical balance": "more human",
-     "body type": "voluptuous",
+     "armor coverage": "balanced",
+     "bangs": "choppy bangs",
+     "body type": "athletic",
+     "face shape": "oval",
+     "facial character": "friendly",
+     "facial ethnicity": "Korean",
+     "hair length": "short",
+     "hairstyle": "wolf cut",
      "height impression": "tall",
+     "human-mechanical balance": "more human",
+     "leg proportion": "long",
      "shoulder build": "broad",
-     "torso / chest build": "full bust",
-     "torso length": "balanced",
-     "waist / hip silhouette": "broad-hipped",
-     "leg proportion": "very long",
-     "facial character": "doll-like",
-     "face shape": "angular",
-     "eye shape": "upturned",
-     "eye color": "orange",
-     "second eye color": "orange",
-     "face length": "short",
-     "face width": "medium",
-     "jaw & chin": "angular defined jaw",
-     "skin tone": "pale",
-     "hair color": "ash blonde",
-     "hairstyle": "asymmetric cut",
-     "hair length": "long",
-     "bangs": "side-swept bangs",
-     "hair accent": "two antenna strands standing up",
-     "hair texture": "thick",
-     "hair volume": "moderate",
-     "armor coverage": "open",
-     "head crest integration": "sensor ornament",
-     "silhouette character": "aggressive"
-    }
+     "torso / chest build": "full",
+     "waist / hip silhouette": "athletic"
+    },
+    "sp": "Copper brown hair, matching amber eyes. Original clearly adult woman aged 27, not a depiction of any pilot. Preserve the Demi Barding sand beige, ivory white and charcoal mechanical palette and large backpack; human face fully visible."
    },
    "g": "female",
-   "mm": "silhouette_equipment_emphasis",
-   "t": 1788910950292
+   "t": 1788971244309
   }
  },
+ "note": "prompt.html 의 '기록 내보내기' 결과를 이 파일에 덮어쓴다. style 은 기체별 화풍이며 기본값(cinematic_semi_real)이라도 적는다 — 판정해서 고른 값인지 안 골라서 흘러든 값인지 구분해야 하기 때문이다(v9.17 전에는 기본값을 빼서 내보낼 때마다 손으로 적어 둔 것이 사라졌다). semi_real_paint 로 잡힌 152 기는 화풍 구분이 생기기 전에 일괄로 채운 값이라 그대로 둔다. 이 머리말도 내보내기가 챙겨 넣는다.",
+ "style": {
+  "GQuuuuuuX": "game_keyart",
+  "RX-78-2 건담": "semi_real_paint",
+  "V2 어설트 버스터 건담": "semi_real_paint",
+  "V2건담": "semi_real_paint",
+  "V건담": "semi_real_paint",
+  "ZZ건담": "semi_real_paint",
+  "Z건담": "semi_real_paint",
+  "∀건담": "semi_real_paint",
+  "가르발디β": "cinematic_semi_real",
+  "가베라 테트라": "semi_real_paint",
+  "가이아 건담": "semi_real_paint",
+  "갓 건담": "semi_real_paint",
+  "갸프랑": "semi_real_paint",
+  "걍": "semi_real_paint",
+  "건담 AGE-1": "semi_real_paint",
+  "건담 AGE-2": "semi_real_paint",
+  "건담 Ez8": "semi_real_paint",
+  "건담 F91": "semi_real_paint",
+  "건담 Mk-V": "semi_real_paint",
+  "건담 Mk-Ⅱ": "semi_real_paint",
+  "건담 Mk-Ⅱ 티탄즈사양": "semi_real_paint",
+  "건담 NT-1": "semi_real_paint",
+  "건담 X": "semi_real_paint",
+  "건담 구시온": "semi_real_paint",
+  "건담 나드레": "semi_real_paint",
+  "건담 데스사이즈": "cinematic_semi_real",
+  "건담 데스사이즈 헬 EW": "semi_real_paint",
+  "건담 듀나메스": "semi_real_paint",
+  "건담 르브리스": "semi_real_paint",
+  "건담 바알": "semi_real_paint",
+  "건담 발바토스": "semi_real_paint",
+  "건담 발바토스 루프스 렉스": "semi_real_paint",
+  "건담 버체": "semi_real_paint",
+  "건담 비다르": "semi_real_paint",
+  "건담 샌드록 EW": "semi_real_paint",
+  "건담 시작 1호기 제피랜서스": "semi_real_paint",
+  "건담 시작 2호기 사이살리스": "semi_real_paint",
+  "건담 시작 3호기 스테이멘": "semi_real_paint",
+  "건담 어스트레이 골드프레임": "semi_real_paint",
+  "건담 어스트레이 골드프레임 아마츠 미나": "semi_real_paint",
+  "건담 어스트레이 골드프레임 아마츠 하나": "semi_real_paint",
+  "건담 어스트레이 레드프레임": "semi_real_paint",
+  "건담 어스트레이 미라쥬 프레임": "semi_real_paint",
+  "건담 어스트레이 블루프레임": "semi_real_paint",
+  "건담 어스트레이 블루프레임 세컨드L": "semi_real_paint",
+  "건담 에어리얼": "semi_real_paint",
+  "건담 에어리얼 개수형": "semi_real_paint",
+  "건담 엑시아": "semi_real_paint",
+  "건담 캘리번": "semi_real_paint",
+  "건담 큐리오스": "semi_real_paint",
+  "건담 키마리스": "semi_real_paint",
+  "건담 키마리스 비다르": "semi_real_paint",
+  "건담 파렉트": "semi_real_paint",
+  "건담 플라우로스": "semi_real_paint",
+  "건담 하루트": "cinematic_semi_real",
+  "건담 헤비암즈": "game_cgi",
+  "건담 헤비암즈 EW": "semi_real_paint",
+  "건이지": "cinematic_semi_real",
+  "건캐논": "semi_real_paint",
+  "건탱크": "semi_real_paint",
+  "게마르크": "semi_real_paint",
+  "겔구그": "semi_real_paint",
+  "겔구그 예거": "semi_real_paint",
+  "구프": "semi_real_paint",
+  "구프 커스텀": "semi_real_paint",
+  "기라 도가": "semi_real_paint",
+  "기라 줄루": "semi_real_paint",
+  "나이팅게일": "semi_real_paint",
+  "노이에 질": "semi_real_paint",
+  "뉴 건담": "semi_real_paint",
+  "다릴 바르데": "semi_real_paint",
+  "더블 엑스": "cinematic_semi_real",
+  "더블오 건담": "semi_real_paint",
+  "더블오 라이저": "semi_real_paint",
+  "더블오 퀀터": "cinematic_semi_real",
+  "데스티니": "semi_real_paint",
+  "델타 플러스": "semi_real_paint",
+  "도벤 울프": "semi_real_paint",
+  "돔": "semi_real_paint",
+  "듀엘": "semi_real_paint",
+  "드레드노트 건담": "semi_real_paint",
+  "디 오": "semi_real_paint",
+  "라이징 프리덤 건담": "semi_real_paint",
+  "라파엘 건담": "cinematic_semi_real",
+  "레이더 건담": "semi_real_paint",
+  "레전드 건담": "semi_real_paint",
+  "리가지": "semi_real_paint",
+  "리본즈 건담": "semi_real_paint",
+  "리젤": "semi_real_paint",
+  "릭 돔": "semi_real_paint",
+  "릭 디아스": "semi_real_paint",
+  "마라사이": "semi_real_paint",
+  "마스터 건담": "semi_real_paint",
+  "메타스": "semi_real_paint",
+  "미카엘리스": "semi_real_paint",
+  "바이아란": "painterly",
+  "백식": "semi_real_paint",
+  "밴시 노른": "semi_real_paint",
+  "버스터": "semi_real_paint",
+  "베귀르베우": "semi_real_paint",
+  "볼": "semi_real_paint",
+  "블랙나이트 스쿼드 시바": "semi_real_paint",
+  "블랙나이트 스쿼드 카룰라": "semi_real_paint",
+  "블루 듀얼 건담": "cinematic_semi_real",
+  "블리츠": "semi_real_paint",
+  "비기나 기나": "semi_real_paint",
+  "빅잠": "cinematic_semi_real",
+  "사이코 건담": "semi_real_paint",
+  "사이코 자쿠": "semi_real_paint",
+  "사자비": "semi_real_paint",
+  "샤아 전용 자쿠": "semi_real_paint",
+  "세라비 건담": "semi_real_paint",
+  "세이버 건담": "semi_real_paint",
+  "슈바르제테": "semi_real_paint",
+  "스타게이저 건담": "semi_real_paint",
+  "스트라이크 느와르 건담": "glossy_kr_game",
+  "스트라이크 루즈": "glossy_kr_game",
+  "스트라이크 프리덤": "semi_real_paint",
+  "시난주": "semi_real_paint",
+  "시난주 스타인": "cinematic_semi_real",
+  "시작 3호기 덴드로비움": "semi_real_paint",
+  "아리오스 건담": "semi_real_paint",
+  "아카츠키 건담": "semi_real_paint",
+  "아틀라스 건담": "semi_real_paint",
+  "알트론 건담 EW": "semi_real_paint",
+  "알파 아질": "semi_real_paint",
+  "야크트 도가": "semi_real_paint",
+  "어비스 건담": "semi_real_paint",
+  "에피온": "semi_real_paint",
+  "엘메스": "game_cgi",
+  "윙 건담": "semi_real_paint",
+  "윙 건담 제로": "semi_real_paint",
+  "윙 건담 제로 EW": "semi_real_paint",
+  "유니콘 건담": "semi_real_paint",
+  "육전형 건담": "semi_real_paint",
+  "이모탈 저스티스 건담": "semi_real_paint",
+  "이지스": "semi_real_paint",
+  "인피니트 저스티스 건담": "semi_real_paint",
+  "임펄스": "semi_real_paint",
+  "자쿠 캐논": "semi_real_paint",
+  "자쿠Ⅱ": "semi_real_paint",
+  "자쿠Ⅲ": "semi_real_paint",
+  "저스티스": "semi_real_paint",
+  "제간": "semi_real_paint",
+  "조워트": "glossy_kr_game",
+  "지옹": "semi_real_paint",
+  "짐": "semi_real_paint",
+  "짐 스나이퍼Ⅱ": "semi_real_paint",
+  "짐 커스텀": "semi_real_paint",
+  "카오스 건담": "semi_real_paint",
+  "캘딤 건담": "semi_real_paint",
+  "캘러미티": "semi_real_paint",
+  "캠퍼": "semi_real_paint",
+  "큐베레이": "semi_real_paint",
+  "큐베레이 Mk-Ⅱ 플기": "semi_real_paint",
+  "큐베레이 Mk-Ⅱ 플투기": "semi_real_paint",
+  "크샤트리야": "semi_real_paint",
+  "크시 건담": "semi_real_paint",
+  "톨기스": "semi_real_paint",
+  "톨기스Ⅱ": "semi_real_paint",
+  "톨기스Ⅲ": "semi_real_paint",
+  "페넥스": "semi_real_paint",
+  "페넬로페": "semi_real_paint",
+  "포비든 건담": "semi_real_paint",
+  "풀아머 건담": "semi_real_paint",
+  "프로비던스": "semi_real_paint",
+  "프리덤": "cinematic_semi_real",
+  "하이뉴 건담": "semi_real_paint",
+  "하이잭": "semi_real_paint",
+  "하이페리온 건담": "semi_real_paint",
+  "함브라비": "cinematic_semi_real",
+  "데미 바딩": "game_keyart"
+ },
+ "updated": "2026-09-09",
  "used": {
-  "지옹": [
+  "GQuuuuuuX": [
    {
     "cat": "occupation_sensual",
-    "ex": "",
+    "ex": "helicopter_pilot",
     "n": 4,
-    "t": 1788291174229
+    "t": 1788357112179
    },
    {
-    "cat": "private_evening",
-    "ex": "one_shoulder_satin",
+    "cat": "occupation_sensual",
+    "ex": "gallery_curator",
     "n": 1,
-    "t": 1788291174229
-   },
-   {
-    "cat": "wildcard",
-    "ex": "futuristic_spa",
-    "n": 1,
-    "t": 1788291174229
-   },
-   {
-    "cat": "wildcard",
-    "ex": "rain_editorial",
-    "n": 1,
-    "t": 1788278058650
-   },
-   {
-    "cat": "active",
-    "ex": "archery_draw",
-    "n": 1,
-    "t": 1788278058650
-   },
-   {
-    "cat": "lingerie",
-    "ex": "__custom__",
-    "n": 1,
-    "t": 1788278058650
-   },
-   {
-    "cat": "swimwear",
-    "ex": "wrap_swim",
-    "n": 2,
-    "t": 1788277822662
-   },
-   {
-    "cat": "homewear",
-    "ex": "sunroom_lounge",
-    "n": 1,
-    "t": 1788277822662
+    "t": 1788354969274
    },
    {
     "cat": "adult_roleplay",
-    "ex": "adult_maid",
+    "ex": "uniform_inspired",
     "n": 1,
-    "t": 1788277822662
+    "t": 1788354776666
    },
    {
     "cat": "source_editorial",
-    "ex": "thruster_flare",
+    "ex": "deconstructed_frame",
     "n": 1,
-    "t": 1788277162576
+    "t": 1788354744099
+   },
+   {
+    "cat": "occupation_sensual",
+    "ex": "",
+    "n": 3,
+    "t": 1788354089787
+   },
+   {
+    "cat": "swimwear",
+    "ex": "__custom__",
+    "n": 1,
+    "t": 1788351664712
+   },
+   {
+    "cat": "traditional",
+    "ex": "kimono_formal",
+    "n": 1,
+    "t": 1788351450421
+   },
+   {
+    "cat": "wildcard",
+    "ex": "",
+    "n": 1,
+    "t": 1788351061693
+   },
+   {
+    "cat": "private_evening",
+    "ex": "heritage_evening",
+    "n": 1,
+    "t": 1788351061693
    },
    {
     "cat": "occupation_basic",
-    "ex": "drone_operator",
+    "ex": "",
     "n": 1,
-    "t": 1788276645723
+    "t": 1788351061693
+   },
+   {
+    "cat": "occupation_sensual",
+    "ex": "fashion_project",
+    "n": 1,
+    "t": 1788351061693
+   },
+   {
+    "cat": "everyday_basic",
+    "ex": "pottery_class",
+    "n": 1,
+    "t": 1788351061693
+   },
+   {
+    "cat": "everyday_sensual",
+    "ex": "mirror_selfie",
+    "n": 1,
+    "t": 1788351061693
+   },
+   {
+    "cat": "wildcard",
+    "ex": "rooftop_cinema",
+    "n": 1,
+    "t": 1788349576866
+   },
+   {
+    "cat": "adult_roleplay",
+    "ex": "circus_ringmaster",
+    "n": 1,
+    "t": 1788349576866
+   },
+   {
+    "cat": "occupation_basic",
+    "ex": "industrial_inspector",
+    "n": 1,
+    "t": 1788349576866
    },
    {
     "cat": "lingerie",
     "ex": "open_shirt_lingerie",
     "n": 1,
-    "t": 1788276645723
+    "t": 1788349576866
    },
    {
     "cat": "swimwear",
-    "ex": "",
+    "ex": "yukata_poolside",
     "n": 1,
-    "t": 1788276645723
+    "t": 1788349576866
+   },
+   {
+    "cat": "homewear",
+    "ex": "sunroom_lounge",
+    "n": 1,
+    "t": 1788349576866
+   },
+   {
+    "cat": "active",
+    "ex": "pilates",
+    "n": 1,
+    "t": 1788349368854
+   },
+   {
+    "cat": "traditional",
+    "ex": "yukata_daily",
+    "n": 1,
+    "t": 1788349368854
+   },
+   {
+    "cat": "source_editorial",
+    "ex": "heritage_couture",
+    "n": 1,
+    "t": 1788349368854
    }
   ],
   "∀건담": [
@@ -940,78 +1191,308 @@
     "t": 1788283509632
    }
   ],
-  "엘메스": [
+  "가르발디β": [
    {
-    "cat": "source_editorial",
-    "ex": "runway",
+    "cat": "private_evening",
+    "ex": "slip_dress",
     "n": 1,
-    "t": 1788287196055
+    "t": 1788834944533
    },
    {
     "cat": "everyday_basic",
-    "ex": "commute_train",
-    "n": 1,
-    "t": 1788287196055
+    "ex": "parcel_pickup",
+    "n": 2,
+    "t": 1788834795638
    },
    {
-    "cat": "homewear",
-    "ex": "after_bath",
+    "cat": "swimwear",
+    "ex": "river_dock",
     "n": 1,
-    "t": 1788287196055
+    "t": 1788834405706
    },
    {
-    "cat": "private_evening",
-    "ex": "wine_bar",
+    "cat": "lingerie",
+    "ex": "morning_lingerie",
     "n": 1,
-    "t": 1788287196055
+    "t": 1788833131112
+   },
+   {
+    "cat": "active",
+    "ex": "surf_prep",
+    "n": 1,
+    "t": 1788832993395
+   },
+   {
+    "cat": "everyday_sensual",
+    "ex": "mirror_selfie",
+    "n": 1,
+    "t": 1788832932105
    },
    {
     "cat": "occupation_sensual",
     "ex": "fashion_project",
     "n": 1,
-    "t": 1788287196055
-   },
-   {
-    "cat": "wildcard",
-    "ex": "winter_lodge",
-    "n": 1,
-    "t": 1788287196055
-   },
-   {
-    "cat": "swimwear",
-    "ex": "moonlit_pool",
-    "n": 1,
-    "t": 1788286965647
-   },
-   {
-    "cat": "lingerie",
-    "ex": "open_shirt_lingerie",
-    "n": 1,
-    "t": 1788286965647
-   },
-   {
-    "cat": "occupation_basic",
-    "ex": "forensic_engineer",
-    "n": 1,
-    "t": 1788286965647
-   },
-   {
-    "cat": "active",
-    "ex": "fencing_motion",
-    "n": 1,
-    "t": 1788286965647
-   },
-   {
-    "cat": "everyday_sensual",
-    "ex": "balcony_plants",
-    "n": 1,
-    "t": 1788286965647
+    "t": 1788832932105
    },
    {
     "cat": "adult_roleplay",
-    "ex": "vinyl_stage",
+    "ex": "uniform_inspired",
     "n": 1,
-    "t": 1788286965647
+    "t": 1788832932105
+   }
+  ],
+  "가브스레이": [
+   {
+    "cat": "swimwear",
+    "ex": "",
+    "n": 3,
+    "t": 1788902547960
+   },
+   {
+    "cat": "adult_roleplay",
+    "ex": "adult_secretary",
+    "n": 2,
+    "t": 1788901973532
+   },
+   {
+    "cat": "traditional",
+    "ex": "thobe_inspired",
+    "n": 1,
+    "t": 1788901488904
+   },
+   {
+    "cat": "active",
+    "ex": "yoga_flow",
+    "n": 1,
+    "t": 1788884651055
+   },
+   {
+    "cat": "occupation_sensual",
+    "ex": "hightech_inspector",
+    "n": 1,
+    "t": 1788884630918
+   },
+   {
+    "cat": "swimwear",
+    "ex": "sarong_wrap",
+    "n": 1,
+    "t": 1788884614229
+   },
+   {
+    "cat": "everyday_sensual",
+    "ex": "rainy_return",
+    "n": 1,
+    "t": 1788884597751
+   },
+   {
+    "cat": "lingerie",
+    "ex": "bodysuit",
+    "n": 1,
+    "t": 1788884581350
+   },
+   {
+    "cat": "private_evening",
+    "ex": "silk_robe_evening",
+    "n": 1,
+    "t": 1788884365474
+   }
+  ],
+  "건담 사바냐": [
+   {
+    "cat": "adult_roleplay",
+    "ex": "bunny",
+    "n": 1,
+    "t": 1788839571596
+   },
+   {
+    "cat": "swimwear",
+    "ex": "poolside_bar",
+    "n": 1,
+    "t": 1788839365591
+   },
+   {
+    "cat": "lingerie",
+    "ex": "sari_blouse_set",
+    "n": 1,
+    "t": 1788839164684
+   },
+   {
+    "cat": "occupation_basic",
+    "ex": "railway_engineer",
+    "n": 1,
+    "t": 1788839104856
+   },
+   {
+    "cat": "active",
+    "ex": "pilates",
+    "n": 1,
+    "t": 1788839070548
+   },
+   {
+    "cat": "swimwear",
+    "ex": "shoreline_walk",
+    "n": 1,
+    "t": 1788838863868
+   },
+   {
+    "cat": "everyday_basic",
+    "ex": "cafe_takeout",
+    "n": 1,
+    "t": 1788838671142
+   },
+   {
+    "cat": "private_evening",
+    "ex": "tea_ceremony_night",
+    "n": 1,
+    "t": 1788838633700
+   },
+   {
+    "cat": "source_editorial",
+    "ex": "luminous_circuit",
+    "n": 1,
+    "t": 1788838505161
+   },
+   {
+    "cat": "wildcard",
+    "ex": "arcade_night",
+    "n": 1,
+    "t": 1788838379540
+   },
+   {
+    "cat": "homewear",
+    "ex": "satin_lounge",
+    "n": 1,
+    "t": 1788838334571
+   },
+   {
+    "cat": "lingerie",
+    "ex": "asymmetric_lingerie",
+    "n": 1,
+    "t": 1788838334571
+   },
+   {
+    "cat": "everyday_sensual",
+    "ex": "window_rain",
+    "n": 1,
+    "t": 1788838334571
+   },
+   {
+    "cat": "adult_roleplay",
+    "ex": "",
+    "n": 1,
+    "t": 1788837982894
+   },
+   {
+    "cat": "traditional",
+    "ex": "auto_traditional",
+    "n": 1,
+    "t": 1788837982894
+   },
+   {
+    "cat": "occupation_sensual",
+    "ex": "",
+    "n": 1,
+    "t": 1788837982894
+   }
+  ],
+  "건담 쓰로네 아인": [
+   {
+    "cat": "traditional",
+    "ex": "abaya_modern",
+    "n": 1,
+    "t": 1788867722458
+   },
+   {
+    "cat": "everyday_sensual",
+    "ex": "rainy_return",
+    "n": 1,
+    "t": 1788867265544
+   },
+   {
+    "cat": "active",
+    "ex": "tennis_active",
+    "n": 1,
+    "t": 1788865923068
+   },
+   {
+    "cat": "occupation_sensual",
+    "ex": "deep_dive_specialist",
+    "n": 1,
+    "t": 1788865628511
+   },
+   {
+    "cat": "private_evening",
+    "ex": "high_slit_gown",
+    "n": 1,
+    "t": 1788864161397
+   },
+   {
+    "cat": "everyday_basic",
+    "ex": "simple_cooking",
+    "n": 1,
+    "t": 1788864038351
+   },
+   {
+    "cat": "swimwear",
+    "ex": "poolside_bar",
+    "n": 1,
+    "t": 1788863967269
+   }
+  ],
+  "구프 이그나이티드": [
+   {
+    "cat": "swimwear",
+    "ex": "sarong_wrap",
+    "n": 1,
+    "t": 1788848743349
+   },
+   {
+    "cat": "swimwear",
+    "ex": "monokini",
+    "n": 1,
+    "t": 1788848291330
+   },
+   {
+    "cat": "occupation_basic",
+    "ex": "railway_engineer",
+    "n": 1,
+    "t": 1788848277195
+   },
+   {
+    "cat": "occupation_sensual",
+    "ex": "hightech_inspector",
+    "n": 1,
+    "t": 1788848075724
+   },
+   {
+    "cat": "wildcard",
+    "ex": "observatory_night",
+    "n": 1,
+    "t": 1788847934585
+   },
+   {
+    "cat": "traditional",
+    "ex": "kebaya_daily",
+    "n": 1,
+    "t": 1788847704804
+   },
+   {
+    "cat": "homewear",
+    "ex": "after_bath",
+    "n": 1,
+    "t": 1788847565068
+   },
+   {
+    "cat": "source_editorial",
+    "ex": "metallic_asymmetry",
+    "n": 1,
+    "t": 1788847470401
+   },
+   {
+    "cat": "adult_roleplay",
+    "ex": "masquerade",
+    "n": 1,
+    "t": 1788847372635
    }
   ],
   "더블오 퀀터": [
@@ -1154,138 +1635,60 @@
     "t": 1788297646020
    }
   ],
-  "GQuuuuuuX": [
-   {
-    "cat": "occupation_sensual",
-    "ex": "helicopter_pilot",
-    "n": 4,
-    "t": 1788357112179
-   },
-   {
-    "cat": "occupation_sensual",
-    "ex": "gallery_curator",
-    "n": 1,
-    "t": 1788354969274
-   },
-   {
-    "cat": "adult_roleplay",
-    "ex": "uniform_inspired",
-    "n": 1,
-    "t": 1788354776666
-   },
-   {
-    "cat": "source_editorial",
-    "ex": "deconstructed_frame",
-    "n": 1,
-    "t": 1788354744099
-   },
-   {
-    "cat": "occupation_sensual",
-    "ex": "",
-    "n": 3,
-    "t": 1788354089787
-   },
-   {
-    "cat": "swimwear",
-    "ex": "__custom__",
-    "n": 1,
-    "t": 1788351664712
-   },
-   {
-    "cat": "traditional",
-    "ex": "kimono_formal",
-    "n": 1,
-    "t": 1788351450421
-   },
-   {
-    "cat": "wildcard",
-    "ex": "",
-    "n": 1,
-    "t": 1788351061693
-   },
+  "블루 듀얼 건담": [
    {
     "cat": "private_evening",
     "ex": "heritage_evening",
     "n": 1,
-    "t": 1788351061693
+    "t": 1788828274672
    },
    {
-    "cat": "occupation_basic",
-    "ex": "",
+    "cat": "lingerie",
+    "ex": "back_strap",
     "n": 1,
-    "t": 1788351061693
-   },
-   {
-    "cat": "occupation_sensual",
-    "ex": "fashion_project",
-    "n": 1,
-    "t": 1788351061693
-   },
-   {
-    "cat": "everyday_basic",
-    "ex": "pottery_class",
-    "n": 1,
-    "t": 1788351061693
+    "t": 1788827836062
    },
    {
     "cat": "everyday_sensual",
-    "ex": "mirror_selfie",
+    "ex": "late_snack",
     "n": 1,
-    "t": 1788351061693
+    "t": 1788827602984
    },
    {
-    "cat": "wildcard",
-    "ex": "rooftop_cinema",
+    "cat": "homewear",
+    "ex": "backless_lounge",
     "n": 1,
-    "t": 1788349576866
+    "t": 1788827294751
    },
    {
     "cat": "adult_roleplay",
     "ex": "circus_ringmaster",
-    "n": 1,
-    "t": 1788349576866
+    "n": 2,
+    "t": 1788827112879
    },
    {
-    "cat": "occupation_basic",
-    "ex": "industrial_inspector",
+    "cat": "occupation_sensual",
+    "ex": "stunt_coordinator",
     "n": 1,
-    "t": 1788349576866
-   },
-   {
-    "cat": "lingerie",
-    "ex": "open_shirt_lingerie",
-    "n": 1,
-    "t": 1788349576866
-   },
-   {
-    "cat": "swimwear",
-    "ex": "yukata_poolside",
-    "n": 1,
-    "t": 1788349576866
-   },
-   {
-    "cat": "homewear",
-    "ex": "sunroom_lounge",
-    "n": 1,
-    "t": 1788349576866
-   },
-   {
-    "cat": "active",
-    "ex": "pilates",
-    "n": 1,
-    "t": 1788349368854
-   },
-   {
-    "cat": "traditional",
-    "ex": "yukata_daily",
-    "n": 1,
-    "t": 1788349368854
+    "t": 1788826807289
    },
    {
     "cat": "source_editorial",
-    "ex": "heritage_couture",
+    "ex": "metallic_asymmetry",
     "n": 1,
-    "t": 1788349368854
+    "t": 1788826655451
+   },
+   {
+    "cat": "swimwear",
+    "ex": "highleg_onepiece",
+    "n": 1,
+    "t": 1788826449048
+   },
+   {
+    "cat": "traditional",
+    "ex": "aodai_daily",
+    "n": 1,
+    "t": 1788826331961
    }
   ],
   "스트라이크 루즈": [
@@ -1442,210 +1845,6 @@
     "t": 1788730320244
    }
   ],
-  "블루 듀얼 건담": [
-   {
-    "cat": "private_evening",
-    "ex": "heritage_evening",
-    "n": 1,
-    "t": 1788828274672
-   },
-   {
-    "cat": "lingerie",
-    "ex": "back_strap",
-    "n": 1,
-    "t": 1788827836062
-   },
-   {
-    "cat": "everyday_sensual",
-    "ex": "late_snack",
-    "n": 1,
-    "t": 1788827602984
-   },
-   {
-    "cat": "homewear",
-    "ex": "backless_lounge",
-    "n": 1,
-    "t": 1788827294751
-   },
-   {
-    "cat": "adult_roleplay",
-    "ex": "circus_ringmaster",
-    "n": 2,
-    "t": 1788827112879
-   },
-   {
-    "cat": "occupation_sensual",
-    "ex": "stunt_coordinator",
-    "n": 1,
-    "t": 1788826807289
-   },
-   {
-    "cat": "source_editorial",
-    "ex": "metallic_asymmetry",
-    "n": 1,
-    "t": 1788826655451
-   },
-   {
-    "cat": "swimwear",
-    "ex": "highleg_onepiece",
-    "n": 1,
-    "t": 1788826449048
-   },
-   {
-    "cat": "traditional",
-    "ex": "aodai_daily",
-    "n": 1,
-    "t": 1788826331961
-   }
-  ],
-  "가르발디β": [
-   {
-    "cat": "private_evening",
-    "ex": "slip_dress",
-    "n": 1,
-    "t": 1788834944533
-   },
-   {
-    "cat": "everyday_basic",
-    "ex": "parcel_pickup",
-    "n": 2,
-    "t": 1788834795638
-   },
-   {
-    "cat": "swimwear",
-    "ex": "river_dock",
-    "n": 1,
-    "t": 1788834405706
-   },
-   {
-    "cat": "lingerie",
-    "ex": "morning_lingerie",
-    "n": 1,
-    "t": 1788833131112
-   },
-   {
-    "cat": "active",
-    "ex": "surf_prep",
-    "n": 1,
-    "t": 1788832993395
-   },
-   {
-    "cat": "everyday_sensual",
-    "ex": "mirror_selfie",
-    "n": 1,
-    "t": 1788832932105
-   },
-   {
-    "cat": "occupation_sensual",
-    "ex": "fashion_project",
-    "n": 1,
-    "t": 1788832932105
-   },
-   {
-    "cat": "adult_roleplay",
-    "ex": "uniform_inspired",
-    "n": 1,
-    "t": 1788832932105
-   }
-  ],
-  "건담 사바냐": [
-   {
-    "cat": "adult_roleplay",
-    "ex": "bunny",
-    "n": 1,
-    "t": 1788839571596
-   },
-   {
-    "cat": "swimwear",
-    "ex": "poolside_bar",
-    "n": 1,
-    "t": 1788839365591
-   },
-   {
-    "cat": "lingerie",
-    "ex": "sari_blouse_set",
-    "n": 1,
-    "t": 1788839164684
-   },
-   {
-    "cat": "occupation_basic",
-    "ex": "railway_engineer",
-    "n": 1,
-    "t": 1788839104856
-   },
-   {
-    "cat": "active",
-    "ex": "pilates",
-    "n": 1,
-    "t": 1788839070548
-   },
-   {
-    "cat": "swimwear",
-    "ex": "shoreline_walk",
-    "n": 1,
-    "t": 1788838863868
-   },
-   {
-    "cat": "everyday_basic",
-    "ex": "cafe_takeout",
-    "n": 1,
-    "t": 1788838671142
-   },
-   {
-    "cat": "private_evening",
-    "ex": "tea_ceremony_night",
-    "n": 1,
-    "t": 1788838633700
-   },
-   {
-    "cat": "source_editorial",
-    "ex": "luminous_circuit",
-    "n": 1,
-    "t": 1788838505161
-   },
-   {
-    "cat": "wildcard",
-    "ex": "arcade_night",
-    "n": 1,
-    "t": 1788838379540
-   },
-   {
-    "cat": "homewear",
-    "ex": "satin_lounge",
-    "n": 1,
-    "t": 1788838334571
-   },
-   {
-    "cat": "lingerie",
-    "ex": "asymmetric_lingerie",
-    "n": 1,
-    "t": 1788838334571
-   },
-   {
-    "cat": "everyday_sensual",
-    "ex": "window_rain",
-    "n": 1,
-    "t": 1788838334571
-   },
-   {
-    "cat": "adult_roleplay",
-    "ex": "",
-    "n": 1,
-    "t": 1788837982894
-   },
-   {
-    "cat": "traditional",
-    "ex": "auto_traditional",
-    "n": 1,
-    "t": 1788837982894
-   },
-   {
-    "cat": "occupation_sensual",
-    "ex": "",
-    "n": 1,
-    "t": 1788837982894
-   }
-  ],
   "아류제우스": [
    {
     "cat": "active",
@@ -1718,106 +1917,6 @@
     "ex": "night_robe",
     "n": 1,
     "t": 1788843048499
-   }
-  ],
-  "구프 이그나이티드": [
-   {
-    "cat": "swimwear",
-    "ex": "sarong_wrap",
-    "n": 1,
-    "t": 1788848743349
-   },
-   {
-    "cat": "swimwear",
-    "ex": "monokini",
-    "n": 1,
-    "t": 1788848291330
-   },
-   {
-    "cat": "occupation_basic",
-    "ex": "railway_engineer",
-    "n": 1,
-    "t": 1788848277195
-   },
-   {
-    "cat": "occupation_sensual",
-    "ex": "hightech_inspector",
-    "n": 1,
-    "t": 1788848075724
-   },
-   {
-    "cat": "wildcard",
-    "ex": "observatory_night",
-    "n": 1,
-    "t": 1788847934585
-   },
-   {
-    "cat": "traditional",
-    "ex": "kebaya_daily",
-    "n": 1,
-    "t": 1788847704804
-   },
-   {
-    "cat": "homewear",
-    "ex": "after_bath",
-    "n": 1,
-    "t": 1788847565068
-   },
-   {
-    "cat": "source_editorial",
-    "ex": "metallic_asymmetry",
-    "n": 1,
-    "t": 1788847470401
-   },
-   {
-    "cat": "adult_roleplay",
-    "ex": "masquerade",
-    "n": 1,
-    "t": 1788847372635
-   }
-  ],
-  "건담 쓰로네 아인": [
-   {
-    "cat": "traditional",
-    "ex": "abaya_modern",
-    "n": 1,
-    "t": 1788867722458
-   },
-   {
-    "cat": "everyday_sensual",
-    "ex": "rainy_return",
-    "n": 1,
-    "t": 1788867265544
-   },
-   {
-    "cat": "active",
-    "ex": "tennis_active",
-    "n": 1,
-    "t": 1788865923068
-   },
-   {
-    "cat": "occupation_sensual",
-    "ex": "deep_dive_specialist",
-    "n": 1,
-    "t": 1788865628511
-   },
-   {
-    "cat": "private_evening",
-    "ex": "high_slit_gown",
-    "n": 1,
-    "t": 1788864161397
-   },
-   {
-    "cat": "everyday_basic",
-    "ex": "simple_cooking",
-    "n": 1,
-    "t": 1788864038351
-   },
-   {
-    "cat": "swimwear",
-    "ex": "poolside_bar",
-    "n": 1,
-    "t": 1788863967269
    }
   ],
   "아르케 건담": [
@@ -1950,6 +2049,80 @@
     "t": 1788872142890
    }
   ],
+  "엘메스": [
+   {
+    "cat": "source_editorial",
+    "ex": "runway",
+    "n": 1,
+    "t": 1788287196055
+   },
+   {
+    "cat": "everyday_basic",
+    "ex": "commute_train",
+    "n": 1,
+    "t": 1788287196055
+   },
+   {
+    "cat": "homewear",
+    "ex": "after_bath",
+    "n": 1,
+    "t": 1788287196055
+   },
+   {
+    "cat": "private_evening",
+    "ex": "wine_bar",
+    "n": 1,
+    "t": 1788287196055
+   },
+   {
+    "cat": "occupation_sensual",
+    "ex": "fashion_project",
+    "n": 1,
+    "t": 1788287196055
+   },
+   {
+    "cat": "wildcard",
+    "ex": "winter_lodge",
+    "n": 1,
+    "t": 1788287196055
+   },
+   {
+    "cat": "swimwear",
+    "ex": "moonlit_pool",
+    "n": 1,
+    "t": 1788286965647
+   },
+   {
+    "cat": "lingerie",
+    "ex": "open_shirt_lingerie",
+    "n": 1,
+    "t": 1788286965647
+   },
+   {
+    "cat": "occupation_basic",
+    "ex": "forensic_engineer",
+    "n": 1,
+    "t": 1788286965647
+   },
+   {
+    "cat": "active",
+    "ex": "fencing_motion",
+    "n": 1,
+    "t": 1788286965647
+   },
+   {
+    "cat": "everyday_sensual",
+    "ex": "balcony_plants",
+    "n": 1,
+    "t": 1788286965647
+   },
+   {
+    "cat": "adult_roleplay",
+    "ex": "vinyl_stage",
+    "n": 1,
+    "t": 1788286965647
+   }
+  ],
   "육전형 짐": [
    {
     "cat": "swimwear",
@@ -1994,234 +2167,94 @@
     "t": 1788879129228
    }
   ],
-  "가브스레이": [
-   {
-    "cat": "swimwear",
-    "ex": "",
-    "n": 3,
-    "t": 1788902547960
-   },
-   {
-    "cat": "adult_roleplay",
-    "ex": "adult_secretary",
-    "n": 2,
-    "t": 1788901973532
-   },
-   {
-    "cat": "traditional",
-    "ex": "thobe_inspired",
-    "n": 1,
-    "t": 1788901488904
-   },
-   {
-    "cat": "active",
-    "ex": "yoga_flow",
-    "n": 1,
-    "t": 1788884651055
-   },
+  "지옹": [
    {
     "cat": "occupation_sensual",
-    "ex": "hightech_inspector",
-    "n": 1,
-    "t": 1788884630918
-   },
-   {
-    "cat": "swimwear",
-    "ex": "sarong_wrap",
-    "n": 1,
-    "t": 1788884614229
-   },
-   {
-    "cat": "everyday_sensual",
-    "ex": "rainy_return",
-    "n": 1,
-    "t": 1788884597751
-   },
-   {
-    "cat": "lingerie",
-    "ex": "bodysuit",
-    "n": 1,
-    "t": 1788884581350
+    "ex": "",
+    "n": 4,
+    "t": 1788291174229
    },
    {
     "cat": "private_evening",
-    "ex": "silk_robe_evening",
+    "ex": "one_shoulder_satin",
     "n": 1,
-    "t": 1788884365474
+    "t": 1788291174229
+   },
+   {
+    "cat": "wildcard",
+    "ex": "futuristic_spa",
+    "n": 1,
+    "t": 1788291174229
+   },
+   {
+    "cat": "wildcard",
+    "ex": "rain_editorial",
+    "n": 1,
+    "t": 1788278058650
+   },
+   {
+    "cat": "active",
+    "ex": "archery_draw",
+    "n": 1,
+    "t": 1788278058650
+   },
+   {
+    "cat": "lingerie",
+    "ex": "__custom__",
+    "n": 1,
+    "t": 1788278058650
+   },
+   {
+    "cat": "swimwear",
+    "ex": "wrap_swim",
+    "n": 2,
+    "t": 1788277822662
+   },
+   {
+    "cat": "homewear",
+    "ex": "sunroom_lounge",
+    "n": 1,
+    "t": 1788277822662
+   },
+   {
+    "cat": "adult_roleplay",
+    "ex": "adult_maid",
+    "n": 1,
+    "t": 1788277822662
+   },
+   {
+    "cat": "source_editorial",
+    "ex": "thruster_flare",
+    "n": 1,
+    "t": 1788277162576
+   },
+   {
+    "cat": "occupation_basic",
+    "ex": "drone_operator",
+    "n": 1,
+    "t": 1788276645723
+   },
+   {
+    "cat": "lingerie",
+    "ex": "open_shirt_lingerie",
+    "n": 1,
+    "t": 1788276645723
+   },
+   {
+    "cat": "swimwear",
+    "ex": "",
+    "n": 1,
+    "t": 1788276645723
+   }
+  ],
+  "데미 바딩": [
+   {
+    "cat": "occupation_sensual",
+    "ex": "",
+    "n": 1,
+    "t": 1788971253566
    }
   ]
  },
- "style": {
-  "RX-78-2 건담": "semi_real_paint",
-  "건담 Mk-Ⅱ": "semi_real_paint",
-  "건담 Mk-Ⅱ 티탄즈사양": "semi_real_paint",
-  "Z건담": "semi_real_paint",
-  "ZZ건담": "semi_real_paint",
-  "뉴 건담": "semi_real_paint",
-  "하이뉴 건담": "semi_real_paint",
-  "백식": "semi_real_paint",
-  "건담 NT-1": "semi_real_paint",
-  "시작 3호기 덴드로비움": "semi_real_paint",
-  "건캐논": "semi_real_paint",
-  "건탱크": "semi_real_paint",
-  "짐": "semi_real_paint",
-  "짐 커스텀": "semi_real_paint",
-  "짐 스나이퍼Ⅱ": "semi_real_paint",
-  "볼": "semi_real_paint",
-  "제간": "semi_real_paint",
-  "자쿠Ⅱ": "semi_real_paint",
-  "샤아 전용 자쿠": "semi_real_paint",
-  "자쿠 캐논": "semi_real_paint",
-  "구프": "semi_real_paint",
-  "돔": "semi_real_paint",
-  "릭 돔": "semi_real_paint",
-  "겔구그": "semi_real_paint",
-  "겔구그 예거": "semi_real_paint",
-  "걍": "semi_real_paint",
-  "캠퍼": "semi_real_paint",
-  "지옹": "semi_real_paint",
-  "엘메스": "game_cgi",
-  "노이에 질": "semi_real_paint",
-  "하이잭": "semi_real_paint",
-  "마라사이": "semi_real_paint",
-  "갸프랑": "semi_real_paint",
-  "사이코 건담": "semi_real_paint",
-  "디 오": "semi_real_paint",
-  "큐베레이": "semi_real_paint",
-  "큐베레이 Mk-Ⅱ 플기": "semi_real_paint",
-  "큐베레이 Mk-Ⅱ 플투기": "semi_real_paint",
-  "도벤 울프": "semi_real_paint",
-  "야크트 도가": "semi_real_paint",
-  "사자비": "semi_real_paint",
-  "나이팅게일": "semi_real_paint",
-  "기라 도가": "semi_real_paint",
-  "릭 디아스": "semi_real_paint",
-  "저스티스": "semi_real_paint",
-  "프로비던스": "semi_real_paint",
-  "스트라이크 프리덤": "semi_real_paint",
-  "데스티니": "semi_real_paint",
-  "이지스": "semi_real_paint",
-  "듀엘": "semi_real_paint",
-  "버스터": "semi_real_paint",
-  "블리츠": "semi_real_paint",
-  "임펄스": "semi_real_paint",
-  "캘러미티": "semi_real_paint",
-  "건담 엑시아": "semi_real_paint",
-  "건담 듀나메스": "semi_real_paint",
-  "건담 큐리오스": "semi_real_paint",
-  "건담 버체": "semi_real_paint",
-  "더블오 라이저": "semi_real_paint",
-  "아리오스 건담": "semi_real_paint",
-  "세라비 건담": "semi_real_paint",
-  "리본즈 건담": "semi_real_paint",
-  "건담 발바토스": "semi_real_paint",
-  "건담 발바토스 루프스 렉스": "semi_real_paint",
-  "건담 구시온": "semi_real_paint",
-  "건담 플라우로스": "semi_real_paint",
-  "건담 바알": "semi_real_paint",
-  "건담 키마리스 비다르": "semi_real_paint",
-  "건담 키마리스": "semi_real_paint",
-  "건담 에어리얼": "semi_real_paint",
-  "건담 에어리얼 개수형": "semi_real_paint",
-  "건담 르브리스": "semi_real_paint",
-  "건담 파렉트": "semi_real_paint",
-  "다릴 바르데": "semi_real_paint",
-  "슈바르제테": "semi_real_paint",
-  "베귀르베우": "semi_real_paint",
-  "미카엘리스": "semi_real_paint",
-  "윙 건담 제로": "semi_real_paint",
-  "윙 건담": "semi_real_paint",
-  "톨기스": "semi_real_paint",
-  "육전형 건담": "semi_real_paint",
-  "건담 Ez8": "semi_real_paint",
-  "구프 커스텀": "semi_real_paint",
-  "건담 시작 1호기 제피랜서스": "semi_real_paint",
-  "건담 시작 2호기 사이살리스": "semi_real_paint",
-  "건담 시작 3호기 스테이멘": "semi_real_paint",
-  "가베라 테트라": "semi_real_paint",
-  "메타스": "semi_real_paint",
-  "건담 Mk-V": "semi_real_paint",
-  "게마르크": "semi_real_paint",
-  "자쿠Ⅲ": "semi_real_paint",
-  "리가지": "semi_real_paint",
-  "알파 아질": "semi_real_paint",
-  "포비든 건담": "semi_real_paint",
-  "레이더 건담": "semi_real_paint",
-  "세이버 건담": "semi_real_paint",
-  "카오스 건담": "semi_real_paint",
-  "가이아 건담": "semi_real_paint",
-  "어비스 건담": "semi_real_paint",
-  "레전드 건담": "semi_real_paint",
-  "인피니트 저스티스 건담": "semi_real_paint",
-  "아카츠키 건담": "semi_real_paint",
-  "더블오 건담": "semi_real_paint",
-  "캘딤 건담": "semi_real_paint",
-  "건담 나드레": "semi_real_paint",
-  "건담 비다르": "semi_real_paint",
-  "건담 캘리번": "semi_real_paint",
-  "에피온": "semi_real_paint",
-  "톨기스Ⅱ": "semi_real_paint",
-  "윙 건담 제로 EW": "semi_real_paint",
-  "건담 데스사이즈 헬 EW": "semi_real_paint",
-  "건담 헤비암즈 EW": "semi_real_paint",
-  "건담 샌드록 EW": "semi_real_paint",
-  "알트론 건담 EW": "semi_real_paint",
-  "톨기스Ⅲ": "semi_real_paint",
-  "라이징 프리덤 건담": "semi_real_paint",
-  "이모탈 저스티스 건담": "semi_real_paint",
-  "블랙나이트 스쿼드 시바": "semi_real_paint",
-  "블랙나이트 스쿼드 카룰라": "semi_real_paint",
-  "유니콘 건담": "semi_real_paint",
-  "밴시 노른": "semi_real_paint",
-  "시난주": "semi_real_paint",
-  "크샤트리야": "semi_real_paint",
-  "델타 플러스": "semi_real_paint",
-  "리젤": "semi_real_paint",
-  "기라 줄루": "semi_real_paint",
-  "페넥스": "semi_real_paint",
-  "크시 건담": "semi_real_paint",
-  "페넬로페": "semi_real_paint",
-  "갓 건담": "semi_real_paint",
-  "마스터 건담": "semi_real_paint",
-  "건담 X": "semi_real_paint",
-  "건담 AGE-1": "semi_real_paint",
-  "건담 AGE-2": "semi_real_paint",
-  "건담 F91": "semi_real_paint",
-  "비기나 기나": "semi_real_paint",
-  "V건담": "semi_real_paint",
-  "V2건담": "semi_real_paint",
-  "V2 어설트 버스터 건담": "semi_real_paint",
-  "풀아머 건담": "semi_real_paint",
-  "사이코 자쿠": "semi_real_paint",
-  "아틀라스 건담": "semi_real_paint",
-  "∀건담": "semi_real_paint",
-  "건담 어스트레이 레드프레임": "semi_real_paint",
-  "건담 어스트레이 블루프레임": "semi_real_paint",
-  "건담 어스트레이 블루프레임 세컨드L": "semi_real_paint",
-  "건담 어스트레이 골드프레임": "semi_real_paint",
-  "건담 어스트레이 골드프레임 아마츠 미나": "semi_real_paint",
-  "하이페리온 건담": "semi_real_paint",
-  "드레드노트 건담": "semi_real_paint",
-  "건담 어스트레이 골드프레임 아마츠 하나": "semi_real_paint",
-  "스타게이저 건담": "semi_real_paint",
-  "건담 어스트레이 미라쥬 프레임": "semi_real_paint",
-  "GQuuuuuuX": "game_keyart",
-  "스트라이크 루즈": "glossy_kr_game",
-  "건이지": "cinematic_semi_real",
-  "바이아란": "painterly",
-  "건담 하루트": "cinematic_semi_real",
-  "조워트": "glossy_kr_game",
-  "라파엘 건담": "cinematic_semi_real",
-  "프리덤": "cinematic_semi_real",
-  "건담 데스사이즈": "cinematic_semi_real",
-  "건담 헤비암즈": "game_cgi",
-  "더블 엑스": "cinematic_semi_real",
-  "함브라비": "cinematic_semi_real",
-  "더블오 퀀터": "cinematic_semi_real",
-  "스트라이크 느와르 건담": "glossy_kr_game",
-  "빅잠": "cinematic_semi_real",
-  "시난주 스타인": "cinematic_semi_real",
-  "블루 듀얼 건담": "cinematic_semi_real",
-  "가르발디β": "cinematic_semi_real"
- }
+ "version": 1
 }
