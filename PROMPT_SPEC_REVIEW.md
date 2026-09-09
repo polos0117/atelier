@@ -743,3 +743,42 @@ bright bathroom" 으로 고쳤다. `outdoor_shower`·`onsen_after`·`rainy_retur
 목록 라벨은 여전히 그대로다(`Babydoll — 베이비돌`). 예시 글에 `lingerie` 8 ·
 `costume` 9 · `bikini`·`swimsuit`·`swimwear` 4 가 살아 있다. AUTO 정리도 그대로다.
 
+## 11. 이름표만 찍히던 두 줄
+
+실제로 뽑은 단일 컷 프롬프트를 보다가 사람이 짚었다.
+
+    [DIRECTION]
+
+    LINGERIE-INSPIRED FASHION            ← 카테고리 영문 이름을 그대로 찍는다
+    Use tasteful adult lingerie-inspired evening fashion with…   ← 바로 아래 같은 말
+    Use this as the thematic anchor: Asymmetric Lingerie Set.    ← 라벨 그대로
+
+**머리글** — 콜라주는 `PAIR 1 — PANELS 1-2 — …` 로 세 Pair 를 갈라야 하니 머리글이
+일한다. 한 장짜리에는 나눌 것이 없어 이름표만 덩그러니 남는다. 게다가 가이드가
+바로 아래에서 같은 말을 쓸 수 있는 꼴로 다시 한다. 뺐다.
+
+빼기 전에 열넷을 다 확인했다 — 가이드가 스스로 제 갈래를 밝히지 않는 것은 없다.
+`wildcard` 도 "Invent a fresh mature category…" 로 시작한다.
+
+**anchor** — 9 절에서 고친 "라벨이 프롬프트로 나간다" 가 아직 남은 자리였다.
+`asymmetric_lingerie` 는 글을 안 붙인 열셋 중 하나라 라벨이 그대로 나갔다.
+네 카테고리(lingerie · swimwear · adult_roleplay · everyday_sensual)의 나머지
+53 개를 마저 채웠다. 한 카테고리 안에서 어떤 것은 설명글이고 어떤 것은 라벨인
+상태가 제일 나쁘다.
+
+### golden 이 못 보는 자리
+
+golden 은 단일 컷을 `auto_random` 으로만 돌린다. 그 갈래는 머리글도 anchor 도
+내지 않으므로 **이 변경이 golden 에는 0 으로 보인다.** 9 절의 예시 글 변경도
+같은 이유로 안 보였다.
+
+그래서 화면에서 직접 전 조합을 훑었다 — 카테고리 × 예시 270 가지.
+
+    [DIRECTION] 에 이름표만 찍힌 것   0
+    anchor 가 설명글인 것            84
+    anchor 가 아직 라벨인 것        186
+
+186 은 아직 손대지 않은 카테고리다 — occupation_sensual 25 · private_evening 18 ·
+homewear 18 · active · traditional · source_editorial · everyday_basic ·
+occupation_basic 등. 검토서 두 건이 다루지 않은 갈래라 남겨 두었다.
+
