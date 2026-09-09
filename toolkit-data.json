@@ -995,6 +995,31 @@
       "g": "female",
       "mm": "silhouette_equipment_emphasis",
       "t": 1788973622853
+    },
+    "GN 아처": {
+      "female": {
+        "sel": {
+          "apparent age": "20s",
+          "armor coverage": "open",
+          "bangs": "choppy bangs",
+          "body type": "toned",
+          "eye shape": "large",
+          "face shape": "compact",
+          "facial character": "cheerful",
+          "facial ethnicity": "Japanese",
+          "hair length": "long",
+          "hairstyle": "half-up",
+          "height impression": "tall",
+          "human-mechanical balance": "more human",
+          "leg proportion": "long",
+          "shoulder build": "average",
+          "torso / chest build": "full",
+          "waist / hip silhouette": "athletic"
+        },
+        "sp": "Clearly adult woman aged 27, vivid burnt-orange half-up hair, matching green eyes. Preserve orange-red, white and charcoal streamlined armor, huge vertical twin flight binders and paired rifles. Open adult human face, no pilot resemblance."
+      },
+      "g": "female",
+      "t": 1788973628607
     }
   },
   "note": "prompt.html 의 '기록 내보내기' 결과를 이 파일에 덮어쓴다. style 은 기체별 화풍이며 기본값(cinematic_semi_real)이라도 적는다 — 판정해서 고른 값인지 안 골라서 흘러든 값인지 구분해야 하기 때문이다(v9.17 전에는 기본값을 빼서 내보낼 때마다 손으로 적어 둔 것이 사라졌다). semi_real_paint 로 잡힌 152 기는 화풍 구분이 생기기 전에 일괄로 채운 값이라 그대로 둔다. 이 머리말도 내보내기가 챙겨 넣는다.",
@@ -1178,7 +1203,8 @@
     "건담 AGE-FX": "anime_illust",
     "메싸": "game_keyart",
     "하이곡그": "game_keyart",
-    "턴 X": "semi_real_paint"
+    "턴 X": "semi_real_paint",
+    "GN 아처": "glossy_kr_game"
   },
   "updated": "2026-09-09",
   "used": {
@@ -2522,6 +2548,14 @@
         "ex": "",
         "n": 1,
         "t": 1788973628517
+      }
+    ],
+    "GN 아처": [
+      {
+        "cat": "everyday_sensual",
+        "ex": "",
+        "n": 1,
+        "t": 1788973634592
       }
     ]
   },
