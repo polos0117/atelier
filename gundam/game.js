@@ -1419,7 +1419,7 @@ function choiceCard(c,type,onPick,tactical,by){
   b.setAttribute('aria-label',c[0]+' · '+reason.textContent);b.title=c[0]+' · '+reason.textContent;if(onPick)b.onclick=function(){onPick(c)};return b;
 }
 function rosterStrip(){
-  var strip=el('section','roster-strip'),head=el('header'),title=el('b'),detail=el('button');title.textContent='내 편성 · 후보와 비교';detail.textContent='전체 보기';detail.type='button';detail.onclick=function(){inspectTeam(0)};head.appendChild(title);head.appendChild(detail);strip.appendChild(head);
+  var strip=el('section','roster-strip'),head=el('header'),title=el('b'),detail=el('button');title.textContent='내 편성 · 후보와 비교';detail.textContent='전체 보기';detail.type='button';detail.onclick=function(){inspectTeam(0)};head.appendChild(title);var progress=el('button');progress.type='button';progress.textContent='연대·목표';progress.onclick=openProgress;head.appendChild(progress);head.appendChild(detail);strip.appendChild(head);
   ['함','지휘관','기체','파일럿'].forEach(function(k){var row=el('div','roster-line'),label=el('b');label.textContent=k;row.appendChild(label);var list=teams[0][k];if(!list.length){var empty=el('span');empty.textContent='미정';row.appendChild(empty)}list.forEach(function(c){var chip=el('span','roster-chip');chip.textContent=c[0];row.appendChild(chip)});strip.appendChild(row)});return strip;
 }
 
@@ -1815,6 +1815,7 @@ function renderResult(){
     row.innerHTML='<em>'+(r+1)+'위</em><b>'+seatName(e.i)+'</b><span>'+e.ev.total+'</span>';
     st.appendChild(row);
   }
+  st.appendChild(renderResultAnalysis());
   var mvp=renderMVP(teams[0]);if(mvp)st.appendChild(mvp);
   var my=evs[0].ev;
   var res=el("div","res");
@@ -2424,6 +2425,7 @@ function inspectCandidate(c,type){
   var gallery=createCardGallery(c,type,null,false);
   content.appendChild(gallery);content.appendChild(details);d.appendChild(content);
   var affiliation=el('p','note');affiliation.textContent='소속: '+c[1].join(' → ');details.appendChild(affiliation);
+  if(hintOn)details.appendChild(renderPickPreview(teams[0],c,type));
   details.appendChild(el('div','lore',loreOf(c)||'카드 능력과 편성 효과를 확인하세요.'));
   details.appendChild(el('div','dinfo',statRows(c,type)));
   if(type==='기체')details.appendChild(el('p','note','태그: '+(tagsOf(c).join(' · ')||'없음')+' · '+FIELD+' '+terrainWord(c)));
@@ -2463,7 +2465,7 @@ function renderTactical(){
   if(!slots.length)cards.appendChild(el('p','note','상대 지명 중 · 곧 내 보급이 도착합니다.'));
   slots.forEach(function(x){cards.appendChild(choiceCard(x.c,type,mine&&x.by===null?confirmPick:null,true,x.by))});
   center.appendChild(cards);
-  var roster=el('aside','tac-roster'),rh=el('strong');rh.textContent='내 편성';roster.appendChild(rh);
+  var roster=el('aside','tac-roster'),rh=el('strong');rh.textContent='내 편성';roster.appendChild(rh);var progress=el('button','btn sm');progress.type='button';progress.textContent='연대·목표';progress.onclick=openProgress;roster.appendChild(progress);
   ['함','지휘관'].forEach(function(k){var line=el('p');line.textContent=k+' · '+(teams[0][k].map(function(c){return c[0]}).join(', ')||'미정');roster.appendChild(line)});
   assign(teams[0]).forEach(function(u){var line=el('div','tac-pair');line.textContent=(u.m?u.m[0]:'기체 대기')+' × '+(u.p?u.p[0]:'파일럿 대기');roster.appendChild(line)});
   center.appendChild(roster);area.appendChild(center);area.appendChild(rosterStrip());

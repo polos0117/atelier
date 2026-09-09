@@ -100,7 +100,7 @@ let server;
       take(type,aiDraw(type,who),who);si++;
       if(si>=3){if(sharedPack)tossRest(type);si=0;round++}
      }
-     var scores=teams.map(t=>{var ev=evaluate(t),saved=OBJECTIVE;OBJECTIVE=null;var raw=evaluate(t).total;OBJECTIVE=saved;
+     var scores=teams.map(t=>{var breakdown=scoreParts(t);if(Object.values(breakdown.parts).reduce((a,b)=>a+b,0)!==evaluate(t).total)throw Error('score breakdown mismatch');var ev=evaluate(t),saved=OBJECTIVE;OBJECTIVE=null;var raw=evaluate(t).total;OBJECTIVE=saved;
       return {total:ev.total,raw,mission:objectiveScore(t),sizes:[t.함.length,t.기체.length,t.파일럿.length,t.지휘관.length],unique:new Set([].concat(t.함,t.기체,t.파일럿,t.지휘관).map(c=>c[0])).size};});
      out.push({n,flow,shared,round,scores,max:OBJECTIVE.max});
     })));
@@ -129,7 +129,7 @@ let server;
    await page.locator('.tac-card:not(:disabled)').first().click();await page.locator('#tacticalDialog .btn.big').click();
   }
   await page.waitForFunction(()=>round>=SCHEDULE.length);
-  assert(await page.locator('#endArea .rank').count()===3);assert.equal(await page.locator('#endArea .mvp-card').count(),1);assert(!await page.locator('#tacticalArea').isVisible());
+  assert(await page.locator('#endArea .rank').count()===3);assert.equal(await page.locator('#endArea .mvp-card').count(),1);assert.equal(await page.locator('#endArea .result-analysis').count(),1);assert(!await page.locator('#tacticalArea').isVisible());
   assert.deepEqual(errors,[]);
   console.log('PASS: tactical preview/cancel/pick/view switch/team detail; 4 sizes × 2 schedules × 2 supply modes; objectives; full UI game.');
   console.log(JSON.stringify(results.map(g=>({n:g.n,flow:g.flow,shared:g.shared,scores:g.scores.map(t=>t.total),mission:g.scores.map(t=>t.mission)}))));

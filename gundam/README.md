@@ -3,6 +3,7 @@
 접속 주소는 기존 `../play.html`을 유지한다. 이 폴더는 해당 화면의 코드와 스타일을 담는다.
 
 - `game.js`: 데이터 로딩, 드래프트, 점수 계산, 게임 화면
+- `insights.js`: 지명 전 편성 변화, 연대·작전 진행판, 결과 점수 비교
 - `gallery.js`: 도감의 일상컷 조회, 지명 팝업 갤러리, 아군 MVP
 - `page.js`: 새 버전 알림, 공통 화면 밀도 설정
 - `play.css`: 게임 및 갤러리 스타일
@@ -16,3 +17,5 @@ MVP는 아군 기체·파일럿 조의 출격 점수에 정원 초과 감점을 
 자산 수정 후 `play.html`의 해당 CSS/JS `?v=` 값을 파일 SHA-256 앞 10자리로 갱신한다. 기존 문서 새 버전 알림도 유지된다.
 
 검증: `node tests/mobile-smoke.cjs`, `node tests/strategy-smoke.cjs`, `node tests/gallery-smoke.cjs` (저장소 루트에서 실행; Playwright Chromium 필요).
+
+판단 정보 검증: `node tests/insights-smoke.cjs`. 분석은 복사한 편성과 기존 점수 함수를 사용한다. 궁합·지형, 정원 손실은 기본 출격과 중복 합산하지 않으며 표시값의 반올림 차이는 별도 행으로 맞춘다.
