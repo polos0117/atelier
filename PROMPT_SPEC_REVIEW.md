@@ -682,3 +682,64 @@ AUTO 줄은 key 가 빈 문자열이고 라벨이 `"AUTO"` 다. 그런데 프롬
 
 진짜로 패널 덮어쓰기를 넣으면 블록이 그대로 돌아오는 것을 확인했다.
 
+## 10. 정정 — 8·9 절이 완곡어 쪽으로 갔다
+
+뒤이어 온 「이미지 생성 프롬프트 표현 방식 정리」가 앞 제안서와 방향이 반대다.
+그리고 이쪽이 옳다.
+
+  허용 가능한 내용은 정확한 낱말로 직접 요청한다.
+  상세화는 차단을 피하려는 것이 아니라 의복 디자인과 장면을 정확히 하려는 것이다.
+  핵심 대상을 알아보기 어려운 완곡어로 치환하지 않는다.
+
+그 문서가 "권장하지 않는다" 며 든 예가 내가 9 절에서 넣은 것과 같은 꼴이었다.
+
+  lingerie → opaque evening lounge underlayer      ← lace_set 에 넣었던 꼴
+  swimwear → outfit designed for water activities  ← classic_bikini 에 넣었던 꼴
+
+내가 먼저 "그림은 그대로인 채 이름만 바꾸는 것은 우회" 라고 선을 그어 놓고,
+"제안서대로 해 달라" 는 말에 그 선을 넘어 넣었다. 다시 썼다.
+
+### 무엇을 되돌렸나
+
+핵심 낱말을 살리고 디자인·장면만 얹는 쪽으로 예시 31 개를 전부 고쳤다.
+
+  lace_set   an opaque two-piece evening lounge set with decorative lace…
+           → a black lace lingerie set with a longline top, high-waisted bottoms,
+             and geometric lace trim
+  babydoll   a short flowing empire-waist lounge dress…
+           → a babydoll lingerie slip with narrow shoulder straps, an empire waist…
+  classic_bikini  a coordinated two-piece swimming outfit…
+           → a navy high-waisted bikini with a supportive halter top
+  bunny      a retro casino stage outfit with an opaque fitted one-piece garment…
+           → a retro casino bunny costume with a fitted one-piece garment, cuffs,
+             bow-tie collar, and rabbit-ear headband, on a stage floor
+
+장면을 무르게 바꾼 것도 되돌렸다. `hair_tie` 는 라벨이 "Tying Hair after Shower"
+인데 글은 "dry or towel-dried hair while preparing to leave" 였다 — **제 이름표와
+어긋나는 글**이었다. "tying her hair up after a shower, wearing a soft robe in a
+bright bathroom" 으로 고쳤다. `outdoor_shower`·`onsen_after`·`rainy_return` 도 같다.
+
+가이드 둘도 같은 이유로 다시 썼다.
+
+  occupation_sensual  "매력은 자세에서" 로 눌러 둔 것을 "glamorous and
+                      fashion-forward 해도 된다, 다만 옷은 직무에 맞아야 한다" 로
+  everyday_sensual    "polished adult styling" → "sensual but non-explicit"
+
+### 무엇을 지켰나
+
+8·9 절에서 한 것 가운데 두 문서가 **함께 옳다고 보는 것**은 그대로 뒀다.
+
+  신체 부위 열거(shoulders, waist, back, hips, thighs) 를 뺀 것
+  `exposed non-intimate skin` 을 뺀 것 — 연출 지시가 아니라 부위 목록이었다
+  옷 상태를 긍정형으로 한 줄 더한 것 (금지 목록은 그대로)
+  도구·행동·조명·프레이밍을 구체적으로 적게 한 것
+  thematic anchor: AUTO 와 빈 [PANEL OVERRIDES] 를 없앤 것
+
+정확한 낱말로 직접 적는 것과, 무엇을 그릴지 자세히 적는 것은 서로 반대가 아니다.
+9 절이 뒤쪽만 하려다 앞쪽을 잃었다.
+
+### 확인
+
+목록 라벨은 여전히 그대로다(`Babydoll — 베이비돌`). 예시 글에 `lingerie` 8 ·
+`costume` 9 · `bikini`·`swimsuit`·`swimwear` 4 가 살아 있다. AUTO 정리도 그대로다.
+
