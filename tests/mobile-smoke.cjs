@@ -36,6 +36,35 @@ let server;
  async function load(name){await page.goto(base+'/'+name+'.html');await page.waitForFunction(()=>document.readyState==='complete');}
  async function fits(label){assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),label+' overflows horizontally');}
  try{
+  await load('prompt');
+  assert.equal(await page.locator('[data-density-picker]').inputValue(),'compact');
+  await page.locator('[data-density-picker]').selectOption('relaxed');
+  await load('dex');assert.equal(await page.locator('[data-density-picker]').inputValue(),'relaxed');
+  // Cross-tab changes apply without reloading; removing the preference restores compact.
+  const peer=await context.newPage();await peer.goto(base+'/prompt.html');
+  await peer.locator('[data-density-picker]').selectOption('compact');
+  await page.waitForFunction(()=>document.documentElement.dataset.density==='compact');
+  await peer.close();
+  for(const name of ['prompt','play','dex']){
+   await load(name);
+   for(const density of ['compact','relaxed']){
+    await page.locator('[data-density-picker]').selectOption(density);
+    const target=name==='prompt'?'#mechPicker':name==='play'?'#playCardSize':'#q';
+    assert.equal(await page.locator(target).evaluate(e=>getComputedStyle(e).fontSize),density==='compact'?'12px':'14px');
+    for(const width of [344,690]){
+     await page.setViewportSize({width,height:882});await fits(name+' '+density+' '+width);
+     if(process.env.MOBILE_SCREENSHOTS)await page.screenshot({path:process.env.MOBILE_SCREENSHOTS+'/'+name+'-'+density+'-'+width+'.png'});
+    }
+    if(name==='prompt'){
+     await page.locator('#tabSingle').click();await page.locator('#panelSingle details').evaluateAll(els=>els.forEach(e=>e.open=true));
+     assert(await page.evaluate(()=>Array.from(document.querySelectorAll('#panelSingle label.lab-lock')).every(l=>{
+      const b=l.querySelector('.lockbtn'),s=l.nextElementSibling;
+      return !s||s.tagName!=='SELECT'||b.getBoundingClientRect().bottom<=s.getBoundingClientRect().top;
+     })),'density caused overlapping locks');
+    }
+   }
+   await page.locator('[data-density-picker]').selectOption('compact');
+  }
   for(const width of [344,360,690,768,1100]){
    await page.setViewportSize({width,height:882});
    for(const name of ['prompt','play','dex']){
@@ -92,6 +121,6 @@ let server;
   await page.waitForFunction(()=>document.querySelector('#dockArea .ship:not(.empty)'));
   for(const width of [344,690,768]){await page.setViewportSize({width,height:882});await fits('active draft '+width);if(process.env.MOBILE_SCREENSHOTS)await page.screenshot({path:process.env.MOBILE_SCREENSHOTS+'/draft-'+width+'.png'});}
   assert.deepEqual(errors,[],'browser errors');
-  console.log('PASS: mobile widths, fold resize, prompt copy/preview, dex filters/preferences/detail, draft selection/navigation.');
+  console.log('PASS: shared density/default/persistence/cross-tab/font sizes/lock layout; mobile widths, fold resize, prompt copy/preview, dex filters/preferences/detail, draft selection/navigation.');
  }finally{await browser.close();if(server)server.close();}
 })().catch(e=>{console.error(e);if(server)server.close();process.exitCode=1});

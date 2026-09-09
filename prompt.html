@@ -13,6 +13,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="프롬프트">
 <link rel="apple-touch-icon" href="icon-prompt-180.png">
+<script>
+// Read before paint; unavailable storage falls back to the compact default.
+(function(){var v='compact';try{if(localStorage.getItem('atelier_density_v1')==='relaxed')v='relaxed'}catch(e){}document.documentElement.dataset.density=v})();
+</script>
 <style>
 :root{
   color-scheme:light dark;
@@ -311,11 +315,40 @@ details.mini>summary{padding:7px 8px;font-size:11px}
 .prompt-dock-status{font-size:11px;min-height:16px;margin-bottom:3px}
 .prompt-dock-actions button{min-height:36px;font-size:12px}
 @media(min-width:480px){.grid2,.param-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Text/spacing density is independent of the existing card-size preferences. */
+:root{--ui-font:12px;--ui-small:11px;--ui-height:34px;--ui-pad:6px;--ui-gap:6px}
+:root[data-density="relaxed"]{--ui-font:14px;--ui-small:12px;--ui-height:44px;--ui-pad:10px;--ui-gap:9px}
+.density-control{display:flex;align-items:center;justify-content:flex-end;gap:7px;margin:0 0 8px;font:11px/1.4 system-ui;color:inherit}
+.density-control select{width:auto;min-width:0;min-height:30px;padding:4px 7px;border:1px solid #79849a66;border-radius:7px;background:transparent;color:inherit;font:12px system-ui}
+.density-control option{background:var(--card,var(--panel,var(--hull)));color:var(--text,var(--ink,var(--lume)))}
+.workspace-nav{gap:var(--ui-gap);margin-bottom:8px}
+.workspace-nav a{min-height:var(--ui-height);font-size:var(--ui-small)}
+
+body{font-size:var(--ui-font)}
+select,input,.pair-card select,.pair-card input{font-size:var(--ui-font);min-height:var(--ui-height);padding:var(--ui-pad) 8px}
+button,button.small{font-size:var(--ui-font);min-height:var(--ui-height);padding:var(--ui-pad) 9px}
+.panel-head,.form-section,.controls,.param-actions{padding:calc(var(--ui-pad) + 2px)}
+.field,.pair-card,.override-card,.param-card,.rec-card{padding:calc(var(--ui-pad) + 1px)}
+.field label,.param-card label,.override-card label,.pair-card label{font-size:var(--ui-small)}
+.panel-head span,.help,.param-note{font-size:var(--ui-small)}
+.panel-head strong,.pair-card h3,.override-card h3{font-size:var(--ui-font)}
+.tabs .tab,.mode-tabs .mtab,.ptab,.srcbox>summary{min-height:var(--ui-height);font-size:var(--ui-font)}
+.grid2,.grid3,.param-grid,.rec-grid,.controls,.param-actions{gap:var(--ui-gap)}
+details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
+.prompt-view textarea{font-size:var(--ui-font)}
+.prompt-dock-actions button{font-size:var(--ui-font);min-height:var(--ui-height)}
+/* Keep the lock contained in its label at both densities. */
+.lockbtn.mini{width:28px;height:28px;min-height:28px;padding:0;font-size:12px}
+:root[data-density="relaxed"] label.lab-lock{min-height:34px;padding-right:40px}
+:root[data-density="relaxed"] .lockbtn.mini{width:34px;height:34px;min-height:34px}
+.density-control select{font:12px system-ui;min-height:30px;padding:4px 7px}
 </style>
 </head>
 <body>
 <div class="wrap">
 <nav class="workspace-nav" aria-label="Atelier 화면 이동"><a href="prompt.html" aria-current="page">프롬프트</a><a href="play.html">드래프트</a><a href="dex.html">도감</a></nav>
+<label class="density-control">화면 밀도 <select data-density-picker aria-label="화면 밀도"><option value="compact">촘촘하게</option><option value="relaxed">여유롭게</option></select></label>
   <div class="page-head">
     <details id="srcBox" class="srcbox">
       <summary>
@@ -5224,6 +5257,16 @@ details.mini>summary{padding:7px 8px;font-size:11px}
   look(true);
   /* 앱을 다시 열 때만 본다. focus 까지 걸면 한 번 오갈 때 두 번 물어본다 */
   document.addEventListener("visibilitychange",function(){if(!document.hidden)look()});
+})();
+</script>
+<script>
+/* Shared across the three pages; changing density only updates presentation. */
+(function(){
+ var key='atelier_density_v1',picker=document.querySelector('[data-density-picker]');
+ function apply(value){var v=value==='relaxed'?'relaxed':'compact';document.documentElement.dataset.density=v;picker.value=v;}
+ apply(document.documentElement.dataset.density);
+ picker.addEventListener('change',function(){apply(this.value);try{localStorage.setItem(key,this.value)}catch(e){}});
+ addEventListener('storage',function(e){if(e.key===key||e.key===null)apply(e.newValue)});
 })();
 </script>
 </body>
