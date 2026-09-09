@@ -482,9 +482,9 @@ body[data-density="comfortable"] .st b{font-size:13px}
  grid-template-rows:minmax(34px,auto) auto auto minmax(30px,auto) auto auto;
  align-content:start;gap:3px 5px;padding:7px;
 }
-#pack .candidate .card .avc{grid-area:portrait;position:static;inset:auto;float:none;display:block;width:32px;height:32px;margin:0;border-radius:3px}
+#pack .candidate .card .avc{grid-area:portrait;position:relative;inset:auto;float:none;display:block;width:32px;height:32px;margin:0;border-radius:3px}
 #pack .candidate .card .avc img{width:100%;height:100%;object-fit:cover;object-position:50% 25%}
-body[data-art="off"] #pack .candidate .card .avc{visibility:hidden}
+body[data-art="off"] #pack .candidate .card .avc{visibility:visible}
 #pack .candidate .card .nm,#pack .candidate .card .nm.ln{grid-area:name;padding:0;min-height:0;margin:0;align-self:center;text-align:left;font-size:15px;line-height:1.3;white-space:normal;overflow-wrap:anywhere}
 #pack .candidate .card .rl{grid-area:role;padding:0;margin:0;text-align:left;font-size:11px;line-height:1.4;white-space:normal}
 #pack .candidate .card .stats{grid-area:stats;padding:0;margin:3px 0;gap:3px}
@@ -523,6 +523,36 @@ body[data-pack="6"] .lorel{min-height:0;margin-top:2px;font-size:11px}
 .lineup-summary{position:sticky;top:0;background:var(--ink);padding:10px 0;z-index:1}
 .lineup-actions{position:sticky;bottom:0;background:var(--ink);padding:8px 0;display:grid;gap:5px}.lineup-actions button{margin:0;min-height:44px}
 .lineup-actions button:disabled{opacity:.45}
+
+
+/* Compact four-row cards; the portrait remains the image positioning context. */
+body[data-pack="6"] #pack .candidate .card{
+ grid-template-columns:34px minmax(0,1fr) auto;
+ grid-template-areas:"portrait name power" "role role role" "stats stats stats" "hint hint hint" "reason reason reason";
+ grid-template-rows:minmax(34px,auto) auto auto auto auto;
+ gap:2px 4px;padding:6px;align-content:start;
+}
+body[data-pack="6"] #pack .candidate .card .avc{position:relative;inset:auto;width:28px;height:28px;align-self:center;visibility:visible}
+body[data-pack="6"][data-art="on"] #pack .candidate .card .avc{width:34px;height:34px}
+#pack .candidate .card .avc img{position:absolute;inset:0;max-width:100%;max-height:100%}
+body[data-pack="6"] #pack .candidate .card .nm{font-size:14px;line-height:1.25}
+body[data-pack="6"] #pack .candidate .card .nm .tr{display:none}
+body[data-pack="6"] #pack .candidate .card .pw{display:block;align-self:center;font-size:17px;line-height:1.1;padding:0;margin:0}
+body[data-pack="6"] #pack .candidate .card .pw em{display:block;font-size:9px}
+body[data-pack="6"] #pack .candidate .card .rl{font-size:10px;line-height:1.3}
+body[data-pack="6"] #pack .candidate .card .stats{margin:2px 0;padding:0;gap:5px}
+body[data-pack="6"] #pack .candidate .card .st{display:grid;grid-template-columns:1fr auto;grid-template-rows:14px 3px;gap:2px 1px}
+body[data-pack="6"] #pack .candidate .card .st span{grid-row:1;grid-column:1;margin:0;font-size:10px;text-align:left;line-height:14px}
+body[data-pack="6"] #pack .candidate .card .st b{grid-row:1;grid-column:2;margin:0;font-size:11px;line-height:14px}
+body[data-pack="6"] #pack .candidate .card .st u{grid-row:2;grid-column:1/-1;height:3px}
+body[data-pack="6"] #pack .candidate .card .hint{min-height:26px;max-height:28px;line-height:13px;font-size:10px;padding-right:24px}
+#pack .candidate .card.taken .seal{animation:none;opacity:1;transform:none;top:auto;left:auto;right:5px;bottom:4px;width:21px;height:21px;margin:0;border-width:1px;font-size:14px;line-height:19px;border-radius:2px}
+body[data-pack="6"] .opts{margin-top:5px;gap:4px}
+body[data-pack="6"] .opts .opt{min-height:34px;padding:4px 2px;font-size:10px}
+body[data-pack="6"] .decree .msg{margin-top:2px}
+body[data-pack="6"] .title small,body[data-pack="6"] .tally{display:none}
+body[data-pack="6"] .title{font-size:21px}
+body[data-pack="6"] #draftSummary{padding:5px 0}
 
 </style>
 </head>
@@ -1077,7 +1107,7 @@ var ROUNDS=13, FINAL_SIZE=11, PACK=6;
 var lineupOpen=false,lineupChoice=[],lineupCache={},lineupCacheCount=0;
 var PACK_OPT=0, FAST=false, QUICK_PICK=false, CARD_ART=true, DENSITY="compact", recentShown={}, roundExcluded=[], gameTimers=[], setupBefore=null;
 function packSize(){return 6}
-function syncLayout(){var artButton=document.getElementById("tArt");if(artButton){artButton.textContent=CARD_ART?"그림 켜짐":"그림 꺼짐";artButton.setAttribute("aria-pressed",String(CARD_ART))}document.body.dataset.art=CARD_ART?"on":"off";document.body.dataset.density=DENSITY;document.body.dataset.pack=PACK;}
+function syncLayout(){var artButton=document.getElementById("tArt");if(artButton){artButton.textContent=CARD_ART?"초상 크게":"초상 작게";artButton.setAttribute("aria-pressed",String(CARD_ART))}document.body.dataset.art=CARD_ART?"on":"off";document.body.dataset.density=DENSITY;document.body.dataset.pack=PACK;}
 function later(fn,ms){
  var id=setTimeout(function run(){
    gameTimers=gameTimers.filter(function(t){return t!==id});
@@ -1878,7 +1908,7 @@ function buildSetup(){
         '<div class="sub">판을 새로 짜는 자리요 · 규칙은 우상단 ?</div></div>';
   h+='<div class="intro">죽간이 펼쳐지면 적장과 <b>번갈아</b> 하나씩 취하오. 열세 진이 끝나면 11명을 편성하여 전력과 인연으로 승부를 가리오.</div>';
   h+='<div class="intro">후보 <b>6장</b> · <b>13번 지명</b> → 최종 <b>11명</b><br>첫 11번은 편성 규칙, 마지막 2번은 자유 예비 지명입니다.</div>';
-  h+=row("후보 그림","이름 옆 작은 초상 표시 · 카드 배치는 유지","sArt",CARD_ART?"켜짐":"꺼짐");
+  h+=row("후보 초상 크기","작은 초상을 기본 표시 · 큰 이미지는 지명 팝업","sArt",CARD_ART?"크게":"작게");
   h+=row("빠른 지명","끄면 이미지와 점수 변화를 확인하고 확정","sQuick",QUICK_PICK?"켜짐":"꺼짐");
   h+=row("진행 속도","적장 선택과 다음 진의 대기 시간","sFast",FAST?"빠르게":"기본");
   h+=row("화면 밀도","작은 글씨로 정보를 모아 보거나 여유롭게","sDensity",DENSITY==="compact"?"촘촘하게":"여유롭게");
@@ -1899,7 +1929,7 @@ function buildSetup(){
   h+='<button class="btn" id="setupGo" style="margin-top:14px">이 로 써 겨 루 다</button>';
   h+='<button class="btn2" id="setupX">돌 아 가 기</button>';
   $("setupBody").innerHTML=h;
-  $("sArt").onclick=function(){CARD_ART=!CARD_ART;this.textContent=CARD_ART?"켜짐":"꺼짐";syncLayout()};
+  $("sArt").onclick=function(){CARD_ART=!CARD_ART;this.textContent=CARD_ART?"크게":"작게";syncLayout()};
   $("sQuick").onclick=function(){QUICK_PICK=!QUICK_PICK;this.textContent=QUICK_PICK?"켜짐":"꺼짐"};
   $("sFast").addEventListener("click",function(){FAST=!FAST;this.textContent=FAST?"빠르게":"기본"});
   $("sDensity").addEventListener("click",function(){DENSITY=DENSITY==="compact"?"comfortable":"compact";this.textContent=DENSITY==="compact"?"촘촘하게":"여유롭게"});
@@ -2442,21 +2472,21 @@ function nextRound(){
   advanceTurn(true);
 }
 
-function advanceTurn(first){
+function advanceTurn(first,keepPack){
   if(!turnQ.length){endRound();return}
   var pending=turnQ[0],added=ensureChoices(seatTeam(pending));
   saveGame("draft",turnQ);
   var t=turnQ.shift();
   if(t==="me"){
     myTurn=true;busy=false;
-    renderPack(false);
+    if(!keepPack||added)renderPack(false);
     $("msg").textContent=(first?openIdx().length+"장 중 하나를 취하시오":"이제 그대의 차례요 — 남은 "+openIdx().length+"장");
     if(added)$("sub").textContent="남은 역할에 맞는 후보 "+added+"장을 보충했소";
     else if(round>=FINAL_SIZE)$("sub").textContent="예비 지명 · 역할 제한 없이 선택하고 마지막에 11명을 편성합니다";
     else if(ruleOn&&!rawLegal(mine,openIdx()).length)$("sub").textContent="편성 예외 · 남은 역할 후보가 없어 제한을 풀었소";
     updateReroll();
   }else{
-    myTurn=false;busy=true;renderPack(false);updateReroll();
+    myTurn=false;busy=true;if(!keepPack||added)renderPack(false);updateReroll();
     if(first)$("msg").textContent=seatName(t)+" 적장이 먼저 고르는 차례요…";
     later(function(){aiPick(t)},first?900:760);
   }
@@ -2471,8 +2501,7 @@ function playPickEffect(){
   // Read the final rendered nodes after turn advancement replaces the candidates.
   pulse($("sMe"),[{color:"#fff0a6",transform:"scale(1.1)"},{color:"#E7DCC3",transform:"scale(1)"}],420);
   pulse($("mine"),[{backgroundColor:"rgba(201,162,39,.22)"},{backgroundColor:"transparent"}],550);
-  var seals=$("pack").querySelectorAll(".by-me .seal");
-  pulse(seals[seals.length-1],[{opacity:0,transform:"scale(1.3) rotate(-9deg)"},{opacity:1,transform:"scale(1) rotate(0deg)"}],260);
+
 }
 function myPick(i){
   if(busy||!myTurn||!packArr[i]||packArr[i].by||legalSet(mine,openIdx()).indexOf(i)<0)return;
@@ -2496,7 +2525,7 @@ function myPick(i){
   $("sub").textContent=packArr[i].c[0]+" — "+(LORE[packArr[i].c[0]]||"");
   $("msg").textContent=packArr[i].c[0]+"을(를) 취하였소";
   board();renderPack(false);
-  advanceTurn(false);
+  advanceTurn(false,true);
   playPickEffect();
 }
 
