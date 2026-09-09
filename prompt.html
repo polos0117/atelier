@@ -174,13 +174,13 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
 .lockwrap>select,.lockwrap>input{flex:1 1 auto;min-width:0}
 .lockbtn{flex:0 0 auto;width:44px;min-height:0;padding:0;font-size:15px;line-height:1;
   background:var(--card);border:1px solid var(--line);color:var(--muted);opacity:.7}
-/* .param-card label{display:block} 이 (0,1,1) 이라 .lab-lock (0,1,0) 으로는 안 이긴다.
-   label.lab-lock 으로 같은 무게를 주고 뒤에 두어 이기게 한다 */
-label.lab-lock{display:flex;align-items:baseline;gap:5px;flex-wrap:nowrap}
-/* 이름표 글은 왼쪽에 붙여 두고 단추만 오른쪽 끝으로 민다. space-between 으로 두면
-   한글 소제목이 가운데로 끌려가 단추와 부딪혔다 */
-.lab-lock>small{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.lab-lock .lockbtn{margin-left:auto;flex:0 0 auto;align-self:center}
+/* 이름표는 그냥 블록으로 두고 단추만 오른쪽 위에 얹는다.
+   처음에는 flex 로 나란히 세웠는데, 그러면 이름표가 줄바꿈을 못 해
+   카드의 최소 폭이 글자 길이만큼 잡힌다. 폭 260px 짜리 화면(폴드 커버 등)에서
+   부모가 178px 인데 카드가 231px 이 되어 밖으로 밀려났다.
+   자리를 차지하지 않게 띄우면 이름표는 평소대로 접히고 단추는 늘 같은 자리다. */
+label.lab-lock{position:relative;padding-right:42px}
+.lab-lock .lockbtn{position:absolute;right:0;top:-5px}
 .lockbtn.mini{width:36px;height:28px;font-size:12px;border-radius:8px}
 .lock-note{width:100%;font-size:11px;color:var(--accent);font-weight:700}
 .lock-clear{width:100%;margin-top:4px;min-height:34px;padding:6px;font-size:11px;font-weight:600}
