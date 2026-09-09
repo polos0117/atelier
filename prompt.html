@@ -627,10 +627,9 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
         <button type="button" class="sb-drop hidden" id="clearUse">기록 삭제</button>
       </div>
       <div id="usedBox" class="used-box"></div>
-      <label style="display:flex;align-items:center;gap:7px;margin:0;cursor:pointer;font-size:11.5px">
-        <input type="checkbox" id="avoidUsed" style="width:auto;margin:0;flex:none">
-        <span>이미 복사한 조합을 프롬프트에서 피하기</span>
-      </label>
+      <!-- "이미 복사한 조합을 프롬프트에서 피하기" 체크박스가 있던 자리. 하는 일이
+           [ALREADY USED FOR THIS CHARACTER] 블록 하나뿐이었는데 그 블록을 뺐다.
+           카테고리 회피는 랜덤 칸의 "이미 쓴 카테고리는 빼고 뽑기" 가 맡는다 -->
       <label style="display:flex;align-items:center;gap:7px;margin:0;cursor:pointer;font-size:11.5px">
         <input type="checkbox" id="carryFace" style="width:auto;margin:0;flex:none">
         <span>이 기체의 얼굴 설정을 정체성에 넘기기</span>
@@ -773,7 +772,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
         </label>
         <label style="display:flex;align-items:center;gap:7px;margin:0;cursor:pointer;font-size:11.5px">
           <input type="checkbox" id="sgAvoid" style="width:auto;margin:0;flex:none">
-          <span>이미 복사한 조합 피하기 — 프롬프트 + 랜덤 카테고리</span>
+          <span>이미 쓴 카테고리는 랜덤에서 빼기</span>
         </label>
         <span class="uz">복사하면 콜라주와 같은 기록에 쌓인다. 한 장이므로 조합 하나만 적립된다.</span>
       </div>
@@ -2164,25 +2163,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     });
     const cu=document.getElementById('sgCustom').value.trim(); if(cu)lines.push('Additional instruction: '+cu+'.');
     if(lines.length)parts.push('[SETTINGS]\n\n'+lines.map(l=>'- '+l).join('\n'));
-    if(document.getElementById('sgAvoid').checked){
-      /* 단일 컷은 카테고리를 사람이 직접 고른다. 다른 카테고리의 이력을 늘어놓아 봐야
-         쓰이지 않고, 지금 고른 조합까지 목록에 넣으면 [SETTINGS] 와 정면으로 부딪힌다
-         — 같은 것을 지시하면서 같은 것을 하지 말라고 적는 꼴이 된다.
-         그래서 같은 카테고리에서 이미 뽑은 다른 예시만 남기고, 카테고리는 유지한 채
-         장면·의상·화각만 다르게 하라고 시킨다. */
-      const cur=sgVal('sgCat'), curEx=sgVal('sgEx'), seen={}, list=[];
-      usedOf(mechKey()).forEach(r=>{
-        if(r.cat!==cur)return;
-        if(!r.ex||r.ex==='__custom__')return;   /* 직접 입력은 무엇이었는지 안 남아 쓸모가 없다 */
-        if(r.ex===curEx)return;
-        const t=r.ex.replace(/_/g,' ').trim();
-        if(!t||seen[t])return; seen[t]=1; list.push(t);
-      });
-      if(list.length)parts.push('[ALREADY USED FOR THIS CHARACTER]\n\n'+
-        'Within this same category ('+((CAT[cur]||{}).eng||cur)+'), these variations were already generated for this character:\n'+
-        list.map(t=>'- '+t).join('\n')+
-        '\n\nKeep the selected category, but make the scene, outfit, location, and framing visibly different from these.');
-    }
+    /* 단일 컷도 같은 까닭으로 뺐다. 목록에 들어가던 것이 내부 열쇠였다.
+       카테고리 회피는 sgAvoid 가 뽑기 단계에서 한다 */
     parts.push('[NON-EXPLICIT LIMITS]\n\nThe character must clearly read as an adult. The garments are securely fitted and fully opaque, and the styling is suitable for a mainstream fashion or lifestyle editorial. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.');
     parts.push('[FINAL CHECK]\n\nVerify: exactly one image and one '+GW()+'; the requested aspect ratio; no text anywhere in the frame; the selected category and example are followed; no explicit nudity or sexual activity.');
     const full=parts.filter(Boolean).join('\n\n==================================================\n\n');
@@ -2205,7 +2187,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
        (document.getElementById('sgCarryBody').checked&&carryValues(CARRY_BODY).length))
       flags.push('의인화 설정 '+carryValues().length+'개 전달');
     if(document.getElementById('sgAvoid').checked&&usedOf(mechKey()).length)
-      flags.push('이미 쓴 조합 '+usedOf(mechKey()).length+'가지 회피');
+      flags.push('이미 쓴 카테고리는 랜덤에서 뺀다');
     return '<div class="ks-t">지금 설정 요약</div>'+rows.map(r=>'<div class="ks-r">'+r+'</div>').join('')+
       (flags.length?'<div class="ks-f">'+escHtml(flags.join(' · '))+'</div>':'');
   }
@@ -2435,19 +2417,14 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       directionBlocks(),
       '[ADDITIONAL SETTINGS]\n\n'+additionalSettings(adv,custom)
     ];
-    const av=document.getElementById('avoidUsed');
-    if(av&&av.checked){
-      const list=usedOf(mechKey()).filter(r=>r.cat);
-      if(list.length){
-        const names=list.map(r=>{
-          const c=CAT[r.cat],n=c?c.eng:r.cat;
-          return r.ex?n+' ('+r.ex.replace(/_/g,' ')+')':n;});
-        parts.push('[ALREADY USED FOR THIS CHARACTER]\n\n'+
-          'These category and example combinations have already been generated for this same character in earlier sessions:\n'+
-          names.map(n=>'- '+n).join('\n')+
-          '\n\nDo not repeat them. Choose visibly different scenes, outfits, locations, and framing from the ones these would produce, even where the selected categories overlap.');
-      }
-    }
+    /* 예전에는 여기서 [ALREADY USED FOR THIS CHARACTER] 를 붙여, 이 기체로 이미
+       뽑은 카테고리·예시를 늘어놓고 "이것들과 다르게 하라" 고 시켰다. 그런데 목록에
+       들어가던 것이 내부 열쇠를 밑줄만 바꾼 것이었다 — open_shirt_lingerie 가
+       "open shirt lingerie" 로 실렸다. 사람이 읽으라고 만든 말도 아니고 화면에
+       뜨는 이름도 아닌, 코드 안에서 쓰는 이름이 그대로 나간 셈이다.
+       회피는 이미 뽑기 쪽에서 한다 — "이미 쓴 카테고리는 빼고 뽑기" 를 켜면
+       freshPool 이 후보에서 빼므로, 프롬프트에 이력을 적지 않아도 겹치지 않는다.
+       쓴 컷 목록은 화면에 그대로 있다. */
     const ovs=panelOverrideBlocks();
     if(ovs.length)parts.push('[PANEL OVERRIDES]\n\n'+ovs.join('\n\n'));
     parts.push('[NON-EXPLICIT LIMITS]\n\nThe character must clearly read as an adult. The garments are securely fitted and fully opaque, and the styling is suitable for a mainstream fashion or lifestyle editorial. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.');
@@ -2628,7 +2605,6 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     o.orient=document.getElementById('globalOrientationMix').value;
     o.clgFrame=document.getElementById('clgFrame')?document.getElementById('clgFrame').value:'';
     o.preset=document.getElementById('presetSelect').value;
-    o.avoid=document.getElementById('avoidUsed').checked;
     o.carryFace=document.getElementById('carryFace').checked;
     o.carryBody=document.getElementById('carryBody').checked;
     o.ravoid=document.getElementById('randomAvoidUsed').checked;
@@ -2677,7 +2653,6 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     if(o.expr!==undefined)set('globalExpressionMode',o.expr);
     if(o.orient!==undefined)set('globalOrientationMix',o.orient);
     if(o.clgFrame!==undefined)set('clgFrame',o.clgFrame);
-    if(o.avoid!==undefined)document.getElementById('avoidUsed').checked=!!o.avoid;
     if(o.carryFace!==undefined)document.getElementById('carryFace').checked=!!o.carryFace;
     if(o.carryBody!==undefined)document.getElementById('carryBody').checked=!!o.carryBody;
     if(o.ravoid!==undefined)document.getElementById('randomAvoidUsed').checked=!!o.ravoid;
@@ -2754,8 +2729,6 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     if((document.getElementById('carryFace').checked&&carryValues(CARRY_FACE).length)||
        (document.getElementById('carryBody').checked&&carryValues(CARRY_BODY).length))
       flags.push('의인화 설정 '+carryValues().length+'개 전달');
-    if(document.getElementById('avoidUsed').checked&&usedOf(mechKey()).length)
-      flags.push('이미 쓴 조합 '+usedOf(mechKey()).length+'가지 회피');
     const adv=Object.keys(getAdvanced()).length; if(adv)flags.push('고급 '+adv+'축 지정');
     const gx=document.getElementById('globalExpressionMode').value;
     const go=document.getElementById('globalOrientationMix').value;
@@ -5047,7 +5020,6 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     if(b.dataset.copy==='textSingle')sgRecordUse();
   }));
   document.getElementById('clearUse').addEventListener('click',clearUse);
-  document.getElementById('avoidUsed').addEventListener('change',refreshCollagePrompt);
   document.getElementById('carryFace').addEventListener('change',refreshCollagePrompt);
   document.getElementById('carryBody').addEventListener('change',refreshCollagePrompt);
   document.querySelectorAll('[data-toggle]').forEach(b=>b.addEventListener('click',()=>toggleView(b.dataset.toggle,b)));
