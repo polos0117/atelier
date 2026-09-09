@@ -169,6 +169,15 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
 .mini-in{padding:8px 10px 10px}
 .mini-note{font-size:10.5px;color:var(--muted);line-height:1.45}
 .mini-in label{margin-bottom:4px}
+/* 랜덤에서 이 칸만 빼두는 자물쇠. 체크박스는 축 전체를 끄고 이쪽은 칸 하나를 잡는다 */
+.lockwrap{display:flex;align-items:stretch;gap:6px}
+.lockwrap>select,.lockwrap>input{flex:1 1 auto;min-width:0}
+.lockbtn{flex:0 0 auto;width:44px;min-height:0;padding:0;font-size:15px;line-height:1;
+  background:var(--card);border:1px solid var(--line);color:var(--muted);opacity:.7}
+.lock-note{width:100%;font-size:11px;color:var(--accent);font-weight:700}
+.lock-clear{width:100%;margin-top:4px;min-height:34px;padding:6px;font-size:11px;font-weight:600}
+.lockbtn.on{background:color-mix(in srgb,var(--accent) 16%,var(--card));
+  border-color:var(--accent);color:var(--accent);opacity:1}
 .card-rnd{width:100%;margin-top:8px;font-size:11.5px}
 .card-rnd.sub{margin-top:5px;font-size:11px;opacity:.85}
 .ptabs{display:flex;align-items:center;gap:4px;margin-bottom:10px;flex-wrap:wrap}
@@ -448,6 +457,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
           <label><input type="checkbox" data-rt="expr"><span>표정</span></label>
           <label><input type="checkbox" data-rt="orient"><span>시점</span></label>
           <label><input type="checkbox" data-rt="pose"><span>포즈</span></label>
+          <span class="lock-note hidden" data-lock-count></span>
+          <button type="button" class="lock-clear hidden" data-lock-clear>자물쇠 모두 풀기</button>
         </div>
         <label style="display:flex;align-items:center;gap:6px;margin:6px 0 0;cursor:pointer;font-size:11.5px;color:var(--muted)">
           <input type="checkbox" id="randomAvoidUsed" checked style="width:auto;margin:0;flex:none">
@@ -670,6 +681,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
         <label><input type="checkbox" data-srt="expr"><span>표정</span></label>
         <label><input type="checkbox" data-srt="orient"><span>시점</span></label>
         <label><input type="checkbox" data-srt="pose"><span>포즈</span></label>
+        <span class="lock-note hidden" data-lock-count></span>
+        <button type="button" class="lock-clear hidden" data-lock-clear>자물쇠 모두 풀기</button>
       </div>
         </div>
       </details>
@@ -1342,6 +1355,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     }
     grid.querySelectorAll('[data-ov-panel]').forEach(inp=>inp.addEventListener('input',refreshCollagePrompt));
     grid.querySelectorAll('select[data-ov-panel]').forEach(inp=>inp.addEventListener('change',refreshCollagePrompt));
+    /* 패널 덮어쓰기 칸은 여기서 새로 그려진다. 자물쇠 단추도 같이 다시 붙인다 */
+    if(typeof wireLocks==='function')wireLocks();
   }
 
   /* 패널 쪽에도 같은 설명을 붙인다 */
@@ -1470,6 +1485,79 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     setStatus('statusCollage','직전 조합으로 되돌렸다. 한 번 더 누르면 원래대로 돌아온다.','ok');
   }
   /* 카드 하나만 굴린다. 랜덤 대상 체크박스와 성격 풀을 그대로 따른다 */
+  /* ══ 칸 자물쇠 ══
+     "랜덤으로 정할 것" 체크박스는 축 하나를 통째로 끈다 — 카테고리를 끄면 세 Pair
+     가 다 멈춘다. 마음에 드는 칸 하나만 남기고 나머지를 굴리고 싶을 때가 그래서
+     안 됐다. 자물쇠는 칸 단위다. 잠긴 칸은 어느 랜덤 단추를 눌러도 그대로다.
+
+     굴리는 곳이 여럿이라(전체·Pair 하나·패널 하나·단일 컷·세부 강도) 자리마다
+     검사를 넣으면 언젠가 한 군데를 빠뜨린다. 값을 쓰는 길을 setRnd 하나로 모아
+     거기서만 본다. 사람이 직접 고르는 것은 막지 않는다 — 자물쇠는 랜덤에만 건다. */
+  let LOCK={};
+  function lockKey(el){
+    if(!el)return '';
+    if(el.id)return el.id;
+    if(el.dataset.sgAxis)return 'sg:'+el.dataset.sgAxis;
+    if(el.dataset.ovPanel)return 'ov:'+el.dataset.ovPanel+':'+el.dataset.ovKey;
+    return '';
+  }
+  function setRnd(el,v){
+    if(!el||LOCK[lockKey(el)])return false;
+    el.value=v; return true;
+  }
+  const LOCK_SEL=['#pair1Select','#pair2Select','#pair3Select',
+    '#pair1Example','#pair2Example','#pair3Example',
+    '#pair1Expr','#pair2Expr','#pair3Expr',
+    '#pair1Orient','#pair2Orient','#pair3Orient',
+    '#pair1Pose','#pair2Pose','#pair3Pose',
+    '#clgFrame','#sgCat','#sgEx','#sgExpr','#sgOrient','#sgPose','#sgAspect','#sgFrame',
+    '[id^="adv_"]','[id^="pair1Adv_"]','[id^="pair2Adv_"]','[id^="pair3Adv_"]',
+    '[data-sg-axis]','[data-ov-panel][data-ov-key]',
+    '[id^="panel"][id$="Cat"]','[id^="panel"][id$="Example"]'].join(',');
+  /* 새로 그려진 칸에도 붙여야 하므로 여러 번 불러도 되게 짰다 */
+  function wireLocks(){
+    document.querySelectorAll(LOCK_SEL).forEach(el=>{
+      if(el.tagName!=='SELECT')return;                 /* 자유 입력 칸은 굴리지 않는다 */
+      if(el.parentElement&&el.parentElement.classList.contains('lockwrap'))return;
+      const k=lockKey(el); if(!k)return;
+      const wrap=document.createElement('div'); wrap.className='lockwrap';
+      el.parentNode.insertBefore(wrap,el); wrap.appendChild(el);
+      const b=document.createElement('button');
+      b.type='button'; b.className='lockbtn'; b.dataset.lockFor=k;
+      const paint=()=>{
+        const on=!!LOCK[k];
+        b.classList.toggle('on',on);
+        b.textContent=on?'🔒':'🔓';
+        b.title=on?'이 칸은 랜덤에서 뺀다 — 눌러서 풀기':'이 칸을 랜덤에서 뺀다';
+        b.setAttribute('aria-label',b.title);
+        b.setAttribute('aria-pressed',on?'true':'false');
+      };
+      b.addEventListener('click',()=>{
+        if(LOCK[k])delete LOCK[k]; else LOCK[k]=1;
+        paint(); saveLocks(); updateLockCount();
+      });
+      paint(); wrap.appendChild(b);
+    });
+    updateLockCount();
+  }
+  function repaintLocks(){
+    document.querySelectorAll('.lockbtn').forEach(b=>{
+      const on=!!LOCK[b.dataset.lockFor];
+      b.classList.toggle('on',on); b.textContent=on?'🔒':'🔓';
+      b.setAttribute('aria-pressed',on?'true':'false');
+    });
+    updateLockCount();
+  }
+  function updateLockCount(){
+    const n=Object.keys(LOCK).length;
+    document.querySelectorAll('[data-lock-count]').forEach(el=>{
+      el.textContent=n?'자물쇠 '+n+'칸 — 랜덤이 건너뛴다':'';
+      el.classList.toggle('hidden',!n);
+    });
+    document.querySelectorAll('[data-lock-clear]').forEach(el=>el.classList.toggle('hidden',!n));
+  }
+  function clearLocks(){ LOCK={}; saveLocks(); repaintLocks(); }
+
   function rndTargets(){const T={};document.querySelectorAll('[data-rt]').forEach(el=>T[el.dataset.rt]=el.checked);return T;}
   function sgRndTargets(){const T={};document.querySelectorAll('[data-srt]').forEach(el=>T[el.dataset.srt]=el.checked);return T;}
   /* 콜라주와 단일 컷은 랜덤 성격을 따로 가진다. 예전에는 단일 컷이
@@ -1524,8 +1612,8 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       if(!el)return;
       const vals=(ADVANCED_OPTIONS[k]||[]).filter(v=>v!=='AUTO');
       if(!vals.length)return;
-      if(Math.random()<0.25){el.value='';}
-      else{el.value=vals[Math.floor(Math.random()*vals.length)];set++;}
+      if(Math.random()<0.25){setRnd(el,'');}
+      else if(setRnd(el,vals[Math.floor(Math.random()*vals.length)]))set++;
     });
     refreshCollagePrompt();
     setStatus('statusCollage',(scope==='pair'?'Pair '+n:'패널 '+n)+
@@ -1537,19 +1625,19 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     if(T.cat){
       const c=pickOne(freshPool(siblingCats(n)));
       const cs=document.getElementById('pair'+n+'Select');
-      if([...cs.options].some(o=>o.value===c))cs.value=c;
-      document.getElementById('pair'+n+'Custom').value='';
+      if([...cs.options].some(o=>o.value===c)&&setRnd(cs,c))
+        document.getElementById('pair'+n+'Custom').value='';
       updateDependentExamples(n);
     }
     if(T.ex){
       const es=document.getElementById('pair'+n+'Example');
       const cand=[...es.options].map(o=>o.value).filter(v=>v&&v!=='__custom__');
-      es.value=cand.length?pickOne(cand):'';
+      setRnd(es,cand.length?pickOne(cand):'');
       updateExNote(n);
     }
     rollMoodFor((k,v)=>{
       const id={expr:'Expr',orient:'Orient',pose:'Pose'}[k];
-      document.getElementById('pair'+n+id).value=v;
+      setRnd(document.getElementById('pair'+n+id),v);
     });
     updatePairCustomVisibility();
     refreshCollagePrompt();
@@ -1561,18 +1649,17 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     if(!pairUsed(pairForPanel(n))&&T.cat){
       const c=pickOne(freshPool(siblingCats(null,n)));
       const cs=document.getElementById('panel'+n+'Cat');
-      if(cs&&[...cs.options].some(o=>o.value===c))cs.value=c;
+      if(cs&&[...cs.options].some(o=>o.value===c))setRnd(cs,c);
       renderPanelExample(n,false);
     }
     if(T.ex){
       const es=document.getElementById('panel'+n+'Example');
       const cand=[...es.options].map(o=>o.value).filter(v=>v&&v!=='__custom__');
-      es.value=cand.length?pickOne(cand):'';
+      setRnd(es,cand.length?pickOne(cand):'');
     }
     rollMoodFor((k,v)=>{
       const key={expr:'expression',orient:'orientation',pose:'pose'}[k];
-      const el=document.querySelector('[data-ov-panel="'+n+'"][data-ov-key="'+key+'"]');
-      if(el)el.value=v;
+      setRnd(document.querySelector('[data-ov-panel="'+n+'"][data-ov-key="'+key+'"]'),v);
     });
     updatePanelNotes(n);
     refreshCollagePrompt();
@@ -1589,15 +1676,15 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     const rollMood=()=>{
       [1,2,3].forEach(n=>{
         if(T.expr){const o=EXPRESSION_OPTIONS.filter(x=>x[0]);
-          document.getElementById('pair'+n+'Expr').value=pickRnd(o)[0];}
+          setRnd(document.getElementById('pair'+n+'Expr'),pickRnd(o)[0]);}
         if(T.orient){const o=ORIENTATION_OPTIONS.filter(x=>x[0]);
-          document.getElementById('pair'+n+'Orient').value=pickRnd(o)[0];}
+          setRnd(document.getElementById('pair'+n+'Orient'),pickRnd(o)[0]);}
         if(T.pose){const o=POSE_OPTIONS.filter(x=>x[0]);
-          document.getElementById('pair'+n+'Pose').value=pickRnd(o)[0];}
+          setRnd(document.getElementById('pair'+n+'Pose'),pickRnd(o)[0]);}
       });
       if(T.frame){
         const o=[...document.getElementById('clgFrame').options].map(x=>x.value).filter(Boolean);
-        if(o.length)document.getElementById('clgFrame').value=pickRnd(o);
+        if(o.length)setRnd(document.getElementById('clgFrame'),pickRnd(o));
       }
     };
     const modeKey=document.getElementById('randomMode').value||'variety';
@@ -1608,16 +1695,16 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       document.getElementById('presetSelect').value='free';
       if(T.cat)recs.forEach(r=>{
         const cs=document.getElementById('pair'+r.pair+'Select');
-        if([...cs.options].some(o=>o.value===r.cat))cs.value=r.cat;
-        document.getElementById('pair'+r.pair+'Custom').value='';
+        if([...cs.options].some(o=>o.value===r.cat)&&setRnd(cs,r.cat))
+          document.getElementById('pair'+r.pair+'Custom').value='';
         updateDependentExamples(r.pair);
         if(T.ex){const es=document.getElementById('pair'+r.pair+'Example');
-          if(r.ex&&[...es.options].some(o=>o.value===r.ex))es.value=r.ex;}
+          if(r.ex&&[...es.options].some(o=>o.value===r.ex))setRnd(es,r.ex);}
       });
       updatePairCustomVisibility();
       if(T.adv){
-        Object.keys(ADVANCED_OPTIONS).forEach(k=>{const el=document.getElementById('adv_'+k);if(el)el.value='';});
-        Object.entries(M.adv).forEach(([k,v])=>{const el=document.getElementById('adv_'+k);if(el)el.value=v;});
+        Object.keys(ADVANCED_OPTIONS).forEach(k=>setRnd(document.getElementById('adv_'+k),''));
+        Object.entries(M.adv).forEach(([k,v])=>setRnd(document.getElementById('adv_'+k),v));
       }
       rollMood();
       refreshCollagePrompt();
@@ -1645,21 +1732,21 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     document.getElementById('presetSelect').value='free';
     [1,2,3].forEach((n,i)=>{
       if(T.cat){
-        document.getElementById('pair'+n+'Select').value=pool[i];
-        document.getElementById('pair'+n+'Custom').value='';
+        if(setRnd(document.getElementById('pair'+n+'Select'),pool[i]))
+          document.getElementById('pair'+n+'Custom').value='';
         updateDependentExamples(n);
       }
       if(T.ex){
         const pairSel=document.getElementById('pair'+n+'Example');
         const candidates=[...pairSel.options].map(o=>o.value).filter(v=>v&&v!=='__custom__');
-        pairSel.value=candidates.length&&Math.random()<0.75?candidates[Math.floor(Math.random()*candidates.length)]:'';
+        setRnd(pairSel,candidates.length&&Math.random()<0.75?candidates[Math.floor(Math.random()*candidates.length)]:'');
       }
     });
     updatePairCustomVisibility();
     rollMood();
     if(T.adv){
-      Object.keys(ADVANCED_OPTIONS).forEach(k=>{const el=document.getElementById('adv_'+k);if(el)el.value='';});
-      Object.entries(M.adv).forEach(([k,v])=>{const el=document.getElementById('adv_'+k);if(el)el.value=v;});
+      Object.keys(ADVANCED_OPTIONS).forEach(k=>setRnd(document.getElementById('adv_'+k),''));
+      Object.entries(M.adv).forEach(([k,v])=>setRnd(document.getElementById('adv_'+k),v));
     }
     setTimeout(()=>setStatus('statusCollage',note+(note.endsWith('— ')?M.desc:''),'ok'),0);
     refreshCollagePrompt();setStatus('statusCollage','랜덤 조합 생성 완료 🎲','ok');
@@ -2130,7 +2217,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
            랜덤이 고장난 것처럼 보인다. */
         const p=freshPool([],'single'), c=pick(p);
         const cs=document.getElementById('sgCat');
-        if([...cs.options].some(o=>o.value===c))cs.value=c;
+        if([...cs.options].some(o=>o.value===c))setRnd(cs,c);
         const av=document.getElementById('sgAvoid');
         const skipped=(av&&av.checked)
           ? Object.keys(usedOf(mechKey()).reduce((m,r)=>{if(r.cat)m[r.cat]=1;return m;},{})).length : 0;
@@ -2141,19 +2228,19 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
         renderSgEx(false);}
       if(T.ex){const es=document.getElementById('sgEx');
         const cand=[...es.options].map(o=>o.value).filter(v=>v&&v!=='__custom__');
-        es.value=cand.length?pick(cand):'';}
-      if(T.expr)document.getElementById('sgExpr').value=pick(EXPRESSION_OPTIONS.filter(x=>x[0]))[0];
-      if(T.orient)document.getElementById('sgOrient').value=pick(ORIENTATION_OPTIONS.filter(x=>x[0]))[0];
-      if(T.pose)document.getElementById('sgPose').value=pick(POSE_OPTIONS.filter(x=>x[0]))[0];
+        setRnd(es,cand.length?pick(cand):'');}
+      if(T.expr)setRnd(document.getElementById('sgExpr'),pick(EXPRESSION_OPTIONS.filter(x=>x[0]))[0]);
+      if(T.orient)setRnd(document.getElementById('sgOrient'),pick(ORIENTATION_OPTIONS.filter(x=>x[0]))[0]);
+      if(T.pose)setRnd(document.getElementById('sgPose'),pick(POSE_OPTIONS.filter(x=>x[0]))[0]);
       if(T.aspect){
         const opts=[...document.getElementById('sgAspect').options].map(o=>o.value).filter(Boolean);
-        if(opts.length)document.getElementById('sgAspect').value=pick(opts);
+        if(opts.length)setRnd(document.getElementById('sgAspect'),pick(opts));
       }
     }
     /* 화각은 세부 강도만 굴릴 때도 같이 굴러간다 — axesOnly 여부와 무관하게 락 체크만 본다 */
     if(T.frame){
       const opts=[...document.getElementById('sgFrame').options].map(o=>o.value).filter(Boolean);
-      if(opts.length)document.getElementById('sgFrame').value=pick(opts);
+      if(opts.length)setRnd(document.getElementById('sgFrame'),pick(opts));
     }
     /* '세부 강도만 랜덤' 버튼도 고급 설정 락을 그대로 따른다 — 락 걸려 있으면 눌러도 그대로.
        'skipAxes' 모드에서는 체크 상태와 무관하게 세부 강도 자체를 건드리지 않는다. */
@@ -2161,7 +2248,7 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       LOCAL_AXES.forEach(k=>{
         const el=document.querySelector('[data-sg-axis="'+k+'"]'); if(!el)return;
         const vals=(ADVANCED_OPTIONS[k]||[]).filter(v=>v!=='AUTO');
-        el.value=(Math.random()<0.25||!vals.length)?'':vals[Math.floor(Math.random()*vals.length)];
+        setRnd(el,(Math.random()<0.25||!vals.length)?'':vals[Math.floor(Math.random()*vals.length)]);
       });
     }
     refreshSinglePrompt();
@@ -4085,6 +4172,9 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     el.value=rec&&ART_STYLES.some(x=>x[0]===rec)?rec:DEFAULT_STYLE;
     renderArtNote();
   }
+  function saveLocks(){ STORE.locks=LOCK; saveStore(); }
+  function loadLocks(){ LOCK=Object.assign({},STORE.locks||{}); }
+
   function saveStyle(){
     if(!READY)return;
     const k=mechKey(); if(!k)return;
@@ -4135,7 +4225,9 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
     const raw=localStorage.getItem(STORE_KEY);
     if(raw){const o=JSON.parse(raw);if(o&&typeof o==='object')STORE=Object.assign(STORE,o);}
     if(!STORE.used)STORE.used={};
+    if(!STORE.locks)STORE.locks={};
   }catch(e){STORE_OK=false;}
+  loadLocks();
   /* 같은 기체가 양쪽에 있으면 t(마지막 수정 시각)가 늦은 쪽을 쓴다.
      git 파일을 새로 커밋하면 오래된 로컬 기록이 자연히 밀려난다. */
   function recOf(k){
@@ -4192,6 +4284,17 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
       catch(e){STORE_OK=false;setStatus('statusAnthro','저장 공간이 가득 찼거나 막혀 있다. 기록이 남지 않는다.','warn');}
     },250);
   }
+  /* 250ms 를 기다리는 사이에 탭이 닫히거나 뒤로 밀리면 마지막 손질이 사라진다.
+     폰에서는 앱을 내리는 순간 브라우저가 페이지를 통째로 버리기도 해서
+     그 창이 생각보다 자주 열린다. 숨겨질 때 기다리지 말고 바로 적는다. */
+  function flushStore(){
+    if(!STORE_OK)return;
+    clearTimeout(saveTimer);
+    try{localStorage.setItem(STORE_KEY,JSON.stringify(STORE));}catch(e){}
+  }
+  addEventListener('pagehide',flushStore);
+  addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')flushStore();});
+
   function mechKey(){return (mechPicker&&mechPicker.value)||'';}
   function savedCount(){return Object.keys(STORE.anthro||{}).length;}
 
@@ -4643,6 +4746,10 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
   if(STORE.single)applySingle(STORE.single);
   loadStyleForMech();
   loadAnthroForMech();
+  wireLocks();
+  document.querySelectorAll('[data-lock-clear]').forEach(b2=>b2.addEventListener('click',()=>{
+    clearLocks(); setStatus('statusCollage','자물쇠를 모두 풀었다','ok');
+  }));
   READY=true;
 
   renderRecommendations();
