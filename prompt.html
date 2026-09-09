@@ -174,14 +174,11 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
 .lockwrap>select,.lockwrap>input{flex:1 1 auto;min-width:0}
 .lockbtn{flex:0 0 auto;width:44px;min-height:0;padding:0;font-size:15px;line-height:1;
   background:var(--card);border:1px solid var(--line);color:var(--muted);opacity:.7}
-/* 이름표는 그냥 블록으로 두고 단추만 오른쪽 위에 얹는다.
-   처음에는 flex 로 나란히 세웠는데, 그러면 이름표가 줄바꿈을 못 해
-   카드의 최소 폭이 글자 길이만큼 잡힌다. 폭 260px 짜리 화면(폴드 커버 등)에서
-   부모가 178px 인데 카드가 231px 이 되어 밖으로 밀려났다.
-   자리를 차지하지 않게 띄우면 이름표는 평소대로 접히고 단추는 늘 같은 자리다. */
-label.lab-lock{position:relative;padding-right:42px}
-.lab-lock .lockbtn{position:absolute;right:0;top:-5px}
-.lockbtn.mini{width:36px;height:28px;font-size:12px;border-radius:8px}
+/* Reserve the lock's full height in every label, including inline axis labels.
+   The select remains full width below it; no negative offsets. */
+label.lab-lock{display:block;position:relative;padding-right:36px;min-height:28px;line-height:1.35}
+.lab-lock .lockbtn{position:absolute;right:0;top:0}
+.lockbtn.mini{width:28px;height:28px;min-height:28px;font-size:12px;border-radius:7px}
 .rnd-top{width:100%;margin-top:8px;font-size:12.5px}
 .lock-note{width:100%;font-size:11px;color:var(--accent);font-weight:700}
 .lock-clear{width:100%;margin-top:4px;min-height:34px;padding:6px;font-size:11px;font-weight:600}
@@ -267,11 +264,8 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid #79
 .prompt-dock-status.ok{color:var(--ok)}
 .panel,.form-section,.prompt-view{scroll-margin-top:125px}
 @media(max-width:599px){
- .pair-card select,.pair-card input{font-size:16px}
  .save-bar{flex-wrap:wrap}.save-bar>*{min-width:0}
  .rec-head{flex-wrap:wrap}
- .lockbtn.mini{height:36px;width:36px;top:-8px}
- label.lab-lock{min-height:28px}
  .mini-check,.rnd-tgt label{min-height:36px}
 }
 @media(min-width:600px){
@@ -283,6 +277,40 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid #79
 }
 @media(min-width:1000px){.grid3,.rec-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
+
+/* Compact defaults: prioritize visible settings on the Fold cover display. */
+body{font-size:12px}
+.wrap{padding:10px 8px calc(98px + env(safe-area-inset-bottom))}
+.workspace-nav{gap:5px;margin-bottom:8px}
+.workspace-nav a{min-height:32px;font-size:11px;border-radius:8px}
+.page-head{padding:5px 8px;margin-left:-8px;margin-right:-8px;margin-bottom:6px}
+.srcbox>summary{padding:6px 8px;min-height:32px}
+.sel-line{font-size:12px}
+.tabs{gap:5px;margin-top:5px}
+.tabs .tab,.mode-tabs .mtab,.ptab{min-height:32px;padding:6px 5px;font-size:12px}
+select,input,.pair-card select,.pair-card input{min-height:34px;padding:6px 8px;font-size:12px;border-radius:7px}
+button{min-height:34px;padding:6px 9px;font-size:12px;border-radius:8px}
+button.small{min-height:30px;padding:5px 7px;font-size:11px}
+.panel-head,.form-section{padding:8px}
+.panel-head strong{font-size:13px}
+.panel-head span{font-size:11px;line-height:1.35}
+.field,.pair-card,.override-card,.param-card,.rec-card{padding:7px}
+.field label,.param-card label,.override-card label,.pair-card label{font-size:11px;margin-bottom:4px}
+.grid2,.grid3,.param-grid,.rec-grid{gap:6px}
+.pair-card h3,.override-card h3{font-size:12px;margin-bottom:6px}
+details.box summary{padding:8px;font-size:12px}
+details.box .inside{padding:7px}
+details.mini>summary{padding:7px 8px;font-size:11px}
+.mini-in{padding:6px 8px 8px}
+.help,.param-note{padding:7px 8px;font-size:11px;line-height:1.4}
+.mini-check,.rnd-tgt label{min-height:26px}
+.controls,.param-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:8px}
+.preset-row{gap:6px}
+.prompt-view textarea{font-size:12px;padding:10px}
+.prompt-dock{padding-top:4px;padding-bottom:calc(5px + env(safe-area-inset-bottom))}
+.prompt-dock-status{font-size:11px;min-height:16px;margin-bottom:3px}
+.prompt-dock-actions button{min-height:36px;font-size:12px}
+@media(min-width:480px){.grid2,.param-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 </head>
 <body>
