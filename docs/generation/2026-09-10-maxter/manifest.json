@@ -1,0 +1,133 @@
+{
+  "repository": "polos0117/atelier",
+  "branch": "codex/gundam-maxter-four-images",
+  "base_commit": "36ed199ffce8ff32d4f3bd3cca52968a0fa76eb0",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "deployed_prompt_matches_checkout": true,
+  "generator": "built-in image_gen",
+  "selection_first": true,
+  "assets": [
+    {
+      "id": 1,
+      "card": "건담 맥스터",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "건담_맥스터_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "b7f9dd3cc76326a9c88ddeb9dbbc5e135645860f296b8701334806ddaac85d45",
+      "original_generation_id": "exec-f15ab31a-3d51-425d-b9f4-1df2adbaba07",
+      "original_sha256": "b717bd9544e8e13e23cccd46b970d773d0381db106d4e3e0a94d9ee275a2837b",
+      "prompt": "01c-cinematic-anthro-final.txt",
+      "reference_ids": [
+        "draft-2"
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 2,
+      "card": "건담 맥스터",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "file": "건담_맥스터_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "774ab5e533369d923d37a832a947246f34f297b21410d2337aeb187f0fa2d6c8",
+      "original_generation_id": "exec-f87da2b8-c9f1-4a6e-bfbc-19d3fffe8fa3",
+      "original_sha256": "218335d458aaf174f07f4b78d37ff83bc7b2415e3e32749283cb65211eb18734",
+      "prompt": "02-cinematic-casual.txt",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 3,
+      "card": "건담 맥스터",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "건담_맥스터_retro_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "321eff4095a0ea0947e222de4252e010a619189ebc4cdd54be2b5201ebbde9de",
+      "original_generation_id": "exec-762e12cc-9542-4396-b701-9bc3f5bb9d79",
+      "original_sha256": "eb8f622820d53cada49e3bb5dd9705c3b58442eefda5746680ae366236ed1f3c",
+      "prompt": "03-retro-anthro.txt",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 4,
+      "card": "건담 맥스터",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "casual",
+      "file": "건담_맥스터_retro_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "2b5e0a869745d6d3a66178f7dde3a70abd8811fd6d080ab614c2cc5c8e587f45",
+      "original_generation_id": "exec-fff93fdd-45c8-4f11-ad34-ee3d01ede45e",
+      "original_sha256": "d056e164c96c4b71a11ae16ea3f8f4aff5ad91191ccf25d89d51a99f8baf4b27",
+      "prompt": "04-retro-casual.txt",
+      "reference_ids": [
+        3
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    }
+  ],
+  "attempts": [
+    {
+      "id": "draft-1",
+      "prompt": "01-cinematic-anthro.txt",
+      "generation_id": "exec-3c028bf1-29b2-4893-bb80-ec4822326e40",
+      "selected": false,
+      "reason": "Missing revolvers and shield; limited headroom"
+    },
+    {
+      "id": "draft-2",
+      "prompt": "01b-cinematic-anthro-final.txt",
+      "generation_id": "exec-c58f3191-ea83-4338-8d55-c54651c96f56",
+      "selected": false,
+      "reference_ids": [
+        "draft-1"
+      ],
+      "reason": "Shield top cropped and unwanted emblem"
+    }
+  ],
+  "record_export": {
+    "completed": true,
+    "selected_parameter_count": 25,
+    "merged_cards": [
+      "건담 맥스터"
+    ]
+  },
+  "review_notes": [
+    "All final images visually inspected. Both portraits use AUTO pose/viewpoint but resulting poses are similar.",
+    "Equipment is an interpretation; no official source image was used.",
+    "Arcade output contains incidental background patrons and screen marks despite single-person/no-text prompt.",
+    "Final WebPs and exact prompts are committed. Original PNG paths are transient.",
+    "Local browser address was blocked; new-card dex UI cannot be verified before deployment. JSON mappings and prompt/image hashes verified directly."
+  ]
+}

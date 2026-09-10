@@ -466,5 +466,77 @@
     "sha256": "161a201b6c44f69a90ee8511e8fe4112eb3d29cdde5556c43e5388ac0838773e",
     "prompt": "docs/generation/age3/04-cel-casual.txt",
     "manifest": "docs/generation/age3/manifest.json"
+  },
+  "건담_맥스터_cinematic_semi_real_f.webp": {
+    "card": "건담 맥스터",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "b7f9dd3cc76326a9c88ddeb9dbbc5e135645860f296b8701334806ddaac85d45",
+    "prompt": "docs/generation/2026-09-10-maxter/01c-cinematic-anthro-final.txt",
+    "manifest": "docs/generation/2026-09-10-maxter/manifest.json"
+  },
+  "건담_맥스터_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 맥스터",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "774ab5e533369d923d37a832a947246f34f297b21410d2337aeb187f0fa2d6c8",
+    "prompt": "docs/generation/2026-09-10-maxter/02-cinematic-casual.txt",
+    "manifest": "docs/generation/2026-09-10-maxter/manifest.json"
+  },
+  "건담_맥스터_retro_anime_f.webp": {
+    "card": "건담 맥스터",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "321eff4095a0ea0947e222de4252e010a619189ebc4cdd54be2b5201ebbde9de",
+    "prompt": "docs/generation/2026-09-10-maxter/03-retro-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-maxter/manifest.json"
+  },
+  "건담_맥스터_retro_anime_f_casual1.webp": {
+    "card": "건담 맥스터",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "2b5e0a869745d6d3a66178f7dde3a70abd8811fd6d080ab614c2cc5c8e587f45",
+    "prompt": "docs/generation/2026-09-10-maxter/04-retro-casual.txt",
+    "manifest": "docs/generation/2026-09-10-maxter/manifest.json"
+  },
+  "건담_어스트레이_그린프레임_cinematic_semi_real_f.webp": {
+    "card": "건담 어스트레이 그린프레임",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "6ba8c600dcae13249ef43a76bf8c785f0765cd5cce10499f25651cc118dc1f04",
+    "prompt": "docs/generation/2026-09-10-greenframe/01b-cinematic-anthro-final.txt",
+    "manifest": "docs/generation/2026-09-10-greenframe/manifest.json"
+  },
+  "건담_어스트레이_그린프레임_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 어스트레이 그린프레임",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "c3937e044b55a7cacf4885f1882d6b42c06baa05121963a25b72d8750c5689c4",
+    "prompt": "docs/generation/2026-09-10-greenframe/02-cinematic-casual.txt",
+    "manifest": "docs/generation/2026-09-10-greenframe/manifest.json"
+  },
+  "건담_어스트레이_그린프레임_ink_wash_f.webp": {
+    "card": "건담 어스트레이 그린프레임",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "2ac6067f25e8c3486355a6fa73f04821ca7599ca7c15d2c08c9b8e62f789516d",
+    "prompt": "docs/generation/2026-09-10-greenframe/03-ink-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-greenframe/manifest.json"
+  },
+  "건담_어스트레이_그린프레임_ink_wash_f_casual1.webp": {
+    "card": "건담 어스트레이 그린프레임",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "050aee6eb196c0ee4867b45c05af8cc46cf873a7239aa4cf9a654c655d7fdb20",
+    "prompt": "docs/generation/2026-09-10-greenframe/04-ink-casual.txt",
+    "manifest": "docs/generation/2026-09-10-greenframe/manifest.json"
   }
 }
