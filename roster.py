@@ -19,6 +19,14 @@ DIR = "data"
 KINDS = ["mech", "pilot", "ship", "crew"]
 STAT_N = 4
 
+# 초상 규격. 2:3 세로 한 벌이고, 장변이 1536 이다.
+# 720×1080 으로 만들던 것을 올렸다 — 확대 창이 보통 폰에서 1074 화소를 먹는데
+# 720 은 거기서 삼분의 일이 모자랐다. 용량은 재 보니 q78 기준 1.43 배다.
+ART_SIZE = (1024, 1536)
+# 이 판까지 들어온 837 장은 옛 규격 그대로 둔다. 다시 구우면 git 이 옛 판도
+# 영영 들고 있어 저장소만 90MB 불어나고, 눈에 띄는 자리는 확대 하나뿐이다.
+ART_SINCE = "c0b7bcb"
+
 
 def path(name):
     return os.path.join(DIR, name if name.endswith(".json") else name + ".json")
@@ -201,3 +209,73 @@ def index():
                     % (c["name"], out[c["name"]][0], k))
             out[c["name"]] = (k, c)
     return out
+
+
+def _webp_size(p):
+    """WebP 머리만 읽어 (가로, 세로). 못 읽으면 None.
+
+    바깥 꾸러미를 들이지 않으려고 직접 읽는다. 이 저장소의 스크립트는
+    파이썬에 딸려 오는 것만 쓴다 — 그림 세 바이트 보자고 Pillow 를 받게
+    하면 워크플로가 그만큼 느려지고 깨질 자리도 는다."""
+    try:
+        with open(p, "rb") as f:
+            d = f.read(30)
+    except OSError:
+        return None
+    if len(d) < 30 or d[:4] != b"RIFF" or d[8:12] != b"WEBP":
+        return None
+    c = d[12:16]
+    if c == b"VP8X":       # 확장 — 크기가 24 바이트째부터 3+3 바이트
+        return (1 + int.from_bytes(d[24:27], "little"),
+                1 + int.from_bytes(d[27:30], "little"))
+    if c == b"VP8L":       # 무손실 — 14 비트씩 붙어 있다
+        b = int.from_bytes(d[21:25], "little")
+        return ((b & 0x3FFF) + 1, ((b >> 14) & 0x3FFF) + 1)
+    if c == b"VP8 ":       # 손실 — 위 두 비트는 크기가 아니다
+        return (int.from_bytes(d[26:28], "little") & 0x3FFF,
+                int.from_bytes(d[28:30], "little") & 0x3FFF)
+    return None
+
+
+def new_art():
+    """ART_SINCE 뒤로 img/ 에 들어온 그림 이름들. git 을 못 쓰면 빈 목록.
+
+    지금 있는 것까지 규격으로 걸면 경고가 늘 켜져 있게 되고, 늘 켜진 경고는
+    아무도 안 본다. 그래서 새로 들어온 것만 센다. 아직 커밋하지 않은 것도
+    챙긴다 — 올리기 전에 걸러야 쓸모가 있다."""
+    import subprocess
+    out = set()
+
+    def git(*a):
+        # quotePath 를 끄지 않으면 한글 이름이 "img/\\352\\261\\264…" 로 나온다.
+        # 그러면 파일이 있는지 물어볼 때마다 없다고 나와 조용히 다 빠진다
+        try:
+            r = subprocess.run(("git", "-c", "core.quotePath=false") + a,
+                               capture_output=True, text=True, timeout=20)
+        except (OSError, subprocess.SubprocessError):
+            return None
+        return r.stdout if r.returncode == 0 else None
+
+    added = git("log", "--diff-filter=A", "--name-only", "--format=",
+                ART_SINCE + "..HEAD", "--", "img")
+    if added:
+        out |= {l.strip() for l in added.splitlines() if l.strip()}
+    live = git("status", "--porcelain", "--", "img")
+    if live:
+        out |= {l[3:].strip() for l in live.splitlines()}
+    return sorted(n for n in out
+                  if n.endswith(".webp") and os.path.exists(n))
+
+
+def art_size():
+    """[(이름, 가로, 세로)…] — 새로 들어왔는데 ART_SIZE 가 아닌 그림.
+
+    2:3 초상 이야기다. 함선(3:2)이나 삼국 쪽(1:1)처럼 일부러 다른 꼴로 뽑는
+    자리가 있으므로 여기서 서지는 않는다. 크기를 적어 낼 뿐이고, 일부러
+    그런 것인지는 사람이 본다."""
+    bad = []
+    for n in new_art():
+        s = _webp_size(n)
+        if s and s != ART_SIZE:
+            bad.append((n, s[0], s[1]))
+    return bad

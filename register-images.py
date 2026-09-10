@@ -247,10 +247,16 @@ def main():
         print("  등록 못 한 파일 %d" % len(unknown))
         for f, why in unknown[:10]:
             print("     %-40s %s" % (f, why))
-    annotate(added, ghosts, unknown, a.prune and not a.check)
+    odd = roster.art_size()
+    if odd:
+        print("  새로 들어왔는데 %d×%d 이 아닌 그림 %d"
+              % (roster.ART_SIZE[0], roster.ART_SIZE[1], len(odd)))
+        for name, w, h in odd[:10]:
+            print("     %-40s %d×%d" % (name, w, h))
+    annotate(added, ghosts, unknown, a.prune and not a.check, odd)
 
 
-def annotate(added, ghosts, unknown, pruned):
+def annotate(added, ghosts, unknown, pruned, odd=()):
     """GitHub Actions 로 돌 때는 실행 화면에도 남긴다.
 
     등록 못 한 파일이 있어도 이 스크립트는 성공으로 끝난다. 초상 아홉 장 중
@@ -263,6 +269,10 @@ def annotate(added, ghosts, unknown, pruned):
     for f in ghosts:
         print("::warning::%s 가 img.json 에 적혀 있는데 파일이 없다%s"
               % (f, " (지웠다)" if pruned else " — --prune 으로 지운다"))
+    for name, w, h in odd:
+        print("::warning file=%s::%d×%d 로 들어왔다 — 초상 규격은 %d×%d 다."
+              " 함선·삼국처럼 일부러 다른 꼴이면 그냥 두라"
+              % (name, w, h, roster.ART_SIZE[0], roster.ART_SIZE[1]))
     path = os.environ.get("GITHUB_STEP_SUMMARY")
     if not path:
         return
@@ -278,6 +288,11 @@ def annotate(added, ghosts, unknown, pruned):
                 f.write("  - `%s` — %s\n" % (name, why))
         if ghosts:
             f.write("- 적혀 있는데 파일이 없는 것 **%d**\n" % len(ghosts))
+        if odd:
+            f.write("- 규격(%d×%d) 밖으로 들어온 그림 **%d** — 일부러 그런 것인지 본다\n"
+                    % (roster.ART_SIZE[0], roster.ART_SIZE[1], len(odd)))
+            for name, w, h in odd:
+                f.write("  - `%s` — %d×%d\n" % (name, w, h))
 
 
 if __name__ == "__main__":
