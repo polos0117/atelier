@@ -1,0 +1,83 @@
+{
+  "repository": "polos0117/atelier",
+  "branch": "codex/vayeate-images",
+  "base_commit": "ccd52ef54cfcf00c2b52e205ad4646a1b221e566",
+  "source_archive": "메리크리우스 세미리얼 게임키아트 일상.zip",
+  "source_library_id": "file_00000000edc081fd8337d4203599b622",
+  "assets": [
+    {
+      "source_filename": "메리크리우스 세미리얼 게임키아트 일상.png",
+      "card": "메리크리우스",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "casual",
+      "parent_portrait": "메리크리우스_game_keyart_f.webp",
+      "file": "메리크리우스_game_keyart_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_sha256": "5ff72d538758e0bb65fd56c1866bd067e498d489fac702ee6095f97d10894069",
+      "sha256": "535b14e68d2e6e05c8036a746cebb4eb17246f213fa8cf523d19c6424b133021",
+      "blob_sha": "0ca2fc96dc2ef4689314df05e7a911fd3c51caeb",
+      "style_evidence": "User-supplied filename; game-keyart qualifier takes precedence over semi-real prefix.",
+      "converted": true
+    },
+    {
+      "source_filename": "메리크리우스 세미리얼 게임키아트.png",
+      "card": "메리크리우스",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "anthro",
+      "parent_portrait": null,
+      "file": "메리크리우스_game_keyart_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_sha256": "799604c4e48f5612633655c1e34bdd988feb41c2c06a4ab22b0083931d75bd26",
+      "sha256": "019a4d0f9abe0472fb69ae8f8798f0aa919abde8fd24bc569ba6313f60733e26",
+      "blob_sha": "28e0813c9b109a694266236aefeb5e02945fc510",
+      "style_evidence": "User-supplied filename; game-keyart qualifier takes precedence over semi-real prefix.",
+      "converted": true
+    },
+    {
+      "source_filename": "메리크리우스 세미리얼 일상.png",
+      "card": "메리크리우스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "parent_portrait": "메리크리우스_cinematic_semi_real_f.webp",
+      "file": "메리크리우스_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_sha256": "bc55aab1618a2a3f1042e3610ea787b06784adce297b1d088a44346f2dbbf837",
+      "sha256": "3a203340821e612b6a21ee4ccdec8056e8e157ffdf7af182fbd58027d0c52bbe",
+      "blob_sha": "2dc711dd7f59f27c4fb976d5f9cf71178ff4ad59",
+      "style_evidence": "User-supplied filename; game-keyart qualifier takes precedence over semi-real prefix.",
+      "converted": true
+    },
+    {
+      "source_filename": "메리크리우스 세미리얼.png",
+      "card": "메리크리우스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "parent_portrait": null,
+      "file": "메리크리우스_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_sha256": "cbfee443a928982db0cb70b9278b6fd4c7018f8fc62b4cccdbc15a2dd41cf546",
+      "sha256": "7c0f95252dce23915e090138a82d8278ee22362f700b5cfdc3fafb17ab52f93d",
+      "blob_sha": "16cc17abc8b51e63e2aab9ebda61f6c1f60204a5",
+      "style_evidence": "User-supplied filename; game-keyart qualifier takes precedence over semi-real prefix.",
+      "converted": true
+    }
+  ],
+  "original_generation_prompts": null,
+  "note": "Recovered from user-supplied archive. Identity and portrait/lifestyle pairs visually checked. Original generation prompts and IDs were not recovered; no new generation performed. Source archive remains available as user attachment. Remote status must be verified separately."
+}
