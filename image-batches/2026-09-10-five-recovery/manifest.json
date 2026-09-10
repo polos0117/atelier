@@ -1,0 +1,499 @@
+{
+  "base_commit": "87b9dc7be3c9e6999d98f8343532a0798d95c94e",
+  "branch": "codex/recover-five-images",
+  "excluded": [
+    {
+      "card": "드래곤 건담",
+      "reason": "User omitted unsatisfactory result; not supplied; do not regenerate",
+      "slot": "casual",
+      "style": "retro_anime"
+    }
+  ],
+  "files": [
+    {
+      "bytes": 255492,
+      "card": "건담 쓰로네 드라이",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
+      "gender": "f",
+      "git_blob_sha": "aa6eaa9211029044a70c7d1e32562e940ee9cc1f",
+      "path": "img/건담_쓰로네_드라이_cinematic_semi_real_f.webp",
+      "sha256": "8b166b3254091617808cfb80f73fc2491f1cea82702af2bea1c8ccde4ff7f90c",
+      "slot": "portrait",
+      "source_dimensions": [
+        1024,
+        1536
+      ],
+      "source_name": "쓰로네 드라이 세미리얼.png",
+      "source_sha256": "b8a7183691ede422ab12750eb6bc418ad7ae79a0cf1ab931e9f57b35c67f5492",
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "cinematic_semi_real",
+      "style_evidence": "user-labelled filename"
+    },
+    {
+      "bytes": 497178,
+      "card": "셴롱 건담",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
+      "gender": "f",
+      "git_blob_sha": "8544004be6ff7a09b02925cba6f51e460f098f81",
+      "path": "img/셴롱_건담_ink_wash_f_casual1.webp",
+      "reference_source_name": "셴롱 수묵담채.png",
+      "sha256": "bd04b77479ea49249351a8a0ec9f6a0bfebb5c505dc0f98839d128135aac3949",
+      "slot": "casual",
+      "source_dimensions": [
+        1024,
+        1536
+      ],
+      "source_name": "셴롱 수묵담채 일상.png",
+      "source_sha256": "d29e2dee1f551768b8edd811880ac370e6d291ad5b493f926ee1b55fc9ccc090",
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "ink_wash",
+      "style_evidence": "user-labelled filename"
+    },
+    {
+      "bytes": 484316,
+      "card": "셴롱 건담",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
+      "gender": "f",
+      "git_blob_sha": "e22530382e8f3baf8f15a00d227b5aefbf6bccf7",
+      "path": "img/셴롱_건담_ink_wash_f.webp",
+      "sha256": "852cbec0069f33edd219184479765e97e987ee0b2354813f36d40c1dc7ca4352",
+      "slot": "portrait",
+      "source_dimensions": [
+        1024,
+        1536
+      ],
+      "source_name": "셴롱 수묵담채.png",
+      "source_sha256": "958a37901460a70c50b3337e1b01f36c9f69f8c18163770bc24bad3cb2c4c128",
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "ink_wash",
+      "style_evidence": "user-labelled filename"
+    },
+    {
+      "bytes": 219562,
+      "card": "셴롱 건담",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
+      "gender": "f",
+      "git_blob_sha": "bea3caa2beb47849f3c87552c45554934d06719e",
+      "path": "img/셴롱_건담_cinematic_semi_real_f_casual1.webp",
+      "reference_source_name": "셴롱 세미리얼.png",
+      "sha256": "15b54d243cf7996ae7e25f5b0281bb9cd314ee6f8ea228f121a50a4d1c6f3482",
+      "slot": "casual",
+      "source_dimensions": [
+        1024,
+        1536
+      ],
+      "source_name": "셴롱 세미리얼 일상.png",
+      "source_sha256": "9bcc26ffd96226d73c8715aaf6301f7c91bf7ab6042b083053f185869b28199a",
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "cinematic_semi_real",
+      "style_evidence": "user-labelled filename"
+    },
+    {
+      "bytes": 261972,
+      "card": "셴롱 건담",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
+      "gender": "f",
+      "git_blob_sha": "7c9377267f6c968914cd0851382fb77d234f47f6",
+      "path": "img/셴롱_건담_cinematic_semi_real_f.webp",
+      "sha256": "bda003eb8150232be81ad54d69dad7421a1630a2f7d567c37dad413ed7cd372d",
+      "slot": "portrait",
+      "source_dimensions": [
+        1024,
+        1536
+      ],
+      "source_name": "셴롱 세미리얼.png",
+      "source_sha256": "631c502858ab5bba3b5992cf88f6469c2b98466ef1b136b4646430cdc69ccfb0",
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "cinematic_semi_real",
+      "style_evidence": "user-labelled filename"
+    },
+    {
+      "bytes": 202178,
+      "card": "건담X 디바이더",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
+      "gender": "f",
+      "git_blob_sha": "d01cef5dc320ffc1e908737b0a9f2e9ccefd9d2a",
+      "path": "img/건담X_디바이더_glossy_kr_game_f_casual1.webp",
+      "reference_source_name": "X디바이더 글로시.png",
+      "sha256": "936c92350c79465bbc99b0e97ce72ca08e0cc16734a5da8cd1365c69c85cb68d",
+      "slot": "casual",
+      "source_dimensions": [
+        1024,
+        1536
+      ],
+      "source_name": "X디바이더 글로시 일상.png",
+      "source_sha256": "185b8618a2ca6780c4703142298ba6ea4f70a8e6b2bd202f592f41a075204efe",
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "glossy_kr_game",
+      "style_evidence": "user-labelled filename"
+    },
+    {
+      "bytes": 276222,
+      "card": "건담X 디바이더",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
+      "gender": "f",
+      "git_blob_sha": "32105d6a605ddc843f1b655614f318a9754cd45b",
+      "path": "img/건담X_디바이더_glossy_kr_game_f.webp",
+      "sha256": "29c3218033cfe96bc8d10e88f0e34cb65f65349edd4198abd61c88d9305e1276",
+      "slot": "portrait",
+      "source_dimensions": [
+        1024,
+        1536
+      ],
+      "source_name": "X디바이더 글로시.png",
+      "source_sha256": "772f0b9deff71a2058386468048c408b4effba3a891d7c0c180165563409175b",
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "glossy_kr_game",
+      "style_evidence": "user-labelled filename"
+    },
+    {
+      "bytes": 272720,
+      "card": "건담X 디바이더",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
+      "gender": "f",
+      "git_blob_sha": "6cdd0e20e55646e1dc4a197e21c8a4d4b6f246b5",
+      "path": "img/건담X_디바이더_cinematic_semi_real_f_casual1.webp",
+      "reference_source_name": "X디바이더 세미리얼.png",
+      "sha256": "3871c979d2eee3c9847afa20cb58dd94b4ffa27a87b780465ac5f1ca912fb61f",
+      "slot": "casual",
+      "source_dimensions": [
+        1024,
+        1536
+      ],
+      "source_name": "X디바이더 세미리얼 일상.png",
+      "source_sha256": "5f0fdd658fa9fa1650bc809ea8f3287a888dcef1be056e309159d878f198486c",
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "cinematic_semi_real",
+      "style_evidence": "user-labelled filename"
+    },
+    {
+      "bytes": 213370,
+      "card": "건담X 디바이더",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
+      "gender": "f",
+      "git_blob_sha": "c0634ade9af6cca62b150b5dc932369a34773882",
+      "path": "img/건담X_디바이더_cinematic_semi_real_f.webp",
+      "sha256": "9f5167164a41d58fcdf4aa0d13888f67b41d004555192a0edf3cd43bb7165d86",
+      "slot": "portrait",
+      "source_dimensions": [
+        1024,
+        1536
+      ],
+      "source_name": "X디바이더 세미리얼.png",
+      "source_sha256": "00fc75f6a312faff3aad14a1b54205218d095c13bc1a7b5ee0d2d3f51f7f57e3",
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "cinematic_semi_real",
+      "style_evidence": "user-labelled filename"
+    },
+    {
+      "bytes": 310108,
+      "card": "드래곤 건담",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
+      "gender": "f",
+      "git_blob_sha": "7198641876603bf137531ff2c197137fd9893fd5",
+      "path": "img/드래곤_건담_retro_anime_f.webp",
+      "sha256": "37f1bd411ac5129e49b9305db6edb2960ab0ec0cb45a13a10f7bae116f7f8478",
+      "slot": "portrait",
+      "source_dimensions": [
+        1024,
+        1536
+      ],
+      "source_name": "드래곤 레트로.png",
+      "source_sha256": "10fe326fadc721a6d101311ef8240e194f5358f1287f7ab75b91d398e7db469c",
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "retro_anime",
+      "style_evidence": "user-labelled filename"
+    },
+    {
+      "bytes": 280270,
+      "card": "드래곤 건담",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
+      "gender": "f",
+      "git_blob_sha": "de047b0e954960aa628605d3361198b0c527e3f9",
+      "path": "img/드래곤_건담_cinematic_semi_real_f_casual1.webp",
+      "reference_source_name": "드래곤세미리얼.png",
+      "sha256": "4fc4323e986bc058a622bf744c42172a4c9b46780e2aa1f86f66a7352de1d0e2",
+      "slot": "casual",
+      "source_dimensions": [
+        1024,
+        1536
+      ],
+      "source_name": "드래곤 세미리얼 일상.png",
+      "source_sha256": "a673241d934a48f8222b38c19eb668b113dd18c5344ec948b4cc5a85e458b151",
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "cinematic_semi_real",
+      "style_evidence": "user-labelled filename"
+    },
+    {
+      "bytes": 259012,
+      "card": "드래곤 건담",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
+      "gender": "f",
+      "git_blob_sha": "91704620402c9e145e1e63729d2331e732b57ed9",
+      "path": "img/드래곤_건담_cinematic_semi_real_f.webp",
+      "sha256": "becbbbd1638488e8a31837e5cd968fc830626752c85c420ae079f1512285faaa",
+      "slot": "portrait",
+      "source_dimensions": [
+        1024,
+        1536
+      ],
+      "source_name": "드래곤세미리얼.png",
+      "source_sha256": "d5a72f8a0c98a665bcfb2b4b69e6f44bcd1f751976e33f1950e5bd18c25d24cb",
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "cinematic_semi_real",
+      "style_evidence": "user-labelled filename"
+    },
+    {
+      "bytes": 367218,
+      "card": "바우",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
+      "gender": "f",
+      "git_blob_sha": "350be301e99a6fb71c901389e4f63ee4a7cc1549",
+      "path": "img/바우_painterly_f_casual1.webp",
+      "reference_source_name": "바우 회화적.png",
+      "sha256": "e78d1d60c4e2b6c374843cb6975a175bb56d306d3d25a648721e2d98a560d615",
+      "slot": "casual",
+      "source_dimensions": [
+        1024,
+        1536
+      ],
+      "source_name": "바우 회화적 일상.png",
+      "source_sha256": "e6ba162d11cbf7abad695545472a7666bd26ec643b6cd4e652fa874f5414bd0a",
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "painterly",
+      "style_evidence": "user-labelled filename"
+    },
+    {
+      "bytes": 288610,
+      "card": "바우",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
+      "gender": "f",
+      "git_blob_sha": "cf1f5f498db0d8d53f8743c2f0412ead9ab3c410",
+      "path": "img/바우_painterly_f.webp",
+      "sha256": "e6badfd694ea613e2902267bdceda603168660524c71563688873035f9808e97",
+      "slot": "portrait",
+      "source_dimensions": [
+        1024,
+        1536
+      ],
+      "source_name": "바우 회화적.png",
+      "source_sha256": "c57982f6b52cfe35379df6c1170b74da1e94e7448d5b7838d87e4d4d95e66777",
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "painterly",
+      "style_evidence": "user-labelled filename"
+    },
+    {
+      "bytes": 193266,
+      "card": "바우",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
+      "gender": "f",
+      "git_blob_sha": "77d0abd79646b8821d84c3d15dc3e1b452f78fb0",
+      "path": "img/바우_cinematic_semi_real_f_casual1.webp",
+      "reference_source_name": "바우 세미리얼.png",
+      "sha256": "aadda9d2f768c8e8b13ae64e509ae89ce35b276a65d69c6ffb263c68f084ced0",
+      "slot": "casual",
+      "source_dimensions": [
+        1024,
+        1536
+      ],
+      "source_name": "바우 세미리얼 일상.png",
+      "source_sha256": "343c82b18cc76b68b824be1ef0642e01c564cf0c6938d2f1d27d794d6e5cdfd4",
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "cinematic_semi_real",
+      "style_evidence": "user-labelled filename"
+    },
+    {
+      "bytes": 226500,
+      "card": "바우",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
+      "gender": "f",
+      "git_blob_sha": "9eb78929406bcd1a9a49799908d0bbfecdb6d202",
+      "path": "img/바우_cinematic_semi_real_f.webp",
+      "sha256": "afe03611f56e3aebb188ea6097215cba9d258d58111fda061d12ad9b986ac263",
+      "slot": "portrait",
+      "source_dimensions": [
+        1024,
+        1536
+      ],
+      "source_name": "바우 세미리얼.png",
+      "source_sha256": "f47a4dc8323efbadc4d40d41a07e500fc8692f2ad4d6731909df6b39d76bda37",
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "cinematic_semi_real",
+      "style_evidence": "user-labelled filename"
+    },
+    {
+      "bytes": 253622,
+      "card": "건담 쓰로네 드라이",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
+      "gender": "f",
+      "git_blob_sha": "67028de0f0db47a9fa6cb62d1a3ff118571323d5",
+      "path": "img/건담_쓰로네_드라이_cel_anime_f_casual1.webp",
+      "reference_source_name": "쓰로네 드라이 화풍모름.png",
+      "sha256": "e15274c0d3b61aba7d7c5cf62252e27ea6d19547f95067f98de6e7f1ad035c59",
+      "slot": "casual",
+      "source_dimensions": [
+        1024,
+        1536
+      ],
+      "source_name": "쓰로네 드라이 화풍모름 일상.png",
+      "source_sha256": "a606a1af80d3da9b9b4f7ff7d013705998423a031fa8fc26323df1cc4770941f",
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "cel_anime",
+      "style_evidence": "User confirmed cel_anime in this conversation"
+    },
+    {
+      "bytes": 150472,
+      "card": "건담 쓰로네 드라이",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
+      "gender": "f",
+      "git_blob_sha": "31f7833926fd262ad55640eab8f9e3a1e1444ed1",
+      "path": "img/건담_쓰로네_드라이_cel_anime_f.webp",
+      "sha256": "1258b9a920726434d5a72093b80d01a0a98e01fc97be6bd7751154d0f5521c53",
+      "slot": "portrait",
+      "source_dimensions": [
+        1024,
+        1536
+      ],
+      "source_name": "쓰로네 드라이 화풍모름.png",
+      "source_sha256": "33912ffd1a41a059d4f02eaafa0a9198d9b74b006aa73ec8f266ef60a1d929f1",
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "cel_anime",
+      "style_evidence": "User confirmed cel_anime in this conversation"
+    },
+    {
+      "bytes": 202478,
+      "card": "건담 쓰로네 드라이",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
+      "gender": "f",
+      "git_blob_sha": "b92dc80af598470daf736bc8c2fb0735ea3b8dd3",
+      "path": "img/건담_쓰로네_드라이_cinematic_semi_real_f_casual1.webp",
+      "reference_source_name": "쓰로네 드라이 세미리얼.png",
+      "sha256": "a32749337bf213163c23460ab235db5920e99f185fb84e7230a8d47a62e9b494",
+      "slot": "casual",
+      "source_dimensions": [
+        1024,
+        1536
+      ],
+      "source_name": "쓰로네 드라이 세미리얼 일상.png",
+      "source_sha256": "3051bb78e458fb2d390efcfec4fc2c19b88317e2422f913f1c6c75d2b19e40fd",
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "cinematic_semi_real",
+      "style_evidence": "user-labelled filename"
+    }
+  ],
+  "generation_note": "Original generation prompts and exact generator revision unavailable; metadata recovered from user labels.",
+  "generation_prompt": null,
+  "pending_archive": "gdraft-pending-style.zip",
+  "pending_style": 0,
+  "prepared": 19,
+  "received": 19,
+  "source_archive": "gdraft.zip",
+  "source_archive_sha256": "fab89098641abaf210a419859f496a5ba08a0dfc8429d7185d04f9f37250b8cd",
+  "upload": {
+    "merge_status": "pending_at_preparation",
+    "previous_commit": "46caa710c5ccf45007459977240314d2b6b27f91",
+    "verified_blobs": 19
+  },
+  "validation": {
+    "browser_verified": false,
+    "existing_entries_preserved": true,
+    "new_files": 19,
+    "registered_total_files": 892,
+    "registration_check_candidates": 0
+  }
+}
