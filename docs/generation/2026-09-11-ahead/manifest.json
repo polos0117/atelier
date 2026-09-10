@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "repository": "polos0117/atelier",
+  "branch": "codex/ahead-shiden",
+  "base_commit": "4c40a6d4dc2265424457fc20d5b0b63c4c6d7d6a",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "generator": "image_gen",
+  "workflow": "Actual UI options selected, text preview reviewed, supplemental instructions applied, exact final text copied and submitted. Anthro pose, viewpoint and equipment presentation AUTO.",
+  "assets": [
+    {
+      "card": "어헤드",
+      "batch": "2026-09-11-ahead",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "order": 1,
+      "generation_id": "exec-4f053528-68c5-4c0a-8913-a50dd89d5d34",
+      "reference_ids": [],
+      "file": "어헤드_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "2977ab8310a22b59519ccbd9c9d66db877411ae374f689c65a3a6ceabff77e75",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-ahead-01",
+      "prompt": "docs/generation/2026-09-11-ahead/01-anthro.txt",
+      "prompt_sha256": "18256f309f02ce922e0dc506bef65495ac7c7644ef150af0402b76306df2836f",
+      "registered_locally": true
+    },
+    {
+      "card": "어헤드",
+      "batch": "2026-09-11-ahead",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "order": 2,
+      "generation_id": "exec-0e95ea03-959f-4d3f-90bb-de7d902aa0f0",
+      "reference_ids": [
+        "exec-4f053528-68c5-4c0a-8913-a50dd89d5d34"
+      ],
+      "file": "어헤드_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "be876e98ea8d47a08a418708a8a40764e4c608a162a5d983d16eb4f96d1d771a",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-ahead-02",
+      "prompt": "docs/generation/2026-09-11-ahead/02-casual.txt",
+      "prompt_sha256": "fdadd1de1853c532ce7c4d97b024c0cfdb8a2812e2ba98d9fe9e49afb7b6ecd4",
+      "registered_locally": true
+    },
+    {
+      "card": "어헤드",
+      "batch": "2026-09-11-ahead",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "anthro",
+      "order": 3,
+      "generation_id": "exec-385f3367-61fa-4add-961e-6c4839deedec",
+      "reference_ids": [
+        "exec-4f053528-68c5-4c0a-8913-a50dd89d5d34"
+      ],
+      "file": "어헤드_game_keyart_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "02ef005cfd7beb41bc69ef0645a6894ca4d846c8cf078fb929df83d05b8ba107",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-ahead-03",
+      "prompt": "docs/generation/2026-09-11-ahead/03-anthro.txt",
+      "prompt_sha256": "7eec97dc7e51f932222da9d1c64b4cebb10f6b90efcb819683843d1a8d1020d1",
+      "registered_locally": true
+    },
+    {
+      "card": "어헤드",
+      "batch": "2026-09-11-ahead",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "casual",
+      "order": 4,
+      "generation_id": "exec-db364424-4809-448c-beb7-5a6f64bafb03",
+      "reference_ids": [
+        "exec-385f3367-61fa-4add-961e-6c4839deedec"
+      ],
+      "file": "어헤드_game_keyart_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "55611fc53292c6a449a17b6bad9c00d72e9e882033e91b3668107e49d28812ea",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-ahead-04",
+      "prompt": "docs/generation/2026-09-11-ahead/04-casual.txt",
+      "prompt_sha256": "1c1fd8aa87c053350e10764eeb24c9a3653b2c4f958d6008551c9bda4d94bba0",
+      "registered_locally": true
+    }
+  ],
+  "record_export": {
+    "attempted": true,
+    "succeeded": false,
+    "observation": "Clicked actual UI export button; exportBox remained empty after subsequent work.",
+    "fallback": "selection-snapshot.json contains actual live DOM selections, not a successful export.",
+    "toolkit_data_merged": false
+  },
+  "conversion": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6,
+    "resize": false,
+    "crop": false
+  },
+  "attempts": [
+    {
+      "prompt": "02-casual-attempt1.txt",
+      "status": "output_moderation_blocked",
+      "request_id": "0fc050f4-be92-4867-b633-820798ebd97c",
+      "change": "Changed UI category to ordinary everyday, clarified page-turning action; outfit, shoulder opening, side slit, framing and cabin retained."
+    }
+  ],
+  "review_notes": [
+    "Four final renders visually inspected. Thick braid, facial identity and civilian/armor distinction retained.",
+    "Game-keyart rendering remains close to the cinematic reference; selected style is recorded from actual UI, not inferred from appearance."
+  ]
+}
