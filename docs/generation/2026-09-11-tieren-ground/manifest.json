@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "repository": "polos0117/atelier",
+  "branch": "codex/zaku-warrior-tieren",
+  "base_commit": "92ad6dd5196386b69bea80a7eca0d84996bdbca8",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "generator": "image_gen",
+  "workflow": "Actual UI options selected, text preview reviewed, supplemental instructions applied, final text copied and used verbatim. Anthro pose and viewpoint AUTO.",
+  "assets": [
+    {
+      "card": "티에렌 지상형",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "티에렌 지상형_cinematic_semi_real_f.webp",
+      "original_generation_id": "exec-56513e7c-be62-4985-a270-ab17c3690fbf",
+      "reference_ids": [],
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "49d89bf5316a39b5a7646c80f9005df8967a78dac98c823f6f420a6934f9a765",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-tieren-ground-01",
+      "prompt": "docs/generation/2026-09-11-tieren-ground/01-anthro.txt",
+      "prompt_sha256": "50ec439b8ab77978322d1d5551eca9988fbf7af4806bdbe9e1c473db6dca7fae",
+      "registered_locally": true
+    },
+    {
+      "card": "티에렌 지상형",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "file": "티에렌 지상형_cinematic_semi_real_f_casual1.webp",
+      "original_generation_id": "exec-eb784c5e-4ee2-4a1b-8bca-d59618c27ae5",
+      "reference_ids": [
+        "exec-56513e7c-be62-4985-a270-ab17c3690fbf"
+      ],
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "c929cf311ef32f6a2fa51bd35e277196d6798f4fdb4b4473fc0bdf5d66a7dd06",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-tieren-ground-02",
+      "prompt": "docs/generation/2026-09-11-tieren-ground/02-casual.txt",
+      "prompt_sha256": "aca31a7a6d491125caea970a94a345913c353a9b23d41e373082e485d7f74853",
+      "registered_locally": true
+    },
+    {
+      "card": "티에렌 지상형",
+      "style": "ink_wash",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "티에렌 지상형_ink_wash_f.webp",
+      "original_generation_id": "exec-de1a62e3-12ca-4258-922b-eb770c7ad949",
+      "reference_ids": [
+        "exec-56513e7c-be62-4985-a270-ab17c3690fbf"
+      ],
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "8fc818ba596094bbc9e16527a872268f366e1303bfd2b2a3289bd00a1d4061b1",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-tieren-ground-03",
+      "prompt": "docs/generation/2026-09-11-tieren-ground/03-anthro.txt",
+      "prompt_sha256": "b2059d9738d7d09b12257a5f56829bad6dc85baf12cb2ac9bf90d2bada508f81",
+      "registered_locally": true
+    },
+    {
+      "card": "티에렌 지상형",
+      "style": "ink_wash",
+      "gender": "f",
+      "mode": "casual",
+      "file": "티에렌 지상형_ink_wash_f_casual1.webp",
+      "original_generation_id": "exec-3dde192d-f211-4531-9876-3f79b98e8ae1",
+      "reference_ids": [
+        "exec-de1a62e3-12ca-4258-922b-eb770c7ad949"
+      ],
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "9cd4046ea0ffb0a292c15efa7b645292a60b4204778c6b3149a63a4361f6e955",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-tieren-ground-04",
+      "prompt": "docs/generation/2026-09-11-tieren-ground/04-casual.txt",
+      "prompt_sha256": "8c32e6fd56275b8cc4b37a42af429dcb6a7a5e52bc5d042c164fb17a1902ec4f",
+      "registered_locally": true
+    }
+  ],
+  "record_export": {
+    "attempted": true,
+    "succeeded": false,
+    "observation": "Clicked the actual export button; exportBox remained empty after subsequent work.",
+    "fallback": "selection-snapshot.json contains actual visible DOM selections, not a successful export.",
+    "toolkit_data_merged": false,
+    "reason": "UI export did not complete; prior broad toolkit-data upload was rejected by automatic approval review. No retry through alternate upload routes."
+  },
+  "conversion": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6,
+    "resize": false,
+    "crop": false
+  },
+  "review_notes": [
+    "All four renders visually inspected; adult face and short hair remain recognizable. Full anthro figures and long weapons are inside frame.",
+    "The rectangular shield is rendered along the left side, apparently arm-supported rather than clearly leg-mounted; canonical mounting fidelity remains imperfect."
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "note": "Actual visible DOM selection snapshot, not a generator export",
+  "mechs": {
+    "자쿠 워리어": {
+      "female": {
+        "sel": {
+          "apparent age": "40s",
+          "armor coverage": "open",
+          "bangs": "side-swept bangs",
+          "body type": "statuesque",
+          "eye color": "purple",
+          "eye shape": "almond",
+          "face shape": "elongated",
+          "facial character": "mature",
+          "facial ethnicity": "Japanese",
+          "hair color": "platinum",
+          "hair length": "medium",
+          "hairstyle": "wavy",
+          "height impression": "tall",
+          "human-mechanical balance": "balanced",
+          "skin tone": "light"
+        },
+        "sp": "Fictional original adult character, no real person or pilot likeness. Standard ZGMF-1000 ZAKU Warrior: olive-green and pale-green armor with dark joints, prominent spiked shoulder shield, thick curved shoulder shells, waist power cables, beam assault rifle and beam tomahawk. Keep the actual shoulder armor and shoulder shield silhouettes intact; reveal small shoulder/upper-arm areas only beneath their edges. Open waist sections and upper thighs, secure opaque chest and pelvis coverage. An elegant elongated adult face with visible mature cheek planes and subtle smile lines, straight nose and a wider relaxed mouth; human ears and human eyes, no robot mask. If a character reference is attached, retain the same face, platinum waves, violet eyes, age and physique across styles; pose and viewpoint remain AUTO. Entire head, equipment and feet inside frame with generous margins. Plain unmarked shield and armor, no faction emblem or insignia."
+      },
+      "g": "female"
+    }
+  }
+}
