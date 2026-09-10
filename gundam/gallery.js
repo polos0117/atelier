@@ -4,9 +4,9 @@ function dailyShots(card,gender){
   var root=IMG[card[0]],out=[],seen={};if(!root)return out;
   var selected=artBucket(card[0]),buckets=[];
   function add(bucket,label){if(bucket&&buckets.every(function(x){return x.b!==bucket}))buckets.push({b:bucket,label:label})}
-  var styles=root.byStyle||{},selectedLabel='기본 화풍';
+  var styles=root.byStyle||{},selectedLabel='화풍 미상';
   Object.keys(styles).forEach(function(k){if(styles[k]===selected)selectedLabel=k});
-  add(selected,selectedLabel);add(root,'기본 화풍');Object.keys(styles).forEach(function(k){add(styles[k],k)});
+  add(selected,selectedLabel);add(root,'화풍 미상');Object.keys(styles).forEach(function(k){add(styles[k],k)});
   buckets.forEach(function(x){var box=x.b.casual,shots=Array.isArray(box)?(gender==='f'?box:[]):box&&box[gender]||[];
     shots.forEach(function(path){if(typeof path==='string'&&!seen[path]){seen[path]=true;out.push({path:path,style:x.label})}})});
   return out;

@@ -19,3 +19,13 @@ MVP는 아군 기체·파일럿 조의 출격 점수에 정원 초과 감점을 
 검증: `node tests/mobile-smoke.cjs`, `node tests/strategy-smoke.cjs`, `node tests/gallery-smoke.cjs` (저장소 루트에서 실행; Playwright Chromium 필요).
 
 판단 정보 검증: `node tests/insights-smoke.cjs`. 분석은 복사한 편성과 기존 점수 함수를 사용한다. 궁합·지형, 정원 손실은 기본 출격과 중복 합산하지 않으며 표시값의 반올림 차이는 별도 행으로 맞춘다.
+
+## 이미지 화풍 기록
+
+- `img.json`의 기존 기본 자리는 **화풍 미상**이다. 과거 `toolkit-data.json.style`과 브라우저 `style`은 참고 기록으로 보존하며 화면 분류에 사용하지 않는다.
+- 신규 파일은 `<카드명>_<화풍key>_<m|f>.webp`, `<카드명>_<화풍key>_<m|f>_casualN.webp` 또는 `_extraN.webp`로 저장한다. 화풍 key는 `data/style.json`을 따른다.
+- `python3 register-images.py --check`로 화풍 누락·오타·동일 슬롯 중복을 검증한다. 실패하면 `img.json`을 쓰지 않는다. 기존 기본 자리 파일은 이름을 바꾸거나 재분류하지 않는다.
+- 화면은 등록된 `img.json`을 기준으로 표시한다. GitHub 파일 목록만으로 검증 전 이미지를 추가하지 않는다.
+- 프롬프트의 화풍 선택은 생성 설정이며 `stylePreferences`에만 기억한다. 기록 내보내기는 저장소의 과거 `style`을 보존하고 브라우저 값으로 덮어쓰지 않는다.
+
+화풍 검증: `python3 tests/style-registration.py`, `node tests/style-logic.cjs`. 브라우저 검증: `node tests/style-smoke.cjs`.
