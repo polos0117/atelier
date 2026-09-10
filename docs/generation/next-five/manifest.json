@@ -1,0 +1,552 @@
+{
+  "base_commit": "223ec86ac25028689788e7411c0d95ad86567bbe",
+  "planned_count": 20,
+  "assets": [
+    {
+      "id": 1,
+      "card": "샤이닝 건담",
+      "style": "cinematic_semi_real",
+      "mode": "anthro",
+      "gender": "f",
+      "file": "샤이닝_건담_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "922c47936f68db7f4f5ea32eb62079b0a000a747464664a8599d070a373d44e9",
+      "prompt": "01-shining-cinematic-anthro.txt",
+      "reference_id": null,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-5bd3edb8-097f-453f-ac73-d95550866338",
+      "original_sha256": "485b3faa9006040c1b3b4056af9cb4913b703ed86a1b1696c2dd2e71a28f22ce",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "2b9713a7b7d855bf35729435dccfc9e738975724",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 2,
+      "card": "샤이닝 건담",
+      "style": "cinematic_semi_real",
+      "mode": "casual",
+      "gender": "f",
+      "file": "샤이닝_건담_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "786603e2a861d4ae8562e9e1358a30733f4dcb5c18a32ad5366cb712a0eacf28",
+      "prompt": "02-shining-cinematic-casual.txt",
+      "reference_id": 1,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-19ba4301-7e54-4879-b937-c72795825806",
+      "original_sha256": "2346da10f020bfad43fd7d7f4656fbce87b130f8529542e072f61264e06016db",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "f44b64324e9191bfa4b3661b10028dc3b7093005",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 3,
+      "card": "샤이닝 건담",
+      "style": "cel_anime",
+      "mode": "anthro",
+      "gender": "f",
+      "file": "샤이닝_건담_cel_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "e459f3f1c34981272b91c17f57069b69cc904caa48de7e7ee9c129262f37d4b0",
+      "prompt": "03-shining-cel-anthro.txt",
+      "reference_id": 1,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-9c8858a5-b4b5-4c22-b6a8-0a6dd8eb15a9",
+      "original_sha256": "a6365e046b1dd6010c4295381b1755b95c49d44bf009f16161ab21bf495ad3dd",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "6c738aa2b10f6ede8b0a323dd040f0f167ec619c",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 4,
+      "card": "샤이닝 건담",
+      "style": "cel_anime",
+      "mode": "casual",
+      "gender": "f",
+      "file": "샤이닝_건담_cel_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "b33c60f57cb38f9ca5b03f6fb661a2a413c086b61026296e8290f082cf152539",
+      "prompt": "04-shining-cel-casual.txt",
+      "reference_id": 3,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-fa5132f1-8cda-472c-983e-01f6b6aef10b",
+      "original_sha256": "99ccb5e138373af0b023527b428187baa7e58beb4b32cbc565d665ff4fb653bb",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "4680560f6d9a96c215dbc20e0dc2874c2514bd8d",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 5,
+      "card": "건담 에어마스터",
+      "style": "cinematic_semi_real",
+      "mode": "anthro",
+      "gender": "f",
+      "file": "건담_에어마스터_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "7dc8aba440339bdc8470cd01b358246bbc28247b994c515e745d7c82e1b75ff3",
+      "prompt": "05-airmaster-cinematic-anthro.txt",
+      "reference_id": null,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-91369eed-0a54-46d3-941e-10447eb72885",
+      "original_sha256": "84ae222b09090f34b8bc3a6cba9d37ef3219fd192937009f8138adfcbaffbba3",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "f419e9f6cc538634d5722b625b82cefe1a19648b",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 6,
+      "card": "건담 에어마스터",
+      "style": "cinematic_semi_real",
+      "mode": "casual",
+      "gender": "f",
+      "file": "건담_에어마스터_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "19ed321edf0a72519806b3b8bd812fd638e4d8abecb088061367a94f35114316",
+      "prompt": "06-airmaster-cinematic-casual.txt",
+      "reference_id": 5,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-a65b075e-ccb4-4d59-acf2-ea03c07f06a7",
+      "original_sha256": "b5d68ce4beb66fac13dc873119505ea41796c70b4eb8d1604e0719fad0348d11",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "8cbd3bf700877e5257c6e2c49c8c358ff18d180c",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 7,
+      "card": "건담 에어마스터",
+      "style": "retro_anime",
+      "mode": "anthro",
+      "gender": "f",
+      "file": "건담_에어마스터_retro_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "f3011b10d5e1f518e4a07a8bf7902339a6adeba7f5446ac0a8d8e8886e622d67",
+      "prompt": "07-airmaster-retro-anthro.txt",
+      "reference_id": 5,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-4af1f015-8d60-47ad-b9e7-cbd174dbeefb",
+      "original_sha256": "f5b8f6c840f7a6b540883017829e9056bbaf8ea404a6179955e906588133e1fa",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "b84432a2a3e3c145c96bd69c37df10221b4cdf48",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 8,
+      "card": "건담 에어마스터",
+      "style": "retro_anime",
+      "mode": "casual",
+      "gender": "f",
+      "file": "건담_에어마스터_retro_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "f133879153df241bb5cfb26db1f9473d4dcb6220448a5a2f67f67d2ef4f74495",
+      "prompt": "08-airmaster-retro-casual.txt",
+      "reference_id": 7,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-a2a47ce7-d180-4b0e-a39c-d837157ebe67",
+      "original_sha256": "117d086b3a3827a1bc7b393004501ed3bd00aaa515067a53e4bd78e58fa3dff2",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "41295d5569342e747baade3f1222639a74f3174a",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 9,
+      "card": "레길스",
+      "style": "cinematic_semi_real",
+      "mode": "anthro",
+      "gender": "f",
+      "file": "레길스_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "4a06da9b47872557904d205b76bc058f17acb4ec1e88399f6078c745100fd5a9",
+      "prompt": "09-legilis-cinematic-anthro.txt",
+      "reference_id": null,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-7fbeb43c-ccca-407a-8351-21f46d48a9c3",
+      "original_sha256": "abf1a68a21c141d5eb150d9820c5f10e331d5eba1325a477f1ef66f887681082",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "6b02d8daa0908b770e94e46e32a7b3266f3fa560",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 10,
+      "card": "레길스",
+      "style": "cinematic_semi_real",
+      "mode": "casual",
+      "gender": "f",
+      "file": "레길스_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "b1f121839cdec433e60d19b9a97c19d57bb6841a1304b5de5eed9d5aae9b3dfd",
+      "prompt": "10-legilis-cinematic-casual.txt",
+      "reference_id": 9,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-e11d70ea-9aa6-4d99-b32b-060d698ffc9f",
+      "original_sha256": "6d4ec30845b8a6d7f5b134c429a803bc07cd63e603c887ee1baf47188fa0c00f",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "d4ea163eba0cf775d3e685b37828df42b4ef759f",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 11,
+      "card": "레길스",
+      "style": "glossy_kr_game",
+      "mode": "anthro",
+      "gender": "f",
+      "file": "레길스_glossy_kr_game_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "58a4e69f106daa1bfc922147c727160627890fb77e89613e076e9440f6065fe7",
+      "prompt": "11-legilis-glossy-anthro.txt",
+      "reference_id": 9,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-6b65e911-94f6-47c8-b9e8-929a84baf0ed",
+      "original_sha256": "0590d2e6cdb910c18cde87cd5ab310b4402af4d268c2b2b711f4d32b7819c864",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "b8a47ad8fa36f20ad3f9e31328fec3c53c23e077",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 12,
+      "card": "레길스",
+      "style": "glossy_kr_game",
+      "mode": "casual",
+      "gender": "f",
+      "file": "레길스_glossy_kr_game_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "e2aba7c4f0c8d2a7ecf1ff296bdf10cfecdeb9ef1cdcd92ae3b09d18578b308c",
+      "prompt": "12-legilis-glossy-casual.txt",
+      "reference_id": 11,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-06362270-6d52-491c-ab05-942a006fe415",
+      "original_sha256": "ff14f768d8195d06d4cb0a094e5c2a67723a735ca8b2696f184b8b1bab891671",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "92ab7c3a79d766619de303a4b78da98f80473536",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 13,
+      "card": "스사노오",
+      "style": "cinematic_semi_real",
+      "mode": "anthro",
+      "gender": "f",
+      "file": "스사노오_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "b7f5ecc5db778839c1a492ae8bf22fee8710b75c8906e61aad731b2181c0a344",
+      "prompt": "13-susanowo-cinematic-anthro.txt",
+      "reference_id": null,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-13863783-5544-435e-b2f1-5506ca3132cf",
+      "original_sha256": "c4ad93ad5211ced659468a8792488e7a3665c58d96b3293dbfa8133cb22745d3",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "164714192d8873ac4231e91d4ddbff03baf85a81",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 14,
+      "card": "스사노오",
+      "style": "cinematic_semi_real",
+      "mode": "casual",
+      "gender": "f",
+      "file": "스사노오_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "b02473723feb8986cf92ffce42cf1e2a88e6eec68ff62cfbbc8ae297b11a0b97",
+      "prompt": "14-susanowo-cinematic-casual.txt",
+      "reference_id": 13,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-ee72ba7e-476d-4dc0-bfcb-ab0acc1d79bc",
+      "original_sha256": "5441a817dcab2b973f53d9181671d0302a835bfbb88d5ff6244e8af2e9c6e92c",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "aced1810038c0f1380cbc2b43c16fb1cb25a22c2",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 15,
+      "card": "스사노오",
+      "style": "ink_wash",
+      "mode": "anthro",
+      "gender": "f",
+      "file": "스사노오_ink_wash_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "282b072f99a50f6b9d56f88ed272c09e4cfde534a013506ae38bfbd1ebb44318",
+      "prompt": "15-susanowo-ink-anthro.txt",
+      "reference_id": 13,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-b9a7f617-2666-4bb3-beb5-8551abd2b6a4",
+      "original_sha256": "bf6165a37c129355cd56d39d54128dd80c24854a1bb9955a4b4d1949d9097985",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "fb8ebb1ec9c251fc1ee1103b0f344fffb2051c9a",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 16,
+      "card": "스사노오",
+      "style": "ink_wash",
+      "mode": "casual",
+      "gender": "f",
+      "file": "스사노오_ink_wash_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "b00160346cb34c17dd90ebf43596e48e659afa97631808e5d4c83eb89c278825",
+      "prompt": "16-susanowo-ink-casual.txt",
+      "reference_id": 15,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-af6163b7-4312-4bac-a182-f803120b86ad",
+      "original_sha256": "c5c9cf60ec67aaee5a9af819840def7026454154136cffb87c0ec9f134fb7116",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "e63ac9d6bba454592d4c5f62b4202214e2d4a6f2",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 17,
+      "card": "팔라스 아테네",
+      "style": "cinematic_semi_real",
+      "mode": "anthro",
+      "gender": "f",
+      "file": "팔라스_아테네_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "5f7907a0024ee35d804add2debaa65714222890cda70cefb8c329a9920333965",
+      "prompt": "17-pallas-cinematic-anthro.txt",
+      "reference_id": null,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-ecd5e439-dd96-4c4d-b550-44fa0cb29b94",
+      "original_sha256": "4ee437919ea6fe85cdee91a3bb4204f8512bd33461125f4e3a8987ed1ba80f75",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "2d32cb673e0ffac32f3bf473a12f0c4eb176db20",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 18,
+      "card": "팔라스 아테네",
+      "style": "cinematic_semi_real",
+      "mode": "casual",
+      "gender": "f",
+      "file": "팔라스_아테네_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "e5f80a496e91d2d4a6dc7fddd2edf0484317f1c899597330a4b6ff3efebe19a8",
+      "prompt": "18-pallas-cinematic-casual.txt",
+      "reference_id": 17,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-8ccade56-2a80-42ea-8454-9c8b59562e7e",
+      "original_sha256": "7ea249ce9747f15a79e0cd6f8f234b6d6d2fd90ea2e4e1ff4fcc895fa8d4cf57",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "34beb7036b93a47733ec2d87e7721c43c22d8112",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 19,
+      "card": "팔라스 아테네",
+      "style": "painterly",
+      "mode": "anthro",
+      "gender": "f",
+      "file": "팔라스_아테네_painterly_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "42f6314839df5aed00e495b5a0af45d3853730bd6ee4a67dd6916cf5226a11ad",
+      "prompt": "19-pallas-painterly-anthro.txt",
+      "reference_id": 17,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-4e806dfc-bcdc-4ed0-a12e-68627bffe2c2",
+      "original_sha256": "c1da553fd675eb9c65fe49afc50762713a8032fc13a2927b9880847c6e23ce66",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "ccb3c90a29c9f96d9465018d0c4145866ad2a283",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 20,
+      "card": "팔라스 아테네",
+      "style": "painterly",
+      "mode": "casual",
+      "gender": "f",
+      "file": "팔라스_아테네_painterly_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "18a2999f6eb7bf440514e628135fae3a4bea0a0755fecd0276d9d7a2e9afb350",
+      "prompt": "20-pallas-painterly-casual.txt",
+      "reference_id": 19,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-aace0993-cc09-4ac8-8b39-64ad847177d0",
+      "original_sha256": "b1f6ed597076e732a9c2c257f7dc1a7c2485a540fdb07b61fdee8453534a2f4b",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "6c31df1edc0dbd50c45730e7c539bc53c677f367",
+      "blob_verified": true,
+      "registration_verified": true
+    }
+  ],
+  "repository": "polos0117/atelier",
+  "branch": "codex/next-five-images",
+  "prompt_url": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_version": "v9.18",
+  "status_note": "This manifest is part of the image commit. Commit and branch reference must be verified separately; blob SHA alone is not completion.",
+  "source_reference": "First anthropomorphizations used canonical-design instructions from prompt.html without an uploaded original mecha reference."
+}
