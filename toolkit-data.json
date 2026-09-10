@@ -1440,6 +1440,78 @@
       },
       "g": "female",
       "t": 1789039487191
+    },
+    "즈고크 E": {
+      "female": {
+        "sel": {
+          "apparent age": "30s",
+          "armor coverage": "balanced",
+          "bangs": "asymmetric bangs",
+          "body type": "toned",
+          "eye shape": "upturned",
+          "eye size": "medium",
+          "eye tilt": "upturned outer corners",
+          "face length": "short",
+          "face shape": "heart-shaped",
+          "face width": "medium",
+          "facial character": "cool",
+          "facial ethnicity": "South Asian",
+          "hair color": "silver",
+          "hair length": "short",
+          "hair texture": "thick",
+          "hair volume": "full",
+          "hairstyle": "curly",
+          "height impression": "average",
+          "jaw & chin": "narrow tapered chin",
+          "leg proportion": "balanced",
+          "lips": "full lips",
+          "nose character": "broad low bridge",
+          "shoulder build": "broad",
+          "skin tone": "medium",
+          "torso / chest build": "full",
+          "waist / hip silhouette": "curvy"
+        },
+        "sp": "Use the attached image only for the adult character identity and equipment geometry. Preserve the same short silver curls, face proportions, physique, rounded blue-gray amphibious armor, paired claw gauntlets and dorsal equipment. The previous result retained too much photographic rendering: visibly repaint this as stylized 2.5D game illustration, with anime-informed softly simplified facial construction, grouped sculpted hair locks, broad airbrushed gradients, stylized metallic highlight shapes and simplified clean surfaces. Remove photographic scratches, pore detail and realistic material noise. Keep the same identity rather than a generic heroine face. Pose and view remain automatic; keep full figure and equipment inside clear margins."
+      },
+      "g": "female",
+      "mm": "silhouette_equipment_emphasis",
+      "t": 1789041187849
+    },
+    "겔구그J": {
+      "female": {
+        "sel": {
+          "apparent age": "40s",
+          "facial ethnicity": "East Asian",
+          "body type": "tall and lean",
+          "height impression": "tall",
+          "shoulder build": "average",
+          "torso / chest build": "balanced",
+          "waist / hip silhouette": "straight",
+          "leg proportion": "long",
+          "facial character": "stoic",
+          "face shape": "angular",
+          "eye shape": "narrow",
+          "face length": "long",
+          "face width": "medium",
+          "jaw & chin": "angular defined jaw",
+          "eye size": "small",
+          "eye tilt": "level outer corners",
+          "nose character": "straight slender bridge",
+          "lips": "thin lips",
+          "skin tone": "light",
+          "hair color": "black",
+          "hairstyle": "straight",
+          "hair length": "long",
+          "bangs": "none",
+          "hair texture": "fine",
+          "hair volume": "moderate",
+          "parting": "center part",
+          "armor coverage": "balanced"
+        },
+        "sp": "Use the attached corrected anthropomorphization as the identity and equipment reference. Preserve this same adult woman, facial geometry, long black hair and physique, plus the Gelgoog Jaeger armor and beam machine gun, forearm beam spot guns and paired backpack propellant tanks. Render the entire image as the selected cel anime style with crisp linework and limited flat shadow shapes, including the face, hair and all mechanical surfaces. Do not copy the reference rendering. Pose and view remain AUTO; keep the full figure and equipment within clear margins."
+      },
+      "g": "female",
+      "t": 1789042872172
     }
   },
   "note": "prompt.html 의 '기록 내보내기' 결과를 이 파일에 덮어쓴다. style 은 기체별 화풍이며 기본값(cinematic_semi_real)이라도 적는다 — 판정해서 고른 값인지 안 골라서 흘러든 값인지 구분해야 하기 때문이다(v9.17 전에는 기본값을 빼서 내보낼 때마다 손으로 적어 둔 것이 사라졌다). semi_real_paint 로 잡힌 152 기는 화풍 구분이 생기기 전에 일괄로 채운 값이라 그대로 둔다. 이 머리말도 내보내기가 챙겨 넣는다.",
@@ -3102,6 +3174,34 @@
         "ex": "archive_restorer",
         "n": 1,
         "t": 1789039306100
+      }
+    ],
+    "즈고크 E": [
+      {
+        "cat": "swimwear",
+        "ex": "thermal_spa",
+        "n": 1,
+        "t": 1789041174540
+      },
+      {
+        "cat": "occupation_basic",
+        "ex": "sonar_analyst",
+        "n": 1,
+        "t": 1789040844728
+      }
+    ],
+    "겔구그J": [
+      {
+        "cat": "everyday_sensual",
+        "ex": "balcony_plants",
+        "n": 1,
+        "t": 1789042856430
+      },
+      {
+        "cat": "occupation_basic",
+        "ex": "archive_restorer",
+        "n": 1,
+        "t": 1789042676697
       }
     ]
   },

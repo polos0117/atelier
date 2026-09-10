@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "updated": "2026-09-10",
+  "mechs": {
+    "겔구그J": {
+      "female": {
+        "sel": {
+          "apparent age": "40s",
+          "facial ethnicity": "East Asian",
+          "body type": "tall and lean",
+          "height impression": "tall",
+          "shoulder build": "average",
+          "torso / chest build": "balanced",
+          "waist / hip silhouette": "straight",
+          "leg proportion": "long",
+          "facial character": "stoic",
+          "face shape": "angular",
+          "eye shape": "narrow",
+          "face length": "long",
+          "face width": "medium",
+          "jaw & chin": "angular defined jaw",
+          "eye size": "small",
+          "eye tilt": "level outer corners",
+          "nose character": "straight slender bridge",
+          "lips": "thin lips",
+          "skin tone": "light",
+          "hair color": "black",
+          "hairstyle": "straight",
+          "hair length": "long",
+          "bangs": "none",
+          "hair texture": "fine",
+          "hair volume": "moderate",
+          "parting": "center part",
+          "armor coverage": "balanced"
+        },
+        "sp": "Use the attached corrected anthropomorphization as the identity and equipment reference. Preserve this same adult woman, facial geometry, long black hair and physique, plus the Gelgoog Jaeger armor and beam machine gun, forearm beam spot guns and paired backpack propellant tanks. Render the entire image as the selected cel anime style with crisp linework and limited flat shadow shapes, including the face, hair and all mechanical surfaces. Do not copy the reference rendering. Pose and view remain AUTO; keep the full figure and equipment within clear margins."
+      },
+      "g": "female",
+      "t": 1789042872172
+    }
+  },
+  "used": {
+    "겔구그J": [
+      {
+        "cat": "everyday_sensual",
+        "ex": "balcony_plants",
+        "n": 1,
+        "t": 1789042856430
+      },
+      {
+        "cat": "occupation_basic",
+        "ex": "archive_restorer",
+        "n": 1,
+        "t": 1789042676697
+      }
+    ]
+  }
+}
