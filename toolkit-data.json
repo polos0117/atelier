@@ -1537,6 +1537,290 @@
       },
       "g": "female",
       "t": 1789044713404
+    },
+    "짐 커맨드": {
+      "female": {
+        "sel": {
+          "apparent age": "30s",
+          "facial ethnicity": "Japanese",
+          "body type": "tall and lean",
+          "height impression": "tall",
+          "facial character": "refined",
+          "face shape": "elongated",
+          "eye shape": "narrow",
+          "jaw & chin": "balanced jawline",
+          "eye size": "small",
+          "nose character": "straight slender bridge",
+          "lips": "fuller lower lip",
+          "skin tone": "light",
+          "hair color": "silver",
+          "hairstyle": "braid",
+          "hair length": "long",
+          "bangs": "side-swept bangs",
+          "armor coverage": "balanced"
+        },
+        "sp": "Use the attached corrected armored adult woman as the identity and equipment reference. Preserve her long silver single braid, mature elongated face, narrow eyes, straight brows, tall lean physique, ivory and charcoal RGM-79G armor with restrained red accents, compact bullpup machine gun, left forearm Command shield, compact backpack and rear-waist beam sabers. Render every part in the selected game keyart 2.5D style; do not copy the reference rendering. Pose, view and staging remain AUTO and may differ from the reference. Keep the complete figure and all equipment inside the frame. No lettering, typography, numbers, logos or emblems anywhere. Single 1024 x 1536 image. Rendering correction: the reference is for WHO and equipment geometry only. Repaint from scratch as unmistakable premium Japanese mobile-game 2.5D illustrated key art: simplified anime-informed adult face preserving its elongated shape and narrow eyes, luminous smooth skin, broad clean gradient shading, grouped silver hair locks with glossy painted bands, clean ivory armor with strongly designed stylized reflections and minimal wear, selective cool teal accent light. Remove the distressed photoreal scratched surface treatment and sombre brown photographic rendering. This must be a clearly visible rendering transformation, not a relighting of the reference. Keep adult identity and all gear; pose/view still AUTO."
+      },
+      "g": "female",
+      "t": 1789047188630
+    },
+    "건담 쓰로네 쯔바이": {
+      "female": {
+        "sel": {
+          "apparent age": "30s",
+          "facial ethnicity": "Korean",
+          "human-mechanical balance": "balanced",
+          "body type": "curvy",
+          "height impression": "tall",
+          "leg proportion": "long",
+          "facial character": "cool",
+          "face shape": "heart-shaped",
+          "eye shape": "upturned",
+          "eye color": "amber",
+          "jaw & chin": "narrow tapered chin",
+          "eye size": "medium",
+          "nose character": "rounded soft tip",
+          "lips": "bow-shaped upper lip",
+          "skin tone": "light",
+          "hair color": "crimson",
+          "hairstyle": "asymmetric cut",
+          "hair length": "short",
+          "bangs": "asymmetric bangs",
+          "armor coverage": "open",
+          "lower-body treatment": "split armored skirt",
+          "silhouette character": "aggressive",
+          "equipment emphasis": "main weapon"
+        },
+        "sp": "Design the open armor as an intentional adult mecha-fashion silhouette: bare shoulder caps and collarbones between detached shoulder armor and a structured opaque crimson chest piece, visible side-waist cutouts and a short midriff, and exposed upper thighs between compact split hip armor and articulated knee-high greaves. These openings must remain visible rather than being filled with a black full-body undersuit. Preserve elegant curvy adult proportions, not a bulky sealed suit. Keep the chest and pelvis securely covered with opaque fitted components. Preserve the GNW-002 Throne Zwei identity: dark crimson/red angular armor, pale gray structural panels, orange-red GN accents, its huge broad solid GN Buster Sword, paired hip-mounted GN Fang containers and the compact GN Tau backpack. One sword only, all equipment within the frame; do not add a generic shield or another Gundam's wings. Pose and view remain AUTO. Original adult woman, not the pilot. Single 1024 x 1536 image, no text or logos. Use the attached first anthropomorphization as the exact adult identity and equipment reference. Preserve her short asymmetrical crimson hair, amber eyes, heart-shaped adult face, curvy tall physique, open armor cutouts, hip containers and the one large sword. Translate all rendering into the selected flat cel-animation style. Pose and view remain AUTO; choose a fresh composition rather than tracing the reference pose."
+      },
+      "g": "female",
+      "t": 1789049342505
+    },
+    "리오": {
+      "female": {
+        "sel": {
+          "apparent age": "20s",
+          "facial ethnicity": "Japanese",
+          "body type": "athletic",
+          "height impression": "average",
+          "facial character": "friendly",
+          "face shape": "softly rounded",
+          "eye shape": "almond",
+          "eye color": "amber",
+          "nose character": "rounded soft tip",
+          "lips": "wide mouth",
+          "skin tone": "medium",
+          "hair color": "green",
+          "hairstyle": "pixie cut",
+          "hair length": "very short",
+          "bangs": "choppy bangs",
+          "armor coverage": "open",
+          "lower-body treatment": "split armored skirt",
+          "silhouette character": "tactical"
+        },
+        "sp": "OZ-06MS Leo, olive-green rounded shoulder armor, compact squared yellow sensor motif translated into a small temple ornament, simple torso panels, cylindrical limb armor, compact backpack, one drum-fed machine gun and a small shoulder-mounted shield. No Gundam V-fin. Adult open armor silhouette: bare upper arms, a clear short midriff between cropped chest armor and secure high-waisted armored shorts, upper thighs visible above heavy calf greaves. Preserve robust rounded Leo geometry but avoid a sealed bodysuit. Opaque chest and pelvis coverage. Pose and view AUTO. No text, no logos. Full figure and equipment in frame, 1024 x 1536. Use the attached first adult anthropomorphization as identity and equipment reference. Preserve face, hair, adult age, body and open armor design while rebuilding the entire rendering in the selected art style. Pose and view remain AUTO and may differ from the reference."
+      },
+      "g": "female",
+      "t": 1789051277599
+    },
+    "스트라이크": {
+      "female": {
+        "sel": {
+          "apparent age": "20s",
+          "facial ethnicity": "Korean",
+          "body type": "hourglass",
+          "height impression": "tall",
+          "leg proportion": "long",
+          "facial character": "cheerful",
+          "face shape": "oval",
+          "eye shape": "large",
+          "eye color": "blue",
+          "nose character": "small delicate nose",
+          "lips": "bow-shaped upper lip",
+          "skin tone": "light",
+          "hair color": "navy",
+          "hairstyle": "high ponytail",
+          "hair length": "long",
+          "bangs": "curtain bangs",
+          "armor coverage": "open",
+          "lower-body treatment": "split armored skirt",
+          "silhouette character": "aerodynamic"
+        },
+        "sp": "GAT-X105 Strike Gundam in its base configuration, white angular armor, navy-blue chest, red waist and feet accents, restrained yellow vents and V-fin integrated above an unobstructed human face. One beam rifle in right hand and the canonical red/white shield on left forearm; compact bare Striker-pack attachment at back, no Aile wings or unrelated giant backpack. Two compact hip knife housings. Adult fashion silhouette with intact canonical full-size box-shaped shoulder armor and only small visible upper-arm gaps beneath it, shaped opaque navy chest armor, small geometric side-waist openings and visible upper thighs between short split hip plates and white knee greaves. Keep recognizable Strike proportions, no giant flowing skirt. Pose and view AUTO. 1024 x 1536 full body and all equipment in frame, no text. SHOULDER CORRECTION IS ESSENTIAL: retain both large white angular Strike shoulder pauldrons, with the full broad box-like outer shells, projecting upper plates and dark inset panel geometry. Position them at shoulder height around the deltoids, not halfway down the arms. Do not shrink them into tiny arm bands, remove the top shells, or expose bare shoulder caps. Human skin may show at the underarm articulation below each pauldron. Keep the shoulder silhouette instantly recognizable as Strike. The attached image supplies the same adult face, navy ponytail, body, rifle and shield; redesign only the shoulder armor to this specification. Use the attached first adult anthropomorphization as identity and equipment reference. Preserve face, hair, adult age, body and open armor design while rebuilding the entire rendering in the selected art style. Pose and view remain AUTO and may differ from the reference."
+      },
+      "g": "female",
+      "t": 1789052237517
+    },
+    "그레이즈": {
+      "female": {
+        "sel": {
+          "apparent age": "40s",
+          "facial ethnicity": "Japanese",
+          "body type": "muscular",
+          "height impression": "tall",
+          "shoulder build": "broad",
+          "facial character": "mature",
+          "face shape": "angular",
+          "eye shape": "narrow",
+          "eye color": "gray",
+          "jaw & chin": "angular defined jaw",
+          "nose character": "prominent defined nose",
+          "lips": "medium lips",
+          "skin tone": "tan",
+          "hair color": "black",
+          "hairstyle": "slicked back",
+          "hair length": "short",
+          "bangs": "none",
+          "armor coverage": "open",
+          "lower-body treatment": "layered plates",
+          "silhouette character": "heavy"
+        },
+        "sp": "EB-06 standard Graze with olive-green armor, exposed charcoal mechanical frame, recognizable blocky shoulders, curved chest armor and small spherical sensor-inspired hair ornament. One heavy battle axe held and one compact rifle stowed on a proper side hardpoint, compact backpack thrusters. Human adult woman with athletic mature facial lines and solid musculature. Preserve a protected central torso but preserve full-size original shoulder shells and expose only some upper arms beneath them and broad outer-thigh sections; short angular hip plates and heavy shin armor. No full-body black undersuit filling these deliberate openings. Opaque fitted chest and pelvis armor, no flowing skirt. Pose and view AUTO; complete equipment inside 1024 x 1536 image, no lettering. Use the attached first adult anthropomorphization as identity and equipment reference. Preserve face, hair, adult age, body and open armor design while rebuilding the entire rendering in the selected art style. Pose and view remain AUTO and may differ from the reference."
+      },
+      "g": "female",
+      "t": 1789053065339
+    },
+    "데미 트레이너": {
+      "female": {
+        "sel": {
+          "apparent age": "20s",
+          "facial ethnicity": "Southeast Asian",
+          "body type": "pear-shaped",
+          "height impression": "short",
+          "facial character": "cheerful",
+          "face shape": "compact",
+          "eye shape": "drooping",
+          "eye color": "brown",
+          "jaw & chin": "soft rounded jaw",
+          "nose character": "rounded soft tip",
+          "lips": "full lips",
+          "skin tone": "medium",
+          "hair color": "mint",
+          "hairstyle": "bob",
+          "hair length": "short",
+          "bangs": "parted bangs",
+          "armor coverage": "open",
+          "lower-body treatment": "armored skirt",
+          "silhouette character": "minimal"
+        }
+      },
+      "g": "female",
+      "t": 1789072020992
+    },
+    "진": {
+      "female": {
+        "sel": {
+          "apparent age": "20s",
+          "armor coverage": "open",
+          "bangs": "side-swept bangs",
+          "body type": "athletic",
+          "eye color": "amber",
+          "eye shape": "narrow",
+          "face shape": "angular",
+          "facial character": "cool",
+          "facial ethnicity": "Central Asian",
+          "hair color": "red",
+          "hair length": "long",
+          "hairstyle": "braid",
+          "height impression": "tall",
+          "human-mechanical balance": "balanced",
+          "skin tone": "light"
+        },
+        "sp": "ZGMF-1017 GINN, standard gray ZAFT mass-production colors: preserve the swept head crest, broad angular shoulder shells, orange chest details, large paired swept backpack thrusters, heavy assault machine gun and physical heavy sword; no Gundam V-fin or robot face. Retain the complete recognizable shoulder armor shape; let only parts of the shoulders and upper arms show beneath its edges. Open waist sections and upper-thigh gaps give the armor a confident adult fashion silhouette while chest and pelvis remain covered by opaque armor. Distinct high cheekbones, straight low-set brows and a subtly asymmetric mouth. If an anthropomorphized reference is attached, preserve her exact facial identity, red braid, amber eyes, adult age and body proportions across styles; pose and viewpoint remain AUTO. Framing correction: leave 12 percent empty space above the COMPLETE tip of the tall head antenna; reduce the figure scale to fit every part of the antenna and both feet. Preserve all armor openness and body design."
+      },
+      "g": "female"
+    },
+    "자쿠 워리어": {
+      "female": {
+        "sel": {
+          "apparent age": "40s",
+          "armor coverage": "open",
+          "bangs": "side-swept bangs",
+          "body type": "statuesque",
+          "eye color": "purple",
+          "eye shape": "almond",
+          "face shape": "elongated",
+          "facial character": "mature",
+          "facial ethnicity": "Japanese",
+          "hair color": "platinum",
+          "hair length": "medium",
+          "hairstyle": "wavy",
+          "height impression": "tall",
+          "human-mechanical balance": "balanced",
+          "skin tone": "light"
+        },
+        "sp": "Fictional original adult character, no real person or pilot likeness. Standard ZGMF-1000 ZAKU Warrior: olive-green and pale-green armor with dark joints, prominent spiked shoulder shield, thick curved shoulder shells, waist power cables, beam assault rifle and beam tomahawk. Keep the actual shoulder armor and shoulder shield silhouettes intact; reveal small shoulder/upper-arm areas only beneath their edges. Open waist sections and upper thighs, secure opaque chest and pelvis coverage. An elegant elongated adult face with visible mature cheek planes and subtle smile lines, straight nose and a wider relaxed mouth; human ears and human eyes, no robot mask. If a character reference is attached, retain the same face, platinum waves, violet eyes, age and physique across styles; pose and viewpoint remain AUTO. Entire head, equipment and feet inside frame with generous margins. Plain unmarked shield and armor, no faction emblem or insignia."
+      },
+      "g": "female"
+    },
+    "티에렌 지상형": {
+      "female": {
+        "sel": {
+          "apparent age": "20s",
+          "armor coverage": "open",
+          "bangs": "choppy bangs",
+          "body type": "stocky",
+          "eye color": "amber",
+          "eye shape": "narrow",
+          "face shape": "angular",
+          "facial character": "stoic",
+          "facial ethnicity": "Central Asian",
+          "hair color": "black",
+          "hair length": "short",
+          "hairstyle": "pixie cut",
+          "height impression": "short",
+          "human-mechanical balance": "balanced",
+          "skin tone": "tan"
+        },
+        "sp": "Fictional original adult character, no real person or pilot likeness. MSJ-06II-A Tieren Ground Type: rugged olive-drab blocky armor, thick cylindrical shoulder shells, massive squared lower-leg armor and broad flat feet, small pink sensor ornament above a fully human face. Preserve the characteristic long 200mm smoothbore gun on the right forearm and prominent rectangular left-leg shield; no beam rifle, no Zaku spikes, no Gundam V-fin. Keep heavy shoulder armor intact, with small upper-arm skin gaps beneath the shells. Open waist and upper-thigh sections with opaque secure chest and pelvis armor. Broad angular jaw, low straight brows, narrow amber eyes, small asymmetrical corner smile and a broad rounded nose tip. Human ears. A compact adult powerlifter silhouette, visibly strong thighs and short sturdy proportions. If a character reference is attached preserve her exact face, black pixie cut, tan skin and physique across styles; pose and viewpoint stay AUTO. Entire head, feet and long gun within frame, plain unmarked armor."
+      },
+      "g": "female"
+    },
+    "어헤드": {
+      "female": {
+        "sel": {
+          "apparent age": "30s",
+          "armor coverage": "open",
+          "bangs": "none",
+          "body type": "curvy",
+          "eye color": "teal",
+          "eye shape": "upturned",
+          "face shape": "heart-shaped",
+          "facial character": "regal",
+          "facial ethnicity": "Southeast Asian",
+          "hair color": "black",
+          "hair length": "long",
+          "hairstyle": "braid",
+          "height impression": "tall",
+          "human-mechanical balance": "balanced",
+          "skin tone": "medium"
+        },
+        "sp": "Original fictional adult human interpretation of the standard GNX-704T Ahead, not a named pilot or real person. Preserve its dark crimson and burnt-red armor, bulky rounded shoulder housings, broad chest geometry and GN drive backpack, standard GN beam rifle and compact GN shield on the left forearm. No Sakigake samurai equipment, no Smultron variant, no Zaku spikes or Gundam V-fin. Shoulder armor stays intact; a little upper arm is visible beneath its lower edge. Open side-waist gaps and upper thighs, opaque securely fitted chest and pelvis armor. Fully human face and human ears. Distinct broad forehead, pronounced high cheekbones, short rounded chin and full lower lip; one long thick black braid down the back, face unobstructed. If a generated character reference is attached, keep that same face, age, hair and physique while the chosen art style governs rendering. Pose, viewpoint and equipment presentation remain AUTO. Entire silhouette, feet, rifle and backpack contained inside the frame. No lettering or faction logos."
+      },
+      "g": "female"
+    },
+    "시덴": {
+      "female": {
+        "sel": {
+          "apparent age": "40s",
+          "armor coverage": "open",
+          "bangs": "side-swept bangs",
+          "body type": "athletic",
+          "eye color": "brown",
+          "eye shape": "drooping",
+          "face shape": "oval",
+          "facial character": "friendly",
+          "facial ethnicity": "Korean",
+          "hair color": "lavender",
+          "hair length": "short",
+          "hairstyle": "asymmetric cut",
+          "height impression": "average",
+          "human-mechanical balance": "balanced",
+          "skin tone": "light"
+        },
+        "sp": "Original fictional adult interpretation of the standard STH-16 Shiden, not a named pilot or real person. Retain the stock Shiden muted rose-red and gray armor, blocky rounded shoulder shells, broad squared chest, exposed dark industrial frame and utilitarian armored boots. Standard ballistic rifle, riot shield on the left forearm and compact partisan melee weapon mounted on the backpack, all mechanically attached and clearly readable. No Orga white variant, no Ryusei-Go magenta custom, no beam saber or Gundam V-fin. Keep both shoulder armor shells intact with only small skin gaps below their edges; open side-waist and upper thighs with securely fitted opaque chest and pelvis armor. A friendly adult face with softly full cheeks, a broad lower jaw within the oval face, subtle crow feet, defined smile lines, a rounded nose tip and wide relaxed mouth. Human ears and human eyes, no robot facial mask. Short asymmetrical lavender hair tucked behind one ear. If a generated character reference is attached preserve the exact same person and mature age; pose, viewpoint and equipment presentation remain AUTO. Full head, feet and weapons inside frame with margins. Unmarked armor, no text or logos. Framing correction: the complete backpack-mounted partisan spear tip must have a clearly visible empty margin above it, at least 8 percent of image height. Reduce the entire figure and equipment together to fit; do not cut the weapon or alter the person, armor or exposure."
+      },
+      "g": "female"
     }
   },
   "note": "prompt.html 의 '기록 내보내기' 결과를 이 파일에 덮어쓴다. style 은 기체별 화풍이며 기본값(cinematic_semi_real)이라도 적는다 — 판정해서 고른 값인지 안 골라서 흘러든 값인지 구분해야 하기 때문이다(v9.17 전에는 기본값을 빼서 내보낼 때마다 손으로 적어 둔 것이 사라졌다). semi_real_paint 로 잡힌 152 기는 화풍 구분이 생기기 전에 일괄로 채운 값이라 그대로 둔다. 이 머리말도 내보내기가 챙겨 넣는다.",
@@ -3242,7 +3526,105 @@
         "n": 1,
         "t": 1789044651280
       }
+    ],
+    "짐 커맨드": [
+      {
+        "cat": "everyday_sensual",
+        "ex": "late_snack",
+        "n": 1,
+        "t": 1789047293984
+      },
+      {
+        "cat": "swimwear",
+        "ex": "rooftop_infinity_pool",
+        "n": 1,
+        "t": 1789047004001
+      }
+    ],
+    "건담 쓰로네 쯔바이": [
+      {
+        "cat": "swimwear",
+        "ex": "shoreline_walk",
+        "n": 1,
+        "t": 1789049451560
+      },
+      {
+        "cat": "everyday_sensual",
+        "ex": "",
+        "n": 1,
+        "t": 1789049271130
+      }
+    ],
+    "리오": [
+      {
+        "cat": "active",
+        "ex": "",
+        "n": 1,
+        "t": 1789051374107
+      },
+      {
+        "cat": "everyday_sensual",
+        "ex": "",
+        "n": 1,
+        "t": 1789051202502
+      }
+    ],
+    "스트라이크": [
+      {
+        "cat": "private_evening",
+        "ex": "",
+        "n": 2,
+        "t": 1789052516649
+      },
+      {
+        "cat": "everyday_sensual",
+        "ex": "",
+        "n": 2,
+        "t": 1789052172074
+      }
+    ],
+    "그레이즈": [
+      {
+        "cat": "homewear",
+        "ex": "",
+        "n": 1,
+        "t": 1789053216924
+      },
+      {
+        "cat": "everyday_basic",
+        "ex": "",
+        "n": 1,
+        "t": 1789052915828
+      }
+    ],
+    "데미 트레이너": [
+      {
+        "cat": "swimwear",
+        "ex": "",
+        "n": 1,
+        "t": 1789072075203
+      }
     ]
   },
-  "version": 1
+  "version": 1,
+  "_recovery": {
+    "status": "reconstructed_from_saved_UI_selections_not_successful_generator_export",
+    "description": "기존 통합 설정을 보존하고 이 대화의 5기 실제 UI 선택값과 추가 지시를 합친 복원본입니다. 생성기의 기록 내보내기는 실패했습니다.",
+    "added_cards": [
+      "진",
+      "자쿠 워리어",
+      "티에렌 지상형",
+      "어헤드",
+      "시덴"
+    ],
+    "sources": [
+      "docs/generation/2026-09-11-ginn/selection-snapshot.json",
+      "docs/generation/2026-09-11-zaku-warrior/selection-snapshot.json",
+      "docs/generation/2026-09-11-tieren-ground/selection-snapshot.json",
+      "docs/generation/2026-09-11-ahead/selection-snapshot.json",
+      "docs/generation/2026-09-11-shiden/selection-snapshot.json"
+    ],
+    "used_history": "기존 used 이력만 보존. 새 작업의 복사 이력과 기록 시각은 추정하지 않았습니다.",
+    "base_updated": "2026-09-10"
+  }
 }
