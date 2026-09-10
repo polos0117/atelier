@@ -538,5 +538,41 @@
     "sha256": "050aee6eb196c0ee4867b45c05af8cc46cf873a7239aa4cf9a654c655d7fdb20",
     "prompt": "docs/generation/2026-09-10-greenframe/04-ink-casual.txt",
     "manifest": "docs/generation/2026-09-10-greenframe/manifest.json"
+  },
+  "즈고크_E_cinematic_semi_real_f.webp": {
+    "card": "즈고크 E",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "05140ee521acc1bce3d339d95f2d8ae55948ccbd3b5f4585e7d562e08c8d5372",
+    "prompt": "docs/generation/2026-09-10-zgok-e/01-cinematic-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-zgok-e/manifest.json"
+  },
+  "즈고크_E_cinematic_semi_real_f_casual1.webp": {
+    "card": "즈고크 E",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "2d5c0cd17b0ef53bc0e7a0fb686f7b30814247c6cfe45e63bb7fb191b43359b7",
+    "prompt": "docs/generation/2026-09-10-zgok-e/02b-cinematic-casual-final.txt",
+    "manifest": "docs/generation/2026-09-10-zgok-e/manifest.json"
+  },
+  "즈고크_E_game_keyart_f.webp": {
+    "card": "즈고크 E",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "1bb2832687842902acc069654495a14cb35d03c86ba51fcdbb5e53a05d7c043b",
+    "prompt": "docs/generation/2026-09-10-zgok-e/03b-game-anthro-final.txt",
+    "manifest": "docs/generation/2026-09-10-zgok-e/manifest.json"
+  },
+  "즈고크_E_game_keyart_f_casual1.webp": {
+    "card": "즈고크 E",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "e979e8476b6ff6d1e9cde286fc2f0d71bb6b9cf2c61b8c32cb8d0758255c2a9d",
+    "prompt": "docs/generation/2026-09-10-zgok-e/04-game-casual.txt",
+    "manifest": "docs/generation/2026-09-10-zgok-e/manifest.json"
   }
 }
