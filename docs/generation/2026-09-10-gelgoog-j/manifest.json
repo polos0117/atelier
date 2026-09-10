@@ -1,0 +1,134 @@
+{
+  "repository": "polos0117/atelier",
+  "branch": "codex/next-mobile-suit",
+  "base_commit": "a3d3193a36569de65c2f5f16f82a60e233bc8373",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "generator": "built-in image_gen",
+  "selection_first": true,
+  "assets": [
+    {
+      "id": 1,
+      "card": "겔구그J",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "겔구그J_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "9d595ebb3b52e1369df719ab789dcbef2f95122c6984df9c9040fb61cd6e2198",
+      "original_generation_id": "exec-7c12d565-7f9e-4448-bc29-e60be000efaf",
+      "original_sha256": "f97edd97f1b06420d89756ebddd185a4f62d6a6a82648af6c79c7df7ddaddada",
+      "prompt": "01b-cinematic-anthro-final.txt",
+      "reference_ids": [
+        "draft-1"
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 2,
+      "card": "겔구그J",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "file": "겔구그J_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "d2cf41f6d95390554ecf0ef27f05e957327922d678fd7d72d5709480ef4cc055",
+      "original_generation_id": "exec-1e8f9821-089b-4424-87b6-85be3941ea0e",
+      "original_sha256": "813468a416d75f207dac57835970d5251ec4f1d3684dfd0b68720e50fc3c2f93",
+      "prompt": "02b-cinematic-casual-final.txt",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 3,
+      "card": "겔구그J",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "겔구그J_cel_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "f7f50fc1ca5bbb8eb77ed2dff93132a750cdb59a27758f4d96e7197e4ad5408a",
+      "original_generation_id": "exec-3720d629-7ce0-42c5-b0e6-bb386b6297bd",
+      "original_sha256": "616bffb99945e4d6b16594cb7a0276909577f4995be616375a1bf460c292d896",
+      "prompt": "03-cel-anthro.txt",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 4,
+      "card": "겔구그J",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "file": "겔구그J_cel_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "bd3756c8f3b0510b85fa097c5048032a55b22af285076d4ad8c27a7504cdf189",
+      "original_generation_id": "exec-6f31c692-4eff-479d-8717-90e9bfdb427e",
+      "original_sha256": "0570befe0d510db42a5d5cd63d08157907653699cb91270d8da476b6f4eeddbf",
+      "prompt": "04-cel-casual.txt",
+      "reference_ids": [
+        3
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    }
+  ],
+  "attempts": [
+    {
+      "id": "draft-1",
+      "prompt": "01-cinematic-anthro.txt",
+      "generation_id": "exec-1a2ac3d6-23ed-4faf-a3cd-e960744df341",
+      "selected": false,
+      "reason": "Shield and dorsal fin removed; forearm beam guns and propellant tanks added after equipment review."
+    },
+    {
+      "id": "draft-2",
+      "prompt": "02-cinematic-casual.txt",
+      "generation_id": "exec-6f201010-f954-4030-b19a-b72647a85ff1",
+      "reference_ids": [
+        1
+      ],
+      "selected": false,
+      "reason": "Removed mobile suit in background and corrected gaze toward restoration work."
+    }
+  ],
+  "equipment_review_source": "https://www.mahq.net/ms-14jg/",
+  "record_export": {
+    "completed": true,
+    "selected_parameter_count": 27,
+    "merged_cards": [
+      "겔구그J"
+    ]
+  },
+  "review_notes": [
+    "All 4 final images visually reviewed. Full anthro equipment is inside frame. Both anthro pose/view settings were AUTO, but resulting poses are similar.",
+    "Human identity remains consistent; apparent age is younger-looking than selected 40s, while clearly adult.",
+    "Equipment corrected based on MAHQ text reference; no original mechanical artwork was attached. Exact armor geometry remains an anthropomorphic interpretation.",
+    "Restoration image gaze follows the work after retry. Balcony image is a distinct standing rear-three-quarter scene.",
+    "Final WebPs and submitted prompts are preserved in the repository; original PNG paths are transient.",
+    "Roster has a separate older card named 겔구그 예거 assigned to 0083. This set is registered to the explicitly selected 0080 MS-14JG card 겔구그J; roster identity metadata was not changed."
+  ]
+}

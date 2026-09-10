@@ -1,0 +1,91 @@
+{
+  "repository": "polos0117/atelier",
+  "branch": "codex/barbatos-lupus-images",
+  "base_commit": "463fa9273d4102f73143049b7cebf6162ef01df2",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_version": "v9.18",
+  "generator": "built-in image_gen",
+  "assets": [
+    {
+      "id": 1,
+      "card": "건담 발바토스 루프스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "건담_발바토스_루프스_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "e3c3e5c8a57f91b952b7da770b59572803417d39783d70ca169b3fb8e128b3d2",
+      "blob_sha": "96dda1eb3aab4961d95849cc4c1558fde8b9b939",
+      "original_generation_id": "exec-1d0b6c15-6bac-4511-9048-052214a9d434",
+      "original_sha256": "257a8ffb6d1cc8c9a1f834f3745bcb430a8ede8e49867802985f0e39dfff37cc",
+      "prompt": "01-cinematic-anthro.txt",
+      "reference_id": null,
+      "generated": true,
+      "converted": true
+    },
+    {
+      "id": 2,
+      "card": "건담 발바토스 루프스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "file": "건담_발바토스_루프스_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "64e1e89e9b7f3c8fd9e46c06f4c790e99564b892906c6b18cc03e0214f68f3d2",
+      "blob_sha": "d0b3d590eb3054435521603a27dae87de0c30c47",
+      "original_generation_id": "exec-6a127a5d-ed0e-45b1-ac08-3011af7660c3",
+      "original_sha256": "f44a1edcadfd9bdac8af4a12a2d8ce5d448056ab184f9f3af834bab65c1132cd",
+      "prompt": "02-cinematic-casual.txt",
+      "reference_id": 1,
+      "generated": true,
+      "converted": true
+    },
+    {
+      "id": 3,
+      "card": "건담 발바토스 루프스",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "건담_발바토스_루프스_anime_illust_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "de9c60e62487a37e385fd54819a3a33d59c38af0b964cc3d8779c231e519aa5b",
+      "blob_sha": "907f9e0753ec4b4dd4851bd01a827d9d457909df",
+      "original_generation_id": "exec-3fe23473-0636-4468-9205-b134003ab465",
+      "original_sha256": "e00bfd561719b4f2664e4d844c73a92e09cd66b31485aa3931d21f4b80ff0eb9",
+      "prompt": "03-anime-anthro.txt",
+      "reference_id": 1,
+      "generated": true,
+      "converted": true
+    },
+    {
+      "id": 4,
+      "card": "건담 발바토스 루프스",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "casual",
+      "file": "건담_발바토스_루프스_anime_illust_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "4b0945bedd633d9c141eefebcd0d08934a143792c70c06ba29f5004d983da437",
+      "blob_sha": "6b93de092f6fea932f3871fab91eb7c1cca9c59e",
+      "original_generation_id": "exec-3eb13c02-1b91-4bff-92c7-b72f262a17b5",
+      "original_sha256": "b48b26bdb0cb4ed08bc55ea0930ad765acf694ac2adb6e39b7be133aff6693ac",
+      "prompt": "04-anime-casual.txt",
+      "reference_id": 3,
+      "generated": true,
+      "converted": true
+    }
+  ],
+  "note": "Exact submitted prompts and final WebP assets preserved. Original PNG scratch paths are transient. Barbatos Lupus is separate from existing Barbatos and Lupus Rex cards. Identity, equipment framing and lifestyle pairings visually reviewed. Canonical equipment fidelity not independently verified against a source design image; workshop gaze differs from prompt. Live deployed dex screen not checked. Commit and remote state verified separately."
+}

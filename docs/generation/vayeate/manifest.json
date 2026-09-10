@@ -1,0 +1,97 @@
+{
+  "repository": "polos0117/atelier",
+  "branch": "codex/vayeate-images",
+  "base_commit": "a7f57f276aaaa73db5e6a8709b1bab92d54607bc",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_version": "v9.18",
+  "deployed_prompt_matched_base": true,
+  "generator": "built-in image_gen",
+  "assets": [
+    {
+      "id": 1,
+      "card": "바이에이트",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "바이에이트_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "1c91146434d99c08ab87018be81a7f72e44718047735ff1d1704edcb7d7f4300",
+      "blob_sha": "e1a34b14bf700a1ee989b97cca3ee180eef3edaa",
+      "original_generation_id": "exec-5e6be052-aec6-432b-82cb-491c598e1fbc",
+      "original_sha256": "f3bf990f6fdbecaba107f66d9da080f59512a26fc709bb0edf259f79dd37fa5a",
+      "prompt": "01-cinematic-anthro.txt",
+      "reference_id": null,
+      "generated": true,
+      "converted": true,
+      "registration_verified": true
+    },
+    {
+      "id": 2,
+      "card": "바이에이트",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "file": "바이에이트_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "5dbb7ec7deb90cc9bbfddf49a8dfa1e6142943e7c2bb2469681dd21fd486270c",
+      "blob_sha": "64fab8fd5b2174a7c19fbd25d076631c7d393f16",
+      "original_generation_id": "exec-d8edf5c0-dcdb-492e-aea8-024144ff88ac",
+      "original_sha256": "214e3dcaec566c5c0c334df8da0a94ea4af718b57b4812f9f8cc2343f9732270",
+      "prompt": "02-cinematic-casual.txt",
+      "reference_id": 1,
+      "generated": true,
+      "converted": true,
+      "registration_verified": true
+    },
+    {
+      "id": 3,
+      "card": "바이에이트",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "바이에이트_cel_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "78811857395d458e398b1a37f89b473c9555df9dd23bcfecdb57c46d8057117f",
+      "blob_sha": "314f30aad2fd5c8bd4ed3455e4a445f6dd6db21a",
+      "original_generation_id": "exec-7caeee83-9436-4e62-a669-2bda3104e694",
+      "original_sha256": "438d428cfd095711da914ffc5f9a01dde2ab2ff9b07e5d90a2d8a0945299ff1d",
+      "prompt": "03-cel-anthro.txt",
+      "reference_id": 1,
+      "generated": true,
+      "converted": true,
+      "registration_verified": true
+    },
+    {
+      "id": 4,
+      "card": "바이에이트",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "file": "바이에이트_cel_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "95053b964382bbf4140180a65d4dd5ba2b94d60cc472833fce862b925ae6792a",
+      "blob_sha": "9bed2e128b6be12cf029274bd497232894c74574",
+      "original_generation_id": "exec-5da51bb9-d77e-4759-8954-cdfbef1ed01d",
+      "original_sha256": "a47299280a62bc4a4ec9730801ddc5d2616bdfc37862c0bf78cdbfd53281e2ea",
+      "prompt": "04-cel-casual.txt",
+      "reference_id": 3,
+      "generated": true,
+      "converted": true,
+      "registration_verified": true
+    }
+  ],
+  "status_note": "Generated and converted 4/4; registration check passed with zero remaining candidates and no missing files. Commit/remote/PR status must be checked separately. Original PNG paths are transient; final WebP assets and exact submitted prompts are preserved in the repository.",
+  "visual_notes": "Identity, two rendering styles and lifestyle reference links visually reviewed. Anthro renders include OZ markings despite the prompt requesting no text. No canonical source image was supplied; equipment fidelity has not been independently verified. Live dex screen not checked."
+}

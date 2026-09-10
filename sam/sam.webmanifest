@@ -1,0 +1,24 @@
+{
+  "name": "삼국지 드래프트 — 竹簡",
+  "short_name": "竹簡",
+  "description": "삼국지 인물 드래프트",
+  "id": "../sam.html",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#17130F",
+  "theme_color": "#17130F",
+  "lang": "ko",
+  "icons": [
+    {
+      "src": "icons/icon-sam-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-sam-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

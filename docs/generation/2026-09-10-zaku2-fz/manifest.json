@@ -1,0 +1,109 @@
+{
+  "repository": "polos0117/atelier",
+  "branch": "codex/zaku2-fz-images",
+  "base_commit": "e51ec712e9c013c9e6e526e6ea2a43452e60d880",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "generator": "built-in image_gen",
+  "selection_first": true,
+  "assets": [
+    {
+      "id": 1,
+      "card": "자쿠Ⅱ 개량형",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "자쿠Ⅱ 개량형_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "b6debd771f5e867bf93d97388f90e6c75cbfeb5d7effdd361df8789ca19ca68f",
+      "original_generation_id": "exec-4af49138-3585-4cd3-bb66-aad045245ebd",
+      "original_sha256": "6811ebaa91c22eb31d5dc6efc65d9ef04c803da88620e6b7de714f3e266cabbb",
+      "prompt": "01-cinematic-anthro.txt",
+      "reference_ids": [],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 2,
+      "card": "자쿠Ⅱ 개량형",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "file": "자쿠Ⅱ 개량형_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "d5b9f04c0575dbeb3caf4ae5d75a8da2dc538f23bd2d1da5e3c18dfb0bdba9cd",
+      "original_generation_id": "exec-573fea67-1551-4ede-ba72-58ffe9278ebb",
+      "original_sha256": "6952a33fd7c97295f16f431d78be4d1b75f88fe421288eb792bf7d54135ef5c9",
+      "prompt": "02-cinematic-casual.txt",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 3,
+      "card": "자쿠Ⅱ 개량형",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "자쿠Ⅱ 개량형_retro_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "c20f1434481fd399d1efbdb385f6827c6ea84710aa8e952947d2d7d0a05cdf96",
+      "original_generation_id": "exec-8b4ec6b8-6a35-44cb-999b-cab07b5a1036",
+      "original_sha256": "55b0d6d61df0fd9c74c0385f8143ac66f34825b7ce8dff1a0ea2f59cb08315ec",
+      "prompt": "03-retro-anthro.txt",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 4,
+      "card": "자쿠Ⅱ 개량형",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "casual",
+      "file": "자쿠Ⅱ 개량형_retro_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "fdbf028d68c62752fc847fca21e236d4154aa3fce31c427451932d2712c87fe5",
+      "original_generation_id": "exec-f632ad03-4c2d-4ae6-ba6b-12a397f77c49",
+      "original_sha256": "eec9bd898868773dd77052927a6eaa4aff2bebba459a14084cb026075b6e94b5",
+      "prompt": "04-retro-casual.txt",
+      "reference_ids": [
+        3
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    }
+  ],
+  "record_export": {
+    "completed": true,
+    "merged_cards": [
+      "자쿠Ⅱ 개량형"
+    ]
+  },
+  "review_notes": [
+    "All four images visually reviewed; selected pose and view remain AUTO for anthropomorphizations. Output poses are similar.",
+    "No original mobile-suit artwork attached. Armor is an anthropomorphic interpretation. First image has a drum-magazine gun; second-style image requested a compact box-magazine correction.",
+    "Retro anthropomorphization contains incidental ZEON lettering despite the no-text prompt.",
+    "Original PNG files are automatically saved in the conversation; repository preserves final WebPs and exact submitted prompts."
+  ]
+}

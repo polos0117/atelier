@@ -1,0 +1,2924 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>삼국지 드래프트 — 竹簡</title>
+<script>
+(function(){
+ if(location.protocol!=="file:"||location.hash.indexOf("#sam-transfer=")!==0)return;
+ try{
+  var data=JSON.parse(decodeURIComponent(location.hash.slice(14)));
+  ["samgukji_draft_rec_v1","samgukji_draft_cfg_v1","samgukji_draft_game_v2","samgukji_mark_v1"].forEach(function(k){
+   if(typeof data[k]==="string"&&!localStorage.getItem(k)){JSON.parse(data[k]);localStorage.setItem(k,data[k])}
+  });
+  history.replaceState(null,"",location.pathname+location.search);
+ }catch(e){/* The legacy page keeps its original storage if transfer is unavailable. */}
+})();
+</script>
+<!-- 홈 화면에 두면 브라우저가 기록을 걷어가지 못한다 — 모바일에서 전적이 사라지던 까닭 -->
+<link rel="manifest" href="sam.webmanifest">
+<meta name="theme-color" content="#17130F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="竹簡">
+<link rel="apple-touch-icon" href="icons/icon-sam-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+.pg.kin .nm2,.pg.kin .vv{color:#6FA08A}
+.pg.kin .bar i{background:#6FA08A}
+:root{
+  --ink:#17130F; --ink2:#221B15; --ink3:#2E251C;
+  --paper:#E7DCC3; --paper2:#D4C4A2; --paper3:#B8A47E;
+  --gold:#C9A227; --seal:#A81F1A;
+  --f-wei:#3E5C8C; --f-shu:#4F7A4A; --f-wu:#C0472F; --f-etc:#7A6A55;
+  --line:rgba(201,162,39,.22);
+  --display:"Gowun Batang",'Apple SD Gothic Neo',"Nanum Myeongjo",serif;
+  --body:"IBM Plex Sans KR",'Apple SD Gothic Neo',system-ui,sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--ink);
+  background-image:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.014) 0 1px,transparent 1px 7px),
+    radial-gradient(120% 80% at 50% -10%,#2A211A 0%,#17130F 62%);
+  color:var(--paper);
+  font-family:var(--body);
+  min-height:100dvh;
+  padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  overflow-x:hidden;
+}
+.wrap{max-width:560px;margin:0 auto;padding:18px 14px 40px}
+
+/* ── 머리 ── */
+.top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.title{font-family:var(--display);font-weight:700;font-size:26px;letter-spacing:.06em;line-height:1;color:var(--paper)}
+.title small{display:block;font-size:10px;letter-spacing:.42em;color:var(--gold);font-family:var(--body);font-weight:500;margin-bottom:7px}
+.tally{display:flex;gap:5px;align-items:flex-end;height:26px}
+.tally i{width:3px;height:12px;background:var(--paper3);opacity:.3;display:block;border-radius:1px;transition:.35s}
+.tally i.done{opacity:1;background:var(--gold);height:18px}
+.tally i.now{opacity:1;background:var(--seal);height:26px;box-shadow:0 0 10px rgba(168,31,26,.6)}
+
+.totop{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom));z-index:32;
+  right:max(16px,calc(50vw - 264px));
+  width:46px;height:46px;border-radius:50%;
+  border:1.5px solid var(--gold);background:#100C09;color:var(--gold);
+  font-family:var(--display);font-size:20px;font-weight:700;line-height:1;cursor:pointer;
+  box-shadow:0 0 0 3px rgba(16,12,9,.7),0 8px 22px rgba(0,0,0,.65);
+  opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .25s,transform .25s}
+.totop.show{opacity:1;pointer-events:auto;transform:none}
+#totop{bottom:calc(76px + env(safe-area-inset-bottom))}
+.totop:active{background:var(--gold);color:#100C09}
+.helpbtn{flex:none;width:27px;height:27px;border-radius:50%;border:1px solid var(--line);background:transparent;
+  color:var(--gold);font-family:var(--display);font-size:15px;line-height:1;cursor:pointer;transition:.2s}
+.helpbtn:active{background:rgba(201,162,39,.15)}
+
+/* ── 새 대국 설정 ── */
+.srow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px dotted rgba(184,164,126,.16)}
+.srow .sl{font-family:var(--display);font-size:14px;color:var(--paper2)}
+.srow .sl small{display:block;font-size:10px;color:var(--paper3);font-family:var(--body);margin-top:2px;letter-spacing:.02em}
+.srow .opt{flex:0 0 46%;padding:9px 6px}
+.intro{font-family:var(--display);font-size:13px;line-height:1.8;color:var(--paper2);
+  border:1px solid var(--line);border-radius:4px;padding:11px 13px;margin-bottom:16px;background:rgba(201,162,39,.04)}
+.intro b{color:var(--gold);font-weight:700}
+
+/* ── 전적 · 도장 ── */
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px}
+.rcell{border:1px solid var(--line);border-radius:4px;padding:10px 6px;text-align:center;background:rgba(0,0,0,.22)}
+.rcell b{display:block;font-family:var(--display);font-size:22px;font-weight:700;color:var(--paper);font-variant-numeric:tabular-nums}
+.rcell span{display:block;font-size:9px;letter-spacing:.18em;color:var(--paper3);margin-top:3px}
+.stamps{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.stamp{border:1px solid rgba(184,164,126,.2);border-radius:3px;padding:9px 5px;text-align:center;min-height:52px}
+.stamp .sn{font-family:var(--display);font-size:12px;font-weight:700;color:var(--paper2);line-height:1.35}
+.stamp .sc{font-size:9px;color:var(--paper3);margin-top:3px;font-variant-numeric:tabular-nums}
+.stamp.got{border-color:var(--seal);background:rgba(168,31,26,.07)}
+.stamp.got .sn{color:var(--paper)}
+.stamp.got.kin{border-color:#6FA08A;background:rgba(111,160,138,.07)}
+.stamp.no .sn{color:rgba(184,164,126,.34)}
+.stamp.no .sc{color:rgba(184,164,126,.26)}
+
+/* ── 인물 도감 ── */
+.dexbar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;position:sticky;top:0;background:rgba(10,8,6,.96);padding:8px 0;z-index:2}
+.dtab{flex:1 1 18%;padding:8px 4px;font-family:var(--display);font-size:13px;border-radius:3px;cursor:pointer;
+  background:transparent;border:1px solid rgba(184,164,126,.22);color:var(--paper3);transition:.18s}
+.dtab.on{border-color:var(--gold);color:var(--gold);background:rgba(201,162,39,.08)}
+.dx{padding:10px 0;border-bottom:1px dotted rgba(184,164,126,.16)}
+.dx.hide{display:none}
+.dx .h1{display:flex;align-items:baseline;gap:8px}
+.dx .tr{display:inline-block;font-size:10px;font-weight:700;width:16px;height:16px;line-height:16px;text-align:center;border-radius:2px;color:#F2EADA;margin-right:2px}
+.dx .demb{width:14px;height:14px;color:var(--dc);opacity:.8;flex:none;align-self:center}
+.dx .nm3{font-family:var(--display);font-size:17px;font-weight:700;color:var(--dc)}
+.dx .tg{font-size:10px;letter-spacing:.1em;color:var(--paper3)}
+.dx .pv{margin-left:auto;font-family:var(--display);font-size:14px;color:var(--gold);font-variant-numeric:tabular-nums}
+.dx .sv{display:flex;gap:10px;margin-top:4px;font-size:10.5px;color:var(--paper3);font-variant-numeric:tabular-nums}
+.dx .sv b{color:var(--paper2);font-weight:600}
+.dx .lr{font-size:11.5px;color:var(--paper3);margin-top:4px;font-family:var(--display);line-height:1.5}
+.dst{font-size:10px;color:var(--paper3);margin-top:4px;font-variant-numeric:tabular-nums}
+.dst .up{color:#D9B84A;font-weight:600}.dst .dn{color:#C4685C;font-weight:600}
+.dx .cj{font-size:10px;color:#9C8A66;margin-top:4px;line-height:1.5}
+.dx .cj em{font-style:normal;color:#6FA08A}
+.dexcount{font-size:11px;color:var(--paper3);margin-bottom:10px;letter-spacing:.06em}
+.dx .avs{cursor:zoom-in}
+/* ── 초상 확대 ── */
+.zoom{position:fixed;inset:0;background:rgba(6,5,4,.96);z-index:60;display:none;
+  align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.zoom.on{display:flex;animation:fade .22s ease}
+.zbox{max-width:420px;width:100%;text-align:center}
+.zbox img{width:100%;max-width:360px;aspect-ratio:1;object-fit:cover;border-radius:4px;
+  border:1px solid rgba(184,164,126,.3);box-shadow:0 12px 40px rgba(0,0,0,.6);background:#15110C}
+.zbox img.soft{filter:blur(.2px) saturate(1.02)}
+.zbox .zn{font-family:var(--display);font-size:22px;font-weight:700;color:var(--zc,var(--gold));margin-top:14px}
+.zbox .zt{font-size:11px;letter-spacing:.12em;color:var(--paper3);margin-top:3px}
+.zbox .zl{font-size:12.5px;color:var(--paper2);margin-top:10px;font-family:var(--display);line-height:1.6}
+.zbox .zh{font-size:10px;color:var(--paper3);margin-top:16px;letter-spacing:.08em;opacity:.7}
+
+/* ── 병법 요람 ── */
+.hsec{margin-bottom:10px}
+.hsec h4{cursor:pointer;user-select:none}
+.hsec h4::after{content:"▾";float:right;opacity:.5;transition:.2s}
+.hsec.fold h4::after{transform:rotate(-90deg)}
+.hsec.fold>*:not(h4){display:none}
+.hsec h4{font-family:var(--display);font-size:12px;letter-spacing:.24em;color:var(--gold);margin:0 0 9px;font-weight:400;
+  padding-bottom:6px;border-bottom:1px solid var(--line)}
+.hsec p{margin:0 0 8px;font-size:13px;line-height:1.75;color:var(--paper2)}
+.hsec p:last-child{margin-bottom:0}
+.hsec b{color:var(--paper);font-weight:600}
+.hsec .g{color:var(--gold)}.hsec .r{color:#C4685C}
+.form{font-family:var(--display);font-size:12.5px;line-height:1.9;color:var(--paper2);
+  background:rgba(0,0,0,.28);border-left:2px solid var(--line);padding:9px 12px;margin:8px 0}
+.fold{width:100%;margin-top:4px;padding:9px;background:transparent;border:1px dashed rgba(201,162,39,.35);
+  color:var(--gold);font-family:var(--display);font-size:12.5px;letter-spacing:.14em;border-radius:3px;cursor:pointer}
+.cb{display:none;margin-top:10px}
+.cb.open{display:block}
+.cbi{padding:7px 0;border-bottom:1px dotted rgba(184,164,126,.16)}
+.cbi .t{display:flex;justify-content:space-between;gap:8px;font-size:13px}
+.cbi .t b{font-family:var(--display);font-size:14.5px;font-weight:700}
+.cbi .t em{font-style:normal;font-size:11px;color:var(--gold);font-variant-numeric:tabular-nums;white-space:nowrap}
+.cbi .m{font-size:11px;color:var(--paper3);margin-top:2px;line-height:1.5}
+
+/* ── 점수판 ── */
+.board{display:grid;grid-template-columns:1fr auto 1fr;}
+.board.p3{grid-template-columns:1fr auto 1fr 1fr}
+.board{align-items:center;gap:6px;margin-top:14px;
+  padding:9px 6px;border:1px solid var(--line);border-radius:4px;background:rgba(0,0,0,.24)}
+.board>div{text-align:center}
+.board b{display:block;font-family:var(--display);font-size:25px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.05;
+  transition:color .3s}
+.board span{display:block;font-size:9px;letter-spacing:.24em;color:var(--paper3);margin-top:1px}
+.board .gap{font-family:var(--display);font-size:13px;font-variant-numeric:tabular-nums;padding:0 4px;letter-spacing:.02em}
+.board .gap.lead{color:var(--gold)}.board .gap.trail{color:#C4685C}.board .gap.even{color:var(--paper3)}
+
+/* ── 설정 ── */
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.opt{flex:1 1 30%}
+.opt{flex:1;padding:7px;font-family:var(--body);font-size:11.5px;letter-spacing:.06em;border-radius:3px;cursor:pointer;
+  background:transparent;border:1px solid rgba(184,164,126,.24);color:var(--paper3);transition:.18s}
+.opt::before{content:"○ "}
+.opt.on{border-color:rgba(201,162,39,.5);color:var(--gold);background:rgba(201,162,39,.07)}
+.opt.on::before{content:"● "}
+.opt.cyc{border-color:rgba(201,162,39,.42);color:var(--gold)}
+.opt.cyc::before{content:"◈ "}
+
+/* ── 지시문 ── */
+.decree{margin:20px 0 14px;text-align:center}
+.decree .rd{font-family:var(--display);font-size:13px;color:var(--gold);letter-spacing:.3em}
+.decree .msg{font-family:var(--display);font-size:19px;margin-top:6px;color:var(--paper)}
+.lorel{font-family:var(--display);font-size:12px;color:var(--paper3);margin-top:5px;min-height:17px;letter-spacing:.02em}
+
+/* ── 카드 ── */
+.pack{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.card{
+  position:relative;background:linear-gradient(168deg,var(--paper) 0%,var(--paper2) 100%);
+  color:#221B15;border:none;border-radius:3px;padding:11px 11px 9px;text-align:left;
+  cursor:pointer;font-family:var(--body);
+  box-shadow:0 2px 0 var(--paper3),0 8px 18px rgba(0,0,0,.45);
+  transition:transform .18s cubic-bezier(.2,.8,.3,1),box-shadow .18s,opacity .35s;
+  overflow:hidden;
+}
+.card .emb{position:absolute;right:4px;top:24px;width:62px;height:62px;color:var(--fc);opacity:.2;pointer-events:none}
+.card::before{content:"";position:absolute;inset:0 0 0 0;width:4px;background:var(--fcg,var(--fc))}
+.card:active{transform:translateY(2px) scale(.99)}
+.card{animation:deal .34s cubic-bezier(.2,.8,.3,1) backwards}
+@keyframes deal{from{opacity:0;transform:translateY(12px) rotate(-1.2deg)}to{opacity:1;transform:none}}
+.reroll{width:100%;margin-top:10px;padding:10px;background:transparent;border:1px dashed rgba(201,162,39,.4);
+  color:var(--gold);font-family:var(--display);font-size:13px;letter-spacing:.16em;border-radius:3px;cursor:pointer;transition:.2s}
+.reroll:active{background:rgba(201,162,39,.12)}
+.reroll[disabled]{opacity:.28;cursor:default;border-style:solid;border-color:rgba(184,164,126,.2);color:var(--paper3)}
+.card .fac{position:absolute;top:8px;right:9px;font-family:var(--display);font-size:26px;font-weight:700;color:var(--fc);opacity:.16;line-height:1}
+.card .nm{font-family:var(--display);font-weight:700;font-size:21px;letter-spacing:.02em;padding-left:64px;min-height:24px;white-space:nowrap;overflow:hidden}
+.card .nm.ln{font-size:17.5px;letter-spacing:0}
+@media (max-width:390px){.card .nm{font-size:19px}.card .nm.ln{font-size:16px}}
+.card .nm .tr{display:inline-block;font-size:11px;font-weight:700;width:16px;height:16px;line-height:16px;text-align:center;
+  border-radius:2px;margin-right:5px;vertical-align:2px;color:#F2EADA}
+.tr.t0{background:#A8842A}.tr.t1{background:#5A7A8C}.tr.t2{background:#7A6A55}.tr.t3{background:#9A8E7A}
+.card .rl{font-size:10.5px;letter-spacing:.16em;color:#6B5B45;padding-left:52px;margin-top:1px;min-height:14px}
+.card .rl b{color:var(--fc);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:9px;padding-left:6px}
+.st{text-align:center}
+.st u{display:block;height:3px;border-radius:2px;background:rgba(34,27,21,.14);text-decoration:none;overflow:hidden}
+.st u i{display:block;height:100%;background:var(--fc);opacity:.85}
+.st b{display:block;font-size:11px;font-weight:600;margin-top:3px;font-variant-numeric:tabular-nums}
+.st span{display:block;font-size:8.5px;color:#7A6A52;letter-spacing:.08em}
+.hint{margin-top:6px;padding:0 46px 0 6px;font-size:10px;line-height:1.45;font-weight:600;height:30px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:#8A7A62;word-break:keep-all;overflow-wrap:break-word}
+.hint .near{margin-left:5px}
+.hint.up{color:#8A6E12}.hint.dn{color:#A8402F}
+.card.illegal{opacity:.34;filter:grayscale(.7)}
+.card.illegal::after{content:"編";position:absolute;top:9px;left:12px;font-family:var(--display);font-size:12px;color:#A8402F;font-weight:700}
+.pw{position:absolute;bottom:9px;right:10px;font-family:var(--display);font-size:15px;font-weight:700;color:#3C3227}
+.pw em{font-style:normal;font-size:8.5px;letter-spacing:.14em;color:#8A7A62;margin-right:3px}
+
+/* 인물 낙관 아바타 */
+.av{position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;
+  color:var(--ac);border:1.5px solid var(--ac);background:rgba(255,252,244,.35);overflow:hidden}
+.av i{font-style:normal;font-family:var(--display);font-weight:700;line-height:1}
+.av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.av-lord{border-radius:9px;box-shadow:inset 0 0 0 2px rgba(255,252,244,.5),inset 0 0 0 3px var(--ac)}
+.av-war{border-radius:9px}
+.av-str{border-radius:9px}
+.av-civ{border-radius:9px}
+.avc{position:absolute;left:10px;top:9px;width:46px;height:46px;font-size:23px}
+.avc.av2 i{font-size:11.5px;writing-mode:vertical-rl;letter-spacing:.05em}
+.av2 i{letter-spacing:0}
+.avs{width:36px;height:36px;font-size:17px;background:rgba(0,0,0,.25)}
+.avs.av2 i{font-size:9px;writing-mode:vertical-rl}
+
+/* 낙관 */
+.seal{
+  position:absolute;top:50%;left:50%;width:76px;height:76px;margin:-38px 0 0 -38px;
+  border:4px solid var(--seal);border-radius:5px;color:var(--seal);
+  font-family:var(--display);font-weight:700;font-size:40px;line-height:68px;text-align:center;
+  opacity:0;transform:scale(2.4) rotate(-24deg);pointer-events:none;z-index:3;
+}
+.card.taken .seal{animation:stamp .42s cubic-bezier(.2,1.4,.4,1) forwards}
+.card.taken{box-shadow:0 0 0 2px var(--gold),0 8px 24px rgba(0,0,0,.5)}
+.card.by-foe{box-shadow:0 0 0 2px #4A6A99,0 8px 24px rgba(0,0,0,.5);filter:saturate(.55) brightness(.9)}
+.card.fogged .nm,.card.fogged .rl,.card.fogged .stats,.card.fogged .pw,.card.fogged .fac,.card.fogged .hint,.card.fogged .emb{filter:blur(5px);opacity:.5}
+.card.by-foe .seal{border-color:#4A6A99;color:#4A6A99}
+.card.by-foe2{box-shadow:0 0 0 2px #7A5A34,0 8px 24px rgba(0,0,0,.5);filter:saturate(.55) brightness(.9)}
+.card.by-foe2 .seal{border-color:#7A5A34;color:#7A5A34}
+.card[disabled]{cursor:default}
+.card.gone{opacity:.12;transform:scale(.96)}
+@keyframes stamp{0%{opacity:0;transform:scale(2.4) rotate(-24deg)}60%{opacity:.95;transform:scale(.92) rotate(-8deg)}100%{opacity:.88;transform:scale(1) rotate(-8deg)}}
+
+/* ── 진영 목록 ── */
+.rosters{margin-top:22px;display:grid;gap:12px}
+.ros{border:1px solid var(--line);border-radius:4px;padding:11px 12px;background:rgba(0,0,0,.22)}
+.ros h3{margin:0 0 9px;font-family:var(--display);font-size:13px;font-weight:400;letter-spacing:.2em;color:var(--gold);display:flex;justify-content:space-between;align-items:center}
+.ros h3 em{font-style:normal;font-size:10px;letter-spacing:.1em;color:var(--paper3)}
+.chips{display:flex;flex-wrap:wrap;gap:5px;min-height:24px}
+.chip{font-size:12px;padding:3px 8px;border-radius:2px;background:var(--cc);color:#F2EADA;font-weight:500;animation:pop .3s ease}
+.slot{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start;margin-bottom:6px}
+.slot:last-child{margin-bottom:0}
+.slot .lb{font-family:var(--display);font-size:13px;color:var(--gold);opacity:.75;line-height:22px;text-align:center}
+.slot .cells{display:flex;flex-wrap:wrap;gap:5px}
+.chip.fog{background:rgba(60,50,40,.85);color:rgba(231,220,195,.5);letter-spacing:.08em;font-family:var(--display)}
+.chip.ph{background:transparent;border:1px dashed rgba(184,164,126,.28);color:rgba(184,164,126,.4)}
+@keyframes pop{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+/* ── 결의 패널 ── */
+.pg{padding:7px 0;border-bottom:1px dotted rgba(184,164,126,.14)}
+.pg:last-child{border-bottom:none;padding-bottom:0}
+.pg .l1{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 8px;align-items:baseline}
+.pg .nm2{font-family:var(--display);font-size:14.5px;font-weight:700;color:var(--paper)}
+.pg .vv{font-size:11.5px;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--gold);font-weight:600}
+.pg.done .nm2{color:var(--gold)}
+.pg.bad .nm2,.pg.bad .vv{color:#C4685C}
+.pg .l2{font-size:10.5px;color:var(--paper3);margin-top:2px;line-height:1.5}
+.pg .bar{height:2px;margin-top:5px;background:rgba(184,164,126,.16);border-radius:1px;overflow:hidden}
+.pg .bar i{display:block;height:100%;background:var(--gold);opacity:.55}
+.pg.done .bar i{opacity:1}
+.pgempty{font-size:12px;color:var(--paper3);font-family:var(--display)}
+.near{display:block;margin-top:3px;font-size:9.5px;color:#7C6A4E;font-weight:500;line-height:1.35}
+
+/* ── 결의 완성 연출 ── */
+#toast{position:fixed;left:50%;top:34%;transform:translateX(-50%);z-index:30;pointer-events:none;
+  display:flex;flex-direction:column;gap:8px;align-items:center;width:min(86vw,420px)}
+.tst{font-family:var(--display);text-align:center;background:rgba(16,12,9,.94);
+  border:1px solid var(--gold);border-radius:4px;padding:12px 22px 13px;
+  box-shadow:0 0 0 3px rgba(16,12,9,.94),0 0 34px rgba(201,162,39,.35),0 14px 40px rgba(0,0,0,.6);
+  animation:tstIn .5s cubic-bezier(.2,1.3,.4,1) both,tstOut .45s ease-in forwards;animation-delay:0s,var(--hold,1.7s)}
+.tst .tt{font-size:11px;letter-spacing:.4em;color:var(--gold);opacity:.85}
+.tst .tn{font-size:22px;font-weight:700;color:var(--paper);margin-top:3px;letter-spacing:.08em}
+.tst .tv{font-size:13px;color:var(--gold);margin-top:3px;font-variant-numeric:tabular-nums;letter-spacing:.1em}
+.tst.kin{border-color:#6FA08A;box-shadow:0 0 0 3px rgba(16,12,9,.94),0 0 34px rgba(111,160,138,.35),0 14px 40px rgba(0,0,0,.6)}
+.tst.kin .tt,.tst.kin .tv{color:#6FA08A}
+.tst.bad{border-color:#A8402F;box-shadow:0 0 0 3px rgba(16,12,9,.94),0 0 30px rgba(168,64,47,.4),0 14px 40px rgba(0,0,0,.6)}
+.tst.bad .tt,.tst.bad .tv{color:#C4685C}
+@keyframes tstIn{0%{opacity:0;transform:scale(1.7) rotate(-5deg)}62%{opacity:1;transform:scale(.96) rotate(1deg)}100%{opacity:1;transform:scale(1)}}
+@keyframes tstOut{to{opacity:0;transform:translateY(-14px) scale(.96)}}
+
+/* ── 결과 ── */
+.veil{position:fixed;inset:0;background:rgba(10,8,6,.93);backdrop-filter:blur(3px);z-index:20;overflow-y:auto;display:none}
+.veil.on{display:block;animation:fade .4s ease}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.res{max-width:560px;margin:0 auto;padding:34px 16px 48px}
+.verdict{text-align:center;font-family:var(--display);margin-bottom:26px}
+.orn{display:block;width:160px;height:14px;margin:12px auto 0;color:var(--gold);opacity:.65}
+.slot .lb svg{width:13px;height:13px;display:block;margin:0 auto 1px;opacity:.7}
+.verdict .big{font-size:46px;font-weight:700;letter-spacing:.18em;line-height:1.1}
+.verdict .sub{font-size:13px;color:var(--paper3);margin-top:8px;letter-spacing:.06em;font-family:var(--body)}
+.win{color:var(--gold);text-shadow:0 0 26px rgba(201,162,39,.35)}
+.lose{color:#8C7F6C}
+.draw{color:var(--paper2)}
+.tote{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin-bottom:22px}
+.tote div{text-align:center}
+.tote .num{font-family:var(--display);font-size:34px;font-weight:700;font-variant-numeric:tabular-nums}
+.tote .lbl{font-size:10px;letter-spacing:.2em;color:var(--paper3);margin-top:2px}
+.tote .vs{font-family:var(--display);color:var(--seal);font-size:15px;letter-spacing:.1em}
+.ledger{border-top:1px solid var(--line)}
+.ledger h4{font-family:var(--display);font-size:12px;letter-spacing:.24em;color:var(--gold);margin:18px 0 8px;font-weight:400}
+.row{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px dotted rgba(184,164,126,.16);font-size:13px}
+.row span{color:var(--paper2)}
+.row b{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.up{color:#D9B84A}.dn{color:#C4685C}
+.row.tot{border-bottom:none;border-top:1px solid var(--line);margin-top:4px;padding-top:9px;font-family:var(--display);font-size:16px}
+.lore{display:grid;grid-template-columns:64px 1fr;gap:10px;padding:8px 0;border-bottom:1px dotted rgba(184,164,126,.16);font-size:12.5px}
+.lore b{font-family:var(--display);font-size:15px;font-weight:700;color:var(--cc)}
+.lore span{color:var(--paper3);line-height:1.5;padding-top:2px}
+.duel{display:grid;grid-template-columns:34px 1fr auto;gap:9px;align-items:center;padding:8px 0;border-bottom:1px dotted rgba(184,164,126,.14)}
+.duel .hb{font-family:var(--display);font-size:11px;color:var(--paper3);letter-spacing:.04em}
+.duel .pair{font-family:var(--display);font-size:14px;color:var(--paper2)}
+.duel .pair b{color:var(--paper);font-weight:700}
+.duel .rs{font-size:11px;font-weight:600;white-space:nowrap}
+.duel .rs.w{color:var(--gold)}.duel .rs.l{color:#8C7F6C}.duel .rs.d{color:var(--paper3)}
+.rnd{border-bottom:1px dotted rgba(184,164,126,.16);padding:7px 0}
+.rnd .rh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px}
+.rnd .rh span{font-family:var(--display);font-size:12px;color:var(--gold);opacity:.8;letter-spacing:.08em}
+.rnd .rh em{font-style:normal;font-size:10px;color:var(--paper3)}
+.rl2{display:grid;grid-template-columns:44px 1fr auto;gap:8px;font-size:12.5px;padding:2px 0;align-items:baseline}
+.rl2 .who{font-family:var(--display);font-size:11px;color:var(--paper3)}
+.rl2 .who i{font-style:normal;font-size:9px;color:var(--seal);margin-left:3px}
+.rl2 .pk{color:#8C9BB5}
+.rl2.mine .pk{color:var(--paper);font-weight:600}
+.rl2 .jd{font-size:11px;color:var(--paper3);font-variant-numeric:tabular-nums;white-space:nowrap}
+.rl2 .jd .up{font-weight:600}
+.rl2 .jd .dn{font-weight:600}
+.rwhy{padding:1px 0 3px 52px;font-size:10px;color:#8A7A62;letter-spacing:.02em}
+.hist{display:grid;grid-template-columns:44px 1fr;gap:9px;padding:7px 0;border-bottom:1px dotted rgba(184,164,126,.14);font-size:12.5px;align-items:center}
+.hist .r1{font-family:var(--display);font-size:12px;color:var(--gold);opacity:.8}
+.hist .r2 b{color:var(--paper)}
+.hist .r2 span{color:#8C9BB5}
+.hist .r2 em{font-style:normal;font-size:10px;color:var(--paper3);margin-left:5px}
+.btn2{display:block;width:100%;margin-top:10px;padding:12px;background:transparent;border:1px dashed rgba(184,164,126,.35);
+  color:var(--paper2);font-family:var(--display);font-size:13.5px;letter-spacing:.2em;border-radius:3px;cursor:pointer}
+.btn2:active{background:rgba(184,164,126,.12)}
+.tale{font-family:var(--display);font-size:14px;line-height:1.85;color:var(--paper2);background:rgba(201,162,39,.05);border-left:2px solid var(--seal);padding:12px 14px;margin:20px 0 4px}
+.btn{display:block;width:100%;margin-top:22px;padding:14px;background:transparent;border:1px solid var(--gold);color:var(--gold);
+  font-family:var(--display);font-size:15px;letter-spacing:.3em;border-radius:3px;cursor:pointer;transition:.2s}
+.btn:active{background:var(--gold);color:var(--ink)}
+button:focus-visible,.card:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@media (max-width:340px){.pack{grid-template-columns:1fr}}
+
+/* Compatibility for saved progress and the thirteen-pick final lineup. */
+#draftSummary,#tArt{display:none}
+.hidden-card{min-height:120px;display:flex;align-items:center;justify-content:center}
+#detail{z-index:70}.pick-portrait{width:100%;height:220px;object-fit:contain}
+.pick-actions{position:sticky;bottom:0;background:var(--ink);padding:8px 0}
+#lineup{z-index:75}.lineup-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.lineup-card{min-height:66px;padding:8px;background:var(--ink2);color:var(--paper);border:1px solid var(--line);border-radius:4px;font:600 14px var(--body);text-align:left}
+.lineup-card small{display:block;font-size:11px;margin:3px 0}.lineup-card b{font-size:11px}
+.lineup-card[aria-pressed="true"]{border-color:var(--gold);background:#393020}.lineup-card[aria-pressed="true"] b{color:var(--gold)}
+.lineup-summary{position:sticky;top:0;background:var(--ink);padding:10px 0;z-index:1}
+.lineup-actions{position:sticky;bottom:0;background:var(--ink);padding:8px 0;display:grid;gap:5px}.lineup-actions button{margin:0;min-height:44px}
+.lineup-actions button:disabled{opacity:.45}
+
+
+
+/* Preserve the requested central relationship announcement placement. */
+#toast{top:50%;transform:translate(-50%,-50%)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.card.taken .seal{opacity:.88;transform:rotate(-8deg)}}
+</style>
+</head>
+<body>
+<svg style="display:none" aria-hidden="true">
+  <!-- 무장 · 교차한 극(戟) -->
+  <symbol id="em-무장" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+    <path d="M5.5 20.5 L18 4.5 M18.5 20.5 L6 4.5"/>
+    <path d="M16.2 5.2 Q19.6 3.4 20.4 6.8"/>
+    <path d="M7.8 5.2 Q4.4 3.4 3.6 6.8"/>
+    <path d="M5 21.5 L6.5 19.6 M19 21.5 L17.5 19.6"/>
+    <circle cx="12" cy="12.6" r="1" fill="currentColor" stroke="none"/>
+  </symbol>
+  <!-- 책사 · 우선(깃털부채) -->
+  <symbol id="em-책사" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+    <path d="M4.5 11 A9 9 0 0 1 19.5 11 L12 14.5 Z"/>
+    <path d="M12 14 L12 4.6 M12 14 L7 6.4 M12 14 L17 6.4"/>
+    <path d="M12 14.5 L12 20.5"/>
+    <path d="M10.7 18.6 Q12 20 13.3 18.6"/>
+  </symbol>
+  <!-- 군주 · 면류관 -->
+  <symbol id="em-군주" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+    <path d="M3.5 6.5 L20.5 6.5"/>
+    <path d="M7 6.5 L7 10.5 L17 10.5 L17 6.5"/>
+    <path d="M9.5 10.5 L9.5 19.5 L14.5 19.5 L14.5 10.5"/>
+    <path d="M4.8 6.5 L4.8 12.4 M19.2 6.5 L19.2 12.4"/>
+    <circle cx="4.8" cy="13.6" r=".9" fill="currentColor" stroke="none"/>
+    <circle cx="19.2" cy="13.6" r=".9" fill="currentColor" stroke="none"/>
+  </symbol>
+  <!-- 문관 · 두루마리 -->
+  <symbol id="em-문관" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+    <path d="M7 5.5 L17 5.5 L17 18.5 L7 18.5 Z"/>
+    <path d="M7 5.5 Q4.6 5.5 4.6 7.6 Q4.6 9.4 7 9.4 M17 5.5 Q19.4 5.5 19.4 7.6 Q19.4 9.4 17 9.4"/>
+    <path d="M9.4 9.5 L14.6 9.5 M9.4 12.3 L14.6 12.3 M9.4 15.1 L12.8 15.1"/>
+  </symbol>
+  <!-- 인끈 매듭 장식 -->
+  <symbol id="orn-knot" viewBox="0 0 160 14" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+    <path d="M4 7 L64 7 M96 7 L156 7"/>
+    <path d="M72 7 L80 2.4 L88 7 L80 11.6 Z"/>
+    <circle cx="66.5" cy="7" r="1.1" fill="currentColor" stroke="none"/>
+    <circle cx="93.5" cy="7" r="1.1" fill="currentColor" stroke="none"/>
+  </symbol>
+</svg>
+<div class="wrap">
+  <div class="top">
+    <div class="title"><small>三國志</small>드래프트</div>
+    <div class="tally" id="tally"></div>
+    <button class="helpbtn" id="recBtn" aria-label="전적">錄</button>
+    <button class="helpbtn" id="dexBtn" aria-label="인물 도감">譜</button>
+    <button class="helpbtn" id="labBtn" aria-label="기질 탐구">究</button>
+    <button class="helpbtn" id="helpBtn" aria-label="병법 요람">?</button>
+  </div>
+
+  <div class="board" id="board">
+    <div><b id="sMe">0</b><span>我 軍</span></div>
+    <div class="gap" id="sDiff">±0</div>
+    <div><b id="sFoe">0</b><span id="sFoeLb">敵 軍</span></div>
+    <div id="bF2" style="display:none"><b id="sF2">0</b><span>敵 二</span></div>
+  </div>
+
+  <div class="opts">
+    <button class="opt on" id="tHint">결의 힌트</button>
+    <button class="opt" id="tFog">적진 가리기</button>
+    <button class="opt cyc" id="newBtn">新 · 새 대국</button>
+  </div>
+
+  <div class="decree">
+    <div class="rd" id="rd">第 一 陣</div>
+    <div class="msg" id="msg">여섯 죽간 중 하나를 취하시오</div>
+    <div class="lorel" id="sub"></div>
+  </div>
+
+  <div class="pack" id="pack"></div>
+  <button class="reroll" id="reroll">換 · 죽간을 다시 펴다</button>
+
+  <div class="rosters">
+    <div class="ros"><h3>我 軍 <em id="myct">0 / 11</em></h3><div class="chips" id="mine"></div></div>
+    <div class="ros"><h3 id="foeTitle">敵 軍 <em id="opct">0 / 11</em></h3><div class="chips" id="foe"></div></div>
+    <div class="ros" id="ros2" style="display:none"><h3>敵 二 <em id="opct2">0 / 11</em></h3><div class="chips" id="foe2"></div></div>
+    <div class="ros"><h3>結 義 <em id="pgct">맺은 인연 없음</em></h3><div id="pgs"></div></div>
+  </div>
+</div>
+
+<div id="draftSummary" hidden></div><button id="tArt" hidden></button>
+<div class="veil" id="detail" role="dialog" aria-modal="true" aria-label="장수 상세"><div class="res" id="detailBody"></div></div>
+<div class="veil" id="lineup" role="dialog" aria-modal="true" aria-label="최종 11명 편성"><div class="res" id="lineupBody"></div></div>
+<div id="toast"></div>
+<button class="totop" id="tobot" aria-label="맨 아래로">下</button>
+<button class="totop" id="totop" aria-label="맨 위로">上</button>
+<div class="veil" id="setup"><div class="res" id="setupBody"></div></div>
+<div class="veil" id="rec"><div class="res" id="recBody"></div></div>
+<div class="veil" id="dex"><div class="res" id="dexBody"></div></div>
+<div class="zoom" id="zoom"><div class="zbox"><img id="zimg" alt=""><div class="zn" id="zn"></div><div class="zt" id="zt"></div><div class="zl" id="zl"></div><div class="zh">아무 곳이나 눌러 닫기</div></div></div>
+<div class="veil" id="lab"><div class="res" id="labBody"></div></div>
+<div class="veil" id="help"><div class="res" id="helpBody"></div></div>
+<div class="veil" id="veil"><div class="res" id="res"></div></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ───────── 인물 데이터 [이름, 진영, 역할, 통솔, 무력, 지력, 정치] ───────── */
+var C=[
+["유비","촉","군주",78,73,75,80],["관우","촉","무장",95,97,75,62],["장비","촉","무장",88,98,45,30],
+["조운","촉","무장",91,96,76,65],["마초","촉","무장",85,97,44,25],["황충","촉","무장",87,93,62,50],
+["제갈량","촉","책사",92,38,100,95],["방통","촉","책사",76,34,97,80],["법정","촉","책사",70,30,92,70],
+["서서","촉","책사",74,60,93,72],["강유","촉","무장",90,89,90,75],["위연","촉","무장",86,91,68,40],
+["마대","촉","무장",76,85,62,50],["관평","촉","무장",76,85,62,58],["장포","촉","무장",72,86,50,40],
+["관흥","촉","무장",73,84,55,48],["왕평","촉","무장",86,78,68,50],["유봉","촉","무장",70,78,52,45],["왕보","촉","문관",50,30,74,70],["조루","촉","무장",62,66,50,48],["요화","촉","무장",70,74,58,50],
+["엄안","촉","무장",78,80,55,48],["장익","촉","무장",72,74,60,55],["진식","촉","무장",74,80,55,45],["관색","촉","무장",74,86,58,45],["종예","촉","문관",60,45,78,80],["이적","촉","문관",45,30,80,76],["제갈첨","촉","무장",60,60,70,65],["주창","촉","무장",70,84,45,35],
+["간옹","촉","문관",30,20,72,78],["미부인","촉","문관",42,20,58,66],["감부인","촉","문관",40,18,55,70],["미축","촉","문관",25,15,60,85],["손건","촉","문관",30,22,68,78],
+["이엄","촉","문관",68,72,76,70],["마량","촉","문관",62,40,87,86],["마속","촉","책사",58,52,88,72],["비의","촉","문관",40,25,85,88],["동윤","촉","문관",35,20,80,85],
+["장완","촉","문관",45,25,86,90],["황월영","촉","책사",30,20,93,70],["유선","촉","군주",20,15,30,25],
+["조조","위","군주",96,72,91,94],["하후돈","위","무장",87,90,60,55],["하후연","위","무장",86,91,58,45],
+["조창","위","무장",78,88,50,40],["조앙","위","무장",68,72,60,58],["조인","위","무장",89,86,64,60],["조홍","위","무장",74,82,45,38],["장료","위","무장",93,93,78,65],
+["서황","위","무장",88,89,72,60],["장합","위","무장",87,88,76,55],["악진","위","무장",82,85,50,42],
+["우금","위","무장",83,80,62,58],["전위","위","무장",60,95,22,18],["허저","위","무장",58,96,25,20],
+["방덕","위","무장",80,92,60,48],["순욱","위","문관",60,25,96,98],["순유","위","책사",55,22,95,85],
+["곽가","위","책사",58,25,98,78],["가후","위","책사",62,30,97,80],["정욱","위","책사",68,40,90,78],
+["사마의","위","책사",95,45,97,93],["등애","위","무장",90,85,88,78],["종회","위","책사",78,60,90,70],
+["조비","위","군주",72,60,85,86],["조예","위","군주",68,50,80,78],["조식","위","문관",25,20,84,55],["유엽","위","책사",60,35,92,80],["장춘화","위","문관",55,28,78,74],["왕원희","위","문관",54,22,82,72],["신헌영","위","문관",52,20,84,70],["왕이","위","문관",56,40,78,66],["견씨","위","문관",40,18,66,70],["진군","위","문관",60,25,84,94],["전예","위","무장",82,70,78,68],["만총","위","무장",80,66,82,76],
+["이전","위","무장",78,76,72,62],["문빙","위","무장",78,74,62,58],["하후현","위","문관",65,40,86,82],["학소","위","무장",82,70,78,60],
+["조휴","위","무장",80,76,62,58],["조환","위","군주",40,30,55,50],["장패","위","무장",78,80,58,52],["조진","위","무장",82,76,72,68],["화흠","위","문관",35,20,80,82],["왕랑","위","문관",20,15,72,75],["장수","위","무장",76,85,60,50],
+["손견","오","군주",88,90,70,68],["손책","오","군주",90,94,70,70],["손권","오","군주",78,60,80,90],
+["주유","오","책사",94,70,96,85],["노숙","오","책사",78,40,92,90],["여몽","오","무장",90,78,92,78],
+["육손","오","책사",92,56,95,88],["태사자","오","무장",84,93,66,58],["감녕","오","무장",82,94,62,40],
+["황개","오","무장",80,83,66,62],["조무","오","무장",55,68,38,30],["정보","오","무장",82,82,70,68],["한당","오","무장",78,80,58,55],
+["주태","오","무장",76,88,50,45],["서성","오","무장",80,76,66,62],["문호","위","무장",62,74,50,45],["당자","오","무장",70,72,68,60],["정봉","오","무장",82,85,62,55],
+["능통","오","무장",78,85,58,52],["능조","오","무장",70,78,48,42],["장흠","오","무장",74,78,56,50],["육항","오","무장",91,70,90,80],
+["장소","오","문관",30,20,88,95],["고옹","오","문관",35,20,82,92],["제갈근","오","문관",55,30,78,85],
+["우번","오","문관",45,35,86,52],["감택","오","문관",48,25,82,76],["여범","오","문관",62,55,72,78],["보즐","오","문관",50,30,76,82],["장굉","오","문관",28,15,85,88],["전종","오","무장",78,74,70,68],["손환","오","무장",80,82,64,55],["주방","오","문관",62,40,84,78],["손상향","오","무장",65,80,60,55],["오국태","오","문관",52,22,70,82],["대교","오","문관",15,10,60,62],
+["소교","오","문관",15,10,60,62],
+["진무","오","무장",76,84,52,45],["여대","오","무장",80,72,74,70],["하제","오","무장",78,76,68,64],["주치","오","무장",72,66,70,72],["동습","오","무장",74,80,55,48],
+["반장","오","무장",78,80,58,50],
+["여포","군웅","무장",82,100,30,16],["동탁","군웅","군주",78,85,60,30],["원소","군웅","군주",80,62,70,78],
+["원술","군웅","군주",55,50,50,45],["엄강","군웅","무장",62,72,40,35],["관정","군웅","책사",48,30,72,60],["전해","군웅","무장",60,64,50,52],["공손범","군웅","무장",58,62,45,44],["공손찬","군웅","군주",80,82,62,58],["유표","군웅","군주",62,45,68,78],
+["유장","군웅","군주",40,30,45,50],["마등","군웅","군주",82,86,62,60],["한수","군웅","무장",72,70,66,62],
+["장각","군웅","책사",76,40,85,60],["채옹","군웅","문관",45,18,84,76],["채문희","군웅","문관",38,16,80,68],["초선","군웅","문관",15,12,70,60],["진궁","군웅","책사",70,40,90,76],
+["공융","군웅","문관",25,20,78,70],["원담","군웅","무장",68,72,55,50],["원희","군웅","무장",60,62,48,46],["원상","군웅","무장",72,76,58,52],["봉기","군웅","책사",55,25,78,66],["신평","군웅","책사",50,22,74,70],["전풍","군웅","책사",55,25,94,80],["저수","군웅","책사",70,35,93,82],
+["심배","군웅","책사",65,40,85,78],["곽도","군웅","책사",50,30,70,60],["안량","군웅","무장",76,92,40,30],
+["문추","군웅","무장",75,91,38,28],["고람","군웅","무장",70,80,45,40],["장연","군웅","무장",72,78,50,45],
+["화웅","군웅","무장",68,85,35,25],["노식","군웅","무장",85,60,84,80],["황보숭","군웅","무장",91,70,74,68],["주준","군웅","무장",84,68,70,66],["올돌골","군웅","무장",60,92,20,15],["타사대왕","군웅","무장",62,74,52,30],["맹우","군웅","무장",52,60,38,30],["엄여","군웅","무장",50,66,30,28],["맹획","군웅","무장",74,86,40,35],["축융","군웅","무장",60,78,40,35],
+["좌자","군웅","책사",10,20,95,40],["화타","군웅","문관",10,15,90,60],["관녕","군웅","문관",25,15,84,88],["사마휘","군웅","책사",10,15,95,70],
+["관로","군웅","책사",10,12,90,50],["이유","군웅","책사",55,30,86,74],["이각","군웅","무장",62,78,48,35],["곽사","군웅","무장",60,78,40,30],
+["서영","군웅","무장",82,80,50,40],["왕윤","군웅","문관",30,20,80,78],["황조","군웅","무장",60,62,50,48],["왕광","군웅","무장",62,66,52,50],["장훈","군웅","무장",72,78,52,48],["교유","군웅","책사",50,28,82,70],["양강","군웅","무장",68,80,45,40],["한윤","군웅","문관",40,25,70,78],["기령","군웅","무장",72,84,45,38],["순우경","군웅","무장",68,76,48,40],["호거아","군웅","무장",55,88,30,22],
+["염포","군웅","책사",50,30,80,72],["양송","군웅","문관",30,20,62,40],["장로","군웅","군주",55,40,66,70],
+["고순","군웅","무장",84,86,55,40],["국의","군웅","무장",80,80,62,45],
+["진규","군웅","문관",40,25,85,80],["진등","군웅","문관",58,45,90,85],
+["포신","군웅","무장",70,72,60,55],["도겸","군웅","군주",45,35,60,68],
+["한복","군웅","군주",30,28,45,52],["관해","군웅","무장",70,78,42,35],
+["장보","군웅","무장",66,74,62,45],["장량","군웅","무장",64,76,52,40],
+["우길","군웅","문관",10,10,88,55],["엄백호","군웅","무장",58,70,40,35],
+["장제","군웅","무장",70,74,58,50],["번조","군웅","무장",62,78,40,32],["추씨","군웅","문관",30,15,58,55],["장선","군웅","무장",58,66,42,38],["동승","군웅","무장",60,55,58,62],["염행","군웅","무장",68,84,40,38],["하진","군웅","군주",40,58,30,45],["장막","군웅","문관",55,50,66,62],
+["순심","군웅","책사",50,25,88,72],["유우","군웅","군주",60,25,72,88],["한현","군웅","군주",45,50,40,42],["유요","군웅","군주",50,40,55,58],["장임","군웅","무장",82,80,76,58],["황권","촉","문관",76,58,86,80],
+["오의","촉","무장",76,74,64,62],["맹달","촉","무장",74,76,72,64],
+["장송","군웅","문관",25,15,90,72],
+["허유","군웅","책사",45,30,88,55],["진림","군웅","문관",30,20,86,82],
+["괴량","군웅","책사",50,30,88,78],["괴월","군웅","책사",60,40,90,84],
+["채모","군웅","무장",72,68,70,66],["유기","군웅","문관",45,35,64,58],
+["후성","군웅","무장",66,76,50,42],["송헌","군웅","무장",64,75,45,38],["위속","군웅","무장",63,74,44,38],
+["문앙","위","무장",82,95,60,45],["문흠","위","무장",76,87,58,42],["곽회","위","무장",86,78,86,74],
+["진태","위","무장",84,76,88,72],["사마사","위","책사",88,70,90,85],
+["사마소","위","책사",85,68,92,88],["관구검","위","무장",84,78,80,72],["왕기","위","무장",80,70,84,76],["양호","위","책사",86,60,90,88],["두예","위","책사",82,42,93,86],
+["가충","위","문관",55,35,84,80],["가규","위","무장",76,68,78,74],["사마염","위","군주",70,50,78,82],
+["하후패","촉","무장",80,85,72,58],["제갈각","오","책사",75,45,88,68],
+["주환","오","무장",84,80,76,64],["등지","촉","문관",62,45,85,86],
+["이회","촉","문관",70,58,82,80],["나헌","촉","무장",80,72,76,70],["유심","촉","무장",60,68,55,58],["부첨","촉","무장",76,82,58,48],
+["마충","촉","무장",76,72,68,62],["장억","촉","무장",78,76,70,62],
+["육개","오","문관",50,30,84,86],["손호","오","군주",52,45,60,30],["주연","오","무장",82,74,70,62],["손등","오","문관",60,40,78,82],["손준","오","무장",68,72,58,42],["손침","오","무장",70,72,60,40],
+["종요","위","문관",58,28,88,90],["여건","위","무장",78,74,70,66],["제갈탄","위","무장",78,74,76,68],["미방","촉","무장",50,55,52,55],
+["여령기","군웅","무장",66,74,44,38],
+["진도","촉","무장",82,85,66,54],
+["유파","촉","문관",48,24,86,93],
+["양의","촉","문관",62,32,85,82],
+["동소","위","문관",62,28,88,88],
+["유복","위","문관",72,38,82,88],
+["신비","위","문관",54,30,83,85],
+["낙통","오","문관",70,58,78,83],
+["고담","오","문관",48,25,82,86],
+["장승","오","무장",76,70,78,78],
+["장양","군웅","군주",70,73,58,68],
+["사섭","군웅","군주",58,30,78,90],
+["왕준","위","무장",88,72,83,75]
+];
+
+var LORE={"추씨":"장제의 미망인으로 완성의 화근이 되었다","화흠":"자리를 갈라 앉은 벗을 뒤로하고 조정에 나아갔다","관녕":"평생 벼슬을 마다하고 흰 모자를 벗지 않았다","여대":"아흔이 넘도록 남방을 다스렸다","하제":"산월을 평정하고 화려한 배를 몰았다","주치":"손씨 삼대를 처음부터 섬긴 옛 신하","우번":"바른 말이 지나쳐 남쪽 끝으로 쫓겨났다","감택":"고기잡이 아들로 태어나 경전을 다 외웠다","여범":"손책의 살림을 맡아 강동을 일으켰다","손등":"어질어 모두가 기대었으나 일찍 죽었다","손준":"제갈각을 베고 조정을 손에 쥐었다","미부인":"아두를 맡기고 우물에 몸을 던졌다","감부인":"난리 속에 아들을 낳아 길렀다","오국태":"감로사에서 유비를 사위로 삼았다","장춘화":"사마씨의 안살림을 쥐고 흔들리지 않았다","왕원희":"종회의 딴마음을 홀로 알아보았다","신헌영":"조카의 종군을 근심하여 살길을 일러주었다","왕이":"기성의 성벽에서 제 손으로 활을 잡았다","견씨":"낙수의 신녀에 비겨진 미색이었다","채옹":"동탁의 죽음에 곡하다 옥에서 죽었다","채문희":"호가 열여덟 박을 남기고 흉노 땅에서 돌아왔다","유우":"백성이 따랐으나 창끝을 들 줄 몰랐다","한현":"장사를 지키다 제 장수의 칼에 스러졌다","왕보":"맥성의 끝을 예견하고도 주공을 떠나지 않았다","조루":"맥성에서 주공과 함께 최후를 맞았다","문호":"아우와 함께 수춘의 성문을 지켰다","이유":"황제를 폐하고 세우는 붓끝이 되었다","장훈":"수춘에서 원술의 병권을 맡았다","교유":"패업을 권했으나 주인 없는 옥새만 남았다","양강":"기령과 나란히 회남을 지킨 장수","한윤":"옥새를 받들고 제위에 손을 빌렸다","관구검":"수춘에서 사마씨에 맞서 첫 횃불을 들었다","당자":"회남을 떠나 오의 장수가 되었다","전예":"북쪽 변경을 지켜 오환이 감히 넘보지 못했다","엄강":"백마의종의 선봉에서 계교의 이슬로 졌다","관정":"역경의 불길에 주공을 따라 뛰어들었다","전해":"청주에서 원소군과 두 해를 맞섰다","공손범":"형을 따라 발해의 병사를 이끌었다","장제":"완성의 기틀을 조카에게 남겼다","번조":"이각의 술자리에서 목이 베였다","장선":"완성에서 조조의 선봉을 맞았다","하후현":"형장에서도 낯빛 하나 바꾸지 않았다","동승":"옷섶에 감춘 조서 한 장에 목숨을 걸었다","염행":"젊은 마초를 창대로 꺾을 뻔했다","조무":"주공의 붉은 두건을 쓰고 대신 죽었다","타사대왕":"독천 네 갈래로 촉군의 길을 막았다","맹우":"형 대신 술잔을 받다 번번이 사로잡혔다","엄여":"형을 따라 오군에서 손책과 맞섰다","손호":"잔학으로 강동의 마지막을 재촉했다","조환":"옥새를 넘기고 진류왕으로 물러났다","유심":"소열묘 앞에서 처자와 함께 목숨을 끊었다","조휴":"석정에서 거짓 항복에 속아 울분으로 죽었다","주연":"이릉 뒤의 강릉을 반년이나 홀로 지켰다","노식":"유비와 공손찬을 가르친 유장(儒將)","황보숭":"광종에서 황건의 불길을 껐다","주준":"완성을 되찾아 황건을 몰아냈다","장패":"청주와 서주를 홀로 눌러 지켰다","올돌골":"등갑군을 이끌고 불길 속에 스러졌다","봉기":"원상을 세워 형제의 칼끝을 갈랐다","신평":"원담의 곁에서 집안의 몰락을 지켰다","원담":"아우와 싸우다 집안을 조조에게 바쳤다","원희":"형과 아우의 틈에서 유주로 밀려났다","원상":"아버지의 편애가 화의 씨앗이 되었다","조창":"수염 누런 아이라 불리며 북방을 평정했다","조식":"일곱 걸음에 시를 지어 목숨을 건졌다","조앙":"완성에서 아버지에게 말을 내어주고 죽었다","유엽":"한실의 핏줄로 위의 지낭이 되었다","유봉":"맥성의 부름을 외면하고 아버지의 눈물 속에 죽었다","나헌":"나라가 망한 뒤에도 영안성을 지켰다","염포":"왕호를 사양하게 하여 화를 면케 했다","양송":"뇌물이 닿는 곳마다 충신을 팔았다","마량":"마씨 다섯 형제 중 흰 눈썹이 으뜸이었다","마속":"가정을 잃고 눈물 속에 목이 베였다","진군":"구품의 사다리로 천하의 관리를 가려 뽑았다","양호":"덕으로 국경을 지켜 적장의 벗이 되었다","두예":"대나무를 쪼개듯 오를 평정하자 하였다","가충":"임금을 시해하고도 천수를 누렸다","가규":"죽어서도 위의 신하이고자 했다","사마염":"삼국의 끝에서 진의 문을 열었다","능조":"가벼운 배로 앞장서다 화살에 스러졌다","허유":"오소의 길을 조조에게 일러주었다","진림":"격문 한 장으로 조조의 두통을 고쳤다","괴량":"난을 다스림에 권모를 앞세우라 하였다","괴월":"형주의 안살림을 도맡은 지낭","채모":"형주 수군을 쥐고 처세를 거듭했다","유기":"계단을 치우고 살 길을 물었다","후성":"적토마를 훔쳐 조조에게 달아났다","송헌":"하비의 끝에서 창을 내려놓았다","위속":"주인을 묶어 성문을 열었다","황권":"항복하고도 세 나라의 예우를 받았다","오의":"누이를 유비의 황후로 보낸 국구","맹달":"세 번 주인을 바꾸다 성 아래서 죽었다","장송":"서천 지도를 소매에 품고 다녔다","장임":"충신은 두 주인을 섬기지 않는다 하였다","문흠":"회남에서 아들과 함께 창을 돌렸다","제갈탄":"회남에서 사마씨에 맞서 일어섰다","진식":"삼국지를 지은 진수의 아버지라 전한다","관색":"형주에서 이름만 전해지는 관우의 아들","손환":"스물다섯에 이릉에서 유비를 막았다","주방":"머리칼을 잘라 조휴를 속였다","기령":"삼첨도를 휘두른 원술의 으뜸 장수","순우경":"오소의 군량과 함께 불탔다","호거아":"완성에서 전위와 맞선 맹장","장굉":"장소와 더불어 강동의 붓을 나눠 쥐었다","종예":"오에 사신으로 가 손권을 설득했다","이적":"말재주로 손권을 무색하게 했다","전종":"오의 병권을 오래 맡은 장수","왕광":"하내에서 군을 일으켜 동탁에 맞섰다","여건":"청주의 병사를 다스려 후방을 굳혔다","진무":"쌍철극을 들고 손권의 곁을 지켰다","동습":"다섯 자루 칼을 걸고 배 위에서 죽었다","반장":"관우를 사로잡은 부대의 장수","고순":"함진영을 이끌어 서면 무너지지 않았다","국의":"선등사구로 백마의종을 깨뜨렸다","진규":"아들과 함께 여포를 속였다","진등":"서주에서 여포의 목을 조였다","포신":"조조를 세우고 황건에 스러졌다","도겸":"서주를 유비에게 넘기고 눈을 감았다","한복":"기주를 그대로 원소에게 내주었다","관해":"황건의 잔당으로 북해를 에워쌌다","장보":"장각의 아우, 지공장군이라 하였다","장량":"인공장군의 깃발을 들었다","우길":"손책의 눈앞에서 사라진 도인","엄백호":"강동의 덕왕이라 스스로 일컬었다","하진":"환관을 치려다 먼저 목이 떨어졌다","장막":"조조의 벗이었다가 등을 돌렸다","순심":"하북의 지모, 형과 길이 갈렸다","유요":"강동을 지키다 손책에게 밀렸다","문앙":"홀로 말을 돌려 수백 기를 물렸다","곽회":"옹주에서 북벌을 번번이 끊었다","진태":"강유를 산 위에 가두었다","사마사":"눈을 앓으면서도 조정을 쥐었다","사마소":"그 마음은 길 가는 사람도 안다","왕기":"회남의 반란을 잠재웠다","하후패":"촉으로 달아나 창끝을 돌렸다","제갈각":"아버지의 이름에 오만이 겹쳤다","주환":"유수에서 조인을 물리쳤다","등지":"오와 다시 손잡게 한 사신","이회":"남중을 다독여 후방을 굳혔다","부첨":"관을 지키다 끝내 물러서지 않았다","마충":"남중에서 촉의 남쪽을 지켰다","장억":"북벌의 선봉에서 팔을 잃고도 섰다","육개":"손호에게 스무 가지를 간하였다","손침":"어린 나이에 조정을 뒤흔들었다","종요":"글씨로도 이름을 남긴 재상","미방":"형과 달리 형주를 등졌다","유비":"돗자리를 팔던 손으로 촉을 열었다","관우":"다섯 관문을 지나 여섯 장수를 베었다","장비":"장판교에서 홀로 조조군을 멈춰 세웠다","조운":"품에 아두를 안고 백만 진중을 돌파했다","마초":"서량의 비단 갑옷, 조조가 수염을 잘랐다","황충":"노년에 정군산에서 하후연을 베었다","제갈량":"초려에서 천하삼분을 그렸다","방통":"연환계를 바치고 낙봉파에서 스러졌다","법정":"한중을 얻게 한 계책의 주인","서서":"어머니의 편지에 붓을 꺾고 떠났다","강유":"제갈량의 뜻을 홀로 아홉 번 이었다","위연":"뒤통수에 반골이 있다 하였다","마대":"서량의 창끝, 끝까지 촉에 남았다","관평":"아버지의 청룡도 곁을 떠나지 않았다","장포":"아비의 장팔사모를 물려받았다","관흥":"관가의 이름을 이릉까지 들고 갔다","왕평":"글은 열 자를 못 읽어도 진은 읽었다","요화":"촉의 처음과 끝을 모두 본 장수","엄안":"목은 벨 수 있어도 항복은 없다 했다","장익":"북벌을 말리면서도 끝까지 따랐다","제갈첨":"면죽에서 아버지의 이름값을 치렀다","주창":"관우의 청룡도를 지고 그림자처럼 따랐다","간옹":"농으로 유비의 마음을 풀어주던 사람","미축":"가산을 털어 유비의 유랑을 먹였다","손건":"발로 뛰며 유비의 말을 전했다","이엄":"탁고의 신하였으나 군량에서 무너졌다","비의":"위연과 양의 사이를 홀로 꿰맸다","동윤":"환관을 눌러 궁을 조용히 지켰다","장완":"제갈량이 남긴 다음 사람","황월영":"추녀로 소문났으나 재주는 남편에 견줬다","유선":"즐거워 촉이 생각나지 않는다 하였다","조조":"치세의 능신이요 난세의 간웅","하후돈":"제 눈알을 삼키고 다시 말을 몰았다","하후연":"사흘에 오백 리를 달리는 장수","조인":"번성을 지켜 관우의 북진을 끊었다","조홍":"천하에 나는 없어도 공은 있어야 한다 했다","장료":"팔백으로 십만을 흔들어 아이 울음을 그치게 했다","서황":"군을 다스림이 주아부 같다 하였다","장합":"진법과 지형을 읽어 촉장들이 꺼렸다","악진":"작은 몸으로 늘 선봉에 섰다","우금":"삼십 년 명성이 물 한 번에 잠겼다","전위":"쌍철극으로 문을 막고 선 채로 죽었다","허저":"웃통을 벗고 마초와 맞붙었다","방덕":"관을 지고 나가 관우와 싸웠다","순욱":"왕좌지재라 불린 조조의 장자방","순유":"열두 가지 기책을 품고도 말이 없었다","곽가":"곽가가 살았다면 적벽은 없었다","가후":"난세를 계산만으로 건넌 사람","정욱":"조조가 위태로울 때마다 곁에 있었다","사마의":"기다림으로 삼국을 모두 삼켰다","등애":"말을 더듬으며 음평의 벼랑을 넘었다","종회":"재주가 넘쳐 제 발에 걸렸다","조비":"붓으로도 형제를 이겼다","조예":"선대의 그늘에서 촉과 오를 막아냈다","만총":"법으로 다스리고 전장에도 섰다","이전":"학문을 좋아해 장수들이 어려워했다","문빙":"형주를 지키다 눈물로 항복했다","학소":"천 명으로 제갈량의 대군을 스무 날 막았다","조진":"조씨 일족의 마지막 기둥","왕랑":"말싸움으로 제갈량에게 지고 말았다","장수":"조조의 아들을 죽이고도 살아남았다","손견":"낙양의 잿더미에서 옥새를 건졌다","손책":"작은 패왕, 강동을 여섯 해에 갈랐다","손권":"형이 남긴 강동을 오십 년 지켰다","주유":"동남풍을 기다리며 적벽에 불을 놓았다","노숙":"촉과 오를 억지로 붙여놓은 사람","여몽":"책을 읽어 사흘 만에 다른 사람이 되었다","육손":"이릉에 불을 놓아 촉의 기세를 끝냈다","태사자":"손책과 맨몸으로 뒤엉켜 싸웠다","감녕":"방울을 달고 백 기로 조조 진영을 헤집었다","황개":"제 등을 내주고 적벽의 불씨를 만들었다","정보":"손씨 삼대를 모두 모신 노장","한당":"강동의 활, 세 주군의 진중에 있었다","주태":"손권을 구하느라 몸이 상처로 덮였다","서성":"갈대로 성을 세워 위군을 물렸다","정봉":"눈밭에서 갑옷을 벗고 돌격했다","능통":"아비의 원수와 한 진영에서 싸웠다","장흠":"가난한 시절부터 손책을 따랐다","육항":"아버지의 이름을 지킨 오의 마지막 기둥","장소":"직언으로 손권을 자주 화나게 했다","고옹":"말 없이 오의 정사를 스무 해 맡았다","제갈근":"동생과 각기 다른 나라를 섬겼다","보즐":"남쪽 끝까지 오의 이름을 넓혔다","손상향":"시녀에게도 칼을 채운 신부","대교":"손책의 곁, 강동의 봄","소교":"주유의 곁, 강동의 봄","여포":"사람 중에 여포요 말 중에 적토라","동탁":"낙양을 불태우고 스스로 무너졌다","원소":"사대에 걸쳐 삼공을 낸 집안의 주인","원술":"옥새 하나에 눈이 멀어 황제를 칭했다","공손찬":"흰 말을 몰아 북방을 눌렀다","유표":"형주를 지켰으나 나아가지 않았다","유장":"제 손으로 늑대를 집에 들였다","마등":"서량의 뿌리, 도성에서 목숨을 잃었다","한수":"마등과 형제였다가 원수가 되었다","장각":"누런 두건으로 천하를 흔들었다","초선":"미인계로 두 사내를 갈라놓았다","진궁":"조조를 살렸다가 조조를 등졌다","공융":"네 살에 배를 양보한 아이","전풍":"옳은 말을 하고 옥에서 죽었다","저수":"관도의 패배를 미리 다 보았다","심배":"업성을 지키다 북쪽을 보고 죽었다","곽도":"말로 제 진영을 갈라놓았다","안량":"관우의 첫 칼에 쓰러진 하북의 명장","문추":"안량의 원수를 갚으러 갔다가 뒤따랐다","고람":"관도에서 진영을 바꿔 살아남았다","장연":"흑산의 무리를 이끌고 산을 다스렸다","화웅":"술이 식기 전에 목이 떨어졌다","맹획":"일곱 번 잡히고 일곱 번 풀려났다","축융":"비도를 던지는 남만의 여왕","좌자":"술잔 속으로 사라진 방사","화타":"머리를 열자 하였다가 옥에 갇혔다","사마휘":"와룡과 봉추의 이름을 알려준 사람","관로":"점괘로 사람의 명을 읽었다","이각":"장안을 쥐고 황제를 끌고 다녔다","곽사":"이각과 다투다 도성을 망쳤다","서영":"조조와 손견을 모두 이겨본 장수","왕윤":"동탁을 무너뜨리고 자신도 무너졌다","황조":"손견을 잡고 손권에게 잡혔다","장로":"오두미도로 한중을 삼십 년 다스렸다","여령기":"아비의 창을 이어받아 하비의 성벽에 섰다"};
+
+var IMGL={"장량":"images/large/장량.jpg","올돌골":"images/large/올돌골.jpg","타사대왕":"images/large/타사대왕.jpg","맹우":"images/large/맹우.jpg","엄여":"images/large/엄여.jpg","전해":"images/large/전해.jpg","감녕":"images/large/감녕.jpg","정봉":"images/large/정봉.jpg","방통":"images/large/방통.jpg","대교":"images/large/대교.jpg","소교":"images/large/소교.jpg","관우":"images/large/관우.jpg","장비":"images/large/장비.jpg","조운":"images/large/조운.jpg","여포":"images/large/여포.jpg","장료":"images/large/장료.jpg","강유":"images/large/강유.jpg","황충":"images/large/황충.jpg","등애":"images/large/등애.jpg","하후돈":"images/large/하후돈.jpg","위연":"images/large/위연.jpg","태사자":"images/large/태사자.jpg","손책":"images/large/손책.jpg","사마소":"images/large/사마소.jpg","조비":"images/large/조비.jpg","노숙":"images/large/노숙.jpg","능통":"images/large/능통.jpg","마량":"images/large/마량.jpg","이전":"images/large/이전.jpg","손상향":"images/large/손상향.jpg","왕이":"images/large/왕이.jpg","신헌영":"images/large/신헌영.jpg","서황":"images/large/서황.jpg","왕원희":"images/large/왕원희.jpg"};
+var IMG={"신헌영":"images/portraits/신헌영.jpg","왕원희":"images/portraits/왕원희.jpg","왕이":"images/portraits/왕이.jpg","조조":"images/portraits/조조.jpg","관우":"images/portraits/관우.jpg","장비":"images/portraits/장비.jpg","제갈량":"images/portraits/제갈량.jpg","조운":"images/portraits/조운.jpg","여포":"images/portraits/여포.jpg","사마의":"images/portraits/사마의.jpg","장료":"images/portraits/장료.jpg","강유":"images/portraits/강유.jpg","주유":"images/portraits/주유.jpg","마초":"images/portraits/마초.jpg","손권":"images/portraits/손권.jpg","육손":"images/portraits/육손.jpg","황충":"images/portraits/황충.jpg","등애":"images/portraits/등애.jpg","하후돈":"images/portraits/하후돈.jpg","서황":"images/portraits/서황.jpg","위연":"images/portraits/위연.jpg","우금":"images/portraits/우금.jpg","태사자":"images/portraits/태사자.jpg","유비":"images/portraits/유비.jpg","원소":"images/portraits/원소.jpg","공손찬":"images/portraits/공손찬.jpg","손책":"images/portraits/손책.jpg","손견":"images/portraits/손견.jpg","마등":"images/portraits/마등.jpg","가후":"images/portraits/가후.jpg","방통":"images/portraits/방통.jpg","노숙":"images/portraits/노숙.jpg","순욱":"images/portraits/순욱.jpg","법정":"images/portraits/법정.jpg","순유":"images/portraits/순유.jpg","조비":"images/portraits/조비.jpg","사마사":"images/portraits/사마사.jpg","사마소":"images/portraits/사마소.jpg","양호":"images/portraits/양호.jpg","두예":"images/portraits/두예.jpg","종회":"images/portraits/종회.jpg","여몽":"images/portraits/여몽.jpg","감녕":"images/portraits/감녕.jpg","황개":"images/portraits/황개.jpg","정보":"images/portraits/정보.jpg","정봉":"images/portraits/정봉.jpg","육항":"images/portraits/육항.jpg","허저":"images/portraits/허저.jpg","전위":"images/portraits/전위.jpg","하후연":"images/portraits/하후연.jpg","조인":"images/portraits/조인.jpg","장합":"images/portraits/장합.jpg","이전":"images/portraits/이전.jpg","동탁":"images/portraits/동탁.jpg","초선":"images/portraits/초선.jpg","화웅":"images/portraits/화웅.jpg","고순":"images/portraits/고순.jpg","안량":"images/portraits/안량.jpg","문추":"images/portraits/문추.jpg","곽회":"images/portraits/곽회.jpg","진태":"images/portraits/진태.jpg","관구검":"images/portraits/관구검.jpg","문앙":"images/portraits/문앙.jpg","사마염":"images/portraits/사마염.jpg","방덕":"images/portraits/방덕.jpg","주태":"images/portraits/주태.jpg","서성":"images/portraits/서성.jpg","능통":"images/portraits/능통.jpg","대교":"images/portraits/대교.jpg","소교":"images/portraits/소교.jpg","손상향":"images/portraits/손상향.jpg","관평":"images/portraits/관평.jpg","왕평":"images/portraits/왕평.jpg","마대":"images/portraits/마대.jpg","미축":"images/portraits/미축.jpg","서서":"images/portraits/서서.jpg","마속":"images/portraits/마속.jpg","화타":"images/portraits/화타.jpg","좌자":"images/portraits/좌자.jpg","사마휘":"images/portraits/사마휘.jpg","맹획":"images/portraits/맹획.jpg","축융":"images/portraits/축융.jpg","우길":"images/portraits/우길.jpg","저수":"images/portraits/저수.jpg","전풍":"images/portraits/전풍.jpg","심배":"images/portraits/심배.jpg","원담":"images/portraits/원담.jpg","원상":"images/portraits/원상.jpg","괴월":"images/portraits/괴월.jpg","곽가":"images/portraits/곽가.jpg","정욱":"images/portraits/정욱.jpg","유엽":"images/portraits/유엽.jpg","진군":"images/portraits/진군.jpg","만총":"images/portraits/만총.jpg","조진":"images/portraits/조진.jpg","유표":"images/portraits/유표.jpg","유장":"images/portraits/유장.jpg","장각":"images/portraits/장각.jpg","진궁":"images/portraits/진궁.jpg","장임":"images/portraits/장임.jpg","원술":"images/portraits/원술.jpg","한당":"images/portraits/한당.jpg","주환":"images/portraits/주환.jpg","반장":"images/portraits/반장.jpg","손환":"images/portraits/손환.jpg","제갈각":"images/portraits/제갈각.jpg","전종":"images/portraits/전종.jpg","엄안":"images/portraits/엄안.jpg","맹달":"images/portraits/맹달.jpg","마충":"images/portraits/마충.jpg","장억":"images/portraits/장억.jpg","하후패":"images/portraits/하후패.jpg","이엄":"images/portraits/이엄.jpg","장수":"images/portraits/장수.jpg","문흠":"images/portraits/문흠.jpg","제갈탄":"images/portraits/제갈탄.jpg","왕기":"images/portraits/왕기.jpg","한수":"images/portraits/한수.jpg","이각":"images/portraits/이각.jpg","악진":"images/portraits/악진.jpg","학소":"images/portraits/학소.jpg","전예":"images/portraits/전예.jpg","장패":"images/portraits/장패.jpg","여건":"images/portraits/여건.jpg","문빙":"images/portraits/문빙.jpg","조예":"images/portraits/조예.jpg","조창":"images/portraits/조창.jpg","조휴":"images/portraits/조휴.jpg","조홍":"images/portraits/조홍.jpg","조앙":"images/portraits/조앙.jpg","조환":"images/portraits/조환.jpg","관흥":"images/portraits/관흥.jpg","장포":"images/portraits/장포.jpg","관색":"images/portraits/관색.jpg","유봉":"images/portraits/유봉.jpg","부첨":"images/portraits/부첨.jpg","오의":"images/portraits/오의.jpg","장소":"images/portraits/장소.jpg","장굉":"images/portraits/장굉.jpg","제갈근":"images/portraits/제갈근.jpg","진무":"images/portraits/진무.jpg","장흠":"images/portraits/장흠.jpg","주연":"images/portraits/주연.jpg","황보숭":"images/portraits/황보숭.jpg","노식":"images/portraits/노식.jpg","왕윤":"images/portraits/왕윤.jpg","종요":"images/portraits/종요.jpg","괴량":"images/portraits/괴량.jpg","허유":"images/portraits/허유.jpg","장제":"images/portraits/장제.jpg","국의":"images/portraits/국의.jpg","기령":"images/portraits/기령.jpg","채모":"images/portraits/채모.jpg","염행":"images/portraits/염행.jpg","곽사":"images/portraits/곽사.jpg","비의":"images/portraits/비의.jpg","황권":"images/portraits/황권.jpg","나헌":"images/portraits/나헌.jpg","마량":"images/portraits/마량.jpg","동윤":"images/portraits/동윤.jpg","장완":"images/portraits/장완.jpg","미부인":"images/portraits/미부인.jpg","감부인":"images/portraits/감부인.jpg","오국태":"images/portraits/오국태.jpg","장춘화":"images/portraits/장춘화.jpg","견씨":"images/portraits/견씨.jpg","채문희":"images/portraits/채문희.jpg","여령기":"images/portraits/여령기.jpg","황월영":"images/portraits/황월영.jpg","조식":"images/portraits/조식.jpg","주준":"images/portraits/주준.jpg","채옹":"images/portraits/채옹.jpg","손침":"images/portraits/손침.jpg","제갈첨":"images/portraits/제갈첨.jpg","장익":"images/portraits/장익.jpg","추씨":"images/portraits/추씨.jpg","한복":"images/portraits/한복.jpg","왕광":"images/portraits/왕광.jpg","포신":"images/portraits/포신.jpg","장막":"images/portraits/장막.jpg","여대":"images/portraits/여대.jpg","하제":"images/portraits/하제.jpg","주치":"images/portraits/주치.jpg","여범":"images/portraits/여범.jpg","감택":"images/portraits/감택.jpg","우번":"images/portraits/우번.jpg","손등":"images/portraits/손등.jpg","손준":"images/portraits/손준.jpg","육개":"images/portraits/육개.jpg","고옹":"images/portraits/고옹.jpg","주방":"images/portraits/주방.jpg","동습":"images/portraits/동습.jpg","화흠":"images/portraits/화흠.jpg","하후현":"images/portraits/하후현.jpg","가규":"images/portraits/가규.jpg","왕랑":"images/portraits/왕랑.jpg","진등":"images/portraits/진등.jpg","종예":"images/portraits/종예.jpg","이회":"images/portraits/이회.jpg","등지":"images/portraits/등지.jpg","진식":"images/portraits/진식.jpg","주창":"images/portraits/주창.jpg","요화":"images/portraits/요화.jpg","유선":"images/portraits/유선.jpg","유우":"images/portraits/유우.jpg","관녕":"images/portraits/관녕.jpg","장로":"images/portraits/장로.jpg","진림":"images/portraits/진림.jpg","이유":"images/portraits/이유.jpg","순심":"images/portraits/순심.jpg","봉기":"images/portraits/봉기.jpg","신평":"images/portraits/신평.jpg","장연":"images/portraits/장연.jpg","서영":"images/portraits/서영.jpg","장훈":"images/portraits/장훈.jpg","번조":"images/portraits/번조.jpg","간옹":"images/portraits/간옹.jpg","손건":"images/portraits/손건.jpg","이적":"images/portraits/이적.jpg","왕보":"images/portraits/왕보.jpg","조루":"images/portraits/조루.jpg","미방":"images/portraits/미방.jpg","보즐":"images/portraits/보즐.jpg","능조":"images/portraits/능조.jpg","당자":"images/portraits/당자.jpg","조무":"images/portraits/조무.jpg","손호":"images/portraits/손호.jpg","유심":"images/portraits/유심.jpg","후성":"images/portraits/후성.jpg","송헌":"images/portraits/송헌.jpg","위속":"images/portraits/위속.jpg","호거아":"images/portraits/호거아.jpg","장선":"images/portraits/장선.jpg","문호":"images/portraits/문호.jpg","고람":"images/portraits/고람.jpg","순우경":"images/portraits/순우경.jpg","곽도":"images/portraits/곽도.jpg","원희":"images/portraits/원희.jpg","공융":"images/portraits/공융.jpg","가충":"images/portraits/가충.jpg","엄강":"images/portraits/엄강.jpg","전해":"images/portraits/전해.jpg","관정":"images/portraits/관정.jpg","공손범":"images/portraits/공손범.jpg","관로":"images/portraits/관로.jpg","황조":"images/portraits/황조.jpg","관해":"images/portraits/관해.jpg","장보":"images/portraits/장보.jpg","장량":"images/portraits/장량.jpg","올돌골":"images/portraits/올돌골.jpg","타사대왕":"images/portraits/타사대왕.jpg","맹우":"images/portraits/맹우.jpg","교유":"images/portraits/교유.jpg","양강":"images/portraits/양강.jpg","한윤":"images/portraits/한윤.jpg","장송":"images/portraits/장송.jpg","유기":"images/portraits/유기.jpg","엄여":"images/portraits/엄여.jpg","도겸":"images/portraits/도겸.jpg","유요":"images/portraits/유요.jpg","하진":"images/portraits/하진.jpg","한현":"images/portraits/한현.jpg","엄백호":"images/portraits/엄백호.jpg","동승":"images/portraits/동승.jpg","진규":"images/portraits/진규.jpg","염포":"images/portraits/염포.jpg","양송":"images/portraits/양송.jpg"};
+var SEAL={"추씨":"鄒","화흠":"華","관녕":"管","여대":"呂","하제":"賀","주치":"朱","우번":"虞","감택":"闞","여범":"呂","손등":"孫","손준":"孫","미부인":"糜","감부인":"甘","오국태":"吳","장춘화":"張","왕원희":"王","신헌영":"辛","왕이":"王","견씨":"甄","채옹":"蔡","채문희":"蔡","유우":"劉","한현":"韓","왕보":"王","조루":"趙","문호":"文","이유":"李","장훈":"張","교유":"橋","양강":"楊","한윤":"韓","관구검":"毌丘","당자":"唐","전예":"田","엄강":"嚴","관정":"關","전해":"田","공손범":"公孫","장제":"張","번조":"樊","장선":"張","하후현":"夏侯","동승":"董","염행":"閻","조무":"祖","타사대왕":"朶","맹우":"孟","엄여":"嚴","손호":"孫","조환":"曹","유심":"劉","조휴":"曹","주연":"朱","노식":"盧","황보숭":"皇甫","주준":"朱","장패":"臧","올돌골":"兀","봉기":"逢","신평":"辛","원담":"袁","원희":"袁","원상":"袁","조창":"曹","조식":"曹","조앙":"曹","유엽":"劉","유봉":"劉","나헌":"羅","염포":"閻","양송":"楊","마량":"馬","마속":"馬","진군":"陳","양호":"羊","두예":"杜","가충":"賈","가규":"賈","사마염":"司馬","능조":"凌","허유":"許","진림":"陳","괴량":"蒯","괴월":"蒯","채모":"蔡","유기":"劉","후성":"侯","송헌":"宋","위속":"魏","유비":"劉","유선":"劉","유표":"劉","유장":"劉","유요":"劉","관우":"關","관평":"關","관흥":"關","관색":"關","장비":"張","장포":"張","장익":"張","장료":"張","장합":"張","장수":"張","장소":"張","장굉":"張","장흠":"蔣","장각":"張","장연":"張","장보":"張","장량":"張","장로":"張","장막":"張","장임":"張","장송":"張","장억":"張","조운":"趙","마초":"馬","마대":"馬","마등":"馬","마충":"馬","황충":"黃","황월영":"黃","황조":"黃","황개":"黃","황권":"黃","제갈량":"諸葛","제갈근":"諸葛","제갈첨":"諸葛","제갈각":"諸葛","제갈탄":"諸葛","방통":"龐","방덕":"龐","법정":"法","서서":"徐","서황":"徐","서성":"徐","서영":"徐","강유":"姜","위연":"魏","왕평":"王","왕랑":"王","왕윤":"王","왕광":"王","왕기":"王","요화":"廖","엄안":"嚴","엄백호":"嚴","진식":"陳","진궁":"陳","진규":"陳","진등":"陳","진무":"陳","진태":"陳","종예":"宗","이적":"伊","주창":"周","주유":"周","주태":"周","주방":"周","주환":"朱","간옹":"簡","미축":"麋","미방":"麋","손건":"孫","손견":"孫","손책":"孫","손권":"孫","손상향":"孫","손환":"孫","손침":"孫","이엄":"李","이전":"李","이각":"李","이회":"李","비의":"費","동윤":"董","동습":"董","동탁":"董","장완":"蔣","조조":"曹","조비":"曹","조예":"曹","조인":"曹","조홍":"曹","조진":"曹","하후돈":"夏侯","하후연":"夏侯","하후패":"夏侯","악진":"樂","우금":"于","우길":"于","전위":"典","허저":"許","순욱":"荀","순유":"荀","순심":"荀","곽가":"郭","곽도":"郭","곽사":"郭","곽회":"郭","가후":"賈","정욱":"程","정보":"程","사마의":"司馬","사마사":"司馬","사마소":"司馬","사마휘":"司馬","등애":"鄧","등지":"鄧","종회":"鍾","종요":"鍾","만총":"滿","문빙":"文","문추":"文","문앙":"文","문흠":"文","학소":"郝","노숙":"魯","여몽":"呂","여포":"呂","여건":"呂","여령기":"呂","육손":"陸","육항":"陸","육개":"陸","태사자":"太史","감녕":"甘","한당":"韓","한수":"韓","한복":"韓","정봉":"丁","능통":"凌","고옹":"顧","보즐":"步","전종":"全","대교":"喬","소교":"喬","반장":"潘","원소":"袁","원술":"袁","공손찬":"公孫","초선":"貂","공융":"孔","전풍":"田","저수":"沮","심배":"審","안량":"顏","고람":"高","고순":"高","화웅":"華","화타":"華","맹획":"孟","맹달":"孟","축융":"祝","좌자":"左","관로":"管","관해":"管","기령":"紀","순우경":"淳于","호거아":"胡","국의":"麴","포신":"鮑","도겸":"陶","하진":"何","오의":"吳","부첨":"傅"};
+/* Warm card portraits once per session; keep large gallery images on demand. */
+var portraitWarm={queue:[],seen:Object.create(null),images:[],active:0};
+function preloadPortraits(names,priority){
+  if(typeof Image==="undefined")return;
+  var urls=[];
+  names.forEach(function(name){
+    var url=IMG[name];if(!url||portraitWarm.seen[url])return;
+    portraitWarm.seen[url]=true;urls.push(url);
+  });
+  portraitWarm.queue=priority?urls.concat(portraitWarm.queue):portraitWarm.queue.concat(urls);
+  pumpPortraits();
+}
+function pumpPortraits(){
+  while(portraitWarm.active<6&&portraitWarm.queue.length){
+    (function(url){
+      var img=new Image(),done=false,timer;
+      portraitWarm.active++;portraitWarm.images.push(img);
+      function finish(){
+        if(done)return;done=true;clearTimeout(timer);
+        img.onload=img.onerror=null;portraitWarm.active--;pumpPortraits();
+      }
+      img.onload=function(){
+        if(img.decode){img.decode().then(finish,finish)}else finish();
+      };
+      img.onerror=finish;
+      timer=setTimeout(finish,15000);
+      img.src=url;
+    })(portraitWarm.queue.shift());
+  }
+}
+function avHTML(c,cls){
+  var g=SEAL[c[0]]||c[0].charAt(0);
+  var r2=roleOf(c);var sh=r2==="군주"?"lord":r2==="무장"?"war":r2==="책사"?"str":"civ";
+  return '<span class="av '+cls+' av-'+sh+(g.length>1?" av2":"")+'" style="--ac:'+facInfo(facOf(c)).c+'"><i>'+g+'</i>'+
+    '<img loading="'+(cls==="avc"?"eager":"lazy")+'" alt="" src="'+(IMG[c[0]]||('../img/'+c[0]+'.png'))+'" onerror="if(!this.dataset.j){this.dataset.j=1;this.src=\'../img/'+c[0]+'.jpg\'}else{this.remove()}"></span>';
+}
+var FAC={"위":{h:"魏",c:"var(--f-wei)"},"촉":{h:"蜀",c:"var(--f-shu)"},"오":{h:"吳",c:"var(--f-wu)"},"군웅":{h:"雄",c:"var(--f-etc)"}};
+var PACKS={
+ w194:{
+  n:"군웅할거 一九四",
+  synMul:1.35,
+  bias:25,
+  factions:{
+   "조조군":{h:"曹",c:"#3E5C8C"},"원소군":{h:"袁",c:"#8C6A3E"},
+   "여포군":{h:"呂",c:"#A03A50"},"유표군":{h:"荊",c:"#4F7A6E"},
+   "손책군":{h:"孫",c:"#C0472F"},"서주군":{h:"徐",c:"#4F7A4A"},
+   "공손찬군":{h:"公",c:"#8A8A96"},"마등군":{h:"馬",c:"#6E4F8C"},
+   "원술군":{h:"仲",c:"#B07A2A"},"장수군":{h:"宛",c:"#5C6E3A"}
+  },
+  roleMap:{"여포":"군주","장수":"군주"},
+  facMap:{
+   "조조":"조조군","하후돈":"조조군","하후연":"조조군","조인":"조조군","조홍":"조조군","전위":"조조군","허저":"조조군","악진":"조조군","우금":"조조군","이전":"조조군","여건":"조조군","순욱":"조조군","순유":"조조군","곽가":"조조군","정욱":"조조군","만총":"조조군","종요":"조조군",
+   "원소":"원소군","전풍":"원소군","저수":"원소군","심배":"원소군","곽도":"원소군","안량":"원소군","문추":"원소군","고람":"원소군","장합":"원소군","순우경":"원소군","허유":"원소군","진림":"원소군","국의":"원소군","순심":"원소군","견씨":"원소군","봉기":"원소군","신평":"원소군",
+   "여포":"여포군","진궁":"여포군","고순":"여포군","장료":"여포군","장패":"여포군","여령기":"여포군","초선":"여포군","후성":"여포군","송헌":"여포군","위속":"여포군",
+   "유표":"유표군","한현":"유표군","황조":"유표군","괴량":"유표군","괴월":"유표군","채모":"유표군","문빙":"유표군","유기":"유표군",
+   "손책":"손책군","주유":"손책군","태사자":"손책군","정보":"손책군","황개":"손책군","한당":"손책군","주태":"손책군","장흠":"손책군","장소":"손책군","장굉":"손책군","대교":"손책군","소교":"손책군","손권":"손책군","손상향":"손책군",
+   "도겸":"서주군","유비":"서주군","관우":"서주군","장비":"서주군","미축":"서주군","미방":"서주군","손건":"서주군","간옹":"서주군","진규":"서주군","진등":"서주군",
+   "유우":"공손찬군","공손찬":"공손찬군","조운":"공손찬군","엄강":"공손찬군","관정":"공손찬군","전해":"공손찬군","공손범":"공손찬군","전예":"공손찬군",
+   "마등":"마등군","마초":"마등군","마대":"마등군","한수":"마등군","방덕":"마등군","염행":"마등군",
+   "원술":"원술군","기령":"원술군","장훈":"원술군","교유":"원술군","양강":"원술군","한윤":"원술군",
+   "장수":"장수군","가후":"장수군","호거아":"장수군","장제":"장수군","장선":"장수군","추씨":"장수군"
+  }
+ },
+ gd200:{
+  n:"관도대전 二〇〇",
+  synMul:1.3,bias:25,
+  roleMap:{},
+  factions:{"조조군":{h:"曹",c:"#3E5C8C"},"원소군":{h:"袁",c:"#8C6A3E"},"유표군":{h:"荊",c:"#4F7A6E"},"손씨군":{h:"孫",c:"#C0472F"},"유장군":{h:"益",c:"#66803A"},"마등군":{h:"馬",c:"#6E4F8C"},"장로군":{h:"米",c:"#A8842A"}},
+  facMap:{"조조":"조조군","하후돈":"조조군","하후연":"조조군","조인":"조조군","조홍":"조조군","허저":"조조군","악진":"조조군","우금":"조조군","이전":"조조군","서황":"조조군","장료":"조조군","순욱":"조조군","순유":"조조군","곽가":"조조군","정욱":"조조군","만총":"조조군","종요":"조조군","여건":"조조군","유엽":"조조군","장패":"조조군","관우":"조조군","원소":"원소군","전풍":"원소군","저수":"원소군","심배":"원소군","곽도":"원소군","안량":"원소군","문추":"원소군","고람":"원소군","장합":"원소군","순우경":"원소군","허유":"원소군","진림":"원소군","순심":"원소군","견씨":"원소군","봉기":"원소군","신평":"원소군","원담":"원소군","원희":"원소군","원상":"원소군","유비":"원소군","조운":"원소군","장비":"원소군","유표":"유표군","한현":"유표군","황조":"유표군","괴량":"유표군","괴월":"유표군","채모":"유표군","문빙":"유표군","유기":"유표군","감녕":"유표군","손책":"손씨군","손권":"손씨군","주치":"손씨군","여범":"손씨군","주유":"손씨군","노숙":"손씨군","태사자":"손씨군","정보":"손씨군","황개":"손씨군","한당":"손씨군","주태":"손씨군","장흠":"손씨군","장소":"손씨군","장굉":"손씨군","대교":"손씨군","소교":"손씨군","손상향":"손씨군","능조":"손씨군","유장":"유장군","장임":"유장군","엄안":"유장군","이엄":"유장군","법정":"유장군","장송":"유장군","황권":"유장군","오의":"유장군","맹달":"유장군","마등":"마등군","마초":"마등군","마대":"마등군","방덕":"마등군","한수":"마등군","장로":"장로군","염포":"장로군","양송":"장로군"}
+ },
+ jb208:{
+  n:"적벽대전 二〇八",
+  synMul:1.3,bias:25,
+  roleMap:{"마초":"군주"},
+  factions:{"조조군":{h:"曹",c:"#3E5C8C"},"유비군":{h:"劉",c:"#4F7A4A"},"손권군":{h:"孫",c:"#C0472F"},"유장군":{h:"益",c:"#66803A"},"서량군":{h:"涼",c:"#6E4F8C"},"장로군":{h:"米",c:"#A8842A"}},
+  facMap:{"조조":"조조군","하후돈":"조조군","하후연":"조조군","조인":"조조군","조홍":"조조군","장료":"조조군","서황":"조조군","장합":"조조군","악진":"조조군","우금":"조조군","허저":"조조군","이전":"조조군","문빙":"조조군","채모":"조조군","괴월":"조조군","서서":"조조군","순욱":"조조군","순유":"조조군","정욱":"조조군","가후":"조조군","만총":"조조군","종요":"조조군","유엽":"조조군","조휴":"조조군","왕랑":"조조군","화흠":"조조군","유비":"유비군","관우":"유비군","장비":"유비군","조운":"유비군","제갈량":"유비군","미축":"유비군","손건":"유비군","간옹":"유비군","미방":"유비군","관평":"유비군","주창":"유비군","유기":"유비군","손권":"손권군","주유":"손권군","노숙":"손권군","여몽":"손권군","감녕":"손권군","정보":"손권군","황개":"손권군","한당":"손권군","주태":"손권군","서성":"손권군","정봉":"손권군","능통":"손권군","주연":"손권군","우번":"손권군","감택":"손권군","여범":"손권군","주치":"손권군","하제":"손권군","장흠":"손권군","육손":"손권군","장소":"손권군","고옹":"손권군","제갈근":"손권군","보즐":"손권군","장굉":"손권군","대교":"손권군","소교":"손권군","손상향":"손권군","반장":"손권군","진무":"손권군","동습":"손권군","전종":"손권군","유장":"유장군","장임":"유장군","엄안":"유장군","이엄":"유장군","법정":"유장군","장송":"유장군","황권":"유장군","오의":"유장군","맹달":"유장군","마초":"서량군","마대":"서량군","방덕":"서량군","한수":"서량군","염행":"서량군","장로":"장로군","염포":"장로군","양송":"장로군"}
+ },
+ mx:{
+  n:"군웅록 · 遍歷",
+  career:{"추씨":["장수"],"화흠":["한조정","동오","조위"],"관녕":["재야"],"여대":["동오"],"하제":["동오"],"주치":["동오"],"우번":["동오"],"감택":["동오"],"여범":["동오"],"손등":["동오"],"손준":["동오"],"미부인":["촉한"],"감부인":["촉한"],"오국태":["동오"],"장춘화":["조위","진"],"왕원희":["조위","진"],"신헌영":["조위","진"],"왕이":["조위"],"견씨":["원소","조위"],"채옹":["한조정","동탁"],"채문희":["조위"],"유우":["한조정"],"한현":["유표"],"왕보":["촉한"],"조루":["촉한"],"이유":["동탁"],"장훈":["원술"],"교유":["원술"],"양강":["원술"],"한윤":["원술"],"관구검":["조위"],"당자":["동오"],"문호":["조위"],"전예":["촉한","공손찬","조위"],"엄강":["공손찬"],"관정":["공손찬"],"전해":["공손찬"],"공손범":["공손찬"],"장제":["동탁","장수"],"번조":["동탁"],"장선":["장수"],"유비":["촉한"],"관우":["조위","촉한"],"장비":["촉한"],"조운":["공손찬","촉한"],"마초":["서량","장로","촉한"],"황충":["유표","촉한"],"제갈량":["촉한"],"방통":["촉한"],"법정":["유장","촉한"],"서서":["촉한","조위"],"강유":["조위","촉한"],"위연":["유표","촉한"],"마대":["서량","촉한"],"관평":["촉한"],"장포":["촉한"],"관흥":["촉한"],"왕평":["조위","촉한"],"유봉":["촉한"],"요화":["황건","촉한"],"엄안":["유장","촉한"],"장익":["촉한"],"진식":["촉한"],"관색":["촉한"],"종예":["촉한"],"이적":["촉한"],"제갈첨":["촉한"],"주창":["황건","촉한"],"간옹":["촉한"],"미축":["도겸","촉한"],"손건":["촉한"],"이엄":["유표","유장","촉한"],"마량":["촉한"],"마속":["촉한"],"비의":["촉한"],"동윤":["촉한"],"장완":["촉한"],"황월영":["촉한"],"유선":["촉한"],"조조":["조위"],"하후돈":["조위"],"하후연":["조위"],"조창":["조위"],"조앙":["조위"],"조인":["조위"],"조홍":["조위"],"장료":["여포","조위"],"서황":["조위"],"장합":["원소","조위"],"악진":["조위"],"우금":["조위"],"전위":["조위"],"허저":["조위"],"방덕":["서량","장로","조위"],"순욱":["조위"],"순유":["조위"],"곽가":["조위"],"가후":["동탁","장수","조위"],"정욱":["조위"],"사마의":["조위","진"],"등애":["조위"],"종회":["조위"],"조비":["조위"],"조예":["조위"],"조식":["조위"],"유엽":["한조정","조위"],"진군":["조위"],"만총":["조위"],"이전":["조위"],"문빙":["유표","조위"],"하후현":["조위"],"학소":["조위"],"조휴":["조위"],"조환":["조위"],"장패":["여포","조위"],"조진":["조위"],"왕랑":["한조정","조위"],"장수":["장수"],"손견":["동오"],"손책":["원술","동오"],"손권":["동오"],"주유":["동오"],"노숙":["동오"],"여몽":["동오"],"육손":["동오"],"태사자":["한조정","동오"],"감녕":["유표","동오"],"황개":["동오"],"조무":["동오"],"정보":["동오"],"한당":["동오"],"주태":["동오"],"서성":["동오"],"정봉":["동오"],"능통":["동오"],"능조":["동오"],"장흠":["동오"],"육항":["동오"],"장소":["동오"],"고옹":["동오"],"제갈근":["동오"],"보즐":["동오"],"장굉":["동오"],"전종":["동오"],"손환":["동오"],"주방":["동오"],"손상향":["동오"],"대교":["동오"],"소교":["동오"],"진무":["동오"],"동습":["동오"],"반장":["동오"],"여포":["동탁","여포"],"동탁":["동탁"],"원소":["원소"],"원술":["원술"],"공손찬":["공손찬"],"유표":["유표"],"유장":["유장"],"마등":["서량"],"한수":["서량"],"장각":["황건"],"초선":["한조정","여포"],"진궁":["조위","여포"],"공융":["한조정","조위"],"원담":["원소"],"원희":["원소"],"원상":["원소"],"봉기":["원소"],"신평":["원소"],"전풍":["원소"],"저수":["원소"],"심배":["원소"],"곽도":["원소"],"안량":["원소"],"문추":["원소"],"고람":["원소"],"장연":["황건","조위"],"화웅":["동탁"],"노식":["한조정"],"황보숭":["한조정"],"주준":["한조정"],"올돌골":["남만"],"타사대왕":["남만"],"맹우":["남만"],"엄여":["재야"],"맹획":["남만"],"축융":["남만"],"좌자":["재야"],"화타":["재야"],"사마휘":["재야"],"관로":["재야","조위"],"이각":["동탁"],"곽사":["동탁"],"서영":["동탁"],"왕윤":["한조정"],"황조":["유표"],"왕광":["한조정"],"기령":["원술"],"순우경":["원소"],"호거아":["장수"],"염포":["장로"],"양송":["장로"],"장로":["장로"],"고순":["여포"],"국의":["원소"],"진규":["도겸","조위"],"진등":["도겸","조위"],"포신":["조위"],"도겸":["도겸"],"한복":["원소"],"관해":["황건"],"장보":["황건"],"장량":["황건"],"우길":["재야"],"엄백호":["재야"],"동승":["한조정"],"염행":["서량","조위"],"하진":["한조정"],"장막":["조위","여포"],"순심":["원소"],"유요":["한조정"],"장임":["유장"],"황권":["유장","촉한","조위"],"오의":["유장","촉한"],"맹달":["유장","촉한","조위"],"장송":["유장"],"허유":["원소","조위"],"진림":["원소","조위"],"괴량":["유표"],"괴월":["유표","조위"],"채모":["유표","조위"],"유기":["유표","촉한"],"후성":["여포"],"송헌":["여포"],"위속":["여포"],"문앙":["조위","동오","진"],"문흠":["조위","동오"],"곽회":["조위"],"진태":["조위"],"사마사":["조위","진"],"사마소":["조위","진"],"왕기":["조위"],"양호":["조위","진"],"두예":["조위","진"],"가충":["조위","진"],"가규":["조위"],"사마염":["진"],"하후패":["조위","촉한"],"제갈각":["동오"],"주환":["동오"],"등지":["촉한"],"이회":["촉한"],"나헌":["촉한","진"],"유심":["촉한"],"부첨":["촉한"],"마충":["촉한"],"장억":["촉한"],"육개":["동오"],"손호":["동오"],"주연":["동오"],"손침":["동오"],"종요":["조위"],"여건":["조위"],"제갈탄":["조위","동오"],"미방":["도겸","촉한","동오"],"여령기":["여포"]},
+  synMul:.8,bias:25,
+  roleMap:{"여포":"군주","장수":"군주","장각":"군주","맹획":"군주"},
+  factions:{
+   "조위":{h:"魏",c:"#3E5C8C"},"촉한":{h:"蜀",c:"#4F7A4A"},"동오":{h:"吳",c:"#C0472F"},
+   "원소":{h:"袁",c:"#8C6A3E"},"원술":{h:"仲",c:"#B07A2A"},"여포":{h:"呂",c:"#A03A50"},
+   "동탁":{h:"董",c:"#6B3226"},"유표":{h:"荊",c:"#4F7A6E"},"유장":{h:"益",c:"#66803A"},
+   "서량":{h:"涼",c:"#6E4F8C"},"장수":{h:"宛",c:"#5C6E3A"},"장로":{h:"米",c:"#A8842A"},
+   "공손찬":{h:"公",c:"#8A8A96"},"도겸":{h:"徐",c:"#7A6A56"},"황건":{h:"黃",c:"#8C7A2A"},
+   "한조정":{h:"漢",c:"#7A4A56"},"남만":{h:"蠻",c:"#7A5A34"},"재야":{h:"野",c:"#5C6E7A"},"진":{h:"晉",c:"#6E4F8C"}
+  }
+ },
+ end263:{
+  n:"삼국종결 二六三",
+  synMul:1.3,bias:25,
+  roleMap:{"사마소":"군주","제갈탄":"군주"},
+  factions:{"진군":{h:"晉",c:"#6E4F8C"},"촉한군":{h:"漢",c:"#4F7A4A"},"동오군":{h:"吳",c:"#C0472F"},"회남군":{h:"淮",c:"#8C6A3E"}},
+  facMap:{"사마사":"진군","사마소":"진군","사마염":"진군","왕원희":"진군","신헌영":"진군","등애":"진군","종회":"진군","가충":"진군","양호":"진군","두예":"진군","왕기":"진군","진태":"진군","곽회":"진군","문앙":"진군","조환":"진군","유선":"촉한군","강유":"촉한군","비의":"촉한군","동윤":"촉한군","장완":"촉한군","왕평":"촉한군","마충":"촉한군","장억":"촉한군","장익":"촉한군","요화":"촉한군","부첨":"촉한군","제갈첨":"촉한군","마대":"촉한군","하후패":"촉한군","나헌":"촉한군","유심":"촉한군","손권":"동오군","제갈각":"동오군","손침":"동오군","육항":"동오군","정봉":"동오군","육개":"동오군","전종":"동오군","보즐":"동오군","고옹":"동오군","주환":"동오군","손환":"동오군","손호":"동오군","여대":"동오군","문흠":"회남군","제갈탄":"회남군","관구검":"회남군","당자":"회남군","문호":"회남군"}
+ }
+};
+var PACK2=null;   // 활성 확장팩 (null=본편 영웅집결)
+function facsOf(c){
+  if(PACK2&&PACK2.career)return PACK2.career[c[0]]||[c[1]];
+  return [(PACK2&&PACK2.facMap&&PACK2.facMap[c[0]])||c[1]];
+}
+function facOf(c){var a=facsOf(c);return a[a.length-1]}
+function roleOf(c){return (PACK2&&PACK2.roleMap&&PACK2.roleMap[c[0]])||c[2]}
+function facInfo(f){return (PACK2&&PACK2.factions[f])||FAC[f]||{h:f.charAt(0),c:"var(--f-etc)"}}
+/* 2026-09: new officers use text seals until a portrait is supplied. */
+Object.assign(LORE,{
+ "진도":"유비를 따르며 정예 병사를 이끈 숙장","유파":"촉의 재정과 법제를 다듬은 실무가",
+ "양의":"북벌의 군무를 정리하였으나 동료와 화합하지 못했다","동소":"여러 진영을 거쳐 조조의 조정을 도왔다",
+ "유복":"회남의 행정과 방비를 다진 관리","신비":"곧은 간언으로 조정을 섬겼다",
+ "낙통":"백성의 어려움을 헤아려 간언한 오의 신하","고담":"고옹의 뒤를 이어 조정에서 재능을 보였다",
+ "장승":"장소의 아들로 문무를 함께 닦았다","장양":"하내에 터를 잡고 군웅 사이에서 뜻을 폈다",
+ "사섭":"교주를 오래 다스린 지방의 군주","왕준":"수군을 이끌고 오 정벌에 나섰다"
+});
+Object.assign(PACKS.gd200.facMap,{"동소":"조조군","유복":"조조군","신비":"원소군"});
+Object.assign(PACKS.jb208.facMap,{"동소":"조조군","신비":"조조군"});
+Object.assign(PACKS.end263.facMap,{"왕준":"진군"});
+Object.assign(PACKS.mx.career,{
+ "진도":["촉한"],"유파":["유장","촉한"],"양의":["조위","촉한"],
+ "동소":["원소","장양","조위"],"유복":["조위"],"신비":["원소","조위"],
+ "낙통":["동오"],"고담":["동오"],"장승":["동오"],"장양":["장양"],
+ "사섭":["교주"],"왕준":["조위","진"]
+});
+Object.assign(PACKS.mx.factions,{"장양":{h:"楊",c:"#8A7653"},"교주":{h:"交",c:"#4D887F"}});
+
+var LORD_MIN=2, LORD_MAX=14;
+var WT={"군주":[.9,.4,.9,.9],"무장":[1,1.2,.4,.2],"책사":[.6,.2,1.3,.7],"문관":[.3,.1,1,1.3]};
+
+/* ───────── 결의 · 불화 ───────── */
+var COMBO=[
+ {n:"도원결의",m:["유비","관우","장비"],t:{2:45,3:90}},
+ {n:"삼고초려",m:["유비","제갈량"],t:{2:50}},
+ {n:"와룡봉추",m:["제갈량","방통"],t:{2:70}},
+ {n:"출사표",m:["제갈량","유선"],t:{2:55}},
+ {n:"관씨 부자",k:1,m:["관우","관평","관흥","관색"],t:{2:50,3:110,4:180}},
+ {n:"장씨 부자",k:1,m:["장비","장포"],t:{2:45}},
+ {n:"제갈 가문",k:1,m:["제갈량","제갈근","제갈첨","제갈각","제갈탄","황월영"],t:{2:50,3:105,4:175,5:250}},
+ {n:"유씨 종친",k:1,m:["유비","유표","유기","유장","유선","유요","유봉","유엽","유심","유우"],t:{2:45,3:95,4:160,5:225}},
+ {n:"순씨 일문",k:1,m:["순욱","순유","순심"],t:{2:55,3:120}},
+ {n:"육씨 일문",k:1,m:["육손","육항","육개"],t:{2:55,3:115}},
+ {n:"서량 마씨",k:1,m:["마등","마초","마대"],t:{2:45,3:120}},
+ {n:"교씨 자매",k:1,m:["대교","소교"],t:{2:45}},
+ {n:"원담의 사람들",m:["원담","곽도","신평"],t:{2:40,3:90}},
+ {n:"원상의 사람들",m:["원상","심배","봉기"],t:{2:40,3:90}},
+ {n:"여씨 부녀",k:1,m:["여포","여령기"],t:{2:45}},
+ {n:"엄씨 형제",k:1,m:["엄백호","엄여"],t:{2:40}},
+ {n:"맹씨 형제",k:1,m:["맹획","맹우"],t:{2:40}},
+ {n:"원씨 일문",k:1,m:["원소","원술","원담","원희","원상"],t:{2:45,3:95,4:160}},
+ {n:"마씨오상",k:1,m:["마량","마속"],t:{2:45}},
+ {n:"영천 진씨",k:1,m:["진군","진태"],t:{2:45}},
+ {n:"공손씨 형제",k:1,m:["공손찬","공손범"],t:{2:40}},
+ {n:"장씨 숙질",k:1,m:["장제","장수"],t:{2:40}},
+ {n:"능씨 부자",k:1,m:["능조","능통"],t:{2:45}},
+ {n:"가씨 부자",k:1,m:["가규","가충"],t:{2:45}},
+ {n:"문씨 부자",k:1,m:["문흠","문앙","문호"],t:{2:55,3:120}},
+ {n:"사마씨",k:1,m:["사마의","사마사","사마소","사마염","장춘화","왕원희"],t:{2:55,3:125,4:205,5:275,6:355}},
+ {n:"미씨 남매",k:1,m:["미축","미방","미부인"],t:{2:35,3:85}},
+ {n:"종씨 부자",k:1,m:["종요","종회"],t:{2:50}},
+ {n:"장씨 삼형제",k:1,m:["장각","장보","장량"],t:{2:45,3:132}},
+ {n:"진씨 부자",k:1,m:["진규","진등"],t:{2:50}},
+ {n:"관중의 방벽",m:["곽회","진태","학소","조진","왕기"],t:{2:45,3:95,4:160}},
+ {n:"북벌의 창끝",m:["강유","왕평","장억","부첨","마충","위연","진식"],t:{2:45,3:100,4:170}},
+ {n:"남중 평정",m:["제갈량","마충","이회","왕평","마대"],t:{2:45,3:95,4:160}},
+ {n:"사상",m:["제갈량","장완","비의","동윤"],t:{2:50,3:110,4:185}},
+ {n:"형주의 옛 막료",m:["서서","제갈량","방통","이엄"],t:{2:45,3:95}},
+ {n:"백제성 탁고",m:["유비","제갈량","이엄","유선"],t:{2:40,3:95,4:165}},
+ {n:"촉의 남은 기둥",m:["요화","장익","마충","종예","장억"],t:{2:45,3:100,4:170}},
+ {n:"유비의 옛 종사",m:["간옹","손건","미축","이적"],t:{2:45,3:105,4:180}},
+ {n:"오호대장군",m:["관우","장비","조운","마초","황충"],t:{2:30,3:60,4:110,5:180}},
+ {n:"형주삼걸",m:["관우","관평","주창"],t:{2:30,3:70}},
+ {n:"오자양장",m:["장료","악진","우금","장합","서황"],t:{2:30,3:60,4:110,5:180}},
+ {n:"위무양장",m:["전위","허저"],t:{2:55}},
+ {n:"조씨 일문",k:1,m:["조조","조비","조예","조창","조식","조앙","조인","조홍","조진","조휴","조환"],t:{2:45,3:95,4:165,5:230}},
+ {n:"태자를 세운 침묵",m:["가후","조비"],t:{2:45}},
+ {n:"하후씨 일문",k:1,m:["하후돈","하후연","하후패","하후현"],t:{2:50,3:105,4:175}},
+ {n:"청주의 옛 병사",m:["조조","우금","악진","이전","여건","장패"],t:{2:40,3:90,4:155,5:220}},
+ {n:"한중의 오두미",m:["장로","염포","양송"],t:{2:40,3:102}},
+ {n:"영안의 공방",m:["육항","나헌"],t:{2:40}},
+ {n:"태자사우",m:["조비","진군","사마의"],t:{2:40,3:95}},
+ {n:"가정의 간언",m:["마속","왕평"],t:{2:40}},
+ {n:"양륙지교",m:["양호","육항"],t:{2:50}},
+ {n:"진의 남정",m:["양호","두예","왕기","사마염"],t:{2:45,3:100,4:170}},
+ {n:"돌아선 창끝",m:["강유","하후패","문흠","문앙"],t:{2:45,3:100,4:170}},
+ {n:"회남의 반기",m:["문흠","문앙","제갈탄","손침"],t:{2:45,3:95,4:160}},
+ {n:"오촉의 맹약",m:["등지","종예","제갈근","비의"],t:{2:45,3:100,4:170}},
+ {n:"회남의 세 반란",m:["왕기","사마사","사마소","만총"],t:{2:45,3:100,4:165}},
+ {n:"양양의 방벽",m:["조인","서황","만총","문빙","이전"],t:{2:45,3:95,4:160}},
+ {n:"허도의 정사",m:["순욱","종요","정욱","만총","왕랑","유엽","화흠"],t:{2:40,3:90,4:155,5:220}},
+ {n:"왕좌지재",m:["순욱","순유","곽가","가후","정욱"],t:{2:45,3:90,4:150}},
+ {n:"사마의 세 갈래",m:["사마의","등애","종회"],t:{2:40,3:85}},
+ {n:"강동사영걸",m:["주유","노숙","여몽","육손"],t:{2:50,3:100,4:170}},
+ {n:"손씨 일가",k:1,m:["손견","손책","손권","손상향","손환","손침","손호","오국태","손등","손준"],t:{2:40,3:95,4:160,5:225}},
+ {n:"오의 남은 기둥",m:["보즐","손침","전종","주환","반장"],t:{2:45,3:100,4:170}},
+ {n:"석정의 사항계",m:["주방","육손","주환","전종"],t:{2:45,3:100,4:165}},
+ {n:"이릉의 불길",m:["육손","손환","한당","반장","서성","주연"],t:{2:45,3:95,4:160,5:225}},
+ {n:"강동이장",m:["장소","장굉"],t:{2:55}},
+ {n:"강동삼로",m:["황개","정보","한당"],t:{2:35,3:60}},
+ {n:"강표의 호신",m:["정보","황개","한당","장흠","주태","진무","동습","감녕","능통","서성","반장","정봉"],t:{2:40,3:90,4:160}},
+ {n:"유수의 방벽",m:["여몽","주환","주태","서성","감녕"],t:{2:45,3:100,4:165}},
+ {n:"합비의 원한",m:["감녕","능통","태사자","진무"],t:{2:45,3:100,4:160}},
+ {n:"봉의정 미인계",m:["여포","초선","왕윤"],t:{2:45,3:80}},
+ {n:"서량철기",m:["마등","마초","방덕","한수"],t:{2:40,3:96,4:144}},
+ {n:"하북의 막료",m:["전풍","저수","심배","곽도","허유","진림"],t:{2:40,3:85,4:150,5:210}},
+ {n:"하북사정주",m:["안량","문추","고람","장합"],t:{2:40,3:85,4:145}},
+ {n:"하비의 옛 진영",m:["여포","장료","고순","진궁","초선","장패","여령기"],t:{2:40,3:90,4:150,5:215}},
+ {n:"회남의 패호",m:["원술","기령","장훈","양강"],t:{2:40,3:108,4:180}},
+ {n:"옥새의 꿈",m:["원술","한윤","교유"],t:{2:35,3:90}},
+ {n:"회남의 세 불꽃",m:["관구검","문흠","제갈탄"],t:{2:45,3:110}},
+ {n:"수춘의 원군",m:["제갈탄","당자"],t:{2:35}},
+ {n:"옥대의 밀조",m:["동승","유비","마등"],t:{2:45,3:100}},
+ {n:"금성의 창",m:["한수","염행"],t:{2:40}},
+ {n:"손견의 사천왕",m:["정보","황개","한당","조무"],t:{2:40,3:90,4:150}},
+ {n:"북으로 간 옛 신하",m:["유비","전예"],t:{2:40}},
+ {n:"역경의 최후",m:["공손찬","관정","전해"],t:{2:40,3:102}},
+ {n:"폐립의 획책",m:["동탁","이유"],t:{2:40}},
+ {n:"함진영",m:["고순","장료"],t:{2:45}},
+ {n:"칠종칠금",m:["제갈량","맹획"],t:{2:45}},
+ {n:"골을 긁은 인연",m:["관우","화타"],t:{2:40}},
+ {n:"정략의 혼인",m:["유비","손상향"],t:{2:40}},
+ {n:"강동의 붓",m:["장소","장굉","고옹"],t:{2:40,3:90}},
+ {n:"의석엄안",m:["장비","엄안"],t:{2:45}},
+ {n:"노장의 두 창",m:["황충","엄안"],t:{2:45}},
+ {n:"정군산의 도끼",m:["황충","법정"],t:{2:45}},
+ {n:"맥성의 충혼",m:["관우","왕보","조루"],t:{2:40,3:95}},
+ {n:"장사의 주인",m:["한현","황충","위연"],t:{2:35,3:80}},
+
+ {n:"탑상의 대화",m:["손권","노숙"],t:{2:45}},
+ {n:"괄목상대",m:["손권","여몽"],t:{2:45}},
+ {n:"이릉의 전권",m:["손권","육손"],t:{2:40}},
+ {n:"초평의 거병",m:["조조","하후돈","하후연","조인","조홍"],t:{2:35,3:80,4:140,5:200}},
+ {n:"곽봉효를 잃다",m:["조조","곽가"],t:{2:45}},
+ {n:"명제의 탁고",m:["조예","사마의"],t:{2:40}},
+ {n:"칠군의 구원",m:["서황","우금","방덕"],t:{2:40,3:90}},
+ {n:"관중의 두 방패",m:["곽회","등애"],t:{2:40}},
+ {n:"양호의 천거",m:["양호","두예"],t:{2:45}},
+ {n:"하북의 두 간언",m:["저수","전풍"],t:{2:45}},
+ {n:"호치와 악래",m:["허저","전위"],t:{2:45}},
+ {n:"관장의 아들들",m:["관흥","장포"],t:{2:45}},
+ {n:"강동의 늙은 창",m:["정봉","장흠"],t:{2:35}},
+ {n:"패업의 두 서생",m:["미축","손건","간옹"],t:{2:35,3:80}},
+
+ {n:"황수아의 북정",m:["조창","조조"],t:{2:40}},
+ {n:"형주를 바친 붓",m:["괴월","괴량","유표"],t:{2:35,3:80}},
+ {n:"동흥의 승첩",m:["제갈각","정봉"],t:{2:40}},
+ {n:"난세의 안살림",m:["유비","감부인","미부인"],t:{2:40,3:90}},
+ {n:"진의 국모",m:["장춘화","왕원희","사마염"],t:{2:40,3:95}},
+ {n:"종회를 꿰뚫어 본 눈",m:["왕원희","신헌영","사마소","종회"],t:{2:40,3:95,4:165}},
+ {n:"혈연 · 양씨의 안살림",k:1,m:["신헌영","양호"],t:{2:45}},
+ {n:"태자를 근심한 말",m:["신헌영","조비"],t:{2:40}},
+ {n:"기성을 지킨 부인",m:["왕이","하후연"],t:{2:45}},
+ {n:"악연 · 왕이와 마초",m:["왕이","마초"],t:{2:-40}},
+ {n:"혈연 · 감부인과 유선",k:1,m:["감부인","유선"],t:{2:45}},
+ {n:"혈연 · 견씨와 조예",k:1,m:["견씨","조예"],t:{2:45}},
+ {n:"혈연 · 채씨 부녀",k:1,m:["채옹","채문희"],t:{2:50}},
+ {n:"감로사의 혼담",m:["오국태","유비","손상향"],t:{2:40,3:95}},
+ {n:"위의 규방",m:["조비","견씨"],t:{2:40}},
+ {n:"호가 열여덟 박",m:["채문희","조조"],t:{2:45}},
+ {n:"목우유마",m:["제갈량","황월영"],t:{2:45}},
+ {n:"한중의 싸움",m:["유비","법정","황충","조운","위연"],t:{2:40,3:95,4:160,5:225}},
+ {n:"입촉의 선봉",m:["황충","위연"],t:{2:45}},
+ {n:"가맹관의 밤",m:["마초","장비"],t:{2:45}},
+ {n:"촉의 뒷문",m:["나헌","부첨","제갈첨"],t:{2:40,3:95}},
+ {n:"무당의 비군",m:["왕평","장억","장익"],t:{2:40,3:90}},
+ {n:"하북의 두 창",m:["안량","문추"],t:{2:50}},
+ {n:"맥성의 그물",m:["여몽","반장","주연"],t:{2:40,3:95}},
+ {n:"환관을 치던 밤",m:["하진","원소","조조"],t:{2:40,3:90}},
+ {n:"남정의 길",m:["관색","마충","이회"],t:{2:35,3:85}},
+ {n:"완성의 미망인",m:["장제","추씨"],t:{2:40}},
+ {n:"원가의 며느리",m:["원희","견씨"],t:{2:40}},
+ {n:"위의 세 원로",m:["화흠","왕랑","종요"],t:{2:40,3:95}},
+ {n:"요동의 은자",m:["관녕","사마휘"],t:{2:40}},
+ {n:"경전을 논하다",m:["감택","장소"],t:{2:35}},
+ {n:"강동의 병권",m:["여범","손책","주유"],t:{2:35,3:85}},
+ {n:"파양의 배",m:["하제","주환"],t:{2:35}},
+ {n:"단양의 병사",m:["주치","손견"],t:{2:35}},
+ {n:"태자의 사람들",m:["손등","제갈각","육손"],t:{2:40}},
+ {n:"강동의 옛 신하",m:["주치","여범","정보","황개"],t:{2:40,3:90,4:150}},
+ {n:"산월 평정",m:["하제","여대","전종"],t:{2:40,3:90}},
+ {n:"고기잡이의 경전",m:["감택","우번"],t:{2:45}},
+ {n:"강동의 서릿발",m:["우번","손권"],t:{2:35}},
+ {n:"남방의 늙은 창",m:["여대","육항"],t:{2:40}},
+ {n:"노식 문하",m:["노식","유비","공손찬"],t:{2:45,3:100}},
+ {n:"한실의 세 중랑장",m:["노식","황보숭","주준"],t:{2:40,3:95}},
+ {n:"남만의 왕들",m:["맹획","축융","올돌골","타사대왕","맹우"],t:{2:40,3:108,4:180,5:258}},
+ {n:"서원팔교위",m:["원소","조조","순우경"],t:{2:40,3:90}},
+ {n:"회남 원가",m:["원술","기령"],t:{2:40}},
+ {n:"완성의 기습",m:["장수","호거아","가후","장제","장선","추씨"],t:{2:40,3:114,4:180,5:258}},
+ {n:"형주의 준걸",m:["괴량","괴월","채모","문빙","황조"],t:{2:40,3:90,4:150}},
+ {n:"여포의 결사대",m:["장료","고순","후성","송헌","위속"],t:{2:35,3:80,4:135}},
+ {n:"오소의 밀고",m:["허유","조조"],t:{2:45}},
+ {n:"격문 한 장",m:["진림","조조"],t:{2:40}},
+ {n:"백마의종",m:["공손찬","조운","엄강","전예"],t:{2:55,3:138,4:200}},
+ {n:"태평도의 무리",m:["장각","장연","장로","좌자","우길","관해"],t:{2:45,3:95,4:160,5:230}},
+ {n:"남만의 왕",m:["맹획","축융"],t:{2:50}},
+ {n:"방외지사",m:["좌자","화타","사마휘","관로"],t:{2:50,3:105}},
+ {n:"충의지사",m:["진궁","왕윤","공융"],t:{2:45,3:95}},
+ {n:"장안의 겁화",m:["동탁","이각","곽사","서영","화웅"],t:{2:35,3:75,4:130}},
+ {n:"반동탁 연합",m:["원소","원술","공손찬","도겸","포신","한복","장막","유표","마등","손견","조조","왕광"],t:{2:25,3:60,4:120,5:200}},
+ {n:"낙양의 파국",m:["하진","동탁","왕윤","원소"],t:{2:40,3:95,4:165}},
+ {n:"강동의 옛 주인",m:["유요","엄백호","왕랑","황조","태사자","화흠"],t:{2:45,3:100,4:170}},
+ {n:"서량의 잔병",m:["한수","마대","방덕"],t:{2:45,3:120}},
+ {n:"난세의 세 치 혀",m:["가후","장수"],t:{2:50}},
+ {n:"관도의 헌책",m:["가후","조조","순유"],t:{2:40,3:95}},
+ {n:"동탁의 사천장",m:["이각","곽사","장제","번조"],t:{2:40,3:90,4:150}},
+ {n:"이각을 세운 꾀",m:["가후","이각","곽사"],t:{2:40,3:90}},
+ {n:"서천을 바친 밀약",m:["장송","법정","맹달"],t:{2:45,3:105}},
+ {n:"동천과 서천",m:["법정","황권","이엄","오의","맹달"],t:{2:40,3:90,4:150}},
+ {n:"적벽의 연환",m:["주유","방통","황개"],t:{2:45,3:100}},
+ {n:"뇌양현의 지음",m:["장비","방통"],t:{2:40}},
+ {n:"서천의 옛 신하",m:["유장","장임","엄안","이엄","황권","오의"],t:{2:40,3:90,4:155,5:220}},
+ {n:"장판의 필마단기",m:["조운","유선","미부인"],t:{2:45,3:105}},
+ {n:"신정의 맹약",m:["손책","태사자"],t:{2:50}},
+ {n:"오장원의 계승",m:["제갈량","강유"],t:{2:50}},
+ {n:"한 수 아래 벗",m:["관우","장료"],t:{2:45}},
+ {n:"백문루의 문답",m:["유비","여포"],t:{2:40}},
+ {n:"수경의 천거",m:["사마휘","서서"],t:{2:40}},
+ {n:"편장군의 예우",m:["조조","관우"],t:{2:45}},
+ {n:"기산의 호적수",m:["제갈량","사마의"],t:{2:45}},
+ {n:"합비의 약속",m:["장료","이전"],t:{2:40}},
+ {n:"단양의 옛 벗",m:["태사자","공융"],t:{2:40}},
+ {n:"강동의 두 꽃",m:["손책","주유","대교","소교"],t:{2:40,3:95,4:170}},
+ {n:"강동 평정",m:["손책","주유"],t:{2:50}},
+ {n:"임강정의 결약",m:["노숙","주유"],t:{2:45}},
+ {n:"불화 · 마초와 한수",m:["마초","한수"],t:{2:-40}},
+ {n:"불화 · 공손찬과 원소",m:["공손찬","원소"],t:{2:-45}},
+ {n:"불화 · 황조와 손견",m:["황조","손견"],t:{2:-40}},
+ {n:"악연 · 관우와 미방",m:["관우","미방"],t:{2:-35}},
+ {n:"악연 · 관우와 유봉",m:["관우","유봉"],t:{2:-35}},
+ {n:"악연 · 황충과 하후연",m:["황충","하후연"],t:{2:-40}},
+ {n:"악연 · 위연과 한현",m:["위연","한현"],t:{2:-35}},
+ {n:"악연 · 공손찬과 유우",m:["공손찬","유우"],t:{2:-40}},
+
+ {n:"악연 · 등애와 종회",m:["등애","종회"],t:{2:-40}},
+ {n:"악연 · 사마사와 관구검",m:["사마사","관구검"],t:{2:-35}},
+ {n:"악연 · 제갈량과 장합",m:["제갈량","장합"],t:{2:-35}},
+ {n:"악연 · 제갈량과 학소",m:["제갈량","학소"],t:{2:-35}},
+ {n:"악연 · 손호와 육개",m:["손호","육개"],t:{2:-35}},
+ {n:"악연 · 원소와 한복",m:["원소","한복"],t:{2:-35}},
+ {n:"악연 · 조조와 추씨",m:["조조","추씨"],t:{2:-40}},
+ {n:"악연 · 화흠과 관녕",m:["화흠","관녕"],t:{2:-35}},
+ {n:"악연 · 손준과 제갈각",m:["손준","제갈각"],t:{2:-40}},
+ {n:"악연 · 왕윤과 채옹",m:["왕윤","채옹"],t:{2:-35}},
+ {n:"악연 · 국의와 엄강",m:["국의","엄강"],t:{2:-35}},
+ {n:"악연 · 이각과 번조",m:["이각","번조"],t:{2:-35}},
+ {n:"악연 · 사마사와 하후현",m:["사마사","하후현"],t:{2:-35}},
+ {n:"악연 · 조조와 동승",m:["조조","동승"],t:{2:-40}},
+ {n:"악연 · 마초와 염행",m:["마초","염행"],t:{2:-35}},
+ {n:"악연 · 조휴와 주방",m:["조휴","주방"],t:{2:-40}},
+ {n:"악연 · 장각과 황보숭",m:["장각","황보숭"],t:{2:-35}},
+ {n:"악연 · 원담과 봉기",m:["원담","봉기"],t:{2:-35}},
+ {n:"악연 · 심배와 신평",m:["심배","신평"],t:{2:-35}},
+ {n:"악연 · 원담과 원상",m:["원담","원상"],t:{2:-40}},
+ {n:"악연 · 조비와 조식",m:["조비","조식"],t:{2:-40}},
+ {n:"악연 · 장수와 조앙",m:["장수","조앙"],t:{2:-35}},
+ {n:"악연 · 유봉과 맹달",m:["유봉","맹달"],t:{2:-35}},
+ {n:"악연 · 방덕과 양송",m:["방덕","양송"],t:{2:-35}},
+ {n:"악연 · 제갈량과 마속",m:["제갈량","마속"],t:{2:-40}},
+ {n:"악연 · 감녕과 능조",m:["감녕","능조"],t:{2:-40}},
+ {n:"악연 · 원소와 허유",m:["원소","허유"],t:{2:-35}},
+ {n:"악연 · 유기와 채모",m:["유기","채모"],t:{2:-35}},
+ {n:"악연 · 유장과 장송",m:["유장","장송"],t:{2:-40}},
+ {n:"악연 · 관우와 맹달",m:["관우","맹달"],t:{2:-40}},
+ {n:"악연 · 방통과 장임",m:["방통","장임"],t:{2:-45}},
+ {n:"악연 · 조조와 화타",m:["조조","화타"],t:{2:-40}},
+ {n:"악연 · 손책과 우길",m:["손책","우길"],t:{2:-45}},
+ {n:"악연 · 유비와 육손",m:["유비","육손"],t:{2:-45}},
+ {n:"악연 · 관우와 여몽",m:["관우","여몽"],t:{2:-50}},
+ {n:"불화 · 동탁과 여포",m:["동탁","여포"],t:{2:-60}},
+ {n:"불화 · 원가의 형제",m:["원소","원술"],t:{2:-45}},
+ {n:"불화 · 제갈량과 위연",m:["제갈량","위연"],t:{2:-30}}
+];
+COMBO.push(
+ {n:"백이의 숙위",m:["진도","조운"],t:{2:40}},
+ {n:"촉의 군정",m:["유파","양의","이엄"],t:{2:35,3:85}},
+ {n:"북벌의 군무",m:["양의","장완","비의"],t:{2:35,3:80}},
+ {n:"불화 · 양의와 위연",m:["양의","위연"],t:{2:-40}},
+ {n:"회남의 경영",m:["유복","만총","여건"],t:{2:35,3:80}},
+ {n:"위정의 간언",m:["동소","신비","진군"],t:{2:35,3:80}},
+ {n:"신씨 부녀",k:1,m:["신비","신헌영"],t:{2:40}},
+ {n:"강동의 간언",m:["낙통","우번","육개"],t:{2:35,3:80}},
+ {n:"고씨 부자",k:1,m:["고옹","고담"],t:{2:40}},
+ {n:"장씨의 문무",k:1,m:["장소","장승"],t:{2:40}},
+ {n:"하내의 옛 인연",m:["장양","동소","여포"],t:{2:35,3:75}},
+ {n:"교주의 귀부",m:["사섭","보즐"],t:{2:35}},
+ {n:"누선의 남정",m:["왕준","두예","양호"],t:{2:40,3:90}}
+);
+var SYN={2:22,3:68,4:122,5:180,6:238,7:295,8:355,9:410,10:460,11:505};   // 3~6인 구간을 올려 작은 무리도 값어치를 갖게 하되, 큰 세력은 그대로 두었다
+var ETC_BASE=.4, ETC={4:.75,6:1};   // 군웅은 기본 40%, 넷 이상 모이면 할거로 계수가 오른다
+var ROUNDS=13, FINAL_SIZE=11, PACK=6;
+var lineupOpen=false,lineupChoice=[],lineupCache={},lineupCacheCount=0;
+var PACK_OPT=0, FAST=false, QUICK_PICK=false, CARD_ART=true, DENSITY="compact", recentShown={}, roundExcluded=[], gameTimers=[], setupBefore=null;
+function packSize(){return 6}
+function syncLayout(){var artButton=document.getElementById("tArt");if(artButton){artButton.textContent=CARD_ART?"초상 크게":"초상 작게";artButton.setAttribute("aria-pressed",String(CARD_ART))}document.body.dataset.art=CARD_ART?"on":"off";document.body.dataset.density=DENSITY;document.body.dataset.pack=PACK;}
+function later(fn,ms){
+ var id=setTimeout(function run(){
+   gameTimers=gameTimers.filter(function(t){return t!==id});
+   if($("setup").classList.contains("on")||$("detail").classList.contains("on")){id=setTimeout(run,100);gameTimers.push(id);return}
+   fn();
+ },FAST?Math.min(ms,120):ms);gameTimers.push(id);return id;
+}
+function stopTimers(){gameTimers.forEach(clearTimeout);gameTimers=[]}
+
+
+/* ───────── 상태 ───────── */
+var pool,mine,foe,foe2,round,busy,rerolls,packArr,myTurn,turnQ=[];
+var hintOn=true,ruleOn=true,fogOn=false,banOn=false,exhaustOn=false,discard=[],shown={},hist=[],bans={me:[],foe:[],foe2:[]},banLeft=0,replay=[];
+var PLAYERS=2,AI_ST2=2,firstOrd=0,firstOff=0;
+var aiRR={foe:1,foe2:1},aiFac={foe:null,foe2:null};
+var RR_K=[-1,.8,.9];    // 換 계수 — 최선 이득이 그 진의 통상치×계수에 못 미치면 물린다 (하수는 안 씀)
+function rrBase(r){return 85+r*6}
+var RR_SAY=["쓸 만한 인물이 보이지 않는군","형세가 마음에 들지 않소","이 죽간으론 어림없지","다시 펴는 게 낫겠소"];
+function seatTeam(t){return t==="me"?mine:t==="foe"?foe:foe2}
+function seatName(t){return t==="me"?"我軍":t==="foe"?(PLAYERS===3?"敵一":"敵軍"):"敵二"}
+var REC_KEY="samgukji_draft_rec_v1";
+function recLoad(){
+  try{var r=JSON.parse(localStorage.getItem(REC_KEY));if(r&&r.v===1)return r}catch(e){}
+  return {v:1,games:0,win:0,lose:0,draw:0,best:0,bestLv:-1,stamps:{},feats:{},picks:{},by:{st:{},pk:{},fac:{},lv:{}},aist:{}};
+}
+var MARK_KEY="samgukji_mark_v1", MARK=null, MARK_NEW=false;
+function markTouch(){
+  try{
+    var m=null; try{m=JSON.parse(localStorage.getItem(MARK_KEY))}catch(e){}
+    var now=new Date().toISOString();
+    if(!m||!m.first){ m={first:now,last:now,n:1}; MARK_NEW=true; }
+    else { m.last=now; m.n=(m.n||1)+1; }
+    localStorage.setItem(MARK_KEY,JSON.stringify(m));
+    MARK=m;
+  }catch(e){}
+}
+var SAVE_OK=null;   /* null=아직 안 씀, true=쓰였음, false=막혔음 */
+function recSave(r){
+  try{ r.at=Date.now(); localStorage.setItem(REC_KEY,JSON.stringify(r));
+       SAVE_OK=(localStorage.getItem(REC_KEY)||"").length>0; }
+  catch(e){ SAVE_OK=false; }
+  return SAVE_OK;
+}
+/* 기록이 어디에 쌓이는지 — 주소가 바뀌면 예전 기록은 다른 서랍에 남는다 */
+function storeWhere(){
+  var o=location.origin||"file://";
+  if(o==="null"||location.protocol==="file:")return{o:"file:// (파일 직접 열기)",warn:"파일로 열면 기록을 아예 안 남기거나 통째로 지우는 브라우저가 있소"};
+  if(/^https?:\/\/(localhost|127\.|0\.0\.0\.0|\[::1\])/.test(o))return{o:o,warn:"포트가 바뀌면 기록도 따로 노니, 늘 같은 포트로 여시오"};
+  return{o:o,warn:null};
+}
+function saveText(){
+  return JSON.stringify({version:1,
+    note:(REPO_SAVE&&REPO_SAVE.note)||"",
+    saved:new Date().toISOString().slice(0,19)+"Z",
+    cfg:cfgSnap(), rec:REC}, null, 1);
+}
+/* 기록이 사라졌을 때 어디를 볼지 — 주소·저장 성패·마지막 저장 시각을 그대로 보인다 */
+var QUOTA="재는 중", PERSIST="모름";
+function probeStore(){
+  try{
+    if(navigator.storage&&navigator.storage.estimate)
+      navigator.storage.estimate().then(function(e){
+        var mb=function(n){return (n/1048576).toFixed(1)+"MB"};
+        QUOTA=mb(e.usage||0)+" / "+mb(e.quota||0);
+        var d=$("diagBox"); if(d)d.innerHTML=diagInner();
+      });
+    else QUOTA="이 브라우저는 알려주지 않소";
+    if(navigator.storage&&navigator.storage.persisted)
+      navigator.storage.persisted().then(function(ok){
+        PERSIST=ok?"붙박이 — 브라우저가 함부로 못 걷어가오":"임시 — 자리가 모자라거나 오래 안 오면 걷어가오";
+        var d=$("diagBox"); if(d)d.innerHTML=diagInner();
+      });
+    else PERSIST="이 브라우저는 알려주지 않소";
+  }catch(e){}
+}
+function askPersist(){
+  if(!(navigator.storage&&navigator.storage.persist)){alert("이 브라우저는 붙박이를 받지 않소");return}
+  navigator.storage.persist().then(function(ok){
+    PERSIST=ok?"붙박이 — 브라우저가 함부로 못 걷어가오"
+      :'<b style="color:var(--gold)">청하였으나 거절당했소</b> — 크롬은 <u>북마크에 넣거나 홈 화면에 추가한</u> '
+       +'사이트에만 붙박이를 주오. 그리 한 뒤 다시 청해 보시오';
+    var d=$("diagBox"); if(d)d.innerHTML=diagInner();
+  });
+}
+function diagInner(){
+  var w=storeWhere(), t=(REC&&REC.at)?new Date(REC.at).toLocaleString():"아직 저장된 적 없음";
+  var st=SAVE_OK===false?'<b style="color:#e06">막혔소 — 이 브라우저가 저장을 마다하오</b>'
+        :SAVE_OK===true?'정상':'아직 쓴 적 없음';
+  /* 표식이 오래됐는데 전적이 비었으면 지워진 것이고,
+     표식마저 새것이면 여태 다른 서랍(다른 기기·브라우저·앱 안 창)을 보던 것이다 */
+  var games=(REC&&REC.games)||0, verdict="";
+  if(MARK_NEW) verdict='<b style="color:var(--gold)">이 서랍은 오늘 처음 여오. '+
+    '다른 기기·다른 브라우저에서 놀던 것이라면 그쪽 기록은 그대로 있소. '+
+    '허나 <u>같은 기기에서 이 말이 또 뜨면</u>, 브라우저가 기록을 걷어간 것이오.</b>';
+  else if(games===0) verdict='<b style="color:#e06">이 서랍은 '+(MARK&&MARK.n)+'번째로 여는데 전적이 비었소. '+
+    '여기 있던 기록이 지워진 것이오.</b>';
+  var standalone=false;
+  try{ standalone = (window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)
+                 || navigator.standalone===true; }catch(e){}
+  if(!standalone) verdict=(verdict?verdict+'<br>':'')+
+    '<b style="color:var(--gold)">지금은 그냥 브라우저 창이오. 이 쪽을 <u>홈 화면에 추가</u>하고 '+
+    '그 아이콘으로 여시오 — 홈 화면 앱의 기록은 브라우저 청소에 쓸려가지 않소.</b>';
+  return '주소 · '+w.o+
+    '<br>실행 방식 · '+(standalone?'홈 화면 앱':'브라우저 창')+
+    '<br>이 서랍 · '+(MARK?(MARK.n+'번째 · 처음 '+new Date(MARK.first).toLocaleDateString()):"모름")+
+      (MARK_NEW?' <b style="color:var(--gold)">(오늘 새로 남)</b>':'')+
+    '<br>저장 상태 · '+st+
+    '<br>마지막 저장 · '+t+
+    '<br>보관 방식 · '+PERSIST+
+    '<br>쓴 자리 · '+QUOTA+
+    (w.warn?'<br><b style="color:var(--gold)">'+w.warn+'</b>':'')+
+    (verdict?'<br>'+verdict:'')+
+    '<br><span style="opacity:.7">기록은 파일이 아니라 이 주소·이 브라우저에 묶여 있소. '+
+    '기기가 다르면 서랍도 다르오.</span>';
+}
+/* 기록이 사라졌을 때 어디를 볼지 — 한 자리에 모아 보인다 */
+function diagHtml(){
+  return '<div class="sub" style="text-align:left;margin:14px 0 4px">기록이 남는 자리</div>'+
+    '<div id="diagBox" style="font-size:11px;line-height:1.7;color:var(--paper3);word-break:break-all">'+
+    diagInner()+'</div>'+
+    '<button class="btn2" id="pinBtn" style="margin-top:6px">이 브라우저에 붙박이로 청하다</button>';
+}
+function renderSaveBox(){
+  var b=$("saveBox"); if(!b)return;
+  var repoN=(REPO_SAVE&&REPO_SAVE.rec&&REPO_SAVE.rec.games)||0;
+  b.innerHTML='<div class="sub" style="text-align:left;margin-bottom:6px">기록 내보내기</div>'+
+    '<div style="font-size:11px;line-height:1.7;color:var(--paper3)">이 자리는 브라우저에만 남아 지워질 수 있소. 아래를 복사해 '+
+    '<b>data-sam/save.json</b> 에 통째로 덮어쓰고 올리면, 기록이 날아가도 되살아나오.'+
+    (RESTORED?'<br><b style="color:var(--gold)">이번에 저장소 기록으로 되살렸소.</b>':'')+
+    '<br>지금 · 대국 '+((REC&&REC.games)||0)+'  ·  저장소 · 대국 '+repoN+'</div>'+
+    diagHtml()+
+    '<textarea id="saveOut" readonly spellcheck="false" style="width:100%;height:120px;'+
+    'font-family:monospace;font-size:10px;margin-top:8px;background:var(--ink2);'+
+    'color:var(--paper);border:1px solid var(--line);border-radius:4px;padding:7px"></textarea>'+
+    '<button class="btn2" id="saveCopy" style="margin-top:6px">복 사</button>';
+  $("saveOut").value=saveText();
+  var pb=$("pinBtn"); if(pb)pb.addEventListener("click",askPersist);
+  $("saveCopy").addEventListener("click",function(){
+    var t=$("saveOut");t.select();
+    var ok=false;
+    try{ok=document.execCommand("copy")}catch(e){}
+    if(!ok&&navigator.clipboard)navigator.clipboard.writeText(t.value).then(function(){ok=true});
+    this.textContent=ok?"복사했소":"직접 골라 복사하시오";
+  });
+}
+
+/* ══ 설정 저장 ══
+   예전에는 설정을 아예 안 남겨서 판을 새로 짤 때마다 열셋을 다시 골라야 했다 */
+var CFG_KEY="samgukji_draft_cfg_v1";
+function cfgSnap(){
+  return {cards:PACK_OPT,fast:FAST,quickPick:QUICK_PICK,cardArt:CARD_ART,density:DENSITY,mode:MODE,era:ERA,lv:AI_LV,pl:PLAYERS,st:AI_ST,st2:AI_ST2,
+          rule:ruleOn,ex:exhaustOn,fo:firstOrd,rr:REROLLS,ban:banOn,scn:SCN,
+          pk:(function(){var k;for(k in PACKS)if(PACKS[k]===PACK2)return k;return null})()};
+}
+function cfgApply(c){
+  if(!c)return;
+  if([0,6,8,9].indexOf(c.cards)>=0)PACK_OPT=c.cards;
+  if(typeof c.cardArt==="boolean")CARD_ART=c.cardArt;
+  if(typeof c.quickPick==="boolean")QUICK_PICK=c.quickPick;
+  if(typeof c.fast==="boolean")FAST=c.fast;
+  if(c.density==="compact"||c.density==="comfortable")DENSITY=c.density;
+  var num=function(v,max){return typeof v==="number"&&v>=0&&v<max?v:null};
+  var x;
+  if((x=num(c.mode,2))!==null)MODE=x;
+  if((x=num(c.era,3))!==null)ERA=x;
+  if((x=num(c.lv,3))!==null)AI_LV=x;
+  if(c.pl===2||c.pl===3)PLAYERS=c.pl;
+  if((x=num(c.st,6))!==null)AI_ST=x;
+  if((x=num(c.st2,6))!==null)AI_ST2=x;
+  if(typeof c.rule==="boolean")ruleOn=c.rule;
+  if(typeof c.ex==="boolean")exhaustOn=c.ex;
+  if((x=num(c.fo,3))!==null)firstOrd=x;
+  if(RR_OPT.indexOf(c.rr)>=0)REROLLS=c.rr;
+  if(typeof c.ban==="boolean")banOn=c.ban;
+  if((x=num(c.scn,SCN_NAME.length))!==null)SCN=x;
+  PACK2=(c.pk&&PACKS[c.pk])?PACKS[c.pk]:null;
+}
+function cfgSave(){try{localStorage.setItem(CFG_KEY,JSON.stringify(cfgSnap()))}catch(e){}}
+function cfgLoad(){try{return JSON.parse(localStorage.getItem(CFG_KEY))}catch(e){return null}}
+
+/* ══ 저장소 백업 ══
+   Pages 는 정적이라 이 페이지가 저장소에 못 쓴다. 그래서 읽어서 되살리기만 하고,
+   백업은 사람이 戰錄 화면에서 내보내 파일에 붙여 넣는다.
+   판 수는 줄지 않으므로 많은 쪽을 쓴다 — 브라우저 기록이 날아가면 저장소 것이 살아난다 */
+/* 전적은 줄지 않는다. 그러니 항목마다 큰 쪽을 남기면 어느 쪽도 잃지 않는다.
+   예전에는 판 수만 보고 통째로 갈아끼워서, 저장소가 모르는 도장·과업이 함께 지워졌다 */
+function maxMerge(a,b){
+  if(typeof a==="number"&&typeof b==="number")return a>b?a:b;
+  if(a&&b&&typeof a==="object"&&typeof b==="object"){
+    var o={},k; for(k in a)o[k]=a[k];
+    for(k in b)o[k]=(k in o)?maxMerge(o[k],b[k]):b[k];
+    return o;
+  }
+  return (a===undefined||a===null)?b:a;
+}
+function mergeRec(a,b){
+  if(!b)return a; if(!a)return b;
+  var r=maxMerge(a,b);
+  var hi=((b.best||0)>(a.best||0))?b:a;          /* 최고점과 그 때의 격은 짝이라 함께 옮긴다 */
+  r.best=hi.best||0; r.bestLv=(hi.bestLv===undefined?-1:hi.bestLv);
+  r.v=1; return r;
+}
+var SAVE_URL="../data-sam/save.json", REPO_SAVE=null, RESTORED=false;
+function loadRepoSave(){
+  if(typeof fetch!=="function")return Promise.resolve();
+  return fetch(SAVE_URL,{cache:"no-cache"}).then(function(r){
+    if(!r.ok)throw 0; return r.json();
+  }).then(function(d){
+    REPO_SAVE=d;
+    var mine=(REC&&REC.games)||0, theirs=(d.rec&&d.rec.games)||0;
+    if(d.rec){ REC=mergeRec(REC,d.rec); recSave(REC); RESTORED=theirs>mine; }
+    if(!cfgLoad()&&d.cfg)cfgApply(d.cfg);
+  }).catch(function(){});
+}
+var FEATS=[
+ {id:"first_win",n:"첫 승전보",d:"처음으로 승리하다"},
+ {id:"master",n:"고수를 꺾다",d:"적장 고수를 상대로 승리"},
+ {id:"fog_win",n:"안개를 걷다",d:"적진을 가린 채 승리"},
+ {id:"tier_win",n:"안목의 증명",d:"티어 드래프트에서 승리"},
+ {id:"ban_win",n:"금수의 계",d:"금지 드래프트에서 승리"},
+ {id:"etc8",n:"군웅의 맹주",d:"군웅 8인 이상으로 승리"},
+ {id:"one_fac",n:"한 깃발 아래",d:"열한 명 전원 같은 진영으로 승리"},
+ {id:"liu_shan",n:"유선의 재림",d:"유선을 주공으로 세워 승리"},
+ {id:"big_win",n:"파죽지세",d:"300점 차 이상의 대승"},
+ {id:"all_duel",n:"연전연승",d:"대전 기록 전승"},
+ {id:"combo6",n:"인연의 실타래",d:"한 판에 결의 여섯을 맺다"},
+ {id:"kin3",n:"핏줄의 힘",d:"한 판에 혈연 셋을 맺다"},
+ {id:"stamp25",n:"도장 수집가",d:"도장첩 25개를 채우다"},
+ {id:"vet10",n:"백전노장",d:"열 판을 겨루다"},
+ {id:"feud3",n:"원한을 품고도",d:"악연 셋을 안고 승리"},
+ {id:"exile5",n:"떠도는 인연",d:"두 세력 이상 거친 인물 다섯으로 승리"},
+ {id:"hard_win",n:"물러섬 없이",d:"죽간 소진에 환 없이 승리"},
+ {id:"all_pack",n:"온 시대를 밟다",d:"모든 죽간(본편·확장팩)에서 승리"},
+ {id:"dex100",n:"백인의 주공",d:"백 명을 기용해 보다"},
+ {id:"low_win",n:"약졸의 승전",d:"전력 합이 적군보다 낮은데 승리"},
+ {id:"lord_gi",n:"큰 그릇",d:"주공의 그릇 보정 250 이상"},
+ {id:"stamp60",n:"인연의 수집가",d:"도장첩 예순을 채우다"},
+ {id:"three_st",n:"모든 기질을 겪다",d:"다섯 기질을 모두 상대해 보다"},
+ {id:"boss_win",n:"연의를 넘다",d:"시나리오 대전에서 승리"},
+ {id:"tri_win",n:"천하통일",d:"3인 정립에서 수위에 오르다"}
+];
+var REC=recLoad();
+if(!REC.feats)REC.feats={};
+if(!REC.by)REC.by={st:{},pk:{},fac:{},lv:{}};
+if(!REC.by.lv)REC.by.lv={};
+if(!REC.aist)REC.aist={};
+if(!REC.picks)REC.picks={};
+function checkFeats(won,diff,wn,ls){
+  var got=[],i,cnt={},fired=pledges(mine).filter(function(g){return g.got>0});
+  for(i=0;i<mine.length;i++){var cf=facOf(mine[i]);cnt[cf]=(cnt[cf]||0)+1}
+  var kinN=fired.filter(function(g){return g.kin}).length;
+  var stampN=0;for(i=0;i<COMBO.length;i++)if(REC.stamps[COMBO[i].n])stampN++;
+  var lord=null;for(i=0;i<mine.length;i++)if(roleOf(mine[i])==="군주")lord=mine[i];
+  function give(id){if(!REC.feats[id]){REC.feats[id]=REC.games;got.push(id)}}
+  if(won)give("first_win");
+  if(won&&AI_LV===2)give("master");
+  if(won&&fogOn)give("fog_win");
+  if(won&&MODE===1)give("tier_win");
+  if(won&&banOn)give("ban_win");
+  if(won&&SCN>0)give("boss_win");
+  if(won&&PLAYERS===3)give("tri_win");
+  if(won&&(cnt["군웅"]||0)>=8)give("etc8");
+  if(won){for(var f in cnt)if(cnt[f]===FINAL_SIZE)give("one_fac")}
+  if(won&&lord&&lord[0]==="유선")give("liu_shan");
+  if(won&&diff>=300)give("big_win");
+  if(won&&wn===FINAL_SIZE&&ls===0)give("all_duel");
+  if(fired.length>=6)give("combo6");
+  if(kinN>=3)give("kin3");
+  if(stampN>=25)give("stamp25");
+  if(REC.games>=10)give("vet10");
+  var negN=pledges(mine).filter(function(g){return g.got<0}).length;
+  if(won&&negN>=3)give("feud3");
+  if(won&&PACK2&&PACK2.career){
+    var exN=0;for(i=0;i<mine.length;i++)if(facsOf(mine[i]).length>=2)exN++;
+    if(exN>=5)give("exile5");
+  }
+  if(won&&exhaustOn&&REROLLS===0)give("hard_win");
+  if(won){
+    var pkn=PACK2?PACK2.n:"본편";REC.by.pk[pkn]=REC.by.pk[pkn]||{n:0,w:0};
+    var allp=true,pkc;
+    var need=["본편 · 영웅집결","군웅할거 一九四","관도대전 二〇〇","적벽대전 二〇八","삼국종결 二六三","군웅록 · 遍歷"];
+    for(pkc=0;pkc<need.length;pkc++)if(!REC.by.pk[need[pkc]]||!REC.by.pk[need[pkc]].w)allp=false;
+    if(allp)give("all_pack");
+  }
+  var pcn=0,pky;for(pky in REC.picks)pcn++;
+  if(pcn>=100)give("dex100");
+  var myPw=0,opPw=0;
+  for(i=0;i<mine.length;i++)myPw+=power(mine[i]);
+  for(i=0;i<foe.length;i++)opPw+=power(foe[i]);
+  if(won&&myPw<opPw)give("low_win");
+  var ev=evaluate(mine),gi=0;
+  for(i=0;i<ev.rows.length;i++)if(/그릇/.test(ev.rows[i].k))gi=ev.rows[i].v;
+  if(gi>=250)give("lord_gi");
+  if(stampN>=60)give("stamp60");
+  var stc=0,stk;for(stk in REC.by.st)stc++;
+  if(stc>=5)give("three_st");
+  return got;
+}
+var AI_LV=1, AI_NAME=["하수","중수","고수"], DENY=[0,.2,.45], NOISE=[70,20,5];
+var AI_ST=0, AI_ST_NAME=["조조형","유비형","손권형","여포형","사마의형","무작위"],
+    AI_ST_DESC=["전력을 우선하오","인연을 우선하오","결속을 우선하오","무력만 보오","때를 기다리오","판마다 기질이 달라지오"];
+var ST_A=0, ST_B=2;   // 그 판에 실제로 쓰이는 기질 (무작위면 대국마다 새로 뽑는다)
+function rollST(v){return v===5?Math.floor(Math.random()*5):v}
+function styleScore(c,team){
+  if(AI_ST===0)return power(c)*.35;
+  if(AI_ST===1){
+    var b=0,i,k;
+    for(i=0;i<COMBO.length;i++){
+      var cb=COMBO[i];if(cb.m.indexOf(c[0])<0)continue;
+      var hv=comboHave(cb,team),mx=0;for(k in cb.t)if(cb.t[k]>mx)mx=cb.t[k];
+      b+=hv*22+mx*.14;
+    }
+    return b;
+  }
+  if(AI_ST===2){
+    var cnt=0,j,cf=facsOf(c);
+    for(j=0;j<team.length;j++){var tf2=facsOf(team[j]),y,z,ok=false;
+      for(y=0;y<tf2.length&&!ok;y++)for(z=0;z<cf.length;z++)if(tf2[y]===cf[z]){ok=true;break}
+      if(ok)cnt++;}
+    return cnt*30;
+  }
+  if(AI_ST===3)return c[4]*.6;
+  // 사마의형 — 지금의 진척보다 만개했을 때의 값을 무겁게 본다
+  var b2=0,i2,k2;
+  for(i2=0;i2<COMBO.length;i2++){
+    var cb2=COMBO[i2];if(cb2.m.indexOf(c[0])<0)continue;
+    var hv2=comboHave(cb2,team),mx2=0;for(k2 in cb2.t)if(cb2.t[k2]>mx2)mx2=cb2.t[k2];
+    b2+=mx2*.12*(hv2>0?1.6:1)+hv2*13;
+  }
+  return b2;
+}
+function threatScore(c,opp){
+  // 상대의 임박한 결의(다음 단계까지 1명)에 이 카드가 꽂히면 그 가치를 위협으로 계산
+  var t=0,i,k,names=[],j;
+  for(j=0;j<opp.length;j++)names.push(opp[j][0]);
+  for(i=0;i<COMBO.length;i++){
+    var cb=COMBO[i];if(cb.m.indexOf(c[0])<0||names.indexOf(c[0])>=0)continue;
+    var hv=comboHave(cb,opp),nk=0;
+    for(k in cb.t){if(+k===hv+1&&cb.t[k]>0)nk=cb.t[k]}
+    t+=nk;
+  }
+  return t;
+}
+var MODE=0, MODE_NAME=["무작위 팩","티어 드래프트"];
+var TIER_NAME=["天","上","中","下"], TIER_CUT=[.12,.34,.66,1];
+var TIER_SCHEDULE=[0,1,1,1,2,0,1,2,2,3,3,1,2];
+var tierMap={};
+function buildTiers(list){
+  tierMap={};
+  var srt=list.slice().sort(function(a,b){return power(b)-power(a)}),i,t;
+  for(i=0;i<srt.length;i++){
+    var f=(i+1)/srt.length;
+    for(t=0;t<TIER_CUT.length;t++)if(f<=TIER_CUT[t])break;
+    tierMap[srt[i][0]]=Math.min(t,3);
+  }
+}
+function tierOf(c){return tierMap[c[0]]===undefined?2:tierMap[c[0]]}
+function drawTier(t,n,exclude){return drawCards(n,t,exclude)}
+
+var ERA=0, ERA_NAME=["모든 시대","군웅할거","삼국정립"];
+var SCN=0, SCN_NAME=["시나리오 없음","적벽 · 조조군","이릉 · 육손군","오장원 · 사마의군","한중 · 유비군","관도 · 원소군"];
+var SCN_SET=[null,
+ ["조조","장료","서황","악진","장합","우금","허저","조인","순유","정욱","가후"],
+ ["손권","육손","서성","정봉","반장","주태","한당","보즐","제갈근","고옹","전종"],
+ ["사마의","사마사","사마소","장합","곽회","진태","학소","조진","만총","문빙","왕기"],
+ ["유비","제갈량","법정","황충","조운","위연","장비","마초","마대","왕평","엄안"],
+ ["원소","안량","문추","고람","전풍","저수","심배","곽도","순심","한복","국의"]];
+var LATE=["강유","등애","종회","육항","제갈첨","조예","조비","학소","조진","비의","동윤","장완","사마의","육손","왕평","마대","관흥","장포","방덕","황월영","유선","여몽","정봉","서성","주태","문앙","곽회","진태","사마사","사마소","왕기","하후패","제갈각","주환","등지","이회","부첨","마충","장억","육개","손침","제갈탄","손환","주방","진식","관색","문흠","양호","두예","가충","가규","사마염","왕원희","신헌영","마량","마속","진군","나헌","조창","조식","유엽","손호","조환","유심","조휴","주연","올돌골","타사대왕","맹우"];
+var EARLY=["동탁","여포","초선","진궁","왕윤","화웅","이각","곽사","서영","장각","원소","원술","공손찬","안량","문추","고람","전풍","저수","심배","곽도","손견","손책","유표","유장","황조","곽가","전위","마등","공융","화타","사마휘","장수","한수","좌자","여령기","고순","국의","진규","진등","포신","도겸","한복","관해","장보","장량","우길","엄백호","하진","장막","순심","유요","기령","순우경","호거아","장임","장송","허유","진림","괴량","괴월","채모","유기","후성","송헌","위속","능조","염포","양송","유봉","조앙","원담","원희","원상","봉기","신평","노식","황보숭","주준","엄여"];
+LATE=LATE.concat(["양의","낙통","고담","장승","왕준"]);
+EARLY=EARLY.concat(["장양","유복","유파"]);
+function eraPool(){
+  if(PACK2){
+    if(PACK2.career)return C.slice();
+    var out=[],i;
+    for(i=0;i<C.length;i++)if(PACK2.facMap[C[i][0]])out.push(C[i]);
+    return out;
+  }
+  var out=[],i,ban=(ERA===1?LATE:ERA===2?EARLY:[]);
+  for(i=0;i<C.length;i++)if(ban.indexOf(C[i][0])<0)out.push(C[i]);
+  return out;
+}
+var CAPS={"군주":1,"무장":5,"참모":5};
+function catOf(c){var r=roleOf(c);return r==="군주"?"군주":r==="무장"?"무장":"참모"}
+function counts(team){var o={"군주":0,"무장":0,"참모":0},i;for(i=0;i<team.length;i++)o[catOf(team[i])]++;return o}
+function legalSet(team,idxs){
+  if(team.length>=FINAL_SIZE)return idxs.slice();
+  if(!ruleOn)return idxs.slice();
+  var n=counts(team),ok=[],i;
+  for(i=0;i<idxs.length;i++)if(n[catOf(packArr[idxs[i]].c)]<CAPS[catOf(packArr[idxs[i]].c)])ok.push(idxs[i]);
+  return ok.length?ok:idxs.slice();
+}
+function openIdx(){var r=[],i;for(i=0;i<packArr.length;i++)if(!packArr[i].by)r.push(i);return r}
+function comboHave(cb,team){var n=0,j;for(j=0;j<team.length;j++)if(cb.m.indexOf(team[j][0])>=0)n++;return n}
+
+function nearOf(team,c){
+  var res=[],i,k;
+  for(i=0;i<COMBO.length;i++){
+    var cb=COMBO[i];
+    if(cb.m.indexOf(c[0])<0)continue;
+    var w=comboHave(cb,team)+1;
+    if(w<2)continue;
+    var fires=false,next=0;
+    for(k in cb.t){var n=+k;if(n===w)fires=true;if(n>w&&(!next||n<next))next=n}
+    if(fires||!next)continue;
+    var available=cb.m.filter(function(n){return n!==c[0]&&!team.some(function(x){return x[0]===n})&&(availability(n)==="가능"||availability(n)==="불확실")}).length;
+    if(w+available>=next)res.push(cb.n+" "+w+"/"+next);
+  }
+  return res;
+}
+
+function pledges(team){
+  if(team.length>FINAL_SIZE)team=bestLineup(team,true).team;
+  var out=[],i,j,k;
+  for(i=0;i<COMBO.length;i++){
+    var cb=COMBO[i],have=[],miss=[];
+    for(j=0;j<cb.m.length;j++){
+      var f=false;
+      for(k=0;k<team.length;k++)if(team[k][0]===cb.m[j])f=true;
+      if(f)have.push(cb.m[j]);else miss.push(cb.m[j]);
+    }
+    if(have.length<1)continue;
+    var got=0,gotk=0,next=0;
+    for(k in cb.t){
+      var n=+k;
+      if(have.length>=n){if(n>=gotk){gotk=n;got=cb.t[k]}}
+      else if(!next||n<next)next=n;
+    }
+    if(!got&&!next)continue;
+    out.push({n:cb.n,kin:!!cb.k,have:have.length,got:got,gotk:gotk,next:next,miss:miss,
+              nextV:next?cb.t[""+next]:0});
+  }
+  out.sort(function(a,b){
+    if((b.got?1:0)!==(a.got?1:0))return (b.got?1:0)-(a.got?1:0);
+    return b.have-a.have;
+  });
+  return out;
+}
+
+function availability(n){
+ if(bans.me.concat(bans.foe,bans.foe2).indexOf(n)>=0)return "금지";
+ if(eraPool().every(function(c){return c[0]!==n}))return "미등장";
+ if((mine||[]).some(function(c){return c[0]===n}))return "아군";
+ if(fogOn)return "불확실";
+ if((foe||[]).concat(foe2||[]).some(function(c){return c[0]===n}))return "적 보유";
+ if(discard.some(function(c){return c[0]===n}))return fogOn?"불확실":"소진 · 재순환 대기";
+ return "가능";
+}
+function missingText(g){return g.miss.map(function(n){return n+" ["+availability(n)+"]"}).join(" · ")}
+function renderPledges(){
+  var list=pledges(mine),box=$("pgs"),h="",i;
+  list.sort(function(a,b){
+   function rank(g){var possible=g.miss.filter(function(n){return availability(n)==="가능"||availability(n)==="불확실"}).length;
+     if(g.next&&g.have+possible<g.next)return 4;
+     return g.next&&g.next-g.have===1?0:g.got?1:2;}
+   return rank(a)-rank(b)||b.have-a.have;
+  });
+  $("pgct").textContent=list.length?list.length+"건":"맺은 인연 없음";
+  if(!list.length){box.innerHTML='<div class="pgempty">아직 맺은 인연이 없소</div>';return}
+  for(i=0;i<list.length;i++){
+    var g=list[i],bad=(g.got<0||(!g.got&&g.nextV<0)),cls="pg"+(g.got?" done":"")+(bad?" bad":"")+(g.kin?" kin":"");
+    var right=g.got?((g.got>0?"+":"")+g.got+(g.next?" → "+g.have+"/"+g.next:" 완성")):(g.have+"/"+g.next+" "+(g.nextV>0?"+":"")+g.nextV);
+    var pct=g.got&&!g.next?100:Math.round(g.have/(g.next||g.gotk)*100);
+    h+='<div class="'+cls+'"><div class="l1"><span class="nm2">'+(g.kin?"血 ":"")+g.n+'</span><span class="vv">'+right+'</span></div>';
+    if(hintOn&&g.next)h+='<div class="l2">남은 인물 · '+missingText(g)+'</div>';
+    h+='<div class="bar"><i style="width:'+pct+'%"></i></div></div>';
+  }
+  box.innerHTML=h;
+}
+function firedSet(team){
+  if(team.length>FINAL_SIZE)team=bestLineup(team,true).team;
+  var out={},i,k;
+  for(i=0;i<COMBO.length;i++){
+    var hv=comboHave(COMBO[i],team),best=0,bk=0;
+    for(k in COMBO[i].t)if(hv>=+k&&+k>=bk){bk=+k;best=COMBO[i].t[k]}
+    if(best)out[COMBO[i].n]={v:best,kin:!!COMBO[i].k};
+  }
+  return out;
+}
+function toastPledges(before,team){
+  var after=firedSet(team),n,delay=0;
+  for(n in after){
+    if(before[n]&&before[n].v===after[n].v)continue;
+    if(before[n]&&after[n].v>before[n].v&&after[n].v>0){announce(n,after[n],true,delay);delay+=260;continue}
+    if(!before[n]){announce(n,after[n],false,delay);delay+=260}
+  }
+}
+function announce(name,info,upg,delay){
+  setTimeout(function(){
+    var el=document.createElement("div");
+    el.className="tst"+(info.v<0?" bad":info.kin?" kin":"");
+    el.style.setProperty("--hold",(info.v<0?"2s":"1.7s"));
+    el.innerHTML='<div class="tt">'+(info.v<0?"惡 緣":info.kin?"血 緣":"結 義")+'</div>'+
+      '<div class="tn">'+name.replace(/^(불화|악연) · /,"")+'</div>'+
+      '<div class="tv">'+(upg?"깊어지다 ":"")+(info.v>0?"+":"")+info.v+'</div>';
+    $("toast").appendChild(el);
+    setTimeout(function(){el.remove()},2600);
+  },delay);
+}
+function hintOf(team,c){
+  var a=evaluate(team,true),b=evaluate(team.concat([c]),true),m={},names=[];
+  a.rows.forEach(function(r){m[r.k]=r.v});
+  b.rows.forEach(function(r){
+    if(r.k==="인물 전력 합"||r.k.indexOf("주공")===0)return;
+    if((m[r.k]||0)!==r.v)names.push(r.k.replace("진영 결속 · ","결속 ").replace("불화 · ","불화 ").replace("혈연 · ","血 "));
+  });
+  return {d:b.total-a.total,names:names};
+}
+var REROLLS=1, RR_OPT=[0,1,2,3];
+var $=function(id){return document.getElementById(id)};
+
+function lordRate(L){return Math.round((LORD_MIN+(L[3]+L[5]+L[6])/300*(LORD_MAX-LORD_MIN))*10)/10}
+function martialBonus(c){
+ // Reward exceptional strength only where low intellect already reduces the base score.
+ return c[2]==="무장"&&c[4]>=95?Math.round((c[4]-90)*Math.max(0,70-c[5])/40):0;
+}
+function power(c){var w=WT[c[2]];return Math.round((c[3]*w[0]+c[4]*w[1]+c[5]*w[2]+c[6]*w[3])/2.5)+martialBonus(c)}
+
+function evaluate(team,partial){
+ if(team.length>FINAL_SIZE)team=bestLineup(team,partial).team;
+ return evaluateRaw(team,partial);
+}
+function evaluateRaw(team,partial){
+  var out={rows:[],total:0},base=0,i,j;
+  for(i=0;i<team.length;i++)base+=power(team[i]);
+  out.rows.push({k:"인물 전력 합",v:base});
+  // 진영 시너지
+  var cnt={};
+  for(i=0;i<team.length;i++){var tfs=facsOf(team[i]),ti;for(ti=0;ti<tfs.length;ti++)cnt[tfs[ti]]=(cnt[tfs[ti]]||0)+1}
+  for(var f in cnt){
+    var n=cnt[f],p=SYN[n]||0,ex=0;
+    if(PACK2)p=Math.round(p*(PACK2.synMul||1));
+    if(f==="군웅"){
+      var mul=ETC_BASE,kk;
+      for(kk in ETC)if(n>=+kk)mul=ETC[kk];
+      ex=Math.round(p*mul)-Math.round(p*ETC_BASE);
+      p=Math.round(p*ETC_BASE);
+    }
+    if(p)out.rows.push({k:"진영 결속 · "+f+" "+n+"인",v:p});
+    if(ex)out.rows.push({k:"군웅할거 · "+n+"인 규합",v:ex});
+    base+=p+ex;
+  }
+  // 결의
+  for(i=0;i<COMBO.length;i++){
+    var cb=COMBO[i],hit=0;
+    for(j=0;j<team.length;j++)if(cb.m.indexOf(team[j][0])>=0)hit++;
+    var best=0,bk=0;
+    for(var k in cb.t){if(hit>=+k&&+k>=bk){bk=+k;best=cb.t[k]}}
+    if(best){out.rows.push({k:(cb.k?"혈연 · ":"")+cb.n,v:best});base+=best}
+  }
+  // 군주
+  var lords=0,warr=0,brain=0,lord=null;
+  for(i=0;i<team.length;i++){
+    // 주공이 여럿이면 그릇이 큰 이를 앞에 세운다
+    if(roleOf(team[i])==="군주"){lords++;if(!lord||lordRate(team[i])>lordRate(lord))lord=team[i]}
+    if(roleOf(team[i])==="무장")warr++;
+    if(roleOf(team[i])==="책사"||roleOf(team[i])==="문관")brain++;
+  }
+  if(lords>=1){
+    var rate=lordRate(lord),same=0;
+    for(i=0;i<team.length;i++){var lf=facsOf(lord),mf=facsOf(team[i]),hit=false,a,b;
+      for(a=0;a<mf.length&&!hit;a++)for(b=0;b<lf.length;b++)if(mf[a]===lf[b]){hit=true;break}
+      if(hit)same++;}
+    var eff=Math.round(rate*(.5+.5*same/team.length)*10)/10,
+        b=Math.round(base*eff/100);
+    out.rows.push({k:"주공 "+lord[0]+"의 그릇 +"+eff+"%"+(same<team.length?" (동향 "+same+"인)":""),v:b});base+=b;
+    if(lords>1&&!ruleOn){var d=-Math.round(base*.08);out.rows.push({k:"주공 "+lords+"인 내분 -8%",v:d});base+=d}
+  }
+  // 편성 규칙을 켜면 자리가 강제되니, 채우지 못한 것은 실책이 아니라 운이라 보고 감점하지 않는다
+  else if(!partial&&!ruleOn){out.rows.push({k:"주공 부재",v:-40});base-=40}
+  if(!partial&&!ruleOn&&warr<2){out.rows.push({k:"무장 부족",v:-50});base-=50}
+  if(!partial&&!ruleOn&&brain<1){out.rows.push({k:"막료 부재",v:-50});base-=50}
+  out.total=Math.round(base);
+  return out;
+}
+
+function toss(c){if(exhaustOn)discard.push(c);else pool.push(c)}
+function mark(list){for(var i=0;i<list.length;i++){recentShown[list[i][0]]=round;if(exhaustOn)shown[list[i][0]]=1}return list}
+function refill(n){
+ if(exhaustOn&&pool.length<n){pool=pool.concat(discard);discard=[];shown={}}
+}
+function weightedCard(indices){
+ var weights=indices.map(function(i){var r=recentShown[pool[i][0]];return r===undefined?1:(round-r<=1?.18:round-r<=3?.45:1)});
+ var sum=weights.reduce(function(a,b){return a+b},0),v=Math.random()*sum;
+ for(var j=0;j<indices.length;j++){v-=weights[j];if(v<0)return indices[j]}return indices[indices.length-1];
+}
+function drawCards(n,t,exclude){
+ refill(n);var out=[];exclude=exclude||[];
+ while(out.length<n){
+   var bag=[],best=99;
+   for(var i=0;i<pool.length;i++){
+     var c=pool[i];if(exclude.indexOf(c[0])>=0||(exhaustOn&&shown[c[0]]))continue;
+     var d=t===null?0:Math.abs(tierOf(c)-t);
+     if(d<best){best=d;bag=[]}if(d===best)bag.push(i);
+   }
+   if(!bag.length)break;
+   out.push(pool.splice(weightedCard(bag),1)[0]);
+ }
+ return mark(out);
+}
+function draw(n,exclude){return drawCards(n,null,exclude)}
+function rawLegal(team,idxs){if(team.length>=FINAL_SIZE)return idxs.slice();var n=counts(team);return idxs.filter(function(i){return !ruleOn||n[catOf(packArr[i].c)]<CAPS[catOf(packArr[i].c)]})}
+function ensureChoices(team){
+ if(team.length>=FINAL_SIZE)return 0;
+ if(!ruleOn)return 0;
+ var rem=openIdx(),need=Math.min(2,rem.length),changed=0;
+ while(rawLegal(team,rem).length<need){
+   var n=counts(team),bag=[],best=99,t=MODE===1?TIER_SCHEDULE[round]:null;
+   // Supplement only from the available pool; never recover a banned or drafted officer.
+   refill(1);
+   for(var i=0;i<pool.length;i++){
+     var c=pool[i];if(n[catOf(c)]>=CAPS[catOf(c)]||roundExcluded.indexOf(c[0])>=0||(exhaustOn&&shown[c[0]]))continue;
+     var d=t===null?0:Math.abs(tierOf(c)-t);if(d<best){best=d;bag=[]}if(d===best)bag.push(i);
+   }
+   if(!bag.length)break;
+   var dest=rem.filter(function(j){return n[catOf(packArr[j].c)]>=CAPS[catOf(packArr[j].c)]})[0];
+   if(dest===undefined)break;
+   var c=pool.splice(weightedCard(bag),1)[0],old=packArr[dest].c;
+   packArr[dest].c=c;mark([c]);toss(old);changed++;
+ }
+ return changed;
+}
+function replaceOpen(){
+ var rem=openIdx(),exclude=rem.map(function(i){return packArr[i].c[0]});
+ roundExcluded=Array.from(new Set(roundExcluded.concat(exclude)));
+ // Draw first: rerolled cards cannot immediately return, even in a small pool.
+ var fresh=MODE===1?drawTier(TIER_SCHEDULE[round],rem.length,roundExcluded):draw(rem.length,roundExcluded);
+ for(var i=0;i<fresh.length;i++){toss(packArr[rem[i]].c);packArr[rem[i]].c=fresh[i]}
+ return fresh.length;
+}
+
+/* ───────── 그리기 ───────── */
+function card(c,idx,hint){
+  var f=facInfo(facOf(c)),s=[["통",c[3]],["무",c[4]],["지",c[5]],["정",c[6]]],h="";
+  for(var i=0;i<4;i++)h+='<div class="st"><u><i style="width:'+s[i][1]+'%"></i></u><b>'+s[i][1]+'</b><span>'+s[i][0]+'</span></div>';
+  var el=document.createElement("button");
+  el.className="card";el.style.setProperty("--fc",f.c);el.dataset.i=idx;
+  if(PACK2&&PACK2.career){
+    var cf=facsOf(c);
+    if(cf.length>1){
+      var seg=[],si,st=100/cf.length;
+      for(si=0;si<cf.length;si++)seg.push(facInfo(cf[si]).c+" "+Math.round(si*st)+"% "+Math.round((si+1)*st)+"%");
+      el.style.setProperty("--fcg","linear-gradient(180deg,"+seg.join(",")+")");
+    }
+  }
+  el.innerHTML='<svg class="emb"><use href="#em-'+roleOf(c)+'"/></svg><div class="fac">'+f.h+'</div>'+avHTML(c,"avc")+
+    '<div class="nm'+(c[0].length>=3?" ln":"")+'"><span class="tr t'+tierOf(c)+'">'+TIER_NAME[tierOf(c)]+'</span>'+c[0]+'</div>'+
+    '<div class="rl"><b>'+((PACK2&&PACK2.career)?facsOf(c).map(function(f){return '<i style="color:'+facInfo(f).c+';font-style:normal">'+f+'</i>'}).join("·"):facOf(c))+'</b> · '+roleOf(c)+'</div><div class="stats">'+h+'</div>'+
+    '<div class="pw"><em>戰力</em>'+power(c)+'</div><div class="seal">採</div>';
+  if(hint){
+    var hd=document.createElement("div");
+    hd.className="hint "+(hint.d>=0?"up":"dn");
+    var hn=hint.names.slice(0,3).join(" · ")+(hint.names.length>3?" 외 "+(hint.names.length-3):"");
+    var ht=document.createElement("span");ht.className="ht";
+    ht.textContent=(hint.d>=0?"▲+":"▼")+hint.d+(hint.names.length?" · "+hn:"");
+    hd.appendChild(ht);
+    var nr=document.createElement("span");
+    nr.className="near";
+    nr.textContent=(hint.near&&hint.near.length)?"◇ "+hint.near.slice(0,3).join(" · ")+(hint.near.length>3?" 외 "+(hint.near.length-3):""):"";
+    hd.appendChild(nr);
+    el.insertBefore(hd,el.querySelector(".pw"));
+  }
+  return el;
+}
+
+function chipEl(c){
+  var d=document.createElement("span");
+  d.className="chip";d.style.setProperty("--cc",facInfo(facOf(c)).c);
+  d.title=LORE[c[0]]||"";d.textContent=c[0];return d;
+}
+function phEl(){var p=document.createElement("span");p.className="chip ph";p.textContent="—";return p}
+
+function chips(box,team,slots){
+  box.innerHTML="";
+  var i,j;
+  if(fogOn&&(box.id==="foe"||box.id==="foe2")){
+    for(i=0;i<team.length;i++){
+      var m=document.createElement("span");
+      m.className="chip fog";
+      m.textContent=catOf(team[i])==="군주"?"主 ?":catOf(team[i])==="무장"?"武 ?":"謀 ?";
+      box.appendChild(m);
+    }
+    for(j=team.length;j<slots;j++)box.appendChild(phEl());
+    return;
+  }
+  if(!ruleOn){
+    for(i=0;i<team.length;i++)box.appendChild(chipEl(team[i]));
+    for(j=team.length;j<slots;j++)box.appendChild(phEl());
+    return;
+  }
+  var mark={"군주":"主","무장":"武","참모":"謀"},order=["군주","무장","참모"];
+  for(i=0;i<order.length;i++){
+    var cat=order[i],row=document.createElement("div"),lb=document.createElement("div"),cells=document.createElement("div");
+    row.className="slot";lb.className="lb";
+    var emCat=cat==="군주"?"군주":cat==="무장"?"무장":"책사";
+    lb.innerHTML='<svg><use href="#em-'+emCat+'"/></svg>'+mark[cat];cells.className="cells";
+    var n=0;
+    for(j=0;j<team.length;j++)if(catOf(team[j])===cat){cells.appendChild(chipEl(team[j]));n++}
+    for(j=n;j<CAPS[cat];j++)cells.appendChild(phEl());
+    row.appendChild(lb);row.appendChild(cells);box.appendChild(row);
+  }
+}
+
+function tally(){
+  var t=$("tally");t.innerHTML="";
+  for(var i=0;i<ROUNDS;i++){
+    var b=document.createElement("i");
+    if(i<round)b.className="done";else if(i===round)b.className="now";
+    t.appendChild(b);
+  }
+}
+
+
+
+/* ───────── 인물 도감 ───────── */
+function combosOf(n){
+  var r=[],i;
+  for(i=0;i<COMBO.length;i++)if(COMBO[i].m.indexOf(n)>=0)
+    r.push((COMBO[i].k?"<em>血 ":"<span>")+COMBO[i].n+(COMBO[i].k?"</em>":"</span>"));
+  return r;
+}
+function buildDex(){
+  var h="",i,facs=["전체","위","촉","오","군웅"];
+  h+='<div class="verdict" style="margin-bottom:14px"><div class="big" style="font-size:30px;color:var(--gold)">人 物 譜</div><svg class="orn"><use href="#orn-knot"/></svg>'+
+     '<div class="sub">'+C.length+'인의 능력과 인연</div></div>';
+  h+='<div class="dexbar">';
+  for(i=0;i<facs.length;i++)
+    h+='<button class="dtab'+(i===0?" on":"")+'" data-f="'+facs[i]+'">'+(i?FAC[facs[i]].h:"全")+'</button>';
+  h+='</div><div class="dexcount" id="dexCount"></div><div id="dexList">';
+  var sorted=C.slice().sort(function(a,b){return power(b)-power(a)});
+  for(i=0;i<sorted.length;i++){
+    var c=sorted[i],cj=combosOf(c[0]);
+    h+='<div class="dx" data-f="'+c[1]+'" style="--dc:'+FAC[c[1]].c+'">'+
+       '<div class="h1">'+avHTML(c,"avs")+'<span class="tr t'+tierOf(c)+'">'+TIER_NAME[tierOf(c)]+'</span><span class="nm3">'+c[0]+'</span><svg class="demb"><use href="#em-'+c[2]+'"/></svg><span class="tg">'+c[1]+' · '+c[2]+'</span>'+
+       '<span class="pv">'+power(c)+'</span></div>'+
+       '<div class="sv"><span>통 <b>'+c[3]+'</b></span><span>무 <b>'+c[4]+'</b></span><span>지 <b>'+c[5]+'</b></span><span>정 <b>'+c[6]+'</b></span></div>'+
+       '<div class="lr">'+(LORE[c[0]]||"")+'</div>'+
+       (function(){var pv=REC.picks[c[0]];if(!pv)return"";
+         var wr=Math.round(pv.w/pv.n*100);
+         var ex=(pv.s?' · 평균 '+Math.round(pv.s/pv.n)+'점 · 결의 '+(pv.c/pv.n).toFixed(1)+'회':'');
+         return '<div class="dst">기용 '+pv.n+'회 · <b class="'+(pv.w*2>=pv.n?"up":"dn")+'">'+pv.w+'승 '+(pv.n-pv.w)+'패 ('+wr+'%)</b>'+ex+'</div>'})()+
+       (cj.length?'<div class="cj">'+cj.join(" · ")+'</div>':'')+
+       '</div>';
+  }
+  h+='</div><button class="btn" id="dexClose">보 를 덮 다</button>';
+  $("dexBody").innerHTML=h;
+
+  function apply(f){
+    var n=0;
+    [].forEach.call(document.querySelectorAll("#dexList .dx"),function(e){
+      var ok=(f==="전체"||e.dataset.f===f);
+      e.classList.toggle("hide",!ok);if(ok)n++;
+    });
+    $("dexCount").textContent=(f==="전체"?"전체":f)+" · "+n+"인 · 전력 높은 순";
+  }
+  [].forEach.call($("dexBody").querySelectorAll(".dtab"),function(b){
+    b.addEventListener("click",function(){
+      [].forEach.call($("dexBody").querySelectorAll(".dtab"),function(x){x.classList.remove("on")});
+      this.classList.add("on");apply(this.dataset.f);
+      $("dex").scrollTop=0;
+    });
+  });
+  apply("전체");
+  $("dexList").addEventListener("click",function(ev){
+    var av=ev.target.closest?ev.target.closest(".av"):null;
+    if(!av)return;
+    var box=av.closest(".dx");if(!box)return;
+    var nm=box.querySelector(".nm3").textContent;
+    var c=null;for(var q=0;q<C.length;q++)if(C[q][0]===nm){c=C[q];break}
+    if(!c)return;
+    var im=$("zimg");
+    var big=(typeof IMGL!=="undefined"&&IMGL[nm])||IMG[nm];
+    if(big){im.src=big;im.style.display="";im.classList.toggle("soft",!(typeof IMGL!=="undefined"&&IMGL[nm]));}else{im.removeAttribute("src");im.style.display="none";}
+    $("zn").textContent=nm;
+    $("zt").textContent=c[1]+" · "+c[2]+" · 전력 "+power(c);
+    $("zl").textContent=LORE[nm]||"";
+    var z=$("zoom");z.style.setProperty("--zc",FAC[c[1]].c);z.classList.add("on");
+  });
+  $("dexClose").addEventListener("click",function(){$("dex").classList.remove("on")});
+}
+
+(function(){
+  var z=document.getElementById("zoom");
+  if(z)z.addEventListener("click",function(){z.classList.remove("on")});
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"&&z&&z.classList.contains("on"))z.classList.remove("on");
+  });
+})();
+
+/* ───────── 새 대국 설정 ───────── */
+function buildSetup(){
+  if(!setupBefore)setupBefore=cfgSnap();
+  function row(label,small,id,val){
+    return '<div class="srow"><div class="sl">'+label+'<small>'+small+'</small></div>'+
+           '<button class="opt cyc" id="'+id+'">'+val+'</button></div>';
+  }
+  var h='<div class="verdict" style="margin-bottom:14px"><div class="big" style="font-size:30px;color:var(--gold)">新 對 局</div><svg class="orn"><use href="#orn-knot"/></svg>'+
+        '<div class="sub">판을 새로 짜는 자리요 · 규칙은 우상단 ?</div></div>';
+  h+='<div class="intro">죽간이 펼쳐지면 적장과 <b>번갈아</b> 하나씩 취하오. 열세 진이 끝나면 11명을 편성하여 전력과 인연으로 승부를 가리오.</div>';
+  h+='<div class="intro">후보 <b>6장</b> · <b>13번 지명</b> → 최종 <b>11명</b><br>첫 11번은 편성 규칙, 마지막 2번은 자유 예비 지명입니다.</div>';
+  h+=row("진행 속도","적장 선택과 다음 진의 대기 시간","sFast",FAST?"빠르게":"기본");
+  h+=row("드래프트 방식","티어는 진마다 같은 등급끼리 겨루오","sMode",MODE_NAME[MODE]);
+  h+=row("시대","죽간더미의 얼굴이 달라지오","sEra",ERA_NAME[ERA]);
+  h+=row("적장","고수는 아군의 인연을 노리오","sAI","적장 "+AI_NAME[AI_LV]);
+  h+=row("대국 인원","셋이면 정립이오 — 시나리오 제외","sPl",PLAYERS+"인");
+  h+=row("적장의 기질",AI_ST_DESC[AI_ST],"sSt",AI_ST_NAME[AI_ST]);
+  h+=row("둘째 적장의 기질","3인 대국에서만 쓰이오","sSt2",AI_ST_NAME[AI_ST2]);
+  h+=row("편성 규칙","主 1 · 武 5 · 謀 5","sRule",ruleOn?"켜짐":"꺼짐");
+  h+=row("죽간 소진","한 번 펼친 죽간은 물러나오","sEx",exhaustOn?"켜짐":"꺼짐");
+  h+=row("첫 선공","첫 진에 누가 먼저 취하는가","sFo",["아군","적군","무작위"][firstOrd]);
+  h+=row("換 · 죽간을 다시 펴다","양편이 한 판에 쓸 수 있는 횟수","sRR",REROLLS===0?"없음":REROLLS+"회");
+  h+=row("금지 드래프트","시작 전에 둘씩 지우오","sBan",banOn?"켜짐":"꺼짐");
+  h+=row("시나리오","연의의 명진영에 도전하오","sScn",SCN_NAME[SCN]);
+  h+=row("확장팩","그 해의 세력으로 죽간이 갈리오","sPk",PACK2?PACK2.n:"본편 · 영웅집결");
+  h+='<div style="text-align:center;font-size:10px;color:var(--paper3);margin-top:18px;font-family:var(--body);letter-spacing:.06em">版 2026.09.09 · 죽간 '+C.length+'인 · 결의 '+COMBO.length+'종</div>';
+  h+='<button class="btn" id="setupGo" style="margin-top:14px">이 로 써 겨 루 다</button>';
+  h+='<button class="btn2" id="setupX">돌 아 가 기</button>';
+  $("setupBody").innerHTML=h;
+  $("sFast").addEventListener("click",function(){FAST=!FAST;this.textContent=FAST?"빠르게":"기본"});
+  $("sMode").addEventListener("click",function(){MODE=(MODE+1)%2;this.textContent=MODE_NAME[MODE]});
+  $("sEra").addEventListener("click",function(){ERA=(ERA+1)%3;this.textContent=ERA_NAME[ERA]});
+  $("sAI").addEventListener("click",function(){AI_LV=(AI_LV+1)%3;this.textContent="적장 "+AI_NAME[AI_LV]});
+  $("sPl").addEventListener("click",function(){PLAYERS=PLAYERS===2?3:2;this.textContent=PLAYERS+"인"});
+  $("sSt").addEventListener("click",function(){AI_ST=(AI_ST+1)%6;this.textContent=AI_ST_NAME[AI_ST];this.parentNode.querySelector("small").textContent=AI_ST_DESC[AI_ST]});
+  $("sSt2").addEventListener("click",function(){AI_ST2=(AI_ST2+1)%6;this.textContent=AI_ST_NAME[AI_ST2]});
+  $("sRule").addEventListener("click",function(){ruleOn=!ruleOn;this.textContent=ruleOn?"켜짐":"꺼짐"});
+  $("sEx").addEventListener("click",function(){exhaustOn=!exhaustOn;this.textContent=exhaustOn?"켜짐":"꺼짐"});
+  $("sFo").addEventListener("click",function(){firstOrd=(firstOrd+1)%3;this.textContent=["아군","적군","무작위"][firstOrd]});
+  $("sRR").addEventListener("click",function(){
+    var i=RR_OPT.indexOf(REROLLS);REROLLS=RR_OPT[(i+1)%RR_OPT.length];
+    this.textContent=REROLLS===0?"없음":REROLLS+"회";
+  });
+  $("sBan").addEventListener("click",function(){banOn=!banOn;this.textContent=banOn?"켜짐":"꺼짐"});
+  $("sScn").addEventListener("click",function(){SCN=(SCN+1)%SCN_NAME.length;this.textContent=SCN_NAME[SCN]});
+  $("sPk").addEventListener("click",function(){
+    var keys=[null,"w194","gd200","jb208","end263","mx"],cur=0,i;
+    for(i=1;i<keys.length;i++)if(PACK2===PACKS[keys[i]])cur=i;
+    var nx=keys[(cur+1)%keys.length];
+    PACK2=nx?PACKS[nx]:null;
+    this.textContent=PACK2?PACK2.n:"본편 · 영웅집결";
+  });
+  /* 새 판을 시작할 때만 적용하며, 취소하면 진행 중인 설정으로 돌아간다. */
+  $("setupGo").addEventListener("click",function(){setupBefore=null;cfgSave();$("setup").classList.remove("on");start()});
+  $("setupX").addEventListener("click",closeSetup);
+}
+
+/* ───────── 전적 · 결의 도장 ───────── */
+function closeSetup(){if(setupBefore){cfgApply(setupBefore);setupBefore=null}$("setup").classList.remove("on");syncLayout()}
+function buildRec(){
+  var h="",i,got=0;
+  for(i=0;i<COMBO.length;i++)if(REC.stamps[COMBO[i].n])got++;
+  var pos=COMBO.filter(function(c){var k;for(k in c.t)if(c.t[k]>0)return true;return false});
+  h+='<div class="verdict" style="margin-bottom:16px"><div class="big" style="font-size:30px;color:var(--gold)">戰 錄</div><svg class="orn"><use href="#orn-knot"/></svg>'+
+     '<div class="sub">이 자리에서 겨룬 기록</div></div>';
+  h+='<div class="rgrid">'+
+     '<div class="rcell"><b>'+REC.games+'</b><span>대국</span></div>'+
+     '<div class="rcell"><b>'+REC.win+"승 "+REC.draw+"무 "+REC.lose+'패</b><span>전적</span></div>'+
+     '<div class="rcell"><b>'+(REC.games?Math.round(REC.win/REC.games*100)+"%":"—")+'</b><span>승률</span></div>'+
+     '</div>';
+  h+='<div class="rgrid" style="grid-template-columns:1fr 1fr">'+
+     '<div class="rcell"><b>'+(REC.best||"—")+'</b><span>최고 점수'+(REC.bestLv>=0?" · 적장 "+AI_NAME[REC.bestLv]:"")+'</span></div>'+
+     '<div class="rcell"><b>'+got+' / '+pos.length+'</b><span>맺어본 인연</span></div>'+
+     '</div>';
+  // 심화 통계 — 기질·적장·팩·진영
+  function tbl(title,box,unit){
+    var ks=[],k;for(k in box)ks.push(k);
+    if(!ks.length)return "";
+    ks.sort(function(a,b){return box[b].n-box[a].n});
+    var o='<div class="ledger"><h4>'+title+'</h4>';
+    for(var z=0;z<ks.length;z++){
+      var v=box[ks[z]],wr=v.n?Math.round(v.w/v.n*100):0;
+      o+='<div class="row"><span><b style="color:var(--paper)">'+ks[z]+'</b> · '+v.n+unit+'</span>'+
+         '<b class="'+(wr>=50?"up":"dn")+'">'+wr+'%</b></div>';
+    }
+    return o+'</div>';
+  }
+  h+=tbl("적장의 기질별 전적",REC.by.st,"판");
+  h+=tbl("적장의 격에 따른 전적",REC.by.lv,"판");
+  h+=tbl("죽간별 전적",REC.by.pk,"판");
+  var fk2=[],fkey;for(fkey in REC.by.fac)fk2.push(fkey);
+  if(fk2.length){
+    var ftot=0;for(var q=0;q<fk2.length;q++)ftot+=REC.by.fac[fk2[q]];
+    fk2.sort(function(a,b){return REC.by.fac[b]-REC.by.fac[a]});
+    h+='<div class="ledger"><h4>즐겨 세운 깃발</h4>';
+    for(var q2=0;q2<fk2.length;q2++){
+      var pct=Math.round(REC.by.fac[fk2[q2]]/ftot*100);
+      h+='<div class="row"><span><b style="color:var(--paper)">'+fk2[q2]+'</b> · '+REC.by.fac[fk2[q2]]+'인 기용</span><b>'+pct+'%</b></div>';
+    }
+    h+='</div>';
+  }
+  var pkeys=[],pk2;
+  for(pk2 in REC.picks)pkeys.push(pk2);
+  if(pkeys.length){
+    pkeys.sort(function(a,b){return REC.picks[b].n-REC.picks[a].n||REC.picks[b].w-REC.picks[a].w});
+    h+='<div class="ledger"><h4>애용 인물</h4>';
+    for(i=0;i<Math.min(8,pkeys.length);i++){
+      var pv=REC.picks[pkeys[i]];
+      var avg=pv.s?Math.round(pv.s/pv.n):0, avc=pv.c?(pv.c/pv.n).toFixed(1):"—";
+      h+='<div class="row"><span><b style="color:var(--paper)">'+pkeys[i]+'</b> · '+pv.n+'회 기용'+
+         (avg?' · 평균 '+avg+'점 · 결의 '+avc:'')+'</span>'+
+         '<b class="'+(pv.w*2>=pv.n?"up":"dn")+'">'+pv.w+'승 '+(pv.n-pv.w)+'패</b></div>';
+    }
+    h+='</div>';
+  }
+  h+='<div class="ledger"><h4>결의 도장첩</h4><div class="stamps">';
+  var srt=pos.slice().sort(function(a,b){
+    var ga=REC.stamps[a.n]?1:0,gb=REC.stamps[b.n]?1:0;
+    return gb-ga;
+  });
+  for(i=0;i<srt.length;i++){
+    var c=srt[i],g=REC.stamps[c.n];
+    h+='<div class="stamp '+(g?("got"+(c.k?" kin":"")):"no")+'">'+
+       '<div class="sn">'+(c.k?"血 ":"")+c.n+'</div>'+
+       '<div class="sc">'+(g?"제 "+g+"국에서 맺음":"미달성")+'</div></div>';
+  }
+  h+='</div></div>';
+  var fgot=0;
+  for(i=0;i<FEATS.length;i++)if(REC.feats[FEATS[i].id])fgot++;
+  h+='<div class="ledger"><h4>과업첩 · '+fgot+' / '+FEATS.length+'</h4><div class="stamps">';
+  var fsrt=FEATS.slice().sort(function(a,b){return (REC.feats[b.id]?1:0)-(REC.feats[a.id]?1:0)});
+  for(i=0;i<fsrt.length;i++){
+    var ft=fsrt[i],fg=REC.feats[ft.id];
+    h+='<div class="stamp '+(fg?"got kin":"no")+'"><div class="sn">'+ft.n+'</div>'+
+       '<div class="sc">'+(fg?"제 "+fg+"국":ft.d)+'</div></div>';
+  }
+  h+='</div></div>';
+  h+='<button class="btn" id="recClose">록 을 덮 다</button>';
+  h+='<button class="btn2" id="recReset" style="border-color:#A8402F;color:#C4685C;margin-top:10px">기 록 을 태 우 다</button>';
+  /* 저장소 백업 — Pages 가 정적이라 여기서 직접 못 쓴다. 사람이 옮겨 붙이는 자리다 */
+  h+='<div class="ledger" id="saveBox" style="margin-top:22px"></div>';
+  $("recBody").innerHTML=h;
+  renderSaveBox();
+  $("recClose").addEventListener("click",function(){$("rec").classList.remove("on")});
+  $("recReset").addEventListener("click",function(){
+    if(!this.dataset.arm){
+      this.dataset.arm=1;
+      this.textContent="모든 전적·도장·과업이 사라지오 — 한 번 더 누르면 태우오";
+      var b=this;setTimeout(function(){if(b.dataset.arm){delete b.dataset.arm;b.textContent="기 록 을 태 우 다"}},4000);
+      return;
+    }
+    REC={v:1,games:0,win:0,lose:0,draw:0,best:0,bestLv:-1,stamps:{},feats:{},picks:{},by:{st:{},pk:{},fac:{},lv:{}},aist:{}};
+    recSave(REC);buildRec();buildDex();
+    $("rec").scrollTop=0;
+  });
+
+}
+
+/* ───────── 기질 탐구 ───────── */
+var LAB_N=30;                    // 기질당 대국 수
+function labPick(team,foeTeam,cands,st){
+  var tb=evaluate(team,true).total,fb2=evaluate(foeTeam,true).total,best=cands[0],bs=-1e9,i;
+  for(i=0;i<cands.length;i++){
+    var cc=cands[i];
+    var gain=evaluate(team.concat([cc]),true).total-tb;
+    var deny=evaluate(foeTeam.concat([cc]),true).total-fb2;
+    var realST=AI_ST;AI_ST=st;var stSc=styleScore(cc,team);AI_ST=realST;
+    var sc=gain+.45*deny+stSc+Math.random()*20;
+    if(sc>bs){bs=sc;best=cc}
+  }
+  return best;
+}
+function labLegal(team,cs){
+  var n={"군주":0,"무장":0,"참모":0},i,ok=[];
+  for(i=0;i<team.length;i++)n[catOf(team[i])]++;
+  for(i=0;i<cs.length;i++)if(n[catOf(cs[i])]<CAPS[catOf(cs[i])])ok.push(cs[i]);
+  return ok.length?ok:cs;
+}
+function labRun(st){
+  var pickN={},comboN={},i,r,j;
+  var sumPw=0,sumMu=0,sumJi=0,sumCnt=0,sumCombo=0,sumTot=0,facN={};
+  for(var g=0;g<LAB_N;g++){
+    var pool=C.slice(),A=[],B=[];
+    for(r=0;r<ROUNDS;r++){
+      var pk=[];
+      for(i=0;i<PACK&&pool.length;i++)pk.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);
+      var rem=pk.slice();
+      var order=(r%2)?[[B,A,null],[A,B,st]]:[[A,B,st],[B,A,null]];
+      for(j=0;j<order.length;j++){
+        var me=order[j][0],op=order[j][1],sty=order[j][2];
+        var c=labPick(me,op,labLegal(me,rem),sty===null?0:sty);
+        me.push(c);rem=rem.filter(function(x){return x!==c});
+      }
+      pool=pool.concat(rem);
+    }
+    for(i=0;i<A.length;i++){
+      pickN[A[i][0]]=(pickN[A[i][0]]||0)+1;
+      sumPw+=power(A[i]);sumMu+=A[i][4];sumJi+=A[i][5];sumCnt++;
+      facN[A[i][1]]=(facN[A[i][1]]||0)+1;
+    }
+    var fired=pledges(A).filter(function(x){return x.got>0});
+    sumCombo+=fired.length;sumTot+=evaluate(A).total;
+    for(i=0;i<fired.length;i++)comboN[fired[i].n]=(comboN[fired[i].n]||0)+1;
+  }
+  var fk=[],k;for(k in facN)fk.push(k);
+  fk.sort(function(a,b){return facN[b]-facN[a]});
+  return {pick:pickN,combo:comboN,
+    pw:(sumPw/sumCnt).toFixed(1),mu:(sumMu/sumCnt).toFixed(1),ji:(sumJi/sumCnt).toFixed(1),
+    cb:(sumCombo/LAB_N).toFixed(1),tot:Math.round(sumTot/LAB_N),
+    fac:fk.slice(0,2).map(function(x){return x+" "+Math.round(facN[x]/sumCnt*100)+"%"}).join(" · ")};
+}
+function buildLab(){
+  var h='<div class="verdict" style="margin-bottom:14px"><div class="big" style="font-size:30px;color:var(--gold)">究 · 기질 탐구</div>'+
+        '<svg class="orn"><use href="#orn-knot"/></svg>'+
+        '<div class="sub">적장의 기질마다 무엇을 집는지 살펴보오</div></div>';
+  // ── 실제 대국에서 관측된 기록 ──
+  var any=false,sk;
+  for(sk in REC.aist)any=true;
+  h+='<div class="verdict" style="margin:6px 0 10px"><div class="sub" style="color:var(--gold)">實 錄 · 겨루어 본 적장들</div></div>';
+  if(!any){
+    h+='<div class="ledger"><div class="row"><span>아직 겨루어 본 적장이 없소. 몇 판을 두면 기질마다 무엇을 즐겨 취하는지 여기 쌓이오.</span></div></div>';
+  }else{
+    for(var si=0;si<AI_ST_NAME.length-1;si++){
+      var nm=AI_ST_NAME[si],a=REC.aist[nm];
+      if(!a||!a.n)continue;
+      var pk2=[],cb2=[],kk;
+      for(kk in a.pick)pk2.push([kk,a.pick[kk]]);
+      for(kk in a.cb)cb2.push([kk,a.cb[kk]]);
+      pk2.sort(function(x,y){return y[1]-x[1]});cb2.sort(function(x,y){return y[1]-x[1]});
+      h+='<div class="ledger"><h4>'+nm+' · '+a.n+'판 (적장 '+a.w+'승)</h4>';
+      h+='<div class="row"><span>편성 평균</span><b>'+Math.round(a.tot/a.n)+'점</b></div>'+
+         '<div class="row"><span>죽간 평균 전력 · 무력</span><b>'+(a.pw/a.cnt).toFixed(1)+' · '+(a.mu/a.cnt).toFixed(1)+'</b></div>'+
+         '<div class="row"><span>한 판에 맺은 결의</span><b class="up">'+(a.cbN/a.n).toFixed(1)+'</b></div>';
+      if(pk2.length){
+        h+='<div class="row" style="margin-top:6px"><span style="color:var(--paper3)">즐겨 취한 죽간</span></div>';
+        for(var pi=0;pi<8&&pi<pk2.length;pi++)
+          h+='<div class="row"><span><b style="color:var(--paper)">'+pk2[pi][0]+'</b></span><b>'+pk2[pi][1]+'회</b></div>';
+      }
+      if(cb2.length){
+        h+='<div class="row" style="margin-top:6px"><span style="color:var(--paper3)">자주 맺은 결의</span></div>';
+        for(var ci=0;ci<6&&ci<cb2.length;ci++)
+          h+='<div class="row"><span><b style="color:var(--paper)">'+cb2[ci][0]+'</b></span><b class="up">'+cb2[ci][1]+'회</b></div>';
+      }
+      h+='</div>';
+    }
+  }
+  h+='<div class="verdict" style="margin:16px 0 10px"><div class="sub" style="color:var(--gold)">試 算 · 셈으로 미리 보기</div></div>';
+  h+='<div class="ledger"><div class="row"><span>다섯 기질에게 각기 '+LAB_N+'판씩 두게 하여 미리 헤아려 보오. 실제로 겨룬 기록과는 별개요. 본편 전체 인물의 2인 무작위 팩을 쓰는 간이 실험으로, 보충·최근 등장 억제·교체·시나리오는 반영하지 않소.</span></div></div>';
+  h+='<button class="btn" id="labGo">셈 하 여 보 다</button>';
+  h+='<div id="labOut"></div>';
+  h+='<button class="btn2" id="labClose" style="margin-top:10px">닫 다</button>';
+  $("labBody").innerHTML=h;
+  $("labClose").addEventListener("click",function(){$("lab").classList.remove("on")});
+  $("labGo").addEventListener("click",function(){
+    var btn=this;btn.disabled=true;btn.textContent="헤아리는 중…";
+    var out=$("labOut");out.innerHTML="";
+    var st=0;
+    function step(){
+      var res=labRun(st);
+      var pk=[],cb=[],k;
+      for(k in res.pick)pk.push([k,res.pick[k]]);
+      for(k in res.combo)cb.push([k,res.combo[k]]);
+      pk.sort(function(a,b){return b[1]-a[1]});cb.sort(function(a,b){return b[1]-a[1]});
+      var o='<div class="ledger"><h4>'+AI_ST_NAME[st]+' — '+AI_ST_DESC[st]+'</h4>';
+      o+='<div class="row"><span>편성 평균</span><b>'+res.tot+'점</b></div>'+
+         '<div class="row"><span>죽간 평균 전력</span><b>'+res.pw+'</b></div>'+
+         '<div class="row"><span>평균 무력 · 지력</span><b>'+res.mu+' · '+res.ji+'</b></div>'+
+         '<div class="row"><span>한 판에 맺은 결의</span><b class="up">'+res.cb+'</b></div>'+
+         '<div class="row"><span>즐겨 세운 깃발</span><b>'+res.fac+'</b></div>';
+      o+='<div class="row" style="margin-top:6px"><span style="color:var(--paper3)">즐겨 취한 죽간</span></div>';
+      for(var i=0;i<8&&i<pk.length;i++)
+        o+='<div class="row"><span><b style="color:var(--paper)">'+pk[i][0]+'</b></span><b>'+Math.round(pk[i][1]/LAB_N*100)+'%</b></div>';
+      o+='<div class="row" style="margin-top:6px"><span style="color:var(--paper3)">자주 맺은 결의</span></div>';
+      for(var j2=0;j2<7&&j2<cb.length;j2++)
+        o+='<div class="row"><span><b style="color:var(--paper)">'+cb[j2][0]+'</b></span><b class="up">'+Math.round(cb[j2][1]/LAB_N*100)+'%</b></div>';
+      o+='</div>';
+      out.innerHTML+=o;
+      st++;
+      if(st<5){btn.textContent="헤아리는 중… ("+st+"/5)";setTimeout(step,30)}
+      else{btn.textContent="다 시 셈 하 다";btn.disabled=false}
+    }
+    setTimeout(step,30);
+  });
+}
+
+/* ───────── 병법 요람 ───────── */
+function buildHelp(){
+  var h="",i,k;
+  h+='<div class="verdict" style="margin-bottom:22px"><div class="big" style="font-size:32px;color:var(--gold)">兵 法 要 覽</div><svg class="orn"><use href="#orn-knot"/></svg>'+
+     '<div class="sub">규칙과 채점을 모두 적어두었소</div></div>';
+
+  h+='<div class="hsec"><h4>진행</h4>'+
+     '<p>모두 <b>'+ROUNDS+'진</b>. 매 진마다 죽간 <b>'+PACK+'장</b>이 펼쳐지고, 아군과 적군이 <b>같은 죽간을 보며 번갈아</b> 한 명씩 취하오. 아무도 취하지 않은 죽간은 다시 더미로 돌아가오.</p>'+
+     '<p><b>선공은 진마다 교대</b>하오. 첫 진의 선공은 새 대국의 <b>첫 선공</b> 설정을 따르고, 이후 진마다 차례가 도오. 진이 홀수이니 먼저 시작한 쪽이 한 번 더 선공하게 되오 — 적군 선공은 곧 난이도를 올리는 길이오. 적군이 채간 인물은 푸른 <span class="g">奪</span> 도장이 찍힌 채 남으니, 무엇을 빼앗겼는지 보고 남은 죽간에서 고르면 되오.</p>'+
+     '<p><b>換(리롤)</b>은 각자 한 판에 '+REROLLS+'회 — <b>적장도 쓰오</b>. 내 차례라면 언제든 쓸 수 있고, 이미 도장이 찍힌 죽간은 그대로 두고 나머지만 새로 뽑소. 적장은 남은 죽간이 형편없을 때 물리는데, 고수일수록 눈이 높아 자주 물리오. 다만 마지막 진에서는 아무도 물리지 않소. 물리면 <b>죽간 여섯 장이 모두 새로 펼쳐지오</b> — 앞선 이가 채간 자리까지 새로 채우니, 늦게 고르는 이에게도 온전한 여섯이 돌아가오. 누가 언제 물렀는지는 전황 기록에 남소. 횟수는 새 대국에서 <b>없음부터 세 번까지</b> 정할 수 있고, 아군과 적장에게 <b>똑같이</b> 주어지오.</p>'+
+     '<p><b>죽간 소진</b>을 켜면 한 번 펼쳐진 죽간은 아무도 취하지 않아도 <b>판에서 물러나오</b> — 매 진이 새 얼굴이 되오. 다만 놓친 인물은 돌아오지 않으니, ◇ 예고를 믿고 다음을 기약하는 수는 통하지 않게 되오. 죽간이 모자랄 지경이 되면 물러난 패를 다시 섞소.</p></div>';
+
+  var cs=[],cat;
+  for(cat in CAPS)cs.push(cat+" "+CAPS[cat]+"인");
+  h+='<div class="hsec"><h4>편성 규칙</h4>'+
+     '<p>상단 <b>편성 규칙</b>을 켜면 자리가 정해지오 — <span class="g">'+cs.join(" · ")+'</span>. 책사와 문관은 모두 <b>謀</b>로 묶소.</p>'+
+     '<p>자리가 찬 분류의 죽간은 회색 <span class="r">編</span> 표시로 잠기오. 고를 수 있는 후보가 둘보다 적으면 남은 더미에서 역할에 맞는 후보를 보충하오. 보충할 인물도 없고 선택 가능한 후보가 없을 때만 예외를 표시하고 제한을 푸오. 적장도 같은 규칙을 따르오.</p>'+
+     '<p>규칙을 끄면 '+FINAL_SIZE+' 최종 자리를 마음대로 채우되, 아래 <b>편성 감점</b>을 받게 되오. <b>규칙을 켠 동안에는 감점이 없소</b> — 주공이 끝내 나타나지 않는 것은 허물이 아니라 운이니, 그릇의 보탬을 얻지 못하는 것으로 족하오.</p></div>';
+
+  h+='<div class="hsec"><h4>채점 · 하나. 인물 전력</h4>'+
+     '<p>같은 능력치라도 소임에 따라 값이 다르오. 네 능력치에 가중을 곱해 더한 뒤 2.5로 나누어 반올림하오.</p><div class="form">';
+  var lb=["통솔","무력","지력","정치"];
+  for(k in WT){
+    var t=[];
+    for(i=0;i<4;i++)if(WT[k][i])t.push(lb[i]+"×"+WT[k][i]);
+    h+=k+" &nbsp;= &nbsp;"+t.join(" + ")+"<br>";
+  }
+  h+='</div><p>그리하여 <b>관우</b>는 '+power(byName("관우"))+', <b>제갈량</b>은 '+power(byName("제갈량"))+', <b>여포</b>는 '+power(byName("여포"))+'이 되오.</p></div>';
+
+  var sy=[];
+  for(k in SYN)sy.push(k+"인 <span class=g>+"+SYN[k]+"</span>");
+  h+='<div class="hsec"><h4>후보와 진행 저장</h4><p>새 대국은 모두 후보 6장, 13번 지명이오. 첫 11번은 편성 규칙을 따르고 마지막 2번은 자유 예비 지명이오. 끝나면 11명을 확정하며 AI도 같은 조건으로 편성하오. 시나리오의 적군은 기존 고정 11명을 유지하오. 최근 본 인물은 덜 나오며, 교체는 남은 카드 수 안에서 이루어지고 방금 교체한 인물은 즉시 돌아오지 않소.</p><p>차례 사이에 진행을 자동 저장하므로 다시 열면 이어하오. 빠른 진행과 화면 밀도는 새 대국 설정에서 고를 수 있소.</p><p>무력 95 이상인 무장 중 지력 70 미만은 무력 특화 보탬을 받소: (무력−90)×(70−지력)÷40을 반올림하오. 티어는 인연 보너스를 제외한 개인 전력 기준이오.</p></div>';
+  h+='<div class="hsec"><h4>채점 · 둘. 진영 결속</h4>'+
+     '<p>같은 진영이 모일수록 크게 오르오.</p><div class="form">'+sy.join(" &nbsp;· &nbsp;")+'</div>'+
+     '<p><b>군웅</b>은 뿌리가 제각각이라 결속이 <b>'+Math.round(ETC_BASE*100)+'%</b>만 붙소. '+
+     '다만 <span class="g">군웅할거</span> — '+etcTiers()+' — 흩어진 자들도 수가 모이면 그 자체로 세력이 되오.</p>'+
+     '<p>군웅에게는 <b>결의</b>가 따로 여럿 있소. 하북의 막료, 백마의종, 태평도의 무리, 방외지사, 충의지사, 장안의 겁화 같은 것들이오. 진영 결속이 약한 대신 인연으로 메우는 길이오.</p></div>';
+
+  var kn=0;for(i=0;i<COMBO.length;i++)if(COMBO[i].k)kn++;
+  h+='<div class="hsec"><h4>채점 · 셋. 혈연 · 결의 · 불화</h4>'+
+     '<p>인연이 닿는 인물들이 모이면 결의가 이루어지오. 모두 <b>'+COMBO.length+'가지</b>. 반대로 서로 등을 돌린 사이는 깎이오.</p>'+
+     '<p>그중 <span style="color:#6FA08A">血</span> 표가 붙은 <b>'+kn+'가지</b>는 <b>혈연</b>이오. 한 핏줄은 진영이 갈려도 서로를 알아보니, 조씨와 하후씨, 관씨 부자, 제갈 가문, 손씨 일가, 서량 마씨 따위가 그러하오. 제갈량과 제갈근처럼 <b>섬기는 나라가 달라도</b> 혈연은 이어지오.</p>'+
+     '<button class="fold" id="foldCombo">결의 목록 펼치기</button><div class="cb" id="cbList">';
+  for(i=0;i<COMBO.length;i++){
+    var cb=COMBO[i],ts=[],neg=false;
+    for(k in cb.t){ts.push(k+"인 "+(cb.t[k]>0?"+":"")+cb.t[k]);if(cb.t[k]<0)neg=true}
+    var col=neg?"#C4685C":cb.k?"#6FA08A":"var(--paper)";
+    h+='<div class="cbi"><div class="t"><b style="color:'+col+'">'+(cb.k?"血 ":"")+cb.n+'</b>'+
+       '<em style="color:'+(neg?"#C4685C":cb.k?"#6FA08A":"var(--gold)")+'">'+ts.join(" / ")+'</em></div>'+
+       '<div class="m">'+cb.m.join(" · ")+'</div></div>';
+  }
+  h+='</div></div>';
+
+  h+='<div class="hsec"><h4>채점 · 넷. 편성 가감점</h4>'+
+     '<p><b>주공이 한 사람</b>이면 여기까지의 합계에 그 <b>그릇만큼</b>을 더하오. 통솔·지력·정치의 평균에 따라 <span class="g">+'+LORD_MIN+'%</span>에서 <span class="g">+'+LORD_MAX+'%</span> 사이가 되오. 다만 그릇은 <b>같은 진영</b> 앞에서 온전하오 — 주공과 동향인 인원의 비율에 따라 효험이 <b>절반에서 전부</b> 사이로 갈리니, 타향의 무리를 이끄는 주공은 목소리가 반쯤밖에 닿지 않소. '+
+     '조조는 <span class="g">+'+lordRate(byName("조조"))+'%</span>, 손권은 <span class="g">+'+lordRate(byName("손권"))+'%</span>, 유선은 <span class="g">+'+lordRate(byName("유선"))+'%</span>이오. 누구를 주공으로 세우는가가 진영 전체를 좌우하오.</p>'+
+     '<p><b>주공이 둘 이상</b>이면 그중 <b>그릇이 큰 이</b>를 앞에 세우고 그 값을 쓰오. 규칙을 끈 자유 편성에서는 여기에 내분으로 <span class="r">−8%</span>가 더해지오.</p>'+
+     '<p>규칙을 끈 자유 편성에서만 붙는 감점이오 — 주공 부재 <span class="r">−40</span>, 무장이 둘에 못 미침 <span class="r">−50</span>, 막료가 하나도 없음 <span class="r">−50</span>.</p></div>';
+
+  var tn=[],ti;
+  for(ti=0;ti<TIER_NAME.length;ti++)tn.push(TIER_NAME[ti]+"級 상위 "+Math.round(TIER_CUT[ti]*100)+"%까지");
+  var sch=[];
+  for(ti=0;ti<TIER_SCHEDULE.length;ti++)sch.push(NUM[ti]+"진 "+TIER_NAME[TIER_SCHEDULE[ti]]);
+  h+='<div class="hsec"><h4>드래프트 방식</h4>'+
+     '<p><b>무작위 팩</b>은 죽간더미에서 아무나 '+PACK+'장을 펼치오. 운이 크게 따르는 방식이오.</p>'+
+     '<p><b>티어 드래프트</b>는 인물을 전력에 따라 네 등급으로 나누고, 진마다 정해진 등급에서만 죽간을 펼치오. 양군이 같은 등급을 놓고 겨루니 운이 줄고 안목이 남소.</p>'+
+     '<div class="form">'+tn.join("<br>")+'</div>'+
+     '<p>진행 차례는 <span class="g">'+sch.join(" · ")+'</span> 순이오. <b>天級</b>은 첫 진과 여섯째 진에 나와 중반에도 방향을 바꿀 수 있소. 해당 등급의 죽간이 모자라면 이웃 등급에서 채우오.</p></div>';
+  h+='<div class="hsec"><h4>적장과 시대</h4>'+
+     '<p><b>적장</b>은 세 등급이오. 여기에 <b>기질</b>이 겹치오 — <span class="g">조조형</span>은 전력을, <span class="g">유비형</span>은 인연을, <span class="g">손권형</span>은 결속을 우선하고, <span class="g">여포형</span>은 오직 무력만 보오. <span class="g">사마의형</span>은 눈앞의 이득보다 <b>다 자랐을 때의 결의</b>를 헤아려 조용히 판을 짜오. <b>무작위</b>로 두면 적장의 기질을 판마다 새로 뽑으니, 초반의 수를 보고 상대를 짐작해야 하오. 기질은 강함이 아니라 <b>개성</b>이니, 여포형은 사나우나 다루기 쉬운 상대요. 고수는 나아가 아군이 <b>한 사람만 더하면 완성되는 결의</b>를 헤아려 그 길목을 먼저 막소. <span class="g">하수</span>는 눈에 띄는 것을 아무렇게나 집고, <span class="g">중수</span>는 제 이득을 셈하며 이따금 아군의 인연을 끊소. <span class="g">고수</span>는 아군의 진행 중인 결의를 거의 놓치지 않고 먼저 채가오.</p>'+
+     '<p><b>확장팩 · 군웅할거 一九四</b>를 켜면 본편의 위·촉·오 대신 <b>그 해의 열 세력</b> — 조조군, 원소군, 여포군, 유표군, 손책군, 서주군, 공손찬군, 마등군, 원술군, 장수군 — 으로 죽간이 갈리오. 그 시절에 없던 인물은 나오지 않고, 세력 결속은 본편보다 <span class="g">더 무겁게</span> 셈하오. 적장들은 각기 <b>한 세력의 기치</b>를 받들어 제 세력 인물을 눈여겨보니, 원소군 적장 앞에서 전풍을 늦게 집는 것은 어리석은 일이오. 인원이 다섯에 못 미치는 세력은 적장의 기치로 나오지 않소. 이 해의 여포와 장수는 한 세력의 <b>주공</b>으로 셈하니 主 자리에 앉힐 수 있소 — 다만 그릇은 타고난 통솔과 지모를 따르고, <b>전력 또한 본디 소임의 잣대</b>로 셈하오 — 여포는 主 자리에 앉아도 무장의 창끝으로 평가받소. 본편의 채점과 기록은 조금도 달라지지 않소.</p>'+
+     '<p>확장팩은 넷이오 — <span class="g">군웅할거 一九四</span>, <span class="g">관도대전 二〇〇</span>(관우는 조조의 진중에, 유비는 원소의 객장으로 있소), <span class="g">적벽대전 二〇八</span>(형주의 항장들이 조조군 깃발 아래 서고, 아비 잃은 마초가 서량의 주공으로 셈되오), <span class="g">삼국종결 二六三</span>(사마씨의 진, 강유의 촉, 저무는 오, 회남의 불씨가 겨루오). 소속은 그 해를 따르나 결의와 혈연은 세월을 넘소.</p>'+
+     '<p>다섯째 팩 <span class="g">군웅록 · 遍歷</span>은 온 시대의 인물이 다 나오되, 저마다 <b>몸담았던 모든 세력의 빛깔</b>을 지니오. 가후는 동탁·장수·조위 세 결속을 한 몸에 이으니, 섬긴 주인이 많을수록 여러 깃발을 잇는 <b>이음쇠</b>가 되오. 진(晉)을 연 사마씨와 그 신하들은 <b>조위와 진</b> 두 빛깔을 함께 지니되, 스스로 제위에 오른 <b>사마염</b>은 진의 빛만 지니오. 이 편에서는 <b>여포·장수·장각·맹획</b>이 제 무리의 주공으로 셈되오. 다만 결속의 무게는 조금 가볍게 셈하오. 죽간의 <b>빛깔과 낙관은 마지막으로 섬긴 곳</b>을 따르고, 왼편의 색동 띠가 거쳐 온 차례를 보이오 — 관우는 조조의 진중을 거쳤으나 끝내 촉으로 돌아갔으니 촉의 빛이오.</p>'+
+     '<p><b>대국 인원</b>을 셋으로 하면 <b>정립전</b>이오. 세 진영이 같은 죽간을 번갈아 취하고(선공은 진마다 도는 차례), 마지막에 세 합계를 견주어 수위를 가리오. 이때 승리는 <b>두 적장을 모두</b> 눌러야 하오. 금지 드래프트는 셋이 하나씩 지우고, 시나리오 대전에서는 쓰이지 않소.</p>'+
+     '<p><b>금지 드래프트</b>를 켜면 첫 진에 앞서 죽간더미의 으뜸 열둘이 펼쳐지고, 아군과 적군이 번갈아 <b>두 사람씩</b> 지우오. 지워진 넷은 그 판에 나오지 않소. 천하의 으뜸을 내가 쓸 수 없다면, 적도 쓰지 못하게 하는 계책이오.</p>'+
+     '<p><b>시나리오</b>를 고르면 적장이 드래프트 대신 <b>연의의 명진영</b>을 그대로 들고나오오 — 적벽의 조조군, 이릉의 육손군, 오장원의 사마의군, 한중의 유비군, 관도의 원소군. 아군만 죽간을 취하며, 그 열한 명은 죽간더미에서 빠지오. 이기면 과업 <span class="g">연의를 넘다</span>가 남소.</p>'+
+     '<p>매 판이 끝나면 <b>돌아보기</b>에 진마다 취한 죽간과 그때의 즉시 득점 1위가 나란히 적히오. 미래 인연과 견제 가치는 포함하지 않으니 전략의 정답은 아니오.</p>'+
+     '<p><b>적진 가리기</b>를 켜면 적장의 편성과 점수가 안개에 덮이오. 채간 죽간은 흐려지고 자리(主·武·謀)만 드러나며, 점수판에는 <span class="g">霧</span> 한 글자만 남소. 승부는 마지막에야 밝혀지오. 안개 속에서는 적장의 견제도 절반으로 무디어지오 — 그도 아군의 패를 온전히 보지 못하는 셈이오.</p>'+
+     '<p><b>시대</b>를 고르면 죽간더미가 달라지오. <span class="g">군웅할거</span>는 후기 인물이 아직 나서지 않았고, <span class="g">삼국정립</span>은 초기 군웅이 이미 스러진 뒤요. 시대를 바꾸면 판이 새로 시작되오.</p></div>';
+  h+='<div class="hsec"><h4>판정</h4>'+
+     '<p>'+ROUNDS+'진이 끝나면 추천 편성에서 최종 11명을 확정하고 모든 진영의 합계를 견주어 높은 쪽이 이기오. 결과 화면에 <b>양쪽 채점표가 항목별로</b> 나오니 어디서 갈렸는지 짚어볼 수 있소.</p>'+
+     '<p>상단 <b>점수판</b>은 진행 중의 합계요. 아직 편성이 끝나지 않았으므로 위의 편성 감점은 빼고 셈하오.</p>'+
+     '<p>아군 편성 아래 <b>結義</b> 칸에는 혈연이 <span style="color:#6FA08A">옥빛</span>, 결의가 금빛, 불화가 붉게 나뉘어 적히오.  이미 맺은 인연과 <b>맺어가는 중인 인연</b>이 <span class="g">2/3</span>처럼 진행도로 적히오. 힌트를 켜면 아직 오지 않은 인물의 이름까지 일러주오.</p>'+
+     '<p>죽간에도 <span class="g">◇ 오호대장군 2/3</span>처럼, 지금은 점수가 되지 않으나 <b>앞으로 이어질 인연</b>을 따로 적어두었소.</p>'+
+     '<p><b>결의 힌트</b>를 켜면 죽간마다 <span class="g">▲+85 · 도원결의</span>처럼, 그것을 취했을 때 오르는 점수와 새로 이루어지는 결의가 적히오.</p></div>';
+
+  h+='<button class="btn" id="helpClose">요 람 을 덮 다</button>';
+  $("helpBody").innerHTML=h;
+  [].forEach.call($("helpBody").querySelectorAll(".hsec"),function(sec,idx){
+    if(idx>0)sec.classList.add("fold");
+    sec.querySelector("h4").addEventListener("click",function(){sec.classList.toggle("fold")});
+  });
+  $("foldCombo").addEventListener("click",function(){
+    var c=$("cbList"),o=c.classList.toggle("open");
+    this.textContent=o?"결의 목록 접기":"결의 목록 펼치기";
+  });
+  $("helpClose").addEventListener("click",function(){$("help").classList.remove("on")});
+}
+function etcTiers(){
+  var a=[],k;
+  for(k in ETC)a.push(k+"인 이상 "+Math.round(ETC[k]*100)+"%");
+  return a.join(", ");
+}
+function byName(n){for(var i=0;i<C.length;i++)if(C[i][0]===n)return C[i];return C[0]}
+
+$("detail").addEventListener("click",function(e){if(e.target===this)this.classList.remove("on")});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeDetail();if(e.key==="Tab"&&$("detail").classList.contains("on")){var bs=$("detailBody").querySelectorAll("button:not(:disabled)"),first=bs[0],last=bs[bs.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
+/* ───────── 금지 페이즈 ───────── */
+var banCand=[],banQ=[];
+function banPhase(){
+  banQ=foe2?["me","foe","foe2"]:["me","foe","me","foe"];
+  banLeft=banQ.length;
+  var srt=pool.slice().sort(function(a,b){return power(b)-power(a)});
+  banCand=srt.slice(0,12).map(function(c){return {c:c,by:null}});
+  chips($("mine"),mine,ROUNDS);chips($("foe"),foe,ROUNDS);
+  $("myct").textContent="0 / "+ROUNDS;$("opct").textContent="0 / "+ROUNDS;
+  board();tally();
+  $("rd").textContent=foe2?"禁 · 셋이 하나씩 지우오":"禁 · 두 사람을 지우시오";
+  $("msg").textContent="가장 두려운 죽간부터 거두는 법이오";
+  $("sub").textContent="";
+  $("reroll").disabled=true;
+  busy=true;renderBan();banStep();
+}
+function renderBan(){
+  var box=$("pack");box.innerHTML="";
+  banCand.forEach(function(e,i){
+    var el=card(e.c,i);
+    el.style.animation="none";
+    if(e.by){
+      el.disabled=true;el.classList.add("taken");
+      el.querySelector(".seal").textContent="禁";
+      if(e.by==="foe")el.classList.add("by-foe");
+      if(e.by==="foe2")el.classList.add("by-foe2");
+    }else{
+      el.addEventListener("click",function(){myBan(i)});
+    }
+    box.appendChild(el);
+  });
+}
+function banStep(){
+  saveGame("ban",[]);
+  if(!banQ.length){later(function(){buildTiers(pool);nextRound()},820);return}
+  var t=banQ[0];
+  if(t==="me"){busy=false;$("msg").textContent="금할 인물을 고르시오"}
+  else later(aiBan,650);
+}
+function myBan(i){
+  if(busy||banCand[i].by||banQ[0]!=="me")return;
+  busy=true;banQ.shift();
+  banCand[i].by="me";bans.me.push(banCand[i].c[0]);
+  removeFromPool(banCand[i].c);
+  renderBan();
+  $("msg").textContent=banCand[i].c[0]+"을(를) 금하였소";
+  banStep();
+}
+function aiBan(){
+  var seat=banQ.shift(),rem=[],i;
+  for(i=0;i<banCand.length;i++)if(!banCand[i].by)rem.push(i);
+  var best=rem[0],bs=-1e9;
+  for(i=0;i<rem.length;i++){
+    var sc=power(banCand[rem[i]].c)+Math.random()*NOISE[AI_LV];
+    if(sc>bs){bs=sc;best=rem[i]}
+  }
+  banCand[best].by=(seat==="foe")?"foe":"foe2";
+  bans[seat].push(banCand[best].c[0]);
+  removeFromPool(banCand[best].c);
+  renderBan();
+  $("msg").textContent=seatName(seat)+" 적장은 "+banCand[best].c[0]+"을(를) 금하였소";
+  banStep();
+}
+function removeFromPool(c){
+  for(var i=0;i<pool.length;i++)if(pool[i][0]===c[0]){pool.splice(i,1);return}
+}
+
+/* ───────── 한 판의 흐름 ───────── */
+var NUM=["一","二","三","四","五","六","七","八","九","十","十一","十二","十三"];
+
+function board(){
+  var a=evaluate(mine,true).total,b=evaluate(foe,true).total,
+      c2=foe2?evaluate(foe2,true).total:null;
+  $("sMe").textContent=a;
+  var g=$("sDiff");
+  if(fogOn){
+    $("sFoe").textContent="???";if(foe2)$("sF2").textContent="???";
+    g.textContent="霧";g.className="gap even";
+  }else{
+    $("sFoe").textContent=b;if(foe2)$("sF2").textContent=c2;
+    if(foe2){
+      var top=Math.max(b,c2),rank=a>top?"首":a===top?"共同首":(a>=Math.min(b,c2)?"次":"末");
+      g.textContent=rank;g.className="gap "+(a>top?"lead":a<Math.min(b,c2)?"trail":"even");
+    }else{
+      var d=a-b;
+      g.textContent=(d>0?"+"+d:d<0?d:"±0");
+      g.className="gap "+(d>0?"lead":d<0?"trail":"even");
+    }
+  }
+  renderPledges();
+  var ct=counts(mine);
+  $("draftSummary").textContent=(Math.min(round+1,ROUNDS))+"/"+ROUNDS+"진 · 후보 "+PACK+"장 · 主 "+ct.군주+"/1 · 武 "+ct.무장+"/5 · 謀 "+ct.참모+"/5";
+}
+
+function updateReroll(){
+  var ct=counts(mine);
+  $("draftSummary").textContent=(myTurn?"내 차례":"진행 중")+" · "+Math.min(round+1,ROUNDS)+"/"+ROUNDS+"진 · "+(mine.length>FINAL_SIZE?"추천 ":"")+evaluate(mine,true).total+"점 · "+(ruleOn?"군 "+ct.군주+"/1 무 "+ct.무장+"/5 모 "+ct.참모+"/5":"자유 편성 "+mine.length+"명");
+  var rb=$("reroll");
+  rb.disabled=(rerolls<1||busy||!myTurn);
+  rb.textContent=rerolls>0?"換 · 죽간을 다시 펴다 (남은 "+rerolls+"회)":"換 · 다시 펼 죽간이 없소";
+}
+
+function renderPack(fresh){
+  preloadPortraits(packArr.map(function(e){return e.c[0]}),true);
+  var box=$("pack");box.innerHTML="";
+  var legal=legalSet(mine,openIdx());
+  packArr.forEach(function(e,i){
+    var hb=null;
+    if(!e.by&&hintOn){hb=hintOf(mine,e.c);hb.near=nearOf(mine,e.c)}
+    var el=card(e.c,i,hb);
+    if(e.by){
+      el.style.animation="none";
+      el.disabled=true;
+      el.classList.add("taken","by-"+(e.by==="me"?"me":e.by==="foe"?"foe":"foe2"));
+      el.querySelector(".seal").textContent=(e.by==="me"?"採":"奪");
+      if(fogOn&&e.by!=="me"){el.classList.add("fogged");el.innerHTML='<div class="hidden-card">敵 · 선택한 인물 비공개</div>';el.setAttribute("aria-label","적이 선택한 비공개 카드")}
+    }else if(fresh){
+      el.style.animationDelay=(i*45)+"ms";
+    }else{
+      el.style.animation="none";
+    }
+    if(!e.by){
+      var ok=legal.indexOf(i)>=0;
+      if(!ok)el.classList.add("illegal");
+      el.disabled=!myTurn||!ok;
+      if(ok)el.addEventListener("click",function(){myPick(i)});
+    }
+    box.appendChild(el);
+  });
+  updateReroll();
+}
+
+var detailOrigin=null;
+function closeDetail(){ $("detail").classList.remove("on");if(detailOrigin&&detailOrigin.isConnected)detailOrigin.focus(); }
+function showDetail(c,pickIndex){
+ detailOrigin=document.activeElement;
+ var canPick=typeof pickIndex==="number"&&myTurn&&!busy&&packArr[pickIndex]&&packArr[pickIndex].c===c&&!packArr[pickIndex].by&&legalSet(mine,openIdx()).indexOf(pickIndex)>=0;
+ var h='<img class="pick-portrait" src="'+((IMGL&&IMGL[c[0]])||IMG[c[0]]||'')+'" alt="'+c[0]+'" onerror="this.style.display=\'none\'"><h3>'+c[0]+' · '+facOf(c)+' · '+roleOf(c)+'</h3><p>통솔 '+c[3]+' · 무력 '+c[4]+' · 지력 '+c[5]+' · 정치 '+c[6]+'</p><p>전력 '+power(c)+(martialBonus(c)?' · 무력 특화 +'+martialBonus(c):'')+'</p>';
+ if(!mine.concat(foe,foe2||[]).some(function(x){return x[0]===c[0]})){
+   var a=evaluate(mine,true),b=evaluate(mine.concat([c]),true),rows={};a.rows.forEach(function(r){rows[r.k]=r.v});
+   h+='<h4>선택 시 추천 편성 변화 '+(b.total-a.total)+'</h4>';
+   b.rows.forEach(function(r){var d=r.v-(rows[r.k]||0);if(d)h+='<p>'+r.k+' '+(d>0?'+':'')+d+'</p>'});
+   a.rows.forEach(function(r){if(!b.rows.some(function(x){return x.k===r.k}))h+='<p>'+r.k+' 제거 '+(-r.v)+'</p>'});
+ }
+ h+='<p>13번 지명 후 11명을 확정합니다. 예비 지명의 점수는 추천 11명 기준입니다.</p>';
+ h+='<p>'+(LORE[c[0]]||'')+'</p><h4>관련 인연</h4>';
+ COMBO.filter(function(g){return g.m.indexOf(c[0])>=0}).forEach(function(g){h+='<p><b>'+g.n+'</b> · '+Object.keys(g.t).map(function(k){return k+'인 '+g.t[k]}).join(' / ')+'<br>'+g.m.filter(function(n){return n!==c[0]}).map(function(n){return n+' ['+availability(n)+']'}).join(' · ')+'</p>'});
+ var blocked=typeof pickIndex==="number"&&!canPick&&!packArr[pickIndex].by?(myTurn?catOf(c)+" 정원 초과 · 예비 지명에서 선택 가능":"적군이 선택 중입니다"):"";
+ h+='<p class="pick-warning">'+blocked+'</p>';
+ $("detailBody").innerHTML=h+'<div class="pick-actions">'+(canPick?'<button class="btn" id="pickConfirm">'+c[0]+' 지명 확정</button>':'')+'<button class="btn2" id="detailClose">닫기 · 후보 다시 보기</button></div>';
+ if(canPick){var snapshot=packArr;$("pickConfirm").onclick=function(){if(snapshot!==packArr||!myTurn||busy||packArr[pickIndex].by||legalSet(mine,openIdx()).indexOf(pickIndex)<0){closeDetail();return}closeDetail();myPick(pickIndex)}}
+ $("detail").classList.add("on");$("detail").scrollTop=0;$("detailClose").onclick=closeDetail;$("detailClose").focus();
+}
+function nextRound(){
+  roundExcluded=[];busy=false;
+  chips($("mine"),mine,ROUNDS);chips($("foe"),foe,ROUNDS);
+  if(foe2)chips($("foe2"),foe2,ROUNDS);
+  $("myct").textContent=mine.length+" / "+ROUNDS;
+  $("opct").textContent=foe.length+" / "+ROUNDS;
+  if(foe2)$("opct2").textContent=foe2.length+" / "+ROUNDS;
+  $("sub").textContent="";board();tally();
+  var pk=(MODE===1)?drawTier(TIER_SCHEDULE[round]===undefined?3:TIER_SCHEDULE[round],PACK):draw(PACK);
+  packArr=pk.map(function(c){return {c:c,by:null}});
+  var seats=SCN>0?["me"]:(foe2?["me","foe","foe2"]:["me","foe"]);
+  var rot=(round+firstOff)%seats.length;
+  turnQ=seats.slice(rot).concat(seats.slice(0,rot));
+  hist[round]={first:turnQ[0],me:"",foe:SCN>0?"—":"",foe2:"",rr:[]};
+  $("rd").textContent="第 "+NUM[round]+" 陣 · "+(SCN>0?"對 "+SCN_NAME[SCN].split(" · ")[1]:"先攻 "+seatName(turnQ[0]))+
+    (MODE===1?" · "+TIER_NAME[TIER_SCHEDULE[round]===undefined?3:TIER_SCHEDULE[round]]+"級":"");
+  advanceTurn(true);
+}
+
+function advanceTurn(first,keepPack){
+  if(!turnQ.length){endRound();return}
+  var pending=turnQ[0],added=ensureChoices(seatTeam(pending));
+  saveGame("draft",turnQ);
+  var t=turnQ.shift();
+  if(t==="me"){
+    myTurn=true;busy=false;
+    if(!keepPack||added)renderPack(false);
+    $("msg").textContent=(first?openIdx().length+"장 중 하나를 취하시오":"이제 그대의 차례요 — 남은 "+openIdx().length+"장");
+    if(added)$("sub").textContent="남은 역할에 맞는 후보 "+added+"장을 보충했소";
+    else if(round>=FINAL_SIZE)$("sub").textContent="예비 지명 · 역할 제한 없이 선택하고 마지막에 11명을 편성합니다";
+    else if(ruleOn&&!rawLegal(mine,openIdx()).length)$("sub").textContent="편성 예외 · 남은 역할 후보가 없어 제한을 풀었소";
+    updateReroll();
+  }else{
+    myTurn=false;busy=true;if(!keepPack||added)renderPack(false);updateReroll();
+    if(first)$("msg").textContent=seatName(t)+" 적장이 먼저 고르는 차례요…";
+    later(function(){aiPick(t)},first?900:760);
+  }
+}
+
+function myPick(i){
+  if(busy||!myTurn||!packArr[i]||packArr[i].by||legalSet(mine,openIdx()).indexOf(i)<0)return;
+  busy=true;myTurn=false;
+  var legal=legalSet(mine,openIdx()),baseT=evaluate(mine,true).total,bi=i,bg=-1e9,pg=0,li;
+  for(li=0;li<legal.length;li++){
+    var g=evaluate(mine.concat([packArr[legal[li]].c]),true).total-baseT;
+    if(legal[li]===i)pg=g;
+    if(g>bg){bg=g;bi=legal[li]}
+  }
+  var bw=hintOf(mine,packArr[bi].c);
+  replay.push({rd:round,pick:packArr[i].c[0],pg:pg,bn:packArr[bi].c[0],bg:bg,
+    bwhy:bw.names.slice(0,2).join(" · ")});
+  var beforeFire=firedSet(mine);
+  packArr[i].by="me";
+  mine.push(packArr[i].c);
+  toastPledges(beforeFire,mine);
+  chips($("mine"),mine,ROUNDS);
+  $("myct").textContent=mine.length+" / "+ROUNDS;
+  hist[round].me=packArr[i].c[0];
+  $("sub").textContent=packArr[i].c[0]+" — "+(LORE[packArr[i].c[0]]||"");
+  $("msg").textContent=packArr[i].c[0]+"을(를) 취하였소";
+  board();renderPack(false);
+  advanceTurn(false,true);
+}
+
+function aiPick(seat){
+  var team=seatTeam(seat),other=(seat==="foe"&&foe2)?foe2:foe;
+  var st=(seat==="foe")?ST_A:ST_B;
+  var rem=legalSet(team,openIdx()),i;
+  // 換 판단: 남은 죽간의 최선 이득이 그 진의 통상치에 못 미치면 물리고 다시 편다
+  if(aiRR[seat]>0&&RR_K[AI_LV]>0&&round<ROUNDS-1){
+    var tb0=evaluate(team,true).total,bg0=-1e9;
+    for(i=0;i<rem.length;i++){
+      var g0=evaluate(team.concat([packArr[rem[i]].c]),true).total-tb0;
+      if(g0>bg0)bg0=g0;
+    }
+    if(bg0<rrBase(round)*RR_K[AI_LV]){
+      aiRR[seat]--;hist[round].rr.push(seatName(seat));
+      var replaced=replaceOpen();
+      ensureChoices(team);
+      saveGame("draft",[seat].concat(turnQ));
+      renderPack(true);
+      $("msg").textContent=seatName(seat)+" 적장 — \""+RR_SAY[Math.floor(Math.random()*RR_SAY.length)]+"\"";
+      $("sub").textContent=seatName(seat)+" 적장이 죽간을 물리고 다시 폈소";
+      later(function(){aiPick(seat)},780);
+      return;
+    }
+  }
+  var best=rem[0],bs=-1e9,bestWhy=null,
+      tb=evaluate(team,true).total,
+      mb=evaluate(mine,true).total,
+      ob=(foe2&&other!==team)?evaluate(other,true).total:null;
+  for(i=0;i<rem.length;i++){
+    var cc=packArr[rem[i]].c;
+    var gain=evaluate(team.concat([cc]),true).total-tb;
+    var dMe=evaluate(mine.concat([cc]),true).total-mb;
+    var dOt=(ob!==null)?evaluate(other.concat([cc]),true).total-ob:-1e9;
+    // 정립전에서는 두 상대를 함께 보되, 앞선 쪽을 더 견제한다
+    if(ob!==null){
+      var wMe=(mb>=ob)?1.2:.85, wOt=(ob>mb)?1.2:.85;
+      dMe*=wMe; dOt*=wOt;
+    }
+    var deny=Math.max(dMe,dOt);
+    var threat=0;
+    if(AI_LV===2&&!fogOn){
+      var tMe=threatScore(cc,mine), tOt=(ob!==null)?threatScore(cc,other):0;
+      threat=Math.max(tMe,tOt)*.3;
+    }
+    var stSc;
+    var realST=AI_ST;AI_ST=st;stSc=styleScore(cc,team);AI_ST=realST;
+    var fb=(PACK2&&aiFac[seat]&&facsOf(cc).indexOf(aiFac[seat])>=0)?PACK2.bias:0;
+    var sc=gain+DENY[AI_LV]*(fogOn?.5:1)*deny+threat+stSc+fb+Math.random()*NOISE[AI_LV];
+    if(sc>bs){bs=sc;best=rem[i];bestWhy={g:Math.round(gain),d:Math.round(DENY[AI_LV]*(fogOn?.5:1)*deny+threat),s:Math.round(stSc)}}
+  }
+  packArr[best].by=(seat==="foe")?"foe":"foe2";
+  team.push(packArr[best].c);
+  chips($(seat==="foe"?"foe":"foe2"),team,ROUNDS);
+  $(seat==="foe"?"opct":"opct2").textContent=team.length+" / "+ROUNDS;
+  var name=packArr[best].c[0];
+  hist[round][seat]=name;
+  hist[round][seat+"Why"]=bestWhy;
+  $("sub").textContent=fogOn?seatName(seat)+" 적장이 죽간 하나를 소매에 감추었소":name+" — "+(LORE[name]||"");
+  $("msg").textContent=fogOn?seatName(seat)+" 적장이 하나를 취하였소":seatName(seat)+" 적장은 "+name+"을(를) 취하였소";
+  board();renderPack(false);
+  advanceTurn(false);
+}
+
+function endRound(){
+  Array.prototype.forEach.call($("pack").querySelectorAll(".card"),function(n,i){if(!packArr[i].by)n.classList.add("gone")});
+  for(var i=0;i<packArr.length;i++)if(!packArr[i].by)toss(packArr[i].c);
+  myTurn=false;busy=true;updateReroll();saveGame("next",[]);
+  later(completeRound,920);
+}
+function completeRound(){round++;if(round>=ROUNDS)finish();else nextRound()}
+function reroll(){
+  if(busy||!myTurn||rerolls<1)return;
+  var n=replaceOpen();
+  if(!n){$("sub").textContent="새로 펼칠 후보가 없소 · 교체 횟수는 유지하오";return}
+  rerolls--;hist[round].rr.push("我");ensureChoices(mine);
+  saveGame("draft",["me"].concat(turnQ));renderPack(true);
+  $("msg").textContent="새 후보 "+n+"장이오 — 하나를 취하시오";
+}
+
+/* ───────── 결과 ───────── */
+function tale(me,op,team){
+  var top=team.slice().sort(function(a,b){return power(b)-power(a)})[0];
+  var d=me.total-op.total,l;
+  if(d>140)l="적진은 첫 합에 무너졌소. "+top[0]+"의 깃발이 강을 건너 북쪽 벌판까지 나아갔다 하오.";
+  else if(d>0)l="접전이었소. 해질 무렵 "+top[0]+"이(가) 적의 중군을 갈랐고, 그것으로 승부가 갈렸소.";
+  else if(d===0)l="양군은 사흘을 대치하다 각기 물러났소. 승패는 다음 해로 미루어졌소.";
+  else if(d>-140)l=top[0]+"이(가) 홀로 분전하였으나, 진의 결속이 적에 미치지 못하였소.";
+  else l="진이 서로 어우러지지 못하였소. 장수는 흩어지고 막료는 말이 없었소.";
+  return l;
+}
+
+function copyOut(me,op,cb){
+  var L=[],i;
+  L.push("삼국지 드래프트 · "+(PACK2?PACK2.n:MODE_NAME[MODE]+" · "+ERA_NAME[ERA])+(SCN>0?" · "+SCN_NAME[SCN]:"")+" · 적장 "+AI_NAME[AI_LV]+"·"+AI_ST_NAME[ST_A]);
+  L.push("");
+  if(foe2)L.push("我軍 "+me.total+" / 敵一 "+op.total+" / 敵二 "+evaluate(foe2).total);
+  else L.push("我軍 "+me.total+"  對  敵軍 "+op.total+"  ("+(me.total>op.total?"승":me.total<op.total?"패":"무")+")");
+  L.push("");
+  L.push("[아군 편성]");
+  for(i=0;i<mine.length;i++)L.push("  "+mine[i][0]+" ("+facOf(mine[i])+"/"+mine[i][2]+", 전력 "+power(mine[i])+")");
+  var pl=pledges(mine).filter(function(g){return g.got});
+  if(pl.length){
+    L.push("");L.push("[맺은 인연]");
+    for(i=0;i<pl.length;i++)L.push("  "+(pl[i].kin?"血 ":"")+pl[i].n+" "+(pl[i].got>0?"+":"")+pl[i].got);
+  }
+  L.push("");L.push(foe2?"[敵一 편성]":"[적군 편성]");
+  for(i=0;i<foe.length;i++)L.push("  "+foe[i][0]+" ("+foe[i][1]+"/"+foe[i][2]+")");
+  if(foe2){L.push("");L.push("[敵二 편성]");
+    for(i=0;i<foe2.length;i++)L.push("  "+foe2[i][0]+" ("+foe2[i][1]+"/"+foe2[i][2]+")")}
+  var txt=L.join("\n");
+  try{
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){cb(true)},function(){cb(fallback(txt))});
+      return;
+    }
+  }catch(e){}
+  cb(fallback(txt));
+}
+function fallback(txt){
+  try{
+    var ta=document.createElement("textarea");
+    ta.value=txt;ta.style.position="fixed";ta.style.opacity="0";
+    document.body.appendChild(ta);ta.select();
+    var ok=document.execCommand("copy");document.body.removeChild(ta);return ok;
+  }catch(e){return false}
+}
+
+
+function lineupOverflow(team){
+ if(!ruleOn)return 0;
+ var n=counts(team),over=0;Object.keys(CAPS).forEach(function(k){over+=Math.max(0,n[k]-CAPS[k])});return over;
+}
+function bestLineup(team,partial){
+ if(team.length<=FINAL_SIZE)return {team:team.slice(),over:lineupOverflow(team),score:evaluateRaw(team,partial).total};
+ var key=(PACK2?PACK2.n:"")+"|"+ruleOn+"|"+!!partial+"|"+team.map(function(c){return c[0]}).join(",");
+ if(lineupCache[key])return lineupCache[key];
+ var best=null;
+ function visit(pos,picked){
+   if(picked.length===FINAL_SIZE){var over=lineupOverflow(picked);if(best&&over>best.over)return;
+     var score=evaluateRaw(picked,partial).total;
+     if(!best||over<best.over||score>best.score)best={team:picked.slice(),over:over,score:score};return;}
+   if(team.length-pos<FINAL_SIZE-picked.length)return;
+   for(var i=pos;i<team.length;i++){picked.push(team[i]);visit(i+1,picked);picked.pop()}
+ }
+ visit(0,[]);if(lineupCacheCount>300){lineupCache={};lineupCacheCount=0}lineupCacheCount++;lineupCache[key]=best;return best;
+}
+document.addEventListener("keydown",function(e){
+ if(e.key!=="Tab"||!lineupOpen)return;var buttons=$("lineupBody").querySelectorAll("button:not(:disabled)"),first=buttons[0],last=buttons[buttons.length-1];if(!first)return;
+ if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+});
+function beginLineup(restore){
+ myTurn=false;busy=true;lineupOpen=true;
+ if(!restore||lineupChoice.some(function(n){return !mine.some(function(c){return c[0]===n})})||new Set(lineupChoice).size!==lineupChoice.length)
+   lineupChoice=bestLineup(mine,false).team.map(function(c){return c[0]});
+ saveGame("lineup",[]);renderLineup();$("lineup").classList.add("on");$("lineupAuto").focus();
+}
+function renderLineup(){
+ var chosen=mine.filter(function(c){return lineupChoice.indexOf(c[0])>=0}),recommended=bestLineup(mine,false),over=lineupOverflow(chosen);
+ var valid=chosen.length===FINAL_SIZE&&over<=recommended.over;
+ var count=counts(chosen);
+ var h='<h3>최종 11명 편성</h3><p>13명 중 2명은 예비로 남깁니다. 먼저 제외할 장수를 누른 뒤 교체할 장수를 선택하세요.</p>'+
+ '<div class="lineup-summary" role="status">선택 '+chosen.length+'/11 · '+(chosen.length===11?evaluateRaw(chosen,false).total+'점':'편성 중')+'<br>군주 '+count.군주+'/1 · 무장 '+count.무장+'/5 · 참모 '+count.참모+'/5</div>';
+ if(recommended.over)h+='<p>지명한 장수로 정원을 맞출 수 없어 최소 '+recommended.over+'명의 정원 초과를 허용합니다.</p>';
+ if(!valid)h+='<p>11명을 선택하고 역할 정원을 맞춰주세요.</p>';
+ h+='<div class="lineup-grid">';
+ mine.forEach(function(c,i){var on=lineupChoice.indexOf(c[0])>=0;
+ h+='<button type="button" class="lineup-card" data-lineup="'+i+'" aria-pressed="'+on+'">'+c[0]+'<small>'+catOf(c)+' · 전력 '+power(c)+'</small><b>'+(on?'출전':'예비')+'</b></button>'});
+ h+='</div><div class="lineup-actions"><button class="btn2" id="lineupAuto">추천 편성 적용</button><button class="btn" id="lineupConfirm"'+(valid?'':' disabled')+'>11명 확정 · 결과 보기</button></div>';
+ $("lineupBody").innerHTML=h;
+ Array.prototype.forEach.call($("lineupBody").querySelectorAll("[data-lineup]"),function(b){b.onclick=function(){var idx=+b.dataset.lineup,n=mine[idx][0],at=lineupChoice.indexOf(n);if(at>=0)lineupChoice.splice(at,1);else if(lineupChoice.length<11)lineupChoice.push(n);saveGame("lineup",[]);renderLineup();var next=$("lineupBody").querySelector('[data-lineup="'+idx+'"]');if(next)next.focus()}});
+ $("lineupAuto").onclick=function(){lineupChoice=recommended.team.map(function(c){return c[0]});saveGame("lineup",[]);renderLineup();$("lineupAuto").focus()};
+ $("lineupConfirm").onclick=confirmLineup;
+}
+function confirmLineup(){
+ if(!lineupOpen)return;
+ var chosen=mine.filter(function(c){return lineupChoice.indexOf(c[0])>=0});
+ if(chosen.length!==11||lineupOverflow(chosen)>bestLineup(mine,false).over)return;
+ mine=chosen;foe=bestLineup(foe,false).team.slice();if(foe2)foe2=bestLineup(foe2,false).team.slice();
+ lineupOpen=false;$("lineup").classList.remove("on");board();
+ chips($("mine"),mine,11);chips($("foe"),foe,11);if(foe2)chips($("foe2"),foe2,11);
+ $("myct").textContent="11 / 11";$("opct").textContent=foe.length+" / 11";if(foe2)$("opct2").textContent="11 / 11";
+ finish();
+}
+
+function finish(){
+  if(mine.length>FINAL_SIZE){beginLineup();return;}
+  var i,me=evaluate(mine),op1=evaluate(foe),op2=foe2?evaluate(foe2):null;
+  var op=(op2&&op2.total>op1.total)?op2:op1;  // 최강 적 기준
+  var opTeam=(op===op2)?foe2:foe;
+  if(REC.lastMatch===matchId)return;
+  REC.lastMatch=matchId;REC.games++;
+  if(me.total>op.total)REC.win++;else if(me.total<op.total)REC.lose++;else REC.draw++;
+  if(me.total>REC.best){REC.best=me.total;REC.bestLv=AI_LV}
+  for(i=0;i<COMBO.length;i++){
+    var hv=comboHave(COMBO[i],mine),fk=0,kx;
+    for(kx in COMBO[i].t)if(hv>=+kx&&COMBO[i].t[kx]>0)fk=1;
+    if(fk&&!REC.stamps[COMBO[i].n])REC.stamps[COMBO[i].n]=REC.games;
+  }
+  var d=me.total-op.total,cls=d>0?"win":d<0?"lose":"draw",word=d>0?"大 勝":d<0?"敗 北":"無 勝 負";
+  if(op2){
+    var rank=1+(op1.total>me.total?1:0)+(op2.total>me.total?1:0);
+    var tied=(op1.total===me.total||op2.total===me.total);
+    word=rank===1?(tied?"共 同 一 位":"天 下 統 一"):rank===2?(tied?"共 同 二 位":"鼎 立 二 位"):"鼎 立 末 位";
+    cls=d>0?"win":d===0?"draw":"lose";
+  }
+  var h='<div class="verdict"><div class="big '+cls+'">'+word+'</div><svg class="orn"><use href="#orn-knot"/></svg><div class="sub">'+
+        (d>0?"점수차 "+d+"점":d<0?"점수차 "+(-d)+"점":"동수")+'</div></div>';
+  if(op2){
+    h+='<div class="tote" style="grid-template-columns:1fr 1fr 1fr"><div><div class="num">'+me.total+'</div><div class="lbl">我 軍</div></div>'+
+       '<div><div class="num">'+op1.total+'</div><div class="lbl">敵 一</div></div>'+
+       '<div><div class="num">'+op2.total+'</div><div class="lbl">敵 二</div></div></div>';
+  }else{
+    h+='<div class="tote"><div><div class="num">'+me.total+'</div><div class="lbl">我 軍</div></div>'+
+       '<div class="vs">對</div><div><div class="num">'+op.total+'</div><div class="lbl">敵 軍</div></div></div>';
+  }
+  var fresh=[];
+  for(i=0;i<COMBO.length;i++)if(REC.stamps[COMBO[i].n]===REC.games)fresh.push((COMBO[i].k?"血 ":"")+COMBO[i].n);
+  if(fresh.length)h+='<div class="tale" style="border-left-color:var(--gold)">처음 맺은 인연 — '+fresh.join(" · ")+'</div>';
+  h+='<div class="tale">'+tale(me,op,mine)+'</div>';
+
+  // 대전 기록
+  var ma=mine.slice().sort(function(a,b){return power(b)-power(a)}),
+      oa=opTeam.slice().sort(function(a,b){return power(b)-power(a)}),
+      wn=0,ls=0,dw=0;
+  h+='<div class="ledger sub-ledger"><h4>참고 · 합(合)별 전력 대조'+(op2?' · 對 '+(op===op2?'敵二':'敵一'):'')+'</h4>';
+  for(i=0;i<ma.length;i++){
+    var pa=power(ma[i]),pb=power(oa[i]),gap=pa-pb,rs,cl;
+    if(gap>18){rs="아군 승";cl="w";wn++}
+    else if(gap>4){rs="근소 우세";cl="w";wn++}
+    else if(gap>-5){rs="무승부";cl="d";dw++}
+    else if(gap>-19){rs="근소 열세";cl="l";ls++}
+    else{rs="적군 승";cl="l";ls++}
+    h+='<div class="duel"><span class="hb">'+NUM[i]+'합</span>'+
+       '<span class="pair"><b>'+ma[i][0]+'</b> '+pa+' &nbsp;對&nbsp; '+oa[i][0]+' '+pb+'</span>'+
+       '<span class="rs '+cl+'">'+rs+'</span></div>';
+  }
+  h+='<div class="row tot"><span>합계</span><b>'+wn+'승 '+dw+'무 '+ls+'패</b></div>'+
+     '<div class="row" style="opacity:.6;font-size:10px"><span>전력이 높은 순으로 짝지은 참고 비교이며, 최종 승패와는 무관하오</span></div></div>';
+
+  var iWon=me.total>op1.total&&(!op2||me.total>op2.total);
+  var firedN=pledges(mine).filter(function(g){return g.got>0}).length;
+  for(i=0;i<mine.length;i++){
+    var pk=REC.picks[mine[i][0]]||{n:0,w:0};
+    if(pk.s===undefined){pk.s=0;pk.c=0}
+    pk.n++;if(iWon)pk.w++;
+    pk.s+=me.total;pk.c+=firedN;
+    REC.picks[mine[i][0]]=pk;
+    var fk=mine[i][1];
+    REC.by.fac[fk]=(REC.by.fac[fk]||0)+1;
+  }
+  function tally(box,key){var t=box[key]||{n:0,w:0};t.n++;if(iWon)t.w++;box[key]=t}
+  tally(REC.by.st,AI_ST_NAME[ST_A]);
+  if(foe2&&ST_B!==ST_A)tally(REC.by.st,AI_ST_NAME[ST_B]);   // 정립전은 둘째 적장의 기질도 남긴다
+  // 적장이 실제로 취한 죽간과 맺은 결의를 기질별로 남긴다
+  function logAI(team,stName,won){
+    if(!team||!team.length)return;
+    var a=REC.aist[stName]||{n:0,w:0,pick:{},cb:{},pw:0,mu:0,cnt:0,cbN:0,tot:0};
+    a.n++;if(won)a.w++;
+    var q,ev=evaluate(team);
+    for(q=0;q<team.length;q++){
+      a.pick[team[q][0]]=(a.pick[team[q][0]]||0)+1;
+      a.pw+=power(team[q]);a.mu+=team[q][4];a.cnt++;
+    }
+    var fr=pledges(team).filter(function(x){return x.got>0});
+    a.cbN+=fr.length;a.tot+=ev.total;
+    for(q=0;q<fr.length;q++)a.cb[fr[q].n]=(a.cb[fr[q].n]||0)+1;
+    REC.aist[stName]=a;
+  }
+  logAI(foe,AI_ST_NAME[ST_A],op1.total>me.total&&(!op2||op1.total>op2.total));
+  if(foe2)logAI(foe2,AI_ST_NAME[ST_B],op2&&op2.total>me.total&&op2.total>op1.total);
+  tally(REC.by.lv,AI_NAME[AI_LV]);
+  tally(REC.by.pk,PACK2?PACK2.n:"본편 · 영웅집결");
+  var newFeats=checkFeats(me.total>op1.total&&(!op2||me.total>op2.total),me.total-op.total,wn,ls);
+  recSave(REC);
+  if(newFeats.length){
+    var fn=[];
+    for(i=0;i<newFeats.length;i++)for(var fi=0;fi<FEATS.length;fi++)if(FEATS[fi].id===newFeats[i])fn.push(FEATS[fi].n);
+    h+='<div class="tale" style="border-left-color:#6FA08A">과업을 이루었소 — '+fn.join(" · ")+'</div>';
+  }
+
+  // 복기 — 진별 통합표 (돌아보기 + 전황 기록)
+  var missed=0,rpMap={},rp;
+  for(i=0;i<replay.length;i++){missed+=Math.max(0,replay[i].bg-replay[i].pg);rpMap[replay[i].rd]=replay[i]}
+  h+='<div class="ledger"><h4>복기 · 즉시 득점 차이 '+missed+'점</h4><p class="pgempty">각 선택 당시의 점수만 비교합니다. 미래 인연과 견제의 가치는 포함하지 않으며, 합계는 최종 손실 점수가 아닙니다.</p>';
+  if(bans.me.length||bans.foe.length)
+    h+='<div class="hist"><span class="r1">禁</span><span class="r2">我 <b>'+bans.me.join("·")+'</b> / 敵 <span>'+bans.foe.join("·")+(bans.foe2.length?" · "+bans.foe2.join("·"):"")+'</span></span></div>';
+  for(i=0;i<hist.length;i++){
+    var g=hist[i];if(!g)continue;
+    rp=rpMap[i];
+    var same=rp&&(rp.bn===rp.pick||rp.bg-rp.pg<=0);
+    h+='<div class="rnd"><div class="rh"><span>'+NUM[i]+'陣</span>'+
+       (g.rr&&g.rr.length?'<em>換 '+g.rr.join("·")+'</em>':'')+'</div>';
+    var seats=[["me","我"],["foe",foe2?"敵一":"敵"]];
+    if(foe2)seats.push(["foe2","敵二"]);
+    for(var si=0;si<seats.length;si++){
+      var sk=seats[si][0],lb=seats[si][1],nm=g[sk]||"—";
+      h+='<div class="rl2'+(sk==="me"?" mine":"")+'"><span class="who">'+lb+(g.first===sk?'<i>先</i>':'')+'</span>'+
+         '<span class="pk">'+nm+'</span>';
+      if(sk==="me"&&rp){
+        h+='<span class="jd">'+(rp.pg>=0?"+":"")+rp.pg+
+           (same?' <b class="up">즉시 득점 1위</b>':' <b class="dn">즉시 1위 '+rp.bn+' −'+(rp.bg-rp.pg)+'</b>')+'</span>';
+      }else if(sk!=="me"){
+        var w=g[sk+"Why"];
+        if(w)h+='<span class="jd">이득 +'+w.g+(w.d>8?' · 견제 +'+w.d:'')+(w.s>15?' · 기질 +'+w.s:'')+'</span>';
+      }
+      h+='</div>';
+      if(sk==="me"&&rp&&!same&&rp.bwhy)h+='<div class="rwhy">즉시 득점의 근거 · '+rp.bwhy+'</div>';
+    }
+    h+='</div>';
+  }
+  h+='</div>';
+  h+='<div class="ledger"><h4>아군 열전</h4>';
+  mine.forEach(function(c){
+    h+='<div class="lore" style="--cc:'+facInfo(facOf(c)).c+'"><b>'+c[0]+'</b><span>'+(LORE[c[0]]||"")+'</span></div>';
+  });
+  h+='<h4>아군 채점표</h4>';
+  me.rows.forEach(function(r){
+    h+='<div class="row"><span>'+r.k+'</span><b class="'+(r.v>=0?"up":"dn")+'">'+(r.v>0?"+":"")+r.v+'</b></div>';
+  });
+  h+='<div class="row tot"><span>합계</span><b>'+me.total+'</b></div>';
+  h+='<h4>'+(op2?'敵一 채점표':'적군 채점표')+'</h4>';
+  op1.rows.forEach(function(r){
+    h+='<div class="row"><span>'+r.k+'</span><b class="'+(r.v>=0?"up":"dn")+'">'+(r.v>0?"+":"")+r.v+'</b></div>';
+  });
+  h+='<div class="row tot"><span>합계</span><b>'+op1.total+'</b></div>';
+  if(op2){
+    h+='<h4>敵二 채점표</h4>';
+    op2.rows.forEach(function(r){
+      h+='<div class="row"><span>'+r.k+'</span><b class="'+(r.v>=0?"up":"dn")+'">'+(r.v>0?"+":"")+r.v+'</b></div>';
+    });
+    h+='<div class="row tot"><span>합계</span><b>'+op2.total+'</b></div>';
+  }
+  h+='</div>';
+  h+='<button class="btn" id="again">다 시 겨 루 기</button>';
+  h+='<button class="btn2" id="copy">편 성 을 옮 겨 적 다</button>';
+  clearGame();
+  $("res").innerHTML=h;
+  $("veil").classList.add("on");
+  $("veil").scrollTop=0;
+  $("again").addEventListener("click",start);
+  $("copy").addEventListener("click",function(){
+    var b=this;copyOut(me,op,function(ok){
+      b.textContent=ok?"옮겨 적었소":"옮기지 못하였소";
+      setTimeout(function(){b.textContent="편 성 을 옮 겨 적 다"},1800);
+    });
+  });
+}
+
+var GAME_KEY="samgukji_draft_game_v2",matchId="";
+function clearGame(){try{localStorage.removeItem(GAME_KEY)}catch(e){}}
+function saveGame(phase,q){
+ if(!matchId||REC.lastMatch===matchId)return;
+ function names(a){return (a||[]).map(function(c){return c[0]})}
+ var v={v:2,rounds:ROUNDS,packSize:PACK,lineupChoice:lineupChoice,id:matchId,phase:phase,cfg:cfgSnap(),hint:hintOn,fog:fogOn,round:round,
+ pool:names(pool),discard:names(discard),mine:names(mine),foe:names(foe),foe2:foe2?names(foe2):null,
+ pack:(packArr||[]).map(function(e){return {n:e.c[0],by:e.by}}),q:q.slice(),
+ shown:shown,recent:recentShown,excluded:roundExcluded,rerolls:rerolls,aiRR:aiRR,aiFac:aiFac,stA:ST_A,stB:ST_B,first:firstOff,
+ hist:hist,replay:replay,bans:bans,banQ:banQ,banCand:banCand.map(function(e){return {n:e.c[0],by:e.by}})};
+ try{localStorage.setItem(GAME_KEY,JSON.stringify(v))}catch(e){$("sub").textContent="진행 저장 공간이 부족하오 · 현재 창에서는 계속할 수 있소"}
+}
+function resumeGame(){
+ var before=cfgSnap(),beforeRounds=ROUNDS;
+ try{
+  var v=JSON.parse(localStorage.getItem(GAME_KEY));if(!v)return false;
+  var savedRounds=v.rounds||11;
+  if([11,13].indexOf(savedRounds)<0||v.v!==2||v.id===REC.lastMatch||["draft","ban","next","lineup"].indexOf(v.phase)<0||!Number.isInteger(v.round)||v.round<0||v.round>(v.phase==="lineup"?savedRounds:savedRounds-1))throw Error("stale save");
+  var map={};C.forEach(function(c){map[c[0]]=c});
+  function cards(a){if(!Array.isArray(a))throw Error("bad roster");return a.map(function(n){if(!map[n])throw Error("unknown officer");return map[n]})}
+  function entries(a){return a.map(function(e){if(!map[e.n]||[null,"me","foe","foe2"].indexOf(e.by)<0)throw Error("bad card");return {c:map[e.n],by:e.by}})}
+  var restored={pool:cards(v.pool),discard:cards(v.discard),mine:cards(v.mine),foe:cards(v.foe),foe2:v.foe2?cards(v.foe2):null,pack:entries(v.pack),ban:entries(v.banCand)};
+  if(!Array.isArray(v.q)||v.q.some(function(t){return ["me","foe","foe2"].indexOf(t)<0})||!Array.isArray(v.hist)||!Array.isArray(v.replay)||!v.bans||!Array.isArray(v.banQ))throw Error("bad state");
+  cfgApply(v.cfg);ROUNDS=savedRounds;PACK=savedRounds===13?6:(v.packSize||restored.pack.length||6);matchId=v.id;round=v.round;lineupChoice=Array.isArray(v.lineupChoice)?v.lineupChoice:[];lineupCache={};lineupCacheCount=0;
+  pool=restored.pool;discard=restored.discard;mine=restored.mine;foe=restored.foe;foe2=restored.foe2;packArr=restored.pack;
+  shown=v.shown||{};recentShown=v.recent||{};roundExcluded=v.excluded||[];rerolls=v.rerolls;aiRR=v.aiRR;aiFac=v.aiFac;ST_A=v.stA;ST_B=v.stB;firstOff=v.first;
+  hist=v.hist;replay=v.replay;bans=v.bans;banQ=v.banQ;banCand=restored.ban;turnQ=v.q;hintOn=v.hint;fogOn=v.fog;busy=false;myTurn=false;
+  buildTiers(eraPool().filter(function(c){return bans.me.concat(bans.foe,bans.foe2).indexOf(c[0])<0}));syncLayout();buildHelp();
+  $("ros2").style.display=foe2?"":"none";$("bF2").style.display=foe2?"":"none";$("board").classList.toggle("p3",!!foe2);
+  $("foeTitle").childNodes[0].textContent=foe2?"敵 一 ":"敵 軍 ";$("sFoeLb").textContent=foe2?"敵 一":"敵 軍";
+  $("tHint").classList.toggle("on",hintOn);$("tFog").classList.toggle("on",fogOn);
+  chips($("mine"),mine,ROUNDS);chips($("foe"),foe,ROUNDS);if(foe2)chips($("foe2"),foe2,ROUNDS);
+  $("myct").textContent=mine.length+" / "+ROUNDS;$("opct").textContent=foe.length+" / "+ROUNDS;if(foe2)$("opct2").textContent=foe2.length+" / "+ROUNDS;
+  board();tally();$("sub").textContent="진행 중이던 대국을 이어갑니다";$("rd").textContent="第 "+NUM[round]+" 陣 · 이어하기";
+  if(v.phase==="lineup"){beginLineup(true)}
+  else if(v.phase==="ban"){busy=true;renderBan();banStep()}
+  else if(v.phase==="next"){renderPack(false);busy=true;later(completeRound,300)}
+  else advanceTurn(false);
+  return true;
+ }catch(e){cfgApply(before);ROUNDS=beforeRounds;clearGame();return false}
+}
+function start(){
+  ROUNDS=13;lineupOpen=false;lineupChoice=[];lineupCache={};lineupCacheCount=0;$("lineup").classList.remove("on");
+  stopTimers();clearGame();matchId=Date.now().toString(36)+Math.random().toString(36).slice(2);
+  if(PACK2)SCN=0;
+  PACK=packSize();recentShown={};roundExcluded=[];packArr=[];turnQ=[];myTurn=false;syncLayout();buildHelp();
+  ST_A=rollST(AI_ST);ST_B=rollST(AI_ST2);
+  firstOff=(SCN>0)?0:((firstOrd===2)?Math.floor(Math.random()*(PLAYERS===3?3:2)):firstOrd);
+  pool=eraPool();discard=[];shown={};mine=[];foe=[];round=0;busy=false;rerolls=REROLLS;hist=[];replay=[];
+  if(PACK2)SCN=0;
+  aiFac={foe:null,foe2:null};
+  if(PACK2){
+    var fcCnt={},nm,fk=[],k;
+    if(PACK2.career){for(nm in PACK2.career){var ca=PACK2.career[nm],ci;for(ci=0;ci<ca.length;ci++)fcCnt[ca[ci]]=(fcCnt[ca[ci]]||0)+1}}
+    else for(nm in PACK2.facMap)fcCnt[PACK2.facMap[nm]]=(fcCnt[PACK2.facMap[nm]]||0)+1;
+    for(k in PACK2.factions)if(fcCnt[k]>=5)fk.push(k);   // 기치는 5인 이상 세력만
+    aiFac.foe=fk[Math.floor(Math.random()*fk.length)];
+    do{aiFac.foe2=fk[Math.floor(Math.random()*fk.length)]}while(fk.length>1&&aiFac.foe2===aiFac.foe);
+  }
+  foe2=(PLAYERS===3&&!SCN)?[]:null;
+  $("ros2").style.display=foe2?"":"none";
+  $("bF2").style.display=foe2?"":"none";
+  $("board").classList.toggle("p3",!!foe2);
+  $("foeTitle").childNodes[0].textContent=(foe2?"敵 一 ":"敵 軍 ")+(PACK2&&aiFac.foe?"· "+aiFac.foe+" ":"");
+  if(foe2)$("ros2").querySelector("h3").childNodes[0].textContent="敵 二 "+(PACK2&&aiFac.foe2?"· "+aiFac.foe2+" ":"");
+  $("sFoeLb").textContent=foe2?"敵 一":"敵 軍";
+  bans={me:[],foe:[],foe2:[]};aiRR={foe:REROLLS,foe2:REROLLS};
+  if(SCN>0){
+    var i,j;
+    for(i=0;i<SCN_SET[SCN].length;i++)for(j=0;j<C.length;j++)
+      if(C[j][0]===SCN_SET[SCN][i]){foe.push(C[j]);removeFromPool(C[j]);break}
+  }
+  buildTiers(pool);
+  $("veil").classList.remove("on");
+  if(banOn&&!SCN)banPhase();else nextRound();
+}
+buildTiers(C);buildHelp();buildDex();
+(function(){
+  var up=$("totop"),dn=$("tobot");
+  function openVeil(){
+    var vs=document.querySelectorAll(".veil.on"),last=null,i;
+    for(i=0;i<vs.length;i++)last=vs[i];
+    return last;
+  }
+  function sync(){
+    var v=openVeil();
+    up.classList.toggle("show",!!v&&v.scrollTop>320);
+    dn.classList.toggle("show",!!v&&v.scrollHeight-v.scrollTop-v.clientHeight>320);
+  }
+  up.addEventListener("click",function(){
+    var v=openVeil();if(!v)return;
+    v.scrollTo?v.scrollTo({top:0,behavior:"smooth"}):v.scrollTop=0;
+  });
+  dn.addEventListener("click",function(){
+    var v=openVeil();if(!v)return;
+    var t=v.scrollHeight-v.clientHeight;
+    v.scrollTo?v.scrollTo({top:t,behavior:"smooth"}):v.scrollTop=t;
+  });
+  [].forEach.call(document.querySelectorAll(".veil"),function(v){
+    v.addEventListener("scroll",sync,{passive:true});
+  });
+  new MutationObserver(sync).observe(document.body,{attributes:true,subtree:true,attributeFilter:["class"]});
+})();
+$("tArt").onclick=function(){CARD_ART=!CARD_ART;syncLayout();cfgSave()};
+$("newBtn").addEventListener("click",function(){buildSetup();$("setup").classList.add("on");$("setup").scrollTop=0});
+$("setup").addEventListener("click",function(e){if(e.target===this)closeSetup()});
+$("recBtn").addEventListener("click",function(){buildRec();$("rec").classList.add("on");$("rec").scrollTop=0});
+$("rec").addEventListener("click",function(e){if(e.target===this)this.classList.remove("on")});
+$("dexBtn").addEventListener("click",function(){buildDex();$("dex").classList.add("on");$("dex").scrollTop=0});
+$("dex").addEventListener("click",function(e){if(e.target===this)this.classList.remove("on")});
+$("labBtn").addEventListener("click",function(){buildLab();$("lab").classList.add("on");$("lab").scrollTop=0});
+$("lab").addEventListener("click",function(e){if(e.target===this)this.classList.remove("on")});
+$("helpBtn").addEventListener("click",function(){$("help").classList.add("on");$("help").scrollTop=0});
+$("help").addEventListener("click",function(e){if(e.target===this)this.classList.remove("on")});
+$("tFog").addEventListener("click",function(){
+  fogOn=!fogOn;this.classList.toggle("on",fogOn);
+  chips($("foe"),foe,ROUNDS);board();if(packArr)renderPack(false);
+});
+$("reroll").addEventListener("click",reroll);
+$("tHint").addEventListener("click",function(){
+  hintOn=!hintOn;this.classList.toggle("on",hintOn);
+  renderPledges();if(packArr)renderPack(false);
+});
+/* 저장소 백업을 먼저 읽어 되살린 뒤에 판을 연다. 못 읽어도 그냥 진행한다 */
+markTouch(); probeStore();
+cfgApply(cfgLoad());
+loadRepoSave().then(function(){
+  var resumed=resumeGame();if(!resumed)start();
+  preloadPortraits(Object.keys(IMG),false);
+  if(!resumed&&!REC.games){buildSetup();$("setup").classList.add("on")}
+});
+})();
+</script>
+<script>
+/* ══ 새 판 살피기 ══
+   홈 화면 앱에는 주소창도 새로고침 단추도 없다. 그래서 스스로 살핀다.
+   본문을 통째로 다시 받으면 데이터가 아까우니 머리(HEAD)만 물어 견준다.
+   판이 한창일 수 있으니 제멋대로 갈아타지 않고, 띠를 띄워 누를 때 갈아탄다 */
+(function(){
+  /* 견줄 자리를 "이 창이 처음 본 표" 로 잡으면 안 된다.
+     화면에 떠 있는 쪽이 캐시에서 온 옛 판이면 첫 살핌이 서버의 새 판을
+     "이미 본 것" 으로 적어 버려 영영 알리지 못한다. 안 뜨던 까닭이 이것이다.
+     그래서 지금 이 문서가 서버를 떠난 때(document.lastModified)를 기준 삼는다.
+     그보다 서버 쪽이 나중이면 새 판이다 — 캐시에서 왔든 아니든 맞게 걸린다.
+     표(etag)는 CDN 마디마다 다르게 붙어 같은 판도 바뀐 듯 보이니 뒷받침으로만 쓴다 */
+  var GAP=18e4, SLACK=2e3;              /* 삼 분에 한 번, 앞뒤 이 초는 봐준다 */
+  var KEY="skip_build_v1:"+location.pathname;
+  var MINE=Date.parse(document.lastModified); if(!isFinite(MINE))MINE=0;
+  var TAG=null, busy=false, shown=false, last=0;
+  function skipped(){try{return localStorage.getItem(KEY)}catch(e){return null}}
+  function noMore(t){try{localStorage.setItem(KEY,t)}catch(e){}}
+  /* 자리가 있으면 지금 판이 언제 것인지 적어 둔다. 눈으로 견줄 데가 있어야 한다 */
+  (function(){
+    var el=document.getElementById("buildStamp"); if(!el||!MINE)return;
+    var d=new Date(MINE), p=function(n){return(n<10?"0":"")+n};
+    el.textContent="판 "+p(d.getMonth()+1)+"-"+p(d.getDate())+" "+p(d.getHours())+":"+p(d.getMinutes());
+  })();
+  function look(force){
+    if(busy||shown||!window.fetch)return;
+    var now=Date.now(); if(!force&&now-last<GAP)return; last=now; busy=true;
+    fetch(location.pathname+"?_="+now,{method:"HEAD",cache:"no-store"})
+      .then(function(r){ busy=false; if(!r.ok)return;
+        var lm=r.headers.get("last-modified"), et=r.headers.get("etag");
+        var t=lm||et; if(!t||t===skipped())return;
+        var srv=lm?Date.parse(lm):NaN;
+        if(MINE&&isFinite(srv)){ if(srv>MINE+SLACK)band(t); return; }
+        /* 날짜를 못 얻는 자리에서만 예전처럼 표를 견준다 */
+        if(TAG===null){TAG=t;return}
+        if(t!==TAG)band(t);
+      }).catch(function(){busy=false});
+  }
+  function band(t){
+    if(shown)return; shown=true;
+    var d=document.createElement("div");
+    d.setAttribute("role","status");
+    d.style.cssText="position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));"+
+      "z-index:99999;background:#1b1f27;color:#f0ead8;border:1px solid #C9A227;border-radius:10px;"+
+      "padding:12px 14px;font:600 14px/1.5 -apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif;"+
+      "box-shadow:0 6px 22px rgba(0,0,0,.45);display:flex;gap:10px;align-items:center";
+    d.innerHTML='<span style="flex:1">새 판이 나왔습니다. 하던 것을 마치고 눌러 주세요.</span>'+
+      '<button type="button" style="flex:none;background:#C9A227;color:#17130F;border:0;border-radius:7px;'+
+      'padding:8px 12px;font:700 14px/1 inherit">갈아타기</button>'+
+      '<button type="button" aria-label="닫기" style="flex:none;background:none;color:#8b8578;border:0;'+
+      'font:700 18px/1 inherit;padding:4px 6px">×</button>';
+    var b=d.querySelectorAll("button");
+    b[0].onclick=function(){
+      var u=location.pathname+location.search;
+      location.replace(u+(location.search?"&":"?")+"_v="+Date.now());
+    };
+    /* 닫기를 눌렀으면 이 판으로는 다시 묻지 않는다. 그다음 판은 또 알린다 */
+    b[1].onclick=function(){d.remove();shown=false;noMore(t)};
+    document.body.appendChild(d);
+  }
+  look(true);
+  /* 앱을 다시 열 때만 본다. focus 까지 걸면 한 번 오갈 때 두 번 물어본다 */
+  document.addEventListener("visibilitychange",function(){if(!document.hidden)look()});
+})();
+</script>
+</body>
+</html>

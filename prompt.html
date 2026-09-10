@@ -13,6 +13,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="프롬프트">
 <link rel="apple-touch-icon" href="icon-prompt-180.png">
+<script>
+// Read before paint; unavailable storage falls back to the compact default.
+(function(){var v='compact';try{if(localStorage.getItem('atelier_density_v1')==='relaxed')v='relaxed'}catch(e){}document.documentElement.dataset.density=v})();
+</script>
 <style>
 :root{
   color-scheme:light dark;
@@ -174,14 +178,11 @@ details.mini[open]>summary{border-bottom:1px solid var(--line);color:var(--text)
 .lockwrap>select,.lockwrap>input{flex:1 1 auto;min-width:0}
 .lockbtn{flex:0 0 auto;width:44px;min-height:0;padding:0;font-size:15px;line-height:1;
   background:var(--card);border:1px solid var(--line);color:var(--muted);opacity:.7}
-/* 이름표는 그냥 블록으로 두고 단추만 오른쪽 위에 얹는다.
-   처음에는 flex 로 나란히 세웠는데, 그러면 이름표가 줄바꿈을 못 해
-   카드의 최소 폭이 글자 길이만큼 잡힌다. 폭 260px 짜리 화면(폴드 커버 등)에서
-   부모가 178px 인데 카드가 231px 이 되어 밖으로 밀려났다.
-   자리를 차지하지 않게 띄우면 이름표는 평소대로 접히고 단추는 늘 같은 자리다. */
-label.lab-lock{position:relative;padding-right:42px}
-.lab-lock .lockbtn{position:absolute;right:0;top:-5px}
-.lockbtn.mini{width:36px;height:28px;font-size:12px;border-radius:8px}
+/* Reserve the lock's full height in every label, including inline axis labels.
+   The select remains full width below it; no negative offsets. */
+label.lab-lock{display:block;position:relative;padding-right:36px;min-height:28px;line-height:1.35}
+.lab-lock .lockbtn{position:absolute;right:0;top:0}
+.lockbtn.mini{width:28px;height:28px;min-height:28px;font-size:12px;border-radius:7px}
 .rnd-top{width:100%;margin-top:8px;font-size:12.5px}
 .lock-note{width:100%;font-size:11px;color:var(--accent);font-weight:700}
 .lock-clear{width:100%;margin-top:4px;min-height:34px;padding:6px;font-size:11px;font-weight:600}
@@ -242,10 +243,112 @@ label.lab-lock{position:relative;padding-right:42px}
 .verbox .vb-in li b{color:var(--text)}
 .verbox .vb-in ul{margin:0;padding-left:16px}
 .verbox .vb-in li{margin:2px 0}
+
+/* Mobile workspace navigation — stays in document flow. */
+.workspace-nav{display:flex;gap:6px;margin:0 0 12px;align-items:center;flex-wrap:wrap}
+.workspace-nav a{flex:1;min-height:44px;display:flex;align-items:center;justify-content:center;border:1px solid currentColor;border-radius:10px;text-decoration:none;color:inherit;font:600 13px/1.3 system-ui;opacity:.7}
+.workspace-nav a[aria-current="page"]{opacity:1;background:rgba(125,160,205,.15)}
+button,a,input,select,textarea,summary{touch-action:manipulation}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid #79acfa;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* Fold cover: one column. Inner display: readable two-column forms. */
+.wrap{padding-bottom:calc(130px + env(safe-area-inset-bottom))}
+.page-head{border-radius:0 0 14px 14px;margin-top:0}
+.srcbox>summary,.tabs .tab,.mode-tabs .mtab,.ptab{min-height:44px}
+.srcbox-in{max-height:58dvh;overflow-y:auto;overscroll-behavior:contain}
+.field,.pair-card,.param-card,.override-card,.rec-card{min-width:0}
+.panel-head strong{overflow-wrap:anywhere}
+.prompt-view textarea{white-space:pre-wrap;overflow-wrap:anywhere;min-height:280px;height:55dvh;font-size:14px}
+.prompt-dock{position:fixed;z-index:25;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--line);padding:6px max(10px,env(safe-area-inset-left)) calc(8px + env(safe-area-inset-bottom));box-shadow:0 -6px 24px #0002}
+.prompt-dock-inner{max-width:936px;margin:auto}
+.prompt-dock-actions{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:7px}
+.prompt-dock-status{font-size:12px;color:var(--muted);min-height:20px;margin-bottom:4px;overflow-wrap:anywhere}
+.prompt-dock-status.warn{color:var(--warn)}
+.prompt-dock-status.ok{color:var(--ok)}
+.panel,.form-section,.prompt-view{scroll-margin-top:125px}
+@media(max-width:599px){
+ .save-bar{flex-wrap:wrap}.save-bar>*{min-width:0}
+ .rec-head{flex-wrap:wrap}
+ .mini-check,.rnd-tgt label{min-height:36px}
+}
+@media(min-width:600px){
+ .wrap{max-width:1100px;padding-left:18px;padding-right:18px}
+ .grid2,.param-grid,.param-actions,.controls,.rec-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .top-grid{grid-template-columns:1fr 1.15fr}
+ .grid3{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .preset-row{grid-template-columns:1fr auto}
+}
+@media(min-width:1000px){.grid3,.rec-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+
+/* Compact defaults: prioritize visible settings on the Fold cover display. */
+body{font-size:12px}
+.wrap{padding:10px 8px calc(98px + env(safe-area-inset-bottom))}
+.workspace-nav{gap:5px;margin-bottom:8px}
+.workspace-nav a{min-height:32px;font-size:11px;border-radius:8px}
+.page-head{padding:5px 8px;margin-left:-8px;margin-right:-8px;margin-bottom:6px}
+.srcbox>summary{padding:6px 8px;min-height:32px}
+.sel-line{font-size:12px}
+.tabs{gap:5px;margin-top:5px}
+.tabs .tab,.mode-tabs .mtab,.ptab{min-height:32px;padding:6px 5px;font-size:12px}
+select,input,.pair-card select,.pair-card input{min-height:34px;padding:6px 8px;font-size:12px;border-radius:7px}
+button{min-height:34px;padding:6px 9px;font-size:12px;border-radius:8px}
+button.small{min-height:30px;padding:5px 7px;font-size:11px}
+.panel-head,.form-section{padding:8px}
+.panel-head strong{font-size:13px}
+.panel-head span{font-size:11px;line-height:1.35}
+.field,.pair-card,.override-card,.param-card,.rec-card{padding:7px}
+.field label,.param-card label,.override-card label,.pair-card label{font-size:11px;margin-bottom:4px}
+.grid2,.grid3,.param-grid,.rec-grid{gap:6px}
+.pair-card h3,.override-card h3{font-size:12px;margin-bottom:6px}
+details.box summary{padding:8px;font-size:12px}
+details.box .inside{padding:7px}
+details.mini>summary{padding:7px 8px;font-size:11px}
+.mini-in{padding:6px 8px 8px}
+.help,.param-note{padding:7px 8px;font-size:11px;line-height:1.4}
+.mini-check,.rnd-tgt label{min-height:26px}
+.controls,.param-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:8px}
+.preset-row{gap:6px}
+.prompt-view textarea{font-size:12px;padding:10px}
+.prompt-dock{padding-top:4px;padding-bottom:calc(5px + env(safe-area-inset-bottom))}
+.prompt-dock-status{font-size:11px;min-height:16px;margin-bottom:3px}
+.prompt-dock-actions button{min-height:36px;font-size:12px}
+@media(min-width:480px){.grid2,.param-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Text/spacing density is independent of the existing card-size preferences. */
+:root{--ui-font:12px;--ui-small:11px;--ui-height:34px;--ui-pad:6px;--ui-gap:6px}
+:root[data-density="relaxed"]{--ui-font:14px;--ui-small:12px;--ui-height:44px;--ui-pad:10px;--ui-gap:9px}
+.density-control{display:flex;align-items:center;justify-content:flex-end;gap:7px;margin:0 0 8px;font:11px/1.4 system-ui;color:inherit}
+.density-control select{width:auto;min-width:0;min-height:30px;padding:4px 7px;border:1px solid #79849a66;border-radius:7px;background:transparent;color:inherit;font:12px system-ui}
+.density-control option{background:var(--card,var(--panel,var(--hull)));color:var(--text,var(--ink,var(--lume)))}
+.workspace-nav{gap:var(--ui-gap);margin-bottom:8px}
+.workspace-nav a{min-height:var(--ui-height);font-size:var(--ui-small)}
+
+body{font-size:var(--ui-font)}
+select,input,.pair-card select,.pair-card input{font-size:var(--ui-font);min-height:var(--ui-height);padding:var(--ui-pad) 8px}
+button,button.small{font-size:var(--ui-font);min-height:var(--ui-height);padding:var(--ui-pad) 9px}
+.panel-head,.form-section,.controls,.param-actions{padding:calc(var(--ui-pad) + 2px)}
+.field,.pair-card,.override-card,.param-card,.rec-card{padding:calc(var(--ui-pad) + 1px)}
+.field label,.param-card label,.override-card label,.pair-card label{font-size:var(--ui-small)}
+.panel-head span,.help,.param-note{font-size:var(--ui-small)}
+.panel-head strong,.pair-card h3,.override-card h3{font-size:var(--ui-font)}
+.tabs .tab,.mode-tabs .mtab,.ptab,.srcbox>summary{min-height:var(--ui-height);font-size:var(--ui-font)}
+.grid2,.grid3,.param-grid,.rec-grid,.controls,.param-actions{gap:var(--ui-gap)}
+details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
+.prompt-view textarea{font-size:var(--ui-font)}
+.prompt-dock-actions button{font-size:var(--ui-font);min-height:var(--ui-height)}
+/* Keep the lock contained in its label at both densities. */
+.lockbtn.mini{width:28px;height:28px;min-height:28px;padding:0;font-size:12px}
+:root[data-density="relaxed"] label.lab-lock{min-height:34px;padding-right:40px}
+:root[data-density="relaxed"] .lockbtn.mini{width:34px;height:34px;min-height:34px}
+.density-control select{font:12px system-ui;min-height:30px;padding:4px 7px}
 </style>
 </head>
 <body>
 <div class="wrap">
+<nav class="workspace-nav" aria-label="Atelier 화면 이동"><a href="prompt.html" aria-current="page">프롬프트</a><a href="play.html">드래프트</a><a href="dex.html">도감</a></nav>
+<label class="density-control">화면 밀도 <select data-density-picker aria-label="화면 밀도"><option value="compact">촘촘하게</option><option value="relaxed">여유롭게</option></select></label>
   <div class="page-head">
     <details id="srcBox" class="srcbox">
       <summary>
@@ -261,9 +364,10 @@ label.lab-lock{position:relative;padding-right:42px}
           <input type="checkbox" id="onlyRemaining"><span>초상 미완성 기체만 보기</span>
         </label>
         <div class="field" style="margin-top:10px">
-          <label>Art Style <small>화풍 · 이 기체의 모든 그림에 적용</small></label>
+          <label>Art Style <small>화풍 · 지금 생성할 프롬프트에 적용</small></label>
           <select id="artStyle"></select>
           <div class="param-preview hidden" id="artNote"></div>
+          <div class="quick-note" id="imageFilenameGuide"></div>
         </div>
         <button id="applySource" class="primary apply" type="button">기체 선택 적용</button>
         <div class="quick-note">기본은 AUTO로 두고, 마음에 안 드는 요소만 선택하면 된다. 표정·앞뒷태는 패널별로 따로 잡을 수 있다.</div>
@@ -904,6 +1008,10 @@ label.lab-lock{position:relative;padding-right:42px}
   </section>
 </div>
 
+<div class="prompt-dock" role="region" aria-label="프롬프트 빠른 작업">
+ <div class="prompt-dock-inner"><div id="dockStatus" class="prompt-dock-status" role="status" aria-live="polite">현재 설정으로 복사할 수 있습니다.</div>
+ <div class="prompt-dock-actions"><button type="button" id="dockTop">설정 ↑</button><button type="button" id="dockPreview">미리보기</button><button type="button" class="primary" id="dockCopy">복사</button></div></div>
+</div>
 <script>
 (async () => {
   const templateC = "Full-body anthropomorphization of a Gundam-series mobile suit. Every design decision — armor color scheme, head crest, backpack and weapon attachments, facial design, hair color, and hairstyle — is determined strictly by the PARAMETERS at the bottom. Where the PARAMETERS are silent, follow the mobile suit's canonical design and visual identity.\n\n\nDESIGN PRIORITY — Every visual decision must follow this priority order:\n\n1. Explicit instructions written in PARAMETERS.\n2. Clearly visible equipment and loadout details from any uploaded reference image.\n3. The mobile suit's canonical design from the specified series or work.\n4. The general humanoid styling instructions in this prompt.\n\n\nREFERENCE IMAGE RULE — If one or more original reference images are provided by the user, use them as authoritative visual references for equipment and loadout details.\n\nWhen a reference image is provided, prioritize it especially for:\n\n- weapon type, shape, scale, and proportions\n- shield design, outline, mounted accessories, and surface structure\n- backpack structure, thrusters, binders, funnels, panel containers, and launcher arrangement\n- hardpoint placement, attachment direction, and equipment mounting method\n- visible sub-weapons such as spare magazines, Sturm Fausts, missiles, beam sabers, grenades, or auxiliary equipment\n- distinctive armor geometry and mechanical structures that define the identity of the mobile suit\n\nIf the uploaded reference image clearly shows a specific loadout or equipment arrangement, do not replace it with a generic or alternative interpretation.\n\nPreserve the recognizable structure, proportions, placement, and mechanical logic of the equipment from the reference image as faithfully as possible while translating it into the anthropomorphized humanoid design.\n\n\nREFERENCE IMAGE AUTHORITY — When an original mobile-suit reference image is provided, it is the primary visual design authority for the mobile suit: it controls visible armor geometry, silhouette, proportions, equipment placement, hardpoints, backpack structure, shield shape, weapon shape, and visible loadout state.\n\nDo not reconstruct the mobile suit primarily from its name, genre conventions, or canonical memory when the corresponding feature is clearly visible in the uploaded reference; canonical knowledge is fallback information only for details that are genuinely not visible, cropped, or ambiguous in the reference.\n\nThe reference image controls DESIGN, not RENDERING STYLE — preserve its visible geometry and equipment, but render them using the selected ART STYLE rather than copying the reference image's own cel-animation, photographic, CGI, or other rendering style. The selected ART STYLE controls rendering language only and must not redesign or replace clearly visible source-reference geometry.\n\n\nPARAMETER INTERPRETATION RULE — The PARAMETERS are intentionally minimal and usually contain only gender, mobile suit name, series/work title, body type, and any explicitly requested special characteristics.\n\nBecause of this, all other fitting design details must be inferred and completed from the mobile suit's canonical design and from any uploaded original reference image when provided.\n\nWhen PARAMETERS are minimal, automatically determine and faithfully add the following in a way that best matches the specified mobile suit:\n\n- canonical armor color scheme\n- head crest / antenna / sensor design\n- shoulder, chest, waist, leg, and overall armor silhouette\n- backpack structure and attachment placement\n- funnels, wing binders, panel containers, shields, cannons, rifles, and signature equipment\n- distinctive transformation mechanisms or unusual mechanical structures\n- a distinctive human facial design appropriate for the mobile suit\n- a fitting human hairstyle and hair color that harmonize primarily with the mobile suit's armor colors, silhouette, design language, and overall visual character\n- robe-like, mantle-like, dress-like, skirt-like, or armored lower-body treatment that best matches the mobile suit's silhouette\n- suitable negative constraints to prevent common generation errors that would conflict with the specified mobile suit\n\nDo not leave these unspecified as generic design choices.\n\nThey must be completed in a way that makes the result clearly recognizable as the requested mobile suit rather than as generic Gundam-inspired armor.\n\nDo not introduce robe-like, mantle-like, dress-like, cape-like, or long skirt-like lower-body forms unless they are clearly supported by the uploaded source reference or explicitly requested in PARAMETERS; where the source mobile suit's canonical lower-body is armored legs, a split skirt, or another non-flowing structure, preserve that structure rather than defaulting to a flowing dress-like silhouette.\n\n\nHAIR / PILOT RULE — Do not automatically derive hairstyle, hair color, facial appearance, or character styling from the mobile suit's associated pilot.\n\nPilot-inspired hairstyle, hair color, facial traits, or character styling must only be used when explicitly requested in PARAMETERS.\n\nWhen PARAMETERS explicitly specify hairstyle or hair color, follow those instructions exactly.\n\nWhen PARAMETERS are silent about hair, determine the hairstyle and hair color independently based primarily on:\n\n- the mobile suit's canonical armor colors\n- secondary and accent colors\n- armor silhouette\n- mechanical design language\n- overall visual atmosphere\n- gender and body presentation specified in PARAMETERS\n\nThe resulting hairstyle should visually complement the mobile suit itself rather than imitate or resemble its canonical pilot.\n\nDo not automatically make the anthropomorphized character resemble the pilot.\n\n\nFACE DIVERSITY RULE — Do not reuse a generic or recurring face across different mobile-suit anthropomorphizations.\n\nEvery mobile suit must receive an independently designed and visually distinctive human face.\n\nThe facial identity should harmonize with the mobile suit itself while remaining recognizably different from faces used for other mobile suits.\n\nNaturally vary facial characteristics between different designs, including:\n\n- overall face shape: oval, angular, heart-shaped, elongated, compact, softly rounded, or sharp\n- facial width and length\n- jawline shape and definition\n- chin width, length, and projection\n- cheekbone prominence\n- cheek fullness\n- eye size\n- eye shape\n- eye tilt\n- eye spacing\n- eyelid structure\n- eyebrow shape, angle, and thickness\n- nose bridge height and width\n- nose length and tip shape\n- lip shape and fullness\n- mouth width\n- apparent age within an adult range\n- facial maturity\n- resting expression\n- overall facial temperament\n\nDo not simply change hair while retaining the same underlying face.\n\nThe skull proportions, eyes, nose, lips, jawline, cheek structure, and overall facial geometry should meaningfully vary between different mobile-suit anthropomorphizations.\n\n\nMOBILE SUIT → FACE DESIGN RULE — When PARAMETERS do not explicitly define the face, derive an appropriate facial character primarily from the mobile suit's own visual design.\n\nConsider:\n\n- armor silhouette\n- mechanical design language\n- proportions\n- color palette\n- combat role\n- movement characteristics\n- transformation capability\n- visual aggressiveness or elegance\n- technological or stylistic atmosphere\n\nExamples of interpretation:\n\nAngular, aggressive, close-combat-oriented mobile suits may receive sharper facial geometry, narrower or more intense eyes, stronger eyebrows, and more defined jawlines.\n\nElegant, aerodynamic, or high-mobility mobile suits may receive finer facial structures, cleaner jawlines, elongated eyes, and more refined proportions.\n\nHeavy, rugged, heavily armed mobile suits may receive broader or more mature facial structures, stronger jaws, heavier brows, or more grounded facial proportions.\n\nUnusual transformable mobile suits may receive distinctive, slightly unconventional facial proportions or sharper structural characteristics reflecting their mechanical identity.\n\nThese are interpretive guidelines rather than fixed templates. Do not assign the same facial archetype to every mobile suit belonging to the same category.\n\n\nFACE / PILOT SEPARATION RULE — Facial identity must not automatically resemble the canonical pilot.\n\nDo not reproduce the pilot's:\n\n- face shape\n- eye shape\n- hairstyle\n- hair color\n- expression\n- recognizable facial characteristics\n\nunless explicitly requested in PARAMETERS.\n\nPilot resemblance is permitted only when PARAMETERS specifically request pilot-inspired appearance.\n\nOtherwise, the anthropomorphized character must be an original adult human interpretation of the mobile suit itself.\n\n\nFACE UNIQUENESS RULE — Avoid convergence toward a single conventionally attractive anime face.\n\nBeauty should not require identical facial geometry.\n\nFemale characters may remain glamorous and attractive while having substantially different:\n\n- facial proportions\n- jaw structures\n- eye geometry\n- noses\n- lips\n- cheekbones\n- maturity\n- expressions\n\nMale characters should likewise have distinct facial identities rather than sharing one generic handsome face.\n\nPreserve attractiveness where appropriate while prioritizing individual facial identity.\n\n\nAGE RULE — All anthropomorphized human characters are clearly adults.\n\nDo not generate childlike, adolescent, or ambiguously underage facial proportions.\n\nUse mature adult facial anatomy appropriate to the requested gender presentation and mobile suit design.\n\n\nFANTASY ELEMENT RULE — Do not add unrelated fantasy elements unless they are strongly supported by the mobile suit's canonical design or explicitly requested.\n\nAvoid arbitrary:\n\n- crowns\n- tiaras\n- angel wings\n- feathered wings\n- excessive gold filigree\n- ornamental jewelry\n- bridal styling\n- magical staffs\n- fantasy swords\n- generic fantasy armor\n\nunless such elements genuinely correspond to the source mobile suit.\n\n\nHUMANOID TRANSLATION RULE — The mobile suit's armor silhouette is translated into an elegant but mechanically recognizable humanoid form.\n\nPreserve important mechanical geometry rather than converting the design into generic fantasy clothing.\n\nUse:\n\n- angular armor plates\n- visible mechanical segmentation\n- layered armor construction\n- internal mechanical frames where appropriate\n- glowing sensor accents\n- mechanical joints and hardpoints\n- recognizable weapon mounting structures\n\nThese elements may be integrated into flowing robe-like, mantle-like, skirt-like, or body-contoured forms when appropriate, but the original mobile suit's mechanical identity must remain immediately obvious.\n\nRender exposed skin, hair, armor, fabric, and mechanical materials according to the selected ART STYLE. Do not introduce painterly brushwork unless the selected art style explicitly requests it.\n\n\nFIGURE RULE —\n\nIf the gender parameter is female:\n\n- glamorous adult feminine figure\n- graceful silhouette\n- body proportions may follow additional PARAMETERS\n- slightly revealing armor when appropriate\n- feminine but mechanically integrated armor\n- attractive adult facial appearance\n- expression chosen to fit the mobile suit's individual character\n\nIf the gender parameter is male:\n\n- lean or appropriately built adult masculine figure\n- fully armored unless PARAMETERS specify otherwise\n- heroic mechanical silhouette\n- masculine adult facial structure\n- expression chosen to fit the mobile suit's individual character\n\nGender determines body build and presentation but does not determine a fixed hairstyle, hair color, or recurring facial template.\n\nHair and facial identity follow explicit PARAMETERS first; when unspecified, they are independently inferred from the mobile suit's own visual design rather than from its pilot.\n\n\nCOMPOSITION — vertical 2:3 tall composition.\n\nFull figure centered.\n\nGenerous empty margin on both the left and right sides.\n\nSubject occupying roughly the center 65–70 percent of the width.\n\nEntire figure from crown to feet fully inside the frame.\n\nProvide clear headroom above the highest point of the head crest or hair and visible floor space beneath the feet.\n\nHead positioned in the upper center of the frame.\n\nFace and both eyes clearly visible and unobstructed.\n\nHair must not obscure important facial features.\n\nThe complete silhouette of the character should be readable at a glance.\n\n\nEQUIPMENT FRAMING RULE — Large backpacks, wings, binders, funnels, cannons, shields, rifles, swords, transformation structures, and other major attachments must remain completely inside the frame whenever reasonably possible.\n\nAdjust the relative scale of the character and camera distance as necessary so that important canonical equipment is not cropped.\n\nDo not enlarge the character so much that signature equipment extends outside the image.\n\nWhen a weapon is being held rather than stored, preserve the mechanically logical state of its corresponding storage mount and avoid duplicating the same weapon.\n\n\nLIGHTING / BACKGROUND —\n\nLighting and background treatment must follow the selected ART STYLE first.\n\nWhen the selected ART STYLE supports cinematic character lighting, a deep neutral background, controlled rim separation, and a soft key light may be used.\n\nWhen the selected ART STYLE instead calls for flat cel lighting, hand-painted animation lighting, photographic natural light, loose painterly value masses, paper-like negative space, ink wash, or another distinct treatment, use that treatment instead.\n\nDo not force cinematic rim lighting, dark studio backgrounds, bloom, photographic depth of field, physically based reflections, or PBR-style material response into an ART STYLE that does not call for them.\n\nMechanical parts must remain clearly readable and materially distinct, but reflections, speculars, texture, edge wear, shadow treatment, and micro-detail are expressed through the selected ART STYLE.\n\nKeep the face clearly readable while preserving the mobile suit's immediately recognizable mechanical identity.\n\n\nAVOID —\n\ncropped limbs,\ncut off at edges,\ncropped feet,\ncropped head crest,\ncropped backpack,\ncropped wings,\ncropped binders,\ncropped weapons,\nclose-up,\nportrait crop,\nbust shot,\nwide horizontal composition,\nbright background,\nwhite background,\ncluttered background,\nhair covering face,\nobscured eyes,\ntext,\nwatermark,\nmultiple characters,\nextra limbs,\nextra arms,\nextra legs,\nextra fingers,\nmalformed hands,\nduplicated equipment,\nduplicated weapons,\nfloating equipment,\nincorrect weapon mounting,\ngeneric Gundam armor replacing distinctive canonical structures,\nunrelated fantasy elements,\nautomatic pilot resemblance,\npilot-derived hairstyle unless explicitly requested,\npilot-derived face unless explicitly requested,\nrepeated face design,\nsame face as previous characters,\nrecycled facial identity,\ngeneric anime face,\ngeneric beautiful anime girl face,\ngeneric handsome anime male face,\nidentical facial proportions,\nidentical eye shape across characters,\nidentical nose across characters,\nidentical jawline across characters,\nsame facial geometry with different hair.\n\n\nPARAMETERS = [\ngender,\nmobile suit name,\nseries\n]";
@@ -1084,7 +1192,7 @@ label.lab-lock{position:relative;padding-right:42px}
 
   function escHtml(s){return String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
   function setStatus(id,msg,kind=''){const el=document.getElementById(id);el.textContent=msg;el.classList.remove('ok','warn');if(kind)el.classList.add(kind);}
-  function showTab(which){Object.entries(tabs).forEach(([k,p])=>{const on=k===which;p[0].classList.toggle('active',on);p[1].classList.toggle('hidden',!on);});}
+  function showTab(which){Object.entries(tabs).forEach(([k,p])=>{const on=k===which;p[0].classList.toggle('active',on);p[0].setAttribute('aria-pressed',String(on));p[1].classList.toggle('hidden',!on);});}
 
   function rowsForSeries(key){return MECH.filter(r=>r[1].includes(key));}
   function fillSeries(){seriesPicker.innerHTML=SERIES_ORDER.map(k=>'<option value="'+escHtml(k)+'">'+escHtml(SER_NAME[k]||k)+'</option>').join('');}
@@ -4234,7 +4342,7 @@ label.lab-lock{position:relative;padding-right:42px}
   }
   function loadStyleForMech(){
     const el=document.getElementById('artStyle'); if(!el)return;
-    const rec=(STORE.style||{})[mechKey()] || ((BASE.style||{})[mechKey()]);
+    const rec=(STORE.stylePreferences||{})[mechKey()];
     el.value=rec&&ART_STYLES.some(x=>x[0]===rec)?rec:DEFAULT_STYLE;
     renderArtNote();
   }
@@ -4244,12 +4352,9 @@ label.lab-lock{position:relative;padding-right:42px}
   function saveStyle(){
     if(!READY)return;
     const k=mechKey(); if(!k)return;
-    STORE.style=STORE.style||{};
-    /* 기본값과 같아도 적는다. 지우면 tkStyleKey() 가 기본값으로 흘려보내서,
-       판정해서 고른 값인지 안 골라서 흘러든 값인지 나중에 구분할 수 없다.
-       초상 배치를 넣는 쪽은 toolkit-data.json 에 손으로 적어 두는데, 지우는
-       쪽으로 두면 다음 내보내기가 그 손글씨를 조용히 지운다 */
-    STORE.style[k]=styleKey();
+    /* 생성 선택 기억은 과거 이미지 분류 대장과 분리한다. */
+    STORE.stylePreferences=STORE.stylePreferences||{};
+    STORE.stylePreferences[k]=styleKey();
     saveStore();
   }
   /* 화풍마다 실제로 그 결로 뽑힌 이미지를 하나씩 붙인다.
@@ -4270,6 +4375,11 @@ label.lab-lock{position:relative;padding-right:42px}
   function renderArtNote(){
     const box=document.getElementById('artNote'); if(!box)return;
     const r=styleRow(), list=STYLE_SAMPLE[r[0]]||[];
+    const guide=document.getElementById('imageFilenameGuide');
+    if(guide){
+      const stem=(mechKey()||'카드명').replace(/ /g,'_')+'_'+styleKey();
+      guide.textContent='신규 파일명: '+stem+'_f.webp / '+stem+'_f_casual1.webp / '+stem+'_f_extra1.webp · 남성은 f→m, 추가 컷은 번호 증가. 기존 파일명과 겹치지 않게 저장.';
+    }
     box.classList.remove('hidden');
     const shots=list.map(f=>'<a class="st-shot" href="'+IMG_BASE+encodeURIComponent(f)+
       '" target="_blank" rel="noopener"><img loading="lazy" src="'+IMG_BASE+encodeURIComponent(f)+'" alt=""></a>').join('');
@@ -5004,8 +5114,21 @@ label.lab-lock{position:relative;padding-right:42px}
   });
   document.getElementById('onlyRemaining').addEventListener('change',()=>{
     fillMechs(mechPicker.value);updateSelInfo();loadAnthroForMech();});
-  document.getElementById('exportStore').addEventListener('click',()=>{
+  document.getElementById('exportStore').addEventListener('click',async()=>{
     const box=document.getElementById('exportBox');
+    /* 열린 탭의 낡은 BASE도 과거 대장을 되돌리지 않도록 내보내기 직전에 읽는다. */
+    let archiveStyle;
+    try{
+      const response=await fetch(DATA_URL,{cache:'no-store'});
+      if(!response.ok)throw new Error('기록을 읽을 수 없다');
+      const latest=await response.json();
+      if(!latest||!latest.mechs)throw new Error('기록 형식 오류');
+      archiveStyle=Object.assign({},latest.style||{});
+    }catch(e){
+      box.value='';box.classList.add('hidden');
+      setStatus('statusAnthro','저장소 기록을 확인하지 못해 내보내기를 중단했다. 연결 후 다시 시도해라','warn');
+      return;
+    }
     /* 빈 값을 걷어내고 내보낸다. 파일이 몇 배로 짧아지고 눈으로 읽을 수 있다 */
     const trim=o=>{
       if(!o)return null;
@@ -5033,10 +5156,8 @@ label.lab-lock{position:relative;padding-right:42px}
       /* prev 는 이 브라우저 안에서만 쓰는 되돌리기용이라 파일에 넣지 않는다 */
       merged.mechs[k]=o;
     });
-    merged.style={};
-    Object.keys(Object.assign({},BASE.style||{},STORE.style||{})).forEach(k=>{
-      const v=(STORE.style||{})[k]||(BASE.style||{})[k];
-      if(v)merged.style[k]=v;});
+    /* 과거 대장은 읽기 전용 보존. 낡은 브라우저 분류/현재 선택을 내보내지 않는다. */
+    merged.style=archiveStyle;
     const uk={};Object.keys(BASE.used||{}).forEach(k=>uk[k]=1);Object.keys(STORE.used||{}).forEach(k=>uk[k]=1);
     Object.keys(uk).forEach(k=>{const u=usedOf(k);if(u.length)merged.used[k]=u;});
     box.value=JSON.stringify(merged,null,1);
@@ -5059,7 +5180,30 @@ label.lab-lock{position:relative;padding-right:42px}
   document.getElementById('carryBody').addEventListener('change',refreshCollagePrompt);
   document.querySelectorAll('[data-toggle]').forEach(b=>b.addEventListener('click',()=>toggleView(b.dataset.toggle,b)));
 
+  // Delegate to the existing actions so refresh, copy fallback and usage tracking stay identical.
+  function activePanel(){return document.querySelector('.panel:not(.hidden)');}
+  function syncDock(){
+    const p=activePanel();if(!p)return;
+    const st=document.getElementById(p.querySelector('[data-copy]').dataset.status),out=document.getElementById('dockStatus');
+    out.textContent=st?st.textContent:'준비됨';
+    out.className='prompt-dock-status'+(st&&st.classList.contains('warn')?' warn':st&&st.classList.contains('ok')?' ok':'');
+    const v=p.querySelector('.prompt-view');
+    document.getElementById('dockPreview').textContent=v&&!v.classList.contains('hidden')?'미리보기 닫기':'미리보기';
+  }
+  document.getElementById('dockCopy').onclick=function(){activePanel().querySelector('[data-copy]').click();};
+  document.getElementById('dockPreview').onclick=function(){
+    const p=activePanel();p.querySelector('[data-toggle]').click();
+    const v=p.querySelector('.prompt-view');
+    if(!v.classList.contains('hidden'))v.scrollIntoView({block:'start'});
+  };
+  document.getElementById('dockTop').onclick=function(){window.scrollTo({top:0});};
+  Object.values(tabs).forEach(pair=>{
+    new MutationObserver(syncDock).observe(pair[1],{attributes:true,attributeFilter:['class']});
+    new MutationObserver(syncDock).observe(document.getElementById(pair[1].querySelector('[data-copy]').dataset.status),{childList:true,subtree:true,characterData:true,attributes:true});
+    new MutationObserver(syncDock).observe(pair[1].querySelector('.prompt-view'),{attributes:true,attributeFilter:['class']});
+  });
   showTab('collage');
+  syncDock();
   refreshCollagePrompt();
   refreshAnthroPrompt();
 })();
@@ -5127,6 +5271,16 @@ label.lab-lock{position:relative;padding-right:42px}
   look(true);
   /* 앱을 다시 열 때만 본다. focus 까지 걸면 한 번 오갈 때 두 번 물어본다 */
   document.addEventListener("visibilitychange",function(){if(!document.hidden)look()});
+})();
+</script>
+<script>
+/* Shared across the three pages; changing density only updates presentation. */
+(function(){
+ var key='atelier_density_v1',picker=document.querySelector('[data-density-picker]');
+ function apply(value){var v=value==='relaxed'?'relaxed':'compact';document.documentElement.dataset.density=v;picker.value=v;}
+ apply(document.documentElement.dataset.density);
+ picker.addEventListener('change',function(){apply(this.value);try{localStorage.setItem(key,this.value)}catch(e){}});
+ addEventListener('storage',function(e){if(e.key===key||e.key===null)apply(e.newValue)});
 })();
 </script>
 </body>
