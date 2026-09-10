@@ -1,0 +1,135 @@
+{
+  "version": 1,
+  "repository": "polos0117/atelier",
+  "branch": "codex/ahead-shiden",
+  "base_commit": "4c40a6d4dc2265424457fc20d5b0b63c4c6d7d6a",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "generator": "image_gen",
+  "workflow": "Actual UI options selected, text preview reviewed, supplemental instructions applied, exact final text copied and submitted. Anthro pose, viewpoint and equipment presentation AUTO.",
+  "assets": [
+    {
+      "card": "시덴",
+      "batch": "2026-09-11-shiden",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "order": 1,
+      "generation_id": "exec-00d778c6-5ef2-4913-9f90-caedd674148e",
+      "reference_ids": [
+        "exec-b8f5da04-5fd2-463e-825c-112e48e4970d"
+      ],
+      "file": "시덴_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "f6f3b058b3d31b8828db1e50d49666fa972337d7f9eda116bfa6b5acbab0685b",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-shiden-01",
+      "prompt": "docs/generation/2026-09-11-shiden/01-anthro.txt",
+      "prompt_sha256": "c141504babe774081388f000036a8d14030354368eb12553dd14dfbc261dbd51",
+      "registered_locally": true
+    },
+    {
+      "card": "시덴",
+      "batch": "2026-09-11-shiden",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "order": 2,
+      "generation_id": "exec-f3d28c76-f161-452b-91bc-c7e5d8142e38",
+      "reference_ids": [
+        "exec-00d778c6-5ef2-4913-9f90-caedd674148e"
+      ],
+      "file": "시덴_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "83c9dd743961c7f2a0d92dc870485287e3da731118070fecff9cdba6b9b78bec",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-shiden-02",
+      "prompt": "docs/generation/2026-09-11-shiden/02-casual.txt",
+      "prompt_sha256": "918274d99f46f66179dc16c65423387c6a5c965bad3bb5755c04c97bb24303ef",
+      "registered_locally": true
+    },
+    {
+      "card": "시덴",
+      "batch": "2026-09-11-shiden",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "order": 3,
+      "generation_id": "exec-47ba393f-dad8-4557-8290-b0f8b691e25a",
+      "reference_ids": [
+        "exec-00d778c6-5ef2-4913-9f90-caedd674148e"
+      ],
+      "file": "시덴_retro_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "bb515b415b7e00ce25a5773df701c8cf636aa21d73333a34e4241998c1586cbe",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-shiden-03",
+      "prompt": "docs/generation/2026-09-11-shiden/03-anthro.txt",
+      "prompt_sha256": "428fb37f1c8c445ea8a26b90fc0d4bab65716f56c810fdde166a9fce9fa41ad1",
+      "registered_locally": true
+    },
+    {
+      "card": "시덴",
+      "batch": "2026-09-11-shiden",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "casual",
+      "order": 4,
+      "generation_id": "exec-a0211ac9-748a-4104-89aa-e06a3afaa52f",
+      "reference_ids": [
+        "exec-47ba393f-dad8-4557-8290-b0f8b691e25a"
+      ],
+      "file": "시덴_retro_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "afe2462b054f4363a2fbb0380095f3489350ed250134a31c7b8c63e778911939",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-shiden-04",
+      "prompt": "docs/generation/2026-09-11-shiden/04-casual.txt",
+      "prompt_sha256": "c6a5fc5504f04dc0ad316e4498fa55dd17ad925652af3451690543552eff1974",
+      "registered_locally": true
+    }
+  ],
+  "record_export": {
+    "attempted": true,
+    "succeeded": false,
+    "observation": "Clicked actual UI export button; exportBox remained empty after subsequent work.",
+    "fallback": "selection-snapshot.json contains actual live DOM selections, not a successful export.",
+    "toolkit_data_merged": false
+  },
+  "conversion": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6,
+    "resize": false,
+    "crop": false
+  },
+  "attempts": [
+    {
+      "prompt": "01-anthro-attempt1.txt",
+      "generation_id": "exec-b8f5da04-5fd2-463e-825c-112e48e4970d",
+      "status": "superseded",
+      "reason": "Backpack partisan spear tip touched/crossed top frame.",
+      "change": "Added framing-only correction in generator UI and used first render as reference."
+    }
+  ],
+  "review_notes": [
+    "Four final renders visually inspected. Final spear tip is contained, though margin is less than requested 8 percent.",
+    "Forties age is idealized, especially in retro anime. Face, short lavender hair and armor identity retain continuity."
+  ]
+}
