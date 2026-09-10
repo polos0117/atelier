@@ -1,7 +1,7 @@
 {
  "version": 1,
  "note": "초상 파일 목록. 카드 이름 → {m, f, face, casual[], extra[], byStyle{}} 이다. 파일 이름이 곧 등록 정보라 register-images.py 가 저장소의 *.webp 를 훑어 없는 것만 더한다 — 이미 적힌 것과 얼굴 좌표(face)는 건드리지 않으니 손으로 넣은 항목이 덮이지 않는다. face 는 파일 이름에서 알 수 없어 비면 게임이 기본값을 쓰고, 어색하면 사람이 여기서 손본다. play.html 은 실행 중에도 GitHub 파일 목록으로 같은 규칙을 한 번 더 돌리므로(mergeRepoFiles) 여기 안 적혀 있어도 화면에는 뜬다. 다만 그때는 얼굴 좌표가 기본값이고 목록을 못 받으면 그만이라, 파일로 굳혀 두는 편이 낫다.",
- "count": 207,
+ "count": 208,
  "img": {
   "GN 아처": {"byStyle": {"glossy_kr_game": {"f": "GN 아처_glossy_kr_game_f.webp", "casual": {"f": ["GN 아처_glossy_kr_game_f_casual1.webp"]}}, "cel_anime": {"f": "GN 아처_cel_anime_f.webp"}}},
   "GQuuuuuuX": {"m": "GQuuuuuuX_m.webp", "f": "GQuuuuuuX_f.webp", "face": {"m": [0.427, 0.055, 0.13], "f": [0.447, 0.09, 0.13]}, "casual": {"f": ["GQuuuuuuX_casual1.webp", "GQuuuuuuX_casual2.webp", "GQuuuuuuX_casual3.webp", "GQuuuuuuX_casual4.webp", "GQuuuuuuX_casual5.webp", "GQuuuuuuX_casual6.webp", "GQuuuuuuX_casual7.webp", "GQuuuuuuX_casual8.webp", "GQuuuuuuX_casual9.webp"]}},
@@ -37,6 +37,7 @@
   "건담 데스사이즈 헬 EW": {"m": "건담_데스사이즈_헬_EW_m.webp", "f": "건담_데스사이즈_헬_EW_f.webp", "face": {"m": [0.395, 0.132, 0.17], "f": [0.435, 0.112, 0.17]}, "casual": {"f": ["건담_데스사이즈_헬_EW_casual1.webp", "건담_데스사이즈_헬_EW_casual2.webp"]}},
   "건담 듀나메스": {"m": "건담_듀나메스_m.webp", "f": "건담_듀나메스_f.webp", "face": {"m": [0.43, 0.038, 0.15], "f": [0.44, 0.088, 0.145]}, "extra": {"f": ["건담_듀나메스_extra1.webp"]}, "casual": {"f": ["건담_듀나메스_casual1.webp"]}},
   "건담 레길레스": {"byStyle": {"cinematic_semi_real": {"f": "건담_레길레스_cinematic_semi_real_f.webp", "casual": {"f": ["건담_레길레스_cinematic_semi_real_f_casual1.webp"]}}, "glossy_kr_game": {"f": "건담_레길레스_glossy_kr_game_f.webp", "casual": {"f": ["건담_레길레스_glossy_kr_game_f_casual1.webp"]}}}},
+  "건담 레오파드": {"byStyle": {"cinematic_semi_real": {"f": "건담_레오파드_cinematic_semi_real_f.webp", "casual": {"f": ["건담_레오파드_cinematic_semi_real_f_casual1.webp"]}, "face": {"f": [0.442, 0.062, 0.145]}}, "game_keyart": {"f": "건담_레오파드_game_keyart_f.webp", "casual": {"f": ["건담_레오파드_game_keyart_f_casual1.webp"]}, "face": {"f": [0.442, 0.057, 0.145]}}}},
   "건담 로즈": {"byStyle": {"glossy_kr_game": {"f": "건담 로즈_glossy_kr_game_f.webp", "casual": {"f": ["건담 로즈_glossy_kr_game_f_casual1.webp"]}}, "retro_anime": {"f": "건담 로즈_retro_anime_f.webp"}}},
   "건담 르브리스": {"m": "건담_르브리스_m.webp", "f": "건담_르브리스_f.webp", "face": {"m": [0.41, 0.08, 0.15], "f": [0.44, 0.115, 0.115]}, "extra": {"f": ["건담_르브리스_extra1.webp"]}, "casual": {"f": ["건담_르브리스_casual1.webp", "건담_르브리스_casual2.webp"]}},
   "건담 르브리스 손": {"face": {"m": [0.39, 0.12, 0.13], "f": [0.44, 0.11, 0.13]}, "byStyle": {"cinematic_semi_real": {"m": "건담_르브리스_손_cinematic_semi_real_m.webp", "f": "건담_르브리스_손_cinematic_semi_real_f.webp", "casual": {"f": ["건담_르브리스_손_cinematic_semi_real_f_casual1.webp", "건담_르브리스_손_cinematic_semi_real_f_casual2.webp", "건담_르브리스_손_cinematic_semi_real_f_casual3.webp", "건담_르브리스_손_cinematic_semi_real_f_casual4.webp", "건담_르브리스_손_cinematic_semi_real_f_casual5.webp", "건담_르브리스_손_cinematic_semi_real_f_casual6.webp", "건담_르브리스_손_cinematic_semi_real_f_casual7.webp", "건담_르브리스_손_cinematic_semi_real_f_casual8.webp"]}}}},
