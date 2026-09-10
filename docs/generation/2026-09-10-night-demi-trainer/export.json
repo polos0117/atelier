@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "updated": "2026-09-10",
+  "note": "Actual resumed-session UI export scoped to Demi Trainer. Not a reconstruction of earlier copy history.",
+  "mechs": {
+    "데미 트레이너": {
+      "female": {
+        "sel": {
+          "apparent age": "20s",
+          "facial ethnicity": "Southeast Asian",
+          "body type": "pear-shaped",
+          "height impression": "short",
+          "facial character": "cheerful",
+          "face shape": "compact",
+          "eye shape": "drooping",
+          "eye color": "brown",
+          "jaw & chin": "soft rounded jaw",
+          "nose character": "rounded soft tip",
+          "lips": "full lips",
+          "skin tone": "medium",
+          "hair color": "mint",
+          "hairstyle": "bob",
+          "hair length": "short",
+          "bangs": "parted bangs",
+          "armor coverage": "open",
+          "lower-body treatment": "armored skirt",
+          "silhouette character": "minimal"
+        }
+      },
+      "g": "female",
+      "t": 1789072020992
+    }
+  },
+  "used": {
+    "데미 트레이너": [
+      {
+        "cat": "swimwear",
+        "ex": "",
+        "n": 1,
+        "t": 1789072075203
+      }
+    ]
+  }
+}

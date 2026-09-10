@@ -790,5 +790,77 @@
     "sha256": "5b88705847b7c017f2f2713bca2dc32f9feadbf139017c864377281dee54932d",
     "prompt": "docs/generation/2026-09-10-night-strike/04-casual.txt",
     "manifest": "docs/generation/2026-09-10-night-strike/manifest.json"
+  },
+  "그레이즈_cinematic_semi_real_f.webp": {
+    "card": "그레이즈",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "7e6f6ef8c35dbfd817bb24e2796928df8dda276d84bbf7a289eba91182074deb",
+    "prompt": "docs/generation/2026-09-10-night-graze/01-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-night-graze/manifest.json"
+  },
+  "그레이즈_cinematic_semi_real_f_casual1.webp": {
+    "card": "그레이즈",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "3afcc45c8157034d12fb0a5c6ea0a498ceb9eb73ace11095042758b240a46b17",
+    "prompt": "docs/generation/2026-09-10-night-graze/02-casual.txt",
+    "manifest": "docs/generation/2026-09-10-night-graze/manifest.json"
+  },
+  "그레이즈_ink_wash_f.webp": {
+    "card": "그레이즈",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "a4871347519dba7b493bfa8c36f1ea2610728c33388c60f3858eed0fc3e40db0",
+    "prompt": "docs/generation/2026-09-10-night-graze/03-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-night-graze/manifest.json"
+  },
+  "그레이즈_ink_wash_f_casual1.webp": {
+    "card": "그레이즈",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "b7171efe390e567e035dc20f1a20d420b037ef8f0d8c74937850df888442cd3b",
+    "prompt": "docs/generation/2026-09-10-night-graze/04-casual.txt",
+    "manifest": "docs/generation/2026-09-10-night-graze/manifest.json"
+  },
+  "데미 트레이너_cinematic_semi_real_f.webp": {
+    "card": "데미 트레이너",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "ef0c2f17b61a41b590e87c48ef1c76af56e063cd1f5afbf772208eb8a33cd0c0",
+    "prompt": "docs/generation/2026-09-10-night-demi-trainer/01-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-night-demi-trainer/manifest.json"
+  },
+  "데미 트레이너_cinematic_semi_real_f_casual1.webp": {
+    "card": "데미 트레이너",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "650ede31c5bf509db505fd63f7fb1499f0029a916c0b27a88a736efad2b877ce",
+    "prompt": "docs/generation/2026-09-10-night-demi-trainer/02-casual.txt",
+    "manifest": "docs/generation/2026-09-10-night-demi-trainer/manifest.json"
+  },
+  "데미 트레이너_game_keyart_f.webp": {
+    "card": "데미 트레이너",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "48ad2897cb7bb57e81f34f7e1e3ed3407c0d329d30e889d06c74a824bdc0601f",
+    "prompt": "docs/generation/2026-09-10-night-demi-trainer/03-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-night-demi-trainer/manifest.json"
+  },
+  "데미 트레이너_game_keyart_f_casual1.webp": {
+    "card": "데미 트레이너",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "46343cf57780336ba0d5c8e95aef05aed2a978d6bdb429531c4163b05e1b0f85",
+    "prompt": "docs/generation/2026-09-10-night-demi-trainer/04-casual.txt",
+    "manifest": "docs/generation/2026-09-10-night-demi-trainer/manifest.json"
   }
 }
