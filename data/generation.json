@@ -862,5 +862,41 @@
     "sha256": "46343cf57780336ba0d5c8e95aef05aed2a978d6bdb429531c4163b05e1b0f85",
     "prompt": "docs/generation/2026-09-10-night-demi-trainer/04-casual.txt",
     "manifest": "docs/generation/2026-09-10-night-demi-trainer/manifest.json"
+  },
+  "진_cinematic_semi_real_f.webp": {
+    "card": "진",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "b3faa5f7ee9f5976cd76b3ff1802d05415b457fd9df6b0df0ac97e5fe4ce2f79",
+    "prompt": "docs/generation/2026-09-11-ginn/01-anthro-final.txt",
+    "manifest": "docs/generation/2026-09-11-ginn/manifest.json"
+  },
+  "진_cinematic_semi_real_f_casual1.webp": {
+    "card": "진",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "366c4cdd9335706ee7d330ad6204d6ef4f6f70c0675d8f302f1425cb7e3f8cc9",
+    "prompt": "docs/generation/2026-09-11-ginn/02-casual.txt",
+    "manifest": "docs/generation/2026-09-11-ginn/manifest.json"
+  },
+  "진_painterly_f.webp": {
+    "card": "진",
+    "style": "painterly",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "60133733ae30f756f20a37a6b96bc248fc6eb7ebda6841038a6156d9604203f5",
+    "prompt": "docs/generation/2026-09-11-ginn/03-anthro.txt",
+    "manifest": "docs/generation/2026-09-11-ginn/manifest.json"
+  },
+  "진_painterly_f_casual1.webp": {
+    "card": "진",
+    "style": "painterly",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "cfd67b66f4bd93856ec0371c24674e97b9ab7e76fbe8900fa184a05c3b63a17e",
+    "prompt": "docs/generation/2026-09-11-ginn/04-casual.txt",
+    "manifest": "docs/generation/2026-09-11-ginn/manifest.json"
   }
 }
