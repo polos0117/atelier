@@ -682,5 +682,41 @@
     "sha256": "571e156145b8de156d448cd9b5ba846fc7bfc7792a2e94b8997c69b35cc6b8b3",
     "prompt": "docs/generation/2026-09-10-gm-command/04-keyart-casual.txt",
     "manifest": "docs/generation/2026-09-10-gm-command/manifest.json"
+  },
+  "건담 쓰로네 쯔바이_cinematic_semi_real_f.webp": {
+    "card": "건담 쓰로네 쯔바이",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "239c2f002e02110b28f29446a4f01357fc632a71d5e32300df342a172dece56e",
+    "prompt": "docs/generation/2026-09-10-throne-zwei/01-cinematic-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-throne-zwei/manifest.json"
+  },
+  "건담 쓰로네 쯔바이_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 쓰로네 쯔바이",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "3df4d8e8572e89bde32b6b11903814213ba88804ddbeacb7635b42a6f45e1af5",
+    "prompt": "docs/generation/2026-09-10-throne-zwei/02-cinematic-casual.txt",
+    "manifest": "docs/generation/2026-09-10-throne-zwei/manifest.json"
+  },
+  "건담 쓰로네 쯔바이_cel_anime_f.webp": {
+    "card": "건담 쓰로네 쯔바이",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "2c0f7f9a6fe25555dba1729a21b8ac96cb578ce0a6116e2806666c580cf50066",
+    "prompt": "docs/generation/2026-09-10-throne-zwei/03-cel-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-throne-zwei/manifest.json"
+  },
+  "건담 쓰로네 쯔바이_cel_anime_f_casual1.webp": {
+    "card": "건담 쓰로네 쯔바이",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "5bd74de39b59b87cc574e2e9d631f992a70650c9d457c5a6d8453bdbdcbb08c4",
+    "prompt": "docs/generation/2026-09-10-throne-zwei/04-cel-casual.txt",
+    "manifest": "docs/generation/2026-09-10-throne-zwei/manifest.json"
   }
 }
