@@ -430,5 +430,41 @@
     "sha256": "9bbd2a5b10106324a61eb81358bf609b5ead486912300865100ee7ee97880e73",
     "prompt": "docs/generation/leopard/04b-keyart-casual-outfit.txt",
     "manifest": "docs/generation/leopard/manifest.json"
+  },
+  "건담_AGE-3_cinematic_semi_real_f.webp": {
+    "card": "건담 AGE-3",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "aaa19d3f1fb3cf368b5e5daf0e47ea47a5924aba39202a2128a91b44cd25f952",
+    "prompt": "docs/generation/age3/01b-cinematic-source-correction.txt",
+    "manifest": "docs/generation/age3/manifest.json"
+  },
+  "건담_AGE-3_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 AGE-3",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "92dc4562584de6fdd8f508191e0955e7ddef758c1f95df038fe81ed0fb1f04a0",
+    "prompt": "docs/generation/age3/02-cinematic-casual.txt",
+    "manifest": "docs/generation/age3/manifest.json"
+  },
+  "건담_AGE-3_cel_anime_f.webp": {
+    "card": "건담 AGE-3",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "1863f8ed8e053bad288a61b42dd6bd988383ed42d2385c9f65dd2e3a19efc8dd",
+    "prompt": "docs/generation/age3/03-cel-anthro.txt",
+    "manifest": "docs/generation/age3/manifest.json"
+  },
+  "건담_AGE-3_cel_anime_f_casual1.webp": {
+    "card": "건담 AGE-3",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "161a201b6c44f69a90ee8511e8fe4112eb3d29cdde5556c43e5388ac0838773e",
+    "prompt": "docs/generation/age3/04-cel-casual.txt",
+    "manifest": "docs/generation/age3/manifest.json"
   }
 }
