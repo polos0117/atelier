@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "repository": "polos0117/atelier",
+  "branch": "codex/dom-trooper",
+  "base_commit": "97f7dcb75ae59edcde2455249e83d38f38073c87",
+  "integration_base_commit": "490bd1a2c46cffe3f0dfadbd20e179f027e40484",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "generator": "image_gen",
+  "workflow": "Actual UI selections and text previews; exact copied prompts submitted. Anthro pose, viewpoint and equipment presentation AUTO. Actual corresponding anthro reference for each casual image.",
+  "assets": [
+    {
+      "order": 1,
+      "style": "cinematic_semi_real",
+      "mode": "anthro",
+      "generation_id": "exec-aace2db2-898a-44ee-bb04-28d1e9eb2310",
+      "reference_ids": [],
+      "card": "돔 트루퍼",
+      "batch": "2026-09-11-dom-trooper",
+      "gender": "f",
+      "file": "돔 트루퍼_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "294c8315ec26cf67c44beca6da4f27be68d4399ca3109249a96ae576445590c4",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-dom-trooper-01",
+      "prompt": "docs/generation/2026-09-11-dom-trooper/01-anthro.txt",
+      "prompt_sha256": "ff0196949b4340128472899ecb02e10e8ddf624b20fc5bdc4ff4316a98764f79",
+      "registered_locally": true
+    },
+    {
+      "order": 2,
+      "style": "cinematic_semi_real",
+      "mode": "casual",
+      "generation_id": "exec-f3ad4ccc-241e-44d7-8f5f-d81a82345b40",
+      "reference_ids": [
+        "exec-aace2db2-898a-44ee-bb04-28d1e9eb2310"
+      ],
+      "card": "돔 트루퍼",
+      "batch": "2026-09-11-dom-trooper",
+      "gender": "f",
+      "file": "돔 트루퍼_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "0cfd4991877cefa6dac6339aacbbcf562411e7bfc6b72a47e069f936d614cce5",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-dom-trooper-02",
+      "prompt": "docs/generation/2026-09-11-dom-trooper/02-casual.txt",
+      "prompt_sha256": "17eeb831bf7387fe640bbfc99e4c75b3c1a4040aa14e4a183ab5a1f90eb06d8c",
+      "registered_locally": true
+    },
+    {
+      "order": 3,
+      "style": "cel_anime",
+      "mode": "anthro",
+      "generation_id": "exec-af4fc9af-1cb4-446f-95f2-4117d0942583",
+      "reference_ids": [
+        "exec-aace2db2-898a-44ee-bb04-28d1e9eb2310"
+      ],
+      "card": "돔 트루퍼",
+      "batch": "2026-09-11-dom-trooper",
+      "gender": "f",
+      "file": "돔 트루퍼_cel_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "2a667775e683fee291dd2c3d28726e99c47b18da5acd887b7a1cf64bdcdfa4a9",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-dom-trooper-03",
+      "prompt": "docs/generation/2026-09-11-dom-trooper/03-anthro.txt",
+      "prompt_sha256": "8954d93a0388e9bb5eed59b2570d5fe22ad0bdefa7b47602edfcd522b85f06aa",
+      "registered_locally": true
+    },
+    {
+      "order": 4,
+      "style": "cel_anime",
+      "mode": "casual",
+      "generation_id": "exec-0673642f-0979-4d7f-bb56-7dc4111fca9a",
+      "reference_ids": [
+        "exec-af4fc9af-1cb4-446f-95f2-4117d0942583"
+      ],
+      "card": "돔 트루퍼",
+      "batch": "2026-09-11-dom-trooper",
+      "gender": "f",
+      "file": "돔 트루퍼_cel_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "1faf29aab35b62f8fec884ee9072c5306386c3d3f41b8a44a337f8b5e71a4ddd",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-dom-trooper-04",
+      "prompt": "docs/generation/2026-09-11-dom-trooper/04-casual.txt",
+      "prompt_sha256": "a8ac35ece1f304590ec8035e6e4a9c79baeddd3158abcb4371886162f296dd61",
+      "registered_locally": true
+    }
+  ],
+  "record_export": {
+    "attempted": true,
+    "succeeded": true,
+    "snapshot": "exported-record.json",
+    "scope": "DOM Trooper entries extracted unchanged from the successful actual UI export",
+    "toolkit_data_merged": true
+  },
+  "conversion": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6,
+    "resize": false,
+    "crop": false
+  },
+  "review_notes": [
+    "Four final renders visually inspected: same adult face, orange short curls and powerful physique across styles; full figure and equipment inside frame.",
+    "Cinematic and cel-anime styles are recorded from actual UI selection. Casual roller-skating scenes preserve identity and use civilian clothing."
+  ],
+  "validation": {
+    "registration_candidates": 0,
+    "missing_files": 0,
+    "new_image_dimensions": "4 of 4 are 1024x1536",
+    "existing_dimension_warnings": 897,
+    "existing_dimension_warning_scope": "Pre-existing assets only; preserved without modification."
+  }
+}
