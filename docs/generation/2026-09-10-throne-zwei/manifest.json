@@ -1,0 +1,111 @@
+{
+  "repository": "polos0117/atelier",
+  "branch": "codex/next-mech-images",
+  "base_commit": "54aacb172ca9b72217db1bfabe0d6cce65986728",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "generator": "built-in image_gen",
+  "selection_first": true,
+  "assets": [
+    {
+      "id": 1,
+      "card": "건담 쓰로네 쯔바이",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "건담 쓰로네 쯔바이_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "239c2f002e02110b28f29446a4f01357fc632a71d5e32300df342a172dece56e",
+      "original_generation_id": "exec-017c8bc8-8824-4c03-8175-d43184974062",
+      "original_sha256": "cf328e33b441609657595981ba2f7c05fb74f235eb5c446dcd6f42f4c282a238",
+      "prompt": "01-cinematic-anthro.txt",
+      "reference_ids": [],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 2,
+      "card": "건담 쓰로네 쯔바이",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "file": "건담 쓰로네 쯔바이_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "3df4d8e8572e89bde32b6b11903814213ba88804ddbeacb7635b42a6f45e1af5",
+      "original_generation_id": "exec-33b410a1-7e08-401c-b576-b9aabd8ff256",
+      "original_sha256": "6dcb5314e891989d735e794a988bff5972d5696b1729afdce6b80209db465566",
+      "prompt": "02-cinematic-casual.txt",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 3,
+      "card": "건담 쓰로네 쯔바이",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "건담 쓰로네 쯔바이_cel_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "2c0f7f9a6fe25555dba1729a21b8ac96cb578ce0a6116e2806666c580cf50066",
+      "original_generation_id": "exec-1137f5e5-4b38-425e-8cb2-9eb5d9aeb191",
+      "original_sha256": "8fdc26dbc6d6eaabd42027acbb3a720ab829ecb450ac353d4e8e0b0200838538",
+      "prompt": "03-cel-anthro.txt",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 4,
+      "card": "건담 쓰로네 쯔바이",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "file": "건담 쓰로네 쯔바이_cel_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "5bd74de39b59b87cc574e2e9d631f992a70650c9d457c5a6d8453bdbdcbb08c4",
+      "original_generation_id": "exec-4b41e450-5fcd-4c16-af75-3b430bc13ba4",
+      "original_sha256": "0b205e29dc9801effb43fc2e106c120e62cadd3f0d5aa436be492e440760403e",
+      "prompt": "04-cel-casual.txt",
+      "reference_ids": [
+        3
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    }
+  ],
+  "record_export": {
+    "completed": true,
+    "scope": "task card extracted from actual UI export",
+    "merged_cards": [
+      "건담 쓰로네 쯔바이"
+    ]
+  },
+  "user_direction": "Future anthropomorphizations retain signature equipment with moderate skin exposure, varied open armor silhouettes and exposure placement. This set uses the generator Open armor selection, then specific shoulder, side-waist and upper-thigh openings.",
+  "review_notes": [
+    "All four outputs visually reviewed. Anthro poses remained similar despite AUTO selections. Cel rendering is visibly flatter; the background still uses atmospheric gradients.",
+    "No original MS artwork attached. Equipment is an anthropomorphic interpretation, not verified canonical geometry; the search only supported the broad Buster Sword and remote weapon concept.",
+    "Record shop output is closer to three-quarter view than strict side profile. Beach output looks toward the viewer rather than out to sea.",
+    "Four final WebPs and exact submitted prompts saved locally; not yet uploaded or merged."
+  ]
+}
