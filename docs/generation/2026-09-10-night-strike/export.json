@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "updated": "2026-09-10",
+  "note": "Actual UI export scoped to this card.",
+  "mechs": {
+    "스트라이크": {
+      "female": {
+        "sel": {
+          "apparent age": "20s",
+          "facial ethnicity": "Korean",
+          "body type": "hourglass",
+          "height impression": "tall",
+          "leg proportion": "long",
+          "facial character": "cheerful",
+          "face shape": "oval",
+          "eye shape": "large",
+          "eye color": "blue",
+          "nose character": "small delicate nose",
+          "lips": "bow-shaped upper lip",
+          "skin tone": "light",
+          "hair color": "navy",
+          "hairstyle": "high ponytail",
+          "hair length": "long",
+          "bangs": "curtain bangs",
+          "armor coverage": "open",
+          "lower-body treatment": "split armored skirt",
+          "silhouette character": "aerodynamic"
+        },
+        "sp": "GAT-X105 Strike Gundam in its base configuration, white angular armor, navy-blue chest, red waist and feet accents, restrained yellow vents and V-fin integrated above an unobstructed human face. One beam rifle in right hand and the canonical red/white shield on left forearm; compact bare Striker-pack attachment at back, no Aile wings or unrelated giant backpack. Two compact hip knife housings. Adult fashion silhouette with intact canonical full-size box-shaped shoulder armor and only small visible upper-arm gaps beneath it, shaped opaque navy chest armor, small geometric side-waist openings and visible upper thighs between short split hip plates and white knee greaves. Keep recognizable Strike proportions, no giant flowing skirt. Pose and view AUTO. 1024 x 1536 full body and all equipment in frame, no text. SHOULDER CORRECTION IS ESSENTIAL: retain both large white angular Strike shoulder pauldrons, with the full broad box-like outer shells, projecting upper plates and dark inset panel geometry. Position them at shoulder height around the deltoids, not halfway down the arms. Do not shrink them into tiny arm bands, remove the top shells, or expose bare shoulder caps. Human skin may show at the underarm articulation below each pauldron. Keep the shoulder silhouette instantly recognizable as Strike. The attached image supplies the same adult face, navy ponytail, body, rifle and shield; redesign only the shoulder armor to this specification. Use the attached first adult anthropomorphization as identity and equipment reference. Preserve face, hair, adult age, body and open armor design while rebuilding the entire rendering in the selected art style. Pose and view remain AUTO and may differ from the reference."
+      },
+      "g": "female",
+      "t": 1789052237517
+    }
+  },
+  "used": {
+    "스트라이크": [
+      {
+        "cat": "private_evening",
+        "ex": "",
+        "n": 2,
+        "t": 1789052516649
+      },
+      {
+        "cat": "everyday_sensual",
+        "ex": "",
+        "n": 2,
+        "t": 1789052172074
+      }
+    ]
+  }
+}

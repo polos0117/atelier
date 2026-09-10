@@ -1,0 +1,110 @@
+{
+  "repository": "polos0117/atelier",
+  "branch": "codex/overnight-mechs",
+  "base_commit": "14b1a9b96d94ca70651392c0b4e7242f78e3b9e6",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "generator": "built-in image_gen",
+  "selection_first": true,
+  "assets": [
+    {
+      "id": 1,
+      "card": "스트라이크",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "스트라이크_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "b3a86b5069294688212c6294b117d21cdda391b373633c39361ac2a959257f94",
+      "prompt": "01-anthro.txt",
+      "original_generation_id": "exec-2a796dbc-49cb-4bff-96d2-383b76d0e9d2",
+      "original_sha256": "d8b27a0e3381b2cd6b4710f71960b422059943c56497c3767c981caf932f25c1",
+      "reference_ids": [],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 2,
+      "card": "스트라이크",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "file": "스트라이크_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "4e7ca041b08d7a500c2ab333966cb594d8fbec673d44c053130935d6894124ec",
+      "prompt": "02-casual.txt",
+      "original_generation_id": "exec-c95dd795-3a06-4608-b24a-fc77800c7937",
+      "original_sha256": "d62f830e998569e48f00a49e7506e9480b10507a89b266895fad42fda848fdc5",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 3,
+      "card": "스트라이크",
+      "style": "glossy_kr_game",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "스트라이크_glossy_kr_game_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "cd8266b39a1da77a68485bcd7546547eddddddb49a5656706b1645619016c955",
+      "prompt": "03-anthro.txt",
+      "original_generation_id": "exec-ea283b87-d5a5-4fcd-b4ee-327f855e6a72",
+      "original_sha256": "1372957a948f97b0e20ec6566ff93162c3f9a9e739f874722d8fcda5053f157e",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 4,
+      "card": "스트라이크",
+      "style": "glossy_kr_game",
+      "gender": "f",
+      "mode": "casual",
+      "file": "스트라이크_glossy_kr_game_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "5b88705847b7c017f2f2713bca2dc32f9feadbf139017c864377281dee54932d",
+      "prompt": "04-casual.txt",
+      "original_generation_id": "exec-39b5d9da-202a-4f0d-b41f-a6ca175b7816",
+      "original_sha256": "596fbde4817b23ab1e65a92679cf7826aecf76112c51d752d2239a33b636ab92",
+      "reference_ids": [
+        3
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    }
+  ],
+  "record_export": {
+    "completed": true,
+    "scope": "task card extracted from actual UI export",
+    "merged_cards": [
+      "스트라이크"
+    ]
+  },
+  "review_notes": [
+    "Shoulder correction supersedes initial three drafts; original prompt attempts preserved in superseded/. Final first anthro references draft exec-5c48b219-cbce-43a9-9e23-4347c7f1b996.",
+    "Full angular shoulder shells visually confirmed in both final anthro images. Upper-arm articulation gaps remain. Styles retain similar poses under AUTO.",
+    "No original MS artwork attached; equipment is an anthropomorphic interpretation."
+  ],
+  "checkpoint": "Generation and local registration checkpoint. Remote upload/merge is recorded in the task report and Git history."
+}

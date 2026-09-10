@@ -718,5 +718,77 @@
     "sha256": "5bd74de39b59b87cc574e2e9d631f992a70650c9d457c5a6d8453bdbdcbb08c4",
     "prompt": "docs/generation/2026-09-10-throne-zwei/04-cel-casual.txt",
     "manifest": "docs/generation/2026-09-10-throne-zwei/manifest.json"
+  },
+  "리오_cinematic_semi_real_f.webp": {
+    "card": "리오",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "6d83b02b5b8dbe6c57291340ce318499102f4a9b21063f5eac5924fe10faaa11",
+    "prompt": "docs/generation/2026-09-10-night-leo/01-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-night-leo/manifest.json"
+  },
+  "리오_cinematic_semi_real_f_casual1.webp": {
+    "card": "리오",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "6eb9c0888b70820155cc5b32b5734ac8d72a34736de21d7dadbba0462688fcd0",
+    "prompt": "docs/generation/2026-09-10-night-leo/02-casual.txt",
+    "manifest": "docs/generation/2026-09-10-night-leo/manifest.json"
+  },
+  "리오_retro_anime_f.webp": {
+    "card": "리오",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "393190fa3c796f382255d4c8ec2430741df2f70edfa700b95e4006667e8f3969",
+    "prompt": "docs/generation/2026-09-10-night-leo/03-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-night-leo/manifest.json"
+  },
+  "리오_retro_anime_f_casual1.webp": {
+    "card": "리오",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "ba23a59799703cd5712db47971fd4bbcb60038a223cc80dddef063813b4d4435",
+    "prompt": "docs/generation/2026-09-10-night-leo/04-casual.txt",
+    "manifest": "docs/generation/2026-09-10-night-leo/manifest.json"
+  },
+  "스트라이크_cinematic_semi_real_f.webp": {
+    "card": "스트라이크",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "b3a86b5069294688212c6294b117d21cdda391b373633c39361ac2a959257f94",
+    "prompt": "docs/generation/2026-09-10-night-strike/01-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-night-strike/manifest.json"
+  },
+  "스트라이크_cinematic_semi_real_f_casual1.webp": {
+    "card": "스트라이크",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "4e7ca041b08d7a500c2ab333966cb594d8fbec673d44c053130935d6894124ec",
+    "prompt": "docs/generation/2026-09-10-night-strike/02-casual.txt",
+    "manifest": "docs/generation/2026-09-10-night-strike/manifest.json"
+  },
+  "스트라이크_glossy_kr_game_f.webp": {
+    "card": "스트라이크",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "cd8266b39a1da77a68485bcd7546547eddddddb49a5656706b1645619016c955",
+    "prompt": "docs/generation/2026-09-10-night-strike/03-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-night-strike/manifest.json"
+  },
+  "스트라이크_glossy_kr_game_f_casual1.webp": {
+    "card": "스트라이크",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "5b88705847b7c017f2f2713bca2dc32f9feadbf139017c864377281dee54932d",
+    "prompt": "docs/generation/2026-09-10-night-strike/04-casual.txt",
+    "manifest": "docs/generation/2026-09-10-night-strike/manifest.json"
   }
 }

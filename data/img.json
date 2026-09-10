@@ -1,7 +1,7 @@
 {
  "version": 1,
  "note": "초상 파일 목록. 카드 이름 → {m, f, face, casual[], extra[], byStyle{}} 이다. 파일 이름이 곧 등록 정보라 register-images.py 가 저장소의 *.webp 를 훑어 없는 것만 더한다 — 이미 적힌 것과 얼굴 좌표(face)는 건드리지 않으니 손으로 넣은 항목이 덮이지 않는다. face 는 파일 이름에서 알 수 없어 비면 게임이 기본값을 쓰고, 어색하면 사람이 여기서 손본다. play.html 은 실행 중에도 GitHub 파일 목록으로 같은 규칙을 한 번 더 돌리므로(mergeRepoFiles) 여기 안 적혀 있어도 화면에는 뜬다. 다만 그때는 얼굴 좌표가 기본값이고 목록을 못 받으면 그만이라, 파일로 굳혀 두는 편이 낫다.",
- "count": 218,
+ "count": 220,
  "img": {
   "GN 아처": {"byStyle": {"glossy_kr_game": {"f": "GN 아처_glossy_kr_game_f.webp", "casual": {"f": ["GN 아처_glossy_kr_game_f_casual1.webp"]}}, "cel_anime": {"f": "GN 아처_cel_anime_f.webp"}}},
   "GQuuuuuuX": {"m": "GQuuuuuuX_m.webp", "f": "GQuuuuuuX_f.webp", "face": {"m": [0.427, 0.055, 0.13], "f": [0.447, 0.09, 0.13]}, "casual": {"f": ["GQuuuuuuX_casual1.webp", "GQuuuuuuX_casual2.webp", "GQuuuuuuX_casual3.webp", "GQuuuuuuX_casual4.webp", "GQuuuuuuX_casual5.webp", "GQuuuuuuX_casual6.webp", "GQuuuuuuX_casual7.webp", "GQuuuuuuX_casual8.webp", "GQuuuuuuX_casual9.webp"]}},
@@ -118,6 +118,7 @@
   "레전드 건담": {"m": "레전드_건담_m.webp", "f": "레전드_건담_f.webp", "face": {"m": [0.425, 0.128, 0.16], "f": [0.42, 0.158, 0.155]}, "casual": {"f": ["레전드_건담_casual1.webp"]}},
   "리가지": {"m": "리가지_m.webp", "f": "리가지_f.webp", "face": {"m": [0.455, 0.055, 0.1], "f": [0.45, 0.075, 0.1]}, "casual": {"f": ["리가지_casual1.webp", "리가지_casual2.webp"]}},
   "리본즈 건담": {"m": "리본즈_건담_m.webp", "f": "리본즈_건담_f.webp", "face": {"m": [0.458, 0.072, 0.124], "f": [0.462, 0.088, 0.122]}, "casual": {"f": ["리본즈_건담_casual1.webp"]}},
+  "리오": {"byStyle": {"cinematic_semi_real": {"f": "리오_cinematic_semi_real_f.webp", "casual": {"f": ["리오_cinematic_semi_real_f_casual1.webp"]}}, "retro_anime": {"f": "리오_retro_anime_f.webp", "casual": {"f": ["리오_retro_anime_f_casual1.webp"]}}}},
   "리젤": {"m": "리젤_m.webp", "f": "리젤_f.webp", "face": {"m": [0.472, 0.1508, 0.125], "f": [0.442, 0.1758, 0.125]}, "casual": {"f": ["리젤_casual1.webp", "리젤_casual2.webp"]}},
   "릭 돔": {"m": "릭 돔_m.webp", "f": "릭 돔_f.webp", "face": {"m": [0.42, 0.052, 0.13], "f": [0.415, 0.062, 0.13]}, "casual": {"f": ["릭 돔_casual1.webp", "릭 돔_casual2.webp", "릭 돔_casual3.webp"]}},
   "릭 디아스": {"m": "릭 디아스_m.webp", "f": "릭 디아스_f.webp", "face": {"m": [0.425, 0.06, 0.125], "f": [0.425, 0.1, 0.12]}, "casual": {"f": ["릭 디아스_casual1.webp"]}},
@@ -154,6 +155,7 @@
   "슈바르제테": {"m": "슈바르제테_m.webp", "f": "슈바르제테_f.webp", "face": {"m": [0.42, 0.075, 0.13], "f": [0.41, 0.115, 0.135]}, "casual": {"f": ["슈바르제테_casual1.webp"]}},
   "스사노오": {"byStyle": {"cinematic_semi_real": {"f": "스사노오_cinematic_semi_real_f.webp", "casual": {"f": ["스사노오_cinematic_semi_real_f_casual1.webp"]}}, "ink_wash": {"f": "스사노오_ink_wash_f.webp", "casual": {"f": ["스사노오_ink_wash_f_casual1.webp"]}}}},
   "스타게이저 건담": {"m": "스타게이저 건담_m.webp", "f": "스타게이저 건담_f.webp", "face": {"m": [0.44, 0.112, 0.13], "f": [0.445, 0.102, 0.13]}, "casual": {"f": ["스타게이저 건담_casual1.webp", "스타게이저 건담_casual2.webp", "스타게이저 건담_casual3.webp", "스타게이저 건담_casual4.webp", "스타게이저 건담_casual5.webp", "스타게이저 건담_casual6.webp"]}},
+  "스트라이크": {"byStyle": {"cinematic_semi_real": {"f": "스트라이크_cinematic_semi_real_f.webp", "casual": {"f": ["스트라이크_cinematic_semi_real_f_casual1.webp"]}}, "glossy_kr_game": {"f": "스트라이크_glossy_kr_game_f.webp", "casual": {"f": ["스트라이크_glossy_kr_game_f_casual1.webp"]}}}},
   "스트라이크 느와르 건담": {"byStyle": {"glossy_kr_game": {"m": "스트라이크 느와르 건담_glossy_kr_game_m.webp", "f": "스트라이크 느와르 건담_glossy_kr_game_f.webp", "face": {"m": [0.368, 0.055, 0.13], "f": [0.425, 0.064, 0.13]}, "casual": {"f": ["스트라이크 느와르 건담_glossy_kr_game_casual1.webp", "스트라이크 느와르 건담_glossy_kr_game_casual2.webp", "스트라이크 느와르 건담_glossy_kr_game_casual3.webp", "스트라이크 느와르 건담_glossy_kr_game_casual4.webp", "스트라이크 느와르 건담_glossy_kr_game_casual5.webp", "스트라이크 느와르 건담_glossy_kr_game_casual6.webp"]}}}},
   "스트라이크 루즈": {"m": "스트라이크 루즈_m.webp", "f": "스트라이크 루즈_f.webp", "face": {"m": [0.45, 0.242, 0.053], "f": [0.412, 0.142, 0.083]}, "casual": {"f": ["스트라이크 루즈_casual1.webp", "스트라이크 루즈_casual2.webp", "스트라이크 루즈_casual3.webp", "스트라이크 루즈_casual4.webp", "스트라이크 루즈_casual5.webp", "스트라이크 루즈_casual6.webp", "스트라이크 루즈_casual7.webp", "스트라이크 루즈_casual8.webp"]}},
   "스트라이크 프리덤": {"m": "스트라이크_프리덤_m.webp", "f": "스트라이크_프리덤_f.webp", "face": {"m": [0.44, 0.29, 0.16], "f": [0.414, 0.169, 0.175]}, "casual": {"f": ["스트라이크_프리덤_casual1.webp"]}},
