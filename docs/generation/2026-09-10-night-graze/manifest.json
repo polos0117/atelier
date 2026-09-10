@@ -1,0 +1,110 @@
+{
+  "repository": "polos0117/atelier",
+  "branch": "codex/overnight-mechs",
+  "base_commit": "14b1a9b96d94ca70651392c0b4e7242f78e3b9e6",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "generator": "built-in image_gen",
+  "selection_first": true,
+  "assets": [
+    {
+      "id": 1,
+      "card": "그레이즈",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "그레이즈_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "7e6f6ef8c35dbfd817bb24e2796928df8dda276d84bbf7a289eba91182074deb",
+      "prompt": "01-anthro.txt",
+      "original_generation_id": "exec-356620e5-7a24-4e32-9665-14be285c0e0a",
+      "original_sha256": "dae204f3c04041625d527bebe5c90690c8070da63ca04cf31def9b279e7f5e3c",
+      "reference_ids": [],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 2,
+      "card": "그레이즈",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "file": "그레이즈_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "3afcc45c8157034d12fb0a5c6ea0a498ceb9eb73ace11095042758b240a46b17",
+      "prompt": "02-casual.txt",
+      "original_generation_id": "exec-c7dac447-92fd-437d-b53b-2a55de8d8a99",
+      "original_sha256": "6cabe440a66efd612b6cfd866ed0bdf1fb6eb723be9cc0481d2d1cf02deac2eb",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 3,
+      "card": "그레이즈",
+      "style": "ink_wash",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "그레이즈_ink_wash_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "a4871347519dba7b493bfa8c36f1ea2610728c33388c60f3858eed0fc3e40db0",
+      "prompt": "03-anthro.txt",
+      "original_generation_id": "exec-733d5b79-43d7-4ff3-a02b-383e2b0961f3",
+      "original_sha256": "8374a46cffa3e2ca10de2c404b575f7b5d6353edeaffb3e2c070d28a34821e6c",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 4,
+      "card": "그레이즈",
+      "style": "ink_wash",
+      "gender": "f",
+      "mode": "casual",
+      "file": "그레이즈_ink_wash_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "b7171efe390e567e035dc20f1a20d420b037ef8f0d8c74937850df888442cd3b",
+      "prompt": "04-casual.txt",
+      "original_generation_id": "exec-571beb6e-fe53-4c1a-800c-e393a9233e5f",
+      "original_sha256": "6c1f129db393007b7549635f5ebb6051502eb229b597f0ad6e56038d649485f2",
+      "reference_ids": [
+        3
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    }
+  ],
+  "record_export": {
+    "completed": true,
+    "scope": "task card extracted from actual UI export",
+    "merged_cards": [
+      "그레이즈"
+    ]
+  },
+  "review_notes": [
+    "Full-size shoulder shells preserved in both anthro images, with upper-arm openings below. Equipment fits inside frame.",
+    "Age setting is 40s, but generated face reads smoother and younger than strong middle-aged lines. Body retains strong muscular silhouette.",
+    "Ink-wash variant is detailed with paper texture and wash edges; poses remain similar under AUTO. No original MS artwork attached."
+  ],
+  "checkpoint": "Generation and local registration checkpoint. Remote upload/merge is recorded in the task report and Git history."
+}

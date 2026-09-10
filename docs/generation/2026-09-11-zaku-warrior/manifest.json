@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "repository": "polos0117/atelier",
+  "branch": "codex/zaku-warrior-tieren",
+  "base_commit": "92ad6dd5196386b69bea80a7eca0d84996bdbca8",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "generator": "image_gen",
+  "workflow": "Actual UI options selected, text preview reviewed, supplemental instructions applied, final text copied and used verbatim. Anthro pose and viewpoint AUTO.",
+  "assets": [
+    {
+      "card": "자쿠 워리어",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "자쿠 워리어_cinematic_semi_real_f.webp",
+      "original_generation_id": "exec-6680d10f-2346-46e6-9557-a192a0fe4469",
+      "reference_ids": [],
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "ebead2681ad9efe36c7cd7881e6156bfb3229202254b0bfeee180f1219a472ac",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-zaku-warrior-01",
+      "prompt": "docs/generation/2026-09-11-zaku-warrior/01-anthro.txt",
+      "prompt_sha256": "4724c3dc116a2c88a6a1df2fde9c1df4983b5f4995335998f03896c3f2984c4c",
+      "registered_locally": true
+    },
+    {
+      "card": "자쿠 워리어",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "file": "자쿠 워리어_cinematic_semi_real_f_casual1.webp",
+      "original_generation_id": "exec-e1662507-f5e3-4a6d-b32a-f7a55169d82d",
+      "reference_ids": [
+        "exec-6680d10f-2346-46e6-9557-a192a0fe4469"
+      ],
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "61ed80b3c65791515c661b51d18f8d85393bbd779bbc534c1037b7ed6fdbe7c1",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-zaku-warrior-02",
+      "prompt": "docs/generation/2026-09-11-zaku-warrior/02-casual.txt",
+      "prompt_sha256": "b4aa81386d00ffaf055a301872403682456cb57a28282154ba996e029675c8fe",
+      "registered_locally": true
+    },
+    {
+      "card": "자쿠 워리어",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "자쿠 워리어_cel_anime_f.webp",
+      "original_generation_id": "exec-64621b3f-2577-491c-b115-e4549349b3c4",
+      "reference_ids": [
+        "exec-6680d10f-2346-46e6-9557-a192a0fe4469"
+      ],
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "6a06e350cdba417ee24aa33f682b0da3a7787359beee3cb9872a0470e8cd6dd3",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-zaku-warrior-03",
+      "prompt": "docs/generation/2026-09-11-zaku-warrior/03-anthro.txt",
+      "prompt_sha256": "a11e8556fbe8458c5f02f343a1c87858e91f109a6c013ad8e799cd50f5636bd4",
+      "registered_locally": true
+    },
+    {
+      "card": "자쿠 워리어",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "file": "자쿠 워리어_cel_anime_f_casual1.webp",
+      "original_generation_id": "exec-bcb0d3a5-a2e7-4307-911c-e4255b9cc4ba",
+      "reference_ids": [
+        "exec-64621b3f-2577-491c-b115-e4549349b3c4"
+      ],
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "3a3a4e6fdc1e42e25998197b5ea10a98ee7e9893c0fa0bce9e18a59232035ea7",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-zaku-warrior-04",
+      "prompt": "docs/generation/2026-09-11-zaku-warrior/04-casual.txt",
+      "prompt_sha256": "7bce1a9056681276d4cb091e52bc780ecac9fcb036e24aa41542d186ad560ac5",
+      "registered_locally": true
+    }
+  ],
+  "record_export": {
+    "attempted": true,
+    "succeeded": false,
+    "observation": "Clicked the actual export button; exportBox remained empty after subsequent work.",
+    "fallback": "selection-snapshot.json contains actual visible DOM selections, not a successful export.",
+    "toolkit_data_merged": false,
+    "reason": "UI export did not complete; prior broad toolkit-data upload was rejected by automatic approval review. No retry through alternate upload routes."
+  },
+  "conversion": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6,
+    "resize": false,
+    "crop": false
+  },
+  "review_notes": [
+    "All eight renders were visually inspected. Per-card facial identity and hairstyle retained across actual references. Lifestyle scenes remove combat equipment.",
+    "Rendering follows selected style with some model interpretation; style keys describe the exact generator setting.",
+    "Zaku first render contains a small shield emblem; second render removes it. Requested forties appearance is idealized."
+  ]
+}

@@ -646,5 +646,401 @@
     "sha256": "fdbf028d68c62752fc847fca21e236d4154aa3fce31c427451932d2712c87fe5",
     "prompt": "docs/generation/2026-09-10-zaku2-fz/04-retro-casual.txt",
     "manifest": "docs/generation/2026-09-10-zaku2-fz/manifest.json"
+  },
+  "짐 커맨드_cinematic_semi_real_f.webp": {
+    "card": "짐 커맨드",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "dca7da3d499f2f18a012473ef340050720f3373c1a10c742ff76f49ebfc52255",
+    "prompt": "docs/generation/2026-09-10-gm-command/01b-cinematic-anthro-final.txt",
+    "manifest": "docs/generation/2026-09-10-gm-command/manifest.json"
+  },
+  "짐 커맨드_cinematic_semi_real_f_casual1.webp": {
+    "card": "짐 커맨드",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "ed95fbcb1303a7b978278cd7e7447eea53d1e2ac07f38376fa031ca74798a5ee",
+    "prompt": "docs/generation/2026-09-10-gm-command/02-cinematic-casual.txt",
+    "manifest": "docs/generation/2026-09-10-gm-command/manifest.json"
+  },
+  "짐 커맨드_game_keyart_f.webp": {
+    "card": "짐 커맨드",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "7af6d0d5c658f3f189be0d36640fc287dafe7f166e782c5c66ce929c32145157",
+    "prompt": "docs/generation/2026-09-10-gm-command/03b-keyart-anthro-final.txt",
+    "manifest": "docs/generation/2026-09-10-gm-command/manifest.json"
+  },
+  "짐 커맨드_game_keyart_f_casual1.webp": {
+    "card": "짐 커맨드",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "571e156145b8de156d448cd9b5ba846fc7bfc7792a2e94b8997c69b35cc6b8b3",
+    "prompt": "docs/generation/2026-09-10-gm-command/04-keyart-casual.txt",
+    "manifest": "docs/generation/2026-09-10-gm-command/manifest.json"
+  },
+  "건담 쓰로네 쯔바이_cinematic_semi_real_f.webp": {
+    "card": "건담 쓰로네 쯔바이",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "239c2f002e02110b28f29446a4f01357fc632a71d5e32300df342a172dece56e",
+    "prompt": "docs/generation/2026-09-10-throne-zwei/01-cinematic-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-throne-zwei/manifest.json"
+  },
+  "건담 쓰로네 쯔바이_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 쓰로네 쯔바이",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "3df4d8e8572e89bde32b6b11903814213ba88804ddbeacb7635b42a6f45e1af5",
+    "prompt": "docs/generation/2026-09-10-throne-zwei/02-cinematic-casual.txt",
+    "manifest": "docs/generation/2026-09-10-throne-zwei/manifest.json"
+  },
+  "건담 쓰로네 쯔바이_cel_anime_f.webp": {
+    "card": "건담 쓰로네 쯔바이",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "2c0f7f9a6fe25555dba1729a21b8ac96cb578ce0a6116e2806666c580cf50066",
+    "prompt": "docs/generation/2026-09-10-throne-zwei/03-cel-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-throne-zwei/manifest.json"
+  },
+  "건담 쓰로네 쯔바이_cel_anime_f_casual1.webp": {
+    "card": "건담 쓰로네 쯔바이",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "5bd74de39b59b87cc574e2e9d631f992a70650c9d457c5a6d8453bdbdcbb08c4",
+    "prompt": "docs/generation/2026-09-10-throne-zwei/04-cel-casual.txt",
+    "manifest": "docs/generation/2026-09-10-throne-zwei/manifest.json"
+  },
+  "리오_cinematic_semi_real_f.webp": {
+    "card": "리오",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "6d83b02b5b8dbe6c57291340ce318499102f4a9b21063f5eac5924fe10faaa11",
+    "prompt": "docs/generation/2026-09-10-night-leo/01-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-night-leo/manifest.json"
+  },
+  "리오_cinematic_semi_real_f_casual1.webp": {
+    "card": "리오",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "6eb9c0888b70820155cc5b32b5734ac8d72a34736de21d7dadbba0462688fcd0",
+    "prompt": "docs/generation/2026-09-10-night-leo/02-casual.txt",
+    "manifest": "docs/generation/2026-09-10-night-leo/manifest.json"
+  },
+  "리오_retro_anime_f.webp": {
+    "card": "리오",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "393190fa3c796f382255d4c8ec2430741df2f70edfa700b95e4006667e8f3969",
+    "prompt": "docs/generation/2026-09-10-night-leo/03-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-night-leo/manifest.json"
+  },
+  "리오_retro_anime_f_casual1.webp": {
+    "card": "리오",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "ba23a59799703cd5712db47971fd4bbcb60038a223cc80dddef063813b4d4435",
+    "prompt": "docs/generation/2026-09-10-night-leo/04-casual.txt",
+    "manifest": "docs/generation/2026-09-10-night-leo/manifest.json"
+  },
+  "스트라이크_cinematic_semi_real_f.webp": {
+    "card": "스트라이크",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "b3a86b5069294688212c6294b117d21cdda391b373633c39361ac2a959257f94",
+    "prompt": "docs/generation/2026-09-10-night-strike/01-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-night-strike/manifest.json"
+  },
+  "스트라이크_cinematic_semi_real_f_casual1.webp": {
+    "card": "스트라이크",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "4e7ca041b08d7a500c2ab333966cb594d8fbec673d44c053130935d6894124ec",
+    "prompt": "docs/generation/2026-09-10-night-strike/02-casual.txt",
+    "manifest": "docs/generation/2026-09-10-night-strike/manifest.json"
+  },
+  "스트라이크_glossy_kr_game_f.webp": {
+    "card": "스트라이크",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "cd8266b39a1da77a68485bcd7546547eddddddb49a5656706b1645619016c955",
+    "prompt": "docs/generation/2026-09-10-night-strike/03-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-night-strike/manifest.json"
+  },
+  "스트라이크_glossy_kr_game_f_casual1.webp": {
+    "card": "스트라이크",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "5b88705847b7c017f2f2713bca2dc32f9feadbf139017c864377281dee54932d",
+    "prompt": "docs/generation/2026-09-10-night-strike/04-casual.txt",
+    "manifest": "docs/generation/2026-09-10-night-strike/manifest.json"
+  },
+  "그레이즈_cinematic_semi_real_f.webp": {
+    "card": "그레이즈",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "7e6f6ef8c35dbfd817bb24e2796928df8dda276d84bbf7a289eba91182074deb",
+    "prompt": "docs/generation/2026-09-10-night-graze/01-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-night-graze/manifest.json"
+  },
+  "그레이즈_cinematic_semi_real_f_casual1.webp": {
+    "card": "그레이즈",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "3afcc45c8157034d12fb0a5c6ea0a498ceb9eb73ace11095042758b240a46b17",
+    "prompt": "docs/generation/2026-09-10-night-graze/02-casual.txt",
+    "manifest": "docs/generation/2026-09-10-night-graze/manifest.json"
+  },
+  "그레이즈_ink_wash_f.webp": {
+    "card": "그레이즈",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "a4871347519dba7b493bfa8c36f1ea2610728c33388c60f3858eed0fc3e40db0",
+    "prompt": "docs/generation/2026-09-10-night-graze/03-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-night-graze/manifest.json"
+  },
+  "그레이즈_ink_wash_f_casual1.webp": {
+    "card": "그레이즈",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "b7171efe390e567e035dc20f1a20d420b037ef8f0d8c74937850df888442cd3b",
+    "prompt": "docs/generation/2026-09-10-night-graze/04-casual.txt",
+    "manifest": "docs/generation/2026-09-10-night-graze/manifest.json"
+  },
+  "데미 트레이너_cinematic_semi_real_f.webp": {
+    "card": "데미 트레이너",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "ef0c2f17b61a41b590e87c48ef1c76af56e063cd1f5afbf772208eb8a33cd0c0",
+    "prompt": "docs/generation/2026-09-10-night-demi-trainer/01-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-night-demi-trainer/manifest.json"
+  },
+  "데미 트레이너_cinematic_semi_real_f_casual1.webp": {
+    "card": "데미 트레이너",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "650ede31c5bf509db505fd63f7fb1499f0029a916c0b27a88a736efad2b877ce",
+    "prompt": "docs/generation/2026-09-10-night-demi-trainer/02-casual.txt",
+    "manifest": "docs/generation/2026-09-10-night-demi-trainer/manifest.json"
+  },
+  "데미 트레이너_game_keyart_f.webp": {
+    "card": "데미 트레이너",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "48ad2897cb7bb57e81f34f7e1e3ed3407c0d329d30e889d06c74a824bdc0601f",
+    "prompt": "docs/generation/2026-09-10-night-demi-trainer/03-anthro.txt",
+    "manifest": "docs/generation/2026-09-10-night-demi-trainer/manifest.json"
+  },
+  "데미 트레이너_game_keyart_f_casual1.webp": {
+    "card": "데미 트레이너",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "46343cf57780336ba0d5c8e95aef05aed2a978d6bdb429531c4163b05e1b0f85",
+    "prompt": "docs/generation/2026-09-10-night-demi-trainer/04-casual.txt",
+    "manifest": "docs/generation/2026-09-10-night-demi-trainer/manifest.json"
+  },
+  "진_cinematic_semi_real_f.webp": {
+    "card": "진",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "b3faa5f7ee9f5976cd76b3ff1802d05415b457fd9df6b0df0ac97e5fe4ce2f79",
+    "prompt": "docs/generation/2026-09-11-ginn/01-anthro-final.txt",
+    "manifest": "docs/generation/2026-09-11-ginn/manifest.json"
+  },
+  "진_cinematic_semi_real_f_casual1.webp": {
+    "card": "진",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "366c4cdd9335706ee7d330ad6204d6ef4f6f70c0675d8f302f1425cb7e3f8cc9",
+    "prompt": "docs/generation/2026-09-11-ginn/02-casual.txt",
+    "manifest": "docs/generation/2026-09-11-ginn/manifest.json"
+  },
+  "진_painterly_f.webp": {
+    "card": "진",
+    "style": "painterly",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "60133733ae30f756f20a37a6b96bc248fc6eb7ebda6841038a6156d9604203f5",
+    "prompt": "docs/generation/2026-09-11-ginn/03-anthro.txt",
+    "manifest": "docs/generation/2026-09-11-ginn/manifest.json"
+  },
+  "진_painterly_f_casual1.webp": {
+    "card": "진",
+    "style": "painterly",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "cfd67b66f4bd93856ec0371c24674e97b9ab7e76fbe8900fa184a05c3b63a17e",
+    "prompt": "docs/generation/2026-09-11-ginn/04-casual.txt",
+    "manifest": "docs/generation/2026-09-11-ginn/manifest.json"
+  },
+  "자쿠 워리어_cinematic_semi_real_f.webp": {
+    "card": "자쿠 워리어",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "ebead2681ad9efe36c7cd7881e6156bfb3229202254b0bfeee180f1219a472ac",
+    "prompt": "docs/generation/2026-09-11-zaku-warrior/01-anthro.txt",
+    "manifest": "docs/generation/2026-09-11-zaku-warrior/manifest.json"
+  },
+  "자쿠 워리어_cinematic_semi_real_f_casual1.webp": {
+    "card": "자쿠 워리어",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "61ed80b3c65791515c661b51d18f8d85393bbd779bbc534c1037b7ed6fdbe7c1",
+    "prompt": "docs/generation/2026-09-11-zaku-warrior/02-casual.txt",
+    "manifest": "docs/generation/2026-09-11-zaku-warrior/manifest.json"
+  },
+  "자쿠 워리어_cel_anime_f.webp": {
+    "card": "자쿠 워리어",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "6a06e350cdba417ee24aa33f682b0da3a7787359beee3cb9872a0470e8cd6dd3",
+    "prompt": "docs/generation/2026-09-11-zaku-warrior/03-anthro.txt",
+    "manifest": "docs/generation/2026-09-11-zaku-warrior/manifest.json"
+  },
+  "자쿠 워리어_cel_anime_f_casual1.webp": {
+    "card": "자쿠 워리어",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "3a3a4e6fdc1e42e25998197b5ea10a98ee7e9893c0fa0bce9e18a59232035ea7",
+    "prompt": "docs/generation/2026-09-11-zaku-warrior/04-casual.txt",
+    "manifest": "docs/generation/2026-09-11-zaku-warrior/manifest.json"
+  },
+  "티에렌 지상형_cinematic_semi_real_f.webp": {
+    "card": "티에렌 지상형",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "49d89bf5316a39b5a7646c80f9005df8967a78dac98c823f6f420a6934f9a765",
+    "prompt": "docs/generation/2026-09-11-tieren-ground/01-anthro.txt",
+    "manifest": "docs/generation/2026-09-11-tieren-ground/manifest.json"
+  },
+  "티에렌 지상형_cinematic_semi_real_f_casual1.webp": {
+    "card": "티에렌 지상형",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "c929cf311ef32f6a2fa51bd35e277196d6798f4fdb4b4473fc0bdf5d66a7dd06",
+    "prompt": "docs/generation/2026-09-11-tieren-ground/02-casual.txt",
+    "manifest": "docs/generation/2026-09-11-tieren-ground/manifest.json"
+  },
+  "티에렌 지상형_ink_wash_f.webp": {
+    "card": "티에렌 지상형",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "8fc818ba596094bbc9e16527a872268f366e1303bfd2b2a3289bd00a1d4061b1",
+    "prompt": "docs/generation/2026-09-11-tieren-ground/03-anthro.txt",
+    "manifest": "docs/generation/2026-09-11-tieren-ground/manifest.json"
+  },
+  "티에렌 지상형_ink_wash_f_casual1.webp": {
+    "card": "티에렌 지상형",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "9cd4046ea0ffb0a292c15efa7b645292a60b4204778c6b3149a63a4361f6e955",
+    "prompt": "docs/generation/2026-09-11-tieren-ground/04-casual.txt",
+    "manifest": "docs/generation/2026-09-11-tieren-ground/manifest.json"
+  },
+  "어헤드_cinematic_semi_real_f.webp": {
+    "card": "어헤드",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "2977ab8310a22b59519ccbd9c9d66db877411ae374f689c65a3a6ceabff77e75",
+    "prompt": "docs/generation/2026-09-11-ahead/01-anthro.txt",
+    "manifest": "docs/generation/2026-09-11-ahead/manifest.json"
+  },
+  "어헤드_cinematic_semi_real_f_casual1.webp": {
+    "card": "어헤드",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "be876e98ea8d47a08a418708a8a40764e4c608a162a5d983d16eb4f96d1d771a",
+    "prompt": "docs/generation/2026-09-11-ahead/02-casual.txt",
+    "manifest": "docs/generation/2026-09-11-ahead/manifest.json"
+  },
+  "어헤드_game_keyart_f.webp": {
+    "card": "어헤드",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "02ef005cfd7beb41bc69ef0645a6894ca4d846c8cf078fb929df83d05b8ba107",
+    "prompt": "docs/generation/2026-09-11-ahead/03-anthro.txt",
+    "manifest": "docs/generation/2026-09-11-ahead/manifest.json"
+  },
+  "어헤드_game_keyart_f_casual1.webp": {
+    "card": "어헤드",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "55611fc53292c6a449a17b6bad9c00d72e9e882033e91b3668107e49d28812ea",
+    "prompt": "docs/generation/2026-09-11-ahead/04-casual.txt",
+    "manifest": "docs/generation/2026-09-11-ahead/manifest.json"
+  },
+  "시덴_cinematic_semi_real_f.webp": {
+    "card": "시덴",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "f6f3b058b3d31b8828db1e50d49666fa972337d7f9eda116bfa6b5acbab0685b",
+    "prompt": "docs/generation/2026-09-11-shiden/01-anthro.txt",
+    "manifest": "docs/generation/2026-09-11-shiden/manifest.json"
+  },
+  "시덴_cinematic_semi_real_f_casual1.webp": {
+    "card": "시덴",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "83c9dd743961c7f2a0d92dc870485287e3da731118070fecff9cdba6b9b78bec",
+    "prompt": "docs/generation/2026-09-11-shiden/02-casual.txt",
+    "manifest": "docs/generation/2026-09-11-shiden/manifest.json"
+  },
+  "시덴_retro_anime_f.webp": {
+    "card": "시덴",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "bb515b415b7e00ce25a5773df701c8cf636aa21d73333a34e4241998c1586cbe",
+    "prompt": "docs/generation/2026-09-11-shiden/03-anthro.txt",
+    "manifest": "docs/generation/2026-09-11-shiden/manifest.json"
+  },
+  "시덴_retro_anime_f_casual1.webp": {
+    "card": "시덴",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "afe2462b054f4363a2fbb0380095f3489350ed250134a31c7b8c63e778911939",
+    "prompt": "docs/generation/2026-09-11-shiden/04-casual.txt",
+    "manifest": "docs/generation/2026-09-11-shiden/manifest.json"
   }
 }

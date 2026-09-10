@@ -1,0 +1,129 @@
+{
+  "repository": "polos0117/atelier",
+  "branch": "codex/gm-command-images",
+  "base_commit": "fa73b2debedaa7a99abc7af99b4671c7f80afd7a",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "generator": "built-in image_gen",
+  "selection_first": true,
+  "assets": [
+    {
+      "id": 1,
+      "card": "짐 커맨드",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "짐 커맨드_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "dca7da3d499f2f18a012473ef340050720f3373c1a10c742ff76f49ebfc52255",
+      "original_generation_id": "exec-1997dd90-45d2-4cfb-8b1a-24fafc35ba53",
+      "original_sha256": "d591f45e71792b7548db4e79770f847018e062edf301c8aa97666b525150e329",
+      "prompt": "01b-cinematic-anthro-final.txt",
+      "reference_ids": [
+        "draft-1"
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 2,
+      "card": "짐 커맨드",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "file": "짐 커맨드_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "ed95fbcb1303a7b978278cd7e7447eea53d1e2ac07f38376fa031ca74798a5ee",
+      "original_generation_id": "exec-291e8744-cb21-4e4d-84c0-d33a87cd628e",
+      "original_sha256": "535aa4fc78a3f8e8e7e46494b154825dda3a1021bfe3e6639c55089f2b7a204d",
+      "prompt": "02-cinematic-casual.txt",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 3,
+      "card": "짐 커맨드",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "짐 커맨드_game_keyart_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "7af6d0d5c658f3f189be0d36640fc287dafe7f166e782c5c66ce929c32145157",
+      "original_generation_id": "exec-2724a547-332d-4b9f-940e-97eb7b971f0f",
+      "original_sha256": "3335784b9e3ea9fd619201003ed4593597f2d07b060058abd0e4f8f18d4a3edf",
+      "prompt": "03b-keyart-anthro-final.txt",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 4,
+      "card": "짐 커맨드",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "casual",
+      "file": "짐 커맨드_game_keyart_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "571e156145b8de156d448cd9b5ba846fc7bfc7792a2e94b8997c69b35cc6b8b3",
+      "original_generation_id": "exec-5d365802-3118-4159-8e1f-cda148adb06c",
+      "original_sha256": "a2a0e302d6f15d645b24f204e2f25d05fbd8ce1b590212523a4e3749b78b2c5f",
+      "prompt": "04-keyart-casual.txt",
+      "reference_ids": [
+        3
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    }
+  ],
+  "record_export": {
+    "completed": true,
+    "scope": "task card extracted from actual UI export",
+    "merged_cards": [
+      "짐 커맨드"
+    ]
+  },
+  "equipment_review_source": "https://gundam.fandom.com/wiki/RGM-79G_GM_Command",
+  "attempts": [
+    {
+      "id": "draft-1",
+      "prompt": "01-cinematic-anthro.txt",
+      "generation_id": "exec-52b9419b-482b-46e0-bc58-df6945a7ae67",
+      "selected": false,
+      "reason": "Unrequested background text and armor markings removed."
+    },
+    {
+      "id": "draft-3",
+      "prompt": "03-keyart-anthro.txt",
+      "generation_id": "exec-0ff15b64-bfa9-46d0-84e8-4efe0fdfda27",
+      "selected": false,
+      "reason": "Rendering remained too close to first style; requested stronger 2.5D surface treatment."
+    }
+  ],
+  "review_notes": [
+    "All four final images visually reviewed. Both anthro pose/view selections were AUTO; resulting poses remain similar. Correction to first anthro preserved its pose for text removal.",
+    "Keyart correction reduces surface wear and increases smooth illustrated highlights; style difference is moderate rather than drastic.",
+    "No original mobile-suit artwork attached; equipment text checked against reference source. Armor and shield geometry are anthropomorphic interpretations.",
+    "Final WebPs and exact prompts preserved in repository; original PNGs remain conversation-generated artifacts."
+  ]
+}

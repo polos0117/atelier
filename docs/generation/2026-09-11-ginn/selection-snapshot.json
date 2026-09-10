@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "note": "Live DOM selection snapshot; export button did not produce JSON. Not an export.",
+  "mechs": {
+    "진": {
+      "female": {
+        "sel": {
+          "apparent age": "20s",
+          "armor coverage": "open",
+          "bangs": "side-swept bangs",
+          "body type": "athletic",
+          "eye color": "amber",
+          "eye shape": "narrow",
+          "face shape": "angular",
+          "facial character": "cool",
+          "facial ethnicity": "Central Asian",
+          "hair color": "red",
+          "hair length": "long",
+          "hairstyle": "braid",
+          "height impression": "tall",
+          "human-mechanical balance": "balanced",
+          "skin tone": "light"
+        },
+        "sp": "ZGMF-1017 GINN, standard gray ZAFT mass-production colors: preserve the swept head crest, broad angular shoulder shells, orange chest details, large paired swept backpack thrusters, heavy assault machine gun and physical heavy sword; no Gundam V-fin or robot face. Retain the complete recognizable shoulder armor shape; let only parts of the shoulders and upper arms show beneath its edges. Open waist sections and upper-thigh gaps give the armor a confident adult fashion silhouette while chest and pelvis remain covered by opaque armor. Distinct high cheekbones, straight low-set brows and a subtly asymmetric mouth. If an anthropomorphized reference is attached, preserve her exact facial identity, red braid, amber eyes, adult age and body proportions across styles; pose and viewpoint remain AUTO. Framing correction: leave 12 percent empty space above the COMPLETE tip of the tall head antenna; reduce the figure scale to fit every part of the antenna and both feet. Preserve all armor openness and body design."
+      },
+      "g": "female"
+    }
+  }
+}
