@@ -1,0 +1,110 @@
+{
+  "repository": "polos0117/atelier",
+  "branch": "codex/overnight-mechs",
+  "base_commit": "14b1a9b96d94ca70651392c0b4e7242f78e3b9e6",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "generator": "built-in image_gen",
+  "selection_first": true,
+  "assets": [
+    {
+      "id": 1,
+      "card": "데미 트레이너",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "데미 트레이너_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "ef0c2f17b61a41b590e87c48ef1c76af56e063cd1f5afbf772208eb8a33cd0c0",
+      "prompt": "01-anthro.txt",
+      "original_generation_id": "exec-ccdd7e24-078b-485e-bafc-567308382db0",
+      "original_sha256": "9c71b186a4f9365948f28d60af499770493f2daaea5cbdc617f6cc90e56bf478",
+      "reference_ids": [],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 2,
+      "card": "데미 트레이너",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "file": "데미 트레이너_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "650ede31c5bf509db505fd63f7fb1499f0029a916c0b27a88a736efad2b877ce",
+      "prompt": "02-casual.txt",
+      "original_generation_id": "exec-36238d01-3900-4694-b4f0-b0e91ff84e64",
+      "original_sha256": "acb52e4f2b629b898e9bb8769636012a0b6830b5bb5c1dfd9fda13bb80eb359d",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 3,
+      "card": "데미 트레이너",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "데미 트레이너_game_keyart_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "48ad2897cb7bb57e81f34f7e1e3ed3407c0d329d30e889d06c74a824bdc0601f",
+      "prompt": "03-anthro.txt",
+      "original_generation_id": "exec-d226089b-64a9-4351-bdf6-de9a81f0fd3c",
+      "original_sha256": "0c7d6d0e5e247fb0eaedadfa1601e8211047d4c2552183bf5ffaa54c6549a75c",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 4,
+      "card": "데미 트레이너",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "casual",
+      "file": "데미 트레이너_game_keyart_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "46343cf57780336ba0d5c8e95aef05aed2a978d6bdb429531c4163b05e1b0f85",
+      "prompt": "04-casual.txt",
+      "original_generation_id": "exec-5214f10a-f5c7-4c16-ac73-901b0bfb342a",
+      "original_sha256": "a7999c2da061fa826f23165388f725e5f4f6a2c10f49397fdddc1a040bb40af1",
+      "reference_ids": [
+        3
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    }
+  ],
+  "record_export": {
+    "completed": true,
+    "scope": "task card extracted from actual UI export",
+    "merged_cards": [
+      "데미 트레이너"
+    ]
+  },
+  "review_notes": [
+    "Resumed after interruption. Images 1 and 2 and their exact submitted prompts survived; image 3 used the previously saved UI prompt, image 4 uses fresh UI output after restoring identity settings.",
+    "Export contains only the current resumed session, not the lost earlier browser copy history; exact per-image prompts remain authoritative.",
+    "Large rounded shoulder armor retained. Pose remains similar under AUTO; style contrast modest. Image 3 has faint unintended hangar signage despite the no-text instruction. No original MS artwork attached."
+  ],
+  "checkpoint": "Generation and local registration checkpoint. Remote upload/merge is recorded in the task report and Git history."
+}

@@ -1650,6 +1650,62 @@
       },
       "g": "female",
       "t": 1789052237517
+    },
+    "그레이즈": {
+      "female": {
+        "sel": {
+          "apparent age": "40s",
+          "facial ethnicity": "Japanese",
+          "body type": "muscular",
+          "height impression": "tall",
+          "shoulder build": "broad",
+          "facial character": "mature",
+          "face shape": "angular",
+          "eye shape": "narrow",
+          "eye color": "gray",
+          "jaw & chin": "angular defined jaw",
+          "nose character": "prominent defined nose",
+          "lips": "medium lips",
+          "skin tone": "tan",
+          "hair color": "black",
+          "hairstyle": "slicked back",
+          "hair length": "short",
+          "bangs": "none",
+          "armor coverage": "open",
+          "lower-body treatment": "layered plates",
+          "silhouette character": "heavy"
+        },
+        "sp": "EB-06 standard Graze with olive-green armor, exposed charcoal mechanical frame, recognizable blocky shoulders, curved chest armor and small spherical sensor-inspired hair ornament. One heavy battle axe held and one compact rifle stowed on a proper side hardpoint, compact backpack thrusters. Human adult woman with athletic mature facial lines and solid musculature. Preserve a protected central torso but preserve full-size original shoulder shells and expose only some upper arms beneath them and broad outer-thigh sections; short angular hip plates and heavy shin armor. No full-body black undersuit filling these deliberate openings. Opaque fitted chest and pelvis armor, no flowing skirt. Pose and view AUTO; complete equipment inside 1024 x 1536 image, no lettering. Use the attached first adult anthropomorphization as identity and equipment reference. Preserve face, hair, adult age, body and open armor design while rebuilding the entire rendering in the selected art style. Pose and view remain AUTO and may differ from the reference."
+      },
+      "g": "female",
+      "t": 1789053065339
+    },
+    "데미 트레이너": {
+      "female": {
+        "sel": {
+          "apparent age": "20s",
+          "facial ethnicity": "Southeast Asian",
+          "body type": "pear-shaped",
+          "height impression": "short",
+          "facial character": "cheerful",
+          "face shape": "compact",
+          "eye shape": "drooping",
+          "eye color": "brown",
+          "jaw & chin": "soft rounded jaw",
+          "nose character": "rounded soft tip",
+          "lips": "full lips",
+          "skin tone": "medium",
+          "hair color": "mint",
+          "hairstyle": "bob",
+          "hair length": "short",
+          "bangs": "parted bangs",
+          "armor coverage": "open",
+          "lower-body treatment": "armored skirt",
+          "silhouette character": "minimal"
+        }
+      },
+      "g": "female",
+      "t": 1789072020992
     }
   },
   "note": "prompt.html 의 '기록 내보내기' 결과를 이 파일에 덮어쓴다. style 은 기체별 화풍이며 기본값(cinematic_semi_real)이라도 적는다 — 판정해서 고른 값인지 안 골라서 흘러든 값인지 구분해야 하기 때문이다(v9.17 전에는 기본값을 빼서 내보낼 때마다 손으로 적어 둔 것이 사라졌다). semi_real_paint 로 잡힌 152 기는 화풍 구분이 생기기 전에 일괄로 채운 값이라 그대로 둔다. 이 머리말도 내보내기가 챙겨 넣는다.",
@@ -3410,6 +3466,28 @@
         "ex": "",
         "n": 2,
         "t": 1789052172074
+      }
+    ],
+    "그레이즈": [
+      {
+        "cat": "homewear",
+        "ex": "",
+        "n": 1,
+        "t": 1789053216924
+      },
+      {
+        "cat": "everyday_basic",
+        "ex": "",
+        "n": 1,
+        "t": 1789052915828
+      }
+    ],
+    "데미 트레이너": [
+      {
+        "cat": "swimwear",
+        "ex": "",
+        "n": 1,
+        "t": 1789072075203
       }
     ]
   },
