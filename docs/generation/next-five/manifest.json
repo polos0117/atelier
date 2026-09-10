@@ -220,11 +220,11 @@
     },
     {
       "id": 9,
-      "card": "레길스",
+      "card": "건담 레길레스",
       "style": "cinematic_semi_real",
       "mode": "anthro",
       "gender": "f",
-      "file": "레길스_cinematic_semi_real_f.webp",
+      "file": "건담_레길레스_cinematic_semi_real_f.webp",
       "size": [
         1024,
         1536
@@ -247,11 +247,11 @@
     },
     {
       "id": 10,
-      "card": "레길스",
+      "card": "건담 레길레스",
       "style": "cinematic_semi_real",
       "mode": "casual",
       "gender": "f",
-      "file": "레길스_cinematic_semi_real_f_casual1.webp",
+      "file": "건담_레길레스_cinematic_semi_real_f_casual1.webp",
       "size": [
         1024,
         1536
@@ -274,11 +274,11 @@
     },
     {
       "id": 11,
-      "card": "레길스",
+      "card": "건담 레길레스",
       "style": "glossy_kr_game",
       "mode": "anthro",
       "gender": "f",
-      "file": "레길스_glossy_kr_game_f.webp",
+      "file": "건담_레길레스_glossy_kr_game_f.webp",
       "size": [
         1024,
         1536
@@ -301,11 +301,11 @@
     },
     {
       "id": 12,
-      "card": "레길스",
+      "card": "건담 레길레스",
       "style": "glossy_kr_game",
       "mode": "casual",
       "gender": "f",
-      "file": "레길스_glossy_kr_game_f_casual1.webp",
+      "file": "건담_레길레스_glossy_kr_game_f_casual1.webp",
       "size": [
         1024,
         1536
@@ -436,11 +436,11 @@
     },
     {
       "id": 17,
-      "card": "팔라스 아테네",
+      "card": "파라스 아테네",
       "style": "cinematic_semi_real",
       "mode": "anthro",
       "gender": "f",
-      "file": "팔라스_아테네_cinematic_semi_real_f.webp",
+      "file": "파라스_아테네_cinematic_semi_real_f.webp",
       "size": [
         1024,
         1536
@@ -463,11 +463,11 @@
     },
     {
       "id": 18,
-      "card": "팔라스 아테네",
+      "card": "파라스 아테네",
       "style": "cinematic_semi_real",
       "mode": "casual",
       "gender": "f",
-      "file": "팔라스_아테네_cinematic_semi_real_f_casual1.webp",
+      "file": "파라스_아테네_cinematic_semi_real_f_casual1.webp",
       "size": [
         1024,
         1536
@@ -490,11 +490,11 @@
     },
     {
       "id": 19,
-      "card": "팔라스 아테네",
+      "card": "파라스 아테네",
       "style": "painterly",
       "mode": "anthro",
       "gender": "f",
-      "file": "팔라스_아테네_painterly_f.webp",
+      "file": "파라스_아테네_painterly_f.webp",
       "size": [
         1024,
         1536
@@ -517,11 +517,11 @@
     },
     {
       "id": 20,
-      "card": "팔라스 아테네",
+      "card": "파라스 아테네",
       "style": "painterly",
       "mode": "casual",
       "gender": "f",
-      "file": "팔라스_아테네_painterly_f_casual1.webp",
+      "file": "파라스_아테네_painterly_f_casual1.webp",
       "size": [
         1024,
         1536
