@@ -1,7 +1,7 @@
 {
  "version": 1,
  "note": "초상 파일 목록. 카드 이름 → {m, f, face, casual[], extra[], byStyle{}} 이다. 파일 이름이 곧 등록 정보라 register-images.py 가 저장소의 *.webp 를 훑어 없는 것만 더한다 — 이미 적힌 것과 얼굴 좌표(face)는 건드리지 않으니 손으로 넣은 항목이 덮이지 않는다. face 는 파일 이름에서 알 수 없어 비면 게임이 기본값을 쓰고, 어색하면 사람이 여기서 손본다. play.html 은 실행 중에도 GitHub 파일 목록으로 같은 규칙을 한 번 더 돌리므로(mergeRepoFiles) 여기 안 적혀 있어도 화면에는 뜬다. 다만 그때는 얼굴 좌표가 기본값이고 목록을 못 받으면 그만이라, 파일로 굳혀 두는 편이 낫다.",
- "count": 217,
+ "count": 218,
  "img": {
   "GN 아처": {"byStyle": {"glossy_kr_game": {"f": "GN 아처_glossy_kr_game_f.webp", "casual": {"f": ["GN 아처_glossy_kr_game_f_casual1.webp"]}}, "cel_anime": {"f": "GN 아처_cel_anime_f.webp"}}},
   "GQuuuuuuX": {"m": "GQuuuuuuX_m.webp", "f": "GQuuuuuuX_f.webp", "face": {"m": [0.427, 0.055, 0.13], "f": [0.447, 0.09, 0.13]}, "casual": {"f": ["GQuuuuuuX_casual1.webp", "GQuuuuuuX_casual2.webp", "GQuuuuuuX_casual3.webp", "GQuuuuuuX_casual4.webp", "GQuuuuuuX_casual5.webp", "GQuuuuuuX_casual6.webp", "GQuuuuuuX_casual7.webp", "GQuuuuuuX_casual8.webp", "GQuuuuuuX_casual9.webp"]}},
@@ -93,6 +93,7 @@
   "구프 커스텀": {"m": "구프_커스텀_m.webp", "f": "구프_커스텀_f.webp", "face": {"m": [0.4, 0.1, 0.13], "f": [0.43, 0.08, 0.13]}, "casual": {"f": ["구프_커스텀_casual1.webp"]}},
   "기라 도가": {"m": "기라_도가_m.webp", "f": "기라_도가_f.webp", "face": {"m": [0.415, 0.095, 0.19], "f": [0.42, 0.143, 0.16]}},
   "기라 줄루": {"m": "기라 줄루_m.webp", "f": "기라 줄루_f.webp", "face": {"m": [0.435, 0.0437, 0.13], "f": [0.44, 0.0558, 0.125]}, "casual": {"f": ["기라 줄루_casual1.webp"]}},
+  "나라티브 건담": {"face": {"m": [0.48, 0.24, 0.09], "f": [0.51, 0.16, 0.1]}, "byStyle": {"cinematic_semi_real": {"m": "나라티브_건담_cinematic_semi_real_m.webp", "f": "나라티브_건담_cinematic_semi_real_f.webp", "casual": {"f": ["나라티브_건담_cinematic_semi_real_f_casual1.webp", "나라티브_건담_cinematic_semi_real_f_casual2.webp", "나라티브_건담_cinematic_semi_real_f_casual3.webp", "나라티브_건담_cinematic_semi_real_f_casual4.webp", "나라티브_건담_cinematic_semi_real_f_casual5.webp"]}}}},
   "나이팅게일": {"m": "나이팅게일_m.webp", "f": "나이팅게일_f.webp", "face": {"m": [0.405, 0.075, 0.15], "f": [0.415, 0.115, 0.135]}, "casual": {"f": ["나이팅게일_casual1.webp"]}},
   "노벨 건담": {"byStyle": {"cinematic_semi_real": {"f": "노벨_건담_cinematic_semi_real_f.webp", "casual": {"f": ["노벨_건담_cinematic_semi_real_f_casual1.webp"]}}, "anime_illust": {"f": "노벨_건담_anime_illust_f.webp", "casual": {"f": ["노벨_건담_anime_illust_f_casual1.webp"]}}}},
   "노이에 질": {"m": "노이에_질_m.webp", "f": "노이에_질_f.webp", "face": {"m": [0.42, 0.114, 0.166], "f": [0.42, 0.107, 0.166]}, "casual": {"f": ["노이에_질_casual1.webp"]}},
