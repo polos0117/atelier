@@ -1372,6 +1372,40 @@
       },
       "g": "female",
       "t": 1789035585640
+    },
+    "건담 맥스터": {
+      "female": {
+        "sel": {
+          "apparent age": "20s",
+          "facial ethnicity": "Korean",
+          "body type": "athletic",
+          "height impression": "tall",
+          "shoulder build": "broad",
+          "torso / chest build": "balanced",
+          "waist / hip silhouette": "athletic",
+          "leg proportion": "long",
+          "facial character": "cheerful",
+          "face shape": "angular",
+          "eye shape": "almond",
+          "face length": "balanced",
+          "face width": "wide",
+          "jaw & chin": "angular defined jaw",
+          "eye size": "medium",
+          "eye tilt": "level outer corners",
+          "nose character": "rounded soft tip",
+          "lips": "full lips",
+          "skin tone": "tan",
+          "hair color": "blonde",
+          "hairstyle": "wolf cut",
+          "hair length": "medium",
+          "bangs": "choppy bangs",
+          "hair texture": "thick",
+          "hair volume": "full"
+        },
+        "sp": "Use the attached corrected portrait as the same adult human identity and equipment reference: preserve the face, blonde wolf cut, athletic physique, armor design, two waist-holstered revolvers, boxing gauntlets and backpack-mounted surfboard shield. Translate every surface into the selected retro anime art style. Do not copy the painterly rendering. Pose and viewpoint remain independently AUTO and need not match the reference. Entire figure and all equipment must fit inside the frame with generous headroom and floor margin. No lettering or emblems."
+      },
+      "g": "female",
+      "t": 1789037681412
     }
   },
   "note": "prompt.html 의 '기록 내보내기' 결과를 이 파일에 덮어쓴다. style 은 기체별 화풍이며 기본값(cinematic_semi_real)이라도 적는다 — 판정해서 고른 값인지 안 골라서 흘러든 값인지 구분해야 하기 때문이다(v9.17 전에는 기본값을 빼서 내보낼 때마다 손으로 적어 둔 것이 사라졌다). semi_real_paint 로 잡힌 152 기는 화풍 구분이 생기기 전에 일괄로 채운 값이라 그대로 둔다. 이 머리말도 내보내기가 챙겨 넣는다.",
@@ -3006,6 +3040,20 @@
         "ex": "perfume_developer",
         "n": 1,
         "t": 1789035505188
+      }
+    ],
+    "건담 맥스터": [
+      {
+        "cat": "wildcard",
+        "ex": "arcade_night",
+        "n": 1,
+        "t": 1789037601761
+      },
+      {
+        "cat": "active",
+        "ex": "roller_skating",
+        "n": 1,
+        "t": 1789037443005
       }
     ]
   },
