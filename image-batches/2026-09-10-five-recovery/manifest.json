@@ -402,9 +402,19 @@
       "style_evidence": "user-labelled filename"
     },
     {
+      "bytes": 253622,
       "card": "건담 쓰로네 드라이",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
       "gender": "f",
+      "git_blob_sha": "67028de0f0db47a9fa6cb62d1a3ff118571323d5",
+      "path": "img/건담_쓰로네_드라이_cel_anime_f_casual1.webp",
       "reference_source_name": "쓰로네 드라이 화풍모름.png",
+      "sha256": "e15274c0d3b61aba7d7c5cf62252e27ea6d19547f95067f98de6e7f1ad035c59",
       "slot": "casual",
       "source_dimensions": [
         1024,
@@ -412,13 +422,23 @@
       ],
       "source_name": "쓰로네 드라이 화풍모름 일상.png",
       "source_sha256": "a606a1af80d3da9b9b4f7ff7d013705998423a031fa8fc26323df1cc4770941f",
-      "status": "pending_style",
-      "style": null,
-      "style_evidence": "unknown; not inferred"
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "cel_anime",
+      "style_evidence": "User confirmed cel_anime in this conversation"
     },
     {
+      "bytes": 150472,
       "card": "건담 쓰로네 드라이",
+      "conversion": {
+        "format": "WEBP",
+        "method": 6,
+        "quality": 90,
+        "resize": false
+      },
       "gender": "f",
+      "git_blob_sha": "31f7833926fd262ad55640eab8f9e3a1e1444ed1",
+      "path": "img/건담_쓰로네_드라이_cel_anime_f.webp",
+      "sha256": "1258b9a920726434d5a72093b80d01a0a98e01fc97be6bd7751154d0f5521c53",
       "slot": "portrait",
       "source_dimensions": [
         1024,
@@ -426,9 +446,9 @@
       ],
       "source_name": "쓰로네 드라이 화풍모름.png",
       "source_sha256": "33912ffd1a41a059d4f02eaafa0a9198d9b74b006aa73ec8f266ef60a1d929f1",
-      "status": "pending_style",
-      "style": null,
-      "style_evidence": "unknown; not inferred"
+      "status": "blob_verified_and_registered_in_prepared_worktree",
+      "style": "cel_anime",
+      "style_evidence": "User confirmed cel_anime in this conversation"
     },
     {
       "bytes": 202478,
@@ -459,20 +479,21 @@
   "generation_note": "Original generation prompts and exact generator revision unavailable; metadata recovered from user labels.",
   "generation_prompt": null,
   "pending_archive": "gdraft-pending-style.zip",
-  "pending_style": 2,
-  "prepared": 17,
+  "pending_style": 0,
+  "prepared": 19,
   "received": 19,
   "source_archive": "gdraft.zip",
   "source_archive_sha256": "fab89098641abaf210a419859f496a5ba08a0dfc8429d7185d04f9f37250b8cd",
   "upload": {
-    "branch_updated": false,
-    "verified_blobs": 17
+    "merge_status": "pending_at_preparation",
+    "previous_commit": "46caa710c5ccf45007459977240314d2b6b27f91",
+    "verified_blobs": 19
   },
   "validation": {
     "browser_verified": false,
     "existing_entries_preserved": true,
-    "new_files": 17,
-    "registered_total_files": 890,
+    "new_files": 19,
+    "registered_total_files": 892,
     "registration_check_candidates": 0
   }
 }
