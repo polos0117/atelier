@@ -18,18 +18,17 @@
     <카드 이름>_<화풍>_m_casual1.webp  화풍과 성별을 같이 쓸 수도 있다
 화풍 key 는 data/style.json 에 적힌 열한 가지뿐이고, 그 밖의 토막이 끼면
 카드 이름으로 읽히다 실패해 "그런 카드가 없다"로 남는다 — 오타를 잡으려고
-일부러 통과시키지 않는다. 기본 화풍 그림은 지금까지처럼 카드 바로 밑에 들어가고,
-나머지는 byStyle[화풍] 밑에 같은 꼴로 쌓인다.
+일부러 통과시키지 않는다. 이미 등록된 기본 자리는 화풍 미상으로 보존한다.
+신규 파일에는 화풍 key가 필수이며 byStyle[화풍] 밑에 등록한다.
+누락·오타·동일 슬롯 충돌이 있으면 파일을 쓰지 않고 실패한다.
 
 얼굴 좌표(face)는 파일 이름에서 알 수 없다. 없으면 게임이 기본값
 FACE_DEF=[.34,.03,.30] 을 쓰므로 일단 뜨기는 뜨고, 잘라낸 자리가 어색하면
 사람이 img.json 에서 손봐야 한다. 그래서 이 스크립트는 없는 것만 더하고
 이미 적힌 것은 건드리지 않는다 — 손으로 맞춰 둔 값을 덮지 않기 위해서다.
 
-play.html 은 실행 중에도 GitHub 파일 목록을 받아 같은 규칙으로 IMG 를
-보강한다(mergeRepoFiles). 그쪽은 저장소에 안 적혀 있어도 화면에는 뜨게 해
-주지만 얼굴 좌표를 못 넣고 목록을 못 받으면 그만이다. 이 스크립트는 그것을
-파일로 굳혀 둔다.
+play.html과 dex.html은 검증된 data/img.json을 읽는다. GitHub 파일 목록만으로
+미등록 이미지를 화면에 추가하지 않으므로 이 스크립트의 검증이 먼저 통과해야 한다.
 
 사용법:
     python3 register-images.py            # data/img.json 에 없는 것을 더한다
@@ -161,7 +160,10 @@ def main():
         head, style = split_style(head, styles)
         card = idx.get(head.replace(" ", "_"))
         if not card:
-            unknown.append((f, "그런 카드가 없다"))
+            unknown.append((f, "카드 이름 또는 화풍 key가 잘못됐다"))
+            continue
+        if not style:
+            unknown.append((f, "신규 파일에 화풍 key가 없다 — 과거 기본 자리는 기존 등록만 유지"))
             continue
         e = img.setdefault(card, {})
         if style:
@@ -169,20 +171,28 @@ def main():
         kind = m.group(2).lower()
         if kind in ("m", "f"):
             if e.get(kind):
+                unknown.append((f, "초상 슬롯 중복: " + e[kind]))
                 continue
             e[kind] = f
         else:
             slot = "casual" if kind.startswith("casual") else "extra"
             n = int(m.group(3) or m.group(4))
+            if n < 1:
+                unknown.append((f, "컷 번호는 1 이상이어야 한다"))
+                continue
             box = e.setdefault(slot, {})
             if not isinstance(box, dict):
                 box = e[slot] = {"f": box}
             lst = box.setdefault(gender, [])
-            while len(lst) < n:
-                lst.append(None)
-            if lst[n - 1]:
+            # 기존 배열은 압축돼 있으므로 인덱스가 아니라 파일명 컷 번호로 비교한다.
+            collision = next((x for x in lst if x and
+                              re.search(r"_" + slot + r"0*" + str(n) + r"\.webp$", x, re.I)), None)
+            if collision:
+                unknown.append((f, "컷 슬롯 중복: " + collision))
                 continue
-            lst[n - 1] = f
+            lst[:] = [x for x in lst if x]
+            lst.append(f)
+            lst.sort(key=lambda x: int(re.search(r"_(?:casual|extra)(\d+)\.webp$", x, re.I).group(1)))
         added.append((card + ("" if not style else " · " + styles[style])
                       + ("" if kind in ("m", "f") else " · " + ("남" if gender == "m" else "여")), f))
 
@@ -230,12 +240,12 @@ def main():
     tidy(img, styles)
     doc["img"] = dict(sorted(img.items()))
     doc["count"] = len(img)
-    if not a.check:
+    if not a.check and not unknown:
         roster.write("img", doc)
 
     print("[%s] data/img.json · 카드 %d · 파일 %d"
-          % ("대조" if a.check else "완료", len(img), len(listed_files(img))))
-    print("  새로 등록 %d" % len(added))
+          % ("검증 실패·저장 안 함" if unknown else ("대조" if a.check else "완료"), len(img), len(listed_files(img))))
+    print("  등록 후보 %d%s" % (len(added), " — 오류로 저장 안 함" if unknown else ""))
     for card, f in added[:20]:
         print("     %-24s %s" % (card, f))
     if ghosts:
@@ -245,21 +255,21 @@ def main():
             print("     %s" % f)
     if unknown:
         print("  등록 못 한 파일 %d" % len(unknown))
-        for f, why in unknown[:10]:
+        for f, why in unknown:
             print("     %-40s %s" % (f, why))
-    annotate(added, ghosts, unknown, a.prune and not a.check)
+    annotate(added, ghosts, unknown, a.prune and not a.check and not unknown)
+    if unknown:
+        raise SystemExit(1)
 
 
 def annotate(added, ghosts, unknown, pruned):
     """GitHub Actions 로 돌 때는 실행 화면에도 남긴다.
 
-    등록 못 한 파일이 있어도 이 스크립트는 성공으로 끝난다. 초상 아홉 장 중
-    하나가 카드 이름과 안 맞아 빠져도 워크플로는 초록이라, 로그를 안 보면
-    모르고 지나간다. 그래서 경고로 띄워 실행 목록에 뜨게 한다."""
+    등록 못 한 파일이 있으면 저장하지 않고 실패한다. 실행 요약에 원인을 모두 남긴다."""
     if not os.environ.get("GITHUB_ACTIONS"):
         return
     for f, why in unknown:
-        print("::warning file=%s::초상을 등록하지 못했다 — %s" % (f, why))
+        print("::error file=%s::초상을 등록하지 못했다 — %s" % (f, why))
     for f in ghosts:
         print("::warning::%s 가 img.json 에 적혀 있는데 파일이 없다%s"
               % (f, " (지웠다)" if pruned else " — --prune 으로 지운다"))

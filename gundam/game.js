@@ -350,48 +350,8 @@ var GH_=(function(){
   return m?{u:m[1],r:m[2]}:null;
 })();
 function mergeRepoFiles(names){
-  var key={},pools=[MECH,PILOT,SHIP,CREW],i,j;
-  for(i=0;i<pools.length;i++)for(j=0;j<pools[i].length;j++)
-    key[pools[i][j][0].replace(/ /g,"_")]=pools[i][j][0];
-  var added=0;
-  for(i=0;i<names.length;i++){
-    var n=names[i];
-    if(!/\.webp$/i.test(n))continue;
-    var m=/^(.+)_(m|f|casual(\d+)|extra(\d+))\.webp$/i.exec(n);
-    if(!m)continue;
-    /* 카드 이름과 칸 사이에 화풍 key 가 끼어 있으면 그 화풍 몫으로 보낸다 */
-    /* 성별을 먼저 읽고 나서 떼어낸다 — 떼고 나서 보면 늘 여성으로 읽힌다 */
-    var gCut=/_m$/i.test(m[1])?"m":"f";
-    var head=m[1].replace(/_[mf]$/i,""),sty="",si2;
-    for(si2=0;si2<ART_ORDER.length;si2++)
-      if(head.toLowerCase().slice(-ART_ORDER[si2].length-1)==="_"+ART_ORDER[si2]){
-        sty=ART_ORDER[si2]; head=head.slice(0,-sty.length-1); break;
-      }
-    var card=key[head.replace(/ /g,"_")]; if(!card)continue;
-    var src=IMG[card]||(IMG[card]={});
-    if(sty)src=(src.byStyle||(src.byStyle={}))[sty]||(src.byStyle[sty]={});
-    var kind=m[2].toLowerCase();
-    if(kind==="m"||kind==="f"){if(!src[kind]){src[kind]=n;added++} continue}
-    var a=kind.indexOf("casual")===0?"casual":"extra", idx=parseInt(m[3]||m[4],10)-1;
-    /* 일상컷·특별컷도 성별을 나눈다. 표시가 없던 예전 이름은 여성으로 친다 */
-    var g=gCut;
-    var box=src[a]; if(Object.prototype.toString.call(box)==="[object Array]")box=src[a]={f:box};
-    box=src[a]=box||{};
-    var lst=box[g]=box[g]||[];
-    if(lst.indexOf(n)<0){lst[idx>=0?idx:lst.length]=n;added++}
-  }
-  for(var c in IMG){
-    var bs=IMG[c].byStyle||{},list=[IMG[c]],bk;
-    for(bk in bs)list.push(bs[bk]);
-    list.forEach(function(e){["casual","extra"].forEach(function(a){
-      var box=e[a]; if(!box)return;
-      if(Object.prototype.toString.call(box)==="[object Array]")box=e[a]={f:box};
-      var left=0,g;
-      for(g in box){box[g]=box[g].filter(Boolean); if(box[g].length)left++; else delete box[g]}
-      if(!left)delete e[a];
-    })});
-  }
-  return added;
+  /* 신규 파일은 register-images.py 검증 후 img.json으로 반영한다. */
+  return 0;
 }
 /* 저장소 파일 목록으로 IMG 를 보강한다. IMG 를 받아 온 뒤에 돌아야 한다 */
 function refreshImages(){

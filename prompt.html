@@ -364,9 +364,10 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
           <input type="checkbox" id="onlyRemaining"><span>초상 미완성 기체만 보기</span>
         </label>
         <div class="field" style="margin-top:10px">
-          <label>Art Style <small>화풍 · 이 기체의 모든 그림에 적용</small></label>
+          <label>Art Style <small>화풍 · 지금 생성할 프롬프트에 적용</small></label>
           <select id="artStyle"></select>
           <div class="param-preview hidden" id="artNote"></div>
+          <div class="quick-note" id="imageFilenameGuide"></div>
         </div>
         <button id="applySource" class="primary apply" type="button">기체 선택 적용</button>
         <div class="quick-note">기본은 AUTO로 두고, 마음에 안 드는 요소만 선택하면 된다. 표정·앞뒷태는 패널별로 따로 잡을 수 있다.</div>
@@ -4341,7 +4342,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
   }
   function loadStyleForMech(){
     const el=document.getElementById('artStyle'); if(!el)return;
-    const rec=(STORE.style||{})[mechKey()] || ((BASE.style||{})[mechKey()]);
+    const rec=(STORE.stylePreferences||{})[mechKey()];
     el.value=rec&&ART_STYLES.some(x=>x[0]===rec)?rec:DEFAULT_STYLE;
     renderArtNote();
   }
@@ -4351,12 +4352,9 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
   function saveStyle(){
     if(!READY)return;
     const k=mechKey(); if(!k)return;
-    STORE.style=STORE.style||{};
-    /* 기본값과 같아도 적는다. 지우면 tkStyleKey() 가 기본값으로 흘려보내서,
-       판정해서 고른 값인지 안 골라서 흘러든 값인지 나중에 구분할 수 없다.
-       초상 배치를 넣는 쪽은 toolkit-data.json 에 손으로 적어 두는데, 지우는
-       쪽으로 두면 다음 내보내기가 그 손글씨를 조용히 지운다 */
-    STORE.style[k]=styleKey();
+    /* 생성 선택 기억은 과거 이미지 분류 대장과 분리한다. */
+    STORE.stylePreferences=STORE.stylePreferences||{};
+    STORE.stylePreferences[k]=styleKey();
     saveStore();
   }
   /* 화풍마다 실제로 그 결로 뽑힌 이미지를 하나씩 붙인다.
@@ -4377,6 +4375,11 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
   function renderArtNote(){
     const box=document.getElementById('artNote'); if(!box)return;
     const r=styleRow(), list=STYLE_SAMPLE[r[0]]||[];
+    const guide=document.getElementById('imageFilenameGuide');
+    if(guide){
+      const stem=(mechKey()||'카드명').replace(/ /g,'_')+'_'+styleKey();
+      guide.textContent='신규 파일명: '+stem+'_f.webp / '+stem+'_f_casual1.webp / '+stem+'_f_extra1.webp · 남성은 f→m, 추가 컷은 번호 증가. 기존 파일명과 겹치지 않게 저장.';
+    }
     box.classList.remove('hidden');
     const shots=list.map(f=>'<a class="st-shot" href="'+IMG_BASE+encodeURIComponent(f)+
       '" target="_blank" rel="noopener"><img loading="lazy" src="'+IMG_BASE+encodeURIComponent(f)+'" alt=""></a>').join('');
@@ -5111,8 +5114,21 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
   });
   document.getElementById('onlyRemaining').addEventListener('change',()=>{
     fillMechs(mechPicker.value);updateSelInfo();loadAnthroForMech();});
-  document.getElementById('exportStore').addEventListener('click',()=>{
+  document.getElementById('exportStore').addEventListener('click',async()=>{
     const box=document.getElementById('exportBox');
+    /* 열린 탭의 낡은 BASE도 과거 대장을 되돌리지 않도록 내보내기 직전에 읽는다. */
+    let archiveStyle;
+    try{
+      const response=await fetch(DATA_URL,{cache:'no-store'});
+      if(!response.ok)throw new Error('기록을 읽을 수 없다');
+      const latest=await response.json();
+      if(!latest||!latest.mechs)throw new Error('기록 형식 오류');
+      archiveStyle=Object.assign({},latest.style||{});
+    }catch(e){
+      box.value='';box.classList.add('hidden');
+      setStatus('statusAnthro','저장소 기록을 확인하지 못해 내보내기를 중단했다. 연결 후 다시 시도해라','warn');
+      return;
+    }
     /* 빈 값을 걷어내고 내보낸다. 파일이 몇 배로 짧아지고 눈으로 읽을 수 있다 */
     const trim=o=>{
       if(!o)return null;
@@ -5140,10 +5156,8 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
       /* prev 는 이 브라우저 안에서만 쓰는 되돌리기용이라 파일에 넣지 않는다 */
       merged.mechs[k]=o;
     });
-    merged.style={};
-    Object.keys(Object.assign({},BASE.style||{},STORE.style||{})).forEach(k=>{
-      const v=(STORE.style||{})[k]||(BASE.style||{})[k];
-      if(v)merged.style[k]=v;});
+    /* 과거 대장은 읽기 전용 보존. 낡은 브라우저 분류/현재 선택을 내보내지 않는다. */
+    merged.style=archiveStyle;
     const uk={};Object.keys(BASE.used||{}).forEach(k=>uk[k]=1);Object.keys(STORE.used||{}).forEach(k=>uk[k]=1);
     Object.keys(uk).forEach(k=>{const u=usedOf(k);if(u.length)merged.used[k]=u;});
     box.value=JSON.stringify(merged,null,1);

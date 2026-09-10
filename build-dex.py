@@ -373,37 +373,8 @@ var LIST_KEY="dex_filelist_v1", LIST_TTL=6e5;   /* 10분 */
 
 function norm(s){return s.replace(/ /g,"_")}
 function mergeFiles(names){
-  var key={},t,i;                                /* 정규화 카드명 → 실제 카드명 */
-  for(t in POOL)for(i=0;i<POOL[t].length;i++)key[norm(POOL[t][i][0])]=POOL[t][i][0];
-  var added=0;
-  for(i=0;i<names.length;i++){
-    var n=names[i];
-    if(!/\.webp$/i.test(n))continue;
-    var m=/^(.+)_(m|f|casual(\d+)|extra(\d+))\.webp$/i.exec(n);
-    if(!m)continue;
-    var head=m[1].replace(/_[mf]$/i,"");
-    var card=key[norm(head)]; if(!card)continue;
-    var s=IMG[card]||(IMG[card]={});
-    var kind=m[2].toLowerCase();
-    if(kind==="m"||kind==="f"){ if(!s[kind]){s[kind]=n;added++} continue}
-    var arr=kind.indexOf("casual")===0?"casual":"extra";
-    var idx=parseInt(m[3]||m[4],10)-1;
-    /* 일상컷·특별컷도 성별을 나눈다. 표시가 없던 예전 이름은 여성으로 친다 */
-    var g=/_m$/i.test(m[1])?"m":"f";
-    var box=s[arr]; if(Object.prototype.toString.call(box)==="[object Array]")box=s[arr]={f:box};
-    box=s[arr]=box||{};
-    var lst=box[g]=box[g]||[];
-    if(lst.indexOf(n)<0){lst[idx>=0?idx:lst.length]=n;added++}
-  }
-  /* 빈 칸 정리 후 파일명 순으로 */
-  for(var c in IMG)["casual","extra"].forEach(function(a){
-    var box=IMG[c][a]; if(!box)return;
-    if(Object.prototype.toString.call(box)==="[object Array]")box=IMG[c][a]={f:box};
-    var left=0,g;
-    for(g in box){box[g]=box[g].filter(Boolean); if(box[g].length)left++; else delete box[g]}
-    if(!left)delete IMG[c][a];
-  });
-  return added;
+  /* 신규 파일은 register-images.py 검증 후 img.json으로 반영한다. */
+  return 0;
 }
 function loadFileList(force){
   if(!GH)return Promise.resolve(0);
@@ -429,7 +400,7 @@ function esc(s){return String(s).replace(/[&<>"]/g,function(x){
   return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[x]})}
 /* 한 기체가 여러 화풍 이미지를 가질 수 있다.
    기본 몫은 IMG[이름] 그대로(기존 자료 무변화), 추가 화풍은 IMG[이름].byStyle[화풍키]에 얹는다.
-   기본 몫의 화풍이 무엇인지는 툴킷 기록(tkStyleKey)이 알고 있다.
+   기본 몫은 생성 화풍을 확인할 수 없는 과거 이미지다. 로컬 설정으로 분류하지 않는다.
 
    처음부터 다른 화풍으로만 뽑은 기체는 기본 몫이 비어 있고 화풍 몫에만 그림이 있다.
    예전에는 그럴 때 기본 몫을 그대로 돌려줘서 도감이 빈칸을 띄웠다.
@@ -440,7 +411,7 @@ function bucketOf(name,key){
   var bs=s.byStyle||{},k;
   if(key){
     if(hasPic(bs[key]))return bs[key];
-    /* 기본 몫에는 화풍 이름이 안 붙어 있다. 툴킷 기록과 맞을 때만 그 화풍으로 친다 */
+    /* 기본 몫은 화풍 미상 필터에서만 선택한다. */
     return (key===tkStyleKey(name)&&hasPic(s))?s:null;
   }
   if(hasPic(s))return s;
@@ -517,12 +488,12 @@ function tkUsed(name){
   return Object.keys(m).map(function(k){
     return (TK_CAT[k]||k)+(m[k]>1?" "+m[k]+"회":"")});
 }
-/* 화풍 — 기본값(세미리얼 시네마틱)은 기록에 안 남으므로 없으면 기본값으로 본다 */
-var TK_ART={cinematic_semi_real:"세미리얼 시네마틱",game_keyart:"게임 키아트 2.5D",glossy_kr_game:"한국형 글로시 게임 일러스트",game_cgi:"게임 시네마틱 CGI",semi_real_paint:"세미리얼 유화",
+/* 과거 기본 자리는 화풍 미상. TK의 과거 화풍 기록은 표시 근거로 사용하지 않는다. */
+var TK_ART={unknown:"화풍 미상",cinematic_semi_real:"세미리얼 시네마틱",game_keyart:"게임 키아트 2.5D",glossy_kr_game:"한국형 글로시 게임 일러스트",game_cgi:"게임 시네마틱 CGI",semi_real_paint:"세미리얼 유화",
   photoreal:"사진풍",anime_illust:"애니 일러스트",cel_anime:"셀화 애니",
   painterly:"회화적 컨셉아트",retro_anime:"레트로 애니",ink_wash:"수묵 담채"};
 function tkStyleKey(name){
-  return TK.localStyle[name]||TK.baseStyle[name]||"cinematic_semi_real";
+  return "unknown";
 }
 /* 그림이 실제로 있는 화풍만. 기본 몫이 비어 있으면 기본 화풍은 목록에 안 넣는다 */
 function tkStyleKeys(name){
