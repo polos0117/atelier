@@ -1,0 +1,398 @@
+{
+  "알트론_건담_cinematic_semi_real_f.webp": {
+    "card": "알트론 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "6b2740bea647654767ae7fad19271b2da02e57da7775843d8c3e04da20fce2c2",
+    "prompt": "docs/generation/altron/01-cinematic-anthro.txt",
+    "manifest": "docs/generation/altron/manifest.json"
+  },
+  "알트론_건담_cinematic_semi_real_f_casual1.webp": {
+    "card": "알트론 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "5767972346d16c7d5e83ed7cf7adb881222f885d956b6dd8bc5910c39cf06deb",
+    "prompt": "docs/generation/altron/02-cinematic-casual.txt",
+    "manifest": "docs/generation/altron/manifest.json"
+  },
+  "알트론_건담_ink_wash_f.webp": {
+    "card": "알트론 건담",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "e9d384a4d3ef09340078114e9fc737b7d72c899e9d3a2724c20d23a1fa060abc",
+    "prompt": "docs/generation/altron/03-ink-anthro.txt",
+    "manifest": "docs/generation/altron/manifest.json"
+  },
+  "알트론_건담_ink_wash_f_casual1.webp": {
+    "card": "알트론 건담",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "d179d66ac475cb14f7211dd5bc25c04e2a99e871c8be9bfafd0c9b6ff3732c0c",
+    "prompt": "docs/generation/altron/04-ink-casual.txt",
+    "manifest": "docs/generation/altron/manifest.json"
+  },
+  "건담_발바토스_루프스_cinematic_semi_real_f.webp": {
+    "card": "건담 발바토스 루프스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "e3c3e5c8a57f91b952b7da770b59572803417d39783d70ca169b3fb8e128b3d2",
+    "prompt": "docs/generation/barbatos-lupus/01-cinematic-anthro.txt",
+    "manifest": "docs/generation/barbatos-lupus/manifest.json"
+  },
+  "건담_발바토스_루프스_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 발바토스 루프스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "64e1e89e9b7f3c8fd9e46c06f4c790e99564b892906c6b18cc03e0214f68f3d2",
+    "prompt": "docs/generation/barbatos-lupus/02-cinematic-casual.txt",
+    "manifest": "docs/generation/barbatos-lupus/manifest.json"
+  },
+  "건담_발바토스_루프스_anime_illust_f.webp": {
+    "card": "건담 발바토스 루프스",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "de9c60e62487a37e385fd54819a3a33d59c38af0b964cc3d8779c231e519aa5b",
+    "prompt": "docs/generation/barbatos-lupus/03-anime-anthro.txt",
+    "manifest": "docs/generation/barbatos-lupus/manifest.json"
+  },
+  "건담_발바토스_루프스_anime_illust_f_casual1.webp": {
+    "card": "건담 발바토스 루프스",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "4b0945bedd633d9c141eefebcd0d08934a143792c70c06ba29f5004d983da437",
+    "prompt": "docs/generation/barbatos-lupus/04-anime-casual.txt",
+    "manifest": "docs/generation/barbatos-lupus/manifest.json"
+  },
+  "건담_데스사이즈_헬_cinematic_semi_real_f.webp": {
+    "card": "건담 데스사이즈 헬",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "925e2b4e2acf9dcf3d58c8353dcc3e3e27e1188403fffb1096fadf56f8ee384e",
+    "prompt": "docs/generation/deathscythe-hell/01-cinematic-anthro.txt",
+    "manifest": "docs/generation/deathscythe-hell/manifest.json"
+  },
+  "건담_데스사이즈_헬_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 데스사이즈 헬",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "23040de00868272d4dd44868e2953eb9b6dc4dd32465c66cee1ce8b5a5f5e761",
+    "prompt": "docs/generation/deathscythe-hell/02-cinematic-casual.txt",
+    "manifest": "docs/generation/deathscythe-hell/manifest.json"
+  },
+  "건담_데스사이즈_헬_game_keyart_f.webp": {
+    "card": "건담 데스사이즈 헬",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "e85193575bd7504cf6a514e414e33a0db16f0c874cdd2d312ecf6e65e5aad3be",
+    "prompt": "docs/generation/deathscythe-hell/03-keyart-anthro.txt",
+    "manifest": "docs/generation/deathscythe-hell/manifest.json"
+  },
+  "건담_데스사이즈_헬_game_keyart_f_casual1.webp": {
+    "card": "건담 데스사이즈 헬",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "a2ba7aa2989759c298fde1b844991a15e9f7f7e199aa95f7d0319e3c6eb8be21",
+    "prompt": "docs/generation/deathscythe-hell/04-keyart-casual.txt",
+    "manifest": "docs/generation/deathscythe-hell/manifest.json"
+  },
+  "메리크리우스_game_keyart_f_casual1.webp": {
+    "card": "메리크리우스",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "535b14e68d2e6e05c8036a746cebb4eb17246f213fa8cf523d19c6424b133021",
+    "prompt": null,
+    "manifest": "docs/generation/mercurius-recovery/manifest.json"
+  },
+  "메리크리우스_game_keyart_f.webp": {
+    "card": "메리크리우스",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "019a4d0f9abe0472fb69ae8f8798f0aa919abde8fd24bc569ba6313f60733e26",
+    "prompt": null,
+    "manifest": "docs/generation/mercurius-recovery/manifest.json"
+  },
+  "메리크리우스_cinematic_semi_real_f_casual1.webp": {
+    "card": "메리크리우스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "3a203340821e612b6a21ee4ccdec8056e8e157ffdf7af182fbd58027d0c52bbe",
+    "prompt": null,
+    "manifest": "docs/generation/mercurius-recovery/manifest.json"
+  },
+  "메리크리우스_cinematic_semi_real_f.webp": {
+    "card": "메리크리우스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "7c0f95252dce23915e090138a82d8278ee22362f700b5cfdc3fafb17ab52f93d",
+    "prompt": null,
+    "manifest": "docs/generation/mercurius-recovery/manifest.json"
+  },
+  "샤이닝_건담_cinematic_semi_real_f.webp": {
+    "card": "샤이닝 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "922c47936f68db7f4f5ea32eb62079b0a000a747464664a8599d070a373d44e9",
+    "prompt": "docs/generation/next-five/01-shining-cinematic-anthro.txt",
+    "manifest": "docs/generation/next-five/manifest.json"
+  },
+  "샤이닝_건담_cinematic_semi_real_f_casual1.webp": {
+    "card": "샤이닝 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "786603e2a861d4ae8562e9e1358a30733f4dcb5c18a32ad5366cb712a0eacf28",
+    "prompt": "docs/generation/next-five/02-shining-cinematic-casual.txt",
+    "manifest": "docs/generation/next-five/manifest.json"
+  },
+  "샤이닝_건담_cel_anime_f.webp": {
+    "card": "샤이닝 건담",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "e459f3f1c34981272b91c17f57069b69cc904caa48de7e7ee9c129262f37d4b0",
+    "prompt": "docs/generation/next-five/03-shining-cel-anthro.txt",
+    "manifest": "docs/generation/next-five/manifest.json"
+  },
+  "샤이닝_건담_cel_anime_f_casual1.webp": {
+    "card": "샤이닝 건담",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "b33c60f57cb38f9ca5b03f6fb661a2a413c086b61026296e8290f082cf152539",
+    "prompt": "docs/generation/next-five/04-shining-cel-casual.txt",
+    "manifest": "docs/generation/next-five/manifest.json"
+  },
+  "건담_에어마스터_cinematic_semi_real_f.webp": {
+    "card": "건담 에어마스터",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "7dc8aba440339bdc8470cd01b358246bbc28247b994c515e745d7c82e1b75ff3",
+    "prompt": "docs/generation/next-five/05-airmaster-cinematic-anthro.txt",
+    "manifest": "docs/generation/next-five/manifest.json"
+  },
+  "건담_에어마스터_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 에어마스터",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "19ed321edf0a72519806b3b8bd812fd638e4d8abecb088061367a94f35114316",
+    "prompt": "docs/generation/next-five/06-airmaster-cinematic-casual.txt",
+    "manifest": "docs/generation/next-five/manifest.json"
+  },
+  "건담_에어마스터_retro_anime_f.webp": {
+    "card": "건담 에어마스터",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "f3011b10d5e1f518e4a07a8bf7902339a6adeba7f5446ac0a8d8e8886e622d67",
+    "prompt": "docs/generation/next-five/07-airmaster-retro-anthro.txt",
+    "manifest": "docs/generation/next-five/manifest.json"
+  },
+  "건담_에어마스터_retro_anime_f_casual1.webp": {
+    "card": "건담 에어마스터",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "f133879153df241bb5cfb26db1f9473d4dcb6220448a5a2f67f67d2ef4f74495",
+    "prompt": "docs/generation/next-five/08-airmaster-retro-casual.txt",
+    "manifest": "docs/generation/next-five/manifest.json"
+  },
+  "건담_레길레스_cinematic_semi_real_f.webp": {
+    "card": "건담 레길레스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "4a06da9b47872557904d205b76bc058f17acb4ec1e88399f6078c745100fd5a9",
+    "prompt": "docs/generation/next-five/09-legilis-cinematic-anthro.txt",
+    "manifest": "docs/generation/next-five/manifest.json"
+  },
+  "건담_레길레스_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 레길레스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "b1f121839cdec433e60d19b9a97c19d57bb6841a1304b5de5eed9d5aae9b3dfd",
+    "prompt": "docs/generation/next-five/10-legilis-cinematic-casual.txt",
+    "manifest": "docs/generation/next-five/manifest.json"
+  },
+  "건담_레길레스_glossy_kr_game_f.webp": {
+    "card": "건담 레길레스",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "58a4e69f106daa1bfc922147c727160627890fb77e89613e076e9440f6065fe7",
+    "prompt": "docs/generation/next-five/11-legilis-glossy-anthro.txt",
+    "manifest": "docs/generation/next-five/manifest.json"
+  },
+  "건담_레길레스_glossy_kr_game_f_casual1.webp": {
+    "card": "건담 레길레스",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "e2aba7c4f0c8d2a7ecf1ff296bdf10cfecdeb9ef1cdcd92ae3b09d18578b308c",
+    "prompt": "docs/generation/next-five/12-legilis-glossy-casual.txt",
+    "manifest": "docs/generation/next-five/manifest.json"
+  },
+  "스사노오_cinematic_semi_real_f.webp": {
+    "card": "스사노오",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "b7f5ecc5db778839c1a492ae8bf22fee8710b75c8906e61aad731b2181c0a344",
+    "prompt": "docs/generation/next-five/13-susanowo-cinematic-anthro.txt",
+    "manifest": "docs/generation/next-five/manifest.json"
+  },
+  "스사노오_cinematic_semi_real_f_casual1.webp": {
+    "card": "스사노오",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "b02473723feb8986cf92ffce42cf1e2a88e6eec68ff62cfbbc8ae297b11a0b97",
+    "prompt": "docs/generation/next-five/14-susanowo-cinematic-casual.txt",
+    "manifest": "docs/generation/next-five/manifest.json"
+  },
+  "스사노오_ink_wash_f.webp": {
+    "card": "스사노오",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "282b072f99a50f6b9d56f88ed272c09e4cfde534a013506ae38bfbd1ebb44318",
+    "prompt": "docs/generation/next-five/15-susanowo-ink-anthro.txt",
+    "manifest": "docs/generation/next-five/manifest.json"
+  },
+  "스사노오_ink_wash_f_casual1.webp": {
+    "card": "스사노오",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "b00160346cb34c17dd90ebf43596e48e659afa97631808e5d4c83eb89c278825",
+    "prompt": "docs/generation/next-five/16-susanowo-ink-casual.txt",
+    "manifest": "docs/generation/next-five/manifest.json"
+  },
+  "파라스_아테네_cinematic_semi_real_f.webp": {
+    "card": "파라스 아테네",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "5f7907a0024ee35d804add2debaa65714222890cda70cefb8c329a9920333965",
+    "prompt": "docs/generation/next-five/17-pallas-cinematic-anthro.txt",
+    "manifest": "docs/generation/next-five/manifest.json"
+  },
+  "파라스_아테네_cinematic_semi_real_f_casual1.webp": {
+    "card": "파라스 아테네",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "e5f80a496e91d2d4a6dc7fddd2edf0484317f1c899597330a4b6ff3efebe19a8",
+    "prompt": "docs/generation/next-five/18-pallas-cinematic-casual.txt",
+    "manifest": "docs/generation/next-five/manifest.json"
+  },
+  "파라스_아테네_painterly_f.webp": {
+    "card": "파라스 아테네",
+    "style": "painterly",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "42f6314839df5aed00e495b5a0af45d3853730bd6ee4a67dd6916cf5226a11ad",
+    "prompt": "docs/generation/next-five/19-pallas-painterly-anthro.txt",
+    "manifest": "docs/generation/next-five/manifest.json"
+  },
+  "파라스_아테네_painterly_f_casual1.webp": {
+    "card": "파라스 아테네",
+    "style": "painterly",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "18a2999f6eb7bf440514e628135fae3a4bea0a0755fecd0276d9d7a2e9afb350",
+    "prompt": "docs/generation/next-five/20-pallas-painterly-casual.txt",
+    "manifest": "docs/generation/next-five/manifest.json"
+  },
+  "노벨_건담_cinematic_semi_real_f.webp": {
+    "card": "노벨 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "0900d60548e1b977633c92f3f5d50fb910f35be4e64f869e1bfbe96e9b18138a",
+    "prompt": "docs/generation/nobel/01-cinematic-anthro.txt",
+    "manifest": "docs/generation/nobel/manifest.json"
+  },
+  "노벨_건담_cinematic_semi_real_f_casual1.webp": {
+    "card": "노벨 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "0367268ca0428528b44606dfb7ee0c6bcfebe95f33c34956a82b5a4e6d6f97de",
+    "prompt": "docs/generation/nobel/02-cinematic-casual.txt",
+    "manifest": "docs/generation/nobel/manifest.json"
+  },
+  "노벨_건담_anime_illust_f.webp": {
+    "card": "노벨 건담",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "6aee3c85dc08d7f1393d77544c6089dc27ff4bc044e6bb55853a61b9cb34c391",
+    "prompt": "docs/generation/nobel/03-anime-anthro.txt",
+    "manifest": "docs/generation/nobel/manifest.json"
+  },
+  "노벨_건담_anime_illust_f_casual1.webp": {
+    "card": "노벨 건담",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "08dde5cd92da36cc8624ebd7853ea1b5c1339eecf7eb0e0693fed3e044f6082b",
+    "prompt": "docs/generation/nobel/04-anime-casual.txt",
+    "manifest": "docs/generation/nobel/manifest.json"
+  },
+  "바이에이트_cinematic_semi_real_f.webp": {
+    "card": "바이에이트",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "1c91146434d99c08ab87018be81a7f72e44718047735ff1d1704edcb7d7f4300",
+    "prompt": "docs/generation/vayeate/01-cinematic-anthro.txt",
+    "manifest": "docs/generation/vayeate/manifest.json"
+  },
+  "바이에이트_cinematic_semi_real_f_casual1.webp": {
+    "card": "바이에이트",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "5dbb7ec7deb90cc9bbfddf49a8dfa1e6142943e7c2bb2469681dd21fd486270c",
+    "prompt": "docs/generation/vayeate/02-cinematic-casual.txt",
+    "manifest": "docs/generation/vayeate/manifest.json"
+  },
+  "바이에이트_cel_anime_f.webp": {
+    "card": "바이에이트",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "78811857395d458e398b1a37f89b473c9555df9dd23bcfecdb57c46d8057117f",
+    "prompt": "docs/generation/vayeate/03-cel-anthro.txt",
+    "manifest": "docs/generation/vayeate/manifest.json"
+  },
+  "바이에이트_cel_anime_f_casual1.webp": {
+    "card": "바이에이트",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "95053b964382bbf4140180a65d4dd5ba2b94d60cc472833fce862b925ae6792a",
+    "prompt": "docs/generation/vayeate/04-cel-casual.txt",
+    "manifest": "docs/generation/vayeate/manifest.json"
+  }
+}

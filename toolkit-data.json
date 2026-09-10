@@ -1020,6 +1020,292 @@
       },
       "g": "female",
       "t": 1788973628607
+    },
+    "건담 데스사이즈 헬": {
+      "female": {
+        "sel": {},
+        "sp": "Use the attached anthropomorphized image as the identity and equipment reference. Same clearly adult 29-year-old Japanese woman: narrow heart-shaped face, long violet eyes, straight slender nose, wide mouth with a thin upper lip and fuller lower lip, cool pale skin, black chin-length asymmetric bob with muted violet sheen tucked behind one ear, tall slender athletic physique. Original character, not a pilot likeness. Preserve Gundam Deathscythe Hell XXXG-01D2 TV-series design, black and navy armor with white limbs, red accents, yellow V-fin, segmented mechanical active cloak, one green twin beam scythe and compact buster shield. Preserve the reference mechanical structures while rendering all surfaces in the selected game key-art 2.5D style. Do not turn the cloak into organic wings or fabric. Pose, viewpoint and staging independently AUTO; the reference pose is not locked. Full figure, both feet and all equipment fully within the frame with clear margins."
+      },
+      "g": "female",
+      "t": 1789031075465
+    },
+    "건담 레길레스": {
+      "female": {
+        "sel": {},
+        "sp": "Clearly adult woman aged 32, South Asian facial features, medium brown skin, rounded face, full lips, softly arched brows, amber eyes, silver-white medium wavy bob. Tall graceful physique. Original identity distinct from the pilot. Pose and viewpoint AUTO."
+      },
+      "g": "female",
+      "t": 1789018398686
+    },
+    "건담 발바토스 루프스": {
+      "female": {
+        "sel": {},
+        "sp": "Use the attached anthropomorphized image as the absolute human identity and equipment reference. Same clearly adult 31-year-old Korean woman with broad diamond-shaped face, defined cheekbones, strong gently squared jaw, amber almond eyes, low straight nose bridge with rounded tip, full wide lips and warm medium skin. Same ivory-silver medium layered shag haircut, tall powerfully athletic feminine physique, broad shoulders and strong thighs. Preserve Gundam Barbatos Lupus ASW-G-08 identity, white armor, red shoulders, blue chest, yellow vents and V-fin, exposed dark frame, backpack, one large solid-metal sword mace and paired arm-mounted guns. No Lupus Rex tail, no oversized claws, no wings, no pilot resemblance. Render the entire figure and equipment in the selected anime illustration style without copying the reference photographic or painterly surface treatment. Pose, viewpoint and staging independently AUTO; reference pose is not locked. Keep all equipment and both feet inside the frame with generous margins."
+      },
+      "g": "female",
+      "t": 1789032552737
+    },
+    "건담 쓰로네 드라이": {
+      "female": {
+        "sel": {
+          "apparent age": "30s",
+          "armor coverage": "open",
+          "bangs": "side-swept bangs",
+          "body type": "slender",
+          "eye color": "purple",
+          "eye shape": "drooping",
+          "face shape": "elongated",
+          "facial character": "refined",
+          "facial ethnicity": "Japanese",
+          "hair color": "crimson",
+          "hair length": "short",
+          "hairstyle": "finger waves",
+          "height impression": "tall",
+          "human-mechanical balance": "more human",
+          "leg proportion": "long",
+          "shoulder build": "narrow",
+          "torso / chest build": "full"
+        },
+        "sp": "Clearly adult woman aged 36. Deep wine-crimson short finger-wave hair, matching violet eyes, mature elongated face with long elegant nose and small beauty mark beneath left eye. Preserve dark red white gray armor and huge asymmetric GN particle dispersal equipment. Never resemble Nena Trinity or any pilot."
+      },
+      "g": "female",
+      "t": 1788990733099
+    },
+    "건담 에어리얼": {
+      "female": {
+        "sel": {
+          "expression": "stoic",
+          "eye color": "black",
+          "eye shape": "sharp",
+          "eye size": "small",
+          "eye tilt": "upturned outer corners",
+          "face length": "long",
+          "face shape": "sharp",
+          "face width": "wide",
+          "facial character": "sleepy-eyed",
+          "jaw & chin": "balanced jawline",
+          "lips": "thin lips",
+          "nose character": "balanced nose",
+          "second eye color": "gold",
+          "skin tone": "light"
+        }
+      },
+      "g": "female",
+      "t": 1788966107835
+    },
+    "건담 에어마스터": {
+      "female": {
+        "sel": {},
+        "sp": "Clearly adult woman aged 27, Mediterranean facial features, lean athletic tall build, swept-back short scarlet hair, emerald eyes, long face with a prominent straight nose and defined jaw. Original identity distinct from the pilot. Pose and viewpoint AUTO."
+      },
+      "g": "female",
+      "t": 1789018154925
+    },
+    "건담X 디바이더": {
+      "female": {
+        "sel": {
+          "apparent age": "30s",
+          "armor coverage": "open",
+          "bangs": "side-swept bangs",
+          "body type": "hourglass",
+          "eye color": "teal",
+          "eye shape": "narrow",
+          "face shape": "oval",
+          "facial character": "cool",
+          "facial ethnicity": "Korean",
+          "hair color": "silver",
+          "hair length": "medium",
+          "hairstyle": "layered",
+          "height impression": "very tall",
+          "human-mechanical balance": "more human",
+          "leg proportion": "very long",
+          "shoulder build": "average",
+          "torso / chest build": "full bust"
+        },
+        "sp": "Clearly adult woman aged 34. Silver layered shoulder-length hair with muted indigo underside, matching teal eyes. Straight slender nose and defined cupid bow. Preserve white navy armor, green chest sensor, distinctive Divider shield and correct backpack; not the pilot."
+      },
+      "g": "female",
+      "t": 1788990733041
+    },
+    "노벨 건담": {
+      "female": {
+        "sel": {},
+        "sp": "Clearly adult woman aged 31, Korean facial features, compact softly rounded face, broad cheekbones, gently downturned almond eyes, amber irises, a short straight nose and a distinct fuller lower lip. Honey-blonde long half-up hair. Athletic feminine figure of average height. Original adult identity, not the canonical pilot. Preserve Nobel Gundam GF13-050NSW mechanical sailor-collar silhouette, white armor with blue and red accents, yellow head crest and recognizable beam ribbon equipment. Face uncovered. Pose and viewpoint AUTO, with generous space above the crest and below the feet. The attached anthropomorphization is the identity reference: keep the same facial geometry, hair and physique. Reinterpret the rendering fully in the selected art style. Choose pose and viewpoint independently in AUTO; the reference pose is not an identity constraint."
+      },
+      "g": "female",
+      "t": 1789025655478
+    },
+    "드래곤 건담": {
+      "female": {
+        "sel": {
+          "apparent age": "20s",
+          "armor coverage": "open",
+          "bangs": "choppy bangs",
+          "body type": "toned",
+          "eye color": "brown",
+          "eye shape": "upturned",
+          "face shape": "softly rounded",
+          "facial character": "friendly",
+          "facial ethnicity": "Southeast Asian",
+          "hair color": "green",
+          "hair length": "long",
+          "hairstyle": "twin braids",
+          "height impression": "average",
+          "human-mechanical balance": "more human",
+          "leg proportion": "long",
+          "shoulder build": "average",
+          "torso / chest build": "balanced",
+          "waist / hip silhouette": "curvy"
+        },
+        "sp": "Clearly adult woman aged 28, warm medium skin, dark emerald twin braids, matching warm brown eyes. Rounded cheeks with mature adult facial proportions and broad natural smile. Preserve green and gold dragon-shaped external gauntlets and source equipment, exactly two biological arms; not the pilot."
+      },
+      "g": "female",
+      "t": 1788990732984
+    },
+    "메리크리우스": {
+      "female": {
+        "sel": {},
+        "sp": "Clearly adult woman aged 34, Japanese facial features, angular square face with a broad jaw, narrow level-set eyes, cool gray irises, a prominent straight nose, wide lips with a defined cupid bow. Silver-white chin-length blunt bob with a deep side part and both eyes visible. Tall athletic feminine build, strong shoulders. Original identity, not a pilot likeness. Preserve Mercurius OZ-13MSX2 red rounded armor, black joints, yellow accents, distinctive circular Planet Defensor units and compact beam gun with crash shield. Do not replace the defensive equipment with wings or a long artillery cannon. Human face fully visible. Pose and viewpoint AUTO; full silhouette and equipment comfortably inside the frame. Equipment correction: clearly show the ten compact circular Planet Defensor discs deployed in an orderly arc around and behind the upper body, separate from the handheld crash shield. The discs are red rimmed dark mechanical defense generators, not fantasy halos. Their controlled deployment is canonical equipment, not accidentally floating armor. Keep the same adult human face, silver bob, red armor and physique as the attached image. Replace the oversized rifle with the compact short beam gun. Preserve the identity and corrected equipment in the attached reference, but apply the selected 2.5D game key-art style throughout. Pose and viewpoint are independently AUTO; do not treat the reference pose as locked."
+      },
+      "g": "female",
+      "t": 1789027157961
+    },
+    "바우": {
+      "female": {
+        "sel": {
+          "apparent age": "30s",
+          "armor coverage": "balanced",
+          "bangs": "asymmetric bangs",
+          "body type": "statuesque",
+          "eye color": "gold",
+          "eye shape": "sharp",
+          "face shape": "heart-shaped",
+          "facial character": "sharp",
+          "facial ethnicity": "Central Asian",
+          "hair color": "orange",
+          "hair length": "short",
+          "hairstyle": "asymmetric cut",
+          "height impression": "very tall",
+          "human-mechanical balance": "more human",
+          "leg proportion": "long",
+          "shoulder build": "broad",
+          "torso / chest build": "full bust",
+          "waist / hip silhouette": "hourglass"
+        },
+        "sp": "Clearly adult woman aged 33. Burnt copper asymmetric short hair, matching golden eyes, defined cheekbones and full lips. Preserve the official orange-red black and yellow armor, pointed shoulder silhouettes, dorsal structures and mechanical lower body. Uncovered human face, original identity, not the pilot. Equipment follows exactly the visible official reference."
+      },
+      "g": "female",
+      "t": 1789017471451
+    },
+    "바이에이트": {
+      "female": {
+        "sel": {},
+        "sp": "Clearly adult woman in her late twenties, Japanese facial features, elongated oval face, level almond-shaped eyes, amber irises, straight medium-width nose and defined wide lips. Deep navy blue long hair in a single low braid with side-parted bangs. Tall, toned feminine physique. Unique original identity, not a pilot likeness. Preserve the blue Vayeate OZ-13MSX1 armor, its large beam cannon and backpack power generator. Pose, viewpoint and staging AUTO; complete figure and equipment inside the frame. Use the attached anthropomorphized image as the identity and equipment reference. Preserve the same woman and mechanical design, translating all surfaces into the selected cel-anime style. Pose and viewpoint independently AUTO, not locked to the reference."
+      },
+      "g": "female",
+      "t": 1789027415023
+    },
+    "샤이닝 건담": {
+      "female": {
+        "sel": {},
+        "sp": "Clearly adult woman aged 29, Japanese facial features, athletic build, blue-black hair in a high ponytail, warm brown eyes, strong oval face. Original person distinct from the pilot. Preserve Shining Gundam identity. Pose and viewpoint AUTO."
+      },
+      "g": "female",
+      "t": 1789024814385
+    },
+    "셴롱 건담": {
+      "female": {
+        "sel": {
+          "apparent age": "30s",
+          "armor coverage": "open",
+          "bangs": "parted bangs",
+          "body type": "athletic",
+          "eye color": "amber",
+          "eye shape": "almond",
+          "face shape": "angular",
+          "facial character": "stoic",
+          "facial ethnicity": "Chinese",
+          "hair color": "navy",
+          "hair length": "long",
+          "hairstyle": "high ponytail",
+          "height impression": "tall",
+          "human-mechanical balance": "more human",
+          "leg proportion": "long",
+          "shoulder build": "broad",
+          "torso / chest build": "full",
+          "waist / hip silhouette": "athletic"
+        },
+        "sp": "Clearly adult woman aged 32. Deep navy high ponytail, both eyes amber. Distinct angular jaw, straight brows and fuller lower lip. Original human identity, not the pilot. Preserve official white blue red armor, green circular shoulder sensors, white-blue right dragon-fang forearm assembly, blue-yellow round left shield and polearm. Exactly two biological arms."
+      },
+      "g": "female",
+      "t": 1788990732889
+    },
+    "스사노오": {
+      "female": {
+        "sel": {},
+        "sp": "Clearly adult woman aged 38, East Asian facial features, sharp rectangular face, narrow eyes, black irises, strong jaw, long black hair in a low loose braid. Compact muscular physique. Original identity distinct from the pilot, face uncovered. Pose and viewpoint AUTO."
+      },
+      "g": "female",
+      "t": 1789018599803
+    },
+    "알트론 건담": {
+      "female": {
+        "sel": {},
+        "sp": "Clearly adult woman aged 32 with Korean facial features, a broad softly rectangular face, distinct cheekbones, medium-sized slightly upturned eyes, jade-green irises, a short straight nose with a rounded tip, and a full lower lip. Dark emerald hair in a high coiled bun with a single long loose side lock, both eyes unobstructed. Tall athletic feminine build and strong shoulders. Original identity, not any pilot likeness. Altron Gundam XXXG-01S2 from the original Gundam Wing TV series, not the Endless Waltz redesign. Use the attached anthropomorphized image to preserve the same human identity and mechanical design: green-and-white armor, yellow chest vents and V-fin ornament, red accents, two dragon-fang forearm assemblies, backpack wing panels and twin beam cannon structure, one double-ended beam trident. Translate the whole image into the selected ink-wash rendering, retaining distinctive equipment shapes without photoreal material texture. The reference pose and viewpoint are not locked; pose, viewpoint and staging independently AUTO. Full figure and ALL equipment inside the frame with generous margins."
+      },
+      "g": "female",
+      "t": 1789030291768
+    },
+    "퀸 만사": {
+      "female": {
+        "sel": {
+          "apparent age": "30s",
+          "armor coverage": "open",
+          "bangs": "none",
+          "body type": "statuesque",
+          "expression": "calm",
+          "eye color": "gold",
+          "eye shape": "narrow",
+          "eye size": "medium",
+          "eye tilt": "upturned outer corners",
+          "face length": "long",
+          "face shape": "angular",
+          "face width": "medium",
+          "facial character": "regal",
+          "hair accent": "neatly kept, no stray strands",
+          "hair color": "silver",
+          "hair length": "medium",
+          "hair texture": "fine",
+          "hair volume": "moderate",
+          "hairstyle": "slicked back",
+          "head crest integration": "mechanical crest",
+          "height impression": "very tall",
+          "human-mechanical balance": "more human",
+          "jaw & chin": "angular defined jaw",
+          "leg proportion": "very long",
+          "lips": "medium lips",
+          "lower-body build": "balanced",
+          "lower-body treatment": "layered plates",
+          "nose character": "straight slender bridge",
+          "parting": "swept back",
+          "shoulder build": "broad",
+          "skin tone": "light",
+          "torso / chest build": "full",
+          "torso length": "balanced",
+          "waist / hip silhouette": "athletic"
+        }
+      },
+      "g": "female",
+      "mm": "silhouette_equipment_emphasis",
+      "t": 1788968203112
+    },
+    "파라스 아테네": {
+      "female": {
+        "sel": {},
+        "sp": "Clearly adult woman aged 41, African facial features, deep brown skin, broad square face, prominent cheekbones, wide nose and full lips, violet eyes, dark green hair in a sculpted short natural coily style. Tall powerful broad-shouldered physique. Original identity distinct from the pilot, human face unobstructed. Pose and viewpoint AUTO."
+      },
+      "g": "female",
+      "t": 1789018847720
     }
   },
   "note": "prompt.html 의 '기록 내보내기' 결과를 이 파일에 덮어쓴다. style 은 기체별 화풍이며 기본값(cinematic_semi_real)이라도 적는다 — 판정해서 고른 값인지 안 골라서 흘러든 값인지 구분해야 하기 때문이다(v9.17 전에는 기본값을 빼서 내보낼 때마다 손으로 적어 둔 것이 사라졌다). semi_real_paint 로 잡힌 152 기는 화풍 구분이 생기기 전에 일괄로 채운 값이라 그대로 둔다. 이 머리말도 내보내기가 챙겨 넣는다.",
@@ -1206,7 +1492,7 @@
     "턴 X": "semi_real_paint",
     "GN 아처": "glossy_kr_game"
   },
-  "updated": "2026-09-09",
+  "updated": "2026-09-10",
   "used": {
     "GQuuuuuuX": [
       {
@@ -2556,6 +2842,76 @@
         "ex": "",
         "n": 1,
         "t": 1788973634592
+      }
+    ],
+    "건담 쓰로네 드라이": [
+      {
+        "cat": "homewear",
+        "ex": "",
+        "n": 1,
+        "t": 1788990216805
+      },
+      {
+        "cat": "everyday_sensual",
+        "ex": "",
+        "n": 1,
+        "t": 1788990210709
+      }
+    ],
+    "건담X 디바이더": [
+      {
+        "cat": "everyday_sensual",
+        "ex": "",
+        "n": 1,
+        "t": 1788990140653
+      },
+      {
+        "cat": "homewear",
+        "ex": "",
+        "n": 1,
+        "t": 1788990134555
+      }
+    ],
+    "드래곤 건담": [
+      {
+        "cat": "everyday_sensual",
+        "ex": "",
+        "n": 1,
+        "t": 1788989754685
+      },
+      {
+        "cat": "occupation_sensual",
+        "ex": "",
+        "n": 1,
+        "t": 1788989727914
+      }
+    ],
+    "바우": [
+      {
+        "cat": "everyday_sensual",
+        "ex": "",
+        "n": 1,
+        "t": 1788990489497
+      },
+      {
+        "cat": "occupation_sensual",
+        "ex": "",
+        "n": 1,
+        "t": 1788990483396
+      }
+    ],
+    "셴롱 건담": [
+      {
+        "cat": "active",
+        "ex": "",
+        "n": 1,
+        "t": 1788990647464
+      },
+      {
+        "cat": "traditional",
+        "ex": "",
+        "n": 1,
+        "t": 1788990641363
       }
     ]
   },
