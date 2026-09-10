@@ -898,5 +898,77 @@
     "sha256": "cfd67b66f4bd93856ec0371c24674e97b9ab7e76fbe8900fa184a05c3b63a17e",
     "prompt": "docs/generation/2026-09-11-ginn/04-casual.txt",
     "manifest": "docs/generation/2026-09-11-ginn/manifest.json"
+  },
+  "자쿠 워리어_cinematic_semi_real_f.webp": {
+    "card": "자쿠 워리어",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "ebead2681ad9efe36c7cd7881e6156bfb3229202254b0bfeee180f1219a472ac",
+    "prompt": "docs/generation/2026-09-11-zaku-warrior/01-anthro.txt",
+    "manifest": "docs/generation/2026-09-11-zaku-warrior/manifest.json"
+  },
+  "자쿠 워리어_cinematic_semi_real_f_casual1.webp": {
+    "card": "자쿠 워리어",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "61ed80b3c65791515c661b51d18f8d85393bbd779bbc534c1037b7ed6fdbe7c1",
+    "prompt": "docs/generation/2026-09-11-zaku-warrior/02-casual.txt",
+    "manifest": "docs/generation/2026-09-11-zaku-warrior/manifest.json"
+  },
+  "자쿠 워리어_cel_anime_f.webp": {
+    "card": "자쿠 워리어",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "6a06e350cdba417ee24aa33f682b0da3a7787359beee3cb9872a0470e8cd6dd3",
+    "prompt": "docs/generation/2026-09-11-zaku-warrior/03-anthro.txt",
+    "manifest": "docs/generation/2026-09-11-zaku-warrior/manifest.json"
+  },
+  "자쿠 워리어_cel_anime_f_casual1.webp": {
+    "card": "자쿠 워리어",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "3a3a4e6fdc1e42e25998197b5ea10a98ee7e9893c0fa0bce9e18a59232035ea7",
+    "prompt": "docs/generation/2026-09-11-zaku-warrior/04-casual.txt",
+    "manifest": "docs/generation/2026-09-11-zaku-warrior/manifest.json"
+  },
+  "티에렌 지상형_cinematic_semi_real_f.webp": {
+    "card": "티에렌 지상형",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "49d89bf5316a39b5a7646c80f9005df8967a78dac98c823f6f420a6934f9a765",
+    "prompt": "docs/generation/2026-09-11-tieren-ground/01-anthro.txt",
+    "manifest": "docs/generation/2026-09-11-tieren-ground/manifest.json"
+  },
+  "티에렌 지상형_cinematic_semi_real_f_casual1.webp": {
+    "card": "티에렌 지상형",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "c929cf311ef32f6a2fa51bd35e277196d6798f4fdb4b4473fc0bdf5d66a7dd06",
+    "prompt": "docs/generation/2026-09-11-tieren-ground/02-casual.txt",
+    "manifest": "docs/generation/2026-09-11-tieren-ground/manifest.json"
+  },
+  "티에렌 지상형_ink_wash_f.webp": {
+    "card": "티에렌 지상형",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "8fc818ba596094bbc9e16527a872268f366e1303bfd2b2a3289bd00a1d4061b1",
+    "prompt": "docs/generation/2026-09-11-tieren-ground/03-anthro.txt",
+    "manifest": "docs/generation/2026-09-11-tieren-ground/manifest.json"
+  },
+  "티에렌 지상형_ink_wash_f_casual1.webp": {
+    "card": "티에렌 지상형",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "9cd4046ea0ffb0a292c15efa7b645292a60b4204778c6b3149a63a4361f6e955",
+    "prompt": "docs/generation/2026-09-11-tieren-ground/04-casual.txt",
+    "manifest": "docs/generation/2026-09-11-tieren-ground/manifest.json"
   }
 }

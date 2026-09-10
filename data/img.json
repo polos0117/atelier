@@ -1,7 +1,7 @@
 {
  "version": 1,
  "note": "초상 파일 목록. 카드 이름 → {m, f, face, casual[], extra[], byStyle{}} 이다. 파일 이름이 곧 등록 정보라 register-images.py 가 저장소의 *.webp 를 훑어 없는 것만 더한다 — 이미 적힌 것과 얼굴 좌표(face)는 건드리지 않으니 손으로 넣은 항목이 덮이지 않는다. face 는 파일 이름에서 알 수 없어 비면 게임이 기본값을 쓰고, 어색하면 사람이 여기서 손본다. play.html 은 실행 중에도 GitHub 파일 목록으로 같은 규칙을 한 번 더 돌리므로(mergeRepoFiles) 여기 안 적혀 있어도 화면에는 뜬다. 다만 그때는 얼굴 좌표가 기본값이고 목록을 못 받으면 그만이라, 파일로 굳혀 두는 편이 낫다.",
- "count": 223,
+ "count": 225,
  "img": {
   "GN 아처": {"byStyle": {"glossy_kr_game": {"f": "GN 아처_glossy_kr_game_f.webp", "casual": {"f": ["GN 아처_glossy_kr_game_f_casual1.webp"]}}, "cel_anime": {"f": "GN 아처_cel_anime_f.webp"}}},
   "GQuuuuuuX": {"m": "GQuuuuuuX_m.webp", "f": "GQuuuuuuX_f.webp", "face": {"m": [0.427, 0.055, 0.13], "f": [0.447, 0.09, 0.13]}, "casual": {"f": ["GQuuuuuuX_casual1.webp", "GQuuuuuuX_casual2.webp", "GQuuuuuuX_casual3.webp", "GQuuuuuuX_casual4.webp", "GQuuuuuuX_casual5.webp", "GQuuuuuuX_casual6.webp", "GQuuuuuuX_casual7.webp", "GQuuuuuuX_casual8.webp", "GQuuuuuuX_casual9.webp"]}},
@@ -187,6 +187,7 @@
   "이지스": {"m": "이지스_m.webp", "f": "이지스_f.webp", "face": {"m": [0.385, 0.167, 0.16], "f": [0.4, 0.1, 0.2]}, "casual": {"f": ["이지스_casual1.webp"]}},
   "인피니트 저스티스 건담": {"m": "인피니트_저스티스_건담_m.webp", "f": "인피니트_저스티스_건담_f.webp", "face": {"m": [0.418, 0.11, 0.165], "f": [0.408, 0.104, 0.17]}, "casual": {"f": ["인피니트_저스티스_건담_casual1.webp"]}},
   "임펄스": {"m": "임펄스_m.webp", "f": "임펄스_f.webp", "face": {"m": [0.372, 0.145, 0.16], "f": [0.374, 0.159, 0.16]}, "casual": {"f": ["임펄스_casual1.webp"]}},
+  "자쿠 워리어": {"byStyle": {"cinematic_semi_real": {"f": "자쿠 워리어_cinematic_semi_real_f.webp", "casual": {"f": ["자쿠 워리어_cinematic_semi_real_f_casual1.webp"]}}, "cel_anime": {"f": "자쿠 워리어_cel_anime_f.webp", "casual": {"f": ["자쿠 워리어_cel_anime_f_casual1.webp"]}}}},
   "자쿠 캐논": {"m": "자쿠 캐논_m.webp", "f": "자쿠 캐논_f.webp", "face": {"m": [0.445, 0.092, 0.13], "f": [0.435, 0.095, 0.13]}, "casual": {"f": ["자쿠 캐논_casual1.webp", "자쿠 캐논_casual2.webp", "자쿠 캐논_casual3.webp"]}},
   "자쿠Ⅱ": {"m": "자쿠Ⅱ_m.webp", "f": "자쿠Ⅱ_f.webp", "face": {"m": [0.425, 0.05, 0.15], "f": [0.42, 0.055, 0.15]}, "casual": {"f": ["자쿠Ⅱ_casual1.webp"]}},
   "자쿠Ⅱ 개량형": {"byStyle": {"cinematic_semi_real": {"f": "자쿠Ⅱ 개량형_cinematic_semi_real_f.webp", "casual": {"f": ["자쿠Ⅱ 개량형_cinematic_semi_real_f_casual1.webp"]}}, "retro_anime": {"f": "자쿠Ⅱ 개량형_retro_anime_f.webp", "casual": {"f": ["자쿠Ⅱ 개량형_retro_anime_f_casual1.webp"]}}}},
@@ -214,6 +215,7 @@
   "톨기스": {"m": "톨기스_m.webp", "f": "톨기스_f.webp", "face": {"m": [0.435, 0.075, 0.135], "f": [0.43, 0.105, 0.13]}, "casual": {"f": ["톨기스_casual1.webp"]}},
   "톨기스Ⅱ": {"m": "톨기스Ⅱ_m.webp", "f": "톨기스Ⅱ_f.webp", "face": {"m": [0.44, 0.075, 0.125], "f": [0.445, 0.09, 0.12]}, "casual": {"f": ["톨기스Ⅱ_casual1.webp", "톨기스Ⅱ_casual2.webp"]}},
   "톨기스Ⅲ": {"m": "톨기스Ⅲ_m.webp", "f": "톨기스Ⅲ_f.webp", "face": {"m": [0.415, 0.06, 0.125], "f": [0.44, 0.09, 0.12]}, "casual": {"f": ["톨기스Ⅲ_casual1.webp"]}},
+  "티에렌 지상형": {"byStyle": {"cinematic_semi_real": {"f": "티에렌 지상형_cinematic_semi_real_f.webp", "casual": {"f": ["티에렌 지상형_cinematic_semi_real_f_casual1.webp"]}}, "ink_wash": {"f": "티에렌 지상형_ink_wash_f.webp", "casual": {"f": ["티에렌 지상형_ink_wash_f_casual1.webp"]}}}},
   "파라스 아테네": {"byStyle": {"cinematic_semi_real": {"f": "파라스_아테네_cinematic_semi_real_f.webp", "casual": {"f": ["파라스_아테네_cinematic_semi_real_f_casual1.webp"]}}, "painterly": {"f": "파라스_아테네_painterly_f.webp", "casual": {"f": ["파라스_아테네_painterly_f_casual1.webp"]}}}},
   "페넥스": {"m": "페넥스_m.webp", "f": "페넥스_f.webp", "face": {"m": [0.435, 0.176, 0.128], "f": [0.418, 0.132, 0.125]}, "casual": {"f": ["페넥스_casual1.webp"]}},
   "페넬로페": {"m": "페넬로페_m.webp", "f": "페넬로페_f.webp", "face": {"m": [0.42, 0.185, 0.125], "f": [0.456, 0.15, 0.13]}, "casual": {"f": ["페넬로페_casual1.webp"]}},

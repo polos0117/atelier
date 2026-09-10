@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "note": "Actual visible DOM selection snapshot, not a generator export",
+  "mechs": {
+    "티에렌 지상형": {
+      "female": {
+        "sel": {
+          "apparent age": "20s",
+          "armor coverage": "open",
+          "bangs": "choppy bangs",
+          "body type": "stocky",
+          "eye color": "amber",
+          "eye shape": "narrow",
+          "face shape": "angular",
+          "facial character": "stoic",
+          "facial ethnicity": "Central Asian",
+          "hair color": "black",
+          "hair length": "short",
+          "hairstyle": "pixie cut",
+          "height impression": "short",
+          "human-mechanical balance": "balanced",
+          "skin tone": "tan"
+        },
+        "sp": "Fictional original adult character, no real person or pilot likeness. MSJ-06II-A Tieren Ground Type: rugged olive-drab blocky armor, thick cylindrical shoulder shells, massive squared lower-leg armor and broad flat feet, small pink sensor ornament above a fully human face. Preserve the characteristic long 200mm smoothbore gun on the right forearm and prominent rectangular left-leg shield; no beam rifle, no Zaku spikes, no Gundam V-fin. Keep heavy shoulder armor intact, with small upper-arm skin gaps beneath the shells. Open waist and upper-thigh sections with opaque secure chest and pelvis armor. Broad angular jaw, low straight brows, narrow amber eyes, small asymmetrical corner smile and a broad rounded nose tip. Human ears. A compact adult powerlifter silhouette, visibly strong thighs and short sturdy proportions. If a character reference is attached preserve her exact face, black pixie cut, tan skin and physique across styles; pose and viewpoint stay AUTO. Entire head, feet and long gun within frame, plain unmarked armor."
+      },
+      "g": "female"
+    }
+  }
+}
