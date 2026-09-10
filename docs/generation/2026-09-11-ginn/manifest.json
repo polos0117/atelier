@@ -1,0 +1,108 @@
+{
+  "repository": "polos0117/atelier",
+  "branch": "codex/ginn-four-images",
+  "base_commit": "1be45971859eebd90dcb23ff56084a61845dc579",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "generator": "built-in image_gen",
+  "selection_first": true,
+  "assets": [
+    {
+      "id": 1,
+      "card": "진",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "진_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "b3faa5f7ee9f5976cd76b3ff1802d05415b457fd9df6b0df0ac97e5fe4ce2f79",
+      "prompt": "01-anthro-final.txt",
+      "prompt_sha256": "ca81aafd74b6a7397e329f2773378ed2bec69bd1c181398fa58fed8c4adf0df5",
+      "original_generation_id": "exec-d2eb4942-2b68-4a34-8bcc-9fa2bddd69a4",
+      "reference_ids": [],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 2,
+      "card": "진",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "file": "진_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "366c4cdd9335706ee7d330ad6204d6ef4f6f70c0675d8f302f1425cb7e3f8cc9",
+      "prompt": "02-casual.txt",
+      "prompt_sha256": "b6a6e1a7994bb4ecdabdb0482432d9ea06d0714e608d93c206ab02cb38c64ac9",
+      "original_generation_id": "exec-f78f4aee-8b98-4df4-9fd3-ea4461086ea2",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 3,
+      "card": "진",
+      "style": "painterly",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "진_painterly_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "60133733ae30f756f20a37a6b96bc248fc6eb7ebda6841038a6156d9604203f5",
+      "prompt": "03-anthro.txt",
+      "prompt_sha256": "4a34bc6ef7655513ff6eb2364e2705089939ed90cf6502ae779f0c03745099b1",
+      "original_generation_id": "exec-e0a528c2-dd75-4567-ae62-c95acdb94fe8",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 4,
+      "card": "진",
+      "style": "painterly",
+      "gender": "f",
+      "mode": "casual",
+      "file": "진_painterly_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "cfd67b66f4bd93856ec0371c24674e97b9ab7e76fbe8900fa184a05c3b63a17e",
+      "prompt": "04-casual.txt",
+      "prompt_sha256": "e0d703d4474d5c99caf25b03c749d06d82b1a676bd502b763e00b39688584005",
+      "original_generation_id": "exec-595d071b-af23-45e9-a3eb-177f80fdfdca",
+      "reference_ids": [
+        3
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    }
+  ],
+  "record_export": {
+    "completed": false,
+    "reason": "Clicked actual export button twice; export textarea stayed empty and clipboard retained prior prompt. Preserved current UI selections separately and merged only this card.",
+    "selection_snapshot": "selection-snapshot.json"
+  },
+  "review_notes": [
+    "Initial antenna cropped; rerender corrected the framing. 01-anthro.txt preserves initial prompt; final uses 01-anthro-final.txt and the initial image as reference.",
+    "Both anthro poses remain similar under AUTO. Original MS artwork not attached.",
+    "Cinematic casual has a small pointed ear-like detail carried over from headgear; retained without further redesign."
+  ],
+  "checkpoint": "All four final WebP files locally registered; remote branch status is recorded in Git history and task report."
+}
