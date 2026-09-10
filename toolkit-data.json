@@ -1537,6 +1537,32 @@
       },
       "g": "female",
       "t": 1789044713404
+    },
+    "짐 커맨드": {
+      "female": {
+        "sel": {
+          "apparent age": "30s",
+          "facial ethnicity": "Japanese",
+          "body type": "tall and lean",
+          "height impression": "tall",
+          "facial character": "refined",
+          "face shape": "elongated",
+          "eye shape": "narrow",
+          "jaw & chin": "balanced jawline",
+          "eye size": "small",
+          "nose character": "straight slender bridge",
+          "lips": "fuller lower lip",
+          "skin tone": "light",
+          "hair color": "silver",
+          "hairstyle": "braid",
+          "hair length": "long",
+          "bangs": "side-swept bangs",
+          "armor coverage": "balanced"
+        },
+        "sp": "Use the attached corrected armored adult woman as the identity and equipment reference. Preserve her long silver single braid, mature elongated face, narrow eyes, straight brows, tall lean physique, ivory and charcoal RGM-79G armor with restrained red accents, compact bullpup machine gun, left forearm Command shield, compact backpack and rear-waist beam sabers. Render every part in the selected game keyart 2.5D style; do not copy the reference rendering. Pose, view and staging remain AUTO and may differ from the reference. Keep the complete figure and all equipment inside the frame. No lettering, typography, numbers, logos or emblems anywhere. Single 1024 x 1536 image. Rendering correction: the reference is for WHO and equipment geometry only. Repaint from scratch as unmistakable premium Japanese mobile-game 2.5D illustrated key art: simplified anime-informed adult face preserving its elongated shape and narrow eyes, luminous smooth skin, broad clean gradient shading, grouped silver hair locks with glossy painted bands, clean ivory armor with strongly designed stylized reflections and minimal wear, selective cool teal accent light. Remove the distressed photoreal scratched surface treatment and sombre brown photographic rendering. This must be a clearly visible rendering transformation, not a relighting of the reference. Keep adult identity and all gear; pose/view still AUTO."
+      },
+      "g": "female",
+      "t": 1789047188630
     }
   },
   "note": "prompt.html 의 '기록 내보내기' 결과를 이 파일에 덮어쓴다. style 은 기체별 화풍이며 기본값(cinematic_semi_real)이라도 적는다 — 판정해서 고른 값인지 안 골라서 흘러든 값인지 구분해야 하기 때문이다(v9.17 전에는 기본값을 빼서 내보낼 때마다 손으로 적어 둔 것이 사라졌다). semi_real_paint 로 잡힌 152 기는 화풍 구분이 생기기 전에 일괄로 채운 값이라 그대로 둔다. 이 머리말도 내보내기가 챙겨 넣는다.",
@@ -3241,6 +3267,20 @@
         "ex": "rainy_return",
         "n": 1,
         "t": 1789044651280
+      }
+    ],
+    "짐 커맨드": [
+      {
+        "cat": "everyday_sensual",
+        "ex": "late_snack",
+        "n": 1,
+        "t": 1789047293984
+      },
+      {
+        "cat": "swimwear",
+        "ex": "rooftop_infinity_pool",
+        "n": 1,
+        "t": 1789047004001
       }
     ]
   },
