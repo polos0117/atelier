@@ -21,7 +21,7 @@
   "걍": {"m": "걍_m.webp", "f": "걍_f.webp", "face": {"m": [0.438, 0.103, 0.13], "f": [0.445, 0.113, 0.13]}, "casual": {"f": ["걍_casual1.webp", "걍_casual2.webp", "걍_casual3.webp", "걍_casual4.webp"]}},
   "건담 AGE-1": {"m": "건담 AGE-1_m.webp", "f": "건담 AGE-1_f.webp", "face": {"m": [0.425, 0.0697, 0.13], "f": [0.435, 0.0837, 0.13]}, "casual": {"f": ["건담 AGE-1_casual1.webp", "건담 AGE-1_casual2.webp"]}},
   "건담 AGE-2": {"m": "건담 AGE-2_m.webp", "f": "건담 AGE-2_f.webp", "face": {"m": [0.415, 0.0762, 0.145], "f": [0.412, 0.0708, 0.125]}, "casual": {"f": ["건담 AGE-2_casual1.webp", "건담 AGE-2_casual2.webp", "건담 AGE-2_casual3.webp"]}},
-  "건담 AGE-FX": {"byStyle": {"anime_illust": {"f": "건담 AGE-FX_anime_illust_f.webp", "casual": {"f": ["건담 AGE-FX_anime_illust_f_casual1.webp"]}}, "game_cgi": {"f": "건담 AGE-FX_game_cgi_f.webp"}}},
+  "건담 AGE-FX": {"byStyle": {"game_cgi": {"f": "건담 AGE-FX_game_cgi_f.webp"}, "anime_illust": {"f": "건담 AGE-FX_anime_illust_f.webp", "casual": {"f": ["건담 AGE-FX_anime_illust_f_casual1.webp"]}}}},
   "건담 Ez8": {"m": "건담_Ez8_m.webp", "f": "건담_Ez8_f.webp", "face": {"m": [0.42, 0.078, 0.176], "f": [0.391, 0.072, 0.166]}, "casual": {"f": ["건담_Ez8_casual1.webp"]}},
   "건담 F91": {"m": "건담_F91_m.webp", "f": "건담_F91_f.webp", "face": {"m": [0.42, 0.098, 0.176], "f": [0.42, 0.065, 0.176]}, "casual": {"f": ["건담_F91_casual1.webp"]}},
   "건담 Mk-V": {"m": "건담_Mk-V_m.webp", "f": "건담_Mk-V_f.webp", "face": {"m": [0.435, 0.07, 0.13], "f": [0.435, 0.11, 0.13]}, "casual": {"f": ["건담_Mk-V_casual1.webp"]}},
