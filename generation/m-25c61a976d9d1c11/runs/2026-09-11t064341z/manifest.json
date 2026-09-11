@@ -1,0 +1,142 @@
+{
+  "version": 1,
+  "card": "GUNDVÖLVA",
+  "repository": "polos0117/atelier",
+  "branch": "codex/gundvolva",
+  "base_commit": "8b8856e6897d359859c9c837c61a720251771caa",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "run": "2026-09-11t064341z",
+  "assets": [
+    {
+      "file": "GUNDVÖLVA_cinematic_semi_real_f.webp",
+      "card": "GUNDVÖLVA",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "e33a6dbf5df465754d05436be0724ccb0a33f27ba74644935275a1ba11a11c94",
+      "prompt": "generation/m-25c61a976d9d1c11/runs/2026-09-11t064341z/01-anthro.txt",
+      "manifest": "generation/m-25c61a976d9d1c11/runs/2026-09-11t064341z/manifest.json",
+      "generation_id": "exec-2d481b61-8642-4b3e-b9fb-4c69d45f69a3",
+      "source_file": "exec-2d481b61-8642-4b3e-b9fb-4c69d45f69a3.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-faeb9374-8a7a-4634-a778-409b9a2529f3"
+      ],
+      "reference_design_urls": [
+        "https://gundam-official.com/witch-from-mercury/mobile-suit/20/"
+      ],
+      "parent_anthro": null,
+      "initial_generation_id": "exec-faeb9374-8a7a-4634-a778-409b9a2529f3",
+      "corrections": [
+        {
+          "prompt": "generation/m-25c61a976d9d1c11/runs/2026-09-11t064341z/01-remove-background-text.txt",
+          "generation_id": "exec-2d481b61-8642-4b3e-b9fb-4c69d45f69a3",
+          "reason": "Remove unwanted background lettering while preserving character and equipment"
+        }
+      ]
+    },
+    {
+      "file": "GUNDVÖLVA_cinematic_semi_real_f_casual1.webp",
+      "card": "GUNDVÖLVA",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "eb09dbf343889d983199918776898a058a2f600b99779e00e3f38dda177c75ed",
+      "prompt": "generation/m-25c61a976d9d1c11/runs/2026-09-11t064341z/02-casual.txt",
+      "manifest": "generation/m-25c61a976d9d1c11/runs/2026-09-11t064341z/manifest.json",
+      "generation_id": "exec-6735ab01-34c3-430e-8aed-5492f70172c7",
+      "source_file": "exec-6735ab01-34c3-430e-8aed-5492f70172c7.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-2d481b61-8642-4b3e-b9fb-4c69d45f69a3"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-2d481b61-8642-4b3e-b9fb-4c69d45f69a3"
+    },
+    {
+      "file": "GUNDVÖLVA_game_keyart_f.webp",
+      "card": "GUNDVÖLVA",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "5d6cf73eec3e224fe5c375d3170a989913846e78dd7fe2eb8e49d5116a8203cc",
+      "prompt": "generation/m-25c61a976d9d1c11/runs/2026-09-11t064341z/03-anthro-front.txt",
+      "manifest": "generation/m-25c61a976d9d1c11/runs/2026-09-11t064341z/manifest.json",
+      "generation_id": "exec-981d26e0-1da9-4dcc-ba68-2662656e4870",
+      "source_file": "exec-981d26e0-1da9-4dcc-ba68-2662656e4870.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-2d481b61-8642-4b3e-b9fb-4c69d45f69a3"
+      ],
+      "reference_design_urls": [
+        "https://gundam-official.com/witch-from-mercury/mobile-suit/20/"
+      ],
+      "parent_anthro": null,
+      "revision_reason": "User requested the existing front-facing anthropomorphization composition",
+      "view_angle": "front"
+    },
+    {
+      "file": "GUNDVÖLVA_game_keyart_f_casual1.webp",
+      "card": "GUNDVÖLVA",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "4376c1f5376ea4d6fd867bd151057925f31a41f3336b9682baa25d28b5e67eed",
+      "prompt": "generation/m-25c61a976d9d1c11/runs/2026-09-11t064341z/04-casual.txt",
+      "manifest": "generation/m-25c61a976d9d1c11/runs/2026-09-11t064341z/manifest.json",
+      "generation_id": "exec-e7046aae-6ac0-4a0e-8dd7-b17f8f6bd76f",
+      "source_file": "exec-e7046aae-6ac0-4a0e-8dd7-b17f8f6bd76f.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-f0a4668a-1010-4a8d-b2f9-2a2f38b5bd67"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-f0a4668a-1010-4a8d-b2f9-2a2f38b5bd67",
+      "reference_note": "Uses the initial game-keyart anthropomorphization as the actual identity reference; that portrait was subsequently replaced with a front-facing portrait of the same woman."
+    }
+  ],
+  "conversion": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6,
+    "resized": false,
+    "cropped": false
+  },
+  "review": {
+    "identity": "same adult woman across four images",
+    "styles": "cinematic painterly surfaces vs polished dimensional 2.5D game key art",
+    "casuals": "seated evening boxing hand-wrap vs standing morning balcony watering",
+    "anthro_framing": "both final portraits face forward with complete equipment and feet",
+    "pose_character": "AUTO",
+    "view_angle": "first AUTO produced front-facing result; game-keyart changed to front at user request",
+    "correction": "background text removed from first anthro"
+  },
+  "superseded_assets": [
+    {
+      "file": "GUNDVÖLVA_game_keyart_f.webp",
+      "card": "GUNDVÖLVA",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "19152acaedfd32df839b4b2f1dae0af1741a7c8974d909ab574cc28232a8f02e",
+      "prompt": "generation/m-25c61a976d9d1c11/runs/2026-09-11t064341z/03-anthro.txt",
+      "manifest": "generation/m-25c61a976d9d1c11/runs/2026-09-11t064341z/manifest.json",
+      "generation_id": "exec-f0a4668a-1010-4a8d-b2f9-2a2f38b5bd67",
+      "source_file": "exec-f0a4668a-1010-4a8d-b2f9-2a2f38b5bd67.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-2d481b61-8642-4b3e-b9fb-4c69d45f69a3"
+      ],
+      "reference_design_urls": [
+        "https://gundam-official.com/witch-from-mercury/mobile-suit/20/"
+      ],
+      "parent_anthro": null,
+      "status": "superseded after user requested front-facing anthro"
+    }
+  ]
+}
