@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "card": "브레이브 지휘관용 시험기",
+  "model": "GNX-Y903VW",
+  "series": "건담 00 극장판",
+  "repository": "polos0117/atelier",
+  "branch": "codex/brave-commander-images",
+  "base_commit": "b14ff052f71e72a1dd217fbd8650d44a01f8f800",
+  "prompt_source": "deployed prompt.html UI",
+  "run": "2026-09-11t165421z",
+  "created": "2026-09-11T16:54:21Z",
+  "generation_tool": "image_gen",
+  "settings_export": "Actual prompt.html selections and exported style settings captured for both styles",
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity": "Same adult Nordic woman across both styles",
+    "casual_scenes": [
+      "Aerospace wind-tunnel test bay, standing inspection",
+      "Open-air rooftop roller rink at sunset, mid-glide"
+    ]
+  },
+  "jobs": [
+    {
+      "id": "01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": null,
+      "prompt": "generation/m-4b6acfb050d7b39d/runs/2026-09-11t165421z/01-anthro.txt",
+      "original_generated_file": "exec-bbacd99c-9551-4383-b58f-b41b26950263.png",
+      "references": [
+        "https://www.dalong.net/reviews/00/0h71/0h71_p_e.htm",
+        "https://www.dalong.net/reviews/00/0h71/p/0h71_01.jpg",
+        "https://www.dalong.net/reviews/00/0h71/p/0h71_03.jpg"
+      ],
+      "file": "img/브레이브 지휘관용 시험기_cinematic_semi_real_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "8a8fab6bcce6b498da53d2d40528e01870687583422e3dad746ff52aaa0928de",
+      "bytes": 145988
+    },
+    {
+      "id": "02",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "01",
+      "prompt": "generation/m-4b6acfb050d7b39d/runs/2026-09-11t165421z/02-casual.txt",
+      "original_generated_file": "exec-e3490091-8796-4860-a0b9-347cf8b6c9a4.png",
+      "references": ["exec-bbacd99c-9551-4383-b58f-b41b26950263.png"],
+      "file": "img/브레이브 지휘관용 시험기_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "19f934f534deb8d81fc53cc721ecfdb2a7d1e2e1960296a50ff94371ec20cf1c",
+      "bytes": 164356
+    },
+    {
+      "id": "03",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": "01",
+      "prompt": "generation/m-4b6acfb050d7b39d/runs/2026-09-11t165421z/03-anthro.txt",
+      "original_generated_file": "exec-692682df-0ad8-4e5b-b6e9-f427b51e0b09.png",
+      "references": [
+        "exec-bbacd99c-9551-4383-b58f-b41b26950263.png",
+        "https://www.dalong.net/reviews/00/0h71/p/0h71_01.jpg",
+        "https://www.dalong.net/reviews/00/0h71/p/0h71_03.jpg"
+      ],
+      "file": "img/브레이브 지휘관용 시험기_game_keyart_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "cfa1c979a2d8910a53ad1a950ce4ae5f8700ba79972d0b892bea88f71a4cfa9e",
+      "bytes": 142836
+    },
+    {
+      "id": "04",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "03",
+      "prompt": "generation/m-4b6acfb050d7b39d/runs/2026-09-11t165421z/04-casual.txt",
+      "original_generated_file": "exec-6bfc4b64-c72c-41dc-bd24-de0c7f01fe85.png",
+      "references": ["exec-692682df-0ad8-4e5b-b6e9-f427b51e0b09.png"],
+      "file": "img/브레이브 지휘관용 시험기_game_keyart_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "36831a7764922d1219d67acecea0a34498c704e402b5ae97a2b741fffeb68fab",
+      "bytes": 132818
+    }
+  ],
+  "prompt_html_sha256": "ab1103447a08571bbd24c83763047c01bb31c365aa59ad2bf81799715336474e",
+  "prompt_html_verification": "Deployed prompt.html v9.18 used; repository prompt.html hash recorded"
+}

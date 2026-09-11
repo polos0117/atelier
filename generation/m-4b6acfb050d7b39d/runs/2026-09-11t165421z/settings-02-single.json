@@ -1,0 +1,73 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "occupation_basic"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "test_engineer"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "confident"
+  },
+  {
+    "id": "sgOrient",
+    "value": "front_3q"
+  },
+  {
+    "id": "sgPose",
+    "value": "standing_relaxed"
+  },
+  {
+    "id": "sgScene",
+    "value": "A full-scale aerospace wind-tunnel test bay at early morning, cobalt composite wing prototype on a measurement rig, steel gantry and pale mist, no other people"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "A fitted navy flight-test coverall with the sleeves rolled to the forearms, white technical harness belt, charcoal gloves clipped at the hip, and sturdy cobalt work boots; practical modern engineering wear"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body eye-level front three-quarter composition, her entire standing figure and both boots visible beside the wing test rig, cool dawn light crossed by one warm inspection lamp"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She braces the blue wing prototype with her left hand while reading a handheld airflow probe in her right, caught mid-inspection with a calm confident expression. Preserve the SAME clearly adult Nordic woman from the attached Brave portrait: long narrow angular face, light skin, narrow upturned orange eyes, straight slender nose, thin lips, very tall lean long-limbed body, and long navy hair in a high ponytail with side-swept bangs. Exactly TWO normal human arms, TWO hands and TWO legs, anatomically correct. Render her completely as a contemporary human: no cobalt armor, blade antennae, binders, GN drives, rifle, helmet, mechanical joints or glowing sensors. Fully opaque secure workwear, no readable text, logos or watermark."
+  },
+  {
+    "checked": true,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": true,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]

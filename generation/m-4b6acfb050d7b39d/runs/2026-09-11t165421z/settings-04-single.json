@@ -1,0 +1,73 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "active"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "roller_skating"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "amused"
+  },
+  {
+    "id": "sgOrient",
+    "value": "side"
+  },
+  {
+    "id": "sgPose",
+    "value": "mid_stride"
+  },
+  {
+    "id": "sgScene",
+    "value": "An open-air rooftop roller rink just after sunset, curved blue railings, windsocks and distant city lights beneath a deep violet sky, no other people"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "A cropped cobalt windbreaker zipped over a white fitted athletic top, charcoal high-waisted track trousers with orange piping, wrist guards and sleek blue quad roller skates; fully opaque modern street-sport styling"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body dynamic side-view composition, entire moving figure and all skate wheels inside frame, broad violet dusk light with orange rink lamps and wind moving her ponytail"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She glides through a wide turning step with both arms naturally balancing, looking back over her shoulder with an amused adult expression. Preserve the SAME clearly adult Nordic woman from the attached Brave key-art portrait: long narrow angular face, light skin, narrow upturned orange eyes, straight slender nose, thin lips, very tall lean long-limbed body, and long navy hair in a high ponytail with side-swept bangs. Exactly TWO normal human arms, TWO hands and TWO legs, anatomically correct. Render her completely as a contemporary human: no armor, head blades, binders, GN drives, rifle, helmet, mechanical joints or glowing sensors. No vehicle, no wings, no extra person. Fully opaque secure outfit, no readable text, logos or watermark."
+  },
+  {
+    "checked": true,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": true,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]
