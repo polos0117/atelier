@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "card": "제스타 셰자르 부대 사양",
+  "model": "RGM-96Xs",
+  "series": "건담 NT",
+  "repository": "polos0117/atelier",
+  "branch": "codex/jesta-shezarr-images",
+  "base_commit": "80d151efa8c0f80916e4ca84676ffecafcc77835",
+  "prompt_source": "deployed prompt.html UI",
+  "run": "2026-09-11t142703z",
+  "created": "2026-09-11T14:27:03Z",
+  "generation_tool": "image_gen",
+  "settings_export": "Actual exportStore button; exportBox JSON captured successfully for both styles",
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity": "Same adult Slavic woman across both styles",
+    "casual_scenes": [
+      "Dawn airport operations control room, standing flight supervision",
+      "Snowbound mountain lodge, kneeling hearth maintenance"
+    ]
+  },
+  "jobs": [
+    {
+      "id": "01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": null,
+      "prompt": "generation/m-71e2d4ae4a635288/runs/2026-09-11t142703z/01-anthro.txt",
+      "original_generated_file": "exec-70b11e3a-373f-47ed-abfd-2d1abc7a9da5.png",
+      "references": [
+        "https://p-bandai.jp/item/item-1000189026/",
+        "https://schizophonic9.com/re5/hguc_jestashezarrBC.html"
+      ],
+      "file": "img/제스타_셰자르_부대_사양_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "750a60a40e72b17aa1113b23452525611e4de681616f2bee07d3d54db4963a40",
+      "bytes": 77146
+    },
+    {
+      "id": "02",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "01",
+      "prompt": "generation/m-71e2d4ae4a635288/runs/2026-09-11t142703z/02-casual.txt",
+      "original_generated_file": "exec-baa12575-6924-4efd-bbf2-63568a2eb4fc.png",
+      "references": [
+        "exec-70b11e3a-373f-47ed-abfd-2d1abc7a9da5.png"
+      ],
+      "file": "img/제스타_셰자르_부대_사양_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "0dd62cf8d4f0d69fb68972b005ae8e0fe60eb38b004d7d17cbb30d3575dade88",
+      "bytes": 108656
+    },
+    {
+      "id": "03",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": "01",
+      "prompt": "generation/m-71e2d4ae4a635288/runs/2026-09-11t142703z/03-anthro.txt",
+      "original_generated_file": "exec-42c7836a-d703-4d3b-9373-a700a31f947e.png",
+      "references": [
+        "exec-70b11e3a-373f-47ed-abfd-2d1abc7a9da5.png",
+        "https://p-bandai.jp/item/item-1000189026/",
+        "https://schizophonic9.com/re5/hguc_jestashezarrBC.html"
+      ],
+      "file": "img/제스타_셰자르_부대_사양_cel_anime_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "3ebc904dec640fbde950c0c4ff0213be739bbf32952643cb2d249509f1d08947",
+      "bytes": 69894
+    },
+    {
+      "id": "04",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "03",
+      "prompt": "generation/m-71e2d4ae4a635288/runs/2026-09-11t142703z/04-casual.txt",
+      "original_generated_file": "exec-dc7ec9b6-bee0-47c7-833c-d0c38be7329c.png",
+      "references": [
+        "exec-42c7836a-d703-4d3b-9373-a700a31f947e.png"
+      ],
+      "file": "img/제스타_셰자르_부대_사양_cel_anime_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "0ab85ca6ece538b44ea3f796b3c7fd435d1e3d95e54bb51921158cfc7256fa2a",
+      "bytes": 143446
+    }
+  ],
+  "prompt_html_sha256": "bb7286d0ef0427a4ec81a73a98a75aaac316d136a2ae921a70134734e21f7370",
+  "prompt_html_verification": "Deployed prompt.html bytes match repository prompt.html at base_commit"
+}

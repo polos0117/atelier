@@ -1,0 +1,38 @@
+{
+  "제스타_셰자르_부대_사양_cinematic_semi_real_f.webp": {
+    "card": "제스타 셰자르 부대 사양",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "750a60a40e72b17aa1113b23452525611e4de681616f2bee07d3d54db4963a40",
+    "prompt": "generation/m-71e2d4ae4a635288/runs/2026-09-11t142703z/01-anthro.txt",
+    "manifest": "generation/m-71e2d4ae4a635288/runs/2026-09-11t142703z/manifest.json"
+  },
+  "제스타_셰자르_부대_사양_cinematic_semi_real_f_casual1.webp": {
+    "card": "제스타 셰자르 부대 사양",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "0dd62cf8d4f0d69fb68972b005ae8e0fe60eb38b004d7d17cbb30d3575dade88",
+    "prompt": "generation/m-71e2d4ae4a635288/runs/2026-09-11t142703z/02-casual.txt",
+    "manifest": "generation/m-71e2d4ae4a635288/runs/2026-09-11t142703z/manifest.json"
+  },
+  "제스타_셰자르_부대_사양_cel_anime_f.webp": {
+    "card": "제스타 셰자르 부대 사양",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "3ebc904dec640fbde950c0c4ff0213be739bbf32952643cb2d249509f1d08947",
+    "prompt": "generation/m-71e2d4ae4a635288/runs/2026-09-11t142703z/03-anthro.txt",
+    "manifest": "generation/m-71e2d4ae4a635288/runs/2026-09-11t142703z/manifest.json"
+  },
+  "제스타_셰자르_부대_사양_cel_anime_f_casual1.webp": {
+    "card": "제스타 셰자르 부대 사양",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "0ab85ca6ece538b44ea3f796b3c7fd435d1e3d95e54bb51921158cfc7256fa2a",
+    "prompt": "generation/m-71e2d4ae4a635288/runs/2026-09-11t142703z/04-casual.txt",
+    "manifest": "generation/m-71e2d4ae4a635288/runs/2026-09-11t142703z/manifest.json"
+  }
+}

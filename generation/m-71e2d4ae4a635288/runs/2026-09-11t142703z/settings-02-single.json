@@ -1,0 +1,73 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "occupation_sensual"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "flight_supervisor"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "focused"
+  },
+  {
+    "id": "sgOrient",
+    "value": "front_3q"
+  },
+  {
+    "id": "sgPose",
+    "value": "mid_action"
+  },
+  {
+    "id": "sgScene",
+    "value": "A glass-walled airport operations control room just before sunrise, runway lights receding through light fog, illuminated dispatch consoles, a wall-sized flight map without readable labels, and one empty supervisor chair pulled back"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "A slate-blue asymmetrical wrap-front sleeveless blouse with a secure opaque neckline, a fitted charcoal high-waisted knee-length pencil skirt with a practical off-center walking slit, sheer dark tights, low black ankle boots, and a short structured navy blazer draped over the chair"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body front three-quarter environmental portrait at standing eye level, 50mm perspective, cool cyan console glow balanced by the first warm sunrise rim light, restrained cinematic depth, both boots and the complete console action visible"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She stands leaning slightly over the main console, her right hand adjusting a physical runway-flow dial while her left hand holds a lightweight dispatch headset to one ear. Her focused amber eyes follow an aircraft moving beyond the glass rather than looking at the viewer. Preserve the SAME clearly adult Slavic woman from the attached anthropomorphized portrait: recognizable angular face, light skin, long black high ponytail with side-swept bangs, tall athletic proportions and broad shoulders. Render her entirely as a normal contemporary human with exactly two natural arms and two natural legs. No armor, sensor frame, weapon, shield, backpack, grenades or mechanical parts. No readable text, logos, airline marks or insignia."
+  },
+  {
+    "checked": false,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]
