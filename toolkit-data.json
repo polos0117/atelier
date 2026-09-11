@@ -1891,6 +1891,29 @@
         "sp": "Original fictional adult woman interpreting the standard GAT-04 Windam from SEED DESTINY, not Neo Roanoke or another named pilot. Retain the mass-production white and blue armor with restrained red accents, angular shoulder plates, segmented waist armor, long armored legs and the Jet Striker flight backpack with paired mechanical wings and thrusters. Standard beam rifle and forearm-mounted shield, with stored beam sabers; preserve Windam equipment and avoid the purple commander variant or Freedom wing array. Both shoulder shells stay intact, with small upper-arm gaps beneath their edges. Open side waist and upper thighs; securely fitted opaque chest and pelvis armor. Distinct compact adult facial structure with a broad forehead, high full cheeks, short rounded chin, strongly defined upper eyelid angle, straight brows, a low narrow nose bridge and a wide mouth with a gently peaked upper lip. Fresh youthful adult appearance without aged eye folds or hollow cheeks. Medium navy feathered layers flare outward near the neck, curtain bangs part cleanly around both visible eyes. Fully human ears and face. If a generated reference is provided preserve this exact adult identity, hair and toned physique while translating the rendering style. Pose, viewpoint and equipment presentation remain AUTO. Whole body, every wing tip, shield and complete rifle stay within the image with clear margins. No text or insignia."
       },
       "g": "female"
+    },
+    "대거L": {
+      "female": {
+        "sel": {
+          "apparent age": "20s",
+          "armor coverage": "open",
+          "bangs": "choppy bangs",
+          "body type": "pear-shaped",
+          "eye color": "brown",
+          "eye shape": "almond",
+          "face shape": "softly rounded",
+          "facial character": "friendly",
+          "facial ethnicity": "Southeast Asian",
+          "hair color": "pink",
+          "hair length": "short",
+          "hairstyle": "bob",
+          "height impression": "average",
+          "human-mechanical balance": "balanced",
+          "skin tone": "medium"
+        },
+        "sp": "Original fictional adult woman interpreting the standard GAT-02L2 Dagger L from SEED DESTINY, not a named pilot. Keep the mass-production pale armor, dark navy torso, small yellow chest vents, rectangular shoulder shells, simple segmented waist plates, and sturdy armored boots. Use its standard compact beam carbine and a shield on the left forearm, with hip-mounted beam saber grips and the compact Striker-compatible back unit. This is the standard ground configuration without a large optional flight or launcher pack. Preserve the Dagger L utilitarian production-unit silhouette; no Windam flight wings, Gundam V-fin or fantasy ornaments. Both shoulder shells remain intact, with modest skin gaps beneath their lower edges. Open side waist and upper thighs, securely opaque chest and pelvis armor. A fresh adult face in her twenties with softly full cheeks, a rounded broad chin, gently arched eyebrows, almond-shaped brown eyes, a short nose with a rounded tip, and a wide mouth with fuller lower lip and a faint cheek dimple. Do not age her with hollow cheeks or mature facial lines. Dusty pink short bob with uneven choppy fringe above both eyes. Normal human ears and face, no robot face mask. A supplied generated character reference locks this same adult identity and pear-shaped physique across styles. Pose, viewpoint and equipment presentation remain AUTO. Full figure and all equipment inside the frame with generous margins. No text or insignia."
+      },
+      "g": "female"
     }
   },
   "note": "prompt.html 의 '기록 내보내기' 결과를 이 파일에 덮어쓴다. style 은 기체별 화풍이며 기본값(cinematic_semi_real)이라도 적는다 — 판정해서 고른 값인지 안 골라서 흘러든 값인지 구분해야 하기 때문이다(v9.17 전에는 기본값을 빼서 내보낼 때마다 손으로 적어 둔 것이 사라졌다). semi_real_paint 로 잡힌 152 기는 화풍 구분이 생기기 전에 일괄로 채운 값이라 그대로 둔다. 이 머리말도 내보내기가 챙겨 넣는다.",

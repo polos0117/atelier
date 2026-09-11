@@ -1,7 +1,7 @@
 {
  "version": 1,
  "note": "초상 파일 목록. 카드 이름 → {m, f, face, casual[], extra[], byStyle{}} 이다. 파일 이름이 곧 등록 정보라 register-images.py 가 저장소의 *.webp 를 훑어 없는 것만 더한다 — 이미 적힌 것과 얼굴 좌표(face)는 건드리지 않으니 손으로 넣은 항목이 덮이지 않는다. face 는 파일 이름에서 알 수 없어 비면 게임이 기본값을 쓰고, 어색하면 사람이 여기서 손본다. play.html 은 실행 중에도 GitHub 파일 목록으로 같은 규칙을 한 번 더 돌리므로(mergeRepoFiles) 여기 안 적혀 있어도 화면에는 뜬다. 다만 그때는 얼굴 좌표가 기본값이고 목록을 못 받으면 그만이라, 파일로 굳혀 두는 편이 낫다.",
- "count": 230,
+ "count": 231,
  "img": {
   "GN 아처": {"byStyle": {"glossy_kr_game": {"f": "GN 아처_glossy_kr_game_f.webp", "casual": {"f": ["GN 아처_glossy_kr_game_f_casual1.webp"]}}, "cel_anime": {"f": "GN 아처_cel_anime_f.webp"}}},
   "GQuuuuuuX": {"m": "GQuuuuuuX_m.webp", "f": "GQuuuuuuX_f.webp", "face": {"m": [0.427, 0.055, 0.13], "f": [0.447, 0.09, 0.13]}, "casual": {"f": ["GQuuuuuuX_casual1.webp", "GQuuuuuuX_casual2.webp", "GQuuuuuuX_casual3.webp", "GQuuuuuuX_casual4.webp", "GQuuuuuuX_casual5.webp", "GQuuuuuuX_casual6.webp", "GQuuuuuuX_casual7.webp", "GQuuuuuuX_casual8.webp", "GQuuuuuuX_casual9.webp"]}},
@@ -100,6 +100,7 @@
   "노이에 질": {"m": "노이에_질_m.webp", "f": "노이에_질_f.webp", "face": {"m": [0.42, 0.114, 0.166], "f": [0.42, 0.107, 0.166]}, "casual": {"f": ["노이에_질_casual1.webp"]}},
   "뉴 건담": {"m": "뉴_건담_m.webp", "f": "뉴_건담_f.webp", "face": [0.393, 0.14, 0.21], "casual": {"f": ["뉴_건담_casual1.webp"]}},
   "다릴 바르데": {"m": "다릴_바르데_m.webp", "f": "다릴_바르데_f.webp", "face": {"m": [0.403, 0.062, 0.195], "f": [0.433, 0.088, 0.186]}, "casual": {"f": ["다릴_바르데_casual1.webp"]}},
+  "대거L": {"byStyle": {"cinematic_semi_real": {"f": "대거L_cinematic_semi_real_f.webp", "casual": {"f": ["대거L_cinematic_semi_real_f_casual1.webp"]}}, "glossy_kr_game": {"f": "대거L_glossy_kr_game_f.webp", "casual": {"f": ["대거L_glossy_kr_game_f_casual1.webp"]}}}},
   "더블 엑스": {"m": "더블 엑스_m.webp", "f": "더블 엑스_f.webp", "face": {"m": [0.394, 0.157, 0.13], "f": [0.433, 0.123, 0.13]}, "casual": {"f": ["더블 엑스_casual1.webp", "더블 엑스_casual2.webp", "더블 엑스_casual3.webp", "더블 엑스_casual4.webp", "더블 엑스_casual5.webp", "더블 엑스_casual6.webp", "더블 엑스_casual7.webp", "더블 엑스_casual8.webp"]}},
   "더블오 건담": {"m": "더블오 건담_m.webp", "f": "더블오 건담_f.webp", "face": {"m": [0.415, 0.085, 0.105], "f": [0.4, 0.115, 0.11]}, "casual": {"f": ["더블오 건담_casual1.webp", "더블오 건담_casual2.webp"]}},
   "더블오 라이저": {"m": "더블오_라이저_m.webp", "f": "더블오_라이저_f.webp", "face": {"m": [0.452, 0.108, 0.125], "f": [0.452, 0.098, 0.128]}, "casual": {"f": ["더블오_라이저_casual1.webp"]}},
