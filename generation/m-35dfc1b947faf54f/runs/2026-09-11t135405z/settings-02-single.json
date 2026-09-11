@@ -1,0 +1,73 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "homewear"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "satin_lounge"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "pensive"
+  },
+  {
+    "id": "sgOrient",
+    "value": "side"
+  },
+  {
+    "id": "sgPose",
+    "value": "kneeling"
+  },
+  {
+    "id": "sgScene",
+    "value": "A refined high-rise apartment music corner after midnight, rain tracing the floor-to-ceiling window, a low walnut vinyl cabinet, a compact turntable and one warm amber floor lamp against cool city reflections"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "A designed deep burgundy satin one-shoulder cropped lounge top with a secure opaque asymmetrical neckline and exposed shoulder blade, paired with charcoal high-waisted wide-leg satin trousers featuring a structured wrap panel and a narrow side opening below the knee, barefoot, small brushed-metal ear cuffs"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body side three-quarter environmental view from low seated eye level, 50mm perspective, warm amber lamp as the key light and cool rainy-window rim light, painterly cinematic depth with the whole body and bare feet visible"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She is kneeling on one knee beside the low vinyl cabinet, leaning forward naturally as her right hand slides a record sleeve halfway from the shelf and her left hand steadies the cabinet edge. Her attention stays on the selected record, not the viewer. Preserve the SAME clearly adult woman from the attached anthropomorphized portrait: recognizable African facial identity, deep skin, short brown blunt cut with side-swept bangs, red eyes, tall athletic proportions and broad shoulders. No armor, helmet frames, sensor ornament, weapon, shield, backpack, grenades or mechanical parts. Exactly two natural arms and two natural legs; hands and feet clearly readable. No text or logos on the record sleeve."
+  },
+  {
+    "checked": false,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]
