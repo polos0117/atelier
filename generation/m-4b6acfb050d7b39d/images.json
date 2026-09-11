@@ -1,0 +1,38 @@
+{
+  "브레이브 지휘관용 시험기_cinematic_semi_real_f.webp": {
+    "card": "브레이브 지휘관용 시험기",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "8a8fab6bcce6b498da53d2d40528e01870687583422e3dad746ff52aaa0928de",
+    "prompt": "generation/m-4b6acfb050d7b39d/runs/2026-09-11t165421z/01-anthro.txt",
+    "manifest": "generation/m-4b6acfb050d7b39d/runs/2026-09-11t165421z/manifest.json"
+  },
+  "브레이브 지휘관용 시험기_cinematic_semi_real_f_casual1.webp": {
+    "card": "브레이브 지휘관용 시험기",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "19f934f534deb8d81fc53cc721ecfdb2a7d1e2e1960296a50ff94371ec20cf1c",
+    "prompt": "generation/m-4b6acfb050d7b39d/runs/2026-09-11t165421z/02-casual.txt",
+    "manifest": "generation/m-4b6acfb050d7b39d/runs/2026-09-11t165421z/manifest.json"
+  },
+  "브레이브 지휘관용 시험기_game_keyart_f.webp": {
+    "card": "브레이브 지휘관용 시험기",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "cfa1c979a2d8910a53ad1a950ce4ae5f8700ba79972d0b892bea88f71a4cfa9e",
+    "prompt": "generation/m-4b6acfb050d7b39d/runs/2026-09-11t165421z/03-anthro.txt",
+    "manifest": "generation/m-4b6acfb050d7b39d/runs/2026-09-11t165421z/manifest.json"
+  },
+  "브레이브 지휘관용 시험기_game_keyart_f_casual1.webp": {
+    "card": "브레이브 지휘관용 시험기",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "36831a7764922d1219d67acecea0a34498c704e402b5ae97a2b741fffeb68fab",
+    "prompt": "generation/m-4b6acfb050d7b39d/runs/2026-09-11t165421z/04-casual.txt",
+    "manifest": "generation/m-4b6acfb050d7b39d/runs/2026-09-11t165421z/manifest.json"
+  }
+}
