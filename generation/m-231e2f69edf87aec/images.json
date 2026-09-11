@@ -1,0 +1,38 @@
+{
+  "디제_cinematic_semi_real_f.webp": {
+    "card": "디제",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "faf1a88ff8b54bb2b946b0bfa186c7331fb96e560b8a61b395bf8afbd3ed2d4e",
+    "prompt": "generation/m-231e2f69edf87aec/runs/2026-09-11t125956z/01-anthro.txt",
+    "manifest": "generation/m-231e2f69edf87aec/runs/2026-09-11t125956z/manifest.json"
+  },
+  "디제_cinematic_semi_real_f_casual1.webp": {
+    "card": "디제",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "dc439163ba79bef211975c95d5fc6ad776967fb0600abb7bf7e4b86cbb3e921a",
+    "prompt": "generation/m-231e2f69edf87aec/runs/2026-09-11t125956z/02-casual.txt",
+    "manifest": "generation/m-231e2f69edf87aec/runs/2026-09-11t125956z/manifest.json"
+  },
+  "디제_retro_anime_f.webp": {
+    "card": "디제",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "6cc6119ed11781bd9a4897f52485bdd34f8c159be5a0e2093a8cafeaf74871fe",
+    "prompt": "generation/m-231e2f69edf87aec/runs/2026-09-11t125956z/03-anthro.txt",
+    "manifest": "generation/m-231e2f69edf87aec/runs/2026-09-11t125956z/manifest.json"
+  },
+  "디제_retro_anime_f_casual1.webp": {
+    "card": "디제",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "0911ec9ae4d4e8de6d128c9c39ca7ea205bc4d61dfad1720d7a2b380a8c0dfa3",
+    "prompt": "generation/m-231e2f69edf87aec/runs/2026-09-11t125956z/04-casual.txt",
+    "manifest": "generation/m-231e2f69edf87aec/runs/2026-09-11t125956z/manifest.json"
+  }
+}

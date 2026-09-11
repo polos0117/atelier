@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "card": "디제",
+  "model": "MSK-008",
+  "series": "Z건담",
+  "repository": "polos0117/atelier",
+  "branch": "codex/dijeh-images",
+  "base_commit": "44f3d328bf2bc4565b510784da3315a8a8c0a9a1",
+  "prompt_source": "deployed prompt.html UI",
+  "run": "2026-09-11t125956z",
+  "created": "2026-09-11T13:08:16.225006+00:00",
+  "generation_tool": "image_gen",
+  "settings_export": "Actual exportStore button; exportBox JSON captured successfully",
+  "direction": {
+    "view_angle": "front per user instruction",
+    "pose_character": "AUTO",
+    "identity": "Same adult woman across both styles",
+    "casual_scenes": [
+      "Night photographic darkroom, standing printmaking",
+      "Daylight peach orchard, seated picnic"
+    ]
+  },
+  "jobs": [
+    {
+      "id": "01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": null,
+      "prompt": "generation/m-231e2f69edf87aec/runs/2026-09-11t125956z/01-anthro.txt",
+      "original_generated_file": "exec-a45e8afd-41cc-4950-9021-0f3aa56f6de0.png",
+      "references": [
+        "https://cdn11.bigcommerce.com/s-ccqootkcfp/images/stencil/1280x1280/products/2997/13916/ban996702_2__63496.1737824712.jpg",
+        "https://bellfordtoysandhobbies.com/cdn/shop/products/10556931a3.jpg"
+      ],
+      "file": "img/디제_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "faf1a88ff8b54bb2b946b0bfa186c7331fb96e560b8a61b395bf8afbd3ed2d4e",
+      "bytes": 206362
+    },
+    {
+      "id": "02",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "01",
+      "prompt": "generation/m-231e2f69edf87aec/runs/2026-09-11t125956z/02-casual.txt",
+      "original_generated_file": "exec-20736e08-e21f-4465-bd5d-f8bb7604ea87.png",
+      "references": [
+        "exec-a45e8afd-41cc-4950-9021-0f3aa56f6de0.png"
+      ],
+      "file": "img/디제_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "dc439163ba79bef211975c95d5fc6ad776967fb0600abb7bf7e4b86cbb3e921a",
+      "bytes": 191618
+    },
+    {
+      "id": "03",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": "01",
+      "prompt": "generation/m-231e2f69edf87aec/runs/2026-09-11t125956z/03-anthro.txt",
+      "original_generated_file": "exec-cdb540e0-30a4-471f-b522-d0bad2918381.png",
+      "references": [
+        "exec-a45e8afd-41cc-4950-9021-0f3aa56f6de0.png",
+        "https://cdn11.bigcommerce.com/s-ccqootkcfp/images/stencil/1280x1280/products/2997/13916/ban996702_2__63496.1737824712.jpg",
+        "https://bellfordtoysandhobbies.com/cdn/shop/products/10556931a3.jpg"
+      ],
+      "file": "img/디제_retro_anime_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "6cc6119ed11781bd9a4897f52485bdd34f8c159be5a0e2093a8cafeaf74871fe",
+      "bytes": 302924
+    },
+    {
+      "id": "04",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "03",
+      "prompt": "generation/m-231e2f69edf87aec/runs/2026-09-11t125956z/04-casual.txt",
+      "original_generated_file": "exec-2bf42952-ce98-4f4d-b574-05d219edbdda.png",
+      "references": [
+        "exec-cdb540e0-30a4-471f-b522-d0bad2918381.png"
+      ],
+      "file": "img/디제_retro_anime_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "0911ec9ae4d4e8de6d128c9c39ca7ea205bc4d61dfad1720d7a2b380a8c0dfa3",
+      "bytes": 432760
+    }
+  ],
+  "prompt_html_sha256": "bb7286d0ef0427a4ec81a73a98a75aaac316d136a2ae921a70134734e21f7370",
+  "prompt_html_verification": "Deployed prompt.html bytes match repository prompt.html at base_commit"
+}

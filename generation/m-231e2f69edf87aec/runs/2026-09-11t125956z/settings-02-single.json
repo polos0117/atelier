@@ -1,0 +1,73 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "occupation_basic"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "__custom__"
+  },
+  {
+    "id": "sgExCustom",
+    "value": "Analog photographic printmaker in a seaside-town darkroom"
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "three-quarter body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "focused"
+  },
+  {
+    "id": "sgOrient",
+    "value": "side"
+  },
+  {
+    "id": "sgPose",
+    "value": "mid_action"
+  },
+  {
+    "id": "sgScene",
+    "value": "A small analog photography darkroom in a seaside town at night, red safelight, drying black-and-white prints suspended overhead, enamel developing trays and old enlarger on a wooden counter"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "A fitted ivory sleeveless ribbed mock-neck, charcoal high-waisted wide-leg trousers with a belted waist, a narrow oxblood leather utility belt and small silver stud earrings"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Side three-quarter medium-wide composition from knee level upward, 50mm environmental portrait, red safelight balanced with a dim neutral task light on her face, layered foreground trays"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She stands in a natural side-on posture, lifting one freshly developed wet black-and-white photograph from an enamel tray with print tongs in her right hand while her left hand steadies the edge of the counter; attention is on the emerging photograph, not the viewer. Preserve the SAME adult woman from the attached portrait including the crown braid and long teal hair, face, amber eyes and body proportions. No armor, radiator panels, sensor jewels, weapons or mechanical accessories. Printed photographs may show sea cliffs but contain no readable writing. Keep both hands anatomically clear."
+  },
+  {
+    "checked": true,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": true,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]
