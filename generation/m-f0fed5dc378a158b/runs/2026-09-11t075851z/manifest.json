@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "card": "하인그라",
+  "repository": "polos0117/atelier",
+  "branch": "codex/haingra",
+  "base_commit": "e67b849740a86959a3a62433ff1b1b0fb9b1436d",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "run": "2026-09-11t075851z",
+  "assets": [
+    {
+      "file": "하인그라_cinematic_semi_real_f.webp",
+      "card": "하인그라",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "1809bf59154184ef8623ee8d065369701ed41a3f4fcb96d6692330c71e666517",
+      "prompt": "generation/m-f0fed5dc378a158b/runs/2026-09-11t075851z/01-anthro.txt",
+      "manifest": "generation/m-f0fed5dc378a158b/runs/2026-09-11t075851z/manifest.json",
+      "generation_id": "exec-8af36783-d5af-45a9-9a51-2d64aa0e806e",
+      "source_file": "exec-8af36783-d5af-45a9-9a51-2d64aa0e806e.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [],
+      "reference_design_urls": [
+        "https://en.gundam-official.com/witch-from-mercury/prologue/mobile-suit/4/"
+      ],
+      "parent_anthro": null
+    },
+    {
+      "file": "하인그라_cinematic_semi_real_f_casual1.webp",
+      "card": "하인그라",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "0aea4d384bed7062adcd2e5f0519acf23ad4f98a278452be499335298efb1109",
+      "prompt": "generation/m-f0fed5dc378a158b/runs/2026-09-11t075851z/02-casual.txt",
+      "manifest": "generation/m-f0fed5dc378a158b/runs/2026-09-11t075851z/manifest.json",
+      "generation_id": "exec-519a14cc-7d62-4318-9c3a-76b5b0f5cd30",
+      "source_file": "exec-519a14cc-7d62-4318-9c3a-76b5b0f5cd30.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-8af36783-d5af-45a9-9a51-2d64aa0e806e"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-8af36783-d5af-45a9-9a51-2d64aa0e806e"
+    },
+    {
+      "file": "하인그라_glossy_kr_game_f.webp",
+      "card": "하인그라",
+      "style": "glossy_kr_game",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "38ec1816d4fd18de4dda96893c7ec57cab4d756e7a828aae1f18ef44f0304dda",
+      "prompt": "generation/m-f0fed5dc378a158b/runs/2026-09-11t075851z/03-anthro.txt",
+      "manifest": "generation/m-f0fed5dc378a158b/runs/2026-09-11t075851z/manifest.json",
+      "generation_id": "exec-9eac0cb8-3e03-4a0f-90da-c5ff98ed7221",
+      "source_file": "exec-9eac0cb8-3e03-4a0f-90da-c5ff98ed7221.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-8af36783-d5af-45a9-9a51-2d64aa0e806e"
+      ],
+      "reference_design_urls": [
+        "https://en.gundam-official.com/witch-from-mercury/prologue/mobile-suit/4/"
+      ],
+      "parent_anthro": null
+    },
+    {
+      "file": "하인그라_glossy_kr_game_f_casual1.webp",
+      "card": "하인그라",
+      "style": "glossy_kr_game",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "10ba288d6f574dc6e712a96ed94a69bb3fe86a8880cd9ce3d4eebaf70eccee89",
+      "prompt": "generation/m-f0fed5dc378a158b/runs/2026-09-11t075851z/04-casual.txt",
+      "manifest": "generation/m-f0fed5dc378a158b/runs/2026-09-11t075851z/manifest.json",
+      "generation_id": "exec-94947d52-053a-41c0-ab1d-4815cd79e681",
+      "source_file": "exec-94947d52-053a-41c0-ab1d-4815cd79e681.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-9eac0cb8-3e03-4a0f-90da-c5ff98ed7221"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-9eac0cb8-3e03-4a0f-90da-c5ff98ed7221"
+    }
+  ],
+  "attempts": [
+    {
+      "prompt": "generation/m-f0fed5dc378a158b/runs/2026-09-11t075851z/01-anthro-rejected.txt",
+      "result": "rejected by image-generation output safety filter",
+      "minimal_change": "changed apparent age from youthful adult to 20s and disabled underboob option"
+    },
+    {
+      "prompt": "generation/m-f0fed5dc378a158b/runs/2026-09-11t075851z/04-casual-rejected.txt",
+      "result": "rejected by image-generation output safety filter",
+      "minimal_change": "kept paddleboarding scene and action; replaced swimsuit with covered rashguard, board shorts and swim leggings"
+    }
+  ],
+  "conversion": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6,
+    "resized": false,
+    "cropped": false
+  },
+  "review": {
+    "identity": "same adult woman across four successful images",
+    "styles": "cinematic painted volume versus glossy Korean game illustration",
+    "casuals": "sunrise coffee roastery work versus sea-cave paddleboarding",
+    "anthro_framing": "front-facing in both styles, complete shield, rifle and feet with rear thruster edges visible",
+    "pose_character": "AUTO",
+    "view_angle": "front, following current user instruction",
+    "delivery": "upload, merge and verify automatic registration; user checks dex visually"
+  }
+}
