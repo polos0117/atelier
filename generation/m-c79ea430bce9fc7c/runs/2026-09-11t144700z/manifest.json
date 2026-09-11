@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "card": "그레이즈 아인",
+  "model": "EB-AX2",
+  "series": "철혈의 오펀즈",
+  "repository": "polos0117/atelier",
+  "branch": "codex/graze-ein-images",
+  "base_commit": "01e11441b2d66d0956cb45f4978489d8394261c5",
+  "prompt_source": "deployed prompt.html UI",
+  "run": "2026-09-11t144700z",
+  "created": "2026-09-11T14:47:00Z",
+  "generation_tool": "image_gen",
+  "settings_export": "Actual exportStore button; exportBox JSON captured successfully for both styles",
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity": "Same adult Middle Eastern woman across both styles",
+    "casual_scenes": [
+      "Modern bouldering hall, dynamic overhang traverse",
+      "Sunlit old-city guesthouse courtyard, seated tea service"
+    ]
+  },
+  "jobs": [
+    {
+      "id": "01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": null,
+      "prompt": "generation/m-c79ea430bce9fc7c/runs/2026-09-11t144700z/01-anthro.txt",
+      "original_generated_file": "exec-232b2bf4-da09-4190-9b72-0f40a1cfa025.png",
+      "references": [
+        "https://schizophonic9.com/re4/hg_grazeein.html",
+        "https://dronespark.myshopify.com/products/original-model-hg-1-144-gundam-graze-ein-mobile-suit-gundam-iron-blooded-orphans-kids-toys"
+      ],
+      "file": "img/그레이즈_아인_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "843a6ce3eb90354d2706af9e3c44890990e029495c356a986977b4e28615202b",
+      "bytes": 99828
+    },
+    {
+      "id": "02",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "01",
+      "prompt": "generation/m-c79ea430bce9fc7c/runs/2026-09-11t144700z/02-casual.txt",
+      "original_generated_file": "exec-b407adc4-9da1-4861-8dc9-320a4bea5cbe.png",
+      "references": [
+        "exec-232b2bf4-da09-4190-9b72-0f40a1cfa025.png"
+      ],
+      "file": "img/그레이즈_아인_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "bcc20ce3a50acf7c8e3b2853834631a895f44934035aeaeb6597424fdbcb88d6",
+      "bytes": 114900
+    },
+    {
+      "id": "03",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": "01",
+      "prompt": "generation/m-c79ea430bce9fc7c/runs/2026-09-11t144700z/03-anthro.txt",
+      "original_generated_file": "exec-bd53b591-f0c1-4611-b110-47d4e148f7b0.png",
+      "references": [
+        "exec-232b2bf4-da09-4190-9b72-0f40a1cfa025.png",
+        "https://schizophonic9.com/re4/hg_grazeein.html",
+        "https://dronespark.myshopify.com/products/original-model-hg-1-144-gundam-graze-ein-mobile-suit-gundam-iron-blooded-orphans-kids-toys"
+      ],
+      "file": "img/그레이즈_아인_retro_anime_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "9a25241fd8d3fce60c28a751f754eb30b6c8a690307813f8d20b79e749f88a66",
+      "bytes": 129888
+    },
+    {
+      "id": "04",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "03",
+      "prompt": "generation/m-c79ea430bce9fc7c/runs/2026-09-11t144700z/04-casual.txt",
+      "original_generated_file": "exec-0302ef21-2513-40bb-b096-f7c745f94b70.png",
+      "references": [
+        "exec-bd53b591-f0c1-4611-b110-47d4e148f7b0.png"
+      ],
+      "file": "img/그레이즈_아인_retro_anime_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "c9767c8ff88b3e289faaaea409ba8185a495c867d22c593ebcfefa21871c0a4f",
+      "bytes": 191882
+    }
+  ],
+  "prompt_html_sha256": "bb7286d0ef0427a4ec81a73a98a75aaac316d136a2ae921a70134734e21f7370",
+  "prompt_html_verification": "Deployed prompt.html bytes match repository prompt.html at base_commit"
+}
+

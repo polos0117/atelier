@@ -1,0 +1,74 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "traditional"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "kaftan_daily"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "amused"
+  },
+  {
+    "id": "sgOrient",
+    "value": "seated_twist"
+  },
+  {
+    "id": "sgPose",
+    "value": "sitting"
+  },
+  {
+    "id": "sgScene",
+    "value": "A sunlit stone courtyard of a quiet old-city guesthouse in late morning, patterned tile floor, a low brass tea table, potted citrus trees and linen shade casting soft geometric shadows"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "A modern cream ankle-length kaftan with deep-plum geometric embroidery along the asymmetrical collar and cuffs, a structured charcoal waist sash, high side openings layered over tapered ivory trousers, flat dark leather sandals and small hammered-gold earrings"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body high three-quarter environmental view from the shaded arcade, 50mm perspective, warm reflected daylight and soft leaf shadows, hand-painted retro-anime background with clean cel shadows, both sandals and the complete tea setting visible"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She sits sideways on a low woven stool, calmly pouring amber tea from a small brass pot into one cup with her right hand while her left hand steadies the tray. Her posture is relaxed after work and her expression is gently amused toward someone outside the frame, not the viewer. Preserve the SAME clearly adult Middle Eastern woman from the attached retro-anime portrait: recognizable angular face, tan skin, short silver undercut, amber eyes, very tall muscular proportions and broad shoulders. Render her entirely as a normal contemporary human with exactly two natural arms and two natural legs. No armor, horn fins, axes, guns, backpack, claw feet or mechanical parts. No text, logos or watermark; only one person."
+  },
+  {
+    "checked": false,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]
+

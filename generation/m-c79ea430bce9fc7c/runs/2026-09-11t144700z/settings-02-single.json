@@ -1,0 +1,74 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "active"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "climbing_warmup"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "determined"
+  },
+  {
+    "id": "sgOrient",
+    "value": "front_3q"
+  },
+  {
+    "id": "sgPose",
+    "value": "mid_action"
+  },
+  {
+    "id": "sgScene",
+    "value": "A spacious modern bouldering hall in late afternoon, tall charcoal climbing walls with large geometric holds, chalk haze caught in skylight beams, crash mats below and no other people"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "A designed deep-plum asymmetric one-shoulder performance crop top with a secure opaque cross-back strap, paired with graphite high-waisted tapered climbing trousers featuring articulated knees and burgundy side panels, flexible black climbing shoes and a small chalk bag at the rear waist"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body low-angle wide environmental composition from mat level, 35mm perspective, cool skylight as the key with a warm late-afternoon rim, cinematic painterly depth, her entire body and every contacted hold clearly visible"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She is midway across an overhanging bouldering route: her right hand grips a high angular hold, left hand reaches laterally toward the next hold, right foot presses a small foothold and left leg extends for balance. Her amber eyes track the next grip with a fierce focused expression, never looking at the viewer. Preserve the SAME clearly adult Middle Eastern woman from the attached anthropomorphized portrait: recognizable angular face, tan skin, short silver undercut, amber eyes, very tall muscular proportions and broad shoulders. Render her entirely as a normal contemporary human with exactly two natural arms and two natural legs. No armor, horn fins, axes, guns, backpack, claw feet or mechanical parts. No text, logos or watermark."
+  },
+  {
+    "checked": false,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]
+
