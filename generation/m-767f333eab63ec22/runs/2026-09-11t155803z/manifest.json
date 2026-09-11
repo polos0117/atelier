@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "card": "GN-X",
+  "model": "GNX-603T",
+  "series": "기동전사 건담 00",
+  "repository": "polos0117/atelier",
+  "branch": "codex/gn-x-images",
+  "base_commit": "628811df6bfe6b02eda6dd855170adfc8d05c744",
+  "prompt_source": "deployed prompt.html UI",
+  "run": "2026-09-11t155803z",
+  "created": "2026-09-11T15:58:03Z",
+  "generation_tool": "image_gen",
+  "settings_export": "Actual prompt.html selections and exported style settings captured for both styles",
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity": "Same adult Korean woman across both styles",
+    "casual_scenes": [
+      "Rain-lit automated transit concourse, standing inspection",
+      "Snowy sunroom, kneeling while potting a fern"
+    ]
+  },
+  "jobs": [
+    {
+      "id": "01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": null,
+      "prompt": "generation/m-767f333eab63ec22/runs/2026-09-11t155803z/01-anthro.txt",
+      "original_generated_file": "exec-52c7ef83-d905-4857-ab4f-a5874f315e87.png",
+      "references": [
+        "https://cdn.store-assets.com/s/969303/i/98984910.jpg?width=1024"
+      ],
+      "file": "img/GN-X_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "f57e26f0c52e25a461ea5be09895346937891648caf00d0b997e78902531c91b",
+      "bytes": 108046
+    },
+    {
+      "id": "02",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "01",
+      "prompt": "generation/m-767f333eab63ec22/runs/2026-09-11t155803z/02-casual.txt",
+      "original_generated_file": "exec-e9d65149-859a-4f44-bc97-62fcb77de90e.png",
+      "references": [
+        "exec-52c7ef83-d905-4857-ab4f-a5874f315e87.png"
+      ],
+      "file": "img/GN-X_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "270e0b7d3e7d44dd6f7033a7b8e56d93a35c94ca4ea595ad957d1376f58457eb",
+      "bytes": 149354
+    },
+    {
+      "id": "03",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": "01",
+      "prompt": "generation/m-767f333eab63ec22/runs/2026-09-11t155803z/03-anthro.txt",
+      "original_generated_file": "exec-3fec7370-2e33-4f90-9741-a818e89f8243.png",
+      "references": [
+        "exec-52c7ef83-d905-4857-ab4f-a5874f315e87.png",
+        "https://cdn.store-assets.com/s/969303/i/98984910.jpg?width=1024"
+      ],
+      "file": "img/GN-X_anime_illust_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "74a235e58ec33aede9049db58ca65c78bca182bbc436a82dfbb87de7f0b19b8a",
+      "bytes": 91528
+    },
+    {
+      "id": "04",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "03",
+      "prompt": "generation/m-767f333eab63ec22/runs/2026-09-11t155803z/04-casual.txt",
+      "original_generated_file": "exec-5bfb30e6-9d61-41a4-a36a-f82c67e160f3.png",
+      "references": [
+        "exec-3fec7370-2e33-4f90-9741-a818e89f8243.png"
+      ],
+      "file": "img/GN-X_anime_illust_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "f8be67f1601de72c0dbf547d5d14cae2d19bcf58bde9f19265afcd7361834d29",
+      "bytes": 137076
+    }
+  ],
+  "prompt_html_sha256": "ab1103447a08571bbd24c83763047c01bb31c365aa59ad2bf81799715336474e",
+  "prompt_html_verification": "Deployed prompt.html v9.18 used; repository prompt.html hash recorded"
+}

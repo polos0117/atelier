@@ -1,0 +1,73 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "homewear"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "offshoulder_knit"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "gentle"
+  },
+  {
+    "id": "sgOrient",
+    "value": "side"
+  },
+  {
+    "id": "sgPose",
+    "value": "kneeling"
+  },
+  {
+    "id": "sgScene",
+    "value": "A quiet glass sunroom at pale winter dawn, frost along the windows, hanging green plants, warm wood floor and soft cushions, no other people"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "A designed deep-violet off-shoulder ribbed knit top with an asymmetric folded neckline, charcoal wide-leg lounge trousers, and bare feet; softly fitted but fully opaque contemporary homewear"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body high side view with gentle depth, entire kneeling figure and both bare feet visible, cool snowy window light balanced by warm indoor lamps, polished anime illustration rendering"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She is kneeling beside a low plant stand while carefully repotting a small fern: her left hand supports the pot and her right hand presses fresh soil around the roots. Preserve the SAME clearly adult Korean woman from the attached anime-style GN-X anthropomorphized portrait, including her long angular face, light skin, narrow upturned purple eyes, short silver asymmetric cut with asymmetric bangs, tall athletic proportions and broad shoulders. Exactly TWO normal human arms, TWO hands and TWO legs, all anatomically correct. Render her completely as a contemporary human: no armor, X-shaped chest vanes, GN Drive, shield, rifle, helmet, mechanical limbs or sensor parts. She looks down at the fern with a gentle absorbed expression, not at the viewer. Secure opaque fashion, no transparent fabric, no nudity, no readable text, logos or watermark."
+  },
+  {
+    "checked": true,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": true,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]

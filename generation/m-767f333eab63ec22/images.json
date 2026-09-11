@@ -1,0 +1,38 @@
+{
+  "GN-X_cinematic_semi_real_f.webp": {
+    "card": "GN-X",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "f57e26f0c52e25a461ea5be09895346937891648caf00d0b997e78902531c91b",
+    "prompt": "generation/m-767f333eab63ec22/runs/2026-09-11t155803z/01-anthro.txt",
+    "manifest": "generation/m-767f333eab63ec22/runs/2026-09-11t155803z/manifest.json"
+  },
+  "GN-X_cinematic_semi_real_f_casual1.webp": {
+    "card": "GN-X",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "270e0b7d3e7d44dd6f7033a7b8e56d93a35c94ca4ea595ad957d1376f58457eb",
+    "prompt": "generation/m-767f333eab63ec22/runs/2026-09-11t155803z/02-casual.txt",
+    "manifest": "generation/m-767f333eab63ec22/runs/2026-09-11t155803z/manifest.json"
+  },
+  "GN-X_anime_illust_f.webp": {
+    "card": "GN-X",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "74a235e58ec33aede9049db58ca65c78bca182bbc436a82dfbb87de7f0b19b8a",
+    "prompt": "generation/m-767f333eab63ec22/runs/2026-09-11t155803z/03-anthro.txt",
+    "manifest": "generation/m-767f333eab63ec22/runs/2026-09-11t155803z/manifest.json"
+  },
+  "GN-X_anime_illust_f_casual1.webp": {
+    "card": "GN-X",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "f8be67f1601de72c0dbf547d5d14cae2d19bcf58bde9f19265afcd7361834d29",
+    "prompt": "generation/m-767f333eab63ec22/runs/2026-09-11t155803z/04-casual.txt",
+    "manifest": "generation/m-767f333eab63ec22/runs/2026-09-11t155803z/manifest.json"
+  }
+}

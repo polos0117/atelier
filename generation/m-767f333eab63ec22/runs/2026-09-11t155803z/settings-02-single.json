@@ -1,0 +1,73 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "occupation_sensual"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "hightech_inspector"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "focused"
+  },
+  {
+    "id": "sgOrient",
+    "value": "front_3q"
+  },
+  {
+    "id": "sgPose",
+    "value": "mid_action"
+  },
+  {
+    "id": "sgScene",
+    "value": "A rain-lit automated transit control concourse at midnight, glass walls, quiet violet route displays rendered as abstract unreadable light, wet city reflections outside, no other people"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "A designed asymmetrical silver-charcoal technical jumpsuit with one structured sleeveless side, a high opaque diagonal neckline, fitted waist, tapered legs, and subtle violet piping; ankle boots and a slim utility belt, no armor or mechanical parts"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body environmental portrait from a low front three-quarter angle, 35mm perspective, entire figure and both boots visible, cool overhead light with violet reflections and soft rain ambience"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She is actively testing a handheld transit sensor against a waist-high inspection terminal: her right hand holds exactly one compact scanner and her left hand steadies the open terminal panel. Preserve the SAME clearly adult Korean woman from the attached GN-X anthropomorphized portrait, including her angular long face, narrow upturned purple eyes, light skin, short silver asymmetric cut with asymmetric bangs, tall athletic proportions and broad shoulders. Exactly TWO normal human arms, TWO hands and TWO legs, all fully connected and anatomically correct. Render her completely as a contemporary human: no armor, X-shaped chest vanes, GN Drive, shield, rifle, helmet, mechanical limbs or sensor parts. She looks down at the inspection reading with a serious focused expression, not at the viewer. Secure opaque fashion, no transparent fabric, no nudity, no readable text, logos or watermark."
+  },
+  {
+    "id": "sgCarryFace",
+    "value": "on",
+    "checked": true
+  },
+  {
+    "id": "sgCarryBody",
+    "value": "on",
+    "checked": true
+  },
+  {
+    "id": "sgAvoid",
+    "value": "on",
+    "checked": false
+  }
+]
