@@ -1,0 +1,73 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "everyday_sensual"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "__custom__"
+  },
+  {
+    "id": "sgExCustom",
+    "value": "Late-summer peach-orchard picnic"
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "amused"
+  },
+  {
+    "id": "sgOrient",
+    "value": "front_3q"
+  },
+  {
+    "id": "sgPose",
+    "value": "sitting"
+  },
+  {
+    "id": "sgScene",
+    "value": "A sunny hillside peach orchard in late summer, dappled leaves above, a blue picnic blanket under a fruit tree, a wicker basket filled with peaches and a distant patchwork valley"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "An ivory and muted coral gingham halter-neck sundress with a fitted waist, open back and one practical side slit, calf-length airy skirt, flat brown strappy sandals and a straw hat resting beside her"
+  },
+  {
+    "id": "sgCamera",
+    "value": "A spacious full-body front three-quarter environmental view from seated eye level, warm morning light, hand-painted countryside background and crisp retro cel shading"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She sits comfortably on a low wooden orchard bench, both feet resting naturally on the picnic blanket without crossed or overlapping legs, holding a freshly bitten peach in her right hand near her mouth and smiling with amusement toward someone off-frame. Her left hand rests on the bench. Show exactly two natural arms, two legs and two sandals clearly separated. Preserve the same clearly adult woman and her recognizable long teal crown-braided hairstyle from the attached retro anime portrait. The dress drapes naturally around her hips and legs. No armor, mechanical equipment, weapons, sensor ornament, lettering or logos. Only one person appears."
+  },
+  {
+    "checked": true,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": true,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]
