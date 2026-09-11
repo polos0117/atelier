@@ -1,7 +1,7 @@
 {
-  "딜란자 소르_cinematic_semi_real_f.webp": {
-    "file": "딜란자 소르_cinematic_semi_real_f.webp",
-    "card": "딜란자 소르",
+  "딜란자 솔_cinematic_semi_real_f.webp": {
+    "file": "딜란자 솔_cinematic_semi_real_f.webp",
+    "card": "딜란자 솔",
     "style": "cinematic_semi_real",
     "gender": "f",
     "mode": "anthro",
@@ -9,9 +9,9 @@
     "prompt": "generation/m-45933479a5def065/runs/2026-09-11t103927z/01-anthro.txt",
     "manifest": "generation/m-45933479a5def065/runs/2026-09-11t103927z/manifest.json"
   },
-  "딜란자 소르_cinematic_semi_real_f_casual1.webp": {
-    "file": "딜란자 소르_cinematic_semi_real_f_casual1.webp",
-    "card": "딜란자 소르",
+  "딜란자 솔_cinematic_semi_real_f_casual1.webp": {
+    "file": "딜란자 솔_cinematic_semi_real_f_casual1.webp",
+    "card": "딜란자 솔",
     "style": "cinematic_semi_real",
     "gender": "f",
     "mode": "casual",
@@ -19,9 +19,9 @@
     "prompt": "generation/m-45933479a5def065/runs/2026-09-11t103927z/02-casual.txt",
     "manifest": "generation/m-45933479a5def065/runs/2026-09-11t103927z/manifest.json"
   },
-  "딜란자 소르_anime_illust_f.webp": {
-    "file": "딜란자 소르_anime_illust_f.webp",
-    "card": "딜란자 소르",
+  "딜란자 솔_anime_illust_f.webp": {
+    "file": "딜란자 솔_anime_illust_f.webp",
+    "card": "딜란자 솔",
     "style": "anime_illust",
     "gender": "f",
     "mode": "anthro",
@@ -29,9 +29,9 @@
     "prompt": "generation/m-45933479a5def065/runs/2026-09-11t103927z/03-anthro.txt",
     "manifest": "generation/m-45933479a5def065/runs/2026-09-11t103927z/manifest.json"
   },
-  "딜란자 소르_anime_illust_f_casual1.webp": {
-    "file": "딜란자 소르_anime_illust_f_casual1.webp",
-    "card": "딜란자 소르",
+  "딜란자 솔_anime_illust_f_casual1.webp": {
+    "file": "딜란자 솔_anime_illust_f_casual1.webp",
+    "card": "딜란자 솔",
     "style": "anime_illust",
     "gender": "f",
     "mode": "casual",

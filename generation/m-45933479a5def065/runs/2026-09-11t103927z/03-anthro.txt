@@ -364,7 +364,7 @@ same facial geometry with different hair.
 
 PARAMETERS = [
 gender: female,
-mobile suit name: 딜란자 소르,
+mobile suit name: 딜란자 솔,
 series: 수성의 마녀,
 apparent age: 20s,
 facial ethnicity: South Asian,

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "card": "딜란자 소르",
+  "card": "딜란자 솔",
   "repository": "polos0117/atelier",
   "branch": "codex/dilanza-sol",
   "base_commit": "03cdf42bb06440cee45036c8792d7168b5199e35",
@@ -8,8 +8,8 @@
   "run": "2026-09-11t103927z",
   "assets": [
     {
-      "file": "딜란자 소르_cinematic_semi_real_f.webp",
-      "card": "딜란자 소르",
+      "file": "딜란자 솔_cinematic_semi_real_f.webp",
+      "card": "딜란자 솔",
       "style": "cinematic_semi_real",
       "gender": "f",
       "mode": "anthro",
@@ -27,8 +27,8 @@
       "parent_anthro": null
     },
     {
-      "file": "딜란자 소르_cinematic_semi_real_f_casual1.webp",
-      "card": "딜란자 소르",
+      "file": "딜란자 솔_cinematic_semi_real_f_casual1.webp",
+      "card": "딜란자 솔",
       "style": "cinematic_semi_real",
       "gender": "f",
       "mode": "casual",
@@ -46,8 +46,8 @@
       "parent_anthro": "exec-a7a15e4d-bcaa-4575-882a-588c234d3c21"
     },
     {
-      "file": "딜란자 소르_anime_illust_f.webp",
-      "card": "딜란자 소르",
+      "file": "딜란자 솔_anime_illust_f.webp",
+      "card": "딜란자 솔",
       "style": "anime_illust",
       "gender": "f",
       "mode": "anthro",
@@ -67,8 +67,8 @@
       "parent_anthro": null
     },
     {
-      "file": "딜란자 소르_anime_illust_f_casual1.webp",
-      "card": "딜란자 소르",
+      "file": "딜란자 솔_anime_illust_f_casual1.webp",
+      "card": "딜란자 솔",
       "style": "anime_illust",
       "gender": "f",
       "mode": "casual",

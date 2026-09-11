@@ -1,6 +1,6 @@
 [INPUT]
 
-SOURCE MOBILE SUIT: [딜란자 소르]
+SOURCE MOBILE SUIT: [딜란자 솔]
 
 This name is identity-provenance metadata only, used for lore, personality, and occupation context. It must not be used to reconstruct, restore, or invent mobile-suit armor, weapons, shields, backpacks, mechanical limbs, or other canonical equipment.
 
