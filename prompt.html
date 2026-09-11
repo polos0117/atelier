@@ -4890,6 +4890,20 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     t.remove();if(!ok)throw(err||new Error('copy unavailable'));
   }
 
+  /* 모바일에서는 긴 텍스트를 상자에서 골라 붙여넣기 어렵다. 상자와 복사는 그대로 두고
+     같은 내용을 파일로도 떨어뜨린다. 실패해도 기존 경로가 살아 있으므로 조용히 넘긴다. */
+  function downloadJson(filename,text){
+    try{
+      const blob=new Blob([text],{type:'application/json;charset=utf-8'});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement('a');
+      a.href=url;a.download=filename;a.style.display='none';
+      document.body.appendChild(a);a.click();a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),1000);
+      return true;
+    }catch(e){return false;}
+  }
+
   /* 세 모드가 각기 다른 함수로 짜인다. 예전에는 콜라주만 가려내고 나머지를 모두
      의인화로 보내, 단일 컷을 복사하면 의인화 프롬프트를 새로 짜 놓고 정작 복사는
      단일 컷의 묵은 값을 했다. 복사가 막혔을 때도 엉뚱하게 의인화 상자를 열고,
@@ -5145,7 +5159,9 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     box.value=JSON.stringify(result,null,2);
     box.classList.remove('hidden');box.select();
     try{document.execCommand('copy');}catch(e){}
-    setStatus('statusAnthro',k+' 한 기체의 settings.json 기록을 내보냈다.','ok');
+    const saved=downloadJson(k.replace(/ /g,'_')+'_settings.json',box.value);
+    setStatus('statusAnthro',k+' 한 기체의 settings.json 기록을 내보냈다.'
+      +(saved?' 파일로도 내려받았다.':' 파일 저장은 실패해서 아래 칸에서 복사해라.'),'ok');
   });
   document.getElementById('exportAllStore').addEventListener('click',async()=>{
     const box=document.getElementById('exportBox');
@@ -5195,9 +5211,14 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     Object.keys(uk).forEach(k=>{const u=usedOf(k);if(u.length)merged.used[k]=u;});
     box.value=JSON.stringify(merged,null,1);
     box.classList.remove('hidden'); box.select();
+    const savedAll=downloadJson('toolkit-data.json',box.value);
+    const n=Object.keys(merged.mechs).length;
     try{document.execCommand('copy');setStatus('statusAnthro',
-      Object.keys(merged.mechs).length+'기 기록을 복사했다. toolkit-data.json 으로 커밋하면 된다.','ok');}
-    catch(e){setStatus('statusAnthro','아래 칸의 내용을 직접 복사해라','warn');}
+      n+'기 기록을 복사했다.'+(savedAll?' toolkit-data.json 파일로도 내려받았다.':' 파일 저장은 실패했다.')
+      +' 저장소의 toolkit-data.json 으로 커밋하면 된다.','ok');}
+    catch(e){setStatus('statusAnthro',savedAll
+      ? n+'기 기록을 toolkit-data.json 파일로 내려받았다.'
+      : '복사와 파일 저장이 모두 막혔다. 아래 칸의 내용을 직접 복사해라','warn');}
   });
   document.getElementById('specialInput').addEventListener('input',refreshAnthroPrompt);
   document.getElementById('underboobInput').addEventListener('change',refreshAnthroPrompt);
