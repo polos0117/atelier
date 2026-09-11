@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "card": "비르고",
+  "model": "OZ-02MD",
+  "series": "건담 W",
+  "repository": "polos0117/atelier",
+  "branch": "codex/virgo-images",
+  "base_commit": "5f817facf54ec1356d2cf1d2c16656c733b68d00",
+  "prompt_source": "deployed prompt.html UI",
+  "run": "2026-09-11t163743z",
+  "created": "2026-09-11T16:37:43Z",
+  "generation_tool": "image_gen",
+  "settings_export": "Actual prompt.html selections and exported style settings captured for both styles",
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity": "Same adult Slavic woman across both styles",
+    "casual_scenes": [
+      "Mountain radio observatory at blue hour, kneeling maintenance",
+      "Rainy evening record shop, reaching for a vinyl sleeve"
+    ]
+  },
+  "jobs": [
+    {
+      "id": "01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": null,
+      "prompt": "generation/m-362d78b0bc5964ea/runs/2026-09-11t163743z/01-anthro.txt",
+      "original_generated_file": "exec-fa8efebc-18c2-4303-9b2a-bd4dd6f124c4.png",
+      "references": [
+        "https://www.gundam-c.com/manual/mechanic/w/virgo.html",
+        "https://www.gundam-c.com/manual/mechanic/w/image/virgo.jpg"
+      ],
+      "file": "img/비르고_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "9b9ca2403b977be779ae1169f51ff25b8c512e14820197539d5fdfb2b43c1da5",
+      "bytes": 97146
+    },
+    {
+      "id": "02",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "01",
+      "prompt": "generation/m-362d78b0bc5964ea/runs/2026-09-11t163743z/02-casual.txt",
+      "original_generated_file": "exec-04511ff3-407d-462c-9b20-57393c40e675.png",
+      "references": [
+        "exec-fa8efebc-18c2-4303-9b2a-bd4dd6f124c4.png"
+      ],
+      "file": "img/비르고_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "89d4fe6d39a64bbf6f7c961a2e1993df172ed8f0ee2cdd92f5397b7f482a81d1",
+      "bytes": 155860
+    },
+    {
+      "id": "03",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": "01",
+      "prompt": "generation/m-362d78b0bc5964ea/runs/2026-09-11t163743z/03-anthro.txt",
+      "original_generated_file": "exec-fc21fb8e-3529-49bf-9ec3-5e24566180ee.png",
+      "references": [
+        "exec-fa8efebc-18c2-4303-9b2a-bd4dd6f124c4.png",
+        "https://www.gundam-c.com/manual/mechanic/w/image/virgo.jpg"
+      ],
+      "file": "img/비르고_retro_anime_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "535a55fa760bdec690da0c80852e1866cf06948f16bc4d65b449fd84dea76f4d",
+      "bytes": 88270
+    },
+    {
+      "id": "04",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "03",
+      "prompt": "generation/m-362d78b0bc5964ea/runs/2026-09-11t163743z/04-casual.txt",
+      "original_generated_file": "exec-4360cfc5-e11d-47ab-b4ba-03b982a84409.png",
+      "references": [
+        "exec-fc21fb8e-3529-49bf-9ec3-5e24566180ee.png"
+      ],
+      "file": "img/비르고_retro_anime_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "3cbe0e1c2d859eeeccadae8c3a5cee9c87e7568cb96d4a2fe219ac67132c1539",
+      "bytes": 104790
+    }
+  ],
+  "prompt_html_sha256": "ab1103447a08571bbd24c83763047c01bb31c365aa59ad2bf81799715336474e",
+  "prompt_html_verification": "Deployed prompt.html v9.18 used; repository prompt.html hash recorded"
+}

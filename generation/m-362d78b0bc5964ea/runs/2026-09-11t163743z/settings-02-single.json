@@ -1,0 +1,73 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "occupation_basic"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "observatory_engineer"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "serious"
+  },
+  {
+    "id": "sgOrient",
+    "value": "front_3q"
+  },
+  {
+    "id": "sgPose",
+    "value": "kneeling"
+  },
+  {
+    "id": "sgScene",
+    "value": "A wind-swept mountain radio observatory platform at blue hour, one large parabolic dish, frost on metal grating and distant dark ridgelines, no other people"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "A loose slate-gray insulated field jumpsuit opened at the collar over a black thermal mock-neck, a compact crimson safety harness, gray work gloves and heavy black lace-up boots; practical contemporary technical wear"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body eye-level front three-quarter composition, entire kneeling figure and both boots visible beside the dish feed assembly, cool twilight with one warm task lamp"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She kneels on one padded knee while tightening a fastener on the radio dish feed horn with one compact torque wrench in her right hand; her left hand steadies the bracket. Preserve the SAME clearly adult Slavic woman from the attached Virgo portrait: short wide oval face, pale skin, medium crimson eyes with downturned outer corners, prominent defined nose, thin lips, blunt short black bob with straight bangs, heavy-built body and broad shoulders. Exactly TWO normal human arms, TWO hands and TWO legs, anatomically correct. Render her completely as a contemporary human: no armor, giant shoulders, Planet Defensors, cannon, power cable, helmet, mechanical joints or sensors. She studies the fastener with a serious expression, not at the viewer. Fully opaque secure workwear, no readable text, logos or watermark."
+  },
+  {
+    "checked": true,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": true,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]
