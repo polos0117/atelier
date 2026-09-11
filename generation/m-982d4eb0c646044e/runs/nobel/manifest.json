@@ -1,0 +1,99 @@
+{
+  "repository": "polos0117/atelier",
+  "branch": "codex/nobel-images",
+  "base_commit": "df42c9c49064c26cb0e9a0bab9eb5be748ddd620",
+  "prompt_version": "v9.18",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "original_source_reference": "No original mecha image supplied; canonical design instructions from prompt.html.",
+  "assets": [
+    {
+      "id": 1,
+      "card": "노벨 건담",
+      "style": "cinematic_semi_real",
+      "mode": "anthro",
+      "gender": "f",
+      "file": "노벨_건담_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "0900d60548e1b977633c92f3f5d50fb910f35be4e64f869e1bfbe96e9b18138a",
+      "blob_sha": "1f03f981d21dc8d64ac6f40a3819b5f3fe905b01",
+      "original_generation_id": "exec-e21ff159-b7c7-4adf-89b5-7ad7624f18d6",
+      "original_sha256": "2395f3b069fa5f5f839db4d4e15f3531b6534b2814450b34214bac66c4e71506",
+      "prompt": "01-cinematic-anthro.txt",
+      "reference_id": null,
+      "generated": true,
+      "converted": true,
+      "registration_verified": true,
+      "blob_verified": true
+    },
+    {
+      "id": 2,
+      "card": "노벨 건담",
+      "style": "cinematic_semi_real",
+      "mode": "casual",
+      "gender": "f",
+      "file": "노벨_건담_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "0367268ca0428528b44606dfb7ee0c6bcfebe95f33c34956a82b5a4e6d6f97de",
+      "blob_sha": "1179501d6a0bcdd6cc50ff477c5cfdd38fd2e2b2",
+      "original_generation_id": "exec-f7bfce5c-67fa-421b-bda4-6fe5e76ac200",
+      "original_sha256": "93cfeff850af61a22cebce06ab6a27bca8245349a0ac9d7a7f1710d9279b2672",
+      "prompt": "02-cinematic-casual.txt",
+      "reference_id": 1,
+      "generated": true,
+      "converted": true,
+      "registration_verified": true,
+      "blob_verified": true
+    },
+    {
+      "id": 3,
+      "card": "노벨 건담",
+      "style": "anime_illust",
+      "mode": "anthro",
+      "gender": "f",
+      "file": "노벨_건담_anime_illust_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "6aee3c85dc08d7f1393d77544c6089dc27ff4bc044e6bb55853a61b9cb34c391",
+      "blob_sha": "a74a2a8418edb5b80fe0af21584a3b3709b410f1",
+      "original_generation_id": "exec-f0bbfcda-d9cc-43bd-833c-885bbad00e3f",
+      "original_sha256": "9498797c6796ebaa3e2938b256ea47faba70a7d5cd25b386ed3e37b445973cbc",
+      "prompt": "03-anime-anthro.txt",
+      "reference_id": 1,
+      "generated": true,
+      "converted": true,
+      "registration_verified": true,
+      "blob_verified": true
+    },
+    {
+      "id": 4,
+      "card": "노벨 건담",
+      "style": "anime_illust",
+      "mode": "casual",
+      "gender": "f",
+      "file": "노벨_건담_anime_illust_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "08dde5cd92da36cc8624ebd7853ea1b5c1339eecf7eb0e0693fed3e044f6082b",
+      "blob_sha": "d51faf6eea7c8a74a1fb2245438d5cd9d178036e",
+      "original_generation_id": "exec-6db4cfc6-c394-4a29-98e2-37f778dc0e7d",
+      "original_sha256": "793283689fe4c398b840fe882e835b6faf6595d1225c20f8686b5d6083162df7",
+      "prompt": "04-anime-casual.txt",
+      "reference_id": 3,
+      "generated": true,
+      "converted": true,
+      "registration_verified": true,
+      "blob_verified": true
+    }
+  ],
+  "status_note": "This manifest accompanies the image commit. Actual commit/branch/merge confirmation is separate from Blob creation."
+}

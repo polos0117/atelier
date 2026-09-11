@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "card": "턴 X",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "30s",
+        "armor coverage": "open",
+        "bangs": "asymmetric bangs",
+        "body type": "statuesque",
+        "eye shape": "almond",
+        "face shape": "sharp",
+        "facial character": "regal",
+        "facial ethnicity": "Chinese",
+        "hair length": "medium",
+        "hairstyle": "asymmetric cut",
+        "height impression": "very tall",
+        "human-mechanical balance": "more human",
+        "leg proportion": "very long",
+        "shoulder build": "broad",
+        "torso / chest build": "full bust"
+      },
+      "sp": "Clearly adult woman aged 38, pale jade asymmetric hair, matching golden eyes. Preserve the light celadon segmented asymmetric armor, black X-shaped chest divisions, right external claw equipment and deep violet rear weapon rack. Exactly two biological arms; the unusual source parts are external armor. No generic Gundam crest."
+    },
+    "g": "female",
+    "mm": "silhouette_equipment_emphasis",
+    "t": 1788973622853
+  },
+  "used": [
+    {
+      "cat": "everyday_sensual",
+      "ex": "",
+      "n": 1,
+      "t": 1788973628517
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

@@ -1,0 +1,122 @@
+{
+  "repository": "polos0117/atelier",
+  "branch": "codex/gundam-maxter-four-images",
+  "base_commit": "33ddfb1946fc0a9f1cfd41e4d8d7ddf2e05c2254",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "generator": "built-in image_gen",
+  "selection_first": true,
+  "assets": [
+    {
+      "id": 1,
+      "card": "건담 어스트레이 그린프레임",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "건담_어스트레이_그린프레임_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "6ba8c600dcae13249ef43a76bf8c785f0765cd5cce10499f25651cc118dc1f04",
+      "original_generation_id": "exec-08759927-dbac-4302-b645-55f10aa807ca",
+      "original_sha256": "75abd0a8b5dc868da0ff7d45d6be09426329f0ffc520efe64cb6414a8894a9e2",
+      "prompt": "01b-cinematic-anthro-final.txt",
+      "reference_ids": [
+        "draft-1"
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 2,
+      "card": "건담 어스트레이 그린프레임",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "file": "건담_어스트레이_그린프레임_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "c3937e044b55a7cacf4885f1882d6b42c06baa05121963a25b72d8750c5689c4",
+      "original_generation_id": "exec-217e9990-8094-4cf5-980e-72952a121196",
+      "original_sha256": "9c5ae9211f1eee78f3ff1727b7775b6e4f40877dbdb6668652d1c87f4e8da027",
+      "prompt": "02-cinematic-casual.txt",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 3,
+      "card": "건담 어스트레이 그린프레임",
+      "style": "ink_wash",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "건담_어스트레이_그린프레임_ink_wash_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "2ac6067f25e8c3486355a6fa73f04821ca7599ca7c15d2c08c9b8e62f789516d",
+      "original_generation_id": "exec-953390ee-5b82-4cfa-8856-08874baa14d9",
+      "original_sha256": "07b84034a3c5362f89311c1a60bab836c0a68996b5c2d759747b5cc988e0d799",
+      "prompt": "03-ink-anthro.txt",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 4,
+      "card": "건담 어스트레이 그린프레임",
+      "style": "ink_wash",
+      "gender": "f",
+      "mode": "casual",
+      "file": "건담_어스트레이_그린프레임_ink_wash_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "050aee6eb196c0ee4867b45c05af8cc46cf873a7239aa4cf9a654c655d7fdb20",
+      "original_generation_id": "exec-d57bf3ab-85d7-419b-8400-885d14161de3",
+      "original_sha256": "0cbb6f3814c4cffdf08557185d14495ee7d0bdf75c88bebafc8b979a156e29e3",
+      "prompt": "04-ink-casual.txt",
+      "reference_ids": [
+        3
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    }
+  ],
+  "attempts": [
+    {
+      "id": "draft-1",
+      "prompt": "01-cinematic-anthro.txt",
+      "generation_id": "exec-535f62b4-68d7-46df-9afe-243d4e5a149d",
+      "selected": false,
+      "reason": "Katana equipment replaced with rifle interpretation"
+    }
+  ],
+  "record_export": {
+    "completed": true,
+    "selected_parameter_count": 25,
+    "merged_cards": [
+      "건담 어스트레이 그린프레임"
+    ]
+  },
+  "review_notes": [
+    "All final images visually reviewed. Portraits used AUTO pose/viewpoint; resulting poses are similar.",
+    "Crest is inside frame but top margin is smaller than requested.",
+    "Rifle corrected from katana. No official source image used; exact weapon geometry remains model interpretation.",
+    "Lifestyle scenes retain nonfunctional hair ornaments; functional armor and weapons removed.",
+    "Final WebPs and prompts are committed; original PNG locations are transient. New-card dex screen has not been directly inspected before deployment."
+  ]
+}

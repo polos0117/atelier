@@ -1,0 +1,42 @@
+{
+  "건담_레길레스_cinematic_semi_real_f.webp": {
+    "card": "건담 레길레스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "4a06da9b47872557904d205b76bc058f17acb4ec1e88399f6078c745100fd5a9",
+    "prompt": "generation/m-aad2107d322f46cc/runs/next-five/09-legilis-cinematic-anthro.txt",
+    "manifest": "generation/m-aad2107d322f46cc/runs/next-five/manifest.json",
+    "legacy_manifest": "docs/generation/next-five/manifest.json"
+  },
+  "건담_레길레스_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 레길레스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "b1f121839cdec433e60d19b9a97c19d57bb6841a1304b5de5eed9d5aae9b3dfd",
+    "prompt": "generation/m-aad2107d322f46cc/runs/next-five/10-legilis-cinematic-casual.txt",
+    "manifest": "generation/m-aad2107d322f46cc/runs/next-five/manifest.json",
+    "legacy_manifest": "docs/generation/next-five/manifest.json"
+  },
+  "건담_레길레스_glossy_kr_game_f.webp": {
+    "card": "건담 레길레스",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "58a4e69f106daa1bfc922147c727160627890fb77e89613e076e9440f6065fe7",
+    "prompt": "generation/m-aad2107d322f46cc/runs/next-five/11-legilis-glossy-anthro.txt",
+    "manifest": "generation/m-aad2107d322f46cc/runs/next-five/manifest.json",
+    "legacy_manifest": "docs/generation/next-five/manifest.json"
+  },
+  "건담_레길레스_glossy_kr_game_f_casual1.webp": {
+    "card": "건담 레길레스",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "e2aba7c4f0c8d2a7ecf1ff296bdf10cfecdeb9ef1cdcd92ae3b09d18578b308c",
+    "prompt": "generation/m-aad2107d322f46cc/runs/next-five/12-legilis-glossy-casual.txt",
+    "manifest": "generation/m-aad2107d322f46cc/runs/next-five/manifest.json",
+    "legacy_manifest": "docs/generation/next-five/manifest.json"
+  }
+}

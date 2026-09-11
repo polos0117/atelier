@@ -1,0 +1,42 @@
+{
+  "자쿠Ⅱ 개량형_cinematic_semi_real_f.webp": {
+    "card": "자쿠Ⅱ 개량형",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "b6debd771f5e867bf93d97388f90e6c75cbfeb5d7effdd361df8789ca19ca68f",
+    "prompt": "generation/m-7b6f4665d2783e28/runs/2026-09-10-zaku2-fz/01-cinematic-anthro.txt",
+    "manifest": "generation/m-7b6f4665d2783e28/runs/2026-09-10-zaku2-fz/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-zaku2-fz/manifest.json"
+  },
+  "자쿠Ⅱ 개량형_cinematic_semi_real_f_casual1.webp": {
+    "card": "자쿠Ⅱ 개량형",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "d5b9f04c0575dbeb3caf4ae5d75a8da2dc538f23bd2d1da5e3c18dfb0bdba9cd",
+    "prompt": "generation/m-7b6f4665d2783e28/runs/2026-09-10-zaku2-fz/02-cinematic-casual.txt",
+    "manifest": "generation/m-7b6f4665d2783e28/runs/2026-09-10-zaku2-fz/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-zaku2-fz/manifest.json"
+  },
+  "자쿠Ⅱ 개량형_retro_anime_f.webp": {
+    "card": "자쿠Ⅱ 개량형",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "c20f1434481fd399d1efbdb385f6827c6ea84710aa8e952947d2d7d0a05cdf96",
+    "prompt": "generation/m-7b6f4665d2783e28/runs/2026-09-10-zaku2-fz/03-retro-anthro.txt",
+    "manifest": "generation/m-7b6f4665d2783e28/runs/2026-09-10-zaku2-fz/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-zaku2-fz/manifest.json"
+  },
+  "자쿠Ⅱ 개량형_retro_anime_f_casual1.webp": {
+    "card": "자쿠Ⅱ 개량형",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "fdbf028d68c62752fc847fca21e236d4154aa3fce31c427451932d2712c87fe5",
+    "prompt": "generation/m-7b6f4665d2783e28/runs/2026-09-10-zaku2-fz/04-retro-casual.txt",
+    "manifest": "generation/m-7b6f4665d2783e28/runs/2026-09-10-zaku2-fz/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-zaku2-fz/manifest.json"
+  }
+}

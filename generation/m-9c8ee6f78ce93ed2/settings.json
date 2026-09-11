@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "card": "가브스레이",
+  "record": {
+    "female": {
+      "cus": {
+        "hair color": "갈색/올리브색 반반"
+      },
+      "sel": {
+        "armor coverage": "open",
+        "body type": "inverted triangle",
+        "eye color": "pink",
+        "hair color": "__custom__",
+        "second eye color": "pink",
+        "shoulder build": "broad",
+        "torso / chest build": "full"
+      }
+    },
+    "g": "female",
+    "male": {
+      "cus": {
+        "hair color": "갈색/올리브색 반반"
+      },
+      "sel": {
+        "body type": "inverted triangle",
+        "eye color": "pink",
+        "hair color": "__custom__",
+        "second eye color": "pink",
+        "shoulder build": "broad"
+      }
+    },
+    "t": 1788901461519
+  },
+  "used": [
+    {
+      "cat": "swimwear",
+      "ex": "",
+      "n": 3,
+      "t": 1788902547960
+    },
+    {
+      "cat": "adult_roleplay",
+      "ex": "adult_secretary",
+      "n": 2,
+      "t": 1788901973532
+    },
+    {
+      "cat": "traditional",
+      "ex": "thobe_inspired",
+      "n": 1,
+      "t": 1788901488904
+    },
+    {
+      "cat": "active",
+      "ex": "yoga_flow",
+      "n": 1,
+      "t": 1788884651055
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "hightech_inspector",
+      "n": 1,
+      "t": 1788884630918
+    },
+    {
+      "cat": "swimwear",
+      "ex": "sarong_wrap",
+      "n": 1,
+      "t": 1788884614229
+    },
+    {
+      "cat": "everyday_sensual",
+      "ex": "rainy_return",
+      "n": 1,
+      "t": 1788884597751
+    },
+    {
+      "cat": "lingerie",
+      "ex": "bodysuit",
+      "n": 1,
+      "t": 1788884581350
+    },
+    {
+      "cat": "private_evening",
+      "ex": "silk_robe_evening",
+      "n": 1,
+      "t": 1788884365474
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

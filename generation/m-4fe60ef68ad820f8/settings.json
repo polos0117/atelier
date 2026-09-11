@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "card": "데미 바딩",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "armor coverage": "balanced",
+        "bangs": "choppy bangs",
+        "body type": "athletic",
+        "face shape": "oval",
+        "facial character": "friendly",
+        "facial ethnicity": "Korean",
+        "hair length": "short",
+        "hairstyle": "wolf cut",
+        "height impression": "tall",
+        "human-mechanical balance": "more human",
+        "leg proportion": "long",
+        "shoulder build": "broad",
+        "torso / chest build": "full",
+        "waist / hip silhouette": "athletic"
+      },
+      "sp": "Copper brown hair, matching amber eyes. Original clearly adult woman aged 27, not a depiction of any pilot. Preserve the Demi Barding sand beige, ivory white and charcoal mechanical palette and large backpack; human face fully visible."
+    },
+    "g": "female",
+    "t": 1788971244309
+  },
+  "used": [
+    {
+      "cat": "occupation_sensual",
+      "ex": "",
+      "n": 1,
+      "t": 1788971253566
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

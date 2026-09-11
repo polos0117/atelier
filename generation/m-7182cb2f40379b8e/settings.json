@@ -1,0 +1,129 @@
+{
+  "version": 1,
+  "card": "블루 듀얼 건담",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "armor coverage": "open",
+        "body type": "athletic",
+        "expression": "cold",
+        "eye color": "green",
+        "eye shape": "narrow",
+        "eye size": "medium",
+        "eye tilt": "upturned outer corners",
+        "face length": "long",
+        "face shape": "angular",
+        "facial character": "refined",
+        "facial ethnicity": "Mediterranean",
+        "hair color": "navy",
+        "hair length": "medium",
+        "hairstyle": "top knot",
+        "height impression": "tall",
+        "human-mechanical balance": "more human",
+        "jaw & chin": "balanced jawline",
+        "leg proportion": "long",
+        "lips": "medium lips",
+        "lower-body build": "full",
+        "nose character": "prominent defined nose",
+        "second eye color": "green",
+        "shoulder build": "broad",
+        "silhouette character": "regal",
+        "skin tone": "pale",
+        "torso / chest build": "full",
+        "torso length": "balanced",
+        "waist / hip silhouette": "athletic"
+      }
+    },
+    "g": "female",
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "body type": "athletic",
+        "expression": "cold",
+        "eye color": "green",
+        "eye shape": "narrow",
+        "eye size": "medium",
+        "eye tilt": "upturned outer corners",
+        "face length": "long",
+        "face shape": "angular",
+        "facial character": "refined",
+        "facial ethnicity": "Mediterranean",
+        "hair color": "navy",
+        "hair length": "medium",
+        "hairstyle": "top knot",
+        "height impression": "tall",
+        "human-mechanical balance": "more human",
+        "jaw & chin": "balanced jawline",
+        "leg proportion": "long",
+        "lips": "medium lips",
+        "lower-body build": "full",
+        "nose character": "prominent defined nose",
+        "second eye color": "green",
+        "shoulder build": "broad",
+        "silhouette character": "regal",
+        "skin tone": "pale",
+        "torso length": "balanced",
+        "waist / hip silhouette": "athletic"
+      }
+    },
+    "t": 1788827267487
+  },
+  "used": [
+    {
+      "cat": "private_evening",
+      "ex": "heritage_evening",
+      "n": 1,
+      "t": 1788828274672
+    },
+    {
+      "cat": "lingerie",
+      "ex": "back_strap",
+      "n": 1,
+      "t": 1788827836062
+    },
+    {
+      "cat": "everyday_sensual",
+      "ex": "late_snack",
+      "n": 1,
+      "t": 1788827602984
+    },
+    {
+      "cat": "homewear",
+      "ex": "backless_lounge",
+      "n": 1,
+      "t": 1788827294751
+    },
+    {
+      "cat": "adult_roleplay",
+      "ex": "circus_ringmaster",
+      "n": 2,
+      "t": 1788827112879
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "stunt_coordinator",
+      "n": 1,
+      "t": 1788826807289
+    },
+    {
+      "cat": "source_editorial",
+      "ex": "metallic_asymmetry",
+      "n": 1,
+      "t": 1788826655451
+    },
+    {
+      "cat": "swimwear",
+      "ex": "highleg_onepiece",
+      "n": 1,
+      "t": 1788826449048
+    },
+    {
+      "cat": "traditional",
+      "ex": "aodai_daily",
+      "n": 1,
+      "t": 1788826331961
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

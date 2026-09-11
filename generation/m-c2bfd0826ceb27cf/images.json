@@ -1,0 +1,42 @@
+{
+  "대거L_cinematic_semi_real_f.webp": {
+    "card": "대거L",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "e4ba72b222f4ed85160090589f0a38f3f2768d5d000d0aad292ea8703cf06549",
+    "prompt": "generation/m-c2bfd0826ceb27cf/runs/2026-09-11-dagger-l/01-anthro.txt",
+    "manifest": "generation/m-c2bfd0826ceb27cf/runs/2026-09-11-dagger-l/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-dagger-l/manifest.json"
+  },
+  "대거L_cinematic_semi_real_f_casual1.webp": {
+    "card": "대거L",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "f8163f9b2c1e30383b36ce378e70901f58379101a7ebd98902842e55a42f24e8",
+    "prompt": "generation/m-c2bfd0826ceb27cf/runs/2026-09-11-dagger-l/02-casual.txt",
+    "manifest": "generation/m-c2bfd0826ceb27cf/runs/2026-09-11-dagger-l/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-dagger-l/manifest.json"
+  },
+  "대거L_glossy_kr_game_f.webp": {
+    "card": "대거L",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "edec83203a21ce06133680a921d9b4f6e28977ea41977de2abaff1c5ec7f0cba",
+    "prompt": "generation/m-c2bfd0826ceb27cf/runs/2026-09-11-dagger-l/03-anthro.txt",
+    "manifest": "generation/m-c2bfd0826ceb27cf/runs/2026-09-11-dagger-l/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-dagger-l/manifest.json"
+  },
+  "대거L_glossy_kr_game_f_casual1.webp": {
+    "card": "대거L",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "6e24ed051d3732a833d1ce13e15271ac99cf941d5516663f88bd9eae27a4e1c5",
+    "prompt": "generation/m-c2bfd0826ceb27cf/runs/2026-09-11-dagger-l/04-casual.txt",
+    "manifest": "generation/m-c2bfd0826ceb27cf/runs/2026-09-11-dagger-l/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-dagger-l/manifest.json"
+  }
+}

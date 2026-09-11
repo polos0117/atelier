@@ -1,0 +1,42 @@
+{
+  "무라사메_cinematic_semi_real_f.webp": {
+    "card": "무라사메",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "98791937ff4cb7bc02d8c2a14c2c8655bb718bab9f8e8006acb8af21508825ee",
+    "prompt": "generation/m-7a972dbfd841d53a/runs/2026-09-11-murasame/01-anthro.txt",
+    "manifest": "generation/m-7a972dbfd841d53a/runs/2026-09-11-murasame/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-murasame/manifest.json"
+  },
+  "무라사메_cinematic_semi_real_f_casual1.webp": {
+    "card": "무라사메",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "0f41b50379ce520bfae7141b6b4995fc6bb40c5aa3cc7ae5f74b53ee290b6e79",
+    "prompt": "generation/m-7a972dbfd841d53a/runs/2026-09-11-murasame/02-casual.txt",
+    "manifest": "generation/m-7a972dbfd841d53a/runs/2026-09-11-murasame/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-murasame/manifest.json"
+  },
+  "무라사메_painterly_f.webp": {
+    "card": "무라사메",
+    "style": "painterly",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "cb40ab2cfade81841ec49a2308d2a6f6554a75f2fa2b9d4cab2a5e420149d8c1",
+    "prompt": "generation/m-7a972dbfd841d53a/runs/2026-09-11-murasame/03-anthro.txt",
+    "manifest": "generation/m-7a972dbfd841d53a/runs/2026-09-11-murasame/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-murasame/manifest.json"
+  },
+  "무라사메_painterly_f_casual1.webp": {
+    "card": "무라사메",
+    "style": "painterly",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "d555b2de43c34e368aabf0845cead9cb6b4c48a74211181e4e102d592353f5b3",
+    "prompt": "generation/m-7a972dbfd841d53a/runs/2026-09-11-murasame/04-casual.txt",
+    "manifest": "generation/m-7a972dbfd841d53a/runs/2026-09-11-murasame/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-murasame/manifest.json"
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "repository": "polos0117/atelier",
+  "branch": "codex/altron-images",
+  "base_commit": "74e91332af88393956c67f600ae04c7465a1333f",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_version": "v9.18",
+  "generator": "built-in image_gen",
+  "assets": [
+    {
+      "id": 1,
+      "card": "알트론 건담",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "알트론_건담_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "6b2740bea647654767ae7fad19271b2da02e57da7775843d8c3e04da20fce2c2",
+      "blob_sha": "57f09db26f3ddba6d04a8d3e73000d71e3c63eec",
+      "original_generation_id": "exec-8e7c7cc7-d005-4bea-8192-a3b42c712750",
+      "original_sha256": "c86afcdcf63b3eac1ca8759fc30838030d81c047fa79629b165e38d4f5c6717d",
+      "prompt": "01-cinematic-anthro.txt",
+      "reference_id": null,
+      "generated": true,
+      "converted": true
+    },
+    {
+      "id": 2,
+      "card": "알트론 건담",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "file": "알트론_건담_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "5767972346d16c7d5e83ed7cf7adb881222f885d956b6dd8bc5910c39cf06deb",
+      "blob_sha": "ad03a9b64de9a37e3c5bfe95208196bf714171cd",
+      "original_generation_id": "exec-0adc45cb-28ff-4edb-af29-e2f6b5727e97",
+      "original_sha256": "ec038f9d58d867d91d95fde91c8c26e2b67f55fed72ce300659520ed5661081f",
+      "prompt": "02-cinematic-casual.txt",
+      "reference_id": 1,
+      "generated": true,
+      "converted": true
+    },
+    {
+      "id": 3,
+      "card": "알트론 건담",
+      "style": "ink_wash",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "알트론_건담_ink_wash_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "e9d384a4d3ef09340078114e9fc737b7d72c899e9d3a2724c20d23a1fa060abc",
+      "blob_sha": "c44566f63c7f489c2f1c755314ddefc148f78714",
+      "original_generation_id": "exec-533c9b4c-eed6-458e-8b8d-1015c5c24618",
+      "original_sha256": "a4510e4469a134a4f23e1c2f403f2ffeaf8d07971d971d765db3bd53f3c8097e",
+      "prompt": "03-ink-anthro.txt",
+      "reference_id": 1,
+      "generated": true,
+      "converted": true
+    },
+    {
+      "id": 4,
+      "card": "알트론 건담",
+      "style": "ink_wash",
+      "gender": "f",
+      "mode": "casual",
+      "file": "알트론_건담_ink_wash_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "d179d66ac475cb14f7211dd5bc25c04e2a99e871c8be9bfafd0c9b6ff3732c0c",
+      "blob_sha": "3ff2b763260c4d5f1d0cb2b263f5b0a8451cfaa0",
+      "original_generation_id": "exec-a2613a09-5a96-448d-a08c-7e39186c75d4",
+      "original_sha256": "5db71cca71fba8a153c277d38b683f40f4eb827ee708d071d7c9a6fe72f3dea0",
+      "prompt": "04-ink-casual.txt",
+      "reference_id": 3,
+      "generated": true,
+      "converted": true
+    }
+  ],
+  "framing_correction": {
+    "original_generation_id": "exec-ab6759ab-ee0f-49f1-839c-fc7a6c36b10a",
+    "prompt": "01b-framing-correction.txt",
+    "result_id": "exec-8e7c7cc7-d005-4bea-8192-a3b42c712750",
+    "reason": "Weapon and equipment touched frame edges; pulled camera back while preserving character and design."
+  },
+  "note": "Exact submitted prompts preserved. Final WebP files are durable in the repository; original PNG scratch locations are transient. TV-series card kept separate from existing EW card. Identity links and framing visually inspected; canonical equipment fidelity not independently verified against an original design image. Live deployed dex screen not checked. Commit/remote state should be verified separately."
+}

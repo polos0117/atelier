@@ -1,0 +1,42 @@
+{
+  "메리크리우스_game_keyart_f_casual1.webp": {
+    "card": "메리크리우스",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "535b14e68d2e6e05c8036a746cebb4eb17246f213fa8cf523d19c6424b133021",
+    "prompt": null,
+    "manifest": "generation/m-2fabc4e3ad4d8c5b/runs/mercurius-recovery/manifest.json",
+    "legacy_manifest": "docs/generation/mercurius-recovery/manifest.json"
+  },
+  "메리크리우스_game_keyart_f.webp": {
+    "card": "메리크리우스",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "019a4d0f9abe0472fb69ae8f8798f0aa919abde8fd24bc569ba6313f60733e26",
+    "prompt": null,
+    "manifest": "generation/m-2fabc4e3ad4d8c5b/runs/mercurius-recovery/manifest.json",
+    "legacy_manifest": "docs/generation/mercurius-recovery/manifest.json"
+  },
+  "메리크리우스_cinematic_semi_real_f_casual1.webp": {
+    "card": "메리크리우스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "3a203340821e612b6a21ee4ccdec8056e8e157ffdf7af182fbd58027d0c52bbe",
+    "prompt": null,
+    "manifest": "generation/m-2fabc4e3ad4d8c5b/runs/mercurius-recovery/manifest.json",
+    "legacy_manifest": "docs/generation/mercurius-recovery/manifest.json"
+  },
+  "메리크리우스_cinematic_semi_real_f.webp": {
+    "card": "메리크리우스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "7c0f95252dce23915e090138a82d8278ee22362f700b5cfdc3fafb17ab52f93d",
+    "prompt": null,
+    "manifest": "generation/m-2fabc4e3ad4d8c5b/runs/mercurius-recovery/manifest.json",
+    "legacy_manifest": "docs/generation/mercurius-recovery/manifest.json"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "건담_발바토스_루프스_cinematic_semi_real_f.webp": {
+    "card": "건담 발바토스 루프스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "e3c3e5c8a57f91b952b7da770b59572803417d39783d70ca169b3fb8e128b3d2",
+    "prompt": "generation/m-f11c1b6d8a72356c/runs/barbatos-lupus/01-cinematic-anthro.txt",
+    "manifest": "generation/m-f11c1b6d8a72356c/runs/barbatos-lupus/manifest.json",
+    "legacy_manifest": "docs/generation/barbatos-lupus/manifest.json"
+  },
+  "건담_발바토스_루프스_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 발바토스 루프스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "64e1e89e9b7f3c8fd9e46c06f4c790e99564b892906c6b18cc03e0214f68f3d2",
+    "prompt": "generation/m-f11c1b6d8a72356c/runs/barbatos-lupus/02-cinematic-casual.txt",
+    "manifest": "generation/m-f11c1b6d8a72356c/runs/barbatos-lupus/manifest.json",
+    "legacy_manifest": "docs/generation/barbatos-lupus/manifest.json"
+  },
+  "건담_발바토스_루프스_anime_illust_f.webp": {
+    "card": "건담 발바토스 루프스",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "de9c60e62487a37e385fd54819a3a33d59c38af0b964cc3d8779c231e519aa5b",
+    "prompt": "generation/m-f11c1b6d8a72356c/runs/barbatos-lupus/03-anime-anthro.txt",
+    "manifest": "generation/m-f11c1b6d8a72356c/runs/barbatos-lupus/manifest.json",
+    "legacy_manifest": "docs/generation/barbatos-lupus/manifest.json"
+  },
+  "건담_발바토스_루프스_anime_illust_f_casual1.webp": {
+    "card": "건담 발바토스 루프스",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "4b0945bedd633d9c141eefebcd0d08934a143792c70c06ba29f5004d983da437",
+    "prompt": "generation/m-f11c1b6d8a72356c/runs/barbatos-lupus/04-anime-casual.txt",
+    "manifest": "generation/m-f11c1b6d8a72356c/runs/barbatos-lupus/manifest.json",
+    "legacy_manifest": "docs/generation/barbatos-lupus/manifest.json"
+  }
+}

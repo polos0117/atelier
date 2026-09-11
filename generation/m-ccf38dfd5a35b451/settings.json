@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "card": "바우",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "30s",
+        "armor coverage": "balanced",
+        "bangs": "asymmetric bangs",
+        "body type": "statuesque",
+        "eye color": "gold",
+        "eye shape": "sharp",
+        "face shape": "heart-shaped",
+        "facial character": "sharp",
+        "facial ethnicity": "Central Asian",
+        "hair color": "orange",
+        "hair length": "short",
+        "hairstyle": "asymmetric cut",
+        "height impression": "very tall",
+        "human-mechanical balance": "more human",
+        "leg proportion": "long",
+        "shoulder build": "broad",
+        "torso / chest build": "full bust",
+        "waist / hip silhouette": "hourglass"
+      },
+      "sp": "Clearly adult woman aged 33. Burnt copper asymmetric short hair, matching golden eyes, defined cheekbones and full lips. Preserve the official orange-red black and yellow armor, pointed shoulder silhouettes, dorsal structures and mechanical lower body. Uncovered human face, original identity, not the pilot. Equipment follows exactly the visible official reference."
+    },
+    "g": "female",
+    "t": 1789017471451
+  },
+  "used": [
+    {
+      "cat": "everyday_sensual",
+      "ex": "",
+      "n": 1,
+      "t": 1788990489497
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "",
+      "n": 1,
+      "t": 1788990483396
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

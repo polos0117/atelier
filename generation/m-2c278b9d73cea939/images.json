@@ -1,0 +1,42 @@
+{
+  "샤이닝_건담_cinematic_semi_real_f.webp": {
+    "card": "샤이닝 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "922c47936f68db7f4f5ea32eb62079b0a000a747464664a8599d070a373d44e9",
+    "prompt": "generation/m-2c278b9d73cea939/runs/next-five/01-shining-cinematic-anthro.txt",
+    "manifest": "generation/m-2c278b9d73cea939/runs/next-five/manifest.json",
+    "legacy_manifest": "docs/generation/next-five/manifest.json"
+  },
+  "샤이닝_건담_cinematic_semi_real_f_casual1.webp": {
+    "card": "샤이닝 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "786603e2a861d4ae8562e9e1358a30733f4dcb5c18a32ad5366cb712a0eacf28",
+    "prompt": "generation/m-2c278b9d73cea939/runs/next-five/02-shining-cinematic-casual.txt",
+    "manifest": "generation/m-2c278b9d73cea939/runs/next-five/manifest.json",
+    "legacy_manifest": "docs/generation/next-five/manifest.json"
+  },
+  "샤이닝_건담_cel_anime_f.webp": {
+    "card": "샤이닝 건담",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "e459f3f1c34981272b91c17f57069b69cc904caa48de7e7ee9c129262f37d4b0",
+    "prompt": "generation/m-2c278b9d73cea939/runs/next-five/03-shining-cel-anthro.txt",
+    "manifest": "generation/m-2c278b9d73cea939/runs/next-five/manifest.json",
+    "legacy_manifest": "docs/generation/next-five/manifest.json"
+  },
+  "샤이닝_건담_cel_anime_f_casual1.webp": {
+    "card": "샤이닝 건담",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "b33c60f57cb38f9ca5b03f6fb661a2a413c086b61026296e8290f082cf152539",
+    "prompt": "generation/m-2c278b9d73cea939/runs/next-five/04-shining-cel-casual.txt",
+    "manifest": "generation/m-2c278b9d73cea939/runs/next-five/manifest.json",
+    "legacy_manifest": "docs/generation/next-five/manifest.json"
+  }
+}

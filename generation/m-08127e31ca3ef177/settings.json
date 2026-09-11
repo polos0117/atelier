@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "card": "건담 맥스터",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "facial ethnicity": "Korean",
+        "body type": "athletic",
+        "height impression": "tall",
+        "shoulder build": "broad",
+        "torso / chest build": "balanced",
+        "waist / hip silhouette": "athletic",
+        "leg proportion": "long",
+        "facial character": "cheerful",
+        "face shape": "angular",
+        "eye shape": "almond",
+        "face length": "balanced",
+        "face width": "wide",
+        "jaw & chin": "angular defined jaw",
+        "eye size": "medium",
+        "eye tilt": "level outer corners",
+        "nose character": "rounded soft tip",
+        "lips": "full lips",
+        "skin tone": "tan",
+        "hair color": "blonde",
+        "hairstyle": "wolf cut",
+        "hair length": "medium",
+        "bangs": "choppy bangs",
+        "hair texture": "thick",
+        "hair volume": "full"
+      },
+      "sp": "Use the attached corrected portrait as the same adult human identity and equipment reference: preserve the face, blonde wolf cut, athletic physique, armor design, two waist-holstered revolvers, boxing gauntlets and backpack-mounted surfboard shield. Translate every surface into the selected retro anime art style. Do not copy the painterly rendering. Pose and viewpoint remain independently AUTO and need not match the reference. Entire figure and all equipment must fit inside the frame with generous headroom and floor margin. No lettering or emblems."
+    },
+    "g": "female",
+    "t": 1789037681412
+  },
+  "used": [
+    {
+      "cat": "wildcard",
+      "ex": "arcade_night",
+      "n": 1,
+      "t": 1789037601761
+    },
+    {
+      "cat": "active",
+      "ex": "roller_skating",
+      "n": 1,
+      "t": 1789037443005
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

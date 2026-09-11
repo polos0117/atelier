@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "card": "0건담",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "mature adult",
+        "armor coverage": "balanced",
+        "human-mechanical balance": "balanced",
+        "silhouette character": "minimal",
+        "torso / chest build": "full"
+      }
+    },
+    "g": "female",
+    "t": 1788861992738
+  },
+  "used": [],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

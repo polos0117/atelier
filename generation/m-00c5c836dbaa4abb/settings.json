@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "card": "베귀르펜테",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "armor coverage": "open",
+        "bangs": "side-swept bangs",
+        "body type": "slender",
+        "face shape": "elongated",
+        "facial character": "elegant",
+        "facial ethnicity": "Chinese",
+        "hair length": "very long",
+        "hairstyle": "high ponytail",
+        "height impression": "very tall",
+        "human-mechanical balance": "more human",
+        "leg proportion": "very long",
+        "shoulder build": "average",
+        "torso / chest build": "full",
+        "waist / hip silhouette": "curvy"
+      },
+      "sp": "Silvery lilac hair, matching violet eyes. Original clearly adult woman aged 28, not a depiction of any pilot. Preserve the purple and wine-red angular armor and shield, slender elegant silhouette and rear systems; keep the human face visible."
+    },
+    "g": "female",
+    "t": 1788971259512
+  },
+  "used": [
+    {
+      "cat": "everyday_sensual",
+      "ex": "",
+      "n": 1,
+      "t": 1788971265537
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

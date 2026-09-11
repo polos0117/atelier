@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "card": "윈담",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "youthful adult",
+        "armor coverage": "open",
+        "bangs": "curtain bangs",
+        "body type": "toned",
+        "eye color": "amber",
+        "eye shape": "upturned",
+        "face shape": "compact",
+        "facial character": "sharp",
+        "facial ethnicity": "Korean",
+        "hair color": "navy",
+        "hair length": "medium",
+        "hairstyle": "feathered",
+        "height impression": "tall",
+        "human-mechanical balance": "balanced",
+        "skin tone": "light"
+      },
+      "sp": "Original fictional adult woman interpreting the standard GAT-04 Windam from SEED DESTINY, not Neo Roanoke or another named pilot. Retain the mass-production white and blue armor with restrained red accents, angular shoulder plates, segmented waist armor, long armored legs and the Jet Striker flight backpack with paired mechanical wings and thrusters. Standard beam rifle and forearm-mounted shield, with stored beam sabers; preserve Windam equipment and avoid the purple commander variant or Freedom wing array. Both shoulder shells stay intact, with small upper-arm gaps beneath their edges. Open side waist and upper thighs; securely fitted opaque chest and pelvis armor. Distinct compact adult facial structure with a broad forehead, high full cheeks, short rounded chin, strongly defined upper eyelid angle, straight brows, a low narrow nose bridge and a wide mouth with a gently peaked upper lip. Fresh youthful adult appearance without aged eye folds or hollow cheeks. Medium navy feathered layers flare outward near the neck, curtain bangs part cleanly around both visible eyes. Fully human ears and face. If a generated reference is provided preserve this exact adult identity, hair and toned physique while translating the rendering style. Pose, viewpoint and equipment presentation remain AUTO. Whole body, every wing tip, shield and complete rifle stay within the image with clear margins. No text or insignia."
+    },
+    "g": "female"
+  },
+  "used": [],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

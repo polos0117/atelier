@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "card": "건담 AGE-FX",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "armor coverage": "open",
+        "bangs": "asymmetric bangs",
+        "body type": "slender",
+        "eye shape": "upturned",
+        "face shape": "heart-shaped",
+        "facial character": "cool",
+        "facial ethnicity": "Korean",
+        "hair length": "short",
+        "hairstyle": "bob",
+        "height impression": "tall",
+        "human-mechanical balance": "more human",
+        "leg proportion": "very long",
+        "shoulder build": "narrow",
+        "torso / chest build": "balanced"
+      },
+      "sp": "Clearly adult woman aged 26, sharp asymmetric cobalt blue bob with subtle mint ends, matching turquoise eyes. Preserve cobalt-blue and white armor with translucent green C-funnel blades in their correct source mounts. Delicate adult human face, not the pilot."
+    },
+    "g": "female",
+    "t": 1788973604215
+  },
+  "used": [
+    {
+      "cat": "everyday_sensual",
+      "ex": "",
+      "n": 1,
+      "t": 1788973610195
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

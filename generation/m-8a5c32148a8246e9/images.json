@@ -1,0 +1,42 @@
+{
+  "자쿠 워리어_cinematic_semi_real_f.webp": {
+    "card": "자쿠 워리어",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "ebead2681ad9efe36c7cd7881e6156bfb3229202254b0bfeee180f1219a472ac",
+    "prompt": "generation/m-8a5c32148a8246e9/runs/2026-09-11-zaku-warrior/01-anthro.txt",
+    "manifest": "generation/m-8a5c32148a8246e9/runs/2026-09-11-zaku-warrior/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-zaku-warrior/manifest.json"
+  },
+  "자쿠 워리어_cinematic_semi_real_f_casual1.webp": {
+    "card": "자쿠 워리어",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "61ed80b3c65791515c661b51d18f8d85393bbd779bbc534c1037b7ed6fdbe7c1",
+    "prompt": "generation/m-8a5c32148a8246e9/runs/2026-09-11-zaku-warrior/02-casual.txt",
+    "manifest": "generation/m-8a5c32148a8246e9/runs/2026-09-11-zaku-warrior/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-zaku-warrior/manifest.json"
+  },
+  "자쿠 워리어_cel_anime_f.webp": {
+    "card": "자쿠 워리어",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "6a06e350cdba417ee24aa33f682b0da3a7787359beee3cb9872a0470e8cd6dd3",
+    "prompt": "generation/m-8a5c32148a8246e9/runs/2026-09-11-zaku-warrior/03-anthro.txt",
+    "manifest": "generation/m-8a5c32148a8246e9/runs/2026-09-11-zaku-warrior/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-zaku-warrior/manifest.json"
+  },
+  "자쿠 워리어_cel_anime_f_casual1.webp": {
+    "card": "자쿠 워리어",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "3a3a4e6fdc1e42e25998197b5ea10a98ee7e9893c0fa0bce9e18a59232035ea7",
+    "prompt": "generation/m-8a5c32148a8246e9/runs/2026-09-11-zaku-warrior/04-casual.txt",
+    "manifest": "generation/m-8a5c32148a8246e9/runs/2026-09-11-zaku-warrior/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-zaku-warrior/manifest.json"
+  }
+}

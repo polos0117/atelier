@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "card": "GN 아처",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "armor coverage": "open",
+        "bangs": "choppy bangs",
+        "body type": "toned",
+        "eye shape": "large",
+        "face shape": "compact",
+        "facial character": "cheerful",
+        "facial ethnicity": "Japanese",
+        "hair length": "long",
+        "hairstyle": "half-up",
+        "height impression": "tall",
+        "human-mechanical balance": "more human",
+        "leg proportion": "long",
+        "shoulder build": "average",
+        "torso / chest build": "full",
+        "waist / hip silhouette": "athletic"
+      },
+      "sp": "Clearly adult woman aged 27, vivid burnt-orange half-up hair, matching green eyes. Preserve orange-red, white and charcoal streamlined armor, huge vertical twin flight binders and paired rifles. Open adult human face, no pilot resemblance."
+    },
+    "g": "female",
+    "t": 1788973628607
+  },
+  "used": [
+    {
+      "cat": "everyday_sensual",
+      "ex": "",
+      "n": 1,
+      "t": 1788973634592
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

@@ -1,0 +1,121 @@
+{
+  "base_commit": "223ec86ac25028689788e7411c0d95ad86567bbe",
+  "planned_count": 20,
+  "assets": [
+    {
+      "id": 17,
+      "card": "파라스 아테네",
+      "style": "cinematic_semi_real",
+      "mode": "anthro",
+      "gender": "f",
+      "file": "파라스_아테네_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "5f7907a0024ee35d804add2debaa65714222890cda70cefb8c329a9920333965",
+      "prompt": "17-pallas-cinematic-anthro.txt",
+      "reference_id": null,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-ecd5e439-dd96-4c4d-b550-44fa0cb29b94",
+      "original_sha256": "4ee437919ea6fe85cdee91a3bb4204f8512bd33461125f4e3a8987ed1ba80f75",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "2d32cb673e0ffac32f3bf473a12f0c4eb176db20",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 18,
+      "card": "파라스 아테네",
+      "style": "cinematic_semi_real",
+      "mode": "casual",
+      "gender": "f",
+      "file": "파라스_아테네_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "e5f80a496e91d2d4a6dc7fddd2edf0484317f1c899597330a4b6ff3efebe19a8",
+      "prompt": "18-pallas-cinematic-casual.txt",
+      "reference_id": 17,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-8ccade56-2a80-42ea-8454-9c8b59562e7e",
+      "original_sha256": "7ea249ce9747f15a79e0cd6f8f234b6d6d2fd90ea2e4e1ff4fcc895fa8d4cf57",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "34beb7036b93a47733ec2d87e7721c43c22d8112",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 19,
+      "card": "파라스 아테네",
+      "style": "painterly",
+      "mode": "anthro",
+      "gender": "f",
+      "file": "파라스_아테네_painterly_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "42f6314839df5aed00e495b5a0af45d3853730bd6ee4a67dd6916cf5226a11ad",
+      "prompt": "19-pallas-painterly-anthro.txt",
+      "reference_id": 17,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-4e806dfc-bcdc-4ed0-a12e-68627bffe2c2",
+      "original_sha256": "c1da553fd675eb9c65fe49afc50762713a8032fc13a2927b9880847c6e23ce66",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "ccb3c90a29c9f96d9465018d0c4145866ad2a283",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 20,
+      "card": "파라스 아테네",
+      "style": "painterly",
+      "mode": "casual",
+      "gender": "f",
+      "file": "파라스_아테네_painterly_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "18a2999f6eb7bf440514e628135fae3a4bea0a0755fecd0276d9d7a2e9afb350",
+      "prompt": "20-pallas-painterly-casual.txt",
+      "reference_id": 19,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-aace0993-cc09-4ac8-8b39-64ad847177d0",
+      "original_sha256": "b1f6ed597076e732a9c2c257f7dc1a7c2485a540fdb07b61fdee8453534a2f4b",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "6c31df1edc0dbd50c45730e7c539bc53c677f367",
+      "blob_verified": true,
+      "registration_verified": true
+    }
+  ],
+  "repository": "polos0117/atelier",
+  "branch": "codex/next-five-images",
+  "prompt_url": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_version": "v9.18",
+  "status_note": "This manifest is part of the image commit. Commit and branch reference must be verified separately; blob SHA alone is not completion.",
+  "source_reference": "First anthropomorphizations used canonical-design instructions from prompt.html without an uploaded original mecha reference.",
+  "legacy_manifest": "docs/generation/next-five/manifest.json"
+}

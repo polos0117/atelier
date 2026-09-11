@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "card": "드래곤 건담",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "armor coverage": "open",
+        "bangs": "choppy bangs",
+        "body type": "toned",
+        "eye color": "brown",
+        "eye shape": "upturned",
+        "face shape": "softly rounded",
+        "facial character": "friendly",
+        "facial ethnicity": "Southeast Asian",
+        "hair color": "green",
+        "hair length": "long",
+        "hairstyle": "twin braids",
+        "height impression": "average",
+        "human-mechanical balance": "more human",
+        "leg proportion": "long",
+        "shoulder build": "average",
+        "torso / chest build": "balanced",
+        "waist / hip silhouette": "curvy"
+      },
+      "sp": "Clearly adult woman aged 28, warm medium skin, dark emerald twin braids, matching warm brown eyes. Rounded cheeks with mature adult facial proportions and broad natural smile. Preserve green and gold dragon-shaped external gauntlets and source equipment, exactly two biological arms; not the pilot."
+    },
+    "g": "female",
+    "t": 1788990732984
+  },
+  "used": [
+    {
+      "cat": "everyday_sensual",
+      "ex": "",
+      "n": 1,
+      "t": 1788989754685
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "",
+      "n": 1,
+      "t": 1788989727914
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

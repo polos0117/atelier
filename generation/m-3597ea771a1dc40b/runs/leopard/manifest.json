@@ -1,0 +1,120 @@
+{
+  "repository": "polos0117/atelier",
+  "branch": "codex/leopard-images",
+  "base_commit": "194b2c5461376cfcf6ff513371d2272fc555cc18",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_version": "v9.18",
+  "generator": "built-in image_gen",
+  "selection_first": true,
+  "assets": [
+    {
+      "id": 1,
+      "card": "건담 레오파드",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "건담_레오파드_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "5b350b44f3957d2e37239dbcad34b4b8ab59ff68224f2e69c9c8985a96219918",
+      "original_generation_id": "exec-0a04679e-0514-4524-bc85-ebf1f6da9781",
+      "original_sha256": "e9e259b82078ba0f925b71b4b99abf31a809c6593d7a6592f9170c418744050c",
+      "prompt": "01b-cinematic-correction.txt",
+      "reference_id": "draft-1",
+      "generated": true,
+      "converted": true,
+      "blob_sha": "db1eac9ff514513bd6e8ed6d5f30ca04a8a87264"
+    },
+    {
+      "id": 2,
+      "card": "건담 레오파드",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "file": "건담_레오파드_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "8ebb8238bc86261b6fe98746d1da16755e1fcdbb4b0e50565e89c00b3f8351c6",
+      "original_generation_id": "exec-a38b32e7-716c-4873-88d1-e1087edf5f62",
+      "original_sha256": "ffb3ad8cd03f922027c732177e479f75dc6459a9901dd2e6ba4653f81a83ad89",
+      "prompt": "02-cinematic-casual.txt",
+      "reference_id": 1,
+      "generated": true,
+      "converted": true,
+      "blob_sha": "185b33bed8f69baa7881387550dfa0c0d120ae5e"
+    },
+    {
+      "id": 3,
+      "card": "건담 레오파드",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "건담_레오파드_game_keyart_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "f8c89ac57900a9b80d565dd7e9356c65fbd862d9451b191f00ca34802f0ef947",
+      "original_generation_id": "exec-7b78fd03-b0de-4fcb-98cf-372063deb045",
+      "original_sha256": "139b99a7f6dda2920057971fb5f095d318770c3bf704ab7d3e8f28699dc8c2f0",
+      "prompt": "03-keyart-anthro.txt",
+      "reference_id": 1,
+      "generated": true,
+      "converted": true,
+      "blob_sha": "9727ab706258f8a65592d3e3c87d3283c777f052"
+    },
+    {
+      "id": 4,
+      "card": "건담 레오파드",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "casual",
+      "file": "건담_레오파드_game_keyart_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "9bbd2a5b10106324a61eb81358bf609b5ead486912300865100ee7ee97880e73",
+      "original_generation_id": "exec-e5b4147c-4211-4c8b-84c2-e1e32ab29bf1",
+      "original_sha256": "e7f81f50008bc2b6709ec3616ae20fa8d63045bed8776c56eb569aeb9b8d5743",
+      "prompt": "04b-keyart-casual-outfit.txt",
+      "reference_id": 3,
+      "generated": true,
+      "converted": true,
+      "blob_sha": "67c517e8afd0461f9ca5e06be096e58758db5eb3"
+    }
+  ],
+  "attempts": [
+    {
+      "id": "draft-1",
+      "prompt": "01-cinematic-anthro.txt",
+      "generation_id": "exec-1a3db71d-e164-4348-9a79-54b31b575009",
+      "selected": false,
+      "reason": "Cropped V-fin and generic rifle/shield; corrected via generator additional instructions"
+    },
+    {
+      "id": "casual-4-failed",
+      "prompt": "04-keyart-casual.txt",
+      "generated": false,
+      "reason": "Output moderation blocked; retried after specifying ordinary opaque inner clothing in Outfit field"
+    }
+  ],
+  "record_export": {
+    "completed": true,
+    "selected_parameter_count": 23,
+    "merged_cards": [
+      "건담 레오파드"
+    ]
+  },
+  "review_notes": [
+    "All four final images visually reviewed; exact submitted prompts retained, including unsuccessful attempts.",
+    "Original design fidelity was not independently verified against a canonical source image.",
+    "Both portraits used AUTO pose/viewpoint; resulting poses are similar.",
+    "Sunroom result is closer to three-quarter view than the requested side view. Rainy-return head ornament reaches the top edge.",
+    "Original PNG scratch locations are transient. Final WebPs and prompts are committed; remote and deployment states reported separately."
+  ]
+}

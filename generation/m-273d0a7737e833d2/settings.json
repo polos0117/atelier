@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "card": "셴롱 건담",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "30s",
+        "armor coverage": "open",
+        "bangs": "parted bangs",
+        "body type": "athletic",
+        "eye color": "amber",
+        "eye shape": "almond",
+        "face shape": "angular",
+        "facial character": "stoic",
+        "facial ethnicity": "Chinese",
+        "hair color": "navy",
+        "hair length": "long",
+        "hairstyle": "high ponytail",
+        "height impression": "tall",
+        "human-mechanical balance": "more human",
+        "leg proportion": "long",
+        "shoulder build": "broad",
+        "torso / chest build": "full",
+        "waist / hip silhouette": "athletic"
+      },
+      "sp": "Clearly adult woman aged 32. Deep navy high ponytail, both eyes amber. Distinct angular jaw, straight brows and fuller lower lip. Original human identity, not the pilot. Preserve official white blue red armor, green circular shoulder sensors, white-blue right dragon-fang forearm assembly, blue-yellow round left shield and polearm. Exactly two biological arms."
+    },
+    "g": "female",
+    "t": 1788990732889
+  },
+  "used": [
+    {
+      "cat": "active",
+      "ex": "",
+      "n": 1,
+      "t": 1788990647464
+    },
+    {
+      "cat": "traditional",
+      "ex": "",
+      "n": 1,
+      "t": 1788990641363
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

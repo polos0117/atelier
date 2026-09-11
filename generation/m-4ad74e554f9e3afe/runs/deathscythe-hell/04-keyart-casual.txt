@@ -1,0 +1,70 @@
+[INPUT]
+
+SOURCE MOBILE SUIT: [건담 데스사이즈 헬]
+
+This name is identity-provenance metadata only, used for lore, personality, and occupation context. It must not be used to reconstruct, restore, or invent mobile-suit armor, weapons, shields, backpacks, mechanical limbs, or other canonical equipment.
+
+Use the attached clearly adult anthropomorphized character as the absolute identity and equipment reference for this image.
+
+==================================================
+
+[IDENTITY LOCK]
+
+Use the SAME clearly adult woman as the attached reference. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign. Facial expression is not identity. The brows, eyelids, eye openness, mouth shape and lip parting must follow the expression specified elsewhere in this prompt — "preserve mouth shape" refers to the resting structure and proportion of the lips, not to holding a neutral mouth. A specified expression must be clearly readable on the face.
+
+==================================================
+
+[LIFESTYLE REFERENCE LOCK]
+
+The attached character image is authoritative for the character's visible appearance and equipment state in this image. The source mobile suit name above is identity-origin metadata only and must not be used to reconstruct, restore, or invent mobile-suit equipment. Lifestyle may retain small, non-functional, identity-defining accessories from the character reference when they read as wearable ornament rather than active mobile-suit equipment. Do not retain or reconstruct functional armor, weapons, shields, backpacks, binders, thrusters, mechanical limbs, or other combat/mechanical equipment. Canonical mobile-suit equipment that is absent from the attached character reference must remain absent. For civilian, casual, homewear, swimwear, activewear, fashion, and other lifestyle scenes, translate only the character's established human identity into the requested scene — do not revert the character toward her original mobile-suit form.
+
+If multiple reference images of the same character are attached: use the clearest face close-up as the primary facial identity anchor; use the full-character reference as the primary authority for body proportions, hairstyle, overall appearance, and visible equipment state; use any remaining references only to resolve details that are unclear or occluded. Do not average the references into a new face. All attached references depict the same character and must resolve toward one identity.
+
+==================================================
+
+[ART STYLE]
+
+premium 2.5D mobile-game character illustration with strongly volumetric painted rendering. The final image must read as high-end illustrated game key art occupying the visual middle ground between flat anime drawing and full 3D CGI. Forms are built primarily through smooth gradients, soft ambient occlusion, controlled specular highlights, dimensional light, and carefully modelled volume rather than graphic outlines or flat cel shading. FACE: use clearly anime-informed facial construction combined with strong soft three-dimensional modelling. The face must retain visible volumetric form in the forehead, eyelids, eye sockets, nose bridge, cheeks, lips, jaw, and chin, built through smooth painted gradients rather than flat cel shapes or graphic linework. Eyes may be large and expressive, but they must sit naturally inside a softly modelled three-dimensional face rather than appearing as flat anime eye artwork placed over the skin. Use restrained eyelid and lash definition, a softly simplified nose, and clean lips, while preserving the face shape, ethnicity, maturity, and individual identity defined in PARAMETERS. The face should carry less micro-detail than the clothing and equipment, but it must not become flat. SKIN: smooth high-end 2.5D game-illustration skin with long airbrushed gradients, soft subsurface-like warmth, rounded form shading, gentle ambient occlusion, and controlled glossy highlights. Skin must feel volumetric and luminous, not flat, cel-shaded, photographic, or plastic. Do not use photographic pores, realistic skin grain, or raw 3D shader noise. HAIR: construct hair from layered grouped locks with clearly modelled volume, broad glossy highlight bands, soft internal shadowing, and a limited number of separated strands and flyaways. Hair must feel more dimensional than flat anime hair, but remain illustrated rather than photographically strand-rendered. CLOTHING, ACCESSORIES, AND SURFACES: use clean but volumetric rendering with clear form separation, rounded light falloff, stylized reflections, ambient occlusion, and controlled glossy highlights. Edges may be crisp where necessary, but form must be described primarily through three-dimensional light and material response rather than heavy outlines, flat graphic colouring, or simple cel blocks. LIGHTING: use bright, controlled dimensional key light, soft fill and bounce, decisive rim separation, selective coloured accent light, and believable but stylized light falloff. Lighting must create clear three-dimensional form across face, skin, hair, and clothing. BACKGROUND: use strong subject isolation with simplified atmospheric space, glow, bokeh, soft environmental shapes, or reduced background detail. The background may suggest depth and real spatial lighting but must remain subordinate to the character. RENDERING BALANCE: the result should feel more volumetric than conventional 2D anime illustration but more illustrated and stylized than a fully rendered 3D game character. Use polished 2.5D modelling and shading without crossing into photorealism. Avoid flat anime rendering, cel-shaded skin, purely 2D character-sheet rendering, visible comic-style outlines, flat graphic facial construction, uniformly hard-edged shadows, heavy line-art dependence, simple television-anime shading, photographic skin texture, fully photorealistic CGI, raw Unreal or Octane rendering, hyper-real PBR material noise, plastic 3D skin, perfect ray-traced reflections, and generic game-engine asset presentation.
+
+This art style governs all rendering, facial stylization, lighting, and material treatment throughout this prompt.
+
+[LIFESTYLE STYLE EXTENSION]
+
+Fabrics, swimwear, leather, and accessories in this scene retain the same polished 2.5D game-illustration treatment established above — clear form, rounded light falloff, and controlled glossy highlights. Skin remains smooth and volumetric rather than flat or photographic. The environment is simplified and atmospherically blurred, keeping the character as the clear subject. The scene may be glamorous and glossy, but stays lifestyle-focused — do not introduce armor, mechanical parts, weapons, or sci-fi hardware into the scene.
+
+[STYLE LOCK]
+
+The selected ART STYLE controls the rendering language of the entire image: facial construction, skin, hair, clothing, fabric, props, lighting, background treatment, edge handling, shading, reflections, speculars, texture, and detail density. It governs HOW the scene is rendered only — it must not redesign, reconstruct, or reintroduce the source mobile suit's armor, weapons, shield, backpack, mechanical limbs, or other canonical equipment. It must not redesign the underlying facial geometry, facial proportions, or character identity established by the attached reference and by this prompt. The attached character reference controls visible character identity and visible equipment state. If any common instruction conflicts with the selected ART STYLE, the selected ART STYLE wins for rendering language only.
+
+==================================================
+
+[OUTPUT]
+
+Create ONE SINGLE image in 2:3 vertical aspect. Exactly one woman. No collage, no panels, no split frames, no numerals, no captions, titles, labels, or any other text.
+
+==================================================
+
+[DIRECTION]
+
+Create a sensual but non-explicit everyday lifestyle moment with the same clearly adult character. The situation must read as believable ordinary life, so specify the room, the clothing, and a concrete action already in progress rather than a posed shoot. Use natural household or street lighting and eye-level framing; fabric drape, movement, and light carry the mood. Avoid turning the scene into a lingerie catalogue or a deliberate glamour shoot.
+
+==================================================
+
+[SETTINGS]
+
+- Scene / Location: A sunlit ceramics workshop with open windows and shelves of handmade cups. She sits at a wooden worktable, painting glaze onto a small ceramic bowl with a brush, holding the bowl steadily in her other hand..
+- Outfit: An ivory sleeveless fitted top with an open back, faded blue high-waisted jeans and a charcoal waist apron tied at the hips. Small silver earrings, comfortable canvas shoes. Refined but practical adult casual clothing..
+- Camera / Lighting: Seated rear three-quarter view, face readable in profile as she looks down at the bowl. Bright diffused daylight, warm wood bounce, soft volumetric game-illustration rendering..
+- Additional instruction: Same clearly adult woman as attached game-keyart reference: preserve narrow heart-shaped face, violet eyes, short black asymmetric bob, pale skin and tall slender athletic physique. Focused quiet expression, brush visibly contacting the bowl. No armor, weapons, mechanical cloak or V-fin crest. All pottery has abstract decoration without readable text..
+
+==================================================
+
+[NON-EXPLICIT LIMITS]
+
+The character must clearly read as an adult. The garments are securely fitted and fully opaque, and the styling is suitable for a mainstream fashion or lifestyle editorial. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.
+
+==================================================
+
+[FINAL CHECK]
+
+Verify: exactly one image and one woman; the requested aspect ratio; no text anywhere in the frame; the selected category and example are followed; no explicit nudity or sexual activity.

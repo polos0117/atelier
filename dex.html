@@ -282,6 +282,7 @@ body{font-size:var(--ui-font)}
 <main><div class="view-tools"><span id="filterSummary" aria-live="polite">전체 보기</span><button type="button" id="clearFilters">조건 초기화</button><button type="button" id="cardSize" aria-pressed="false">작게 보기</button></div><div class="prog" id="prog" hidden><i></i></div><div class="grid" id="grid"></div><div class="empty" id="empty" hidden>해당하는 카드가 없다.</div></main>
 <div id="ovl"></div>
 
+<script src="generation/loader.js"></script>
 <script>
 /* ══ 게임 파일에서 추출한 데이터 (build-dex.py 자동 생성) ══ */
 /* ═══════ 자료 ═══════
@@ -447,7 +448,7 @@ function shotOf(c){var ss=shots(c);return ss.length?ss[pageOf(c)]:null}
 /* ── 툴킷 설정 읽기 ──
    prompt.html 이 남긴 기록을 그대로 읽는다. 저장소 파일(toolkit-data.json)이 기반이고
    같은 브라우저의 localStorage 가 그 위를 덮는다. 쓰지는 않는다. */
-var GENERATION={};
+var GENERATION={},CARD_GENERATION={},CARD_SETTINGS={};
 function generationLoad(){
   return fetch("data/generation.json",{cache:"no-cache"}).then(function(r){return r.ok?r.json():{};})
     .then(function(j){GENERATION=j||{};}).catch(function(){});
@@ -470,7 +471,7 @@ function tkReady(){ /* 기록이 도착하면 현재 화면을 다시 그린다 
   if(typeof draw==="function")draw();
 }
 function tkOf(name){
-  var a=TK.local[name],b=TK.base[name];
+  var a=TK.local[name],b=CARD_SETTINGS[name]?CARD_SETTINGS[name].record:TK.base[name];
   if(!a)return b||null;
   if(!b)return a;
   return (a.t||0)>=(b.t||0)?a:b;
@@ -479,7 +480,7 @@ function tkOf(name){
 function tkUsed(name){
   var m={},add=function(arr){(arr||[]).forEach(function(r){
     if(!r.cat)return; m[r.cat]=(m[r.cat]||0)+(r.n||1);})};
-  add((TK.baseUsed||{})[name]); add((TK.localUsed||{})[name]);
+  add(CARD_SETTINGS[name]?CARD_SETTINGS[name].used:(TK.baseUsed||{})[name]); add((TK.localUsed||{})[name]);
   return Object.keys(m).map(function(k){
     return (TK_CAT[k]||k)+(m[k]>1?" "+m[k]+"회":"")});
 }
@@ -541,8 +542,8 @@ function tkDetails(name){
   return h;
 }
 function generationDetails(file){
-  var r=GENERATION[file],p=r&&r.prompt;
-  if(!p||!/^docs\/generation\/[a-z0-9-]+\/[a-z0-9-]+\.txt$/.test(p))
+  var r=CARD_GENERATION[file]||GENERATION[file],p=r&&r.prompt;
+  if(!p||!/^(?:docs\/generation\/[a-z0-9-]+|generation\/m-[a-f0-9]{16}\/runs\/[a-z0-9-]+)\/[a-z0-9-]+\.txt$/.test(p))
     return '<div style="margin-top:6px">이 이미지의 제출 프롬프트 · 원문 기록 없음</div>';
   return '<div style="margin-top:6px"><a href="'+esc(p)+'" target="_blank" rel="noopener">이 이미지의 실제 제출 프롬프트 열기 →</a></div>';
 }
@@ -834,6 +835,11 @@ function open(n,start){
     };
   }
   render(false);
+  if(t==='기체')PerMechRecords.load(n).then(function(data){
+    if(data.settings)CARD_SETTINGS[n]=data.settings;
+    Object.assign(CARD_GENERATION,data.images);
+    if(sh.isConnected)render(true);
+  }).catch(function(){});
   sh.addEventListener("click",function(e){
     var b=e.target.closest("button"),
         pick=e.target.closest("img[data-s]"),

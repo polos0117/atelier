@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "card": "아류제우스",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "youthful adult",
+        "armor coverage": "open",
+        "body type": "glamorous",
+        "eye color": "pale blue",
+        "face length": "short",
+        "face shape": "softly rounded",
+        "face width": "medium",
+        "facial character": "doll-like",
+        "height impression": "average",
+        "human-mechanical balance": "balanced",
+        "jaw & chin": "soft rounded jaw",
+        "leg proportion": "very long",
+        "lower-body build": "full",
+        "second eye color": "pale blue",
+        "shoulder build": "broad",
+        "silhouette character": "regal",
+        "torso / chest build": "full bust",
+        "torso length": "short",
+        "waist / hip silhouette": "broad-hipped"
+      }
+    },
+    "g": "female",
+    "male": {
+      "sel": {
+        "apparent age": "youthful adult",
+        "eye color": "pale blue",
+        "face length": "short",
+        "face shape": "softly rounded",
+        "face width": "medium",
+        "facial character": "doll-like",
+        "height impression": "average",
+        "human-mechanical balance": "balanced",
+        "jaw & chin": "soft rounded jaw",
+        "leg proportion": "very long",
+        "lower-body build": "full",
+        "second eye color": "pale blue",
+        "shoulder build": "broad",
+        "silhouette character": "regal",
+        "torso length": "short"
+      }
+    },
+    "mm": "silhouette_equipment_emphasis",
+    "t": 1788843208701
+  },
+  "used": [
+    {
+      "cat": "active",
+      "ex": "climbing_warmup",
+      "n": 1,
+      "t": 1788846660004
+    },
+    {
+      "cat": "swimwear",
+      "ex": "crossstrap_swim",
+      "n": 1,
+      "t": 1788846582755
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "luxury_yacht_tech",
+      "n": 1,
+      "t": 1788846272186
+    },
+    {
+      "cat": "traditional",
+      "ex": "auto_traditional",
+      "n": 1,
+      "t": 1788845230126
+    },
+    {
+      "cat": "everyday_sensual",
+      "ex": "fridge_light",
+      "n": 1,
+      "t": 1788844613142
+    },
+    {
+      "cat": "private_evening",
+      "ex": "opera_night",
+      "n": 3,
+      "t": 1788844098835
+    },
+    {
+      "cat": "lingerie",
+      "ex": "sari_blouse_set",
+      "n": 1,
+      "t": 1788843771395
+    },
+    {
+      "cat": "private_evening",
+      "ex": "night_drive",
+      "n": 1,
+      "t": 1788843622850
+    },
+    {
+      "cat": "source_editorial",
+      "ex": "ceramic_plate",
+      "n": 1,
+      "t": 1788843495939
+    },
+    {
+      "cat": "homewear",
+      "ex": "after_bath",
+      "n": 1,
+      "t": 1788843296323
+    },
+    {
+      "cat": "adult_roleplay",
+      "ex": "retro_racer",
+      "n": 1,
+      "t": 1788843225810
+    },
+    {
+      "cat": "lingerie",
+      "ex": "night_robe",
+      "n": 1,
+      "t": 1788843048499
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

@@ -1,0 +1,42 @@
+{
+  "리오_cinematic_semi_real_f.webp": {
+    "card": "리오",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "6d83b02b5b8dbe6c57291340ce318499102f4a9b21063f5eac5924fe10faaa11",
+    "prompt": "generation/m-92a8dabf7cbdc5b8/runs/2026-09-10-night-leo/01-anthro.txt",
+    "manifest": "generation/m-92a8dabf7cbdc5b8/runs/2026-09-10-night-leo/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-night-leo/manifest.json"
+  },
+  "리오_cinematic_semi_real_f_casual1.webp": {
+    "card": "리오",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "6eb9c0888b70820155cc5b32b5734ac8d72a34736de21d7dadbba0462688fcd0",
+    "prompt": "generation/m-92a8dabf7cbdc5b8/runs/2026-09-10-night-leo/02-casual.txt",
+    "manifest": "generation/m-92a8dabf7cbdc5b8/runs/2026-09-10-night-leo/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-night-leo/manifest.json"
+  },
+  "리오_retro_anime_f.webp": {
+    "card": "리오",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "393190fa3c796f382255d4c8ec2430741df2f70edfa700b95e4006667e8f3969",
+    "prompt": "generation/m-92a8dabf7cbdc5b8/runs/2026-09-10-night-leo/03-anthro.txt",
+    "manifest": "generation/m-92a8dabf7cbdc5b8/runs/2026-09-10-night-leo/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-night-leo/manifest.json"
+  },
+  "리오_retro_anime_f_casual1.webp": {
+    "card": "리오",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "ba23a59799703cd5712db47971fd4bbcb60038a223cc80dddef063813b4d4435",
+    "prompt": "generation/m-92a8dabf7cbdc5b8/runs/2026-09-10-night-leo/04-casual.txt",
+    "manifest": "generation/m-92a8dabf7cbdc5b8/runs/2026-09-10-night-leo/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-night-leo/manifest.json"
+  }
+}

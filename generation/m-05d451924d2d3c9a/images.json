@@ -1,0 +1,42 @@
+{
+  "스사노오_cinematic_semi_real_f.webp": {
+    "card": "스사노오",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "b7f5ecc5db778839c1a492ae8bf22fee8710b75c8906e61aad731b2181c0a344",
+    "prompt": "generation/m-05d451924d2d3c9a/runs/next-five/13-susanowo-cinematic-anthro.txt",
+    "manifest": "generation/m-05d451924d2d3c9a/runs/next-five/manifest.json",
+    "legacy_manifest": "docs/generation/next-five/manifest.json"
+  },
+  "스사노오_cinematic_semi_real_f_casual1.webp": {
+    "card": "스사노오",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "b02473723feb8986cf92ffce42cf1e2a88e6eec68ff62cfbbc8ae297b11a0b97",
+    "prompt": "generation/m-05d451924d2d3c9a/runs/next-five/14-susanowo-cinematic-casual.txt",
+    "manifest": "generation/m-05d451924d2d3c9a/runs/next-five/manifest.json",
+    "legacy_manifest": "docs/generation/next-five/manifest.json"
+  },
+  "스사노오_ink_wash_f.webp": {
+    "card": "스사노오",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "282b072f99a50f6b9d56f88ed272c09e4cfde534a013506ae38bfbd1ebb44318",
+    "prompt": "generation/m-05d451924d2d3c9a/runs/next-five/15-susanowo-ink-anthro.txt",
+    "manifest": "generation/m-05d451924d2d3c9a/runs/next-five/manifest.json",
+    "legacy_manifest": "docs/generation/next-five/manifest.json"
+  },
+  "스사노오_ink_wash_f_casual1.webp": {
+    "card": "스사노오",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "b00160346cb34c17dd90ebf43596e48e659afa97631808e5d4c83eb89c278825",
+    "prompt": "generation/m-05d451924d2d3c9a/runs/next-five/16-susanowo-ink-casual.txt",
+    "manifest": "generation/m-05d451924d2d3c9a/runs/next-five/manifest.json",
+    "legacy_manifest": "docs/generation/next-five/manifest.json"
+  }
+}

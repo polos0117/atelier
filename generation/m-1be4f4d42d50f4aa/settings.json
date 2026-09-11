@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "card": "건담 르브리스 울",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "30s",
+        "armor coverage": "balanced",
+        "bangs": "parted bangs",
+        "body type": "statuesque",
+        "face shape": "angular",
+        "facial character": "stoic",
+        "facial ethnicity": "Japanese",
+        "hair length": "long",
+        "hairstyle": "straight",
+        "height impression": "very tall",
+        "human-mechanical balance": "more human",
+        "leg proportion": "long",
+        "shoulder build": "broad",
+        "torso / chest build": "full bust",
+        "waist / hip silhouette": "hourglass"
+      },
+      "sp": "Deep teal hair, matching crimson eyes. Original clearly adult woman aged 32, not a depiction of any pilot. Retain the broad squared muted teal armor, cannon and backpack geometry of the front reference; open human face."
+    },
+    "g": "female",
+    "t": 1788971253703
+  },
+  "used": [
+    {
+      "cat": "homewear",
+      "ex": "",
+      "n": 1,
+      "t": 1788971259451
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

@@ -1,0 +1,42 @@
+{
+  "데미 트레이너_cinematic_semi_real_f.webp": {
+    "card": "데미 트레이너",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "ef0c2f17b61a41b590e87c48ef1c76af56e063cd1f5afbf772208eb8a33cd0c0",
+    "prompt": "generation/m-0a6040b6a0e5a4d0/runs/2026-09-10-night-demi-trainer/01-anthro.txt",
+    "manifest": "generation/m-0a6040b6a0e5a4d0/runs/2026-09-10-night-demi-trainer/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-night-demi-trainer/manifest.json"
+  },
+  "데미 트레이너_cinematic_semi_real_f_casual1.webp": {
+    "card": "데미 트레이너",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "650ede31c5bf509db505fd63f7fb1499f0029a916c0b27a88a736efad2b877ce",
+    "prompt": "generation/m-0a6040b6a0e5a4d0/runs/2026-09-10-night-demi-trainer/02-casual.txt",
+    "manifest": "generation/m-0a6040b6a0e5a4d0/runs/2026-09-10-night-demi-trainer/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-night-demi-trainer/manifest.json"
+  },
+  "데미 트레이너_game_keyart_f.webp": {
+    "card": "데미 트레이너",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "48ad2897cb7bb57e81f34f7e1e3ed3407c0d329d30e889d06c74a824bdc0601f",
+    "prompt": "generation/m-0a6040b6a0e5a4d0/runs/2026-09-10-night-demi-trainer/03-anthro.txt",
+    "manifest": "generation/m-0a6040b6a0e5a4d0/runs/2026-09-10-night-demi-trainer/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-night-demi-trainer/manifest.json"
+  },
+  "데미 트레이너_game_keyart_f_casual1.webp": {
+    "card": "데미 트레이너",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "46343cf57780336ba0d5c8e95aef05aed2a978d6bdb429531c4163b05e1b0f85",
+    "prompt": "generation/m-0a6040b6a0e5a4d0/runs/2026-09-10-night-demi-trainer/04-casual.txt",
+    "manifest": "generation/m-0a6040b6a0e5a4d0/runs/2026-09-10-night-demi-trainer/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-night-demi-trainer/manifest.json"
+  }
+}

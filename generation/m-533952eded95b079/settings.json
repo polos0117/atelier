@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "card": "즈고크 E",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "30s",
+        "armor coverage": "balanced",
+        "bangs": "asymmetric bangs",
+        "body type": "toned",
+        "eye shape": "upturned",
+        "eye size": "medium",
+        "eye tilt": "upturned outer corners",
+        "face length": "short",
+        "face shape": "heart-shaped",
+        "face width": "medium",
+        "facial character": "cool",
+        "facial ethnicity": "South Asian",
+        "hair color": "silver",
+        "hair length": "short",
+        "hair texture": "thick",
+        "hair volume": "full",
+        "hairstyle": "curly",
+        "height impression": "average",
+        "jaw & chin": "narrow tapered chin",
+        "leg proportion": "balanced",
+        "lips": "full lips",
+        "nose character": "broad low bridge",
+        "shoulder build": "broad",
+        "skin tone": "medium",
+        "torso / chest build": "full",
+        "waist / hip silhouette": "curvy"
+      },
+      "sp": "Use the attached image only for the adult character identity and equipment geometry. Preserve the same short silver curls, face proportions, physique, rounded blue-gray amphibious armor, paired claw gauntlets and dorsal equipment. The previous result retained too much photographic rendering: visibly repaint this as stylized 2.5D game illustration, with anime-informed softly simplified facial construction, grouped sculpted hair locks, broad airbrushed gradients, stylized metallic highlight shapes and simplified clean surfaces. Remove photographic scratches, pore detail and realistic material noise. Keep the same identity rather than a generic heroine face. Pose and view remain automatic; keep full figure and equipment inside clear margins."
+    },
+    "g": "female",
+    "mm": "silhouette_equipment_emphasis",
+    "t": 1789041187849
+  },
+  "used": [
+    {
+      "cat": "swimwear",
+      "ex": "thermal_spa",
+      "n": 1,
+      "t": 1789041174540
+    },
+    {
+      "cat": "occupation_basic",
+      "ex": "sonar_analyst",
+      "n": 1,
+      "t": 1789040844728
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

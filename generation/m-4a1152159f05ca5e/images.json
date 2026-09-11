@@ -1,0 +1,42 @@
+{
+  "짐 커맨드_cinematic_semi_real_f.webp": {
+    "card": "짐 커맨드",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "dca7da3d499f2f18a012473ef340050720f3373c1a10c742ff76f49ebfc52255",
+    "prompt": "generation/m-4a1152159f05ca5e/runs/2026-09-10-gm-command/01b-cinematic-anthro-final.txt",
+    "manifest": "generation/m-4a1152159f05ca5e/runs/2026-09-10-gm-command/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-gm-command/manifest.json"
+  },
+  "짐 커맨드_cinematic_semi_real_f_casual1.webp": {
+    "card": "짐 커맨드",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "ed95fbcb1303a7b978278cd7e7447eea53d1e2ac07f38376fa031ca74798a5ee",
+    "prompt": "generation/m-4a1152159f05ca5e/runs/2026-09-10-gm-command/02-cinematic-casual.txt",
+    "manifest": "generation/m-4a1152159f05ca5e/runs/2026-09-10-gm-command/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-gm-command/manifest.json"
+  },
+  "짐 커맨드_game_keyart_f.webp": {
+    "card": "짐 커맨드",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "7af6d0d5c658f3f189be0d36640fc287dafe7f166e782c5c66ce929c32145157",
+    "prompt": "generation/m-4a1152159f05ca5e/runs/2026-09-10-gm-command/03b-keyart-anthro-final.txt",
+    "manifest": "generation/m-4a1152159f05ca5e/runs/2026-09-10-gm-command/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-gm-command/manifest.json"
+  },
+  "짐 커맨드_game_keyart_f_casual1.webp": {
+    "card": "짐 커맨드",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "571e156145b8de156d448cd9b5ba846fc7bfc7792a2e94b8997c69b35cc6b8b3",
+    "prompt": "generation/m-4a1152159f05ca5e/runs/2026-09-10-gm-command/04-keyart-casual.txt",
+    "manifest": "generation/m-4a1152159f05ca5e/runs/2026-09-10-gm-command/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-gm-command/manifest.json"
+  }
+}

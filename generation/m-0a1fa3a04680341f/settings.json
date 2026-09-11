@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "card": "아르케 건담",
+  "record": {
+    "female": {
+      "sel": {
+        "armor coverage": "open",
+        "body type": "tall and lean",
+        "expression": "cold",
+        "eye color": "black",
+        "eye shape": "almond",
+        "eye size": "small",
+        "eye tilt": "upturned outer corners",
+        "face length": "long",
+        "face shape": "sharp",
+        "face width": "narrow",
+        "hair color": "red",
+        "hair length": "medium",
+        "hairstyle": "crown braid",
+        "height impression": "tall",
+        "jaw & chin": "angular defined jaw",
+        "nose character": "small delicate nose",
+        "second eye color": "black",
+        "shoulder build": "average",
+        "silhouette character": "aerodynamic",
+        "torso / chest build": "slim"
+      },
+      "ub": true
+    },
+    "g": "female",
+    "male": {
+      "sel": {
+        "body type": "tall and lean",
+        "expression": "cold",
+        "eye color": "black",
+        "eye shape": "almond",
+        "eye size": "small",
+        "eye tilt": "upturned outer corners",
+        "face length": "long",
+        "face shape": "sharp",
+        "face width": "narrow",
+        "hair color": "red",
+        "hair length": "medium",
+        "height impression": "tall",
+        "jaw & chin": "angular defined jaw",
+        "nose character": "small delicate nose",
+        "second eye color": "black",
+        "shoulder build": "average",
+        "silhouette character": "aerodynamic",
+        "torso / chest build": "slim"
+      },
+      "ub": true
+    },
+    "mm": "silhouette_equipment_emphasis",
+    "t": 1788868541297
+  },
+  "used": [
+    {
+      "cat": "lingerie",
+      "ex": "open_shirt_lingerie",
+      "n": 1,
+      "t": 1788871060906
+    },
+    {
+      "cat": "private_evening",
+      "ex": "halter_evening",
+      "n": 1,
+      "t": 1788870450911
+    },
+    {
+      "cat": "swimwear",
+      "ex": "onsen_after",
+      "n": 1,
+      "t": 1788870163325
+    },
+    {
+      "cat": "adult_roleplay",
+      "ex": "adult_secretary",
+      "n": 1,
+      "t": 1788869644758
+    },
+    {
+      "cat": "homewear",
+      "ex": "oversized_shirt",
+      "n": 1,
+      "t": 1788869356259
+    },
+    {
+      "cat": "lingerie",
+      "ex": "slip_lingerie",
+      "n": 1,
+      "t": 1788869338593
+    },
+    {
+      "cat": "everyday_sensual",
+      "ex": "fridge_light",
+      "n": 1,
+      "t": 1788869168603
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "surgical_tech",
+      "n": 1,
+      "t": 1788868936908
+    },
+    {
+      "cat": "active",
+      "ex": "parkour_stairs",
+      "n": 1,
+      "t": 1788868557660
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "card": "건담 구시온 리베이크",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "armor coverage": "open",
+        "bangs": "side-swept bangs",
+        "body type": "voluptuous",
+        "eye color": "orange",
+        "eye shape": "upturned",
+        "face length": "short",
+        "face shape": "angular",
+        "face width": "medium",
+        "facial character": "doll-like",
+        "hair accent": "two antenna strands standing up",
+        "hair color": "ash blonde",
+        "hair length": "long",
+        "hair texture": "thick",
+        "hair volume": "moderate",
+        "hairstyle": "asymmetric cut",
+        "head crest integration": "sensor ornament",
+        "height impression": "tall",
+        "human-mechanical balance": "more human",
+        "jaw & chin": "angular defined jaw",
+        "leg proportion": "very long",
+        "second eye color": "orange",
+        "shoulder build": "broad",
+        "silhouette character": "aggressive",
+        "skin tone": "pale",
+        "torso / chest build": "full bust",
+        "torso length": "balanced",
+        "waist / hip silhouette": "broad-hipped"
+      }
+    },
+    "g": "female",
+    "mm": "silhouette_equipment_emphasis",
+    "t": 1788910950292
+  },
+  "used": [],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

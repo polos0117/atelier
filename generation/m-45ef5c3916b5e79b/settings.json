@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "card": "건담 샌드록",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "30s",
+        "armor coverage": "balanced",
+        "bangs": "side-swept bangs",
+        "body type": "curvy",
+        "eye shape": "almond",
+        "face shape": "oval",
+        "facial character": "soft",
+        "facial ethnicity": "Middle Eastern",
+        "hair length": "long",
+        "hairstyle": "braid",
+        "height impression": "tall",
+        "human-mechanical balance": "more human",
+        "leg proportion": "long",
+        "shoulder build": "average",
+        "torso / chest build": "full bust",
+        "waist / hip silhouette": "hourglass"
+      },
+      "sp": "Clearly adult woman aged 31, warm olive skin, dark brown single braid, matching emerald eyes. Distinct softly defined nose and fuller lower lip. Preserve white, navy-black and yellow source armor, left shield and paired heat shotels in their reference mounts; not the pilot."
+    },
+    "g": "female",
+    "t": 1788973588674
+  },
+  "used": [
+    {
+      "cat": "everyday_sensual",
+      "ex": "",
+      "n": 1,
+      "t": 1788973598002
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

@@ -1,0 +1,42 @@
+{
+  "건담_에어마스터_cinematic_semi_real_f.webp": {
+    "card": "건담 에어마스터",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "7dc8aba440339bdc8470cd01b358246bbc28247b994c515e745d7c82e1b75ff3",
+    "prompt": "generation/m-b0e567931a707ad8/runs/next-five/05-airmaster-cinematic-anthro.txt",
+    "manifest": "generation/m-b0e567931a707ad8/runs/next-five/manifest.json",
+    "legacy_manifest": "docs/generation/next-five/manifest.json"
+  },
+  "건담_에어마스터_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 에어마스터",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "19ed321edf0a72519806b3b8bd812fd638e4d8abecb088061367a94f35114316",
+    "prompt": "generation/m-b0e567931a707ad8/runs/next-five/06-airmaster-cinematic-casual.txt",
+    "manifest": "generation/m-b0e567931a707ad8/runs/next-five/manifest.json",
+    "legacy_manifest": "docs/generation/next-five/manifest.json"
+  },
+  "건담_에어마스터_retro_anime_f.webp": {
+    "card": "건담 에어마스터",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "f3011b10d5e1f518e4a07a8bf7902339a6adeba7f5446ac0a8d8e8886e622d67",
+    "prompt": "generation/m-b0e567931a707ad8/runs/next-five/07-airmaster-retro-anthro.txt",
+    "manifest": "generation/m-b0e567931a707ad8/runs/next-five/manifest.json",
+    "legacy_manifest": "docs/generation/next-five/manifest.json"
+  },
+  "건담_에어마스터_retro_anime_f_casual1.webp": {
+    "card": "건담 에어마스터",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "f133879153df241bb5cfb26db1f9473d4dcb6220448a5a2f67f67d2ef4f74495",
+    "prompt": "generation/m-b0e567931a707ad8/runs/next-five/08-airmaster-retro-casual.txt",
+    "manifest": "generation/m-b0e567931a707ad8/runs/next-five/manifest.json",
+    "legacy_manifest": "docs/generation/next-five/manifest.json"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "base_commit": "223ec86ac25028689788e7411c0d95ad86567bbe",
+  "planned_count": 20,
+  "assets": [
+    {
+      "id": 13,
+      "card": "스사노오",
+      "style": "cinematic_semi_real",
+      "mode": "anthro",
+      "gender": "f",
+      "file": "스사노오_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "b7f5ecc5db778839c1a492ae8bf22fee8710b75c8906e61aad731b2181c0a344",
+      "prompt": "13-susanowo-cinematic-anthro.txt",
+      "reference_id": null,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-13863783-5544-435e-b2f1-5506ca3132cf",
+      "original_sha256": "c4ad93ad5211ced659468a8792488e7a3665c58d96b3293dbfa8133cb22745d3",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "164714192d8873ac4231e91d4ddbff03baf85a81",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 14,
+      "card": "스사노오",
+      "style": "cinematic_semi_real",
+      "mode": "casual",
+      "gender": "f",
+      "file": "스사노오_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "b02473723feb8986cf92ffce42cf1e2a88e6eec68ff62cfbbc8ae297b11a0b97",
+      "prompt": "14-susanowo-cinematic-casual.txt",
+      "reference_id": 13,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-ee72ba7e-476d-4dc0-bfcb-ab0acc1d79bc",
+      "original_sha256": "5441a817dcab2b973f53d9181671d0302a835bfbb88d5ff6244e8af2e9c6e92c",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "aced1810038c0f1380cbc2b43c16fb1cb25a22c2",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 15,
+      "card": "스사노오",
+      "style": "ink_wash",
+      "mode": "anthro",
+      "gender": "f",
+      "file": "스사노오_ink_wash_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "282b072f99a50f6b9d56f88ed272c09e4cfde534a013506ae38bfbd1ebb44318",
+      "prompt": "15-susanowo-ink-anthro.txt",
+      "reference_id": 13,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-b9a7f617-2666-4bb3-beb5-8551abd2b6a4",
+      "original_sha256": "bf6165a37c129355cd56d39d54128dd80c24854a1bb9955a4b4d1949d9097985",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "fb8ebb1ec9c251fc1ee1103b0f344fffb2051c9a",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 16,
+      "card": "스사노오",
+      "style": "ink_wash",
+      "mode": "casual",
+      "gender": "f",
+      "file": "스사노오_ink_wash_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "b00160346cb34c17dd90ebf43596e48e659afa97631808e5d4c83eb89c278825",
+      "prompt": "16-susanowo-ink-casual.txt",
+      "reference_id": 15,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-af6163b7-4312-4bac-a182-f803120b86ad",
+      "original_sha256": "c5c9cf60ec67aaee5a9af819840def7026454154136cffb87c0ec9f134fb7116",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "e63ac9d6bba454592d4c5f62b4202214e2d4a6f2",
+      "blob_verified": true,
+      "registration_verified": true
+    }
+  ],
+  "repository": "polos0117/atelier",
+  "branch": "codex/next-five-images",
+  "prompt_url": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_version": "v9.18",
+  "status_note": "This manifest is part of the image commit. Commit and branch reference must be verified separately; blob SHA alone is not completion.",
+  "source_reference": "First anthropomorphizations used canonical-design instructions from prompt.html without an uploaded original mecha reference.",
+  "legacy_manifest": "docs/generation/next-five/manifest.json"
+}

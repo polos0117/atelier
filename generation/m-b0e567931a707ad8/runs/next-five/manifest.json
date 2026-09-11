@@ -1,0 +1,121 @@
+{
+  "base_commit": "223ec86ac25028689788e7411c0d95ad86567bbe",
+  "planned_count": 20,
+  "assets": [
+    {
+      "id": 5,
+      "card": "건담 에어마스터",
+      "style": "cinematic_semi_real",
+      "mode": "anthro",
+      "gender": "f",
+      "file": "건담_에어마스터_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "7dc8aba440339bdc8470cd01b358246bbc28247b994c515e745d7c82e1b75ff3",
+      "prompt": "05-airmaster-cinematic-anthro.txt",
+      "reference_id": null,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-91369eed-0a54-46d3-941e-10447eb72885",
+      "original_sha256": "84ae222b09090f34b8bc3a6cba9d37ef3219fd192937009f8138adfcbaffbba3",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "f419e9f6cc538634d5722b625b82cefe1a19648b",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 6,
+      "card": "건담 에어마스터",
+      "style": "cinematic_semi_real",
+      "mode": "casual",
+      "gender": "f",
+      "file": "건담_에어마스터_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "19ed321edf0a72519806b3b8bd812fd638e4d8abecb088061367a94f35114316",
+      "prompt": "06-airmaster-cinematic-casual.txt",
+      "reference_id": 5,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-a65b075e-ccb4-4d59-acf2-ea03c07f06a7",
+      "original_sha256": "b5d68ce4beb66fac13dc873119505ea41796c70b4eb8d1604e0719fad0348d11",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "8cbd3bf700877e5257c6e2c49c8c358ff18d180c",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 7,
+      "card": "건담 에어마스터",
+      "style": "retro_anime",
+      "mode": "anthro",
+      "gender": "f",
+      "file": "건담_에어마스터_retro_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "f3011b10d5e1f518e4a07a8bf7902339a6adeba7f5446ac0a8d8e8886e622d67",
+      "prompt": "07-airmaster-retro-anthro.txt",
+      "reference_id": 5,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-4af1f015-8d60-47ad-b9e7-cbd174dbeefb",
+      "original_sha256": "f5b8f6c840f7a6b540883017829e9056bbaf8ea404a6179955e906588133e1fa",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "b84432a2a3e3c145c96bd69c37df10221b4cdf48",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 8,
+      "card": "건담 에어마스터",
+      "style": "retro_anime",
+      "mode": "casual",
+      "gender": "f",
+      "file": "건담_에어마스터_retro_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "f133879153df241bb5cfb26db1f9473d4dcb6220448a5a2f67f67d2ef4f74495",
+      "prompt": "08-airmaster-retro-casual.txt",
+      "reference_id": 7,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-a2a47ce7-d180-4b0e-a39c-d837157ebe67",
+      "original_sha256": "117d086b3a3827a1bc7b393004501ed3bd00aaa515067a53e4bd78e58fa3dff2",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "41295d5569342e747baade3f1222639a74f3174a",
+      "blob_verified": true,
+      "registration_verified": true
+    }
+  ],
+  "repository": "polos0117/atelier",
+  "branch": "codex/next-five-images",
+  "prompt_url": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_version": "v9.18",
+  "status_note": "This manifest is part of the image commit. Commit and branch reference must be verified separately; blob SHA alone is not completion.",
+  "source_reference": "First anthropomorphizations used canonical-design instructions from prompt.html without an uploaded original mecha reference.",
+  "legacy_manifest": "docs/generation/next-five/manifest.json"
+}

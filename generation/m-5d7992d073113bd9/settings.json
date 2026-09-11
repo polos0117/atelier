@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "card": "그레이즈",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "40s",
+        "facial ethnicity": "Japanese",
+        "body type": "muscular",
+        "height impression": "tall",
+        "shoulder build": "broad",
+        "facial character": "mature",
+        "face shape": "angular",
+        "eye shape": "narrow",
+        "eye color": "gray",
+        "jaw & chin": "angular defined jaw",
+        "nose character": "prominent defined nose",
+        "lips": "medium lips",
+        "skin tone": "tan",
+        "hair color": "black",
+        "hairstyle": "slicked back",
+        "hair length": "short",
+        "bangs": "none",
+        "armor coverage": "open",
+        "lower-body treatment": "layered plates",
+        "silhouette character": "heavy"
+      },
+      "sp": "EB-06 standard Graze with olive-green armor, exposed charcoal mechanical frame, recognizable blocky shoulders, curved chest armor and small spherical sensor-inspired hair ornament. One heavy battle axe held and one compact rifle stowed on a proper side hardpoint, compact backpack thrusters. Human adult woman with athletic mature facial lines and solid musculature. Preserve a protected central torso but preserve full-size original shoulder shells and expose only some upper arms beneath them and broad outer-thigh sections; short angular hip plates and heavy shin armor. No full-body black undersuit filling these deliberate openings. Opaque fitted chest and pelvis armor, no flowing skirt. Pose and view AUTO; complete equipment inside 1024 x 1536 image, no lettering. Use the attached first adult anthropomorphization as identity and equipment reference. Preserve face, hair, adult age, body and open armor design while rebuilding the entire rendering in the selected art style. Pose and view remain AUTO and may differ from the reference."
+    },
+    "g": "female",
+    "t": 1789053065339
+  },
+  "used": [
+    {
+      "cat": "homewear",
+      "ex": "",
+      "n": 1,
+      "t": 1789053216924
+    },
+    {
+      "cat": "everyday_basic",
+      "ex": "",
+      "n": 1,
+      "t": 1789052915828
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "card": "건담 어스트레이 그린프레임",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "30s",
+        "facial ethnicity": "Japanese",
+        "body type": "tall and lean",
+        "height impression": "tall",
+        "shoulder build": "average",
+        "torso / chest build": "balanced",
+        "waist / hip silhouette": "balanced",
+        "leg proportion": "long",
+        "facial character": "refined",
+        "face shape": "oval",
+        "eye shape": "drooping",
+        "face length": "long",
+        "face width": "narrow",
+        "jaw & chin": "soft rounded jaw",
+        "eye size": "small",
+        "eye tilt": "downturned outer corners",
+        "nose character": "straight slender bridge",
+        "lips": "thin lips",
+        "skin tone": "light",
+        "hair color": "brown",
+        "hairstyle": "chignon",
+        "hair length": "long",
+        "bangs": "side-swept bangs",
+        "hair texture": "fine",
+        "hair volume": "moderate"
+      },
+      "sp": "The attached corrected portrait is the same adult human identity and equipment reference. Preserve the face, brown chignon, adult age, tall lean physique, armor coverage, green-and-white Astray frame, rifle and shield. Render every part in the selected ink-wash style, including the mechanical surfaces; do not copy the painterly reference rendering. Pose and viewpoint remain independently AUTO and need not reproduce the reference pose. Keep the complete head crest, feet, rifle, shield and backpack within the frame with generous margins. No katana, lettering or seals."
+    },
+    "g": "female",
+    "t": 1789039487191
+  },
+  "used": [
+    {
+      "cat": "everyday_sensual",
+      "ex": "balcony_plants",
+      "n": 1,
+      "t": 1789039485768
+    },
+    {
+      "cat": "occupation_basic",
+      "ex": "archive_restorer",
+      "n": 1,
+      "t": 1789039306100
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

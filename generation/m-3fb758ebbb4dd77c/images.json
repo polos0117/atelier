@@ -1,0 +1,42 @@
+{
+  "파라스_아테네_cinematic_semi_real_f.webp": {
+    "card": "파라스 아테네",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "5f7907a0024ee35d804add2debaa65714222890cda70cefb8c329a9920333965",
+    "prompt": "generation/m-3fb758ebbb4dd77c/runs/next-five/17-pallas-cinematic-anthro.txt",
+    "manifest": "generation/m-3fb758ebbb4dd77c/runs/next-five/manifest.json",
+    "legacy_manifest": "docs/generation/next-five/manifest.json"
+  },
+  "파라스_아테네_cinematic_semi_real_f_casual1.webp": {
+    "card": "파라스 아테네",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "e5f80a496e91d2d4a6dc7fddd2edf0484317f1c899597330a4b6ff3efebe19a8",
+    "prompt": "generation/m-3fb758ebbb4dd77c/runs/next-five/18-pallas-cinematic-casual.txt",
+    "manifest": "generation/m-3fb758ebbb4dd77c/runs/next-five/manifest.json",
+    "legacy_manifest": "docs/generation/next-five/manifest.json"
+  },
+  "파라스_아테네_painterly_f.webp": {
+    "card": "파라스 아테네",
+    "style": "painterly",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "42f6314839df5aed00e495b5a0af45d3853730bd6ee4a67dd6916cf5226a11ad",
+    "prompt": "generation/m-3fb758ebbb4dd77c/runs/next-five/19-pallas-painterly-anthro.txt",
+    "manifest": "generation/m-3fb758ebbb4dd77c/runs/next-five/manifest.json",
+    "legacy_manifest": "docs/generation/next-five/manifest.json"
+  },
+  "파라스_아테네_painterly_f_casual1.webp": {
+    "card": "파라스 아테네",
+    "style": "painterly",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "18a2999f6eb7bf440514e628135fae3a4bea0a0755fecd0276d9d7a2e9afb350",
+    "prompt": "generation/m-3fb758ebbb4dd77c/runs/next-five/20-pallas-painterly-casual.txt",
+    "manifest": "generation/m-3fb758ebbb4dd77c/runs/next-five/manifest.json",
+    "legacy_manifest": "docs/generation/next-five/manifest.json"
+  }
+}
