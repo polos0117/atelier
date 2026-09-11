@@ -1,0 +1,392 @@
+[ART STYLE]
+
+premium 2.5D mobile-game character illustration with strongly volumetric painted rendering. The final image must read as high-end illustrated game key art occupying the visual middle ground between flat anime drawing and full 3D CGI. Forms are built primarily through smooth gradients, soft ambient occlusion, controlled specular highlights, dimensional light, and carefully modelled volume rather than graphic outlines or flat cel shading. FACE: use clearly anime-informed facial construction combined with strong soft three-dimensional modelling. The face must retain visible volumetric form in the forehead, eyelids, eye sockets, nose bridge, cheeks, lips, jaw, and chin, built through smooth painted gradients rather than flat cel shapes or graphic linework. Eyes may be large and expressive, but they must sit naturally inside a softly modelled three-dimensional face rather than appearing as flat anime eye artwork placed over the skin. Use restrained eyelid and lash definition, a softly simplified nose, and clean lips, while preserving the face shape, ethnicity, maturity, and individual identity defined in PARAMETERS. The face should carry less micro-detail than the clothing and equipment, but it must not become flat. SKIN: smooth high-end 2.5D game-illustration skin with long airbrushed gradients, soft subsurface-like warmth, rounded form shading, gentle ambient occlusion, and controlled glossy highlights. Skin must feel volumetric and luminous, not flat, cel-shaded, photographic, or plastic. Do not use photographic pores, realistic skin grain, or raw 3D shader noise. HAIR: construct hair from layered grouped locks with clearly modelled volume, broad glossy highlight bands, soft internal shadowing, and a limited number of separated strands and flyaways. Hair must feel more dimensional than flat anime hair, but remain illustrated rather than photographically strand-rendered. CLOTHING, ACCESSORIES, AND SURFACES: use clean but volumetric rendering with clear form separation, rounded light falloff, stylized reflections, ambient occlusion, and controlled glossy highlights. Edges may be crisp where necessary, but form must be described primarily through three-dimensional light and material response rather than heavy outlines, flat graphic colouring, or simple cel blocks. LIGHTING: use bright, controlled dimensional key light, soft fill and bounce, decisive rim separation, selective coloured accent light, and believable but stylized light falloff. Lighting must create clear three-dimensional form across face, skin, hair, and clothing. BACKGROUND: use strong subject isolation with simplified atmospheric space, glow, bokeh, soft environmental shapes, or reduced background detail. The background may suggest depth and real spatial lighting but must remain subordinate to the character. RENDERING BALANCE: the result should feel more volumetric than conventional 2D anime illustration but more illustrated and stylized than a fully rendered 3D game character. Use polished 2.5D modelling and shading without crossing into photorealism. Avoid flat anime rendering, cel-shaded skin, purely 2D character-sheet rendering, visible comic-style outlines, flat graphic facial construction, uniformly hard-edged shadows, heavy line-art dependence, simple television-anime shading, photographic skin texture, fully photorealistic CGI, raw Unreal or Octane rendering, hyper-real PBR material noise, plastic 3D skin, perfect ray-traced reflections, and generic game-engine asset presentation.
+
+This art style governs all rendering, facial stylization, lighting, and material treatment throughout this prompt.
+
+[ANTHRO STYLE EXTENSION]
+
+ARMOR AND MECHANICAL SURFACES: use clean but volumetric hard-surface rendering with clear panel separation, rounded light falloff, stylized reflections, ambient occlusion, and controlled glossy highlights. Preserve source-specific armor geometry and equipment structure without turning the surfaces into fully realistic PBR assets. Metal, composite, and painted armor should be visibly distinct, but their reflections and specular behaviour remain stylized and art-directed. REFERENCE FIDELITY: preserve the geometry and equipment established by the source reference or PARAMETERS and render them through this style rather than replacing them; do not copy the reference image's own rendering language — its cel-animation, photographic, or CGI look — into the final image. Do not simplify the source mobile suit into generic mobile-game heroine armor — this style may beautify and polish the rendering, but it must not replace source-specific mechanical geometry with generic fantasy-mecha costume design.
+
+[STYLE LOCK]
+
+The selected ART STYLE controls the rendering language of the entire image without exception: facial construction, skin, hair, armor, mechanical components, fabric, weapons, lighting, background treatment, edge handling, shading, reflections, speculars, texture, and detail density. It governs how the face is rendered, not who the face is: it must not redesign the underlying facial geometry, facial proportions, or character identity specified in PARAMETERS. Common instructions elsewhere in this prompt define subject matter, composition, mechanical identity, and equipment structure only; they must not introduce a different rendering language. Mechanical complexity controls WHAT is depicted, not HOW realistically it is rendered. Mechanical parts must not default to CGI or PBR rendering unless the selected ART STYLE itself explicitly calls for it. If any common instruction conflicts with the selected ART STYLE, the selected ART STYLE wins.
+
+[SOURCE MORPHOLOGY ADAPTER]
+
+First identify the source mobile suit's dominant body morphology and silhouette logic before translating it into humanoid form. Preserve a normal humanoid biological skeleton unless PARAMETERS explicitly request otherwise. Do not reproduce unusual source geometry as extra biological arms, legs, torsos, or duplicate human limbs. When the source contains oversized, elongated, offset, floating-looking, or non-human mechanical structures, preserve their silhouette function by translating them into external armor shells, shoulder frames, elongated forearm armor, backpack assemblies, binders, dorsal fins, external mechanical supports, or other non-biological equipment around the humanoid body. Source geometry controls silhouette identity; humanoid translation controls anatomical integration. This source already maps cleanly onto a humanoid body. Avoid unnecessary structural reinterpretation — translate its recognizable armor language and proportions naturally.
+
+[TRANSLATION PROFILE]
+
+Balance recognizable mechanical structure with human anatomy. Preserve more of the source armor language while still integrating it coherently into the humanoid body, so the figure reads as clearly human and clearly the source mobile suit at once.
+
+==================================================
+
+Full-body anthropomorphization of a Gundam-series mobile suit. Every design decision — armor color scheme, head crest, backpack and weapon attachments, facial design, hair color, and hairstyle — is determined strictly by the PARAMETERS at the bottom. Where the PARAMETERS are silent, follow the mobile suit's canonical design and visual identity.
+
+
+DESIGN PRIORITY — Every visual decision must follow this priority order:
+
+1. Explicit instructions written in PARAMETERS.
+2. Clearly visible equipment and loadout details from any uploaded reference image.
+3. The mobile suit's canonical design from the specified series or work.
+4. The general humanoid styling instructions in this prompt.
+
+
+REFERENCE IMAGE RULE — If one or more original reference images are provided by the user, use them as authoritative visual references for equipment and loadout details.
+
+When a reference image is provided, prioritize it especially for:
+
+- weapon type, shape, scale, and proportions
+- shield design, outline, mounted accessories, and surface structure
+- backpack structure, thrusters, binders, funnels, panel containers, and launcher arrangement
+- hardpoint placement, attachment direction, and equipment mounting method
+- visible sub-weapons such as spare magazines, Sturm Fausts, missiles, beam sabers, grenades, or auxiliary equipment
+- distinctive armor geometry and mechanical structures that define the identity of the mobile suit
+
+If the uploaded reference image clearly shows a specific loadout or equipment arrangement, do not replace it with a generic or alternative interpretation.
+
+Preserve the recognizable structure, proportions, placement, and mechanical logic of the equipment from the reference image as faithfully as possible while translating it into the anthropomorphized humanoid design.
+
+
+REFERENCE IMAGE AUTHORITY — When an original mobile-suit reference image is provided, it is the primary visual design authority for the mobile suit: it controls visible armor geometry, silhouette, proportions, equipment placement, hardpoints, backpack structure, shield shape, weapon shape, and visible loadout state.
+
+Do not reconstruct the mobile suit primarily from its name, genre conventions, or canonical memory when the corresponding feature is clearly visible in the uploaded reference; canonical knowledge is fallback information only for details that are genuinely not visible, cropped, or ambiguous in the reference.
+
+The reference image controls DESIGN, not RENDERING STYLE — preserve its visible geometry and equipment, but render them using the selected ART STYLE rather than copying the reference image's own cel-animation, photographic, CGI, or other rendering style. The selected ART STYLE controls rendering language only and must not redesign or replace clearly visible source-reference geometry.
+
+
+PARAMETER INTERPRETATION RULE — The PARAMETERS are intentionally minimal and usually contain only gender, mobile suit name, series/work title, body type, and any explicitly requested special characteristics.
+
+Because of this, all other fitting design details must be inferred and completed from the mobile suit's canonical design and from any uploaded original reference image when provided.
+
+When PARAMETERS are minimal, automatically determine and faithfully add the following in a way that best matches the specified mobile suit:
+
+- canonical armor color scheme
+- head crest / antenna / sensor design
+- shoulder, chest, waist, leg, and overall armor silhouette
+- backpack structure and attachment placement
+- funnels, wing binders, panel containers, shields, cannons, rifles, and signature equipment
+- distinctive transformation mechanisms or unusual mechanical structures
+- a distinctive human facial design appropriate for the mobile suit
+- a fitting human hairstyle and hair color that harmonize primarily with the mobile suit's armor colors, silhouette, design language, and overall visual character
+- robe-like, mantle-like, dress-like, skirt-like, or armored lower-body treatment that best matches the mobile suit's silhouette
+- suitable negative constraints to prevent common generation errors that would conflict with the specified mobile suit
+
+Do not leave these unspecified as generic design choices.
+
+They must be completed in a way that makes the result clearly recognizable as the requested mobile suit rather than as generic Gundam-inspired armor.
+
+Do not introduce robe-like, mantle-like, dress-like, cape-like, or long skirt-like lower-body forms unless they are clearly supported by the uploaded source reference or explicitly requested in PARAMETERS; where the source mobile suit's canonical lower-body is armored legs, a split skirt, or another non-flowing structure, preserve that structure rather than defaulting to a flowing dress-like silhouette.
+
+
+HAIR / PILOT RULE — Do not automatically derive hairstyle, hair color, facial appearance, or character styling from the mobile suit's associated pilot.
+
+Pilot-inspired hairstyle, hair color, facial traits, or character styling must only be used when explicitly requested in PARAMETERS.
+
+When PARAMETERS explicitly specify hairstyle or hair color, follow those instructions exactly.
+
+When PARAMETERS are silent about hair, determine the hairstyle and hair color independently based primarily on:
+
+- the mobile suit's canonical armor colors
+- secondary and accent colors
+- armor silhouette
+- mechanical design language
+- overall visual atmosphere
+- gender and body presentation specified in PARAMETERS
+
+The resulting hairstyle should visually complement the mobile suit itself rather than imitate or resemble its canonical pilot.
+
+Do not automatically make the anthropomorphized character resemble the pilot.
+
+
+FACE DIVERSITY RULE — Do not reuse a generic or recurring face across different mobile-suit anthropomorphizations.
+
+Every mobile suit must receive an independently designed and visually distinctive human face.
+
+The facial identity should harmonize with the mobile suit itself while remaining recognizably different from faces used for other mobile suits.
+
+Naturally vary facial characteristics between different designs, including:
+
+- overall face shape: oval, angular, heart-shaped, elongated, compact, softly rounded, or sharp
+- facial width and length
+- jawline shape and definition
+- chin width, length, and projection
+- cheekbone prominence
+- cheek fullness
+- eye size
+- eye shape
+- eye tilt
+- eye spacing
+- eyelid structure
+- eyebrow shape, angle, and thickness
+- nose bridge height and width
+- nose length and tip shape
+- lip shape and fullness
+- mouth width
+- apparent age within an adult range
+- facial maturity
+- resting expression
+- overall facial temperament
+
+Do not simply change hair while retaining the same underlying face.
+
+The skull proportions, eyes, nose, lips, jawline, cheek structure, and overall facial geometry should meaningfully vary between different mobile-suit anthropomorphizations.
+
+
+MOBILE SUIT → FACE DESIGN RULE — When PARAMETERS do not explicitly define the face, derive an appropriate facial character primarily from the mobile suit's own visual design.
+
+Consider:
+
+- armor silhouette
+- mechanical design language
+- proportions
+- color palette
+- combat role
+- movement characteristics
+- transformation capability
+- visual aggressiveness or elegance
+- technological or stylistic atmosphere
+
+Examples of interpretation:
+
+Angular, aggressive, close-combat-oriented mobile suits may receive sharper facial geometry, narrower or more intense eyes, stronger eyebrows, and more defined jawlines.
+
+Elegant, aerodynamic, or high-mobility mobile suits may receive finer facial structures, cleaner jawlines, elongated eyes, and more refined proportions.
+
+Heavy, rugged, heavily armed mobile suits may receive broader or more mature facial structures, stronger jaws, heavier brows, or more grounded facial proportions.
+
+Unusual transformable mobile suits may receive distinctive, slightly unconventional facial proportions or sharper structural characteristics reflecting their mechanical identity.
+
+These are interpretive guidelines rather than fixed templates. Do not assign the same facial archetype to every mobile suit belonging to the same category.
+
+
+FACE / PILOT SEPARATION RULE — Facial identity must not automatically resemble the canonical pilot.
+
+Do not reproduce the pilot's:
+
+- face shape
+- eye shape
+- hairstyle
+- hair color
+- expression
+- recognizable facial characteristics
+
+unless explicitly requested in PARAMETERS.
+
+Pilot resemblance is permitted only when PARAMETERS specifically request pilot-inspired appearance.
+
+Otherwise, the anthropomorphized character must be an original adult human interpretation of the mobile suit itself.
+
+
+FACE UNIQUENESS RULE — Avoid convergence toward a single conventionally attractive anime face.
+
+Beauty should not require identical facial geometry.
+
+Female characters may remain glamorous and attractive while having substantially different:
+
+- facial proportions
+- jaw structures
+- eye geometry
+- noses
+- lips
+- cheekbones
+- maturity
+- expressions
+
+Male characters should likewise have distinct facial identities rather than sharing one generic handsome face.
+
+Preserve attractiveness where appropriate while prioritizing individual facial identity.
+
+
+AGE RULE — All anthropomorphized human characters are clearly adults.
+
+Do not generate childlike, adolescent, or ambiguously underage facial proportions.
+
+Use mature adult facial anatomy appropriate to the requested gender presentation and mobile suit design.
+
+
+FANTASY ELEMENT RULE — Do not add unrelated fantasy elements unless they are strongly supported by the mobile suit's canonical design or explicitly requested.
+
+Avoid arbitrary:
+
+- crowns
+- tiaras
+- angel wings
+- feathered wings
+- excessive gold filigree
+- ornamental jewelry
+- bridal styling
+- magical staffs
+- fantasy swords
+- generic fantasy armor
+
+unless such elements genuinely correspond to the source mobile suit.
+
+
+HUMANOID TRANSLATION RULE — The mobile suit's armor silhouette is translated into an elegant but mechanically recognizable humanoid form.
+
+Preserve important mechanical geometry rather than converting the design into generic fantasy clothing.
+
+Use:
+
+- angular armor plates
+- visible mechanical segmentation
+- layered armor construction
+- internal mechanical frames where appropriate
+- glowing sensor accents
+- mechanical joints and hardpoints
+- recognizable weapon mounting structures
+
+These elements may be integrated into flowing robe-like, mantle-like, skirt-like, or body-contoured forms when appropriate, but the original mobile suit's mechanical identity must remain immediately obvious.
+
+Render exposed skin, hair, armor, fabric, and mechanical materials according to the selected ART STYLE. Do not introduce painterly brushwork unless the selected art style explicitly requests it.
+
+
+FIGURE RULE —
+
+If the gender parameter is female:
+
+- glamorous adult feminine figure
+- graceful silhouette
+- body proportions may follow additional PARAMETERS
+- slightly revealing armor when appropriate
+- feminine but mechanically integrated armor
+- attractive adult facial appearance
+- expression chosen to fit the mobile suit's individual character
+
+If the gender parameter is male:
+
+- lean or appropriately built adult masculine figure
+- fully armored unless PARAMETERS specify otherwise
+- heroic mechanical silhouette
+- masculine adult facial structure
+- expression chosen to fit the mobile suit's individual character
+
+Gender determines body build and presentation but does not determine a fixed hairstyle, hair color, or recurring facial template.
+
+Hair and facial identity follow explicit PARAMETERS first; when unspecified, they are independently inferred from the mobile suit's own visual design rather than from its pilot.
+
+
+COMPOSITION — vertical 2:3 tall composition.
+
+Full figure centered.
+
+Generous empty margin on both the left and right sides.
+
+Subject occupying roughly the center 65–70 percent of the width.
+
+Entire figure from crown to feet fully inside the frame.
+
+Provide clear headroom above the highest point of the head crest or hair and visible floor space beneath the feet.
+
+Head positioned in the upper center of the frame.
+
+Face and both eyes clearly visible and unobstructed.
+
+Hair must not obscure important facial features.
+
+The complete silhouette of the character should be readable at a glance.
+
+
+EQUIPMENT FRAMING RULE — Large backpacks, wings, binders, funnels, cannons, shields, rifles, swords, transformation structures, and other major attachments must remain completely inside the frame whenever reasonably possible.
+
+Adjust the relative scale of the character and camera distance as necessary so that important canonical equipment is not cropped.
+
+Do not enlarge the character so much that signature equipment extends outside the image.
+
+When a weapon is being held rather than stored, preserve the mechanically logical state of its corresponding storage mount and avoid duplicating the same weapon.
+
+
+LIGHTING / BACKGROUND —
+
+Lighting and background treatment must follow the selected ART STYLE first.
+
+When the selected ART STYLE supports cinematic character lighting, a deep neutral background, controlled rim separation, and a soft key light may be used.
+
+When the selected ART STYLE instead calls for flat cel lighting, hand-painted animation lighting, photographic natural light, loose painterly value masses, paper-like negative space, ink wash, or another distinct treatment, use that treatment instead.
+
+Do not force cinematic rim lighting, dark studio backgrounds, bloom, photographic depth of field, physically based reflections, or PBR-style material response into an ART STYLE that does not call for them.
+
+Mechanical parts must remain clearly readable and materially distinct, but reflections, speculars, texture, edge wear, shadow treatment, and micro-detail are expressed through the selected ART STYLE.
+
+Keep the face clearly readable while preserving the mobile suit's immediately recognizable mechanical identity.
+
+
+AVOID —
+
+cropped limbs,
+cut off at edges,
+cropped feet,
+cropped head crest,
+cropped backpack,
+cropped wings,
+cropped binders,
+cropped weapons,
+close-up,
+portrait crop,
+bust shot,
+wide horizontal composition,
+bright background,
+white background,
+cluttered background,
+hair covering face,
+obscured eyes,
+text,
+watermark,
+multiple characters,
+extra limbs,
+extra arms,
+extra legs,
+extra fingers,
+malformed hands,
+duplicated equipment,
+duplicated weapons,
+floating equipment,
+incorrect weapon mounting,
+generic Gundam armor replacing distinctive canonical structures,
+unrelated fantasy elements,
+automatic pilot resemblance,
+pilot-derived hairstyle unless explicitly requested,
+pilot-derived face unless explicitly requested,
+repeated face design,
+same face as previous characters,
+recycled facial identity,
+generic anime face,
+generic beautiful anime girl face,
+generic handsome anime male face,
+identical facial proportions,
+identical eye shape across characters,
+identical nose across characters,
+identical jawline across characters,
+same facial geometry with different hair.
+
+
+PARAMETERS = [
+gender: female,
+mobile suit name: 건너 자쿠 워리어,
+series: SEED DESTINY,
+apparent age: 20s,
+facial ethnicity: Japanese,
+human-mechanical balance: balanced,
+body type: curvy,
+height impression: tall,
+facial character: cool,
+skin tone: light,
+face shape: angular,
+eye shape: narrow,
+eye color: green,
+nose character: straight slender bridge,
+lips: fuller lower lip,
+hair color: navy,
+hairstyle: high ponytail,
+hair length: long,
+bangs: side-swept bangs,
+armor coverage: open,
+equipment emphasis: main weapon,
+parameter precedence: body type, hairstyle, armor coverage define the overall direction; the other, finer entries in this list adjust within that direction and must not override or contradict it. Where a finer entry appears to conflict, keep the overall direction and apply the finer entry only as a mild adjustment,
+ethnicity scope: facial ethnicity is a broad population-level appearance cue only. It must not override the attached reference identity or the explicit facial geometry in this list, and stereotypical regional features must not be exaggerated,
+facial precedence: the explicit facial geometry in this list (face shape, eye shape, nose character, lips) defines the actual face and must be preserved; do not replace it with a recurring attractive default face. facial character is a secondary impression cue describing how that face should read. Do not alter the specified geometry, or the adult age structure, to exaggerate the impression,
+ethnic consistency: skin undertone must clearly read as Japanese; do not default to generic Western or Caucasian features. The facial features specified explicitly in this list are already decided — render them as written and let Japanese show through the remaining features, colouring rather than reshaping what is specified; keep the ethnicity consistent across every cut,
+special characteristics: Use the attached corrected Gunner ZAKU Warrior woman as the identity and armor reference. Preserve the same adult face, navy high ponytail, narrow green eyes, tall curvy build and green open armor, substantial shoulder shield and opposite spiked shoulder. Preserve the compact artillery power backpack, cylindrical energy tank, compact thrusters and the single long cannon connected by an energy cable. No aircraft wings or tall missile pods. Pose character and view angle remain AUTO: freely choose a new stance and arm arrangement. Render anew with unmistakable premium anime game key-art face construction, illustrated edge accents, clean grouped hair highlights and stylized painted armor, not realistic CG. Full equipment silhouette with ample headroom and margins.
+]

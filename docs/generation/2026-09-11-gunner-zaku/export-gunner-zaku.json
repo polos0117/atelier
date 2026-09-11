@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "updated": "2026-09-11",
+  "mechs": {
+    "건너 자쿠 워리어": {
+      "female": {
+        "sel": {
+          "apparent age": "20s",
+          "facial ethnicity": "Japanese",
+          "human-mechanical balance": "balanced",
+          "body type": "curvy",
+          "height impression": "tall",
+          "facial character": "cool",
+          "face shape": "angular",
+          "eye shape": "narrow",
+          "eye color": "green",
+          "nose character": "straight slender bridge",
+          "lips": "fuller lower lip",
+          "skin tone": "light",
+          "hair color": "navy",
+          "hairstyle": "high ponytail",
+          "hair length": "long",
+          "bangs": "side-swept bangs",
+          "armor coverage": "open",
+          "equipment emphasis": "main weapon"
+        },
+        "sp": "Use the attached corrected Gunner ZAKU Warrior woman as the identity and armor reference. Preserve the same adult face, navy high ponytail, narrow green eyes, tall curvy build and green open armor, substantial shoulder shield and opposite spiked shoulder. Preserve the compact artillery power backpack, cylindrical energy tank, compact thrusters and the single long cannon connected by an energy cable. No aircraft wings or tall missile pods. Pose character and view angle remain AUTO: freely choose a new stance and arm arrangement. Render anew with unmistakable premium anime game key-art face construction, illustrated edge accents, clean grouped hair highlights and stylized painted armor, not realistic CG. Full equipment silhouette with ample headroom and margins."
+      },
+      "g": "female",
+      "t": 1789102754713
+    }
+  },
+  "used": {
+    "건너 자쿠 워리어": [
+      {
+        "cat": "everyday_basic",
+        "ex": "record_store",
+        "n": 1,
+        "t": 1789102919946
+      },
+      {
+        "cat": "everyday_sensual",
+        "ex": "shoe_bench",
+        "n": 1,
+        "t": 1789102751384
+      }
+    ]
+  },
+  "style": {}
+}
