@@ -1,0 +1,135 @@
+{
+  "version": 1,
+  "repository": "polos0117/atelier",
+  "branch": "codex/windam",
+  "base_commit": "b19eced06bd7b0169c517bb006ecb1d4cef4488a",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "generator": "image_gen",
+  "workflow": "Actual UI selections and text previews; supplemental instructions applied through UI; exact copied prompt submitted. Anthro pose, viewpoint and equipment presentation AUTO. Each casual references its corresponding generated anthro.",
+  "age_selection": "youthful adult selected in actual UI, following the new youthful-adult/twenties preference. Adult twenties identity preserved across all four renders.",
+  "assets": [
+    {
+      "order": 1,
+      "style": "cinematic_semi_real",
+      "mode": "anthro",
+      "generation_id": "exec-55801c97-65e1-4810-9efe-7f5af5980414",
+      "reference_ids": [],
+      "card": "윈담",
+      "batch": "2026-09-11-windam",
+      "gender": "f",
+      "file": "윈담_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "8ac45f3d9690d2078b04c10d3001b6b89ba5131bc74a741a525f63e87c7bb445",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-windam-01",
+      "prompt": "docs/generation/2026-09-11-windam/01-anthro.txt",
+      "prompt_sha256": "0c1f6ba6016f0c4c121d4d3f182996233554d9c439bdc4a33c8eedb1fd49a1a2",
+      "registered_locally": true
+    },
+    {
+      "order": 2,
+      "style": "cinematic_semi_real",
+      "mode": "casual",
+      "generation_id": "exec-838bd341-30f8-4981-ae16-fc393d3d9ad9",
+      "reference_ids": [
+        "exec-55801c97-65e1-4810-9efe-7f5af5980414"
+      ],
+      "card": "윈담",
+      "batch": "2026-09-11-windam",
+      "gender": "f",
+      "file": "윈담_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "f3209c1460083f44ff1882a376503f20c9546f598a561f44ab2c805608e2593b",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-windam-02",
+      "prompt": "docs/generation/2026-09-11-windam/02-casual.txt",
+      "prompt_sha256": "fc9227f4f38cf3654ff6746ca35f1e0a5bd046d8191f4b7a33c43b11ae95d25b",
+      "registered_locally": true
+    },
+    {
+      "order": 3,
+      "style": "retro_anime",
+      "mode": "anthro",
+      "generation_id": "exec-87bd3096-227f-44fe-99b0-20926a8e693b",
+      "reference_ids": [
+        "exec-55801c97-65e1-4810-9efe-7f5af5980414"
+      ],
+      "card": "윈담",
+      "batch": "2026-09-11-windam",
+      "gender": "f",
+      "file": "윈담_retro_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "7c3541e7a1020ff7938fb7b71b7e75adeedd806a934948bc393b1cf91b117395",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-windam-03",
+      "prompt": "docs/generation/2026-09-11-windam/03-anthro.txt",
+      "prompt_sha256": "141b7a56baf5b3feaf29d66f227baf12dad9306dce02809ea3e12092053fa2ba",
+      "registered_locally": true
+    },
+    {
+      "order": 4,
+      "style": "retro_anime",
+      "mode": "casual",
+      "generation_id": "exec-5257e975-a2e4-4db6-91f8-22a4300f02a0",
+      "reference_ids": [
+        "exec-87bd3096-227f-44fe-99b0-20926a8e693b"
+      ],
+      "card": "윈담",
+      "batch": "2026-09-11-windam",
+      "gender": "f",
+      "file": "윈담_retro_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "dd1cc1826b99901b7048c7e72b11f0bc195109606272d75e23a61345a2f4ed07",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-windam-04",
+      "prompt": "docs/generation/2026-09-11-windam/04-casual.txt",
+      "prompt_sha256": "664fad04942644f607ac0b8c30f6a871fa6c9442c48d9162017ca00f872b653e",
+      "registered_locally": true
+    }
+  ],
+  "record_export": {
+    "attempted": true,
+    "attempt_count": 2,
+    "succeeded": false,
+    "observation": "Actual export UI clicked twice; exportBox remained empty after registration and record preparation.",
+    "fallback": "selection-snapshot.json stores actual DOM selections and supplemental instructions.",
+    "toolkit_data_merged": true,
+    "toolkit_merge_scope": "Only Windam appearance from actual DOM added; no copy history, timestamps or style ledger entries fabricated."
+  },
+  "conversion": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6,
+    "resize": false,
+    "crop": false
+  },
+  "validation": {
+    "registration_candidates": 0,
+    "missing_files": 0,
+    "new_image_dimensions": "4 of 4 are 1024x1536",
+    "existing_dimension_warnings": 897,
+    "existing_dimension_warning_scope": "Pre-existing assets only; unchanged."
+  },
+  "review_notes": [
+    "All four final renders visually inspected. Same youthful adult face, navy feathered hair, amber eyes and toned physique across styles.",
+    "Shoulder armor and flight backpack remain intact; wing tips, rifle, shield and feet are inside frame.",
+    "Casual scenes use civilian one-shoulder knitwear and wide-leg trousers while browsing LP records. Retro casual gaze is closer to the viewer than requested."
+  ]
+}
