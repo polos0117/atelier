@@ -32,7 +32,7 @@ for(const players of [2,3])for(const mode of [0,1])for(const ex of [false,true])
  c=runtime({},played+1);c.PLAYERS=players;c.MODE=mode;c.exhaustOn=ex;c.PACK2=pk?c.PACKS[pk]:null;c.banOn=played%2===0;c.start();assert.equal(c.PACK,6);
  let guard=0,rerolled=false;
  while(!c.REC.games&&guard++<180){
-  if(c.myTurn&&!rerolled){const before=c.openIdx().map(i=>c.packArr[i].c[0]),taken=c.packArr.filter(e=>e.by).map(e=>e.c[0]),len=c.packArr.length;c.reroll();assert.equal(c.packArr.length,len);assert.deepEqual(c.packArr.filter(e=>e.by).map(e=>e.c[0]),taken);for(const i of c.openIdx())assert(!before.includes(c.packArr[i].c[0]),'reroll repeated');rerolled=true;}
+  if(c.myTurn&&!rerolled){const before=c.openIdx().map(i=>c.packArr[i].c[0]),taken=c.packArr.filter(e=>e.by).map(e=>e.c[0]),len=c.packArr.length;c.reroll();assert.equal(c.packArr.length,len);assert.equal(c.packArr.filter(e=>e.by).length,0);for(const n of taken)assert([...c.mine,...c.foe,...(c.foe2||[])].some(x=>x[0]===n));for(const i of c.openIdx())assert(!before.includes(c.packArr[i].c[0]),'reroll repeated');rerolled=true;}
   step(c);invariant(c);
  }
  assert.equal(c.REC.games,1,'completion '+[players,mode,ex,pk]);assert.equal(c.mine.length,11);assert.equal(c.foe.length,11);if(players===3)assert.equal(c.foe2.length,11);
@@ -98,3 +98,21 @@ c.lineupChoice=alternative.map(x=>x[0]);const expected=c.lineupChoice.slice();c.
 let edited=runtime(editStore);assert(edited.resumeGame());assert(edited.lineupOpen);assert.equal(edited.lineupChoice.length,10);edited.confirmLineup();assert.equal(edited.REC.games,0);
 edited.lineupChoice=expected;edited.confirmLineup();assert.deepEqual(Array.from(edited.mine.map(x=>x[0])),Array.from(expected));
 console.log('PASS: unfinished final selection resumes and manual lineup is respected');
+
+// Full-pack rerolls preserve drafted officers and retire only unclaimed candidates.
+for(const exhaust of [true,false]){
+ c=runtime();c.exhaustOn=exhaust;c.start();c.ruleOn=false;
+ const old=c.packArr.map(e=>e.c),picked=old[0];
+ c.packArr[0].by='foe';c.foe.push(picked);
+ assert.equal(c.replaceOpen(),6);assert.equal(c.openIdx().length,6);
+ assert(c.foe.includes(picked));assert(!c.pool.concat(c.discard).includes(picked));
+ for(const card of old.slice(1))assert((exhaust?c.discard:c.pool).includes(card));
+ assert(c.packArr.every(e=>!old.includes(e.c)));
+ invariant(c);
+}
+// A shortage must not partially consume the pool, pack, or exclusion history.
+c=runtime();c.start();c.pool=c.pool.slice(0,3);c.discard=[];
+const snapshot=JSON.stringify([c.pool,c.discard,c.packArr,c.shown,c.recentShown,c.roundExcluded]);
+assert.equal(c.replaceOpen(),0);
+assert.equal(JSON.stringify([c.pool,c.discard,c.packArr,c.shown,c.recentShown,c.roundExcluded]),snapshot);
+console.log('PASS: full six-card rerolls, claimed roster preservation, exhaustion settings, atomic shortage');

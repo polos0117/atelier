@@ -1600,11 +1600,19 @@ function ensureChoices(team){
  return changed;
 }
 function replaceOpen(){
- var rem=openIdx(),exclude=rem.map(function(i){return packArr[i].c[0]});
- roundExcluded=Array.from(new Set(roundExcluded.concat(exclude)));
- // Draw first: rerolled cards cannot immediately return, even in a small pool.
- var fresh=MODE===1?drawTier(TIER_SCHEDULE[round],rem.length,roundExcluded):draw(rem.length,roundExcluded);
- for(var i=0;i<fresh.length;i++){toss(packArr[rem[i]].c);packArr[rem[i]].c=fresh[i]}
+ var exclude=packArr.map(function(e){return e.c[0]});
+ var nextExcluded=Array.from(new Set(roundExcluded.concat(exclude)));
+ // Keep the current pack intact if a full replacement cannot be drawn.
+ var prevPool=pool.slice(),prevDiscard=discard.slice();
+ var prevShown=Object.assign({},shown),prevRecent=Object.assign({},recentShown);
+ var fresh=MODE===1?drawTier(TIER_SCHEDULE[round],PACK,nextExcluded):draw(PACK,nextExcluded);
+ if(fresh.length<PACK){
+   pool=prevPool;discard=prevDiscard;shown=prevShown;recentShown=prevRecent;
+   return 0;
+ }
+ packArr.forEach(function(e){if(!e.by)toss(e.c)});
+ packArr=fresh.map(function(c){return {c:c,by:null}});
+ roundExcluded=nextExcluded;
  return fresh.length;
 }
 
@@ -2060,7 +2068,7 @@ function buildHelp(){
   h+='<div class="hsec"><h4>진행</h4>'+
      '<p>모두 <b>'+ROUNDS+'진</b>. 매 진마다 죽간 <b>'+PACK+'장</b>이 펼쳐지고, 아군과 적군이 <b>같은 죽간을 보며 번갈아</b> 한 명씩 취하오. 아무도 취하지 않은 죽간은 다시 더미로 돌아가오.</p>'+
      '<p><b>선공은 진마다 교대</b>하오. 첫 진의 선공은 새 대국의 <b>첫 선공</b> 설정을 따르고, 이후 진마다 차례가 도오. 진이 홀수이니 먼저 시작한 쪽이 한 번 더 선공하게 되오 — 적군 선공은 곧 난이도를 올리는 길이오. 적군이 채간 인물은 푸른 <span class="g">奪</span> 도장이 찍힌 채 남으니, 무엇을 빼앗겼는지 보고 남은 죽간에서 고르면 되오.</p>'+
-     '<p><b>換(리롤)</b>은 각자 한 판에 '+REROLLS+'회 — <b>적장도 쓰오</b>. 내 차례라면 언제든 쓸 수 있고, 이미 도장이 찍힌 죽간은 그대로 두고 나머지만 새로 뽑소. 적장은 남은 죽간이 형편없을 때 물리는데, 고수일수록 눈이 높아 자주 물리오. 다만 마지막 진에서는 아무도 물리지 않소. 물리면 <b>죽간 여섯 장이 모두 새로 펼쳐지오</b> — 앞선 이가 채간 자리까지 새로 채우니, 늦게 고르는 이에게도 온전한 여섯이 돌아가오. 누가 언제 물렀는지는 전황 기록에 남소. 횟수는 새 대국에서 <b>없음부터 세 번까지</b> 정할 수 있고, 아군과 적장에게 <b>똑같이</b> 주어지오.</p>'+
+     '<p><b>換(리롤)</b>은 각자 한 판에 '+REROLLS+'회 — <b>적장도 쓰오</b>. 내 차례라면 언제든 쓸 수 있고, 이미 취한 장수는 각 진영에 남고, 펼쳐진 후보는 여섯 장 모두 새로 뽑소. 미선택 죽간은 소진 설정에 따라 물러나거나 후보 풀로 돌아가오. 적장은 남은 죽간이 형편없을 때 물리는데, 고수일수록 눈이 높아 자주 물리오. 다만 마지막 진에서는 아무도 물리지 않소. 물리면 <b>죽간 여섯 장이 모두 새로 펼쳐지오</b> — 앞선 이가 채간 자리까지 새로 채우니, 늦게 고르는 이에게도 온전한 여섯이 돌아가오. 누가 언제 물렀는지는 전황 기록에 남소. 횟수는 새 대국에서 <b>없음부터 세 번까지</b> 정할 수 있고, 아군과 적장에게 <b>똑같이</b> 주어지오.</p>'+
      '<p><b>죽간 소진</b>을 켜면 한 번 펼쳐진 죽간은 아무도 취하지 않아도 <b>판에서 물러나오</b> — 매 진이 새 얼굴이 되오. 다만 놓친 인물은 돌아오지 않으니, ◇ 예고를 믿고 다음을 기약하는 수는 통하지 않게 되오. 죽간이 모자랄 지경이 되면 물러난 패를 다시 섞소.</p></div>';
 
   var cs=[],cat;
@@ -2387,8 +2395,9 @@ function aiPick(seat){
       if(g0>bg0)bg0=g0;
     }
     if(bg0<rrBase(round)*RR_K[AI_LV]){
-      aiRR[seat]--;hist[round].rr.push(seatName(seat));
       var replaced=replaceOpen();
+      if(replaced){
+      aiRR[seat]--;hist[round].rr.push(seatName(seat));
       ensureChoices(team);
       saveGame("draft",[seat].concat(turnQ));
       renderPack(true);
@@ -2396,6 +2405,7 @@ function aiPick(seat){
       $("sub").textContent=seatName(seat)+" 적장이 죽간을 물리고 다시 폈소";
       later(function(){aiPick(seat)},780);
       return;
+      }
     }
   }
   var best=rem[0],bs=-1e9,bestWhy=null,
