@@ -1,0 +1,73 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "everyday_basic"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "midnight_laundromat"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "soft_smile"
+  },
+  {
+    "id": "sgOrient",
+    "value": "front_3q"
+  },
+  {
+    "id": "sgPose",
+    "value": "sitting"
+  },
+  {
+    "id": "sgScene",
+    "value": "A quiet self-service laundromat near midnight, a row of round-front washing machines, rain-speckled windows and one potted fern, no other people"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "An oversized ivory cardigan over a rust-brown crew-neck T-shirt, loose charcoal ankle trousers, thin turquoise socks and cream canvas sneakers; fully opaque relaxed everyday clothing"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body eye-level front three-quarter composition, entire seated figure and both shoes visible on a simple wooden folding bench, cool rainy window light with one warm ceiling lamp, generous negative space"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She sits sideways on the bench and folds a large smoke-gray cotton blanket across her lap with both hands, looking down with a small relaxed smile. Preserve the SAME clearly adult Southeast Asian woman from the attached Mahiroo ink-wash portrait: compact short face, medium skin, large level almond-shaped gold eyes, broad low nose bridge, full lips, average-height wiry body, narrow shoulders, and very short thick white pixie hair with choppy bangs and one cowlick. Exactly TWO normal human arms, TWO hands and TWO legs, anatomically correct. Render her completely as a contemporary human: no armor, gold sensor dome, black toroidal shield, forearm cutters, mechanical joints, chest lights or insect features. The blanket is soft fabric, not a wing or shield. No other person, no readable text, labels, numbers, calligraphy, seals, logos or watermark."
+  },
+  {
+    "checked": true,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": true,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]
