@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "card": "딜란자",
+  "repository": "polos0117/atelier",
+  "branch": "codex/next-mech",
+  "base_commit": "d5b3f9fde97a8060b21b36827fc24edabba29f3f",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "run": "2026-09-11t060459z",
+  "assets": [
+    {
+      "file": "딜란자_cinematic_semi_real_f.webp",
+      "card": "딜란자",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "299aef2a1d06fe14a933a646fce41ceb1cc1a9bf4caafeab2effd286519711a4",
+      "prompt": "generation/m-a6267c8470707690/runs/2026-09-11t060459z/01-anthro.txt",
+      "manifest": "generation/m-a6267c8470707690/runs/2026-09-11t060459z/manifest.json",
+      "generation_id": "exec-d99f3fff-bf31-4e7a-b2f7-178e562363b2",
+      "source_file": "exec-d99f3fff-bf31-4e7a-b2f7-178e562363b2.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [],
+      "reference_design_urls": [
+        "https://gundam-official.com/witch-from-mercury/mobile-suit/6/"
+      ],
+      "parent_anthro": null
+    },
+    {
+      "file": "딜란자_cinematic_semi_real_f_casual1.webp",
+      "card": "딜란자",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "feb201fefc72690ddbe0c60afc1ca660c648424ba17ffd771c4ac68229cc95a3",
+      "prompt": "generation/m-a6267c8470707690/runs/2026-09-11t060459z/02-casual.txt",
+      "manifest": "generation/m-a6267c8470707690/runs/2026-09-11t060459z/manifest.json",
+      "generation_id": "exec-b6d2a8b0-2de5-4f88-a780-b1496c7fe60a",
+      "source_file": "exec-b6d2a8b0-2de5-4f88-a780-b1496c7fe60a.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-d99f3fff-bf31-4e7a-b2f7-178e562363b2"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-d99f3fff-bf31-4e7a-b2f7-178e562363b2"
+    },
+    {
+      "file": "딜란자_cel_anime_f.webp",
+      "card": "딜란자",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "6c0bf2225209d28436f2c69e8f6f67549c3388e4ad169ce011de11f1f486ea0b",
+      "prompt": "generation/m-a6267c8470707690/runs/2026-09-11t060459z/03-anthro.txt",
+      "manifest": "generation/m-a6267c8470707690/runs/2026-09-11t060459z/manifest.json",
+      "generation_id": "exec-a989d50b-d8aa-4c35-b4bb-a079fa17ad85",
+      "source_file": "exec-a989d50b-d8aa-4c35-b4bb-a079fa17ad85.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-d99f3fff-bf31-4e7a-b2f7-178e562363b2"
+      ],
+      "reference_design_urls": [
+        "https://gundam-official.com/witch-from-mercury/mobile-suit/6/"
+      ],
+      "parent_anthro": null
+    },
+    {
+      "file": "딜란자_cel_anime_f_casual1.webp",
+      "card": "딜란자",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "2de2af13facadd793f34e8d26ca7122ebf3192d418b81f66c3dcbed8aff105fa",
+      "prompt": "generation/m-a6267c8470707690/runs/2026-09-11t060459z/04-casual.txt",
+      "manifest": "generation/m-a6267c8470707690/runs/2026-09-11t060459z/manifest.json",
+      "generation_id": "exec-3696b1f4-b72b-4d7a-a3e9-c1853a411ac1",
+      "source_file": "exec-3696b1f4-b72b-4d7a-a3e9-c1853a411ac1.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-a989d50b-d8aa-4c35-b4bb-a079fa17ad85"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-a989d50b-d8aa-4c35-b4bb-a079fa17ad85"
+    }
+  ],
+  "conversion": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6,
+    "resized": false,
+    "cropped": false
+  },
+  "review": {
+    "identity": "same adult woman across four images",
+    "styles": "painterly cinematic vs clean outlined cel anime",
+    "casuals": "seated pottery workshop versus walking rainy street",
+    "anthro_framing": "complete armor, rifle, shield and feet within frame",
+    "pose_character": "AUTO",
+    "view_angle": "AUTO"
+  }
+}

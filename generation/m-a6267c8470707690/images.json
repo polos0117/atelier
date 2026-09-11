@@ -1,0 +1,42 @@
+{
+  "딜란자_cinematic_semi_real_f.webp": {
+    "file": "딜란자_cinematic_semi_real_f.webp",
+    "card": "딜란자",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "299aef2a1d06fe14a933a646fce41ceb1cc1a9bf4caafeab2effd286519711a4",
+    "prompt": "generation/m-a6267c8470707690/runs/2026-09-11t060459z/01-anthro.txt",
+    "manifest": "generation/m-a6267c8470707690/runs/2026-09-11t060459z/manifest.json"
+  },
+  "딜란자_cinematic_semi_real_f_casual1.webp": {
+    "file": "딜란자_cinematic_semi_real_f_casual1.webp",
+    "card": "딜란자",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "feb201fefc72690ddbe0c60afc1ca660c648424ba17ffd771c4ac68229cc95a3",
+    "prompt": "generation/m-a6267c8470707690/runs/2026-09-11t060459z/02-casual.txt",
+    "manifest": "generation/m-a6267c8470707690/runs/2026-09-11t060459z/manifest.json"
+  },
+  "딜란자_cel_anime_f.webp": {
+    "file": "딜란자_cel_anime_f.webp",
+    "card": "딜란자",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "6c0bf2225209d28436f2c69e8f6f67549c3388e4ad169ce011de11f1f486ea0b",
+    "prompt": "generation/m-a6267c8470707690/runs/2026-09-11t060459z/03-anthro.txt",
+    "manifest": "generation/m-a6267c8470707690/runs/2026-09-11t060459z/manifest.json"
+  },
+  "딜란자_cel_anime_f_casual1.webp": {
+    "file": "딜란자_cel_anime_f_casual1.webp",
+    "card": "딜란자",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "2de2af13facadd793f34e8d26ca7122ebf3192d418b81f66c3dcbed8aff105fa",
+    "prompt": "generation/m-a6267c8470707690/runs/2026-09-11t060459z/04-casual.txt",
+    "manifest": "generation/m-a6267c8470707690/runs/2026-09-11t060459z/manifest.json"
+  }
+}
