@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "card": "데미 트레이너 추추 전용기",
+  "repository": "polos0117/atelier",
+  "branch": "codex/chuchu-demi-trainer",
+  "base_commit": "455eaacef0a2775a2f262124de2967129db1ab0a",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "run": "2026-09-11t092309z",
+  "assets": [
+    {
+      "file": "데미 트레이너 추추 전용기_cinematic_semi_real_f.webp",
+      "card": "데미 트레이너 추추 전용기",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "9b881bd7fb758d508e0c4c49c85f3765fa71378529ed794874809f9a4894c8a4",
+      "prompt": "generation/m-0467d9bfb2264e73/runs/2026-09-11t092309z/01-anthro.txt",
+      "manifest": "generation/m-0467d9bfb2264e73/runs/2026-09-11t092309z/manifest.json",
+      "generation_id": "exec-566c05a9-3b8d-4efd-921b-7f7ce3b5ce0b",
+      "source_file": "exec-566c05a9-3b8d-4efd-921b-7f7ce3b5ce0b.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [],
+      "reference_design_urls": [
+        "https://en.gundam-official.com/witch-from-mercury/mobile-suit/5/"
+      ],
+      "parent_anthro": null
+    },
+    {
+      "file": "데미 트레이너 추추 전용기_cinematic_semi_real_f_casual1.webp",
+      "card": "데미 트레이너 추추 전용기",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "6344ad8512dd4f738cf94bc05e6d1114c5c837dc3ba2a2c664ca0787a46c3f75",
+      "prompt": "generation/m-0467d9bfb2264e73/runs/2026-09-11t092309z/02-casual.txt",
+      "manifest": "generation/m-0467d9bfb2264e73/runs/2026-09-11t092309z/manifest.json",
+      "generation_id": "exec-8d7a07d5-8487-4036-af04-71103371e24b",
+      "source_file": "exec-8d7a07d5-8487-4036-af04-71103371e24b.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-566c05a9-3b8d-4efd-921b-7f7ce3b5ce0b"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-566c05a9-3b8d-4efd-921b-7f7ce3b5ce0b"
+    },
+    {
+      "file": "데미 트레이너 추추 전용기_game_keyart_f.webp",
+      "card": "데미 트레이너 추추 전용기",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "b89f8fe01cfcc7c3d2f0ae4a75cf4a8e1976273c540d48e9c8a1f6f7d91f530a",
+      "prompt": "generation/m-0467d9bfb2264e73/runs/2026-09-11t092309z/03-anthro.txt",
+      "manifest": "generation/m-0467d9bfb2264e73/runs/2026-09-11t092309z/manifest.json",
+      "generation_id": "exec-f554a03d-7d33-4db4-8f26-aea133905399",
+      "source_file": "exec-f554a03d-7d33-4db4-8f26-aea133905399.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-566c05a9-3b8d-4efd-921b-7f7ce3b5ce0b"
+      ],
+      "reference_design_urls": [
+        "https://en.gundam-official.com/witch-from-mercury/mobile-suit/5/"
+      ],
+      "parent_anthro": null
+    },
+    {
+      "file": "데미 트레이너 추추 전용기_game_keyart_f_casual1.webp",
+      "card": "데미 트레이너 추추 전용기",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "14f0779413b00146ab4d2c523808a3a42f15b67f25665dc3139c3bfcc7c5cc6e",
+      "prompt": "generation/m-0467d9bfb2264e73/runs/2026-09-11t092309z/04-casual.txt",
+      "manifest": "generation/m-0467d9bfb2264e73/runs/2026-09-11t092309z/manifest.json",
+      "generation_id": "exec-537854be-c756-45c5-b182-ce877f72cdec",
+      "source_file": "exec-537854be-c756-45c5-b182-ce877f72cdec.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-f554a03d-7d33-4db4-8f26-aea133905399"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-f554a03d-7d33-4db4-8f26-aea133905399"
+    }
+  ],
+  "conversion": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6,
+    "resized": false,
+    "cropped": false
+  },
+  "review": {
+    "identity": "Same clearly adult woman across four images",
+    "styles": "Painterly cinematic illustration versus premium 2.5D game key art",
+    "casuals": "Autumn outdoor archery versus seated nighttime ceramics work",
+    "anthro_framing": "Front-facing full-body with complete rifle, cable, shoulder shield and feet in frame",
+    "pose_character": "AUTO",
+    "view_angle": "front, following prior user instruction",
+    "settings_export": "Obtained actual single-card UI export",
+    "delivery": "Four WebP images and prompt links registered locally; remote delivery reported separately."
+  }
+}

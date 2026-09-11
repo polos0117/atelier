@@ -1,0 +1,42 @@
+{
+  "데미 트레이너 추추 전용기_cinematic_semi_real_f.webp": {
+    "file": "데미 트레이너 추추 전용기_cinematic_semi_real_f.webp",
+    "card": "데미 트레이너 추추 전용기",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "9b881bd7fb758d508e0c4c49c85f3765fa71378529ed794874809f9a4894c8a4",
+    "prompt": "generation/m-0467d9bfb2264e73/runs/2026-09-11t092309z/01-anthro.txt",
+    "manifest": "generation/m-0467d9bfb2264e73/runs/2026-09-11t092309z/manifest.json"
+  },
+  "데미 트레이너 추추 전용기_cinematic_semi_real_f_casual1.webp": {
+    "file": "데미 트레이너 추추 전용기_cinematic_semi_real_f_casual1.webp",
+    "card": "데미 트레이너 추추 전용기",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "6344ad8512dd4f738cf94bc05e6d1114c5c837dc3ba2a2c664ca0787a46c3f75",
+    "prompt": "generation/m-0467d9bfb2264e73/runs/2026-09-11t092309z/02-casual.txt",
+    "manifest": "generation/m-0467d9bfb2264e73/runs/2026-09-11t092309z/manifest.json"
+  },
+  "데미 트레이너 추추 전용기_game_keyart_f.webp": {
+    "file": "데미 트레이너 추추 전용기_game_keyart_f.webp",
+    "card": "데미 트레이너 추추 전용기",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "b89f8fe01cfcc7c3d2f0ae4a75cf4a8e1976273c540d48e9c8a1f6f7d91f530a",
+    "prompt": "generation/m-0467d9bfb2264e73/runs/2026-09-11t092309z/03-anthro.txt",
+    "manifest": "generation/m-0467d9bfb2264e73/runs/2026-09-11t092309z/manifest.json"
+  },
+  "데미 트레이너 추추 전용기_game_keyart_f_casual1.webp": {
+    "file": "데미 트레이너 추추 전용기_game_keyart_f_casual1.webp",
+    "card": "데미 트레이너 추추 전용기",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "14f0779413b00146ab4d2c523808a3a42f15b67f25665dc3139c3bfcc7c5cc6e",
+    "prompt": "generation/m-0467d9bfb2264e73/runs/2026-09-11t092309z/04-casual.txt",
+    "manifest": "generation/m-0467d9bfb2264e73/runs/2026-09-11t092309z/manifest.json"
+  }
+}
