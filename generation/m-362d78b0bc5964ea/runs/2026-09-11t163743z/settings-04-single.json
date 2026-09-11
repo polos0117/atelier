@@ -1,0 +1,73 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "life"
+  },
+  {
+    "id": "sgCat",
+    "value": "everyday_basic"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "record_store"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "curious"
+  },
+  {
+    "id": "sgOrient",
+    "value": "side"
+  },
+  {
+    "id": "sgPose",
+    "value": "standing_relaxed"
+  },
+  {
+    "id": "sgScene",
+    "value": "A narrow independent record shop on a rainy evening, warm tungsten lamps, dark wood bins packed with plain album sleeves and a fogged front window, no other people and no readable signs"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "A cropped charcoal bomber jacket over a cherry-red fitted turtleneck, high-waisted wide black jeans, red low-top sneakers and a small cream crossbody bag; clean contemporary streetwear"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body side three-quarter composition from a slightly low eye level, entire standing figure and both sneakers visible between record bins, warm interior light against cool rainy windows, authentic retro anime cel rendering"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She rises slightly onto one toe and reaches with her right hand to slide a plain unlabeled vinyl sleeve from a high shelf while her left hand rests on the edge of a waist-high record bin. Preserve the SAME clearly adult Slavic woman from the attached retro-anime Virgo portrait: short wide oval face, pale skin, medium crimson eyes with downturned outer corners, prominent defined nose, thin lips, blunt short black bob with straight bangs, heavy-built body and broad shoulders. Exactly TWO normal human arms, TWO hands and TWO legs, anatomically correct. Render her completely as a contemporary human: no armor, giant shoulders, Planet Defensors, cannon, cable, helmet, mechanical joints or sensors. Her profile shows a curious absorbed expression. Fully opaque secure clothing, no readable text, album titles, logos or watermark."
+  },
+  {
+    "checked": true,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": true,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]
