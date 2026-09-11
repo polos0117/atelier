@@ -1,0 +1,73 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "occupation_basic"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "port_operations"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "focused"
+  },
+  {
+    "id": "sgOrient",
+    "value": "front_3q"
+  },
+  {
+    "id": "sgPose",
+    "value": "mid_action"
+  },
+  {
+    "id": "sgScene",
+    "value": "Sunrise on the wet open deck of a working harbor ferry, rust-red bollards, coiled ropes, mist over the water and cranes far behind, no other people"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "Olive canvas bib overalls rolled above the ankles over a fitted cream sleeveless ribbed top, red safety gloves, dark rubber deck boots and a compact utility belt; practical contemporary workwear"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body eye-level front three-quarter composition with the mooring rope forming a diagonal, entire figure and both boots visible, warm sunrise side light and cool harbor mist"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She braces in a wide grounded stance and pulls one thick mooring rope hand-over-hand with both hands. Preserve the SAME clearly adult Japanese woman from the attached Reginlaze anthropomorphized portrait: wide angular face, tan skin, medium amber almond eyes, prominent defined nose, fuller lower lip, muscular tall body, broad shoulders, and medium brown locs. Exactly TWO normal human arms, TWO hands and TWO legs, anatomically correct. Render her completely as a contemporary human: no armor, helmet, backpack, thrusters, rifle, mechanical joints or sensor parts. She looks toward the rope with a focused expression, not at the viewer. Fully opaque secure workwear, no transparent fabric, no nudity, no readable text, logos or watermark."
+  },
+  {
+    "checked": true,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": true,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]

@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "card": "레긴레이즈",
+  "model": "EB-08",
+  "series": "철혈의 오펀즈",
+  "repository": "polos0117/atelier",
+  "branch": "codex/reginlaze-images",
+  "base_commit": "5008c9047be8e13fb35cd9474aea3e605469fa0d",
+  "prompt_source": "deployed prompt.html UI",
+  "run": "2026-09-11t162704z",
+  "created": "2026-09-11T16:27:04Z",
+  "generation_tool": "image_gen",
+  "settings_export": "Actual prompt.html selections and exported style settings captured for both styles",
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity": "Same adult Japanese woman across both styles",
+    "casual_scenes": [
+      "Sunrise harbor ferry deck, pulling a mooring rope",
+      "Late-afternoon ceramics studio, shaping a bowl at a pottery wheel"
+    ]
+  },
+  "jobs": [
+    {
+      "id": "01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": null,
+      "prompt": "generation/m-bc92eb9dd34fb456/runs/2026-09-11t162704z/01-anthro.txt",
+      "original_generated_file": "exec-0049ed73-6d93-4ce8-8b1d-f7c590b13cee.png",
+      "references": [
+        "https://schizophonic9.com/re4/hg_reginlaze.html"
+      ],
+      "file": "img/레긴레이즈_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "4c971d087ffaa1dd2b236115c06a85715f6190b1c0548a5cc7edfb7787b6d71d",
+      "bytes": 83852
+    },
+    {
+      "id": "02",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "01",
+      "prompt": "generation/m-bc92eb9dd34fb456/runs/2026-09-11t162704z/02-casual.txt",
+      "original_generated_file": "exec-8c33f171-c5ae-440e-9073-d1cc0ebc020b.png",
+      "references": [
+        "exec-0049ed73-6d93-4ce8-8b1d-f7c590b13cee.png"
+      ],
+      "file": "img/레긴레이즈_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "5a5c62f2c115f1ec5069d387a76254e82155c4a33790940a45bfee2bc6418770",
+      "bytes": 177036
+    },
+    {
+      "id": "03",
+      "style": "semi_real_paint",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": "01",
+      "prompt": "generation/m-bc92eb9dd34fb456/runs/2026-09-11t162704z/03-anthro.txt",
+      "original_generated_file": "exec-9df4ca6c-c716-4458-8329-024738269672.png",
+      "references": [
+        "exec-0049ed73-6d93-4ce8-8b1d-f7c590b13cee.png",
+        "https://schizophonic9.com/re4/hg_reginlaze.html"
+      ],
+      "file": "img/레긴레이즈_semi_real_paint_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "634aeedb9b0dfa8f968560035cdfe2b058da61be04c4fe5ed3f720f87d5a08da",
+      "bytes": 112958
+    },
+    {
+      "id": "04",
+      "style": "semi_real_paint",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "03",
+      "prompt": "generation/m-bc92eb9dd34fb456/runs/2026-09-11t162704z/04-casual.txt",
+      "original_generated_file": "exec-5a882500-a8b2-40ef-956d-f08ddbbe3e4f.png",
+      "references": [
+        "exec-9df4ca6c-c716-4458-8329-024738269672.png"
+      ],
+      "file": "img/레긴레이즈_semi_real_paint_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "85e59404bf43c496691abc9e6c307dcfe043e5be86aa9c2a1964fcd088a6326c",
+      "bytes": 179984
+    }
+  ],
+  "prompt_html_sha256": "ab1103447a08571bbd24c83763047c01bb31c365aa59ad2bf81799715336474e",
+  "prompt_html_verification": "Deployed prompt.html v9.18 used; repository prompt.html hash recorded"
+}

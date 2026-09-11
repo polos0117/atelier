@@ -1,0 +1,73 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "life"
+  },
+  {
+    "id": "sgCat",
+    "value": "everyday_basic"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "pottery_class"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "gentle"
+  },
+  {
+    "id": "sgOrient",
+    "value": "side"
+  },
+  {
+    "id": "sgPose",
+    "value": "sitting"
+  },
+  {
+    "id": "sgScene",
+    "value": "An airy neighborhood ceramics studio in late afternoon, tall dusty windows, shelves of handmade bowls, pale plaster walls and warm wooden floor, no other people"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "An oversized white linen button-up with sleeves rolled to the elbows, rust-colored wrap culottes, a tan clay-splashed half apron, and bare feet; loose contemporary studio clothing"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body slightly high side three-quarter view, entire seated figure and both bare feet visible around the pottery wheel, soft diffuse window light, resolved semi-real painted illustration"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She sits at a low pottery wheel, leaning slightly forward while both hands shape one wet clay bowl; one foot works the wheel pedal and the other rests naturally on the floor. Preserve the SAME clearly adult Japanese woman from the attached semi-real Reginlaze portrait: wide angular face, tan skin, medium amber almond eyes, prominent defined nose, fuller lower lip, tall muscular body, broad shoulders, and medium brown locs. Exactly TWO normal human arms, TWO hands and TWO legs, anatomically correct. Render her completely as a contemporary human: no armor, helmet, backpack, thrusters, rifle, mechanical joints or sensors. She watches the clay with a gentle absorbed expression, not at the viewer. Fully opaque secure clothing, no transparent fabric, no nudity, no readable text, logos or watermark."
+  },
+  {
+    "checked": true,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": true,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]
