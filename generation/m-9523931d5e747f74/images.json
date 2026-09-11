@@ -1,0 +1,42 @@
+{
+  "하인드리_cinematic_semi_real_f.webp": {
+    "file": "하인드리_cinematic_semi_real_f.webp",
+    "card": "하인드리",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "d0dc76bc1eac2002f4ca6517029b53c52711dbaa2130b9e709cac352c5423e30",
+    "prompt": "generation/m-9523931d5e747f74/runs/2026-09-11t062134z/01-anthro.txt",
+    "manifest": "generation/m-9523931d5e747f74/runs/2026-09-11t062134z/manifest.json"
+  },
+  "하인드리_cinematic_semi_real_f_casual1.webp": {
+    "file": "하인드리_cinematic_semi_real_f_casual1.webp",
+    "card": "하인드리",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "6edf6dbaaea48dbe701adeed4586388fafabe6a9cf141c64276d22efa138b6fa",
+    "prompt": "generation/m-9523931d5e747f74/runs/2026-09-11t062134z/02-casual.txt",
+    "manifest": "generation/m-9523931d5e747f74/runs/2026-09-11t062134z/manifest.json"
+  },
+  "하인드리_ink_wash_f.webp": {
+    "file": "하인드리_ink_wash_f.webp",
+    "card": "하인드리",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "12f06c2b448b9ad01d05f06769efbcd59b4ebeda4e06268014842a351760b9b7",
+    "prompt": "generation/m-9523931d5e747f74/runs/2026-09-11t062134z/03-anthro.txt",
+    "manifest": "generation/m-9523931d5e747f74/runs/2026-09-11t062134z/manifest.json"
+  },
+  "하인드리_ink_wash_f_casual1.webp": {
+    "file": "하인드리_ink_wash_f_casual1.webp",
+    "card": "하인드리",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "fd32d59ffa4330bbe5919b2842d99716e226ec7cb3b64de490f79cd76b4a97d0",
+    "prompt": "generation/m-9523931d5e747f74/runs/2026-09-11t062134z/04-casual.txt",
+    "manifest": "generation/m-9523931d5e747f74/runs/2026-09-11t062134z/manifest.json"
+  }
+}
