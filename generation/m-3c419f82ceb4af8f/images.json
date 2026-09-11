@@ -1,0 +1,42 @@
+{
+  "건담 르브리스 양산형 시험 모델_cinematic_semi_real_f.webp": {
+    "file": "건담 르브리스 양산형 시험 모델_cinematic_semi_real_f.webp",
+    "card": "건담 르브리스 양산형 시험 모델",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "03e0837933102e66fbae8a141cef5c324e3f8b9a31adee13b356867d5562bb85",
+    "prompt": "generation/m-3c419f82ceb4af8f/runs/2026-09-11t082219z/01-anthro.txt",
+    "manifest": "generation/m-3c419f82ceb4af8f/runs/2026-09-11t082219z/manifest.json"
+  },
+  "건담 르브리스 양산형 시험 모델_cinematic_semi_real_f_casual1.webp": {
+    "file": "건담 르브리스 양산형 시험 모델_cinematic_semi_real_f_casual1.webp",
+    "card": "건담 르브리스 양산형 시험 모델",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "db0fce43a5fecb81375f9c6c8a0bb69d43316d6fb0065bc266edabee8b5e90ae",
+    "prompt": "generation/m-3c419f82ceb4af8f/runs/2026-09-11t082219z/02-casual.txt",
+    "manifest": "generation/m-3c419f82ceb4af8f/runs/2026-09-11t082219z/manifest.json"
+  },
+  "건담 르브리스 양산형 시험 모델_anime_illust_f.webp": {
+    "file": "건담 르브리스 양산형 시험 모델_anime_illust_f.webp",
+    "card": "건담 르브리스 양산형 시험 모델",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "6dec856478ee4b6e94abde7a59b076a9e26f1186a29b86cf0422d6ea8923112c",
+    "prompt": "generation/m-3c419f82ceb4af8f/runs/2026-09-11t082219z/03-anthro.txt",
+    "manifest": "generation/m-3c419f82ceb4af8f/runs/2026-09-11t082219z/manifest.json"
+  },
+  "건담 르브리스 양산형 시험 모델_anime_illust_f_casual1.webp": {
+    "file": "건담 르브리스 양산형 시험 모델_anime_illust_f_casual1.webp",
+    "card": "건담 르브리스 양산형 시험 모델",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "717c6ccad0868994f49c28610e3bd6193db4477e8cea12d506503db57007ba97",
+    "prompt": "generation/m-3c419f82ceb4af8f/runs/2026-09-11t082219z/04-casual.txt",
+    "manifest": "generation/m-3c419f82ceb4af8f/runs/2026-09-11t082219z/manifest.json"
+  }
+}

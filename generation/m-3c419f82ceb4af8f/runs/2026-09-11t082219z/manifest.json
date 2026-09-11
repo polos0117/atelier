@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "card": "건담 르브리스 양산형 시험 모델",
+  "repository": "polos0117/atelier",
+  "branch": "codex/lfrith-preproduction",
+  "base_commit": "ddc0246ca782f36c5789d0a7df80b90c94a9ceb5",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "run": "2026-09-11t082219z",
+  "assets": [
+    {
+      "file": "건담 르브리스 양산형 시험 모델_cinematic_semi_real_f.webp",
+      "card": "건담 르브리스 양산형 시험 모델",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "03e0837933102e66fbae8a141cef5c324e3f8b9a31adee13b356867d5562bb85",
+      "prompt": "generation/m-3c419f82ceb4af8f/runs/2026-09-11t082219z/01-anthro.txt",
+      "manifest": "generation/m-3c419f82ceb4af8f/runs/2026-09-11t082219z/manifest.json",
+      "generation_id": "exec-4bb86257-e5b3-4cdf-9d0e-dd8b242bbc50",
+      "source_file": "exec-4bb86257-e5b3-4cdf-9d0e-dd8b242bbc50.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [],
+      "reference_design_urls": [
+        "https://en.gundam-official.com/witch-from-mercury/prologue/mobile-suit/2/"
+      ],
+      "parent_anthro": null
+    },
+    {
+      "file": "건담 르브리스 양산형 시험 모델_cinematic_semi_real_f_casual1.webp",
+      "card": "건담 르브리스 양산형 시험 모델",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "db0fce43a5fecb81375f9c6c8a0bb69d43316d6fb0065bc266edabee8b5e90ae",
+      "prompt": "generation/m-3c419f82ceb4af8f/runs/2026-09-11t082219z/02-casual.txt",
+      "manifest": "generation/m-3c419f82ceb4af8f/runs/2026-09-11t082219z/manifest.json",
+      "generation_id": "exec-d2794f22-b876-49eb-92a9-8b5735531c24",
+      "source_file": "exec-d2794f22-b876-49eb-92a9-8b5735531c24.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-4bb86257-e5b3-4cdf-9d0e-dd8b242bbc50"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-4bb86257-e5b3-4cdf-9d0e-dd8b242bbc50"
+    },
+    {
+      "file": "건담 르브리스 양산형 시험 모델_anime_illust_f.webp",
+      "card": "건담 르브리스 양산형 시험 모델",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "6dec856478ee4b6e94abde7a59b076a9e26f1186a29b86cf0422d6ea8923112c",
+      "prompt": "generation/m-3c419f82ceb4af8f/runs/2026-09-11t082219z/03-anthro.txt",
+      "manifest": "generation/m-3c419f82ceb4af8f/runs/2026-09-11t082219z/manifest.json",
+      "generation_id": "exec-26653b1e-e8ed-4a26-9f9a-9d6f16920842",
+      "source_file": "exec-26653b1e-e8ed-4a26-9f9a-9d6f16920842.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-4bb86257-e5b3-4cdf-9d0e-dd8b242bbc50"
+      ],
+      "reference_design_urls": [
+        "https://en.gundam-official.com/witch-from-mercury/prologue/mobile-suit/2/"
+      ],
+      "parent_anthro": null
+    },
+    {
+      "file": "건담 르브리스 양산형 시험 모델_anime_illust_f_casual1.webp",
+      "card": "건담 르브리스 양산형 시험 모델",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "717c6ccad0868994f49c28610e3bd6193db4477e8cea12d506503db57007ba97",
+      "prompt": "generation/m-3c419f82ceb4af8f/runs/2026-09-11t082219z/04-casual.txt",
+      "manifest": "generation/m-3c419f82ceb4af8f/runs/2026-09-11t082219z/manifest.json",
+      "generation_id": "exec-bfa21213-ba0c-42cf-8f54-8347f3c55c9c",
+      "source_file": "exec-bfa21213-ba0c-42cf-8f54-8347f3c55c9c.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-26653b1e-e8ed-4a26-9f9a-9d6f16920842"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-26653b1e-e8ed-4a26-9f9a-9d6f16920842"
+    }
+  ],
+  "discarded_attempts": [
+    {
+      "generation_id": "exec-7be2d054-fa0c-47c1-977b-ca298c46df5a",
+      "source_file": "exec-7be2d054-fa0c-47c1-977b-ca298c46df5a.png",
+      "style": "game_cgi",
+      "prompt": "generation/m-3c419f82ceb4af8f/runs/2026-09-11t082219z/03-anthro-discarded-game-cgi.txt",
+      "reason": "too visually similar to cinematic_semi_real for a useful style comparison; replaced with anime_illust"
+    }
+  ],
+  "conversion": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6,
+    "resized": false,
+    "cropped": false
+  },
+  "review": {
+    "identity": "same adult woman across four final images",
+    "styles": "cinematic semi-real painting versus polished anime illustration with clear contour and shading differences",
+    "casuals": "dusk glassblowing workshop versus nighttime railway-hall ice skating",
+    "anthro_framing": "front-facing in both styles, both full launchers, mounting arms and feet visible",
+    "pose_character": "AUTO",
+    "view_angle": "front, following current user instruction",
+    "delivery": "upload, merge and verify automatic registration; user checks dex visually"
+  }
+}
