@@ -1,0 +1,39 @@
+{
+  "그레이즈_아인_cinematic_semi_real_f.webp": {
+    "card": "그레이즈 아인",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "843a6ce3eb90354d2706af9e3c44890990e029495c356a986977b4e28615202b",
+    "prompt": "generation/m-c79ea430bce9fc7c/runs/2026-09-11t144700z/01-anthro.txt",
+    "manifest": "generation/m-c79ea430bce9fc7c/runs/2026-09-11t144700z/manifest.json"
+  },
+  "그레이즈_아인_cinematic_semi_real_f_casual1.webp": {
+    "card": "그레이즈 아인",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "bcc20ce3a50acf7c8e3b2853834631a895f44934035aeaeb6597424fdbcb88d6",
+    "prompt": "generation/m-c79ea430bce9fc7c/runs/2026-09-11t144700z/02-casual.txt",
+    "manifest": "generation/m-c79ea430bce9fc7c/runs/2026-09-11t144700z/manifest.json"
+  },
+  "그레이즈_아인_retro_anime_f.webp": {
+    "card": "그레이즈 아인",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "9a25241fd8d3fce60c28a751f754eb30b6c8a690307813f8d20b79e749f88a66",
+    "prompt": "generation/m-c79ea430bce9fc7c/runs/2026-09-11t144700z/03-anthro.txt",
+    "manifest": "generation/m-c79ea430bce9fc7c/runs/2026-09-11t144700z/manifest.json"
+  },
+  "그레이즈_아인_retro_anime_f_casual1.webp": {
+    "card": "그레이즈 아인",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "c9767c8ff88b3e289faaaea409ba8185a495c867d22c593ebcfefa21871c0a4f",
+    "prompt": "generation/m-c79ea430bce9fc7c/runs/2026-09-11t144700z/04-casual.txt",
+    "manifest": "generation/m-c79ea430bce9fc7c/runs/2026-09-11t144700z/manifest.json"
+  }
+}
+
