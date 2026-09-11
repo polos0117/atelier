@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "note": "Actual live DOM selections; UI export was attempted twice but exportBox remained empty. This is not an exported toolkit JSON.",
+  "mechs": {
+    "무라사메": {
+      "female": {
+        "sel": {
+          "apparent age": "40s",
+          "armor coverage": "open",
+          "bangs": "side-swept bangs",
+          "body type": "slender",
+          "eye color": "teal",
+          "eye shape": "drooping",
+          "face shape": "elongated",
+          "facial character": "refined",
+          "facial ethnicity": "Japanese",
+          "hair color": "black",
+          "hair length": "long",
+          "hairstyle": "low bun",
+          "height impression": "average",
+          "human-mechanical balance": "balanced",
+          "skin tone": "light"
+        },
+        "sp": "Original fictional adult human interpretation of the standard MVF-M11C Murasame from SEED DESTINY, not a named pilot. Preserve the standard pale armor, dark mechanical frame and orange-red accents, angular shoulder shells, compact waist plates, aircraft wings and tail surfaces on the back, flight thrusters, beam rifle, shield and stored beam saber. Retain the transformable fighter silhouette and wing geometry, not the Freedom wing array or the gold Akatsuki armor. Both shoulder armor shells stay intact with small upper-arm skin gaps beneath their lower edges. Open side waist and upper thighs, with securely fitted opaque chest and pelvis armor. The face has a relatively long midface, gently hollow cheeks, a softly squared chin, relaxed outer eyelids, a low smooth nose bridge with a rounded tip, and a small asymmetry in the upper lip. Visible fine eye-corner lines and subtle smile folds appropriate to her forties; no doll face. Long black hair is gathered in a neat low bun, side-swept fringe kept above both eyes. Human face and ears, no robot faceplate. A supplied generated character reference locks the same facial anatomy, adult age and slender physique across styles. Pose, viewpoint and equipment presentation remain AUTO. Entire wing tips, rifle, shield and feet fit within the frame with clear margins. No text or insignia."
+      },
+      "g": "female"
+    }
+  }
+}
