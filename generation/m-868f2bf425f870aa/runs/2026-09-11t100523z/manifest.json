@@ -1,0 +1,109 @@
+{
+  "version": 1,
+  "card": "딜란자 라우더 전용기",
+  "repository": "polos0117/atelier",
+  "branch": "codex/guel-lauda-dilanza",
+  "base_commit": "91e99b0e16890045effb6beebb15162688fd8bd8",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "run": "2026-09-11t100523z",
+  "assets": [
+    {
+      "file": "딜란자 라우더 전용기_cinematic_semi_real_f.webp",
+      "card": "딜란자 라우더 전용기",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "fe6a6e883307812497081f75405ba699f2f3c1010604f8f40aff99ed4f56c2e1",
+      "prompt": "generation/m-868f2bf425f870aa/runs/2026-09-11t100523z/01-anthro.txt",
+      "manifest": "generation/m-868f2bf425f870aa/runs/2026-09-11t100523z/manifest.json",
+      "generation_id": "exec-73995fb8-76c4-490c-a8dd-6955d41eb714",
+      "source_file": "exec-73995fb8-76c4-490c-a8dd-6955d41eb714.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [],
+      "reference_design_urls": [
+        "https://en.gundam-official.com/witch-from-mercury/mobile-suit/15/"
+      ],
+      "parent_anthro": null
+    },
+    {
+      "file": "딜란자 라우더 전용기_cinematic_semi_real_f_casual1.webp",
+      "card": "딜란자 라우더 전용기",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "47385c80a6994f470b5ff049cea7ab3252b93dbfdf9e10e899e3624977c62e5c",
+      "prompt": "generation/m-868f2bf425f870aa/runs/2026-09-11t100523z/02-casual.txt",
+      "manifest": "generation/m-868f2bf425f870aa/runs/2026-09-11t100523z/manifest.json",
+      "generation_id": "exec-e88d6929-3827-40a6-aeaf-c08f2b719013",
+      "source_file": "exec-e88d6929-3827-40a6-aeaf-c08f2b719013.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-73995fb8-76c4-490c-a8dd-6955d41eb714"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-73995fb8-76c4-490c-a8dd-6955d41eb714"
+    },
+    {
+      "file": "딜란자 라우더 전용기_retro_anime_f.webp",
+      "card": "딜란자 라우더 전용기",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "cad4d317f98f62957b32b810ffa17cd3c35d533a5c489eed0ece09f0ba7062c6",
+      "prompt": "generation/m-868f2bf425f870aa/runs/2026-09-11t100523z/03-anthro.txt",
+      "manifest": "generation/m-868f2bf425f870aa/runs/2026-09-11t100523z/manifest.json",
+      "generation_id": "exec-70a42c73-5e5d-47cc-bde8-52fe54cd1e90",
+      "source_file": "exec-70a42c73-5e5d-47cc-bde8-52fe54cd1e90.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-73995fb8-76c4-490c-a8dd-6955d41eb714",
+        "exec-62f231bd-20c9-4745-b931-abc9a7da5058"
+      ],
+      "reference_design_urls": [
+        "https://en.gundam-official.com/witch-from-mercury/mobile-suit/15/"
+      ],
+      "parent_anthro": null,
+      "edit_prompt": "generation/m-868f2bf425f870aa/runs/2026-09-11t100523z/03-edit.txt",
+      "edited_from": "exec-62f231bd-20c9-4745-b931-abc9a7da5058"
+    },
+    {
+      "file": "딜란자 라우더 전용기_retro_anime_f_casual1.webp",
+      "card": "딜란자 라우더 전용기",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "afeeb5dc6dc0b1faab7ae24210fec5720529fb644cc50689afdd0998c3bdf461",
+      "prompt": "generation/m-868f2bf425f870aa/runs/2026-09-11t100523z/04-casual.txt",
+      "manifest": "generation/m-868f2bf425f870aa/runs/2026-09-11t100523z/manifest.json",
+      "generation_id": "exec-f39816ba-fe6e-4689-9c25-0340234c4a5c",
+      "source_file": "exec-f39816ba-fe6e-4689-9c25-0340234c4a5c.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-70a42c73-5e5d-47cc-bde8-52fe54cd1e90"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-70a42c73-5e5d-47cc-bde8-52fe54cd1e90"
+    }
+  ],
+  "conversion": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6,
+    "resized": false,
+    "cropped": false
+  },
+  "review": {
+    "identity": "Same clearly adult woman across four images",
+    "styles": "Painterly cinematic illustration versus late-1980s to mid-1990s hand-drawn cel animation",
+    "casuals": "Dawn competition-pool recovery versus moonlit rooftop astronomy",
+    "anthro_framing": "Front-facing full-body with canonical main weapon, equipment and feet inside frame",
+    "pose_character": "AUTO",
+    "view_angle": "front, following prior user instruction",
+    "settings_export": "Obtained actual single-card UI export",
+    "delivery": "Four WebP images and prompt links registered locally; remote delivery reported separately."
+  }
+}

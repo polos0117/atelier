@@ -1,0 +1,42 @@
+{
+  "딜란자 구엘 전용기_cinematic_semi_real_f.webp": {
+    "file": "딜란자 구엘 전용기_cinematic_semi_real_f.webp",
+    "card": "딜란자 구엘 전용기",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "c749c79426a86b588eec04e05b07a5c8e8e022b0baa89edfd7631bae55d93f88",
+    "prompt": "generation/m-a864927c9377c692/runs/2026-09-11t100523z/01-anthro.txt",
+    "manifest": "generation/m-a864927c9377c692/runs/2026-09-11t100523z/manifest.json"
+  },
+  "딜란자 구엘 전용기_cinematic_semi_real_f_casual1.webp": {
+    "file": "딜란자 구엘 전용기_cinematic_semi_real_f_casual1.webp",
+    "card": "딜란자 구엘 전용기",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "a3ea5ca881f4652e7373e5ee5a8ad192f0d45e19df594f50f7517ab07c5187aa",
+    "prompt": "generation/m-a864927c9377c692/runs/2026-09-11t100523z/02-casual.txt",
+    "manifest": "generation/m-a864927c9377c692/runs/2026-09-11t100523z/manifest.json"
+  },
+  "딜란자 구엘 전용기_glossy_kr_game_f.webp": {
+    "file": "딜란자 구엘 전용기_glossy_kr_game_f.webp",
+    "card": "딜란자 구엘 전용기",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "b474ef16582ead1d831932161c857d3a552124f54c1d4f3769fe507c1acf69c9",
+    "prompt": "generation/m-a864927c9377c692/runs/2026-09-11t100523z/03-anthro.txt",
+    "manifest": "generation/m-a864927c9377c692/runs/2026-09-11t100523z/manifest.json"
+  },
+  "딜란자 구엘 전용기_glossy_kr_game_f_casual1.webp": {
+    "file": "딜란자 구엘 전용기_glossy_kr_game_f_casual1.webp",
+    "card": "딜란자 구엘 전용기",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "694175bb3b7092c761acbe1e92ffb90ab443cc284520fa95d25d1416238b35cb",
+    "prompt": "generation/m-a864927c9377c692/runs/2026-09-11t100523z/04-casual.txt",
+    "manifest": "generation/m-a864927c9377c692/runs/2026-09-11t100523z/manifest.json"
+  }
+}
