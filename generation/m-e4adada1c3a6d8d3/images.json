@@ -1,0 +1,42 @@
+{
+  "하인드리 슈트룸_cinematic_semi_real_f.webp": {
+    "file": "하인드리 슈트룸_cinematic_semi_real_f.webp",
+    "card": "하인드리 슈트룸",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "0ec9eeb4c9d749b0e273cb0d3c6ca5744f389104f437641b6bf7a18600d5b817",
+    "prompt": "generation/m-e4adada1c3a6d8d3/runs/2026-09-11t073759z/01-anthro.txt",
+    "manifest": "generation/m-e4adada1c3a6d8d3/runs/2026-09-11t073759z/manifest.json"
+  },
+  "하인드리 슈트룸_cinematic_semi_real_f_casual1.webp": {
+    "file": "하인드리 슈트룸_cinematic_semi_real_f_casual1.webp",
+    "card": "하인드리 슈트룸",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "586026e46251adbd03c090d5c517f356bcfaa5073ebaee13fc455a361605abea",
+    "prompt": "generation/m-e4adada1c3a6d8d3/runs/2026-09-11t073759z/02-casual.txt",
+    "manifest": "generation/m-e4adada1c3a6d8d3/runs/2026-09-11t073759z/manifest.json"
+  },
+  "하인드리 슈트룸_painterly_f.webp": {
+    "file": "하인드리 슈트룸_painterly_f.webp",
+    "card": "하인드리 슈트룸",
+    "style": "painterly",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "03130073070ecbec031f694a37ecbd1285ad7b4f59bee20647b443413d3ef18a",
+    "prompt": "generation/m-e4adada1c3a6d8d3/runs/2026-09-11t073759z/03-anthro.txt",
+    "manifest": "generation/m-e4adada1c3a6d8d3/runs/2026-09-11t073759z/manifest.json"
+  },
+  "하인드리 슈트룸_painterly_f_casual1.webp": {
+    "file": "하인드리 슈트룸_painterly_f_casual1.webp",
+    "card": "하인드리 슈트룸",
+    "style": "painterly",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "df99e947383c75eab1f6ae8988613e8d91a684f8e3ba7617aa0367e8295a01b9",
+    "prompt": "generation/m-e4adada1c3a6d8d3/runs/2026-09-11t073759z/04-casual.txt",
+    "manifest": "generation/m-e4adada1c3a6d8d3/runs/2026-09-11t073759z/manifest.json"
+  }
+}
