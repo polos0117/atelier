@@ -1,0 +1,73 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "wildcard"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "winter_lodge"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "relieved"
+  },
+  {
+    "id": "sgOrient",
+    "value": "side"
+  },
+  {
+    "id": "sgPose",
+    "value": "kneeling"
+  },
+  {
+    "id": "sgScene",
+    "value": "A quiet timber mountain lodge in heavy morning snowfall, a stone hearth glowing beside stacked birch logs, frost feathering the panoramic window, a wool rug and one steaming enamel mug on a low bench"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "A designed deep forest-green one-shoulder cable-knit midi dress with one fitted long sleeve, a secure folded asymmetrical neckline, sculpted waist and a practical side slit below mid-thigh, paired with thick charcoal over-knee socks and soft brown indoor ankle boots"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body side environmental view from low hearth height, 45mm perspective, warm firelight as the key with cool diffuse snow-window fill, clean cel-anime linework and simple decisive shadow shapes, the whole kneeling figure and both boots visible"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She kneels on one knee beside the hearth, setting a short birch log onto the fire with black iron tongs in her right hand while her left hand steadies a small brass log basket. Her amber eyes watch the sparks and her expression is quietly relieved, not posed toward the viewer. Preserve the SAME clearly adult Slavic woman from the attached cel-anime portrait: recognizable angular face, light skin, long black high ponytail with side-swept bangs, tall athletic proportions and broad shoulders. Render her entirely as a normal contemporary human with exactly two natural arms and two natural legs. No armor, sensor frame, capture gun, shield, backpack, grenades or mechanical parts. No text, logos or watermark."
+  },
+  {
+    "checked": false,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]
