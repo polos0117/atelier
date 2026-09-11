@@ -1,0 +1,42 @@
+{
+  "데미 개리슨_cinematic_semi_real_f.webp": {
+    "file": "데미 개리슨_cinematic_semi_real_f.webp",
+    "card": "데미 개리슨",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "0d606124ae057f7c58ff9b2bddf1150bd9ba45f0e1f0345c3311b7fa29feb3a1",
+    "prompt": "generation/m-7d7b28cfb89a038f/runs/2026-09-11t090144z/01-anthro.txt",
+    "manifest": "generation/m-7d7b28cfb89a038f/runs/2026-09-11t090144z/manifest.json"
+  },
+  "데미 개리슨_cinematic_semi_real_f_casual1.webp": {
+    "file": "데미 개리슨_cinematic_semi_real_f_casual1.webp",
+    "card": "데미 개리슨",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "915ac59622481bb5beb63b889e25942b04137c4fc511c8661f14ef8273f156a7",
+    "prompt": "generation/m-7d7b28cfb89a038f/runs/2026-09-11t090144z/02-casual.txt",
+    "manifest": "generation/m-7d7b28cfb89a038f/runs/2026-09-11t090144z/manifest.json"
+  },
+  "데미 개리슨_cel_anime_f.webp": {
+    "file": "데미 개리슨_cel_anime_f.webp",
+    "card": "데미 개리슨",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "1c4a21fde704b0a14f9655232464af9b734355f821c6eef91a296b664ae8c5a6",
+    "prompt": "generation/m-7d7b28cfb89a038f/runs/2026-09-11t090144z/03-anthro.txt",
+    "manifest": "generation/m-7d7b28cfb89a038f/runs/2026-09-11t090144z/manifest.json"
+  },
+  "데미 개리슨_cel_anime_f_casual1.webp": {
+    "file": "데미 개리슨_cel_anime_f_casual1.webp",
+    "card": "데미 개리슨",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "0b8615bb55729d8d5bf959b457f5ffd18b6fabeeaf0ab76be2316d9df5fd843b",
+    "prompt": "generation/m-7d7b28cfb89a038f/runs/2026-09-11t090144z/04-casual.txt",
+    "manifest": "generation/m-7d7b28cfb89a038f/runs/2026-09-11t090144z/manifest.json"
+  }
+}

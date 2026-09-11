@@ -1,0 +1,107 @@
+[INPUT]
+
+SOURCE MOBILE SUIT: [데미 개리슨]
+
+This name is identity-provenance metadata only, used for lore, personality, and occupation context. It must not be used to reconstruct, restore, or invent mobile-suit armor, weapons, shields, backpacks, mechanical limbs, or other canonical equipment.
+
+Use the attached clearly adult anthropomorphized character as the absolute identity and equipment reference for this image.
+
+==================================================
+
+[IDENTITY LOCK]
+
+Use the SAME clearly adult woman as the attached reference. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign. Facial expression is not identity. The brows, eyelids, eye openness, mouth shape and lip parting must follow the expression specified elsewhere in this prompt — "preserve mouth shape" refers to the resting structure and proportion of the lips, not to holding a neutral mouth. A specified expression must be clearly readable on the face.
+
+==================================================
+
+[LIFESTYLE REFERENCE LOCK]
+
+The attached character image is authoritative for the character's visible appearance and equipment state in this image. The source mobile suit name above is identity-origin metadata only and must not be used to reconstruct, restore, or invent mobile-suit equipment. Lifestyle may retain small, non-functional, identity-defining accessories from the character reference when they read as wearable ornament rather than active mobile-suit equipment. Do not retain or reconstruct functional armor, weapons, shields, backpacks, binders, thrusters, mechanical limbs, or other combat/mechanical equipment. Canonical mobile-suit equipment that is absent from the attached character reference must remain absent. For civilian, casual, homewear, swimwear, activewear, fashion, and other lifestyle scenes, translate only the character's established human identity into the requested scene — do not revert the character toward her original mobile-suit form.
+
+If multiple reference images of the same character are attached: use the clearest face close-up as the primary facial identity anchor; use the full-character reference as the primary authority for body proportions, hairstyle, overall appearance, and visible equipment state; use any remaining references only to resolve details that are unclear or occluded. Do not average the references into a new face. All attached references depict the same character and must resolve toward one identity.
+
+==================================================
+
+[CHARACTER IDENTITY SPEC]
+
+The attached anthropomorphized reference image was generated from this specification:
+- ethnicity: Korean
+- apparent age: 20s
+- facial impression: cool
+- face shape: compact
+- eye shape: narrow
+- eye color: amber
+- skin tone: light
+- hair color: navy
+- hair length: short
+- hairstyle: pixie cut
+- bangs: choppy bangs
+- face length: short
+- face width: medium
+- jaw & chin: square broad jaw
+- eye size: medium
+- eye tilt: level outer corners
+- nose character: rounded soft tip
+- lips: fuller lower lip
+- body type: athletic
+- height impression: average
+- torso / chest build: full
+- waist / hip silhouette: athletic
+- leg proportion: long
+- shoulder build: broad
+
+Precedence: the attached image remains the primary reference. Use this list to resolve anything the image leaves ambiguous — including body proportions that the mobile-suit armor in the reference image may obscure, and to prevent facial drift across panels — especially ethnicity, facial structure, and apparent age, which tend to slide toward a generic default over six panels. Where the image shows something clearly and unambiguously, follow the image. Where armor, pose, foreshortening, camera angle, cropping, or occlusion makes a detail ambiguous, use this list to resolve it rather than guessing.
+
+==================================================
+
+[ART STYLE]
+
+flat cel-shaded anime character illustration with bold clean outlines, hard-edged shadow shapes, minimal gradients, and strong poster-like colour blocking. The entire image must use a consistent cel-animation rendering language. FACE: clearly adult anime facial construction with simplified eyes, nose, mouth, and clean graphic shapes. Follow the facial geometry and character identity defined in PARAMETERS without realistic skin rendering. SKIN: flat local colour with one primary shadow tone and only minimal highlight accents. No pores, subsurface scattering, glossy airbrushing, or photographic tonal modelling. HAIR: clean graphic masses separated into major locks with simple highlight shapes and hard colour boundaries. LIGHTING: communicate form through deliberate cel-shadow shapes and limited rim-colour bands rather than realistic cinematic falloff. Avoid soft painterly modelling, airbrushed game skin, realistic material reflections, photographic lighting, CGI shading, excessive gradients, and dense micro-detail.
+
+This art style governs all rendering, facial stylization, lighting, and material treatment throughout this prompt.
+
+[LIFESTYLE STYLE EXTENSION]
+
+Clothing, fabric, and accessories in this scene follow the same flat cel-shaded rendering established above. Do not introduce armor, mechanical parts, weapons, or other source mobile-suit equipment into this scene.
+
+[STYLE LOCK]
+
+The selected ART STYLE controls the rendering language of the entire image: facial construction, skin, hair, clothing, fabric, props, lighting, background treatment, edge handling, shading, reflections, speculars, texture, and detail density. It governs HOW the scene is rendered only — it must not redesign, reconstruct, or reintroduce the source mobile suit's armor, weapons, shield, backpack, mechanical limbs, or other canonical equipment. It must not redesign the underlying facial geometry, facial proportions, or character identity established by the attached reference and by this prompt. The attached character reference controls visible character identity and visible equipment state. If any common instruction conflicts with the selected ART STYLE, the selected ART STYLE wins for rendering language only.
+
+==================================================
+
+[OUTPUT]
+
+Create ONE SINGLE image in 2:3 vertical aspect. Exactly one woman. No collage, no panels, no split frames, no numerals, no captions, titles, labels, or any other text.
+
+==================================================
+
+[DIRECTION]
+
+Create designed, fashion-forward homewear or lounge-life scenes. Avoid plain pajamas and bland static sofa poses. Use believable home-life actions, stylish home fashion silhouettes, and a sensual but natural private-life atmosphere.
+Use this as the thematic anchor: Off-shoulder Knit Homewear.
+
+==================================================
+
+[SETTINGS]
+
+- Framing: three-quarter body.
+- Expression: soft smile — faint upward pull at the mouth corners, lips together, warmth reaching the lower eyelids.
+- Body orientation: seated twist.
+- Pose: sitting.
+- Scene / Location: A cozy wooden winter cabin at blue hour. Seated sideways on a deep window bench beside a snow-covered forest view, she turns toward a small record player and gently places a vinyl record on its turntable, enjoying an unhurried evening..
+- Outfit: A designed warm ivory off-shoulder cable-knit sweater exposing one shoulder and collarbone, a charcoal high-waisted soft wrap skirt with a modest side slit and slate-blue knee-high wool socks. Opaque cozy lounge fashion with a graceful adult silhouette..
+- Camera / Lighting: Intimate three-quarter seated composition from slightly above the bench, angled across the room. Warm amber lamplight against cool blue snowy window light, geometric flat cel shadow shapes, a quiet relaxed mood. Her face and hands placing the record remain clearly readable..
+- Additional instruction: Only the attached CEL-ANIME Demi Garrison woman is the identity reference: same adult Korean woman in her twenties, navy pixie cut and choppy bangs, amber eyes, broad-jawed compact face, light skin, athletic body and full chest. Preserve identity while changing expression to an understated closed-mouth smile looking toward the record. Entirely civilian: no armor, no headpiece, no backpack, no weapon. Render face, knitwear and cabin consistently with bold clean linework and flat cel-shaded color blocks. No readable text, labels or logos..
+
+==================================================
+
+[NON-EXPLICIT LIMITS]
+
+The character must clearly read as an adult. The garments are securely fitted and fully opaque, and the styling is suitable for a mainstream fashion or lifestyle editorial. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.
+
+==================================================
+
+[FINAL CHECK]
+
+Verify: exactly one image and one woman; the requested aspect ratio; no text anywhere in the frame; the selected category and example are followed; no explicit nudity or sexual activity.
