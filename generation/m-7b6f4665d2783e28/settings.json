@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "card": "자쿠Ⅱ 개량형",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "30s",
+        "armor coverage": "balanced",
+        "bangs": "choppy bangs",
+        "body type": "athletic",
+        "eye shape": "drooping",
+        "eye size": "medium",
+        "face shape": "softly rounded",
+        "facial character": "friendly",
+        "facial ethnicity": "Korean",
+        "hair color": "brown",
+        "hair length": "short",
+        "hairstyle": "pixie cut",
+        "height impression": "average",
+        "lips": "wide mouth",
+        "nose character": "rounded soft tip",
+        "skin tone": "light"
+      },
+      "sp": "Use the attached armored adult woman as the identity and equipment reference. Preserve her short brown pixie hair, gently rounded face, broad natural mouth, beauty mark below the left eye, age and athletic physique. Preserve the MS-06FZ olive and forest-green armor, shoulder shield and spiked shoulder, power hoses and heat hawk. Correct the machine gun to the compact MMP-80 with box magazine instead of a large round drum. The entire image including armor and face must use the selected retro anime rendering, without copying the reference rendering. Pose, view and staging remain AUTO and may differ from the reference. Single image 1024 x 1536."
+    },
+    "g": "female",
+    "t": 1789044713404
+  },
+  "used": [
+    {
+      "cat": "everyday_sensual",
+      "ex": "high_shelf",
+      "n": 1,
+      "t": 1789044793769
+    },
+    {
+      "cat": "everyday_sensual",
+      "ex": "rainy_return",
+      "n": 1,
+      "t": 1789044651280
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

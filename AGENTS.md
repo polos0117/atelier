@@ -7,3 +7,5 @@
 다른 작업 지침과 충돌하거나 문서와 코드가 다르면 차이를 보고하고, 추측으로 데이터 또는 검증 규칙을 바꾸지 않는다.
 
 `prompt.html`을 사용한 이미지 생성부터 업로드까지의 작업 전에는 [PROMPT_IMAGE_WORKFLOW.md](PROMPT_IMAGE_WORKFLOW.md)도 반드시 읽는다.
+
+기체별 설정·생성 이력은 [generation/README.md](generation/README.md)를 따른다. 기본 기록 내보내기는 한 기체의 `settings.json`이며, 완료한 `runs/` 기록은 보존한다. 신규 작업에서 공용 JSON 전체를 다시 올리는 방식을 기본으로 사용하지 않는다.

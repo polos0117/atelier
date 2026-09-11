@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "updated": "2026-09-10",
+  "note": "DOM Trooper entries extracted unchanged from the successful actual UI export; other cards omitted from this task snapshot.",
+  "mechs": {
+    "돔 트루퍼": {
+      "female": {
+        "sel": {
+          "apparent age": "20s",
+          "facial ethnicity": "Chinese",
+          "human-mechanical balance": "balanced",
+          "body type": "muscular",
+          "height impression": "tall",
+          "facial character": "cool",
+          "face shape": "angular",
+          "eye shape": "narrow",
+          "eye color": "brown",
+          "skin tone": "tan",
+          "hair color": "orange",
+          "hairstyle": "curly",
+          "hair length": "short",
+          "bangs": "none",
+          "armor coverage": "open"
+        },
+        "sp": "Original fictional adult human interpretation of ZGMF-XX09T DOM Trooper from SEED DESTINY, not a named pilot or real person. Preserve the violet and black armor, large rounded shoulder shells, broad armored chest, wide segmented waist plates, massive flared lower-leg hover armor and broad feet. Include its long combined bazooka/beam weapon and backpack saber, with the distinctive DOM Trooper equipment rather than a generic rifle. No Universal Century Dom substitution, no Zaku spikes, no Gundam V-fin. Both shoulder shells remain intact; show small upper-arm gaps under the armor edges. Open side waist and upper thighs, securely opaque chest and pelvis armor. Fully human ears, eyes and face, with a broad squared jaw, low straight brows, a pronounced straight nose and a wide firm mouth. Short copper-orange curls are swept away from both eyes. The whole figure, barrel and backpack equipment fit inside the frame with visible margins. If a generated character reference is attached preserve her exact face, age, hair and powerful physique across styles. Pose, viewpoint and equipment presentation remain AUTO. No lettering or faction insignia."
+      },
+      "g": "female",
+      "t": 1789083081840
+    }
+  },
+  "used": {
+    "돔 트루퍼": [
+      {
+        "cat": "active",
+        "ex": "roller_skating",
+        "n": 2,
+        "t": 1789083159442
+      }
+    ]
+  },
+  "style": {}
+}

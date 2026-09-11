@@ -4,7 +4,7 @@ const source=fs.readFileSync('dex.html','utf8');
 function fn(name){const a=source.indexOf('function '+name+'('),b=source.indexOf('\n}',a);assert(a>=0&&b>a);return source.slice(a,b+2);}
 const records=JSON.parse(fs.readFileSync('data/generation.json','utf8'));
 const toolkit=JSON.parse(fs.readFileSync('toolkit-data.json','utf8'));
-const ctx=vm.createContext({GENERATION:records,TK:{base:toolkit.mechs,local:{}},TK_LABEL:{'hair color':'머리색'},esc:s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))});
+const ctx=vm.createContext({GENERATION:records,CARD_GENERATION:{},CARD_SETTINGS:{},TK:{base:toolkit.mechs,local:{}},TK_LABEL:{'hair color':'머리색'},esc:s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))});
 for(const name of ['tkOf','tkSummary','tkDetails','generationDetails'])vm.runInContext(fn(name),ctx);
 let known=0,missing=0;
 for(const [file,r] of Object.entries(records)){

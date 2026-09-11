@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "updated": "2026-09-10",
+  "note": "Actual prompt.html export, scoped to this task card; merge only this card into the existing toolkit.",
+  "mechs": {
+    "건담 쓰로네 쯔바이": {
+      "female": {
+        "sel": {
+          "apparent age": "30s",
+          "facial ethnicity": "Korean",
+          "human-mechanical balance": "balanced",
+          "body type": "curvy",
+          "height impression": "tall",
+          "leg proportion": "long",
+          "facial character": "cool",
+          "face shape": "heart-shaped",
+          "eye shape": "upturned",
+          "eye color": "amber",
+          "jaw & chin": "narrow tapered chin",
+          "eye size": "medium",
+          "nose character": "rounded soft tip",
+          "lips": "bow-shaped upper lip",
+          "skin tone": "light",
+          "hair color": "crimson",
+          "hairstyle": "asymmetric cut",
+          "hair length": "short",
+          "bangs": "asymmetric bangs",
+          "armor coverage": "open",
+          "lower-body treatment": "split armored skirt",
+          "silhouette character": "aggressive",
+          "equipment emphasis": "main weapon"
+        },
+        "sp": "Design the open armor as an intentional adult mecha-fashion silhouette: bare shoulder caps and collarbones between detached shoulder armor and a structured opaque crimson chest piece, visible side-waist cutouts and a short midriff, and exposed upper thighs between compact split hip armor and articulated knee-high greaves. These openings must remain visible rather than being filled with a black full-body undersuit. Preserve elegant curvy adult proportions, not a bulky sealed suit. Keep the chest and pelvis securely covered with opaque fitted components. Preserve the GNW-002 Throne Zwei identity: dark crimson/red angular armor, pale gray structural panels, orange-red GN accents, its huge broad solid GN Buster Sword, paired hip-mounted GN Fang containers and the compact GN Tau backpack. One sword only, all equipment within the frame; do not add a generic shield or another Gundam's wings. Pose and view remain AUTO. Original adult woman, not the pilot. Single 1024 x 1536 image, no text or logos. Use the attached first anthropomorphization as the exact adult identity and equipment reference. Preserve her short asymmetrical crimson hair, amber eyes, heart-shaped adult face, curvy tall physique, open armor cutouts, hip containers and the one large sword. Translate all rendering into the selected flat cel-animation style. Pose and view remain AUTO; choose a fresh composition rather than tracing the reference pose."
+      },
+      "g": "female",
+      "t": 1789049342505
+    }
+  },
+  "used": {
+    "건담 쓰로네 쯔바이": [
+      {
+        "cat": "swimwear",
+        "ex": "shoreline_walk",
+        "n": 1,
+        "t": 1789049451560
+      },
+      {
+        "cat": "everyday_sensual",
+        "ex": "",
+        "n": 1,
+        "t": 1789049271130
+      }
+    ]
+  }
+}

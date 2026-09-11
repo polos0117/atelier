@@ -1,0 +1,42 @@
+{
+  "건담_데스사이즈_헬_cinematic_semi_real_f.webp": {
+    "card": "건담 데스사이즈 헬",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "925e2b4e2acf9dcf3d58c8353dcc3e3e27e1188403fffb1096fadf56f8ee384e",
+    "prompt": "generation/m-4ad74e554f9e3afe/runs/deathscythe-hell/01-cinematic-anthro.txt",
+    "manifest": "generation/m-4ad74e554f9e3afe/runs/deathscythe-hell/manifest.json",
+    "legacy_manifest": "docs/generation/deathscythe-hell/manifest.json"
+  },
+  "건담_데스사이즈_헬_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 데스사이즈 헬",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "23040de00868272d4dd44868e2953eb9b6dc4dd32465c66cee1ce8b5a5f5e761",
+    "prompt": "generation/m-4ad74e554f9e3afe/runs/deathscythe-hell/02-cinematic-casual.txt",
+    "manifest": "generation/m-4ad74e554f9e3afe/runs/deathscythe-hell/manifest.json",
+    "legacy_manifest": "docs/generation/deathscythe-hell/manifest.json"
+  },
+  "건담_데스사이즈_헬_game_keyart_f.webp": {
+    "card": "건담 데스사이즈 헬",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "e85193575bd7504cf6a514e414e33a0db16f0c874cdd2d312ecf6e65e5aad3be",
+    "prompt": "generation/m-4ad74e554f9e3afe/runs/deathscythe-hell/03-keyart-anthro.txt",
+    "manifest": "generation/m-4ad74e554f9e3afe/runs/deathscythe-hell/manifest.json",
+    "legacy_manifest": "docs/generation/deathscythe-hell/manifest.json"
+  },
+  "건담_데스사이즈_헬_game_keyart_f_casual1.webp": {
+    "card": "건담 데스사이즈 헬",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "a2ba7aa2989759c298fde1b844991a15e9f7f7e199aa95f7d0319e3c6eb8be21",
+    "prompt": "generation/m-4ad74e554f9e3afe/runs/deathscythe-hell/04-keyart-casual.txt",
+    "manifest": "generation/m-4ad74e554f9e3afe/runs/deathscythe-hell/manifest.json",
+    "legacy_manifest": "docs/generation/deathscythe-hell/manifest.json"
+  }
+}

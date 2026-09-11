@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "card": "앗가이",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "youthful adult",
+        "armor coverage": "open",
+        "body type": "voluptuous",
+        "expression": "gentle",
+        "face shape": "softly rounded",
+        "facial character": "cute",
+        "facial ethnicity": "Japanese",
+        "height impression": "very tall",
+        "human-mechanical balance": "more human",
+        "jaw & chin": "soft rounded jaw",
+        "shoulder build": "average",
+        "torso / chest build": "full",
+        "waist / hip silhouette": "balanced"
+      }
+    },
+    "g": "female",
+    "male": {
+      "sel": {
+        "apparent age": "youthful adult",
+        "expression": "gentle",
+        "face shape": "softly rounded",
+        "facial character": "cute",
+        "facial ethnicity": "Japanese",
+        "height impression": "very tall",
+        "human-mechanical balance": "more human",
+        "jaw & chin": "soft rounded jaw",
+        "shoulder build": "average",
+        "waist / hip silhouette": "balanced"
+      }
+    },
+    "t": 1788872628454
+  },
+  "used": [
+    {
+      "cat": "occupation_basic",
+      "ex": "sonar_analyst",
+      "n": 2,
+      "t": 1788875037035
+    },
+    {
+      "cat": "everyday_basic",
+      "ex": "station_wait",
+      "n": 1,
+      "t": 1788874382173
+    },
+    {
+      "cat": "homewear",
+      "ex": "bralette_cardigan",
+      "n": 1,
+      "t": 1788873779822
+    },
+    {
+      "cat": "active",
+      "ex": "aerial_silk",
+      "n": 1,
+      "t": 1788873746182
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "auction_specialist",
+      "n": 1,
+      "t": 1788873715318
+    },
+    {
+      "cat": "private_evening",
+      "ex": "silk_robe_evening",
+      "n": 1,
+      "t": 1788873695843
+    },
+    {
+      "cat": "swimwear",
+      "ex": "outdoor_shower",
+      "n": 1,
+      "t": 1788873323503
+    },
+    {
+      "cat": "adult_roleplay",
+      "ex": "adult_nurse",
+      "n": 1,
+      "t": 1788873236273
+    },
+    {
+      "cat": "source_editorial",
+      "ex": "metallic_asymmetry",
+      "n": 1,
+      "t": 1788873126123
+    },
+    {
+      "cat": "lingerie",
+      "ex": "longline_bra",
+      "n": 1,
+      "t": 1788873075687
+    },
+    {
+      "cat": "traditional",
+      "ex": "yukata_daily",
+      "n": 2,
+      "t": 1788872635655
+    },
+    {
+      "cat": "everyday_sensual",
+      "ex": "rainy_return",
+      "n": 1,
+      "t": 1788872142890
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

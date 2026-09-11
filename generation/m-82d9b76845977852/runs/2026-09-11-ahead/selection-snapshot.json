@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "note": "Actual live DOM selections, not exported toolkit JSON",
+  "mechs": {
+    "어헤드": {
+      "female": {
+        "sel": {
+          "apparent age": "30s",
+          "armor coverage": "open",
+          "bangs": "none",
+          "body type": "curvy",
+          "eye color": "teal",
+          "eye shape": "upturned",
+          "face shape": "heart-shaped",
+          "facial character": "regal",
+          "facial ethnicity": "Southeast Asian",
+          "hair color": "black",
+          "hair length": "long",
+          "hairstyle": "braid",
+          "height impression": "tall",
+          "human-mechanical balance": "balanced",
+          "skin tone": "medium"
+        },
+        "sp": "Original fictional adult human interpretation of the standard GNX-704T Ahead, not a named pilot or real person. Preserve its dark crimson and burnt-red armor, bulky rounded shoulder housings, broad chest geometry and GN drive backpack, standard GN beam rifle and compact GN shield on the left forearm. No Sakigake samurai equipment, no Smultron variant, no Zaku spikes or Gundam V-fin. Shoulder armor stays intact; a little upper arm is visible beneath its lower edge. Open side-waist gaps and upper thighs, opaque securely fitted chest and pelvis armor. Fully human face and human ears. Distinct broad forehead, pronounced high cheekbones, short rounded chin and full lower lip; one long thick black braid down the back, face unobstructed. If a generated character reference is attached, keep that same face, age, hair and physique while the chosen art style governs rendering. Pose, viewpoint and equipment presentation remain AUTO. Entire silhouette, feet, rifle and backpack contained inside the frame. No lettering or faction logos."
+      },
+      "g": "female"
+    }
+  }
+}

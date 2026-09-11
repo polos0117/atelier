@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "card": "짐 커맨드",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "30s",
+        "facial ethnicity": "Japanese",
+        "body type": "tall and lean",
+        "height impression": "tall",
+        "facial character": "refined",
+        "face shape": "elongated",
+        "eye shape": "narrow",
+        "jaw & chin": "balanced jawline",
+        "eye size": "small",
+        "nose character": "straight slender bridge",
+        "lips": "fuller lower lip",
+        "skin tone": "light",
+        "hair color": "silver",
+        "hairstyle": "braid",
+        "hair length": "long",
+        "bangs": "side-swept bangs",
+        "armor coverage": "balanced"
+      },
+      "sp": "Use the attached corrected armored adult woman as the identity and equipment reference. Preserve her long silver single braid, mature elongated face, narrow eyes, straight brows, tall lean physique, ivory and charcoal RGM-79G armor with restrained red accents, compact bullpup machine gun, left forearm Command shield, compact backpack and rear-waist beam sabers. Render every part in the selected game keyart 2.5D style; do not copy the reference rendering. Pose, view and staging remain AUTO and may differ from the reference. Keep the complete figure and all equipment inside the frame. No lettering, typography, numbers, logos or emblems anywhere. Single 1024 x 1536 image. Rendering correction: the reference is for WHO and equipment geometry only. Repaint from scratch as unmistakable premium Japanese mobile-game 2.5D illustrated key art: simplified anime-informed adult face preserving its elongated shape and narrow eyes, luminous smooth skin, broad clean gradient shading, grouped silver hair locks with glossy painted bands, clean ivory armor with strongly designed stylized reflections and minimal wear, selective cool teal accent light. Remove the distressed photoreal scratched surface treatment and sombre brown photographic rendering. This must be a clearly visible rendering transformation, not a relighting of the reference. Keep adult identity and all gear; pose/view still AUTO."
+    },
+    "g": "female",
+    "t": 1789047188630
+  },
+  "used": [
+    {
+      "cat": "everyday_sensual",
+      "ex": "late_snack",
+      "n": 1,
+      "t": 1789047293984
+    },
+    {
+      "cat": "swimwear",
+      "ex": "rooftop_infinity_pool",
+      "n": 1,
+      "t": 1789047004001
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

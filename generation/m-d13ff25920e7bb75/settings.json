@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "card": "시난주 스타인",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "bangs": "long side bangs covering one eye",
+        "body type": "statuesque",
+        "eye color": "crimson",
+        "facial character": "sharp",
+        "facial ethnicity": "Chinese",
+        "hair accent": "a single antenna strand standing up",
+        "hair color": "silver",
+        "hair length": "short",
+        "hairstyle": "slicked back",
+        "height impression": "very tall",
+        "human-mechanical balance": "more human",
+        "leg proportion": "very long",
+        "second eye color": "crimson",
+        "shoulder build": "broad",
+        "torso / chest build": "full",
+        "waist / hip silhouette": "hourglass"
+      },
+      "ub": true
+    },
+    "g": "female",
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "bangs": "long side bangs covering one eye",
+        "body type": "statuesque",
+        "eye color": "crimson",
+        "facial character": "sharp",
+        "facial ethnicity": "Chinese",
+        "hair accent": "a single antenna strand standing up",
+        "hair color": "silver",
+        "hair length": "short",
+        "hairstyle": "slicked back",
+        "height impression": "very tall",
+        "human-mechanical balance": "more human",
+        "leg proportion": "very long",
+        "second eye color": "crimson",
+        "shoulder build": "broad"
+      },
+      "ub": true
+    },
+    "mm": "silhouette_equipment_emphasis",
+    "t": 1788765885304
+  },
+  "used": [
+    {
+      "cat": "occupation_sensual",
+      "ex": "fashion_test_engineer",
+      "n": 5,
+      "t": 1788761760650
+    },
+    {
+      "cat": "homewear",
+      "ex": "soft_tank_shorts",
+      "n": 1,
+      "t": 1788752550990
+    },
+    {
+      "cat": "active",
+      "ex": "track_sprint",
+      "n": 1,
+      "t": 1788752382131
+    },
+    {
+      "cat": "everyday_sensual",
+      "ex": "high_shelf",
+      "n": 1,
+      "t": 1788731238587
+    },
+    {
+      "cat": "private_evening",
+      "ex": "slip_dress",
+      "n": 1,
+      "t": 1788730672603
+    },
+    {
+      "cat": "adult_roleplay",
+      "ex": "bunny",
+      "n": 3,
+      "t": 1788730635436
+    },
+    {
+      "cat": "swimwear",
+      "ex": "highleg_onepiece",
+      "n": 1,
+      "t": 1788730635436
+    },
+    {
+      "cat": "traditional",
+      "ex": "qipao_daily",
+      "n": 1,
+      "t": 1788730635436
+    },
+    {
+      "cat": "lingerie",
+      "ex": "morning_lingerie",
+      "n": 1,
+      "t": 1788730320244
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

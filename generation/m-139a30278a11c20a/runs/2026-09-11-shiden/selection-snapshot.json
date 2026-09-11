@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "note": "Actual live DOM selections, not exported toolkit JSON",
+  "mechs": {
+    "시덴": {
+      "female": {
+        "sel": {
+          "apparent age": "40s",
+          "armor coverage": "open",
+          "bangs": "side-swept bangs",
+          "body type": "athletic",
+          "eye color": "brown",
+          "eye shape": "drooping",
+          "face shape": "oval",
+          "facial character": "friendly",
+          "facial ethnicity": "Korean",
+          "hair color": "lavender",
+          "hair length": "short",
+          "hairstyle": "asymmetric cut",
+          "height impression": "average",
+          "human-mechanical balance": "balanced",
+          "skin tone": "light"
+        },
+        "sp": "Original fictional adult interpretation of the standard STH-16 Shiden, not a named pilot or real person. Retain the stock Shiden muted rose-red and gray armor, blocky rounded shoulder shells, broad squared chest, exposed dark industrial frame and utilitarian armored boots. Standard ballistic rifle, riot shield on the left forearm and compact partisan melee weapon mounted on the backpack, all mechanically attached and clearly readable. No Orga white variant, no Ryusei-Go magenta custom, no beam saber or Gundam V-fin. Keep both shoulder armor shells intact with only small skin gaps below their edges; open side-waist and upper thighs with securely fitted opaque chest and pelvis armor. A friendly adult face with softly full cheeks, a broad lower jaw within the oval face, subtle crow feet, defined smile lines, a rounded nose tip and wide relaxed mouth. Human ears and human eyes, no robot facial mask. Short asymmetrical lavender hair tucked behind one ear. If a generated character reference is attached preserve the exact same person and mature age; pose, viewpoint and equipment presentation remain AUTO. Full head, feet and weapons inside frame with margins. Unmarked armor, no text or logos. Framing correction: the complete backpack-mounted partisan spear tip must have a clearly visible empty margin above it, at least 8 percent of image height. Reduce the entire figure and equipment together to fit; do not cut the weapon or alter the person, armor or exposure."
+      },
+      "g": "female"
+    }
+  }
+}

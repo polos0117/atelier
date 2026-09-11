@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "card": "스트라이크 루즈",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "youthful adult",
+        "armor coverage": "open",
+        "bangs": "choppy bangs",
+        "body type": "petite",
+        "facial ethnicity": "Slavic",
+        "hair length": "medium",
+        "hairstyle": "wolf cut",
+        "height impression": "short",
+        "leg proportion": "long",
+        "shoulder build": "narrow",
+        "torso / chest build": "slim",
+        "waist / hip silhouette": "athletic"
+      }
+    },
+    "male": {
+      "sel": {
+        "apparent age": "youthful adult",
+        "facial ethnicity": "Slavic",
+        "height impression": "short",
+        "leg proportion": "balanced",
+        "torso / chest build": "balanced",
+        "waist / hip silhouette": "balanced"
+      }
+    },
+    "t": 1788417592638
+  },
+  "used": [
+    {
+      "cat": "occupation_sensual",
+      "ex": "broadcast_director",
+      "n": 1,
+      "t": 1788417394143
+    },
+    {
+      "cat": "source_editorial",
+      "ex": "ceremonial_whitegold",
+      "n": 1,
+      "t": 1788417394143
+    },
+    {
+      "cat": "lingerie",
+      "ex": "satin_set",
+      "n": 1,
+      "t": 1788417394143
+    },
+    {
+      "cat": "adult_roleplay",
+      "ex": "adult_maid",
+      "n": 1,
+      "t": 1788417232819
+    },
+    {
+      "cat": "wildcard",
+      "ex": "",
+      "n": 1,
+      "t": 1788413516413
+    },
+    {
+      "cat": "private_evening",
+      "ex": "",
+      "n": 1,
+      "t": 1788413516413
+    },
+    {
+      "cat": "occupation_basic",
+      "ex": "",
+      "n": 1,
+      "t": 1788413516413
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "",
+      "n": 1,
+      "t": 1788413516413
+    },
+    {
+      "cat": "swimwear",
+      "ex": "sarong_wrap",
+      "n": 1,
+      "t": 1788413516413
+    },
+    {
+      "cat": "everyday_sensual",
+      "ex": "",
+      "n": 1,
+      "t": 1788413516413
+    },
+    {
+      "cat": "lingerie",
+      "ex": "hanbok_slip",
+      "n": 1,
+      "t": 1788411774563
+    },
+    {
+      "cat": "lingerie",
+      "ex": "back_strap",
+      "n": 2,
+      "t": 1788409115351
+    },
+    {
+      "cat": "lingerie",
+      "ex": "kebaya_lace",
+      "n": 1,
+      "t": 1788407863750
+    },
+    {
+      "cat": "traditional",
+      "ex": "barong_inspired",
+      "n": 1,
+      "t": 1788407510732
+    },
+    {
+      "cat": "occupation_basic",
+      "ex": "railway_engineer",
+      "n": 1,
+      "t": 1788407211026
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "helicopter_pilot",
+      "n": 18,
+      "t": 1788403328561
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

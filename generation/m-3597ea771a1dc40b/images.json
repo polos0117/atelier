@@ -1,0 +1,42 @@
+{
+  "건담_레오파드_cinematic_semi_real_f.webp": {
+    "card": "건담 레오파드",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "5b350b44f3957d2e37239dbcad34b4b8ab59ff68224f2e69c9c8985a96219918",
+    "prompt": "generation/m-3597ea771a1dc40b/runs/leopard/01b-cinematic-correction.txt",
+    "manifest": "generation/m-3597ea771a1dc40b/runs/leopard/manifest.json",
+    "legacy_manifest": "docs/generation/leopard/manifest.json"
+  },
+  "건담_레오파드_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 레오파드",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "8ebb8238bc86261b6fe98746d1da16755e1fcdbb4b0e50565e89c00b3f8351c6",
+    "prompt": "generation/m-3597ea771a1dc40b/runs/leopard/02-cinematic-casual.txt",
+    "manifest": "generation/m-3597ea771a1dc40b/runs/leopard/manifest.json",
+    "legacy_manifest": "docs/generation/leopard/manifest.json"
+  },
+  "건담_레오파드_game_keyart_f.webp": {
+    "card": "건담 레오파드",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "f8c89ac57900a9b80d565dd7e9356c65fbd862d9451b191f00ca34802f0ef947",
+    "prompt": "generation/m-3597ea771a1dc40b/runs/leopard/03-keyart-anthro.txt",
+    "manifest": "generation/m-3597ea771a1dc40b/runs/leopard/manifest.json",
+    "legacy_manifest": "docs/generation/leopard/manifest.json"
+  },
+  "건담_레오파드_game_keyart_f_casual1.webp": {
+    "card": "건담 레오파드",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "9bbd2a5b10106324a61eb81358bf609b5ead486912300865100ee7ee97880e73",
+    "prompt": "generation/m-3597ea771a1dc40b/runs/leopard/04b-keyart-casual-outfit.txt",
+    "manifest": "generation/m-3597ea771a1dc40b/runs/leopard/manifest.json",
+    "legacy_manifest": "docs/generation/leopard/manifest.json"
+  }
+}

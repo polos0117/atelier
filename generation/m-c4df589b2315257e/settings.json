@@ -1,0 +1,179 @@
+{
+  "version": 1,
+  "card": "더블오 퀀터",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "youthful adult",
+        "armor coverage": "high",
+        "body type": "hourglass",
+        "facial character": "doll-like",
+        "facial ethnicity": "Korean",
+        "height impression": "tall",
+        "human-mechanical balance": "more human",
+        "leg proportion": "very long",
+        "shoulder build": "broad",
+        "silhouette character": "aerodynamic",
+        "skin tone": "light",
+        "torso / chest build": "full",
+        "waist / hip silhouette": "hourglass"
+      },
+      "ub": true
+    },
+    "male": {
+      "sel": {
+        "apparent age": "youthful adult",
+        "body type": "broad-shouldered",
+        "facial character": "androgynous",
+        "facial ethnicity": "Korean",
+        "height impression": "tall",
+        "human-mechanical balance": "very mechanical",
+        "leg proportion": "long",
+        "shoulder build": "average",
+        "torso / chest build": "balanced"
+      }
+    },
+    "t": 1788347318809
+  },
+  "used": [
+    {
+      "cat": "everyday_basic",
+      "ex": "cafe_takeout",
+      "n": 4,
+      "t": 1788336235622
+    },
+    {
+      "cat": "active",
+      "ex": "",
+      "n": 3,
+      "t": 1788335530073
+    },
+    {
+      "cat": "swimwear",
+      "ex": "",
+      "n": 2,
+      "t": 1788335530073
+    },
+    {
+      "cat": "source_editorial",
+      "ex": "",
+      "n": 2,
+      "t": 1788335530073
+    },
+    {
+      "cat": "everyday_basic",
+      "ex": "",
+      "n": 2,
+      "t": 1788335530073
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "broadcast_director",
+      "n": 2,
+      "t": 1788335530073
+    },
+    {
+      "cat": "active",
+      "ex": "aerial_silk",
+      "n": 1,
+      "t": 1788304665179
+    },
+    {
+      "cat": "swimwear",
+      "ex": "sport_onepiece",
+      "n": 1,
+      "t": 1788304665179
+    },
+    {
+      "cat": "source_editorial",
+      "ex": "luminous_circuit",
+      "n": 1,
+      "t": 1788304665179
+    },
+    {
+      "cat": "everyday_basic",
+      "ex": "hardware_store",
+      "n": 1,
+      "t": 1788304665179
+    },
+    {
+      "cat": "traditional",
+      "ex": "qipao_daily",
+      "n": 1,
+      "t": 1788304665179
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "",
+      "n": 1,
+      "t": 1788303793396
+    },
+    {
+      "cat": "everyday_sensual",
+      "ex": "window_rain",
+      "n": 1,
+      "t": 1788303793396
+    },
+    {
+      "cat": "occupation_basic",
+      "ex": "port_operations",
+      "n": 1,
+      "t": 1788303793396
+    },
+    {
+      "cat": "lingerie",
+      "ex": "__custom__",
+      "n": 1,
+      "t": 1788303793396
+    },
+    {
+      "cat": "swimwear",
+      "ex": "monokini",
+      "n": 1,
+      "t": 1788298143859
+    },
+    {
+      "cat": "adult_roleplay",
+      "ex": "flight_attendant",
+      "n": 1,
+      "t": 1788297910753
+    },
+    {
+      "cat": "active",
+      "ex": "archery_draw",
+      "n": 1,
+      "t": 1788297646020
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "auction_specialist",
+      "n": 1,
+      "t": 1788297646020
+    },
+    {
+      "cat": "homewear",
+      "ex": "oversized_shirt",
+      "n": 1,
+      "t": 1788297646020
+    },
+    {
+      "cat": "wildcard",
+      "ex": "futuristic_spa",
+      "n": 1,
+      "t": 1788297646020
+    },
+    {
+      "cat": "private_evening",
+      "ex": "velvet_evening",
+      "n": 1,
+      "t": 1788297646020
+    },
+    {
+      "cat": "lingerie",
+      "ex": "slip_lingerie",
+      "n": 1,
+      "t": 1788297646020
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

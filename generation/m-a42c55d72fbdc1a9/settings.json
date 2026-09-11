@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "card": "건담 AGE-3",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "30s",
+        "facial ethnicity": "Chinese",
+        "body type": "statuesque",
+        "height impression": "tall",
+        "shoulder build": "broad",
+        "waist / hip silhouette": "balanced",
+        "leg proportion": "long",
+        "facial character": "stoic",
+        "face shape": "elongated",
+        "eye shape": "narrow",
+        "eye color": "amber",
+        "face length": "long",
+        "face width": "narrow",
+        "jaw & chin": "long chin with defined jaw",
+        "eye size": "small",
+        "eye tilt": "level outer corners",
+        "nose character": "straight slender bridge",
+        "lips": "thin lips",
+        "skin tone": "medium",
+        "hair color": "navy",
+        "hairstyle": "high ponytail",
+        "hair length": "long",
+        "bangs": "parted bangs",
+        "hair texture": "fine",
+        "armor coverage": "balanced"
+      },
+      "sp": "The attached corrected anthropomorphized portrait is the same adult human identity and equipment reference. Preserve that person, the green inset chest sensor, blue-and-white AGE-3 Normal armor, shoulder and back fins, blue feet, and one large rifle. Render all surfaces with the selected flat cel-animation style rather than copying the painterly reference. Pose and viewpoint remain independently AUTO; do not lock the reference pose. Keep the entire head crest, both feet, all fins and the complete rifle inside the frame with clear margins. No readable lettering."
+    },
+    "g": "female",
+    "t": 1789035585640
+  },
+  "used": [
+    {
+      "cat": "wildcard",
+      "ex": "winter_lodge",
+      "n": 1,
+      "t": 1789035691637
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "perfume_developer",
+      "n": 1,
+      "t": 1789035505188
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

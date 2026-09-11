@@ -1,0 +1,139 @@
+{
+  "repository": "polos0117/atelier",
+  "branch": "codex/age3-images",
+  "base_commit": "3c3993973d73e74e3bfaacddd0c8fc33fbc7090d",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_version": "v9.18",
+  "generator": "built-in image_gen",
+  "selection_first": true,
+  "assets": [
+    {
+      "id": 1,
+      "card": "건담 AGE-3",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "건담_AGE-3_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "aaa19d3f1fb3cf368b5e5daf0e47ea47a5924aba39202a2128a91b44cd25f952",
+      "original_generation_id": "exec-e1477995-16ee-4192-8be1-59a972f7dfcc",
+      "original_sha256": "94d9c4a8e6e7aef0eddf10dfd96a44bc1e8e5ff2ac7fbcc6cecc86bbfa0ec2e2",
+      "prompt": "01b-cinematic-source-correction.txt",
+      "reference_ids": [
+        "draft-1",
+        "official-front"
+      ],
+      "generated": true,
+      "converted": true,
+      "blob_sha": "c0ea9177a6f75b9474b5271bdd57cf215ee76bee"
+    },
+    {
+      "id": 2,
+      "card": "건담 AGE-3",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "file": "건담_AGE-3_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "92dc4562584de6fdd8f508191e0955e7ddef758c1f95df038fe81ed0fb1f04a0",
+      "original_generation_id": "exec-a5f2e540-d570-45b3-ac2e-59b5444ee414",
+      "original_sha256": "b60c2eaa748bdcb76eee865f446bfd785b8ac7ea0b3227c23cddfec2ae16d1c8",
+      "prompt": "02-cinematic-casual.txt",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "blob_sha": "10ea33f8a130c08ca448bda58af5ab8c55ee1fa9"
+    },
+    {
+      "id": 3,
+      "card": "건담 AGE-3",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "건담_AGE-3_cel_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "1863f8ed8e053bad288a61b42dd6bd988383ed42d2385c9f65dd2e3a19efc8dd",
+      "original_generation_id": "exec-079f3877-a717-40fb-8894-d1f70bb92385",
+      "original_sha256": "2456a858ceb96785a539e28fefde850fde40adeeaf40342a8ef9bfb60e4e69f3",
+      "prompt": "03-cel-anthro.txt",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "blob_sha": "47d18c5da9a41834463d92d95afccc33700164b2"
+    },
+    {
+      "id": 4,
+      "card": "건담 AGE-3",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "file": "건담_AGE-3_cel_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "161a201b6c44f69a90ee8511e8fe4112eb3d29cdde5556c43e5388ac0838773e",
+      "original_generation_id": "exec-ab8900e2-e66e-4065-a552-c61836671275",
+      "original_sha256": "8206303e8dabddd1c77c6c572ab2b3797c2b456db188d9c006931b02fb5fd62c",
+      "prompt": "04-cel-casual.txt",
+      "reference_ids": [
+        3
+      ],
+      "generated": true,
+      "converted": true,
+      "blob_sha": "d12854608a5ca489ae4d6bd8bb2274613103172e"
+    }
+  ],
+  "source_references": [
+    {
+      "id": "official-front",
+      "page": "https://gundam-official.com/mecha/ti3d99654fjzhegehe2xwgjc",
+      "image_url": "https://gundam-official.com/media/AGE_AGE_3_0597a022c6/AGE_AGE_3_0597a022c6.png",
+      "submitted_as": "Browser screenshot of the displayed full front reference",
+      "submitted_sha256": "e8b1711fcf0ae6eed0050d53271b33b4bc7fe59be0fc36c3b1ec67f01062cd24"
+    }
+  ],
+  "attempts": [
+    {
+      "id": "draft-1",
+      "prompt": "01-cinematic-anthro.txt",
+      "generation_id": "exec-8a6d7586-d510-4a6e-8292-34e6effbd26c",
+      "selected": false,
+      "reason": "Right-side equipment crop, wrong feet/chest colors and generic large shield; corrected with official reference"
+    },
+    {
+      "id": "correction-blocked",
+      "prompt": "01b-cinematic-source-correction.txt",
+      "generated": false,
+      "reason": "Output moderation blocked with category other; unchanged adult character prompt and references succeeded on the next attempt"
+    }
+  ],
+  "record_export": {
+    "completed": true,
+    "selected_parameter_count": 25,
+    "merged_cards": [
+      "건담 AGE-3"
+    ]
+  },
+  "review_notes": [
+    "All four final images visually reviewed; exact submitted prompts and unsuccessful draft retained.",
+    "Official AGE-3 Normal front reference used for armor, green chest sensor and blue feet; official page confirms SigMaxiss Rifle, but exact weapon geometry is not visible in the front reference and remains model interpretation.",
+    "Both portraits used AUTO pose/viewpoint; resulting poses are similar.",
+    "Skin tone renders lighter than the selected medium tone; face and hair identity remain consistent.",
+    "Winter Lodge Fashion was selected; output places the character inside the lodge.",
+    "Original PNGs and official screenshot scratch paths are transient. Final WebPs and prompts are committed; remote and deployment state reported separately."
+  ]
+}

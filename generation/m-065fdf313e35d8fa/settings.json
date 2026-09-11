@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "card": "건담 에어리얼",
+  "record": {
+    "female": {
+      "sel": {
+        "expression": "stoic",
+        "eye color": "black",
+        "eye shape": "sharp",
+        "eye size": "small",
+        "eye tilt": "upturned outer corners",
+        "face length": "long",
+        "face shape": "sharp",
+        "face width": "wide",
+        "facial character": "sleepy-eyed",
+        "jaw & chin": "balanced jawline",
+        "lips": "thin lips",
+        "nose character": "balanced nose",
+        "second eye color": "gold",
+        "skin tone": "light"
+      }
+    },
+    "g": "female",
+    "t": 1788966107835
+  },
+  "used": [],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

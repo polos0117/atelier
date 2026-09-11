@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "card": "건담X 디바이더",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "30s",
+        "armor coverage": "open",
+        "bangs": "side-swept bangs",
+        "body type": "hourglass",
+        "eye color": "teal",
+        "eye shape": "narrow",
+        "face shape": "oval",
+        "facial character": "cool",
+        "facial ethnicity": "Korean",
+        "hair color": "silver",
+        "hair length": "medium",
+        "hairstyle": "layered",
+        "height impression": "very tall",
+        "human-mechanical balance": "more human",
+        "leg proportion": "very long",
+        "shoulder build": "average",
+        "torso / chest build": "full bust"
+      },
+      "sp": "Clearly adult woman aged 34. Silver layered shoulder-length hair with muted indigo underside, matching teal eyes. Straight slender nose and defined cupid bow. Preserve white navy armor, green chest sensor, distinctive Divider shield and correct backpack; not the pilot."
+    },
+    "g": "female",
+    "t": 1788990733041
+  },
+  "used": [
+    {
+      "cat": "everyday_sensual",
+      "ex": "",
+      "n": 1,
+      "t": 1788990140653
+    },
+    {
+      "cat": "homewear",
+      "ex": "",
+      "n": 1,
+      "t": 1788990134555
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

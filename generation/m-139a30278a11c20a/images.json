@@ -1,0 +1,42 @@
+{
+  "시덴_cinematic_semi_real_f.webp": {
+    "card": "시덴",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "f6f3b058b3d31b8828db1e50d49666fa972337d7f9eda116bfa6b5acbab0685b",
+    "prompt": "generation/m-139a30278a11c20a/runs/2026-09-11-shiden/01-anthro.txt",
+    "manifest": "generation/m-139a30278a11c20a/runs/2026-09-11-shiden/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-shiden/manifest.json"
+  },
+  "시덴_cinematic_semi_real_f_casual1.webp": {
+    "card": "시덴",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "83c9dd743961c7f2a0d92dc870485287e3da731118070fecff9cdba6b9b78bec",
+    "prompt": "generation/m-139a30278a11c20a/runs/2026-09-11-shiden/02-casual.txt",
+    "manifest": "generation/m-139a30278a11c20a/runs/2026-09-11-shiden/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-shiden/manifest.json"
+  },
+  "시덴_retro_anime_f.webp": {
+    "card": "시덴",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "bb515b415b7e00ce25a5773df701c8cf636aa21d73333a34e4241998c1586cbe",
+    "prompt": "generation/m-139a30278a11c20a/runs/2026-09-11-shiden/03-anthro.txt",
+    "manifest": "generation/m-139a30278a11c20a/runs/2026-09-11-shiden/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-shiden/manifest.json"
+  },
+  "시덴_retro_anime_f_casual1.webp": {
+    "card": "시덴",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "afe2462b054f4363a2fbb0380095f3489350ed250134a31c7b8c63e778911939",
+    "prompt": "generation/m-139a30278a11c20a/runs/2026-09-11-shiden/04-casual.txt",
+    "manifest": "generation/m-139a30278a11c20a/runs/2026-09-11-shiden/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-shiden/manifest.json"
+  }
+}

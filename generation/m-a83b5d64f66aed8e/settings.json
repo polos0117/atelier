@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "card": "하이곡그",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "armor coverage": "balanced",
+        "bangs": "parted bangs",
+        "body type": "pear-shaped",
+        "eye shape": "drooping",
+        "face shape": "softly rounded",
+        "facial character": "sleepy-eyed",
+        "facial ethnicity": "Japanese",
+        "hair length": "medium",
+        "hairstyle": "wavy",
+        "height impression": "tall",
+        "human-mechanical balance": "more human",
+        "leg proportion": "long",
+        "shoulder build": "average",
+        "torso / chest build": "balanced",
+        "waist / hip silhouette": "broad-hipped"
+      },
+      "sp": "Clearly adult woman aged 29, seafoam blue wavy hair, matching warm orange eyes. Human face uncovered. Preserve pale aqua rounded aquatic armor, enormous shoulder shells and extended segmented forearm gauntlets ending in mechanical claws. Exactly two normal biological arms within the external equipment, no extra limbs. No Gundam V-fin."
+    },
+    "g": "female",
+    "mm": "silhouette_equipment_emphasis",
+    "t": 1788973616582
+  },
+  "used": [
+    {
+      "cat": "swimwear",
+      "ex": "",
+      "n": 1,
+      "t": 1788973622460
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

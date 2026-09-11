@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "card": "구프 이그나이티드",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "30s",
+        "human-mechanical balance": "balanced"
+      }
+    },
+    "g": "female",
+    "male": {
+      "sel": {
+        "apparent age": "30s",
+        "human-mechanical balance": "balanced"
+      }
+    },
+    "t": 1788861534373
+  },
+  "used": [
+    {
+      "cat": "swimwear",
+      "ex": "sarong_wrap",
+      "n": 1,
+      "t": 1788848743349
+    },
+    {
+      "cat": "swimwear",
+      "ex": "monokini",
+      "n": 1,
+      "t": 1788848291330
+    },
+    {
+      "cat": "occupation_basic",
+      "ex": "railway_engineer",
+      "n": 1,
+      "t": 1788848277195
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "hightech_inspector",
+      "n": 1,
+      "t": 1788848075724
+    },
+    {
+      "cat": "wildcard",
+      "ex": "observatory_night",
+      "n": 1,
+      "t": 1788847934585
+    },
+    {
+      "cat": "traditional",
+      "ex": "kebaya_daily",
+      "n": 1,
+      "t": 1788847704804
+    },
+    {
+      "cat": "homewear",
+      "ex": "after_bath",
+      "n": 1,
+      "t": 1788847565068
+    },
+    {
+      "cat": "source_editorial",
+      "ex": "metallic_asymmetry",
+      "n": 1,
+      "t": 1788847470401
+    },
+    {
+      "cat": "adult_roleplay",
+      "ex": "masquerade",
+      "n": 1,
+      "t": 1788847372635
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

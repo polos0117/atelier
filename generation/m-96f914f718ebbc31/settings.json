@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "card": "가르발디β",
+  "record": {
+    "female": {
+      "cus": {
+        "hair color": "핫핑크"
+      },
+      "sel": {
+        "apparent age": "20s",
+        "body type": "inverted triangle",
+        "eye color": "crimson",
+        "eye size": "large",
+        "eye tilt": "downturned outer corners",
+        "face length": "short",
+        "facial character": "innocent",
+        "facial ethnicity": "East Asian",
+        "hair color": "__custom__",
+        "hair length": "long",
+        "hairstyle": "finger waves",
+        "height impression": "average",
+        "jaw & chin": "angular defined jaw",
+        "leg proportion": "long",
+        "lips": "medium lips",
+        "second eye color": "crimson",
+        "shoulder build": "broad",
+        "skin tone": "light",
+        "waist / hip silhouette": "hourglass"
+      },
+      "ub": true
+    },
+    "g": "female",
+    "male": {
+      "cus": {
+        "hair color": "핫핑크"
+      },
+      "sel": {
+        "apparent age": "20s",
+        "body type": "inverted triangle",
+        "eye color": "crimson",
+        "eye size": "large",
+        "eye tilt": "downturned outer corners",
+        "face length": "short",
+        "facial character": "innocent",
+        "facial ethnicity": "East Asian",
+        "hair color": "__custom__",
+        "hair length": "long",
+        "height impression": "average",
+        "jaw & chin": "angular defined jaw",
+        "leg proportion": "long",
+        "lips": "medium lips",
+        "second eye color": "crimson",
+        "shoulder build": "broad",
+        "skin tone": "light"
+      },
+      "ub": true
+    },
+    "t": 1788832831038
+  },
+  "used": [
+    {
+      "cat": "private_evening",
+      "ex": "slip_dress",
+      "n": 1,
+      "t": 1788834944533
+    },
+    {
+      "cat": "everyday_basic",
+      "ex": "parcel_pickup",
+      "n": 2,
+      "t": 1788834795638
+    },
+    {
+      "cat": "swimwear",
+      "ex": "river_dock",
+      "n": 1,
+      "t": 1788834405706
+    },
+    {
+      "cat": "lingerie",
+      "ex": "morning_lingerie",
+      "n": 1,
+      "t": 1788833131112
+    },
+    {
+      "cat": "active",
+      "ex": "surf_prep",
+      "n": 1,
+      "t": 1788832993395
+    },
+    {
+      "cat": "everyday_sensual",
+      "ex": "mirror_selfie",
+      "n": 1,
+      "t": 1788832932105
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "fashion_project",
+      "n": 1,
+      "t": 1788832932105
+    },
+    {
+      "cat": "adult_roleplay",
+      "ex": "uniform_inspired",
+      "n": 1,
+      "t": 1788832932105
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

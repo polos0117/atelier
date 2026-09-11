@@ -1,0 +1,42 @@
+{
+  "겔구그J_cinematic_semi_real_f.webp": {
+    "card": "겔구그J",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "9d595ebb3b52e1369df719ab789dcbef2f95122c6984df9c9040fb61cd6e2198",
+    "prompt": "generation/m-10cd01b194f0d1ce/runs/2026-09-10-gelgoog-j/01b-cinematic-anthro-final.txt",
+    "manifest": "generation/m-10cd01b194f0d1ce/runs/2026-09-10-gelgoog-j/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-gelgoog-j/manifest.json"
+  },
+  "겔구그J_cinematic_semi_real_f_casual1.webp": {
+    "card": "겔구그J",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "d2cf41f6d95390554ecf0ef27f05e957327922d678fd7d72d5709480ef4cc055",
+    "prompt": "generation/m-10cd01b194f0d1ce/runs/2026-09-10-gelgoog-j/02b-cinematic-casual-final.txt",
+    "manifest": "generation/m-10cd01b194f0d1ce/runs/2026-09-10-gelgoog-j/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-gelgoog-j/manifest.json"
+  },
+  "겔구그J_cel_anime_f.webp": {
+    "card": "겔구그J",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "f7f50fc1ca5bbb8eb77ed2dff93132a750cdb59a27758f4d96e7197e4ad5408a",
+    "prompt": "generation/m-10cd01b194f0d1ce/runs/2026-09-10-gelgoog-j/03-cel-anthro.txt",
+    "manifest": "generation/m-10cd01b194f0d1ce/runs/2026-09-10-gelgoog-j/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-gelgoog-j/manifest.json"
+  },
+  "겔구그J_cel_anime_f_casual1.webp": {
+    "card": "겔구그J",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "bd3756c8f3b0510b85fa097c5048032a55b22af285076d4ad8c27a7504cdf189",
+    "prompt": "generation/m-10cd01b194f0d1ce/runs/2026-09-10-gelgoog-j/04-cel-casual.txt",
+    "manifest": "generation/m-10cd01b194f0d1ce/runs/2026-09-10-gelgoog-j/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-gelgoog-j/manifest.json"
+  }
+}

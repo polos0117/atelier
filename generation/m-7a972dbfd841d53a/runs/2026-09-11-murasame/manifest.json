@@ -1,0 +1,134 @@
+{
+  "version": 1,
+  "repository": "polos0117/atelier",
+  "branch": "codex/murasame",
+  "base_commit": "241fa0ac9a24b54956374ef9eea63dded951f4e1",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "generator": "image_gen",
+  "workflow": "Actual UI selections, text previews reviewed, missing details supplemented through UI; exact copied prompts submitted. Anthro pose, viewpoint and equipment presentation AUTO. Each casual uses its corresponding generated anthro as an actual reference.",
+  "assets": [
+    {
+      "order": 1,
+      "style": "cinematic_semi_real",
+      "mode": "anthro",
+      "generation_id": "exec-fb6696eb-9275-401f-93fb-1faedde0f0f1",
+      "reference_ids": [],
+      "card": "무라사메",
+      "batch": "2026-09-11-murasame",
+      "gender": "f",
+      "file": "무라사메_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "98791937ff4cb7bc02d8c2a14c2c8655bb718bab9f8e8006acb8af21508825ee",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-murasame-01",
+      "prompt": "docs/generation/2026-09-11-murasame/01-anthro.txt",
+      "prompt_sha256": "495efcf7d4b91bd0b76a7e9adbd223c404e09dc0c5dcd251b5b00234b38916ba",
+      "registered_locally": true
+    },
+    {
+      "order": 2,
+      "style": "cinematic_semi_real",
+      "mode": "casual",
+      "generation_id": "exec-301da817-b786-41e5-a09e-ed69eb904759",
+      "reference_ids": [
+        "exec-fb6696eb-9275-401f-93fb-1faedde0f0f1"
+      ],
+      "card": "무라사메",
+      "batch": "2026-09-11-murasame",
+      "gender": "f",
+      "file": "무라사메_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "0f41b50379ce520bfae7141b6b4995fc6bb40c5aa3cc7ae5f74b53ee290b6e79",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-murasame-02",
+      "prompt": "docs/generation/2026-09-11-murasame/02-casual.txt",
+      "prompt_sha256": "0e31876b89aa6555aeca9fd66cb3eb7b8ff1ea1e87e46bbea812d72c4069e63f",
+      "registered_locally": true
+    },
+    {
+      "order": 3,
+      "style": "painterly",
+      "mode": "anthro",
+      "generation_id": "exec-e44737fe-b5af-423e-96d3-03780c43947c",
+      "reference_ids": [
+        "exec-fb6696eb-9275-401f-93fb-1faedde0f0f1"
+      ],
+      "card": "무라사메",
+      "batch": "2026-09-11-murasame",
+      "gender": "f",
+      "file": "무라사메_painterly_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "cb40ab2cfade81841ec49a2308d2a6f6554a75f2fa2b9d4cab2a5e420149d8c1",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-murasame-03",
+      "prompt": "docs/generation/2026-09-11-murasame/03-anthro.txt",
+      "prompt_sha256": "e1a82f61842efdc0687c6f30a4cb69c50798ebd7f34ec36f79e72bb39e78c7d7",
+      "registered_locally": true
+    },
+    {
+      "order": 4,
+      "style": "painterly",
+      "mode": "casual",
+      "generation_id": "exec-a8c65973-bb59-458b-a08a-b63220aec1d0",
+      "reference_ids": [
+        "exec-e44737fe-b5af-423e-96d3-03780c43947c"
+      ],
+      "card": "무라사메",
+      "batch": "2026-09-11-murasame",
+      "gender": "f",
+      "file": "무라사메_painterly_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "d555b2de43c34e368aabf0845cead9cb6b4c48a74211181e4e102d592353f5b3",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-murasame-04",
+      "prompt": "docs/generation/2026-09-11-murasame/04-casual.txt",
+      "prompt_sha256": "d8579c6053cdf82cc8ead70247d4200cf4e373e9e3662de6fbc4e2721e133253",
+      "registered_locally": true
+    }
+  ],
+  "record_export": {
+    "attempted": true,
+    "attempt_count": 2,
+    "succeeded": false,
+    "observation": "Actual UI export button clicked twice; output textarea remained empty after registration and validation work.",
+    "fallback": "selection-snapshot.json contains the actual selected UI values and supplementary text.",
+    "toolkit_data_merged": true,
+    "toolkit_merge_scope": "Only Murasame external appearance from actual DOM added. No copy history, timestamp, or style record was fabricated."
+  },
+  "conversion": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6,
+    "resize": false,
+    "crop": false
+  },
+  "validation": {
+    "registration_candidates": 0,
+    "missing_files": 0,
+    "new_image_dimensions": "4 of 4 are 1024x1536",
+    "existing_dimension_warnings": 897,
+    "existing_dimension_warning_scope": "Pre-existing assets only; unchanged."
+  },
+  "review_notes": [
+    "All four final renders visually inspected. Black low bun, elongated adult face and slender physique maintained; mature-age detail is subtle in the stylized rendering.",
+    "Full figures and wing tips, rifle and shield remain inside frame; open waist/thighs and intact shoulder armor maintained.",
+    "Painterly results show broad brush texture; casual scenes show flower arranging with civilian knitwear and slit skirt."
+  ]
+}

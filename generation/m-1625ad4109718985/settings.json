@@ -1,0 +1,172 @@
+{
+  "version": 1,
+  "card": "GQuuuuuuX",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "armor coverage": "open",
+        "body type": "curvy",
+        "facial character": "stoic",
+        "facial ethnicity": "East Asian",
+        "height impression": "very tall",
+        "human-mechanical balance": "balanced",
+        "leg proportion": "very long",
+        "shoulder build": "narrow",
+        "silhouette character": "experimental",
+        "torso / chest build": "balanced",
+        "waist / hip silhouette": "athletic"
+      }
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "body type": "rangy",
+        "facial character": "melancholic",
+        "facial ethnicity": "Japanese",
+        "height impression": "very tall",
+        "human-mechanical balance": "more mechanical",
+        "leg proportion": "very long",
+        "shoulder build": "average",
+        "torso / chest build": "slim",
+        "waist / hip silhouette": "athletic"
+      }
+    },
+    "t": 1788357973474
+  },
+  "used": [
+    {
+      "cat": "occupation_sensual",
+      "ex": "helicopter_pilot",
+      "n": 4,
+      "t": 1788357112179
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "gallery_curator",
+      "n": 1,
+      "t": 1788354969274
+    },
+    {
+      "cat": "adult_roleplay",
+      "ex": "uniform_inspired",
+      "n": 1,
+      "t": 1788354776666
+    },
+    {
+      "cat": "source_editorial",
+      "ex": "deconstructed_frame",
+      "n": 1,
+      "t": 1788354744099
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "",
+      "n": 3,
+      "t": 1788354089787
+    },
+    {
+      "cat": "swimwear",
+      "ex": "__custom__",
+      "n": 1,
+      "t": 1788351664712
+    },
+    {
+      "cat": "traditional",
+      "ex": "kimono_formal",
+      "n": 1,
+      "t": 1788351450421
+    },
+    {
+      "cat": "wildcard",
+      "ex": "",
+      "n": 1,
+      "t": 1788351061693
+    },
+    {
+      "cat": "private_evening",
+      "ex": "heritage_evening",
+      "n": 1,
+      "t": 1788351061693
+    },
+    {
+      "cat": "occupation_basic",
+      "ex": "",
+      "n": 1,
+      "t": 1788351061693
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "fashion_project",
+      "n": 1,
+      "t": 1788351061693
+    },
+    {
+      "cat": "everyday_basic",
+      "ex": "pottery_class",
+      "n": 1,
+      "t": 1788351061693
+    },
+    {
+      "cat": "everyday_sensual",
+      "ex": "mirror_selfie",
+      "n": 1,
+      "t": 1788351061693
+    },
+    {
+      "cat": "wildcard",
+      "ex": "rooftop_cinema",
+      "n": 1,
+      "t": 1788349576866
+    },
+    {
+      "cat": "adult_roleplay",
+      "ex": "circus_ringmaster",
+      "n": 1,
+      "t": 1788349576866
+    },
+    {
+      "cat": "occupation_basic",
+      "ex": "industrial_inspector",
+      "n": 1,
+      "t": 1788349576866
+    },
+    {
+      "cat": "lingerie",
+      "ex": "open_shirt_lingerie",
+      "n": 1,
+      "t": 1788349576866
+    },
+    {
+      "cat": "swimwear",
+      "ex": "yukata_poolside",
+      "n": 1,
+      "t": 1788349576866
+    },
+    {
+      "cat": "homewear",
+      "ex": "sunroom_lounge",
+      "n": 1,
+      "t": 1788349576866
+    },
+    {
+      "cat": "active",
+      "ex": "pilates",
+      "n": 1,
+      "t": 1788349368854
+    },
+    {
+      "cat": "traditional",
+      "ex": "yukata_daily",
+      "n": 1,
+      "t": 1788349368854
+    },
+    {
+      "cat": "source_editorial",
+      "ex": "heritage_couture",
+      "n": 1,
+      "t": 1788349368854
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

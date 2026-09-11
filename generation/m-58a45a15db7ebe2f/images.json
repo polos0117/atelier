@@ -1,0 +1,42 @@
+{
+  "건너 자쿠 워리어_cinematic_semi_real_f.webp": {
+    "card": "건너 자쿠 워리어",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "f808fc6f469a7144e66369b4a7a7c871c6b8f67621b3f901ac131256ee9a5fa3",
+    "prompt": "generation/m-58a45a15db7ebe2f/runs/2026-09-11-gunner-zaku/01b-anthro-correction.txt",
+    "manifest": "generation/m-58a45a15db7ebe2f/runs/2026-09-11-gunner-zaku/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-gunner-zaku/manifest.json"
+  },
+  "건너 자쿠 워리어_cinematic_semi_real_f_casual1.webp": {
+    "card": "건너 자쿠 워리어",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "dd30784b49c26d9d843904753ae83914cb95d51d75a057772d4ec70c0f934dbe",
+    "prompt": "generation/m-58a45a15db7ebe2f/runs/2026-09-11-gunner-zaku/02-casual.txt",
+    "manifest": "generation/m-58a45a15db7ebe2f/runs/2026-09-11-gunner-zaku/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-gunner-zaku/manifest.json"
+  },
+  "건너 자쿠 워리어_game_keyart_f.webp": {
+    "card": "건너 자쿠 워리어",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "46f6e6616674bdf0d934344c5d7406875cf21002f403357139d492f814737a5b",
+    "prompt": "generation/m-58a45a15db7ebe2f/runs/2026-09-11-gunner-zaku/03-anthro.txt",
+    "manifest": "generation/m-58a45a15db7ebe2f/runs/2026-09-11-gunner-zaku/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-gunner-zaku/manifest.json"
+  },
+  "건너 자쿠 워리어_game_keyart_f_casual1.webp": {
+    "card": "건너 자쿠 워리어",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "ef85b9e228e386ef3295f0f2528c0dce0b27d05c8093b3201f5330f909284cd3",
+    "prompt": "generation/m-58a45a15db7ebe2f/runs/2026-09-11-gunner-zaku/04-casual.txt",
+    "manifest": "generation/m-58a45a15db7ebe2f/runs/2026-09-11-gunner-zaku/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-gunner-zaku/manifest.json"
+  }
+}

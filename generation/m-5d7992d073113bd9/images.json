@@ -1,0 +1,42 @@
+{
+  "그레이즈_cinematic_semi_real_f.webp": {
+    "card": "그레이즈",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "7e6f6ef8c35dbfd817bb24e2796928df8dda276d84bbf7a289eba91182074deb",
+    "prompt": "generation/m-5d7992d073113bd9/runs/2026-09-10-night-graze/01-anthro.txt",
+    "manifest": "generation/m-5d7992d073113bd9/runs/2026-09-10-night-graze/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-night-graze/manifest.json"
+  },
+  "그레이즈_cinematic_semi_real_f_casual1.webp": {
+    "card": "그레이즈",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "3afcc45c8157034d12fb0a5c6ea0a498ceb9eb73ace11095042758b240a46b17",
+    "prompt": "generation/m-5d7992d073113bd9/runs/2026-09-10-night-graze/02-casual.txt",
+    "manifest": "generation/m-5d7992d073113bd9/runs/2026-09-10-night-graze/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-night-graze/manifest.json"
+  },
+  "그레이즈_ink_wash_f.webp": {
+    "card": "그레이즈",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "a4871347519dba7b493bfa8c36f1ea2610728c33388c60f3858eed0fc3e40db0",
+    "prompt": "generation/m-5d7992d073113bd9/runs/2026-09-10-night-graze/03-anthro.txt",
+    "manifest": "generation/m-5d7992d073113bd9/runs/2026-09-10-night-graze/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-night-graze/manifest.json"
+  },
+  "그레이즈_ink_wash_f_casual1.webp": {
+    "card": "그레이즈",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "b7171efe390e567e035dc20f1a20d420b037ef8f0d8c74937850df888442cd3b",
+    "prompt": "generation/m-5d7992d073113bd9/runs/2026-09-10-night-graze/04-casual.txt",
+    "manifest": "generation/m-5d7992d073113bd9/runs/2026-09-10-night-graze/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-10-night-graze/manifest.json"
+  }
+}

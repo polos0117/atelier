@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "card": "건담 쓰로네 아인",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "armor coverage": "open",
+        "body type": "hourglass",
+        "eye color": "pink",
+        "eye shape": "sharp",
+        "face length": "short",
+        "face width": "wide",
+        "facial character": "fierce",
+        "facial ethnicity": "Japanese",
+        "hair length": "medium",
+        "hair volume": "full",
+        "hairstyle": "undercut",
+        "human-mechanical balance": "balanced",
+        "jaw & chin": "angular defined jaw",
+        "second eye color": "pink",
+        "shoulder build": "broad",
+        "silhouette character": "aggressive",
+        "torso / chest build": "full",
+        "waist / hip silhouette": "hourglass"
+      }
+    },
+    "g": "female",
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "eye color": "pink",
+        "eye shape": "sharp",
+        "face length": "short",
+        "face width": "wide",
+        "facial character": "fierce",
+        "facial ethnicity": "Japanese",
+        "hair length": "medium",
+        "hair volume": "full",
+        "hairstyle": "undercut",
+        "human-mechanical balance": "balanced",
+        "jaw & chin": "angular defined jaw",
+        "second eye color": "pink",
+        "shoulder build": "broad",
+        "silhouette character": "aggressive"
+      }
+    },
+    "mm": "silhouette_equipment_emphasis",
+    "t": 1788867697505
+  },
+  "used": [
+    {
+      "cat": "traditional",
+      "ex": "abaya_modern",
+      "n": 1,
+      "t": 1788867722458
+    },
+    {
+      "cat": "everyday_sensual",
+      "ex": "rainy_return",
+      "n": 1,
+      "t": 1788867265544
+    },
+    {
+      "cat": "active",
+      "ex": "tennis_active",
+      "n": 1,
+      "t": 1788865923068
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "deep_dive_specialist",
+      "n": 1,
+      "t": 1788865628511
+    },
+    {
+      "cat": "private_evening",
+      "ex": "high_slit_gown",
+      "n": 1,
+      "t": 1788864161397
+    },
+    {
+      "cat": "everyday_basic",
+      "ex": "simple_cooking",
+      "n": 1,
+      "t": 1788864038351
+    },
+    {
+      "cat": "swimwear",
+      "ex": "poolside_bar",
+      "n": 1,
+      "t": 1788863967269
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

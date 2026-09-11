@@ -1,0 +1,165 @@
+{
+  "version": 1,
+  "card": "건담 사바냐",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "armor coverage": "open",
+        "bangs": "curtain bangs",
+        "body type": "tall and lean",
+        "eye color": "brown",
+        "eye shape": "narrow",
+        "eye size": "small",
+        "face length": "long",
+        "face shape": "elongated",
+        "face width": "narrow",
+        "facial character": "boyish",
+        "facial ethnicity": "Slavic",
+        "hair color": "teal",
+        "hair length": "long",
+        "hair texture": "fine",
+        "hairstyle": "windswept",
+        "height impression": "very tall",
+        "human-mechanical balance": "more human",
+        "jaw & chin": "angular defined jaw",
+        "leg proportion": "very long",
+        "lower-body build": "balanced",
+        "second eye color": "brown",
+        "shoulder build": "broad",
+        "torso / chest build": "full",
+        "waist / hip silhouette": "curvy"
+      },
+      "sp": "복부 장갑 일부 제거, 하체 장갑 일부 제거"
+    },
+    "g": "female",
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "bangs": "curtain bangs",
+        "body type": "tall and lean",
+        "eye color": "brown",
+        "eye shape": "narrow",
+        "eye size": "small",
+        "face length": "long",
+        "face shape": "elongated",
+        "face width": "narrow",
+        "facial character": "boyish",
+        "facial ethnicity": "Slavic",
+        "hair color": "teal",
+        "hair length": "long",
+        "hair texture": "fine",
+        "hairstyle": "windswept",
+        "height impression": "very tall",
+        "human-mechanical balance": "more human",
+        "jaw & chin": "angular defined jaw",
+        "leg proportion": "very long",
+        "lower-body build": "balanced",
+        "second eye color": "brown",
+        "shoulder build": "average"
+      },
+      "sp": "복부 장갑 일부 제거, 하체 장갑 일부 제거"
+    },
+    "mm": "silhouette_equipment_emphasis",
+    "t": 1788842117459
+  },
+  "used": [
+    {
+      "cat": "adult_roleplay",
+      "ex": "bunny",
+      "n": 1,
+      "t": 1788839571596
+    },
+    {
+      "cat": "swimwear",
+      "ex": "poolside_bar",
+      "n": 1,
+      "t": 1788839365591
+    },
+    {
+      "cat": "lingerie",
+      "ex": "sari_blouse_set",
+      "n": 1,
+      "t": 1788839164684
+    },
+    {
+      "cat": "occupation_basic",
+      "ex": "railway_engineer",
+      "n": 1,
+      "t": 1788839104856
+    },
+    {
+      "cat": "active",
+      "ex": "pilates",
+      "n": 1,
+      "t": 1788839070548
+    },
+    {
+      "cat": "swimwear",
+      "ex": "shoreline_walk",
+      "n": 1,
+      "t": 1788838863868
+    },
+    {
+      "cat": "everyday_basic",
+      "ex": "cafe_takeout",
+      "n": 1,
+      "t": 1788838671142
+    },
+    {
+      "cat": "private_evening",
+      "ex": "tea_ceremony_night",
+      "n": 1,
+      "t": 1788838633700
+    },
+    {
+      "cat": "source_editorial",
+      "ex": "luminous_circuit",
+      "n": 1,
+      "t": 1788838505161
+    },
+    {
+      "cat": "wildcard",
+      "ex": "arcade_night",
+      "n": 1,
+      "t": 1788838379540
+    },
+    {
+      "cat": "homewear",
+      "ex": "satin_lounge",
+      "n": 1,
+      "t": 1788838334571
+    },
+    {
+      "cat": "lingerie",
+      "ex": "asymmetric_lingerie",
+      "n": 1,
+      "t": 1788838334571
+    },
+    {
+      "cat": "everyday_sensual",
+      "ex": "window_rain",
+      "n": 1,
+      "t": 1788838334571
+    },
+    {
+      "cat": "adult_roleplay",
+      "ex": "",
+      "n": 1,
+      "t": 1788837982894
+    },
+    {
+      "cat": "traditional",
+      "ex": "auto_traditional",
+      "n": 1,
+      "t": 1788837982894
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "",
+      "n": 1,
+      "t": 1788837982894
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

@@ -1,0 +1,136 @@
+{
+  "repository": "polos0117/atelier",
+  "branch": "codex/next-mobile-suit",
+  "base_commit": "e44f5803bb8a798a862772c1c323602002be2009",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "generator": "built-in image_gen",
+  "selection_first": true,
+  "assets": [
+    {
+      "id": 1,
+      "card": "즈고크 E",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "즈고크_E_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "05140ee521acc1bce3d339d95f2d8ae55948ccbd3b5f4585e7d562e08c8d5372",
+      "original_generation_id": "exec-bccfcb91-beca-4dfd-940c-d7011409bc17",
+      "original_sha256": "00486bab73a448637b32049d23d012292f25149aa08164f21a9ce43b94445722",
+      "prompt": "01-cinematic-anthro.txt",
+      "reference_ids": [],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 2,
+      "card": "즈고크 E",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "file": "즈고크_E_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "2d5c0cd17b0ef53bc0e7a0fb686f7b30814247c6cfe45e63bb7fb191b43359b7",
+      "original_generation_id": "exec-9f3a8ef4-208f-4c69-8f1b-204180b7b350",
+      "original_sha256": "f86de8e3e81b0bf044264564d4b6eb0f49fa7e016440f783db28661b659bf590",
+      "prompt": "02b-cinematic-casual-final.txt",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 3,
+      "card": "즈고크 E",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "즈고크_E_game_keyart_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "1bb2832687842902acc069654495a14cb35d03c86ba51fcdbb5e53a05d7c043b",
+      "original_generation_id": "exec-ae294764-340a-49e0-9571-4cd27722ae3e",
+      "original_sha256": "86bcd01f3460205f877c4929de42f477432d6bb1c28e100211c3c77d96ff6edc",
+      "prompt": "03b-game-anthro-final.txt",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 4,
+      "card": "즈고크 E",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "casual",
+      "file": "즈고크_E_game_keyart_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "e979e8476b6ff6d1e9cde286fc2f0d71bb6b9cf2c61b8c32cb8d0758255c2a9d",
+      "original_generation_id": "exec-961ed834-9ef5-486b-b5e9-5fdff161ad8b",
+      "original_sha256": "f71685082e17d2bd1416548b95151ebd60149ed070c7932d5ed94ab3d0dacf9f",
+      "prompt": "04-game-casual.txt",
+      "reference_ids": [
+        3
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    }
+  ],
+  "attempts": [
+    {
+      "id": "casual-failed",
+      "prompt": "02-cinematic-casual.txt",
+      "request_id": "cf673095-a54c-4882-afe5-800b5d856570",
+      "reference_ids": [
+        1
+      ],
+      "generated": false,
+      "reason": "Output moderation blocked sexual; no image returned. Work-shirt and trousers specified in the outfit field for retry."
+    },
+    {
+      "id": "game-draft",
+      "prompt": "03-game-anthro.txt",
+      "generation_id": "exec-faeb936f-c89e-411a-83bc-8044d9ade0b6",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "selected": false,
+      "reason": "Too similar to cinematic rendering; simplified surface and hair treatment in final retry."
+    }
+  ],
+  "record_export": {
+    "completed": true,
+    "selected_parameter_count": 26,
+    "morphology": "silhouette_equipment_emphasis",
+    "merged_cards": [
+      "즈고크 E"
+    ]
+  },
+  "review_notes": [
+    "Final images visually reviewed; both anthro poses were AUTO but resulted in similar poses.",
+    "Game-keyart final uses smoother illustrated surface treatment, although the two styles remain relatively close.",
+    "Some curls overlap one eye. Full anthro equipment and feet remain within frame.",
+    "No official source image used; exact mechanical geometry remains model interpretation.",
+    "Lifestyle scenes differ in occupation, location, clothing and pose; functional armor is absent. Spa uses a three-quarter rather than strict side view.",
+    "Final WebPs and actual submitted prompts are committed. Original PNG paths are transient. New-card dex screen cannot be inspected before deployment in the available browser; image/prompt mappings are checked locally."
+  ]
+}

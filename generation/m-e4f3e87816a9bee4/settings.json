@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "card": "∀건담",
+  "record": {
+    "female": {
+      "sel": {
+        "armor coverage": "open",
+        "bangs": "long side bangs covering one eye",
+        "body type": "glamorous",
+        "eye color": "teal",
+        "facial ethnicity": "Middle Eastern",
+        "hair color": "ash blonde",
+        "hairstyle": "feathered",
+        "head crest integration": "headband-like",
+        "height impression": "very tall",
+        "human-mechanical balance": "balanced",
+        "leg proportion": "very long",
+        "shoulder build": "broad",
+        "silhouette character": "elegant",
+        "torso / chest build": "full bust",
+        "waist / hip silhouette": "athletic"
+      },
+      "ub": true
+    },
+    "male": {
+      "sel": {
+        "bangs": "long side bangs covering one eye",
+        "body type": "statuesque",
+        "eye color": "teal",
+        "facial ethnicity": "Southeast Asian",
+        "facial hair": "clean-shaven",
+        "hair color": "ash blonde",
+        "height impression": "average",
+        "human-mechanical balance": "more mechanical",
+        "leg proportion": "very long",
+        "shoulder build": "broad",
+        "torso / chest build": "v-taper"
+      }
+    },
+    "t": 1788286316376
+  },
+  "used": [
+    {
+      "cat": "occupation_sensual",
+      "ex": "broadcast_director",
+      "n": 2,
+      "t": 1788285945919
+    },
+    {
+      "cat": "everyday_sensual",
+      "ex": "balcony_plants",
+      "n": 2,
+      "t": 1788285945919
+    },
+    {
+      "cat": "adult_roleplay",
+      "ex": "adult_maid",
+      "n": 2,
+      "t": 1788285945919
+    },
+    {
+      "cat": "everyday_sensual",
+      "ex": "",
+      "n": 3,
+      "t": 1788285385182
+    },
+    {
+      "cat": "private_evening",
+      "ex": "night_drive",
+      "n": 3,
+      "t": 1788285385182
+    },
+    {
+      "cat": "lingerie",
+      "ex": "slip_lingerie",
+      "n": 1,
+      "t": 1788285385182
+    },
+    {
+      "cat": "lingerie",
+      "ex": "lace_set",
+      "n": 2,
+      "t": 1788284585184
+    },
+    {
+      "cat": "active",
+      "ex": "aerial_silk",
+      "n": 1,
+      "t": 1788284031619
+    },
+    {
+      "cat": "source_editorial",
+      "ex": "cockpit_harness",
+      "n": 1,
+      "t": 1788284031619
+    },
+    {
+      "cat": "occupation_basic",
+      "ex": "aviation_control",
+      "n": 1,
+      "t": 1788284031619
+    },
+    {
+      "cat": "swimwear",
+      "ex": "",
+      "n": 1,
+      "t": 1788283509632
+    },
+    {
+      "cat": "adult_roleplay",
+      "ex": "cheer_costume",
+      "n": 1,
+      "t": 1788283509632
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "deep_dive_specialist",
+      "n": 1,
+      "t": 1788283509632
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

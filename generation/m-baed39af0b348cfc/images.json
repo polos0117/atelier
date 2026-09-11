@@ -1,0 +1,42 @@
+{
+  "돔 트루퍼_cinematic_semi_real_f.webp": {
+    "card": "돔 트루퍼",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "294c8315ec26cf67c44beca6da4f27be68d4399ca3109249a96ae576445590c4",
+    "prompt": "generation/m-baed39af0b348cfc/runs/2026-09-11-dom-trooper/01-anthro.txt",
+    "manifest": "generation/m-baed39af0b348cfc/runs/2026-09-11-dom-trooper/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-dom-trooper/manifest.json"
+  },
+  "돔 트루퍼_cinematic_semi_real_f_casual1.webp": {
+    "card": "돔 트루퍼",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "0cfd4991877cefa6dac6339aacbbcf562411e7bfc6b72a47e069f936d614cce5",
+    "prompt": "generation/m-baed39af0b348cfc/runs/2026-09-11-dom-trooper/02-casual.txt",
+    "manifest": "generation/m-baed39af0b348cfc/runs/2026-09-11-dom-trooper/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-dom-trooper/manifest.json"
+  },
+  "돔 트루퍼_cel_anime_f.webp": {
+    "card": "돔 트루퍼",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "2a667775e683fee291dd2c3d28726e99c47b18da5acd887b7a1cf64bdcdfa4a9",
+    "prompt": "generation/m-baed39af0b348cfc/runs/2026-09-11-dom-trooper/03-anthro.txt",
+    "manifest": "generation/m-baed39af0b348cfc/runs/2026-09-11-dom-trooper/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-dom-trooper/manifest.json"
+  },
+  "돔 트루퍼_cel_anime_f_casual1.webp": {
+    "card": "돔 트루퍼",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "1faf29aab35b62f8fec884ee9072c5306386c3d3f41b8a44a337f8b5e71a4ddd",
+    "prompt": "generation/m-baed39af0b348cfc/runs/2026-09-11-dom-trooper/04-casual.txt",
+    "manifest": "generation/m-baed39af0b348cfc/runs/2026-09-11-dom-trooper/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-dom-trooper/manifest.json"
+  }
+}

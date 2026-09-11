@@ -1,0 +1,42 @@
+{
+  "바이에이트_cinematic_semi_real_f.webp": {
+    "card": "바이에이트",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "1c91146434d99c08ab87018be81a7f72e44718047735ff1d1704edcb7d7f4300",
+    "prompt": "generation/m-df45166a5630fe26/runs/vayeate/01-cinematic-anthro.txt",
+    "manifest": "generation/m-df45166a5630fe26/runs/vayeate/manifest.json",
+    "legacy_manifest": "docs/generation/vayeate/manifest.json"
+  },
+  "바이에이트_cinematic_semi_real_f_casual1.webp": {
+    "card": "바이에이트",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "5dbb7ec7deb90cc9bbfddf49a8dfa1e6142943e7c2bb2469681dd21fd486270c",
+    "prompt": "generation/m-df45166a5630fe26/runs/vayeate/02-cinematic-casual.txt",
+    "manifest": "generation/m-df45166a5630fe26/runs/vayeate/manifest.json",
+    "legacy_manifest": "docs/generation/vayeate/manifest.json"
+  },
+  "바이에이트_cel_anime_f.webp": {
+    "card": "바이에이트",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "78811857395d458e398b1a37f89b473c9555df9dd23bcfecdb57c46d8057117f",
+    "prompt": "generation/m-df45166a5630fe26/runs/vayeate/03-cel-anthro.txt",
+    "manifest": "generation/m-df45166a5630fe26/runs/vayeate/manifest.json",
+    "legacy_manifest": "docs/generation/vayeate/manifest.json"
+  },
+  "바이에이트_cel_anime_f_casual1.webp": {
+    "card": "바이에이트",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "95053b964382bbf4140180a65d4dd5ba2b94d60cc472833fce862b925ae6792a",
+    "prompt": "generation/m-df45166a5630fe26/runs/vayeate/04-cel-casual.txt",
+    "manifest": "generation/m-df45166a5630fe26/runs/vayeate/manifest.json",
+    "legacy_manifest": "docs/generation/vayeate/manifest.json"
+  }
+}

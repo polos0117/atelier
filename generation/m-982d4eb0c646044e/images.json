@@ -1,0 +1,42 @@
+{
+  "노벨_건담_cinematic_semi_real_f.webp": {
+    "card": "노벨 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "0900d60548e1b977633c92f3f5d50fb910f35be4e64f869e1bfbe96e9b18138a",
+    "prompt": "generation/m-982d4eb0c646044e/runs/nobel/01-cinematic-anthro.txt",
+    "manifest": "generation/m-982d4eb0c646044e/runs/nobel/manifest.json",
+    "legacy_manifest": "docs/generation/nobel/manifest.json"
+  },
+  "노벨_건담_cinematic_semi_real_f_casual1.webp": {
+    "card": "노벨 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "0367268ca0428528b44606dfb7ee0c6bcfebe95f33c34956a82b5a4e6d6f97de",
+    "prompt": "generation/m-982d4eb0c646044e/runs/nobel/02-cinematic-casual.txt",
+    "manifest": "generation/m-982d4eb0c646044e/runs/nobel/manifest.json",
+    "legacy_manifest": "docs/generation/nobel/manifest.json"
+  },
+  "노벨_건담_anime_illust_f.webp": {
+    "card": "노벨 건담",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "6aee3c85dc08d7f1393d77544c6089dc27ff4bc044e6bb55853a61b9cb34c391",
+    "prompt": "generation/m-982d4eb0c646044e/runs/nobel/03-anime-anthro.txt",
+    "manifest": "generation/m-982d4eb0c646044e/runs/nobel/manifest.json",
+    "legacy_manifest": "docs/generation/nobel/manifest.json"
+  },
+  "노벨_건담_anime_illust_f_casual1.webp": {
+    "card": "노벨 건담",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "08dde5cd92da36cc8624ebd7853ea1b5c1339eecf7eb0e0693fed3e044f6082b",
+    "prompt": "generation/m-982d4eb0c646044e/runs/nobel/04-anime-casual.txt",
+    "manifest": "generation/m-982d4eb0c646044e/runs/nobel/manifest.json",
+    "legacy_manifest": "docs/generation/nobel/manifest.json"
+  }
+}

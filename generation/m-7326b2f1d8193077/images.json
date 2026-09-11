@@ -1,0 +1,42 @@
+{
+  "알트론_건담_cinematic_semi_real_f.webp": {
+    "card": "알트론 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "6b2740bea647654767ae7fad19271b2da02e57da7775843d8c3e04da20fce2c2",
+    "prompt": "generation/m-7326b2f1d8193077/runs/altron/01-cinematic-anthro.txt",
+    "manifest": "generation/m-7326b2f1d8193077/runs/altron/manifest.json",
+    "legacy_manifest": "docs/generation/altron/manifest.json"
+  },
+  "알트론_건담_cinematic_semi_real_f_casual1.webp": {
+    "card": "알트론 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "5767972346d16c7d5e83ed7cf7adb881222f885d956b6dd8bc5910c39cf06deb",
+    "prompt": "generation/m-7326b2f1d8193077/runs/altron/02-cinematic-casual.txt",
+    "manifest": "generation/m-7326b2f1d8193077/runs/altron/manifest.json",
+    "legacy_manifest": "docs/generation/altron/manifest.json"
+  },
+  "알트론_건담_ink_wash_f.webp": {
+    "card": "알트론 건담",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "e9d384a4d3ef09340078114e9fc737b7d72c899e9d3a2724c20d23a1fa060abc",
+    "prompt": "generation/m-7326b2f1d8193077/runs/altron/03-ink-anthro.txt",
+    "manifest": "generation/m-7326b2f1d8193077/runs/altron/manifest.json",
+    "legacy_manifest": "docs/generation/altron/manifest.json"
+  },
+  "알트론_건담_ink_wash_f_casual1.webp": {
+    "card": "알트론 건담",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "d179d66ac475cb14f7211dd5bc25c04e2a99e871c8be9bfafd0c9b6ff3732c0c",
+    "prompt": "generation/m-7326b2f1d8193077/runs/altron/04-ink-casual.txt",
+    "manifest": "generation/m-7326b2f1d8193077/runs/altron/manifest.json",
+    "legacy_manifest": "docs/generation/altron/manifest.json"
+  }
+}

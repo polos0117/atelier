@@ -1,0 +1,121 @@
+{
+  "base_commit": "223ec86ac25028689788e7411c0d95ad86567bbe",
+  "planned_count": 20,
+  "assets": [
+    {
+      "id": 1,
+      "card": "샤이닝 건담",
+      "style": "cinematic_semi_real",
+      "mode": "anthro",
+      "gender": "f",
+      "file": "샤이닝_건담_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "922c47936f68db7f4f5ea32eb62079b0a000a747464664a8599d070a373d44e9",
+      "prompt": "01-shining-cinematic-anthro.txt",
+      "reference_id": null,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-5bd3edb8-097f-453f-ac73-d95550866338",
+      "original_sha256": "485b3faa9006040c1b3b4056af9cb4913b703ed86a1b1696c2dd2e71a28f22ce",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "2b9713a7b7d855bf35729435dccfc9e738975724",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 2,
+      "card": "샤이닝 건담",
+      "style": "cinematic_semi_real",
+      "mode": "casual",
+      "gender": "f",
+      "file": "샤이닝_건담_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "786603e2a861d4ae8562e9e1358a30733f4dcb5c18a32ad5366cb712a0eacf28",
+      "prompt": "02-shining-cinematic-casual.txt",
+      "reference_id": 1,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-19ba4301-7e54-4879-b937-c72795825806",
+      "original_sha256": "2346da10f020bfad43fd7d7f4656fbce87b130f8529542e072f61264e06016db",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "f44b64324e9191bfa4b3661b10028dc3b7093005",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 3,
+      "card": "샤이닝 건담",
+      "style": "cel_anime",
+      "mode": "anthro",
+      "gender": "f",
+      "file": "샤이닝_건담_cel_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "e459f3f1c34981272b91c17f57069b69cc904caa48de7e7ee9c129262f37d4b0",
+      "prompt": "03-shining-cel-anthro.txt",
+      "reference_id": 1,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-9c8858a5-b4b5-4c22-b6a8-0a6dd8eb15a9",
+      "original_sha256": "a6365e046b1dd6010c4295381b1755b95c49d44bf009f16161ab21bf495ad3dd",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "6c738aa2b10f6ede8b0a323dd040f0f167ec619c",
+      "blob_verified": true,
+      "registration_verified": true
+    },
+    {
+      "id": 4,
+      "card": "샤이닝 건담",
+      "style": "cel_anime",
+      "mode": "casual",
+      "gender": "f",
+      "file": "샤이닝_건담_cel_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "b33c60f57cb38f9ca5b03f6fb661a2a413c086b61026296e8290f082cf152539",
+      "prompt": "04-shining-cel-casual.txt",
+      "reference_id": 3,
+      "generated": true,
+      "converted": true,
+      "generation_id": "exec-fa5132f1-8cda-472c-983e-01f6b6aef10b",
+      "original_sha256": "99ccb5e138373af0b023527b428187baa7e58beb4b32cbc565d665ff4fb653bb",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_note": "Generated PNG returned in this conversation; repository contains dimension-preserving WebP.",
+      "blob_sha": "4680560f6d9a96c215dbc20e0dc2874c2514bd8d",
+      "blob_verified": true,
+      "registration_verified": true
+    }
+  ],
+  "repository": "polos0117/atelier",
+  "branch": "codex/next-five-images",
+  "prompt_url": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_version": "v9.18",
+  "status_note": "This manifest is part of the image commit. Commit and branch reference must be verified separately; blob SHA alone is not completion.",
+  "source_reference": "First anthropomorphizations used canonical-design instructions from prompt.html without an uploaded original mecha reference.",
+  "legacy_manifest": "docs/generation/next-five/manifest.json"
+}

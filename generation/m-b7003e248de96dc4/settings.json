@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "card": "프리덤",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "youthful adult",
+        "body type": "slender",
+        "eye color": "crimson",
+        "facial ethnicity": "Japanese",
+        "hair color": "blue",
+        "height impression": "very tall",
+        "human-mechanical balance": "more human",
+        "leg proportion": "very long",
+        "second eye color": "crimson",
+        "shoulder build": "average",
+        "torso / chest build": "full bust",
+        "waist / hip silhouette": "athletic"
+      },
+      "ub": true
+    },
+    "t": 1788588895963
+  },
+  "used": [],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

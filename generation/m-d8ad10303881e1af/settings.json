@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "card": "퀸 만사",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "30s",
+        "armor coverage": "open",
+        "bangs": "none",
+        "body type": "statuesque",
+        "expression": "calm",
+        "eye color": "gold",
+        "eye shape": "narrow",
+        "eye size": "medium",
+        "eye tilt": "upturned outer corners",
+        "face length": "long",
+        "face shape": "angular",
+        "face width": "medium",
+        "facial character": "regal",
+        "hair accent": "neatly kept, no stray strands",
+        "hair color": "silver",
+        "hair length": "medium",
+        "hair texture": "fine",
+        "hair volume": "moderate",
+        "hairstyle": "slicked back",
+        "head crest integration": "mechanical crest",
+        "height impression": "very tall",
+        "human-mechanical balance": "more human",
+        "jaw & chin": "angular defined jaw",
+        "leg proportion": "very long",
+        "lips": "medium lips",
+        "lower-body build": "balanced",
+        "lower-body treatment": "layered plates",
+        "nose character": "straight slender bridge",
+        "parting": "swept back",
+        "shoulder build": "broad",
+        "skin tone": "light",
+        "torso / chest build": "full",
+        "torso length": "balanced",
+        "waist / hip silhouette": "athletic"
+      }
+    },
+    "g": "female",
+    "mm": "silhouette_equipment_emphasis",
+    "t": 1788968203112
+  },
+  "used": [],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

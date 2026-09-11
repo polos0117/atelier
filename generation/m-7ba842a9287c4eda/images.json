@@ -1,0 +1,42 @@
+{
+  "티에렌 지상형_cinematic_semi_real_f.webp": {
+    "card": "티에렌 지상형",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "49d89bf5316a39b5a7646c80f9005df8967a78dac98c823f6f420a6934f9a765",
+    "prompt": "generation/m-7ba842a9287c4eda/runs/2026-09-11-tieren-ground/01-anthro.txt",
+    "manifest": "generation/m-7ba842a9287c4eda/runs/2026-09-11-tieren-ground/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-tieren-ground/manifest.json"
+  },
+  "티에렌 지상형_cinematic_semi_real_f_casual1.webp": {
+    "card": "티에렌 지상형",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "c929cf311ef32f6a2fa51bd35e277196d6798f4fdb4b4473fc0bdf5d66a7dd06",
+    "prompt": "generation/m-7ba842a9287c4eda/runs/2026-09-11-tieren-ground/02-casual.txt",
+    "manifest": "generation/m-7ba842a9287c4eda/runs/2026-09-11-tieren-ground/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-tieren-ground/manifest.json"
+  },
+  "티에렌 지상형_ink_wash_f.webp": {
+    "card": "티에렌 지상형",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "8fc818ba596094bbc9e16527a872268f366e1303bfd2b2a3289bd00a1d4061b1",
+    "prompt": "generation/m-7ba842a9287c4eda/runs/2026-09-11-tieren-ground/03-anthro.txt",
+    "manifest": "generation/m-7ba842a9287c4eda/runs/2026-09-11-tieren-ground/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-tieren-ground/manifest.json"
+  },
+  "티에렌 지상형_ink_wash_f_casual1.webp": {
+    "card": "티에렌 지상형",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "9cd4046ea0ffb0a292c15efa7b645292a60b4204778c6b3149a63a4361f6e955",
+    "prompt": "generation/m-7ba842a9287c4eda/runs/2026-09-11-tieren-ground/04-casual.txt",
+    "manifest": "generation/m-7ba842a9287c4eda/runs/2026-09-11-tieren-ground/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-tieren-ground/manifest.json"
+  }
+}

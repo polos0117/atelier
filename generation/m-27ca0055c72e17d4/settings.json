@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "card": "육전형 짐",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "armor coverage": "open",
+        "body type": "athletic",
+        "expression": "calm",
+        "eye color": "green",
+        "hair color": "orange",
+        "height impression": "tall",
+        "human-mechanical balance": "balanced",
+        "leg proportion": "long",
+        "second eye color": "green",
+        "shoulder build": "average",
+        "torso / chest build": "balanced",
+        "waist / hip silhouette": "athletic"
+      }
+    },
+    "g": "female",
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "body type": "athletic",
+        "expression": "calm",
+        "eye color": "green",
+        "hair color": "orange",
+        "height impression": "tall",
+        "human-mechanical balance": "balanced",
+        "leg proportion": "long",
+        "second eye color": "green",
+        "shoulder build": "average",
+        "torso / chest build": "balanced",
+        "waist / hip silhouette": "athletic"
+      }
+    },
+    "t": 1788878860361
+  },
+  "used": [
+    {
+      "cat": "swimwear",
+      "ex": "asymmetric_swim",
+      "n": 1,
+      "t": 1788880470442
+    },
+    {
+      "cat": "lingerie",
+      "ex": "morning_lingerie",
+      "n": 1,
+      "t": 1788879710061
+    },
+    {
+      "cat": "homewear",
+      "ex": "after_bath",
+      "n": 1,
+      "t": 1788879672884
+    },
+    {
+      "cat": "traditional",
+      "ex": "sari_formal",
+      "n": 1,
+      "t": 1788879545279
+    },
+    {
+      "cat": "occupation_sensual",
+      "ex": "helicopter_pilot",
+      "n": 1,
+      "t": 1788879516997
+    },
+    {
+      "cat": "adult_roleplay",
+      "ex": "lab_roleplay",
+      "n": 1,
+      "t": 1788879412748
+    },
+    {
+      "cat": "everyday_sensual",
+      "ex": "late_snack",
+      "n": 2,
+      "t": 1788879129228
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

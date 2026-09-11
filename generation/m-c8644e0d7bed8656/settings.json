@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "card": "건담 로즈",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "30s",
+        "armor coverage": "balanced",
+        "bangs": "curtain bangs",
+        "body type": "hourglass",
+        "eye shape": "narrow",
+        "face shape": "elongated",
+        "facial character": "refined",
+        "facial ethnicity": "mixed East Asian and European",
+        "hair length": "long",
+        "hairstyle": "chignon",
+        "height impression": "very tall",
+        "human-mechanical balance": "more human",
+        "leg proportion": "long",
+        "shoulder build": "average",
+        "torso / chest build": "full"
+      },
+      "sp": "Clearly adult woman aged 33, midnight blue hair gathered in a chignon, matching sapphire eyes. Preserve the unique asymmetric broad blue left shoulder mantle-shield with yellow border, epaulets, white armor and red feet. Elegant human face, not the pilot."
+    },
+    "g": "female",
+    "t": 1788973598096
+  },
+  "used": [
+    {
+      "cat": "everyday_sensual",
+      "ex": "",
+      "n": 1,
+      "t": 1788973604122
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

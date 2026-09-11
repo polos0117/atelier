@@ -1,0 +1,42 @@
+{
+  "윈담_cinematic_semi_real_f.webp": {
+    "card": "윈담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "8ac45f3d9690d2078b04c10d3001b6b89ba5131bc74a741a525f63e87c7bb445",
+    "prompt": "generation/m-87ca8936987203e3/runs/2026-09-11-windam/01-anthro.txt",
+    "manifest": "generation/m-87ca8936987203e3/runs/2026-09-11-windam/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-windam/manifest.json"
+  },
+  "윈담_cinematic_semi_real_f_casual1.webp": {
+    "card": "윈담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "f3209c1460083f44ff1882a376503f20c9546f598a561f44ab2c805608e2593b",
+    "prompt": "generation/m-87ca8936987203e3/runs/2026-09-11-windam/02-casual.txt",
+    "manifest": "generation/m-87ca8936987203e3/runs/2026-09-11-windam/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-windam/manifest.json"
+  },
+  "윈담_retro_anime_f.webp": {
+    "card": "윈담",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "7c3541e7a1020ff7938fb7b71b7e75adeedd806a934948bc393b1cf91b117395",
+    "prompt": "generation/m-87ca8936987203e3/runs/2026-09-11-windam/03-anthro.txt",
+    "manifest": "generation/m-87ca8936987203e3/runs/2026-09-11-windam/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-windam/manifest.json"
+  },
+  "윈담_retro_anime_f_casual1.webp": {
+    "card": "윈담",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "dd1cc1826b99901b7048c7e72b11f0bc195109606272d75e23a61345a2f4ed07",
+    "prompt": "generation/m-87ca8936987203e3/runs/2026-09-11-windam/04-casual.txt",
+    "manifest": "generation/m-87ca8936987203e3/runs/2026-09-11-windam/manifest.json",
+    "legacy_manifest": "docs/generation/2026-09-11-windam/manifest.json"
+  }
+}

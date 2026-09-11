@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "card": "건담 쓰로네 드라이",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "30s",
+        "armor coverage": "open",
+        "bangs": "side-swept bangs",
+        "body type": "slender",
+        "eye color": "purple",
+        "eye shape": "drooping",
+        "face shape": "elongated",
+        "facial character": "refined",
+        "facial ethnicity": "Japanese",
+        "hair color": "crimson",
+        "hair length": "short",
+        "hairstyle": "finger waves",
+        "height impression": "tall",
+        "human-mechanical balance": "more human",
+        "leg proportion": "long",
+        "shoulder build": "narrow",
+        "torso / chest build": "full"
+      },
+      "sp": "Clearly adult woman aged 36. Deep wine-crimson short finger-wave hair, matching violet eyes, mature elongated face with long elegant nose and small beauty mark beneath left eye. Preserve dark red white gray armor and huge asymmetric GN particle dispersal equipment. Never resemble Nena Trinity or any pilot."
+    },
+    "g": "female",
+    "t": 1788990733099
+  },
+  "used": [
+    {
+      "cat": "homewear",
+      "ex": "",
+      "n": 1,
+      "t": 1788990216805
+    },
+    {
+      "cat": "everyday_sensual",
+      "ex": "",
+      "n": 1,
+      "t": 1788990210709
+    }
+  ],
+  "provenance": "Copied from published legacy records; original values preserved."
+}

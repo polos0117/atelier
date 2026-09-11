@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "repository": "polos0117/atelier",
+  "branch": "codex/gunner-zaku",
+  "base_commit": "e117977b7b5e9a37797ffdf4e89352592603ce24",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "generator": "image_gen",
+  "workflow": "Actual generator UI selections and reviewed text output. First anthro corrected for backpack/framing; exact initial and correction prompts preserved. Each casual references corresponding anthro. Pose character and view angle AUTO.",
+  "assets": [
+    {
+      "id": "2026-09-11-gunner-zaku-01",
+      "card": "건너 자쿠 워리어",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "건너 자쿠 워리어_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "f808fc6f469a7144e66369b4a7a7c871c6b8f67621b3f901ac131256ee9a5fa3",
+      "generation_id": "exec-33ababf5-3d86-4cb0-b330-c30e61ec1f70",
+      "prompt": "docs/generation/2026-09-11-gunner-zaku/01b-anthro-correction.txt",
+      "prompt_sha256": "be2aaff3f39c8875437366693bc49404c214a817776759c25315ef77d7a5f169",
+      "generated": true,
+      "converted": true,
+      "reference_ids": [
+        "exec-9ef52e27-f207-4334-a4e1-1d756bbef35e"
+      ]
+    },
+    {
+      "id": "2026-09-11-gunner-zaku-02",
+      "card": "건너 자쿠 워리어",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "file": "건너 자쿠 워리어_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "dd30784b49c26d9d843904753ae83914cb95d51d75a057772d4ec70c0f934dbe",
+      "generation_id": "exec-d17ce5bb-f6d4-4002-aa5f-d4ed455beeab",
+      "prompt": "docs/generation/2026-09-11-gunner-zaku/02-casual.txt",
+      "prompt_sha256": "2878fc1580b69db4deff11f79075eec97829f66dec11c18d2f6424b96ac3e3f1",
+      "generated": true,
+      "converted": true,
+      "reference_ids": [
+        "exec-33ababf5-3d86-4cb0-b330-c30e61ec1f70"
+      ]
+    },
+    {
+      "id": "2026-09-11-gunner-zaku-03",
+      "card": "건너 자쿠 워리어",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "건너 자쿠 워리어_game_keyart_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "46f6e6616674bdf0d934344c5d7406875cf21002f403357139d492f814737a5b",
+      "generation_id": "exec-d2f7e609-d9e8-4717-95be-74fd64ae6a73",
+      "prompt": "docs/generation/2026-09-11-gunner-zaku/03-anthro.txt",
+      "prompt_sha256": "7e4cecde2cb8102ed73f48403ceb366c74a7ca5e3afd996f735b4110e37a5af2",
+      "generated": true,
+      "converted": true,
+      "reference_ids": [
+        "exec-33ababf5-3d86-4cb0-b330-c30e61ec1f70"
+      ]
+    },
+    {
+      "id": "2026-09-11-gunner-zaku-04",
+      "card": "건너 자쿠 워리어",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "casual",
+      "file": "건너 자쿠 워리어_game_keyart_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "ef85b9e228e386ef3295f0f2528c0dce0b27d05c8093b3201f5330f909284cd3",
+      "generation_id": "exec-53900dd8-b27f-418c-8a20-186436cd3593",
+      "prompt": "docs/generation/2026-09-11-gunner-zaku/04-casual.txt",
+      "prompt_sha256": "b6af402556ab1573bc5bc8fbc73b6a28124b0bd93d0737c34171f6ab40fa25ec",
+      "generated": true,
+      "converted": true,
+      "reference_ids": [
+        "exec-d2f7e609-d9e8-4717-95be-74fd64ae6a73"
+      ]
+    }
+  ],
+  "initial_generation_id": "exec-9ef52e27-f207-4334-a4e1-1d756bbef35e",
+  "initial_prompt": "docs/generation/2026-09-11-gunner-zaku/01-anthro.txt"
+}

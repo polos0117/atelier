@@ -1,0 +1,108 @@
+{
+  "repository": "polos0117/atelier",
+  "branch": "codex/overnight-mechs",
+  "base_commit": "14b1a9b96d94ca70651392c0b4e7242f78e3b9e6",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "generator": "built-in image_gen",
+  "selection_first": true,
+  "assets": [
+    {
+      "id": 1,
+      "card": "리오",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "리오_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "6d83b02b5b8dbe6c57291340ce318499102f4a9b21063f5eac5924fe10faaa11",
+      "prompt": "01-anthro.txt",
+      "original_generation_id": "exec-1d740f33-f020-4c61-9ce8-0fc63b819934",
+      "original_sha256": "e3ca438fbcf29f2739edcbd4875186d8c7b46121ed57715b99ff7a70e6542a68",
+      "reference_ids": [],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 2,
+      "card": "리오",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "file": "리오_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "6eb9c0888b70820155cc5b32b5734ac8d72a34736de21d7dadbba0462688fcd0",
+      "prompt": "02-casual.txt",
+      "original_generation_id": "exec-45d5b286-d23d-4ef8-af40-d909d2e78a70",
+      "original_sha256": "2b4c67ddb097e9d5328c3f45147c1cbb4f5d5bd67e0547e323179013d1d150c5",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 3,
+      "card": "리오",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "file": "리오_retro_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "393190fa3c796f382255d4c8ec2430741df2f70edfa700b95e4006667e8f3969",
+      "prompt": "03-anthro.txt",
+      "original_generation_id": "exec-64b868b1-8f58-45eb-bf27-3d8a459e777b",
+      "original_sha256": "2ef84ea323e111eaeb1ac7a2ebf2da78c84032d2d4cca1d0fff3a144864bdf83",
+      "reference_ids": [
+        1
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    },
+    {
+      "id": 4,
+      "card": "리오",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "casual",
+      "file": "리오_retro_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "ba23a59799703cd5712db47971fd4bbcb60038a223cc80dddef063813b4d4435",
+      "prompt": "04-casual.txt",
+      "original_generation_id": "exec-b38db7dd-7cf7-4231-a629-7827f75c75a2",
+      "original_sha256": "a33d7eacdd2d3375e6b55c5d97453bb8b6e849a81e785acaecce24477e080695",
+      "reference_ids": [
+        3
+      ],
+      "generated": true,
+      "converted": true,
+      "registered_locally": true
+    }
+  ],
+  "record_export": {
+    "completed": true,
+    "scope": "task card extracted from actual UI export",
+    "merged_cards": [
+      "리오"
+    ]
+  },
+  "review_notes": [
+    "Four outputs visually reviewed. No original MS artwork attached; armor is an anthropomorphic interpretation. Anthro pose/view are AUTO; resulting poses may remain similar."
+  ],
+  "checkpoint": "Generation and local registration checkpoint. Remote upload/merge is recorded in the task report and Git history."
+}
