@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "card": "하인드리",
+  "repository": "polos0117/atelier",
+  "branch": "codex/heindree",
+  "base_commit": "70df0c817bb697d2a6fa95705b46d7d957e226cc",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "run": "2026-09-11t062134z",
+  "assets": [
+    {
+      "file": "하인드리_cinematic_semi_real_f.webp",
+      "card": "하인드리",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "d0dc76bc1eac2002f4ca6517029b53c52711dbaa2130b9e709cac352c5423e30",
+      "prompt": "generation/m-9523931d5e747f74/runs/2026-09-11t062134z/01-anthro.txt",
+      "manifest": "generation/m-9523931d5e747f74/runs/2026-09-11t062134z/manifest.json",
+      "generation_id": "exec-e627a9f9-b9ae-4770-918c-5265a09e3462",
+      "source_file": "exec-e627a9f9-b9ae-4770-918c-5265a09e3462.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [],
+      "reference_design_urls": [
+        "https://gundam-official.com/witch-from-mercury/mobile-suit/8/"
+      ],
+      "parent_anthro": null
+    },
+    {
+      "file": "하인드리_cinematic_semi_real_f_casual1.webp",
+      "card": "하인드리",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "6edf6dbaaea48dbe701adeed4586388fafabe6a9cf141c64276d22efa138b6fa",
+      "prompt": "generation/m-9523931d5e747f74/runs/2026-09-11t062134z/02-casual.txt",
+      "manifest": "generation/m-9523931d5e747f74/runs/2026-09-11t062134z/manifest.json",
+      "generation_id": "exec-a5dfeb7f-e452-4b0d-820e-4116c38fc9af",
+      "source_file": "exec-a5dfeb7f-e452-4b0d-820e-4116c38fc9af.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-e627a9f9-b9ae-4770-918c-5265a09e3462"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-e627a9f9-b9ae-4770-918c-5265a09e3462"
+    },
+    {
+      "file": "하인드리_ink_wash_f.webp",
+      "card": "하인드리",
+      "style": "ink_wash",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "12f06c2b448b9ad01d05f06769efbcd59b4ebeda4e06268014842a351760b9b7",
+      "prompt": "generation/m-9523931d5e747f74/runs/2026-09-11t062134z/03-anthro.txt",
+      "manifest": "generation/m-9523931d5e747f74/runs/2026-09-11t062134z/manifest.json",
+      "generation_id": "exec-2404638a-ee99-479b-8e86-bb2643ed2a57",
+      "source_file": "exec-2404638a-ee99-479b-8e86-bb2643ed2a57.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-e627a9f9-b9ae-4770-918c-5265a09e3462"
+      ],
+      "reference_design_urls": [
+        "https://gundam-official.com/witch-from-mercury/mobile-suit/8/"
+      ],
+      "parent_anthro": null
+    },
+    {
+      "file": "하인드리_ink_wash_f_casual1.webp",
+      "card": "하인드리",
+      "style": "ink_wash",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "fd32d59ffa4330bbe5919b2842d99716e226ec7cb3b64de490f79cd76b4a97d0",
+      "prompt": "generation/m-9523931d5e747f74/runs/2026-09-11t062134z/04-casual.txt",
+      "manifest": "generation/m-9523931d5e747f74/runs/2026-09-11t062134z/manifest.json",
+      "generation_id": "exec-4ee16646-8565-4a40-800a-bae30535fe65",
+      "source_file": "exec-4ee16646-8565-4a40-800a-bae30535fe65.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-2404638a-ee99-479b-8e86-bb2643ed2a57"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-2404638a-ee99-479b-8e86-bb2643ed2a57"
+    }
+  ],
+  "conversion": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6,
+    "resized": false,
+    "cropped": false
+  },
+  "review": {
+    "identity": "same adult woman across four images",
+    "styles": "cinematic painted modelling versus ink contours and translucent washes",
+    "casuals": "poolside seated braid squeeze versus standing bookstore reach",
+    "anthro_framing": "complete visible weapons, armor and feet within frame",
+    "pose_character": "AUTO",
+    "view_angle": "AUTO"
+  }
+}
