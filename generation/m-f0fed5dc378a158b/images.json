@@ -1,0 +1,42 @@
+{
+  "하인그라_cinematic_semi_real_f.webp": {
+    "file": "하인그라_cinematic_semi_real_f.webp",
+    "card": "하인그라",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "1809bf59154184ef8623ee8d065369701ed41a3f4fcb96d6692330c71e666517",
+    "prompt": "generation/m-f0fed5dc378a158b/runs/2026-09-11t075851z/01-anthro.txt",
+    "manifest": "generation/m-f0fed5dc378a158b/runs/2026-09-11t075851z/manifest.json"
+  },
+  "하인그라_cinematic_semi_real_f_casual1.webp": {
+    "file": "하인그라_cinematic_semi_real_f_casual1.webp",
+    "card": "하인그라",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "0aea4d384bed7062adcd2e5f0519acf23ad4f98a278452be499335298efb1109",
+    "prompt": "generation/m-f0fed5dc378a158b/runs/2026-09-11t075851z/02-casual.txt",
+    "manifest": "generation/m-f0fed5dc378a158b/runs/2026-09-11t075851z/manifest.json"
+  },
+  "하인그라_glossy_kr_game_f.webp": {
+    "file": "하인그라_glossy_kr_game_f.webp",
+    "card": "하인그라",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "38ec1816d4fd18de4dda96893c7ec57cab4d756e7a828aae1f18ef44f0304dda",
+    "prompt": "generation/m-f0fed5dc378a158b/runs/2026-09-11t075851z/03-anthro.txt",
+    "manifest": "generation/m-f0fed5dc378a158b/runs/2026-09-11t075851z/manifest.json"
+  },
+  "하인그라_glossy_kr_game_f_casual1.webp": {
+    "file": "하인그라_glossy_kr_game_f_casual1.webp",
+    "card": "하인그라",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "10ba288d6f574dc6e712a96ed94a69bb3fe86a8880cd9ce3d4eebaf70eccee89",
+    "prompt": "generation/m-f0fed5dc378a158b/runs/2026-09-11t075851z/04-casual.txt",
+    "manifest": "generation/m-f0fed5dc378a158b/runs/2026-09-11t075851z/manifest.json"
+  }
+}
