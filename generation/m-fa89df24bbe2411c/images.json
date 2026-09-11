@@ -1,0 +1,38 @@
+{
+  "골드_스모_cinematic_semi_real_f.webp": {
+    "card": "골드 스모",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "6c26fdce58814c866218ac5890d1eb69264aeebea36a3cb645fa2d6ab8dd6084",
+    "prompt": "generation/m-fa89df24bbe2411c/runs/2026-09-11t151447z/01-anthro.txt",
+    "manifest": "generation/m-fa89df24bbe2411c/runs/2026-09-11t151447z/manifest.json"
+  },
+  "골드_스모_cinematic_semi_real_f_casual1.webp": {
+    "card": "골드 스모",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "42cd5550dbf40f691a212fbca271ec676b6500acca8f4cec7f95812256f119d2",
+    "prompt": "generation/m-fa89df24bbe2411c/runs/2026-09-11t151447z/02-casual.txt",
+    "manifest": "generation/m-fa89df24bbe2411c/runs/2026-09-11t151447z/manifest.json"
+  },
+  "골드_스모_glossy_kr_game_f.webp": {
+    "card": "골드 스모",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "f3a7818530b961213fbb56a176beb4b094f5ef968db9c59e7cf9e1fa13101346",
+    "prompt": "generation/m-fa89df24bbe2411c/runs/2026-09-11t151447z/03-anthro.txt",
+    "manifest": "generation/m-fa89df24bbe2411c/runs/2026-09-11t151447z/manifest.json"
+  },
+  "골드_스모_glossy_kr_game_f_casual1.webp": {
+    "card": "골드 스모",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "2632eeca3de6a6a7b055430729e8fae01751e2a53913ed868bd8c3c26ec4e40e",
+    "prompt": "generation/m-fa89df24bbe2411c/runs/2026-09-11t151447z/04-casual.txt",
+    "manifest": "generation/m-fa89df24bbe2411c/runs/2026-09-11t151447z/manifest.json"
+  }
+}
