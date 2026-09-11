@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "card": "데미 개리슨",
+  "repository": "polos0117/atelier",
+  "branch": "codex/demi-garrison",
+  "base_commit": "279af8fe46fca8d09f0c5ce5c283c3fdea4e4e41",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "run": "2026-09-11t090144z",
+  "assets": [
+    {
+      "file": "데미 개리슨_cinematic_semi_real_f.webp",
+      "card": "데미 개리슨",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "0d606124ae057f7c58ff9b2bddf1150bd9ba45f0e1f0345c3311b7fa29feb3a1",
+      "prompt": "generation/m-7d7b28cfb89a038f/runs/2026-09-11t090144z/01-anthro.txt",
+      "manifest": "generation/m-7d7b28cfb89a038f/runs/2026-09-11t090144z/manifest.json",
+      "generation_id": "exec-d06d9b92-37a8-4313-9cb7-b57cb7868690",
+      "source_file": "exec-d06d9b92-37a8-4313-9cb7-b57cb7868690.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [],
+      "reference_design_urls": [
+        "https://en.gundam-official.com/witch-from-mercury/mobile-suit/10/"
+      ],
+      "parent_anthro": null
+    },
+    {
+      "file": "데미 개리슨_cinematic_semi_real_f_casual1.webp",
+      "card": "데미 개리슨",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "915ac59622481bb5beb63b889e25942b04137c4fc511c8661f14ef8273f156a7",
+      "prompt": "generation/m-7d7b28cfb89a038f/runs/2026-09-11t090144z/02-casual.txt",
+      "manifest": "generation/m-7d7b28cfb89a038f/runs/2026-09-11t090144z/manifest.json",
+      "generation_id": "exec-c3f44eea-4ca0-4644-ae1a-8b80a6964486",
+      "source_file": "exec-c3f44eea-4ca0-4644-ae1a-8b80a6964486.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-d06d9b92-37a8-4313-9cb7-b57cb7868690"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-d06d9b92-37a8-4313-9cb7-b57cb7868690"
+    },
+    {
+      "file": "데미 개리슨_cel_anime_f.webp",
+      "card": "데미 개리슨",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "1c4a21fde704b0a14f9655232464af9b734355f821c6eef91a296b664ae8c5a6",
+      "prompt": "generation/m-7d7b28cfb89a038f/runs/2026-09-11t090144z/03-anthro.txt",
+      "manifest": "generation/m-7d7b28cfb89a038f/runs/2026-09-11t090144z/manifest.json",
+      "generation_id": "exec-8846ab17-bc31-4a59-9db0-60b49d73c618",
+      "source_file": "exec-8846ab17-bc31-4a59-9db0-60b49d73c618.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-d06d9b92-37a8-4313-9cb7-b57cb7868690"
+      ],
+      "reference_design_urls": [
+        "https://en.gundam-official.com/witch-from-mercury/mobile-suit/10/"
+      ],
+      "parent_anthro": null
+    },
+    {
+      "file": "데미 개리슨_cel_anime_f_casual1.webp",
+      "card": "데미 개리슨",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "0b8615bb55729d8d5bf959b457f5ffd18b6fabeeaf0ab76be2316d9df5fd843b",
+      "prompt": "generation/m-7d7b28cfb89a038f/runs/2026-09-11t090144z/04-casual.txt",
+      "manifest": "generation/m-7d7b28cfb89a038f/runs/2026-09-11t090144z/manifest.json",
+      "generation_id": "exec-a8dbc824-a230-4227-9b62-d18a4bf5b375",
+      "source_file": "exec-a8dbc824-a230-4227-9b62-d18a4bf5b375.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-8846ab17-bc31-4a59-9db0-60b49d73c618"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-8846ab17-bc31-4a59-9db0-60b49d73c618"
+    }
+  ],
+  "conversion": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6,
+    "resized": false,
+    "cropped": false
+  },
+  "review": {
+    "identity": "Same adult woman across four images",
+    "styles": "Painted cinematic form versus flat cel outlines and hard shadows",
+    "casuals": "Boxing gym action versus seated winter cabin vinyl listening",
+    "anthro_framing": "Front-facing full-body with equipment and feet inside frame",
+    "pose_character": "AUTO",
+    "view_angle": "front, following prior user instruction",
+    "settings_export": "Obtained actual single-card UI export",
+    "delivery": "Four WebP images and prompt links registered locally; remote delivery reported separately."
+  }
+}
