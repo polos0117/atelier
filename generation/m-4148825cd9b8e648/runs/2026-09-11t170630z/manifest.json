@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "card": "마히로",
+  "model": "G-838",
+  "series": "∀건담",
+  "repository": "polos0117/atelier",
+  "branch": "codex/mahiroo-images",
+  "base_commit": "1228054ea916d850f324e6f1fc33527874684f2e",
+  "prompt_source": "deployed prompt.html UI",
+  "run": "2026-09-11t170630z",
+  "created": "2026-09-11T17:06:30Z",
+  "generation_tool": "image_gen",
+  "settings_export": "Actual prompt.html selections and exported style settings captured for both styles",
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity": "Same adult Southeast Asian woman across both styles",
+    "casual_scenes": [
+      "Soft-robotics research workshop in afternoon sun",
+      "Rainy midnight laundromat, folding a blanket"
+    ]
+  },
+  "jobs": [
+    {
+      "id": "01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": null,
+      "prompt": "generation/m-4148825cd9b8e648/runs/2026-09-11t170630z/01-anthro.txt",
+      "original_generated_file": "exec-5bd0e187-cf54-4b4a-a5a3-d320fdf09ed7.png",
+      "references": [
+        "https://www.animecharactersdatabase.com/characters.php?id=128367&imgid=136069",
+        "https://ami.animecharactersdatabase.com/uploads/chars/38889-315972498.png",
+        "https://gundam.wiki.cre.jp/wiki/%E3%83%9E%E3%83%92%E3%83%AD%E3%83%BC"
+      ],
+      "file": "img/마히로_cinematic_semi_real_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "98c8ea203d9f9054f85fb43ed59e3279d897973b887322c778449c0a72037295",
+      "bytes": 132760
+    },
+    {
+      "id": "02",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "01",
+      "prompt": "generation/m-4148825cd9b8e648/runs/2026-09-11t170630z/02-casual.txt",
+      "original_generated_file": "exec-b2ffc963-c961-4591-a5e9-35719f6a8283.png",
+      "references": ["exec-5bd0e187-cf54-4b4a-a5a3-d320fdf09ed7.png"],
+      "file": "img/마히로_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "da268f8446f9e055f6f499083a5783a69c235c04cf3f027718d5a82ca6fed72d",
+      "bytes": 145502
+    },
+    {
+      "id": "03",
+      "style": "ink_wash",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": "01",
+      "prompt": "generation/m-4148825cd9b8e648/runs/2026-09-11t170630z/03-anthro.txt",
+      "original_generated_file": "exec-1c80952d-2d18-48aa-8b36-b0f83ea9d342.png",
+      "references": [
+        "exec-5bd0e187-cf54-4b4a-a5a3-d320fdf09ed7.png",
+        "https://ami.animecharactersdatabase.com/uploads/chars/38889-315972498.png"
+      ],
+      "file": "img/마히로_ink_wash_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "ce6189e6e46b1d83895041931bfd31d636f1d131fe929a943943348d928704c1",
+      "bytes": 248548
+    },
+    {
+      "id": "04",
+      "style": "ink_wash",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "03",
+      "prompt": "generation/m-4148825cd9b8e648/runs/2026-09-11t170630z/04-casual.txt",
+      "original_generated_file": "exec-219d897e-260c-4a4d-ba21-50b02023b92e.png",
+      "references": ["exec-1c80952d-2d18-48aa-8b36-b0f83ea9d342.png"],
+      "file": "img/마히로_ink_wash_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "2f0872f834abd39c45df640428cde207eeb22a6567d693333c40f92292a87e5b",
+      "bytes": 274434
+    }
+  ],
+  "prompt_html_sha256": "ab1103447a08571bbd24c83763047c01bb31c365aa59ad2bf81799715336474e",
+  "prompt_html_verification": "Deployed prompt.html v9.18 used; repository prompt.html hash recorded"
+}

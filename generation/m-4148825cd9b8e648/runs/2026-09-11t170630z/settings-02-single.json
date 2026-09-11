@@ -1,0 +1,73 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "occupation_basic"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "robotics_researcher"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "curious"
+  },
+  {
+    "id": "sgOrient",
+    "value": "front_3q"
+  },
+  {
+    "id": "sgPose",
+    "value": "mid_action"
+  },
+  {
+    "id": "sgScene",
+    "value": "A contemporary soft-robotics research workshop in afternoon sun, flexible artificial-muscle strips suspended from a compact test frame, pale workbenches and terracotta sample trays, no other people"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "An ivory collarless utility overshirt over a fitted rust-brown mock-neck top, tapered charcoal work trousers, cream low-profile sneakers and slim protective gloves; fully opaque modern laboratory wear"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body eye-level front three-quarter composition, entire figure and both shoes visible beside the compact actuator frame, warm window light and soft turquoise instrument glow"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She gently stretches one flexible braided actuator strip between both hands while watching its movement with a curious calm adult expression. Preserve the SAME clearly adult Southeast Asian woman from the attached Mahiroo portrait: compact short face, medium skin, large level almond-shaped gold eyes, broad low nose bridge, full lips, average-height wiry body, narrow shoulders, and very short thick white pixie hair with choppy bangs and one cowlick. Exactly TWO normal human arms, TWO hands and TWO legs, anatomically correct. Render her completely as a contemporary human: no ivory armor, gold sensor dome, giant black shield, forearm cutters, mechanical joints, chest lights or insect features. No motion-capture dots, no bodysuit, no extra person. Fully opaque secure workwear, no readable text, logos or watermark."
+  },
+  {
+    "checked": true,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": true,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]

@@ -1,0 +1,38 @@
+{
+  "마히로_cinematic_semi_real_f.webp": {
+    "card": "마히로",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "98c8ea203d9f9054f85fb43ed59e3279d897973b887322c778449c0a72037295",
+    "prompt": "generation/m-4148825cd9b8e648/runs/2026-09-11t170630z/01-anthro.txt",
+    "manifest": "generation/m-4148825cd9b8e648/runs/2026-09-11t170630z/manifest.json"
+  },
+  "마히로_cinematic_semi_real_f_casual1.webp": {
+    "card": "마히로",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "da268f8446f9e055f6f499083a5783a69c235c04cf3f027718d5a82ca6fed72d",
+    "prompt": "generation/m-4148825cd9b8e648/runs/2026-09-11t170630z/02-casual.txt",
+    "manifest": "generation/m-4148825cd9b8e648/runs/2026-09-11t170630z/manifest.json"
+  },
+  "마히로_ink_wash_f.webp": {
+    "card": "마히로",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "ce6189e6e46b1d83895041931bfd31d636f1d131fe929a943943348d928704c1",
+    "prompt": "generation/m-4148825cd9b8e648/runs/2026-09-11t170630z/03-anthro.txt",
+    "manifest": "generation/m-4148825cd9b8e648/runs/2026-09-11t170630z/manifest.json"
+  },
+  "마히로_ink_wash_f_casual1.webp": {
+    "card": "마히로",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "2f0872f834abd39c45df640428cde207eeb22a6567d693333c40f92292a87e5b",
+    "prompt": "generation/m-4148825cd9b8e648/runs/2026-09-11t170630z/04-casual.txt",
+    "manifest": "generation/m-4148825cd9b8e648/runs/2026-09-11t170630z/manifest.json"
+  }
+}
