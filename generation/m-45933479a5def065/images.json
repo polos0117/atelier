@@ -1,0 +1,42 @@
+{
+  "딜란자 솔_cinematic_semi_real_f.webp": {
+    "file": "딜란자 솔_cinematic_semi_real_f.webp",
+    "card": "딜란자 솔",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "dab4c6c5aa8d90d4bb82b43d8c4e78159ea8662d790d9215bdd40d9672689c62",
+    "prompt": "generation/m-45933479a5def065/runs/2026-09-11t103927z/01-anthro.txt",
+    "manifest": "generation/m-45933479a5def065/runs/2026-09-11t103927z/manifest.json"
+  },
+  "딜란자 솔_cinematic_semi_real_f_casual1.webp": {
+    "file": "딜란자 솔_cinematic_semi_real_f_casual1.webp",
+    "card": "딜란자 솔",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "fe827ef97760aaf03b2edfb43663c82d3a6a42132cf40b6533a9fbd0714b2fc5",
+    "prompt": "generation/m-45933479a5def065/runs/2026-09-11t103927z/02-casual.txt",
+    "manifest": "generation/m-45933479a5def065/runs/2026-09-11t103927z/manifest.json"
+  },
+  "딜란자 솔_anime_illust_f.webp": {
+    "file": "딜란자 솔_anime_illust_f.webp",
+    "card": "딜란자 솔",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "cdbcf0f9346f3e06ebcbec7f9825fdc7fa72f050cf05c5bb0e9c522de73d0ac8",
+    "prompt": "generation/m-45933479a5def065/runs/2026-09-11t103927z/03-anthro.txt",
+    "manifest": "generation/m-45933479a5def065/runs/2026-09-11t103927z/manifest.json"
+  },
+  "딜란자 솔_anime_illust_f_casual1.webp": {
+    "file": "딜란자 솔_anime_illust_f_casual1.webp",
+    "card": "딜란자 솔",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "e30322ff578cb6cf7f2590f38e33cf82df2976097f3d039a1bae570bb69488a1",
+    "prompt": "generation/m-45933479a5def065/runs/2026-09-11t103927z/04-casual.txt",
+    "manifest": "generation/m-45933479a5def065/runs/2026-09-11t103927z/manifest.json"
+  }
+}

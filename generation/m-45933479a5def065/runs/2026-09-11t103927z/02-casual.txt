@@ -1,0 +1,107 @@
+[INPUT]
+
+SOURCE MOBILE SUIT: [딜란자 솔]
+
+This name is identity-provenance metadata only, used for lore, personality, and occupation context. It must not be used to reconstruct, restore, or invent mobile-suit armor, weapons, shields, backpacks, mechanical limbs, or other canonical equipment.
+
+Use the attached clearly adult anthropomorphized character as the absolute identity and equipment reference for this image.
+
+==================================================
+
+[IDENTITY LOCK]
+
+Use the SAME clearly adult woman as the attached reference. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign. Facial expression is not identity. The brows, eyelids, eye openness, mouth shape and lip parting must follow the expression specified elsewhere in this prompt — "preserve mouth shape" refers to the resting structure and proportion of the lips, not to holding a neutral mouth. A specified expression must be clearly readable on the face.
+
+==================================================
+
+[LIFESTYLE REFERENCE LOCK]
+
+The attached character image is authoritative for the character's visible appearance and equipment state in this image. The source mobile suit name above is identity-origin metadata only and must not be used to reconstruct, restore, or invent mobile-suit equipment. Lifestyle may retain small, non-functional, identity-defining accessories from the character reference when they read as wearable ornament rather than active mobile-suit equipment. Do not retain or reconstruct functional armor, weapons, shields, backpacks, binders, thrusters, mechanical limbs, or other combat/mechanical equipment. Canonical mobile-suit equipment that is absent from the attached character reference must remain absent. For civilian, casual, homewear, swimwear, activewear, fashion, and other lifestyle scenes, translate only the character's established human identity into the requested scene — do not revert the character toward her original mobile-suit form.
+
+If multiple reference images of the same character are attached: use the clearest face close-up as the primary facial identity anchor; use the full-character reference as the primary authority for body proportions, hairstyle, overall appearance, and visible equipment state; use any remaining references only to resolve details that are unclear or occluded. Do not average the references into a new face. All attached references depict the same character and must resolve toward one identity.
+
+==================================================
+
+[CHARACTER IDENTITY SPEC]
+
+The attached anthropomorphized reference image was generated from this specification:
+- ethnicity: South Asian
+- apparent age: 20s
+- facial impression: fierce
+- face shape: angular
+- eye shape: narrow
+- eye color: lavender
+- skin tone: medium
+- hair color: navy
+- hair length: short
+- hairstyle: asymmetric cut
+- bangs: side-swept bangs
+- jaw & chin: angular defined jaw
+- nose character: prominent defined nose
+- lips: fuller lower lip
+- hair texture: thick
+- hair volume: moderate
+- parting: deep side part
+- body type: muscular
+- height impression: tall
+- torso / chest build: full
+- waist / hip silhouette: athletic
+- leg proportion: powerful
+- shoulder build: broad
+- torso length: balanced
+- lower-body build: full
+
+Precedence: the attached image remains the primary reference. Use this list to resolve anything the image leaves ambiguous — including body proportions that the mobile-suit armor in the reference image may obscure, and to prevent facial drift across panels — especially ethnicity, facial structure, and apparent age, which tend to slide toward a generic default over six panels. Where the image shows something clearly and unambiguously, follow the image. Where armor, pose, foreshortening, camera angle, cropping, or occlusion makes a detail ambiguous, use this list to resolve it rather than guessing.
+
+==================================================
+
+[ART STYLE]
+
+high-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization. The final image must read first as a sophisticated semi-realistic digital painting, not as an anime illustration, mobile-game key art, 3D character render, or live-action photograph. FACE: preserve mature adult facial anatomy, believable skull structure, and convincing three-dimensional facial volume. Anime influence is restrained and limited to subtle idealization: slightly more expressive eyes, refined eye shape, a delicate but anatomically plausible nose, softly shaped lips, and a graceful jaw. Eye size remains close to believable adult human proportion. Facial structure specified in PARAMETERS remains authoritative and must not be replaced by a recurring anime beauty template. Build facial features through painted light, value transitions, and soft form rather than crisp graphic linework. Eyelids, lash lines, irises, lips, cheeks, nose, and jaw all belong to the same painted surface language. Avoid graphic eyelashes, oversized irises, simplified triangular noses, tiny doll-like mouths, extreme V-shaped jaws, and separately drawn anime eyes sitting on top of realistic skin. SKIN: softly painted dimensionality, subtle subsurface warmth, restrained natural texture, and smooth but non-plastic transitions. Do not render photographic pore noise, but retain believable facial planes and natural variation. Highlights on skin are painted light rather than glossy CG reflections. HAIR: construct hair from painterly grouped masses with selected fine strands and flyaways. Use natural highlight grouping rather than uniformly sharp strand-by-strand photographic rendering. CLOTHING, ACCESSORIES, AND SURFACES: preserve convincing material identity, but render fabric, leather, and other worn surfaces through the same painterly visual language as the face. Reflections and specular highlights are selectively simplified and painted rather than physically perfect PBR reflections. LIGHTING: broad cinematic key light, natural reflected bounce, restrained rim illumination, atmospheric shadow colour, realistic falloff, and subtle bloom. The subject and environment share one coherent lighting system. EDGE AND DETAIL HIERARCHY: use selective sharpness. Important focal edges, hardware, and a few illuminated hair strands may be crisp while skin, secondary forms, and distant elements remain softer. Avoid uniformly razor-sharp rendering. Avoid cel shading, graphic anime linework, airbrushed gacha-game skin, glossy plastic skin, generic Unreal or Octane style CGI, physically perfect PBR reflections, and excessively clean mobile-game character rendering.
+
+This art style governs all rendering, facial stylization, lighting, and material treatment throughout this prompt.
+
+[LIFESTYLE STYLE EXTENSION]
+
+Clothing, skin, hair, and environment in this scene all follow the semi-real painterly surface logic established above. Fabrics, leather, denim, knitwear, and other materials retain tactile detail and natural folds, described through the same painterly value language as skin and hair. Wet skin or swimwear may show localized highlights without turning the entire figure into glossy plastic. The character must feel embedded in the environment, with consistent light and atmosphere across figure and background.
+
+[STYLE LOCK]
+
+The selected ART STYLE controls the rendering language of the entire image: facial construction, skin, hair, clothing, fabric, props, lighting, background treatment, edge handling, shading, reflections, speculars, texture, and detail density. It governs HOW the scene is rendered only — it must not redesign, reconstruct, or reintroduce the source mobile suit's armor, weapons, shield, backpack, mechanical limbs, or other canonical equipment. It must not redesign the underlying facial geometry, facial proportions, or character identity established by the attached reference and by this prompt. The attached character reference controls visible character identity and visible equipment state. If any common instruction conflicts with the selected ART STYLE, the selected ART STYLE wins for rendering language only.
+
+==================================================
+
+[OUTPUT]
+
+Create ONE SINGLE image in 2:3 vertical aspect. Exactly one woman. No collage, no panels, no split frames, no numerals, no captions, titles, labels, or any other text.
+
+==================================================
+
+[DIRECTION]
+
+Create ONE believable modern occupation scene. First derive a specific modern profession from a distinctive SOURCE MOBILE SUIT lore anchor whenever possible. The workplace, clothing, action, and tools should make the occupation understandable without text. Keep styling attractive but grounded, practical, and non-costume-like.
+
+==================================================
+
+[SETTINGS]
+
+- Framing: three-quarter body.
+- Expression: focused — slightly drawn brow, narrowed steady eyes fixed on one point, mouth firmly closed.
+- Body orientation: leaning forward.
+- Pose: mid-action.
+- Scene / Location: a quiet artisan bookbinding workshop in late afternoon, with a heavy wooden workbench, linen thread, bone folders, brass hand tools, stacked unbound signatures and a cast-iron book press.
+- Outfit: a fitted sleeveless olive-gray mock-neck top, dark indigo high-waisted work trousers, a charcoal cross-back canvas apron and rolled navy overshirt tied around her hips.
+- Camera / Lighting: eye-level three-quarter-body front-side view, 65mm lens, warm window light and cool violet fill, shallow but readable workshop depth, sharp attention on her face and both working hands.
+- Additional instruction: She leans over the workbench while pulling linen thread through the spine of a half-bound book, one hand guiding a curved needle and the other holding the pages square. Keep the same clearly adult South Asian woman, medium warm skin, narrow lavender eyes, angular jaw, prominent nose, fuller lower lip, short navy asymmetric hair and muscular broad-shouldered build as the attached reference. No armor, mecha parts, weapons, pilot resemblance, letters, logos or watermark..
+
+==================================================
+
+[NON-EXPLICIT LIMITS]
+
+The character must clearly read as an adult. The garments are securely fitted and fully opaque, and the styling is suitable for a mainstream fashion or lifestyle editorial. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.
+
+==================================================
+
+[FINAL CHECK]
+
+Verify: exactly one image and one woman; the requested aspect ratio; no text anywhere in the frame; the selected category and example are followed; no explicit nudity or sexual activity.

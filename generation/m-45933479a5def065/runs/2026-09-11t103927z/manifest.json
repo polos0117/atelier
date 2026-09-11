@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "card": "딜란자 솔",
+  "repository": "polos0117/atelier",
+  "branch": "codex/dilanza-sol",
+  "base_commit": "03cdf42bb06440cee45036c8792d7168b5199e35",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "run": "2026-09-11t103927z",
+  "assets": [
+    {
+      "file": "딜란자 솔_cinematic_semi_real_f.webp",
+      "card": "딜란자 솔",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "dab4c6c5aa8d90d4bb82b43d8c4e78159ea8662d790d9215bdd40d9672689c62",
+      "prompt": "generation/m-45933479a5def065/runs/2026-09-11t103927z/01-anthro.txt",
+      "manifest": "generation/m-45933479a5def065/runs/2026-09-11t103927z/manifest.json",
+      "generation_id": "exec-a7a15e4d-bcaa-4575-882a-588c234d3c21",
+      "source_file": "exec-a7a15e4d-bcaa-4575-882a-588c234d3c21.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [],
+      "reference_design_urls": [
+        "https://en.gundam-official.com/witch-from-mercury/mobile-suit/12/"
+      ],
+      "parent_anthro": null
+    },
+    {
+      "file": "딜란자 솔_cinematic_semi_real_f_casual1.webp",
+      "card": "딜란자 솔",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "fe827ef97760aaf03b2edfb43663c82d3a6a42132cf40b6533a9fbd0714b2fc5",
+      "prompt": "generation/m-45933479a5def065/runs/2026-09-11t103927z/02-casual.txt",
+      "manifest": "generation/m-45933479a5def065/runs/2026-09-11t103927z/manifest.json",
+      "generation_id": "exec-a500d28e-c997-4b86-8f71-8292c4147768",
+      "source_file": "exec-a500d28e-c997-4b86-8f71-8292c4147768.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-a7a15e4d-bcaa-4575-882a-588c234d3c21"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-a7a15e4d-bcaa-4575-882a-588c234d3c21"
+    },
+    {
+      "file": "딜란자 솔_anime_illust_f.webp",
+      "card": "딜란자 솔",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "cdbcf0f9346f3e06ebcbec7f9825fdc7fa72f050cf05c5bb0e9c522de73d0ac8",
+      "prompt": "generation/m-45933479a5def065/runs/2026-09-11t103927z/03-anthro.txt",
+      "manifest": "generation/m-45933479a5def065/runs/2026-09-11t103927z/manifest.json",
+      "generation_id": "exec-50f38d76-fdc5-4c35-9b31-98d501b5528b",
+      "source_file": "exec-50f38d76-fdc5-4c35-9b31-98d501b5528b.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-a7a15e4d-bcaa-4575-882a-588c234d3c21"
+      ],
+      "reference_design_urls": [
+        "https://en.gundam-official.com/witch-from-mercury/mobile-suit/12/"
+      ],
+      "parent_anthro": null
+    },
+    {
+      "file": "딜란자 솔_anime_illust_f_casual1.webp",
+      "card": "딜란자 솔",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "e30322ff578cb6cf7f2590f38e33cf82df2976097f3d039a1bae570bb69488a1",
+      "prompt": "generation/m-45933479a5def065/runs/2026-09-11t103927z/04-casual.txt",
+      "manifest": "generation/m-45933479a5def065/runs/2026-09-11t103927z/manifest.json",
+      "generation_id": "exec-6ef01ffd-47f0-44bc-98fc-955d87a0fa19",
+      "source_file": "exec-6ef01ffd-47f0-44bc-98fc-955d87a0fa19.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-50f38d76-fdc5-4c35-9b31-98d501b5528b"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-50f38d76-fdc5-4c35-9b31-98d501b5528b"
+    }
+  ],
+  "conversion": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6,
+    "resized": false,
+    "cropped": false
+  },
+  "review": {
+    "identity": "Same clearly adult South Asian woman across four images",
+    "styles": "Painterly cinematic illustration versus polished modern anime illustration",
+    "casuals": "Artisan bookbinding in warm afternoon light versus securing a folding bicycle on a windy evening ferry",
+    "anthro_framing": "Front-facing full-body with twin launcher towers, six-port missile backpack, complete rifle and feet inside frame",
+    "pose_character": "AUTO",
+    "view_angle": "front, following prior user instruction",
+    "settings_export": "Obtained actual single-card UI export",
+    "delivery": "Four WebP images and prompt links registered locally; remote delivery reported separately."
+  }
+}
