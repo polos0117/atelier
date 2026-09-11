@@ -1,0 +1,38 @@
+{
+  "제간(D형)_호위대_사양_cinematic_semi_real_f.webp": {
+    "card": "제간(D형) 호위대 사양",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "8c554c4cf84375a3640cd6a47af329595a7172108fd481c991c1e2b540d75f43",
+    "prompt": "generation/m-35dfc1b947faf54f/runs/2026-09-11t135405z/01-anthro.txt",
+    "manifest": "generation/m-35dfc1b947faf54f/runs/2026-09-11t135405z/manifest.json"
+  },
+  "제간(D형)_호위대_사양_cinematic_semi_real_f_casual1.webp": {
+    "card": "제간(D형) 호위대 사양",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "6dc715c6fc4629e2c24a8d0991504c20aa8c4d886795794d2ae05ec214ba8883",
+    "prompt": "generation/m-35dfc1b947faf54f/runs/2026-09-11t135405z/02-casual.txt",
+    "manifest": "generation/m-35dfc1b947faf54f/runs/2026-09-11t135405z/manifest.json"
+  },
+  "제간(D형)_호위대_사양_ink_wash_f.webp": {
+    "card": "제간(D형) 호위대 사양",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "9d50cdae1e12c0feb4b73b4893e4c58d63ecc372f8143a4cebd8d18829a145d2",
+    "prompt": "generation/m-35dfc1b947faf54f/runs/2026-09-11t135405z/03-anthro.txt",
+    "manifest": "generation/m-35dfc1b947faf54f/runs/2026-09-11t135405z/manifest.json"
+  },
+  "제간(D형)_호위대_사양_ink_wash_f_casual1.webp": {
+    "card": "제간(D형) 호위대 사양",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "30510779f080d764660b8fc1118a4b77e929a1cd0df96708e76a58bdccf4bc76",
+    "prompt": "generation/m-35dfc1b947faf54f/runs/2026-09-11t135405z/04-casual.txt",
+    "manifest": "generation/m-35dfc1b947faf54f/runs/2026-09-11t135405z/manifest.json"
+  }
+}

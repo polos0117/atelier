@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "card": "제간(D형) 호위대 사양",
+  "model": "RGM-89D-ESC",
+  "series": "건담 NT",
+  "repository": "polos0117/atelier",
+  "branch": "codex/jegan-d-escort-images",
+  "base_commit": "3f9d9946dbf78b5e62c00d0a1e3a6da66c7fdd14",
+  "prompt_source": "deployed prompt.html UI",
+  "run": "2026-09-11t135405z",
+  "created": "2026-09-11T13:54:05Z",
+  "generation_tool": "image_gen",
+  "settings_export": "Actual exportStore button; exportBox JSON captured successfully for both styles",
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity": "Same adult African woman across both styles",
+    "casual_scenes": [
+      "Rainy high-rise music corner at midnight, kneeling to select a record",
+      "Sunlit mountain tea terraces, walking while operating a crop-survey drone"
+    ]
+  },
+  "jobs": [
+    {
+      "id": "01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": null,
+      "prompt": "generation/m-35dfc1b947faf54f/runs/2026-09-11t135405z/01-anthro.txt",
+      "original_generated_file": "exec-e7103ecd-fc68-4eb8-91a0-d3380ceea66c.png",
+      "references": [
+        "https://manual.bandai-hobby.net/menus/detail/536",
+        "https://schizophonic9.com/re5/hguc_jeganescorttype.html"
+      ],
+      "file": "img/제간(D형)_호위대_사양_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "8c554c4cf84375a3640cd6a47af329595a7172108fd481c991c1e2b540d75f43",
+      "bytes": 78412
+    },
+    {
+      "id": "02",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "01",
+      "prompt": "generation/m-35dfc1b947faf54f/runs/2026-09-11t135405z/02-casual.txt",
+      "original_generated_file": "exec-b78031b7-0aa3-4297-a9bf-fa6c4ff99a28.png",
+      "references": [
+        "exec-e7103ecd-fc68-4eb8-91a0-d3380ceea66c.png"
+      ],
+      "file": "img/제간(D형)_호위대_사양_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "6dc715c6fc4629e2c24a8d0991504c20aa8c4d886795794d2ae05ec214ba8883",
+      "bytes": 112472
+    },
+    {
+      "id": "03",
+      "style": "ink_wash",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": "01",
+      "prompt": "generation/m-35dfc1b947faf54f/runs/2026-09-11t135405z/03-anthro.txt",
+      "original_generated_file": "exec-01c2c02b-b47a-40dd-be41-ba1e8f0b9df5.png",
+      "references": [
+        "exec-e7103ecd-fc68-4eb8-91a0-d3380ceea66c.png",
+        "https://manual.bandai-hobby.net/menus/detail/536",
+        "https://schizophonic9.com/re5/hguc_jeganescorttype.html"
+      ],
+      "file": "img/제간(D형)_호위대_사양_ink_wash_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "9d50cdae1e12c0feb4b73b4893e4c58d63ecc372f8143a4cebd8d18829a145d2",
+      "bytes": 190790
+    },
+    {
+      "id": "04",
+      "style": "ink_wash",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "03",
+      "prompt": "generation/m-35dfc1b947faf54f/runs/2026-09-11t135405z/04-casual.txt",
+      "original_generated_file": "exec-9f74084f-c3bf-4ad6-9d12-2f3db24e1626.png",
+      "references": [
+        "exec-01c2c02b-b47a-40dd-be41-ba1e8f0b9df5.png"
+      ],
+      "file": "img/제간(D형)_호위대_사양_ink_wash_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "30510779f080d764660b8fc1118a4b77e929a1cd0df96708e76a58bdccf4bc76",
+      "bytes": 274800
+    }
+  ],
+  "prompt_html_sha256": "bb7286d0ef0427a4ec81a73a98a75aaac316d136a2ae921a70134734e21f7370",
+  "prompt_html_verification": "Deployed prompt.html bytes match repository prompt.html at base_commit"
+}

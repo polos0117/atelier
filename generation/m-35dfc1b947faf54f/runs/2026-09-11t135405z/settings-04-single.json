@@ -1,0 +1,73 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "occupation_basic"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "agri_drone"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "focused"
+  },
+  {
+    "id": "sgOrient",
+    "value": "low_angle"
+  },
+  {
+    "id": "sgPose",
+    "value": "mid_action"
+  },
+  {
+    "id": "sgScene",
+    "value": "A sunlit terraced tea farm on a windy mountain ridge in early morning, long green rows descending behind her, a compact agricultural survey drone hovering above the next terrace, dew catching the clear golden light"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "A practical pale-khaki sleeveless field jumpsuit with a high secure zipped neckline, tailored waist belt, articulated knee panels and full-length rolled cuffs, worn with dark olive lace-up work boots, burgundy utility gloves clipped at the belt, and compact ear-protection around her neck"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body low-angle environmental composition from the adjacent terrace, 40mm perspective, clear golden morning sun as a side key with cool open-sky fill, crisp ink-and-wash linework and translucent colour washes, both boots and the hovering drone fully inside frame"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She is striding along the terrace path while raising a compact tablet controller in her left hand and extending her right hand toward the hovering crop-survey drone, eyes focused on its flight path rather than the viewer. Preserve the SAME clearly adult woman from the attached anthropomorphized portrait: recognizable African facial identity, deep skin, short brown blunt cut with side-swept bangs, natural red eyes, tall athletic proportions and broad shoulders. Render her entirely as a normal contemporary human with exactly two natural arms and two natural legs. No armor, helmet, sensor ornament, weapon, shield, backpack, grenades or mechanical body parts. No text, logos, insignia or watermark."
+  },
+  {
+    "checked": false,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]
