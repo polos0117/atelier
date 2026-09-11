@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "card": "조워트 헤비",
+  "repository": "polos0117/atelier",
+  "branch": "codex/zowort-heavy",
+  "base_commit": "f29aebaab0d278565f87188702606bd6e04d7cf9",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "run": "2026-09-11t070550z",
+  "assets": [
+    {
+      "file": "조워트 헤비_cinematic_semi_real_f.webp",
+      "card": "조워트 헤비",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "7ceb08af08993457ebdec02a3d2982205db0c24d8abae95f3b701b4c64fb7946",
+      "prompt": "generation/m-bff20e1316bb9ec0/runs/2026-09-11t070550z/01-anthro.txt",
+      "manifest": "generation/m-bff20e1316bb9ec0/runs/2026-09-11t070550z/manifest.json",
+      "generation_id": "exec-e374a066-583d-440d-89df-50f63f02fa98",
+      "source_file": "exec-e374a066-583d-440d-89df-50f63f02fa98.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [],
+      "reference_design_urls": [
+        "https://gundam-official.com/witch-from-mercury/mobile-suit/13/"
+      ],
+      "parent_anthro": null
+    },
+    {
+      "file": "조워트 헤비_cinematic_semi_real_f_casual1.webp",
+      "card": "조워트 헤비",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "7bd303d389537fed0cf429e01c1bad2b221a71aaeb743fede8fe179039adc659",
+      "prompt": "generation/m-bff20e1316bb9ec0/runs/2026-09-11t070550z/02-casual.txt",
+      "manifest": "generation/m-bff20e1316bb9ec0/runs/2026-09-11t070550z/manifest.json",
+      "generation_id": "exec-243f379b-15bc-4cea-8036-e6ced6439fa8",
+      "source_file": "exec-243f379b-15bc-4cea-8036-e6ced6439fa8.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-e374a066-583d-440d-89df-50f63f02fa98"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-e374a066-583d-440d-89df-50f63f02fa98"
+    },
+    {
+      "file": "조워트 헤비_retro_anime_f.webp",
+      "card": "조워트 헤비",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "3a06c737b03a8b9c04e3d17aceb9a94083541f6b74e6545c8258c330cc29cfef",
+      "prompt": "generation/m-bff20e1316bb9ec0/runs/2026-09-11t070550z/03-anthro.txt",
+      "manifest": "generation/m-bff20e1316bb9ec0/runs/2026-09-11t070550z/manifest.json",
+      "generation_id": "exec-7a1928d7-3175-4a6a-8faf-39e0e3556fe9",
+      "source_file": "exec-7a1928d7-3175-4a6a-8faf-39e0e3556fe9.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-e374a066-583d-440d-89df-50f63f02fa98"
+      ],
+      "reference_design_urls": [
+        "https://gundam-official.com/witch-from-mercury/mobile-suit/13/"
+      ],
+      "parent_anthro": null
+    },
+    {
+      "file": "조워트 헤비_retro_anime_f_casual1.webp",
+      "card": "조워트 헤비",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "d517d8fabae1e8d98151bdb13b021b34ad9bc0c3fd7e2e4cec50af70f77bc7f1",
+      "prompt": "generation/m-bff20e1316bb9ec0/runs/2026-09-11t070550z/04-casual.txt",
+      "manifest": "generation/m-bff20e1316bb9ec0/runs/2026-09-11t070550z/manifest.json",
+      "generation_id": "exec-e6e4e831-b464-42b9-93e1-0c9fb2be0a46",
+      "source_file": "exec-e6e4e831-b464-42b9-93e1-0c9fb2be0a46.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-7a1928d7-3175-4a6a-8faf-39e0e3556fe9"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-7a1928d7-3175-4a6a-8faf-39e0e3556fe9"
+    }
+  ],
+  "conversion": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6,
+    "resized": false,
+    "cropped": false
+  },
+  "review": {
+    "identity": "same adult woman across four images",
+    "styles": "cinematic painted volume versus retro anime ink outlines and cel shadows",
+    "casuals": "winter cabin seated cocoa versus summer seaside roller skating",
+    "anthro_framing": "front-facing in both styles, complete cannon, launcher, rifle and feet",
+    "pose_character": "AUTO",
+    "view_angle": "front, following current user instruction",
+    "delivery": "upload, merge and verify automatic registration; user checks dex visually"
+  }
+}
