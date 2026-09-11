@@ -1,0 +1,42 @@
+{
+  "GUNDVÖLVA_cinematic_semi_real_f.webp": {
+    "file": "GUNDVÖLVA_cinematic_semi_real_f.webp",
+    "card": "GUNDVÖLVA",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "e33a6dbf5df465754d05436be0724ccb0a33f27ba74644935275a1ba11a11c94",
+    "prompt": "generation/m-25c61a976d9d1c11/runs/2026-09-11t064341z/01-anthro.txt",
+    "manifest": "generation/m-25c61a976d9d1c11/runs/2026-09-11t064341z/manifest.json"
+  },
+  "GUNDVÖLVA_cinematic_semi_real_f_casual1.webp": {
+    "file": "GUNDVÖLVA_cinematic_semi_real_f_casual1.webp",
+    "card": "GUNDVÖLVA",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "eb09dbf343889d983199918776898a058a2f600b99779e00e3f38dda177c75ed",
+    "prompt": "generation/m-25c61a976d9d1c11/runs/2026-09-11t064341z/02-casual.txt",
+    "manifest": "generation/m-25c61a976d9d1c11/runs/2026-09-11t064341z/manifest.json"
+  },
+  "GUNDVÖLVA_game_keyart_f.webp": {
+    "file": "GUNDVÖLVA_game_keyart_f.webp",
+    "card": "GUNDVÖLVA",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "5d6cf73eec3e224fe5c375d3170a989913846e78dd7fe2eb8e49d5116a8203cc",
+    "prompt": "generation/m-25c61a976d9d1c11/runs/2026-09-11t064341z/03-anthro-front.txt",
+    "manifest": "generation/m-25c61a976d9d1c11/runs/2026-09-11t064341z/manifest.json"
+  },
+  "GUNDVÖLVA_game_keyart_f_casual1.webp": {
+    "file": "GUNDVÖLVA_game_keyart_f_casual1.webp",
+    "card": "GUNDVÖLVA",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "4376c1f5376ea4d6fd867bd151057925f31a41f3336b9682baa25d28b5e67eed",
+    "prompt": "generation/m-25c61a976d9d1c11/runs/2026-09-11t064341z/04-casual.txt",
+    "manifest": "generation/m-25c61a976d9d1c11/runs/2026-09-11t064341z/manifest.json"
+  }
+}
