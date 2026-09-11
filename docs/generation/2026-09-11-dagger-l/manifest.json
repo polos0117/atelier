@@ -1,0 +1,135 @@
+{
+  "version": 1,
+  "repository": "polos0117/atelier",
+  "branch": "codex/dagger-l",
+  "base_commit": "2da5ba8221d0f7827087083d7d470b9af896d7cb",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "prompt_sha256": "6bfb8dd4477e11a6032f61c94275d35e330e39af02b0e71d864d5d21fcfe9801",
+  "generator": "image_gen",
+  "workflow": "Actual UI selections and text previews, supplemental instructions applied through UI. Exact copied prompts submitted. Anthro pose, viewpoint and equipment presentation AUTO. Each casual references its corresponding generated anthro.",
+  "age_selection": "20s selected in actual UI following the new youthful-adult/twenties preference; preserved across all four images.",
+  "assets": [
+    {
+      "order": 1,
+      "style": "cinematic_semi_real",
+      "mode": "anthro",
+      "generation_id": "exec-4b75cbbc-0a8b-4efb-ac03-d3957ced81f1",
+      "reference_ids": [],
+      "card": "대거L",
+      "batch": "2026-09-11-dagger-l",
+      "gender": "f",
+      "file": "대거L_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "e4ba72b222f4ed85160090589f0a38f3f2768d5d000d0aad292ea8703cf06549",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-dagger-l-01",
+      "prompt": "docs/generation/2026-09-11-dagger-l/01-anthro.txt",
+      "prompt_sha256": "31cd6d251fb81c709651b193f99061d688e6c0dafca30f1cff8fb5fcdab4cb6f",
+      "registered_locally": true
+    },
+    {
+      "order": 2,
+      "style": "cinematic_semi_real",
+      "mode": "casual",
+      "generation_id": "exec-5e2eedf5-e2d5-45fe-814f-823bff88b4fa",
+      "reference_ids": [
+        "exec-4b75cbbc-0a8b-4efb-ac03-d3957ced81f1"
+      ],
+      "card": "대거L",
+      "batch": "2026-09-11-dagger-l",
+      "gender": "f",
+      "file": "대거L_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "f8163f9b2c1e30383b36ce378e70901f58379101a7ebd98902842e55a42f24e8",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-dagger-l-02",
+      "prompt": "docs/generation/2026-09-11-dagger-l/02-casual.txt",
+      "prompt_sha256": "5d5407e9e65b8601e59d817f577cdb8cdb5333de6ece90a462a7314e92ec85b4",
+      "registered_locally": true
+    },
+    {
+      "order": 3,
+      "style": "glossy_kr_game",
+      "mode": "anthro",
+      "generation_id": "exec-30b8d909-d8b2-4239-b886-132033a2a165",
+      "reference_ids": [
+        "exec-4b75cbbc-0a8b-4efb-ac03-d3957ced81f1"
+      ],
+      "card": "대거L",
+      "batch": "2026-09-11-dagger-l",
+      "gender": "f",
+      "file": "대거L_glossy_kr_game_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "edec83203a21ce06133680a921d9b4f6e28977ea41977de2abaff1c5ec7f0cba",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-dagger-l-03",
+      "prompt": "docs/generation/2026-09-11-dagger-l/03-anthro.txt",
+      "prompt_sha256": "96871a2b3a274177cc2b1f2fd4b90ff1cf3d74320eb485b7c6a1e8dfab880006",
+      "registered_locally": true
+    },
+    {
+      "order": 4,
+      "style": "glossy_kr_game",
+      "mode": "casual",
+      "generation_id": "exec-40affe93-6159-4b23-9805-21c88a453c84",
+      "reference_ids": [
+        "exec-30b8d909-d8b2-4239-b886-132033a2a165"
+      ],
+      "card": "대거L",
+      "batch": "2026-09-11-dagger-l",
+      "gender": "f",
+      "file": "대거L_glossy_kr_game_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "6e24ed051d3732a833d1ce13e15271ac99cf941d5516663f88bd9eae27a4e1c5",
+      "generated": true,
+      "converted": true,
+      "id": "2026-09-11-dagger-l-04",
+      "prompt": "docs/generation/2026-09-11-dagger-l/04-casual.txt",
+      "prompt_sha256": "2a02554907887a8b36534c8a36361cf1d95d6012428bf50c4ac0aaaa54fde1f7",
+      "registered_locally": true
+    }
+  ],
+  "record_export": {
+    "attempted": true,
+    "attempt_count": 2,
+    "succeeded": false,
+    "observation": "Actual export UI clicked twice; exportBox stayed empty after registration and later checks.",
+    "fallback": "selection-snapshot.json stores actual DOM choices and additional instructions.",
+    "toolkit_data_merged": true,
+    "toolkit_merge_scope": "Only Dagger L appearance from actual DOM added; no copy history, timestamp or style ledger entry fabricated."
+  },
+  "conversion": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6,
+    "resize": false,
+    "crop": false
+  },
+  "validation": {
+    "registration_candidates": 0,
+    "missing_files": 0,
+    "new_image_dimensions": "4 of 4 are 1024x1536",
+    "existing_dimension_warnings": 897,
+    "existing_dimension_warning_scope": "Pre-existing assets only; unchanged."
+  },
+  "review_notes": [
+    "Four final renders visually inspected: same adult face, dusty-pink bob, brown eyes and pear-shaped physique.",
+    "Shoulder shells, rifle, shield and feet remain inside frame; casuals remove mechanical equipment and show peach selection at a summer market.",
+    "Glossy Korean game style retains a similar overall composition and facial rendering to cinematic reference, with stronger highlights and glow. Style classification uses actual UI choice, not visual inference."
+  ]
+}
