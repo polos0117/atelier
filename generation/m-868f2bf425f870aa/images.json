@@ -1,0 +1,42 @@
+{
+  "딜란자 라우더 전용기_cinematic_semi_real_f.webp": {
+    "file": "딜란자 라우더 전용기_cinematic_semi_real_f.webp",
+    "card": "딜란자 라우더 전용기",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "fe6a6e883307812497081f75405ba699f2f3c1010604f8f40aff99ed4f56c2e1",
+    "prompt": "generation/m-868f2bf425f870aa/runs/2026-09-11t100523z/01-anthro.txt",
+    "manifest": "generation/m-868f2bf425f870aa/runs/2026-09-11t100523z/manifest.json"
+  },
+  "딜란자 라우더 전용기_cinematic_semi_real_f_casual1.webp": {
+    "file": "딜란자 라우더 전용기_cinematic_semi_real_f_casual1.webp",
+    "card": "딜란자 라우더 전용기",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "47385c80a6994f470b5ff049cea7ab3252b93dbfdf9e10e899e3624977c62e5c",
+    "prompt": "generation/m-868f2bf425f870aa/runs/2026-09-11t100523z/02-casual.txt",
+    "manifest": "generation/m-868f2bf425f870aa/runs/2026-09-11t100523z/manifest.json"
+  },
+  "딜란자 라우더 전용기_retro_anime_f.webp": {
+    "file": "딜란자 라우더 전용기_retro_anime_f.webp",
+    "card": "딜란자 라우더 전용기",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "cad4d317f98f62957b32b810ffa17cd3c35d533a5c489eed0ece09f0ba7062c6",
+    "prompt": "generation/m-868f2bf425f870aa/runs/2026-09-11t100523z/03-anthro.txt",
+    "manifest": "generation/m-868f2bf425f870aa/runs/2026-09-11t100523z/manifest.json"
+  },
+  "딜란자 라우더 전용기_retro_anime_f_casual1.webp": {
+    "file": "딜란자 라우더 전용기_retro_anime_f_casual1.webp",
+    "card": "딜란자 라우더 전용기",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "afeeb5dc6dc0b1faab7ae24210fec5720529fb644cc50689afdd0998c3bdf461",
+    "prompt": "generation/m-868f2bf425f870aa/runs/2026-09-11t100523z/04-casual.txt",
+    "manifest": "generation/m-868f2bf425f870aa/runs/2026-09-11t100523z/manifest.json"
+  }
+}
