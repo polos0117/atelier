@@ -1,0 +1,74 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "occupation_sensual"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "gallery_curator"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "focused"
+  },
+  {
+    "id": "sgOrient",
+    "value": "crouching"
+  },
+  {
+    "id": "sgPose",
+    "value": "kneeling"
+  },
+  {
+    "id": "sgScene",
+    "value": "A private contemporary museum conservation gallery during an evening installation, one low alabaster sculpture on a dark plinth, padded art crates without labels, brass track lights and polished stone flooring, with no other people"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "A sculptural charcoal sleeveless wrap-front curator jumpsuit with an asymmetrical high collar, a fitted waist and dramatically wide cropped legs, finished with a broad brushed-gold belt, sheer black ankle socks, pointed flat shoes and white cotton handling gloves"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body high three-quarter environmental composition from across the plinth, 50mm perspective, warm focused gallery spotlights against cool blue service-corridor spill, cinematic painterly depth, both shoes and the complete work action visible"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She kneels on one knee beside the low plinth, left gloved hand steadying a small padded support while her right hand angles a compact inspection light across the sculpture surface. Her golden-brown eyes follow the moving highlight with a focused, assured expression, never looking at the viewer. Preserve the SAME clearly adult Southeast Asian woman from the attached anthropomorphized portrait: recognizable softly rounded face, tan skin, medium blunt-cut purple hair with straight bangs, golden-brown almond eyes, very tall statuesque hourglass proportions and broad shoulders. Render her entirely as a normal contemporary human with exactly two natural arms and two natural legs. No armor, circlet, shield, Heat Fan, mechanical limbs or sensor parts. No readable text, logos or watermark."
+  },
+  {
+    "checked": true,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": true,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]
+

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "swimwear"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "rooftop_infinity_pool"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "relieved"
+  },
+  {
+    "id": "sgOrient",
+    "value": "rear_3q"
+  },
+  {
+    "id": "sgPose",
+    "value": "mid_stride"
+  },
+  {
+    "id": "sgScene",
+    "value": "A quiet rooftop infinity pool at sunrise above a coastal city, pale stone deck, rippling cobalt water, one folded charcoal towel on a brass bench, translucent safety glass and a hazy gold horizon, with no other people"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "A secure asymmetrical one-shoulder competition one-piece in deep charcoal with a broad metallic-gold diagonal panel, high supportive back, modest high-cut legs, bare feet, small gold stud earrings and dark swim goggles resting at her neck"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body low side three-quarter environmental view from water level, 35mm perspective, bright sunrise rim light and cool blue pool bounce, polished glossy Korean game-illustration rendering, both bare feet and the entire stair action visible"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She is stepping up from the shallow pool stairs after a lap: right foot planted on the upper wet step and left foot lifting from the water. Her LEFT hand alone carries the folded charcoal towel beside her left thigh; her RIGHT arm is empty and swings naturally beside her right hip for balance. Exactly TWO human arms and exactly TWO hands total, both anatomically connected to their correct shoulders and both fully visible from shoulder to hand. No hand touches her hair; the breeze alone lifts the ends of her blunt purple bob. She looks back over her left shoulder toward the open horizon with a relieved half-smile, not directly at the viewer. Preserve the SAME clearly adult Southeast Asian woman from the attached glossy anthropomorphized portrait: recognizable softly rounded face, tan skin, medium blunt-cut purple hair with straight bangs, golden-brown almond eyes, very tall statuesque hourglass proportions and broad shoulders. Render her entirely as a normal contemporary human with exactly two natural arms and two natural legs. No extra arms, extra hands, duplicated limbs, fused limbs, armor, circlet, shield, Heat Fan, mechanical limbs or sensor parts. Opaque mainstream swimwear, no transparent fabric, no nudity, no readable text, logos or watermark."
+  },
+  {
+    "checked": true,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": true,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]
+

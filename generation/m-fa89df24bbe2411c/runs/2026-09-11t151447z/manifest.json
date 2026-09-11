@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "card": "골드 스모",
+  "model": "MRC-F20",
+  "series": "∀건담",
+  "repository": "polos0117/atelier",
+  "branch": "codex/gold-sumo-images",
+  "base_commit": "a90e30c00d9f84abf839a1a89db8744bc0991de5",
+  "prompt_source": "deployed prompt.html UI",
+  "run": "2026-09-11t151447z",
+  "created": "2026-09-11T15:14:47Z",
+  "generation_tool": "image_gen",
+  "settings_export": "Actual exportStore button; exportBox JSON captured successfully for both styles",
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity": "Same adult Southeast Asian woman across both styles",
+    "casual_scenes": [
+      "Evening museum conservation gallery, kneeling sculpture inspection",
+      "Sunrise rooftop infinity pool, climbing pool stairs"
+    ]
+  },
+  "jobs": [
+    {
+      "id": "01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": null,
+      "prompt": "generation/m-fa89df24bbe2411c/runs/2026-09-11t151447z/01-anthro.txt",
+      "original_generated_file": "exec-21a8bae7-d020-4bc4-abc3-07ee7bb647e9.png",
+      "references": [
+        "https://p-bandai.jp/item/item-1000135884/",
+        "https://blog.p-adic.net/entry/2019/08/31/102927"
+      ],
+      "file": "img/골드_스모_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "6c26fdce58814c866218ac5890d1eb69264aeebea36a3cb645fa2d6ab8dd6084",
+      "bytes": 100248
+    },
+    {
+      "id": "02",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "01",
+      "prompt": "generation/m-fa89df24bbe2411c/runs/2026-09-11t151447z/02-casual.txt",
+      "original_generated_file": "exec-0cb94e68-f26d-4f80-a933-a8e1a413516b.png",
+      "references": [
+        "exec-21a8bae7-d020-4bc4-abc3-07ee7bb647e9.png"
+      ],
+      "file": "img/골드_스모_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "42cd5550dbf40f691a212fbca271ec676b6500acca8f4cec7f95812256f119d2",
+      "bytes": 86738
+    },
+    {
+      "id": "03",
+      "style": "glossy_kr_game",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": "01",
+      "prompt": "generation/m-fa89df24bbe2411c/runs/2026-09-11t151447z/03-anthro.txt",
+      "original_generated_file": "exec-af63f835-d948-4e06-b46b-2bc607c9cbc9.png",
+      "references": [
+        "exec-21a8bae7-d020-4bc4-abc3-07ee7bb647e9.png",
+        "https://p-bandai.jp/item/item-1000135884/",
+        "https://blog.p-adic.net/entry/2019/08/31/102927"
+      ],
+      "file": "img/골드_스모_glossy_kr_game_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "f3a7818530b961213fbb56a176beb4b094f5ef968db9c59e7cf9e1fa13101346",
+      "bytes": 144876
+    },
+    {
+      "id": "04",
+      "style": "glossy_kr_game",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "03",
+      "prompt": "generation/m-fa89df24bbe2411c/runs/2026-09-11t151447z/04-casual.txt",
+      "original_generated_file": "exec-e80b4efa-7338-4f74-a98f-fe992fdd57b1.png",
+      "references": [
+        "exec-af63f835-d948-4e06-b46b-2bc607c9cbc9.png"
+      ],
+      "file": "img/골드_스모_glossy_kr_game_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "2632eeca3de6a6a7b055430729e8fae01751e2a53913ed868bd8c3c26ec4e40e",
+      "bytes": 176264
+    }
+  ],
+  "prompt_html_sha256": "bb7286d0ef0427a4ec81a73a98a75aaac316d136a2ae921a70134734e21f7370",
+  "prompt_html_verification": "Deployed prompt.html bytes match repository prompt.html at base_commit"
+}
