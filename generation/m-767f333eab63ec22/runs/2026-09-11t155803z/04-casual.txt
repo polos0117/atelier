@@ -1,0 +1,112 @@
+[INPUT]
+
+SOURCE MOBILE SUIT: [GN-X]
+
+This name is identity-provenance metadata only, used for lore, personality, and occupation context. It must not be used to reconstruct, restore, or invent mobile-suit armor, weapons, shields, backpacks, mechanical limbs, or other canonical equipment.
+
+Use the attached clearly adult anthropomorphized character as the absolute identity and equipment reference for this image.
+
+==================================================
+
+[IDENTITY LOCK]
+
+Use the SAME clearly adult woman as the attached reference. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign. Facial expression is not identity. The brows, eyelids, eye openness, mouth shape and lip parting must follow the expression specified elsewhere in this prompt — "preserve mouth shape" refers to the resting structure and proportion of the lips, not to holding a neutral mouth. A specified expression must be clearly readable on the face.
+
+==================================================
+
+[LIFESTYLE REFERENCE LOCK]
+
+The attached character image is authoritative for the character's visible appearance and equipment state in this image. The source mobile suit name above is identity-origin metadata only and must not be used to reconstruct, restore, or invent mobile-suit equipment. Lifestyle may retain small, non-functional, identity-defining accessories from the character reference when they read as wearable ornament rather than active mobile-suit equipment. Do not retain or reconstruct functional armor, weapons, shields, backpacks, binders, thrusters, mechanical limbs, or other combat/mechanical equipment. Canonical mobile-suit equipment that is absent from the attached character reference must remain absent. For civilian, casual, homewear, swimwear, activewear, fashion, and other lifestyle scenes, translate only the character's established human identity into the requested scene — do not revert the character toward her original mobile-suit form.
+
+If multiple reference images of the same character are attached: use the clearest face close-up as the primary facial identity anchor; use the full-character reference as the primary authority for body proportions, hairstyle, overall appearance, and visible equipment state; use any remaining references only to resolve details that are unclear or occluded. Do not average the references into a new face. All attached references depict the same character and must resolve toward one identity.
+
+==================================================
+
+[CHARACTER IDENTITY SPEC]
+
+The attached anthropomorphized reference image was generated from this specification:
+- ethnicity: Korean
+- apparent age: 20s
+- facial impression: cool
+- face shape: angular
+- eye shape: narrow
+- eye color: purple
+- skin tone: light
+- hair color: silver
+- hair length: short
+- hairstyle: asymmetric cut
+- bangs: asymmetric bangs
+- face length: long
+- face width: narrow
+- jaw & chin: angular defined jaw
+- eye size: medium
+- eye tilt: upturned outer corners
+- nose character: straight slender bridge
+- lips: medium lips
+- hair texture: medium
+- hair volume: moderate
+- parting: deep side part
+- body type: athletic
+- height impression: tall
+- torso / chest build: balanced
+- waist / hip silhouette: athletic
+- leg proportion: long
+- shoulder build: broad
+- torso length: balanced
+- lower-body build: balanced
+
+Precedence: the attached image remains the primary reference. Use this list to resolve anything the image leaves ambiguous — including body proportions that the mobile-suit armor in the reference image may obscure, and to prevent facial drift across panels — especially ethnicity, facial structure, and apparent age, which tend to slide toward a generic default over six panels. Where the image shows something clearly and unambiguously, follow the image. Where armor, pose, foreshortening, camera angle, cropping, or occlusion makes a detail ambiguous, use this list to resolve it rather than guessing.
+
+==================================================
+
+[ART STYLE]
+
+polished modern anime character illustration with clean confident linework, clearly anime facial construction, and controlled two-to-three-step shading supported by soft gradients. The image must read unmistakably as a finished 2D anime illustration rather than photography, 3D CGI, painterly concept art, or glossy 2.5D game rendering. FACE: clearly anime, with expressive eyes, simplified but elegant nose and mouth construction, clean eyelid definition, and adult facial proportions appropriate to PARAMETERS. Preserve individual face shape, ethnicity, maturity, and facial character rather than reusing one generic anime face. SKIN: smooth illustrated colour with clean shadow shapes and restrained soft gradients. No photographic pores, realistic skin noise, or wet CG-style specular response. HAIR: defined graphic locks with clean directional flow, selective internal strand lines, and stylized highlight shapes. LIGHTING: illustrated key and rim lighting expressed through designed colour shapes and gradients rather than physically perfect reflections. Avoid photographic skin, camera grain, realistic lens blur, 3D-render materials, loose brushwork, thick glossy mobile-game rendering, and completely flat low-detail television animation.
+
+This art style governs all rendering, facial stylization, lighting, and material treatment throughout this prompt.
+
+[LIFESTYLE STYLE EXTENSION]
+
+Clothing, fabric, and accessories in this scene follow the same clean 2D illustrated rendering established above. Do not introduce armor, mechanical parts, weapons, or other source mobile-suit equipment into this scene.
+
+[STYLE LOCK]
+
+The selected ART STYLE controls the rendering language of the entire image: facial construction, skin, hair, clothing, fabric, props, lighting, background treatment, edge handling, shading, reflections, speculars, texture, and detail density. It governs HOW the scene is rendered only — it must not redesign, reconstruct, or reintroduce the source mobile suit's armor, weapons, shield, backpack, mechanical limbs, or other canonical equipment. It must not redesign the underlying facial geometry, facial proportions, or character identity established by the attached reference and by this prompt. The attached character reference controls visible character identity and visible equipment state. If any common instruction conflicts with the selected ART STYLE, the selected ART STYLE wins for rendering language only.
+
+==================================================
+
+[OUTPUT]
+
+Create ONE SINGLE image in 2:3 vertical aspect. Exactly one woman. No collage, no panels, no split frames, no numerals, no captions, titles, labels, or any other text.
+
+==================================================
+
+[DIRECTION]
+
+Create designed, fashion-forward homewear or lounge-life scenes. Avoid plain pajamas and bland static sofa poses. Use believable home-life actions, stylish home fashion silhouettes, and a sensual but natural private-life atmosphere.
+Use this as the thematic anchor: Off-shoulder Knit Homewear.
+
+==================================================
+
+[SETTINGS]
+
+- Framing: full body.
+- Expression: gentle — softly lowered brows, warm relaxed eyes, faint closed-lip smile, no tension anywhere.
+- Body orientation: side profile.
+- Pose: kneeling.
+- Scene / Location: A quiet glass sunroom at pale winter dawn, frost along the windows, hanging green plants, warm wood floor and soft cushions, no other people.
+- Outfit: A designed deep-violet off-shoulder ribbed knit top with an asymmetric folded neckline, charcoal wide-leg lounge trousers, and bare feet; softly fitted but fully opaque contemporary homewear.
+- Camera / Lighting: Full-body high side view with gentle depth, entire kneeling figure and both bare feet visible, cool snowy window light balanced by warm indoor lamps, polished anime illustration rendering.
+- Additional instruction: She is kneeling beside a low plant stand while carefully repotting a small fern: her left hand supports the pot and her right hand presses fresh soil around the roots. Preserve the SAME clearly adult Korean woman from the attached anime-style GN-X anthropomorphized portrait, including her long angular face, light skin, narrow upturned purple eyes, short silver asymmetric cut with asymmetric bangs, tall athletic proportions and broad shoulders. Exactly TWO normal human arms, TWO hands and TWO legs, all anatomically correct. Render her completely as a contemporary human: no armor, X-shaped chest vanes, GN Drive, shield, rifle, helmet, mechanical limbs or sensor parts. She looks down at the fern with a gentle absorbed expression, not at the viewer. Secure opaque fashion, no transparent fabric, no nudity, no readable text, logos or watermark..
+
+==================================================
+
+[NON-EXPLICIT LIMITS]
+
+The character must clearly read as an adult. The garments are securely fitted and fully opaque, and the styling is suitable for a mainstream fashion or lifestyle editorial. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.
+
+==================================================
+
+[FINAL CHECK]
+
+Verify: exactly one image and one woman; the requested aspect ratio; no text anywhere in the frame; the selected category and example are followed; no explicit nudity or sexual activity.

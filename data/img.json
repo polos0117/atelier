@@ -1,9 +1,10 @@
 {
  "version": 1,
  "note": "초상 파일 목록. 카드 이름 → {m, f, face, casual[], extra[], byStyle{}} 이다. 파일 이름이 곧 등록 정보라 register-images.py 가 저장소의 *.webp 를 훑어 없는 것만 더한다 — 이미 적힌 것과 얼굴 좌표(face)는 건드리지 않으니 손으로 넣은 항목이 덮이지 않는다. face 는 파일 이름에서 알 수 없어 비면 게임이 기본값을 쓰고, 어색하면 사람이 여기서 손본다. play.html 은 실행 중에도 GitHub 파일 목록으로 같은 규칙을 한 번 더 돌리므로(mergeRepoFiles) 여기 안 적혀 있어도 화면에는 뜬다. 다만 그때는 얼굴 좌표가 기본값이고 목록을 못 받으면 그만이라, 파일로 굳혀 두는 편이 낫다.",
- "count": 256,
+ "count": 257,
  "img": {
   "GN 아처": {"byStyle": {"glossy_kr_game": {"f": "GN 아처_glossy_kr_game_f.webp", "casual": {"f": ["GN 아처_glossy_kr_game_f_casual1.webp"]}}, "cel_anime": {"f": "GN 아처_cel_anime_f.webp"}}},
+  "GN-X": {"byStyle": {"cinematic_semi_real": {"f": "GN-X_cinematic_semi_real_f.webp", "casual": {"f": ["GN-X_cinematic_semi_real_f_casual1.webp"]}}, "anime_illust": {"f": "GN-X_anime_illust_f.webp", "casual": {"f": ["GN-X_anime_illust_f_casual1.webp"]}}}},
   "GQuuuuuuX": {"m": "GQuuuuuuX_m.webp", "f": "GQuuuuuuX_f.webp", "face": {"m": [0.427, 0.055, 0.13], "f": [0.447, 0.09, 0.13]}, "casual": {"f": ["GQuuuuuuX_casual1.webp", "GQuuuuuuX_casual2.webp", "GQuuuuuuX_casual3.webp", "GQuuuuuuX_casual4.webp", "GQuuuuuuX_casual5.webp", "GQuuuuuuX_casual6.webp", "GQuuuuuuX_casual7.webp", "GQuuuuuuX_casual8.webp", "GQuuuuuuX_casual9.webp"]}},
   "GUNDVÖLVA": {"byStyle": {"cinematic_semi_real": {"f": "GUNDVÖLVA_cinematic_semi_real_f.webp", "casual": {"f": ["GUNDVÖLVA_cinematic_semi_real_f_casual1.webp"]}}, "game_keyart": {"f": "GUNDVÖLVA_game_keyart_f.webp", "casual": {"f": ["GUNDVÖLVA_game_keyart_f_casual1.webp"]}}}},
   "RX-78-2 건담": {"m": "RX-78-2_건담_m.webp", "f": "RX-78-2_건담_f.webp", "face": {"m": [0.442, 0.106, 0.14], "f": [0.427, 0.056, 0.15]}, "casual": {"f": ["RX-78-2_건담_casual1.webp"]}},
