@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "card": "하인드리 슈트룸",
+  "repository": "polos0117/atelier",
+  "branch": "codex/heindree-sturm",
+  "base_commit": "53fc71ef3532644fefa2491173f28c4bfbbd4f50",
+  "prompt_source": "https://polos0117.github.io/atelier/prompt.html",
+  "run": "2026-09-11t073759z",
+  "assets": [
+    {
+      "file": "하인드리 슈트룸_cinematic_semi_real_f.webp",
+      "card": "하인드리 슈트룸",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "0ec9eeb4c9d749b0e273cb0d3c6ca5744f389104f437641b6bf7a18600d5b817",
+      "prompt": "generation/m-e4adada1c3a6d8d3/runs/2026-09-11t073759z/01-anthro.txt",
+      "manifest": "generation/m-e4adada1c3a6d8d3/runs/2026-09-11t073759z/manifest.json",
+      "generation_id": "exec-419580f8-2b1a-4fc9-adda-78f899c2c6f5",
+      "source_file": "exec-419580f8-2b1a-4fc9-adda-78f899c2c6f5.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [],
+      "reference_design_urls": [
+        "https://www.hlj.com/productimages/ban/bans65112_1.png"
+      ],
+      "parent_anthro": null
+    },
+    {
+      "file": "하인드리 슈트룸_cinematic_semi_real_f_casual1.webp",
+      "card": "하인드리 슈트룸",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "586026e46251adbd03c090d5c517f356bcfaa5073ebaee13fc455a361605abea",
+      "prompt": "generation/m-e4adada1c3a6d8d3/runs/2026-09-11t073759z/02-casual.txt",
+      "manifest": "generation/m-e4adada1c3a6d8d3/runs/2026-09-11t073759z/manifest.json",
+      "generation_id": "exec-25ae18dd-74ab-4c09-a623-164b3abc94fa",
+      "source_file": "exec-25ae18dd-74ab-4c09-a623-164b3abc94fa.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-419580f8-2b1a-4fc9-adda-78f899c2c6f5"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-419580f8-2b1a-4fc9-adda-78f899c2c6f5"
+    },
+    {
+      "file": "하인드리 슈트룸_painterly_f.webp",
+      "card": "하인드리 슈트룸",
+      "style": "painterly",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "03130073070ecbec031f694a37ecbd1285ad7b4f59bee20647b443413d3ef18a",
+      "prompt": "generation/m-e4adada1c3a6d8d3/runs/2026-09-11t073759z/03-anthro.txt",
+      "manifest": "generation/m-e4adada1c3a6d8d3/runs/2026-09-11t073759z/manifest.json",
+      "generation_id": "exec-6588d976-409c-49bf-ae70-5a59c1ccf5c3",
+      "source_file": "exec-6588d976-409c-49bf-ae70-5a59c1ccf5c3.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-419580f8-2b1a-4fc9-adda-78f899c2c6f5"
+      ],
+      "reference_design_urls": [
+        "https://www.hlj.com/productimages/ban/bans65112_1.png"
+      ],
+      "parent_anthro": null
+    },
+    {
+      "file": "하인드리 슈트룸_painterly_f_casual1.webp",
+      "card": "하인드리 슈트룸",
+      "style": "painterly",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "df99e947383c75eab1f6ae8988613e8d91a684f8e3ba7617aa0367e8295a01b9",
+      "prompt": "generation/m-e4adada1c3a6d8d3/runs/2026-09-11t073759z/04-casual.txt",
+      "manifest": "generation/m-e4adada1c3a6d8d3/runs/2026-09-11t073759z/manifest.json",
+      "generation_id": "exec-52367beb-336b-4e05-95ca-50ca9098021c",
+      "source_file": "exec-52367beb-336b-4e05-95ca-50ca9098021c.png",
+      "width": 1024,
+      "height": 1536,
+      "reference_generation_ids": [
+        "exec-6588d976-409c-49bf-ae70-5a59c1ccf5c3"
+      ],
+      "reference_design_urls": [],
+      "parent_anthro": "exec-6588d976-409c-49bf-ae70-5a59c1ccf5c3"
+    }
+  ],
+  "conversion": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6,
+    "resized": false,
+    "cropped": false
+  },
+  "review": {
+    "identity": "same adult woman across four images",
+    "styles": "cinematic painted volume versus loose painterly concept-art brushwork",
+    "casuals": "indoor bouldering chalk preparation versus rainy-night vinyl listening room",
+    "anthro_framing": "front-facing in both styles, complete shield, rifle and feet",
+    "pose_character": "AUTO",
+    "view_angle": "front, following current user instruction",
+    "delivery": "upload, merge and verify automatic registration; user checks dex visually"
+  }
+}
