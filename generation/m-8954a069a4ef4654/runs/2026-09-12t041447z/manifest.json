@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "card": "GN-X IV",
+  "model": "GNX-803T",
+  "series": "건담 00 극장판",
+  "repository": "polos0117/atelier",
+  "branch": "codex/gn-x-iv-images",
+  "base_commit": "3c97dba70a35a782f9d2a64291a68ea879730cec",
+  "prompt_source": "deployed prompt.html UI",
+  "run": "2026-09-12t041447z",
+  "created": "2026-09-12T04:15:31Z",
+  "generation_tool": "image_gen",
+  "settings_export": "Actual prompt.html selections and exported style settings captured for both styles",
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity": "Same clearly adult African woman across both styles",
+    "anthro_background": "No background or environment direction was added to Special Characteristics; the generator's base style behavior was left unchanged",
+    "casual_scenes": [
+      "Public botanical conservatory during a weekend visit",
+      "Self-service laundromat on a rainy evening"
+    ]
+  },
+  "jobs": [
+    {
+      "id": "01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": null,
+      "prompt": "generation/m-8954a069a4ef4654/runs/2026-09-12t041447z/01-anthro.txt",
+      "original_generated_file": "exec-e9c19722-74f2-421c-aaa8-8a0d5781e400.png",
+      "references": [
+        "https://www.gundamkitscollection.com/2019/08/p-bandai-hg-1144-gn-x-iv-mass.html",
+        "https://suprememecha.blogspot.com/2019/12/review-hgoo-1144-gn-x-iv-mass.html"
+      ],
+      "file": "img/GN-X IV_cinematic_semi_real_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "2d144792302b7bfd8ee626a7d36a477db4661577a9fd532eacb9e5b9a7e3f83c",
+      "bytes": 92620
+    },
+    {
+      "id": "02",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "01",
+      "prompt": "generation/m-8954a069a4ef4654/runs/2026-09-12t041447z/02-casual.txt",
+      "original_generated_file": "exec-5353b306-f2e6-41b7-9999-86717a01792f.png",
+      "references": [
+        "exec-e9c19722-74f2-421c-aaa8-8a0d5781e400.png"
+      ],
+      "file": "img/GN-X IV_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "c63964e4db5f490c200348080d8bad5489921b62bbbadee93bf486fc15f9554a",
+      "bytes": 186646
+    },
+    {
+      "id": "03",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": "01",
+      "prompt": "generation/m-8954a069a4ef4654/runs/2026-09-12t041447z/03-anthro.txt",
+      "original_generated_file": "exec-6b092f42-3ce7-459e-9554-667139240051.png",
+      "references": [
+        "exec-e9c19722-74f2-421c-aaa8-8a0d5781e400.png",
+        "https://www.gundamkitscollection.com/2019/08/p-bandai-hg-1144-gn-x-iv-mass.html",
+        "https://suprememecha.blogspot.com/2019/12/review-hgoo-1144-gn-x-iv-mass.html"
+      ],
+      "file": "img/GN-X IV_retro_anime_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "d6042441a591447fdbca29b0c0dabe31293006421a64789d1adbd37423c3a045",
+      "bytes": 126282
+    },
+    {
+      "id": "04",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "03",
+      "prompt": "generation/m-8954a069a4ef4654/runs/2026-09-12t041447z/04-casual.txt",
+      "original_generated_file": "exec-a3942123-4d9e-48e6-b5e7-3d38f25e5310.png",
+      "references": [
+        "exec-6b092f42-3ce7-459e-9554-667139240051.png"
+      ],
+      "file": "img/GN-X IV_retro_anime_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "e3d7f35f0da5034fefb67c7638e701938f788d512e888754e2cb70ea22bd2d4e",
+      "bytes": 113880
+    }
+  ],
+  "prompt_html_sha256": "ab1103447a08571bbd24c83763047c01bb31c365aa59ad2bf81799715336474e",
+  "prompt_html_verification": "Deployed prompt.html v9.18 used; repository prompt.html hash recorded"
+}

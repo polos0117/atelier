@@ -1,0 +1,38 @@
+{
+  "GN-X IV_cinematic_semi_real_f.webp": {
+    "card": "GN-X IV",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "2d144792302b7bfd8ee626a7d36a477db4661577a9fd532eacb9e5b9a7e3f83c",
+    "prompt": "generation/m-8954a069a4ef4654/runs/2026-09-12t041447z/01-anthro.txt",
+    "manifest": "generation/m-8954a069a4ef4654/runs/2026-09-12t041447z/manifest.json"
+  },
+  "GN-X IV_cinematic_semi_real_f_casual1.webp": {
+    "card": "GN-X IV",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "c63964e4db5f490c200348080d8bad5489921b62bbbadee93bf486fc15f9554a",
+    "prompt": "generation/m-8954a069a4ef4654/runs/2026-09-12t041447z/02-casual.txt",
+    "manifest": "generation/m-8954a069a4ef4654/runs/2026-09-12t041447z/manifest.json"
+  },
+  "GN-X IV_retro_anime_f.webp": {
+    "card": "GN-X IV",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "d6042441a591447fdbca29b0c0dabe31293006421a64789d1adbd37423c3a045",
+    "prompt": "generation/m-8954a069a4ef4654/runs/2026-09-12t041447z/03-anthro.txt",
+    "manifest": "generation/m-8954a069a4ef4654/runs/2026-09-12t041447z/manifest.json"
+  },
+  "GN-X IV_retro_anime_f_casual1.webp": {
+    "card": "GN-X IV",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "e3d7f35f0da5034fefb67c7638e701938f788d512e888754e2cb70ea22bd2d4e",
+    "prompt": "generation/m-8954a069a4ef4654/runs/2026-09-12t041447z/04-casual.txt",
+    "manifest": "generation/m-8954a069a4ef4654/runs/2026-09-12t041447z/manifest.json"
+  }
+}
