@@ -1,0 +1,38 @@
+{
+  "건담 버사고 체스트 브레이크_cinematic_semi_real_f.webp": {
+    "card": "건담 버사고 체스트 브레이크",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "713aaa063f0f803b07301f4b477e9c3bb56386c50ad6c9b5a9a9c0d54d2064f5",
+    "prompt": "generation/m-c5982c092d2efedf/runs/2026-09-12t232413z/01-anthro.txt",
+    "manifest": "generation/m-c5982c092d2efedf/runs/2026-09-12t232413z/manifest.json"
+  },
+  "건담 버사고 체스트 브레이크_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 버사고 체스트 브레이크",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "0dea8e8b50030e7bf816b7e7a0bfff5075f32cd46527b4edfc123b663f43a157",
+    "prompt": "generation/m-c5982c092d2efedf/runs/2026-09-12t232413z/02-casual.txt",
+    "manifest": "generation/m-c5982c092d2efedf/runs/2026-09-12t232413z/manifest.json"
+  },
+  "건담 버사고 체스트 브레이크_cel_anime_f.webp": {
+    "card": "건담 버사고 체스트 브레이크",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "c5160fc281fc5a4a78cacd6944e234fb76856f129d7a2ef78e3aac67568b370a",
+    "prompt": "generation/m-c5982c092d2efedf/runs/2026-09-12t232413z/03-anthro.txt",
+    "manifest": "generation/m-c5982c092d2efedf/runs/2026-09-12t232413z/manifest.json"
+  },
+  "건담 버사고 체스트 브레이크_cel_anime_f_casual1.webp": {
+    "card": "건담 버사고 체스트 브레이크",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "2f551cb119a4d2147593d76080843ba42e57385f828d1c884a89091bbf9f00de",
+    "prompt": "generation/m-c5982c092d2efedf/runs/2026-09-12t232413z/04-casual.txt",
+    "manifest": "generation/m-c5982c092d2efedf/runs/2026-09-12t232413z/manifest.json"
+  }
+}
