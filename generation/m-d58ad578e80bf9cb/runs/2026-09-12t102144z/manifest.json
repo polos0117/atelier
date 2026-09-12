@@ -1,0 +1,35 @@
+{
+ "card": "건담 아슈타론",
+ "repository": "polos0117/atelier",
+ "branch": "claude/firecrawl-mcp-connection-qzyi4s",
+ "baseCommit": "264832265ebe8bea6576fad617df1b7227cdc532",
+ "tool": "user_supplied",
+ "run": "2026-09-12t102144z",
+ "note": "사용자가 건네준 그림으로 일상컷 한 장을 갈아 끼웠다. 이 저장소에서 생성한 것이 아니라 제출 원문이 없다. 그래서 images.json 의 prompt 는 null 이다. 앞선 run 2026-09-12t092457z 의 기록은 그대로 두었다 — 그 run 이 뽑은 것은 지금 파일이 아니므로 해시를 고쳐 얹지 않았다.",
+ "outputs": [
+  {
+   "card": "건담 아슈타론",
+   "style": "anime_illust",
+   "gender": "f",
+   "mode": "casual",
+   "sha256": "b71cd5db7f7218e235b81183797e6dd2064bbdbb63cc056150f8c50bc6558ef3",
+   "prompt": null,
+   "manifest": "generation/m-d58ad578e80bf9cb/runs/2026-09-12t102144z/manifest.json",
+   "id": "01",
+   "file": "img/건담_아슈타론_anime_illust_f_casual1.webp",
+   "size": [
+    1024,
+    1536
+   ],
+   "source": "user upload (PNG 1024×1536, 2289KB)",
+   "reference": null,
+   "status": "supplied_converted",
+   "conversion": "WebP q95 method6 — 크기는 원본 그대로 두고 형식만 바꿨다. 353.0KB (갈아 끼우기 전 357.4KB). 같은 카드의 이웃 파일이 295~448KB 라 그 폭에 맞췄다",
+   "replaces": {
+    "sha256": "8f2ac8b93d879972d3891b394cadc480c91d7102bfbe0c7d23c90bf918fac7c5",
+    "run": "2026-09-12t092457z",
+    "prompt": "generation/m-d58ad578e80bf9cb/runs/2026-09-12t092457z/04-casual-retry.txt"
+   }
+  }
+ ]
+}

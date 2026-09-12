@@ -1,38 +1,38 @@
 {
-  "건담_아슈타론_cinematic_semi_real_f.webp": {
-    "card": "건담 아슈타론",
-    "style": "cinematic_semi_real",
-    "gender": "f",
-    "mode": "anthro",
-    "sha256": "ce256d364e2b47c4e2ed5dba2408874a47497ddd7023f56a20c0a0a0d9f597d6",
-    "prompt": "generation/m-d58ad578e80bf9cb/runs/2026-09-12t092457z/01-anthro.txt",
-    "manifest": "generation/m-d58ad578e80bf9cb/runs/2026-09-12t092457z/manifest.json"
-  },
-  "건담_아슈타론_cinematic_semi_real_f_casual1.webp": {
-    "card": "건담 아슈타론",
-    "style": "cinematic_semi_real",
-    "gender": "f",
-    "mode": "casual",
-    "sha256": "2164a8abff312309e128a3ec1a5dcec98461c4c6d88b22c292c897729632e46e",
-    "prompt": "generation/m-d58ad578e80bf9cb/runs/2026-09-12t092457z/02-casual.txt",
-    "manifest": "generation/m-d58ad578e80bf9cb/runs/2026-09-12t092457z/manifest.json"
-  },
-  "건담_아슈타론_anime_illust_f.webp": {
-    "card": "건담 아슈타론",
-    "style": "anime_illust",
-    "gender": "f",
-    "mode": "anthro",
-    "sha256": "f1b1c24419a1349199d6e04b5605d3f0d4b57cdb8b3b5b271fb609643c6f32c2",
-    "prompt": "generation/m-d58ad578e80bf9cb/runs/2026-09-12t092457z/03-anthro.txt",
-    "manifest": "generation/m-d58ad578e80bf9cb/runs/2026-09-12t092457z/manifest.json"
-  },
-  "건담_아슈타론_anime_illust_f_casual1.webp": {
-    "card": "건담 아슈타론",
-    "style": "anime_illust",
-    "gender": "f",
-    "mode": "casual",
-    "sha256": "8f2ac8b93d879972d3891b394cadc480c91d7102bfbe0c7d23c90bf918fac7c5",
-    "prompt": "generation/m-d58ad578e80bf9cb/runs/2026-09-12t092457z/04-casual-retry.txt",
-    "manifest": "generation/m-d58ad578e80bf9cb/runs/2026-09-12t092457z/manifest.json"
-  }
+ "건담_아슈타론_cinematic_semi_real_f.webp": {
+  "card": "건담 아슈타론",
+  "style": "cinematic_semi_real",
+  "gender": "f",
+  "mode": "anthro",
+  "sha256": "ce256d364e2b47c4e2ed5dba2408874a47497ddd7023f56a20c0a0a0d9f597d6",
+  "prompt": "generation/m-d58ad578e80bf9cb/runs/2026-09-12t092457z/01-anthro.txt",
+  "manifest": "generation/m-d58ad578e80bf9cb/runs/2026-09-12t092457z/manifest.json"
+ },
+ "건담_아슈타론_cinematic_semi_real_f_casual1.webp": {
+  "card": "건담 아슈타론",
+  "style": "cinematic_semi_real",
+  "gender": "f",
+  "mode": "casual",
+  "sha256": "2164a8abff312309e128a3ec1a5dcec98461c4c6d88b22c292c897729632e46e",
+  "prompt": "generation/m-d58ad578e80bf9cb/runs/2026-09-12t092457z/02-casual.txt",
+  "manifest": "generation/m-d58ad578e80bf9cb/runs/2026-09-12t092457z/manifest.json"
+ },
+ "건담_아슈타론_anime_illust_f.webp": {
+  "card": "건담 아슈타론",
+  "style": "anime_illust",
+  "gender": "f",
+  "mode": "anthro",
+  "sha256": "f1b1c24419a1349199d6e04b5605d3f0d4b57cdb8b3b5b271fb609643c6f32c2",
+  "prompt": "generation/m-d58ad578e80bf9cb/runs/2026-09-12t092457z/03-anthro.txt",
+  "manifest": "generation/m-d58ad578e80bf9cb/runs/2026-09-12t092457z/manifest.json"
+ },
+ "건담_아슈타론_anime_illust_f_casual1.webp": {
+  "card": "건담 아슈타론",
+  "style": "anime_illust",
+  "gender": "f",
+  "mode": "casual",
+  "sha256": "b71cd5db7f7218e235b81183797e6dd2064bbdbb63cc056150f8c50bc6558ef3",
+  "prompt": null,
+  "manifest": "generation/m-d58ad578e80bf9cb/runs/2026-09-12t102144z/manifest.json"
+ }
 }
