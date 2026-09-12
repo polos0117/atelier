@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "card": "크로노스",
+  "model": "xvm-dgc",
+  "series": "AGE",
+  "repository": "polos0117/atelier",
+  "branch": "claude/firecrawl-mcp-connection-qzyi4s",
+  "baseCommit": "78043fc0b11204ee3a578245fc7e6dc938697c9e",
+  "tool": "user_supplied",
+  "run": "2026-09-12t152529z",
+  "created": "2026-09-12T15:25:29Z",
+  "note": "사용자가 건네준 그림 아홉 장을 받아 넣었다. 이 저장소에서 돌린 생성이 아니라 제출 원문이 없다. 그래서 images.json 의 prompt 는 모두 null 이다. settings-final.json 은 그림을 다 뽑은 뒤 툴킷에서 내보낸 설정 사본이라 생성 당시 값과 다를 수 있다.",
+  "styleSource": "사용자가 세미리얼 시네마틱으로 확정해 주었다. 그림을 보고 정한 것이 아니다.",
+  "cutMapping": "settings.json 의 used 에 복사 이력 여덟 줄이 있으나 일상컷은 일곱 장이고 occupation_sensual 은 세 번 복사됐다. 어느 컷이 어느 카테고리에서 나왔는지 맞출 수 없어 짝을 적지 않았다.",
+  "conversion": "WebP q95 method6. 크기는 원본 1024×1536 그대로 두고 형식만 바꿨다.",
+  "outputs": [
+    {
+      "card": "크로노스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "f3d59f50e292f780bae0d4ea47adad4f1bf3110659bc765c8e669dd019a7ba1f",
+      "prompt": null,
+      "manifest": "generation/m-465fd5f6cf8336d3/runs/2026-09-12t152529z/manifest.json",
+      "id": "01",
+      "file": "img/크로노스_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "user upload (PNG 1024×1536)",
+      "status": "supplied_converted"
+    },
+    {
+      "card": "크로노스",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "sha256": "2bdff783a5a1c0243df2a0d534dc37bf38fc6219bb90a8450314b81a2289a474",
+      "prompt": null,
+      "manifest": "generation/m-465fd5f6cf8336d3/runs/2026-09-12t152529z/manifest.json",
+      "id": "02",
+      "file": "img/크로노스_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "user upload (PNG 1024×1536)",
+      "status": "supplied_converted"
+    },
+    {
+      "card": "크로노스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "8073d4b711b6f9d2929d987b99975930351c3a267e57996fbc4b97e31b88a18f",
+      "prompt": null,
+      "manifest": "generation/m-465fd5f6cf8336d3/runs/2026-09-12t152529z/manifest.json",
+      "id": "03",
+      "file": "img/크로노스_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "user upload (PNG 1024×1536)",
+      "status": "supplied_converted"
+    },
+    {
+      "card": "크로노스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "c99eff2cd158c7390654f704d4b074fab2e50b01d5b5af07e1af8772012f0e80",
+      "prompt": null,
+      "manifest": "generation/m-465fd5f6cf8336d3/runs/2026-09-12t152529z/manifest.json",
+      "id": "04",
+      "file": "img/크로노스_cinematic_semi_real_f_casual2.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "user upload (PNG 1024×1536)",
+      "status": "supplied_converted"
+    },
+    {
+      "card": "크로노스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "56ce9a486f2f2e3152d7ec03aad452a8496fa2f62e901023f0d46345b9ec3a1c",
+      "prompt": null,
+      "manifest": "generation/m-465fd5f6cf8336d3/runs/2026-09-12t152529z/manifest.json",
+      "id": "05",
+      "file": "img/크로노스_cinematic_semi_real_f_casual3.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "user upload (PNG 1024×1536)",
+      "status": "supplied_converted"
+    },
+    {
+      "card": "크로노스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "077bbb22355e7bd6fa68b6aaf0d0eabe0a7a03ebf10c572e26079eae25340f1f",
+      "prompt": null,
+      "manifest": "generation/m-465fd5f6cf8336d3/runs/2026-09-12t152529z/manifest.json",
+      "id": "06",
+      "file": "img/크로노스_cinematic_semi_real_f_casual4.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "user upload (PNG 1024×1536)",
+      "status": "supplied_converted"
+    },
+    {
+      "card": "크로노스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "58e67dd01738104ed4e9bd972349edc755803c64f1fbb86f2a62100b9493e44b",
+      "prompt": null,
+      "manifest": "generation/m-465fd5f6cf8336d3/runs/2026-09-12t152529z/manifest.json",
+      "id": "07",
+      "file": "img/크로노스_cinematic_semi_real_f_casual5.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "user upload (PNG 1024×1536)",
+      "status": "supplied_converted"
+    },
+    {
+      "card": "크로노스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "6c2c140e26d924c71963a524af860b59edf53522554871c1f81e1bcf6f7490fb",
+      "prompt": null,
+      "manifest": "generation/m-465fd5f6cf8336d3/runs/2026-09-12t152529z/manifest.json",
+      "id": "08",
+      "file": "img/크로노스_cinematic_semi_real_f_casual6.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "user upload (PNG 1024×1536)",
+      "status": "supplied_converted"
+    },
+    {
+      "card": "크로노스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "84e3f8025e0cd925c2ab8c08a8315299b67098893793e1d12163193d74d4d7a2",
+      "prompt": null,
+      "manifest": "generation/m-465fd5f6cf8336d3/runs/2026-09-12t152529z/manifest.json",
+      "id": "09",
+      "file": "img/크로노스_cinematic_semi_real_f_casual7.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "user upload (PNG 1024×1536)",
+      "status": "supplied_converted"
+    }
+  ]
+}

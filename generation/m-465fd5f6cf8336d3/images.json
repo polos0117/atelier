@@ -1,0 +1,83 @@
+{
+  "크로노스_cinematic_semi_real_f.webp": {
+    "card": "크로노스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "f3d59f50e292f780bae0d4ea47adad4f1bf3110659bc765c8e669dd019a7ba1f",
+    "prompt": null,
+    "manifest": "generation/m-465fd5f6cf8336d3/runs/2026-09-12t152529z/manifest.json"
+  },
+  "크로노스_cinematic_semi_real_m.webp": {
+    "card": "크로노스",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "2bdff783a5a1c0243df2a0d534dc37bf38fc6219bb90a8450314b81a2289a474",
+    "prompt": null,
+    "manifest": "generation/m-465fd5f6cf8336d3/runs/2026-09-12t152529z/manifest.json"
+  },
+  "크로노스_cinematic_semi_real_f_casual1.webp": {
+    "card": "크로노스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "8073d4b711b6f9d2929d987b99975930351c3a267e57996fbc4b97e31b88a18f",
+    "prompt": null,
+    "manifest": "generation/m-465fd5f6cf8336d3/runs/2026-09-12t152529z/manifest.json"
+  },
+  "크로노스_cinematic_semi_real_f_casual2.webp": {
+    "card": "크로노스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "c99eff2cd158c7390654f704d4b074fab2e50b01d5b5af07e1af8772012f0e80",
+    "prompt": null,
+    "manifest": "generation/m-465fd5f6cf8336d3/runs/2026-09-12t152529z/manifest.json"
+  },
+  "크로노스_cinematic_semi_real_f_casual3.webp": {
+    "card": "크로노스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "56ce9a486f2f2e3152d7ec03aad452a8496fa2f62e901023f0d46345b9ec3a1c",
+    "prompt": null,
+    "manifest": "generation/m-465fd5f6cf8336d3/runs/2026-09-12t152529z/manifest.json"
+  },
+  "크로노스_cinematic_semi_real_f_casual4.webp": {
+    "card": "크로노스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "077bbb22355e7bd6fa68b6aaf0d0eabe0a7a03ebf10c572e26079eae25340f1f",
+    "prompt": null,
+    "manifest": "generation/m-465fd5f6cf8336d3/runs/2026-09-12t152529z/manifest.json"
+  },
+  "크로노스_cinematic_semi_real_f_casual5.webp": {
+    "card": "크로노스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "58e67dd01738104ed4e9bd972349edc755803c64f1fbb86f2a62100b9493e44b",
+    "prompt": null,
+    "manifest": "generation/m-465fd5f6cf8336d3/runs/2026-09-12t152529z/manifest.json"
+  },
+  "크로노스_cinematic_semi_real_f_casual6.webp": {
+    "card": "크로노스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "6c2c140e26d924c71963a524af860b59edf53522554871c1f81e1bcf6f7490fb",
+    "prompt": null,
+    "manifest": "generation/m-465fd5f6cf8336d3/runs/2026-09-12t152529z/manifest.json"
+  },
+  "크로노스_cinematic_semi_real_f_casual7.webp": {
+    "card": "크로노스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "84e3f8025e0cd925c2ab8c08a8315299b67098893793e1d12163193d74d4d7a2",
+    "prompt": null,
+    "manifest": "generation/m-465fd5f6cf8336d3/runs/2026-09-12t152529z/manifest.json"
+  }
+}
