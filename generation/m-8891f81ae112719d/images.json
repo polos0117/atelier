@@ -1,0 +1,38 @@
+{
+  "그림게르데_cinematic_semi_real_f.webp": {
+    "card": "그림게르데",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "c78f1a3d6ddc72248e78bc71f431f76852ce1e8af2b389a56bdb1bd7fa9c4226",
+    "prompt": "generation/m-8891f81ae112719d/runs/2026-09-12t110556z/01-anthro.txt",
+    "manifest": "generation/m-8891f81ae112719d/runs/2026-09-12t110556z/manifest.json"
+  },
+  "그림게르데_cinematic_semi_real_f_casual1.webp": {
+    "card": "그림게르데",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "287e03d1a1e374b1fb3530a4520b7e942cb55c9e937a432669a9b620ced22d5a",
+    "prompt": "generation/m-8891f81ae112719d/runs/2026-09-12t110556z/02-casual.txt",
+    "manifest": "generation/m-8891f81ae112719d/runs/2026-09-12t110556z/manifest.json"
+  },
+  "그림게르데_anime_illust_f.webp": {
+    "card": "그림게르데",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "366752bb693282c35ca2f1ecf8ba3abf10c50879c5c491ef906ceb9cd7c004a7",
+    "prompt": "generation/m-8891f81ae112719d/runs/2026-09-12t110556z/03-anthro.txt",
+    "manifest": "generation/m-8891f81ae112719d/runs/2026-09-12t110556z/manifest.json"
+  },
+  "그림게르데_anime_illust_f_casual1.webp": {
+    "card": "그림게르데",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "cebf47187ec0686173a15eb247374933a024d145d5f0d474bdc72f55a47fc267",
+    "prompt": "generation/m-8891f81ae112719d/runs/2026-09-12t110556z/04-casual.txt",
+    "manifest": "generation/m-8891f81ae112719d/runs/2026-09-12t110556z/manifest.json"
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "card": "그림게르데",
+  "repository": "polos0117/atelier",
+  "branch": "codex/grimgerde-images",
+  "baseCommit": "405fe6dc6ae13d84081d507b561f3572546bbb49",
+  "tool": "image_gen",
+  "run": "2026-09-12t110556z",
+  "referenceSources": [
+    "https://www.g-tekketsu.com/1st/ms/23.php",
+    "https://www.g-tekketsu.com/1st/ms/img/23.png"
+  ],
+  "direction": "Adult cold-eyed crimson swordswoman, silver-gray bob, natural humanoid limbs, tight full-body framing; motorcycle workshop and hotel staircase lifestyle.",
+  "outputs": [
+    {
+      "card": "그림게르데",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "c78f1a3d6ddc72248e78bc71f431f76852ce1e8af2b389a56bdb1bd7fa9c4226",
+      "prompt": "generation/m-8891f81ae112719d/runs/2026-09-12t110556z/01-anthro.txt",
+      "manifest": "generation/m-8891f81ae112719d/runs/2026-09-12t110556z/manifest.json",
+      "id": "01",
+      "file": "img/그림게르데_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "exec-b8f40934-0a39-4aed-b9b3-184c7f380af5.png",
+      "reference": [
+        "official MS"
+      ],
+      "status": "generated_converted"
+    },
+    {
+      "card": "그림게르데",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "287e03d1a1e374b1fb3530a4520b7e942cb55c9e937a432669a9b620ced22d5a",
+      "prompt": "generation/m-8891f81ae112719d/runs/2026-09-12t110556z/02-casual.txt",
+      "manifest": "generation/m-8891f81ae112719d/runs/2026-09-12t110556z/manifest.json",
+      "id": "02",
+      "file": "img/그림게르데_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "exec-ea6db409-ba15-46f4-afc4-6e78acf76688.png",
+      "reference": [
+        "01"
+      ],
+      "status": "generated_converted"
+    },
+    {
+      "card": "그림게르데",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "366752bb693282c35ca2f1ecf8ba3abf10c50879c5c491ef906ceb9cd7c004a7",
+      "prompt": "generation/m-8891f81ae112719d/runs/2026-09-12t110556z/03-anthro.txt",
+      "manifest": "generation/m-8891f81ae112719d/runs/2026-09-12t110556z/manifest.json",
+      "id": "03",
+      "file": "img/그림게르데_anime_illust_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "exec-248cba2a-f1cc-480b-aec7-c8f78ed0c809.png",
+      "reference": [
+        "01",
+        "official MS"
+      ],
+      "status": "generated_converted"
+    },
+    {
+      "card": "그림게르데",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "cebf47187ec0686173a15eb247374933a024d145d5f0d474bdc72f55a47fc267",
+      "prompt": "generation/m-8891f81ae112719d/runs/2026-09-12t110556z/04-casual.txt",
+      "manifest": "generation/m-8891f81ae112719d/runs/2026-09-12t110556z/manifest.json",
+      "id": "04",
+      "file": "img/그림게르데_anime_illust_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "exec-cf99d661-33f5-468f-9595-d5ee0f64b56a.png",
+      "reference": [
+        "03"
+      ],
+      "status": "generated_converted"
+    }
+  ],
+  "settingsNote": "Settings were exported through the actual UI before generation. The second settings snapshot was restored from the exact retained export string after the browser file write did not persist."
+}
