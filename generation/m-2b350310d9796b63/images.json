@@ -1,0 +1,41 @@
+{
+  "건담_버사고_cinematic_semi_real_f.webp": {
+    "card": "건담 버사고",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "fd6a915c3e86b06ffeddcb0125f2c178348ba48cfaf8b1a5cc8b0c4880ee4b70",
+    "prompt": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/01-anthro.txt",
+    "manifest": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/manifest.json",
+    "corrections": [
+      "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/01-fix-framing.txt"
+    ]
+  },
+  "건담_버사고_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 버사고",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "2466051f6cf5b3d548ca9a3b50d7a397961de452b6d8406e824bccd45eadbc37",
+    "prompt": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/02-casual-retry.txt",
+    "manifest": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/manifest.json"
+  },
+  "건담_버사고_glossy_kr_game_f.webp": {
+    "card": "건담 버사고",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "cda6424a2aaadbd7659a1b99f04189e9cd80c5a9c41e95ec6a152ce532c80ce9",
+    "prompt": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/03-anthro.txt",
+    "manifest": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/manifest.json"
+  },
+  "건담_버사고_glossy_kr_game_f_casual1.webp": {
+    "card": "건담 버사고",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "ae69fd040523c2a3bde162e650cca81a44cccdd4643071dcca7a0d019683fe2b",
+    "prompt": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/04-casual.txt",
+    "manifest": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/manifest.json"
+  }
+}
