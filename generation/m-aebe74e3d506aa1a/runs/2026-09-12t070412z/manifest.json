@@ -1,0 +1,112 @@
+{
+  "card": "키케로가",
+  "repository": "polos0117/atelier",
+  "branch": "codex/kikeroga-images",
+  "baseCommit": "f05db1a",
+  "tool": "image_gen",
+  "run": "2026-09-12t070412z",
+  "referenceSources": [
+    "https://gundam-official.com/gquuuuuux/mecha/28/"
+  ],
+  "userCorrections": [
+    "팔을 정상적인 사람 형태로 수정",
+    "다리도 정상적인 사람 형태로 수정"
+  ],
+  "outputs": [
+    {
+      "card": "키케로가",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "10bfdf0fdce958a883369809af4f24c2d9da00a1d288536bba53a81a2cff3609",
+      "prompt": "generation/m-aebe74e3d506aa1a/runs/2026-09-12t070412z/01-anthro.txt",
+      "manifest": "generation/m-aebe74e3d506aa1a/runs/2026-09-12t070412z/manifest.json",
+      "corrections": [
+        "generation/m-aebe74e3d506aa1a/runs/2026-09-12t070412z/01-fix-arms.txt",
+        "generation/m-aebe74e3d506aa1a/runs/2026-09-12t070412z/01-fix-legs.txt"
+      ],
+      "id": "01",
+      "file": "img/키케로가_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "exec-055438e5-63e2-421d-ac81-c137605479f5.png",
+      "reference": "official MS reference",
+      "status": "generated_converted_registered_local"
+    },
+    {
+      "card": "키케로가",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "638b04143f07134844a0f87acce1ec94b322bc424bdcb46d3d8b10e9e37e30ef",
+      "prompt": "generation/m-aebe74e3d506aa1a/runs/2026-09-12t070412z/02-casual.txt",
+      "manifest": "generation/m-aebe74e3d506aa1a/runs/2026-09-12t070412z/manifest.json",
+      "id": "02",
+      "file": "img/키케로가_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "exec-c2e04348-26f8-442c-9977-acb90f1d51d2.png",
+      "reference": "01",
+      "status": "generated_converted_registered_local"
+    },
+    {
+      "card": "키케로가",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "a613bc0c4546aee76879669d4bd0cd4fa0cdc0972aeda43ef90b702fc50db95d",
+      "prompt": "generation/m-aebe74e3d506aa1a/runs/2026-09-12t070412z/03-anthro.txt",
+      "manifest": "generation/m-aebe74e3d506aa1a/runs/2026-09-12t070412z/manifest.json",
+      "id": "03",
+      "file": "img/키케로가_anime_illust_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "exec-c4ea37d6-29e9-422f-a564-40ef9db91076.png",
+      "reference": "01",
+      "status": "generated_converted_registered_local"
+    },
+    {
+      "card": "키케로가",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "68c7cb9f681e7820c30f97ad1ef4d7134e8ac1446edd45ad68a1e6a8af8fcea9",
+      "prompt": "generation/m-aebe74e3d506aa1a/runs/2026-09-12t070412z/04-casual.txt",
+      "manifest": "generation/m-aebe74e3d506aa1a/runs/2026-09-12t070412z/manifest.json",
+      "id": "04",
+      "file": "img/키케로가_anime_illust_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "exec-15317ed2-8b34-426d-a9f1-2123a0a06988.png",
+      "reference": "03",
+      "status": "generated_converted_registered_local"
+    }
+  ],
+  "correctionHistory": [
+    {
+      "prompt": "generation/m-aebe74e3d506aa1a/runs/2026-09-12t070412z/01-anthro.txt",
+      "output": "exec-f09e9fbf-57a2-43e1-a960-e17413763ba9.png",
+      "status": "rejected_arm_proportions"
+    },
+    {
+      "prompt": "generation/m-aebe74e3d506aa1a/runs/2026-09-12t070412z/01-fix-arms.txt",
+      "input": "exec-f09e9fbf-57a2-43e1-a960-e17413763ba9.png",
+      "output": "exec-5bcb053e-2289-4523-900b-cbde8c2adfb6.png",
+      "status": "superseded_leg_correction"
+    },
+    {
+      "prompt": "generation/m-aebe74e3d506aa1a/runs/2026-09-12t070412z/01-fix-legs.txt",
+      "input": "exec-5bcb053e-2289-4523-900b-cbde8c2adfb6.png",
+      "output": "exec-055438e5-63e2-421d-ac81-c137605479f5.png",
+      "status": "final"
+    }
+  ]
+}
