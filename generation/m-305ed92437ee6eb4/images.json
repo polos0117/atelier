@@ -1,0 +1,38 @@
+{
+  "로젠 줄루_cinematic_semi_real_f.webp": {
+    "card": "로젠 줄루",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "a37d5bbf8ef361b19f1598ae0986cc69001e587825ea8a2abc8a277e57e952d7",
+    "prompt": "generation/m-305ed92437ee6eb4/runs/2026-09-12t163930z/01-anthro.txt",
+    "manifest": "generation/m-305ed92437ee6eb4/runs/2026-09-12t163930z/manifest.json"
+  },
+  "로젠 줄루_cinematic_semi_real_f_casual1.webp": {
+    "card": "로젠 줄루",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "fadb41aee4f0b3b161942fe4e66f6407c59866f8f158b375fe3ad169d83724fe",
+    "prompt": "generation/m-305ed92437ee6eb4/runs/2026-09-12t163930z/02-casual.txt",
+    "manifest": "generation/m-305ed92437ee6eb4/runs/2026-09-12t163930z/manifest.json"
+  },
+  "로젠 줄루_cel_anime_f.webp": {
+    "card": "로젠 줄루",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "d4353178db3caf5a482a91f47e5b4bc4a9447ee30c65bb770121e60bf27513f7",
+    "prompt": "generation/m-305ed92437ee6eb4/runs/2026-09-12t163930z/03-anthro.txt",
+    "manifest": "generation/m-305ed92437ee6eb4/runs/2026-09-12t163930z/manifest.json"
+  },
+  "로젠 줄루_cel_anime_f_casual1.webp": {
+    "card": "로젠 줄루",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "0a921528971f74953dfdc394fffeddcdfe4899c82d2f09e55311c8fefcf74342",
+    "prompt": "generation/m-305ed92437ee6eb4/runs/2026-09-12t163930z/04-casual.txt",
+    "manifest": "generation/m-305ed92437ee6eb4/runs/2026-09-12t163930z/manifest.json"
+  }
+}
