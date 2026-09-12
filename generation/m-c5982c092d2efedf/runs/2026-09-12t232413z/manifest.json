@@ -1,0 +1,81 @@
+{
+  "card": "건담 버사고 체스트 브레이크",
+  "baseCommit": "ddcc3f8ad96047e7d3a8b0c92b6304b5bf6002d7",
+  "settingsNote": "UI export captured after four images. Each submitted prompt is authoritative for its own settings.",
+  "images": [
+    {
+      "card": "건담 버사고 체스트 브레이크",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "713aaa063f0f803b07301f4b477e9c3bb56386c50ad6c9b5a9a9c0d54d2064f5",
+      "prompt": "generation/m-c5982c092d2efedf/runs/2026-09-12t232413z/01-anthro.txt",
+      "manifest": "generation/m-c5982c092d2efedf/runs/2026-09-12t232413z/manifest.json",
+      "file": "건담 버사고 체스트 브레이크_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "source": "exec-e7263aae-ac42-40a0-9c5f-e10fcc90d20a.png",
+      "referenceImage": null,
+      "status": "generated, converted, locally registered pending"
+    },
+    {
+      "card": "건담 버사고 체스트 브레이크",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "0dea8e8b50030e7bf816b7e7a0bfff5075f32cd46527b4edfc123b663f43a157",
+      "prompt": "generation/m-c5982c092d2efedf/runs/2026-09-12t232413z/02-casual.txt",
+      "manifest": "generation/m-c5982c092d2efedf/runs/2026-09-12t232413z/manifest.json",
+      "file": "건담 버사고 체스트 브레이크_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "source": "exec-7f3b5b88-dbab-40b1-8e8b-9c7a2758d855.png",
+      "referenceImage": "exec-c324abd5-e18a-4e72-a0fa-84d8430b2ab0.png",
+      "status": "generated, converted, locally registered pending",
+      "referenceNote": "Casual was generated before user rejected margin edit. Same identity as the selected original."
+    },
+    {
+      "card": "건담 버사고 체스트 브레이크",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "c5160fc281fc5a4a78cacd6944e234fb76856f129d7a2ef78e3aac67568b370a",
+      "prompt": "generation/m-c5982c092d2efedf/runs/2026-09-12t232413z/03-anthro.txt",
+      "manifest": "generation/m-c5982c092d2efedf/runs/2026-09-12t232413z/manifest.json",
+      "file": "건담 버사고 체스트 브레이크_cel_anime_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "source": "exec-6ce1f570-7365-4a9c-8823-50aea1a9b9dc.png",
+      "referenceImage": "/workspace/scratch/f5b5718c9feb/generated_images/exec-e7263aae-ac42-40a0-9c5f-e10fcc90d20a.png",
+      "status": "generated, converted, locally registered pending"
+    },
+    {
+      "card": "건담 버사고 체스트 브레이크",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "2f551cb119a4d2147593d76080843ba42e57385f828d1c884a89091bbf9f00de",
+      "prompt": "generation/m-c5982c092d2efedf/runs/2026-09-12t232413z/04-casual.txt",
+      "manifest": "generation/m-c5982c092d2efedf/runs/2026-09-12t232413z/manifest.json",
+      "file": "건담 버사고 체스트 브레이크_cel_anime_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "source": "exec-e32a3914-e1b8-420c-b7a3-07e6b272f500.png",
+      "referenceImage": "/workspace/scratch/f5b5718c9feb/generated_images/exec-6ce1f570-7365-4a9c-8823-50aea1a9b9dc.png",
+      "status": "generated, converted, locally registered pending"
+    }
+  ],
+  "userFramingDecision": "Use original cinematic image; reject expanded-margin edit. No extra blank margins requested.",
+  "discardedEdit": {
+    "source": "exec-c324abd5-e18a-4e72-a0fa-84d8430b2ab0.png",
+    "reason": "User rejected expanded margins; not registered as a final image."
+  }
+}
