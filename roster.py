@@ -167,11 +167,16 @@ def missing_art():
 
     이름을 고치면 카드·인연·그림 파일이 함께 움직여야 하는데, 한 군데만
     빠뜨려도 아무 소리 없이 초상만 안 뜬다. 판이 도는 데는 지장이 없으니
-    더 안 보인다. 그래서 여기서 센다."""
+    더 안 보인다. 그래서 여기서 센다.
+
+    img.json 은 img/ 를 뺀 이름만 들고 있다. 처음 이 함수를 쓸 때는 그림이
+    저장소 뿌리에 있어서 이름 그대로 찾으면 됐는데, img/ 로 옮긴 뒤로는
+    하나도 못 찾아 1238 장을 전부 없다고 외치고 있었다. 늘 켜진 경고는
+    아무도 안 보므로, 이 함수는 그동안 있으나 마나 했다."""
     import re
     s = open(path("img"), encoding="utf-8").read()
     return sorted({n for n in re.findall(r'"([^"]+\.webp)"', s)
-                   if not os.path.exists(n)})
+                   if not os.path.exists(os.path.join("img", n))})
 
 
 def shared_gge():
