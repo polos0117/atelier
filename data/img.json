@@ -1,7 +1,7 @@
 {
  "version": 1,
  "note": "초상 파일 목록. 카드 이름 → {m, f, face, casual[], extra[], byStyle{}} 이다. 파일 이름이 곧 등록 정보라 register-images.py 가 저장소의 *.webp 를 훑어 없는 것만 더한다 — 이미 적힌 것과 얼굴 좌표(face)는 건드리지 않으니 손으로 넣은 항목이 덮이지 않는다. face 는 파일 이름에서 알 수 없어 비면 게임이 기본값을 쓰고, 어색하면 사람이 여기서 손본다. play.html 은 실행 중에도 GitHub 파일 목록으로 같은 규칙을 한 번 더 돌리므로(mergeRepoFiles) 여기 안 적혀 있어도 화면에는 뜬다. 다만 그때는 얼굴 좌표가 기본값이고 목록을 못 받으면 그만이라, 파일로 굳혀 두는 편이 낫다.",
- "count": 262,
+ "count": 263,
  "img": {
   "GN 아처": {"byStyle": {"glossy_kr_game": {"f": "GN 아처_glossy_kr_game_f.webp", "casual": {"f": ["GN 아처_glossy_kr_game_f_casual1.webp"]}}, "cel_anime": {"f": "GN 아처_cel_anime_f.webp"}}},
   "GN-X": {"byStyle": {"cinematic_semi_real": {"f": "GN-X_cinematic_semi_real_f.webp", "casual": {"f": ["GN-X_cinematic_semi_real_f_casual1.webp"]}}, "anime_illust": {"f": "GN-X_anime_illust_f.webp", "casual": {"f": ["GN-X_anime_illust_f_casual1.webp"]}}}},
@@ -14,6 +14,7 @@
   "ZZ건담": {"m": "ZZ건담_m.webp", "f": "ZZ건담_f.webp", "face": {"m": [0.44, 0.115, 0.18], "f": [0.415, 0.11, 0.2]}, "casual": {"f": ["ZZ건담_casual1.webp"]}},
   "Z건담": {"m": "Z건담_m.webp", "f": "Z건담_f.webp", "face": {"m": [0.385, 0.106, 0.223], "f": [0.416, 0.176, 0.16]}, "casual": {"f": ["Z건담_casual1.webp"]}},
   "∀건담": {"m": "∀건담_m.webp", "f": "∀건담_f.webp", "face": {"m": [0.44, 0.05, 0.13], "f": [0.48, 0.067, 0.13]}, "casual": {"f": ["∀건담_casual1.webp", "∀건담_casual2.webp", "∀건담_casual3.webp", "∀건담_casual4.webp", "∀건담_casual5.webp"]}},
+  "가데라자": {"byStyle": {"cinematic_semi_real": {"f": "가데라자_cinematic_semi_real_f.webp", "casual": {"f": ["가데라자_cinematic_semi_real_f_casual1.webp"]}}, "ink_wash": {"f": "가데라자_ink_wash_f.webp", "casual": {"f": ["가데라자_ink_wash_f_casual1.webp"]}}}},
   "가르발디β": {"byStyle": {"cinematic_semi_real": {"m": "가르발디β_cinematic_semi_real_m.webp", "f": "가르발디β_cinematic_semi_real_f.webp", "face": {"m": [0.412, 0.056, 0.13], "f": [0.418, 0.068, 0.13]}, "casual": {"f": ["가르발디β_cinematic_semi_real_f_casual1.webp", "가르발디β_cinematic_semi_real_f_casual2.webp", "가르발디β_cinematic_semi_real_f_casual3.webp", "가르발디β_cinematic_semi_real_f_casual4.webp", "가르발디β_cinematic_semi_real_f_casual5.webp", "가르발디β_cinematic_semi_real_f_casual6.webp", "가르발디β_cinematic_semi_real_f_casual7.webp"]}}}},
   "가베라 테트라": {"m": "가베라_테트라_m.webp", "f": "가베라_테트라_f.webp", "face": {"m": [0.376, 0.072, 0.186], "f": [0.415, 0.085, 0.186]}, "casual": {"f": ["가베라_테트라_casual1.webp"]}},
   "가브스레이": {"face": {"m": [0.468, 0.072, 0.13], "f": [0.434, 0.063, 0.13]}, "byStyle": {"cinematic_semi_real": {"m": "가브스레이_cinematic_semi_real_m.webp", "f": "가브스레이_cinematic_semi_real_f.webp", "casual": {"f": ["가브스레이_cinematic_semi_real_f_casual1.webp", "가브스레이_cinematic_semi_real_f_casual2.webp", "가브스레이_cinematic_semi_real_f_casual3.webp", "가브스레이_cinematic_semi_real_f_casual4.webp", "가브스레이_cinematic_semi_real_f_casual5.webp", "가브스레이_cinematic_semi_real_f_casual6.webp", "가브스레이_cinematic_semi_real_f_casual7.webp"]}}}},

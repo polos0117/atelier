@@ -1,0 +1,73 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "everyday_basic"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "bookstore"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "pensive"
+  },
+  {
+    "id": "sgOrient",
+    "value": "front_3q"
+  },
+  {
+    "id": "sgPose",
+    "value": "carrying_something"
+  },
+  {
+    "id": "sgScene",
+    "value": "A quiet independent bookstore reading aisle on a rainy afternoon, warm shelf lamps and soft window light, no other people and no readable text"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "A fitted deep burgundy rib-knit turtleneck, charcoal high-waisted wide-leg trousers, black ankle boots, and a dark plum long coat carried over one forearm; fully opaque contemporary clothing"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body front three-quarter composition at eye level, her complete figure and both feet visible between softly receding bookshelves, natural rainy daylight balanced with warm interior lamps"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She pauses while carrying one closed book and a plain dark cloth tote, looking thoughtfully toward a shelf. Preserve the SAME clearly adult Middle Eastern woman from the attached Gadelaza anthropomorphized portrait: elongated angular face, tan skin, small sharp upturned gold eyes, aquiline nose, medium lips, very tall statuesque straight silhouette, and long thick crimson side-shaved hair swept back. Exactly two normal human arms, two hands and two legs. Render her completely as a contemporary human with no armor, helmet, horns, cannon, wings, binders, GN drives, beam-gun arms, drones, weapons, mechanical joints or glowing sensors. No other person, no readable book titles, logos or watermark."
+  },
+  {
+    "checked": true,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": true,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]
