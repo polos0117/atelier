@@ -1,0 +1,38 @@
+{
+  "GFreD_cinematic_semi_real_f.webp": {
+    "card": "GFreD",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "ba62dda50556b249724aa62f3992d26aa05e6207986d55a9981eafa07bde1c4e",
+    "prompt": "generation/m-b47ea79a00b2578d/runs/2026-09-12t062844z/01-anthro.txt",
+    "manifest": "generation/m-b47ea79a00b2578d/runs/2026-09-12t062844z/manifest.json"
+  },
+  "GFreD_cinematic_semi_real_f_casual1.webp": {
+    "card": "GFreD",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "106410993314caf169677f4111dc1dc5dce3fada0ec31430daea2aac90ae54df",
+    "prompt": "generation/m-b47ea79a00b2578d/runs/2026-09-12t062844z/02-casual.txt",
+    "manifest": "generation/m-b47ea79a00b2578d/runs/2026-09-12t062844z/manifest.json"
+  },
+  "GFreD_anime_illust_f.webp": {
+    "card": "GFreD",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "25ed231bbb27a1d0b9f0099e0f6e06f859b3d7cf4455a32244fcfb819291df50",
+    "prompt": "generation/m-b47ea79a00b2578d/runs/2026-09-12t062844z/03-anthro.txt",
+    "manifest": "generation/m-b47ea79a00b2578d/runs/2026-09-12t062844z/manifest.json"
+  },
+  "GFreD_anime_illust_f_casual1.webp": {
+    "card": "GFreD",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "9f50c129dd901fc651377cf8cfa406c2269c0be4ca2e35d59a979c6f25843439",
+    "prompt": "generation/m-b47ea79a00b2578d/runs/2026-09-12t062844z/04-casual.txt",
+    "manifest": "generation/m-b47ea79a00b2578d/runs/2026-09-12t062844z/manifest.json"
+  }
+}
