@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "card": "GFreD",
+  "model": "gMS-κ",
+  "series": "Gundam GQuuuuuuX",
+  "repository": "polos0117/atelier",
+  "branch": "codex/gfred-images",
+  "base_commit": "f87490bbe042bf964c4da88737ddae34c01918f6",
+  "prompt_source": "deployed prompt.html UI",
+  "run": "2026-09-12t062844z",
+  "created": "2026-09-12T06:38:39Z",
+  "generation_tool": "image_gen",
+  "settings_export": "Actual prompt.html selections and exported style settings captured for both styles",
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity": "Same clearly adult Southeast Asian woman in her 20s across both styles",
+    "anthro_background": "No background or environment direction was added to Special Characteristics; the generator's base style behavior was left unchanged",
+    "casual_scenes": [
+      "Greenhouse and independent plant shop during a personal late-morning errand",
+      "Independent vinyl record store during personal early-evening browsing"
+    ]
+  },
+  "jobs": [
+    {
+      "id": "01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": null,
+      "prompt": "generation/m-b47ea79a00b2578d/runs/2026-09-12t062844z/01-anthro.txt",
+      "original_generated_file": "exec-ca71eaca-f7cb-42a6-a20b-5cf2149506ec.png",
+      "references": [
+        "https://en.gundam-official.com/gquuuuuux/glh/en/product/2025/07/1_8.jpg",
+        "https://en.gundam-official.com/gquuuuuux/glh/en/product/2025/07/2_4_1.jpg",
+        "https://en.gundam-official.com/gquuuuuux/glh/en/product/2025/07/3_5.jpg"
+      ],
+      "file": "img/GFreD_cinematic_semi_real_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "ba62dda50556b249724aa62f3992d26aa05e6207986d55a9981eafa07bde1c4e",
+      "bytes": 133468
+    },
+    {
+      "id": "02",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "01",
+      "prompt": "generation/m-b47ea79a00b2578d/runs/2026-09-12t062844z/02-casual.txt",
+      "original_generated_file": "exec-b2b47091-ece0-4fda-8598-6f7f390dc51b.png",
+      "references": ["exec-ca71eaca-f7cb-42a6-a20b-5cf2149506ec.png"],
+      "file": "img/GFreD_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "106410993314caf169677f4111dc1dc5dce3fada0ec31430daea2aac90ae54df",
+      "bytes": 205866
+    },
+    {
+      "id": "03",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": "01",
+      "prompt": "generation/m-b47ea79a00b2578d/runs/2026-09-12t062844z/03-anthro.txt",
+      "original_generated_file": "exec-02086b5b-a611-42af-be0a-436f13ba8b3d.png",
+      "references": [
+        "exec-ca71eaca-f7cb-42a6-a20b-5cf2149506ec.png",
+        "https://en.gundam-official.com/gquuuuuux/glh/en/product/2025/07/1_8.jpg",
+        "https://en.gundam-official.com/gquuuuuux/glh/en/product/2025/07/2_4_1.jpg",
+        "https://en.gundam-official.com/gquuuuuux/glh/en/product/2025/07/3_5.jpg"
+      ],
+      "file": "img/GFreD_anime_illust_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "25ed231bbb27a1d0b9f0099e0f6e06f859b3d7cf4455a32244fcfb819291df50",
+      "bytes": 117634
+    },
+    {
+      "id": "04",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "03",
+      "prompt": "generation/m-b47ea79a00b2578d/runs/2026-09-12t062844z/04-casual.txt",
+      "original_generated_file": "exec-944d08f1-8928-4e3d-af50-674f2757e07f.png",
+      "references": ["exec-02086b5b-a611-42af-be0a-436f13ba8b3d.png"],
+      "file": "img/GFreD_anime_illust_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "9f50c129dd901fc651377cf8cfa406c2269c0be4ca2e35d59a979c6f25843439",
+      "bytes": 106846
+    }
+  ],
+  "prompt_html_sha256": "ab1103447a08571bbd24c83763047c01bb31c365aa59ad2bf81799715336474e",
+  "prompt_html_verification": "Deployed prompt.html v9.18 used; repository prompt.html hash recorded"
+}
