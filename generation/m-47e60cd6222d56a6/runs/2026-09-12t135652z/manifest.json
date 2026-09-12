@@ -1,0 +1,79 @@
+{
+  "card": "가데스",
+  "repository": "polos0117/atelier",
+  "branch": "codex/gaddess-images",
+  "baseCommit": "05a40d9907a80ae7038b1891023f81301d8e1076",
+  "generator": "prompt.html v9.18 actual UI",
+  "tool": "built-in imagegen",
+  "sourceReference": "https://bandai-a.akamaihd.net/bc/img/model/b/1000003312_1.jpg",
+  "images": [
+    {
+      "file": "가데스_cinematic_semi_real_f.webp",
+      "card": "가데스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "432ad15c2fa321b86c5dd5c67852ec67c06444e2fa2d2c1863f95a64f4d9cffb",
+      "prompt": "generation/m-47e60cd6222d56a6/runs/2026-09-12t135652z/01-anthro.txt",
+      "manifest": "generation/m-47e60cd6222d56a6/runs/2026-09-12t135652z/manifest.json",
+      "id": "01",
+      "source": "exec-9b826687-01ca-49a4-b024-8a99f2258e8c.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "parent": null
+    },
+    {
+      "file": "가데스_cinematic_semi_real_f_casual1.webp",
+      "card": "가데스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "c8333710a0e9e4900a5131faa7d498bd7f0c3c2ec7827887352ee240c54cc557",
+      "prompt": "generation/m-47e60cd6222d56a6/runs/2026-09-12t135652z/02-casual.txt",
+      "manifest": "generation/m-47e60cd6222d56a6/runs/2026-09-12t135652z/manifest.json",
+      "id": "02",
+      "source": "exec-73c05b91-926a-4bb6-85ca-cc398765f59f.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "parent": "01"
+    },
+    {
+      "file": "가데스_glossy_kr_game_f.webp",
+      "card": "가데스",
+      "style": "glossy_kr_game",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "caa90a9b0810dfb9d27615c3cf78542fe94a5409abc3ef12c9ce64ea8a6d325a",
+      "prompt": "generation/m-47e60cd6222d56a6/runs/2026-09-12t135652z/03-anthro.txt",
+      "manifest": "generation/m-47e60cd6222d56a6/runs/2026-09-12t135652z/manifest.json",
+      "id": "03",
+      "source": "exec-00a9d514-e6a5-4798-97d7-7a36318e6955.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "parent": "01"
+    },
+    {
+      "file": "가데스_glossy_kr_game_f_casual1.webp",
+      "card": "가데스",
+      "style": "glossy_kr_game",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "ee6116054940ca22933ef72ff80616f598a1a43564908e9932dcb2b77430147c",
+      "prompt": "generation/m-47e60cd6222d56a6/runs/2026-09-12t135652z/04-casual.txt",
+      "manifest": "generation/m-47e60cd6222d56a6/runs/2026-09-12t135652z/manifest.json",
+      "id": "04",
+      "source": "exec-6683c4eb-14f3-4af8-b150-e1951ca324ae.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "parent": "03"
+    }
+  ]
+}
