@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "card": "붉은 건담",
+  "model": "gMS-α",
+  "series": "Gundam GQuuuuuuX",
+  "repository": "polos0117/atelier",
+  "branch": "codex/red-gundam-images",
+  "base_commit": "4064c0229344bad0407fe924197baa800413b757",
+  "prompt_source": "deployed prompt.html UI",
+  "run": "2026-09-12t051703z",
+  "created": "2026-09-12T05:17:03Z",
+  "generation_tool": "image_gen",
+  "settings_export": "Actual prompt.html selections and exported style settings captured for both styles",
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity": "Same clearly adult Latin American woman across both styles",
+    "anthro_background": "No background or environment direction was added to Special Characteristics; the generator's base style behavior was left unchanged",
+    "casual_scenes": [
+      "Neighborhood home-improvement store during a personal Saturday errand",
+      "Riverside promenade roller-skating at blue hour"
+    ]
+  },
+  "jobs": [
+    {
+      "id": "01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": null,
+      "prompt": "generation/m-212f0222511d0dbd/runs/2026-09-12t051703z/01-anthro.txt",
+      "original_generated_file": "exec-d54c97e5-4765-4b11-8aad-0cca6ce1ef21.png",
+      "references": [
+        "https://en.gundam-official.com/gquuuuuux/mecha/2/",
+        "https://en.gundam-official.com/gquuuuuux/glh/jp/mechanical/2025/02/img_02_01_2.png",
+        "https://en.gundam-official.com/gquuuuuux/glh/jp/mechanical/2025/02/img_02_02_2.png",
+        "https://en.gundam-official.com/gquuuuuux/goods/21/"
+      ],
+      "file": "img/붉은 건담_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "3a2efb7771b08d8ecb27888bb356ad692adfda258a1b175957af56a7029da6d7",
+      "bytes": 112390
+    },
+    {
+      "id": "02",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "01",
+      "prompt": "generation/m-212f0222511d0dbd/runs/2026-09-12t051703z/02-casual.txt",
+      "original_generated_file": "exec-00582e3d-ce08-4c50-add6-15418df203f7.png",
+      "references": [
+        "exec-d54c97e5-4765-4b11-8aad-0cca6ce1ef21.png"
+      ],
+      "file": "img/붉은 건담_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "e374fb94ccc5cc1c3c997c145aac2a91cab0640bb1f72ac5bb9ec47f94ebd841",
+      "bytes": 113858
+    },
+    {
+      "id": "03",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": "01",
+      "prompt": "generation/m-212f0222511d0dbd/runs/2026-09-12t051703z/03-anthro.txt",
+      "original_generated_file": "exec-eb8d4421-c162-43ae-910e-40db144b07cf.png",
+      "references": [
+        "exec-d54c97e5-4765-4b11-8aad-0cca6ce1ef21.png",
+        "https://en.gundam-official.com/gquuuuuux/mecha/2/",
+        "https://en.gundam-official.com/gquuuuuux/glh/jp/mechanical/2025/02/img_02_01_2.png",
+        "https://en.gundam-official.com/gquuuuuux/glh/jp/mechanical/2025/02/img_02_02_2.png",
+        "https://en.gundam-official.com/gquuuuuux/goods/21/"
+      ],
+      "file": "img/붉은 건담_cel_anime_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "eaa3d79e131eab1167953819da91016b47c627a4b50118cfddb1a9e7558ffd15",
+      "bytes": 108972
+    },
+    {
+      "id": "04",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "03",
+      "prompt": "generation/m-212f0222511d0dbd/runs/2026-09-12t051703z/04-casual.txt",
+      "original_generated_file": "exec-c6e134db-3ee4-474c-a54f-04c37e97d9e3.png",
+      "references": [
+        "exec-eb8d4421-c162-43ae-910e-40db144b07cf.png"
+      ],
+      "file": "img/붉은 건담_cel_anime_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "c76d9582dee0683edd9d2b0a6598f91de9498fe5a7dbe98d76bd773c3d48a3ec",
+      "bytes": 120522
+    }
+  ],
+  "prompt_html_sha256": "ab1103447a08571bbd24c83763047c01bb31c365aa59ad2bf81799715336474e",
+  "prompt_html_verification": "Deployed prompt.html v9.18 used; repository prompt.html hash recorded"
+}
