@@ -1,0 +1,38 @@
+{
+  "붉은 건담_cinematic_semi_real_f.webp": {
+    "card": "붉은 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "3a2efb7771b08d8ecb27888bb356ad692adfda258a1b175957af56a7029da6d7",
+    "prompt": "generation/m-212f0222511d0dbd/runs/2026-09-12t051703z/01-anthro.txt",
+    "manifest": "generation/m-212f0222511d0dbd/runs/2026-09-12t051703z/manifest.json"
+  },
+  "붉은 건담_cinematic_semi_real_f_casual1.webp": {
+    "card": "붉은 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "e374fb94ccc5cc1c3c997c145aac2a91cab0640bb1f72ac5bb9ec47f94ebd841",
+    "prompt": "generation/m-212f0222511d0dbd/runs/2026-09-12t051703z/02-casual.txt",
+    "manifest": "generation/m-212f0222511d0dbd/runs/2026-09-12t051703z/manifest.json"
+  },
+  "붉은 건담_cel_anime_f.webp": {
+    "card": "붉은 건담",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "eaa3d79e131eab1167953819da91016b47c627a4b50118cfddb1a9e7558ffd15",
+    "prompt": "generation/m-212f0222511d0dbd/runs/2026-09-12t051703z/03-anthro.txt",
+    "manifest": "generation/m-212f0222511d0dbd/runs/2026-09-12t051703z/manifest.json"
+  },
+  "붉은 건담_cel_anime_f_casual1.webp": {
+    "card": "붉은 건담",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "c76d9582dee0683edd9d2b0a6598f91de9498fe5a7dbe98d76bd773c3d48a3ec",
+    "prompt": "generation/m-212f0222511d0dbd/runs/2026-09-12t051703z/04-casual.txt",
+    "manifest": "generation/m-212f0222511d0dbd/runs/2026-09-12t051703z/manifest.json"
+  }
+}
