@@ -1,7 +1,7 @@
 {
  "version": 1,
  "note": "초상 파일 목록. 카드 이름 → {m, f, face, casual[], extra[], byStyle{}} 이다. 파일 이름이 곧 등록 정보라 register-images.py 가 저장소의 *.webp 를 훑어 없는 것만 더한다 — 이미 적힌 것과 얼굴 좌표(face)는 건드리지 않으니 손으로 넣은 항목이 덮이지 않는다. face 는 파일 이름에서 알 수 없어 비면 게임이 기본값을 쓰고, 어색하면 사람이 여기서 손본다. play.html 은 실행 중에도 GitHub 파일 목록으로 같은 규칙을 한 번 더 돌리므로(mergeRepoFiles) 여기 안 적혀 있어도 화면에는 뜬다. 다만 그때는 얼굴 좌표가 기본값이고 목록을 못 받으면 그만이라, 파일로 굳혀 두는 편이 낫다.",
- "count": 284,
+ "count": 285,
  "img": {
   "GFreD": {"byStyle": {"cinematic_semi_real": {"f": "GFreD_cinematic_semi_real_f.webp", "casual": {"f": ["GFreD_cinematic_semi_real_f_casual1.webp"]}}, "anime_illust": {"f": "GFreD_anime_illust_f.webp", "casual": {"f": ["GFreD_anime_illust_f_casual1.webp"]}}}},
   "GN 아처": {"byStyle": {"glossy_kr_game": {"f": "GN 아처_glossy_kr_game_f.webp", "casual": {"f": ["GN 아처_glossy_kr_game_f_casual1.webp"]}}, "cel_anime": {"f": "GN 아처_cel_anime_f.webp"}}},
@@ -72,6 +72,7 @@
   "건담 쓰로네 아인": {"face": {"m": [0.453, 0.108, 0.13], "f": [0.457, 0.133, 0.13]}, "byStyle": {"cinematic_semi_real": {"m": "건담_쓰로네_아인_cinematic_semi_real_m.webp", "f": "건담_쓰로네_아인_cinematic_semi_real_f.webp", "casual": {"f": ["건담_쓰로네_아인_cinematic_semi_real_f_casual1.webp", "건담_쓰로네_아인_cinematic_semi_real_f_casual2.webp", "건담_쓰로네_아인_cinematic_semi_real_f_casual3.webp", "건담_쓰로네_아인_cinematic_semi_real_f_casual4.webp", "건담_쓰로네_아인_cinematic_semi_real_f_casual5.webp", "건담_쓰로네_아인_cinematic_semi_real_f_casual6.webp", "건담_쓰로네_아인_cinematic_semi_real_f_casual7.webp"]}}}},
   "건담 쓰로네 쯔바이": {"byStyle": {"cinematic_semi_real": {"f": "건담 쓰로네 쯔바이_cinematic_semi_real_f.webp", "casual": {"f": ["건담 쓰로네 쯔바이_cinematic_semi_real_f_casual1.webp"]}}, "cel_anime": {"f": "건담 쓰로네 쯔바이_cel_anime_f.webp", "casual": {"f": ["건담 쓰로네 쯔바이_cel_anime_f_casual1.webp"]}}}},
   "건담 아슈타론": {"byStyle": {"cinematic_semi_real": {"f": "건담_아슈타론_cinematic_semi_real_f.webp", "casual": {"f": ["건담_아슈타론_cinematic_semi_real_f_casual1.webp"]}}, "anime_illust": {"f": "건담_아슈타론_anime_illust_f.webp", "casual": {"f": ["건담_아슈타론_anime_illust_f_casual1.webp"]}}}},
+  "건담 아슈타론 허밋 크랩": {"byStyle": {"cinematic_semi_real": {"f": "건담 아슈타론 허밋 크랩_cinematic_semi_real_f.webp", "casual": {"f": ["건담 아슈타론 허밋 크랩_cinematic_semi_real_f_casual1.webp"]}}, "cel_anime": {"f": "건담 아슈타론 허밋 크랩_cel_anime_f.webp", "casual": {"f": ["건담 아슈타론 허밋 크랩_cel_anime_f_casual1.webp"]}}}},
   "건담 어스트레이 골드프레임": {"m": "건담_어스트레이_골드프레임_m.webp", "f": "건담_어스트레이_골드프레임_f.webp", "face": {"m": [0.42, 0.052, 0.176], "f": [0.43, 0.065, 0.166]}, "casual": {"f": ["건담_어스트레이_골드프레임_casual1.webp"]}},
   "건담 어스트레이 골드프레임 아마츠 미나": {"m": "건담_어스트레이_골드프레임_아마츠_미나_m.webp", "f": "건담_어스트레이_골드프레임_아마츠_미나_f.webp", "face": {"m": [0.42, 0.046, 0.176], "f": [0.42, 0.085, 0.176]}, "casual": {"f": ["건담_어스트레이_골드프레임_아마츠_미나_casual1.webp"]}},
   "건담 어스트레이 골드프레임 아마츠 하나": {"m": "건담_어스트레이_골드프레임_아마츠_하나_m.webp", "f": "건담_어스트레이_골드프레임_아마츠_하나_f.webp", "face": {"m": [0.43, 0.133, 0.176], "f": [0.41, 0.186, 0.166]}, "casual": {"f": ["건담_어스트레이_골드프레임_아마츠_하나_casual1.webp"]}},
