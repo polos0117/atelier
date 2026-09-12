@@ -1,0 +1,38 @@
+{
+  "건담 AGE-2 다크 하운드_cinematic_semi_real_f.webp": {
+    "card": "건담 AGE-2 다크 하운드",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "b1c68cd5c1185431186f097dcf7fbfe59ea23fad0d7169721a970b6a55e5a452",
+    "prompt": "generation/m-ea4273abcdb10803/runs/2026-09-12t233635z/01-anthro.txt",
+    "manifest": "generation/m-ea4273abcdb10803/runs/2026-09-12t233635z/manifest.json"
+  },
+  "건담 AGE-2 다크 하운드_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 AGE-2 다크 하운드",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "cc909d988041e551a13fe190360d45c6fb9fe51bdafd7c6adeee19e5749aca75",
+    "prompt": "generation/m-ea4273abcdb10803/runs/2026-09-12t233635z/02-casual.txt",
+    "manifest": "generation/m-ea4273abcdb10803/runs/2026-09-12t233635z/manifest.json"
+  },
+  "건담 AGE-2 다크 하운드_cel_anime_f.webp": {
+    "card": "건담 AGE-2 다크 하운드",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "0fef9928f93f8cb6fd89e155be7befd8b67e938cdbc9b2a6a8cddf598c2ea1b7",
+    "prompt": "generation/m-ea4273abcdb10803/runs/2026-09-12t233635z/03-anthro.txt",
+    "manifest": "generation/m-ea4273abcdb10803/runs/2026-09-12t233635z/manifest.json"
+  },
+  "건담 AGE-2 다크 하운드_cel_anime_f_casual1.webp": {
+    "card": "건담 AGE-2 다크 하운드",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "ce6aaa5bd92b80935f4a64c2ccbb9dce29868b90380c433c13b0ace07378955e",
+    "prompt": "generation/m-ea4273abcdb10803/runs/2026-09-12t233635z/04-casual.txt",
+    "manifest": "generation/m-ea4273abcdb10803/runs/2026-09-12t233635z/manifest.json"
+  }
+}
