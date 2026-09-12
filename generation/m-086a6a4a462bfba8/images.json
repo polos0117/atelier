@@ -1,0 +1,38 @@
+{
+  "건담 아슈타론 허밋 크랩_cinematic_semi_real_f.webp": {
+    "card": "건담 아슈타론 허밋 크랩",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "38a8a2416022faec8766a79f0df1f3055812dc69df3b0be738e0886f718404b9",
+    "prompt": "generation/m-086a6a4a462bfba8/runs/2026-09-12t171403z/01-anthro.txt",
+    "manifest": "generation/m-086a6a4a462bfba8/runs/2026-09-12t171403z/manifest.json"
+  },
+  "건담 아슈타론 허밋 크랩_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 아슈타론 허밋 크랩",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "6754f633adca85731594fe0ced04a208c15b52f63df9378143dddae30136630d",
+    "prompt": "generation/m-086a6a4a462bfba8/runs/2026-09-12t171403z/02-casual.txt",
+    "manifest": "generation/m-086a6a4a462bfba8/runs/2026-09-12t171403z/manifest.json"
+  },
+  "건담 아슈타론 허밋 크랩_cel_anime_f.webp": {
+    "card": "건담 아슈타론 허밋 크랩",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "973babf36d5ea442d96097de2124f5ed21ca5c49f934dec2fde64fab0acffe4e",
+    "prompt": "generation/m-086a6a4a462bfba8/runs/2026-09-12t171403z/03-anthro.txt",
+    "manifest": "generation/m-086a6a4a462bfba8/runs/2026-09-12t171403z/manifest.json"
+  },
+  "건담 아슈타론 허밋 크랩_cel_anime_f_casual1.webp": {
+    "card": "건담 아슈타론 허밋 크랩",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "1edf35f3b4bc324701daa91cbf654c018e9da6192e453eaccd773498f6ab283d",
+    "prompt": "generation/m-086a6a4a462bfba8/runs/2026-09-12t171403z/04-casual.txt",
+    "manifest": "generation/m-086a6a4a462bfba8/runs/2026-09-12t171403z/manifest.json"
+  }
+}

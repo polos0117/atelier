@@ -1,0 +1,75 @@
+{
+  "card": "건담 아슈타론 허밋 크랩",
+  "baseCommit": "3348084eee76425117c94a5d76965821d107268c",
+  "settingsNote": "UI export captured after four images. Each submitted prompt is authoritative for its own settings.",
+  "images": [
+    {
+      "card": "건담 아슈타론 허밋 크랩",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "38a8a2416022faec8766a79f0df1f3055812dc69df3b0be738e0886f718404b9",
+      "prompt": "generation/m-086a6a4a462bfba8/runs/2026-09-12t171403z/01-anthro.txt",
+      "manifest": "generation/m-086a6a4a462bfba8/runs/2026-09-12t171403z/manifest.json",
+      "file": "건담 아슈타론 허밋 크랩_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "source": "exec-e968c722-9355-4404-9725-3d1c9a4a0ae4.png",
+      "referenceImage": null,
+      "status": "generated, converted, locally registered pending"
+    },
+    {
+      "card": "건담 아슈타론 허밋 크랩",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "6754f633adca85731594fe0ced04a208c15b52f63df9378143dddae30136630d",
+      "prompt": "generation/m-086a6a4a462bfba8/runs/2026-09-12t171403z/02-casual.txt",
+      "manifest": "generation/m-086a6a4a462bfba8/runs/2026-09-12t171403z/manifest.json",
+      "file": "건담 아슈타론 허밋 크랩_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "source": "exec-c94b7190-e085-4eff-ac03-d4b3c890bcce.png",
+      "referenceImage": "../generated_images/exec-e968c722-9355-4404-9725-3d1c9a4a0ae4.png",
+      "status": "generated, converted, locally registered pending"
+    },
+    {
+      "card": "건담 아슈타론 허밋 크랩",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "973babf36d5ea442d96097de2124f5ed21ca5c49f934dec2fde64fab0acffe4e",
+      "prompt": "generation/m-086a6a4a462bfba8/runs/2026-09-12t171403z/03-anthro.txt",
+      "manifest": "generation/m-086a6a4a462bfba8/runs/2026-09-12t171403z/manifest.json",
+      "file": "건담 아슈타론 허밋 크랩_cel_anime_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "source": "exec-3d3734a9-05ff-4f71-b208-7f8ae33a199e.png",
+      "referenceImage": "../generated_images/exec-e968c722-9355-4404-9725-3d1c9a4a0ae4.png",
+      "status": "generated, converted, locally registered pending"
+    },
+    {
+      "card": "건담 아슈타론 허밋 크랩",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "1edf35f3b4bc324701daa91cbf654c018e9da6192e453eaccd773498f6ab283d",
+      "prompt": "generation/m-086a6a4a462bfba8/runs/2026-09-12t171403z/04-casual.txt",
+      "manifest": "generation/m-086a6a4a462bfba8/runs/2026-09-12t171403z/manifest.json",
+      "file": "건담 아슈타론 허밋 크랩_cel_anime_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "source": "exec-81bb87bf-612f-44d9-b24f-7bb3ae30a718.png",
+      "referenceImage": "../generated_images/exec-3d3734a9-05ff-4f71-b208-7f8ae33a199e.png",
+      "status": "generated, converted, locally registered pending"
+    }
+  ]
+}
