@@ -1,0 +1,38 @@
+{
+  "벨티고_cinematic_semi_real_f.webp": {
+    "card": "벨티고",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "701c6a640fc99f80e4b0aa316abe48a1776fb087f3262feb2cb3778a518e7bbc",
+    "prompt": "generation/m-8ee5a831a022e827/runs/2026-09-12t162708z/01-anthro.txt",
+    "manifest": "generation/m-8ee5a831a022e827/runs/2026-09-12t162708z/manifest.json"
+  },
+  "벨티고_cinematic_semi_real_f_casual1.webp": {
+    "card": "벨티고",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "c10af2cc0a550fadf28e3e8559f1983f1b95725db0dd424b66ac2f8b8630277c",
+    "prompt": "generation/m-8ee5a831a022e827/runs/2026-09-12t162708z/02-casual.txt",
+    "manifest": "generation/m-8ee5a831a022e827/runs/2026-09-12t162708z/manifest.json"
+  },
+  "벨티고_cel_anime_f.webp": {
+    "card": "벨티고",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "dbe5d0175d04e5bea416678e3bf087d2e85cf9c437d1ccf2edaeb52bcdcb6c7d",
+    "prompt": "generation/m-8ee5a831a022e827/runs/2026-09-12t162708z/03-anthro.txt",
+    "manifest": "generation/m-8ee5a831a022e827/runs/2026-09-12t162708z/manifest.json"
+  },
+  "벨티고_cel_anime_f_casual1.webp": {
+    "card": "벨티고",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "7cb738cc9c4977d3d99ed750c87b84e7ab8629e98f20491c447751bfab0a9177",
+    "prompt": "generation/m-8ee5a831a022e827/runs/2026-09-12t162708z/04-casual.txt",
+    "manifest": "generation/m-8ee5a831a022e827/runs/2026-09-12t162708z/manifest.json"
+  }
+}

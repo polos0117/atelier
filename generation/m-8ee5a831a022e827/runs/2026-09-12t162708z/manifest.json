@@ -1,0 +1,75 @@
+{
+  "card": "벨티고",
+  "baseCommit": "9a8ce7cfc11da79ca0a58f559136375c7c96265a",
+  "settingsNote": "UI export captured after four images. Each submitted prompt is authoritative for its own settings.",
+  "images": [
+    {
+      "card": "벨티고",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "701c6a640fc99f80e4b0aa316abe48a1776fb087f3262feb2cb3778a518e7bbc",
+      "prompt": "generation/m-8ee5a831a022e827/runs/2026-09-12t162708z/01-anthro.txt",
+      "manifest": "generation/m-8ee5a831a022e827/runs/2026-09-12t162708z/manifest.json",
+      "file": "벨티고_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "source": "exec-21cd7870-c82a-41bf-9892-a5ed4c1a329e.png",
+      "referenceImage": null,
+      "status": "generated, converted, locally registered pending"
+    },
+    {
+      "card": "벨티고",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "c10af2cc0a550fadf28e3e8559f1983f1b95725db0dd424b66ac2f8b8630277c",
+      "prompt": "generation/m-8ee5a831a022e827/runs/2026-09-12t162708z/02-casual.txt",
+      "manifest": "generation/m-8ee5a831a022e827/runs/2026-09-12t162708z/manifest.json",
+      "file": "벨티고_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "source": "exec-a84c9900-02d3-44c8-a0d7-64addaa73181.png",
+      "referenceImage": "../generated_images/exec-21cd7870-c82a-41bf-9892-a5ed4c1a329e.png",
+      "status": "generated, converted, locally registered pending"
+    },
+    {
+      "card": "벨티고",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "dbe5d0175d04e5bea416678e3bf087d2e85cf9c437d1ccf2edaeb52bcdcb6c7d",
+      "prompt": "generation/m-8ee5a831a022e827/runs/2026-09-12t162708z/03-anthro.txt",
+      "manifest": "generation/m-8ee5a831a022e827/runs/2026-09-12t162708z/manifest.json",
+      "file": "벨티고_cel_anime_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "source": "exec-cd359b28-40ac-4988-abc6-9169ffd99e24.png",
+      "referenceImage": "../generated_images/exec-21cd7870-c82a-41bf-9892-a5ed4c1a329e.png",
+      "status": "generated, converted, locally registered pending"
+    },
+    {
+      "card": "벨티고",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "7cb738cc9c4977d3d99ed750c87b84e7ab8629e98f20491c447751bfab0a9177",
+      "prompt": "generation/m-8ee5a831a022e827/runs/2026-09-12t162708z/04-casual.txt",
+      "manifest": "generation/m-8ee5a831a022e827/runs/2026-09-12t162708z/manifest.json",
+      "file": "벨티고_cel_anime_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "source": "exec-f8f001ab-ce1b-4b40-b1e0-361090a5a674.png",
+      "referenceImage": "../generated_images/exec-cd359b28-40ac-4988-abc6-9169ffd99e24.png",
+      "status": "generated, converted, locally registered pending"
+    }
+  ]
+}
