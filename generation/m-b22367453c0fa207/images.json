@@ -1,0 +1,38 @@
+{
+  "베르가 기로스_cinematic_semi_real_f.webp": {
+    "card": "베르가 기로스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "7d7dead7eea947e92f216d85a94b5d203c3d9bcd827342d65bdeebc577233507",
+    "prompt": "generation/m-b22367453c0fa207/runs/2026-09-12t170311z/01-anthro-retry.txt",
+    "manifest": "generation/m-b22367453c0fa207/runs/2026-09-12t170311z/manifest.json"
+  },
+  "베르가 기로스_cinematic_semi_real_f_casual1.webp": {
+    "card": "베르가 기로스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "442a9155ff2f911cb8e09eeaae6fcceb05bf172464c77f68a4294af1645ceaaa",
+    "prompt": "generation/m-b22367453c0fa207/runs/2026-09-12t170311z/02-casual.txt",
+    "manifest": "generation/m-b22367453c0fa207/runs/2026-09-12t170311z/manifest.json"
+  },
+  "베르가 기로스_cel_anime_f.webp": {
+    "card": "베르가 기로스",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "206aa2ef87118c2bcc3adc13027a50bad8fb9153f2541b22fea94c1df156804b",
+    "prompt": "generation/m-b22367453c0fa207/runs/2026-09-12t170311z/03-anthro.txt",
+    "manifest": "generation/m-b22367453c0fa207/runs/2026-09-12t170311z/manifest.json"
+  },
+  "베르가 기로스_cel_anime_f_casual1.webp": {
+    "card": "베르가 기로스",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "8360278891457bdf778e3025181080666160929c7d0f508091c86d31b81e6f8d",
+    "prompt": "generation/m-b22367453c0fa207/runs/2026-09-12t170311z/04-casual.txt",
+    "manifest": "generation/m-b22367453c0fa207/runs/2026-09-12t170311z/manifest.json"
+  }
+}
