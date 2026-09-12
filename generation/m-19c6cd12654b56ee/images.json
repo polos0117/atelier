@@ -1,0 +1,38 @@
+{
+  "파르시아_cinematic_semi_real_f.webp": {
+    "card": "파르시아",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "6ba474305c0008d6561994f4ca52bffb571e49e58f404a005f53302909243e3c",
+    "prompt": "generation/m-19c6cd12654b56ee/runs/2026-09-12t101734z/01-anthro.txt",
+    "manifest": "generation/m-19c6cd12654b56ee/runs/2026-09-12t101734z/manifest.json"
+  },
+  "파르시아_cinematic_semi_real_f_casual1.webp": {
+    "card": "파르시아",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "c933622994cb3eb98a5fbbe8d2ff09b2d7823c840f29a945d1a3b38bec444fad",
+    "prompt": "generation/m-19c6cd12654b56ee/runs/2026-09-12t101734z/02-casual.txt",
+    "manifest": "generation/m-19c6cd12654b56ee/runs/2026-09-12t101734z/manifest.json"
+  },
+  "파르시아_glossy_kr_game_f.webp": {
+    "card": "파르시아",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "8b86d646e1c9a3b898504ce0891ed5636f8235062af67f688add7185f02f5bd3",
+    "prompt": "generation/m-19c6cd12654b56ee/runs/2026-09-12t101734z/03-anthro.txt",
+    "manifest": "generation/m-19c6cd12654b56ee/runs/2026-09-12t101734z/manifest.json"
+  },
+  "파르시아_glossy_kr_game_f_casual1.webp": {
+    "card": "파르시아",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "bf77676a6b7cc0dabe2d938f7624071fe9a386e6046242e72b48c2ba1178ecfc",
+    "prompt": "generation/m-19c6cd12654b56ee/runs/2026-09-12t101734z/04-casual.txt",
+    "manifest": "generation/m-19c6cd12654b56ee/runs/2026-09-12t101734z/manifest.json"
+  }
+}
