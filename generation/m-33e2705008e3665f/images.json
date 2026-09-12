@@ -1,0 +1,42 @@
+{
+  "볼트 건담_cinematic_semi_real_f.webp": {
+    "file": "볼트 건담_cinematic_semi_real_f.webp",
+    "card": "볼트 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "fc3a30a4260327925773d2828a103a8315cd3c9fbcd77c77fcd73b97d04f5ede",
+    "prompt": "generation/m-33e2705008e3665f/runs/2026-09-12t153749z/01-anthro-retry.txt",
+    "manifest": "generation/m-33e2705008e3665f/runs/2026-09-12t153749z/manifest.json"
+  },
+  "볼트 건담_cinematic_semi_real_f_casual1.webp": {
+    "file": "볼트 건담_cinematic_semi_real_f_casual1.webp",
+    "card": "볼트 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "df43a96f638f40b702b781f22ab297eb1807b8d1e9c19630d01e87de8a8db348",
+    "prompt": "generation/m-33e2705008e3665f/runs/2026-09-12t153749z/02-casual.txt",
+    "manifest": "generation/m-33e2705008e3665f/runs/2026-09-12t153749z/manifest.json"
+  },
+  "볼트 건담_anime_illust_f.webp": {
+    "file": "볼트 건담_anime_illust_f.webp",
+    "card": "볼트 건담",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "6825ca3568b16a9aadb40fbd7b27ba488e7caa9b40dfbb9126cf4e51b7843b3e",
+    "prompt": "generation/m-33e2705008e3665f/runs/2026-09-12t153749z/03-anthro.txt",
+    "manifest": "generation/m-33e2705008e3665f/runs/2026-09-12t153749z/manifest.json"
+  },
+  "볼트 건담_anime_illust_f_casual1.webp": {
+    "file": "볼트 건담_anime_illust_f_casual1.webp",
+    "card": "볼트 건담",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "34721eb2f0cba78e0c8f8469d36fcd02787098c4319cb89e874d4dbfd1c934a4",
+    "prompt": "generation/m-33e2705008e3665f/runs/2026-09-12t153749z/04-casual.txt",
+    "manifest": "generation/m-33e2705008e3665f/runs/2026-09-12t153749z/manifest.json"
+  }
+}

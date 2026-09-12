@@ -1,0 +1,84 @@
+{
+  "card": "볼트 건담",
+  "repository": "polos0117/atelier",
+  "branch": "codex/bolt-gundam-images",
+  "baseCommit": "4ab1f06d46c702f486bb109582211d234048d3a8",
+  "generator": "prompt.html v9.18 actual UI; standard_humanoid",
+  "sourceReference": "https://www.mahq.net/wp-content/uploads/2025/04/gf13-013nr.jpg",
+  "retry": {
+    "originalPrompt": "generation/m-33e2705008e3665f/runs/2026-09-12t153749z/01-anthro.txt",
+    "result": "Output rejected by safety system; no image returned",
+    "change": "Clarified fully opaque protective chest armor and combat shorts; adult anatomy and mechanical design retained",
+    "acceptedPrompt": "generation/m-33e2705008e3665f/runs/2026-09-12t153749z/01-anthro-retry.txt"
+  },
+  "images": [
+    {
+      "file": "볼트 건담_cinematic_semi_real_f.webp",
+      "card": "볼트 건담",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "fc3a30a4260327925773d2828a103a8315cd3c9fbcd77c77fcd73b97d04f5ede",
+      "prompt": "generation/m-33e2705008e3665f/runs/2026-09-12t153749z/01-anthro-retry.txt",
+      "manifest": "generation/m-33e2705008e3665f/runs/2026-09-12t153749z/manifest.json",
+      "id": "01",
+      "source": "exec-4a48637a-8e34-49e5-8163-170ef1263e2c.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "parent": null
+    },
+    {
+      "file": "볼트 건담_cinematic_semi_real_f_casual1.webp",
+      "card": "볼트 건담",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "df43a96f638f40b702b781f22ab297eb1807b8d1e9c19630d01e87de8a8db348",
+      "prompt": "generation/m-33e2705008e3665f/runs/2026-09-12t153749z/02-casual.txt",
+      "manifest": "generation/m-33e2705008e3665f/runs/2026-09-12t153749z/manifest.json",
+      "id": "02",
+      "source": "exec-b3565ebe-6153-480e-b2c3-831e875e81bd.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "parent": "01"
+    },
+    {
+      "file": "볼트 건담_anime_illust_f.webp",
+      "card": "볼트 건담",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "6825ca3568b16a9aadb40fbd7b27ba488e7caa9b40dfbb9126cf4e51b7843b3e",
+      "prompt": "generation/m-33e2705008e3665f/runs/2026-09-12t153749z/03-anthro.txt",
+      "manifest": "generation/m-33e2705008e3665f/runs/2026-09-12t153749z/manifest.json",
+      "id": "03",
+      "source": "exec-b0ecc98b-73db-41e1-93ee-d74040f7995a.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "parent": "01"
+    },
+    {
+      "file": "볼트 건담_anime_illust_f_casual1.webp",
+      "card": "볼트 건담",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "34721eb2f0cba78e0c8f8469d36fcd02787098c4319cb89e874d4dbfd1c934a4",
+      "prompt": "generation/m-33e2705008e3665f/runs/2026-09-12t153749z/04-casual.txt",
+      "manifest": "generation/m-33e2705008e3665f/runs/2026-09-12t153749z/manifest.json",
+      "id": "04",
+      "source": "exec-3c9ced86-a7da-4b61-900d-2ab7d5fea94b.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "parent": "03"
+    }
+  ]
+}
