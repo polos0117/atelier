@@ -1,0 +1,38 @@
+{
+  "레긴레이즈 줄리아_cinematic_semi_real_f.webp": {
+    "card": "레긴레이즈 줄리아",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "6c480e827b574b0c01e07df1d0300598a05edb1012bd8c6b29df63171fc34203",
+    "prompt": "generation/m-20812aea9f4ab2ce/runs/2026-09-12t165121z/01-anthro.txt",
+    "manifest": "generation/m-20812aea9f4ab2ce/runs/2026-09-12t165121z/manifest.json"
+  },
+  "레긴레이즈 줄리아_cinematic_semi_real_f_casual1.webp": {
+    "card": "레긴레이즈 줄리아",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "667b46bc329dd60177973dee5dd49af43f52c9ec18a6188f89a7862c71555d35",
+    "prompt": "generation/m-20812aea9f4ab2ce/runs/2026-09-12t165121z/02-casual-retry.txt",
+    "manifest": "generation/m-20812aea9f4ab2ce/runs/2026-09-12t165121z/manifest.json"
+  },
+  "레긴레이즈 줄리아_cel_anime_f.webp": {
+    "card": "레긴레이즈 줄리아",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "ac4514e608a18c13a9f3cc9211b43b50c9d5f0c95d3ba1872e3f13f264856ce5",
+    "prompt": "generation/m-20812aea9f4ab2ce/runs/2026-09-12t165121z/03-anthro.txt",
+    "manifest": "generation/m-20812aea9f4ab2ce/runs/2026-09-12t165121z/manifest.json"
+  },
+  "레긴레이즈 줄리아_cel_anime_f_casual1.webp": {
+    "card": "레긴레이즈 줄리아",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "f0520749cf15f510ab9ded4a956f5ce7387e14590cf45939baf636a1509f40c4",
+    "prompt": "generation/m-20812aea9f4ab2ce/runs/2026-09-12t165121z/04-casual.txt",
+    "manifest": "generation/m-20812aea9f4ab2ce/runs/2026-09-12t165121z/manifest.json"
+  }
+}
