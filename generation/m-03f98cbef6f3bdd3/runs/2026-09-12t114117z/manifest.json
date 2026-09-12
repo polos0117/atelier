@@ -1,0 +1,75 @@
+{
+  "card": "고트라탄",
+  "repository": "polos0117/atelier",
+  "branch": "codex/gottrlatan-images",
+  "base_commit": "2ff7e01b93a903936e5272ebd4aba92383a296d5",
+  "generator": "prompt.html UI at published v9.18; exported spelling normalized to user correction",
+  "images": [
+    {
+      "file": "고트라탄_cinematic_semi_real_f.webp",
+      "card": "고트라탄",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "697d45f12ab8826c3dc6bd2a2c64a860dc440dd23e90624bf167d3e34f3c2399",
+      "prompt": "generation/m-03f98cbef6f3bdd3/runs/2026-09-12t114117z/01b-anthro-fix.txt",
+      "manifest": "generation/m-03f98cbef6f3bdd3/runs/2026-09-12t114117z/manifest.json",
+      "id": "01",
+      "source": "exec-8e0c62d4-f982-4005-8b61-6f071f292037.png",
+      "width": 1024,
+      "height": 1536,
+      "parent": null
+    },
+    {
+      "file": "고트라탄_cinematic_semi_real_f_casual1.webp",
+      "card": "고트라탄",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "7c014899ea7c95f3dfa41fc46ec7956ee66d90f4097271ace0351a3c34bf0208",
+      "prompt": "generation/m-03f98cbef6f3bdd3/runs/2026-09-12t114117z/02b-casual.txt",
+      "manifest": "generation/m-03f98cbef6f3bdd3/runs/2026-09-12t114117z/manifest.json",
+      "id": "02",
+      "source": "exec-e2c3a5f0-8b7e-4780-a8b2-fe273f66efc2.png",
+      "width": 1024,
+      "height": 1536,
+      "parent": "01"
+    },
+    {
+      "file": "고트라탄_cel_anime_f.webp",
+      "card": "고트라탄",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "f9275dfd4caebe90de4ec3eb97d36647cb567e41031b0844228fae2a6f327101",
+      "prompt": "generation/m-03f98cbef6f3bdd3/runs/2026-09-12t114117z/03-anthro.txt",
+      "manifest": "generation/m-03f98cbef6f3bdd3/runs/2026-09-12t114117z/manifest.json",
+      "id": "03",
+      "source": "exec-7629faae-3467-4de5-b66a-2f7ea63f973a.png",
+      "width": 1024,
+      "height": 1536,
+      "parent": "01"
+    },
+    {
+      "file": "고트라탄_cel_anime_f_casual1.webp",
+      "card": "고트라탄",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "0f54cf99ba339c9092384cdeeb428287295cc66590fdfae4bc92539a62fe0473",
+      "prompt": "generation/m-03f98cbef6f3bdd3/runs/2026-09-12t114117z/04b-casual-fix.txt",
+      "manifest": "generation/m-03f98cbef6f3bdd3/runs/2026-09-12t114117z/manifest.json",
+      "id": "04",
+      "source": "exec-0811e676-5a0c-425b-9ab8-a7cb06a7fb09.png",
+      "width": 1024,
+      "height": 1536,
+      "parent": "03"
+    }
+  ],
+  "notes": [
+    "01 first output corrected from twin cannons to single cannon and missile pod; 01b references 01 output",
+    "02 initial output blocked by moderation; 02b retains outfit and scene and trims generic safety paragraph",
+    "04b removes mechanical head ornament from 04 output",
+    "Latest settings exported from actual UI; names normalized. Additional reference lock for 03 recorded in submission."
+  ]
+}
