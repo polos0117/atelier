@@ -1,7 +1,7 @@
 {
   "version": 1,
   "card": "퀸 만사",
-  "updated": "2026-09-12T15:12:36.670Z",
+  "updated": "2026-09-12T15:08:26.259Z",
   "record": {
     "female": {
       "sel": {
@@ -92,13 +92,13 @@
         "pose character": "",
         "view angle": ""
       },
-      "sp": "The attached accepted adult character is the identity and equipment authority, not the rendering style. Preserve her recognizable adult Korean face, gold eyes, long silver wavy hair with curtain bangs, statuesque figure and the Queen Mansa armor design. Keep pale mint-green armor, dark graphite and yellow accents, red circular chest sensors, two enormous curved shoulder binders mounted above and outside normal shoulders, flared calf armor and the rear funnel-container binder. Preserve the clear two-arm structure: one upper arm, elbow, forearm and hand per side, with a visible gap beneath each binder. Exactly two human arms and legs and natural joints. Keep shoulder shells, fitted chest and pelvic plates, open side waist and upper thighs, opaque chest and pelvis. Keep the small source-inspired sensor ornament, stowed saber handles, no extra weapons or fantasy crown. Translate the ENTIRE image into the selected glossy Korean game illustration style, including face, armor and hair; do not copy the painterly rendering of the reference. Pose character and view angle remain AUTO. Tight full-body framing with minimal margin overrides generous-margin boilerplate. Entire head, feet and signature equipment visible, plain deep neutral background without scenery.",
+      "sp": "Use the attached original Queen Mansa artwork as the mechanical design authority. Preserve the pale mint-green armor with dark graphite and yellow details, two enormous curved shoulder binders, flared calf armor and a long rear funnel-container binder. Mount both oversized shoulder binders on an external backpack frame above and outside the natural shoulders. Keep a clear gap beneath each binder so each normal upper arm, elbow, forearm and hand remains readable. Exactly two human arms and two legs, normal clavicles, hips and knees; equipment is not another limb. Keep the shoulder shells substantial, but fit the chest and pelvic plates to the human body, with open lateral waist and upper-thigh areas and opaque chest and pelvic coverage. Preserve the source head sensor design as a small wearable sensor ornament above a fully human face, not a helmet or fantasy crown. Beam sabers remain stowed in the shoulder racks; no added rifle, shield or extra weapons. Tight full-body framing with minimal empty margin overrides the general generous-margin rule: entire head, feet and signature equipment visible, figure fills the frame. Plain deep neutral background with no scenery. Render a sophisticated adult feminine presence without pilot resemblance.",
       "ub": false
     },
     "g": "female",
     "mm": "silhouette_equipment_emphasis",
-    "t": 1789225956670
+    "t": 1789225706259
   },
   "used": [],
-  "selectedStyle": "glossy_kr_game"
+  "selectedStyle": "cinematic_semi_real"
 }
