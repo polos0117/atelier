@@ -1,0 +1,94 @@
+{
+  "card": "라이징 건담",
+  "repository": "polos0117/atelier",
+  "branch": "codex/rising-gundam-images",
+  "baseCommit": "5efbf6d0ece706027a51730c2f19da2578f0c375",
+  "tool": "image_gen",
+  "run": "2026-09-12t075942z",
+  "referenceSources": [
+    "https://www.g-gundam.net/mf/detail.php?id=3",
+    "https://www.g-gundam.net/mf/img/03.png"
+  ],
+  "direction": "Different series, sexy adult design with normal human arm and leg anatomy.",
+  "outputs": [
+    {
+      "card": "라이징 건담",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "e30ae1b68b1355386cfce95a9621453a5237e332cd9165b60915f1a4f8e7ad48",
+      "prompt": "generation/m-af36753c681d597c/runs/2026-09-12t075942z/01-anthro.txt",
+      "manifest": "generation/m-af36753c681d597c/runs/2026-09-12t075942z/manifest.json",
+      "id": "01",
+      "file": "img/라이징_건담_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "exec-a4861dfd-537a-489d-bcbf-14bb5d6f8fbd.png",
+      "reference": "official MS reference",
+      "status": "generated_converted"
+    },
+    {
+      "card": "라이징 건담",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "fb203f008698a69c77c101b3f084562c2cd92422d00aa5ca12e9a3ec3dc71cea",
+      "prompt": "generation/m-af36753c681d597c/runs/2026-09-12t075942z/02-casual.txt",
+      "manifest": "generation/m-af36753c681d597c/runs/2026-09-12t075942z/manifest.json",
+      "id": "02",
+      "file": "img/라이징_건담_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "exec-8559271d-851f-4661-81a8-9dbec81d8e96.png",
+      "reference": "01",
+      "status": "generated_converted"
+    },
+    {
+      "card": "라이징 건담",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "3d15d2addec8f3f1f5f9f662e94a8124e50bc565ec0f63d7e3b0389fb9ba817d",
+      "prompt": "generation/m-af36753c681d597c/runs/2026-09-12t075942z/03-anthro.txt",
+      "manifest": "generation/m-af36753c681d597c/runs/2026-09-12t075942z/manifest.json",
+      "id": "03",
+      "file": "img/라이징_건담_anime_illust_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "exec-c6b6cd12-c1eb-48cb-9056-dc41094365ff.png",
+      "reference": "01",
+      "status": "generated_converted"
+    },
+    {
+      "card": "라이징 건담",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "3c7077078d116dbe76abb3cbf6324fe57665225e993ff09cc63081b93f8a1684",
+      "prompt": "generation/m-af36753c681d597c/runs/2026-09-12t075942z/04-casual.txt",
+      "manifest": "generation/m-af36753c681d597c/runs/2026-09-12t075942z/manifest.json",
+      "id": "04",
+      "file": "img/라이징_건담_anime_illust_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "exec-631fe5f9-beb5-4019-a770-c8aea9084d94.png",
+      "reference": "03",
+      "status": "generated_converted"
+    }
+  ],
+  "excludedAttempts": [
+    {
+      "source": "exec-f26ed42d-c68c-4926-af10-ca4cdf2f93de.png",
+      "reason": "File synchronization race sent a cat missing-file error instead of the intended prompt; unrelated result excluded.",
+      "submittedPrompt": "cat: generation/m-af36753c681d597c/runs/2026-09-12t075942z/01-anthro.txt: No such file or directory\n"
+    }
+  ]
+}

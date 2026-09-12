@@ -1,0 +1,38 @@
+{
+  "라이징_건담_cinematic_semi_real_f.webp": {
+    "card": "라이징 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "e30ae1b68b1355386cfce95a9621453a5237e332cd9165b60915f1a4f8e7ad48",
+    "prompt": "generation/m-af36753c681d597c/runs/2026-09-12t075942z/01-anthro.txt",
+    "manifest": "generation/m-af36753c681d597c/runs/2026-09-12t075942z/manifest.json"
+  },
+  "라이징_건담_cinematic_semi_real_f_casual1.webp": {
+    "card": "라이징 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "fb203f008698a69c77c101b3f084562c2cd92422d00aa5ca12e9a3ec3dc71cea",
+    "prompt": "generation/m-af36753c681d597c/runs/2026-09-12t075942z/02-casual.txt",
+    "manifest": "generation/m-af36753c681d597c/runs/2026-09-12t075942z/manifest.json"
+  },
+  "라이징_건담_anime_illust_f.webp": {
+    "card": "라이징 건담",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "3d15d2addec8f3f1f5f9f662e94a8124e50bc565ec0f63d7e3b0389fb9ba817d",
+    "prompt": "generation/m-af36753c681d597c/runs/2026-09-12t075942z/03-anthro.txt",
+    "manifest": "generation/m-af36753c681d597c/runs/2026-09-12t075942z/manifest.json"
+  },
+  "라이징_건담_anime_illust_f_casual1.webp": {
+    "card": "라이징 건담",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "3c7077078d116dbe76abb3cbf6324fe57665225e993ff09cc63081b93f8a1684",
+    "prompt": "generation/m-af36753c681d597c/runs/2026-09-12t075942z/04-casual.txt",
+    "manifest": "generation/m-af36753c681d597c/runs/2026-09-12t075942z/manifest.json"
+  }
+}
