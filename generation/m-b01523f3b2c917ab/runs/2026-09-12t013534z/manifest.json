@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "card": "브레이브 일반용 시험기",
+  "model": "GNX-Y903VS",
+  "series": "건담 00 극장판",
+  "repository": "polos0117/atelier",
+  "branch": "codex/brave-standard-images",
+  "base_commit": "6cc5c6d6d8216898147c0d70aa0edc95be861ce6",
+  "prompt_source": "deployed prompt.html UI",
+  "run": "2026-09-12t013534z",
+  "created": "2026-09-12T01:35:34Z",
+  "generation_tool": "image_gen",
+  "settings_export": "Actual prompt.html selections and exported style settings captured for both styles",
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity": "Same clearly adult Japanese woman across both styles",
+    "casual_scenes": [
+      "Indoor velodrome after training, walking with a track bicycle",
+      "Snowbound winter mountain lodge sunroom, hanging a wool blanket"
+    ]
+  },
+  "jobs": [
+    {
+      "id": "01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": null,
+      "prompt": "generation/m-b01523f3b2c917ab/runs/2026-09-12t013534z/01-anthro.txt",
+      "original_generated_file": "exec-dc5351bd-a9dc-4c83-9137-71197f01aecc.png",
+      "references": [
+        "https://www.dalong.net/reviews/00/0h72/p/0h72_01.jpg",
+        "https://www.dalong.net/reviews/00/0h72/p/0h72_03.jpg"
+      ],
+      "file": "img/브레이브 일반용 시험기_cinematic_semi_real_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "bdc59395c4d24473f72a0bc650638ed49df7dd3e5bd705b73fae8641b39d7029",
+      "bytes": 143120
+    },
+    {
+      "id": "02",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "01",
+      "prompt": "generation/m-b01523f3b2c917ab/runs/2026-09-12t013534z/02-casual.txt",
+      "original_generated_file": "exec-4a630ad0-3936-401c-b0b1-0a7a4a710f64.png",
+      "references": ["exec-dc5351bd-a9dc-4c83-9137-71197f01aecc.png"],
+      "file": "img/브레이브 일반용 시험기_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "60ab07baedf7974e47a7e69dc79439c47595819d36c167983f9d9aa7f9a0c79c",
+      "bytes": 128752
+    },
+    {
+      "id": "03",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": "01",
+      "prompt": "generation/m-b01523f3b2c917ab/runs/2026-09-12t013534z/03-anthro.txt",
+      "original_generated_file": "exec-d3ac4972-ef96-475b-9d48-274b4e846f1f.png",
+      "references": [
+        "exec-dc5351bd-a9dc-4c83-9137-71197f01aecc.png",
+        "https://www.dalong.net/reviews/00/0h72/p/0h72_01.jpg",
+        "https://www.dalong.net/reviews/00/0h72/p/0h72_03.jpg"
+      ],
+      "file": "img/브레이브 일반용 시험기_cel_anime_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "d3e6a19d62a94e66eb2d89aef4d64f976b6159a84f5d8997ca3d33b80c5b1a51",
+      "bytes": 162202
+    },
+    {
+      "id": "04",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "03",
+      "prompt": "generation/m-b01523f3b2c917ab/runs/2026-09-12t013534z/04-casual.txt",
+      "original_generated_file": "exec-239b94c7-ecce-4afc-85c9-ff3fdaefd9ad.png",
+      "references": ["exec-d3ac4972-ef96-475b-9d48-274b4e846f1f.png"],
+      "file": "img/브레이브 일반용 시험기_cel_anime_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "8b05dea2e933277b78cbfb9cbf3aadd89279eca355cb6cbd3b92581466751718",
+      "bytes": 168970
+    }
+  ],
+  "prompt_html_sha256": "ab1103447a08571bbd24c83763047c01bb31c365aa59ad2bf81799715336474e",
+  "prompt_html_verification": "Deployed prompt.html v9.18 used; repository prompt.html hash recorded"
+}

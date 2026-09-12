@@ -1,0 +1,73 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "active"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "cycling_kit"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "focused"
+  },
+  {
+    "id": "sgOrient",
+    "value": "front_3q"
+  },
+  {
+    "id": "sgPose",
+    "value": "walking"
+  },
+  {
+    "id": "sgScene",
+    "value": "An empty indoor velodrome just after a training session, warm timber track banking, brushed concrete service lane and cool overhead skylights, no other people"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "A designed asymmetric mint-and-charcoal zip-front cycling jersey with a secure high neckline, black high-waisted cycling shorts with subtle white piping, fingerless gloves and streamlined mint cycling shoes; fully opaque premium activewear"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body eye-level front three-quarter composition, her entire walking figure, both shoes and the complete matte-black track bicycle inside frame, warm reflected timber light against cool skylight fill"
+  },
+  {
+    "id": "sgCustom",
+    "value": "She walks along the service lane after training, guiding a matte-black track bicycle with her RIGHT hand while her LEFT hand carries a charcoal helmet at her hip, looking toward the track with a focused adult expression. Preserve the SAME clearly adult Japanese woman from the attached Brave Standard portrait: compact short face, light skin, level almond-shaped orange eyes, rounded nose tip, fuller lower lip, tall athletic long-legged body, and short thick black asymmetric hair with choppy bangs and loose face-framing strands. Exactly TWO normal human arms, TWO hands and TWO legs, anatomically correct. Render her completely as a contemporary human: no mint armor, shoulder pods, head fins, side binders, GN drive, blue cable, beam rifle, mechanical joints or glowing sensors. No wings, no extra person. The helmet is ordinary sports equipment, not a mechanical crest. Fully opaque secure sportswear, no readable text, logos or watermark."
+  },
+  {
+    "checked": true,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": true,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]

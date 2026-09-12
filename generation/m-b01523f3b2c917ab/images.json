@@ -1,0 +1,38 @@
+{
+  "브레이브 일반용 시험기_cinematic_semi_real_f.webp": {
+    "card": "브레이브 일반용 시험기",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "bdc59395c4d24473f72a0bc650638ed49df7dd3e5bd705b73fae8641b39d7029",
+    "prompt": "generation/m-b01523f3b2c917ab/runs/2026-09-12t013534z/01-anthro.txt",
+    "manifest": "generation/m-b01523f3b2c917ab/runs/2026-09-12t013534z/manifest.json"
+  },
+  "브레이브 일반용 시험기_cinematic_semi_real_f_casual1.webp": {
+    "card": "브레이브 일반용 시험기",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "60ab07baedf7974e47a7e69dc79439c47595819d36c167983f9d9aa7f9a0c79c",
+    "prompt": "generation/m-b01523f3b2c917ab/runs/2026-09-12t013534z/02-casual.txt",
+    "manifest": "generation/m-b01523f3b2c917ab/runs/2026-09-12t013534z/manifest.json"
+  },
+  "브레이브 일반용 시험기_cel_anime_f.webp": {
+    "card": "브레이브 일반용 시험기",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "d3e6a19d62a94e66eb2d89aef4d64f976b6159a84f5d8997ca3d33b80c5b1a51",
+    "prompt": "generation/m-b01523f3b2c917ab/runs/2026-09-12t013534z/03-anthro.txt",
+    "manifest": "generation/m-b01523f3b2c917ab/runs/2026-09-12t013534z/manifest.json"
+  },
+  "브레이브 일반용 시험기_cel_anime_f_casual1.webp": {
+    "card": "브레이브 일반용 시험기",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "8b05dea2e933277b78cbfb9cbf3aadd89279eca355cb6cbd3b92581466751718",
+    "prompt": "generation/m-b01523f3b2c917ab/runs/2026-09-12t013534z/04-casual.txt",
+    "manifest": "generation/m-b01523f3b2c917ab/runs/2026-09-12t013534z/manifest.json"
+  }
+}
