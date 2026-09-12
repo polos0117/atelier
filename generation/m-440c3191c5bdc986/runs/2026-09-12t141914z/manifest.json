@@ -1,0 +1,83 @@
+{
+  "card": "건담 벨페고르",
+  "repository": "polos0117/atelier",
+  "branch": "codex/belphegor-images",
+  "baseCommit": "e37901fa08110bbeb1c116cc2f95c44bf1e3b632",
+  "generator": "prompt.html v9.18 actual UI; silhouette_equipment_emphasis",
+  "sourceReference": "https://www.mahq.net/wp-content/uploads/2022/10/gb-9700.jpg",
+  "correction": {
+    "original": "exec-8dbe331f-7a83-484a-8641-8f32a47ef3af.png",
+    "prompt": "generation/m-440c3191c5bdc986/runs/2026-09-12t141914z/01-anthro-fix.txt",
+    "reason": "Extra humanoid hand on external weapon replaced with closed two-jaw mechanical pincer"
+  },
+  "images": [
+    {
+      "file": "건담 벨페고르_cinematic_semi_real_f.webp",
+      "card": "건담 벨페고르",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "cab1c3233e0ae510d0e4ed87cc15c25ae9cb72870bdf6101ea6b36a850668aa6",
+      "prompt": "generation/m-440c3191c5bdc986/runs/2026-09-12t141914z/01-anthro.txt",
+      "manifest": "generation/m-440c3191c5bdc986/runs/2026-09-12t141914z/manifest.json",
+      "id": "01",
+      "source": "exec-51630609-e2f2-403e-bc6d-246f08aad865.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "parent": null
+    },
+    {
+      "file": "건담 벨페고르_cinematic_semi_real_f_casual1.webp",
+      "card": "건담 벨페고르",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "d6c1616bc89ddcf5125d86da1c604397263ae22685777eb9b7ee246918187422",
+      "prompt": "generation/m-440c3191c5bdc986/runs/2026-09-12t141914z/02-casual.txt",
+      "manifest": "generation/m-440c3191c5bdc986/runs/2026-09-12t141914z/manifest.json",
+      "id": "02",
+      "source": "exec-bcbccf63-cea6-4207-826c-593396c5ccf0.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "parent": "01"
+    },
+    {
+      "file": "건담 벨페고르_cel_anime_f.webp",
+      "card": "건담 벨페고르",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "7777825dd995196123b89e6f1653d0b6cb5a4e387cda630633e265723737510c",
+      "prompt": "generation/m-440c3191c5bdc986/runs/2026-09-12t141914z/03-anthro.txt",
+      "manifest": "generation/m-440c3191c5bdc986/runs/2026-09-12t141914z/manifest.json",
+      "id": "03",
+      "source": "exec-881577ac-8a8e-4739-8a1a-3e993b700da9.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "parent": "01"
+    },
+    {
+      "file": "건담 벨페고르_cel_anime_f_casual1.webp",
+      "card": "건담 벨페고르",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "0f864e1d98baf67bdfa8601e1b5f3435fef0026f36122685fdef0285a3a70b48",
+      "prompt": "generation/m-440c3191c5bdc986/runs/2026-09-12t141914z/04-casual.txt",
+      "manifest": "generation/m-440c3191c5bdc986/runs/2026-09-12t141914z/manifest.json",
+      "id": "04",
+      "source": "exec-4a4915ad-afc2-49cd-ae4d-b953f8f7ef9e.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "parent": "03"
+    }
+  ]
+}
