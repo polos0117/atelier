@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Gundam Prompt Toolkit v9.18</title>
+<title>Gundam Prompt Toolkit v9.19</title>
 <meta name="theme-color" content="#0f1115">
 <!-- 홈 화면에 두면 브라우저가 저장 자리를 걷어가지 못한다 -->
 <link rel="manifest" href="prompt.webmanifest">
@@ -383,14 +383,21 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
   </div>
 
 
-  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.18</b> <span>새 판 알림이 캐시에 먹히지 않게</span><span class="bstamp" id="buildStamp" title="지금 화면에 뜬 판이 서버를 떠난 때"></span></div>
+  <div class="ver-badge">Gundam Prompt Toolkit <b>v9.19</b> <span>단일컷·콜라주가 오드아이를 흘리던 것</span><span class="bstamp" id="buildStamp" title="지금 화면에 뜬 판이 서버를 떠난 때"></span></div>
   <details class="srcbox verbox" id="verBox">
     <summary>
-      <span class="sel-line" style="white-space:normal;overflow:visible">v9.18 변경 내역</span>
+      <span class="sel-line" style="white-space:normal;overflow:visible">v9.19 변경 내역</span>
       <span class="sb-txt">패치 노트</span>
     </summary>
     <div class="vb-in">
-      <b>v9.18 &middot; 새 판 알림이 캐시에 먹히지 않게</b>
+      <b>v9.19 &middot; 단일컷·콜라주가 오드아이를 흘리던 것</b>
+      <ul>
+        <li><b>단일컷과 콜라주가 눈 색을 한쪽만 넘기고 있었다.</b> 의인화 설정을 넘기는 목록(<code>CARRY_FACE</code>)에 오른쪽 눈만 있고 <b>왼쪽 눈이 빠져 있었다.</b> 그래서 오드아이로 잡아 둔 기체도 일상컷에서는 양쪽이 오른쪽 색으로 나왔다. 그림만 보고는 설정을 잘못 넣은 줄 알기 쉬운 자리다</li>
+        <li>이제 왼쪽 눈도 함께 넘기고, <b>어느 쪽이 어느 색인지 한 문장으로 풀어 붙인다.</b> 값만 나란히 적으면 모델이 좌우를 못 잡고 한 색으로 섞는다. 의인화 쪽에 이미 있던 글귀를 공용 함수로 빼내 셋이 같은 말을 쓰게 했다</li>
+        <li>양쪽을 같은 색으로 골랐으면 오드아이로 치지 않고 "양쪽 다 같은 색을 유지하라"로 나간다. 이것도 의인화 쪽과 같은 규칙이다</li>
+        <li>확인 — 진짜 브라우저로 네 가지: 오드아이(오른쪽 purple·왼쪽 gold) / 양쪽 같은 색 / 오른쪽만 지정 / 왼쪽만 지정. 의인화 쪽 글귀는 고치기 전과 글자까지 같고, 프롬프트 출력 54 항목 71만 7천 글자도 바이트까지 그대로다</li>
+      </ul>
+      <b style="opacity:.55">v9.18 &middot; 새 판 알림이 캐시에 먹히지 않게</b>
       <ul>
         <li><b>v9.17 을 쓰는 동안 갈아타기 띠가 한 번도 안 떴다.</b> 까닭은 견주는 자리가 틀려서였다. 예전 코드는 "이 창이 처음 본 서버 표"를 기준으로 삼았는데, 화면에 떠 있는 쪽이 <b>브라우저 캐시에서 온 옛 판</b>이면 첫 살핌이 서버의 새 판을 곧장 "이미 본 것"으로 적어 버렸다. 홈 화면 앱은 거의 늘 캐시에서 열리니, 사실상 영영 안 알리는 코드였다</li>
         <li>이제 <b>지금 이 문서가 서버를 떠난 때</b>(<code>document.lastModified</code>)를 기준으로 삼는다. 그보다 서버 쪽이 나중이면 새 판이다 — 캐시에서 왔든 아니든 맞게 걸린다. 앞뒤 이 초는 봐준다</li>
@@ -2627,6 +2634,26 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     return r?r[2]:ex;
   }
 
+  /* 눈 색은 칸이 둘이다 — 'eye color' 가 오른쪽, 'second eye color' 가 왼쪽이다.
+     값만 나란히 적어 두면 모델이 어느 쪽이 어느 쪽인지 못 잡고 한 색으로 섞는다.
+     그래서 한 문장으로 풀어 붙인다. 의인화 쪽에만 이 글귀가 있고 단일컷·콜라주는
+     'eye color' 한 칸만 넘기고 있어서, 오드아이가 통째로 사라지고 있었다. */
+  function eyeNote(out){
+    const e2=out.find(p=>p[0]==='second eye color'); if(!e2)return;
+    const e1=out.find(p=>p[0]==='eye color');
+    const right=e1?e1[1]:'the primary eye color', left=e2[1];
+    if(e1&&right===left){
+      out.push(['eye color consistency',
+        'both eyes are '+right+'; keep the same eye colour consistently in both eyes']);
+    }else{
+      out.push(['heterochromia',
+        'the character has heterochromia: the right eye is '+right+
+        ' and the left eye is '+left+
+        '; keep the two eye colours clearly distinct and preserve the same side assignment in every image — '+
+        'do not swap the sides and do not blend the colours']);
+    }
+  }
+
   /* ══ 의인화 → 콜라주 정체성 전달 ══
      전부 넘기지 않는다. 장갑 구조나 하체 처리는 현대 의상에 의미가 없고,
      첨부 이미지가 이미 잘 잡아주는 항목까지 글로 적으면 지시가 충돌한다.
@@ -2638,6 +2665,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     ['face shape','face shape'],
     ['eye shape','eye shape'],
     ['eye color','eye color'],
+    ['second eye color','second eye color'],
     ['skin tone','skin tone'],
     ['hair color','hair color'],
     ['hair length','hair length'],
@@ -2688,7 +2716,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
   }
   function carryBlock(includeFace,includeBody){
     const v=[];
-    if(includeFace)v.push(...carryValues(CARRY_FACE));
+    if(includeFace){v.push(...carryValues(CARRY_FACE)); eyeNote(v);}
     if(includeBody)v.push(...carryValues(CARRY_BODY));
     if(!v.length)return '';
     return '[CHARACTER IDENTITY SPEC]\n\n'+
@@ -4749,22 +4777,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
           : 'Where this list is silent, choose freely, but do not let that freedom pull the '+
             'specified features back toward a template')]);
     }
-    const e2=out.find(p=>p[0]==='second eye color');
-    if(e2){
-      const e1=out.find(p=>p[0]==='eye color');
-      const right=e1?e1[1]:'the primary eye color';
-      const left=e2[1];
-      if(e1&&right===left){
-        out.push(['eye color consistency',
-          'both eyes are '+right+'; keep the same eye colour consistently in both eyes']);
-      }else{
-        out.push(['heterochromia',
-          'the character has heterochromia: the right eye is '+right+
-          ' and the left eye is '+left+
-          '; keep the two eye colours clearly distinct and preserve the same side assignment in every image — '+
-          'do not swap the sides and do not blend the colours']);
-      }
-    }
+    eyeNote(out);
     const age=out.find(p=>p[0]==='apparent age');
     if(age&&age[1]==='youthful adult')out.push(['age clarity',YOUTHFUL_LOCK]);
     const fc2=out.find(p=>p[0]==='facial character');
