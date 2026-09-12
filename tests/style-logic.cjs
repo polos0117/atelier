@@ -14,7 +14,7 @@ assert.equal(vm.runInContext("bucketOf('Card','photoreal')",ctx),null);
 assert.equal(vm.runInContext("bucketOf('Card','painterly').f",ctx),'new.webp');
 const start=prompt.indexOf("document.getElementById('exportStore').addEventListener"),end=prompt.indexOf("  document.getElementById('specialInput')",start);
 let handler;const box={value:'',classList:{add(){},remove(){}},select(){}};
-const sandbox={document:{getElementById(){return {addEventListener(_,fn){handler=fn}}},execCommand(){}},fetch:async()=>({ok:true,json:async()=>({mechs:{},style:{Card:'game_keyart'}})}),DATA_URL:'toolkit-data.json',BASE:{style:{Card:'photoreal'}},STORE:{style:{Card:'painterly'},stylePreferences:{Card:'ink_wash'}},allKeys:()=>[],setStatus(){}};
+const sandbox={document:{getElementById(){return {addEventListener(_,fn){handler=fn}}},execCommand(){}},fetch:async()=>({ok:true,json:async()=>({mechs:{},style:{Card:'game_keyart'}})}),DATA_URL:'toolkit-data.json',BASE:{style:{Card:'photoreal'}},STORE:{style:{Card:'painterly'},stylePreferences:{Card:'ink_wash'}},allKeys:()=>[],setStatus(){},downloadJson:()=>true};
 vm.runInNewContext(prompt.slice(start,end),sandbox);
 sandbox.document.getElementById=()=>box;
 (async()=>{await handler();assert.deepEqual(JSON.parse(box.value).style,{Card:'game_keyart'});sandbox.fetch=async()=>{throw Error('offline')};await handler();assert.equal(box.value,'');console.log('PASS: JS syntax, unknown/style bucket isolation, stale local/base export protection, offline guard');})().catch(e=>{console.error(e);process.exitCode=1});

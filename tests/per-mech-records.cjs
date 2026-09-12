@@ -20,7 +20,7 @@ ctx.CARD_GENERATION.bad={prompt:'generation/../../private.txt'};assert(!ctx.gene
 // The default export reads only the selected card and requires no network call.
 const source=fs.readFileSync('prompt.html','utf8');const a=source.indexOf("document.getElementById('exportStore').addEventListener");const b=source.indexOf("document.getElementById('exportAllStore').addEventListener",a);
 const box={classList:{remove(){}},select(){}};let callback;
-const exportCtx={document:{getElementById:id=>id==='exportStore'?{addEventListener:(_,fn)=>callback=fn}:id==='artStyle'?{value:'game_keyart'}:box,execCommand(){}},mechKey:()=> '선택 기체',persistAnthro(){},stripPrev:r=>r,recOf:()=>({female:{sel:{'apparent age':'20s'}},t:1}),usedOf:()=>[],setStatus(){}};
+const exportCtx={document:{getElementById:id=>id==='exportStore'?{addEventListener:(_,fn)=>callback=fn}:id==='artStyle'?{value:'game_keyart'}:box,execCommand(){}},mechKey:()=> '선택 기체',persistAnthro(){},stripPrev:r=>r,recOf:()=>({female:{sel:{'apparent age':'20s'}},t:1}),usedOf:()=>[],setStatus(){},downloadJson:()=>true};
 vm.runInNewContext(source.slice(a,b),exportCtx);
 (async()=>{
  await callback();const out=JSON.parse(box.value);assert.equal(out.card,'선택 기체');assert(!out.mechs);assert.equal(out.record.female.sel['apparent age'],'20s');
