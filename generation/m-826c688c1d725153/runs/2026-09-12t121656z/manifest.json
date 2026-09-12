@@ -1,0 +1,105 @@
+{
+  "card": "걍 슈트롬",
+  "repository": "polos0117/atelier",
+  "branch": "codex/gyan-strom-images",
+  "baseCommit": "c3015b96631212fd840772b855640d54231786a4",
+  "generator": "prompt.html v9.18, actual UI selections and text output",
+  "tool": "built-in imagegen",
+  "sourceReference": {
+    "url": "https://bandaibrasil.com.br/cdn/shop/files/6458406_1024x1024.jpg?v=1761593017",
+    "role": "original mechanical reference for 01"
+  },
+  "rejectedVariants": [
+    "Original opera scene and hand correction replaced at user request; not registered."
+  ],
+  "images": [
+    {
+      "file": "걍 슈트롬_cinematic_semi_real_f.webp",
+      "card": "걍 슈트롬",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "aec61e413a0805fd8e50983ad11cb9d4e316348c5fa86ae4fa053f06c0d96edf",
+      "prompt": "generation/m-826c688c1d725153/runs/2026-09-12t121656z/01-anthro.txt",
+      "manifest": "generation/m-826c688c1d725153/runs/2026-09-12t121656z/manifest.json",
+      "id": "01",
+      "source": "exec-d91db8d3-0fcb-4125-9f5d-dc39c1c48f59.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "parent": null,
+      "status": {
+        "generated": true,
+        "converted": true,
+        "uploaded": false
+      }
+    },
+    {
+      "file": "걍 슈트롬_cinematic_semi_real_f_casual1.webp",
+      "card": "걍 슈트롬",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "49d00e3a721284e802e011ffdae25ea86ca9bcf4aa0641f14a967bc2fb4b9194",
+      "prompt": "generation/m-826c688c1d725153/runs/2026-09-12t121656z/02-casual-train.txt",
+      "manifest": "generation/m-826c688c1d725153/runs/2026-09-12t121656z/manifest.json",
+      "id": "02",
+      "source": "exec-0815f53b-4e66-4c32-a723-e751802a5c0c.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "parent": "01",
+      "status": {
+        "generated": true,
+        "converted": true,
+        "uploaded": false
+      }
+    },
+    {
+      "file": "걍 슈트롬_anime_illust_f.webp",
+      "card": "걍 슈트롬",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "37a2fd29e21c8cc81bd95ce2d739b33766ada491fe99ef68224943f348b71a39",
+      "prompt": "generation/m-826c688c1d725153/runs/2026-09-12t121656z/03-anthro.txt",
+      "manifest": "generation/m-826c688c1d725153/runs/2026-09-12t121656z/manifest.json",
+      "id": "03",
+      "source": "exec-49735b4c-dfcb-4706-b445-2250331bbbdd.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "parent": "01",
+      "status": {
+        "generated": true,
+        "converted": true,
+        "uploaded": false
+      }
+    },
+    {
+      "file": "걍 슈트롬_anime_illust_f_casual1.webp",
+      "card": "걍 슈트롬",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "ce0414d97cef8b9f87fe26113286369f98c9621972aad85d24500fe78fdd57fa",
+      "prompt": "generation/m-826c688c1d725153/runs/2026-09-12t121656z/04-casual.txt",
+      "manifest": "generation/m-826c688c1d725153/runs/2026-09-12t121656z/manifest.json",
+      "id": "04",
+      "source": "exec-3b5dbccd-b488-4411-81ac-c9f862c9a77c.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "parent": "03",
+      "status": {
+        "generated": true,
+        "converted": true,
+        "uploaded": false
+      }
+    }
+  ]
+}

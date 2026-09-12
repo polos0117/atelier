@@ -1,0 +1,42 @@
+{
+  "걍 슈트롬_cinematic_semi_real_f.webp": {
+    "file": "걍 슈트롬_cinematic_semi_real_f.webp",
+    "card": "걍 슈트롬",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "aec61e413a0805fd8e50983ad11cb9d4e316348c5fa86ae4fa053f06c0d96edf",
+    "prompt": "generation/m-826c688c1d725153/runs/2026-09-12t121656z/01-anthro.txt",
+    "manifest": "generation/m-826c688c1d725153/runs/2026-09-12t121656z/manifest.json"
+  },
+  "걍 슈트롬_cinematic_semi_real_f_casual1.webp": {
+    "file": "걍 슈트롬_cinematic_semi_real_f_casual1.webp",
+    "card": "걍 슈트롬",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "49d00e3a721284e802e011ffdae25ea86ca9bcf4aa0641f14a967bc2fb4b9194",
+    "prompt": "generation/m-826c688c1d725153/runs/2026-09-12t121656z/02-casual-train.txt",
+    "manifest": "generation/m-826c688c1d725153/runs/2026-09-12t121656z/manifest.json"
+  },
+  "걍 슈트롬_anime_illust_f.webp": {
+    "file": "걍 슈트롬_anime_illust_f.webp",
+    "card": "걍 슈트롬",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "37a2fd29e21c8cc81bd95ce2d739b33766ada491fe99ef68224943f348b71a39",
+    "prompt": "generation/m-826c688c1d725153/runs/2026-09-12t121656z/03-anthro.txt",
+    "manifest": "generation/m-826c688c1d725153/runs/2026-09-12t121656z/manifest.json"
+  },
+  "걍 슈트롬_anime_illust_f_casual1.webp": {
+    "file": "걍 슈트롬_anime_illust_f_casual1.webp",
+    "card": "걍 슈트롬",
+    "style": "anime_illust",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "ce0414d97cef8b9f87fe26113286369f98c9621972aad85d24500fe78fdd57fa",
+    "prompt": "generation/m-826c688c1d725153/runs/2026-09-12t121656z/04-casual.txt",
+    "manifest": "generation/m-826c688c1d725153/runs/2026-09-12t121656z/manifest.json"
+  }
+}
