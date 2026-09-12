@@ -1,0 +1,114 @@
+{
+  "card": "건담 버사고",
+  "repository": "polos0117/atelier",
+  "branch": "codex/virsago-images",
+  "baseCommit": "94489d24ad6e1e302cd5208f0bbf422e404c2774",
+  "tool": "image_gen",
+  "run": "2026-09-12t082723z",
+  "referenceSources": [
+    "https://gundam-official.com/mecha/kjzhyvqnaxxvb2cgc8hrv0ez",
+    "https://gundam-official.com/media/x_s00182_front_b91699be18/x_s00182_front_b91699be18.png"
+  ],
+  "direction": "Dangerous elegant red witch; normal human limbs; billiards and night dance scenes.",
+  "outputs": [
+    {
+      "card": "건담 버사고",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "fd6a915c3e86b06ffeddcb0125f2c178348ba48cfaf8b1a5cc8b0c4880ee4b70",
+      "prompt": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/01-anthro.txt",
+      "manifest": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/manifest.json",
+      "corrections": [
+        "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/01-fix-framing.txt"
+      ],
+      "id": "01",
+      "file": "img/건담_버사고_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "exec-d26f4250-1b3c-47c0-8ade-eed4813553b4.png",
+      "reference": "official MS reference",
+      "status": "generated_converted"
+    },
+    {
+      "card": "건담 버사고",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "2466051f6cf5b3d548ca9a3b50d7a397961de452b6d8406e824bccd45eadbc37",
+      "prompt": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/02-casual-retry.txt",
+      "manifest": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/manifest.json",
+      "id": "02",
+      "file": "img/건담_버사고_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "exec-298a2607-253f-44b0-9a92-514f6e36bf0c.png",
+      "reference": "01",
+      "status": "generated_converted"
+    },
+    {
+      "card": "건담 버사고",
+      "style": "glossy_kr_game",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "cda6424a2aaadbd7659a1b99f04189e9cd80c5a9c41e95ec6a152ce532c80ce9",
+      "prompt": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/03-anthro.txt",
+      "manifest": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/manifest.json",
+      "id": "03",
+      "file": "img/건담_버사고_glossy_kr_game_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "exec-b2db89b8-8e08-4735-b67d-b895f9cd9b95.png",
+      "reference": "01",
+      "status": "generated_converted"
+    },
+    {
+      "card": "건담 버사고",
+      "style": "glossy_kr_game",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "ae69fd040523c2a3bde162e650cca81a44cccdd4643071dcca7a0d019683fe2b",
+      "prompt": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/04-casual.txt",
+      "manifest": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/manifest.json",
+      "id": "04",
+      "file": "img/건담_버사고_glossy_kr_game_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "exec-7c133466-a029-4f65-98ab-c94511c2cdf9.png",
+      "reference": "03",
+      "status": "generated_converted"
+    }
+  ],
+  "attempts": [
+    {
+      "prompt": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/01-anthro.txt",
+      "source": "exec-2975f1a3-4a09-41f6-b7fa-766d2dc44b36.png",
+      "status": "superseded_framing_correction"
+    },
+    {
+      "prompt": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/01-fix-framing.txt",
+      "source": "exec-d26f4250-1b3c-47c0-8ade-eed4813553b4.png",
+      "reference": "exec-2975f1a3-4a09-41f6-b7fa-766d2dc44b36.png",
+      "status": "final"
+    },
+    {
+      "prompt": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/02-casual.txt",
+      "status": "output_moderation_blocked",
+      "requestId": "f4caaf01-c8f1-4bd6-9e88-b2441f89f503"
+    },
+    {
+      "prompt": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/02-casual-retry.txt",
+      "source": "exec-298a2607-253f-44b0-9a92-514f6e36bf0c.png",
+      "status": "final",
+      "change": "Slight lean and eye-level side-rear composition; backless dress and billiards retained."
+    }
+  ]
+}
