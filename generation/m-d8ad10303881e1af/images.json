@@ -1,1 +1,42 @@
-{}
+{
+  "퀸 만사_cinematic_semi_real_f.webp": {
+    "file": "퀸 만사_cinematic_semi_real_f.webp",
+    "card": "퀸 만사",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "d82c05339099cba261dc4f34ceafe5cc2d218a7d33987d00bff71981b2817599",
+    "prompt": "generation/m-d8ad10303881e1af/runs/2026-09-12t150607z/01-anthro.txt",
+    "manifest": "generation/m-d8ad10303881e1af/runs/2026-09-12t150607z/manifest.json"
+  },
+  "퀸 만사_cinematic_semi_real_f_casual1.webp": {
+    "file": "퀸 만사_cinematic_semi_real_f_casual1.webp",
+    "card": "퀸 만사",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "08d6f2426ec558b049266fe32c11ff4dc1a4b697589c466a181633e42192203b",
+    "prompt": "generation/m-d8ad10303881e1af/runs/2026-09-12t150607z/02-casual.txt",
+    "manifest": "generation/m-d8ad10303881e1af/runs/2026-09-12t150607z/manifest.json"
+  },
+  "퀸 만사_glossy_kr_game_f.webp": {
+    "file": "퀸 만사_glossy_kr_game_f.webp",
+    "card": "퀸 만사",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "07e2ae7abe0593c45474915a7c730b27df503b7c09e27524bdc2666a7ee455d0",
+    "prompt": "generation/m-d8ad10303881e1af/runs/2026-09-12t150607z/03-anthro.txt",
+    "manifest": "generation/m-d8ad10303881e1af/runs/2026-09-12t150607z/manifest.json"
+  },
+  "퀸 만사_glossy_kr_game_f_casual1.webp": {
+    "file": "퀸 만사_glossy_kr_game_f_casual1.webp",
+    "card": "퀸 만사",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "aa2629e86cc23367f206243256fd0467f24d4b10ff0d6d6905d9bd5e33282db9",
+    "prompt": "generation/m-d8ad10303881e1af/runs/2026-09-12t150607z/04-casual.txt",
+    "manifest": "generation/m-d8ad10303881e1af/runs/2026-09-12t150607z/manifest.json"
+  }
+}

@@ -1,7 +1,7 @@
 {
  "version": 1,
  "note": "초상 파일 목록. 카드 이름 → {m, f, face, casual[], extra[], byStyle{}} 이다. 파일 이름이 곧 등록 정보라 register-images.py 가 저장소의 *.webp 를 훑어 없는 것만 더한다 — 이미 적힌 것과 얼굴 좌표(face)는 건드리지 않으니 손으로 넣은 항목이 덮이지 않는다. face 는 파일 이름에서 알 수 없어 비면 게임이 기본값을 쓰고, 어색하면 사람이 여기서 손본다. play.html 은 실행 중에도 GitHub 파일 목록으로 같은 규칙을 한 번 더 돌리므로(mergeRepoFiles) 여기 안 적혀 있어도 화면에는 뜬다. 다만 그때는 얼굴 좌표가 기본값이고 목록을 못 받으면 그만이라, 파일로 굳혀 두는 편이 낫다.",
- "count": 277,
+ "count": 278,
  "img": {
   "GFreD": {"byStyle": {"cinematic_semi_real": {"f": "GFreD_cinematic_semi_real_f.webp", "casual": {"f": ["GFreD_cinematic_semi_real_f_casual1.webp"]}}, "anime_illust": {"f": "GFreD_anime_illust_f.webp", "casual": {"f": ["GFreD_anime_illust_f_casual1.webp"]}}}},
   "GN 아처": {"byStyle": {"glossy_kr_game": {"f": "GN 아처_glossy_kr_game_f.webp", "casual": {"f": ["GN 아처_glossy_kr_game_f_casual1.webp"]}}, "cel_anime": {"f": "GN 아처_cel_anime_f.webp"}}},
@@ -252,6 +252,7 @@
   "캘딤 건담": {"m": "캘딤_건담_m.webp", "f": "캘딤_건담_f.webp", "face": {"m": [0.448, 0.088, 0.122], "f": [0.428, 0.098, 0.12]}, "casual": {"f": ["캘딤_건담_casual1.webp"]}},
   "캘러미티": {"m": "캘러미티_m.webp", "f": "캘러미티_f.webp", "face": {"m": [0.413, 0.106, 0.16], "f": [0.399, 0.095, 0.203]}, "casual": {"f": ["캘러미티_casual1.webp"]}},
   "캠퍼": {"m": "캠퍼_m.webp", "f": "캠퍼_f.webp", "face": {"m": [0.452, 0.128, 0.155], "f": [0.42, 0.132, 0.152]}, "casual": {"f": ["캠퍼_casual1.webp"]}},
+  "퀸 만사": {"byStyle": {"cinematic_semi_real": {"f": "퀸 만사_cinematic_semi_real_f.webp", "casual": {"f": ["퀸 만사_cinematic_semi_real_f_casual1.webp"]}}, "glossy_kr_game": {"f": "퀸 만사_glossy_kr_game_f.webp", "casual": {"f": ["퀸 만사_glossy_kr_game_f_casual1.webp"]}}}},
   "큐베레이": {"m": "큐베레이_m.webp", "f": "큐베레이_f.webp", "face": {"m": [0.415, 0.175, 0.17], "f": [0.399, 0.208, 0.16]}, "casual": {"f": ["큐베레이_casual1.webp"]}},
   "큐베레이 Mk-Ⅱ 플기": {"m": "큐베레이_Mk-Ⅱ_플기_m.webp", "f": "큐베레이_Mk-Ⅱ_플기_f.webp", "face": {"m": [0.417, 0.202, 0.16], "f": [0.407, 0.241, 0.16]}, "casual": {"f": ["큐베레이_Mk-Ⅱ_플기_casual1.webp"]}},
   "큐베레이 Mk-Ⅱ 플투기": {"m": "큐베레이_Mk-Ⅱ_플투기_m.webp", "f": "큐베레이_Mk-Ⅱ_플투기_f.webp", "face": {"m": [0.38, 0.16, 0.16], "f": [0.417, 0.146, 0.16]}, "casual": {"f": ["큐베레이_Mk-Ⅱ_플투기_casual1.webp"]}},
