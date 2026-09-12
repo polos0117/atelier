@@ -1,0 +1,112 @@
+[INPUT]
+
+SOURCE MOBILE SUIT: [GN-X IV]
+
+This name is identity-provenance metadata only, used for lore, personality, and occupation context. It must not be used to reconstruct, restore, or invent mobile-suit armor, weapons, shields, backpacks, mechanical limbs, or other canonical equipment.
+
+Use the attached clearly adult anthropomorphized character as the absolute identity and equipment reference for this image.
+
+==================================================
+
+[IDENTITY LOCK]
+
+Use the SAME clearly adult woman as the attached reference. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, bust, waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign. Facial expression is not identity. The brows, eyelids, eye openness, mouth shape and lip parting must follow the expression specified elsewhere in this prompt — "preserve mouth shape" refers to the resting structure and proportion of the lips, not to holding a neutral mouth. A specified expression must be clearly readable on the face.
+
+==================================================
+
+[LIFESTYLE REFERENCE LOCK]
+
+The attached character image is authoritative for the character's visible appearance and equipment state in this image. The source mobile suit name above is identity-origin metadata only and must not be used to reconstruct, restore, or invent mobile-suit equipment. Lifestyle may retain small, non-functional, identity-defining accessories from the character reference when they read as wearable ornament rather than active mobile-suit equipment. Do not retain or reconstruct functional armor, weapons, shields, backpacks, binders, thrusters, mechanical limbs, or other combat/mechanical equipment. Canonical mobile-suit equipment that is absent from the attached character reference must remain absent. For civilian, casual, homewear, swimwear, activewear, fashion, and other lifestyle scenes, translate only the character's established human identity into the requested scene — do not revert the character toward her original mobile-suit form.
+
+If multiple reference images of the same character are attached: use the clearest face close-up as the primary facial identity anchor; use the full-character reference as the primary authority for body proportions, hairstyle, overall appearance, and visible equipment state; use any remaining references only to resolve details that are unclear or occluded. Do not average the references into a new face. All attached references depict the same character and must resolve toward one identity.
+
+==================================================
+
+[CHARACTER IDENTITY SPEC]
+
+The attached anthropomorphized reference image was generated from this specification:
+- ethnicity: African
+- apparent age: 20s
+- facial impression: stoic
+- face shape: compact
+- eye shape: narrow
+- eye color: purple
+- skin tone: deep
+- hair color: silver
+- hair length: medium
+- hairstyle: locs
+- bangs: none
+- face length: balanced
+- face width: medium
+- jaw & chin: angular defined jaw
+- eye size: medium
+- eye tilt: level outer corners
+- nose character: broad low bridge
+- lips: full lips
+- hair texture: thick
+- hair volume: moderate
+- parting: swept back
+- body type: athletic
+- height impression: tall
+- torso / chest build: balanced
+- waist / hip silhouette: athletic
+- leg proportion: long
+- shoulder build: broad
+- torso length: balanced
+- lower-body build: balanced
+
+Precedence: the attached image remains the primary reference. Use this list to resolve anything the image leaves ambiguous — including body proportions that the mobile-suit armor in the reference image may obscure, and to prevent facial drift across panels — especially ethnicity, facial structure, and apparent age, which tend to slide toward a generic default over six panels. Where the image shows something clearly and unambiguously, follow the image. Where armor, pose, foreshortening, camera angle, cropping, or occlusion makes a detail ambiguous, use this list to resolve it rather than guessing.
+
+==================================================
+
+[ART STYLE]
+
+authentic late-1980s to mid-1990s hand-drawn cel-animation illustration. The image should evoke photographed painted cels and hand-painted animation backgrounds rather than modern digital anime, glossy mobile-game art, CGI, or photography. FACE: period-appropriate adult anime construction with restrained eye size, clean hand-drawn eyelids, simplified nose and mouth, and expressive but not modern moe-style proportions. Retain the individual facial identity specified by PARAMETERS. LINEWORK: thin-to-medium hand-inked outlines with slight natural variation rather than perfectly vector-clean digital lines. SHADING: one or two hard-edged cel shadow tones with very limited gradient use. Highlights are simple painted shapes rather than glossy modern specular streaks. COLOUR: slightly muted analogue palette, visible colour separation, gentle film response, and restrained saturation compared with modern game art. BACKGROUND: hand-painted animation-background feeling with simplified perspective, soft painted atmosphere, and subtle analogue grain. Avoid modern gacha-game gloss, photoreal materials, PBR reflection, digital bloom overload, modern jewelled irises, hyper-clean vector outlines, and contemporary 3D anime rendering.
+
+This art style governs all rendering, facial stylization, lighting, and material treatment throughout this prompt.
+
+[LIFESTYLE STYLE EXTENSION]
+
+Clothing and accessories in this scene follow the same hand-drawn cel-animation colour regions established above. Do not introduce armor, mechanical parts, weapons, or other source mobile-suit equipment into this scene.
+
+[STYLE LOCK]
+
+The selected ART STYLE controls the rendering language of the entire image: facial construction, skin, hair, clothing, fabric, props, lighting, background treatment, edge handling, shading, reflections, speculars, texture, and detail density. It governs HOW the scene is rendered only — it must not redesign, reconstruct, or reintroduce the source mobile suit's armor, weapons, shield, backpack, mechanical limbs, or other canonical equipment. It must not redesign the underlying facial geometry, facial proportions, or character identity established by the attached reference and by this prompt. The attached character reference controls visible character identity and visible equipment state. If any common instruction conflicts with the selected ART STYLE, the selected ART STYLE wins for rendering language only.
+
+==================================================
+
+[OUTPUT]
+
+Create ONE SINGLE image in 2:3 vertical aspect. Exactly one woman. No collage, no panels, no split frames, no numerals, no captions, titles, labels, or any other text.
+
+==================================================
+
+[DIRECTION]
+
+Create candid ordinary personal-life moments. The scene should feel lived-in, believable, and visually specific rather than staged. Use normal contemporary clothing with clear character personality. Avoid glamour-shoot posing, professional work, and costume styling.
+Use this as the thematic anchor: Midnight Laundromat.
+
+==================================================
+
+[SETTINGS]
+
+- Framing: full body.
+- Expression: calm — relaxed brow, softly open eyes, lips closed and unstrained, no smile.
+- Body orientation: side profile.
+- Pose: sitting.
+- Scene / Location: A small self-service laundromat late on a rainy evening, with rows of brushed-steel washing machines, rain streaking the front windows and a molded bench; no other people and no readable text.
+- Outfit: A knee-length deep-plum shirt dress under a cropped charcoal rain jacket, opaque black leggings, matte olive ankle boots, and small silver hoop earrings; fully opaque practical evening clothes.
+- Camera / Lighting: Vertical full-body side-profile composition at seated eye level, her complete seated figure and both boots visible, with cool fluorescent interior light and soft rainy reflections.
+- Additional instruction: She sits sideways on the laundromat bench with one ankle crossed over the other, reading an unbranded paperback held open in both hands; a plain woven laundry basket rests beside her feet. Preserve the SAME clearly adult African woman from the attached GN-X IV retro-anime anthropomorphized portrait: compact angular face, deep skin, narrow level purple eyes, broad low nose bridge, full lips, athletic tall build, and medium-length silver locs swept back. Exactly two normal human arms, two hands and two legs. Render her completely as a contemporary human with no armor, helmet, shield, rifle, booster pods, GN Drive, mechanical joints or glowing sensors. No other person, logos, text or watermark..
+
+==================================================
+
+[NON-EXPLICIT LIMITS]
+
+The character must clearly read as an adult. The garments are securely fitted and fully opaque, and the styling is suitable for a mainstream fashion or lifestyle editorial. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.
+
+==================================================
+
+[FINAL CHECK]
+
+Verify: exactly one image and one woman; the requested aspect ratio; no text anywhere in the frame; the selected category and example are followed; no explicit nudity or sexual activity.
