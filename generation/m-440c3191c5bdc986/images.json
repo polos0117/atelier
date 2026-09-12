@@ -1,0 +1,42 @@
+{
+  "건담 벨페고르_cinematic_semi_real_f.webp": {
+    "file": "건담 벨페고르_cinematic_semi_real_f.webp",
+    "card": "건담 벨페고르",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "cab1c3233e0ae510d0e4ed87cc15c25ae9cb72870bdf6101ea6b36a850668aa6",
+    "prompt": "generation/m-440c3191c5bdc986/runs/2026-09-12t141914z/01-anthro.txt",
+    "manifest": "generation/m-440c3191c5bdc986/runs/2026-09-12t141914z/manifest.json"
+  },
+  "건담 벨페고르_cinematic_semi_real_f_casual1.webp": {
+    "file": "건담 벨페고르_cinematic_semi_real_f_casual1.webp",
+    "card": "건담 벨페고르",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "d6c1616bc89ddcf5125d86da1c604397263ae22685777eb9b7ee246918187422",
+    "prompt": "generation/m-440c3191c5bdc986/runs/2026-09-12t141914z/02-casual.txt",
+    "manifest": "generation/m-440c3191c5bdc986/runs/2026-09-12t141914z/manifest.json"
+  },
+  "건담 벨페고르_cel_anime_f.webp": {
+    "file": "건담 벨페고르_cel_anime_f.webp",
+    "card": "건담 벨페고르",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "7777825dd995196123b89e6f1653d0b6cb5a4e387cda630633e265723737510c",
+    "prompt": "generation/m-440c3191c5bdc986/runs/2026-09-12t141914z/03-anthro.txt",
+    "manifest": "generation/m-440c3191c5bdc986/runs/2026-09-12t141914z/manifest.json"
+  },
+  "건담 벨페고르_cel_anime_f_casual1.webp": {
+    "file": "건담 벨페고르_cel_anime_f_casual1.webp",
+    "card": "건담 벨페고르",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "0f864e1d98baf67bdfa8601e1b5f3435fef0026f36122685fdef0285a3a70b48",
+    "prompt": "generation/m-440c3191c5bdc986/runs/2026-09-12t141914z/04-casual.txt",
+    "manifest": "generation/m-440c3191c5bdc986/runs/2026-09-12t141914z/manifest.json"
+  }
+}

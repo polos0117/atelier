@@ -1,0 +1,78 @@
+{
+  "card": "알바아론",
+  "repository": "polos0117/atelier",
+  "branch": "codex/alvaaron-images",
+  "baseCommit": "e800630857b39f2c14d624e631fb8017284af62b",
+  "generator": "prompt.html v9.18 actual UI; silhouette_equipment_emphasis",
+  "sourceReference": "https://hs-tamtam.co.jp/images/public/products/31997_1.jpg",
+  "images": [
+    {
+      "file": "알바아론_cinematic_semi_real_f.webp",
+      "card": "알바아론",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "0625d25452e2735e82584865bf17d74b16eae49c10eb67be994e7d48dfd20525",
+      "prompt": "generation/m-ed50d041ed442579/runs/2026-09-12t144224z/01-anthro.txt",
+      "manifest": "generation/m-ed50d041ed442579/runs/2026-09-12t144224z/manifest.json",
+      "id": "01",
+      "source": "exec-cb800136-bec7-472d-87a5-b86228144997.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "parent": null
+    },
+    {
+      "file": "알바아론_cinematic_semi_real_f_casual1.webp",
+      "card": "알바아론",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "577a80f8e514e3724757929f27021ac1efdcaeff60ed2eb7ae67f44b255e9f21",
+      "prompt": "generation/m-ed50d041ed442579/runs/2026-09-12t144224z/02-casual.txt",
+      "manifest": "generation/m-ed50d041ed442579/runs/2026-09-12t144224z/manifest.json",
+      "id": "02",
+      "source": "exec-ee9cc416-bc74-4919-9f23-0ca1eb6f7cd7.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "parent": "01"
+    },
+    {
+      "file": "알바아론_anime_illust_f.webp",
+      "card": "알바아론",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "e866c246e1fbfc18409b143e3ce506461e2ba147e2c8fceef90783856086b7ac",
+      "prompt": "generation/m-ed50d041ed442579/runs/2026-09-12t144224z/03-anthro.txt",
+      "manifest": "generation/m-ed50d041ed442579/runs/2026-09-12t144224z/manifest.json",
+      "id": "03",
+      "source": "exec-b32c16f3-9d1b-41b0-9e36-a6a230300f3f.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "parent": "01"
+    },
+    {
+      "file": "알바아론_anime_illust_f_casual1.webp",
+      "card": "알바아론",
+      "style": "anime_illust",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "2abc166f3fd08a654f4c3a9b2d796af9fd36cd6f926e20dca0cc639e26eef251",
+      "prompt": "generation/m-ed50d041ed442579/runs/2026-09-12t144224z/04-casual.txt",
+      "manifest": "generation/m-ed50d041ed442579/runs/2026-09-12t144224z/manifest.json",
+      "id": "04",
+      "source": "exec-94686a7f-28c3-460c-82db-bf0e3ae01c51.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "parent": "03"
+    }
+  ]
+}
