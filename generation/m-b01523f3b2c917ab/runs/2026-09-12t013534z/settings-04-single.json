@@ -1,0 +1,73 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "homewear"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "one_shoulder_lounge"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "pensive"
+  },
+  {
+    "id": "sgOrient",
+    "value": "rear_3q"
+  },
+  {
+    "id": "sgPose",
+    "value": "on_tiptoe"
+  },
+  {
+    "id": "sgScene",
+    "value": "A snowbound winter mountain lodge sunroom at blue hour, tall timber-framed windows, softly falling snow outside and a low stone hearth glowing nearby, no other people"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "A designed asymmetric mint rib-knit one-shoulder lounge top with secure full bust coverage and one long sleeve, charcoal high-waisted wide-leg lounge trousers and thick cream knit socks; fully opaque refined homewear"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body rear three-quarter composition from slightly below eye level, her entire reaching figure and both socked feet visible, cool blue snow light outlining the silhouette against warm amber hearth bounce"
+  },
+  {
+    "id": "sgCustom",
+    "value": "Standing on tiptoe, she reaches up with both hands to drape a folded charcoal-and-cream wool blanket over a tall wooden ladder rack, her face visible in three-quarter profile with a quiet pensive adult expression. Preserve the SAME clearly adult Japanese woman from the attached Brave Standard cel-anime portrait: compact short face, light skin, level almond-shaped orange eyes, rounded nose tip, fuller lower lip, tall athletic long-legged body, and short thick black asymmetric hair with choppy bangs and loose face-framing strands. Exactly TWO normal human arms, TWO hands and TWO legs, anatomically correct. Render her completely as a contemporary human: no mint armor, shoulder pods, head fins, side binders, GN drive, blue cable, beam rifle, mechanical joints or glowing sensors. No wings, no weapon, no extra person. The blanket is soft woven fabric, not a binder or cape. Fully opaque secure homewear, no readable text, logos or watermark."
+  },
+  {
+    "checked": true,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": true,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]
