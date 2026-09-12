@@ -1,0 +1,73 @@
+[
+  {
+    "id": "sgRandomMode",
+    "value": "variety"
+  },
+  {
+    "id": "sgCat",
+    "value": "everyday_basic"
+  },
+  {
+    "id": "sgCatCustom",
+    "value": ""
+  },
+  {
+    "id": "sgEx",
+    "value": "simple_cooking"
+  },
+  {
+    "id": "sgExCustom",
+    "value": ""
+  },
+  {
+    "id": "sgAspect",
+    "value": "2:3 vertical"
+  },
+  {
+    "id": "sgFrame",
+    "value": "full body"
+  },
+  {
+    "id": "sgExpr",
+    "value": "soft_smile"
+  },
+  {
+    "id": "sgOrient",
+    "value": "side"
+  },
+  {
+    "id": "sgPose",
+    "value": "mid_action"
+  },
+  {
+    "id": "sgScene",
+    "value": "A compact lived-in apartment kitchen on a quiet Sunday morning, pale window light, a small herb planter and simple cookware, no other people and no readable text"
+  },
+  {
+    "id": "sgOutfit",
+    "value": "An ivory short-sleeve henley top, loose slate-blue linen trousers, soft house slippers, and a plain deep burgundy waist apron; fully opaque relaxed home clothing"
+  },
+  {
+    "id": "sgCamera",
+    "value": "Full-body side-profile composition at natural eye level, her entire figure and both feet visible beside the kitchen counter, soft morning daylight with gentle warm interior bounce"
+  },
+  {
+    "id": "sgCustom",
+    "value": "Mid-action, she stirs a small saucepan with one wooden spoon while holding a plain ceramic seasoning bowl in the other hand, wearing a subtle relaxed smile. Preserve the SAME clearly adult Middle Eastern woman from the attached Gadelaza ink-wash anthropomorphized portrait: elongated angular face, tan skin, small sharp upturned gold eyes, aquiline nose, medium lips, very tall statuesque straight silhouette, and long thick crimson side-shaved hair swept back. Exactly two normal human arms, two hands and two legs. Render her completely as a contemporary human with no armor, helmet, horns, cannon, wings, binders, GN drives, beam-gun arms, drones, weapons, mechanical joints or glowing sensors. No other person, logos, text or watermark."
+  },
+  {
+    "checked": true,
+    "id": "sgCarryFace",
+    "value": "on"
+  },
+  {
+    "checked": true,
+    "id": "sgCarryBody",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "sgAvoid",
+    "value": "on"
+  }
+]

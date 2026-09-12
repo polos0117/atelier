@@ -1,0 +1,38 @@
+{
+  "가데라자_cinematic_semi_real_f.webp": {
+    "card": "가데라자",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "ecbd3d318d10331814b5e693e4f459743e649dbbde48a90b68de97c8f90042ed",
+    "prompt": "generation/m-591a3d4235136a60/runs/2026-09-12t025151z/01-anthro.txt",
+    "manifest": "generation/m-591a3d4235136a60/runs/2026-09-12t025151z/manifest.json"
+  },
+  "가데라자_cinematic_semi_real_f_casual1.webp": {
+    "card": "가데라자",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "b365f28e2f95c9652c8de9c5c8bf2b5bfbcc20877acccc351ca64e3f25b74a67",
+    "prompt": "generation/m-591a3d4235136a60/runs/2026-09-12t025151z/02-casual.txt",
+    "manifest": "generation/m-591a3d4235136a60/runs/2026-09-12t025151z/manifest.json"
+  },
+  "가데라자_ink_wash_f.webp": {
+    "card": "가데라자",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "52d9edd35b1a49c53446ca759ad8b079c9532687cc7f967e82605ea670b8d262",
+    "prompt": "generation/m-591a3d4235136a60/runs/2026-09-12t025151z/03-anthro.txt",
+    "manifest": "generation/m-591a3d4235136a60/runs/2026-09-12t025151z/manifest.json"
+  },
+  "가데라자_ink_wash_f_casual1.webp": {
+    "card": "가데라자",
+    "style": "ink_wash",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "27d99617f105ea2fbd963898c6c5820d10b3e382b2400df3bf1247653f587e81",
+    "prompt": "generation/m-591a3d4235136a60/runs/2026-09-12t025151z/04-casual.txt",
+    "manifest": "generation/m-591a3d4235136a60/runs/2026-09-12t025151z/manifest.json"
+  }
+}

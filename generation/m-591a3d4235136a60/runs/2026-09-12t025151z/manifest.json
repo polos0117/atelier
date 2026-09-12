@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "card": "가데라자",
+  "model": "GNMA-Y0002V",
+  "series": "건담 00 극장판",
+  "repository": "polos0117/atelier",
+  "branch": "codex/gadelaza-images",
+  "base_commit": "cdbeccab4f11ac39e38ad44d77713cadec1255cc",
+  "prompt_source": "deployed prompt.html UI",
+  "run": "2026-09-12t025151z",
+  "created": "2026-09-12T02:51:51Z",
+  "generation_tool": "image_gen",
+  "settings_export": "Actual prompt.html selections and exported style settings captured for both styles",
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity": "Same clearly adult Middle Eastern woman across both styles",
+    "anthro_background": "No background or environment direction was added to Special Characteristics; the generator's base style behavior was left unchanged",
+    "casual_scenes": [
+      "Independent bookstore on a rainy afternoon",
+      "Apartment kitchen while cooking on a quiet morning"
+    ]
+  },
+  "jobs": [
+    {
+      "id": "01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": null,
+      "prompt": "generation/m-591a3d4235136a60/runs/2026-09-12t025151z/01-anthro.txt",
+      "original_generated_file": "exec-21268e52-442c-49b9-9cee-298b4bf99371.png",
+      "references": [
+        "https://www.mahq.net/gnma-y0002v/"
+      ],
+      "file": "img/가데라자_cinematic_semi_real_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "ecbd3d318d10331814b5e693e4f459743e649dbbde48a90b68de97c8f90042ed",
+      "bytes": 149246
+    },
+    {
+      "id": "02",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "01",
+      "prompt": "generation/m-591a3d4235136a60/runs/2026-09-12t025151z/02-casual.txt",
+      "original_generated_file": "exec-8e078261-a6ce-43da-b3ea-379cda2cf46f.png",
+      "references": [
+        "exec-21268e52-442c-49b9-9cee-298b4bf99371.png"
+      ],
+      "file": "img/가데라자_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "b365f28e2f95c9652c8de9c5c8bf2b5bfbcc20877acccc351ca64e3f25b74a67",
+      "bytes": 133566
+    },
+    {
+      "id": "03",
+      "style": "ink_wash",
+      "gender": "f",
+      "mode": "anthro",
+      "parent": "01",
+      "prompt": "generation/m-591a3d4235136a60/runs/2026-09-12t025151z/03-anthro.txt",
+      "original_generated_file": "exec-6987e7a3-ecea-4f65-bcd5-ea47f0de76f1.png",
+      "references": [
+        "exec-21268e52-442c-49b9-9cee-298b4bf99371.png",
+        "https://www.mahq.net/gnma-y0002v/"
+      ],
+      "file": "img/가데라자_ink_wash_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "52d9edd35b1a49c53446ca759ad8b079c9532687cc7f967e82605ea670b8d262",
+      "bytes": 246382
+    },
+    {
+      "id": "04",
+      "style": "ink_wash",
+      "gender": "f",
+      "mode": "casual",
+      "parent": "03",
+      "prompt": "generation/m-591a3d4235136a60/runs/2026-09-12t025151z/04-casual.txt",
+      "original_generated_file": "exec-ae609eb3-b1cb-44de-a61e-82628ee68094.png",
+      "references": [
+        "exec-6987e7a3-ecea-4f65-bcd5-ea47f0de76f1.png"
+      ],
+      "file": "img/가데라자_ink_wash_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "27d99617f105ea2fbd963898c6c5820d10b3e382b2400df3bf1247653f587e81",
+      "bytes": 217722
+    }
+  ],
+  "prompt_html_sha256": "ab1103447a08571bbd24c83763047c01bb31c365aa59ad2bf81799715336474e",
+  "prompt_html_verification": "Deployed prompt.html v9.18 used; repository prompt.html hash recorded"
+}
