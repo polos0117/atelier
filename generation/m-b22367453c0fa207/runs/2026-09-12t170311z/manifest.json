@@ -1,0 +1,76 @@
+{
+  "card": "베르가 기로스",
+  "baseCommit": "8cbe99c6a48c1710c47db24163080f3205aa61d4",
+  "settingsNote": "UI export captured after four images. Each submitted prompt is authoritative for its own settings.",
+  "images": [
+    {
+      "card": "베르가 기로스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "7d7dead7eea947e92f216d85a94b5d203c3d9bcd827342d65bdeebc577233507",
+      "prompt": "generation/m-b22367453c0fa207/runs/2026-09-12t170311z/01-anthro-retry.txt",
+      "manifest": "generation/m-b22367453c0fa207/runs/2026-09-12t170311z/manifest.json",
+      "file": "베르가 기로스_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "source": "exec-b254ed3e-cf26-4912-a300-ffb4a834c999.png",
+      "referenceImage": "exec-aa859216-fa54-477a-b89d-872fefabe4aa.png",
+      "status": "generated, converted, locally registered pending"
+    },
+    {
+      "card": "베르가 기로스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "442a9155ff2f911cb8e09eeaae6fcceb05bf172464c77f68a4294af1645ceaaa",
+      "prompt": "generation/m-b22367453c0fa207/runs/2026-09-12t170311z/02-casual.txt",
+      "manifest": "generation/m-b22367453c0fa207/runs/2026-09-12t170311z/manifest.json",
+      "file": "베르가 기로스_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "source": "exec-88b24fba-d965-4586-a034-0b7ce197fb3b.png",
+      "referenceImage": "../generated_images/exec-b254ed3e-cf26-4912-a300-ffb4a834c999.png",
+      "status": "generated, converted, locally registered pending"
+    },
+    {
+      "card": "베르가 기로스",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "206aa2ef87118c2bcc3adc13027a50bad8fb9153f2541b22fea94c1df156804b",
+      "prompt": "generation/m-b22367453c0fa207/runs/2026-09-12t170311z/03-anthro.txt",
+      "manifest": "generation/m-b22367453c0fa207/runs/2026-09-12t170311z/manifest.json",
+      "file": "베르가 기로스_cel_anime_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "source": "exec-2b4e2fcf-b93a-4d25-b087-55b282fcbd62.png",
+      "referenceImage": "../generated_images/exec-b254ed3e-cf26-4912-a300-ffb4a834c999.png",
+      "status": "generated, converted, locally registered pending"
+    },
+    {
+      "card": "베르가 기로스",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "8360278891457bdf778e3025181080666160929c7d0f508091c86d31b81e6f8d",
+      "prompt": "generation/m-b22367453c0fa207/runs/2026-09-12t170311z/04-casual.txt",
+      "manifest": "generation/m-b22367453c0fa207/runs/2026-09-12t170311z/manifest.json",
+      "file": "베르가 기로스_cel_anime_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "source": "exec-c268359f-a284-4956-bb0b-0379a33395a8.png",
+      "referenceImage": "../generated_images/exec-2b4e2fcf-b93a-4d25-b087-55b282fcbd62.png",
+      "status": "generated, converted, locally registered pending"
+    }
+  ],
+  "retryNote": "Corrected clipped lancer tip while preserving identity and design."
+}
