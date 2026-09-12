@@ -1,0 +1,42 @@
+{
+  "고트라탄_cinematic_semi_real_f.webp": {
+    "file": "고트라탄_cinematic_semi_real_f.webp",
+    "card": "고트라탄",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "697d45f12ab8826c3dc6bd2a2c64a860dc440dd23e90624bf167d3e34f3c2399",
+    "prompt": "generation/m-03f98cbef6f3bdd3/runs/2026-09-12t114117z/01b-anthro-fix.txt",
+    "manifest": "generation/m-03f98cbef6f3bdd3/runs/2026-09-12t114117z/manifest.json"
+  },
+  "고트라탄_cinematic_semi_real_f_casual1.webp": {
+    "file": "고트라탄_cinematic_semi_real_f_casual1.webp",
+    "card": "고트라탄",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "7c014899ea7c95f3dfa41fc46ec7956ee66d90f4097271ace0351a3c34bf0208",
+    "prompt": "generation/m-03f98cbef6f3bdd3/runs/2026-09-12t114117z/02b-casual.txt",
+    "manifest": "generation/m-03f98cbef6f3bdd3/runs/2026-09-12t114117z/manifest.json"
+  },
+  "고트라탄_cel_anime_f.webp": {
+    "file": "고트라탄_cel_anime_f.webp",
+    "card": "고트라탄",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "f9275dfd4caebe90de4ec3eb97d36647cb567e41031b0844228fae2a6f327101",
+    "prompt": "generation/m-03f98cbef6f3bdd3/runs/2026-09-12t114117z/03-anthro.txt",
+    "manifest": "generation/m-03f98cbef6f3bdd3/runs/2026-09-12t114117z/manifest.json"
+  },
+  "고트라탄_cel_anime_f_casual1.webp": {
+    "file": "고트라탄_cel_anime_f_casual1.webp",
+    "card": "고트라탄",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "0f54cf99ba339c9092384cdeeb428287295cc66590fdfae4bc92539a62fe0473",
+    "prompt": "generation/m-03f98cbef6f3bdd3/runs/2026-09-12t114117z/04b-casual-fix.txt",
+    "manifest": "generation/m-03f98cbef6f3bdd3/runs/2026-09-12t114117z/manifest.json"
+  }
+}
