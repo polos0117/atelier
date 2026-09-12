@@ -4,12 +4,9 @@
     "style": "cinematic_semi_real",
     "gender": "f",
     "mode": "anthro",
-    "sha256": "fd6a915c3e86b06ffeddcb0125f2c178348ba48cfaf8b1a5cc8b0c4880ee4b70",
+    "sha256": "21150ab187f13ae82b0513f5a3a85ab93fc689fb0f6a8f45c354fc0b68a27997",
     "prompt": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/01-anthro.txt",
-    "manifest": "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/manifest.json",
-    "corrections": [
-      "generation/m-2b350310d9796b63/runs/2026-09-12t082723z/01-fix-framing.txt"
-    ]
+    "manifest": "generation/m-2b350310d9796b63/runs/2026-09-12t091059z/manifest.json"
   },
   "건담_버사고_cinematic_semi_real_f_casual1.webp": {
     "card": "건담 버사고",
