@@ -7,6 +7,8 @@ on:
     branches: [main]
     paths:
       - '**.webp'
+      # 썸네일은 이 워크플로가 만들어 되커밋하는 것이라 트리거에서 뺀다
+      - '!img/thumb/**'
   workflow_dispatch:
     inputs:
       prune:
@@ -40,6 +42,13 @@ jobs:
       - name: 대조
         run: python3 register-images.py --check
 
+      - name: Pillow 설치
+        run: pip install --quiet Pillow
+
+      - name: 썸네일
+        # 목록과 갤러리가 원본 대신 쓰는 축소본. 새로 올라온 것만 만든다
+        run: python3 make-thumbs.py
+
       - name: 등록
         run: |
           if [ "${{ inputs.prune }}" = "true" ]; then
@@ -50,14 +59,15 @@ jobs:
 
       - name: 되커밋
         run: |
-          if git diff --quiet -- data/img.json; then
+          if git diff --quiet -- data/img.json img/thumb && \
+             [ -z "$(git status --porcelain -- img/thumb)" ]; then
             echo "달라진 것 없음 — 커밋하지 않는다"
             exit 0
           fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/img.json
-          git commit -m "초상 등록: data/img.json 갱신 [skip actions]"
+          git add data/img.json img/thumb
+          git commit -m "초상 등록: data/img.json 갱신, 썸네일 생성 [skip actions]"
           # 사이에 다른 커밋이 들어왔으면 얹어서 다시 민다
           for i in 1 2 3; do
             git push && exit 0
