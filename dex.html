@@ -90,7 +90,8 @@ main{padding:12px}
   border-left:3px solid var(--cc);
 }
 .cell:focus-visible{outline:2px solid var(--plate);outline-offset:2px}
-.face{display:block;width:100%;aspect-ratio:2/3;background:#11161C center top/cover no-repeat}
+.face{display:block;width:100%;aspect-ratio:2/3;background:#11161C;overflow:hidden}
+.face img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
 .ph{display:flex;align-items:center;justify-content:center;height:100%;
   color:var(--dim);font-size:10px;letter-spacing:.1em}
 .pg{position:absolute;top:5px;right:5px;background:rgba(15,19,24,.86);
@@ -351,6 +352,11 @@ var MODE_NAME={p:"의인화",c:"일상",x:"특별 컷",w:"작업"};
 var onlyLeft=true;   /* 작업 모드: 남은 것만 볼지 */
 
 function imgURL(p){return IMG_BASE+encodeURIComponent(p)}
+/* 목록과 갤러리는 작게 그리므로 img/thumb/ 의 축소본을 쓴다.
+   눌러서 크게 볼 때(zoom)만 원본을 받는다.
+   썸네일은 register-images 워크플로가 make-thumbs.py 로 만들어 둔다.
+   아직 없으면 onerror 로 원본으로 되돌아간다 */
+function thumbURL(p){return IMG_BASE+"thumb/"+encodeURIComponent(p)}
 
 /* ══ 저장소 파일 목록으로 IMG 자동 보강 ══
    배열을 손대지 않아도, 규칙에 맞는 이름으로 올리기만 하면 잡힌다.
@@ -624,7 +630,8 @@ function draw(){
     var c=arr[i],ss=shots(c),pic=shotOf(c);
     if(pic)shown+=ss.length;
     h+='<div class="cell" tabindex="0" data-n="'+esc(c[0])+'" style="--cc:'+ccOf(c)+'">'+
-       '<span class="face"'+(pic?' style="background-image:url(\''+imgURL(pic)+'\')"':"")+'>'+
+       '<span class="face">'+(pic?'<img src="'+thumbURL(pic)+'" alt="" loading="lazy" decoding="async"'+
+         ' onerror="this.onerror=null;this.src=\''+imgURL(pic)+'\'">':"")+
        (pic?"":'<span class="ph">그림 없음</span>')+'</span>'+
        (ss.length>1?'<button class="pg mono" data-pg="1" aria-label="다음 그림">'+
          (pageOf(c)+1)+'/'+ss.length+'</button>':"")+
@@ -793,7 +800,8 @@ function open(n,start){
     function gal(l,label){
       if(!l||!l.length)return "";
       var g='<div class="sec">'+label+' '+l.length+'</div><div class="gal">',i;
-      for(i=0;i<l.length;i++)g+='<img src="'+imgURL(l[i])+'" alt="" loading="lazy"'+
+      for(i=0;i<l.length;i++)g+='<img src="'+thumbURL(l[i])+'" alt="" loading="lazy" decoding="async"'+
+        ' onerror="this.onerror=null;this.src=\''+imgURL(l[i])+'\'"'+
         (l[i]===cur?' class="on"':"")+' data-s="'+esc(l[i])+'">';
       return g+"</div>";
     }
