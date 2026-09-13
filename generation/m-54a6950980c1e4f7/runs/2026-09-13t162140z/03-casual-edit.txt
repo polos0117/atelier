@@ -1,0 +1,6 @@
+Use case: precise-object-edit
+Asset type: final lifestyle character illustration
+Input image: the attached image is the edit target.
+Primary request: Remove every mobile-suit element from behind and around the woman: all shoulder units, backpack structures, thrusters, armor plates, mechanical forearms, claws, and robot equipment. Replace those removed elements with an open high-altitude flight-test observation deck at dawn, with wind, safety railings, and distant mountains.
+Constraints: Preserve the same clearly adult woman, her face, pale skin, white swept-back undercut, narrow orange eyes, sharp angular face, very tall broad-shouldered athletic build, fitted charcoal flight-operations jumpsuit, boots, full-body low-angle framing, pose, anatomy, and semi-real cinematic painterly rendering. Her body is fully biological. Exactly two arms and two legs. No text or watermark.
+Avoid: any mobile-suit armor, backpack, wings, thrusters, claws, mechanical limbs, robot silhouette, weapons, duplicate body parts.
