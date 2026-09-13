@@ -10,7 +10,7 @@
   },
   "cards": {
    "file": "data",
-   "MECH": 762,
+   "MECH": 761,
    "PILOT": 210
   }
  },
@@ -25,10 +25,10 @@
  },
  "summary": {
   "mech": {
-   "matched": 469,
+   "matched": 468,
    "review": 127,
    "unmatched": 166,
-   "total": 762
+   "total": 761
   },
   "pilot": {
    "matched": 133,
@@ -4045,18 +4045,6 @@
     1210003400
    ],
    "models": "XXXG-01SR2",
-   "series": [
-    "신기동전기 건담 W"
-   ]
-  },
-  {
-   "dex": "건담 헤비암즈 개량형",
-   "match": "exact",
-   "api_name": "건담 헤비암즈 개량형",
-   "ids": [
-    1210003500
-   ],
-   "models": "XXXG-01H2",
    "series": [
     "신기동전기 건담 W"
    ]
