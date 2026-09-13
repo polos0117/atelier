@@ -1,0 +1,20 @@
+{
+  "바이아란 커스텀_cinematic_semi_real_f.webp": {
+    "card": "바이아란 커스텀",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "ac0cd5fc28cfd10062f5fe8829597b6b8b13db349a4af0733b4a7f370eb7c051",
+    "prompt": "generation/m-54a6950980c1e4f7/runs/2026-09-13t162140z/01-anthro.txt",
+    "manifest": "generation/m-54a6950980c1e4f7/runs/2026-09-13t162140z/manifest.json"
+  },
+  "바이아란 커스텀_cinematic_semi_real_f_casual1.webp": {
+    "card": "바이아란 커스텀",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "fff4885d4304b40856c2e8664d91393225ed0194e8411311130ce19088d3a49a",
+    "prompt": "generation/m-54a6950980c1e4f7/runs/2026-09-13t162140z/03-casual-edit.txt",
+    "manifest": "generation/m-54a6950980c1e4f7/runs/2026-09-13t162140z/manifest.json"
+  }
+}

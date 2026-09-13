@@ -1,0 +1,20 @@
+{
+  "건담 에어 마스터 버스트_cinematic_semi_real_f.webp": {
+    "card": "건담 에어 마스터 버스트",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "4ef213f683490cf2c6d15e654a632d31567d45c1bcf22ca2fdb270f4b6458c85",
+    "prompt": "generation/m-eea3c9117e564281/runs/2026-09-13t162140z/01-anthro.txt",
+    "manifest": "generation/m-eea3c9117e564281/runs/2026-09-13t162140z/manifest.json"
+  },
+  "건담 에어 마스터 버스트_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 에어 마스터 버스트",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "a110a7a915243e6f3a141307e73c7a26523b4fb4d39f82d49c76532b3d650551",
+    "prompt": "generation/m-eea3c9117e564281/runs/2026-09-13t162140z/02-casual.txt",
+    "manifest": "generation/m-eea3c9117e564281/runs/2026-09-13t162140z/manifest.json"
+  }
+}

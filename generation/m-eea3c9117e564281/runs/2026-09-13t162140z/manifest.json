@@ -1,0 +1,44 @@
+{
+  "card": "건담 에어 마스터 버스트",
+  "repository": "polos0117/atelier",
+  "base_commit": "6747afd1f1d5bb36633196ccd4af48ad50aad9f0",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json is the live UI export captured before generation; exact submitted prompts and any final correction prompt are preserved.",
+  "images": [
+    {
+      "card": "건담 에어 마스터 버스트",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "4ef213f683490cf2c6d15e654a632d31567d45c1bcf22ca2fdb270f4b6458c85",
+      "prompt": "generation/m-eea3c9117e564281/runs/2026-09-13t162140z/01-anthro.txt",
+      "manifest": "generation/m-eea3c9117e564281/runs/2026-09-13t162140z/manifest.json",
+      "job_id": "airmaster-burst-01",
+      "file": "img/건담 에어 마스터 버스트_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-bf42cf73-6a15-44d9-8b92-7895fb580484.png",
+      "reference_job_id": null
+    },
+    {
+      "card": "건담 에어 마스터 버스트",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "a110a7a915243e6f3a141307e73c7a26523b4fb4d39f82d49c76532b3d650551",
+      "prompt": "generation/m-eea3c9117e564281/runs/2026-09-13t162140z/02-casual.txt",
+      "manifest": "generation/m-eea3c9117e564281/runs/2026-09-13t162140z/manifest.json",
+      "job_id": "airmaster-burst-02",
+      "file": "img/건담 에어 마스터 버스트_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-554f0455-03a6-4dcc-b5aa-05b496d304c7.png",
+      "reference_job_id": "airmaster-burst-01"
+    }
+  ]
+}

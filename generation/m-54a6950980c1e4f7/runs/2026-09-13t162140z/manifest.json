@@ -1,0 +1,53 @@
+{
+  "card": "바이아란 커스텀",
+  "repository": "polos0117/atelier",
+  "base_commit": "6747afd1f1d5bb36633196ccd4af48ad50aad9f0",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json is the live UI export captured before generation; exact submitted prompts and the final correction prompt are preserved.",
+  "images": [
+    {
+      "card": "바이아란 커스텀",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "ac0cd5fc28cfd10062f5fe8829597b6b8b13db349a4af0733b4a7f370eb7c051",
+      "prompt": "generation/m-54a6950980c1e4f7/runs/2026-09-13t162140z/01-anthro.txt",
+      "manifest": "generation/m-54a6950980c1e4f7/runs/2026-09-13t162140z/manifest.json",
+      "job_id": "byarlant-custom-01",
+      "file": "img/바이아란 커스텀_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-3fd12993-ef4c-430c-9c0f-68fb2ac2b258.png",
+      "reference_job_id": null
+    },
+    {
+      "card": "바이아란 커스텀",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "fff4885d4304b40856c2e8664d91393225ed0194e8411311130ce19088d3a49a",
+      "prompt": "generation/m-54a6950980c1e4f7/runs/2026-09-13t162140z/03-casual-edit.txt",
+      "manifest": "generation/m-54a6950980c1e4f7/runs/2026-09-13t162140z/manifest.json",
+      "job_id": "byarlant-custom-03",
+      "file": "img/바이아란 커스텀_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-4a089ff7-cff7-4b0b-928e-106d03b9f580.png",
+      "reference_job_id": "byarlant-custom-02-draft"
+    }
+  ],
+  "intermediate_images": [
+    {
+      "job_id": "byarlant-custom-02-draft",
+      "source_file": "exec-009e2c56-61c6-4ad2-a4db-3ff2923a6760.png",
+      "prompt": "generation/m-54a6950980c1e4f7/runs/2026-09-13t162140z/02-casual.txt",
+      "reference_job_id": "byarlant-custom-01",
+      "status": "discarded after armor-retention correction"
+    }
+  ]
+}
