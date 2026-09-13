@@ -1,0 +1,78 @@
+{
+  "card": "R자자",
+  "repository": "polos0117/atelier",
+  "base_commit": "a2302e764fb6b014b61f55397cf9db160d68e91e",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-final-export.json is the final UI export, not a pre-generation snapshot; exact per-image submitted prompts are preserved separately.",
+  "images": [
+    {
+      "card": "R자자",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "922b54914dfd83484dae51dfb66cd0a61ec4d96189fca11f0fd1d6a00f2ece64",
+      "prompt": "generation/m-ef472c67571ee999/runs/2026-09-13t063742z/01-anthro.txt",
+      "manifest": "generation/m-ef472c67571ee999/runs/2026-09-13t063742z/manifest.json",
+      "job_id": "rjarja-01",
+      "file": "img/R자자_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-dbab3cbd-f300-4d37-b76c-6e858c43e3e0.png",
+      "reference_job_id": null
+    },
+    {
+      "card": "R자자",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "ccef87bb0b9779d084fd872cb354dc657d3d5f590b4f29b24cb83c46f12c8408",
+      "prompt": "generation/m-ef472c67571ee999/runs/2026-09-13t063742z/02-casual.txt",
+      "manifest": "generation/m-ef472c67571ee999/runs/2026-09-13t063742z/manifest.json",
+      "job_id": "rjarja-02",
+      "file": "img/R자자_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-0531fdc6-898b-4f85-81ba-f9972949b35b.png",
+      "reference_job_id": "rjarja-01"
+    },
+    {
+      "card": "R자자",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "e9cc4d7f427edcabe7bf23b9fd2bd9e5a1a790f3af62740f84390111339955d7",
+      "prompt": "generation/m-ef472c67571ee999/runs/2026-09-13t063742z/03-anthro.txt",
+      "manifest": "generation/m-ef472c67571ee999/runs/2026-09-13t063742z/manifest.json",
+      "job_id": "rjarja-03",
+      "file": "img/R자자_cel_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-7523fd94-4591-4693-8c77-8b68f0af965f.png",
+      "reference_job_id": "rjarja-01"
+    },
+    {
+      "card": "R자자",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "759956fd13705a10e2baf657f611fba80920eca5c8ed3ef64f1473a1683f9fea",
+      "prompt": "generation/m-ef472c67571ee999/runs/2026-09-13t063742z/04-casual.txt",
+      "manifest": "generation/m-ef472c67571ee999/runs/2026-09-13t063742z/manifest.json",
+      "job_id": "rjarja-04",
+      "file": "img/R자자_cel_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-79b6c314-1e97-4a8d-b461-704ed862c768.png",
+      "reference_job_id": "rjarja-03"
+    }
+  ]
+}
