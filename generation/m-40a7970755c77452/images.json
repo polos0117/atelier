@@ -1,0 +1,38 @@
+{
+  "제다스_cinematic_semi_real_f.webp": {
+    "card": "제다스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "eabdff4a9b16b2f009dfba231560d02ccb8c60459a136ce3dcdcc6182b551c95",
+    "prompt": "generation/m-40a7970755c77452/runs/2026-09-13t133237z/01-anthro.txt",
+    "manifest": "generation/m-40a7970755c77452/runs/2026-09-13t133237z/manifest.json"
+  },
+  "제다스_cinematic_semi_real_f_casual1.webp": {
+    "card": "제다스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "ee0b7fe43d729d2d1770c8dec1bfe2c979ba32a0b228b54f0d7c6966fe81b7b6",
+    "prompt": "generation/m-40a7970755c77452/runs/2026-09-13t133237z/02b-casual.txt",
+    "manifest": "generation/m-40a7970755c77452/runs/2026-09-13t133237z/manifest.json"
+  },
+  "제다스_cel_anime_f.webp": {
+    "card": "제다스",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "675dacab4ce831a23ddf59ae57a689db5fe859d40d58b7862fb488b8603cd4b4",
+    "prompt": "generation/m-40a7970755c77452/runs/2026-09-13t133237z/03b-anthro.txt",
+    "manifest": "generation/m-40a7970755c77452/runs/2026-09-13t133237z/manifest.json"
+  },
+  "제다스_cel_anime_f_casual1.webp": {
+    "card": "제다스",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "9abfae58eef99e0316ff9f1f5035b9eacda9b8a3e9f043a9d6745d4cf213c09b",
+    "prompt": "generation/m-40a7970755c77452/runs/2026-09-13t133237z/04-casual.txt",
+    "manifest": "generation/m-40a7970755c77452/runs/2026-09-13t133237z/manifest.json"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "card": "제다스",
+  "repository": "polos0117/atelier",
+  "base_commit": "d90b40d1c53bf668e089b4f08a68d35afb8a24dc",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "Actual UI exports captured before the respective anthro generations. Retry clarifications are retained in exact final prompts. Lifestyle prompts contain their distinct scenes.",
+  "references": [
+    {
+      "url": "https://kr.gundam-official.com/mecha/la2b3gx5qo3ugg0zgi3bx86f",
+      "role": "official design and equipment research"
+    },
+    {
+      "url": "https://gundam-official.com/media/AGE_06cfb3393a/AGE_06cfb3393a.png",
+      "role": "standing mechanical reference, jobs 01 and 03"
+    },
+    {
+      "url": "https://gundam-official.com/media/AGE_2_7293975535/AGE_2_7293975535.png",
+      "role": "transformed flight reference, job 01"
+    }
+  ],
+  "images": [
+    {
+      "card": "제다스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "eabdff4a9b16b2f009dfba231560d02ccb8c60459a136ce3dcdcc6182b551c95",
+      "prompt": "generation/m-40a7970755c77452/runs/2026-09-13t133237z/01-anthro.txt",
+      "manifest": "generation/m-40a7970755c77452/runs/2026-09-13t133237z/manifest.json",
+      "job_id": "zedas-01",
+      "file": "img/제다스_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-93b43aeb-6336-449b-b86a-2d519633edd5.png",
+      "reference_job_id": null
+    },
+    {
+      "card": "제다스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "ee0b7fe43d729d2d1770c8dec1bfe2c979ba32a0b228b54f0d7c6966fe81b7b6",
+      "prompt": "generation/m-40a7970755c77452/runs/2026-09-13t133237z/02b-casual.txt",
+      "manifest": "generation/m-40a7970755c77452/runs/2026-09-13t133237z/manifest.json",
+      "job_id": "zedas-02",
+      "file": "img/제다스_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-dd7b407a-1682-486d-9a3b-dd32eb67462b.png",
+      "reference_job_id": "zedas-01"
+    },
+    {
+      "card": "제다스",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "675dacab4ce831a23ddf59ae57a689db5fe859d40d58b7862fb488b8603cd4b4",
+      "prompt": "generation/m-40a7970755c77452/runs/2026-09-13t133237z/03b-anthro.txt",
+      "manifest": "generation/m-40a7970755c77452/runs/2026-09-13t133237z/manifest.json",
+      "job_id": "zedas-03",
+      "file": "img/제다스_cel_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-ec1aaffb-86ae-43c3-9fdd-d33b729e4a45.png",
+      "reference_job_id": "zedas-01"
+    },
+    {
+      "card": "제다스",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "9abfae58eef99e0316ff9f1f5035b9eacda9b8a3e9f043a9d6745d4cf213c09b",
+      "prompt": "generation/m-40a7970755c77452/runs/2026-09-13t133237z/04-casual.txt",
+      "manifest": "generation/m-40a7970755c77452/runs/2026-09-13t133237z/manifest.json",
+      "job_id": "zedas-04",
+      "file": "img/제다스_cel_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-13007fae-9dbb-49c3-822a-6ce979533970.png",
+      "reference_job_id": "zedas-03"
+    }
+  ],
+  "failed_attempts": [
+    {
+      "prompt": "generation/m-40a7970755c77452/runs/2026-09-13t133237z/02-casual.txt",
+      "status": "output safety filter rejection; no image returned",
+      "retry_job_id": "zedas-02"
+    },
+    {
+      "prompt": "generation/m-40a7970755c77452/runs/2026-09-13t133237z/03-anthro.txt",
+      "status": "output safety filter rejection; no image returned",
+      "retry_job_id": "zedas-03"
+    }
+  ]
+}
