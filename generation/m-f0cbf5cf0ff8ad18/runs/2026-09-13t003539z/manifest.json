@@ -1,0 +1,75 @@
+{
+  "card": "함마 함마",
+  "baseCommit": "d86a60f665158023ca6a82734687f9724da1a145",
+  "framing": "Original generated framing retained; no expanded margins.",
+  "images": [
+    {
+      "card": "함마 함마",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "b2355f4c34a17c5810fb84d273b70c2433e7c3509916daddf7261e457d93989e",
+      "prompt": "generation/m-f0cbf5cf0ff8ad18/runs/2026-09-13t003539z/01-anthro.txt",
+      "manifest": "generation/m-f0cbf5cf0ff8ad18/runs/2026-09-13t003539z/manifest.json",
+      "file": "함마 함마_cinematic_semi_real_f.webp",
+      "source": "exec-896002de-8c30-437e-9e27-893de7ae5977.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "referenceImage": null,
+      "status": "generated and converted"
+    },
+    {
+      "card": "함마 함마",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "09e4a0d2f17f40ae6f950c6b9d4c440fc41ce5c3aec5628a7aed0d945d0c2410",
+      "prompt": "generation/m-f0cbf5cf0ff8ad18/runs/2026-09-13t003539z/02-casual.txt",
+      "manifest": "generation/m-f0cbf5cf0ff8ad18/runs/2026-09-13t003539z/manifest.json",
+      "file": "함마 함마_cinematic_semi_real_f_casual1.webp",
+      "source": "exec-4683bb52-b761-4652-b7aa-3e5bb4acd7dd.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "referenceImage": "exec-896002de-8c30-437e-9e27-893de7ae5977.png",
+      "status": "generated and converted"
+    },
+    {
+      "card": "함마 함마",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "078838409676564c0833272d65713879101196dc94707742419825d8289959a9",
+      "prompt": "generation/m-f0cbf5cf0ff8ad18/runs/2026-09-13t003539z/03-anthro.txt",
+      "manifest": "generation/m-f0cbf5cf0ff8ad18/runs/2026-09-13t003539z/manifest.json",
+      "file": "함마 함마_cel_anime_f.webp",
+      "source": "exec-33eab03c-518a-4b42-b2da-646278a21b52.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "referenceImage": "exec-896002de-8c30-437e-9e27-893de7ae5977.png",
+      "status": "generated and converted"
+    },
+    {
+      "card": "함마 함마",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "4bb2ce476f67004755fdf32253b846113a4cb83be5a480c835b8f757aa89f984",
+      "prompt": "generation/m-f0cbf5cf0ff8ad18/runs/2026-09-13t003539z/04-casual.txt",
+      "manifest": "generation/m-f0cbf5cf0ff8ad18/runs/2026-09-13t003539z/manifest.json",
+      "file": "함마 함마_cel_anime_f_casual1.webp",
+      "source": "exec-c18fa502-f5a6-41cf-9105-9fa816ca7687.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "referenceImage": "exec-33eab03c-518a-4b42-b2da-646278a21b52.png",
+      "status": "generated and converted"
+    }
+  ]
+}
