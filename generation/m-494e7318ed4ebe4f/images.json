@@ -1,0 +1,38 @@
+{
+  "실버 불릿 서프레서_cinematic_semi_real_f.webp": {
+    "card": "실버 불릿 서프레서",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "754a4b52c4456742e0922cfa6b26a604050908b68034d19a8c08ddb2d6883c1e",
+    "prompt": "generation/m-494e7318ed4ebe4f/runs/2026-09-13t070845z/01-anthro.txt",
+    "manifest": "generation/m-494e7318ed4ebe4f/runs/2026-09-13t070845z/manifest.json"
+  },
+  "실버 불릿 서프레서_cinematic_semi_real_f_casual1.webp": {
+    "card": "실버 불릿 서프레서",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "23c6150824c323cba8a7fbffac24dcd84d8a07c2c99696dbfbd7dbe32de5ede2",
+    "prompt": "generation/m-494e7318ed4ebe4f/runs/2026-09-13t070845z/02-casual.txt",
+    "manifest": "generation/m-494e7318ed4ebe4f/runs/2026-09-13t070845z/manifest.json"
+  },
+  "실버 불릿 서프레서_cel_anime_f.webp": {
+    "card": "실버 불릿 서프레서",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "3916614e4b440788a174b1a92c980fa9ebe7220fc4d45e986b955e8f8bb99936",
+    "prompt": "generation/m-494e7318ed4ebe4f/runs/2026-09-13t070845z/03-anthro.txt",
+    "manifest": "generation/m-494e7318ed4ebe4f/runs/2026-09-13t070845z/manifest.json"
+  },
+  "실버 불릿 서프레서_cel_anime_f_casual1.webp": {
+    "card": "실버 불릿 서프레서",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "1e6bb0c56f2d64660917c39e82eb400a3ba26f2911785393e1b98a83b26256db",
+    "prompt": "generation/m-494e7318ed4ebe4f/runs/2026-09-13t070845z/04-casual.txt",
+    "manifest": "generation/m-494e7318ed4ebe4f/runs/2026-09-13t070845z/manifest.json"
+  }
+}

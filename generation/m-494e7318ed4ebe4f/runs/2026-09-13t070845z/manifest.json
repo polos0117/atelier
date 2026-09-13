@@ -1,0 +1,78 @@
+{
+  "card": "실버 불릿 서프레서",
+  "repository": "polos0117/atelier",
+  "base_commit": "3ce48904072acf7a0349d58986a22d115fcae120",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json and settings-03.json are UI exports captured before their respective anthro generations; exact submitted prompts preserve each lifestyle scene.",
+  "images": [
+    {
+      "card": "실버 불릿 서프레서",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "754a4b52c4456742e0922cfa6b26a604050908b68034d19a8c08ddb2d6883c1e",
+      "prompt": "generation/m-494e7318ed4ebe4f/runs/2026-09-13t070845z/01-anthro.txt",
+      "manifest": "generation/m-494e7318ed4ebe4f/runs/2026-09-13t070845z/manifest.json",
+      "job_id": "silver-01",
+      "file": "img/실버 불릿 서프레서_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-a505d917-27d5-4c04-93cd-d31c68542e25.png",
+      "reference_job_id": null
+    },
+    {
+      "card": "실버 불릿 서프레서",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "23c6150824c323cba8a7fbffac24dcd84d8a07c2c99696dbfbd7dbe32de5ede2",
+      "prompt": "generation/m-494e7318ed4ebe4f/runs/2026-09-13t070845z/02-casual.txt",
+      "manifest": "generation/m-494e7318ed4ebe4f/runs/2026-09-13t070845z/manifest.json",
+      "job_id": "silver-02",
+      "file": "img/실버 불릿 서프레서_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-8eac1122-8380-4a45-8275-3ffffda4b490.png",
+      "reference_job_id": "silver-01"
+    },
+    {
+      "card": "실버 불릿 서프레서",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "3916614e4b440788a174b1a92c980fa9ebe7220fc4d45e986b955e8f8bb99936",
+      "prompt": "generation/m-494e7318ed4ebe4f/runs/2026-09-13t070845z/03-anthro.txt",
+      "manifest": "generation/m-494e7318ed4ebe4f/runs/2026-09-13t070845z/manifest.json",
+      "job_id": "silver-03",
+      "file": "img/실버 불릿 서프레서_cel_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-f30e0f32-8135-4405-838c-31347d302e40.png",
+      "reference_job_id": "silver-01"
+    },
+    {
+      "card": "실버 불릿 서프레서",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "1e6bb0c56f2d64660917c39e82eb400a3ba26f2911785393e1b98a83b26256db",
+      "prompt": "generation/m-494e7318ed4ebe4f/runs/2026-09-13t070845z/04-casual.txt",
+      "manifest": "generation/m-494e7318ed4ebe4f/runs/2026-09-13t070845z/manifest.json",
+      "job_id": "silver-04",
+      "file": "img/실버 불릿 서프레서_cel_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-ffeacfae-6c9f-4923-b05e-8f49635c26d7.png",
+      "reference_job_id": "silver-03"
+    }
+  ]
+}
