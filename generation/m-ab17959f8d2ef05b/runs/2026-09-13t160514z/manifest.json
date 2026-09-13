@@ -1,0 +1,44 @@
+{
+  "card": "멧사라",
+  "repository": "polos0117/atelier",
+  "base_commit": "03bc954148253d18eed9609e441187d0b092a54f",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json is the live UI export captured before generation; the exact submitted anthro and lifestyle prompts are preserved.",
+  "images": [
+    {
+      "card": "멧사라",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "7d4fe6e323501412c37285bbe0633a0f3b9646d2e77e0daf925489aa2e400662",
+      "prompt": "generation/m-ab17959f8d2ef05b/runs/2026-09-13t160514z/01-anthro.txt",
+      "manifest": "generation/m-ab17959f8d2ef05b/runs/2026-09-13t160514z/manifest.json",
+      "job_id": "messala-01",
+      "file": "img/멧사라_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-dfeac9d3-f303-446c-95b8-8176e7dfaab5.png",
+      "reference_job_id": null
+    },
+    {
+      "card": "멧사라",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "690f92382b0915a102fc9cd7b133bec5acc14f7deb9d44857914e7e20234cce4",
+      "prompt": "generation/m-ab17959f8d2ef05b/runs/2026-09-13t160514z/02-casual.txt",
+      "manifest": "generation/m-ab17959f8d2ef05b/runs/2026-09-13t160514z/manifest.json",
+      "job_id": "messala-02",
+      "file": "img/멧사라_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-360c397f-ae28-4ff2-a8cf-73989289b3c0.png",
+      "reference_job_id": "messala-01"
+    }
+  ]
+}

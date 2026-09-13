@@ -1,0 +1,20 @@
+{
+  "멧사라_cinematic_semi_real_f.webp": {
+    "card": "멧사라",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "7d4fe6e323501412c37285bbe0633a0f3b9646d2e77e0daf925489aa2e400662",
+    "prompt": "generation/m-ab17959f8d2ef05b/runs/2026-09-13t160514z/01-anthro.txt",
+    "manifest": "generation/m-ab17959f8d2ef05b/runs/2026-09-13t160514z/manifest.json"
+  },
+  "멧사라_cinematic_semi_real_f_casual1.webp": {
+    "card": "멧사라",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "690f92382b0915a102fc9cd7b133bec5acc14f7deb9d44857914e7e20234cce4",
+    "prompt": "generation/m-ab17959f8d2ef05b/runs/2026-09-13t160514z/02-casual.txt",
+    "manifest": "generation/m-ab17959f8d2ef05b/runs/2026-09-13t160514z/manifest.json"
+  }
+}
