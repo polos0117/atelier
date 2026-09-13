@@ -1,7 +1,7 @@
 {
  "version": 1,
  "note": "초상 파일 목록. 카드 이름 → {m, f, face, casual[], extra[], byStyle{}} 이다. 파일 이름이 곧 등록 정보라 register-images.py 가 저장소의 *.webp 를 훑어 없는 것만 더한다 — 이미 적힌 것과 얼굴 좌표(face)는 건드리지 않으니 손으로 넣은 항목이 덮이지 않는다. face 는 파일 이름에서 알 수 없어 비면 게임이 기본값을 쓰고, 어색하면 사람이 여기서 손본다. play.html 은 실행 중에도 GitHub 파일 목록으로 같은 규칙을 한 번 더 돌리므로(mergeRepoFiles) 여기 안 적혀 있어도 화면에는 뜬다. 다만 그때는 얼굴 좌표가 기본값이고 목록을 못 받으면 그만이라, 파일로 굳혀 두는 편이 낫다.",
- "count": 306,
+ "count": 308,
  "img": {
   "105 슬로터 대거": {"face": {"m": [0.36, 0.09, 0.1], "f": [0.44, 0.1, 0.1]}, "byStyle": {"cinematic_semi_real": {"m": "105_슬로터_대거_cinematic_semi_real_m.webp", "f": "105_슬로터_대거_cinematic_semi_real_f.webp", "casual": {"f": ["105_슬로터_대거_cinematic_semi_real_f_casual1.webp", "105_슬로터_대거_cinematic_semi_real_f_casual2.webp", "105_슬로터_대거_cinematic_semi_real_f_casual3.webp", "105_슬로터_대거_cinematic_semi_real_f_casual4.webp", "105_슬로터_대거_cinematic_semi_real_f_casual5.webp"]}}}},
   "GFreD": {"byStyle": {"cinematic_semi_real": {"f": "GFreD_cinematic_semi_real_f.webp", "casual": {"f": ["GFreD_cinematic_semi_real_f_casual1.webp"]}}, "anime_illust": {"f": "GFreD_anime_illust_f.webp", "casual": {"f": ["GFreD_anime_illust_f_casual1.webp"]}}}},
@@ -154,6 +154,7 @@
   "라이징 건담": {"byStyle": {"cinematic_semi_real": {"f": "라이징_건담_cinematic_semi_real_f.webp", "casual": {"f": ["라이징_건담_cinematic_semi_real_f_casual1.webp"]}}, "anime_illust": {"f": "라이징_건담_anime_illust_f.webp", "casual": {"f": ["라이징_건담_anime_illust_f_casual1.webp"]}}}},
   "라이징 프리덤 건담": {"m": "라이징_프리덤_건담_m.webp", "f": "라이징_프리덤_건담_f.webp", "face": {"m": [0.378, 0.128, 0.135], "f": [0.462, 0.125, 0.12]}, "casual": {"f": ["라이징_프리덤_건담_casual1.webp"]}},
   "라파엘 건담": {"m": "라파엘 건담_m.webp", "f": "라파엘 건담_f.webp", "face": {"m": [0.3, 0.03, 0.24], "f": [0.28, 0.04, 0.26]}, "casual": {"f": ["라파엘 건담_casual1.webp", "라파엘 건담_casual2.webp", "라파엘 건담_casual3.webp", "라파엘 건담_casual4.webp", "라파엘 건담_casual5.webp", "라파엘 건담_casual6.webp", "라파엘 건담_casual7.webp"]}},
+  "레그넌트": {"byStyle": {"cinematic_semi_real": {"f": "레그넌트_cinematic_semi_real_f.webp", "casual": {"f": ["레그넌트_cinematic_semi_real_f_casual1.webp"]}}}},
   "레긴레이즈": {"byStyle": {"cinematic_semi_real": {"f": "레긴레이즈_cinematic_semi_real_f.webp", "casual": {"f": ["레긴레이즈_cinematic_semi_real_f_casual1.webp"]}}, "semi_real_paint": {"f": "레긴레이즈_semi_real_paint_f.webp", "casual": {"f": ["레긴레이즈_semi_real_paint_f_casual1.webp"]}}}},
   "레긴레이즈 줄리아": {"byStyle": {"cinematic_semi_real": {"f": "레긴레이즈 줄리아_cinematic_semi_real_f.webp", "casual": {"f": ["레긴레이즈 줄리아_cinematic_semi_real_f_casual1.webp"]}}, "cel_anime": {"f": "레긴레이즈 줄리아_cel_anime_f.webp", "casual": {"f": ["레긴레이즈 줄리아_cel_anime_f_casual1.webp"]}}}},
   "레이더 건담": {"m": "레이더_건담_m.webp", "f": "레이더_건담_f.webp", "face": {"m": [0.343, 0.11, 0.247], "f": [0.402, 0.199, 0.16]}, "casual": {"f": ["레이더_건담_casual1.webp"]}},
@@ -173,6 +174,7 @@
   "메리크리우스": {"byStyle": {"cinematic_semi_real": {"f": "메리크리우스_cinematic_semi_real_f.webp", "casual": {"f": ["메리크리우스_cinematic_semi_real_f_casual1.webp"]}}, "game_keyart": {"f": "메리크리우스_game_keyart_f.webp", "casual": {"f": ["메리크리우스_game_keyart_f_casual1.webp"]}}}},
   "메싸": {"byStyle": {"game_keyart": {"f": "메싸_game_keyart_f.webp", "casual": {"f": ["메싸_game_keyart_f_casual1.webp"]}}, "painterly": {"f": "메싸_painterly_f.webp"}}},
   "메타스": {"m": "메타스_m.webp", "f": "메타스_f.webp", "face": {"m": [0.435, 0.125, 0.105], "f": [0.435, 0.155, 0.1]}, "casual": {"f": ["메타스_casual1.webp", "메타스_casual2.webp"]}},
+  "멧사라": {"byStyle": {"cinematic_semi_real": {"f": "멧사라_cinematic_semi_real_f.webp", "casual": {"f": ["멧사라_cinematic_semi_real_f_casual1.webp"]}}}},
   "무라사메": {"byStyle": {"cinematic_semi_real": {"f": "무라사메_cinematic_semi_real_f.webp", "casual": {"f": ["무라사메_cinematic_semi_real_f_casual1.webp"]}}, "painterly": {"f": "무라사메_painterly_f.webp", "casual": {"f": ["무라사메_painterly_f_casual1.webp"]}}}},
   "미카엘리스": {"m": "미카엘리스_m.webp", "f": "미카엘리스_f.webp", "face": {"m": [0.395, 0.07, 0.15], "f": [0.418, 0.088, 0.145]}, "casual": {"f": ["미카엘리스_casual1.webp"]}},
   "바비": {"byStyle": {"cinematic_semi_real": {"f": "바비_cinematic_semi_real_f.webp", "casual": {"f": ["바비_cinematic_semi_real_f_casual1.webp"]}}, "retro_anime": {"f": "바비_retro_anime_f.webp", "casual": {"f": ["바비_retro_anime_f_casual1.webp"]}}}},
