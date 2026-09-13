@@ -1,0 +1,53 @@
+{
+  "card": "워돔",
+  "repository": "polos0117/atelier",
+  "base_commit": "e5eecfa6d05baaf5f5ef37996eca7d89f3fb541c",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json is the live UI export captured before generation; exact submitted prompts and the final correction prompt are preserved.",
+  "images": [
+    {
+      "card": "워돔",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "8d49ad63c82b357769924fc5fb34e0a66c3628fb8bd8215f3018ba7bcaf162dc",
+      "prompt": "generation/m-98e17e873740a347/runs/2026-09-13t170535z/01-anthro.txt",
+      "manifest": "generation/m-98e17e873740a347/runs/2026-09-13t170535z/manifest.json",
+      "job_id": "wodom-01",
+      "file": "img/워돔_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-9eced6a2-a4e0-41b8-b00d-cfb4488d7cd4.png",
+      "reference_job_id": null
+    },
+    {
+      "card": "워돔",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "66753af9d6b8d7d0deb7487cfe298777496ba35a9830e1813d642c2b1ce8bec3",
+      "prompt": "generation/m-98e17e873740a347/runs/2026-09-13t170535z/03-casual-edit.txt",
+      "manifest": "generation/m-98e17e873740a347/runs/2026-09-13t170535z/manifest.json",
+      "job_id": "wodom-03",
+      "file": "img/워돔_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-7b5dcfca-2bec-4681-9824-b5bc3d36cfab.png",
+      "reference_job_id": "wodom-02-draft"
+    }
+  ],
+  "intermediate_images": [
+    {
+      "job_id": "wodom-02-draft",
+      "source_file": "exec-6548bc85-3069-4b32-a6ec-94bbf2b93334.png",
+      "prompt": "generation/m-98e17e873740a347/runs/2026-09-13t170535z/02-casual.txt",
+      "reference_job_id": "wodom-01",
+      "status": "discarded after scene carryover correction"
+    }
+  ]
+}
