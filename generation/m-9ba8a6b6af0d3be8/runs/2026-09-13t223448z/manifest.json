@@ -1,0 +1,27 @@
+{
+  "card": "사이코 건담 Mk-Ⅱ",
+  "repository": "polos0117/atelier",
+  "base_commit": "f9f884dce073100b9d3dcdb55db00530e9cb89a7",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json is the live UI export captured before generation; the exact submitted prompt is preserved.",
+  "images": [
+    {
+      "card": "사이코 건담 Mk-Ⅱ",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "19adbec2d290e5c25e2bfa1d3557a6ce967a5e63d8a07828544bc8cd3b6dee07",
+      "prompt": "generation/m-9ba8a6b6af0d3be8/runs/2026-09-13t223448z/01-anthro.txt",
+      "manifest": "generation/m-9ba8a6b6af0d3be8/runs/2026-09-13t223448z/manifest.json",
+      "job_id": "psycho-gundam-mk2-01",
+      "file": "img/사이코 건담 Mk-Ⅱ_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-34b9df59-b5a1-433b-911f-32e33e74039b.png",
+      "reference_job_id": null
+    }
+  ]
+}

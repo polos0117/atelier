@@ -1,0 +1,11 @@
+{
+  "사이코 건담 Mk-Ⅱ_cinematic_semi_real_f.webp": {
+    "card": "사이코 건담 Mk-Ⅱ",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "19adbec2d290e5c25e2bfa1d3557a6ce967a5e63d8a07828544bc8cd3b6dee07",
+    "prompt": "generation/m-9ba8a6b6af0d3be8/runs/2026-09-13t223448z/01-anthro.txt",
+    "manifest": "generation/m-9ba8a6b6af0d3be8/runs/2026-09-13t223448z/manifest.json"
+  }
+}
