@@ -1,0 +1,94 @@
+{
+  "card": "티엘바",
+  "source_card_in_generator": "티에르바",
+  "repository": "polos0117/atelier",
+  "base_commit": "b3097bd3061182e3c7e90a7fe3ef6c072744eabd",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "Exact submitted prompts and their selected PARAMETERS were captured; the generator card spelling was corrected from 티에르바 to 티엘바 in the saved prompts and records before upload.",
+  "references": [
+    {
+      "url": "https://g-age.ggame.jp/sp/ms_23.html",
+      "role": "official THIELVA design, colors, and equipment research"
+    },
+    {
+      "file": "tielva-front.png",
+      "role": "official front mechanical reference used for jobs 01 and 03"
+    },
+    {
+      "file": "tielva-back.png",
+      "role": "official armed/rear equipment reference used for jobs 01 and 03"
+    }
+  ],
+  "images": [
+    {
+      "card": "티엘바",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "bd990ec0636579bab51cc28cb199dc8bc0203c93511a31fcf616aaf54b51fd76",
+      "prompt": "generation/m-c5ea9126271ce4d8/runs/2026-09-13t135031z/01-cinematic-anthro.txt",
+      "manifest": "generation/m-c5ea9126271ce4d8/runs/2026-09-13t135031z/manifest.json",
+      "job_id": "tielva-01",
+      "file": "img/티엘바_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-15a2adaa-bbcd-41f7-ab26-093a6ecd6bac.png",
+      "reference_job_id": null
+    },
+    {
+      "card": "티엘바",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "be3131a7ffa0235ae2e9c61ab697743407869fcfe6b9930a844e35e2c0779968",
+      "prompt": "generation/m-c5ea9126271ce4d8/runs/2026-09-13t135031z/02-cinematic-casual.txt",
+      "manifest": "generation/m-c5ea9126271ce4d8/runs/2026-09-13t135031z/manifest.json",
+      "job_id": "tielva-02",
+      "file": "img/티엘바_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-ecde55d4-f207-42d0-9411-e5b301f89c9b.png",
+      "reference_job_id": "tielva-01"
+    },
+    {
+      "card": "티엘바",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "726df27018a6984363bcf7b25ada967ec8d29b38b63f0a9fc4999b9a58cbd755",
+      "prompt": "generation/m-c5ea9126271ce4d8/runs/2026-09-13t135031z/03-cel-anthro.txt",
+      "manifest": "generation/m-c5ea9126271ce4d8/runs/2026-09-13t135031z/manifest.json",
+      "job_id": "tielva-03",
+      "file": "img/티엘바_cel_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-181a2398-7861-47c1-ab8b-5c2a114b21c8.png",
+      "reference_job_id": "tielva-01"
+    },
+    {
+      "card": "티엘바",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "381ba3668e37c20b3fd321f338a5231fc55b9f7e97f11153771387e772ffea41",
+      "prompt": "generation/m-c5ea9126271ce4d8/runs/2026-09-13t135031z/04-cel-casual.txt",
+      "manifest": "generation/m-c5ea9126271ce4d8/runs/2026-09-13t135031z/manifest.json",
+      "job_id": "tielva-04",
+      "file": "img/티엘바_cel_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-8da5f6bc-5b3a-4d4f-af6c-e83c71011b80.png",
+      "reference_job_id": "tielva-03"
+    }
+  ],
+  "failed_attempts": []
+}
