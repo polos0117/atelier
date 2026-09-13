@@ -1,0 +1,75 @@
+{
+  "card": "건담 키마리스 트루퍼",
+  "baseCommit": "03fc3440048bbbc3c5ff10eff424a9c2e6259161",
+  "framing": "Original generated framing retained; no expanded margins.",
+  "images": [
+    {
+      "card": "건담 키마리스 트루퍼",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "67e3c8f66da3299a8044a0f2324e6f5c107e8f0fb6dcdd08a13e6f3be85e2dae",
+      "prompt": "generation/m-8a53fd349b4f1962/runs/2026-09-13t004949z/01-anthro.txt",
+      "manifest": "generation/m-8a53fd349b4f1962/runs/2026-09-13t004949z/manifest.json",
+      "file": "건담 키마리스 트루퍼_cinematic_semi_real_f.webp",
+      "source": "exec-7cdee6a4-d5aa-4593-b996-c276a3ffc726.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "referenceImage": null,
+      "status": "generated and converted"
+    },
+    {
+      "card": "건담 키마리스 트루퍼",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "eea4ccf7540ada5a935c9a4deb1fd4929e5193967901794d550e55fe0f3411f5",
+      "prompt": "generation/m-8a53fd349b4f1962/runs/2026-09-13t004949z/02-casual.txt",
+      "manifest": "generation/m-8a53fd349b4f1962/runs/2026-09-13t004949z/manifest.json",
+      "file": "건담 키마리스 트루퍼_cinematic_semi_real_f_casual1.webp",
+      "source": "exec-0b3c1416-8517-47b8-a2fd-b3d57417fa44.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "referenceImage": "exec-7cdee6a4-d5aa-4593-b996-c276a3ffc726.png",
+      "status": "generated and converted"
+    },
+    {
+      "card": "건담 키마리스 트루퍼",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "6b328c872d2d699d49d56b8e76d6b7b89c164d40beecd0abd28da7a87bf4e0b6",
+      "prompt": "generation/m-8a53fd349b4f1962/runs/2026-09-13t004949z/03-anthro.txt",
+      "manifest": "generation/m-8a53fd349b4f1962/runs/2026-09-13t004949z/manifest.json",
+      "file": "건담 키마리스 트루퍼_cel_anime_f.webp",
+      "source": "exec-e8d5b37f-1c82-400d-ab86-26ade408d6bf.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "referenceImage": "exec-7cdee6a4-d5aa-4593-b996-c276a3ffc726.png",
+      "status": "generated and converted"
+    },
+    {
+      "card": "건담 키마리스 트루퍼",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "5944a4585bbb43e6ba384c1e7de696f20b4e792dc9ccf22261f62e4d4bcd0eef",
+      "prompt": "generation/m-8a53fd349b4f1962/runs/2026-09-13t004949z/04-casual.txt",
+      "manifest": "generation/m-8a53fd349b4f1962/runs/2026-09-13t004949z/manifest.json",
+      "file": "건담 키마리스 트루퍼_cel_anime_f_casual1.webp",
+      "source": "exec-59255a25-f7f2-48bc-ad54-2a130f3007c9.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "referenceImage": "exec-e8d5b37f-1c82-400d-ab86-26ade408d6bf.png",
+      "status": "generated and converted"
+    }
+  ]
+}
