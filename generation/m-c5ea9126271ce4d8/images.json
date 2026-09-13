@@ -1,0 +1,38 @@
+{
+  "티엘바_cinematic_semi_real_f.webp": {
+    "card": "티엘바",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "bd990ec0636579bab51cc28cb199dc8bc0203c93511a31fcf616aaf54b51fd76",
+    "prompt": "generation/m-c5ea9126271ce4d8/runs/2026-09-13t135031z/01-cinematic-anthro.txt",
+    "manifest": "generation/m-c5ea9126271ce4d8/runs/2026-09-13t135031z/manifest.json"
+  },
+  "티엘바_cinematic_semi_real_f_casual1.webp": {
+    "card": "티엘바",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "be3131a7ffa0235ae2e9c61ab697743407869fcfe6b9930a844e35e2c0779968",
+    "prompt": "generation/m-c5ea9126271ce4d8/runs/2026-09-13t135031z/02-cinematic-casual.txt",
+    "manifest": "generation/m-c5ea9126271ce4d8/runs/2026-09-13t135031z/manifest.json"
+  },
+  "티엘바_cel_anime_f.webp": {
+    "card": "티엘바",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "726df27018a6984363bcf7b25ada967ec8d29b38b63f0a9fc4999b9a58cbd755",
+    "prompt": "generation/m-c5ea9126271ce4d8/runs/2026-09-13t135031z/03-cel-anthro.txt",
+    "manifest": "generation/m-c5ea9126271ce4d8/runs/2026-09-13t135031z/manifest.json"
+  },
+  "티엘바_cel_anime_f_casual1.webp": {
+    "card": "티엘바",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "381ba3668e37c20b3fd321f338a5231fc55b9f7e97f11153771387e772ffea41",
+    "prompt": "generation/m-c5ea9126271ce4d8/runs/2026-09-13t135031z/04-cel-casual.txt",
+    "manifest": "generation/m-c5ea9126271ce4d8/runs/2026-09-13t135031z/manifest.json"
+  }
+}
