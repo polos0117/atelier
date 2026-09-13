@@ -1,0 +1,86 @@
+{
+  "card": "건담 엑시아 리페어",
+  "repository": "polos0117/atelier",
+  "base_commit": "a905fedec8e3ddeafeb4826209741aaf23fc6de0",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json and settings-03.json are UI exports captured before their respective anthro generations; exact submitted prompts preserve each lifestyle scene.",
+  "images": [
+    {
+      "card": "건담 엑시아 리페어",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "ddff7cfdf89c401e50149f73bd0bc9d568d90ae83cc0737c2bfb8d452cad7fd9",
+      "prompt": "generation/m-d3abecfcd577302f/runs/2026-09-13t085433z/01-anthro.txt",
+      "manifest": "generation/m-d3abecfcd577302f/runs/2026-09-13t085433z/manifest.json",
+      "job_id": "exia-repair-01",
+      "file": "img/건담 엑시아 리페어_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-fec55a55-9550-4297-80cf-8d3bf8115758.png",
+      "reference_job_id": null
+    },
+    {
+      "card": "건담 엑시아 리페어",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "564cb97ccdd0d0c7e100bbe3343b9811ed301f96a19ce08bfb80218006f9fce2",
+      "prompt": "generation/m-d3abecfcd577302f/runs/2026-09-13t085433z/02-casual.txt",
+      "manifest": "generation/m-d3abecfcd577302f/runs/2026-09-13t085433z/manifest.json",
+      "job_id": "exia-repair-02",
+      "file": "img/건담 엑시아 리페어_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-8ba0313f-1f9b-47db-973f-9b627e54b84a.png",
+      "reference_job_id": "exia-repair-01"
+    },
+    {
+      "card": "건담 엑시아 리페어",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "045d47775ceed6b9167421e732f72500924e3015b379d69722b99f3880531040",
+      "prompt": "generation/m-d3abecfcd577302f/runs/2026-09-13t085433z/03-anthro.txt",
+      "manifest": "generation/m-d3abecfcd577302f/runs/2026-09-13t085433z/manifest.json",
+      "job_id": "exia-repair-03",
+      "file": "img/건담 엑시아 리페어_cel_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-642a2562-890c-4f0b-a9bd-40ba2717266c.png",
+      "reference_job_id": "exia-repair-01"
+    },
+    {
+      "card": "건담 엑시아 리페어",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "2c85a8df211705a4a2ecdb7ba76b1f213cb774b5af76f3253f8378550718f44a",
+      "prompt": "generation/m-d3abecfcd577302f/runs/2026-09-13t085433z/04b-casual.txt",
+      "manifest": "generation/m-d3abecfcd577302f/runs/2026-09-13t085433z/manifest.json",
+      "job_id": "exia-repair-04",
+      "file": "img/건담 엑시아 리페어_cel_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-a48079c9-c2c0-40ce-9ee2-1774d07a29e6.png",
+      "reference_job_id": "exia-repair-03"
+    }
+  ],
+  "failed_attempts": [
+    {
+      "job_id": "exia-repair-04-initial",
+      "prompt": "generation/m-d3abecfcd577302f/runs/2026-09-13t085433z/04-casual.txt",
+      "status": "output safety filter rejection; no image returned",
+      "retry_job_id": "exia-repair-04"
+    }
+  ]
+}
