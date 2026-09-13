@@ -1,0 +1,38 @@
+{
+  "G바운서_cinematic_semi_real_f.webp": {
+    "card": "G바운서",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "76ffd9cc70cabb02a136bb48213176d7d0ef603982d046e06bd3c912842ccffb",
+    "prompt": "generation/m-eb3978f0c8e32f9d/runs/2026-09-13t110851z/01-anthro.txt",
+    "manifest": "generation/m-eb3978f0c8e32f9d/runs/2026-09-13t110851z/manifest.json"
+  },
+  "G바운서_cinematic_semi_real_f_casual1.webp": {
+    "card": "G바운서",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "98785f0552cab36aa33f7e82cd00e557468114bf3af5afe10befedf183591ca1",
+    "prompt": "generation/m-eb3978f0c8e32f9d/runs/2026-09-13t110851z/02b-casual.txt",
+    "manifest": "generation/m-eb3978f0c8e32f9d/runs/2026-09-13t110851z/manifest.json"
+  },
+  "G바운서_game_keyart_f.webp": {
+    "card": "G바운서",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "84a33371f5e3047b604cf78d1a6727e701d3cea980f14f2fed32ee088218a3cd",
+    "prompt": "generation/m-eb3978f0c8e32f9d/runs/2026-09-13t110851z/03-anthro.txt",
+    "manifest": "generation/m-eb3978f0c8e32f9d/runs/2026-09-13t110851z/manifest.json"
+  },
+  "G바운서_game_keyart_f_casual1.webp": {
+    "card": "G바운서",
+    "style": "game_keyart",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "1dc75e27e8e4fad66f6a8518b3ad1756e8e9fb7e375268c620cc655cd4428ea7",
+    "prompt": "generation/m-eb3978f0c8e32f9d/runs/2026-09-13t110851z/04-casual.txt",
+    "manifest": "generation/m-eb3978f0c8e32f9d/runs/2026-09-13t110851z/manifest.json"
+  }
+}

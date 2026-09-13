@@ -1,0 +1,86 @@
+{
+  "card": "G바운서",
+  "repository": "polos0117/atelier",
+  "base_commit": "f4efa784a2fbba900390fc4e550d6b4cee76a011",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json and settings-03.json are UI exports captured before their respective anthro generations; exact submitted prompts preserve each lifestyle scene.",
+  "images": [
+    {
+      "card": "G바운서",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "76ffd9cc70cabb02a136bb48213176d7d0ef603982d046e06bd3c912842ccffb",
+      "prompt": "generation/m-eb3978f0c8e32f9d/runs/2026-09-13t110851z/01-anthro.txt",
+      "manifest": "generation/m-eb3978f0c8e32f9d/runs/2026-09-13t110851z/manifest.json",
+      "job_id": "gbouncer-01",
+      "file": "img/G바운서_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-faca4359-fd46-4006-a80c-af1f4c333bdd.png",
+      "reference_job_id": null
+    },
+    {
+      "card": "G바운서",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "98785f0552cab36aa33f7e82cd00e557468114bf3af5afe10befedf183591ca1",
+      "prompt": "generation/m-eb3978f0c8e32f9d/runs/2026-09-13t110851z/02b-casual.txt",
+      "manifest": "generation/m-eb3978f0c8e32f9d/runs/2026-09-13t110851z/manifest.json",
+      "job_id": "gbouncer-02",
+      "file": "img/G바운서_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-11e062d1-1441-4baf-8fcf-7d0cf064f6d9.png",
+      "reference_job_id": "gbouncer-01"
+    },
+    {
+      "card": "G바운서",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "84a33371f5e3047b604cf78d1a6727e701d3cea980f14f2fed32ee088218a3cd",
+      "prompt": "generation/m-eb3978f0c8e32f9d/runs/2026-09-13t110851z/03-anthro.txt",
+      "manifest": "generation/m-eb3978f0c8e32f9d/runs/2026-09-13t110851z/manifest.json",
+      "job_id": "gbouncer-03",
+      "file": "img/G바운서_game_keyart_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-13cf4fe4-0fd8-4f7d-b7be-9e58303ac45b.png",
+      "reference_job_id": "gbouncer-01"
+    },
+    {
+      "card": "G바운서",
+      "style": "game_keyart",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "1dc75e27e8e4fad66f6a8518b3ad1756e8e9fb7e375268c620cc655cd4428ea7",
+      "prompt": "generation/m-eb3978f0c8e32f9d/runs/2026-09-13t110851z/04-casual.txt",
+      "manifest": "generation/m-eb3978f0c8e32f9d/runs/2026-09-13t110851z/manifest.json",
+      "job_id": "gbouncer-04",
+      "file": "img/G바운서_game_keyart_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-4fba253b-bc08-4e54-b7f6-0eb92319cf7d.png",
+      "reference_job_id": "gbouncer-03"
+    }
+  ],
+  "failed_attempts": [
+    {
+      "job_id": "gbouncer-02-initial",
+      "prompt": "generation/m-eb3978f0c8e32f9d/runs/2026-09-13t110851z/02-casual.txt",
+      "status": "output safety filter rejection; no image returned",
+      "retry_job_id": "gbouncer-02"
+    }
+  ]
+}
