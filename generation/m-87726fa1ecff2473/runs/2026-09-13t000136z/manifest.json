@@ -1,0 +1,75 @@
+{
+  "card": "마스라오",
+  "baseCommit": "07cbc94157c2d808d5d193fe06724e5d2ff62b2a",
+  "framing": "Original generated framing retained; no expanded margins.",
+  "images": [
+    {
+      "card": "마스라오",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "232bcfa54752a47341be4c90a75fed889b7f523ff9d473e833e98657da5f46b3",
+      "prompt": "generation/m-87726fa1ecff2473/runs/2026-09-13t000136z/01-anthro.txt",
+      "manifest": "generation/m-87726fa1ecff2473/runs/2026-09-13t000136z/manifest.json",
+      "file": "마스라오_cinematic_semi_real_f.webp",
+      "source": "exec-1f52702f-89b5-44e0-8fc8-9b947ea42c98.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "referenceImage": null,
+      "status": "generated and converted"
+    },
+    {
+      "card": "마스라오",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "d1b3ccf547a92e453a16d4892e9787e6b4a1425ab4a2f8ed87779adbf759c18d",
+      "prompt": "generation/m-87726fa1ecff2473/runs/2026-09-13t000136z/02-casual.txt",
+      "manifest": "generation/m-87726fa1ecff2473/runs/2026-09-13t000136z/manifest.json",
+      "file": "마스라오_cinematic_semi_real_f_casual1.webp",
+      "source": "exec-fb7c1eeb-5249-43f3-b4c3-fa577245f663.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "referenceImage": "exec-1f52702f-89b5-44e0-8fc8-9b947ea42c98.png",
+      "status": "generated and converted"
+    },
+    {
+      "card": "마스라오",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "475bc06fe2fdd5660159eac9c5b64727785d0563eef26fa04059cfac0683977e",
+      "prompt": "generation/m-87726fa1ecff2473/runs/2026-09-13t000136z/03-anthro.txt",
+      "manifest": "generation/m-87726fa1ecff2473/runs/2026-09-13t000136z/manifest.json",
+      "file": "마스라오_cel_anime_f.webp",
+      "source": "exec-34768263-2969-44d3-bb9a-1bc3b67727eb.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "referenceImage": "exec-1f52702f-89b5-44e0-8fc8-9b947ea42c98.png",
+      "status": "generated and converted"
+    },
+    {
+      "card": "마스라오",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "4548320b033bc724be804b7bd18200a5ca78bcab47ee33425efca87fec556dd8",
+      "prompt": "generation/m-87726fa1ecff2473/runs/2026-09-13t000136z/04-casual.txt",
+      "manifest": "generation/m-87726fa1ecff2473/runs/2026-09-13t000136z/manifest.json",
+      "file": "마스라오_cel_anime_f_casual1.webp",
+      "source": "exec-16db6a4b-0957-4f3a-ae8b-c2bfc2d12fb1.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "referenceImage": "exec-34768263-2969-44d3-bb9a-1bc3b67727eb.png",
+      "status": "generated and converted"
+    }
+  ]
+}
