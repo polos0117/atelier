@@ -1,0 +1,38 @@
+{
+  "제이드라_cinematic_semi_real_f.webp": {
+    "card": "제이드라",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "f57121101cdb7e8546e14256723aeb8613ccd828b91c0b0b294134ed4faf0c64",
+    "prompt": "generation/m-1828fa8077c422e3/runs/2026-09-13t081035z/01-anthro.txt",
+    "manifest": "generation/m-1828fa8077c422e3/runs/2026-09-13t081035z/manifest.json"
+  },
+  "제이드라_cinematic_semi_real_f_casual1.webp": {
+    "card": "제이드라",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "cbe5781311507b1a95450e6b392d078c29acf8962b16596ab3241c5392277817",
+    "prompt": "generation/m-1828fa8077c422e3/runs/2026-09-13t081035z/02-casual.txt",
+    "manifest": "generation/m-1828fa8077c422e3/runs/2026-09-13t081035z/manifest.json"
+  },
+  "제이드라_retro_anime_f.webp": {
+    "card": "제이드라",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "5bdcf9fda6985eaed63b5ae2991d2b3682f3ca6ce41acf9507e3c73cef1a4b9b",
+    "prompt": "generation/m-1828fa8077c422e3/runs/2026-09-13t081035z/03-anthro.txt",
+    "manifest": "generation/m-1828fa8077c422e3/runs/2026-09-13t081035z/manifest.json"
+  },
+  "제이드라_retro_anime_f_casual1.webp": {
+    "card": "제이드라",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "6890f072c0942fd1e64ed30390b4a868f0b9ff6218520969d9304e3330ee0c7d",
+    "prompt": "generation/m-1828fa8077c422e3/runs/2026-09-13t081035z/04-casual.txt",
+    "manifest": "generation/m-1828fa8077c422e3/runs/2026-09-13t081035z/manifest.json"
+  }
+}
