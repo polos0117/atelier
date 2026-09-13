@@ -1,0 +1,11 @@
+{
+  "보리노크 사만_cinematic_semi_real_f.webp": {
+    "card": "보리노크 사만",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "ce62c7d226184f417fe180f77b2659cae49eb2eb4984c20a26fa1bf3d5a837cf",
+    "prompt": "generation/m-87f01fb5441fcd16/runs/2026-09-13t213640z/01-anthro.txt",
+    "manifest": "generation/m-87f01fb5441fcd16/runs/2026-09-13t213640z/manifest.json"
+  }
+}
