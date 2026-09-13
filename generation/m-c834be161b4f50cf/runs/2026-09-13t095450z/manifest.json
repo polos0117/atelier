@@ -1,0 +1,78 @@
+{
+  "card": "서펜트",
+  "repository": "polos0117/atelier",
+  "base_commit": "1fd23d3787ae2cb550a2ca6c43811351e5792568",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json and settings-03.json are UI exports captured before their respective anthro generations; exact submitted prompts preserve each lifestyle scene.",
+  "images": [
+    {
+      "card": "서펜트",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "c15b283b0d336a08d26579188059ce27c5aa507001e9e6f9472198714335bd1b",
+      "prompt": "generation/m-c834be161b4f50cf/runs/2026-09-13t095450z/01-anthro.txt",
+      "manifest": "generation/m-c834be161b4f50cf/runs/2026-09-13t095450z/manifest.json",
+      "job_id": "serpent-01",
+      "file": "img/서펜트_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-294a0ee2-fd94-4280-864d-9a55123b6c9b.png",
+      "reference_job_id": null
+    },
+    {
+      "card": "서펜트",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "9ba7e5d1f602f22763d117ae5f51b1863ae9f906b32c20fd5d39fa009a42948b",
+      "prompt": "generation/m-c834be161b4f50cf/runs/2026-09-13t095450z/02-casual.txt",
+      "manifest": "generation/m-c834be161b4f50cf/runs/2026-09-13t095450z/manifest.json",
+      "job_id": "serpent-02",
+      "file": "img/서펜트_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-2b4b697e-affa-46aa-9464-d1fef65b2130.png",
+      "reference_job_id": "serpent-01"
+    },
+    {
+      "card": "서펜트",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "a57668b674f059f76d47424143658e934d85eea848587ecb9d565e07306ef02f",
+      "prompt": "generation/m-c834be161b4f50cf/runs/2026-09-13t095450z/03-anthro.txt",
+      "manifest": "generation/m-c834be161b4f50cf/runs/2026-09-13t095450z/manifest.json",
+      "job_id": "serpent-03",
+      "file": "img/서펜트_retro_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-9e004d50-0434-4dcc-ac8d-74908c5dd97f.png",
+      "reference_job_id": "serpent-01"
+    },
+    {
+      "card": "서펜트",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "c78cabee614a228dd508c0327fafa5bed4c73c214a27def00a36ae63f7c62065",
+      "prompt": "generation/m-c834be161b4f50cf/runs/2026-09-13t095450z/04-casual.txt",
+      "manifest": "generation/m-c834be161b4f50cf/runs/2026-09-13t095450z/manifest.json",
+      "job_id": "serpent-04",
+      "file": "img/서펜트_retro_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-d992004f-40ed-413c-b9b7-6491f5cb1538.png",
+      "reference_job_id": "serpent-03"
+    }
+  ]
+}

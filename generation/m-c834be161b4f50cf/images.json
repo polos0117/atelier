@@ -1,0 +1,38 @@
+{
+  "서펜트_cinematic_semi_real_f.webp": {
+    "card": "서펜트",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "c15b283b0d336a08d26579188059ce27c5aa507001e9e6f9472198714335bd1b",
+    "prompt": "generation/m-c834be161b4f50cf/runs/2026-09-13t095450z/01-anthro.txt",
+    "manifest": "generation/m-c834be161b4f50cf/runs/2026-09-13t095450z/manifest.json"
+  },
+  "서펜트_cinematic_semi_real_f_casual1.webp": {
+    "card": "서펜트",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "9ba7e5d1f602f22763d117ae5f51b1863ae9f906b32c20fd5d39fa009a42948b",
+    "prompt": "generation/m-c834be161b4f50cf/runs/2026-09-13t095450z/02-casual.txt",
+    "manifest": "generation/m-c834be161b4f50cf/runs/2026-09-13t095450z/manifest.json"
+  },
+  "서펜트_retro_anime_f.webp": {
+    "card": "서펜트",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "a57668b674f059f76d47424143658e934d85eea848587ecb9d565e07306ef02f",
+    "prompt": "generation/m-c834be161b4f50cf/runs/2026-09-13t095450z/03-anthro.txt",
+    "manifest": "generation/m-c834be161b4f50cf/runs/2026-09-13t095450z/manifest.json"
+  },
+  "서펜트_retro_anime_f_casual1.webp": {
+    "card": "서펜트",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "c78cabee614a228dd508c0327fafa5bed4c73c214a27def00a36ae63f7c62065",
+    "prompt": "generation/m-c834be161b4f50cf/runs/2026-09-13t095450z/04-casual.txt",
+    "manifest": "generation/m-c834be161b4f50cf/runs/2026-09-13t095450z/manifest.json"
+  }
+}
