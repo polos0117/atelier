@@ -1,0 +1,53 @@
+{
+  "card": "실버 불릿",
+  "repository": "polos0117/atelier",
+  "base_commit": "e5eecfa6d05baaf5f5ef37996eca7d89f3fb541c",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json is the live UI export captured before generation; exact submitted prompts and the final correction prompt are preserved.",
+  "images": [
+    {
+      "card": "실버 불릿",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "bf5f8d34a7205f08ed07e0b1c6734a75ff566ab07f45b276806f6b4fea7edc8b",
+      "prompt": "generation/m-94f82808416a0a98/runs/2026-09-13t170535z/01-anthro.txt",
+      "manifest": "generation/m-94f82808416a0a98/runs/2026-09-13t170535z/manifest.json",
+      "job_id": "silver-bullet-01",
+      "file": "img/실버 불릿_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-af0320ef-1f71-40df-a5be-bb00e0438032.png",
+      "reference_job_id": null
+    },
+    {
+      "card": "실버 불릿",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "a179597b7b911421619dd4e96a7a6c06dbe46ca438c0feb15e1dd4e9c19c3449",
+      "prompt": "generation/m-94f82808416a0a98/runs/2026-09-13t170535z/03-casual-edit.txt",
+      "manifest": "generation/m-94f82808416a0a98/runs/2026-09-13t170535z/manifest.json",
+      "job_id": "silver-bullet-03",
+      "file": "img/실버 불릿_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-e8e339ad-6603-426e-80e8-1dcc15300686.png",
+      "reference_job_id": "silver-bullet-02-draft"
+    }
+  ],
+  "intermediate_images": [
+    {
+      "job_id": "silver-bullet-02-draft",
+      "source_file": "exec-d2398325-2eec-4f89-984d-a6c08823c368.png",
+      "prompt": "generation/m-94f82808416a0a98/runs/2026-09-13t170535z/02-casual.txt",
+      "reference_job_id": "silver-bullet-01",
+      "status": "discarded after scene carryover correction"
+    }
+  ]
+}

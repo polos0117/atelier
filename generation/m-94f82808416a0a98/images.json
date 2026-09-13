@@ -1,0 +1,20 @@
+{
+  "실버 불릿_cinematic_semi_real_f.webp": {
+    "card": "실버 불릿",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "bf5f8d34a7205f08ed07e0b1c6734a75ff566ab07f45b276806f6b4fea7edc8b",
+    "prompt": "generation/m-94f82808416a0a98/runs/2026-09-13t170535z/01-anthro.txt",
+    "manifest": "generation/m-94f82808416a0a98/runs/2026-09-13t170535z/manifest.json"
+  },
+  "실버 불릿_cinematic_semi_real_f_casual1.webp": {
+    "card": "실버 불릿",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "a179597b7b911421619dd4e96a7a6c06dbe46ca438c0feb15e1dd4e9c19c3449",
+    "prompt": "generation/m-94f82808416a0a98/runs/2026-09-13t170535z/03-casual-edit.txt",
+    "manifest": "generation/m-94f82808416a0a98/runs/2026-09-13t170535z/manifest.json"
+  }
+}

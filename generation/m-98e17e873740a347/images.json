@@ -1,0 +1,20 @@
+{
+  "워돔_cinematic_semi_real_f.webp": {
+    "card": "워돔",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "8d49ad63c82b357769924fc5fb34e0a66c3628fb8bd8215f3018ba7bcaf162dc",
+    "prompt": "generation/m-98e17e873740a347/runs/2026-09-13t170535z/01-anthro.txt",
+    "manifest": "generation/m-98e17e873740a347/runs/2026-09-13t170535z/manifest.json"
+  },
+  "워돔_cinematic_semi_real_f_casual1.webp": {
+    "card": "워돔",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "66753af9d6b8d7d0deb7487cfe298777496ba35a9830e1813d642c2b1ce8bec3",
+    "prompt": "generation/m-98e17e873740a347/runs/2026-09-13t170535z/03-casual-edit.txt",
+    "manifest": "generation/m-98e17e873740a347/runs/2026-09-13t170535z/manifest.json"
+  }
+}
