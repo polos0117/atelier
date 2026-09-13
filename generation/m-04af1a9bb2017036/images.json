@@ -1,0 +1,20 @@
+{
+  "건담 AGE-2 더블 불릿_cinematic_semi_real_f.webp": {
+    "card": "건담 AGE-2 더블 불릿",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "14b4bcef726b18216b1b34530255203c48815b023028b9fb993cd25358af8254",
+    "prompt": "generation/m-04af1a9bb2017036/runs/2026-09-13t154813z/01-anthro.txt",
+    "manifest": "generation/m-04af1a9bb2017036/runs/2026-09-13t154813z/manifest.json"
+  },
+  "건담 AGE-2 더블 불릿_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 AGE-2 더블 불릿",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "5b8d3b1d911626e446527147563fb4a54c57b64120eb6866c3baf0306e18c36b",
+    "prompt": "generation/m-04af1a9bb2017036/runs/2026-09-13t154813z/02-casual.txt",
+    "manifest": "generation/m-04af1a9bb2017036/runs/2026-09-13t154813z/manifest.json"
+  }
+}

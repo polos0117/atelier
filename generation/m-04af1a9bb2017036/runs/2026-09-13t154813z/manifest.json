@@ -1,0 +1,44 @@
+{
+  "card": "건담 AGE-2 더블 불릿",
+  "repository": "polos0117/atelier",
+  "base_commit": "7ca39bd4e6c76e1de1625c915f0d55abad671d73",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json is the live UI export captured before generation; the exact submitted anthro and lifestyle prompts are preserved.",
+  "images": [
+    {
+      "card": "건담 AGE-2 더블 불릿",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "14b4bcef726b18216b1b34530255203c48815b023028b9fb993cd25358af8254",
+      "prompt": "generation/m-04af1a9bb2017036/runs/2026-09-13t154813z/01-anthro.txt",
+      "manifest": "generation/m-04af1a9bb2017036/runs/2026-09-13t154813z/manifest.json",
+      "job_id": "age2-double-bullet-01",
+      "file": "img/건담 AGE-2 더블 불릿_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-f0412442-95f3-45a8-88bf-e7e1fc30f5b9.png",
+      "reference_job_id": null
+    },
+    {
+      "card": "건담 AGE-2 더블 불릿",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "5b8d3b1d911626e446527147563fb4a54c57b64120eb6866c3baf0306e18c36b",
+      "prompt": "generation/m-04af1a9bb2017036/runs/2026-09-13t154813z/02-casual.txt",
+      "manifest": "generation/m-04af1a9bb2017036/runs/2026-09-13t154813z/manifest.json",
+      "job_id": "age2-double-bullet-02",
+      "file": "img/건담 AGE-2 더블 불릿_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-2440904f-e0b5-4d59-9f0d-26a54ccbddc3.png",
+      "reference_job_id": "age2-double-bullet-01"
+    }
+  ]
+}

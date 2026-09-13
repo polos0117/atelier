@@ -1,0 +1,44 @@
+{
+  "card": "건담 AGE-1 스팔로",
+  "repository": "polos0117/atelier",
+  "base_commit": "7ca39bd4e6c76e1de1625c915f0d55abad671d73",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json is the live UI export captured before generation; the exact submitted anthro and lifestyle prompts are preserved.",
+  "images": [
+    {
+      "card": "건담 AGE-1 스팔로",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "f2a3ec848ff148ce8cac437d5d3a300d08e4decb960a312bf578edf3f051be77",
+      "prompt": "generation/m-43c1d31d5a623600/runs/2026-09-13t154813z/01-anthro.txt",
+      "manifest": "generation/m-43c1d31d5a623600/runs/2026-09-13t154813z/manifest.json",
+      "job_id": "age1-spallow-01",
+      "file": "img/건담 AGE-1 스팔로_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-b6ee1619-1009-4e04-bafb-31973442e3bb.png",
+      "reference_job_id": null
+    },
+    {
+      "card": "건담 AGE-1 스팔로",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "da1a2b0932aa0c1b7dac3105460d4047962e538845009099fa2989ca723050f7",
+      "prompt": "generation/m-43c1d31d5a623600/runs/2026-09-13t154813z/02-casual.txt",
+      "manifest": "generation/m-43c1d31d5a623600/runs/2026-09-13t154813z/manifest.json",
+      "job_id": "age1-spallow-02",
+      "file": "img/건담 AGE-1 스팔로_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-38cf2481-338f-408a-9f43-97dac4a573a9.png",
+      "reference_job_id": "age1-spallow-01"
+    }
+  ]
+}
