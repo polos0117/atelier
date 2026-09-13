@@ -1,0 +1,20 @@
+{
+  "슬래시 자쿠 팬텀_cinematic_semi_real_f.webp": {
+    "card": "슬래시 자쿠 팬텀",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "ea4c41d84e004c4d65162e4ff1d8376b87b6594a98c998ee040b8163e5ea36f5",
+    "prompt": "generation/m-bcda117f76479394/runs/2026-09-13t164138z/01-anthro.txt",
+    "manifest": "generation/m-bcda117f76479394/runs/2026-09-13t164138z/manifest.json"
+  },
+  "슬래시 자쿠 팬텀_cinematic_semi_real_f_casual1.webp": {
+    "card": "슬래시 자쿠 팬텀",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "a1f3cc9436385ca2703037d6c268f53555ff6dedbdf3853b58c41a666ee5dc39",
+    "prompt": "generation/m-bcda117f76479394/runs/2026-09-13t164138z/02-casual.txt",
+    "manifest": "generation/m-bcda117f76479394/runs/2026-09-13t164138z/manifest.json"
+  }
+}
