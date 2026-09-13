@@ -1,0 +1,20 @@
+{
+  "건담 AGE-1 스팔로_cinematic_semi_real_f.webp": {
+    "card": "건담 AGE-1 스팔로",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "f2a3ec848ff148ce8cac437d5d3a300d08e4decb960a312bf578edf3f051be77",
+    "prompt": "generation/m-43c1d31d5a623600/runs/2026-09-13t154813z/01-anthro.txt",
+    "manifest": "generation/m-43c1d31d5a623600/runs/2026-09-13t154813z/manifest.json"
+  },
+  "건담 AGE-1 스팔로_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 AGE-1 스팔로",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "da1a2b0932aa0c1b7dac3105460d4047962e538845009099fa2989ca723050f7",
+    "prompt": "generation/m-43c1d31d5a623600/runs/2026-09-13t154813z/02-casual.txt",
+    "manifest": "generation/m-43c1d31d5a623600/runs/2026-09-13t154813z/manifest.json"
+  }
+}
