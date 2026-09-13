@@ -1,0 +1,44 @@
+{
+  "card": "슬래시 자쿠 팬텀",
+  "repository": "polos0117/atelier",
+  "base_commit": "b42f25f7ad5e8b55c2ac8af7801df767be42171e",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json is the live UI export captured before generation; exact submitted prompts and any final correction prompt are preserved.",
+  "images": [
+    {
+      "card": "슬래시 자쿠 팬텀",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "ea4c41d84e004c4d65162e4ff1d8376b87b6594a98c998ee040b8163e5ea36f5",
+      "prompt": "generation/m-bcda117f76479394/runs/2026-09-13t164138z/01-anthro.txt",
+      "manifest": "generation/m-bcda117f76479394/runs/2026-09-13t164138z/manifest.json",
+      "job_id": "slash-zaku-phantom-01",
+      "file": "img/슬래시 자쿠 팬텀_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-978ad0c2-949d-40dc-b8ed-e5cb4529eb6c.png",
+      "reference_job_id": null
+    },
+    {
+      "card": "슬래시 자쿠 팬텀",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "a1f3cc9436385ca2703037d6c268f53555ff6dedbdf3853b58c41a666ee5dc39",
+      "prompt": "generation/m-bcda117f76479394/runs/2026-09-13t164138z/02-casual.txt",
+      "manifest": "generation/m-bcda117f76479394/runs/2026-09-13t164138z/manifest.json",
+      "job_id": "slash-zaku-phantom-02",
+      "file": "img/슬래시 자쿠 팬텀_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-b8e3b801-687e-44a5-97a8-eea80fbd02fe.png",
+      "reference_job_id": "slash-zaku-phantom-01"
+    }
+  ]
+}

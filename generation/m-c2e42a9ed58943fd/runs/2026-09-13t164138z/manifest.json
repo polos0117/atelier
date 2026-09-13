@@ -1,0 +1,44 @@
+{
+  "card": "헬름비게 린카",
+  "repository": "polos0117/atelier",
+  "base_commit": "b42f25f7ad5e8b55c2ac8af7801df767be42171e",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json is the live UI export captured before generation; exact submitted prompts and any final correction prompt are preserved.",
+  "images": [
+    {
+      "card": "헬름비게 린카",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "26b7633a3ebf2a7d0b4531a2e9da9a72edf61a2ff3b97ee7cc5d9970cf507f3c",
+      "prompt": "generation/m-c2e42a9ed58943fd/runs/2026-09-13t164138z/01-anthro.txt",
+      "manifest": "generation/m-c2e42a9ed58943fd/runs/2026-09-13t164138z/manifest.json",
+      "job_id": "helmwige-reincar-01",
+      "file": "img/헬름비게 린카_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-1d27fafa-3a7d-48e0-83d6-0faf8437ce9f.png",
+      "reference_job_id": null
+    },
+    {
+      "card": "헬름비게 린카",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "c88bbaa81c758c548c164c062f056ded688491d45c9e814a54bca13358f2241a",
+      "prompt": "generation/m-c2e42a9ed58943fd/runs/2026-09-13t164138z/02-casual.txt",
+      "manifest": "generation/m-c2e42a9ed58943fd/runs/2026-09-13t164138z/manifest.json",
+      "job_id": "helmwige-reincar-02",
+      "file": "img/헬름비게 린카_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-10bb5a8b-011f-4eaf-bf20-f918457b2d69.png",
+      "reference_job_id": "helmwige-reincar-01"
+    }
+  ]
+}
