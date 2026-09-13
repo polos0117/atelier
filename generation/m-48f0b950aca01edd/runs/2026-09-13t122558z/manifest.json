@@ -1,0 +1,92 @@
+{
+  "card": "베르가 다라스",
+  "repository": "polos0117/atelier",
+  "base_commit": "89fd81c718b299af2b6668a46204258591beaae3",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json and settings-03.json are UI exports captured before their respective anthro generations; exact submitted prompts preserve each lifestyle scene.",
+  "images": [
+    {
+      "card": "베르가 다라스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "c2b1e96b9faf65fe546a98277796a257b2f35c71238df1593621215a99227a9d",
+      "prompt": "generation/m-48f0b950aca01edd/runs/2026-09-13t122558z/01b-remove-text.txt",
+      "manifest": "generation/m-48f0b950aca01edd/runs/2026-09-13t122558z/manifest.json",
+      "job_id": "berga-01",
+      "file": "img/베르가 다라스_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-d47acc1b-d2d2-43ed-a7a2-025f03df92b2.png",
+      "reference_job_id": "berga-01-original"
+    },
+    {
+      "card": "베르가 다라스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "d446e4d6bd3db6448f0715f515ec604c4718ea27f1f97e2096a4d0a44be03afb",
+      "prompt": "generation/m-48f0b950aca01edd/runs/2026-09-13t122558z/02-casual.txt",
+      "manifest": "generation/m-48f0b950aca01edd/runs/2026-09-13t122558z/manifest.json",
+      "job_id": "berga-02",
+      "file": "img/베르가 다라스_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-cdcf9439-f1bf-4928-a1db-67ad3d53f7f6.png",
+      "reference_job_id": "berga-01"
+    },
+    {
+      "card": "베르가 다라스",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "5c8dd06ac1db9168be4f8e386edb70e58ec2d581e42e4cb5a5acea76fae93dde",
+      "prompt": "generation/m-48f0b950aca01edd/runs/2026-09-13t122558z/03-anthro.txt",
+      "manifest": "generation/m-48f0b950aca01edd/runs/2026-09-13t122558z/manifest.json",
+      "job_id": "berga-03",
+      "file": "img/베르가 다라스_retro_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-f91067c4-6cb5-4ed0-a600-41609185a491.png",
+      "reference_job_id": "berga-01"
+    },
+    {
+      "card": "베르가 다라스",
+      "style": "retro_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "175c7f1a0b5cd0b6bdaccd2b62abd181b594932fa56952cf85e6440fd82b62ec",
+      "prompt": "generation/m-48f0b950aca01edd/runs/2026-09-13t122558z/04b-casual.txt",
+      "manifest": "generation/m-48f0b950aca01edd/runs/2026-09-13t122558z/manifest.json",
+      "job_id": "berga-04",
+      "file": "img/베르가 다라스_retro_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-6ab85f4e-eb42-42d6-ae33-53786b674f9f.png",
+      "reference_job_id": "berga-03"
+    }
+  ],
+  "initial_generation": {
+    "job_id": "berga-01-original",
+    "prompt": "generation/m-48f0b950aca01edd/runs/2026-09-13t122558z/01-anthro.txt",
+    "source_file": "exec-89a13735-6a91-4d4c-be82-51524b0c5cda.png",
+    "correction_job_id": "berga-01",
+    "correction": "Remove unsolicited typography only"
+  },
+  "failed_attempts": [
+    {
+      "prompt": "generation/m-48f0b950aca01edd/runs/2026-09-13t122558z/04-casual.txt",
+      "status": "output safety filter rejection; no image returned",
+      "retry_job_id": "berga-04"
+    }
+  ]
+}

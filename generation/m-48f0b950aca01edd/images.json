@@ -1,0 +1,38 @@
+{
+  "베르가 다라스_cinematic_semi_real_f.webp": {
+    "card": "베르가 다라스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "c2b1e96b9faf65fe546a98277796a257b2f35c71238df1593621215a99227a9d",
+    "prompt": "generation/m-48f0b950aca01edd/runs/2026-09-13t122558z/01b-remove-text.txt",
+    "manifest": "generation/m-48f0b950aca01edd/runs/2026-09-13t122558z/manifest.json"
+  },
+  "베르가 다라스_cinematic_semi_real_f_casual1.webp": {
+    "card": "베르가 다라스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "d446e4d6bd3db6448f0715f515ec604c4718ea27f1f97e2096a4d0a44be03afb",
+    "prompt": "generation/m-48f0b950aca01edd/runs/2026-09-13t122558z/02-casual.txt",
+    "manifest": "generation/m-48f0b950aca01edd/runs/2026-09-13t122558z/manifest.json"
+  },
+  "베르가 다라스_retro_anime_f.webp": {
+    "card": "베르가 다라스",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "5c8dd06ac1db9168be4f8e386edb70e58ec2d581e42e4cb5a5acea76fae93dde",
+    "prompt": "generation/m-48f0b950aca01edd/runs/2026-09-13t122558z/03-anthro.txt",
+    "manifest": "generation/m-48f0b950aca01edd/runs/2026-09-13t122558z/manifest.json"
+  },
+  "베르가 다라스_retro_anime_f_casual1.webp": {
+    "card": "베르가 다라스",
+    "style": "retro_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "175c7f1a0b5cd0b6bdaccd2b62abd181b594932fa56952cf85e6440fd82b62ec",
+    "prompt": "generation/m-48f0b950aca01edd/runs/2026-09-13t122558z/04b-casual.txt",
+    "manifest": "generation/m-48f0b950aca01edd/runs/2026-09-13t122558z/manifest.json"
+  }
+}
