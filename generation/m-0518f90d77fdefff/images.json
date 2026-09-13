@@ -1,0 +1,38 @@
+{
+  "카풀_cinematic_semi_real_f.webp": {
+    "card": "카풀",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "9437cf1735b42261324466bd0a9391e099ee35b4a3234e584505d6ed171cbad9",
+    "prompt": "generation/m-0518f90d77fdefff/runs/2026-09-13t143900z/01-cinematic-anthro.txt",
+    "manifest": "generation/m-0518f90d77fdefff/runs/2026-09-13t143900z/manifest.json"
+  },
+  "카풀_cinematic_semi_real_f_casual1.webp": {
+    "card": "카풀",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "769ebbd635601edd718f5928ff80c5cdbedef846eae5cf95317a923acfc4cf6d",
+    "prompt": "generation/m-0518f90d77fdefff/runs/2026-09-13t143900z/02-cinematic-casual.txt",
+    "manifest": "generation/m-0518f90d77fdefff/runs/2026-09-13t143900z/manifest.json"
+  },
+  "카풀_glossy_kr_game_f.webp": {
+    "card": "카풀",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "ad6660b0e28f56af1148732d0cbd43e0be9fb7ed1c171ea2fe6812ef4523acb6",
+    "prompt": "generation/m-0518f90d77fdefff/runs/2026-09-13t143900z/03-glossy-anthro.txt",
+    "manifest": "generation/m-0518f90d77fdefff/runs/2026-09-13t143900z/manifest.json"
+  },
+  "카풀_glossy_kr_game_f_casual1.webp": {
+    "card": "카풀",
+    "style": "glossy_kr_game",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "43f9591e8fd0fe661004bb69fd5b3f821137fd12099ce38d774c044c262c3b6d",
+    "prompt": "generation/m-0518f90d77fdefff/runs/2026-09-13t143900z/05-glossy-casual.txt",
+    "manifest": "generation/m-0518f90d77fdefff/runs/2026-09-13t143900z/manifest.json"
+  }
+}

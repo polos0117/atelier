@@ -1,0 +1,114 @@
+{
+  "card": "카풀",
+  "source_card_in_generator": "카풀",
+  "repository": "polos0117/atelier",
+  "base_commit": "28f9395077e68582fee4bb6efccd6abd5dfe72f1",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "The live UI settings export succeeded. Both art-style prompts and both single-cut prompts were captured exactly; source-specific Kapool and identity instructions were prepended to the submitted prompts and preserved here. The established user-requested tight frontal anthropomorphized composition was used.",
+  "references": [
+    {
+      "url": "https://www.mahq.net/amx-109-turna/",
+      "role": "Kapool armament and equipment research"
+    },
+    {
+      "url": "https://www.gundam-c.com/manual/mechanic/turn-a/kapool.html",
+      "role": "Kapool model, dimensions, and armament research"
+    },
+    {
+      "file": "kapool-model.jpg",
+      "role": "front, rear, and detail model reference used for jobs 01 and 03"
+    },
+    {
+      "file": "kapool-card.png",
+      "role": "action silhouette and color reference used for jobs 01 and 03"
+    }
+  ],
+  "images": [
+    {
+      "card": "카풀",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-0518f90d77fdefff/runs/2026-09-13t143900z/01-cinematic-anthro.txt",
+      "job_id": "kapool-01",
+      "file": "img/카풀_cinematic_semi_real_f.webp",
+      "source_file": "exec-e3dd1ece-f38d-4be2-aaf4-c13413bf8bb0.png",
+      "reference_job_id": null,
+      "reference_files": [
+        "kapool-model.jpg",
+        "kapool-card.png"
+      ],
+      "sha256": "9437cf1735b42261324466bd0a9391e099ee35b4a3234e584505d6ed171cbad9",
+      "size": [
+        1024,
+        1536
+      ]
+    },
+    {
+      "card": "카풀",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "prompt": "generation/m-0518f90d77fdefff/runs/2026-09-13t143900z/02-cinematic-casual.txt",
+      "job_id": "kapool-02",
+      "file": "img/카풀_cinematic_semi_real_f_casual1.webp",
+      "source_file": "exec-595b94df-5d27-40e7-9ca3-6c5d527e5d53.png",
+      "reference_job_id": "kapool-01",
+      "sha256": "769ebbd635601edd718f5928ff80c5cdbedef846eae5cf95317a923acfc4cf6d",
+      "size": [
+        1024,
+        1536
+      ]
+    },
+    {
+      "card": "카풀",
+      "style": "glossy_kr_game",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-0518f90d77fdefff/runs/2026-09-13t143900z/03-glossy-anthro.txt",
+      "job_id": "kapool-03",
+      "file": "img/카풀_glossy_kr_game_f.webp",
+      "source_file": "exec-c1aae0e3-a595-4d0f-824e-1e79a1587f83.png",
+      "reference_job_id": "kapool-01",
+      "reference_files": [
+        "exec-e3dd1ece-f38d-4be2-aaf4-c13413bf8bb0.png",
+        "kapool-model.jpg",
+        "kapool-card.png"
+      ],
+      "sha256": "ad6660b0e28f56af1148732d0cbd43e0be9fb7ed1c171ea2fe6812ef4523acb6",
+      "size": [
+        1024,
+        1536
+      ]
+    },
+    {
+      "card": "카풀",
+      "style": "glossy_kr_game",
+      "gender": "f",
+      "mode": "casual",
+      "prompt": "generation/m-0518f90d77fdefff/runs/2026-09-13t143900z/05-glossy-casual.txt",
+      "job_id": "kapool-04",
+      "file": "img/카풀_glossy_kr_game_f_casual1.webp",
+      "source_file": "exec-d8e0b8bc-7135-45cc-995b-9c154fa57b81.png",
+      "reference_job_id": "kapool-03",
+      "sha256": "43f9591e8fd0fe661004bb69fd5b3f821137fd12099ce38d774c044c262c3b6d",
+      "size": [
+        1024,
+        1536
+      ]
+    }
+  ],
+  "failed_attempts": [
+    {
+      "job_id": "kapool-04-rejected",
+      "style": "glossy_kr_game",
+      "mode": "casual",
+      "prompt": "generation/m-0518f90d77fdefff/runs/2026-09-13t143900z/04-glossy-casual-rejected.txt",
+      "stage": "output moderation",
+      "category": "sexual",
+      "request_id": "5f5b57fb-9983-47da-98cb-89657a007c00",
+      "resolution": "Regenerated the same rooftop pool concept with a sporty opaque one-piece swimsuit and short wrap cover-up."
+    }
+  ]
+}
