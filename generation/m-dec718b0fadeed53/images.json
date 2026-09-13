@@ -1,0 +1,38 @@
+{
+  "블랙나이트 스쿼드 루드라_cinematic_semi_real_f.webp": {
+    "card": "블랙나이트 스쿼드 루드라",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "586c86f390c9bb6c41dd4f4532762f203015e688fabfe6ff27f4eecfde9a3d0a",
+    "prompt": "generation/m-dec718b0fadeed53/runs/2026-09-13t120627z/01-anthro.txt",
+    "manifest": "generation/m-dec718b0fadeed53/runs/2026-09-13t120627z/manifest.json"
+  },
+  "블랙나이트 스쿼드 루드라_cinematic_semi_real_f_casual1.webp": {
+    "card": "블랙나이트 스쿼드 루드라",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "69bc4fbf6e8b44daaa1114c015dfe51e5b51ac59eb3bc5d3daeddfa907c7b849",
+    "prompt": "generation/m-dec718b0fadeed53/runs/2026-09-13t120627z/02-casual.txt",
+    "manifest": "generation/m-dec718b0fadeed53/runs/2026-09-13t120627z/manifest.json"
+  },
+  "블랙나이트 스쿼드 루드라_cel_anime_f.webp": {
+    "card": "블랙나이트 스쿼드 루드라",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "fa8b6706f9a5384c396401638e325f40f7ad6ccdcca82cd2ddbca794ad5312c1",
+    "prompt": "generation/m-dec718b0fadeed53/runs/2026-09-13t120627z/03-anthro.txt",
+    "manifest": "generation/m-dec718b0fadeed53/runs/2026-09-13t120627z/manifest.json"
+  },
+  "블랙나이트 스쿼드 루드라_cel_anime_f_casual1.webp": {
+    "card": "블랙나이트 스쿼드 루드라",
+    "style": "cel_anime",
+    "gender": "f",
+    "mode": "casual",
+    "sha256": "34271bedf355239af50f29a559040ed3017bb3edebc4a19499aafdc073b8b2ed",
+    "prompt": "generation/m-dec718b0fadeed53/runs/2026-09-13t120627z/04-casual.txt",
+    "manifest": "generation/m-dec718b0fadeed53/runs/2026-09-13t120627z/manifest.json"
+  }
+}

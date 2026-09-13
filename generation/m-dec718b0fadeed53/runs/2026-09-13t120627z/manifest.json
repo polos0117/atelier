@@ -1,0 +1,78 @@
+{
+  "card": "블랙나이트 스쿼드 루드라",
+  "repository": "polos0117/atelier",
+  "base_commit": "be5e0e89e4f6a6fe7d1cf7184e35732510121488",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json and settings-03.json are UI exports captured before their respective anthro generations; exact submitted prompts preserve each lifestyle scene.",
+  "images": [
+    {
+      "card": "블랙나이트 스쿼드 루드라",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "586c86f390c9bb6c41dd4f4532762f203015e688fabfe6ff27f4eecfde9a3d0a",
+      "prompt": "generation/m-dec718b0fadeed53/runs/2026-09-13t120627z/01-anthro.txt",
+      "manifest": "generation/m-dec718b0fadeed53/runs/2026-09-13t120627z/manifest.json",
+      "job_id": "rudra-01",
+      "file": "img/블랙나이트 스쿼드 루드라_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-c8bf10b4-aeef-4f8f-b56a-e5be9490a35c.png",
+      "reference_job_id": null
+    },
+    {
+      "card": "블랙나이트 스쿼드 루드라",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "69bc4fbf6e8b44daaa1114c015dfe51e5b51ac59eb3bc5d3daeddfa907c7b849",
+      "prompt": "generation/m-dec718b0fadeed53/runs/2026-09-13t120627z/02-casual.txt",
+      "manifest": "generation/m-dec718b0fadeed53/runs/2026-09-13t120627z/manifest.json",
+      "job_id": "rudra-02",
+      "file": "img/블랙나이트 스쿼드 루드라_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-d3005be7-6cf2-430a-809f-68113a50f824.png",
+      "reference_job_id": "rudra-01"
+    },
+    {
+      "card": "블랙나이트 스쿼드 루드라",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "fa8b6706f9a5384c396401638e325f40f7ad6ccdcca82cd2ddbca794ad5312c1",
+      "prompt": "generation/m-dec718b0fadeed53/runs/2026-09-13t120627z/03-anthro.txt",
+      "manifest": "generation/m-dec718b0fadeed53/runs/2026-09-13t120627z/manifest.json",
+      "job_id": "rudra-03",
+      "file": "img/블랙나이트 스쿼드 루드라_cel_anime_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-e2ede817-8bab-4919-9408-cf57482542df.png",
+      "reference_job_id": "rudra-01"
+    },
+    {
+      "card": "블랙나이트 스쿼드 루드라",
+      "style": "cel_anime",
+      "gender": "f",
+      "mode": "casual",
+      "sha256": "34271bedf355239af50f29a559040ed3017bb3edebc4a19499aafdc073b8b2ed",
+      "prompt": "generation/m-dec718b0fadeed53/runs/2026-09-13t120627z/04-casual.txt",
+      "manifest": "generation/m-dec718b0fadeed53/runs/2026-09-13t120627z/manifest.json",
+      "job_id": "rudra-04",
+      "file": "img/블랙나이트 스쿼드 루드라_cel_anime_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-8cec4d9d-9147-4412-ad0a-ca394533d927.png",
+      "reference_job_id": "rudra-03"
+    }
+  ]
+}
