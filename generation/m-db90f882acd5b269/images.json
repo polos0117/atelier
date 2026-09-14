@@ -1,0 +1,29 @@
+{
+  "폰 파르시아_cinematic_semi_real_f.webp": {
+    "card": "폰 파르시아",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "9654b5d7521e52ac41b90be3a27c85fbb9df8712d9de42ae10d75d5b67a2b192",
+    "prompt": "generation/m-db90f882acd5b269/runs/2026-09-14t042046z/01-female-anthro.txt",
+    "manifest": "generation/m-db90f882acd5b269/runs/2026-09-14t042046z/manifest.json"
+  },
+  "폰 파르시아_cinematic_semi_real_m.webp": {
+    "card": "폰 파르시아",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "dbc9ca1c0e46eee316002927e7f03b6a236a8d64b8567687614f78761a9464e5",
+    "prompt": "generation/m-db90f882acd5b269/runs/2026-09-14t042046z/02-male-anthro.txt",
+    "manifest": "generation/m-db90f882acd5b269/runs/2026-09-14t042046z/manifest.json"
+  },
+  "폰 파르시아_cinematic_semi_real_f_casual1.webp": {
+    "card": "폰 파르시아",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "b7ce06e4a62d07230705f3e97d8038cf791c5be3cee2cfb469251d43fcef2224",
+    "prompt": "generation/m-db90f882acd5b269/runs/2026-09-14t042046z/03-female-casual.txt",
+    "manifest": "generation/m-db90f882acd5b269/runs/2026-09-14t042046z/manifest.json"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "card": "폰 파르시아",
+  "repository": "polos0117/atelier",
+  "base_commit": "411263206d3fed98258b1fd67f8b1cd2a076335e",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json is the live UI export captured after generation; each exact submitted prompt is preserved separately.",
+  "source_reference": {
+    "type": "Fawn Farsia model/reference image",
+    "url": "https://www.starcraftwars.com/mech9/2022/12/fawn.jpg",
+    "sha256": "65e14af46a150c97927a3a2749954575f71040b1061c6a03fd05b444d3f06952"
+  },
+  "images": [
+    {
+      "card": "폰 파르시아",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "9654b5d7521e52ac41b90be3a27c85fbb9df8712d9de42ae10d75d5b67a2b192",
+      "prompt": "generation/m-db90f882acd5b269/runs/2026-09-14t042046z/01-female-anthro.txt",
+      "manifest": "generation/m-db90f882acd5b269/runs/2026-09-14t042046z/manifest.json",
+      "job_id": "fawn-farsia-female-01",
+      "file": "img/폰 파르시아_cinematic_semi_real_f.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-640651de-5c32-4b15-bf19-45b1d9e6163f.png",
+      "reference_job_id": "fawn-farsia-reference"
+    },
+    {
+      "card": "폰 파르시아",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "sha256": "dbc9ca1c0e46eee316002927e7f03b6a236a8d64b8567687614f78761a9464e5",
+      "prompt": "generation/m-db90f882acd5b269/runs/2026-09-14t042046z/02-male-anthro.txt",
+      "manifest": "generation/m-db90f882acd5b269/runs/2026-09-14t042046z/manifest.json",
+      "job_id": "fawn-farsia-male-01",
+      "file": "img/폰 파르시아_cinematic_semi_real_m.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-9234ea79-65bb-47b3-a9a6-42fa7a3a0f7e.png",
+      "reference_job_id": "fawn-farsia-reference",
+      "color_reference_job_id": "fawn-farsia-female-01"
+    },
+    {
+      "card": "폰 파르시아",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "sha256": "b7ce06e4a62d07230705f3e97d8038cf791c5be3cee2cfb469251d43fcef2224",
+      "prompt": "generation/m-db90f882acd5b269/runs/2026-09-14t042046z/03-female-casual.txt",
+      "manifest": "generation/m-db90f882acd5b269/runs/2026-09-14t042046z/manifest.json",
+      "job_id": "fawn-farsia-female-casual-01",
+      "file": "img/폰 파르시아_cinematic_semi_real_f_casual1.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-5c9c5899-1885-415a-ab6b-c016ed42859b.png",
+      "reference_job_id": "fawn-farsia-female-01"
+    }
+  ]
+}
