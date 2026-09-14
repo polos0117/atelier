@@ -1,0 +1,54 @@
+Use case: stylized-concept
+Asset type: vertical full-body character artwork for the Atelier Gundam anthropomorphization gallery.
+Input image: the supplied official front-view mobile-suit art is the authoritative design and equipment reference.
+
+[ART STYLE]
+High-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization. Read first as sophisticated semi-realistic digital painting, not anime illustration, mobile-game key art, 3D render, or photograph. Mature adult facial anatomy with believable skull structure and three-dimensional facial volume; subtle idealization only. Painterly skin, grouped hair masses, selective fine strands, broad cinematic key light, reflected bounce, restrained rim light, atmospheric shadow color, subtle bloom, and selective edge sharpness. Armor stays highly detailed and mechanically legible but uses the same painterly optical language; no CGI, PBR, plastic-toy or game-render surfaces.
+
+Full-body anthropomorphization of the GM Cold Districts Type from Mobile Suit Gundam 0080. Use the attached source as the primary authority for armor geometry, silhouette, colors, shoulder/chest/waist/leg structure, backpack and sensor design. Translate it into one clearly adult human man on a normal human skeleton. Do not derive face or hair from the pilot.
+
+PARAMETERS:
+gender: male
+apparent age: 20s
+facial ethnicity: Japanese
+human-mechanical balance: balanced
+body type: broad-shouldered
+height impression: tall
+shoulder build: broad
+torso/chest build: powerful
+torso length: balanced
+waist/hip silhouette: narrow-hipped
+leg proportion: powerful
+lower-body build: full
+facial character: rugged
+facial hair: clean-shaven
+skin tone: light
+face shape: angular
+eye shape: narrow
+eye color: green
+expression: stoic
+face length: balanced
+face width: wide
+jaw/chin: square broad jaw
+eye size: medium
+eye tilt: level outer corners
+nose: prominent and defined
+lips: straight and even
+hair color: black
+hairstyle: short crew cut
+bangs: none
+hair: thick, flat, neatly kept, no visible part
+armor coverage: full
+lower-body treatment: layered armor plates
+head crest integration: mechanical crest
+silhouette: tactical
+equipment emphasis: main weapon
+equipment state: main weapon held
+pose character: AUTO
+view angle: AUTO
+
+Preserve the canonical off-white and pale-gray cold-weather armor, dark charcoal joints, red chest and waist vents, green visor-sensor accents, wide rectangular shoulder armor, blocky chest intake geometry, broad front and side skirt plates, rounded forearm armor, elongated shin guards, broad cold-weather feet, and compact backpack. Keep both large shoulder armors present and symmetrical. Hold one compact 90mm bullpup-style machine gun in one hand at believable scale; retain one beam-saber handle stowed on the backpack and do not duplicate either weapon. Integrate the green visor as a slim external sensor brow above his human eyes without hiding the fully human face. Keep the masculine body fully armored while preserving a clearly human neck, hands and face; do not expose chest, abdomen, hips or thighs. Upright humanoid form only.
+
+Composition: vertical 2:3 full-body image. Entire crest, shoulders, gun, hands, leg armor and feet inside frame. Keep the man at the largest practical scale with minimal headroom, floor space and side margins; do not pull the camera back unnecessarily. Soft neutral studio background. Face and both eyes unobstructed.
+
+Avoid: robot head; helmet covering face; pilot resemblance; extra limbs; duplicated hands; floating armor; shield; cape; robe; skirt-like fabric; cropped body or weapon; excessive margins; battlefield; snowstorm; text; logo; watermark; CGI/PBR/3D render; generic Gundam armor replacing the specific RGM-79D shapes.

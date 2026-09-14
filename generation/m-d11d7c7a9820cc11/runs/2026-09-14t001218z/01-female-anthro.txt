@@ -1,0 +1,54 @@
+Use case: stylized-concept
+Asset type: vertical full-body character artwork for the Atelier Gundam anthropomorphization gallery.
+Input image: the supplied official front-view mobile-suit art is the authoritative design and equipment reference.
+
+[ART STYLE]
+
+high-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization. The final image must read first as a sophisticated semi-realistic digital painting, not as an anime illustration, mobile-game key art, 3D character render, or live-action photograph. FACE: preserve mature adult facial anatomy, believable skull structure, and convincing three-dimensional facial volume. Anime influence is restrained and limited to subtle idealization: slightly more expressive eyes, refined eye shape, a delicate but anatomically plausible nose, softly shaped lips, and a graceful jaw. Eye size remains close to believable adult human proportion. Facial structure specified in PARAMETERS remains authoritative and must not be replaced by a recurring anime beauty template. Build facial features through painted light, value transitions, and soft form rather than crisp graphic linework. SKIN: softly painted dimensionality, subtle subsurface warmth, restrained natural texture, and smooth but non-plastic transitions. HAIR: painterly grouped masses with selected fine strands. ARMOR: highly detailed and mechanically legible, but painted in the same optical language; no CGI, PBR, 3D-render or plastic-toy look. LIGHTING: broad cinematic key light, natural reflected bounce, restrained rim illumination, atmospheric shadow colour, realistic falloff, and subtle bloom. Selective sharpness and painterly edge hierarchy.
+
+Full-body anthropomorphization of the GM Cold Districts Type from Mobile Suit Gundam 0080. Use the attached mobile-suit image as the primary visual authority for armor geometry, silhouette, color placement, shoulder/chest/waist/leg structure, backpack and sensor design. Translate it into one clearly adult human woman while preserving a normal human skeleton. Do not derive her face or hair from the pilot.
+
+PARAMETERS:
+gender: female
+apparent age: 20s
+facial ethnicity: Slavic
+human-mechanical balance: balanced
+body type: athletic
+height impression: tall
+shoulder build: average
+torso/chest build: full
+torso length: balanced
+waist/hip silhouette: hourglass
+leg proportion: long
+lower-body build: balanced
+facial character: cool
+skin tone: light
+face shape: compact
+eye shape: almond
+eye color: green
+expression: serious
+face length: short
+face width: medium
+jaw/chin: balanced jawline
+eye size: medium
+eye tilt: level outer corners
+nose: straight slender bridge
+lips: medium
+hair color: silver
+hairstyle: medium-length bob
+bangs: side-swept
+hair: thick, moderate volume, neat with no stray strands, slight off-center part
+armor coverage: open
+lower-body treatment: layered armor plates, not fabric
+head crest integration: mechanical crest
+silhouette: tactical
+equipment emphasis: main weapon
+equipment state: main weapon held
+pose character: AUTO
+view angle: AUTO
+
+Preserve the canonical off-white and pale-gray cold-weather armor, dark charcoal joints, red chest and waist vents, green visor-sensor accents, wide rectangular shoulder armor, blocky chest intake geometry, broad front and side skirt plates, rounded forearm armor, elongated shin guards, broad cold-weather feet, and compact backpack. Keep both large shoulder armors present and symmetrical. Hold one compact 90mm bullpup-style machine gun in one hand at believable scale; retain one beam-saber handle stowed on the backpack and do not duplicate either weapon. Integrate the green visor as a slim external sensor brow above the human eyes without hiding her fully human face. The open armor may reveal tasteful, secure, fully opaque areas of skin at the upper torso, waist, hips and thighs while keeping the shoulders and all signature armor shapes intact. Upright humanoid form only.
+
+Composition: vertical 2:3 full-body image. Entire crest, shoulders, gun, hands, leg armor and feet inside frame. Keep the woman at the largest practical scale with minimal headroom, floor space and side margins; do not pull the camera back unnecessarily. Soft neutral studio background. Face and both eyes unobstructed.
+
+Avoid: robot head; helmet covering face; pilot resemblance; extra limbs; duplicated hands; floating armor; shield; cape; dress; skirt-like fabric; cropped body or weapon; excessive margins; battlefield; snowstorm; text; logo; watermark; CGI/PBR/3D render; generic Gundam armor replacing the specific RGM-79D shapes.

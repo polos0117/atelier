@@ -1,0 +1,31 @@
+Use case: stylized-concept
+Asset type: vertical civilian lifestyle character artwork for the Atelier gallery.
+Input image: the supplied female anthropomorphized character is the absolute identity reference. Preserve the same clearly adult woman; do not preserve or recreate her armor or weapons.
+
+[IDENTITY LOCK]
+Use the SAME clearly adult woman as the attached reference. Preserve her recognizable compact Slavic face, light skin, medium green almond eyes, straight slender nose, medium lips, balanced jawline, silver medium-length bob with side-swept bangs, tall athletic hourglass physique, average shoulders, full torso, balanced lower body and long legs. Preserve her apparent age in her 20s. Expression may change as directed. Do not average her into a new generic face. No identity drift, age drift, hairstyle redesign or body redesign.
+
+[ART STYLE]
+High-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization. Sophisticated semi-realistic digital painting, not anime illustration, mobile-game key art, 3D render or photograph. Mature adult facial anatomy, believable three-dimensional facial volume, painterly skin, grouped hair masses with selected fine strands, tactile fabric rendered through painted value and selective detail. Broad cinematic key light, natural reflected bounce, restrained rim illumination, atmospheric shadow color, realistic falloff, subtle bloom, selective edge sharpness. The subject and environment share one coherent lighting system.
+
+[OUTPUT]
+Create ONE SINGLE image in 2:3 vertical aspect. Exactly one adult woman. No collage, panels, split frames, numerals, captions, titles, labels or other text.
+
+[DIRECTION]
+Designed, fashion-forward homewear in a warm winter mountain lodge. Use Off-shoulder Knit Homewear as the thematic anchor.
+
+[SETTINGS]
+Framing: full body.
+Expression: soft closed-lip smile, warmth reaching the lower eyelids.
+Orientation: front three-quarter.
+Pose: natural mid-stride.
+Scene: a warm winter mountain lodge living room with timber walls, a stone fireplace, snow visible through tall windows, and amber firelight.
+Action: she walks from the lodge kitchen toward the fireplace carrying a small wooden tray with two steaming ceramic mugs.
+Outfit: a designed off-white asymmetric off-shoulder cable-knit sweater with a structured folded neckline, fitted charcoal high-waisted knit lounge trousers, a muted red waist accent, thick pale-gray socks, and soft house boots; stylish, secure and fully opaque adult homewear.
+Camera: eye-level full-body front three-quarter view, natural mid-stride motion, complete figure and both boots visible. Keep her large in the vertical frame with minimal headroom, floor space and side margins; no excessive empty space.
+Mood: relaxed, warm, off-duty.
+
+[LIFESTYLE REFERENCE LOCK]
+This is a fully civilian homewear scene. Use the attached image for human identity and body proportions only. Absolutely no armor, mechanical crest, visor hardware, gun, weapon, shield, backpack, beam saber, mechanical joints, glowing sensor, sci-fi uniform, mobile-suit reconstruction or cosplay. Natural human anatomy, exactly two arms and two legs. No pilot resemblance. No text, logo or watermark.
+
+Avoid: identity drift; different face; different age; different hair color or hairstyle; body redesign; armor remnants; robotic anatomy; cropped feet; multiple people; extra limbs; bland pajamas; static sofa pose; photo look; anime linework; CGI/PBR/plastic rendering; explicit nudity or transparent intimate exposure.

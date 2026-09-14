@@ -1,0 +1,66 @@
+{
+  "card": "짐 한랭지 사양",
+  "repository": "polos0117/atelier",
+  "base_commit": "b44ee9b67b5059dfbda69655513286ee390f21a9",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json is the live UI export captured before generation; each exact submitted prompt is preserved separately.",
+  "source_reference": {
+    "type": "official mobile-suit front view",
+    "url": "https://gundam-official.com/media/0080_mecha_101_001_GM_COLD_DISTRICTS_TYPE_front_c8b126c15b/0080_mecha_101_001_GM_COLD_DISTRICTS_TYPE_front_c8b126c15b.png",
+    "sha256": "9fd9fe96a3ed54335517429d8d88000046e789bfa54675aca5926f166210c4bf"
+  },
+  "images": [
+    {
+      "card": "짐 한랭지 사양",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "64b23ebee7a283d459bd746c1fd0a60053195ba5c783a48229f6268998997665",
+      "prompt": "generation/m-d11d7c7a9820cc11/runs/2026-09-14t001218z/01-female-anthro.txt",
+      "manifest": "generation/m-d11d7c7a9820cc11/runs/2026-09-14t001218z/manifest.json",
+      "job_id": "gm-cold-female-01",
+      "file": "img/짐 한랭지 사양_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-000b4cfe-8167-4121-8845-cf53007ea46a.png",
+      "reference_job_id": "official-rgm-79d-front"
+    },
+    {
+      "card": "짐 한랭지 사양",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "sha256": "92a60094ab680b3d6a1008f6eeac87aba6108bcdd4ba6bae46b4ccb478769210",
+      "prompt": "generation/m-d11d7c7a9820cc11/runs/2026-09-14t001218z/02-male-anthro.txt",
+      "manifest": "generation/m-d11d7c7a9820cc11/runs/2026-09-14t001218z/manifest.json",
+      "job_id": "gm-cold-male-01",
+      "file": "img/짐 한랭지 사양_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-d88e39bf-bbee-4ee6-bbe4-32a2b1ba2c37.png",
+      "reference_job_id": "official-rgm-79d-front"
+    },
+    {
+      "card": "짐 한랭지 사양",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "sha256": "e6d1321593e497e9a2c98d08afe7dd3369647070e8b22c6052a12a96f6c15c2a",
+      "prompt": "generation/m-d11d7c7a9820cc11/runs/2026-09-14t001218z/03-female-casual.txt",
+      "manifest": "generation/m-d11d7c7a9820cc11/runs/2026-09-14t001218z/manifest.json",
+      "job_id": "gm-cold-female-casual-01",
+      "file": "img/짐 한랭지 사양_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-f3d38cb4-8a25-4f34-b9b9-a4c48fc438f8.png",
+      "reference_job_id": "gm-cold-female-01"
+    }
+  ]
+}
