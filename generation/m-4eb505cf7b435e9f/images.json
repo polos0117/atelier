@@ -1,0 +1,29 @@
+{
+  "알바토레_cinematic_semi_real_f.webp": {
+    "card": "알바토레",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "feb92a717980f468727f994c50d5f2d645dd244274db4e0b75be7bc11521fbc1",
+    "prompt": "generation/m-4eb505cf7b435e9f/runs/2026-09-14t221444z/01-female-anthro.txt",
+    "manifest": "generation/m-4eb505cf7b435e9f/runs/2026-09-14t221444z/manifest.json"
+  },
+  "알바토레_cinematic_semi_real_m.webp": {
+    "card": "알바토레",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "5ca5d89102cb5db09948f269193c36ca686abd295b88a0f4978b0b88b1ae19c5",
+    "prompt": "generation/m-4eb505cf7b435e9f/runs/2026-09-14t221444z/02-male-anthro.txt",
+    "manifest": "generation/m-4eb505cf7b435e9f/runs/2026-09-14t221444z/manifest.json"
+  },
+  "알바토레_cinematic_semi_real_f_casual1.webp": {
+    "card": "알바토레",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "c5bdd99b82e6f8a98f2a3b04aad11877ec5a50e8badf9bca40f8da3b3514a41d",
+    "prompt": "generation/m-4eb505cf7b435e9f/runs/2026-09-14t221444z/03-female-casual.txt",
+    "manifest": "generation/m-4eb505cf7b435e9f/runs/2026-09-14t221444z/manifest.json"
+  }
+}

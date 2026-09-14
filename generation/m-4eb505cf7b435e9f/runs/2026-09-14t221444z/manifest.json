@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "card": "알바토레",
+  "model": "GNMA-XCVII",
+  "series": "건담 00",
+  "repository": "polos0117/atelier",
+  "branch": "codex/alvatore-20260914",
+  "base_commit": "e0dcce1e4913107ab08dbabcca8e10612bb8aa93",
+  "prompt_source": "saved prompt.html v9.19 template with current per-image PARAMETERS; live browser control was unavailable after the Devil female export",
+  "run": "2026-09-14t221444z",
+  "created": "2026-09-14T22:14:44Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Settings preserve the v9.19 parameter schema; prompts are the exact submitted texts",
+  "references": [
+    "https://www.nin-nin-game.com/en/gundam/77963-mobile-suit-ensemble-ex45-mobile-suit-gundam-00-gnma-xcvii-alvatore-limited-edition-bandai-.html"
+  ],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female light skin tone, silver hair color, and gold eye color only; casual uses the female generated image as the identity reference",
+    "equipment_lock": "Exactly four external gold pincer-claw appendages, two black beam cannons, and seven GN drive nozzles; exactly two human arms and two human legs",
+    "casual_scene": "Chief precious-metals assay director authenticating bullion in a secure modern gold refinery vault"
+  },
+  "jobs": [
+    {
+      "id": "alvatore-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-4eb505cf7b435e9f/runs/2026-09-14t221444z/01-female-anthro.txt",
+      "original_generated_file": "exec-2c1e625d-d894-4f67-9cd7-32ee6367bbc2.png",
+      "original_sha256": "4f8c4f32817c09bc19716bb48992591ad9b0186f372d723b0862923d8f2f0da8",
+      "file": "img/알바토레_cinematic_semi_real_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "feb92a717980f468727f994c50d5f2d645dd244274db4e0b75be7bc11521fbc1",
+      "bytes": 165810
+    },
+    {
+      "id": "alvatore-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "alvatore-female-01",
+      "prompt": "generation/m-4eb505cf7b435e9f/runs/2026-09-14t221444z/02-male-anthro.txt",
+      "original_generated_file": "exec-9f0f5834-12d9-4758-b293-f1b7a667e4d7.png",
+      "original_sha256": "c41cc724fdcc09277d8d8f946f894f3f0a35dcce4013f89bc1bea035d556588f",
+      "file": "img/알바토레_cinematic_semi_real_m.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "5ca5d89102cb5db09948f269193c36ca686abd295b88a0f4978b0b88b1ae19c5",
+      "bytes": 173290
+    },
+    {
+      "id": "alvatore-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "alvatore-female-01",
+      "prompt": "generation/m-4eb505cf7b435e9f/runs/2026-09-14t221444z/03-female-casual.txt",
+      "original_generated_file": "exec-3bd11df2-6679-4266-a8ce-796866ad5df9.png",
+      "original_sha256": "9af4dabe24117fd5827d78829f7bf439ae606d0a13ad0a1727c29b4868ed24fb",
+      "file": "img/알바토레_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "c5bdd99b82e6f8a98f2a3b04aad11877ec5a50e8badf9bca40f8da3b3514a41d",
+      "bytes": 120534
+    }
+  ]
+}
