@@ -1,0 +1,29 @@
+{
+  "건블래스터_cinematic_semi_real_f.webp": {
+    "card": "건블래스터",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "5dc7573328c0fa18eeff6e99822e7ea7adfa1eb6c23e5de2466e16e04c36d885",
+    "prompt": "generation/m-5f834d80d68cacf0/runs/2026-09-14t003529z/01-female-anthro.txt",
+    "manifest": "generation/m-5f834d80d68cacf0/runs/2026-09-14t003529z/manifest.json"
+  },
+  "건블래스터_cinematic_semi_real_m.webp": {
+    "card": "건블래스터",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "0508c46df59ae5de8955da2bd66cd6c674ab349e73696d4a3362d5c3244fe024",
+    "prompt": "generation/m-5f834d80d68cacf0/runs/2026-09-14t003529z/02-male-anthro.txt",
+    "manifest": "generation/m-5f834d80d68cacf0/runs/2026-09-14t003529z/manifest.json"
+  },
+  "건블래스터_cinematic_semi_real_f_casual1.webp": {
+    "card": "건블래스터",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "46be0f0a04e3c855e5539ff5c178923bc48c46e70fcc5cf33e01b3647477e431",
+    "prompt": "generation/m-5f834d80d68cacf0/runs/2026-09-14t003529z/03-female-casual.txt",
+    "manifest": "generation/m-5f834d80d68cacf0/runs/2026-09-14t003529z/manifest.json"
+  }
+}

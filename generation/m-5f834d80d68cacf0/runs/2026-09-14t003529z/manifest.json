@@ -1,0 +1,66 @@
+{
+  "card": "건블래스터",
+  "repository": "polos0117/atelier",
+  "base_commit": "e6454e7e644397257926346bb41d53128b22bc36",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json is the live UI export captured before generation; each exact submitted prompt is preserved separately.",
+  "source_reference": {
+    "type": "official Bandai product photograph",
+    "url": "https://bandai-a.akamaihd.net/bc/img/model/b/1000091556_1.jpg",
+    "sha256": "6b61da41960dd3a2f1a797639cf7df038840ebd2af97cb1e6b5a4087214cdd3c"
+  },
+  "images": [
+    {
+      "card": "건블래스터",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "5dc7573328c0fa18eeff6e99822e7ea7adfa1eb6c23e5de2466e16e04c36d885",
+      "prompt": "generation/m-5f834d80d68cacf0/runs/2026-09-14t003529z/01-female-anthro.txt",
+      "manifest": "generation/m-5f834d80d68cacf0/runs/2026-09-14t003529z/manifest.json",
+      "job_id": "gunblaster-female-01",
+      "file": "img/건블래스터_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-2166cdbe-6a65-4983-8474-9e81e867f1b8.png",
+      "reference_job_id": "official-gunblaster-product"
+    },
+    {
+      "card": "건블래스터",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "sha256": "0508c46df59ae5de8955da2bd66cd6c674ab349e73696d4a3362d5c3244fe024",
+      "prompt": "generation/m-5f834d80d68cacf0/runs/2026-09-14t003529z/02-male-anthro.txt",
+      "manifest": "generation/m-5f834d80d68cacf0/runs/2026-09-14t003529z/manifest.json",
+      "job_id": "gunblaster-male-01",
+      "file": "img/건블래스터_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-79df6cce-dabc-4081-8f3b-8eba2dd8deb9.png",
+      "reference_job_id": "official-gunblaster-product"
+    },
+    {
+      "card": "건블래스터",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "sha256": "46be0f0a04e3c855e5539ff5c178923bc48c46e70fcc5cf33e01b3647477e431",
+      "prompt": "generation/m-5f834d80d68cacf0/runs/2026-09-14t003529z/03-female-casual.txt",
+      "manifest": "generation/m-5f834d80d68cacf0/runs/2026-09-14t003529z/manifest.json",
+      "job_id": "gunblaster-female-casual-01",
+      "file": "img/건블래스터_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-0cfb62de-562b-4ba4-b4c6-61f44e0de214.png",
+      "reference_job_id": "gunblaster-female-01"
+    }
+  ]
+}
