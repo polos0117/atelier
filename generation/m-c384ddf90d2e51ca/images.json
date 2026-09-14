@@ -1,0 +1,29 @@
+{
+  "샴블로_cinematic_semi_real_f.webp": {
+    "card": "샴블로",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "c270cdeac7d919ab14a9685655785347741ae0bd911f971f7ba2484f0102f451",
+    "prompt": "generation/m-c384ddf90d2e51ca/runs/2026-09-14t151638z/01-female-anthro.txt",
+    "manifest": "generation/m-c384ddf90d2e51ca/runs/2026-09-14t151638z/manifest.json"
+  },
+  "샴블로_cinematic_semi_real_m.webp": {
+    "card": "샴블로",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "438d51c7ea171b863e94568b970820d77c572aec9cec80e980a621636d8ef476",
+    "prompt": "generation/m-c384ddf90d2e51ca/runs/2026-09-14t151638z/02-male-anthro.txt",
+    "manifest": "generation/m-c384ddf90d2e51ca/runs/2026-09-14t151638z/manifest.json"
+  },
+  "샴블로_cinematic_semi_real_f_casual1.webp": {
+    "card": "샴블로",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "e3f7012084e7307ef84a784f3acb01752eeadacc21905b036e1ce481c4f6e83c",
+    "prompt": "generation/m-c384ddf90d2e51ca/runs/2026-09-14t151638z/03-female-casual.txt",
+    "manifest": "generation/m-c384ddf90d2e51ca/runs/2026-09-14t151638z/manifest.json"
+  }
+}

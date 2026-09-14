@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "card": "샴블로",
+  "model": "AMA-X7",
+  "series": "기동전사 건담 UC",
+  "repository": "polos0117/atelier",
+  "branch": "codex/shamblo-20260914",
+  "base_commit": "66ef7bec5a2c37b3f02c0515b673ffc31907f4bd",
+  "prompt_source": "deployed prompt.html UI",
+  "run": "2026-09-14t151638z",
+  "created": "2026-09-14T15:16:38Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Actual exportStore button; exportBox JSON captured after the final single-person setup",
+  "references": [
+    "https://gundam.wikia.com/wiki/AMA-X7_Shamblo",
+    "https://vignette1.wikia.nocookie.net/gundam/images/2/22/Shamblo-ova.png/revision/latest?cb=20160605121928"
+  ],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female skin tone, hair color, and eye color only; casual preserves the same female identity",
+    "casual_scene": "Night aquarium maintenance walkthrough"
+  },
+  "jobs": [
+    {
+      "id": "shamblo-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-c384ddf90d2e51ca/runs/2026-09-14t151638z/01-female-anthro.txt",
+      "original_generated_file": "exec-4bf56483-dc87-4868-9b22-e42418c4863b.png",
+      "original_sha256": "cd7d4a25590f425b7a476ce91a547dc4c093ed801368a7c69fa200b0284cebdc",
+      "file": "img/샴블로_cinematic_semi_real_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "c270cdeac7d919ab14a9685655785347741ae0bd911f971f7ba2484f0102f451",
+      "bytes": 163820
+    },
+    {
+      "id": "shamblo-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "shamblo-female-01",
+      "prompt": "generation/m-c384ddf90d2e51ca/runs/2026-09-14t151638z/02-male-anthro.txt",
+      "original_generated_file": "exec-46dabb88-51a4-466c-b041-fdaad468f1c0.png",
+      "original_sha256": "619d8bd47dacce58734ab4ebc162530dbd97c2559f263fd5ca04a186db9c7987",
+      "file": "img/샴블로_cinematic_semi_real_m.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "438d51c7ea171b863e94568b970820d77c572aec9cec80e980a621636d8ef476",
+      "bytes": 189002
+    },
+    {
+      "id": "shamblo-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "shamblo-female-01",
+      "prompt": "generation/m-c384ddf90d2e51ca/runs/2026-09-14t151638z/03-female-casual.txt",
+      "original_generated_file": "exec-2700a5c8-6991-4fdb-8398-3b3bdcc0e561.png",
+      "original_sha256": "5f041f753c37bc28f36407aeca947227983f891d1c6a4b4c0b1165fe0035ea6d",
+      "file": "img/샴블로_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "e3f7012084e7307ef84a784f3acb01752eeadacc21905b036e1ce481c4f6e83c",
+      "bytes": 158472
+    }
+  ]
+}
