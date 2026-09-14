@@ -3446,6 +3446,23 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
   const FIG_KEYS={'body type':[BODY_FIG,bodySVG],'hairstyle':[HAIR_FIG,hairSVG]};
 
   /* 이 값으로 실제 뽑아둔 기체들 — 내 도식보다 이게 훨씬 정확한 예시다 */
+  /* 예시로 쓸 초상 한 장을 고른다. 저장소 파일 목록(SHOT)은 contents API 가
+     1,000개에서 잘라 뒤쪽 카드가 통째로 빠지므로 data/img.json 을 먼저 본다.
+     지금 고른 화풍의 초상이 있으면 그쪽을 쓰고, 없으면 아무 화풍이나 쓴다. */
+  function cardPortrait(card,v){
+    const e=CARD_IMG&&CARD_IMG[card];
+    if(e){
+      const bs=e.byStyle;
+      if(bs){
+        const cur=styleKey();
+        if(bs[cur]&&bs[cur][v])return bs[cur][v];
+        for(const k in bs)if(bs[k][v])return bs[k][v];
+      }
+      if(e[v])return e[v];
+    }
+    const o=SHOT[card];
+    return (o&&o[v])?((o.file&&o.file[v])||card+'_'+v+'.webp'):null;
+  }
   function galleryFor(key,val){
     /* 지금 보고 있는 성별의 기록만 본다. 반대 성별까지 섞으면
        여성 설정을 고르는 중에 남성체 그림이 딸려 나온다. */
@@ -3457,8 +3474,8 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
       if(k===me)return;
       const r=recOf(k); if(!r||!r[g])return;
       const sel=r[g].sel; if(!sel||sel[key]!==val)return;
-      const o=SHOT[k]; if(!o||!o[v])return;
-      hits.push({card:k,file:(o.file&&o.file[v])||k+'_'+v+'.webp'});
+      const file=cardPortrait(k,v); if(!file)return;
+      hits.push({card:k,file:file});
     });
     return hits.slice(0,8);
   }
