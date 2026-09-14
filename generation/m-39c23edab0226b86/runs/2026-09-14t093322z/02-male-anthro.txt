@@ -1,0 +1,18 @@
+Use case: stylized-concept
+Asset type: vertical full-body character portrait for a Gundam-inspired browser card game
+
+Create one clearly adult male anthropomorphic interpretation of SOURCE MOBILE SUIT: 드라이센 (Dreissen, AMX-009). Do not depict the pilot and do not copy any pilot's face, hair, clothing, or age.
+
+Color linkage to the generated female counterpart is mandatory: use the same warm caramel-brown skin tone, the same deep blue-black hair color with a subtle plum-violet sheen, and the same vivid violet eye color. Do not copy her face, asymmetrical bob hairstyle, or female physique.
+
+Subject and physique: a clearly adult South Asian man in his late 20s with a distinct short-to-medium wavy swept-back hairstyle, deep blue-black with plum-violet sheen, and vivid violet eyes. He is very tall, broad and powerfully built with a thick chest, substantial shoulders and arms, solid waist, strong hips and thick legs. He should resemble a large athletic heavyweight but remain less enormous and less muscle-heavy than the AGE-1 Titus male. Mature masculine face, strong jaw, composed loyal expression, light stubble.
+
+Mobile-suit translation: preserve Dreissen's Dom-descended deep violet, plum-purple, midnight navy and black armor with restrained yellow-gold accents. Keep the broad rounded shoulder shells, thick curved forearm armor, compact torso, segmented flared waist and hip skirts, powerful rounded thigh and calf armor and heavy grounded feet. Maintain clear human proportions with exactly two arms and two legs. Use a fitted opaque black-violet technical underlayer beneath the armored torso. Preserve one combined beam lancer and beam tomahawk with violet-white energy blades, plus exactly three compact tri-blade disc weapons mounted visibly at the outer waist or back. No wings, no shield. Human face fully visible.
+
+Pose and view: automatically choose a grounded close-combat pose and a cinematic near-front or three-quarter view, different from the female's exact pose. Full body from head to feet, large subject filling the vertical frame, no unnecessary empty margin, no cropped limbs. Correct hands and fingers.
+
+Scene: dim Neo Zeon maintenance bay with violet practical lights, heavy gantries and muted industrial haze, secondary to the character. Subtle reflections beneath the boots.
+
+Style: high-end painterly semi-realistic character illustration with naturalistic cinematic key and rim lighting, sophisticated painted skin and metal, believable mature anatomy, restrained anime-informed facial idealization only. Premium semi-realistic digital painting, not anime key art, not glossy mobile-game art, not 3D render, not live-action photo.
+
+Constraints: one clearly adult man only; no pilot likeness; no female face or body shape; no breasts; no helmet, mask, mono-eye or robot face; no extra arms, legs, hands, fingers, weapons, tri-blades or armor appendages; no extreme heavyweight giant body; no childlike features; no transparent fabric or nudity; no text, numbers, logo, caption, border, collage, or watermark.

@@ -1,0 +1,29 @@
+{
+  "드라이센_cinematic_semi_real_f.webp": {
+    "card": "드라이센",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "a75d01f2f06afb85fdbe1fc9c1c7e72d67308217d89b328f6ea87344a25f2cde",
+    "prompt": "generation/m-39c23edab0226b86/runs/2026-09-14t093322z/01-female-anthro.txt",
+    "manifest": "generation/m-39c23edab0226b86/runs/2026-09-14t093322z/manifest.json"
+  },
+  "드라이센_cinematic_semi_real_m.webp": {
+    "card": "드라이센",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "b3fd0d2cdb2ec161c4f056264ffc9d28c09a03aebfb338168e3bb9366ea3edb7",
+    "prompt": "generation/m-39c23edab0226b86/runs/2026-09-14t093322z/02-male-anthro.txt",
+    "manifest": "generation/m-39c23edab0226b86/runs/2026-09-14t093322z/manifest.json"
+  },
+  "드라이센_cinematic_semi_real_f_casual1.webp": {
+    "card": "드라이센",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "c0aa1a69c267b374948c4c975701489d2bc444c518559fd96d90e06a308b7afd",
+    "prompt": "generation/m-39c23edab0226b86/runs/2026-09-14t093322z/03-female-casual.txt",
+    "manifest": "generation/m-39c23edab0226b86/runs/2026-09-14t093322z/manifest.json"
+  }
+}

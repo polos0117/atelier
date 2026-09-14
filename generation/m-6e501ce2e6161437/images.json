@@ -1,0 +1,29 @@
+{
+  "리겔구_cinematic_semi_real_f.webp": {
+    "card": "리겔구",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "babc844644fef7018fe702993cb552df7fc970c444a915041a6f21770c03fa40",
+    "prompt": "generation/m-6e501ce2e6161437/runs/2026-09-14t093322z/01-female-anthro.txt",
+    "manifest": "generation/m-6e501ce2e6161437/runs/2026-09-14t093322z/manifest.json"
+  },
+  "리겔구_cinematic_semi_real_m.webp": {
+    "card": "리겔구",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "e8fb3753cae45fd6d5afccbbce59b406a114ab038378ba1f6b51b769b6d80025",
+    "prompt": "generation/m-6e501ce2e6161437/runs/2026-09-14t093322z/02-male-anthro.txt",
+    "manifest": "generation/m-6e501ce2e6161437/runs/2026-09-14t093322z/manifest.json"
+  },
+  "리겔구_cinematic_semi_real_f_casual1.webp": {
+    "card": "리겔구",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "4e39c85196300aa692c45b651960e2febd1b7c021e87ce087f1d9665ae207c93",
+    "prompt": "generation/m-6e501ce2e6161437/runs/2026-09-14t093322z/03-female-casual.txt",
+    "manifest": "generation/m-6e501ce2e6161437/runs/2026-09-14t093322z/manifest.json"
+  }
+}

@@ -1,0 +1,18 @@
+Use case: stylized-concept
+Asset type: vertical full-body character portrait for a Gundam-inspired browser card game
+
+Create one clearly adult male anthropomorphic interpretation of SOURCE MOBILE SUIT: 리겔구 (Regelgu, MS-14J). Do not depict the pilot and do not copy any pilot's face, hair, clothing, or age.
+
+Color linkage to the generated female counterpart is mandatory: use the same warm ivory skin tone, the same deep wine-red hair color, and the same pale-gold eye color. Do not copy her face, ponytail hairstyle, or female physique.
+
+Subject and physique: a clearly adult Japanese man in his late 20s with deep wine-red hair in a distinct medium-length tousled swept-back cut and pale-gold eyes. He is very tall, handsome, athletic and powerful: broad shoulders, defined chest and back, narrow waist, strong hips, long muscular legs and substantial thighs, but clearly less massive than the AGE-1 Titus male. His silhouette should be a refined V-taper with elegant long proportions rather than heavyweight bulk. Mature masculine facial anatomy, angular jaw, calm dangerous gaze, restrained expression.
+
+Mobile-suit translation: preserve Regelgu's crimson and rose-red armor with dark wine and purple shadow accents, small yellow-gold details, huge swept shoulder binders with visible integrated missile-pod geometry, compact waist, flared hip armor and long armored legs. The binders are exactly two external mechanical shoulder structures, not wings or extra limbs. Use a fitted opaque black-plum technical underlayer under sculpted crimson torso armor. Preserve a long beam rifle and one yellow-white beam naginata held naturally without obscuring the figure. Human face fully visible; no mobile-suit head or mono-eye replacing it.
+
+Pose and view: automatically choose a confident combat-ready pose and near-front or three-quarter view, different from the female's exact pose. Full body from head to feet, large subject filling the vertical frame, no unnecessary empty margin, no cropped limbs. Exactly two human arms and two human legs; correct hands and fingers.
+
+Scene: red-lit orbital mobile-suit hangar with maintenance gantries and distant launch lights, secondary to the character. Subtle vapor and polished floor reflections.
+
+Style: high-end painterly semi-realistic character illustration with naturalistic cinematic key and rim lighting, sophisticated painted skin and metal, believable mature anatomy, restrained anime-informed facial idealization only. Premium semi-realistic digital painting, not anime key art, not glossy mobile-game art, not 3D render, not live-action photo.
+
+Constraints: one clearly adult man only; no pilot likeness; no female face or body shape; no breasts; no helmet or mask; no robot face; no extra arms, legs, hands, fingers, binders, or weapons; no heavyweight giant body; no childlike features; no transparent fabric or nudity; no text, numbers, logo, caption, border, collage, or watermark.

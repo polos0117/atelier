@@ -1,0 +1,51 @@
+{
+  "card": "리겔구",
+  "repository": "polos0117/atelier",
+  "base_commit": "5d2aebd750fd8d94293ed9b983e0aee4c3b0b855",
+  "generator": "prompts directly assembled from the current prompt.html workflow after the cloud browser could not open a fresh tab",
+  "tool": "image_gen built-in",
+  "settings_note": "settings.json preserves the intended current-workflow selections; every exact submitted prompt is preserved separately. The prompt.html record export was unavailable because the browser session could not open the page.",
+  "images": [
+    {
+      "card": "리겔구",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "babc844644fef7018fe702993cb552df7fc970c444a915041a6f21770c03fa40",
+      "prompt": "generation/m-6e501ce2e6161437/runs/2026-09-14t093322z/01-female-anthro.txt",
+      "manifest": "generation/m-6e501ce2e6161437/runs/2026-09-14t093322z/manifest.json",
+      "job_id": "regelgu-female-01",
+      "file": "img/리겔구_cinematic_semi_real_f.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-204ddfb4-a6f4-4d33-8669-b968eff01fb2.png"
+    },
+    {
+      "card": "리겔구",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "sha256": "e8fb3753cae45fd6d5afccbbce59b406a114ab038378ba1f6b51b769b6d80025",
+      "prompt": "generation/m-6e501ce2e6161437/runs/2026-09-14t093322z/02-male-anthro.txt",
+      "manifest": "generation/m-6e501ce2e6161437/runs/2026-09-14t093322z/manifest.json",
+      "job_id": "regelgu-male-01",
+      "file": "img/리겔구_cinematic_semi_real_m.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-6d7304f0-6fd9-4658-9343-2f41bdb61571.png",
+      "color_reference_job_id": "regelgu-female-01"
+    },
+    {
+      "card": "리겔구",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "sha256": "4e39c85196300aa692c45b651960e2febd1b7c021e87ce087f1d9665ae207c93",
+      "prompt": "generation/m-6e501ce2e6161437/runs/2026-09-14t093322z/03-female-casual.txt",
+      "manifest": "generation/m-6e501ce2e6161437/runs/2026-09-14t093322z/manifest.json",
+      "job_id": "regelgu-female-casual-01",
+      "file": "img/리겔구_cinematic_semi_real_f_casual1.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-4599261a-fbb7-49d3-ba8f-32060d3d6a84.png",
+      "reference_job_id": "regelgu-female-01"
+    }
+  ]
+}

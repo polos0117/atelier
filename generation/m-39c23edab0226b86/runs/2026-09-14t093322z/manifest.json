@@ -1,0 +1,51 @@
+{
+  "card": "드라이센",
+  "repository": "polos0117/atelier",
+  "base_commit": "5d2aebd750fd8d94293ed9b983e0aee4c3b0b855",
+  "generator": "prompts directly assembled from the current prompt.html workflow after the cloud browser could not open a fresh tab",
+  "tool": "image_gen built-in",
+  "settings_note": "settings.json preserves the intended current-workflow selections; every exact submitted prompt is preserved separately. The prompt.html record export was unavailable because the browser session could not open the page.",
+  "images": [
+    {
+      "card": "드라이센",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "a75d01f2f06afb85fdbe1fc9c1c7e72d67308217d89b328f6ea87344a25f2cde",
+      "prompt": "generation/m-39c23edab0226b86/runs/2026-09-14t093322z/01-female-anthro.txt",
+      "manifest": "generation/m-39c23edab0226b86/runs/2026-09-14t093322z/manifest.json",
+      "job_id": "dreissen-female-01",
+      "file": "img/드라이센_cinematic_semi_real_f.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-b2a2fbda-3254-4e71-b7b1-ba3638e48656.png"
+    },
+    {
+      "card": "드라이센",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "sha256": "b3fd0d2cdb2ec161c4f056264ffc9d28c09a03aebfb338168e3bb9366ea3edb7",
+      "prompt": "generation/m-39c23edab0226b86/runs/2026-09-14t093322z/02-male-anthro.txt",
+      "manifest": "generation/m-39c23edab0226b86/runs/2026-09-14t093322z/manifest.json",
+      "job_id": "dreissen-male-01",
+      "file": "img/드라이센_cinematic_semi_real_m.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-a28dca1b-9d33-4552-9916-b3c3702aefa7.png",
+      "color_reference_job_id": "dreissen-female-01"
+    },
+    {
+      "card": "드라이센",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "sha256": "c0aa1a69c267b374948c4c975701489d2bc444c518559fd96d90e06a308b7afd",
+      "prompt": "generation/m-39c23edab0226b86/runs/2026-09-14t093322z/03-female-casual.txt",
+      "manifest": "generation/m-39c23edab0226b86/runs/2026-09-14t093322z/manifest.json",
+      "job_id": "dreissen-female-casual-01",
+      "file": "img/드라이센_cinematic_semi_real_f_casual1.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-114446da-0b44-4001-bce3-51df371ccf61.png",
+      "reference_job_id": "dreissen-female-01"
+    }
+  ]
+}
