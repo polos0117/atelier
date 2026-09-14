@@ -1,0 +1,31 @@
+[INPUT]
+
+SOURCE MOBILE SUIT: [알바토레]
+
+This name is identity-provenance metadata only, used for thematic context. It must not be used to reconstruct, restore, or invent mobile-suit armor, beam cannons, claw appendages, GN drives, backpacks, mechanical limbs, or canonical equipment.
+
+Use the attached clearly adult female anthropomorphized character as the absolute identity reference.
+
+[IDENTITY LOCK]
+
+Create the exact same clearly adult Chinese woman shown in the reference image. Preserve her recognizable heart-shaped face, balanced face length, narrow face width, tapered chin, almond-shaped upturned gold eyes, straight slender nose, bow-shaped upper lip, light skin, very long fine silver hair arranged in the same crown-braid structure with long side bangs, apparent age in her 20s, very tall glamorous build, average shoulders, full chest, hourglass waist and hips, long balanced legs, and overall body proportions. The facial identity must remain unmistakably the same. Do not average her into a new generic beauty face. Expression may change, identity may not.
+
+[ART STYLE]
+
+High-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization. The image must read as a sophisticated semi-realistic digital painting, not anime line art, mobile-game key art, 3D CGI, or a live-action photograph. Use believable adult facial anatomy, softly painted skin volume, grouped painterly silver hair masses with selected fine strands, tactile fabric, broad cinematic key light, warm reflected gold, restrained cool shadows, subtle rim light, selective edge sharpness, and no plastic PBR finish.
+
+[OUTPUT]
+
+Create ONE SINGLE image in 2:3 vertical aspect. Exactly one woman. No collage, panels, split frame, numerals, captions, titles, labels, text, watermark, or logo.
+
+[DIRECTION]
+
+Show her as the chief precious-metals assay director inside a secure modern gold refinery vault. She is authenticating a freshly cast bullion bar at a waist-high black stone inspection bench: one hand steadily operates a compact handheld X-ray fluorescence analyzer while the other braces the bar in a protective tray. The workplace contains orderly unlabeled bullion stacks, a precision scale, sealed sample cases, matte dark vault walls, warm ceiling strips, and cool white assay lights. This is a believable modern technical occupation scene, not fantasy, royalty cosplay, or a ceremonial throne room.
+
+Dress her in a fitted opaque ivory asymmetric high-neck sleeveless blouse, black high-waisted tailored trousers with a clean straight-leg silhouette, a slim champagne-gold belt, a lightweight charcoal assay coat tied at the hips, black ankle boots, slim protective gloves, and small geometric gold earrings. Luxurious, confident, and sensual while remaining practical and fully opaque. No explicit nudity.
+
+Full-body front three-quarter composition at eye level, the woman large in frame from the top of her crown braid to both boots, minimal headroom and floor margin, both hands, the analyzer, and the inspection bench action clearly visible. Keep the framing dense and intentional; do not pull the camera back to create empty margins. Give her a cool, faintly self-satisfied expression with level brows and chin slightly raised.
+
+[HARD CONSTRAINTS]
+
+Exactly one adult woman with exactly two human arms, two hands, and two legs. Preserve the exact identity from the reference. Absolutely no mobile-suit armor, sensor crown, turret, beam cannon, pincer claw, GN drive, GN Field, backpack, thruster, weapon, mechanical limb, extra limb, floating equipment, other people, readable text, watermark, or logo. The source mobile suit supplies only thematic occupation context.
