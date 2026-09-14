@@ -1,0 +1,31 @@
+[INPUT]
+
+SOURCE MOBILE SUIT: [데빌 건담]
+
+This name is identity-provenance metadata only, used for thematic context. It must not be used to reconstruct, restore, or invent mobile-suit armor, weapons, Gundam-head tendrils, backpacks, mechanical limbs, or canonical equipment.
+
+Use the attached clearly adult female anthropomorphized character as the absolute identity reference.
+
+[IDENTITY LOCK]
+
+Create the exact same clearly adult Mediterranean woman shown in the reference image. Preserve her recognizable sharp face, balanced face length and medium width, angular defined jaw, narrow upturned crimson eyes, prominent defined nose, full lips, tan skin, very long thick black windswept hair with asymmetric bangs, apparent age in her 20s, very tall statuesque height, broad shoulders, full chest, hourglass waist and hips, powerful full legs, and overall body proportions. The facial identity must remain unmistakably the same. Do not average her into a new generic beauty face. Expression may change, identity may not.
+
+[ART STYLE]
+
+High-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization. The image must read as a sophisticated semi-realistic digital painting, not anime line art, mobile-game key art, 3D CGI, or a live-action photograph. Use believable adult facial anatomy, painted skin volume, grouped painterly hair masses with selected fine strands, tactile fabric, broad cinematic key light, restrained crimson and green practical accents, subtle rim light, atmospheric shadows, selective edge sharpness, and no plastic PBR finish.
+
+[OUTPUT]
+
+Create ONE SINGLE image in 2:3 vertical aspect. Exactly one woman. No collage, panels, split frame, numerals, captions, titles, labels, text, watermark, or logo.
+
+[DIRECTION]
+
+Show her as a night-shift botanical restoration systems engineer inside a vast modern research greenhouse. She is calibrating a waist-high regenerative plant-growth bioreactor: one hand adjusts a physical control dial while the other holds a compact transparent-free diagnostic tablet. Surround her with real greenhouse glass, hydroponic rails, dense living foliage, humid air, restrained emerald growth lights, small crimson status lamps, and warm gold service lights. This is a believable modern occupation scene, not fantasy and not cosplay.
+
+Dress her in a fitted opaque deep-emerald asymmetric one-shoulder technical knit top, black high-waisted tailored utility trousers, a slim dark-red belt with small gold hardware, a lightweight off-white laboratory jacket tied neatly at the hips, and black ankle boots. Bold and sensual but practical, fully opaque, and secure. No explicit nudity.
+
+Full-body front three-quarter composition at eye level, the woman large in frame from the top of her hair to both boots, minimal headroom and floor margin, both hands and the bioreactor controls visible. Keep the framing dense and intentional; do not pull the camera back to create empty margins. Give her an intense, quietly satisfied expression with chin slightly raised, as if a difficult regeneration cycle has just succeeded.
+
+[HARD CONSTRAINTS]
+
+Exactly one adult woman with exactly two human arms, two hands, and two legs. Preserve the exact identity from the reference. Absolutely no mobile-suit armor, V-fin, mechanical crown, Gundam face, Gundam-head tendrils, backpack, thrusters, cannons, weapons, mechanical limbs, extra limbs, floating equipment, other people, text, watermark, or logo. The source mobile suit supplies only thematic occupation context.

@@ -1,0 +1,29 @@
+{
+  "데빌_건담_cinematic_semi_real_f.webp": {
+    "card": "데빌 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "4fe07ef5bb6de46defe1b1a8ac7e652e63fa38143144c0ad7dc18cb90c766cdc",
+    "prompt": "generation/m-a7d39e315ef7d631/runs/2026-09-14t214235z/01-female-anthro.txt",
+    "manifest": "generation/m-a7d39e315ef7d631/runs/2026-09-14t214235z/manifest.json"
+  },
+  "데빌_건담_cinematic_semi_real_m.webp": {
+    "card": "데빌 건담",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "fb9b0fb5af2954b859f8d26c21e91a2d86109119085b72101de77ccba597646f",
+    "prompt": "generation/m-a7d39e315ef7d631/runs/2026-09-14t214235z/02-male-anthro.txt",
+    "manifest": "generation/m-a7d39e315ef7d631/runs/2026-09-14t214235z/manifest.json"
+  },
+  "데빌_건담_cinematic_semi_real_f_casual1.webp": {
+    "card": "데빌 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "3e8fcb70f6b0780774e2221ce053e835e1a4585d4aa8890719a5f7989fe88736",
+    "prompt": "generation/m-a7d39e315ef7d631/runs/2026-09-14t214235z/03-female-casual.txt",
+    "manifest": "generation/m-a7d39e315ef7d631/runs/2026-09-14t214235z/manifest.json"
+  }
+}

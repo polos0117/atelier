@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "card": "데빌 건담",
+  "model": "JDG-00X",
+  "series": "G건담",
+  "repository": "polos0117/atelier",
+  "branch": "codex/devil-gundam-20260914",
+  "base_commit": "8fa7037981596d48e94e576e42d2b736caafcf72",
+  "prompt_source": "deployed prompt.html v9.19 UI for the female anthro; the saved v9.19 prompt template was used for the male and casual prompts after the browser control connection stopped responding",
+  "run": "2026-09-14t214235z",
+  "created": "2026-09-14T21:42:35Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Female settings were captured from exportStore/exportBox; male settings preserve the same v9.19 parameter schema and female-linked colors",
+  "references": [
+    "https://gundam.wikia.com/wiki/JDG-00X_Devil_Gundam",
+    "https://w.atwiki.jp/niconicomugen/pages/1152.html"
+  ],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female tan skin tone, black hair color, and crimson eye color only; casual uses the female generated image as the identity reference",
+    "equipment_lock": "Exactly four external Gundam-head tendril units and one four-lobed lower mobile-armor frame; exactly two human arms and two human legs",
+    "casual_scene": "Night-shift botanical restoration systems engineer in a greenhouse bioreactor lab"
+  },
+  "jobs": [
+    {
+      "id": "devil-gundam-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-a7d39e315ef7d631/runs/2026-09-14t214235z/01-female-anthro.txt",
+      "original_generated_file": "exec-55aeffd1-056e-43ea-bc30-53919bf9a9b1.png",
+      "original_sha256": "4daa5ae98442c7eda16b972af397a3ca7f37ef8d466ea9bb12b55f3639b7a317",
+      "file": "img/데빌_건담_cinematic_semi_real_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "4fe07ef5bb6de46defe1b1a8ac7e652e63fa38143144c0ad7dc18cb90c766cdc",
+      "bytes": 147650
+    },
+    {
+      "id": "devil-gundam-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "devil-gundam-female-01",
+      "prompt": "generation/m-a7d39e315ef7d631/runs/2026-09-14t214235z/02-male-anthro.txt",
+      "original_generated_file": "exec-b17a3c6d-d2ca-4398-8b73-b09e37c2acd5.png",
+      "original_sha256": "0b1afb297669f6ec6c582321f111e854eabd10b87bea38d0d319562c454162f9",
+      "file": "img/데빌_건담_cinematic_semi_real_m.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "fb9b0fb5af2954b859f8d26c21e91a2d86109119085b72101de77ccba597646f",
+      "bytes": 127254
+    },
+    {
+      "id": "devil-gundam-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "devil-gundam-female-01",
+      "prompt": "generation/m-a7d39e315ef7d631/runs/2026-09-14t214235z/03-female-casual.txt",
+      "original_generated_file": "exec-d9ed67e0-56b6-4943-8620-8cf445b449be.png",
+      "original_sha256": "703ad0674e694004939b44f02a2d054cae5079af1e2ebee269adfcdb1efdb0a6",
+      "file": "img/데빌_건담_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "3e8fcb70f6b0780774e2221ce053e835e1a4585d4aa8890719a5f7989fe88736",
+      "bytes": 206006
+    }
+  ]
+}
