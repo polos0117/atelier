@@ -1,0 +1,51 @@
+{
+  "card": "세라핌 건담",
+  "repository": "polos0117/atelier",
+  "base_commit": "3989eea0b205595dda0c4c2c9759e4ad530ee2b3",
+  "generator": "prompts directly assembled from the current prompt.html workflow after the cloud browser could not open a fresh tab",
+  "tool": "image_gen built-in",
+  "settings_note": "settings.json preserves the intended current-workflow selections; every exact submitted prompt is preserved separately. The prompt.html record export was unavailable because the browser session could not open the page.",
+  "images": [
+    {
+      "card": "세라핌 건담",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "72dce384b8ca74b67ce8b6d143ef30cbe42b4a17cfd88d65dae71f07c8ffd768",
+      "prompt": "generation/m-a699e1ba02a47297/runs/2026-09-14t114557z/01-female-anthro.txt",
+      "manifest": "generation/m-a699e1ba02a47297/runs/2026-09-14t114557z/manifest.json",
+      "job_id": "seraphim-gundam-female-01",
+      "file": "img/세라핌 건담_cinematic_semi_real_f.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-cfb5bf88-248f-4c72-bbee-4c6458c86b4d.png"
+    },
+    {
+      "card": "세라핌 건담",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "sha256": "f85a861ddca742070f037e2f8b2beed19258b63c9f4f5273907963a7aff53405",
+      "prompt": "generation/m-a699e1ba02a47297/runs/2026-09-14t114557z/02-male-anthro.txt",
+      "manifest": "generation/m-a699e1ba02a47297/runs/2026-09-14t114557z/manifest.json",
+      "job_id": "seraphim-gundam-male-01",
+      "file": "img/세라핌 건담_cinematic_semi_real_m.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-0ff58ab7-096d-46ca-9dad-f02d5742e9d8.png",
+      "color_reference_job_id": "seraphim-gundam-female-01"
+    },
+    {
+      "card": "세라핌 건담",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "sha256": "ebe44757ef94e264b6fb28fa3bbc8384fa3953a56bd221f8ba0b4f93f2c5d1b1",
+      "prompt": "generation/m-a699e1ba02a47297/runs/2026-09-14t114557z/03-female-casual.txt",
+      "manifest": "generation/m-a699e1ba02a47297/runs/2026-09-14t114557z/manifest.json",
+      "job_id": "seraphim-gundam-female-casual-01",
+      "file": "img/세라핌 건담_cinematic_semi_real_f_casual1.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-1b7d095e-c420-431a-a4c7-cd7de4eda0a7.png",
+      "reference_job_id": "seraphim-gundam-female-01"
+    }
+  ]
+}
