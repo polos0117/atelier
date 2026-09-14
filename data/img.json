@@ -293,7 +293,7 @@
   "짐 커스텀": {"m": "짐 커스텀_m.webp", "f": "짐 커스텀_f.webp", "face": {"m": [0.44, 0.047, 0.13], "f": [0.42, 0.112, 0.13]}, "casual": {"f": ["짐 커스텀_casual1.webp", "짐 커스텀_casual2.webp", "짐 커스텀_casual3.webp"]}},
   "짐 한랭지 사양": {"byStyle": {"cinematic_semi_real": {"m": "짐 한랭지 사양_cinematic_semi_real_m.webp", "f": "짐 한랭지 사양_cinematic_semi_real_f.webp", "casual": {"f": ["짐 한랭지 사양_cinematic_semi_real_f_casual1.webp"]}}}},
   "카오스 건담": {"m": "카오스_건담_m.webp", "f": "카오스_건담_f.webp", "face": {"m": [0.395, 0.2, 0.185], "f": [0.395, 0.18, 0.185]}, "casual": {"f": ["카오스_건담_casual1.webp"]}},
-  "카풀": {"byStyle": {"cinematic_semi_real": {"f": "카풀_cinematic_semi_real_f.webp", "casual": {"f": ["카풀_cinematic_semi_real_f_casual1.webp"]}}, "glossy_kr_game": {"f": "카풀_glossy_kr_game_f.webp", "casual": {"f": ["카풀_glossy_kr_game_f_casual1.webp"]}}}},
+  "카풀": {"byStyle": {"cinematic_semi_real": {"f": "카풀_cinematic_semi_real_f.webp", "casual": {"f": ["카풀_cinematic_semi_real_f_casual1.webp", "카풀_cinematic_semi_real_f_casual2.webp", "카풀_cinematic_semi_real_f_casual3.webp", "카풀_cinematic_semi_real_f_casual4.webp"]}}, "glossy_kr_game": {"f": "카풀_glossy_kr_game_f.webp", "casual": {"f": ["카풀_glossy_kr_game_f_casual1.webp"]}}}},
   "캘딤 건담": {"m": "캘딤_건담_m.webp", "f": "캘딤_건담_f.webp", "face": {"m": [0.448, 0.088, 0.122], "f": [0.428, 0.098, 0.12]}, "casual": {"f": ["캘딤_건담_casual1.webp"]}},
   "캘러미티": {"m": "캘러미티_m.webp", "f": "캘러미티_f.webp", "face": {"m": [0.413, 0.106, 0.16], "f": [0.399, 0.095, 0.203]}, "casual": {"f": ["캘러미티_casual1.webp"]}},
   "캠퍼": {"m": "캠퍼_m.webp", "f": "캠퍼_f.webp", "face": {"m": [0.452, 0.128, 0.155], "f": [0.42, 0.132, 0.152]}, "casual": {"f": ["캠퍼_casual1.webp"]}},
