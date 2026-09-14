@@ -1,0 +1,51 @@
+{
+  "card": "라플레시아",
+  "repository": "polos0117/atelier",
+  "base_commit": "3b6f12a611170fdcfc7348deb606d208cf50381f",
+  "generator": "prompt.html v9.19 live UI for the female anthro; male and casual prompts derived from the captured v9.19 prompt after the browser CDP session timed out",
+  "tool": "image_gen built-in",
+  "settings_note": "settings.json preserves the live female UI export and the exact male selections used for the derived prompt; every submitted prompt is preserved separately.",
+  "images": [
+    {
+      "card": "라플레시아",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "7ae6174b3cabcef82e1a119a23588369f74b54f7acf6d1ddaacaff90ac704c20",
+      "prompt": "generation/m-9390b49f796753ca/runs/2026-09-14t071555z/01-female-anthro.txt",
+      "manifest": "generation/m-9390b49f796753ca/runs/2026-09-14t071555z/manifest.json",
+      "job_id": "rafflesia-female-01",
+      "file": "img/라플레시아_cinematic_semi_real_f.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-408bd0cf-4fbc-4478-85b3-f3b5ee74026b.png"
+    },
+    {
+      "card": "라플레시아",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "sha256": "c857d0dfa663e1a907d9e8623bec69bbb610f91ac181acd0f2d0091e262b6e0d",
+      "prompt": "generation/m-9390b49f796753ca/runs/2026-09-14t071555z/02-male-anthro.txt",
+      "manifest": "generation/m-9390b49f796753ca/runs/2026-09-14t071555z/manifest.json",
+      "job_id": "rafflesia-male-01",
+      "file": "img/라플레시아_cinematic_semi_real_m.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-3956d0d7-eeeb-4b29-8a31-86c1280f330d.png",
+      "color_reference_job_id": "rafflesia-female-01"
+    },
+    {
+      "card": "라플레시아",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "sha256": "afc76f87ffc2d1e5c38477a2a95df8257dc8c4e1fbded773126827886d05d8db",
+      "prompt": "generation/m-9390b49f796753ca/runs/2026-09-14t071555z/03-female-casual.txt",
+      "manifest": "generation/m-9390b49f796753ca/runs/2026-09-14t071555z/manifest.json",
+      "job_id": "rafflesia-female-casual-01",
+      "file": "img/라플레시아_cinematic_semi_real_f_casual1.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-4f0b32fb-954d-418c-a6b3-97ee2f1eb2be.png",
+      "reference_job_id": "rafflesia-female-01"
+    }
+  ]
+}
