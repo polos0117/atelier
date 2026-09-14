@@ -14,10 +14,17 @@
 ## 새 작업 저장 순서
 
 1. `prompt.html`에서 기체·설정·추가 지시를 적용하고 실제 제출할 최종 원문을 이미지별로 1회 확인한다. 확인 후 수정한 경우에만 다시 확인한다.
-2. 기본 **기록 내보내기**로 해당 기체만 담은 JSON을 확보한다. 출력의 `card`가 정확한지 확인한 뒤 해당 폴더의 `settings.json`에 저장한다. 새 기체면 index에 이름과 ID를 추가하고 빈 `images.json`도 만든다.
+2. 기본 **기록 내보내기**로 해당 기체만 담은 JSON을 확보한다. 출력의 `card`가 정확한지 확인한 뒤 해당 폴더의 `settings.json`에 저장한다. 새 기체면 빈 `images.json`도 만든다. `generation/index.json`은 `register-generation.py`가 기체 폴더의 `settings.json`을 읽어 등록한다.
 3. 생성하기 전에 새 runs 폴더에 당시 settings 사본과 제출 원문을 저장한다. 이미지 생성 후 실제 참조 관계와 최종 파일 해시를 manifest에 기록한다. 보정하면 원문을 덮지 말고 별도 파일을 추가한다.
 4. `images.json`의 해당 이미지에 `card`, `style`, `gender`, `mode`, `sha256`, `prompt`, `manifest`를 연결한다. 경로는 저장소 루트 기준이다. 원문이 없으면 `prompt: null`로 남긴다. `selectedStyle`은 현재 선택값일 뿐 기존 이미지의 화풍 증거가 아니다.
 5. 변환 후 해시·참조 관계·images.json 연결은 기체별 묶음으로 한 번에 저장한다. 이미지 등록은 `IMAGE_UPLOAD_RULES.md`의 등록 1회·변경분 확인 절차를 따른다. 원문 연결 확인도 이 변경분 확인에 포함한다. 기체별 기록과 이미지를 함께 업로드하고, main 병합이 요청됐다면 병합과 해당 자동화 성공 여부까지 확인한다. 도감 원문 링크의 화면 검수는 구체적인 오류나 사용자 요청이 있을 때만 수행한다.
+
+## 인덱스 자동 등록
+
+- 로컬에서 확인할 때는 `python3 register-generation.py --check`, 실제 반영할 때는 `python3 register-generation.py`를 사용한다.
+- `main`에 WebP 또는 기체별 `settings.json`·`images.json`이 푸시되면 `초상·생성 기록 등록` 워크플로가 인덱스를 자동 갱신한다.
+- 스크립트는 신규 기체를 추가하고 같은 폴더 ID의 이름 변경을 반영한다. 인덱스가 가리키는 폴더가 없거나 이름이 충돌하면 기존 항목을 지우지 않고 실패한다.
+- 정상적인 신규 작업에서는 공용 `generation/index.json` 전체를 외부 업로드 대상으로 만들지 않고, 기체별 이미지와 `generation/<기체ID>/` 기록만 올린다.
 
 ## 보존과 호환
 
