@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "card": "건담 레오파드 디스트로이",
+  "model": "GT-9600-D",
+  "series": "건담X",
+  "repository": "polos0117/atelier",
+  "branch": "codex/leopard-destroy-20260914",
+  "base_commit": "6d1fe9fa01c06a4002c4e2b060db89e6fe8e059d",
+  "prompt_source": "deployed prompt.html UI",
+  "run": "2026-09-14t210629z",
+  "created": "2026-09-14T21:06:29Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Actual exportStore button; exportBox JSON captured after the final female single-person setup",
+  "references": [
+    "https://www.zerochan.net/4084071",
+    "https://static.zerochan.net/GT-9600-D.Gundam.Leopard.Destroy.full.4084071.jpg"
+  ],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female skin tone, hair color, and eye color only; casual preserves the same female identity",
+    "equipment_lock": "Exactly two Gatling cannon assemblies, one integrated around each normal forearm",
+    "casual_scene": "Arena stage-rigging systems test"
+  },
+  "jobs": [
+    {
+      "id": "leopard-destroy-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-78e033c533dd6afd/runs/2026-09-14t210629z/01-female-anthro.txt",
+      "original_generated_file": "exec-4214b953-822b-4de3-96bc-7d4dd183a749.png",
+      "original_sha256": "7eda4c7444b9ce7650df59ad91ba46916ed5f1f58e13bfbff732fda202746629",
+      "file": "img/건담_레오파드_디스트로이_cinematic_semi_real_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "3f31c959f17456e8b30a5b344966eea8aaa592da501669a6195e9ce8c02e1b99",
+      "bytes": 182620
+    },
+    {
+      "id": "leopard-destroy-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "leopard-destroy-female-01",
+      "prompt": "generation/m-78e033c533dd6afd/runs/2026-09-14t210629z/02-male-anthro.txt",
+      "original_generated_file": "exec-e22bc59d-00ea-47bd-898d-67d6c3d8ba16.png",
+      "original_sha256": "4201db28362a16051befe03ca0c3b407e68e392413e2aa4a48890d57616cbd9f",
+      "file": "img/건담_레오파드_디스트로이_cinematic_semi_real_m.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "3cc2a8c755ea84645acfded2f5984a4002af40d16f8f13b64a78cb3092a0648e",
+      "bytes": 229646
+    },
+    {
+      "id": "leopard-destroy-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "leopard-destroy-female-01",
+      "prompt": "generation/m-78e033c533dd6afd/runs/2026-09-14t210629z/03-female-casual.txt",
+      "original_generated_file": "exec-bec0ab80-3bba-44c8-a6e7-0e22d8a44a93.png",
+      "original_sha256": "3b6751fdaa2283298884d74c7894b750f32cbb3f0a29d000f0d12e78bfeceef2",
+      "file": "img/건담_레오파드_디스트로이_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "826964713b40c34dd98dabc7149dfae614b11b08a0439199b6bd3cbec1b17c09",
+      "bytes": 159552
+    }
+  ]
+}
