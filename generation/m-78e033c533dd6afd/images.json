@@ -1,0 +1,29 @@
+{
+  "건담_레오파드_디스트로이_cinematic_semi_real_f.webp": {
+    "card": "건담 레오파드 디스트로이",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "3f31c959f17456e8b30a5b344966eea8aaa592da501669a6195e9ce8c02e1b99",
+    "prompt": "generation/m-78e033c533dd6afd/runs/2026-09-14t210629z/01-female-anthro.txt",
+    "manifest": "generation/m-78e033c533dd6afd/runs/2026-09-14t210629z/manifest.json"
+  },
+  "건담_레오파드_디스트로이_cinematic_semi_real_m.webp": {
+    "card": "건담 레오파드 디스트로이",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "3cc2a8c755ea84645acfded2f5984a4002af40d16f8f13b64a78cb3092a0648e",
+    "prompt": "generation/m-78e033c533dd6afd/runs/2026-09-14t210629z/02-male-anthro.txt",
+    "manifest": "generation/m-78e033c533dd6afd/runs/2026-09-14t210629z/manifest.json"
+  },
+  "건담_레오파드_디스트로이_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 레오파드 디스트로이",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "826964713b40c34dd98dabc7149dfae614b11b08a0439199b6bd3cbec1b17c09",
+    "prompt": "generation/m-78e033c533dd6afd/runs/2026-09-14t210629z/03-female-casual.txt",
+    "manifest": "generation/m-78e033c533dd6afd/runs/2026-09-14t210629z/manifest.json"
+  }
+}
