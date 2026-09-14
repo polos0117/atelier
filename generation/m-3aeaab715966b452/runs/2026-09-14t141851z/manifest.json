@@ -1,0 +1,65 @@
+{
+  "card": "곡그",
+  "repository": "polos0117/atelier",
+  "base_commit": "a3041f356420715b82c70260dec3094d73162d9a",
+  "generator": "prompt.html v9.19 public UI at current main",
+  "tool": "image_gen built-in",
+  "settings_note": "Actual prompt.html UI selections were applied, each exact text-view prompt was saved, the single-cut combination was recorded through its copy action, and the final per-mech record export was captured.",
+  "source_reference": {
+    "page": "https://gundam.wikia.com/wiki/MSM-03_Gogg",
+    "image": "https://static2.wikia.nocookie.net/__cb20120615042734/gundam/images/4/42/MSM-03.GIF",
+    "note": "Downloaded to a temporary local reference file for the two anthropomorphization generations."
+  },
+  "images": [
+    {
+      "card": "곡그",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "2906cdce4db1ab6472d7ebdd11ed6fb57e654ab048f1294890ab7818a8a6f310",
+      "prompt": "generation/m-3aeaab715966b452/runs/2026-09-14t141851z/01-female-anthro.txt",
+      "manifest": "generation/m-3aeaab715966b452/runs/2026-09-14t141851z/manifest.json",
+      "job_id": "gogg-female-01",
+      "file": "img/곡그_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-f02b45e5-9167-4b69-9904-da5f0a363d15.png"
+    },
+    {
+      "card": "곡그",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "sha256": "25f10a83af610f070034c6734b94dd64fe69e194e6f6eb4215d8df6fbb35bee0",
+      "prompt": "generation/m-3aeaab715966b452/runs/2026-09-14t141851z/02-male-anthro.txt",
+      "manifest": "generation/m-3aeaab715966b452/runs/2026-09-14t141851z/manifest.json",
+      "job_id": "gogg-male-01",
+      "file": "img/곡그_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-86f2f59a-dacb-468f-abd5-9a8bbfad9b1d.png",
+      "color_reference_job_id": "gogg-female-01"
+    },
+    {
+      "card": "곡그",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "sha256": "995ce4cb58618cb28e42d5bce3fc946f4dd661cf930a07746230f33322de970f",
+      "prompt": "generation/m-3aeaab715966b452/runs/2026-09-14t141851z/03-female-casual.txt",
+      "manifest": "generation/m-3aeaab715966b452/runs/2026-09-14t141851z/manifest.json",
+      "job_id": "gogg-female-casual-01",
+      "file": "img/곡그_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-14787036-f9f7-4dec-86b4-aa5880a24124.png",
+      "reference_job_id": "gogg-female-01"
+    }
+  ]
+}
