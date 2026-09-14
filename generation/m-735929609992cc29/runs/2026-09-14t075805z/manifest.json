@@ -1,0 +1,51 @@
+{
+  "card": "하슈말",
+  "repository": "polos0117/atelier",
+  "base_commit": "5f82cd9568a0019cad0b994b1af7876e508faf91",
+  "generator": "prompts directly assembled from the latest prompt.html v9.19 workflow after the cloud browser CDP session remained unavailable",
+  "tool": "image_gen built-in",
+  "settings_note": "settings.json preserves the intended v9.19 selections; every exact submitted prompt is preserved separately.",
+  "images": [
+    {
+      "card": "하슈말",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "13530d8db6e2be504dd44c838501b13452e66b73ab9a97f9972a9382b1169f7e",
+      "prompt": "generation/m-735929609992cc29/runs/2026-09-14t075805z/01-female-anthro.txt",
+      "manifest": "generation/m-735929609992cc29/runs/2026-09-14t075805z/manifest.json",
+      "job_id": "hashmal-female-01",
+      "file": "img/하슈말_cinematic_semi_real_f.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-280c8454-c1b7-478d-8f1c-a70a7c221bc4.png"
+    },
+    {
+      "card": "하슈말",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "sha256": "3ee42c7a022b7a0ae2e58104b0df8240f4061b3b2b6133b509b24bf171bf901b",
+      "prompt": "generation/m-735929609992cc29/runs/2026-09-14t075805z/02-male-anthro.txt",
+      "manifest": "generation/m-735929609992cc29/runs/2026-09-14t075805z/manifest.json",
+      "job_id": "hashmal-male-01",
+      "file": "img/하슈말_cinematic_semi_real_m.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-193c3a40-df59-4547-b02a-e306a9f24053.png",
+      "color_reference_job_id": "hashmal-female-01"
+    },
+    {
+      "card": "하슈말",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "sha256": "d61152cec932aad07da73fc988d48203ad0926489cade041791a9171f25d770e",
+      "prompt": "generation/m-735929609992cc29/runs/2026-09-14t075805z/03-female-casual.txt",
+      "manifest": "generation/m-735929609992cc29/runs/2026-09-14t075805z/manifest.json",
+      "job_id": "hashmal-female-casual-01",
+      "file": "img/하슈말_cinematic_semi_real_f_casual1.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-a7b303d4-a308-4c9a-adb7-b03953f7df4f.png",
+      "reference_job_id": "hashmal-female-01"
+    }
+  ]
+}
