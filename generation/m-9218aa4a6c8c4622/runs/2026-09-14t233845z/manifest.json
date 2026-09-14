@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "card": "파투리아",
+  "model": "MAN-003 Patulia",
+  "series": "기동신세기 건담 X",
+  "repository": "polos0117/atelier",
+  "branch": "codex/patulia-20260914",
+  "base_commit": "3914c7d7f0396e48e593ca4a8068cd858c4d6193",
+  "prompt_source": "saved prompt.html v9.19 parameter schema and prompt structure; the cloud browser could not enumerate tabs, so the local v9.19 structure was used directly",
+  "run": "2026-09-14t233845z",
+  "created": "2026-09-14T23:38:45Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Settings preserve the v9.19 parameter schema; browser export was unavailable and the exact submitted prompts are stored with this run",
+  "references": [
+    "https://www.gundam-x.net/story2.html",
+    "https://www.gundam-x.net/images/story14.jpg",
+    "https://www.mahq.net/man-003/"
+  ],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female deep skin tone, platinum hair color, and green eye color only; casual uses the female generated image as the identity reference",
+    "equipment_lock": "Two enormous dark-crimson hinged clamshell binders, four particle cannons, and thirty wired beam-cannon pods; all source-derived structures are external equipment and each person has exactly two human arms and two human legs",
+    "casual_scene": "Kinetic-installation systems conservator calibrating the brass servo hub of a monumental twin-panel sculpture in a modern museum"
+  },
+  "jobs": [
+    {
+      "id": "patulia-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-9218aa4a6c8c4622/runs/2026-09-14t233845z/01-female-anthro.txt",
+      "original_generated_file": "exec-ac43e7d2-5b52-4b43-8401-7e2cf2b2636c.png",
+      "original_sha256": "da8fe8da85f273c27a1f0845f71c170a640d8d429ce2902e359277d631e73e54",
+      "file": "img/파투리아_cinematic_semi_real_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "5cfe5dd31dd051824a96b102b832f606f80e2e0cdea47aa1fe22faaffee0db0d",
+      "bytes": 193120
+    },
+    {
+      "id": "patulia-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "patulia-female-01",
+      "prompt": "generation/m-9218aa4a6c8c4622/runs/2026-09-14t233845z/02-male-anthro.txt",
+      "original_generated_file": "exec-eda6311b-d6f6-471e-90cc-0520d936e782.png",
+      "original_sha256": "5881ac0e12538c1f63bfdc783d20b67bcbfe93aa12846934fa32baeb72773d5b",
+      "file": "img/파투리아_cinematic_semi_real_m.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "d6bba82a20329eb5bd39adcb8a472db13b498f64a0214b647d557a94fc58b9bb",
+      "bytes": 189506
+    },
+    {
+      "id": "patulia-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "patulia-female-01",
+      "prompt": "generation/m-9218aa4a6c8c4622/runs/2026-09-14t233845z/03-female-casual.txt",
+      "original_generated_file": "exec-98b5e161-8bd1-4f84-b9a9-2f07c62b562d.png",
+      "original_sha256": "12fb569c3137ec577770edcb6e531ff001bf8134e8995f4366641a5512a0e5cb",
+      "file": "img/파투리아_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "ba8ff5532086d783bcee5f64440e6e3f4c7ad10220d440adba31334e10cf4d0d",
+      "bytes": 118776
+    }
+  ]
+}

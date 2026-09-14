@@ -1,0 +1,29 @@
+{
+  "파투리아_cinematic_semi_real_f.webp": {
+    "card": "파투리아",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "5cfe5dd31dd051824a96b102b832f606f80e2e0cdea47aa1fe22faaffee0db0d",
+    "prompt": "generation/m-9218aa4a6c8c4622/runs/2026-09-14t233845z/01-female-anthro.txt",
+    "manifest": "generation/m-9218aa4a6c8c4622/runs/2026-09-14t233845z/manifest.json"
+  },
+  "파투리아_cinematic_semi_real_m.webp": {
+    "card": "파투리아",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "d6bba82a20329eb5bd39adcb8a472db13b498f64a0214b647d557a94fc58b9bb",
+    "prompt": "generation/m-9218aa4a6c8c4622/runs/2026-09-14t233845z/02-male-anthro.txt",
+    "manifest": "generation/m-9218aa4a6c8c4622/runs/2026-09-14t233845z/manifest.json"
+  },
+  "파투리아_cinematic_semi_real_f_casual1.webp": {
+    "card": "파투리아",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "ba8ff5532086d783bcee5f64440e6e3f4c7ad10220d440adba31334e10cf4d0d",
+    "prompt": "generation/m-9218aa4a6c8c4622/runs/2026-09-14t233845z/03-female-casual.txt",
+    "manifest": "generation/m-9218aa4a6c8c4622/runs/2026-09-14t233845z/manifest.json"
+  }
+}
