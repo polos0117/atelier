@@ -12,6 +12,8 @@ for(const [name,id] of Object.entries(index.cards)){
 for(const page of ['prompt.html','dex.html'])for(const m of fs.readFileSync(page,'utf8').matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g))new vm.Script(m[1],{filename:page});
 function extract(source,name){const a=source.indexOf('function '+name+'(');return source.slice(a,source.indexOf('\n}',a)+2);}
 const dex=fs.readFileSync('dex.html','utf8');
+assert.equal((dex.match(/툴킷에서 열기 →/g)||[]).length,2);
+assert(!dex.includes('\" target=\"_blank\" rel=\"noopener\">툴킷에서 열기 →</a>'),'툴킷 링크는 같은 탭에서 열어야 한다');
 const ctx={GENERATION:{},CARD_GENERATION:{},esc:x=>x};vm.createContext(ctx);vm.runInContext(extract(dex,'generationDetails'),ctx);
 const gunner=index.cards['건너 자쿠 워리어'];Object.assign(ctx.CARD_GENERATION,JSON.parse(fs.readFileSync(`generation/${gunner}/images.json`)));
 for(const [file,r] of Object.entries(ctx.CARD_GENERATION))assert(ctx.generationDetails(file).includes(r.prompt));
