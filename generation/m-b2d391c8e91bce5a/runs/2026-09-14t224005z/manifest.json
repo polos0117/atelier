@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "card": "압사라스Ⅲ",
+  "model": "Apsaras III",
+  "series": "기동전사 건담 제08MS소대",
+  "repository": "polos0117/atelier",
+  "branch": "codex/apsaras-iii-20260914",
+  "base_commit": "62a801ed7dd40cbe3300ad4cf21ce5f47e676667",
+  "prompt_source": "saved prompt.html v9.19 template with current per-image PARAMETERS; the cloud browser could not enumerate tabs, so the local v9.19 prompt structure was used directly",
+  "run": "2026-09-14t224005z",
+  "created": "2026-09-14T22:40:05Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Settings preserve the v9.19 parameter schema; browser export was unavailable and the exact submitted prompts are stored with this run",
+  "references": [
+    "https://www.icecitynet.com/gundamrobot_info.php?gundamid=3&mid=106",
+    "https://www.icecitynet.com/images/m/2024040303.png"
+  ],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female medium skin tone, black hair color, and amber eye color only; casual uses the female generated image as the identity reference",
+    "equipment_lock": "One broad olive armored disc, one central mega-particle cannon, two spherical flight units, and four external landing struts; exactly two human arms and two human legs",
+    "casual_scene": "Chief geotechnical tunnel-boring systems engineer scanning a rock core in an underground analysis bay"
+  },
+  "jobs": [
+    {
+      "id": "apsaras-iii-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-b2d391c8e91bce5a/runs/2026-09-14t224005z/01-female-anthro.txt",
+      "original_generated_file": "exec-34f889a7-aa7b-4321-99f7-6e8f4cdd71b1.png",
+      "original_sha256": "da3f1eb02a754dc29b86d01e0b1b2ca8d46da848296dab0fe4bfea1e91f059f2",
+      "file": "img/압사라스Ⅲ_cinematic_semi_real_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "1c46424fc7962b46efdfa3344c83528eed013f211060bcf33a94cac074ed3038",
+      "bytes": 119584
+    },
+    {
+      "id": "apsaras-iii-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "apsaras-iii-female-01",
+      "prompt": "generation/m-b2d391c8e91bce5a/runs/2026-09-14t224005z/02-male-anthro.txt",
+      "original_generated_file": "exec-4b6b04fd-7222-42e8-887c-45b761b1028a.png",
+      "original_sha256": "aa490894b69e987ca12759a03b6f60562d23aa1bdc88b69dfca52946ae9b9b60",
+      "file": "img/압사라스Ⅲ_cinematic_semi_real_m.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "7d48219ab59ed9a00ab7c43c835f3396ad61fa09d487cb9250b1ee2c51002817",
+      "bytes": 130326
+    },
+    {
+      "id": "apsaras-iii-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "apsaras-iii-female-01",
+      "prompt": "generation/m-b2d391c8e91bce5a/runs/2026-09-14t224005z/03-female-casual.txt",
+      "original_generated_file": "exec-167993a7-f699-447b-9097-57a8a744b679.png",
+      "original_sha256": "4a5bbf525a4bd300cbb8b1ec9df627fc2bbd545b4f9d1a953ad1950597696f25",
+      "file": "img/압사라스Ⅲ_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "ae24fe623f9233a7f5224f69e475b81fe55b7b68f9b48f36c5757d7939b038cd",
+      "bytes": 166240
+    }
+  ]
+}

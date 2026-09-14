@@ -1,0 +1,29 @@
+{
+  "압사라스Ⅲ_cinematic_semi_real_f.webp": {
+    "card": "압사라스Ⅲ",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "1c46424fc7962b46efdfa3344c83528eed013f211060bcf33a94cac074ed3038",
+    "prompt": "generation/m-b2d391c8e91bce5a/runs/2026-09-14t224005z/01-female-anthro.txt",
+    "manifest": "generation/m-b2d391c8e91bce5a/runs/2026-09-14t224005z/manifest.json"
+  },
+  "압사라스Ⅲ_cinematic_semi_real_m.webp": {
+    "card": "압사라스Ⅲ",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "7d48219ab59ed9a00ab7c43c835f3396ad61fa09d487cb9250b1ee2c51002817",
+    "prompt": "generation/m-b2d391c8e91bce5a/runs/2026-09-14t224005z/02-male-anthro.txt",
+    "manifest": "generation/m-b2d391c8e91bce5a/runs/2026-09-14t224005z/manifest.json"
+  },
+  "압사라스Ⅲ_cinematic_semi_real_f_casual1.webp": {
+    "card": "압사라스Ⅲ",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "ae24fe623f9233a7f5224f69e475b81fe55b7b68f9b48f36c5757d7939b038cd",
+    "prompt": "generation/m-b2d391c8e91bce5a/runs/2026-09-14t224005z/03-female-casual.txt",
+    "manifest": "generation/m-b2d391c8e91bce5a/runs/2026-09-14t224005z/manifest.json"
+  }
+}
