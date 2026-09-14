@@ -1,0 +1,20 @@
+Use case: stylized-concept
+Asset type: Gundam anthropomorphic character portrait for the polos0117/atelier gallery
+
+Input images:
+- Image 1 is the authoritative visual reference for the source mobile suit GNZ-005 Garazzo, Bring Stabity's machine. Preserve its armor palette, shoulder geometry, long limbs, forearm structures, pointed feet, rear backpack, dorsal blade, and finger-claw equipment.
+- Image 2 is the established adult female counterpart. Copy from her ONLY the exact skin tone, hair color, eye color, and armor color language. Do not copy her face, hairstyle, feminine anatomy, pose, or expression.
+
+Create one portrait-oriented 1024x1536 premium painterly cinematic semi-realistic full-body character key art of "가랏조(브링 전용기)" reimagined as exactly one clearly adult male humanoid mecha character.
+
+Color lock from Image 2: the same warm medium olive skin, the same burgundy-black hair color with wine-red highlights, and the same luminous magenta-red eyes. He is a distinct South Asian man in his mid-20s with a separate masculine identity: angular long face, deep-set almond eyes, strong straight nose, defined jaw, medium-length swept-back burgundy-black hair with a short undercut, clean-shaven. Body: very tall, rangy lean-athletic, broad shoulders, long torso, strong masculine chest, narrow V-taper waist, narrow hips, and very long powerful legs. No feminine body traits.
+
+Concept: "predatory Innovator executioner — elegant, disciplined, and quietly lethal." Translate the Garazzo faithfully into pale lavender-gray outer armor, deep indigo-violet shoulder and torso armor, wine-red chest and claw hardware, and restrained magenta GN sensor light. Keep the massive angular spiked shoulder shells, narrow armored torso, long tapered thigh and shin plates, needle-point armored boots, compact rear backpack, and one tall wine-red dorsal blade. Both hands are anatomically correct male human hands with exactly five fingers each, fitted with distinct wine-red mechanical claw-emitter caps. The GN beam claws remain inactive and unlit. Retain small dark forearm cutter structures without extra limbs or extra hands.
+
+Armor coverage is high and masculine: an opaque dark-plum technical underlayer and solid mechanical armor fully cover the chest, pelvis, buttocks, and all intimate areas. A narrow opening at the throat and small side-waist articulation gaps may show skin, but there is no nudity, lingerie styling, or transparent fabric.
+
+Pose and framing: full-body combat-ready stance, one pointed armored foot slightly forward, shoulders canted, one clawed hand open at his side and the other drawn closer to the torso, head tilted slightly down while his eyes look past the viewer. Frame him large from hair to both pointed boots with very little empty margin; all limbs, shoulder spikes, backpack blade, hands, and footwear remain fully inside the frame. Do not pull the camera back or leave a large vacant border.
+
+Background: the same dark Innovator orbital chamber family as Image 2, with violet-black architecture, thin magenta light seams, faint GN particles, and minimal haze, but use a distinct viewpoint and pose rather than copying the female composition. Keep the environment secondary and uncluttered.
+
+Rendering: high-end painterly semi-realistic character illustration with natural cinematic key light, magenta rim separation, subtle brush texture, believable adult masculine facial volume, natural skin, and tactile painted armor. The whole image must read as a sophisticated semi-realistic digital painting, not anime, cel shading, glossy mobile-game key art, 3D CGI, PBR, or live-action photography. No text, logo, watermark, border, pilot likeness, childlike traits, female face, feminine anatomy, robot face replacing the human face, extra people, extra limbs, duplicated claws, malformed hands, cropped feet, or generic Gundam armor.

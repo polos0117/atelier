@@ -1,0 +1,29 @@
+{
+  "가랏조(브링 전용기)_cinematic_semi_real_f.webp": {
+    "card": "가랏조(브링 전용기)",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "7c49d17f914e335bfa58e75d48cdaae37a55b68753473632ac5a04f3526115b2",
+    "prompt": "generation/m-c6219e2631096f73/runs/2026-09-14t121636z/01-female-anthro.txt",
+    "manifest": "generation/m-c6219e2631096f73/runs/2026-09-14t121636z/manifest.json"
+  },
+  "가랏조(브링 전용기)_cinematic_semi_real_m.webp": {
+    "card": "가랏조(브링 전용기)",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "b49158914cd1aca7a025a545ad49e0767c2be813dde3718d05c1afad49f862d5",
+    "prompt": "generation/m-c6219e2631096f73/runs/2026-09-14t121636z/02-male-anthro.txt",
+    "manifest": "generation/m-c6219e2631096f73/runs/2026-09-14t121636z/manifest.json"
+  },
+  "가랏조(브링 전용기)_cinematic_semi_real_f_casual1.webp": {
+    "card": "가랏조(브링 전용기)",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "50d8b017073b039855846ac6dc38f27f1f3e58ea47815ca778249cbfacf2bb4c",
+    "prompt": "generation/m-c6219e2631096f73/runs/2026-09-14t121636z/03-female-casual.txt",
+    "manifest": "generation/m-c6219e2631096f73/runs/2026-09-14t121636z/manifest.json"
+  }
+}
