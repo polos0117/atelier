@@ -1,0 +1,29 @@
+{
+  "라플레시아_cinematic_semi_real_f.webp": {
+    "card": "라플레시아",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "7ae6174b3cabcef82e1a119a23588369f74b54f7acf6d1ddaacaff90ac704c20",
+    "prompt": "generation/m-9390b49f796753ca/runs/2026-09-14t071555z/01-female-anthro.txt",
+    "manifest": "generation/m-9390b49f796753ca/runs/2026-09-14t071555z/manifest.json"
+  },
+  "라플레시아_cinematic_semi_real_m.webp": {
+    "card": "라플레시아",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "c857d0dfa663e1a907d9e8623bec69bbb610f91ac181acd0f2d0091e262b6e0d",
+    "prompt": "generation/m-9390b49f796753ca/runs/2026-09-14t071555z/02-male-anthro.txt",
+    "manifest": "generation/m-9390b49f796753ca/runs/2026-09-14t071555z/manifest.json"
+  },
+  "라플레시아_cinematic_semi_real_f_casual1.webp": {
+    "card": "라플레시아",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "afc76f87ffc2d1e5c38477a2a95df8257dc8c4e1fbded773126827886d05d8db",
+    "prompt": "generation/m-9390b49f796753ca/runs/2026-09-14t071555z/03-female-casual.txt",
+    "manifest": "generation/m-9390b49f796753ca/runs/2026-09-14t071555z/manifest.json"
+  }
+}

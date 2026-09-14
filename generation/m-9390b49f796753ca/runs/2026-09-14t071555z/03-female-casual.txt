@@ -1,0 +1,33 @@
+[INPUT]
+
+SOURCE MOBILE SUIT: [라플레시아]
+
+Use the attached female anthropomorphization only as the absolute identity reference. The mobile-suit name is provenance metadata, not permission to reconstruct armor or weapons.
+
+[IDENTITY LOCK]
+
+Create the SAME clearly adult East Asian woman in her 20s from the attached reference. Preserve her recognizable heart-shaped face, narrow tapered chin, large upturned crimson eyes, delicate nose, full lips, light skin, extremely long black ringlet curls, one-eye-cover side bangs, tall hourglass build, narrow shoulders, full chest, curvy waist and hips, and long legs. Preserve the same person and body proportions; expression and clothing may change. No identity drift, age drift, hairstyle redesign, eye-color drift, or body redesign. Cute must come from expression and styling, never childlike anatomy.
+
+[STYLE]
+
+High-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed idealization. Mature believable facial anatomy, softly painted skin, grouped painterly hair masses with selected fine strands, tactile fabrics, coherent environmental light, selective sharpness, and subtle bloom. It must read as a sophisticated semi-realistic digital painting, not cel anime, glossy mobile-game art, CGI, or a photograph.
+
+[OUTPUT]
+
+Create exactly ONE single 2:3 vertical image with exactly one adult woman. Full body, tight intentional framing at the largest practical scale, complete head and feet inside the frame, minimal empty margin. No collage, panels, captions, logos, watermark, or text.
+
+[SCENE]
+
+A believable off-duty evening in a softly lit glasshouse café after closing. She stands beside a small round table holding a crimson mocktail, her body in a relaxed front three-quarter turn. Give her a playful, knowing half-smile and a subtly seductive adult gaze while keeping the moment candid rather than posed like a glamour shoot. Dark red camellias and warm pin lights echo her flower motif only through ordinary décor.
+
+[OUTFIT]
+
+A fitted deep-burgundy satin midi dress with a square neckline, a short black cropped cardigan worn loosely off the shoulders, sheer black tights, and elegant black ankle-strap heels. Mainstream evening fashion, securely fitted and fully opaque; alluring but non-explicit.
+
+[LIFESTYLE EQUIPMENT LOCK]
+
+Translate only her established human identity into the civilian scene. Remove every piece of mobile-suit equipment: no armor, mechanical petals, cable tentacles, remote weapons, drones, backpack, binders, crest, fins, thrusters, mechanical limbs, cockpit, or pilot suit. Do not turn those elements into clothing accessories. Ordinary jewelry and café props only.
+
+[FINAL CHECK]
+
+Exactly one clearly adult woman; same identity as reference; crimson eyes and black ringlet hair preserved; complete full body; contemporary civilian clothing; no mecha elements; no explicit nudity; no text.
