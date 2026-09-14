@@ -1,0 +1,51 @@
+{
+  "card": "건담 AGE-1 타이터스",
+  "repository": "polos0117/atelier",
+  "base_commit": "dfe64475894dfd5b5c14bbc486445d3a7e993dea",
+  "generator": "prompts directly assembled from the current prompt.html workflow after the cloud browser could not open a fresh tab",
+  "tool": "image_gen built-in",
+  "settings_note": "settings.json preserves the intended current-workflow selections; every exact submitted prompt is preserved separately. The prompt.html record export was unavailable because the browser session could not open the page.",
+  "images": [
+    {
+      "card": "건담 AGE-1 타이터스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "6bdd4b185a87ebaad61c9ab83758e3cfa0e18698f4135cc740ce9d8026c2c6d8",
+      "prompt": "generation/m-f2c031d17190c032/runs/2026-09-14t085654z/01-female-anthro.txt",
+      "manifest": "generation/m-f2c031d17190c032/runs/2026-09-14t085654z/manifest.json",
+      "job_id": "age-1-titus-female-01",
+      "file": "img/건담 AGE-1 타이터스_cinematic_semi_real_f.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-c5129464-245d-4f6f-a965-0f34f3dc3929.png"
+    },
+    {
+      "card": "건담 AGE-1 타이터스",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "sha256": "5e5acadc8d58ed53a11e707ca898c261584b6a159b3fab31d2c5983face39bdb",
+      "prompt": "generation/m-f2c031d17190c032/runs/2026-09-14t085654z/02-male-anthro.txt",
+      "manifest": "generation/m-f2c031d17190c032/runs/2026-09-14t085654z/manifest.json",
+      "job_id": "age-1-titus-male-01",
+      "file": "img/건담 AGE-1 타이터스_cinematic_semi_real_m.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-cadb94b8-839c-4925-b093-d5ce67d5717e.png",
+      "color_reference_job_id": "age-1-titus-female-01"
+    },
+    {
+      "card": "건담 AGE-1 타이터스",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "sha256": "817119b2beb1d4e1de535df054669a3663768e4f4c5a6540460a55b5944db3c6",
+      "prompt": "generation/m-f2c031d17190c032/runs/2026-09-14t085654z/03-female-casual.txt",
+      "manifest": "generation/m-f2c031d17190c032/runs/2026-09-14t085654z/manifest.json",
+      "job_id": "age-1-titus-female-casual-01",
+      "file": "img/건담 AGE-1 타이터스_cinematic_semi_real_f_casual1.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-7769e21f-1fcc-48cc-8744-fbdf102b12e8.png",
+      "reference_job_id": "age-1-titus-female-01"
+    }
+  ]
+}

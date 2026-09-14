@@ -1,0 +1,29 @@
+{
+  "건담 AGE-1 타이터스_cinematic_semi_real_f.webp": {
+    "card": "건담 AGE-1 타이터스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "6bdd4b185a87ebaad61c9ab83758e3cfa0e18698f4135cc740ce9d8026c2c6d8",
+    "prompt": "generation/m-f2c031d17190c032/runs/2026-09-14t085654z/01-female-anthro.txt",
+    "manifest": "generation/m-f2c031d17190c032/runs/2026-09-14t085654z/manifest.json"
+  },
+  "건담 AGE-1 타이터스_cinematic_semi_real_m.webp": {
+    "card": "건담 AGE-1 타이터스",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "5e5acadc8d58ed53a11e707ca898c261584b6a159b3fab31d2c5983face39bdb",
+    "prompt": "generation/m-f2c031d17190c032/runs/2026-09-14t085654z/02-male-anthro.txt",
+    "manifest": "generation/m-f2c031d17190c032/runs/2026-09-14t085654z/manifest.json"
+  },
+  "건담 AGE-1 타이터스_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 AGE-1 타이터스",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "817119b2beb1d4e1de535df054669a3663768e4f4c5a6540460a55b5944db3c6",
+    "prompt": "generation/m-f2c031d17190c032/runs/2026-09-14t085654z/03-female-casual.txt",
+    "manifest": "generation/m-f2c031d17190c032/runs/2026-09-14t085654z/manifest.json"
+  }
+}
