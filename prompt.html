@@ -136,6 +136,13 @@ button.small{min-height:38px;padding:7px 9px;font-size:12px}
 .st-shot img{width:88px;height:124px;object-fit:cover;object-position:50% 22%;border-radius:7px;display:block;background:var(--card2)}
 .st-cap{display:block;margin-top:4px;font-size:10px;color:var(--muted);opacity:.85}
 #artNote{display:block}
+#cardShots{display:block}
+.cs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px;margin-top:7px}
+.cs-grid a{display:block;text-decoration:none}
+.cs-grid img{width:100%;aspect-ratio:2/3;object-fit:cover;object-position:50% 18%;
+  border-radius:6px;display:block;background:var(--card2)}
+.cs-more{margin-top:7px;font-size:11px;padding:5px 9px;border-radius:6px;
+  border:1px solid var(--line);background:var(--card2);color:var(--muted);cursor:pointer}
 .pp-gal{margin-top:8px;border-top:1px solid var(--line);padding-top:7px}
 .pp-gal-t{font-size:11px;color:var(--muted);margin-bottom:5px}
 .pp-gal-r{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
@@ -367,6 +374,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
           <label>Art Style <small>화풍 · 지금 생성할 프롬프트에 적용</small></label>
           <select id="artStyle"></select>
           <div class="param-preview hidden" id="artNote"></div>
+          <div class="param-preview hidden" id="cardShots"></div>
           <div class="quick-note" id="imageFilenameGuide"></div>
         </div>
         <button id="applySource" class="primary apply" type="button">기체 선택 적용</button>
@@ -4419,6 +4427,69 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
       (list.length?'<span class="st-cap">이 화풍으로 뽑은 실제 결과 '+list.length+'장 · 눌러서 크게 보기</span>':
           '<span class="st-cap">아직 샘플이 없다. 뽑아보고 마음에 들면 샘플로 넣어줄 수 있다.</span>')+'</div>'+
       (shots?'<div class="st-shots">'+shots+'</div>':'');
+    renderCardShots(true);
+  }
+
+  /* ══ 이 카드로 뽑아둔 그림 ══
+     저장소 파일 목록(api.github.com/contents/img)은 1,000개에서 잘려 뒤쪽 카드가
+     통째로 빠진다. 여기서는 data/img.json 을 직접 읽는다 — 한도가 없고 커밋과
+     함께 갱신된다. 기본은 지금 고른 화풍·성별 12장, 단추를 누르면 전부 편다. */
+  const CARD_SHOT_N=12;
+  let CARD_IMG=null, CARD_SHOTS_ALL=false;
+  function loadCardImg(){
+    return fetch('data/img.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(j=>{
+      CARD_IMG=(j&&j.img)||{};
+      renderCardShots(true);
+    }).catch(()=>{});
+  }
+  /* 일상컷·특별컷은 {"f":[...],"m":[...]} 꼴이고, 성별 표시가 없던 예전 자료는
+     배열 그대로 올 수 있어 그때는 여성으로 친다 (도감과 같은 규칙) */
+  function bucketCuts(b,slot,v){
+    const x=b&&b[slot]; if(!x)return [];
+    return Object.prototype.toString.call(x)==='[object Array]'?(v==='f'?x:[]):(x[v]||[]);
+  }
+  function shotsOfBucket(b,v){
+    if(!b)return [];
+    return (b[v]?[b[v]]:[]).concat(bucketCuts(b,'casual',v),bucketCuts(b,'extra',v));
+  }
+  function cardShotList(styleOnly){
+    const e=CARD_IMG&&CARD_IMG[mechKey()]; if(!e)return [];
+    const v=curGender()==='male'?'m':'f';
+    if(styleOnly)return shotsOfBucket(e.byStyle?e.byStyle[styleKey()]:e,v);
+    let all=[];
+    if(e.byStyle)Object.keys(e.byStyle).forEach(k=>{
+      all=all.concat(shotsOfBucket(e.byStyle[k],'f'),shotsOfBucket(e.byStyle[k],'m'));
+    });
+    /* 화풍 토막이 없는 기본 자리 그림도 전체에는 넣는다 (화풍 미상) */
+    all=all.concat(shotsOfBucket(e,'f'),shotsOfBucket(e,'m'));
+    return all.filter((f,i)=>all.indexOf(f)===i);
+  }
+  function renderCardShots(reset){
+    if(reset)CARD_SHOTS_ALL=false;
+    const box=document.getElementById('cardShots'); if(!box)return;
+    const name=mechKey();
+    if(!name||!CARD_IMG){box.classList.add('hidden');box.innerHTML='';return;}
+    const cur=cardShotList(true), all=cardShotList(false);
+    box.classList.remove('hidden');
+    if(!all.length){
+      box.innerHTML='<div class="pp-txt"><b>이 카드로 뽑아둔 그림</b>아직 등록된 그림이 없다.</div>';
+      return;
+    }
+    const show=CARD_SHOTS_ALL?all:cur.slice(0,CARD_SHOT_N);
+    const gname=curGender()==='male'?'남성':'여성';
+    const head=CARD_SHOTS_ALL
+      ? '<b>'+escHtml(name)+' · 전체</b>모든 화풍 · 남녀 '+all.length+'장'
+      : '<b>'+escHtml(name)+'</b>'+escHtml(styleRow()[1])+' · '+gname+' '+cur.length+'장'+
+        (cur.length>show.length?(' 중 '+show.length+'장'):'')+' · 눌러서 크게 보기';
+    const grid=show.map(f=>'<a href="'+IMG_BASE+encodeURIComponent(f)+'" target="_blank" rel="noopener" title="'+escHtml(f)+'">'+
+      '<img loading="lazy" src="'+IMG_BASE+'thumb/'+encodeURIComponent(f)+'" alt="" '+
+      'onerror="this.onerror=null;this.src=\''+IMG_BASE+encodeURIComponent(f)+'\'"></a>').join('');
+    box.innerHTML='<div class="pp-txt">'+head+'</div><div class="cs-grid">'+grid+'</div>'+
+      ((CARD_SHOTS_ALL||all.length>show.length)
+        ? '<button type="button" class="cs-more" id="cardShotsMore">'+
+          (CARD_SHOTS_ALL?'접기':'전체 '+all.length+'장')+'</button>' : '');
+    const mb=document.getElementById('cardShotsMore');
+    if(mb)mb.onclick=()=>{CARD_SHOTS_ALL=!CARD_SHOTS_ALL;renderCardShots();};
   }
 
   const IMG_BASE='https://polos0117.github.io/atelier/img/';
@@ -4719,6 +4790,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     renderGenderedLists();
     /* 일상컷 문구에도 성별이 들어가므로 같이 다시 만든다 */
     refreshCollagePrompt(); refreshSinglePrompt();
+    renderCardShots(true);
     setStatus('statusAnthro',(g==='female'?'여성':'남성')+' 설정으로 전환했다','ok');
   }
 
@@ -5029,7 +5101,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
   renderCarry();
 
   /* 저장소 기록과 이미지 현황은 네트워크라 늦게 온다. 도착하면 다시 그린다. */
-  Promise.all([migrateStoreNames(),loadBase(),loadShots()]).then(()=>{
+  Promise.all([migrateStoreNames(),loadBase(),loadShots(),loadCardImg()]).then(()=>{
     fillMechs(mechPicker.value);
     if(!STORE.anthro[mechKey()])loadAnthroForMech();
     updateSaveBar(); updateDoneStat(); renderUsed(); renderCarry();
