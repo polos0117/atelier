@@ -1,0 +1,82 @@
+{
+  "card": "잔넥",
+  "repository": "polos0117/atelier",
+  "base_commit": "d965a55d5c0eb21314c691cf1468678db65ce076",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json is the live UI export captured after generation; each exact submitted prompt and the targeted casual correction are preserved separately.",
+  "source_references": [
+    {
+      "type": "front-and-rear mobile-suit design sheet mirror",
+      "url": "https://truth.bahamut.com.tw/s01/202305/67e7e02e6c36ccd5d841975944663d9a.JPG",
+      "sha256": "88388fa087b2aa914e9521097737cc11416f4f945ecd384cf2f0cedf1c8ad0c7"
+    },
+    {
+      "type": "Zanneck cannon and base game artwork",
+      "url": "https://img.game8.co/4103907/51fce37d72d1cadad5ccb57a645f9167.png/show",
+      "sha256": "c0994db5e10e826aded2ac73d26f5d32a571f66e8439c15efb3dee8b00fdf813"
+    }
+  ],
+  "images": [
+    {
+      "card": "잔넥",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "c083c276167d899bf177c550112a786d7fbdf8935f9d3abfaa921f3b5b1f0488",
+      "prompt": "generation/m-817f15c27c61867c/runs/2026-09-14t020024z/01-female-anthro.txt",
+      "manifest": "generation/m-817f15c27c61867c/runs/2026-09-14t020024z/manifest.json",
+      "job_id": "zanneck-female-01",
+      "file": "img/잔넥_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-e9243042-23a6-4fdc-9890-b86dc32fcd6a.png",
+      "reference_job_ids": [
+        "zanneck-front-rear",
+        "zanneck-cannon-game"
+      ]
+    },
+    {
+      "card": "잔넥",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "sha256": "33b497fad4c2bc653c883bd12caa5f930a7b8bf1838b0d17b97bab34d2863b2a",
+      "prompt": "generation/m-817f15c27c61867c/runs/2026-09-14t020024z/02-male-anthro.txt",
+      "manifest": "generation/m-817f15c27c61867c/runs/2026-09-14t020024z/manifest.json",
+      "job_id": "zanneck-male-01",
+      "file": "img/잔넥_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-9d5381ac-08e2-4d02-a80b-a58dc43503af.png",
+      "reference_job_ids": [
+        "zanneck-front-rear",
+        "zanneck-cannon-game"
+      ],
+      "color_reference_job_id": "zanneck-female-01"
+    },
+    {
+      "card": "잔넥",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "sha256": "81425a9f22e2f0c812c9b264390831a954435c25ec9ca9aec597327e57f55e58",
+      "prompt": "generation/m-817f15c27c61867c/runs/2026-09-14t020024z/03-female-casual.txt",
+      "correction_prompt": "generation/m-817f15c27c61867c/runs/2026-09-14t020024z/04-female-casual-correction.txt",
+      "manifest": "generation/m-817f15c27c61867c/runs/2026-09-14t020024z/manifest.json",
+      "job_id": "zanneck-female-casual-01",
+      "file": "img/잔넥_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "source_file": "exec-9c90e308-2fa8-4839-84fa-8bbc427bdfea.png",
+      "pre_correction_source_file": "exec-7ca395b9-31a3-4021-b954-e66db258aecb.png",
+      "reference_job_id": "zanneck-female-01"
+    }
+  ]
+}

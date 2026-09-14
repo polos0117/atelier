@@ -1,0 +1,5 @@
+Use case: precise-object-edit
+Asset type: corrected civilian lifestyle portrait for a card-game gallery
+Input image: Image 1 is the edit target.
+Primary request: Remove only the small purple conical mechanical sensor crest with amber-yellow lights from the top of the woman's head and hairline. Replace that removed hardware naturally with matching purple hair flowing into the existing high ponytail and side bangs.
+Constraints: Change only that mechanical head ornament. Preserve the exact woman's face, medium skin, lavender eyes, very long thick purple high ponytail, natural fine antenna-like hair strands, body proportions, expression, pose, dress, jacket, boots, hands, telescope, rooftop observatory, lighting, color grading, camera angle, full-body framing, and every other detail pixel-consistently. No redesign, no crop change, no camera pullback, no added accessories, no text, no watermark.

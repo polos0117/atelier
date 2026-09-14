@@ -1,0 +1,30 @@
+{
+  "잔넥_cinematic_semi_real_f.webp": {
+    "card": "잔넥",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "c083c276167d899bf177c550112a786d7fbdf8935f9d3abfaa921f3b5b1f0488",
+    "prompt": "generation/m-817f15c27c61867c/runs/2026-09-14t020024z/01-female-anthro.txt",
+    "manifest": "generation/m-817f15c27c61867c/runs/2026-09-14t020024z/manifest.json"
+  },
+  "잔넥_cinematic_semi_real_m.webp": {
+    "card": "잔넥",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "33b497fad4c2bc653c883bd12caa5f930a7b8bf1838b0d17b97bab34d2863b2a",
+    "prompt": "generation/m-817f15c27c61867c/runs/2026-09-14t020024z/02-male-anthro.txt",
+    "manifest": "generation/m-817f15c27c61867c/runs/2026-09-14t020024z/manifest.json"
+  },
+  "잔넥_cinematic_semi_real_f_casual1.webp": {
+    "card": "잔넥",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "81425a9f22e2f0c812c9b264390831a954435c25ec9ca9aec597327e57f55e58",
+    "prompt": "generation/m-817f15c27c61867c/runs/2026-09-14t020024z/03-female-casual.txt",
+    "correction_prompt": "generation/m-817f15c27c61867c/runs/2026-09-14t020024z/04-female-casual-correction.txt",
+    "manifest": "generation/m-817f15c27c61867c/runs/2026-09-14t020024z/manifest.json"
+  }
+}
