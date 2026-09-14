@@ -1,0 +1,29 @@
+{
+  "그라함 전용 유니온 플래그 커스텀_cinematic_semi_real_f.webp": {
+    "card": "그라함 전용 유니온 플래그 커스텀",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "9d2472b4e8797e6cdd527dcd3c1323d01700bbac8c55d707da694d0158884414",
+    "prompt": "generation/m-2426a700ddc89d16/runs/2026-09-14t083357z/01-female-anthro.txt",
+    "manifest": "generation/m-2426a700ddc89d16/runs/2026-09-14t083357z/manifest.json"
+  },
+  "그라함 전용 유니온 플래그 커스텀_cinematic_semi_real_m.webp": {
+    "card": "그라함 전용 유니온 플래그 커스텀",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "93cf5b6fdbbf09aa6525a657181ce9300a39e16c900ca82e00ecbe8c98c3bc92",
+    "prompt": "generation/m-2426a700ddc89d16/runs/2026-09-14t083357z/02-male-anthro.txt",
+    "manifest": "generation/m-2426a700ddc89d16/runs/2026-09-14t083357z/manifest.json"
+  },
+  "그라함 전용 유니온 플래그 커스텀_cinematic_semi_real_f_casual1.webp": {
+    "card": "그라함 전용 유니온 플래그 커스텀",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "0c39f529131b983fd17c8d34eb217b957126659fb4e49ae1007880e4092aad4a",
+    "prompt": "generation/m-2426a700ddc89d16/runs/2026-09-14t083357z/03-female-casual.txt",
+    "manifest": "generation/m-2426a700ddc89d16/runs/2026-09-14t083357z/manifest.json"
+  }
+}

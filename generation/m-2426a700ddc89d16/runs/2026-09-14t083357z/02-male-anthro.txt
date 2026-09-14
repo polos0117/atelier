@@ -1,0 +1,24 @@
+Use case: stylized-concept
+Asset type: full-body Gundam anthropomorphization portrait for a character collection
+Primary request: Create the male anthropomorphization of Graham’s Union Flag Custom (SVMS-01E) from Mobile Suit Gundam 00 as a clearly adult man in his late twenties. The concept is an elegant high-speed duelist whose composure hides an obsessive need to win. He must be a distinctly different person from the female counterpart while translating the same machine faithfully.
+
+PALETTE LOCK FROM THE FEMALE COUNTERPART
+Use the same warm light-olive skin tone, the same raven-black hair color with a faint gunmetal-blue sheen, and the same amber-gold eye color as the female Union Flag Custom counterpart. Do not copy her face, bob haircut, or body shape.
+
+SUBJECT AND IDENTITY
+A very tall adult man with a lean, long-limbed fighter’s build, broader angular shoulders, a straight narrow waist, and powerful but not bulky legs. A distinct masculine face: compact diamond shape, pronounced brow, sharp cheek planes, strong square chin, slightly hooked narrow nose, thin upper lip, and intense deep-set amber-gold eyes. Clean-shaven. His expression is a controlled, almost courtly smile that feels competitive and faintly arrogant. Raven-black medium-length hair swept dramatically backward in layered windswept strands, with a visible forehead and a few loose side locks; clearly different from a chin-length asymmetric bob. Face fully visible; no helmet or mask. Do not resemble the canonical pilot.
+
+MECHA TRANSLATION
+Faithfully preserve the recognizable design language and canonical equipment of Graham’s black Union Flag Custom: extremely slim black and charcoal-gray aerodynamic armor, narrow pointed chest and waist forms, long blade-like leg armor, compact angular shoulder shells, silver-gray structural edges, restrained orange-red sensor accents, and crisp aircraft-panel construction. Fully armored masculine presentation with no exposed torso. Exactly two normal human arms and exactly two normal human legs, anatomically correct, with intact hands and feet.
+Keep compact wing and flight-control surfaces mounted to the back as external mechanical equipment; they must not replace limbs or become organic wings. Preserve the modified linear rifle as a long, narrow, purposeful weapon, the defense rod as compact forearm-mounted defensive equipment, and the sonic blade as recognizable secondary equipment. No extra arms, no extra legs, no aircraft nose replacing the torso, no helmet, no mask.
+
+COMPOSITION
+Vertical 2:3. Tight intentional full-body framing at the largest practical scale, complete crown-to-feet view, minimal empty margin. Keep all major back equipment and the long rifle inside the frame without making the figure unnecessarily small. Let the model choose a natural dynamic pose and cinematic view angle; do not force a fixed pose or fixed camera direction. Face, both hands, and both feet must remain readable.
+
+SCENE AND LIGHTING
+A restrained dark aircraft maintenance hangar with a smooth floor, faint structural lights, and minimal visual clutter. Cool steel-blue key light, narrow warm amber rim light, subtle atmospheric depth. The character remains dominant.
+
+STYLE
+High-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization. Mature believable adult facial anatomy, dimensional painted skin, grouped painterly hair masses with selected fine strands, convincing mechanical materials rendered in the same painterly language, selective sharpness, and controlled reflections. The result must read as a sophisticated semi-realistic digital painting, not a live-action photograph, not a 3D render, not glossy mobile-game 2.5D art, and not cel-shaded anime.
+
+Constraints: no text, no logos, no typography, no pilot likeness, no childlike proportions, no cropped feet, no duplicated limbs, no organic wings, no generic Gundam V-fin face motif, no gore.

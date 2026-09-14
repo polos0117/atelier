@@ -1,0 +1,51 @@
+{
+  "card": "그라함 전용 유니온 플래그 커스텀",
+  "repository": "polos0117/atelier",
+  "base_commit": "df020ce0d13572609f51ab895ce611726ef658f7",
+  "generator": "prompts directly assembled from the current prompt.html workflow after the cloud browser could not open a fresh tab",
+  "tool": "image_gen built-in",
+  "settings_note": "settings.json preserves the intended current-workflow selections; every exact submitted prompt is preserved separately. The prompt.html record export was unavailable because the browser session could not open the page.",
+  "images": [
+    {
+      "card": "그라함 전용 유니온 플래그 커스텀",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "9d2472b4e8797e6cdd527dcd3c1323d01700bbac8c55d707da694d0158884414",
+      "prompt": "generation/m-2426a700ddc89d16/runs/2026-09-14t083357z/01-female-anthro.txt",
+      "manifest": "generation/m-2426a700ddc89d16/runs/2026-09-14t083357z/manifest.json",
+      "job_id": "graham-union-flag-custom-female-01",
+      "file": "img/그라함 전용 유니온 플래그 커스텀_cinematic_semi_real_f.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-47b48d8f-bb8b-497d-ad64-180b2d1de131.png"
+    },
+    {
+      "card": "그라함 전용 유니온 플래그 커스텀",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "sha256": "93cf5b6fdbbf09aa6525a657181ce9300a39e16c900ca82e00ecbe8c98c3bc92",
+      "prompt": "generation/m-2426a700ddc89d16/runs/2026-09-14t083357z/02-male-anthro.txt",
+      "manifest": "generation/m-2426a700ddc89d16/runs/2026-09-14t083357z/manifest.json",
+      "job_id": "graham-union-flag-custom-male-01",
+      "file": "img/그라함 전용 유니온 플래그 커스텀_cinematic_semi_real_m.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-d4cb63cc-253f-48b0-8b27-1e915faf2298.png",
+      "color_reference_job_id": "graham-union-flag-custom-female-01"
+    },
+    {
+      "card": "그라함 전용 유니온 플래그 커스텀",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "sha256": "0c39f529131b983fd17c8d34eb217b957126659fb4e49ae1007880e4092aad4a",
+      "prompt": "generation/m-2426a700ddc89d16/runs/2026-09-14t083357z/03-female-casual.txt",
+      "manifest": "generation/m-2426a700ddc89d16/runs/2026-09-14t083357z/manifest.json",
+      "job_id": "graham-union-flag-custom-female-casual-01",
+      "file": "img/그라함 전용 유니온 플래그 커스텀_cinematic_semi_real_f_casual1.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-d7082f29-e6a2-4bf3-8084-c8340ffd2e6a.png",
+      "reference_job_id": "graham-union-flag-custom-female-01"
+    }
+  ]
+}
