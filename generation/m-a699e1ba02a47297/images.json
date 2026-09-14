@@ -1,0 +1,29 @@
+{
+  "세라핌 건담_cinematic_semi_real_f.webp": {
+    "card": "세라핌 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "72dce384b8ca74b67ce8b6d143ef30cbe42b4a17cfd88d65dae71f07c8ffd768",
+    "prompt": "generation/m-a699e1ba02a47297/runs/2026-09-14t114557z/01-female-anthro.txt",
+    "manifest": "generation/m-a699e1ba02a47297/runs/2026-09-14t114557z/manifest.json"
+  },
+  "세라핌 건담_cinematic_semi_real_m.webp": {
+    "card": "세라핌 건담",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "f85a861ddca742070f037e2f8b2beed19258b63c9f4f5273907963a7aff53405",
+    "prompt": "generation/m-a699e1ba02a47297/runs/2026-09-14t114557z/02-male-anthro.txt",
+    "manifest": "generation/m-a699e1ba02a47297/runs/2026-09-14t114557z/manifest.json"
+  },
+  "세라핌 건담_cinematic_semi_real_f_casual1.webp": {
+    "card": "세라핌 건담",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "ebe44757ef94e264b6fb28fa3bbc8384fa3953a56bd221f8ba0b4f93f2c5d1b1",
+    "prompt": "generation/m-a699e1ba02a47297/runs/2026-09-14t114557z/03-female-casual.txt",
+    "manifest": "generation/m-a699e1ba02a47297/runs/2026-09-14t114557z/manifest.json"
+  }
+}
