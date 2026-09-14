@@ -1,0 +1,16 @@
+Use case: stylized-concept
+Asset type: vertical full-body character portrait for a Gundam-inspired browser card game
+
+Create one clearly adult female anthropomorphic interpretation of SOURCE MOBILE SUIT: 리겔구 (Regelgu, MS-14J). Do not depict the pilot and do not copy any pilot's face, hair, clothing, or age.
+
+Subject and physique: a clearly adult Japanese woman in her late 20s with warm ivory skin, deep wine-red hair in a long voluminous layered ponytail with loose face-framing strands, and luminous pale-gold eyes. She is very tall and glamorous with a pronounced but believable S-curve: full bust, sharply defined waist, broad rounded hips, full glutes, long powerful legs, and thick shapely thighs. She is voluptuous and strong but clearly less massive and less muscular than the AGE-1 Titus woman; retain elegant long proportions and a supple hourglass silhouette rather than heavyweight bulk. Mature adult facial anatomy, refined almond eyes, confident slightly dangerous expression.
+
+Mobile-suit translation: preserve Regelgu's distinctive crimson and rose-red armor with dark wine and purple shadow accents, small yellow-gold details, huge swept shoulder binders, compact waist, flared hip armor, and long armored legs. The two shoulder binders must be large external mechanical structures with integrated missile-pod geometry, framing the narrow waist without becoming extra limbs or wings. Use sculpted crimson chest armor over a fitted opaque black-plum technical underlayer, with a tasteful asymmetric open collar showing collarbones and a modest upper-chest line while keeping bust and intimate areas fully covered. Shape the segmented waist and high hip armor to clearly reveal the S-line. Preserve a long beam rifle and a single extended yellow-white beam naginata as recognizable equipment, held naturally without obscuring the body. Human face fully visible; no mobile-suit head or mono-eye replacing it.
+
+Pose and view: automatically choose a poised combat-ready pose and a cinematic near-front or three-quarter view. Full body from head to feet, large subject filling the vertical frame, no unnecessary empty margin, no cropped limbs. A subtle hip shift may emphasize the S-curve while remaining physically balanced. Exactly two human arms and two human legs; correct hands and fingers.
+
+Scene: red-lit orbital mobile-suit hangar with maintenance gantries and distant launch lights, secondary to the character. Subtle vapor and polished floor reflections.
+
+Style: high-end painterly semi-realistic character illustration with naturalistic cinematic key and rim lighting, sophisticated painted skin and metal, mature believable anatomy, restrained anime-informed facial idealization only. The image must read first as premium semi-realistic digital painting, not anime key art, not glossy mobile-game art, not 3D render, not live-action photo.
+
+Constraints: one clearly adult woman only; no pilot likeness; no helmet or mask; no robot face; no extra arms, legs, hands, fingers, breasts, binders, or weapons; no giant heavyweight body; no petite or skinny body; no childlike features; no transparent fabric; no nipples or genitals; no text, numbers, logo, caption, border, collage, or watermark.

@@ -1,0 +1,16 @@
+Use case: identity-preserve
+Asset type: vertical single-scene casual character portrait for a browser card game
+
+Input image: identity reference for the woman only.
+
+Create a new everyday-life image of the exact same clearly adult woman from the reference. Preserve her recognizable face, late-20s adult age, South Asian appearance, warm caramel-brown skin, vivid violet eyes, deep blue-black chin-length asymmetrical wavy bob with subtle plum-violet sheen, very tall stature, broad feminine shoulders, full bust, defined waist, large rounded hips and glutes, thick powerful thighs and calves, and the same soft substantial layer over athletic strength. Preserve her plush voluptuous S-curve; do not slim her down, reduce her bust or hips, lengthen her hair, make her petite, or increase her body to AGE-1 Titus-level bulk.
+
+New scene: a refined mountain-lodge lounge on a snowy winter evening, with warm timber, a stone fireplace, soft amber lamps and snow falling beyond tall windows. She has just returned from a quiet walk and stands beside a low table, naturally lifting a ceramic mug of hot chocolate with one hand while loosening a scarf with the other. Relaxed self-assured expression, gaze toward the snow rather than directly at camera. No other people.
+
+Wardrobe: a designed plum-purple off-shoulder cashmere wrap sweater with a wide asymmetric neckline exposing one shoulder and collarbones, fully opaque and fitted at the waist; high-waisted black tailored stretch trousers shaped cleanly over the hips and thighs; dark ankle boots, a charcoal scarf and small gold earrings. Sensuous, cozy and adult, clearly showcasing her voluptuous figure without reading as lingerie or costume.
+
+Composition: full body from head to footwear, vertical frame, subject large in frame with no unnecessary empty margin, natural cinematic eye level, no cropped limbs. Hands and fingers anatomically correct and naturally interacting with the mug and scarf.
+
+Style: high-end painterly semi-realistic character illustration with naturalistic cinematic lighting, sophisticated painted skin, knit and wool textures, mature believable facial anatomy, restrained anime-informed idealization only. Premium semi-realistic digital painting, not anime key art, not glossy mobile-game art, not 3D render, not live-action photograph.
+
+Constraints: change scene, pose and clothing while preserving identity and exact body proportions; one clearly adult woman only; absolutely no mobile-suit armor, robot parts, helmet, weapons, tri-blades, beam effects, mechanical limbs, hangar, or other people; no transparent fabric; no nipples or genitals; no text, logo, caption, border, collage, or watermark.

@@ -1,0 +1,16 @@
+Use case: identity-preserve
+Asset type: vertical single-scene casual character portrait for a browser card game
+
+Input image: identity reference for the woman only.
+
+Create a new everyday-life image of the exact same clearly adult woman from the reference. Preserve her recognizable face, late-20s adult age, Japanese appearance, warm ivory skin, pale-gold eyes, deep wine-red long voluminous hair and face-framing strands, very tall height, full bust, sharply defined waist, broad rounded hips, full glutes, long powerful legs and thick shapely thighs. Preserve her pronounced elegant S-curve exactly; do not slim her curves, reduce her hips or bust, shorten her legs, make her petite, or increase her body to AGE-1 Titus-level bulk.
+
+New scene: a contemporary art-gallery opening in a luxury city district at night. Dark polished concrete, warm spotlights on abstract artworks and rain-softened streetlights beyond the glass. She pauses beside a display plinth while checking the event program in one hand, caught in a natural three-quarter stance with her gaze directed toward an artwork rather than the camera. No other people.
+
+Wardrobe: a sophisticated black satin wrap blouse with a deep but tasteful V neckline, long sleeves and opaque fabric, tucked into a high-waisted crimson pencil midi skirt with a controlled back slit. A slim black belt emphasizes the waist; pointed dark heels and small gold earrings complete the look. The outfit must clearly showcase her adult hourglass S-line and feel elegant, sensuous and wearable—not lingerie, not costume, not armor.
+
+Composition: full body from head to footwear, vertical frame, subject large in frame with no unnecessary empty margin, natural cinematic eye level, no cropped limbs. Hands and fingers anatomically correct.
+
+Style: high-end painterly semi-realistic character illustration with naturalistic cinematic lighting, sophisticated painted skin and fabric, mature believable facial anatomy, restrained anime-informed idealization only. Premium semi-realistic digital painting, not anime key art, not glossy mobile-game art, not 3D render, not live-action photograph.
+
+Constraints: change scene, pose and clothing while preserving identity and exact body proportions; one clearly adult woman only; absolutely no mobile-suit armor, shoulder binders, robot parts, helmet, weapons, beam effects, mechanical limbs, hangar, or other people; no transparent fabric; no nipples or genitals; no text, logo, caption, border, collage, or watermark.
