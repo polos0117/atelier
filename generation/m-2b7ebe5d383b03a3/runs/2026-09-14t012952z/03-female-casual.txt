@@ -1,0 +1,16 @@
+Use case: identity-preserve
+Asset type: civilian lifestyle portrait for a card-game gallery
+Input image: attached woman is the absolute identity reference.
+Primary request: Create one vertical 2:3 full-body civilian lifestyle illustration of exactly the same clearly adult Central Asian woman in her 20s.
+
+Identity lock: preserve her exact recognizable compact cute-but-adult face, light skin, medium upturned golden eyes, small delicate nose, full lips, thick pink hair in two rounded space buns with medium loose lengths, choppy bangs and two short antenna-like strands, tall glamorous hourglass build, average shoulders, full bust, balanced torso, long legs and full lower body. Maintain identity and body continuity; only change expression, clothing, action and setting.
+
+Style/medium: high-end painterly semi-realistic digital character painting with naturalistic cinematic light and restrained anime-informed facial idealization; believable adult anatomy, softly dimensional painted skin, grouped painterly hair, tactile fabric, coherent environmental light, selective sharpness. Not a photograph, 3D render, glossy mobile-game art, or cel-shaded anime.
+
+Scene: a stylish modern indoor roller rink at blue hour, with soft pink and lavender light strips reflected across the polished floor and no readable signs. She is gliding through a controlled turn while looking just past the camera with an amused adult expression.
+
+Wardrobe: entirely civilian fashion—a hot-pink cropped satin bomber worn open and slightly off one shoulder over a fully opaque lavender asymmetric performance top, high-waisted charcoal skater shorts with subtle gold hardware, and pink-lavender quad roller skates with amber-yellow wheels.
+
+Composition/framing: exactly one woman, turning mid-motion in a controlled skating action. Vertical full-body fashion editorial, eye-level three-quarter action view, crisp face/body and restrained wheel motion blur. Full body and all skate wheels inside frame. Largest practical subject scale with tight intentional framing and minimal empty margins; no arbitrary camera pullback.
+
+Avoid: mobile-suit armor, mechanical chest pieces, forearm cannon, shoulder shields, rear propellant tank, mechanical limbs, helmet, sensor circlet, sci-fi equipment, text, signage, numerals, logos, watermark, extra people, duplicated limbs, identity drift, childlike or teenage appearance.

@@ -1,0 +1,58 @@
+{
+  "card": "티에렌 타오츠",
+  "repository": "polos0117/atelier",
+  "base_commit": "c79fd132e17805b777cd8060eba4d2004f4231ad",
+  "generator": "prompt.html v9.19 live UI",
+  "tool": "image_gen built-in",
+  "settings_note": "settings-01.json is the live UI export captured after generation; each exact submitted prompt is preserved separately.",
+  "source_reference": {
+    "type": "HG product front-and-rear photograph",
+    "url": "https://www.1999.co.jp/itbig06/10065954a.jpg",
+    "sha256": "de1fb5e8c45c6f384e87f1808548cdba0ef89a88b726d7430247398f8b5ca7fe"
+  },
+  "images": [
+    {
+      "card": "티에렌 타오츠",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "sha256": "b72ef4c8509a0b0e0807486749ce2196367cf9ad6d93cc723d2e685f4a4a8016",
+      "prompt": "generation/m-2b7ebe5d383b03a3/runs/2026-09-14t012952z/01-female-anthro.txt",
+      "manifest": "generation/m-2b7ebe5d383b03a3/runs/2026-09-14t012952z/manifest.json",
+      "job_id": "tieren-taozi-female-01",
+      "file": "img/티에렌 타오츠_cinematic_semi_real_f.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-ae32661d-503b-4b43-90aa-007ae5819f5e.png",
+      "reference_job_id": "official-tieren-taozi-front-rear"
+    },
+    {
+      "card": "티에렌 타오츠",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "sha256": "6fdee818a1fe054b35d36bcc869a443bfe5d04024980b234b321b16ef5640e2a",
+      "prompt": "generation/m-2b7ebe5d383b03a3/runs/2026-09-14t012952z/02-male-anthro.txt",
+      "manifest": "generation/m-2b7ebe5d383b03a3/runs/2026-09-14t012952z/manifest.json",
+      "job_id": "tieren-taozi-male-01",
+      "file": "img/티에렌 타오츠_cinematic_semi_real_m.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-103b92f2-ead3-4719-adc1-bceb7766f484.png",
+      "reference_job_id": "official-tieren-taozi-front-rear",
+      "color_reference_job_id": "tieren-taozi-female-01"
+    },
+    {
+      "card": "티에렌 타오츠",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "sha256": "ad12b8906e03cb2386b645e47d9b013b2caaa18e876b565dc6d4409a9304dd87",
+      "prompt": "generation/m-2b7ebe5d383b03a3/runs/2026-09-14t012952z/03-female-casual.txt",
+      "manifest": "generation/m-2b7ebe5d383b03a3/runs/2026-09-14t012952z/manifest.json",
+      "job_id": "tieren-taozi-female-casual-01",
+      "file": "img/티에렌 타오츠_cinematic_semi_real_f_casual1.webp",
+      "size": [1024, 1536],
+      "source_file": "exec-00e63b03-4899-415a-81f7-84d8c0f3554a.png",
+      "reference_job_id": "tieren-taozi-female-01"
+    }
+  ]
+}
