@@ -1,0 +1,29 @@
+{
+  "비르고Ⅱ_cinematic_semi_real_f.webp": {
+    "card": "비르고Ⅱ",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "0525e7149b6a1a844d9561b9cbf71ec14c2ffb23b7ca76693f7b5e4980c9342d",
+    "prompt": "generation/m-62f9ad2129a75603/runs/2026-09-14t155809z/01-female-anthro.txt",
+    "manifest": "generation/m-62f9ad2129a75603/runs/2026-09-14t155809z/manifest.json"
+  },
+  "비르고Ⅱ_cinematic_semi_real_m.webp": {
+    "card": "비르고Ⅱ",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "f7f4d95bfa46066e5e994378ec6bb51118adbb4192466178c6a13e2ba3411c86",
+    "prompt": "generation/m-62f9ad2129a75603/runs/2026-09-14t155809z/02-male-anthro.txt",
+    "manifest": "generation/m-62f9ad2129a75603/runs/2026-09-14t155809z/manifest.json"
+  },
+  "비르고Ⅱ_cinematic_semi_real_f_casual1.webp": {
+    "card": "비르고Ⅱ",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "1979bd2749b0ab347c0156d42c23579769fa039b59a40fb112cb1b9dbb13a910",
+    "prompt": "generation/m-62f9ad2129a75603/runs/2026-09-14t155809z/03-female-casual.txt",
+    "manifest": "generation/m-62f9ad2129a75603/runs/2026-09-14t155809z/manifest.json"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "card": "비르고Ⅱ",
+  "model": "OZ-03MD",
+  "series": "건담 W",
+  "repository": "polos0117/atelier",
+  "branch": "codex/virgo-ii-20260914",
+  "base_commit": "f2a15225b996eeb69db3c9df42e721953f8319a8",
+  "prompt_source": "deployed prompt.html UI",
+  "run": "2026-09-14t155809z",
+  "created": "2026-09-14T15:58:09Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Actual exportStore button; exportBox JSON captured after the final female single-person setup",
+  "references": [
+    "https://zeonic-republic.net/?page_id=2111",
+    "https://www.zeonic-republic.net/wp-content/uploads/2012/04/virgoII_both.jpg"
+  ],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female skin tone, hair color, and eye color only; casual preserves the same female identity",
+    "equipment_lock": "Exactly two attached green Planet Defenser discs and two pale shoulder pods; no floating duplicates",
+    "casual_scene": "After-hours kinetic sculpture conservation"
+  },
+  "jobs": [
+    {
+      "id": "virgo-ii-female-02",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-62f9ad2129a75603/runs/2026-09-14t155809z/01-female-anthro.txt",
+      "original_generated_file": "exec-c2dc7047-ed2c-4ab2-811a-fc3f380f5dac.png",
+      "original_sha256": "eb150479b5de57af6426408c2054091b1d5691a99da1c5e44f12ece9c66bde62",
+      "file": "img/비르고Ⅱ_cinematic_semi_real_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "0525e7149b6a1a844d9561b9cbf71ec14c2ffb23b7ca76693f7b5e4980c9342d",
+      "bytes": 158620
+    },
+    {
+      "id": "virgo-ii-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "virgo-ii-female-02",
+      "prompt": "generation/m-62f9ad2129a75603/runs/2026-09-14t155809z/02-male-anthro.txt",
+      "original_generated_file": "exec-228fd7d4-2f03-4f87-8a55-4ad3d9d26bff.png",
+      "original_sha256": "991a581e07aa5eeda4d959a61c1f42ae2235a72c00a6d10eee8aacc2432055cf",
+      "file": "img/비르고Ⅱ_cinematic_semi_real_m.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "f7f4d95bfa46066e5e994378ec6bb51118adbb4192466178c6a13e2ba3411c86",
+      "bytes": 180848
+    },
+    {
+      "id": "virgo-ii-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "virgo-ii-female-02",
+      "prompt": "generation/m-62f9ad2129a75603/runs/2026-09-14t155809z/03-female-casual.txt",
+      "original_generated_file": "exec-f9c4111f-a478-421e-a687-18e8e2e4f9de.png",
+      "original_sha256": "14e43f5169b8487847a953d9bf1cbd09c30a0c713b12f1f7d354b62e884ac74a",
+      "file": "img/비르고Ⅱ_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "1979bd2749b0ab347c0156d42c23579769fa039b59a40fb112cb1b9dbb13a910",
+      "bytes": 103306
+    }
+  ],
+  "note": "The first female draft was discarded because it introduced extra floating Planet Defenser units; the retained corrected generation has exactly two attached discs."
+}
