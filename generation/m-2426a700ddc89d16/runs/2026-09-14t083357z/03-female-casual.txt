@@ -1,0 +1,22 @@
+Use case: identity-preserve
+Asset type: civilian lifestyle portrait for a character collection
+Input image: Image 1 is the sole identity reference for the female Union Flag Custom anthropomorphization.
+Primary request: Create a new civilian single-cut image of exactly the same clearly adult woman from Image 1, now in an ordinary late-night airport terminal. Preserve her identity precisely while removing all mecha and combat elements.
+
+IDENTITY LOCK
+Keep exactly the same adult woman in her late twenties: same elongated oval face, high cheekbones, tapered jaw, straight narrow nose, slightly full lips, sharp almond-shaped amber-gold eyes, warm light-olive skin, very tall lean athletic physique, narrow shoulders, long legs, and raven-black chin-length asymmetric bob with a subtle gunmetal-blue sheen, deep side part, and long swept fringe. Preserve her restrained challenging half-smile and cool competitive gaze. Expression may adapt naturally to the scene but must remain recognizably hers. No age drift, face drift, hairstyle redesign, body redesign, or skin-tone change.
+
+CIVILIAN LOOK
+Remove every mechanical and military element completely. No armor, no wings, no flight surfaces, no rifle, no blade, no defense rod, no sensors, no helmet, no sci-fi body parts, no uniforms. Normal human body with exactly two arms and two legs.
+Dress her in an elegant contemporary travel outfit derived from the black, charcoal, silver, and amber palette: a fitted black asymmetric one-shoulder knit top, high-waisted charcoal tailored trousers with a long clean line, a slim black belt with a small brushed-silver buckle, and pointed black ankle boots. She carries a cropped black leather jacket loosely over one forearm and wears small amber-gold stud earrings. Chic, subtly alluring, clearly adult, non-transparent, and practical.
+
+SCENE AND ACTION
+A quiet modern airport terminal after midnight, with tall rain-streaked windows and distant runway lights outside. She strides purposefully along a moving walkway while glancing at a minimalist wristwatch, as if measuring every second. A compact matte-black carry-on rolls beside her in one hand. No other prominent people. Avoid readable signage and brand marks.
+
+COMPOSITION
+Vertical 2:3. Tight intentional full-body framing at the largest practical scale, crown to feet visible, minimal empty margin. Capture a natural mid-stride moment with the outfit, hands, boots, watch, and luggage readable. Do not pull the camera far back. Choose a cinematic eye-level or slightly low view that flatters her height without distorting anatomy.
+
+STYLE AND LIGHTING
+High-end painterly semi-realistic character illustration with restrained anime-informed facial idealization, matching the visual language of Image 1 rather than its armor. Cool terminal light, warm amber runway reflections, rainy blue-black night outside, selective sharpness, dimensional painted skin, convincing fabric and leather, controlled reflections. Not a live-action photograph, not a 3D render, not glossy mobile-game 2.5D, not cel-shaded anime.
+
+Constraints: change the scene and clothing only while preserving identity; no mecha remnants, no weapons, no text, no logos, no typography, no childlike proportions, no cropped feet, no duplicated limbs.
