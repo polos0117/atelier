@@ -1,0 +1,31 @@
+[INPUT]
+
+SOURCE MOBILE SUIT: [압사라스Ⅲ]
+
+This name is identity-provenance metadata only, used for thematic context. It must not be used to reconstruct, restore, or invent mobile-suit armor, mono-eye sensors, mega-particle cannons, disc shells, Minovsky flight units, landing struts, mechanical limbs, or canonical equipment.
+
+Use the attached clearly adult female anthropomorphized character as the absolute identity reference.
+
+[IDENTITY LOCK]
+
+Create the exact same clearly adult South Asian woman shown in the reference image. Preserve her recognizable elongated face, long face length, medium face width, angular defined jaw, almond-shaped level amber eyes, prominent defined nose, full lips, medium skin tone, very long thick black hair in the same high ponytail with long side bangs and loose face-framing strands, apparent age in her 20s, very tall voluptuous build, broad shoulders, full chest, hourglass waist and hips, long full legs, and overall body proportions. The facial identity must remain unmistakably the same. Do not average her into a new generic beauty face. Expression may change, identity may not.
+
+[ART STYLE]
+
+High-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization. The image must read as a sophisticated semi-realistic digital painting, not anime line art, mobile-game key art, 3D CGI, or a live-action photograph. Use believable adult facial anatomy, softly painted skin volume, grouped painterly black hair masses with selected fine strands, tactile fabric, broad cinematic key light, warm reflected work light, restrained cool shadows, subtle rim light, selective edge sharpness, and no plastic PBR finish.
+
+[OUTPUT]
+
+Create ONE SINGLE image in 2:3 vertical aspect. Exactly one woman. No collage, panels, split frame, numerals, captions, titles, labels, readable text, watermark, or logo.
+
+[DIRECTION]
+
+Show her as the chief geotechnical tunnel-boring systems engineer inside a secure underground rock-core analysis bay built into a mountainside. She is examining a newly extracted cylindrical granite core at a waist-high steel inspection cradle: one hand steadily operates a compact handheld mineral spectroscopy scanner while the other stabilizes the core sample. Behind protective glazing, blurred boring-control equipment and a circular tunnel opening are visible without readable displays. This is a believable modern technical occupation scene, not science fiction, a combat base, or a ceremonial set.
+
+Dress her in a fitted opaque charcoal sleeveless mock-neck technical top, olive high-waisted straight-cut utility trousers, a wide black work belt, a lightweight slate-gray field overshirt tied securely at the hips, black reinforced work boots, slim protective gloves, and small amber stud earrings. A matte safety helmet rests on the adjacent bench so her exact high ponytail and face remain fully visible. Confident, practical, and subtly sensual while fully opaque and workplace-credible. No explicit nudity.
+
+Full-body front three-quarter composition at eye level, the woman large in frame from the top of her high ponytail to both boots, with minimal headroom and floor margin. Both hands, the scanner, the rock core, and the inspection action are clearly visible. Keep the framing dense and intentional; do not pull the camera back or add arbitrary empty margins. Give her a focused, faintly knowing expression with level brows and chin slightly lowered toward the sample.
+
+[HARD CONSTRAINTS]
+
+Exactly one adult woman with exactly two human arms, two hands, and two legs. Preserve the exact identity from the reference. Absolutely no mobile-suit armor, mono-eye sensor, mega-particle cannon, armored disc shell, Minovsky flight unit, landing strut, weapon, mechanical limb, extra limb, floating equipment, other people, readable text, watermark, or logo. The source mobile suit supplies only thematic occupation context.
