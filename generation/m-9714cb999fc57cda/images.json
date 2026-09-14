@@ -1,0 +1,29 @@
+{
+  "구스타프 칼_cinematic_semi_real_f.webp": {
+    "card": "구스타프 칼",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "0b562cc2eee8c59d1a856037ffb2c36d8da80276606f561c6da08e45991af2ba",
+    "prompt": "generation/m-9714cb999fc57cda/runs/2026-09-14t035002z/01-female-anthro.txt",
+    "manifest": "generation/m-9714cb999fc57cda/runs/2026-09-14t035002z/manifest.json"
+  },
+  "구스타프 칼_cinematic_semi_real_m.webp": {
+    "card": "구스타프 칼",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "e34a517e2d66f31645dab09ef1bd10a876653e2bdaad095d6d5744d6a858c1c9",
+    "prompt": "generation/m-9714cb999fc57cda/runs/2026-09-14t035002z/02-male-anthro.txt",
+    "manifest": "generation/m-9714cb999fc57cda/runs/2026-09-14t035002z/manifest.json"
+  },
+  "구스타프 칼_cinematic_semi_real_f_casual1.webp": {
+    "card": "구스타프 칼",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "da08e073ef5dd7a331fca5f0635778b444370c17e1d56519b562f964acc89f6e",
+    "prompt": "generation/m-9714cb999fc57cda/runs/2026-09-14t035002z/03-female-casual.txt",
+    "manifest": "generation/m-9714cb999fc57cda/runs/2026-09-14t035002z/manifest.json"
+  }
+}

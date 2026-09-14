@@ -122,7 +122,7 @@ Blob 또는 Tree만 만들어졌거나 로컬 파일만 준비됐다면 업로�
 ## 8. 기록 내보내기와 원문 연결
 
 - 생성 후 실제 UI의 ‘기록 내보내기’를 실행하고 출력 JSON을 확보한다. 버튼 클릭만으로 성공으로 간주하지 않는다.
-- 기본 ‘기록 내보내기’는 선택한 기체만 포함한다. [generation/README.md](generation/README.md)의 `generation/<기체ID>/settings.json`에 저장한다. 신규 기체는 `index.json`에 이름과 ID만 추가한다. 다른 기체·기존 복사 이력은 보존한다. 내보내기 실패는 완료 보고에서 명시한다.
+- 기본 ‘기록 내보내기’는 선택한 기체만 포함한다. [generation/README.md](generation/README.md)의 `generation/<기체ID>/settings.json`에 저장한다. 신규 기체의 `index.json` 매핑은 `generation/<기체ID>/`가 main에 반영되면 자동 등록 스크립트가 추가한다. 다른 기체·기존 복사 이력은 보존한다. 내보내기 실패는 완료 보고에서 명시한다.
 - 공통 규칙은 이 문서에, 기체별 외형 선택값·추가 지시는 해당 settings에 관리한다. `전체 기록 내보내기 (호환용)`은 예전 형식 보존용이며 일반적인 신규 작업에는 사용하지 않는다.
 - 최신 외형 설정은 이미지별 실제 제출 프롬프트와 다를 수 있다. `generation/<기체ID>/runs/<작업일시>/`에 당시 설정 사본·실제 제출 원문·보정 원문·매니페스트를 보존한다. 완료한 runs의 기록을 다음 작업으로 덮어쓰지 않는다.
 - 해당 기체의 `images.json`에 최종 이미지 파일명별 원문 경로·매니페스트·SHA-256을 연결한다. 원문 없는 복구 이미지는 `prompt: null`로 남긴다. 공용 `toolkit-data.json`, `data/generation.json`, 과거 `docs/generation/`은 호환용으로 유지하며 새 기체 작업마다 전체를 갱신하지 않는다.
