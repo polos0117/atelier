@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "card": "겐가오조",
+  "model": "ZM-S28S",
+  "series": "기동전사 V건담",
+  "repository": "polos0117/atelier",
+  "branch": "codex/gengaozo-20260914",
+  "base_commit": "f935fc5b5bd83353cc37aa25fd141004cf71e79b",
+  "prompt_source": "deployed prompt.html UI",
+  "run": "2026-09-14t161352z",
+  "created": "2026-09-14T16:13:52Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Actual exportStore button; exportBox JSON captured after the final female single-person setup",
+  "references": [
+    "https://img.atwiki.jp/battle-operation2/attach/7572/5645/img_b9vuvjx9.png"
+  ],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female skin tone, hair color, and eye color only; casual preserves the same female identity",
+    "equipment_lock": "Exactly five circular-headed beam units attached to one backpack fan and one rifle",
+    "casual_scene": "Midnight botanical greenhouse systems inspection"
+  },
+  "jobs": [
+    {
+      "id": "gengaozo-female-02",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-3f7aa1d7a1dc44d1/runs/2026-09-14t161352z/01-female-anthro.txt",
+      "original_generated_file": "exec-5a7269e7-bfad-4a12-a511-39423516180b.png",
+      "original_sha256": "368293f76e036f6e67291bb3e5a02e94f8dc45d4b924c6beb573575aa3511aa3",
+      "file": "img/겐가오조_cinematic_semi_real_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "efedd44c80502ea6a83f82547694cc3c23b822ab9592b7c973923976785fd7db",
+      "bytes": 147390
+    },
+    {
+      "id": "gengaozo-male-02",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "gengaozo-female-02",
+      "prompt": "generation/m-3f7aa1d7a1dc44d1/runs/2026-09-14t161352z/02-male-anthro.txt",
+      "original_generated_file": "exec-3e71b74c-802c-4f93-9fea-9a85e1ab7e0a.png",
+      "original_sha256": "2dc98ceb583ae3434b489e3b8ea3a248c424f208e04662bf3b83cc883a1204cd",
+      "file": "img/겐가오조_cinematic_semi_real_m.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "7a740051963fe1d83262a16e559a9732646f7519f933f9f0dd95ad98bc4c9cd9",
+      "bytes": 142094
+    },
+    {
+      "id": "gengaozo-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "gengaozo-female-02",
+      "prompt": "generation/m-3f7aa1d7a1dc44d1/runs/2026-09-14t161352z/03-female-casual.txt",
+      "original_generated_file": "exec-92ffad87-b339-4af1-b390-78e707b080db.png",
+      "original_sha256": "75b9000741dc2c980fcf236fec4e922bf90b48dd9ddc8eb03d608cde44ae5d00",
+      "file": "img/겐가오조_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "107f43f3652f9a50181916ee25e0e247ac10583937411a7b7044a9c9fe24c60b",
+      "bytes": 177418
+    }
+  ],
+  "note": "The first female draft was discarded because it showed four rather than five back units. The first male draft was discarded because its chest armor retained a rounded feminine contour. The retained images correct both issues."
+}
