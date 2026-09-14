@@ -1,0 +1,18 @@
+Use case: stylized-concept
+Asset type: vertical full-body character portrait for a Gundam-inspired browser card game
+
+Create one clearly adult male anthropomorphic interpretation of SOURCE MOBILE SUIT: 건담 AGE-1 타이터스 (AGE-1 Titus). Do not depict the pilot and do not copy any pilot's face, hair, clothing, or age.
+
+Color linkage to the already generated female counterpart is mandatory: use the same warm bronze skin tone, the same deep burgundy-black hair color, and the same amber-gold eye color. Do not copy her face, hairstyle, or female physique.
+
+Subject and physique: a clearly adult man in his late 20s, Mediterranean appearance, deep burgundy-black hair in a distinct medium-length swept-back textured cut, amber-gold eyes. He is extremely tall and built like a heavyweight strongman: huge broad frame, thick neck, massive shoulders and arms, powerful chest and back, solid thick waist, heavy hips, enormous muscular thighs and calves, a convincing combination of muscle and substantial body mass rather than a lean bodybuilder. Strong masculine facial structure, calm confident gaze, restrained expression. He must look weighty, handsome, formidable, and subtly sensual through scale and physical presence.
+
+Mobile-suit translation: preserve AGE-1 Titus's unmistakable white, blue, red, and small yellow color blocking. Keep the enormous rounded red shoulder armor, massive red forearm gauntlets, heavy red thigh and shin armor, white torso plating, blue chest block, compact yellow accents, and close-combat grappler identity. The armor must look thick, dense, and genuinely heavy, with broad mechanical volumes and weight-bearing joints. Keep the human body fully humanoid with exactly two arms and two legs. Use a fitted opaque dark technical underlayer beneath the white-blue torso armor. The red armor should amplify the huge shoulders, forearms, thighs, and calves without turning him into a robot. Add luminous green-white beam-lariat energy rings around both gauntlets and subtle matching knee energy emitters. No handheld gun, no shield, no wings.
+
+Pose and view: automatically choose a powerful heavyweight grappler pose and a cinematic near-front or three-quarter view, different from the female's exact pose. Full body from head to feet, large subject filling the vertical frame, no unnecessary empty margin, no cropped limbs. Weight planted convincingly. Hands and fingers anatomically correct.
+
+Scene: reinforced combat-test hangar with industrial gantries and maintenance lights, subordinate to the character. Fine dust and vapor displaced around his boots suggest tremendous mass.
+
+Style: high-end painterly semi-realistic character illustration with naturalistic cinematic key and rim lighting, believable mature adult anatomy, sophisticated painted materials, restrained anime-informed facial idealization only. The image must read first as premium semi-realistic digital painting, not anime key art, not glossy mobile-game art, not 3D render, not live-action photo.
+
+Constraints: one character only; clearly adult man; exact human anatomy; no pilot likeness; no female facial features; no breasts; no female body shape; no mobile-suit head replacing the human face; no helmet over the face; no extra arms, legs, hands, fingers, or armor appendages; no skinny or lean physique; no transparent fabric; no nudity; no text, numbers, logo, caption, border, collage, or watermark.

@@ -1,0 +1,16 @@
+Use case: identity-preserve
+Asset type: vertical single-scene casual character portrait for a browser card game
+
+Input image: identity reference for the woman only.
+
+Create a new everyday-life image of the exact same clearly adult woman from the reference. Preserve her recognizable face, late-20s adult age, Mediterranean appearance, warm bronze skin, amber-gold eyes, deep burgundy-black shoulder-length thick wavy hair, very tall stature, broad strong frame, generous bust, defined waist, very full hips and glutes, exceptionally thick powerful thighs and calves, and the same combination of muscle and soft voluptuous mass. Do not slim her down, narrow her shoulders, reduce her hips or thighs, shrink her bust, make her petite, or make her bodybuilder-dry. Her identity and distinctly weighty, curvaceous physique must remain obvious.
+
+New scene: an upscale city hotel elevator lobby at night after dinner, warm brass and dark stone surfaces, soft practical lighting and rain-blurred city lights through distant glass. She is naturally adjusting a gold wristwatch while walking toward the elevator, caught mid-step rather than posing like a fashion mannequin. Restrained confident expression, gaze slightly away from camera.
+
+Wardrobe: a sophisticated fitted deep-red one-shoulder ribbed knit midi dress designed for her powerful voluptuous figure, with an asymmetric neckline showing one shoulder and collarbones, long sleeve on the opposite arm, a tasteful side slit that permits walking, fully opaque fabric, and a defined waist. A structured charcoal coat is draped loosely over one forearm, with dark heeled ankle boots and a small leather handbag. The look should feel sensuous, adult, expensive, and wearable—not lingerie, not costume, not armor.
+
+Composition: full body from head to footwear, vertical frame, subject large in frame with no unnecessary empty margin, slightly low cinematic eye level but natural proportions, no cropped limbs. Hands and fingers anatomically correct.
+
+Style: high-end painterly semi-realistic character illustration with naturalistic cinematic lighting, sophisticated painted skin and fabric, mature believable facial anatomy, restrained anime-informed idealization only. Premium semi-realistic digital painting, not anime key art, not glossy mobile-game art, not 3D render, not live-action photograph.
+
+Constraints: change the scene, pose, and clothing while preserving identity and body proportions; one clearly adult woman only; absolutely no mobile-suit armor, robot parts, helmet, weapons, beam effects, mechanical limbs, or hangar; no extra people; no transparent fabric; no nipples or genitals; no text, logo, caption, border, collage, or watermark.
