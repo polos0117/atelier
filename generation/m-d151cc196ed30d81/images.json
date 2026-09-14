@@ -1,0 +1,29 @@
+{
+  "앗시마_cinematic_semi_real_f.webp": {
+    "card": "앗시마",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "2df9807bc8dd390bd051b5a44f4d2739af1694e380991e7dda84a6964a7e4096",
+    "prompt": "generation/m-d151cc196ed30d81/runs/2026-09-14t153950z/01-female-anthro.txt",
+    "manifest": "generation/m-d151cc196ed30d81/runs/2026-09-14t153950z/manifest.json"
+  },
+  "앗시마_cinematic_semi_real_m.webp": {
+    "card": "앗시마",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "69dc205b04dd7859eefcc1e747705fccfa9f26aa98be0810b2c164d4563a4f76",
+    "prompt": "generation/m-d151cc196ed30d81/runs/2026-09-14t153950z/02-male-anthro.txt",
+    "manifest": "generation/m-d151cc196ed30d81/runs/2026-09-14t153950z/manifest.json"
+  },
+  "앗시마_cinematic_semi_real_f_casual1.webp": {
+    "card": "앗시마",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "58fd8d2529ca9b663297e6bca3448572417bd5d1f8b934d10187e7dcc01d9b30",
+    "prompt": "generation/m-d151cc196ed30d81/runs/2026-09-14t153950z/03-female-casual.txt",
+    "manifest": "generation/m-d151cc196ed30d81/runs/2026-09-14t153950z/manifest.json"
+  }
+}

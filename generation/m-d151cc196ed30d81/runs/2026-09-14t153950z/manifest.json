@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "card": "앗시마",
+  "model": "NRX-044",
+  "series": "Z건담",
+  "repository": "polos0117/atelier",
+  "branch": "codex/asshimar-20260914",
+  "base_commit": "5871cd34c2e7d8403399281a07b1185aa5462466",
+  "prompt_source": "deployed prompt.html UI",
+  "run": "2026-09-14t153950z",
+  "created": "2026-09-14T15:39:50Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Actual exportStore button; exportBox JSON captured after the final female single-person setup",
+  "references": [
+    "https://images-fe.ssl-images-amazon.com/images/I/41GTQV2DWPL.jpg"
+  ],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female skin tone, hair color, and eye color only; casual preserves the same female identity",
+    "casual_scene": "Sunset heliport turnaround inspection"
+  },
+  "jobs": [
+    {
+      "id": "asshimar-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-d151cc196ed30d81/runs/2026-09-14t153950z/01-female-anthro.txt",
+      "original_generated_file": "exec-2bed134e-7433-4130-969a-d09dc8f1da52.png",
+      "original_sha256": "1e72c4f260dea435996133d17175b80d3f1db9c18e04b7ae88cdbfbe17a34809",
+      "file": "img/앗시마_cinematic_semi_real_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "2df9807bc8dd390bd051b5a44f4d2739af1694e380991e7dda84a6964a7e4096",
+      "bytes": 106034
+    },
+    {
+      "id": "asshimar-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "asshimar-female-01",
+      "prompt": "generation/m-d151cc196ed30d81/runs/2026-09-14t153950z/02-male-anthro.txt",
+      "original_generated_file": "exec-3703e47b-0962-4579-9110-c883a5dd3605.png",
+      "original_sha256": "5c8addaf66cc66024249ffc0a3b398f78842e91867e346da335d03a86d5201c3",
+      "file": "img/앗시마_cinematic_semi_real_m.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "69dc205b04dd7859eefcc1e747705fccfa9f26aa98be0810b2c164d4563a4f76",
+      "bytes": 128294
+    },
+    {
+      "id": "asshimar-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "asshimar-female-01",
+      "prompt": "generation/m-d151cc196ed30d81/runs/2026-09-14t153950z/03-female-casual.txt",
+      "original_generated_file": "exec-e6816a8e-7ed6-4b51-8439-153e98ccb457.png",
+      "original_sha256": "df8cfaaa35cbcef2d5f80c15d342c88b311396a4347a5127d89b70c048ff84fa",
+      "file": "img/앗시마_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "58fd8d2529ca9b663297e6bca3448572417bd5d1f8b934d10187e7dcc01d9b30",
+      "bytes": 141742
+    }
+  ]
+}
