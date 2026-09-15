@@ -9,7 +9,7 @@ for(const [name,id] of Object.entries(index.cards)){
   assert(fs.existsSync(r.manifest));if(r.prompt)assert(fs.readFileSync(r.prompt,'utf8').trim());count++;
  }
 }
-for(const page of ['prompt.html','dex.html'])for(const m of fs.readFileSync(page,'utf8').matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g))new vm.Script(m[1],{filename:page});
+for(const page of ['prompt.html','dex.html'])for(const m of fs.readFileSync(page,'utf8').matchAll(/<script((?:\s[^>]*)?)>([\s\S]*?)<\/script>/g))if(!/\btype\s*=\s*["']module["']/i.test(m[1]))new vm.Script(m[2],{filename:page});
 function extract(source,name){const a=source.indexOf('function '+name+'(');return source.slice(a,source.indexOf('\n}',a)+2);}
 const dex=fs.readFileSync('dex.html','utf8');
 assert.equal((dex.match(/툴킷에서 열기 →/g)||[]).length,2);
