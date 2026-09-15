@@ -21,7 +21,9 @@
 (function(){var v='compact';try{if(localStorage.getItem('atelier_density_v1')==='relaxed')v='relaxed'}catch(e){}
 document.documentElement.dataset.density=v})();
 </script>
+<script src="lib/img.js"></script>
 <script src="lib/toolkit.js"></script>
+<script src="lib/figures.js"></script>
 <script src="lib/toolkit-spec.js"></script>
 <script src="lib/prompt-anthro.js"></script>
 <script src="lib/fresh.js"></script>
@@ -83,6 +85,21 @@ textarea{min-height:200px;font-family:ui-monospace,Menlo,monospace;font-size:11.
   background:var(--panel);cursor:pointer}
 .chip.on{border-color:var(--gold);color:var(--plate)}
 .chip input{width:auto;min-height:0;margin:0}
+.exbtn{margin-top:5px;background:none;border:1px solid var(--rule);color:var(--dim);
+  font:inherit;font-size:10.5px;border-radius:999px;padding:3px 9px;min-height:0;cursor:pointer}
+.ex{margin-top:7px;padding:8px;border:1px solid var(--rule);border-radius:8px;background:var(--void)}
+.ex.note{padding:6px 8px}
+.fig{color:var(--plate);text-align:center;margin-bottom:6px}
+.exgal{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:5px}
+.exgal img{width:100%;aspect-ratio:2/3;object-fit:cover;object-position:50% 16%;
+  border-radius:5px;display:block;background:var(--panel);cursor:zoom-in}
+.zoom{position:fixed;inset:0;z-index:70;background:rgba(8,10,13,.95);display:flex;
+  align-items:center;justify-content:center;padding:16px;cursor:zoom-out}
+.zoom img{max-width:100%;max-height:100%;border-radius:4px}
+.zpg{position:absolute;left:50%;transform:translateX(-50%);
+  bottom:calc(10px + env(safe-area-inset-bottom));background:rgba(15,19,24,.55);
+  color:var(--plate);font-size:11px;font-weight:700;padding:5px 9px;border-radius:999px;
+  pointer-events:none}
 .bar{display:flex;gap:6px;align-items:center;margin:8px 0}
 .btn{background:var(--panel);border:1px solid var(--rule);color:var(--ink);font:inherit;
   font-size:var(--ui-font);border-radius:7px;padding:8px 12px;min-height:var(--ui-height);cursor:pointer}
@@ -107,6 +124,8 @@ const html = htm.bind(h);
 const S = window.AtelierSpec;
 const AP = window.AtelierPrompt;
 const ATK = window.AtelierToolkit;
+const AIMG = window.AtelierImg;
+const FIG = window.AtelierFigures;
 
 const GROUPS = [
   ['base',  '기본',      '기체 해석의 큰 방향을 정한다'],
@@ -155,8 +174,80 @@ function copyText(text) {
   });
 }
 
+/* ── 예시 ──
+   고른 값이 실제로 어떤 모습인지 보여 준다. 두 가지를 쓴다.
+     도식  체형·머리처럼 윤곽으로 갈리는 항목 (lib/figures.js)
+     초상  그 값으로 실제 뽑아둔 기체의 그림. 인상·색처럼 선으로 못 그리는 것에 정확하다
+   사진을 끌어오거나 삽화를 250장 그려 두는 길은 접었다 — 값에 맞는 사진을
+   자동으로 고를 방법이 없고, 삽화는 유지가 버겁다.
+
+   항목마다 펼쳐 두면 42개가 세로로 길어져 접어 둔다. */
+function Examples({ def, value, gender, img, style, exclude, onZoom }) {
+  const svg = FIG.forKey(def.key, value, gender);
+  const v = gender === 'female' ? 'f' : 'm';
+
+  /* 지금 편집 중인 기체는 뺀다 — 고르는 즉시 제 그림이 예시로 뜨는데,
+     그 그림은 지금 값으로 뽑은 게 아니다 (툴킷과 같은 규칙) */
+  const hits = useMemo(() => {
+    const out = [];
+    ATK.listCards().forEach(name => {
+      if (name === exclude) return;
+      const rec = ATK.recordOf(name), g = rec && rec[gender];
+      if (!g || !g.sel || g.sel[def.key] !== value) return;
+      const file = AIMG.portraitOf(img[name], v, style);
+      if (file) out.push({ card: name, file });
+    });
+    return out.slice(0, 8);
+  }, [def.key, value, gender, style, exclude, img]);
+
+  if (!svg && !hits.length) {
+    return html`<p class="note ex">이 값으로 뽑아둔 기체가 아직 없다</p>`;
+  }
+  return html`
+    <div class="ex">
+      ${svg && html`<div class="fig" dangerouslySetInnerHTML=${{ __html: svg }}></div>`}
+      ${hits.length ? html`
+        <div class="exgal">
+          ${hits.map(h => html`
+            <img key=${h.file} loading="lazy" src=${AIMG.thumbURL(h.file)} alt="" title=${h.card}
+                 onclick=${() => onZoom(hits.map(x => x.file), hits.indexOf(h))}
+                 onerror=${e => { e.target.onerror = null; e.target.src = AIMG.imgURL(h.file); }} />`)}
+        </div>
+        <p class="note">이 값을 쓴 기체 ${hits.length}기 · 눌러서 크게 보기</p>` : null}
+    </div>`;
+}
+
+/* ── 확대 ── */
+function Zoom({ list, start, onClose }) {
+  const [i, setI] = useState(start);
+  const step = d2 => setI(p => ((p + d2) % list.length + list.length) % list.length);
+  useEffect(() => {
+    const onKey = e => {
+      if (e.key === 'Escape') onClose();
+      else if (e.key === 'ArrowRight') step(1);
+      else if (e.key === 'ArrowLeft') step(-1);
+    };
+    addEventListener('keydown', onKey);
+    return () => removeEventListener('keydown', onKey);
+  }, [list.length]);
+  const t = useRef({ x: 0, swiped: false });
+  return html`
+    <div class="zoom"
+         ontouchstart=${e => { t.current = { x: e.touches[0].clientX, swiped: false }; }}
+         ontouchend=${e => {
+           const dx = e.changedTouches[0].clientX - t.current.x;
+           if (list.length > 1 && Math.abs(dx) > 28) { step(dx < 0 ? 1 : -1); t.current.swiped = true; }
+         }}
+         onclick=${() => { if (t.current.swiped) { t.current.swiped = false; return; } onClose(); }}>
+      <img src=${AIMG.imgURL(list[i])} alt="" />
+      ${list.length > 1 && html`<div class="zpg mono">${i + 1}/${list.length}</div>`}
+    </div>`;
+}
+
 /* ── 설정 항목 한 줄 ── */
-function Param({ def, value, custom, locked, onValue, onCustom, onLock }) {
+function Param({ def, value, custom, locked, gender, img, style, exclude,
+                onValue, onCustom, onLock, onZoom }) {
+  const [open, setOpen] = useState(false);
   return html`
     <div class=${'pdef' + (def.sub ? ' sub' : '')}>
       <label>
@@ -173,6 +264,14 @@ function Param({ def, value, custom, locked, onValue, onCustom, onLock }) {
       ${value === '__custom__' && html`
         <input type="text" style="margin-top:5px" placeholder=${def.ph || '직접 입력'}
                value=${custom} oninput=${e => onCustom(e.target.value)} />`}
+      ${value && value !== '__custom__' && html`
+        <button type="button" class="exbtn" aria-expanded=${String(open)}
+                onclick=${() => setOpen(o => !o)}>
+          ${open ? '예시 접기' : '예시 보기'}
+        </button>`}
+      ${open && value && value !== '__custom__' && html`
+        <${Examples} def=${def} value=${value} gender=${gender} img=${img}
+                     style=${style} exclude=${exclude} onZoom=${onZoom} />`}
     </div>`;
 }
 
@@ -197,10 +296,11 @@ function App() {
   const [rndGroups, setRndGroups] = useState(
     () => Object.fromEntries(GROUPS.map(([g]) => [g, g !== 'shot'])));
   const [onlyEmpty, setOnlyEmpty] = useState(false);
+  const [zoom, setZoom] = useState(null);
 
   useEffect(() => {
-    Promise.all([getJSON('data/mech.json'), getJSON('data/series.json'), ATK.load()])
-      .then(([m, s]) => setData({ cards: m.cards, series: s }))
+    Promise.all([getJSON('data/mech.json'), getJSON('data/series.json'), ATK.load(), AIMG.load()])
+      .then(([m, s, , img]) => setData({ cards: m.cards, series: s, img }))
       .catch(setErr);
     setStamp(window.AtelierFresh.watch().stamp());
     try {
@@ -378,9 +478,11 @@ function App() {
                     <${Param} key=${def.key} def=${def}
                               value=${sel[def.key] || ''} custom=${cus[def.key] || ''}
                               locked=${!!locks['p:' + def.key]}
+                              gender=${gender} img=${data.img} style=${style} exclude=${mech}
                               onValue=${v => setOne(def.key, v)}
                               onCustom=${v => setCustom(def.key, v)}
-                              onLock=${() => toggleLock(def.key)} />`)}
+                              onLock=${() => toggleLock(def.key)}
+                              onZoom=${(list, i) => setZoom({ list, i })} />`)}
                 </div>
               </details>`;
           })}
@@ -406,6 +508,7 @@ function App() {
           </div>
         `}
     </main>
+    ${zoom && html`<${Zoom} list=${zoom.list} start=${zoom.i} onClose=${() => setZoom(null)} />`}
     ${toast}`;
 }
 
