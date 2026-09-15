@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "card": "그라함 전용 유니온 플래그 커스텀Ⅱ(GN플래그)",
+  "model": "SVMS-01X GN Flag",
+  "series": "기동전사 건담 00",
+  "repository": "polos0117/atelier",
+  "branch": "codex/gn-flag-ii-20260915",
+  "base_commit": "041988eebfd4b12bba7e73ee4262175397d327e6",
+  "prompt_source": "prompts directly assembled from the current prompt.html v9.19 workflow after the cloud browser could not open a fresh tab",
+  "run": "2026-09-15t015004z",
+  "created": "2026-09-15T01:50:04Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Settings preserve the v9.19 parameter schema; browser export was unavailable and the exact submitted prompts are stored with this run",
+  "references": [
+    "data/mech.json",
+    "official/mecha/00.json"
+  ],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female pale-neutral skin tone, raven-black hair with wine-red sheen, and ember-red eyes only; casual uses the female generated image as the sole identity reference",
+    "equipment_lock": "One rear GN Drive Tau, compact Flag flight fins, one active red GN beam saber, one forearm defense rod; exactly two human arms and two human legs",
+    "casual_scene": "Elite speed skater during a quiet after-hours training lap"
+  },
+  "jobs": [
+    {
+      "id": "gn-flag-ii-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-b8c18a49ef2abda8/runs/2026-09-15t015004z/01-female-anthro.txt",
+      "original_generated_file": "exec-f6dfb5de-a67d-4b47-9439-657c743dd5ee.png",
+      "file": "img/그라함 전용 유니온 플래그 커스텀Ⅱ(GN플래그)_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "5b4c6c9e8df0fe0b4c0f97c9fddfe0aeb0a99dd1808f57d61d15df55af2ee1e2",
+      "bytes": 215996
+    },
+    {
+      "id": "gn-flag-ii-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "gn-flag-ii-female-01",
+      "prompt": "generation/m-b8c18a49ef2abda8/runs/2026-09-15t015004z/02-male-anthro.txt",
+      "original_generated_file": "exec-1dcae62c-e8f3-498a-9fd4-88d3b3e0841a.png",
+      "file": "img/그라함 전용 유니온 플래그 커스텀Ⅱ(GN플래그)_cinematic_semi_real_m.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "1711c6f480574769843c61f8292556e163a4ae497427656b05ced0d06d147e69",
+      "bytes": 220202
+    },
+    {
+      "id": "gn-flag-ii-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "gn-flag-ii-female-01",
+      "prompt": "generation/m-b8c18a49ef2abda8/runs/2026-09-15t015004z/03-female-casual.txt",
+      "original_generated_file": "exec-32f72c58-6f11-4303-92db-cc9d3093c159.png",
+      "file": "img/그라함 전용 유니온 플래그 커스텀Ⅱ(GN플래그)_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "b66d53abfa4a224ff507338c9e668b88be7ab48f042209bdcd9c623ac7f89a6b",
+      "bytes": 211496
+    }
+  ]
+}
+

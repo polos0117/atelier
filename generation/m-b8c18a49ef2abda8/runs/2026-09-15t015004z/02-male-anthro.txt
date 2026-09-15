@@ -1,0 +1,28 @@
+Use case: stylized-concept
+Asset type: full-body Gundam anthropomorphization portrait for a character collection
+Input image: Image 1 is a COLOR-PALETTE REFERENCE ONLY from the female GN Flag counterpart. Do not copy her face, hairstyle, body shape, pose, or feminine anatomy.
+Primary request: Create the male anthropomorphization of the Graham Aker Custom Union Flag II, commonly called the GN Flag (SVMS-01X), from Mobile Suit Gundam 00 as one clearly adult man in his twenties. He must be a distinctly different person from the female counterpart and must not resemble the canonical pilot.
+
+PALETTE LOCK FROM IMAGE 1
+Match only these three human colors from the woman in Image 1: the same pale neutral skin tone, the same raven-black hair color with a subtle dark wine-red sheen, and the same ember-red eye color. Do not copy her facial geometry, diagonal fringe, shoulder-length haircut, hourglass figure, armor arrangement, pose, or expression.
+
+SUBJECT AND IDENTITY
+A very tall adult man with a lean long-limbed duelist’s build, broad angular shoulders, a narrow straight waist, long powerful legs, and defined but not bulky musculature. A distinct masculine face: broad rectangular cheek structure, firm square jaw, blunt chin, strong straight nose, thin lips, heavy level brows, and deep-set ember-red eyes. Clean-shaven. His expression is calm, severe, and obsessively focused, with no smile. Raven-black medium-short hair with a dark wine-red sheen, swept sharply backward in compact wind-cut layers with a fully visible forehead; clearly different from the woman’s shoulder-length diagonal-fringe hairstyle. Face fully visible. No pilot likeness.
+
+MECHA TRANSLATION
+Faithfully preserve the unmistakable GN Flag identity: extremely slim black and charcoal aerodynamic armor, narrow pointed chest and waist construction, long blade-like leg armor, compact angular shoulder shells, silver-gray frame edges, restrained white panel accents, and vivid red-orange GN sensor glow. Fully armored masculine presentation with no exposed torso.
+Mount one compact truncated-cone GN Drive Tau at the upper back as clearly external mechanical equipment, with restrained red GN particle light and tidy power conduits. Keep compact Flag flight-control surfaces and narrow black back fins external; they must not become organic wings or replace limbs. Preserve one long active red GN beam saber held as the primary dueling weapon and one compact forearm defense rod on the opposite arm. No linear rifle, no shield duplication, no extra beam blades.
+Exactly two normal human arms and exactly two normal human legs, anatomically correct, with two readable hands and two readable feet. No extra limbs, no aircraft nose replacing the torso, no mechanical face, no helmet, no mask.
+
+COMPOSITION
+Vertical 2:3. Tight intentional complete full-body framing at the largest practical scale, crown to both feet visible, minimal empty margin. Keep the GN Drive, back fins, defense rod, and full beam-saber blade inside the frame without making the figure unnecessarily small. Let the model choose a natural dynamic duelist pose and cinematic view angle; do not copy Image 1’s pose or camera direction. Face, both hands, both legs, and both feet must remain readable.
+
+SCENE AND LIGHTING
+A restrained dark mobile-suit maintenance bay with a smooth floor, faint structural detail, and no clutter or readable signage. Cool steel-blue key light, narrow red-orange rim light from the GN Drive and beam saber, subtle red GN particles close to the back unit, atmospheric depth. The man remains dominant.
+
+STYLE
+High-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization. Mature believable adult anatomy, dimensional painted skin, grouped painterly hair masses, precise mechanical forms in the same painted language, selective sharpness, and controlled reflections. Not live-action photography, not a 3D render, not glossy mobile-game key art, not cel-shaded anime.
+
+HARD CONSTRAINTS
+One clearly adult man only. Full body. Exactly two arms and two legs. No feminine breasts or feminine body silhouette. No cropped feet. No duplicate equipment, floating equipment, text, logos, captions, watermark, cockpit, pilot suit, gore, nudity, or transparent intimate areas. Do not enlarge the background or add arbitrary empty margins.
+

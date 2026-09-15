@@ -1,0 +1,24 @@
+Use case: identity-preserve
+Asset type: civilian lifestyle portrait for a character collection
+Input image: Image 1 is the sole identity reference for the female GN Flag anthropomorphization.
+Primary request: Create one new vertical full-body civilian image of exactly the same clearly adult woman from Image 1 as an elite speed skater during a quiet after-hours training lap. Preserve her identity precisely while removing every mecha, armor, weapon, and military element.
+
+IDENTITY LOCK
+Keep exactly the same adult woman in her twenties from Image 1: the same long diamond-shaped face, high lateral cheekbones, angular jaw, pointed chin, straight high-bridged nose, fuller lower lip, narrow deep-set ember-red eyes, pale neutral skin, very tall lean hourglass fighter’s physique, narrow athletic shoulders, sharply defined waist, strong hips and thighs, and very long legs. Preserve the same raven-black shoulder-length layered hair with its dark wine-red underlayer and high side part; secure only the lower length in a practical low loop while keeping the distinctive diagonal front fringe and facial silhouette recognizable. Her expression is cool, intent, and intensely focused, with no smile. No age drift, ethnicity drift, face drift, skin-tone change, or body redesign.
+
+CIVILIAN LOOK
+Remove all mobile-suit elements completely: no black armor plates, no GN Drive, no back fins, no flight surfaces, no defense rod, no beam saber, no glowing weapon, no mechanical limbs, no helmet, no pilot suit. Normal human body with exactly two arms and two legs.
+Dress her in a sophisticated opaque speed-skating training look derived from the black, charcoal, silver, and restrained red palette: a fitted long-sleeve matte-black technical zip top with an asymmetric charcoal shoulder panel and high secure neckline, high-waisted charcoal-black full-length skating tights with subtle wine-red side piping, slim black gloves, and professional black long-blade speed skates. The outfit is athletic, elegant, adult, practical, non-transparent, and subtly alluring through its clean silhouette, with full intimate coverage and no logos.
+
+SCENE AND ACTION
+An empty modern indoor speed-skating oval after hours. She is captured mid-glide on the inside lane in a controlled acceleration phase, torso inclined naturally forward, one arm sweeping back and the other moving forward, one long skate pushing outward while the other tracks cleanly beneath her. Her full body, face, hands, both skates, and the long blades are readable. The rink architecture is restrained and softly defocused, with only a few low red lane markers and no readable signs, spectators, or other people.
+
+COMPOSITION
+Vertical 2:3. Tight intentional full-body framing at the largest practical scale, from the top of her hair to both skate blades, minimal headroom and ice margin. Three-quarter front cinematic view at approximately rink-barrier height, close enough for identity and expression while preserving the entire athletic action. Do not pull the camera far back, do not add arbitrary empty margins, and do not copy the armored reference pose.
+
+STYLE AND LIGHTING
+High-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization, matching Image 1’s sophisticated painted language rather than its armor. Cool blue-white rink light, a restrained warm red rim from track lighting, soft ice reflections, dimensional painted skin, tactile technical fabric, grouped painterly black-and-wine hair, selective sharpness. Not live-action photography, not a 3D render, not glossy mobile-game key art, not cel-shaded anime.
+
+HARD CONSTRAINTS
+One clearly adult woman only. Same identity as Image 1. Exactly two human arms, two hands, and two legs. No cropped skates or blades. No mecha remnants, armor, weapons, sci-fi equipment, text, logos, watermark, spectators, duplicated limbs, distorted hands, nudity, transparent intimate areas, exposed nipples, visible areolae, or exposed genitals.
+
