@@ -1394,24 +1394,32 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     document.getElementById('pair'+n+'ExampleCustom').classList.toggle('hidden',sel.value!=='__custom__');
   }
 
-  function pairForPanel(n){return n<=2?1:n<=4?2:3;}
-  function pairUsed(n,ps){if(ps&&ps.pairs)return ps.pairs[n].use;
-    const el=document.getElementById('pair'+n+'Use');return !el||el.checked;}
+  /* 콜라주 쪽 열일곱 가지도 lib/prompt-lifestyle.js 로 옮겼다.
+     화면에서 값을 걷는 일(readPanelState·getAdvanced 등)만 여기 남는다 */
+  function pairForPanel(n){return Math.ceil(n/2);}
+  function pairUsed(n,ps){return AL.pairUsed(n,ps||readPanelState());}
+  function getPair(n,ps){return AL.getPair(n,ps||readPanelState());}
+  function panelCat(n,ps){return AL.panelCat(n,ps||readPanelState());}
+  function panelCatCustom(n,ps){return AL.panelCatCustom(n,ps||readPanelState());}
+  function panelLabel(n,ps){return AL.panelLabel(n,ps||readPanelState());}
+  function buildCollagePrompt(st){
+    st=st||readCollageState();
+    return AL.buildCollage(Object.assign({},st,{
+      panels:st.panels||readPanelState(),
+      gender:curGender(), style:styleKey(), record:recOf(mechKey()),
+      suppressed:SUPPRESSED,
+      globals:{
+        expressionMode:(document.getElementById('globalExpressionMode')||{}).value||'',
+        orientationMix:(document.getElementById('globalOrientationMix')||{}).value||'',
+        frame:(document.getElementById('clgFrame')||{}).value||'',
+      },
+    }));
+  }
+
+
   /* 패널이 실제로 따를 카테고리 — Pair 로 묶여 있으면 Pair 것, 아니면 개별 선택 */
-  function panelCat(n,ps){
-    const p=pairForPanel(n);
-    if(ps&&ps.pairs)return pairUsed(p,ps)?ps.pairs[p].key:(ps.panels[n].cat||'auto_random');
-    if(pairUsed(p))return document.getElementById('pair'+p+'Select').value;
-    const el=document.getElementById('panel'+n+'Cat');
-    return (el&&el.value)||'auto_random';
-  }
-  function panelCatCustom(n,ps){
-    const p=pairForPanel(n);
-    if(ps&&ps.pairs)return pairUsed(p,ps)?ps.pairs[p].custom:ps.panels[n].catCustom;
-    if(pairUsed(p))return document.getElementById('pair'+p+'Custom').value.trim();
-    const el=document.getElementById('panel'+n+'CatCustom');
-    return el?el.value.trim():'';
-  }
+
+
   function renderPanelCat(n,keep=true){
     const sel=document.getElementById('panel'+n+'Cat'); if(!sel)return;
     const prev=keep?sel.value:'';
@@ -1918,16 +1926,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
      있으면 그 글이 나가고, 없으면 예전처럼 라벨이 나간다. 목록은 어느 쪽이든 r[1] 이다. */
 
 
-  function getPair(n,ps){
-    if(ps&&ps.pairs){const q=ps.pairs[n];
-      return{key:q.key,custom:q.custom,exampleKey:q.exampleKey,exampleCustom:q.exampleCustom};}
-    return{
-      key:document.getElementById('pair'+n+'Select').value,
-      custom:document.getElementById('pair'+n+'Custom').value.trim(),
-      exampleKey:document.getElementById('pair'+n+'Example').value,
-      exampleCustom:document.getElementById('pair'+n+'ExampleCustom').value.trim()
-    };
-  }
+
   /* ══ 콜라주 패널 입력 모으기 ══
      여섯 칸과 세 쌍의 값이 화면 곳곳(pair1Select, panel3Cat, [data-ov-panel] …)에
      흩어져 있어, 프롬프트를 짜는 함수마다 제 손으로 뒤지고 있었다.
@@ -1964,240 +1963,27 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
   }
 
   function getAdvanced(){const o={};Object.keys(ADVANCED_OPTIONS).forEach(k=>{const v=document.getElementById('adv_'+k).value;if(v)o[k]=v;});return o;}
-  function pairLabel(p,n){if(p.key==='__custom__')return p.custom||('Custom Pair '+n);return(CAT[p.key]||CAT.auto_random).eng;}
 
-  function pairInstruction(p,pairNum,a,b,ps){
-    let txt='';
-    if(p.key==='__custom__'){
-      txt='PAIR '+pairNum+' — PANELS '+a+'-'+b+' — CUSTOM\nInterpret this pair as: '+(p.custom||'Create a fresh mature category of your choice.')+'.\nPanel '+a+' is the lighter or more restrained version. Panel '+b+' is the clearly stronger version.';
-    }else if(p.key==='auto_random'){
-      txt='PAIR '+pairNum+' — PANELS '+a+'-'+b+' — AUTO / RANDOM\nInvent a fresh mature category not duplicated by the other pairs. Panel '+a+' is lighter; Panel '+b+' is clearly stronger.';
-    }else{
-      const c=CAT[p.key];
-      txt='PAIR '+pairNum+' — PANELS '+a+'-'+b+' — '+c.eng+'\n'+c.guide+'\nPanel '+a+' should be comparatively lighter or more restrained. Panel '+b+' should be clearly bolder or stronger while remaining non-explicit.';
-    }
-    const ex=exampleText(p.key,p.exampleKey,p.exampleCustom);
-    if(ex)txt+='\nUse this pair-level example as the thematic anchor: '+ex+'.';
-    txt+=heritageLine(p.key,p.exampleKey);
-    const pgv=ps?(ps.pairs[pairNum].adv.pair_gap||''):
-      (function(){const e=document.getElementById('pair'+pairNum+'Adv_pair_gap');return e?e.value:'';})();
-    if(pgv)txt+='\nIntensity gap between these two panels: '+pgv+
-      ' (overrides the global pair-gap setting for this pair only).';
-    return txt;
-  }
 
-  function panelLabel(n,ps){
-    const cat=panelCat(n,ps);
-    if(cat==='__custom__')return panelCatCustom(n,ps)||('Custom Panel '+n);
-    return (CAT[cat]||CAT.auto_random).eng;
-  }
-  function structureBlock(ps){
-    const rows=[];
-    [1,2,3].forEach(p=>{
-      const a=(p-1)*2+1,b=a+1;
-      if(pairUsed(p,ps)){
-        rows.push('Pair '+p+' = Panel '+a+' < Panel '+b+' = '+pairLabel(getPair(p,ps),p));
-      }else{
-        rows.push('Panel '+a+' = '+panelLabel(a,ps)+'   (independent)');
-        rows.push('Panel '+b+' = '+panelLabel(b,ps)+'   (independent)');
-      }
-    });
-    let txt='[PANEL STRUCTURE]\n\n'+rows.join('\n');
-    if([1,2,3].some(q=>pairUsed(q,ps)))
-      txt+='\n\nWithin each pair, the first panel is relatively lighter or more restrained and the second panel is clearly stronger, bolder, more visually striking, or more intense.';
-    if(![1,2,3].every(q=>pairUsed(q,ps)))
-      txt+='\n\nPanels marked independent are not paired. Do not build a lighter/stronger relationship between them — treat each as its own separate concept.';
-    return txt;
-  }
-  function panelDirection(n,ps){
-    const cat=panelCat(n,ps);
-    let txt='PANEL '+n+' — ';
-    if(cat==='__custom__'){
-      txt+='CUSTOM\nInterpret this panel as: '+(panelCatCustom(n)||'Create a fresh mature category of your choice.')+'.';
-    }else if(cat==='auto_random'){
-      txt+='AUTO / RANDOM\nInvent a fresh mature category not duplicated by any other panel.';
-    }else{
-      const c=CAT[cat]; txt+=c.eng+'\n'+c.guide;
-    }
-    const ex=exampleText(cat,document.getElementById('panel'+n+'Example').value,
-                         document.getElementById('panel'+n+'ExampleCustom').value.trim());
-    if(ex)txt+='\nUse this as the thematic anchor: '+ex+'.';
-    txt+=heritageLine(cat,document.getElementById('panel'+n+'Example').value);
-    return txt;
-  }
-  function directionBlocks(ps){
-    const out=[];
-    [1,2,3].forEach(p=>{
-      const a=(p-1)*2+1,b=a+1;
-      if(pairUsed(p,ps))out.push(pairInstruction(getPair(p,ps),p,a,b,ps));
-      else{out.push(panelDirection(a,ps));out.push(panelDirection(b,ps));}
-    });
-    return out.join('\n\n');
-  }
 
-  function panelOverrideBlocks(ps){
-    const out=[];
-    /* 라벨은 "sleepy — 졸린 느낌" 형태다. 프롬프트에는 영문만 넣는다 */
-    const en=a2=>Object.fromEntries(a2.map(o=>[o[0],(o[1]||'').split(' — ')[0]]));
-    const exprMap=en(EXPRESSION_OPTIONS);
-    const orientMap=en(ORIENTATION_OPTIONS);
-    const poseMap=en(POSE_OPTIONS);
-    for(let n=1;n<=6;n++){
-      const cat=panelCat(n,ps);
-      const pn=(ps&&ps.panels)?ps.panels[n]:null;
-      const exampleValue=pn?pn.exampleKey:document.getElementById('panel'+n+'Example').value;
-      const exampleCustom=pn?pn.exampleCustom:document.getElementById('panel'+n+'ExampleCustom').value;
-      const ex=exampleText(cat,exampleValue,exampleCustom);
-      const vals={};
-      if(pn){Object.keys(pn.ov).forEach(k=>{const v=(pn.ov[k]||'').trim();if(v)vals[k]=v;});}
-      else document.querySelectorAll('[data-ov-panel="'+n+'"]').forEach(inp=>{
-        const v=(inp.value||'').trim();
-        if(v)vals[inp.dataset.ovKey]=v;
-      });
-      /* 패널에 값이 없으면 그 Pair 값을 물려받는다 */
-      const pp=pairForPanel(n);
-      const axes=[];
-      LOCAL_AXES.forEach(k=>{
-        let v=ps?(ps.panels[n].ov['adv_'+k]||''):
-          (function(){const e=document.querySelector('[data-ov-panel="'+n+'"][data-ov-key="adv_'+k+'"]');return e?e.value:'';})();
-        if(!v)v=ps?(ps.pairs[pp].adv[k]||''):
-          (function(){const e=document.getElementById('pair'+pp+'Adv_'+k);return e?e.value:'';})();
-        if(v)axes.push([k,v]);
-      });
-      [['expression','expr','Expr'],['orientation','orient','Orient'],['pose','pose','Pose']].forEach(([k,sk,id])=>{
-        if(vals[k])return;
-        const v=ps?ps.pairs[pp][sk]:
-          (function(){const e=document.getElementById('pair'+pp+id);return e?e.value:'';})();
-        if(v)vals[k]=v;
-      });
-      if(ex||Object.keys(vals).length||axes.length){
-        const lines=['[PANEL '+n+' OVERRIDE]'];
-        if(ex)lines.push('Panel Example Concept: '+ex);
-        if(vals.expression)lines.push('Expression: '+(exprMap[vals.expression]||vals.expression)+
-          (EXPRESSION_DETAIL[vals.expression]?' \u2014 '+EXPRESSION_DETAIL[vals.expression]:''));
-        if(vals.orientation)lines.push('Body Orientation: '+(orientMap[vals.orientation]||vals.orientation));
-        if(vals.pose)lines.push('Pose: '+(poseMap[vals.pose]||vals.pose));
-        if(vals.scene)lines.push('Scene / Location: '+vals.scene);
-        if(vals.outfit)lines.push('Outfit: '+vals.outfit);
-        if(vals.action)lines.push('Action / Pose: '+vals.action);
-        if(vals.camera)lines.push('Camera / Lighting: '+vals.camera);
-        if(vals.extra)lines.push('Extra: '+vals.extra);
-        axes.forEach(([k,v])=>lines.push((ADV_EN[k]||k)+': '+v+' (overrides the global setting for this panel only)'));
-        out.push(lines.join('\n'));
-      }
-    }
-    return out;
-  }
+
+
+
+
+
+
+
 
   let SUPPRESSED=[];
 
-  function additionalSettings(adv,custom){
-    const map={
-      overall_intensity:'Overall sensual intensity',
-      pair_gap:'Pair intensity gap',
-      outfit_variety:'Outfit variety',
-      scene_variety:'Scene variety',
-      pose_variety:'Pose variety',
-      camera_variety:'Camera variety',
-      skin_exposure:'Visible non-intimate skin exposure',
-      separates_preference:'Separates preference',
-        action_level:'Action balance',
-      direct_gaze_limit:'Maximum direct-camera gazes',
-      smile_limit:'Maximum obvious smiles',
-      unexpected_cuts:'Minimum unexpected coherent cuts',
-      source_influence:'SOURCE influence outside source-editorial panels'
-    };
-    /* 표정·시점·포즈를 여섯 칸 모두 직접 지정했다면, 그 개수를 세는 전역 축은
-       의미가 없어지고 지시가 겹친다. 그럴 때는 프롬프트에서 뺀다. */
-    const allSet=key=>{
-      for(let n=1;n<=6;n++){
-        const pe=document.querySelector('[data-ov-panel="'+n+'"][data-ov-key="'+key+'"]');
-        let v=pe?pe.value:'';
-        if(!v){const id={expression:'Expr',orientation:'Orient',pose:'Pose'}[key];
-          const pa=document.getElementById('pair'+pairForPanel(n)+id); v=pa?pa.value:'';}
-        if(!v)return false;
-      }
-      return true;
-    };
-    /* 한 칸이라도 직접 지정했나 */
-    const anySet=key=>{
-      for(let n=1;n<=6;n++){
-        const pe=document.querySelector('[data-ov-panel="'+n+'"][data-ov-key="'+key+'"]');
-        if(pe&&pe.value)return true;
-        const id={expression:'Expr',orientation:'Orient',pose:'Pose'}[key];
-        const pa=document.getElementById('pair'+pairForPanel(n)+id);
-        if(pa&&pa.value)return true;
-      }
-      return false;
-    };
-    const drop={};
-    if(allSet('expression'))drop.smile_limit=1;
-    if(allSet('orientation')){drop.direct_gaze_limit=1;drop.camera_variety=1;}
-    if(allSet('pose'))drop.pose_variety=1;
-    const lines=[];
-    Object.entries(adv).forEach(([k,v])=>{if(!drop[k])lines.push('- '+(map[k]||k)+': '+v+'.');});
-    SUPPRESSED=Object.keys(drop).filter(k=>adv[k]);
-    const expr=document.getElementById('globalExpressionMode').value;
-    const orient=document.getElementById('globalOrientationMix').value;
-    /* 여섯 칸을 다 지정했으면 "다양하게 하라"는 지정값과 정면으로 부딪힌다. 그때는 빼고,
-       일부만 지정했으면 지정 안 한 칸에만 걸도록 범위를 좁힌다 */
-    if(expr&&!allSet('expression'))
-      lines.push('- Global expression mode: '+expr+
-        (anySet('expression')
-          ? '. Apply this only to panels that carry no explicit Expression setting; panels that specify one keep it exactly as written.'
-          : '. Use varied expressions and avoid repeated blank faces.'));
-    if(orient&&!allSet('orientation'))
-      lines.push('- Global body-orientation mix: '+orient+
-        (anySet('orientation')
-          ? '. Apply this only to panels that carry no explicit Body Orientation setting; panels that specify one keep it exactly as written.'
-          : '. Deliberately vary front-facing, side, and back-emphasis shots.'));
-    const frameBase=document.getElementById('clgFrame')&&document.getElementById('clgFrame').value;
-    if(frameBase)lines.push('- Baseline framing across all six panels: '+frameBase+'. Camera-distance and angle variation should happen around this baseline rather than replacing it, unless an individual panel explicitly overrides it.');
-    if(custom)lines.push('- Additional custom instruction: '+custom+'.');
-    if(!lines.length)lines.push('- Use balanced defaults.');
-    return lines.join('\n');
-  }
+
 
   /* 직접 지정한 항목까지 "알아서 다양하게 하라"고 또 시키면 지시가 겹친다.
      Pair 를 다 풀었는데 강약 확인을 요구하는 것처럼 정면으로 모순되는 문장도 있어
      상황에 따라 문장을 골라 넣는다. */
-  function fixedAll(key){
-    for(let n=1;n<=6;n++){
-      const pe=document.querySelector('[data-ov-panel="'+n+'"][data-ov-key="'+key+'"]');
-      let v=pe?pe.value:'';
-      if(!v){const id={expression:'Expr',orientation:'Orient',pose:'Pose'}[key];
-        const pa=document.getElementById('pair'+pairForPanel(n)+id); v=pa?pa.value:'';}
-      if(!v)return false;
-    }
-    return true;
-  }
-  function diversityBlock(ps,adv){
-    const anyPair=[1,2,3].some(p=>pairUsed(p,ps));
-    const parts=['Create six substantially different scenes. The six panels should differ in location, action, outfit silhouette, body configuration, camera distance, camera angle, lighting, and atmosphere.',
-      'Changing only colors, accessories, minor straps, mirrored poses, hand positions, or room props does NOT count as meaningful novelty.',
-      'If several outfits would look almost identical as black silhouettes, redesign them.'];
-    if(!(adv||getAdvanced()).action_level)
-      parts.push('At least four panels should show meaningful action and at least two should feel caught midway.');
-    if(!fixedAll('expression'))
-      parts.push('Avoid defaulting to the same blank neutral face across the collage.');
-    if(!fixedAll('orientation'))
-      parts.push('Deliberately vary front-facing, side, and rear-three-quarter body orientation.');
-    parts.push('Avoid repeating the same dominant sensual mechanism across multiple panels.');
-    return '[GLOBAL DIVERSITY]\n\n'+parts.join(' ')+(anyPair?'':'');
-  }
-  function finalCheckBlock(){
-    const v=['exactly six panels','3×2 landscape layout','same adult '+GW()+' in all panels',
-      'only numbers 1–6 appear','the selected category and example for each panel is followed'];
-    if([1,2,3].some(pairUsed))
-      v.push('within each linked pair, the second panel is clearly stronger than the first');
-    if(![1,2,3].every(pairUsed))
-      v.push('panels marked independent share no lighter/stronger relationship');
-    if(!fixedAll('expression'))v.push('expressions are meaningfully varied and do not collapse into blank faces');
-    if(!fixedAll('orientation'))v.push('front/side/back body orientation is intentionally distributed');
-    v.push('outfits, scenes, actions, poses, and camera treatments remain varied');
-    v.push('no explicit nudity or sexual activity');
-    return '[FINAL CHECK]\n\nVerify: '+v.join('; ')+'.';
-  }
+
+
+
   /* ══ 단일 컷 ══
      콜라주의 여섯 칸 규칙(강약 쌍, 다양성, 개수 제한)은 전부 뺀다.
      한 장에서는 셀 대상이 없어 그 지시들이 의미를 잃는다. */
@@ -2477,38 +2263,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
       carryFace:chk('carryFace'), carryBody:chk('carryBody'),
     };
   }
-  function buildCollagePrompt(st){
-    st=st||readCollageState();
-    const ps=st.panels||readPanelState();
-    const s=st.source,adv=st.adv,custom=st.custom;
-    const parts=[
-      '[INPUT]\n\nSOURCE MOBILE SUIT: ['+s.mech+']\n\nThis name is identity-provenance metadata only, used for lore, personality, and occupation context. It must not be used to reconstruct, restore, or invent mobile-suit armor, weapons, shields, backpacks, mechanical limbs, or other canonical equipment.\n\nUse the attached clearly adult anthropomorphized character as the absolute identity and equipment reference for this image.',
-      '[IDENTITY LOCK]\n\nUse the SAME clearly adult '+GW()+' in all six panels. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, '+GCHEST()+', waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign. Only identity repeats. Facial expression is not identity. The brows, eyelids, eye openness, mouth shape and lip parting must follow the expression specified elsewhere in this prompt \u2014 "preserve mouth shape" refers to the resting structure and proportion of the lips, not to holding a neutral mouth. A specified expression must be clearly readable on the face.',
-      lifestyleReferenceLock(),
-      carryBlock(st.carryFace,st.carryBody),
-      '[OUTPUT]\n\nCreate ONE SINGLE 3:2 LANDSCAPE image as a clean 3-column × 2-row collage:\n1 | 2 | 3\n4 | 5 | 6\nExactly six equal, approximately square panels. Only small numerals 1–6 in the upper-left corners. No captions, titles, labels, subtitles, logos-as-text, or other words. Exactly one '+GW()+' per panel.',
-      lifestyleStyleBlock(),
-      structureBlock(ps),
-      diversityBlock(ps,adv),
-      directionBlocks(ps),
-      '[ADDITIONAL SETTINGS]\n\n'+additionalSettings(adv,custom)
-    ];
-    /* 예전에는 여기서 [ALREADY USED FOR THIS CHARACTER] 를 붙여, 이 기체로 이미
-       뽑은 카테고리·예시를 늘어놓고 "이것들과 다르게 하라" 고 시켰다. 그런데 목록에
-       들어가던 것이 내부 열쇠를 밑줄만 바꾼 것이었다 — open_shirt_lingerie 가
-       "open shirt lingerie" 로 실렸다. 사람이 읽으라고 만든 말도 아니고 화면에
-       뜨는 이름도 아닌, 코드 안에서 쓰는 이름이 그대로 나간 셈이다.
-       회피는 이미 뽑기 쪽에서 한다 — "이미 쓴 카테고리는 빼고 뽑기" 를 켜면
-       freshPool 이 후보에서 빼므로, 프롬프트에 이력을 적지 않아도 겹치지 않는다.
-       쓴 컷 목록은 화면에 그대로 있다. */
-    const ovs=panelOverrideBlocks(ps);
-    if(ovs.length)parts.push('[PANEL OVERRIDES]\n\n'+ovs.join('\n\n'));
-    parts.push('[NON-EXPLICIT LIMITS]\n\nThe character must clearly read as an adult. The garments are securely fitted and fully opaque, and the styling is suitable for a mainstream fashion or lifestyle editorial. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.');
-    parts.push(finalCheckBlock());
-    const full=parts.filter(Boolean).join('\n\n==================================================\n\n');
-    auditPrompt(MODE.LIFESTYLE,full);
-    return full;
-  }
+
   /* ══ 콜라주 사용 기록 ══
      "이 기체로 이 카테고리 프롬프트를 복사했다"는 사실만 남긴다.
      6장 중 무엇을 채택했는지는 알 수 없으므로, 채택 기록이 아니라 복사 기록이다. */
@@ -2648,7 +2403,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     o.ravoid=document.getElementById('randomAvoidUsed').checked;
     o.rmode=document.getElementById('randomMode').value;
     o.rtgt={}; document.querySelectorAll('[data-rt]').forEach(el=>o.rtgt[el.dataset.rt]=el.checked);
-    o.use=[1,2,3].map(pairUsed);
+    o.use=[1,2,3].map(p=>pairUsed(p));   /* map 은 색인을 둘째 인자로 넘긴다 — 그대로 주면 안 된다 */
     o.padv={}; [1,2,3].forEach(n=>{o.padv[n]={};
       PAIR_ONLY.concat(LOCAL_AXES).forEach(k2=>{
         const el=document.getElementById('pair'+n+'Adv_'+k2); if(el)o.padv[n][k2]=el.value;});});
