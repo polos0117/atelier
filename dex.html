@@ -279,10 +279,14 @@ function useAtelierData() {
 
 /* 그림이 실제로 든 몫을 고른다. 기본 몫이 비고 화풍 몫에만 있는 카드가 있어서,
    이름으로 고르지 않고 내용으로 고른다 (dex.html 의 bucketOf 와 같은 규칙) */
+/* 화풍 고르개의 특별한 값 — 그림이 한 장도 없는 카드만 본다.
+   무엇을 아직 안 뽑았는지 찾을 때 쓴다 (작업 모드는 초상 두 장 기준이라 다르다) */
+const NOPIC = '__none__';
+
 function bucketOf(entry, style) {
   if (!entry) return null;
   const bs = AIMG.styleMap(entry);
-  if (style) {
+  if (style && style !== NOPIC) {
     /* 화풍 미상 = 화풍 토막 없이 기본 자리에 있는 그림 */
     if (style === 'unknown') return AIMG.hasPic(entry) ? entry : null;
     return AIMG.hasPic(bs[style]) ? bs[style] : null;
@@ -299,6 +303,8 @@ function stylesOf(entry) {
   if (AIMG.hasPic(entry)) out.push('unknown');
   return out;
 }
+/* 그림이 한 장도 없는 카드인가 */
+function hasNoPic(entry) { return !stylesOf(entry).length; }
 function shotsOfBucket(b, mode, v) {
   if (!b) return [];
   if (mode === 'c') return AIMG.cuts(b, 'casual', v);
@@ -494,6 +500,20 @@ function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender,
           <button onclick=${onClose}>닫기</button>
         </div>
         <div class="body">
+          ${!mine.length && html`
+            <div class="tk">
+              아직 그림이 없는 카드다. 참고용으로 외부에서 원본 디자인을 찾아볼 수 있다
+              (이미지를 가져오지 않는다 — 검색 결과 페이지로 넘어갈 뿐이다).
+              <div class="lnk">
+                <a href=${'https://www.google.com/search?tbm=isch&q=' + encodeURIComponent(card.name) + '+건담'}
+                   target="_blank" rel="noopener">구글 이미지에서 찾아보기 →</a>
+              </div>
+              <div class="lnk">
+                <a href=${'https://www.google.com/search?q=site%3Agundam.fandom.com+' + encodeURIComponent(card.name) + '+건담'}
+                   target="_blank" rel="noopener">건담 위키에서 찾아보기 →</a>
+              </div>
+            </div>`}
+
           ${shown
             ? html`<div class="art" onclick=${() => onZoom(all.length ? all : [shown], shownIdx)}>
                      ${/* 여기는 300px 폭으로 크게 그린다. 썸네일(긴 변 512)을 쓰면
@@ -659,20 +679,26 @@ function App() {
     const needle = q.trim().toLowerCase();
     return data.cards[tab]
       .filter(c => !needle || c.name.toLowerCase().includes(needle))
-      /* 작업 모드는 "아직 없는 것"을 보는 화면이라 그림 유무로 거르지 않는다 */
-      .filter(c => mode === 'p' || mode === 'w' || shotsFor(data.img[c.name], mode, v).length);
-  }, [data, tab, q, mode, v]);
+      /* 작업 모드와 "그림 없음" 은 아직 없는 것을 보는 쪽이라 그림 유무로 거르지 않는다 */
+      .filter(c => mode === 'p' || mode === 'w' || style === NOPIC
+        || shotsFor(data.img[c.name], mode, v).length);
+  }, [data, tab, q, mode, v, style]);
 
   const styleCount = useMemo(() => {
     const cnt = {};
-    base.filter(c => !ser || serOf(c).indexOf(ser) >= 0)
-      .forEach(c => stylesOf(data && data.img[c.name]).forEach(k => { cnt[k] = (cnt[k] || 0) + 1; }));
+    base.filter(c => !ser || serOf(c).indexOf(ser) >= 0).forEach(c => {
+      const ks = stylesOf(data && data.img[c.name]);
+      if (!ks.length) cnt[NOPIC] = (cnt[NOPIC] || 0) + 1;
+      ks.forEach(k => { cnt[k] = (cnt[k] || 0) + 1; });
+    });
     return cnt;
   }, [base, ser]);
 
   const serCount = useMemo(() => {
     const cnt = {};
-    base.filter(c => !style || stylesOf(data && data.img[c.name]).indexOf(style) >= 0)
+    base.filter(c => !style || (style === NOPIC
+        ? hasNoPic(data && data.img[c.name])
+        : stylesOf(data && data.img[c.name]).indexOf(style) >= 0))
       .forEach(c => serOf(c).forEach(k => { cnt[k] = (cnt[k] || 0) + 1; }));
     return cnt;
   }, [base, style]);
@@ -681,7 +707,7 @@ function App() {
   /* 작업 줄에 "지금 이 줄이 어느 화풍인지" — 여럿이면 +N 으로 알린다 */
   const styleTextOf = name => {
     const ks = stylesOf(data.img[name]);
-    if (!ks.length) return data.styleName.unknown;
+    if (!ks.length) return '그림 없음';
     const cur = (style && ks.indexOf(style) >= 0) ? style : ks[0];
     return (data.styleName[cur] || cur) + (ks.length > 1 ? ' +' + (ks.length - 1) : '');
   };
@@ -698,9 +724,11 @@ function App() {
     if (!data) return [];
     return base
       .filter(c => !ser || serOf(c).indexOf(ser) >= 0)
-      .filter(c => !style || stylesOf(data.img[c.name]).indexOf(style) >= 0)
+      .filter(c => !style || (style === NOPIC
+        ? hasNoPic(data.img[c.name])
+        : stylesOf(data.img[c.name]).indexOf(style) >= 0))
       .map(c => ({ card: c, shots: shotsFor(data.img[c.name], mode, v, style) }))
-      .filter(r => mode === 'p' || mode === 'w' || r.shots.length);
+      .filter(r => mode === 'p' || mode === 'w' || style === NOPIC || r.shots.length);
   }, [data, base, mode, v, ser, style]);
 
 
@@ -722,7 +750,7 @@ function App() {
   const bits = [];
   if (q.trim()) bits.push('"' + q.trim() + '"');
   if (ser) bits.push(seriesName(ser));
-  if (style) bits.push(data.styleName[style] || style);
+  if (style) bits.push(style === NOPIC ? '그림 없음' : (data.styleName[style] || style));
   const activeCount = bits.length;
   const filterSummary = bits.length ? bits.join(' · ') : '전체 보기';
 
@@ -779,6 +807,8 @@ function App() {
         </select>
         <select value=${style} onchange=${e => setStyle(e.target.value)}>
           <option value="">화풍 전체</option>
+          ${styleCount[NOPIC] ? html`
+            <option value=${NOPIC}>그림 없음 ${styleCount[NOPIC]}</option>` : null}
           ${styleList.map(k => html`
             <option value=${k}>${data.styleName[k]} ${styleCount[k]}</option>`)}
         </select>
