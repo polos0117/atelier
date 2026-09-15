@@ -44,11 +44,19 @@ document.documentElement.dataset.density=v})();
 :root[data-density="relaxed"]{--ui-font:14px;--ui-small:12px;--ui-height:44px;--ui-pad:10px;--ui-gap:9px}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
+/* 목록만 굴린다. 예전에는 문서 전체가 굴러서, 위로 돌아가려면 내비·밀도·제목까지
+   거슬러 올라가야 했다. 화면을 세로로 둘로 나눠 머리말은 제자리에 두고
+   목록에만 굴림을 준다. 폰은 주소창이 들락거려 100vh 가 실제보다 크므로
+   dvh 를 먼저 쓰고 안 되는 브라우저만 vh 로 물러난다.
+   대신 목록을 내려도 주소창이 접히지 않는다 — 머리말이 안 움직이는 값이다. */
 body{
   background:var(--deck);color:var(--ink);
   font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;
-  font-size:15px;line-height:1.5;padding-bottom:env(safe-area-inset-bottom);
+  font-size:15px;line-height:1.5;
+  height:100vh; height:100dvh;
+  display:flex; flex-direction:column; overflow:hidden;
 }
+#app{display:flex;flex-direction:column;min-height:0;flex:1 1 auto}
 .mono{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace}
 .workspace-nav{display:flex;gap:var(--ui-gap);margin:0 0 8px;align-items:center;flex-wrap:wrap}
 .workspace-nav a{flex:1;min-height:var(--ui-height);display:flex;align-items:center;justify-content:center;
@@ -64,7 +72,7 @@ body{
   min-height:var(--ui-height);font-size:var(--ui-font)}
 .cap,.row .nm{font-size:var(--ui-font)}
 .ctl,.view-tools{gap:var(--ui-gap)}
-header{position:sticky;top:0;z-index:30;background:var(--deck);
+header{flex:0 0 auto;z-index:30;background:var(--deck);
   border-bottom:1px solid var(--rule);padding:calc(10px + env(safe-area-inset-top)) 12px 0}
 .brand{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
 .brand h1{margin:0;font-size:17px;font-weight:800;letter-spacing:.22em}
@@ -93,7 +101,9 @@ header{position:sticky;top:0;z-index:30;background:var(--deck);
   font-weight:700;padding:0 10px;cursor:pointer}
 .sw button.on{background:var(--plate);color:var(--void)}
 .sw button.none{opacity:.45}
-main{padding:12px}
+main{padding:12px;flex:1 1 auto;min-height:0;overflow-y:auto;
+  -webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+  padding-bottom:calc(12px + env(safe-area-inset-bottom))}
 /* 카드 크기는 dex.html 과 같은 값, 같은 저장 키(atelier_dex_compact_v1)를 쓴다.
    두 페이지를 오가도 설정이 따라온다 */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:var(--gap)}
@@ -717,7 +727,8 @@ function App() {
   };
   const pickTab = t => {
     setTab(t); setSer(''); setStyle('');
-    try { scrollTo(0, 0); } catch (e) {}
+    const box = document.querySelector('main');
+    if (box) box.scrollTop = 0;
   };
 
   const rows = useMemo(() => {
