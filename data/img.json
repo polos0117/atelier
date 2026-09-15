@@ -1,7 +1,7 @@
 {
  "version": 1,
  "note": "초상 파일 목록. 카드 이름 → {m, f, face, casual[], extra[], byStyle{}} 이다. 파일 이름이 곧 등록 정보라 register-images.py 가 저장소의 *.webp 를 훑어 없는 것만 더한다 — 이미 적힌 것과 얼굴 좌표(face)는 건드리지 않으니 손으로 넣은 항목이 덮이지 않는다. face 는 파일 이름에서 알 수 없어 비면 게임이 기본값을 쓰고, 어색하면 사람이 여기서 손본다. play.html 은 실행 중에도 GitHub 파일 목록으로 같은 규칙을 한 번 더 돌리므로(mergeRepoFiles) 여기 안 적혀 있어도 화면에는 뜬다. 다만 그때는 얼굴 좌표가 기본값이고 목록을 못 받으면 그만이라, 파일로 굳혀 두는 편이 낫다.",
- "count": 351,
+ "count": 356,
  "img": {
   "105 슬로터 대거": {"face": {"m": [0.36, 0.09, 0.1], "f": [0.44, 0.1, 0.1]}, "byStyle": {"cinematic_semi_real": {"m": "105_슬로터_대거_cinematic_semi_real_m.webp", "f": "105_슬로터_대거_cinematic_semi_real_f.webp", "casual": {"f": ["105_슬로터_대거_cinematic_semi_real_f_casual1.webp", "105_슬로터_대거_cinematic_semi_real_f_casual2.webp", "105_슬로터_대거_cinematic_semi_real_f_casual3.webp", "105_슬로터_대거_cinematic_semi_real_f_casual4.webp", "105_슬로터_대거_cinematic_semi_real_f_casual5.webp"]}}}},
   "GFreD": {"byStyle": {"cinematic_semi_real": {"f": "GFreD_cinematic_semi_real_f.webp", "casual": {"f": ["GFreD_cinematic_semi_real_f_casual1.webp"]}}, "anime_illust": {"f": "GFreD_anime_illust_f.webp", "casual": {"f": ["GFreD_anime_illust_f_casual1.webp"]}}}},
@@ -27,6 +27,7 @@
   "가브스레이": {"face": {"m": [0.468, 0.072, 0.13], "f": [0.434, 0.063, 0.13]}, "byStyle": {"cinematic_semi_real": {"m": "가브스레이_cinematic_semi_real_m.webp", "f": "가브스레이_cinematic_semi_real_f.webp", "casual": {"f": ["가브스레이_cinematic_semi_real_f_casual1.webp", "가브스레이_cinematic_semi_real_f_casual2.webp", "가브스레이_cinematic_semi_real_f_casual3.webp", "가브스레이_cinematic_semi_real_f_casual4.webp", "가브스레이_cinematic_semi_real_f_casual5.webp", "가브스레이_cinematic_semi_real_f_casual6.webp", "가브스레이_cinematic_semi_real_f_casual7.webp"]}}}},
   "가이아 건담": {"m": "가이아_건담_m.webp", "f": "가이아_건담_f.webp", "face": {"m": [0.402, 0.138, 0.16], "f": [0.393, 0.147, 0.16]}, "casual": {"f": ["가이아_건담_casual1.webp"]}},
   "가자C": {"byStyle": {"cinematic_semi_real": {"m": "가자C_cinematic_semi_real_m.webp", "f": "가자C_cinematic_semi_real_f.webp", "casual": {"f": ["가자C_cinematic_semi_real_f_casual1.webp"]}}}},
+  "가프란": {"byStyle": {"cinematic_semi_real": {"m": "가프란_cinematic_semi_real_m.webp", "f": "가프란_cinematic_semi_real_f.webp", "casual": {"f": ["가프란_cinematic_semi_real_f_casual1.webp"]}}}},
   "갓 건담": {"m": "갓_건담_m.webp", "f": "갓_건담_f.webp", "face": {"m": [0.347, 0.15, 0.186], "f": [0.342, 0.163, 0.186]}, "casual": {"f": ["갓_건담_casual1.webp"]}},
   "갸프랑": {"m": "갸프랑_m.webp", "f": "갸프랑_f.webp", "face": {"m": [0.465, 0.085, 0.1], "f": [0.455, 0.06, 0.105]}, "casual": {"f": ["갸프랑_casual1.webp", "갸프랑_casual2.webp"]}},
   "걍": {"m": "걍_m.webp", "f": "걍_f.webp", "face": {"m": [0.438, 0.103, 0.13], "f": [0.445, 0.113, 0.13]}, "casual": {"f": ["걍_casual1.webp", "걍_casual2.webp", "걍_casual3.webp", "걍_casual4.webp"]}},
@@ -180,6 +181,7 @@
   "로젠 줄루": {"byStyle": {"cinematic_semi_real": {"f": "로젠 줄루_cinematic_semi_real_f.webp", "casual": {"f": ["로젠 줄루_cinematic_semi_real_f_casual1.webp"]}}, "cel_anime": {"f": "로젠 줄루_cel_anime_f.webp", "casual": {"f": ["로젠 줄루_cel_anime_f_casual1.webp"]}}}},
   "리가지": {"m": "리가지_m.webp", "f": "리가지_f.webp", "face": {"m": [0.455, 0.055, 0.1], "f": [0.45, 0.075, 0.1]}, "casual": {"f": ["리가지_casual1.webp", "리가지_casual2.webp"]}},
   "리겔구": {"byStyle": {"cinematic_semi_real": {"m": "리겔구_cinematic_semi_real_m.webp", "f": "리겔구_cinematic_semi_real_f.webp", "casual": {"f": ["리겔구_cinematic_semi_real_f_casual1.webp"]}}}},
+  "리그 콘티오": {"byStyle": {"cinematic_semi_real": {"m": "리그 콘티오_cinematic_semi_real_m.webp", "f": "리그 콘티오_cinematic_semi_real_f.webp", "casual": {"f": ["리그 콘티오_cinematic_semi_real_f_casual1.webp"]}}}},
   "리본즈 건담": {"m": "리본즈_건담_m.webp", "f": "리본즈_건담_f.webp", "face": {"m": [0.458, 0.072, 0.124], "f": [0.462, 0.088, 0.122]}, "casual": {"f": ["리본즈_건담_casual1.webp"]}},
   "리오": {"byStyle": {"cinematic_semi_real": {"f": "리오_cinematic_semi_real_f.webp", "casual": {"f": ["리오_cinematic_semi_real_f_casual1.webp"]}}, "retro_anime": {"f": "리오_retro_anime_f.webp", "casual": {"f": ["리오_retro_anime_f_casual1.webp"]}}}},
   "리젤": {"m": "리젤_m.webp", "f": "리젤_f.webp", "face": {"m": [0.472, 0.1508, 0.125], "f": [0.442, 0.1758, 0.125]}, "casual": {"f": ["리젤_casual1.webp", "리젤_casual2.webp"]}},
@@ -268,6 +270,7 @@
   "앗가이": {"face": {"m": [0.432, 0.055, 0.13], "f": [0.408, 0.071, 0.13]}, "byStyle": {"cinematic_semi_real": {"m": "앗가이_cinematic_semi_real_m.webp", "f": "앗가이_cinematic_semi_real_f.webp", "casual": {"f": ["앗가이_cinematic_semi_real_f_casual1.webp", "앗가이_cinematic_semi_real_f_casual2.webp", "앗가이_cinematic_semi_real_f_casual3.webp", "앗가이_cinematic_semi_real_f_casual4.webp", "앗가이_cinematic_semi_real_f_casual5.webp", "앗가이_cinematic_semi_real_f_casual6.webp", "앗가이_cinematic_semi_real_f_casual7.webp", "앗가이_cinematic_semi_real_f_casual8.webp", "앗가이_cinematic_semi_real_f_casual9.webp", "앗가이_cinematic_semi_real_f_casual10.webp", "앗가이_cinematic_semi_real_f_casual11.webp"]}}}},
   "앗시마": {"byStyle": {"cinematic_semi_real": {"m": "앗시마_cinematic_semi_real_m.webp", "f": "앗시마_cinematic_semi_real_f.webp", "casual": {"f": ["앗시마_cinematic_semi_real_f_casual1.webp"]}}}},
   "야크트 도가": {"m": "야크트_도가_m.webp", "f": "야크트_도가_f.webp", "face": {"m": [0.415, 0.105, 0.2], "f": [0.395, 0.155, 0.2]}, "casual": {"f": ["야크트_도가_casual1.webp"]}},
+  "양산형 큐베레이": {"byStyle": {"cinematic_semi_real": {"m": "양산형 큐베레이_cinematic_semi_real_m.webp", "f": "양산형 큐베레이_cinematic_semi_real_f.webp", "casual": {"f": ["양산형 큐베레이_cinematic_semi_real_f_casual1.webp"]}}}},
   "어비스 건담": {"m": "어비스_건담_m.webp", "f": "어비스_건담_f.webp", "face": {"m": [0.395, 0.098, 0.17], "f": [0.396, 0.092, 0.16]}, "casual": {"f": ["어비스_건담_casual1.webp"]}},
   "어헤드": {"byStyle": {"cinematic_semi_real": {"f": "어헤드_cinematic_semi_real_f.webp", "casual": {"f": ["어헤드_cinematic_semi_real_f_casual1.webp"]}}, "game_keyart": {"f": "어헤드_game_keyart_f.webp", "casual": {"f": ["어헤드_game_keyart_f_casual1.webp"]}}}},
   "에피온": {"m": "에피온_m.webp", "f": "에피온_f.webp", "face": {"m": [0.4, 0.078, 0.195], "f": [0.4, 0.098, 0.195]}, "extra": {"f": ["에피온_extra1.webp"]}, "casual": {"f": ["에피온_casual1.webp"]}},
@@ -320,6 +323,7 @@
   "큐베레이": {"m": "큐베레이_m.webp", "f": "큐베레이_f.webp", "face": {"m": [0.415, 0.175, 0.17], "f": [0.399, 0.208, 0.16]}, "casual": {"f": ["큐베레이_casual1.webp"]}},
   "큐베레이 Mk-Ⅱ 플기": {"m": "큐베레이_Mk-Ⅱ_플기_m.webp", "f": "큐베레이_Mk-Ⅱ_플기_f.webp", "face": {"m": [0.417, 0.202, 0.16], "f": [0.407, 0.241, 0.16]}, "casual": {"f": ["큐베레이_Mk-Ⅱ_플기_casual1.webp"]}},
   "큐베레이 Mk-Ⅱ 플투기": {"m": "큐베레이_Mk-Ⅱ_플투기_m.webp", "f": "큐베레이_Mk-Ⅱ_플투기_f.webp", "face": {"m": [0.38, 0.16, 0.16], "f": [0.417, 0.146, 0.16]}, "casual": {"f": ["큐베레이_Mk-Ⅱ_플투기_casual1.webp"]}},
+  "크라우다": {"byStyle": {"cinematic_semi_real": {"m": "크라우다_cinematic_semi_real_m.webp", "f": "크라우다_cinematic_semi_real_f.webp", "casual": {"f": ["크라우다_cinematic_semi_real_f_casual1.webp"]}}}},
   "크로노스": {"byStyle": {"cinematic_semi_real": {"m": "크로노스_cinematic_semi_real_m.webp", "f": "크로노스_cinematic_semi_real_f.webp", "casual": {"f": ["크로노스_cinematic_semi_real_f_casual1.webp", "크로노스_cinematic_semi_real_f_casual2.webp", "크로노스_cinematic_semi_real_f_casual3.webp", "크로노스_cinematic_semi_real_f_casual4.webp", "크로노스_cinematic_semi_real_f_casual5.webp", "크로노스_cinematic_semi_real_f_casual6.webp", "크로노스_cinematic_semi_real_f_casual7.webp"]}}}},
   "크샤트리야": {"m": "크샤트리야_m.webp", "f": "크샤트리야_f.webp", "face": {"m": [0.443, 0.098, 0.13], "f": [0.443, 0.128, 0.125]}, "casual": {"f": ["크샤트리야_casual1.webp"]}},
   "크시 건담": {"m": "크시_건담_m.webp", "f": "크시_건담_f.webp", "face": {"m": [0.43, 0.115, 0.13], "f": [0.448, 0.075, 0.135]}, "casual": {"f": ["크시_건담_casual1.webp"]}},
@@ -352,6 +356,7 @@
   "하인드리 슈트룸": {"byStyle": {"cinematic_semi_real": {"f": "하인드리 슈트룸_cinematic_semi_real_f.webp", "casual": {"f": ["하인드리 슈트룸_cinematic_semi_real_f_casual1.webp"]}}, "painterly": {"f": "하인드리 슈트룸_painterly_f.webp", "casual": {"f": ["하인드리 슈트룸_painterly_f_casual1.webp"]}}}},
   "함마 함마": {"byStyle": {"cinematic_semi_real": {"f": "함마 함마_cinematic_semi_real_f.webp", "casual": {"f": ["함마 함마_cinematic_semi_real_f_casual1.webp"]}}, "cel_anime": {"f": "함마 함마_cel_anime_f.webp", "casual": {"f": ["함마 함마_cel_anime_f_casual1.webp"]}}}},
   "함브라비": {"face": {"f": [0.434, 0.086, 0.13], "m": [0.428, 0.091, 0.13]}, "byStyle": {"cinematic_semi_real": {"m": "함브라비_cinematic_semi_real_m.webp", "f": "함브라비_cinematic_semi_real_f.webp", "casual": {"f": ["함브라비_cinematic_semi_real_f_casual1.webp", "함브라비_cinematic_semi_real_f_casual2.webp"]}}, "glossy_kr_game": {"m": "함브라비_glossy_kr_game_m.webp", "f": "함브라비_glossy_kr_game_f.webp", "face": {"m": [0.414, 0.09, 0.13], "f": [0.421, 0.102, 0.13]}, "casual": {"f": ["함브라비_glossy_kr_game_casual1.webp", "함브라비_glossy_kr_game_casual2.webp", "함브라비_glossy_kr_game_casual3.webp", "함브라비_glossy_kr_game_casual4.webp", "함브라비_glossy_kr_game_casual5.webp", "함브라비_glossy_kr_game_casual6.webp", "함브라비_glossy_kr_game_casual7.webp", "함브라비_glossy_kr_game_casual8.webp", "함브라비_glossy_kr_game_casual9.webp"]}}}},
+  "햐쿠렌": {"byStyle": {"cinematic_semi_real": {"m": "햐쿠렌_cinematic_semi_real_m.webp", "f": "햐쿠렌_cinematic_semi_real_f.webp", "casual": {"f": ["햐쿠렌_cinematic_semi_real_f_casual1.webp"]}}}},
   "햐쿠리": {"byStyle": {"cinematic_semi_real": {"m": "햐쿠리_cinematic_semi_real_m.webp", "f": "햐쿠리_cinematic_semi_real_f.webp", "casual": {"f": ["햐쿠리_cinematic_semi_real_f_casual1.webp"]}}}},
   "헬름비게 린카": {"byStyle": {"cinematic_semi_real": {"f": "헬름비게 린카_cinematic_semi_real_f.webp", "casual": {"f": ["헬름비게 린카_cinematic_semi_real_f_casual1.webp"]}}}}
  }
