@@ -75,6 +75,14 @@ textarea{min-height:200px;font-family:ui-monospace,Menlo,monospace;font-size:11.
 .pdef label{display:block;font-size:11.5px;color:var(--dim);margin-bottom:3px}
 .pdef label b{color:var(--ink);font-weight:600}
 .out{margin-top:8px}
+.lockbtn{background:none;border:0;color:var(--dim);font-size:12px;cursor:pointer;
+  padding:0 4px;line-height:1;min-height:0}
+.lockbtn.on{color:var(--gold)}
+.chip{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--rule);
+  border-radius:999px;padding:5px 11px;font-size:var(--ui-small);color:var(--dim);
+  background:var(--panel);cursor:pointer}
+.chip.on{border-color:var(--gold);color:var(--plate)}
+.chip input{width:auto;min-height:0;margin:0}
 .bar{display:flex;gap:6px;align-items:center;margin:8px 0}
 .btn{background:var(--panel);border:1px solid var(--rule);color:var(--ink);font:inherit;
   font-size:var(--ui-font);border-radius:7px;padding:8px 12px;min-height:var(--ui-height);cursor:pointer}
@@ -148,10 +156,17 @@ function copyText(text) {
 }
 
 /* ── 설정 항목 한 줄 ── */
-function Param({ def, value, custom, onValue, onCustom }) {
+function Param({ def, value, custom, locked, onValue, onCustom, onLock }) {
   return html`
     <div class=${'pdef' + (def.sub ? ' sub' : '')}>
-      <label><b>${def.ko}</b> · ${def.label}</label>
+      <label>
+        <b>${def.ko}</b> · ${def.label}
+        <button type="button" class=${'lockbtn' + (locked ? ' on' : '')} onclick=${onLock}
+                aria-pressed=${String(!!locked)}
+                title=${locked ? '이 칸은 랜덤에서 뺀다 — 눌러서 풀기' : '이 칸을 랜덤에서 뺀다'}>
+          ${locked ? '🔒' : '🔓'}
+        </button>
+      </label>
       <select value=${value} onchange=${e => onValue(e.target.value)}>
         ${def.options.map(([v, t]) => html`<option value=${v}>${t}</option>`)}
       </select>
@@ -176,12 +191,22 @@ function App() {
   const [underboob, setUnderboob] = useState(false);
   const [toast, showToast] = useToast();
   const [stamp, setStamp] = useState('');
+  /* 자물쇠는 칸 하나를 랜덤에서 빼둔다. 툴킷과 같은 자리(STORE.locks)를 읽고 쓰되
+     열쇠 이름도 같은 'p:<항목>' 꼴이라 두 화면이 서로의 자물쇠를 알아본다 */
+  const [locks, setLocks] = useState({});
+  const [rndGroups, setRndGroups] = useState(
+    () => Object.fromEntries(GROUPS.map(([g]) => [g, g !== 'shot'])));
+  const [onlyEmpty, setOnlyEmpty] = useState(false);
 
   useEffect(() => {
     Promise.all([getJSON('data/mech.json'), getJSON('data/series.json'), ATK.load()])
       .then(([m, s]) => setData({ cards: m.cards, series: s }))
       .catch(setErr);
     setStamp(window.AtelierFresh.watch().stamp());
+    try {
+      const raw = JSON.parse(localStorage.getItem(ATK.STORE_KEY) || 'null');
+      if (raw && raw.locks) setLocks({ ...raw.locks });
+    } catch (e) {}
   }, []);
 
   /* prompt.html 이 남긴 설정을 처음 값으로 가져온다 (읽기만 한다) */
@@ -231,8 +256,39 @@ function App() {
   if (!data) return html`<main><p class="note" style="padding:40px 0;text-align:center">읽는 중…</p></main>`;
 
   const setOne = (k, v) => setSel(o => ({ ...o, [k]: v }));
+  const toggleLock = k => setLocks(o => {
+    const n = { ...o };
+    if (n['p:' + k]) delete n['p:' + k]; else n['p:' + k] = 1;
+    return n;
+  });
+
+  /* 굴릴 갈래만, 잠기지 않은 칸만 바꾼다. 직접 입력 값은 굴리지 않는다
+     (툴킷과 같은 규칙 — 자물쇠는 랜덤에만 걸고 사람이 고르는 것은 막지 않는다) */
+  function rollAnthro() {
+    const pick = a => a[Math.floor(Math.random() * a.length)];
+    let set = 0, skipLock = 0, skipFull = 0;
+    const next = { ...sel };
+    S.PARAM_DEFS.forEach(def => {
+      if (!rndGroups[def.group]) return;
+      if (def.sex && def.sex !== gender) return;
+      if (locks['p:' + def.key]) { skipLock++; return; }
+      if (onlyEmpty && next[def.key]) { skipFull++; return; }
+      const cand = def.options.map(o => o[0]).filter(v => v && v !== '__custom__');
+      if (!cand.length) return;
+      next[def.key] = pick(cand);
+      set++;
+    });
+    if (!set) {
+      showToast(skipFull ? '빈 칸만 채우기가 켜져 있다' :
+                skipLock ? '고른 갈래가 전부 잠겨 있다' : '굴릴 갈래를 고르세요');
+      return;
+    }
+    setSel(next);
+    showToast(set + '칸 굴렸다' + (skipLock ? ' · 자물쇠 ' + skipLock : ''));
+  }
   const setCustom = (k, v) => setCus(o => ({ ...o, [k]: v }));
   const filled = S.PARAM_DEFS.filter(d => sel[d.key]).length;
+  const lockCount = Object.keys(locks).length;
 
   return html`
     <main>
@@ -277,16 +333,30 @@ function App() {
       ${!card
         ? html`<p class="note" style="padding:32px 0;text-align:center">기체를 고르면 설정과 프롬프트가 나온다</p>`
         : html`
-          <p class="sec">결과 · ${prompt.length.toLocaleString()}자 · 채운 항목 ${filled}</p>
-          <textarea class="out" readonly value=${prompt}></textarea>
-          <div class="bar">
-            <button class="btn go" onclick=${() => copyText(prompt).then(
-              () => showToast('복사했다 · ' + card.name), () => showToast('복사 실패'))}>프롬프트 복사</button>
-          </div>
           <p class="warn">
             시범판이라 <b>저장하지 않는다.</b> 처음 값은 툴킷에 저장된 설정에서 가져오고,
             여기서 바꾼 것은 이 화면에만 남는다. 기록에 남기려면 툴킷에서 하세요.
           </p>
+
+          <p class="sec">랜덤 · 채운 항목 ${filled}${lockCount ? ' · 자물쇠 ' + lockCount : ''}</p>
+          <div class="bar">
+            <button class="btn go" onclick=${rollAnthro}>🎲 외형 랜덤</button>
+            ${lockCount ? html`
+              <button class="btn" onclick=${() => setLocks({})}>자물쇠 모두 풀기</button>` : null}
+          </div>
+          <div class="row">
+            ${GROUPS.map(([g, t]) => html`
+              <label class=${'chip' + (rndGroups[g] ? ' on' : '')}>
+                <input type="checkbox" checked=${!!rndGroups[g]}
+                       onchange=${e => setRndGroups(o => ({ ...o, [g]: e.target.checked }))} />
+                ${t}
+              </label>`)}
+            <label class=${'chip' + (onlyEmpty ? ' on' : '')}>
+              <input type="checkbox" checked=${onlyEmpty}
+                     onchange=${e => setOnlyEmpty(e.target.checked)} />
+              빈 칸만
+            </label>
+          </div>
 
           <div class="row" style="margin-top:12px">
             <select value=${morph} onchange=${e => setMorph(e.target.value)}>
@@ -307,8 +377,10 @@ function App() {
                   ${defs.map(def => html`
                     <${Param} key=${def.key} def=${def}
                               value=${sel[def.key] || ''} custom=${cus[def.key] || ''}
+                              locked=${!!locks['p:' + def.key]}
                               onValue=${v => setOne(def.key, v)}
-                              onCustom=${v => setCustom(def.key, v)} />`)}
+                              onCustom=${v => setCustom(def.key, v)}
+                              onLock=${() => toggleLock(def.key)} />`)}
                 </div>
               </details>`;
           })}
@@ -325,6 +397,13 @@ function App() {
                      onchange=${e => setUnderboob(e.target.checked)} style="width:auto;min-height:0" />
               언더부스트 장갑 문구 넣기
             </label>`}
+
+          <p class="sec">결과 · ${prompt.length.toLocaleString()}자</p>
+          <textarea class="out" readonly value=${prompt}></textarea>
+          <div class="bar">
+            <button class="btn go" onclick=${() => copyText(prompt).then(
+              () => showToast('복사했다 · ' + card.name), () => showToast('복사 실패'))}>프롬프트 복사</button>
+          </div>
         `}
     </main>
     ${toast}`;
