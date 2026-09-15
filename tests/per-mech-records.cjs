@@ -10,15 +10,16 @@ for(const [name,id] of Object.entries(index.cards)){
  }
 }
 for(const page of ['prompt.html','dex.html'])for(const m of fs.readFileSync(page,'utf8').matchAll(/<script((?:\s[^>]*)?)>([\s\S]*?)<\/script>/g))if(!/\btype\s*=\s*["']module["']/i.test(m[1]))new vm.Script(m[2],{filename:page});
-function extract(source,name){const a=source.indexOf('function '+name+'(');return source.slice(a,source.indexOf('\n}',a)+2);}
 const dex=fs.readFileSync('dex.html','utf8');
 assert.equal((dex.match(/툴킷에서 열기 →/g)||[]).length,2);
-assert(!dex.includes('\" target=\"_blank\" rel=\"noopener\">툴킷에서 열기 →</a>'),'툴킷 링크는 같은 탭에서 열어야 한다');
-const ctx={GENERATION:{},CARD_GENERATION:{},esc:x=>x};vm.createContext(ctx);vm.runInContext(extract(dex,'generationDetails'),ctx);
-const gunner=index.cards['건너 자쿠 워리어'];Object.assign(ctx.CARD_GENERATION,JSON.parse(fs.readFileSync(`generation/${gunner}/images.json`)));
-for(const [file,r] of Object.entries(ctx.CARD_GENERATION))assert(ctx.generationDetails(file).includes(r.prompt));
-ctx.CARD_GENERATION.bad={prompt:'javascript:alert(1)'};assert(!ctx.generationDetails('bad').includes('href='));
-ctx.CARD_GENERATION.bad={prompt:'generation/../../private.txt'};assert(!ctx.generationDetails('bad').includes('href='));
+assert(!dex.includes('\\" target=\\"_blank\\" rel=\\"noopener\\">툴킷에서 열기 →</a>'),'툴킷 링크는 같은 탭에서 열어야 한다');
+assert(dex.includes('ATK.promptPathOf(shown)'),'도감은 공통 프롬프트 경로 검증을 써야 한다');
+const tkCtx={window:{}};vm.createContext(tkCtx);vm.runInContext(fs.readFileSync('lib/toolkit.js','utf8'),tkCtx);
+const tk=tkCtx.window.AtelierToolkit,gunner=index.cards['건너 자쿠 워리어'];
+const gunnerImages=JSON.parse(fs.readFileSync(`generation/${gunner}/images.json`));tk.putCardRecords('건너 자쿠 워리어',{images:gunnerImages});
+for(const [file,r] of Object.entries(gunnerImages))assert.equal(tk.promptPathOf(file),r.prompt);
+tk.putCardRecords('bad',{images:{bad:{prompt:'javascript:alert(1)'}}});assert.equal(tk.promptPathOf('bad'),null);
+tk.putCardRecords('bad',{images:{bad:{prompt:'generation/../../private.txt'}}});assert.equal(tk.promptPathOf('bad'),null);
 // The default export reads only the selected card and requires no network call.
 const source=fs.readFileSync('prompt.html','utf8');const a=source.indexOf("document.getElementById('exportStore').addEventListener");const b=source.indexOf("document.getElementById('exportAllStore').addEventListener",a);
 const box={classList:{remove(){}},select(){}};let callback;
