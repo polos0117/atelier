@@ -1,0 +1,24 @@
+Use case: identity-preserve
+Asset type: civilian lifestyle portrait for a character collection
+Input image: Image 1 is the sole identity reference for the female Zssa anthropomorphization.
+Primary request: Create one new vertical full-body civilian image of exactly the same clearly adult woman from Image 1 as a confident pastry chef finishing a late-night batch of small citrus tartlets. Preserve her identity precisely while removing every mobile-suit, armor, weapon, missile, and military element.
+
+IDENTITY LOCK
+Keep exactly the same adult Korean woman in her twenties from Image 1: the same broad heart-shaped face, full cheeks, softly prominent cheekbones, short firm jaw, rounded chin, small anatomically defined straight nose, softly full lips, believable moss-green almond eyes with slightly downturned outer corners, light warm-beige skin, short-to-average height, compact mature pear-shaped hourglass build, softly full bust, clearly defined waist, broad rounded hips, powerful thighs, and sturdy proportionate legs. Preserve the same rich golden-blonde short rounded bob with its muted olive-green underlayer, thick curved side bangs, and compact volume. Keep her calmly mischievous, self-assured closed-mouth half-smile. Clearly adult, never childlike. No age drift, ethnicity drift, face drift, skin-tone change, hairstyle redesign, or body redesign.
+
+CIVILIAN LOOK
+Remove every mobile-suit element completely: no yellow armor, no backpack, no missile towers, no launcher cells, no rifle, no saber, no mechanical limbs, no helmet, no pilot suit, no military hardware. Normal human body with exactly two arms and two legs.
+Dress her in a designed but practical contemporary pastry-chef look derived from the mustard, olive, cream, and charcoal palette: a fitted opaque cream short-sleeve chef blouse with a secure asymmetrical wrap front and modest neckline, high-waisted olive tapered trousers, a mustard-yellow waist apron tied neatly at the back, dark charcoal low-heeled kitchen shoes, and thick dark oven mitts on both hands. Add small moss-green stud earrings. Mature, polished, workplace-credible, subtly flattering, non-transparent, and fully covered.
+
+SCENE AND ACTION
+A warm modern patisserie kitchen after closing, clean and quiet. She is captured standing beside one waist-high stainless cooling rack while carefully sliding out one shallow baking tray holding twelve small round golden citrus tartlets arranged in three orderly rows. Both oven-mitted hands support the single tray. A compact convection oven and a few blurred copper utensils sit in the restrained background. No other people, no readable packaging, no labels, no brand marks, and no excessive food clutter. The round tart arrangement is an ordinary culinary motif only, not missile imagery.
+
+COMPOSITION
+Vertical 2:3. Tight intentional complete full-body framing at the largest practical scale, from the top of her rounded bob to both kitchen shoes, with minimal headroom and floor margin. Front three-quarter eye-level view capturing the tray-handling action clearly. Her face, both hands, full outfit, tray, rack, and both feet must remain readable. Do not pull the camera far back, do not add arbitrary empty margins, and do not copy the armored reference pose.
+
+STYLE AND LIGHTING
+High-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization, matching Image 1’s sophisticated painted language rather than its armor. Warm amber oven and pendant light, soft cool-gray reflected fill from stainless surfaces, dimensional painted skin, tactile cotton and apron fabric, grouped painterly golden-blonde and olive hair, selective sharpness on her face and the tart tray. Not live-action photography, not a 3D render, not glossy mobile-game key art, not cel-shaded anime.
+
+HARD CONSTRAINTS
+One clearly adult woman only. Same identity as Image 1. Exactly two human arms, two hands, and two legs. No cropped feet. Exactly one tray with twelve small tartlets. No mecha remnants, armor, weapons, missiles, launcher pods, sci-fi equipment, text, logos, watermark, duplicated limbs, distorted hands, nudity, transparent intimate areas, exposed nipples, visible areolae, or exposed genitals.
+

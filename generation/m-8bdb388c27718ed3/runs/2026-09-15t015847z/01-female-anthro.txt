@@ -1,0 +1,24 @@
+Use case: stylized-concept
+Asset type: full-body Gundam anthropomorphization portrait for a character collection
+Primary request: Create the female anthropomorphization of the Zssa (AMX-102) from Mobile Suit Gundam ZZ as one clearly adult woman in her twenties. The result should balance the mobile suit’s compact, almost cute proportions with mature confidence and formidable missile-heavy power. This must be a new character with a distinctive adult face and must not resemble any canonical pilot.
+
+SUBJECT AND IDENTITY
+A short-to-average-height Korean adult woman with a compact mature pear-shaped hourglass build, softly full bust, clearly defined waist, broad rounded hips, powerful thighs, and sturdy but proportionate legs. Light warm-beige skin. A distinctive broad heart-shaped face with full cheeks, softly prominent cheekbones, a short firm jaw, rounded chin, small but anatomically defined straight nose, softly full lips, and large but believable moss-green almond eyes with slightly downturned outer corners. Her expression is calmly mischievous and self-assured, with a restrained closed-mouth half-smile rather than childlike cuteness. Rich golden-blonde short rounded bob hair with a muted olive-green underlayer, thick curved side bangs, compact volume, and a clean face-revealing shape. Clearly adult, not youthful or childlike. No pilot likeness.
+
+MECHA TRANSLATION
+Faithfully preserve the unmistakable Gundam ZZ-era Zssa identity: compact mustard-yellow and ochre armor, muted olive-green structural blocks, dark charcoal inner frame, pale cream edge accents, small red-orange sensors, thick rounded shoulder and thigh armor, short sturdy shin forms, and dense missile-launcher detailing. Balanced armor coverage with a fitted mature silhouette and only small controlled opaque skin exposure at the upper shoulders and side waist; non-explicit.
+Mount one large rectangular Zssa booster backpack as external equipment behind the torso, with two prominent vertical missile-pod towers rising behind the shoulders. Each tower has orderly circular launcher cells facing forward and upward, clearly separate from the woman’s arms and head. Keep additional small CLOSED missile-port panels integrated into the external shoulder armor, outer thighs, and lower-leg armor, but do not cover the body with random holes. No missiles are firing. Preserve one compact dark-gray beam rifle held in the right hand, muzzle angled safely down, and one inactive beam-saber hilt docked at the left hip. The left hand remains empty and readable.
+Exactly two normal human arms and exactly two normal human legs, anatomically correct, with two readable hands and two readable feet. The missile towers are equipment, not limbs. No extra arms, no extra legs, no body-horror tubes, no helmet, no mask, no mechanical face.
+
+COMPOSITION
+Vertical 2:3. Tight intentional complete full-body framing at the largest practical scale, crown to both feet visible, minimal empty margin. Keep the rectangular backpack, both missile towers, rifle, and both feet inside the frame without pulling the camera unnecessarily far back. Let the model choose a grounded confident pose and cinematic view angle; do not force a fixed pose or camera direction. Face, both hands, both legs, and both feet must remain readable.
+
+SCENE AND LIGHTING
+A restrained dim Neo Zeon-style carrier maintenance bay with a matte deck, faint industrial ribs, and minimal clutter, without emblems or readable signage. Warm amber key light, cool olive-gray fill, restrained red sensor rim light, soft atmospheric depth. No missile trails, explosions, or combat. The character remains dominant.
+
+STYLE
+High-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization. Mature believable adult facial anatomy, dimensional painted skin, grouped painterly golden-blonde and olive hair, weighty painted armor materials, selective sharpness on missile cells and hardware, and controlled reflections. Not live-action photography, not a 3D render, not glossy mobile-game key art, not cel-shaded anime.
+
+HARD CONSTRAINTS
+One clearly adult woman only. Full body. Exactly two arms and two legs. One backpack and exactly two main missile towers. No childlike proportions. No cropped feet. No firing missiles, duplicate rifle, duplicate saber, extra limbs, floating equipment, text, logos, captions, watermark, cockpit, pilot suit, gore, nudity, transparent intimate areas, exposed nipples, visible areolae, or exposed genitals. Do not enlarge the background or add arbitrary empty margins.
+
