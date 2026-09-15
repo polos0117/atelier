@@ -42,6 +42,7 @@ header{position:sticky;top:0;z-index:30;background:var(--deck);
 .tabs::-webkit-scrollbar{display:none}
 .tab{flex:0 0 auto;background:none;border:0;color:var(--dim);font:inherit;font-size:13px;
   font-weight:700;letter-spacing:.05em;padding:9px 12px 10px;border-bottom:2px solid transparent;cursor:pointer}
+.tab b{font-weight:500;font-size:11px;opacity:.65;margin-left:4px}
 .tab.on{color:var(--ink);border-bottom-color:var(--plate)}
 .ctl{display:flex;gap:6px;padding:7px 0 0;flex-wrap:wrap}
 .ctl:last-of-type{padding-bottom:9px}
@@ -210,6 +211,12 @@ function shotsFor(entry, mode, v, style) {
   return shotsOfBucket(bucketOf(entry, style), mode, v);
 }
 
+/* 한 카드가 여러 시리즈에 걸칠 수 있어 series 는 배열이다 (예: ["Z","ZZ"]) */
+function serOf(card) {
+  const s = card && card.series;
+  return Array.isArray(s) ? s : (s ? [s] : []);
+}
+
 /* ── 타일 ─────────────────────────────────────────────── */
 function Cell({ name, color, shots, onOpen }) {
   const [page, setPage] = useState(0);
@@ -279,7 +286,7 @@ function Sheet({ card, entry, styleName, statLabels, seriesName, gender, onGende
             : html`<div class="empty">이 화풍·성별에는 그림이 없다</div>`}
 
           <div class="dt">
-            <span>시리즈<b>${seriesName(card.series)}</b></span>
+            <span>시리즈<b>${serOf(card).map(seriesName).join(' · ') || '—'}</b></span>
             ${card.factions && html`<span>소속<b>${card.factions.join(' · ')}</b></span>`}
             ${card.temper && html`<span>기질<b>${card.temper}</b></span>`}
           </div>
@@ -365,27 +372,46 @@ function App() {
     try { localStorage.setItem('atelier_dex_compact_v1', compact ? '1' : '0'); } catch (e) {}
   }, [compact]);
 
-  const rows = useMemo(() => {
+  /* 선택지는 지금 조건에 실제로 걸리는 것만 남기고 개수를 같이 보여 준다.
+     화풍을 셀 때는 시리즈까지, 시리즈를 셀 때는 화풍까지 반영한다 —
+     자기 자신은 빼고 세야 고른 뒤에도 목록에서 사라지지 않는다 */
+  const base = useMemo(() => {
     if (!data) return [];
     const needle = q.trim().toLowerCase();
     return data.cards[tab]
-      .filter(c => !ser || c.series === ser)
       .filter(c => !needle || c.name.toLowerCase().includes(needle))
+      .filter(c => mode === 'p' || shotsFor(data.img[c.name], mode, v).length);
+  }, [data, tab, q, mode, v]);
+
+  const styleCount = useMemo(() => {
+    const cnt = {};
+    base.filter(c => !ser || serOf(c).indexOf(ser) >= 0)
+      .forEach(c => stylesOf(data && data.img[c.name]).forEach(k => { cnt[k] = (cnt[k] || 0) + 1; }));
+    return cnt;
+  }, [base, ser]);
+
+  const serCount = useMemo(() => {
+    const cnt = {};
+    base.filter(c => !style || stylesOf(data && data.img[c.name]).indexOf(style) >= 0)
+      .forEach(c => serOf(c).forEach(k => { cnt[k] = (cnt[k] || 0) + 1; }));
+    return cnt;
+  }, [base, style]);
+
+  /* 탭을 바꾸면 시리즈·화풍은 비운다. 다른 탭에 없는 조건이 남아 빈 목록이 뜨는 걸 막는다 */
+  const pickTab = t => {
+    setTab(t); setSer(''); setStyle('');
+    try { scrollTo(0, 0); } catch (e) {}
+  };
+
+  const rows = useMemo(() => {
+    if (!data) return [];
+    return base
+      .filter(c => !ser || serOf(c).indexOf(ser) >= 0)
       .filter(c => !style || stylesOf(data.img[c.name]).indexOf(style) >= 0)
       .map(c => ({ card: c, shots: shotsFor(data.img[c.name], mode, v, style) }))
       .filter(r => mode === 'p' || r.shots.length);
-  }, [data, tab, mode, v, q, ser, style]);
+  }, [data, base, mode, v, ser, style]);
 
-  /* 지금 목록에 실제로 있는 화풍만 고르게 한다. 장수도 같이 보여 준다 */
-  const styleCount = useMemo(() => {
-    if (!data) return {};
-    const needle = q.trim().toLowerCase(), cnt = {};
-    data.cards[tab]
-      .filter(c => !ser || c.series === ser)
-      .filter(c => !needle || c.name.toLowerCase().includes(needle))
-      .forEach(c => stylesOf(data.img[c.name]).forEach(k => { cnt[k] = (cnt[k] || 0) + 1; }));
-    return cnt;
-  }, [data, tab, q, ser]);
 
   if (err) return html`<div class="empty">자료를 못 읽었다 — ${String(err.message || err)}</div>`;
   if (!data) return html`<div class="empty">읽는 중…</div>`;
@@ -394,7 +420,7 @@ function App() {
     const f = c.factions && c.factions[c.factions.length - 1];
     return (data.series.faction_color && data.series.faction_color[f]) || '#79849A';
   };
-  const seriesList = Object.keys(data.series.name || {});
+  const seriesList = Object.keys(data.series.name || {}).filter(k => serCount[k]);
   const seriesName = k => (data.series.name && data.series.name[k]) || k || '—';
   const shown = rows.reduce((n, r) => n + (r.shots.length ? 1 : 0), 0);
   const styleList = Object.keys(data.styleName).filter(k => styleCount[k]);
@@ -412,8 +438,8 @@ function App() {
       </div>
       <div class="tabs">
         ${KINDS.map(k => html`
-          <button class=${'tab' + (tab === k.tab ? ' on' : '')} onclick=${() => setTab(k.tab)}>
-            ${k.tab}
+          <button class=${'tab' + (tab === k.tab ? ' on' : '')} onclick=${() => pickTab(k.tab)}>
+            ${k.tab}<b class="mono">${data.cards[k.tab].length}</b>
           </button>`)}
       </div>
       <div class="ctl">
@@ -432,7 +458,8 @@ function App() {
       <div class="ctl filters">
         <select value=${ser} onchange=${e => setSer(e.target.value)}>
           <option value="">시리즈 전체</option>
-          ${seriesList.map(s => html`<option value=${s}>${data.series.name[s] || s}</option>`)}
+          ${seriesList.map(k => html`
+            <option value=${k}>${seriesName(k)} ${serCount[k]}</option>`)}
         </select>
         <select value=${style} onchange=${e => setStyle(e.target.value)}>
           <option value="">화풍 전체</option>
@@ -460,7 +487,9 @@ function App() {
                        shots=${r.shots} onOpen=${() => setOpen(r.card)} />`)}
           </div>`
         : html`<div class="empty">해당하는 카드가 없다</div>`}
-      <div class="foot mono">${rows.length}장 · 그림 ${shown}</div>
+      <div class="foot mono">
+        ${mode === 'p' ? shown + ' / ' + rows.length : rows.length + '장 · 그림 ' + shown}
+      </div>
     </main>
 
     ${open && html`
