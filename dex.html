@@ -288,6 +288,7 @@ body{font-size:var(--ui-font)}
 <div id="ovl"></div>
 
 <script src="lib/img.js"></script>
+<script src="lib/toolkit.js"></script>
 <script src="generation/loader.js"></script>
 <script>
 /* ══ 게임 파일에서 추출한 데이터 (build-dex.py 자동 생성) ══ */
@@ -435,42 +436,16 @@ function shotOf(c){var ss=shots(c);return ss.length?ss[pageOf(c)]:null}
 /* ── 툴킷 설정 읽기 ──
    prompt.html 이 남긴 기록을 그대로 읽는다. 저장소 파일(toolkit-data.json)이 기반이고
    같은 브라우저의 localStorage 가 그 위를 덮는다. 쓰지는 않는다. */
-var GENERATION={},CARD_GENERATION={},CARD_SETTINGS={};
-function generationLoad(){
-  return fetch("data/generation.json",{cache:"no-cache"}).then(function(r){return r.ok?r.json():{};})
-    .then(function(j){GENERATION=j||{};}).catch(function(){});
-}
-var TK={base:{},local:{},baseUsed:{},localUsed:{},baseStyle:{},localStyle:{}};
-function tkLoad(){
-  try{
-    var o=JSON.parse(localStorage.getItem("atelier_toolkit_v1")||"null");
-    if(o&&o.anthro)TK.local=o.anthro;
-    if(o&&o.used)TK.localUsed=o.used;
-    if(o&&o.style)TK.localStyle=o.style;
-  }catch(e){}
-  return fetch("toolkit-data.json",{cache:"no-cache"})
-    .then(function(r){return r.ok?r.json():null})
-    .then(function(j){if(j){if(j.mechs)TK.base=j.mechs; if(j.used)TK.baseUsed=j.used;
-      if(j.style)TK.baseStyle=j.style;}})
-    .catch(function(){});
-}
+/* 읽고 합치는 일은 lib/toolkit.js 가 맡는다 (툴킷·도감이 같이 쓴다) */
+var ATK=window.AtelierToolkit;
+function generationLoad(){return ATK.loadGeneration()}
+function tkLoad(){return ATK.load()}
 function tkReady(){ /* 기록이 도착하면 현재 화면을 다시 그린다 */
   if(typeof draw==="function")draw();
 }
-function tkOf(name){
-  var a=TK.local[name],b=CARD_SETTINGS[name]?CARD_SETTINGS[name].record:TK.base[name];
-  if(!a)return b||null;
-  if(!b)return a;
-  return (a.t||0)>=(b.t||0)?a:b;
-}
+function tkOf(name){return ATK.recordOf(name)}
 /* 콜라주로 어떤 카테고리를 뽑아봤는지 — 채택이 아니라 복사 기록이다 */
-function tkUsed(name){
-  var m={},add=function(arr){(arr||[]).forEach(function(r){
-    if(!r.cat)return; m[r.cat]=(m[r.cat]||0)+(r.n||1);})};
-  add(CARD_SETTINGS[name]?CARD_SETTINGS[name].used:(TK.baseUsed||{})[name]); add((TK.localUsed||{})[name]);
-  return Object.keys(m).map(function(k){
-    return (TK_CAT[k]||k)+(m[k]>1?" "+m[k]+"회":"")});
-}
+function tkUsed(name){return ATK.usedOf(name)}
 /* 과거 기본 자리는 화풍 미상. TK의 과거 화풍 기록은 표시 근거로 사용하지 않는다. */
 var TK_ART={unknown:"화풍 미상",cinematic_semi_real:"세미리얼 시네마틱",game_keyart:"게임 키아트 2.5D",glossy_kr_game:"한국형 글로시 게임 일러스트",game_cgi:"게임 시네마틱 CGI",semi_real_paint:"세미리얼 유화",
   photoreal:"사진풍",anime_illust:"애니 일러스트",cel_anime:"셀화 애니",
@@ -500,38 +475,17 @@ function tkStyle(name){
   /* 다른 화풍도 있다는 것을 줄에서 알 수 있게 한다 */
   return ks.length>1?n+" +"+(ks.length-1):n;
 }
-var TK_CAT={adult_roleplay:"성인 역할극",occupation_basic:"직업(기본)",occupation_sensual:"직업(섹시)",
-  everyday_basic:"일상(기본)",everyday_sensual:"일상(섹시)",swimwear:"수영복",active:"액티브",
-  source_editorial:"SOURCE 에디토리얼",homewear:"홈웨어",private_evening:"프라이빗 이브닝",
-  lingerie:"란제리",everyday:"일상",wildcard:"와일드카드",auto_random:"자동/랜덤"};
-var TK_LABEL={"facial ethnicity":"계통","apparent age":"나이","body type":"체형",
-  "hair color":"머리색","hair length":"머리길이","hairstyle":"헤어","eye color":"눈색",
-  "facial hair":"수염","face shape":"얼굴형","facial character":"인상","skin tone":"피부"};
-function tkSummary(name){
-  var r=tkOf(name); if(!r)return "";
-  var out=[];
-  ["female","male"].forEach(function(g){
-    if(!r[g])return; var sel=r[g].sel||{},cus=r[g].cus||{};
-    var bits=[];
-    for(var k in TK_LABEL)if(cus[k]||sel[k])bits.push(TK_LABEL[k]+" "+(cus[k]||sel[k]));
-    if(r[g].ub)bits.push("언더부스트");
-    if(r[g].sp)bits.push("추가 지시 있음");
-    if(bits.length)out.push((g==="female"?"여":"남")+" · "+bits.join(" / "));
-  });
-  return out.join("\n");
-}
+function tkSummary(name){return ATK.summaryOf(name)}
 
 function tkDetails(name){
-  var r=tkOf(name)||{},h="";
-  ["female","male"].forEach(function(g){
-    if(r[g]&&r[g].sp)h+='<details style="margin-top:6px"><summary>추가 지시 · '+(g==="female"?"여":"남")+'</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere">'+esc(r[g].sp)+'</pre></details>';
-  });
-  return h;
+  return ATK.notesOf(name).map(function(x){
+    return '<details style="margin-top:6px"><summary>추가 지시 · '+x.label+
+      '</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere">'+esc(x.text)+'</pre></details>';
+  }).join("");
 }
 function generationDetails(file){
-  var r=CARD_GENERATION[file]||GENERATION[file],p=r&&r.prompt;
-  if(!p||!/^(?:docs\/generation\/[a-z0-9-]+|generation\/m-[a-f0-9]{16}\/runs\/[a-z0-9-]+)\/[a-z0-9-]+\.txt$/.test(p))
-    return '<div style="margin-top:6px">이 이미지의 제출 프롬프트 · 원문 기록 없음</div>';
+  var p=ATK.promptPathOf(file);
+  if(!p)return '<div style="margin-top:6px">이 이미지의 제출 프롬프트 · 원문 기록 없음</div>';
   return '<div style="margin-top:6px"><a href="'+esc(p)+'" target="_blank" rel="noopener">이 이미지의 실제 제출 프롬프트 열기 →</a></div>';
 }
 
@@ -825,8 +779,7 @@ function open(n,start){
   }
   render(false);
   if(t==='기체')PerMechRecords.load(n).then(function(data){
-    if(data.settings)CARD_SETTINGS[n]=data.settings;
-    Object.assign(CARD_GENERATION,data.images);
+    ATK.putCardRecords(n,data);
     if(sh.isConnected)render(true);
   }).catch(function(){});
   sh.addEventListener("click",function(e){
