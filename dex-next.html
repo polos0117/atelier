@@ -56,7 +56,15 @@ header{position:sticky;top:0;z-index:30;background:var(--deck);
   font-weight:700;padding:0 10px;cursor:pointer}
 .sw button.on{background:var(--plate);color:var(--void)}
 main{padding:12px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:var(--gap)}
+/* 카드 크기는 dex.html 과 같은 값, 같은 저장 키(atelier_dex_compact_v1)를 쓴다.
+   두 페이지를 오가도 설정이 따라온다 */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:var(--gap)}
+body.dex-compact .grid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
+.view-tools{display:flex;align-items:center;gap:6px;margin:0 0 10px;font-size:11.5px;color:var(--dim)}
+.view-tools span{flex:1 1 auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.view-tools button{background:var(--panel);border:1px solid var(--rule);color:var(--ink);
+  font:inherit;font-size:11.5px;border-radius:6px;padding:6px 9px;cursor:pointer;flex:0 0 auto}
+.view-tools button[disabled]{opacity:.4;cursor:default}
 .cell{background:var(--panel);border:1px solid var(--rule);border-radius:8px;overflow:hidden;
   cursor:pointer;position:relative;border-left:3px solid var(--cc)}
 .cell:focus-visible{outline:2px solid var(--plate);outline-offset:2px}
@@ -112,8 +120,9 @@ main{padding:12px}
 .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px}
 .gal img{width:100%;aspect-ratio:2/3;object-fit:cover;object-position:50% 18%;
   border-radius:6px;display:block;background:var(--panel);cursor:zoom-in}
-@media (min-width:560px){
-  .grid{grid-template-columns:repeat(auto-fill,minmax(135px,1fr))}
+@media (min-width:600px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+  body.dex-compact .grid{grid-template-columns:repeat(auto-fill,minmax(115px,1fr))}
   .cap{font-size:13px;line-height:1.45}
 }
 </style>
@@ -347,6 +356,14 @@ function App() {
   const [style, setStyle] = useState('');
   const [open, setOpen] = useState(null);
   const [zoom, setZoom] = useState(null);
+  /* 작게 보기 여부. dex.html 과 같은 키라 두 페이지가 설정을 공유한다 */
+  const [compact, setCompact] = useState(() => {
+    try { return localStorage.getItem('atelier_dex_compact_v1') === '1'; } catch (e) { return false; }
+  });
+  useEffect(() => {
+    document.body.classList.toggle('dex-compact', compact);
+    try { localStorage.setItem('atelier_dex_compact_v1', compact ? '1' : '0'); } catch (e) {}
+  }, [compact]);
 
   const rows = useMemo(() => {
     if (!data) return [];
@@ -381,6 +398,12 @@ function App() {
   const seriesName = k => (data.series.name && data.series.name[k]) || k || '—';
   const shown = rows.reduce((n, r) => n + (r.shots.length ? 1 : 0), 0);
   const styleList = Object.keys(data.styleName).filter(k => styleCount[k]);
+  const bits = [];
+  if (q.trim()) bits.push('"' + q.trim() + '"');
+  if (ser) bits.push(seriesName(ser));
+  if (style) bits.push(data.styleName[style] || style);
+  const activeCount = bits.length;
+  const filterSummary = bits.length ? bits.join(' · ') : '전체 보기';
 
   return html`
     <header>
@@ -420,6 +443,16 @@ function App() {
     </header>
 
     <main>
+      <div class="view-tools">
+        <span>${filterSummary}</span>
+        <button disabled=${!activeCount}
+                onclick=${() => { setQ(''); setSer(''); setStyle(''); }}>
+          조건 초기화${activeCount ? ' ' + activeCount : ''}
+        </button>
+        <button aria-pressed=${compact} onclick=${() => setCompact(c => !c)}>
+          ${compact ? '크게 보기' : '작게 보기'}
+        </button>
+      </div>
       ${rows.length
         ? html`<div class="grid">
             ${rows.map(r => html`
