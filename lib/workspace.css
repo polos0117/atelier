@@ -209,3 +209,27 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
 }
 .prompt-page .save-bar > span:last-child {max-width:100%}
 .prompt-page .param-actions button {min-width:0;overflow-wrap:anywhere}
+
+/* Archive shell stays still; only the collection viewport scrolls. */
+html:has(.dex-page) {height:100%;overflow:hidden;overscroll-behavior:none}
+.dex-page {height:100vh;height:100dvh;min-height:0;overflow:hidden;overscroll-behavior:none}
+.dex-page main {display:flex;flex-direction:column;min-height:0;overflow:hidden;padding-bottom:0}
+.dex-page .chrome,.dex-page header,.dex-page .view-tools {flex:none}
+.dex-page header {position:relative;top:auto}
+.dex-page .collection-scroll {flex:1 1 0;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:3px 2px calc(18px + env(safe-area-inset-bottom));scrollbar-color:var(--line) transparent}
+.dex-page .collection-scroll:focus-visible {outline:2px solid var(--accent);outline-offset:-2px}
+@media(max-width:599px) {
+ .dex-page .workspace-heading {padding:10px 0 13px}
+ .dex-page .workspace-heading h1 {font-size:20px;margin:2px 0}
+ .dex-page .workspace-heading p,.dex-page .workspace-heading .eyebrow {display:none}
+ .dex-page .fleet-mark {width:27px;height:27px}
+ .dex-page .workspace-heading::after {bottom:5px;width:40px;height:2px}
+ .dex-page .view-tools {margin:8px 0}
+}
+@media(max-height:550px) {
+ .dex-page .workspace-heading {display:none}
+ .dex-page .chrome {display:flex;gap:8px;align-items:center;padding-bottom:6px}
+ .dex-page .workspace-nav {flex:1}
+ .dex-page .appearance-controls {margin:0}
+ .dex-page .appearance-controls label:last-child {display:none}
+}

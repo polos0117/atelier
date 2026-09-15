@@ -2,11 +2,15 @@
 
 접속 주소는 기존 `../play.html`을 유지한다. 이 폴더는 해당 화면의 코드와 스타일을 담는다.
 
-- `game.js`: 데이터 로딩, 드래프트, 점수 계산, 게임 화면
-- `insights.js`: 지명 전 편성 변화, 연대·작전 진행판, 결과 점수 비교
-- `gallery.js`: 도감의 일상컷 조회, 지명 팝업 갤러리, 아군 MVP
-- `page.js`: 새 버전 알림, 공통 화면 밀도 설정
-- `play.css`: 게임 및 갤러리 스타일
+- `draft-engine.js`: 화면과 분리한 게임 상태, 데이터 로딩, 드래프트·AI·점수·전적 저장
+- `draft-app.js`: Preact + htm 컴포넌트. 설정, 카드 지명, 편성, 전황, 결과, 도감, 기록, 갤러리
+- `draft.css`: 폴드 커버·내부 화면에 대응하는 레이아웃. 색상은 `../lib/workspace.css`의 공통 테마 토큰 사용
+- `../lib/workspace-theme.js`, `../lib/workspace-ui.js`: 도감·툴킷과 공유하는 테마·밀도 설정
+- `../lib/fresh.js`: 새 버전 감지
+
+`../draft.html`은 기존 `play.html`로 연결하는 별칭이다. 씨앗·주제 쿼리와 해시를 보존한다.
+기존 `game.js`, `insights.js`, `gallery.js`, `page.js`, `play.css`는 이전 구현을 대조하기 위해 남겨 두며 새 화면에서는 로드하지 않는다.
+Preact가 DOM을 소유하고, 엔진은 DOM에 접근하지 않는다. 기존 `gundam_draft_cfg_v1`, `draft_rec_v1:<주제>` 저장 키와 게임 규칙을 유지한다.
 
 `data/`와 `img/`는 도감과 공유하며 복제하지 않는다. 상대 데이터 URL은 문서인 `play.html` 기준으로 해석된다. GitHub Pages 또는 로컬 HTTP 서버로 실행한다.
 
@@ -14,7 +18,7 @@
 
 MVP는 아군 기체·파일럿 조의 출격 점수에 정원 초과 감점을 적용한 값으로 선정한다. 팀 단위 연대·공개 목표 보너스는 배분하지 않는다. 이미지 보유 및 열람은 점수나 게임 기록을 변경하지 않는다.
 
-자산 수정 후 `play.html`의 해당 CSS/JS `?v=` 값을 파일 SHA-256 앞 10자리로 갱신한다. 기존 문서 새 버전 알림도 유지된다.
+자산 수정 후 `play.html`의 해당 CSS/JS `?v=` 값을 파일 SHA-256 앞 10자리로 갱신한다. `draft-engine.js`를 바꾸면 먼저 `draft-app.js`의 import 버전을 갱신하고, 그 뒤 `play.html`의 앱 버전을 갱신한다. 기존 문서 새 버전 알림도 유지된다.
 
 검증: `node tests/mobile-smoke.cjs`, `node tests/strategy-smoke.cjs`, `node tests/gallery-smoke.cjs` (저장소 루트에서 실행; Playwright Chromium 필요).
 
@@ -29,3 +33,12 @@ MVP는 아군 기체·파일럿 조의 출격 점수에 정원 초과 감점을 
 - 프롬프트의 화풍 선택은 생성 설정이며 `stylePreferences`에만 기억한다. 기록 내보내기는 저장소의 과거 `style`을 보존하고 브라우저 값으로 덮어쓰지 않는다.
 
 화풍 검증: `python3 tests/style-registration.py`, `node tests/style-logic.cjs`. 브라우저 검증: `node tests/style-smoke.cjs`.
+
+## Preact 전환 검증
+
+- `node tests/draft-engine.cjs`: 브라우저나 npm 설치 없이 실행. 같은 씨앗 재현, 보급 재요청, 지명 중복 방지, 낡은 AI 타이머, 점수 내역 합계, 전적 1회 저장을 검사한다.
+- 전환 시 기존 구현과 세 가지 설정의 전체 판을 비교하여 보급 카드·편성·점수·전적·훈장 일치를 확인했다.
+- 기존 `*-smoke.cjs` 중 과거 DOM id/전역 함수에 의존하는 검사는 이전 화면용이며 새 Preact UI의 통과 근거로 사용하지 않는다.
+- 자동 DOM 검사에서 설정·테마 전환·지명 확인·점수 미리보기·내 편성·전황·도감·이미지 확대·최종 결과를 확인했다. 실제 브라우저 레이아웃 및 폴드5 실기기 확인은 별도로 수행해야 한다.
+
+도감은 `main` 바깥 문서 스크롤을 잠그고, `.collection-scroll`만 세로로 움직인다. 드래프트도 고정된 상단과 하단 버튼 사이의 `.draft-content`만 스크롤한다.

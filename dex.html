@@ -234,7 +234,7 @@ body.dex-compact .grid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
   .cap{font-size:13px;line-height:1.45}
 }
 </style>
-<link rel="stylesheet" href="lib/workspace.css?v=1">
+<link rel="stylesheet" href="lib/workspace.css?v=ccf0dadda3">
 <script src="lib/workspace-theme.js?v=1"></script>
 </head>
 <body class="dex-page">
@@ -730,7 +730,7 @@ function App() {
   };
   const pickTab = t => {
     setTab(t); setSer(''); setStyle('');
-    const box = document.querySelector('main');
+    const box = document.querySelector('.collection-scroll');
     if (box) box.scrollTop = 0;
   };
 
@@ -838,6 +838,7 @@ function App() {
           ${compact ? '크게 보기' : '작게 보기'}
         </button>
       </div>
+      <section class="collection-scroll" aria-label="도감 목록" tabindex="0">
       ${mode === 'w' && html`
         <div class="prog"><i style=${{ width: (rows.length ? doneCount / rows.length * 100 : 0).toFixed(1) + '%' }}></i></div>`}
 
@@ -867,6 +868,7 @@ function App() {
           : mode === 'p' ? shown + ' / ' + rows.length
           : rows.length + '장 · 그림 ' + shown}
       </div>
+      </section>
     </main>
 
     ${open && html`
