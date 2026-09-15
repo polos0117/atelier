@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>도감 (시범) · Atelier</title>
+<!--
+  Preact + htm 시범판. dex.html 은 그대로 두고 여기서만 시험한다.
+
+  왜 이 조합인가
+  - 빌드가 없다. CDN 에서 모듈을 받아 <script type="module"> 안에서 바로 쓴다.
+    커밋하면 Pages 에 그대로 올라간다. 지금 작업 흐름이 안 바뀐다.
+  - JSX 대신 태그드 템플릿(html`...`)을 쓸 뿐, 사고방식은 React 와 같다.
+    여기서 만든 컴포넌트 구조는 React+Vite 로 거의 그대로 옮겨진다.
+
+  옮기지 않은 것 (dex.html 에만 있음)
+  - 작업 모드(w), 툴킷 설정 연동, 생성 기록, 프롬프트 복사, 화풍 필터,
+    카드 상세 시트의 능력치·인연 표시, 새 판 감지.
+  시범의 목적은 "격자 + 그림 넘기기 + 확대"가 얼마나 짧아지는지 보는 것이다.
+-->
+<script src="lib/img.js"></script>
+<style>
+:root{
+  --void:#0F1318; --deck:#151A21; --panel:#1D242D; --rule:#2C3742;
+  --ink:#E4E9EF; --dim:#8794A3; --plate:#C9D2DC; --cc:#79849A; --gap:10px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--deck);color:var(--ink);
+  font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;
+  font-size:15px;line-height:1.5;padding-bottom:env(safe-area-inset-bottom);
+}
+.mono{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace}
+header{position:sticky;top:0;z-index:30;background:var(--deck);
+  border-bottom:1px solid var(--rule);padding:calc(10px + env(safe-area-inset-top)) 12px 0}
+.brand{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
+.brand h1{margin:0;font-size:17px;font-weight:800;letter-spacing:.22em}
+.brand .n{font-size:11px;color:var(--dim);letter-spacing:.1em}
+.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;background:none;border:0;color:var(--dim);font:inherit;font-size:13px;
+  font-weight:700;letter-spacing:.05em;padding:9px 12px 10px;border-bottom:2px solid transparent;cursor:pointer}
+.tab.on{color:var(--ink);border-bottom-color:var(--plate)}
+.ctl{display:flex;gap:6px;padding:7px 0 0;flex-wrap:wrap}
+.ctl:last-of-type{padding-bottom:9px}
+.ctl input,.ctl select{background:var(--panel);border:1px solid var(--rule);color:var(--ink);
+  font:inherit;font-size:13px;border-radius:6px;padding:7px 9px;min-width:0}
+.ctl input{flex:1 1 auto}
+.ctl select{flex:0 1 40%}
+.sw{display:flex;flex:0 0 auto;border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.sw.grow{flex:1 1 auto}
+.sw.grow button{flex:1 1 0;padding:7px 4px}
+.sw button{background:var(--panel);border:0;color:var(--dim);font:inherit;font-size:12px;
+  font-weight:700;padding:0 10px;cursor:pointer}
+.sw button.on{background:var(--plate);color:var(--void)}
+main{padding:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:var(--gap)}
+.cell{background:var(--panel);border:1px solid var(--rule);border-radius:8px;overflow:hidden;
+  cursor:pointer;position:relative;border-left:3px solid var(--cc)}
+.cell:focus-visible{outline:2px solid var(--plate);outline-offset:2px}
+.face{display:block;position:relative;width:100%;aspect-ratio:2/3;background:#11161C;overflow:hidden}
+.face img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
+.ph{display:flex;align-items:center;justify-content:center;height:100%;color:var(--dim);
+  font-size:10px;letter-spacing:.1em}
+.pg{position:absolute;bottom:4px;right:4px;background:rgba(15,19,24,.5);color:var(--plate);
+  font-size:9.5px;font-weight:700;line-height:1;padding:3px 5px;border-radius:4px;border:0;
+  cursor:pointer;letter-spacing:.02em}
+.pg:active{background:var(--plate);color:var(--void)}
+.cap{padding:6px 7px 7px;font-size:11.5px;font-weight:600;line-height:1.3;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.empty{padding:40px 0;text-align:center;color:var(--dim);font-size:13px}
+.foot{padding:14px 12px 24px;color:var(--dim);font-size:11.5px;text-align:center}
+.zoom{position:fixed;inset:0;z-index:70;background:rgba(8,10,13,.95);display:flex;
+  align-items:center;justify-content:center;padding:16px;cursor:zoom-out}
+.zoom img{max-width:100%;max-height:100%;border-radius:4px}
+.zpg{position:absolute;left:50%;transform:translateX(-50%);
+  bottom:calc(10px + env(safe-area-inset-bottom));background:rgba(15,19,24,.55);
+  color:var(--plate);font-size:11px;font-weight:700;line-height:1;padding:5px 9px;
+  border-radius:999px;pointer-events:none}
+@media (min-width:560px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(135px,1fr))}
+  .cap{font-size:13px;line-height:1.45}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script type="module">
+import { h, render } from 'https://esm.sh/preact@10.24.3';
+import { useState, useEffect, useMemo, useRef } from 'https://esm.sh/preact@10.24.3/hooks';
+import htm from 'https://esm.sh/htm@3.1.1';
+
+const html = htm.bind(h);
+const AIMG = window.AtelierImg;
+
+/* ── 자료 ───────────────────────────────────────────────
+   dex.html 은 게임 코드와 배열 꼴을 공유하느라 c[0], c[1] 처럼 자리번호로 읽는다.
+   여기서는 json 을 그대로 쓴다. 그림 쪽은 전부 lib/img.js 가 맡는다. */
+const KINDS = [
+  { tab: '기체',   file: 'mech'  },
+  { tab: '파일럿', file: 'pilot' },
+  { tab: '지휘관', file: 'crew'  },
+  { tab: '함',     file: 'ship'  },
+];
+const MODES = [['p', '의인화'], ['c', '일상'], ['x', '특별']];
+
+function getJSON(name) {
+  return fetch('data/' + name + '.json', { cache: 'no-cache' }).then(r => {
+    if (!r.ok) throw new Error(name + ' — ' + r.status);
+    return r.json();
+  });
+}
+
+function useAtelierData() {
+  const [data, setData] = useState(null);
+  const [err, setErr] = useState(null);
+  useEffect(() => {
+    Promise.all(KINDS.map(k => getJSON(k.file)).concat([getJSON('series'), AIMG.load()]))
+      .then(res => {
+        const cards = {};
+        KINDS.forEach((k, i) => { cards[k.tab] = res[i].cards; });
+        setData({ cards, series: res[KINDS.length], img: res[KINDS.length + 1] });
+      })
+      .catch(setErr);
+  }, []);
+  return { data, err };
+}
+
+/* 그림이 실제로 든 몫을 고른다. 기본 몫이 비고 화풍 몫에만 있는 카드가 있어서,
+   이름으로 고르지 않고 내용으로 고른다 (dex.html 의 bucketOf 와 같은 규칙) */
+function bucketOf(entry) {
+  if (!entry) return null;
+  if (AIMG.hasPic(entry)) return entry;
+  const bs = AIMG.styleMap(entry);
+  for (const k in bs) if (AIMG.hasPic(bs[k])) return bs[k];
+  return null;
+}
+function shotsFor(entry, mode, v) {
+  const b = bucketOf(entry);
+  if (!b) return [];
+  if (mode === 'c') return AIMG.cuts(b, 'casual', v);
+  if (mode === 'x') return AIMG.cuts(b, 'extra', v);
+  const pic = b[v] || b[v === 'm' ? 'f' : 'm'];
+  return pic ? [pic] : [];
+}
+
+/* ── 타일 ─────────────────────────────────────────────── */
+function Cell({ name, color, shots, onZoom }) {
+  const [page, setPage] = useState(0);
+  const touch = useRef({ x: 0, y: 0, swiped: false });
+  const i = shots.length ? ((page % shots.length) + shots.length) % shots.length : 0;
+  const pic = shots[i];
+  const step = d => setPage(p => p + d);
+
+  const onStart = e => { const t = e.touches[0]; touch.current = { x: t.clientX, y: t.clientY, swiped: false }; };
+  const onEnd = e => {
+    if (shots.length < 2) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - touch.current.x, dy = t.clientY - touch.current.y;
+    if (Math.abs(dx) > 30 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+      step(dx < 0 ? 1 : -1);
+      touch.current.swiped = true;
+    }
+  };
+  const onClick = () => {
+    if (touch.current.swiped) { touch.current.swiped = false; return; }
+    if (pic) onZoom(shots, i);
+  };
+
+  return html`
+    <div class="cell" tabindex="0" style=${{ '--cc': color }}
+         ontouchstart=${onStart} ontouchend=${onEnd} onclick=${onClick}>
+      <span class="face">
+        ${pic
+          ? html`<img loading="lazy" src=${AIMG.thumbURL(pic)} alt=""
+                   onerror=${e => { e.target.onerror = null; e.target.src = AIMG.imgURL(pic); }} />`
+          : html`<span class="ph">그림 없음</span>`}
+        ${shots.length > 1 && html`
+          <button class="pg mono" aria-label="다음 그림"
+                  onclick=${e => { e.stopPropagation(); step(1); }}>
+            ${i + 1}/${shots.length}
+          </button>`}
+      </span>
+      <div class="cap">${name}</div>
+    </div>`;
+}
+
+/* ── 확대 ─────────────────────────────────────────────── */
+function Zoom({ list, start, onClose }) {
+  const [i, setI] = useState(start);
+  const touch = useRef({ x: 0, y: 0, swiped: false });
+  const step = d => setI(p => ((p + d) % list.length + list.length) % list.length);
+
+  useEffect(() => {
+    const onKey = e => {
+      if (e.key === 'Escape') onClose();
+      else if (e.key === 'ArrowRight') step(1);
+      else if (e.key === 'ArrowLeft') step(-1);
+    };
+    addEventListener('keydown', onKey);
+    return () => removeEventListener('keydown', onKey);
+  }, [list.length]);
+
+  const onStart = e => { const t = e.touches[0]; touch.current = { x: t.clientX, y: t.clientY, swiped: false }; };
+  const onEnd = e => {
+    if (list.length < 2) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - touch.current.x, dy = t.clientY - touch.current.y;
+    if (Math.abs(dx) > 28 && Math.abs(dx) > Math.abs(dy) * 1.4) { step(dx < 0 ? 1 : -1); touch.current.swiped = true; }
+  };
+
+  return html`
+    <div class="zoom" ontouchstart=${onStart} ontouchend=${onEnd}
+         onclick=${() => { if (touch.current.swiped) { touch.current.swiped = false; return; } onClose(); }}>
+      <img src=${AIMG.imgURL(list[i])} alt="" />
+      ${list.length > 1 && html`<div class="zpg mono">${i + 1}/${list.length}</div>`}
+    </div>`;
+}
+
+/* ── 화면 ─────────────────────────────────────────────── */
+function App() {
+  const { data, err } = useAtelierData();
+  const [tab, setTab] = useState('기체');
+  const [mode, setMode] = useState('p');
+  const [v, setV] = useState('f');
+  const [q, setQ] = useState('');
+  const [ser, setSer] = useState('');
+  const [zoom, setZoom] = useState(null);
+
+  const rows = useMemo(() => {
+    if (!data) return [];
+    const needle = q.trim().toLowerCase();
+    return data.cards[tab]
+      .filter(c => !ser || c.series === ser)
+      .filter(c => !needle || c.name.toLowerCase().includes(needle))
+      .map(c => ({
+        card: c,
+        shots: shotsFor(data.img[c.name], mode, v),
+      }))
+      .filter(r => mode === 'p' || r.shots.length);
+  }, [data, tab, mode, v, q, ser]);
+
+  if (err) return html`<div class="empty">자료를 못 읽었다 — ${String(err.message || err)}</div>`;
+  if (!data) return html`<div class="empty">읽는 중…</div>`;
+
+  const colorOf = c => {
+    const f = c.factions && c.factions[c.factions.length - 1];
+    return (data.series.faction_color && data.series.faction_color[f]) || '#79849A';
+  };
+  const seriesList = Object.keys(data.series.name || {});
+  const shown = rows.reduce((n, r) => n + (r.shots.length ? 1 : 0), 0);
+
+  return html`
+    <header>
+      <div class="brand">
+        <h1>DEX</h1><span class="n mono">PREACT 시범</span>
+      </div>
+      <div class="tabs">
+        ${KINDS.map(k => html`
+          <button class=${'tab' + (tab === k.tab ? ' on' : '')} onclick=${() => setTab(k.tab)}>
+            ${k.tab}
+          </button>`)}
+      </div>
+      <div class="ctl">
+        <div class="sw grow">
+          ${MODES.map(([m, label]) => html`
+            <button class=${mode === m ? 'on' : ''} onclick=${() => setMode(m)}>${label}</button>`)}
+        </div>
+        <div class="sw">
+          ${[['m', '남'], ['f', '여']].map(([g, label]) => html`
+            <button class=${v === g ? 'on' : ''} onclick=${() => setV(g)}>${label}</button>`)}
+        </div>
+      </div>
+      <div class="ctl">
+        <input placeholder="이름으로 찾기" value=${q} oninput=${e => setQ(e.target.value)} />
+        <select value=${ser} onchange=${e => setSer(e.target.value)}>
+          <option value="">시리즈 전체</option>
+          ${seriesList.map(s => html`<option value=${s}>${data.series.name[s] || s}</option>`)}
+        </select>
+      </div>
+    </header>
+
+    <main>
+      ${rows.length
+        ? html`<div class="grid">
+            ${rows.map(r => html`
+              <${Cell} key=${r.card.name} name=${r.card.name} color=${colorOf(r.card)}
+                       shots=${r.shots} onZoom=${(list, i) => setZoom({ list, i })} />`)}
+          </div>`
+        : html`<div class="empty">해당하는 카드가 없다</div>`}
+      <div class="foot mono">${rows.length}장 · 그림 ${shown}</div>
+    </main>
+
+    ${zoom && html`<${Zoom} list=${zoom.list} start=${zoom.i} onClose=${() => setZoom(null)} />`}`;
+}
+
+render(html`<${App} />`, document.getElementById('app'));
+</script>
+</body>
+</html>
