@@ -1,0 +1,23 @@
+Create ONE SINGLE 2:3 vertical full-body character image for the “게드라프 / ZM-S24G Gedlav” card from Mobile Suit Victory Gundam.
+
+ART STYLE
+High-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization. It must read as a sophisticated semi-realistic digital painting, not cel anime, mobile-game key art, live-action photography, or glossy 3D CGI. Use believable mature adult anatomy, softly painted skin volume, grouped painterly hair masses, selective sharp mechanical edges, and broken painted reflections instead of PBR surfaces.
+
+SUBJECT
+Exactly one clearly adult man in his 20s, original identity with no resemblance to any canonical pilot. Match ONLY these three color traits from the established female Gedlav design: the same warm tan-olive skin tone, the same warm copper hair color, and the same vivid cobalt-blue eye color. Do not copy her heart-shaped face, asymmetrical bob, bust, waist, hips, or feminine proportions.
+Design a distinctly different masculine identity: a Mediterranean man with a broad rectangular face, narrow deep-set eyes beneath a heavy straight brow, a broad prominent nose, lean cheeks, a strong square jaw, and a stern restrained expression. His copper hair is a short dense textured crop with a clean low fade, not a bob and not side-swept. He is average height but compact and powerfully athletic: very broad shoulders, thick neck, flat masculine pectorals, short powerful torso, straight waist, muscular thighs, and sturdy lower legs.
+
+GEDLAV ARMOR TRANSLATION
+Translate the canonical ZM-S24G Gedlav into a recognizable humanoid armored man. Use a fitted opaque dark forest-green technical undersuit under heavier layered sand-yellow and muted ochre armor, dull olive panels, red-orange accents at the shoulders and boots, dark graphite joints, and a narrow cobalt-blue visor sensor ornament above the forehead. Preserve the Gedlav’s compact, broad, utilitarian silhouette without turning him into a generic Gundam.
+His body must remain a normal humanoid skeleton with exactly two shoulders, two human arms, two hands, two human legs, and two boots.
+
+EINERAD SUPPORT WEAPON
+The unmistakable main source feature is ONE enormous vertical Einerad wheel surrounding and framing his complete body. Build it as a single continuous, thick, dark olive-gray armored tire with chunky segmented tread and a sand-yellow inner mechanical rim. The wheel is slightly larger than his standing height and positioned behind him in the same vertical plane; his full body is centered within its open interior and connected only by one compact rigid docking cradle at the lower back. The ring must never intersect his head, torso, arms, or legs and must not become a halo, wings, clothing, tail, or an additional limb.
+Mount exactly TWO forward-facing beam-cannon barrels on the upper inner rim, one on each side, and ONE compact 9-tube missile pod on the upper outer rim with nine clearly separated launch cells. Add two small beam-shield emitter housings on opposite lateral rim sections, inactive with no large glowing discs. These are all fixed parts of the external wheel.
+He holds ONE compact angular Gedlav beam rifle in his right hand, muzzle safely angled down. His left hand is empty and fully visible. One inactive beam-saber hilt is docked at the left hip; no active blade.
+
+COMPOSITION
+Full-body front three-quarter composition at eye level. He stands centered inside the vertical wheel in a grounded guarded stance, both arms and both legs clearly separated and readable. Keep him large and densely framed from the top of his copper hair to both boots, with minimal headroom, floor margin, and side margin. Let the circular Einerad nearly touch the upper and side edges of the 2:3 canvas while preserving its complete recognizable ring; do not pull the camera far back and do not add arbitrary empty space. Use a restrained, softly defocused Zanscare mobile-unit test yard at golden hour with broad warm side light, cool shadows, and light dust. No other people or machines.
+
+HARD CONSTRAINTS
+Exactly one adult man. Exactly two arms, two hands with five fingers each, and two legs. Flat masculine chest. Exactly one continuous wheel ring, two ring beam cannons, one 9-cell missile pod, one handheld rifle, and one docked saber hilt. No female face or body, no motorcycle, no bicycle, no second wheel, no extra arms, extra hands, extra legs, robotic helper limbs, tentacles, biological tail, feathered wings, angel motif, fantasy crown, pilot resemblance, childlike face, exposed genitals, explicit nudity, readable text, UI, logo, or watermark. Full body visible.
