@@ -61,8 +61,8 @@ main{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;padding:0 12px
 .brand{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
 .brand h1{margin:0;font-size:16px;font-weight:800;letter-spacing:.14em}
 .brand span{font-size:11px;color:var(--dim)}
-header{position:sticky;top:0;z-index:30;background:var(--deck);
-  border-bottom:1px solid var(--rule);margin:0 -12px;padding:8px 12px}
+/* 붙박이로 두지 않는다 — 기체 고르개까지 늘 화면을 차지하면 답답하다 */
+header{background:var(--deck);border-bottom:1px solid var(--rule);margin:0 -12px;padding:8px 12px}
 .row{display:flex;gap:6px;flex-wrap:wrap}
 .row + .row{margin-top:6px}
 select,input[type=text],textarea{background:var(--panel);border:1px solid var(--rule);color:var(--ink);
@@ -635,6 +635,33 @@ function App() {
             나중에 저장한 쪽이 이긴다 — 한쪽에서만 만지는 편이 안전하다.
           </p>
 
+          <p class="sec">랜덤 · 채운 항목 ${filled}${lockCount ? ' · 자물쇠 ' + lockCount : ''}</p>
+          <div class="bar">
+            <button class="btn go" onclick=${rollAnthro}>🎲 외형 랜덤</button>
+            <button class="btn" onclick=${copyToOther}>
+              ${gender === 'female' ? '남성' : '여성'} 쪽에 복사
+            </button>
+          </div>
+          <div class="bar">
+            ${prevRef.current && prevRef.current.name !== mech ? html`
+              <button class="btn" onclick=${takePrev}>직전 설정 (${prevFrom})</button>` : null}
+            ${lockCount ? html`
+              <button class="btn" onclick=${() => setLocks({})}>자물쇠 모두 풀기</button>` : null}
+          </div>
+          <div class="row">
+            ${GROUPS.map(([g, t]) => html`
+              <label class=${'chip' + (rndGroups[g] ? ' on' : '')}>
+                <input type="checkbox" checked=${!!rndGroups[g]}
+                       onchange=${e => setRndGroups(o => ({ ...o, [g]: e.target.checked }))} />
+                ${t}
+              </label>`)}
+            <label class=${'chip' + (onlyEmpty ? ' on' : '')}>
+              <input type="checkbox" checked=${onlyEmpty}
+                     onchange=${e => setOnlyEmpty(e.target.checked)} />
+              빈 칸만
+            </label>
+          </div>
+
           <div class="row" style="margin-top:12px">
             <select value=${morph} onchange=${e => setMorph(e.target.value)}>
               ${MORPHS.map(([k, t]) => html`<option value=${k}>형태 · ${t}</option>`)}
@@ -677,41 +704,18 @@ function App() {
               언더부스트 장갑 문구 넣기
             </label>`}
 
-          <p class="sec">랜덤 · 채운 항목 ${filled}${lockCount ? ' · 자물쇠 ' + lockCount : ''}</p>
-          <div class="bar">
-            <button class="btn go" onclick=${rollAnthro}>🎲 외형 랜덤</button>
-            <button class="btn" onclick=${copyToOther}>
-              ${gender === 'female' ? '남성' : '여성'} 쪽에 복사
-            </button>
-          </div>
-          <div class="bar">
-            ${prevRef.current && prevRef.current.name !== mech ? html`
-              <button class="btn" onclick=${takePrev}>직전 설정 (${prevFrom})</button>` : null}
-            ${canUndo ? html`<button class="btn" onclick=${undo}>되돌리기</button>` : null}
-            <button class="btn" onclick=${resetGender}>이 성별 비우기</button>
-            <button class="btn" onclick=${exportOne}>설정 내보내기</button>
-            ${lockCount ? html`
-              <button class="btn" onclick=${() => setLocks({})}>자물쇠 모두 풀기</button>` : null}
-          </div>
-          <div class="row">
-            ${GROUPS.map(([g, t]) => html`
-              <label class=${'chip' + (rndGroups[g] ? ' on' : '')}>
-                <input type="checkbox" checked=${!!rndGroups[g]}
-                       onchange=${e => setRndGroups(o => ({ ...o, [g]: e.target.checked }))} />
-                ${t}
-              </label>`)}
-            <label class=${'chip' + (onlyEmpty ? ' on' : '')}>
-              <input type="checkbox" checked=${onlyEmpty}
-                     onchange=${e => setOnlyEmpty(e.target.checked)} />
-              빈 칸만
-            </label>
-          </div>
-
           <p class="sec">결과 · ${prompt.length.toLocaleString()}자</p>
           <textarea class="out" readonly value=${prompt}></textarea>
           <div class="bar">
             <button class="btn go" onclick=${() => copyText(prompt).then(
               () => showToast('복사했다 · ' + card.name), () => showToast('복사 실패'))}>프롬프트 복사</button>
+          </div>
+
+          ${/* 가끔 쓰는 것들은 맨 아래에 둔다 */''}
+          <div class="bar">
+            ${canUndo ? html`<button class="btn" onclick=${undo}>되돌리기</button>` : null}
+            <button class="btn" onclick=${resetGender}>이 성별 비우기</button>
+            <button class="btn" onclick=${exportOne}>설정 내보내기</button>
           </div>
         `}
     </main>
