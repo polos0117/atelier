@@ -3453,12 +3453,16 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     box.classList.remove('hidden');
     box.innerHTML='<div class="pp-main">'+(head||'<div class="pp-txt"><b>'+escHtml(label)+'</b></div>')+'</div>'+gal;
   }
+  const {
+    CUTE_SET,
+    CUTE_LOCK,
+    YOUTHFUL_LOCK,
+    UNDERBOOB_NEG,
+    UNDERBOOB_POS
+  } = window.AtelierSpec;
 
-  const CUTE_SET={'cute':1,'doll-like':1,'innocent':1,'cheerful':1};
-  const CUTE_LOCK='the {C} impression comes from expression, eye shape, and overall softness, not from youth; '+
-    'the character remains a clearly adult woman or man with adult facial proportions and an adult body — '+
-    'never a child, teenager, or underage appearance';
-  const YOUTHFUL_LOCK='a clearly adult woman or man in their twenties with a youthful, soft-featured baby face; rounder cheeks, larger eyes, and a softer jawline than the standard adult face, while body proportions, height, and overall presence remain unmistakably those of a grown adult; never a child, teenager, or underage appearance';
+
+
   /* 민족 단서가 어느 이목구비를 맡는지 적어 둔다. 사람이 그 자리를 직접
      지정했으면 민족 쪽은 손을 뗀다 — 안 그러면 한 목록 안에서 "코는 이렇게"
      와 "콧대가 {E} 로 읽혀야 한다" 가 맞붙는다. 예전에는 둘 다 나갔고, 기하가
@@ -3468,8 +3472,6 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
      않은 편성의 출력이 이 손질로 흔들리지 않았음을 견줘 볼 수 있다 */
 
 
-  const UNDERBOOB_NEG='no fully covered lower breast, no simple abdomen gap, no detached breast cups, no floating armor, no exposed cleavage-only design';
-  const UNDERBOOB_POS='the chest armor ends slightly above the natural inframammary fold, revealing a narrow crescent of the lower breast on both sides; the exposed underboob must be directly continuous with the breast contour, not a separate cutout or gap; nipples and areola remain fully covered; the armor hugs the upper and outer breast naturally and transitions smoothly into the sternum sensor and side armor';
 
   /* 성별별 설정을 따로 보관한다. 탭을 옮길 때 현재 화면을 저장하고
      반대쪽에 저장돼 있던 값을 복원한다. */
@@ -3941,76 +3943,27 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     setStatus('statusAnthro',(g==='female'?'여성':'남성')+' 설정으로 전환했다','ok');
   }
 
-  function getParamValues(){
-    const out=[];
+  /* 화면에서 고른 값만 걷는다. 차례를 정하고 파생 문장을 붙이는 일은
+     lib/prompt-anthro.js 의 paramValues 가 한다 */
+  function readParamRaw(){
+    const raw=[];
     PARAM_DEFS.forEach(def=>{
       const sel=document.querySelector('[data-param-select="'+CSS.escape(def.key)+'"]');if(!sel)return;
       let v=sel.value;
       if(v==='__custom__'){const inp=document.querySelector('[data-param-custom="'+CSS.escape(def.key)+'"]');v=(inp&&inp.value||'').trim();}
-      if(v)out.push([def.key,v]);
+      if(v)raw.push([def.key,v]);
     });
-    /* 상위 값이 있으면 하위가 그걸 덮지 않도록 순서를 못 박는다.
-
-       단 얼굴은 반대다. 화면에서는 facial character 아래에 세부가 놓이지만
-       (인상을 먼저 고르고 세부를 잡는 흐름이 자연스러우므로), 모델에게는
-       명시한 얼굴 구조가 인상보다 위여야 한다. 인상 한 마디가 눈 · 코 · 턱을
-       한꺼번에 흔드는 것이 원래 문제였다.
-
-       sub 는 화면 배치를 정하는 값이고 의미 우선순위와는 별개다. 구조에
-       해당하는 열쇠만 아래 목록으로 따로 잡는다. */
-    const FACE_GEOMETRY=['face shape','face length','face width','jaw & chin',
-                         'eye shape','eye size','eye tilt','nose character','lips'];
-    const has=k=>out.some(o=>o[0]===k);
-    const parents=[['body type','overall build'],
-                   ['hairstyle','hair form'],['armor coverage','armor coverage']];
-    const setP=parents.filter(x=>has(x[0]));
-    if(setP.length&&out.some(o=>PARAM_DEFS.some(d=>d.key===o[0]&&d.sub))){
-      out.push(['parameter precedence',
-        setP.map(x=>x[0]).join(', ')+(setP.length>1?' define':' defines')+' the overall direction; '+
-        'the other, finer entries in this list adjust within that direction and must not override or contradict it. '+
-        'Where a finer entry appears to conflict, keep the overall direction and apply the finer entry only as a mild adjustment']);
-    }
-    /* 눈동자 색 · 표정은 구조도 인상도 아니다. 예전에는 이것들까지 '인상을
-       거스르지 말라' 로 묶였는데 색에 대고 할 말이 아니라 아예 뺐다. */
-    /* 민족·지역 외모는 넓은 인상 단서다. 참조 정체성이나 명시한 구조를 덮으면
-       개인 얼굴이 지역 평균으로 미끄러진다. */
-    if(has('facial ethnicity')){
-      out.push(['ethnicity scope',
-        'facial ethnicity is a broad population-level appearance cue only. '+
-        'It must not override the attached reference identity or the explicit facial geometry in this list, '+
-        'and stereotypical regional features must not be exaggerated']);
-    }
-    const geo=FACE_GEOMETRY.filter(has);
-    /* 예전에는 facial character 가 있을 때만 이 문장을 내보냈다. 인상이 없으면
-       우선순위를 말할 상대가 없다고 본 것인데, 실제로 기하를 여덟 개나 적고
-       인상만 비워 둔 편성에서 이 문장이 통째로 빠졌다. 기하를 덮는 것은 인상만이
-       아니다 — 화풍의 미인 틀, 민족 단서, 모델의 기본 얼굴이 모두 덮는다.
-       그러니 기하가 하나라도 있으면 내보내고, 인상이 있을 때만 그 몫을 덧붙인다. */
-    if(geo.length){
-      out.push(['facial precedence',
-        'the explicit facial geometry in this list ('+geo.join(', ')+') defines the actual face '+
-        'and must be preserved; do not replace it with a recurring attractive default face. '+
-        (has('facial character')
-          ? 'facial character is a secondary impression cue describing how that face should read. '+
-            'Do not alter the specified geometry, or the adult age structure, to exaggerate the impression'
-          : 'Where this list is silent, choose freely, but do not let that freedom pull the '+
-            'specified features back toward a template')]);
-    }
-    eyeNote(out);
-    const age=out.find(p=>p[0]==='apparent age');
-    if(age&&age[1]==='youthful adult')out.push(['age clarity',YOUTHFUL_LOCK]);
-    const fc2=out.find(p=>p[0]==='facial character');
-    if(fc2&&CUTE_SET[fc2[1]]&&!(age&&age[1]==='youthful adult'))
-      out.push(['age clarity',CUTE_LOCK.replace('{C}',fc2[1])]);
-    const eth=out.find(p=>p[0]==='facial ethnicity');
-    if(eth)out.push(['ethnic consistency',ethnicLock(eth[1],geo)]);
-    const sp=document.getElementById('specialInput').value.trim();if(sp)out.push(['special characteristics',sp]);
+    return raw;
+  }
+  function getParamValues(){
+    const sp=document.getElementById('specialInput');
     const ub=document.getElementById('underboobInput');
-    if(ub&&ub.checked&&(document.getElementById('genderInput').value||'female')==='female'){
-      out.push(['chest armor negatives',UNDERBOOB_NEG]);
-      out.push(['chest armor design',UNDERBOOB_POS]);
-    }
-    return out;
+    const g=document.getElementById('genderInput');
+    return AP.paramValues(readParamRaw(),{
+      special:sp?sp.value.trim():'',
+      underboob:!!(ub&&ub.checked),
+      gender:(g&&g.value)||'female',
+    });
   }
 
   /* 의인화 입력 모으기. 설정 값 목록(getParamValues)까지 여기서 걷어 둔다 */
