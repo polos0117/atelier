@@ -101,6 +101,10 @@ main{padding:12px}
 .stat i{display:block;font-style:normal;font-size:10px;color:var(--dim);letter-spacing:.06em}
 .stat b{font-size:15px}
 .sec{font-size:11px;color:var(--dim);letter-spacing:.08em;margin:0 0 6px}
+/* 시트 안에서는 화풍 이름이 길다 ("한국형 글로시 게임 일러스트"). 머리말 필터처럼
+   40% 로 묶으면 잘리므로, 성별 전환을 뺀 남는 너비를 전부 준다 */
+.sheet .ctl{flex-wrap:nowrap;align-items:stretch;padding-bottom:12px}
+.sheet .ctl select{flex:1 1 auto;width:100%;min-width:0;text-overflow:ellipsis}
 .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px}
 .gal img{width:100%;aspect-ratio:2/3;object-fit:cover;object-position:50% 18%;
   border-radius:6px;display:block;background:var(--panel);cursor:zoom-in}
