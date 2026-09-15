@@ -435,8 +435,10 @@ function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender,
         <div class="body">
           ${shown
             ? html`<div class="art" onclick=${() => onZoom(all.length ? all : [shown], shownIdx)}>
-                     <img src=${AIMG.thumbURL(shown)} alt=""
-                          onerror=${e => { e.target.onerror = null; e.target.src = AIMG.imgURL(shown); }} />
+                     ${/* 여기는 300px 폭으로 크게 그린다. 썸네일(긴 변 512)을 쓰면
+                          고해상도 화면에서 흐릿해 목록 타일보다 화질이 나빠 보인다.
+                          한 장뿐이니 원본을 받는다 — 목록은 장수가 많아 썸네일 유지 */''}
+                     <img src=${AIMG.imgURL(shown)} alt="" />
                    </div>`
             : html`<div class="empty">이 화풍에는 그림이 없다</div>`}
           ${shown && html`
