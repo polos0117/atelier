@@ -384,47 +384,30 @@ function Zoom({ list, start, onClose }) {
 }
 
 /* ── 화면 ── */
-function App() {
-  const [data, setData] = useState(null);
-  const [err, setErr] = useState(null);
-  const [series, setSeries] = useState('');
-  const [mech, setMech] = useState('');
-  const [gender, setGender] = useState('female');
-  const [style, setStyle] = useState(S.DEFAULT_STYLE);
+/* 탭마다 몸통을 컴포넌트로 갈아 끼운다. 조건부 템플릿(${tab === 'x' && html`…`})으로
+   큰 덩어리를 넣으면 preact 가 갈아끼울 때 insertBefore 로 터진다 — 실제로 그랬다.
+   의인화 본문이 그 덩어리였으므로 여기로 뺀다. 상태도 함께 옮겨서, App 은
+   기체·성별·화풍처럼 탭끼리 나눠 쓰는 것만 들고 있는다. */
+function AnthroPanel({ data, series, setSeries, mech, setMech, gender, setGender,
+                       style, setStyle, box, seriesList, mechList, card,
+                       prevRef, prevFrom, setPrevFrom, onZoom }) {
   const [morph, setMorph] = useState('standard_humanoid');
   const [sel, setSel] = useState({});
   const [cus, setCus] = useState({});
   const [special, setSpecial] = useState('');
   const [underboob, setUnderboob] = useState(false);
   const [locks, setLocks] = useState({});
+  /* 자물쇠는 보관함에 있다. 탭을 오가며 이 칸이 떴다 사라져도 되살아나야 한다 */
+  useEffect(() => { const l = box.current.data.locks; if (l) setLocks({ ...l }); }, []);
   const [rndGroups, setRndGroups] = useState(
     () => Object.fromEntries(S.GROUP_META.map(([g]) => [g, g === 'face'])));
   const [onlyEmpty, setOnlyEmpty] = useState(false);
-  const [zoom, setZoom] = useState(null);
   const [status, setStatus] = useState('준비됨');
   const [showText, setShowText] = useState(false);
   const [exportText, setExportText] = useState('');
-  const [toast, showToast] = useToast();
-  const [stamp, setStamp] = useState('');
-  const [prevFrom, setPrevFrom] = useState('');
-  const prevRef = useRef(null);
   const openRef = useRef(null);
 
-  const box = useRef(null);
-  if (!box.current) {
-    box.current = ATK.open(ATK.STORE_KEY,
-      { last: {}, anthro: {}, collage: null, used: {}, style: {}, locks: {} });
-  }
 
-  useEffect(() => {
-    Promise.all([getJSON('data/mech.json'), getJSON('data/series.json'), ATK.load(), AIMG.load()])
-      .then(([m, s, , img]) => setData({ cards: m.cards, series: s, img }))
-      .catch(setErr);
-    setStamp(window.AtelierFresh.watch().stamp());
-    const st = box.current.data;
-    if (st.locks) setLocks({ ...st.locks });
-    if (st.last && st.last.mech) { setSeries(st.last.series || ''); setMech(st.last.mech); }
-  }, []);
 
   /* 저장한 값은 보관함에서 직접 본다 (모듈이 캐시된 옛 판이어도 맞게 돌도록) */
   const recordFor = name => {
@@ -482,15 +465,6 @@ function App() {
     box.current.save();
   }, [mech, gender, sel, cus, underboob, special, morph, data]);
 
-  const seriesList = useMemo(() => {
-    if (!data) return [];
-    const keys = new Set();
-    data.cards.forEach(c => (c.series || []).forEach(k => keys.add(k)));
-    return [...keys];
-  }, [data]);
-  const mechList = useMemo(() => !data ? []
-    : data.cards.filter(c => !series || (c.series || []).indexOf(series) >= 0), [data, series]);
-  const card = useMemo(() => data ? data.cards.find(c => c.name === mech) : null, [data, mech]);
 
   const prompt = useMemo(() => {
     if (!card) return '';
@@ -507,8 +481,6 @@ function App() {
       translation: translationOf(sel), params });
   }, [card, gender, style, morph, sel, cus, special, underboob, data]);
 
-  if (err) return html`<p class="status warn">자료를 못 읽었다 — ${String(err.message || err)}</p>`;
-  if (!data) return html`<p class="status">읽는 중…</p>`;
 
   const setOne = (k, v) => setSel(o => ({ ...o, [k]: v }));
   const setCustom = (k, v) => setCus(o => ({ ...o, [k]: v }));
@@ -568,10 +540,6 @@ function App() {
     setStatus(nm + ' 설정을 ' + onm + ' 쪽에 복사했다 — 그 탭으로 넘어가면 적용된다');
   }
 
-  function pickMech(name) {
-    if (mech && mech !== name) { prevRef.current = { name: mech, part: partNow() }; setPrevFrom(mech); }
-    setMech(name);
-  }
   function takePrev() {
     if (!prevRef.current) return;
     applyPart(prevRef.current.part);
@@ -611,17 +579,12 @@ function App() {
   const hasLocal = !!(box.current.data.anthro || {})[mech];
   const hasRec = !!recordFor(mech);
 
-  return html`
-    <nav class="workspace-nav" aria-label="Atelier 화면 이동">
-      <a href="prompt.html">툴킷</a>
-      <a href="play.html">드래프트</a>
-      <a href="dex.html">도감</a>
-      <a href="prompt-next.html" aria-current="page">툴킷(시범)</a>
-    </nav>
+  function pickMech(name) {
+    if (mech && mech !== name) { prevRef.current = { name: mech, part: partNow() }; setPrevFrom(mech); }
+    setMech(name);
+  }
 
-    <${AppearanceControls} />
-    <${WorkspaceHeading} title="캐릭터 스튜디오" code="PROMPT TOOLKIT"
-      subtitle="기체의 개성을 고르고, 나만의 캐릭터로." />
+  return html`
     <section class="panel">
       <div class="panel-head">
         <strong>의인화 프롬프트</strong>
@@ -694,7 +657,7 @@ function App() {
                             sel=${sel} gender=${gender} img=${data.img} style=${style} exclude=${mech}
                             onValue=${v => setOne(def.key, v)} onCustom=${v => setCustom(def.key, v)}
                             onLock=${() => toggleLock(def.key)}
-                            onZoom=${(list, i) => setZoom({ list, i })} />`;
+                            onZoom=${(list, i) => onZoom({ list, i })} />`;
             /* 하위 항목은 어느 상위 값 안에서 조정되는지 머리에 적는다 (원본과 같다) */
             const subGroups = {};
             subs.forEach(d => { (subGroups[d.sub] = subGroups[d.sub] || []).push(d); });
@@ -797,6 +760,66 @@ function App() {
           <textarea aria-label="생성 프롬프트" readonly spellcheck="false" value=${prompt}></textarea>
         </div>`}
     </section>
+`;
+}
+
+function App() {
+  const [data, setData] = useState(null);
+  const [err, setErr] = useState(null);
+  const [series, setSeries] = useState('');
+  const [mech, setMech] = useState('');
+  const [gender, setGender] = useState('female');
+  const [style, setStyle] = useState(S.DEFAULT_STYLE);
+  const [zoom, setZoom] = useState(null);
+  const [toast, showToast] = useToast();
+  const [stamp, setStamp] = useState('');
+  const [prevFrom, setPrevFrom] = useState('');
+  const prevRef = useRef(null);
+  const box = useRef(null);
+  if (!box.current) {
+    box.current = ATK.open(ATK.STORE_KEY,
+      { last: {}, anthro: {}, collage: null, used: {}, style: {}, locks: {} });
+  }
+
+  useEffect(() => {
+    Promise.all([getJSON('data/mech.json'), getJSON('data/series.json'), ATK.load(), AIMG.load()])
+      .then(([m, s, , img]) => setData({ cards: m.cards, series: s, img }))
+      .catch(setErr);
+    setStamp(window.AtelierFresh.watch().stamp());
+    const st = box.current.data;
+    if (st.last && st.last.mech) { setSeries(st.last.series || ''); setMech(st.last.mech); }
+  }, []);
+
+  const seriesList = useMemo(() => {
+    if (!data) return [];
+    const keys = new Set();
+    data.cards.forEach(c => (c.series || []).forEach(k => keys.add(k)));
+    return [...keys];
+  }, [data]);
+  const mechList = useMemo(() => !data ? []
+    : data.cards.filter(c => !series || (c.series || []).indexOf(series) >= 0), [data, series]);
+  const card = useMemo(() => data ? data.cards.find(c => c.name === mech) : null, [data, mech]);
+
+  if (err) return html`<p class="status warn">자료를 못 읽었다 — ${String(err.message || err)}</p>`;
+  if (!data) return html`<p class="status">읽는 중…</p>`;
+
+  return html`
+    <nav class="workspace-nav" aria-label="Atelier 화면 이동">
+      <a href="prompt.html">툴킷</a>
+      <a href="play.html">드래프트</a>
+      <a href="dex.html">도감</a>
+      <a href="prompt-next.html" aria-current="page">툴킷(시범)</a>
+    </nav>
+
+    <${AppearanceControls} />
+    <${WorkspaceHeading} title="캐릭터 스튜디오" code="PROMPT TOOLKIT"
+      subtitle="기체의 개성을 고르고, 나만의 캐릭터로." />
+    <${AnthroPanel} data=${data} series=${series} setSeries=${setSeries}
+      mech=${mech} setMech=${setMech} gender=${gender} setGender=${setGender}
+      style=${style} setStyle=${setStyle} box=${box}
+      seriesList=${seriesList} mechList=${mechList} card=${card}
+      prevRef=${prevRef} prevFrom=${prevFrom} setPrevFrom=${setPrevFrom}
+      onZoom=${z => setZoom(z)} />
     <span class="build-stamp">${stamp}</span>
 
     ${zoom && html`<${Zoom} list=${zoom.list} start=${zoom.i} onClose=${() => setZoom(null)} />`}
