@@ -1,0 +1,29 @@
+{
+  "가프란_cinematic_semi_real_f.webp": {
+    "card": "가프란",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "f505f6306c04a059c5c4ce17e85f73987b03540cdf3e2d250ef9dbe8bb827d09",
+    "prompt": "generation/m-33e29657f1555d4e/runs/2026-09-15t164012z/01-female-anthro.txt",
+    "manifest": "generation/m-33e29657f1555d4e/runs/2026-09-15t164012z/manifest.json"
+  },
+  "가프란_cinematic_semi_real_m.webp": {
+    "card": "가프란",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "1a9d05aec3bd918ede424fb1765534955432b5cbac3923aa5759d68e6ffeba48",
+    "prompt": "generation/m-33e29657f1555d4e/runs/2026-09-15t164012z/02-male-anthro.txt",
+    "manifest": "generation/m-33e29657f1555d4e/runs/2026-09-15t164012z/manifest.json"
+  },
+  "가프란_cinematic_semi_real_f_casual1.webp": {
+    "card": "가프란",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "15322604cd7df64765c443105b79dfa6eb34d05a9c82c155b64d979129817336",
+    "prompt": "generation/m-33e29657f1555d4e/runs/2026-09-15t164012z/03-female-casual.txt",
+    "manifest": "generation/m-33e29657f1555d4e/runs/2026-09-15t164012z/manifest.json"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "card": "가프란",
+  "model": "ovv-f",
+  "series": "기동전사 건담 AGE",
+  "repository": "polos0117/atelier",
+  "branch": "main",
+  "base_commit": "1c37347815d6cb22a42a4905d7f18195d397c82e",
+  "prompt_source": "deployed prompt.html v9.19 UI with an exported settings record and exact submitted prompts",
+  "run": "2026-09-15t164012z",
+  "created": "2026-09-15T16:40:12Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Actual prompt.html selections were exported after female and male configuration; the exact female, male, and casual prompts are stored with this run",
+  "delivery": {
+    "method": "GitHub Git Data API",
+    "target": "refs/heads/main",
+    "sequence": [
+      "blob",
+      "tree",
+      "commit",
+      "update_ref"
+    ],
+    "single_commit": true,
+    "pull_request": false
+  },
+  "references": [],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female medium skin tone, navy hair color, and green eye color only; casual uses the female generated image as the exact identity reference",
+    "equipment_lock": "Indigo-blue, navy, and black aerodynamic armor, bright green sensors, sharp Vagan-style crest, swept wing binders, elongated claw-like external armor, a tail-like beam-rifle stabilizer, and a compact chest beam cannon around one normal humanoid body",
+    "casual_scene": "Stylish indoor bouldering gym in the early evening, chalking her hands beside an indigo wall in a cute athletic civilian outfit"
+  },
+  "jobs": [
+    {
+      "id": "gafran-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-33e29657f1555d4e/runs/2026-09-15t164012z/01-female-anthro.txt",
+      "original_generated_file": "exec-d5b6ed5e-23b6-4535-8576-643eda6c5972.png",
+      "original_sha256": "c8dda9fa14fbc6525d55db309bc14d94bff8acc1e41b262c8a28039332984695",
+      "file": "img/가프란_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "f505f6306c04a059c5c4ce17e85f73987b03540cdf3e2d250ef9dbe8bb827d09",
+      "bytes": 90074
+    },
+    {
+      "id": "gafran-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "gafran-female-01",
+      "prompt": "generation/m-33e29657f1555d4e/runs/2026-09-15t164012z/02-male-anthro.txt",
+      "original_generated_file": "exec-237adad5-7bf7-4e98-acc3-03543f1d5e56.png",
+      "original_sha256": "d459e71ac68cd934a443d9897196445bd5f91d79db2444c0ae004a5762fde8a5",
+      "file": "img/가프란_cinematic_semi_real_m.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "1a9d05aec3bd918ede424fb1765534955432b5cbac3923aa5759d68e6ffeba48",
+      "bytes": 97314
+    },
+    {
+      "id": "gafran-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "gafran-female-01",
+      "prompt": "generation/m-33e29657f1555d4e/runs/2026-09-15t164012z/03-female-casual.txt",
+      "original_generated_file": "exec-32719857-e0db-45d4-8b6b-ae635a46dafc.png",
+      "original_sha256": "fe8cbc62d3bc4e0765fd7899db29ea26caf00cf5801bc6809f5bcf5863c2ba1e",
+      "file": "img/가프란_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "15322604cd7df64765c443105b79dfa6eb34d05a9c82c155b64d979129817336",
+      "bytes": 124928
+    }
+  ]
+}

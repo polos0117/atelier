@@ -1,0 +1,29 @@
+{
+  "양산형 큐베레이_cinematic_semi_real_f.webp": {
+    "card": "양산형 큐베레이",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "06d3fdcf6d4d3307cd22cbd9d85b68efc76e35acb4e05f07e81d54fb0a69c4dc",
+    "prompt": "generation/m-3fb2aa0fa4661c22/runs/2026-09-15t164012z/01-female-anthro.txt",
+    "manifest": "generation/m-3fb2aa0fa4661c22/runs/2026-09-15t164012z/manifest.json"
+  },
+  "양산형 큐베레이_cinematic_semi_real_m.webp": {
+    "card": "양산형 큐베레이",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "94298f21b60e1e9383afa19b9ecb910fd2f65ba547130e750ec0e917f1d65bcd",
+    "prompt": "generation/m-3fb2aa0fa4661c22/runs/2026-09-15t164012z/02-male-anthro.txt",
+    "manifest": "generation/m-3fb2aa0fa4661c22/runs/2026-09-15t164012z/manifest.json"
+  },
+  "양산형 큐베레이_cinematic_semi_real_f_casual1.webp": {
+    "card": "양산형 큐베레이",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "de190434f7dbea41c68253d7cda459c4ed6a4831c566d76bcc83ab23d5273243",
+    "prompt": "generation/m-3fb2aa0fa4661c22/runs/2026-09-15t164012z/03-female-casual.txt",
+    "manifest": "generation/m-3fb2aa0fa4661c22/runs/2026-09-15t164012z/manifest.json"
+  }
+}

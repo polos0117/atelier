@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "card": "크라우다",
+  "model": "RMS-019",
+  "series": "기동신세기 건담 X",
+  "repository": "polos0117/atelier",
+  "branch": "main",
+  "base_commit": "1c37347815d6cb22a42a4905d7f18195d397c82e",
+  "prompt_source": "deployed prompt.html v9.19 UI with an exported settings record and exact submitted prompts",
+  "run": "2026-09-15t164012z",
+  "created": "2026-09-15T16:40:12Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Actual prompt.html selections were exported after female and male configuration; the exact female, male, and casual prompts are stored with this run",
+  "delivery": {
+    "method": "GitHub Git Data API",
+    "target": "refs/heads/main",
+    "sequence": [
+      "blob",
+      "tree",
+      "commit",
+      "update_ref"
+    ],
+    "single_commit": true,
+    "pull_request": false
+  },
+  "references": [],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female light skin tone, orange hair color, and amber eye color only; casual uses the female generated image as the exact identity reference",
+    "equipment_lock": "Massive dark graphite and black armor, deep-violet and steel-gray panels, oversized round shoulder shells with circular vents and thrusters, heavy torso and legs, one compact beam rifle, and one backpack-mounted knife-like beam cutter around one normal humanoid body",
+    "casual_scene": "Cozy winter mountain lodge at dusk, reaching for cocoa beside a glowing fireplace in a cute, cozy, subtly sensual civilian outfit"
+  },
+  "jobs": [
+    {
+      "id": "crouda-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-deb3c69006061186/runs/2026-09-15t164012z/01-female-anthro.txt",
+      "original_generated_file": "exec-90e9acdb-6c75-4491-81ea-ce022c50a266.png",
+      "original_sha256": "0847d829556e977ee0a5e96fda99059155a002343b366264fb5ae323fe6e73e6",
+      "file": "img/크라우다_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "6915a89ff6fe0f9132bc6e2f399030ba5593390df868438765af70a01e8d7f90",
+      "bytes": 94222
+    },
+    {
+      "id": "crouda-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "crouda-female-01",
+      "prompt": "generation/m-deb3c69006061186/runs/2026-09-15t164012z/02-male-anthro.txt",
+      "original_generated_file": "exec-6aba15ed-044d-4e16-96d5-7d5a9d350c70.png",
+      "original_sha256": "251eef336df1ae01e669b56893f017ffd6020441c77a90a55ee5ef42e0c7a737",
+      "file": "img/크라우다_cinematic_semi_real_m.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "c3ee07e7b0454c22d0d62b4215ac637fbeacb342b8596574759439964ede024d",
+      "bytes": 87242
+    },
+    {
+      "id": "crouda-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "crouda-female-01",
+      "prompt": "generation/m-deb3c69006061186/runs/2026-09-15t164012z/03-female-casual.txt",
+      "original_generated_file": "exec-bc271e4d-570e-4c89-83e9-def0be537bc3.png",
+      "original_sha256": "874f26cb5dd217154c452aa52e0e665cbcbf4203b90aa5207b664f513996de3e",
+      "file": "img/크라우다_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "a5c75f55d7224a4c84e65b87ac29039c7969ed2561b5fc4bcc29653d737d1b0a",
+      "bytes": 116098
+    }
+  ]
+}

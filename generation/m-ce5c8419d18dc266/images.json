@@ -1,0 +1,29 @@
+{
+  "햐쿠렌_cinematic_semi_real_f.webp": {
+    "card": "햐쿠렌",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "c50f1a010651f9417f95347d67ec99f091f3c3b3f500c87561392cfe00fe60ba",
+    "prompt": "generation/m-ce5c8419d18dc266/runs/2026-09-15t164012z/01-female-anthro.txt",
+    "manifest": "generation/m-ce5c8419d18dc266/runs/2026-09-15t164012z/manifest.json"
+  },
+  "햐쿠렌_cinematic_semi_real_m.webp": {
+    "card": "햐쿠렌",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "840628c111a975f2931380688c16ce3e878c0ad9b4025365b9af00bb88a1ad5f",
+    "prompt": "generation/m-ce5c8419d18dc266/runs/2026-09-15t164012z/02-male-anthro.txt",
+    "manifest": "generation/m-ce5c8419d18dc266/runs/2026-09-15t164012z/manifest.json"
+  },
+  "햐쿠렌_cinematic_semi_real_f_casual1.webp": {
+    "card": "햐쿠렌",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "9d8c8912f7aa6c790fb99b1abccbd453090d71c47978ce9c489dcbd94fd409b0",
+    "prompt": "generation/m-ce5c8419d18dc266/runs/2026-09-15t164012z/03-female-casual.txt",
+    "manifest": "generation/m-ce5c8419d18dc266/runs/2026-09-15t164012z/manifest.json"
+  }
+}

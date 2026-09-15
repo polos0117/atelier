@@ -1,0 +1,29 @@
+{
+  "리그 콘티오_cinematic_semi_real_f.webp": {
+    "card": "리그 콘티오",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "ee7309aff779a8676d1868c0995cbf7409a3a46c17f1d2533ec76ec91fde27b0",
+    "prompt": "generation/m-e466794c94acbe00/runs/2026-09-15t164012z/01-female-anthro.txt",
+    "manifest": "generation/m-e466794c94acbe00/runs/2026-09-15t164012z/manifest.json"
+  },
+  "리그 콘티오_cinematic_semi_real_m.webp": {
+    "card": "리그 콘티오",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "5951b81b616eacb98270391f602f4f7a67f38bda4aeeec573a7d55ef2188d515",
+    "prompt": "generation/m-e466794c94acbe00/runs/2026-09-15t164012z/02-male-anthro.txt",
+    "manifest": "generation/m-e466794c94acbe00/runs/2026-09-15t164012z/manifest.json"
+  },
+  "리그 콘티오_cinematic_semi_real_f_casual1.webp": {
+    "card": "리그 콘티오",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "4152a36b50f90c22e9f16ad9b88b88da0766a67048c1002e63f36f8111564888",
+    "prompt": "generation/m-e466794c94acbe00/runs/2026-09-15t164012z/03-female-casual.txt",
+    "manifest": "generation/m-e466794c94acbe00/runs/2026-09-15t164012z/manifest.json"
+  }
+}

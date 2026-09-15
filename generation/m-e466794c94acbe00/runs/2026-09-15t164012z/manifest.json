@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "card": "리그 콘티오",
+  "model": "ZMT-S34S",
+  "series": "기동전사 V건담",
+  "repository": "polos0117/atelier",
+  "branch": "main",
+  "base_commit": "1c37347815d6cb22a42a4905d7f18195d397c82e",
+  "prompt_source": "deployed prompt.html v9.19 UI with an exported settings record and exact submitted prompts",
+  "run": "2026-09-15t164012z",
+  "created": "2026-09-15T16:40:12Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Actual prompt.html selections were exported after female and male configuration; the exact female, male, and casual prompts are stored with this run",
+  "delivery": {
+    "method": "GitHub Git Data API",
+    "target": "refs/heads/main",
+    "sequence": [
+      "blob",
+      "tree",
+      "commit",
+      "update_ref"
+    ],
+    "single_commit": true,
+    "pull_request": false
+  },
+  "references": [],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female medium skin tone, crimson hair color, and green eye color only; casual uses the female generated image as the exact identity reference",
+    "equipment_lock": "Crimson-red, silver-white, and dark graphite armor, bright green sensors, a right-shoulder variable mega beam launcher, one docked left-shoulder wire-guided shot claw, compact torso beam guns, wrist beam-shield emitters, and one beam rifle around one normal humanoid body",
+    "casual_scene": "City rooftop dance practice at blue hour, caught in a turning step in a cute, energetic, subtly sensual civilian outfit"
+  },
+  "jobs": [
+    {
+      "id": "rig-contio-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-e466794c94acbe00/runs/2026-09-15t164012z/01-female-anthro.txt",
+      "original_generated_file": "exec-f788c2ae-08cd-4503-86dd-23bfd1b1d3d0.png",
+      "original_sha256": "89888eea15ba98b0e8c5e0a232af74a464d52501d3287150a5bd76ccff9ef2ac",
+      "file": "img/리그 콘티오_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "ee7309aff779a8676d1868c0995cbf7409a3a46c17f1d2533ec76ec91fde27b0",
+      "bytes": 82272
+    },
+    {
+      "id": "rig-contio-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "rig-contio-female-01",
+      "prompt": "generation/m-e466794c94acbe00/runs/2026-09-15t164012z/02-male-anthro.txt",
+      "original_generated_file": "exec-5b8ce4e7-a6ee-46f3-af50-18ccb786fb8a.png",
+      "original_sha256": "53ff167d7911d0d2a280d5f24452090f2f1ffb77c64f729442b5c778c8e6c8cb",
+      "file": "img/리그 콘티오_cinematic_semi_real_m.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "5951b81b616eacb98270391f602f4f7a67f38bda4aeeec573a7d55ef2188d515",
+      "bytes": 95958
+    },
+    {
+      "id": "rig-contio-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "rig-contio-female-01",
+      "prompt": "generation/m-e466794c94acbe00/runs/2026-09-15t164012z/03-female-casual.txt",
+      "original_generated_file": "exec-185f5562-3d3c-49ce-b9e0-3e284770a98e.png",
+      "original_sha256": "ec74d2eb6422dcaf7e8954bd049f227f8f5dd17a9724f12196b6bc24d9e20e9f",
+      "file": "img/리그 콘티오_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "4152a36b50f90c22e9f16ad9b88b88da0766a67048c1002e63f36f8111564888",
+      "bytes": 123436
+    }
+  ]
+}

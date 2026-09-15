@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "card": "햐쿠렌",
+  "model": "STH-05",
+  "series": "기동전사 건담 철혈의 오펀스",
+  "repository": "polos0117/atelier",
+  "branch": "main",
+  "base_commit": "1c37347815d6cb22a42a4905d7f18195d397c82e",
+  "prompt_source": "deployed prompt.html v9.19 UI with an exported settings record and exact submitted prompts",
+  "run": "2026-09-15t164012z",
+  "created": "2026-09-15T16:40:12Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Actual prompt.html selections were exported after female and male configuration; the exact female, male, and casual prompts are stored with this run",
+  "delivery": {
+    "method": "GitHub Git Data API",
+    "target": "refs/heads/main",
+    "sequence": [
+      "blob",
+      "tree",
+      "commit",
+      "update_ref"
+    ],
+    "single_commit": true,
+    "pull_request": false
+  },
+  "references": [],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female tan skin tone, crimson hair color, and amber eye color only; casual uses the female generated image as the exact identity reference",
+    "equipment_lock": "Deep dusty-pink and dark wine heavy armor, gray-brown and pale metal plates, compact sensor head motif, broad collision-resistant shoulders, one 130mm rifle, one single-edged blade, and paired knuckle guards around one normal humanoid body",
+    "casual_scene": "After-hours upscale boxing gym, wrapping her hands beside a heavy bag in a cute, sporty, subtly sensual civilian outfit"
+  },
+  "jobs": [
+    {
+      "id": "hyakuren-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-ce5c8419d18dc266/runs/2026-09-15t164012z/01-female-anthro.txt",
+      "original_generated_file": "exec-ee7d340a-4ebc-4e9a-96ba-9e6cbf1a2786.png",
+      "original_sha256": "03bfbbc230d8e0731f72372df23c13f7cd72cb1d8ebdf73923d2edf14d6920bc",
+      "file": "img/햐쿠렌_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "c50f1a010651f9417f95347d67ec99f091f3c3b3f500c87561392cfe00fe60ba",
+      "bytes": 84332
+    },
+    {
+      "id": "hyakuren-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "hyakuren-female-01",
+      "prompt": "generation/m-ce5c8419d18dc266/runs/2026-09-15t164012z/02-male-anthro.txt",
+      "original_generated_file": "exec-8f0d0519-6e14-4850-9877-06f09fda1677.png",
+      "original_sha256": "7d2d7bd6cad5cb620b574fed87da9451398f3c673bcdc6077098631b3c7b3093",
+      "file": "img/햐쿠렌_cinematic_semi_real_m.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "840628c111a975f2931380688c16ce3e878c0ad9b4025365b9af00bb88a1ad5f",
+      "bytes": 98222
+    },
+    {
+      "id": "hyakuren-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "hyakuren-female-01",
+      "prompt": "generation/m-ce5c8419d18dc266/runs/2026-09-15t164012z/03-female-casual.txt",
+      "original_generated_file": "exec-36a3adaa-283e-4f81-8494-198a352d55c5.png",
+      "original_sha256": "bed1ae4e663da607a0c1665117362c71a64f6cc57e458606410fdc731f6c9c9f",
+      "file": "img/햐쿠렌_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "9d8c8912f7aa6c790fb99b1abccbd453090d71c47978ce9c489dcbd94fd409b0",
+      "bytes": 121766
+    }
+  ]
+}

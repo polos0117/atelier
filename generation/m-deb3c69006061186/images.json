@@ -1,0 +1,29 @@
+{
+  "크라우다_cinematic_semi_real_f.webp": {
+    "card": "크라우다",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "6915a89ff6fe0f9132bc6e2f399030ba5593390df868438765af70a01e8d7f90",
+    "prompt": "generation/m-deb3c69006061186/runs/2026-09-15t164012z/01-female-anthro.txt",
+    "manifest": "generation/m-deb3c69006061186/runs/2026-09-15t164012z/manifest.json"
+  },
+  "크라우다_cinematic_semi_real_m.webp": {
+    "card": "크라우다",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "c3ee07e7b0454c22d0d62b4215ac637fbeacb342b8596574759439964ede024d",
+    "prompt": "generation/m-deb3c69006061186/runs/2026-09-15t164012z/02-male-anthro.txt",
+    "manifest": "generation/m-deb3c69006061186/runs/2026-09-15t164012z/manifest.json"
+  },
+  "크라우다_cinematic_semi_real_f_casual1.webp": {
+    "card": "크라우다",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "a5c75f55d7224a4c84e65b87ac29039c7969ed2561b5fc4bcc29653d737d1b0a",
+    "prompt": "generation/m-deb3c69006061186/runs/2026-09-15t164012z/03-female-casual.txt",
+    "manifest": "generation/m-deb3c69006061186/runs/2026-09-15t164012z/manifest.json"
+  }
+}

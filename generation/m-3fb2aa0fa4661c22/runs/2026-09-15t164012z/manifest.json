@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "card": "양산형 큐베레이",
+  "model": "AMX-004G",
+  "series": "기동전사 건담 ZZ",
+  "repository": "polos0117/atelier",
+  "branch": "main",
+  "base_commit": "1c37347815d6cb22a42a4905d7f18195d397c82e",
+  "prompt_source": "deployed prompt.html v9.19 UI with an exported settings record and exact submitted prompts",
+  "run": "2026-09-15t164012z",
+  "created": "2026-09-15T16:40:12Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Actual prompt.html selections were exported after female and male configuration; the exact female, male, and casual prompts are stored with this run",
+  "delivery": {
+    "method": "GitHub Git Data API",
+    "target": "refs/heads/main",
+    "sequence": [
+      "blob",
+      "tree",
+      "commit",
+      "update_ref"
+    ],
+    "single_commit": true,
+    "pull_request": false
+  },
+  "references": [],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female pale skin tone, silver hair color, and pink eye color only; casual uses the female generated image as the exact identity reference",
+    "equipment_lock": "Charcoal-black and deep-violet armor, pale lavender-gray plates, magenta sensors, narrow sensor head motif, two enormous curved shoulder binders, mounted rear psycommu funnel storage, and back-mounted beam guns around one normal humanoid body",
+    "casual_scene": "Private high-rise record listening lounge at midnight, placing a vinyl record on a turntable in a refined, cute, subtly sensual civilian outfit"
+  },
+  "jobs": [
+    {
+      "id": "mass-produced-qubeley-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-3fb2aa0fa4661c22/runs/2026-09-15t164012z/01-female-anthro.txt",
+      "original_generated_file": "exec-139c9b38-d6fc-45fd-86b9-5a2d864c011b.png",
+      "original_sha256": "943e71932b3b73b88853401bae38ec81e4e908e37e11b88fba252e06aff5ccca",
+      "file": "img/양산형 큐베레이_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "06d3fdcf6d4d3307cd22cbd9d85b68efc76e35acb4e05f07e81d54fb0a69c4dc",
+      "bytes": 95766
+    },
+    {
+      "id": "mass-produced-qubeley-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "mass-produced-qubeley-female-01",
+      "prompt": "generation/m-3fb2aa0fa4661c22/runs/2026-09-15t164012z/02-male-anthro.txt",
+      "original_generated_file": "exec-9ba4b0d1-1984-4e37-afe8-1fc87dcb3fa6.png",
+      "original_sha256": "78f55bd3703e4ee34ea33f1f37d61e6b9d4ed97364aabc6cde3949cdee64003b",
+      "file": "img/양산형 큐베레이_cinematic_semi_real_m.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "94298f21b60e1e9383afa19b9ecb910fd2f65ba547130e750ec0e917f1d65bcd",
+      "bytes": 82646
+    },
+    {
+      "id": "mass-produced-qubeley-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "mass-produced-qubeley-female-01",
+      "prompt": "generation/m-3fb2aa0fa4661c22/runs/2026-09-15t164012z/03-female-casual.txt",
+      "original_generated_file": "exec-5e4b14d1-3ba2-4f13-909f-66be5e88b6f4.png",
+      "original_sha256": "d2048540bf242749540faa7b689915bdbf01f7b7510ca2107d30d174f88805bb",
+      "file": "img/양산형 큐베레이_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "de190434f7dbea41c68253d7cda459c4ed6a4831c566d76bcc83ab23d5273243",
+      "bytes": 122944
+    }
+  ]
+}
