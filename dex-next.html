@@ -79,6 +79,31 @@ main{padding:12px}
   bottom:calc(10px + env(safe-area-inset-bottom));background:rgba(15,19,24,.55);
   color:var(--plate);font-size:11px;font-weight:700;line-height:1;padding:5px 9px;
   border-radius:999px;pointer-events:none}
+.sheet-bg{position:fixed;inset:0;z-index:60;background:rgba(8,10,13,.72);display:flex;
+  align-items:flex-end;justify-content:center}
+.sheet{width:100%;max-width:560px;max-height:88vh;overflow:auto;background:var(--deck);
+  border:1px solid var(--rule);border-bottom:0;border-radius:14px 14px 0 0;
+  padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+.sheet .bar{position:sticky;top:0;background:var(--deck);border-bottom:1px solid var(--rule);
+  display:flex;align-items:center;gap:8px;padding:12px 14px}
+.sheet .bar .t{font-size:15px;font-weight:800;flex:1 1 auto;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sheet .bar button{background:var(--panel);border:1px solid var(--rule);color:var(--ink);
+  font:inherit;font-size:12px;border-radius:6px;padding:6px 10px;cursor:pointer}
+.sheet .body{padding:14px}
+.art{width:100%;max-width:300px;margin:0 auto 12px;display:block;border-radius:10px;
+  overflow:hidden;background:#11161C;cursor:zoom-in}
+.art img{display:block;width:100%;aspect-ratio:2/3;object-fit:cover;object-position:center top}
+.dt{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--dim);margin-bottom:12px}
+.dt b{color:var(--ink);font-weight:700;margin-left:4px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(64px,1fr));gap:6px;margin-bottom:12px}
+.stat{background:var(--panel);border:1px solid var(--rule);border-radius:7px;padding:7px 8px;text-align:center}
+.stat i{display:block;font-style:normal;font-size:10px;color:var(--dim);letter-spacing:.06em}
+.stat b{font-size:15px}
+.sec{font-size:11px;color:var(--dim);letter-spacing:.08em;margin:0 0 6px}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px}
+.gal img{width:100%;aspect-ratio:2/3;object-fit:cover;object-position:50% 18%;
+  border-radius:6px;display:block;background:var(--panel);cursor:zoom-in}
 @media (min-width:560px){
   .grid{grid-template-columns:repeat(auto-fill,minmax(135px,1fr))}
   .cap{font-size:13px;line-height:1.45}
@@ -118,11 +143,17 @@ function useAtelierData() {
   const [data, setData] = useState(null);
   const [err, setErr] = useState(null);
   useEffect(() => {
-    Promise.all(KINDS.map(k => getJSON(k.file)).concat([getJSON('series'), AIMG.load()]))
+    Promise.all(KINDS.map(k => getJSON(k.file))
+      .concat([getJSON('series'), getJSON('style'), AIMG.load()]))
       .then(res => {
-        const cards = {};
-        KINDS.forEach((k, i) => { cards[k.tab] = res[i].cards; });
-        setData({ cards, series: res[KINDS.length], img: res[KINDS.length + 1] });
+        const cards = {}, stats = {};
+        KINDS.forEach((k, i) => { cards[k.tab] = res[i].cards; stats[k.tab] = res[i].stats || []; });
+        const n = KINDS.length;
+        /* 화풍 이름표는 data/style.json 이 정본이다. 도감(dex.html)은 이걸 코드에
+           베껴 두고 있어서 화풍이 늘면 두 군데를 고쳐야 했다 */
+        const styleName = { unknown: '화풍 미상' };
+        (res[n + 1].styles || []).forEach(x => { styleName[x.key] = x.name; });
+        setData({ cards, stats, series: res[n], styleName, img: res[n + 2] });
       })
       .catch(setErr);
   }, []);
@@ -131,24 +162,39 @@ function useAtelierData() {
 
 /* 그림이 실제로 든 몫을 고른다. 기본 몫이 비고 화풍 몫에만 있는 카드가 있어서,
    이름으로 고르지 않고 내용으로 고른다 (dex.html 의 bucketOf 와 같은 규칙) */
-function bucketOf(entry) {
+function bucketOf(entry, style) {
   if (!entry) return null;
-  if (AIMG.hasPic(entry)) return entry;
   const bs = AIMG.styleMap(entry);
+  if (style) {
+    /* 화풍 미상 = 화풍 토막 없이 기본 자리에 있는 그림 */
+    if (style === 'unknown') return AIMG.hasPic(entry) ? entry : null;
+    return AIMG.hasPic(bs[style]) ? bs[style] : null;
+  }
+  if (AIMG.hasPic(entry)) return entry;
   for (const k in bs) if (AIMG.hasPic(bs[k])) return bs[k];
   return null;
 }
-function shotsFor(entry, mode, v) {
-  const b = bucketOf(entry);
+/* 이 카드가 실제로 가진 화풍들 */
+function stylesOf(entry) {
+  if (!entry) return [];
+  const bs = AIMG.styleMap(entry), out = [];
+  for (const k in bs) if (AIMG.hasPic(bs[k])) out.push(k);
+  if (AIMG.hasPic(entry)) out.push('unknown');
+  return out;
+}
+function shotsOfBucket(b, mode, v) {
   if (!b) return [];
   if (mode === 'c') return AIMG.cuts(b, 'casual', v);
   if (mode === 'x') return AIMG.cuts(b, 'extra', v);
   const pic = b[v] || b[v === 'm' ? 'f' : 'm'];
   return pic ? [pic] : [];
 }
+function shotsFor(entry, mode, v, style) {
+  return shotsOfBucket(bucketOf(entry, style), mode, v);
+}
 
 /* ── 타일 ─────────────────────────────────────────────── */
-function Cell({ name, color, shots, onZoom }) {
+function Cell({ name, color, shots, onOpen }) {
   const [page, setPage] = useState(0);
   const touch = useRef({ x: 0, y: 0, swiped: false });
   const i = shots.length ? ((page % shots.length) + shots.length) % shots.length : 0;
@@ -167,7 +213,7 @@ function Cell({ name, color, shots, onZoom }) {
   };
   const onClick = () => {
     if (touch.current.swiped) { touch.current.swiped = false; return; }
-    if (pic) onZoom(shots, i);
+    onOpen();
   };
 
   return html`
@@ -185,6 +231,68 @@ function Cell({ name, color, shots, onZoom }) {
           </button>`}
       </span>
       <div class="cap">${name}</div>
+    </div>`;
+}
+
+/* ── 상세 시트 ─────────────────────────────────────────
+   타일을 누르면 열린다. 카드 정보 + 그 카드가 가진 화풍을 고르는 자리 +
+   고른 화풍·성별의 그림 목록. 그림을 누르면 확대로 넘긴다. */
+function Sheet({ card, entry, styleName, statLabels, seriesName, gender, onGender, onZoom, onClose }) {
+  const mine = stylesOf(entry);
+  const [style, setStyle] = useState(mine[0] || '');
+  const bucket = bucketOf(entry, style);
+  const portrait = bucket && (bucket[gender] || bucket[gender === 'm' ? 'f' : 'm']);
+  const casual = AIMG.cuts(bucket, 'casual', gender);
+  const extra = AIMG.cuts(bucket, 'extra', gender);
+  const all = (portrait ? [portrait] : []).concat(casual, extra);
+
+  return html`
+    <div class="sheet-bg" onclick=${onClose}>
+      <div class="sheet" onclick=${e => e.stopPropagation()}>
+        <div class="bar">
+          <div class="t">${card.name}</div>
+          <button onclick=${onClose}>닫기</button>
+        </div>
+        <div class="body">
+          ${portrait
+            ? html`<div class="art" onclick=${() => onZoom(all, 0)}>
+                     <img src=${AIMG.thumbURL(portrait)} alt=""
+                          onerror=${e => { e.target.onerror = null; e.target.src = AIMG.imgURL(portrait); }} />
+                   </div>`
+            : html`<div class="empty">이 화풍·성별에는 그림이 없다</div>`}
+
+          <div class="dt">
+            <span>시리즈<b>${seriesName(card.series)}</b></span>
+            ${card.factions && html`<span>소속<b>${card.factions.join(' · ')}</b></span>`}
+            ${card.temper && html`<span>기질<b>${card.temper}</b></span>`}
+          </div>
+
+          ${card.stats && html`<div class="stats">
+            ${card.stats.map((n, i) => html`
+              <div class="stat"><i>${statLabels[i] || ''}</i><b>${n}</b></div>`)}
+          </div>`}
+
+          <div class="ctl">
+            ${mine.length > 1 && html`
+              <select value=${style} onchange=${e => setStyle(e.target.value)}>
+                ${mine.map(k => html`<option value=${k}>${styleName[k] || k}</option>`)}
+              </select>`}
+            <div class="sw">
+              ${[['m', '남'], ['f', '여']].map(([g, label]) => html`
+                <button class=${gender === g ? 'on' : ''} onclick=${() => onGender(g)}>${label}</button>`)}
+            </div>
+          </div>
+
+          ${all.length > 1 && html`
+            <p class="sec">그림 ${all.length}장 · 일상 ${casual.length} · 특별 ${extra.length}</p>
+            <div class="gal">
+              ${all.map((f, i) => html`
+                <img key=${f} loading="lazy" src=${AIMG.thumbURL(f)} alt="" title=${f}
+                     onclick=${() => onZoom(all, i)}
+                     onerror=${e => { e.target.onerror = null; e.target.src = AIMG.imgURL(f); }} />`)}
+            </div>`}
+        </div>
+      </div>
     </div>`;
 }
 
@@ -228,6 +336,8 @@ function App() {
   const [v, setV] = useState('f');
   const [q, setQ] = useState('');
   const [ser, setSer] = useState('');
+  const [style, setStyle] = useState('');
+  const [open, setOpen] = useState(null);
   const [zoom, setZoom] = useState(null);
 
   const rows = useMemo(() => {
@@ -236,12 +346,21 @@ function App() {
     return data.cards[tab]
       .filter(c => !ser || c.series === ser)
       .filter(c => !needle || c.name.toLowerCase().includes(needle))
-      .map(c => ({
-        card: c,
-        shots: shotsFor(data.img[c.name], mode, v),
-      }))
+      .filter(c => !style || stylesOf(data.img[c.name]).indexOf(style) >= 0)
+      .map(c => ({ card: c, shots: shotsFor(data.img[c.name], mode, v, style) }))
       .filter(r => mode === 'p' || r.shots.length);
-  }, [data, tab, mode, v, q, ser]);
+  }, [data, tab, mode, v, q, ser, style]);
+
+  /* 지금 목록에 실제로 있는 화풍만 고르게 한다. 장수도 같이 보여 준다 */
+  const styleCount = useMemo(() => {
+    if (!data) return {};
+    const needle = q.trim().toLowerCase(), cnt = {};
+    data.cards[tab]
+      .filter(c => !ser || c.series === ser)
+      .filter(c => !needle || c.name.toLowerCase().includes(needle))
+      .forEach(c => stylesOf(data.img[c.name]).forEach(k => { cnt[k] = (cnt[k] || 0) + 1; }));
+    return cnt;
+  }, [data, tab, q, ser]);
 
   if (err) return html`<div class="empty">자료를 못 읽었다 — ${String(err.message || err)}</div>`;
   if (!data) return html`<div class="empty">읽는 중…</div>`;
@@ -251,7 +370,9 @@ function App() {
     return (data.series.faction_color && data.series.faction_color[f]) || '#79849A';
   };
   const seriesList = Object.keys(data.series.name || {});
+  const seriesName = k => (data.series.name && data.series.name[k]) || k || '—';
   const shown = rows.reduce((n, r) => n + (r.shots.length ? 1 : 0), 0);
+  const styleList = Object.keys(data.styleName).filter(k => styleCount[k]);
 
   return html`
     <header>
@@ -280,6 +401,11 @@ function App() {
           <option value="">시리즈 전체</option>
           ${seriesList.map(s => html`<option value=${s}>${data.series.name[s] || s}</option>`)}
         </select>
+        <select value=${style} onchange=${e => setStyle(e.target.value)}>
+          <option value="">화풍 전체</option>
+          ${styleList.map(k => html`
+            <option value=${k}>${data.styleName[k]} ${styleCount[k]}</option>`)}
+        </select>
       </div>
     </header>
 
@@ -288,11 +414,17 @@ function App() {
         ? html`<div class="grid">
             ${rows.map(r => html`
               <${Cell} key=${r.card.name} name=${r.card.name} color=${colorOf(r.card)}
-                       shots=${r.shots} onZoom=${(list, i) => setZoom({ list, i })} />`)}
+                       shots=${r.shots} onOpen=${() => setOpen(r.card)} />`)}
           </div>`
         : html`<div class="empty">해당하는 카드가 없다</div>`}
       <div class="foot mono">${rows.length}장 · 그림 ${shown}</div>
     </main>
+
+    ${open && html`
+      <${Sheet} card=${open} entry=${data.img[open.name]} styleName=${data.styleName}
+                statLabels=${data.stats[tab] || []} seriesName=${seriesName}
+                gender=${v} onGender=${setV}
+                onZoom=${(list, i) => setZoom({ list, i })} onClose=${() => setOpen(null)} />`}
 
     ${zoom && html`<${Zoom} list=${zoom.list} start=${zoom.i} onClose=${() => setZoom(null)} />`}`;
 }
