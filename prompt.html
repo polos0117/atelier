@@ -3085,7 +3085,13 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
   }
 
   // ---- Anthropomorphization ----
-  const GROUP_META=[["base", "기본", "기체 해석의 큰 방향을 정한다", true], ["build", "체형", "Body Type 이 전체 실루엣을 정하고, 아래 항목이 그 안에서 조정한다", true], ["face", "얼굴", "Facial Character 가 전체 인상을 정하고, 아래 항목이 세부를 잡는다", true], ["hair", "머리", "Hairstyle 이 형태를 정하고, 길이와 앞머리가 그 안에서 조정한다", true], ["armor", "장갑 · 의장", "원기체 구조를 어디까지 인간 형태로 옮길지", false], ["shot", "연출", "포즈 · 시점 · 장비 강조처럼 그림의 찍는 방식", false]];
+  const {
+    GROUP_META,
+    ONLY,
+    COLOR_HEX,
+    COLOR_KEYS
+  } = window.AtelierSpec;
+
   function renderParamCards(){
     const host=document.getElementById('paramGroups');
     function card(def){
@@ -3187,21 +3193,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
   const {BODY_FIG,HAIR_FIG}=window.AtelierSpec;
 
   /* 성별 전용 항목 — 표기 없는 값은 양쪽 공통 */
-  const ONLY={
-    'facial character':{'glamorous':'female','rugged':'male','weathered':'male','soft':'female'},
-    'torso / chest build':{'full':'female','full bust':'female','powerful':'male','v-taper':'male'},
-    'waist / hip silhouette':{'hourglass':'female','curvy':'female','broad-hipped':'female','narrow-hipped':'male'},
-    'armor coverage':{'open':'female'},
-    'lower-body treatment':{'robe-like armor':'female','mantle-like armor':'female'},
-    'hair length':{'very long':'female'},
-    'body type':{'curvy':'female','glamorous':'female','hourglass':'female','voluptuous':'female',
-      'pear-shaped':'female','soft-figured':'female','petite':'female',
-      'broad-shouldered':'male','burly':'male','lanky':'male','barrel-chested':'male','rangy':'male'},
-    'hairstyle':{'twin tail':'female','twin braids':'female','space buns':'female','hime cut':'female',
-      'ringlet curls':'female','crown braid':'female','chignon':'female','finger waves':'female',
-      'buzz cut':'male','crew cut':'male','side part':'male','fade':'male','man bun':'male',
-      'swept back':'male','shaggy':'male','mullet':'male'}
-  };
+
   function curGender(){return document.getElementById('genderInput').value||'female';}
   function allowed(key,val){const o=ONLY[key];return !o||!o[val]||o[val]===curGender();}
 
@@ -3286,14 +3278,8 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
 
   /* 색 이름 → 견본. 프롬프트에는 여전히 이름이 들어간다.
      헥스를 그대로 넘기면 이미지 모델이 재현하지 못해서 값이 뭉개진다. */
-  const COLOR_HEX={
-    white:'#F2F2F2',platinum:'#E4E6EA',silver:'#C8CCD2','ash blonde':'#C9BBA0',blonde:'#E3C574',
-    gold:'#D8A72B',amber:'#C87E24',orange:'#D97524',red:'#C0392B',crimson:'#8E1B2B',
-    pink:'#E08AA8',purple:'#7E5AA8',lavender:'#B9A6DE','pale blue':'#9EC7E8',blue:'#2F6FD0',
-    navy:'#1E3A6E',teal:'#1F8A8A',mint:'#7FD8C0',green:'#2E9E5B',brown:'#7A5230',
-    gray:'#8A8F98',black:'#14161A'
-  };
-  const COLOR_KEYS={'hair color':1,'eye color':1,'second eye color':1};
+
+
   function swatchGrid(def){
     if(!COLOR_KEYS[def.key])return '';
     return '<div class="sw-grid" data-sw="'+escHtml(def.key)+'">'+

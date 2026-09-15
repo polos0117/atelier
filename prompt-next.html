@@ -7,136 +7,157 @@
 <meta name="theme-color" content="#0f1115">
 <title>툴킷 (시범) · 의인화</title>
 <!--
-  툴킷을 Preact + htm 으로 다시 쓰는 시범판. prompt.html 은 그대로 두고 여기서만 시험한다.
-  지금은 의인화 탭 하나만 옮겼다 — 단일 컷·콜라주·작업 기록은 아직 prompt.html 몫이다.
+  툴킷 의인화 탭을 Preact + htm 으로 옮긴 시범판. prompt.html 은 그대로 둔다.
 
-  글을 만드는 일은 화면 밖에 있다. lib/prompt-anthro.js 가 값만 받아
-  prompt.html 과 똑같은 글을 뽑는다. 이 파일은 값을 모아 넘기고 결과를 보여 줄 뿐이다.
-  자료 표는 lib/toolkit-spec.js, 저장한 설정 읽기는 lib/toolkit.js.
+  화면은 원본을 그대로 옮겼다 — 마크업 구조·클래스 이름·CSS·단추 자리를 베꼈고,
+  내가 보기 좋게 고치지 않았다. 처음에 그렇게 했다가 빠진 기능이 줄줄이 나왔다.
+  (색 스와치·미리보기, 그룹별 지정 수, 하위 항목 안내, 저장 상태줄, 성별 전용 값
+   거르기 등이 통째로 빠져 있었다)
 
-  아직 저장하지 않는다. prompt.html 이 쓰는 기록을 읽어 와 처음 값으로 쓰되,
-  여기서 바꾼 것은 이 화면에만 남는다 — 두 화면이 같은 자리에 쓰다 엉키는 일을 막는다.
+  글을 만드는 일은 화면 밖에 있다 — lib/prompt-anthro.js 가 값만 받아
+  prompt.html 과 똑같은 글을 뽑는다. 자료 표는 lib/toolkit-spec.js,
+  저장은 lib/toolkit.js 가 맡는다.
+  ?v= 는 캐시 우회용이다. lib 를 고치면 이 값을 올린다.
 -->
-<script>
-(function(){var v='compact';try{if(localStorage.getItem('atelier_density_v1')==='relaxed')v='relaxed'}catch(e){}
-document.documentElement.dataset.density=v})();
-</script>
-<!-- 차례가 중요하다: figures·prompt-anthro 는 toolkit-spec 의 표를 읽는다.
-     ?v= 는 캐시 우회용이다 — HTML 은 새로 받아도 lib/*.js 는 따로 캐시돼서,
-     고친 모듈이 안 걸린 채 옛 판으로 도는 일이 있었다. lib 를 고치면 이 값을 올린다 -->
-<script src="lib/img.js?v=3"></script>
-<script src="lib/toolkit.js?v=3"></script>
-<script src="lib/toolkit-spec.js?v=3"></script>
-<script src="lib/figures.js?v=3"></script>
-<script src="lib/prompt-anthro.js?v=3"></script>
-<script src="lib/fresh.js?v=3"></script>
+<script src="lib/img.js?v=4"></script>
+<script src="lib/toolkit.js?v=4"></script>
+<script src="lib/toolkit-spec.js?v=4"></script>
+<script src="lib/figures.js?v=4"></script>
+<script src="lib/prompt-anthro.js?v=4"></script>
+<script src="lib/fresh.js?v=4"></script>
 <style>
 :root{
-  --void:#0f1115; --deck:#141821; --panel:#1b2130; --rule:#2a3242;
-  --ink:#E4E9EF; --dim:#8794A3; --plate:#C9D2DC; --gold:#C9A227;
-  --ui-font:12px; --ui-small:11px; --ui-height:34px; --card:#1b2130;
+  color-scheme:light dark;
+  --bg:#0f1115;--card:#171a21;--card2:#1e222b;--text:#f4f6f8;
+  --muted:#aeb6c2;--line:#303744;--accent:#6ea8fe;--ok:#75d69c;--warn:#f0c36b;
 }
-:root[data-density="relaxed"]{--ui-font:14px;--ui-small:12px;--ui-height:44px}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;padding:0}
-body{background:var(--deck);color:var(--ink);
-  font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;
-  font-size:15px;line-height:1.5;
-  height:100vh;height:100dvh;display:flex;flex-direction:column;
-  overflow:hidden;overflow-x:hidden;width:100%;max-width:100%}
-#app{display:flex;flex-direction:column;min-height:0;flex:1 1 auto;width:100%;max-width:100%}
-/* 어느 칸이든 화면보다 넓어지면 가로로 밀려 왼쪽이 잘린다. 늘어나는 것은
-   전부 최소 너비를 0 으로 두고, 줄은 넘치면 접히게 한다 */
-main, header, .row, .bar, .chrome{max-width:100%}
-.row > *, .bar > *{min-width:0}
-.mono{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace}
-main{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;padding:0 12px 24px;
-  overscroll-behavior:contain}
-.chrome{padding-top:env(safe-area-inset-top)}
-.workspace-nav{display:flex;gap:6px;margin:8px 0;align-items:center;flex-wrap:wrap}
-.workspace-nav a{flex:1;min-height:var(--ui-height);display:flex;align-items:center;justify-content:center;
-  border:1px solid currentColor;border-radius:10px;text-decoration:none;color:inherit;
-  font:600 var(--ui-small)/1.3 system-ui;opacity:.7}
-.workspace-nav a[aria-current="page"]{opacity:1;background:rgba(125,160,205,.15)}
-.brand{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
-.brand h1{margin:0;font-size:16px;font-weight:800;letter-spacing:.14em}
-.brand span{font-size:11px;color:var(--dim)}
-/* 붙박이로 두지 않는다 — 기체 고르개까지 늘 화면을 차지하면 답답하다 */
-header{background:var(--deck);border-bottom:1px solid var(--rule);margin:0 -12px;padding:8px 12px}
-.row{display:flex;gap:6px;flex-wrap:wrap}
-.row + .row{margin-top:6px}
-select,input[type=text],textarea{background:var(--panel);border:1px solid var(--rule);color:var(--ink);
-  font:inherit;font-size:var(--ui-font);border-radius:7px;padding:7px 9px;min-width:0;width:100%;
-  min-height:var(--ui-height)}
-textarea{min-height:200px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;line-height:1.5}
-.sw{display:flex;border:1px solid var(--rule);border-radius:7px;overflow:hidden;flex:0 0 auto}
-.sw button{background:var(--panel);border:0;color:var(--dim);font:inherit;font-size:var(--ui-font);
-  font-weight:700;padding:0 12px;min-height:var(--ui-height);cursor:pointer}
-.sw button.on{background:var(--plate);color:var(--void)}
-.grow{flex:1 1 auto}
-.sec{font-size:11px;color:var(--dim);letter-spacing:.08em;margin:16px 0 6px}
-.grp{border:1px solid var(--rule);border-radius:10px;margin-bottom:8px;background:var(--panel)}
-.grp > summary{cursor:pointer;padding:10px 12px;font-size:13px;font-weight:700;list-style:none}
-.grp > summary::-webkit-details-marker{display:none}
-.grp > summary b{color:var(--dim);font-weight:500;font-size:11px;margin-left:6px}
-.grp .body{padding:0 12px 12px}
-.pdef{margin-bottom:9px}
-.pdef.sub{padding-left:10px;border-left:2px solid var(--rule)}
-.pdef label{display:block;font-size:11.5px;color:var(--dim)}
-.plabel{display:flex;align-items:center;gap:4px;margin-bottom:3px}
-.plabel label{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.pdef label b{color:var(--ink);font-weight:600}
-.out{margin-top:8px}
-.lockbtn{flex:0 0 auto;background:var(--panel);border:1px solid var(--rule);
-  color:var(--dim);font:inherit;font-size:10.5px;font-weight:600;cursor:pointer;
-  padding:0 10px;border-radius:999px;
-  min-height:var(--ui-height);min-width:62px;
-  display:inline-flex;align-items:center;justify-content:center;gap:3px}
-.lockbtn.on{border-color:var(--gold);color:var(--gold);background:rgba(201,162,39,.12)}
-.lockbtn:active{background:var(--plate);color:var(--void)}
-.chip{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--rule);
-  border-radius:999px;padding:5px 11px;font-size:var(--ui-small);color:var(--dim);
-  background:var(--panel);cursor:pointer}
-.chip.on{border-color:var(--gold);color:var(--plate)}
-.chip input{width:auto;min-height:0;margin:0}
-.exbtn{margin-top:5px;background:none;border:1px solid var(--rule);color:var(--dim);
-  font:inherit;font-size:10.5px;border-radius:999px;padding:3px 9px;min-height:0;cursor:pointer}
-.ex{margin-top:7px;padding:8px;border:1px solid var(--rule);border-radius:8px;background:var(--void)}
-.ex.note{padding:6px 8px}
-.figrow{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:8px}
-.figcell{flex:0 0 auto;background:none;border:1px solid var(--rule);border-radius:8px;
-  padding:4px;color:var(--dim);cursor:pointer;min-height:0;
-  display:flex;flex-direction:column;align-items:center;gap:2px}
-.figcell.on{border-color:var(--gold);color:var(--plate);background:rgba(201,162,39,.08)}
-.figcell svg{width:56px;height:auto;display:block}
-.figcell b{font-size:9.5px;font-weight:600;max-width:64px;overflow:hidden;
-  text-overflow:ellipsis;white-space:nowrap}
-.exgal{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:5px}
-.exgal img{width:100%;aspect-ratio:2/3;object-fit:cover;object-position:50% 16%;
-  border-radius:5px;display:block;background:var(--panel);cursor:zoom-in}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;
+  background:var(--bg);color:var(--text)}
+a{color:var(--accent)}
+select,input[type=text],textarea{width:100%;background:var(--card);border:1px solid var(--line);
+  color:var(--text);border-radius:8px;padding:9px 10px;font:inherit;font-size:13px;min-height:40px}
+textarea{min-height:220px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;line-height:1.5}
+button{font:inherit}
+.workspace-nav{display:flex;gap:6px;margin:0 0 10px;flex-wrap:wrap}
+.workspace-nav a{flex:1;min-height:40px;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--muted);
+  font:600 12px/1.3 system-ui}
+.workspace-nav a[aria-current="page"]{color:var(--text);background:var(--card2)}
+.panel{border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
+.form-section{padding:12px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:80;
+  background:var(--text);color:var(--bg);font-size:12px;font-weight:700;
+  padding:8px 14px;border-radius:999px;pointer-events:none}
 .zoom{position:fixed;inset:0;z-index:70;background:rgba(8,10,13,.95);display:flex;
   align-items:center;justify-content:center;padding:16px;cursor:zoom-out}
 .zoom img{max-width:100%;max-height:100%;border-radius:4px}
-.zpg{position:absolute;left:50%;transform:translateX(-50%);
-  bottom:calc(10px + env(safe-area-inset-bottom));background:rgba(15,19,24,.55);
-  color:var(--plate);font-size:11px;font-weight:700;padding:5px 9px;border-radius:999px;
-  pointer-events:none}
-.bar{display:flex;gap:6px;align-items:center;margin:8px 0;flex-wrap:wrap}
-.btn{background:var(--panel);border:1px solid var(--rule);color:var(--ink);font:inherit;
-  font-size:var(--ui-font);border-radius:7px;padding:8px 12px;min-height:var(--ui-height);
-  cursor:pointer;white-space:nowrap;flex:0 0 auto}
-.btn.go{background:var(--gold);border-color:var(--gold);color:#17130F;font-weight:700}
-.note{font-size:11px;color:var(--dim);line-height:1.6}
-.warn{border:1px solid var(--gold);border-radius:8px;padding:9px 11px;font-size:11.5px;
-  color:var(--plate);background:rgba(201,162,39,.08);margin:8px 0}
-.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:80;
-  background:var(--plate);color:var(--void);font-size:12px;font-weight:700;
-  padding:8px 14px;border-radius:999px;pointer-events:none}
+.zpg{position:absolute;left:50%;transform:translateX(-50%);bottom:16px;
+  background:rgba(15,19,24,.6);color:#fff;font-size:11px;font-weight:700;
+  padding:5px 9px;border-radius:999px;pointer-events:none}
+.figrow{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-top:6px}
+.figcell{flex:0 0 auto;background:none;border:1px solid var(--line);border-radius:8px;
+  padding:4px;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;
+  align-items:center;gap:2px}
+.figcell.on{border-color:var(--accent);color:var(--text)}
+.figcell svg{width:52px;height:auto;display:block}
+.figcell b{font-size:9.5px;font-weight:600;max-width:60px;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.srcbox>summary .sb-txt{flex:none;font-size:10.5px;color:var(--muted);white-space:nowrap}
+.field,.pair-card,.override-card,.param-card,.rec-card{border:1px solid var(--line);border-radius:10px;background:var(--card2);padding:9px}
+.field label,.param-card label,.override-card label,.pair-card label{display:block;margin-bottom:6px;font-size:12px;font-weight:700;color:var(--text)}
+.field label small,.param-card label small,.override-card label small,.pair-card label small{color:var(--muted);font-weight:500;margin-left:5px}
+.gender-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:4px;border-radius:10px;background:var(--card2);border:1px solid var(--line)}
+.gender-tabs .gt{border:0;background:transparent;color:var(--muted);font-size:13px;font-weight:700;padding:9px 6px;border-radius:7px;cursor:pointer}
+.gender-tabs .gt.on{background:var(--card);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.save-bar{margin-top:10px;display:flex;gap:8px;align-items:center;justify-content:space-between;
+  padding:8px 10px;border-radius:9px;background:var(--card2);border:1px solid var(--line);
+  font-size:11.5px;color:var(--muted);line-height:1.4}
+.save-bar .sb-drop{flex:none;font-size:11px;padding:5px 9px}
+.save-bar .sb-drop.hidden{display:none}
+.pair-card.off .param-preview{display:none}
+.sw-hidden{display:none}
+.sw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:5px;margin-top:2px}
+.sw{padding:4px 2px 3px;border:1px solid var(--line);border-radius:8px;background:var(--card);
+  display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;min-height:0}
+.sw i{width:22px;height:22px;border-radius:50%;display:block;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.25);font-style:normal;font-size:12px;line-height:22px;text-align:center;color:var(--muted)}
+.sw u{text-decoration:none;font-size:9px;line-height:1.15;color:var(--muted);text-align:center;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.sw.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,var(--card))}
+.sw.on u{color:var(--text);font-weight:700}
+.sw-auto i{background:repeating-linear-gradient(45deg,var(--card2) 0 4px,var(--line) 4px 8px)}
+.sw-cus i{background:var(--card2)}
+.sw-big{flex:none;display:flex;gap:4px}
+.sw-big i{width:44px;height:44px;border-radius:10px;display:block;box-shadow:inset 0 0 0 1px rgba(0,0,0,.28)}
+.sw-big.two i{width:30px;height:44px}
+.param-preview{margin-top:8px;display:block;padding:8px 9px;border-radius:8px;background:var(--card);border:1px solid var(--line)}
+.param-preview .pp-main{display:flex;gap:10px;align-items:center}
+.pp-gal{margin-top:8px;border-top:1px solid var(--line);padding-top:7px}
+.pp-gal-t{font-size:11px;color:var(--muted);margin-bottom:5px}
+.pp-gal-r{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
+.pp-gal-r a{flex:none;width:52px;text-decoration:none;color:var(--muted)}
+.pp-gal-r img{width:52px;height:70px;object-fit:cover;object-position:50% 18%;border-radius:5px;display:block;background:var(--card2)}
+.pp-gal-r span{display:block;font-size:9.5px;line-height:1.25;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.param-preview.hidden{display:none}
+.param-preview svg{flex:none;display:block}
+.param-preview .pp-txt{font-size:11.5px;line-height:1.5;color:var(--muted)}
+.param-preview .pp-txt b{display:block;color:var(--text);font-size:12px;margin-bottom:2px}
+.help,.param-note{margin-top:8px;padding:9px 10px;border-radius:9px;background:var(--card2);color:var(--muted);font-size:12px;line-height:1.45}
+.custom-input{margin-top:7px}
+.rnd-tgt{margin-top:8px;padding:8px 9px;border-radius:9px;background:var(--card);border:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:5px 10px;align-items:center}
+.rnd-tgt>span{width:100%;font-size:10.5px;color:var(--muted)}
+.rnd-tgt label{display:flex;align-items:center;gap:5px;margin:0;cursor:pointer;font-size:11.5px;color:var(--text)}
+.rnd-tgt input{width:auto;margin:0;flex:none}
+.lockwrap{display:flex;align-items:stretch;gap:6px}
+.lockwrap>select,.lockwrap>input{flex:1 1 auto;min-width:0}
+.lockbtn{flex:0 0 auto;width:44px;min-height:0;padding:0;font-size:15px;line-height:1;
+  background:var(--card);border:1px solid var(--line);color:var(--muted);opacity:.7}
+.lab-lock .lockbtn{position:absolute;right:0;top:0}
+.lockbtn.mini{width:28px;height:28px;min-height:28px;font-size:12px;border-radius:7px}
+.rnd-top{width:100%;margin-top:8px;font-size:12.5px}
+.lock-note{width:100%;font-size:11px;color:var(--accent);font-weight:700}
+.lock-clear{width:100%;margin-top:4px;min-height:34px;padding:6px;font-size:11px;font-weight:600}
+.lockbtn.on{background:color-mix(in srgb,var(--accent) 16%,var(--card));
+  border-color:var(--accent);color:var(--accent);opacity:1}
+.card-rnd{width:100%;margin-top:8px;font-size:11.5px}
+.card-rnd.sub{margin-top:5px;font-size:11px;opacity:.85}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px}
+.status{min-height:24px;padding:0 12px 12px;color:var(--muted);font-size:12px}
+.status.ok{color:var(--ok)}
+.prompt-view{border-top:1px solid var(--line)}
+.prompt-view textarea{display:block;height:62vh;min-height:420px;border:0;outline:0;padding:14px;background:#11141a;color:#e8edf3;font:12.5px/1.52 ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;white-space:pre;overflow:auto;resize:vertical}
+.param-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.param-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+  .pair-card,.field,.override-card,.param-card,.rec-card{padding:10px}
+  .top-grid,.grid2,.grid3,.override-grid,.param-grid,.controls,.param-actions,.preset-row,.rec-grid{grid-template-columns:1fr}
+  .prompt-view textarea{height:66vh;min-height:390px;font-size:12px}
+  .prompt-view textarea{background:#fbfcfe;color:#14171c}
+.field,.pair-card,.param-card,.override-card,.rec-card{min-width:0}
+.prompt-view textarea{white-space:pre-wrap;overflow-wrap:anywhere;min-height:280px;height:55dvh;font-size:14px}
+.panel,.form-section,.prompt-view{scroll-margin-top:125px}
+ .mini-check,.rnd-tgt label{min-height:36px}
+ .grid2,.param-grid,.param-actions,.controls,.rec-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.field,.pair-card,.override-card,.param-card,.rec-card{padding:7px}
+.field label,.param-card label,.override-card label,.pair-card label{font-size:11px;margin-bottom:4px}
+.grid2,.grid3,.param-grid,.rec-grid{gap:6px}
+.help,.param-note{padding:7px 8px;font-size:11px;line-height:1.4}
+.mini-check,.rnd-tgt label{min-height:26px}
+.controls,.param-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:8px}
+.prompt-view textarea{font-size:12px;padding:10px}
+.panel-head,.form-section,.controls,.param-actions{padding:calc(var(--ui-pad) + 2px)}
+.field,.pair-card,.override-card,.param-card,.rec-card{padding:calc(var(--ui-pad) + 1px)}
+.field label,.param-card label,.override-card label,.pair-card label{font-size:var(--ui-small)}
+.panel-head span,.help,.param-note{font-size:var(--ui-small)}
+.grid2,.grid3,.param-grid,.rec-grid,.controls,.param-actions{gap:var(--ui-gap)}
+.prompt-view textarea{font-size:var(--ui-font)}
+.lockbtn.mini{width:28px;height:28px;min-height:28px;padding:0;font-size:12px}
+:root[data-density="relaxed"] .lockbtn.mini{width:34px;height:34px;min-height:34px}
 </style>
 </head>
 <body>
-<div id="app"></div>
-
+<div class="wrap"><div id="app"></div></div>
 <script type="module">
 import { h, render } from 'https://esm.sh/preact@10.24.3';
 import { useState, useEffect, useMemo, useRef } from 'https://esm.sh/preact@10.24.3/hooks';
@@ -149,18 +170,10 @@ const ATK = window.AtelierToolkit;
 const AIMG = window.AtelierImg;
 const FIG = window.AtelierFigures;
 
-const GROUPS = [
-  ['base',  '기본',      '기체 해석의 큰 방향을 정한다'],
-  ['build', '체형',      'Body Type 이 전체 실루엣을 정하고, 아래 항목이 그 안에서 조정한다'],
-  ['face',  '얼굴',      'Facial Character 가 전체 인상을 정하고, 아래 항목이 세부를 잡는다'],
-  ['hair',  '머리',      'Hairstyle 이 형태를 정하고, 길이와 앞머리가 그 안에서 조정한다'],
-  ['armor', '장갑 · 의장', '원기체 구조를 어디까지 인간 형태로 옮길지'],
-  ['shot',  '연출',      '포즈 · 시점 · 장비 강조처럼 그림의 찍는 방식'],
-];
 const MORPHS = [
-  ['standard_humanoid', '표준 인간형'],
-  ['silhouette_equipment_emphasis', '실루엣 · 장비 강조'],
-  ['aggressive_restructure', '적극 재구성'],
+  ['standard_humanoid', '표준형 — 일반적인 사람형 MS'],
+  ['silhouette_equipment_emphasis', '실루엣/장비 강조형 — 어깨·팔다리·바인더 등 외곽 인상이 중요할 때'],
+  ['aggressive_restructure', '강변형형 — 일반 의인화로는 원본 느낌이 죽는 난형 기체용'],
 ];
 
 function getJSON(p) {
@@ -170,7 +183,17 @@ function getJSON(p) {
   });
 }
 
-/* human-mechanical balance 값이 번역 프로필을 정한다 (prompt.html 과 같은 규칙) */
+/* 성별 전용 값 거르기 — 남성에서 여성 전용 값이 뜨면 안 되고,
+   성별을 바꿀 때 그 성별에 없는 값은 AUTO 로 되돌려야 한다 (원본과 같은 규칙) */
+function allowed(key, val, gender) {
+  const o = S.ONLY[key];
+  return !o || !o[val] || o[val] === gender;
+}
+function optionsFor(def, gender) {
+  return def.options.filter(o => allowed(def.key, o[0], gender));
+}
+function fitsGender(def, gender) { return !def.sex || def.sex === gender; }
+
 function translationOf(sel) {
   const v = sel['human-mechanical balance'] || '';
   if (v === 'more human') return 'more_human';
@@ -182,7 +205,7 @@ function useToast() {
   const [msg, setMsg] = useState('');
   const t = useRef(0);
   return [msg ? html`<div class="toast">${msg}</div>` : null,
-    text => { setMsg(text); clearTimeout(t.current); t.current = setTimeout(() => setMsg(''), 1500); }];
+    text => { setMsg(text); clearTimeout(t.current); t.current = setTimeout(() => setMsg(''), 1600); }];
 }
 
 function copyText(text) {
@@ -196,43 +219,28 @@ function copyText(text) {
   });
 }
 
-/* 자물쇠 그림 — 이모지(🔓/🔒)는 폰에서 둘 다 비슷하게 보여 구분이 안 된다.
-   잠김은 고리가 몸통 위에 얹히고, 풀림은 고리가 옆으로 젖혀져 한눈에 갈린다 */
+/* ── 자물쇠 ── */
 function LockIcon({ open }) {
   return html`
-    <svg viewBox="0 0 20 20" width="14" height="14" aria-hidden="true"
+    <svg viewBox="0 0 20 20" width="13" height="13" aria-hidden="true"
          fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
       <rect x="4" y="9" width="12" height="9" rx="2" fill="currentColor"
-            fill-opacity=${open ? '.15' : '.3'} />
-      ${open
-        ? html`<path d="M8 9V6.5a3.5 3.5 0 0 1 6.6-1.6" />`
-        : html`<path d="M7 9V6.5a3 3 0 0 1 6 0V9" />`}
+            fill-opacity=${open ? '.15' : '.35'} />
+      ${open ? html`<path d="M8 9V6.5a3.5 3.5 0 0 1 6.6-1.6" />`
+             : html`<path d="M7 9V6.5a3 3 0 0 1 6 0V9" />`}
     </svg>`;
 }
 
-/* ── 예시 ──
-   고른 값이 실제로 어떤 모습인지 보여 준다. 두 가지를 쓴다.
-     도식  체형·머리처럼 윤곽으로 갈리는 항목 (lib/figures.js)
-     초상  그 값으로 실제 뽑아둔 기체의 그림. 인상·색처럼 선으로 못 그리는 것에 정확하다
-   사진을 끌어오거나 삽화를 250장 그려 두는 길은 접었다 — 값에 맞는 사진을
-   자동으로 고를 방법이 없고, 삽화는 유지가 버겁다.
-
-   항목마다 펼쳐 두면 42개가 세로로 길어져 접어 둔다. */
-function Examples({ def, value, gender, img, style, exclude, onZoom, onPick }) {
+/* ── 미리보기 ──
+   원본과 같은 세 가지를 보여 준다.
+     색   눈·머리색은 큰 색 조각. 두 눈 색이 다르면 좌우를 나눠 보여 준다
+     도식 체형·머리는 선으로 그린 실루엣
+     초상 그 값으로 실제 뽑아둔 기체 (최대 8기) */
+function Preview({ def, value, sel, gender, img, style, exclude, onZoom }) {
   const v = gender === 'female' ? 'f' : 'm';
-  /* 도식이 있는 항목(체형·머리)은 값을 안 골랐어도 후보를 늘어놓는다.
-     원래 이 도식은 손으로 그리지 않아 옵션끼리 폭 차이가 그대로 보이는 게 값어치라,
-     나란히 놓고 고르는 편이 하나만 보는 것보다 쓸모 있다 */
-  const figs = useMemo(() => {
-    if (def.key !== 'body type' && def.key !== 'hairstyle') return [];
-    return def.options
-      .filter(([k]) => k && k !== '__custom__')
-      .map(([k, t]) => ({ k, t: t.split(' — ')[0], svg: FIG.forKey(def.key, k, gender) }))
-      .filter(x => x.svg);
-  }, [def.key, gender]);
+  const isColor = !!S.COLOR_KEYS[def.key];
+  const hex = S.COLOR_HEX[value];
 
-  /* 지금 편집 중인 기체는 뺀다 — 고르는 즉시 제 그림이 예시로 뜨는데,
-     그 그림은 지금 값으로 뽑은 게 아니다 (툴킷과 같은 규칙) */
   const hits = useMemo(() => {
     if (!value) return [];
     const out = [];
@@ -246,31 +254,103 @@ function Examples({ def, value, gender, img, style, exclude, onZoom, onPick }) {
     return out.slice(0, 8);
   }, [def.key, value, gender, style, exclude, img]);
 
-  if (!figs.length && !hits.length) {
-    return html`<p class="note ex">${value
-      ? '이 값으로 뽑아둔 기체가 아직 없다'
-      : '값을 고르면 그 값으로 뽑은 기체가 여기 뜬다'}</p>`;
+  const figs = useMemo(() => {
+    if (def.key !== 'body type' && def.key !== 'hairstyle') return [];
+    return optionsFor(def, gender)
+      .filter(([k]) => k && k !== '__custom__')
+      .map(([k, t]) => ({ k, t: t.split(' — ')[0], svg: FIG.forKey(def.key, k, gender) }))
+      .filter(x => x.svg);
+  }, [def.key, gender]);
+
+  if (!value || value === '__custom__') return null;
+
+  /* 두 눈 색 — 서로 다르면 좌우로 나눠 보여 준다 (원본과 같은 안내) */
+  let colorHead = null;
+  if (isColor && hex) {
+    const pairKey = def.key === 'eye color' ? 'second eye color'
+                  : def.key === 'second eye color' ? 'eye color' : null;
+    const otherHex = pairKey ? S.COLOR_HEX[sel[pairKey]] : null;
+    if (pairKey && otherHex) {
+      const L = def.key === 'eye color' ? hex : otherHex;
+      const R = def.key === 'eye color' ? otherHex : hex;
+      colorHead = L === R
+        ? html`<span class="sw-big"><i style=${{ background: L }}></i></span>
+               <div class="pp-txt"><b>양쪽 동일 색상</b>두 눈이 같은 색이다</div>`
+        : html`<span class="sw-big"><i style=${{ background: R }}></i></span>
+               <span class="sw-big"><i style=${{ background: L }}></i></span>
+               <div class="pp-txt"><b>오드아이</b>오른쪽 · 왼쪽 순서로 지킨다</div>`;
+    } else {
+      colorHead = html`<span class="sw-big"><i style=${{ background: hex }}></i></span>`;
+    }
   }
+
+  if (!colorHead && !figs.length && !hits.length) return null;
+
   return html`
-    <div class="ex">
+    <div class="param-preview">
+      ${colorHead && html`<div class="pp-main">${colorHead}</div>`}
       ${figs.length ? html`
         <div class="figrow">
           ${figs.map(f => html`
-            <button type="button" key=${f.k} class=${'figcell' + (f.k === value ? ' on' : '')}
-                    onclick=${() => onPick(f.k)} title=${f.t}>
-              <span dangerouslySetInnerHTML=${{ __html: f.svg }}></span>
-              <b>${f.t}</b>
-            </button>`)}
+            <div class=${'figcell' + (f.k === value ? ' on' : '')} key=${f.k}
+                 dangerouslySetInnerHTML=${{ __html: f.svg + '<b>' + f.t + '</b>' }}></div>`)}
         </div>` : null}
       ${hits.length ? html`
-        <div class="exgal">
-          ${hits.map(h => html`
-            <img key=${h.file} loading="lazy" src=${AIMG.thumbURL(h.file)} alt="" title=${h.card}
-                 onclick=${() => onZoom(hits.map(x => x.file), hits.indexOf(h))}
-                 onerror=${e => { e.target.onerror = null; e.target.src = AIMG.imgURL(h.file); }} />`)}
-        </div>
-        <p class="note">이 값을 쓴 기체 ${hits.length}기 · 눌러서 크게 보기</p>` : null}
-      ${!hits.length && value ? html`<p class="note">이 값으로 뽑아둔 기체는 아직 없다</p>` : null}
+        <div class="pp-gal">
+          <div class="pp-gal-t">이 값으로 뽑은 기체 ${hits.length}기 · 눌러서 크게 보기</div>
+          <div class="pp-gal-r">
+            ${hits.map((x, i) => html`
+              <a key=${x.file} onclick=${e => { e.preventDefault(); onZoom(hits.map(y => y.file), i); }}
+                 href="#" title=${x.card}>
+                <img loading="lazy" src=${AIMG.thumbURL(x.file)} alt=""
+                     onerror=${e => { e.target.onerror = null; e.target.src = AIMG.imgURL(x.file); }} />
+                <span>${x.card}</span>
+              </a>`)}
+          </div>
+        </div>` : null}
+    </div>`;
+}
+
+/* ── 설정 항목 한 칸 ── */
+function ParamCard({ def, value, custom, locked, sel, gender, img, style, exclude,
+                     onValue, onCustom, onLock, onZoom }) {
+  const isColor = !!S.COLOR_KEYS[def.key];
+  const opts = optionsFor(def, gender);
+  return html`
+    <div class="param-card">
+      <div class="lab-lock">
+        <label>${def.label} <small>${def.ko}</small></label>
+        <button type="button" class=${'lockbtn mini' + (locked ? ' on' : '')} onclick=${onLock}
+                aria-pressed=${String(!!locked)}
+                title=${locked ? '이 칸은 랜덤에서 뺀다 — 눌러서 풀기' : '이 칸을 랜덤에서 뺀다'}>
+          <${LockIcon} open=${!locked} />
+        </button>
+      </div>
+      ${isColor
+        ? html`
+          <div class="sw-grid">
+            ${opts.map(([v, t]) => {
+              const ko = (t || '').split(' — ')[1] || t;
+              if (!v) return html`<button type="button" key=${v} class=${'sw sw-auto' + (value === '' ? ' on' : '')}
+                     onclick=${() => onValue('')} title=${t}><i></i><u>${ko}</u></button>`;
+              if (v === '__custom__') return html`<button type="button" key=${v}
+                     class=${'sw sw-cus' + (value === '__custom__' ? ' on' : '')}
+                     onclick=${() => onValue('__custom__')} title="직접 입력"><i>✎</i><u>직접</u></button>`;
+              return html`<button type="button" key=${v} class=${'sw' + (value === v ? ' on' : '')}
+                     onclick=${() => onValue(v)} title=${t}>
+                       <i style=${{ background: S.COLOR_HEX[v] || 'transparent' }}></i><u>${ko}</u>
+                     </button>`;
+            })}
+          </div>`
+        : html`
+          <select value=${value} onchange=${e => onValue(e.target.value)}>
+            ${opts.map(([v, t]) => html`<option key=${v} value=${v}>${t}</option>`)}
+          </select>`}
+      ${value === '__custom__' && html`
+        <input class="custom-input" type="text" placeholder=${def.ph || '직접 입력'}
+               value=${custom} oninput=${e => onCustom(e.target.value)} />`}
+      <${Preview} def=${def} value=${value} sel=${sel} gender=${gender} img=${img}
+                  style=${style} exclude=${exclude} onZoom=${onZoom} />
     </div>`;
 }
 
@@ -297,44 +377,7 @@ function Zoom({ list, start, onClose }) {
          }}
          onclick=${() => { if (t.current.swiped) { t.current.swiped = false; return; } onClose(); }}>
       <img src=${AIMG.imgURL(list[i])} alt="" />
-      ${list.length > 1 && html`<div class="zpg mono">${i + 1}/${list.length}</div>`}
-    </div>`;
-}
-
-/* ── 설정 항목 한 줄 ── */
-function Param({ def, value, custom, locked, gender, img, style, exclude,
-                onValue, onCustom, onLock, onZoom }) {
-  const [open, setOpen] = useState(false);
-  return html`
-    <div class=${'pdef' + (def.sub ? ' sub' : '')}>
-      ${/* 자물쇠 단추를 label 안에 두면 안 된다 — button 은 label 의 대상이 될 수 있어
-           누를 때 라벨이 한 번 더 클릭을 보낸다. 두 번 토글돼 제자리로 돌아온다 */''}
-      <div class="plabel">
-        <label>
-          <b>${def.ko}</b> · ${def.label}
-        </label>
-        ${/* 손가락으로 누르는 자리다. 글자만 두면 16px 짜리 과녁이 되어 자꾸 빗나간다 */''}
-        <button type="button" class=${'lockbtn' + (locked ? ' on' : '')}
-                onclick=${onLock}
-                aria-pressed=${String(!!locked)}
-                title=${locked ? '이 칸은 랜덤에서 뺀다 — 눌러서 풀기' : '이 칸을 랜덤에서 뺀다'}>
-          <${LockIcon} open=${!locked} />${locked ? '잠김' : '잠금'}
-        </button>
-      </div>
-      <select value=${value} onchange=${e => onValue(e.target.value)}>
-        ${def.options.map(([v, t]) => html`<option value=${v}>${t}</option>`)}
-      </select>
-      ${value === '__custom__' && html`
-        <input type="text" style="margin-top:5px" placeholder=${def.ph || '직접 입력'}
-               value=${custom} oninput=${e => onCustom(e.target.value)} />`}
-      <button type="button" class="exbtn" aria-expanded=${String(open)}
-              onclick=${() => setOpen(o => !o)}>
-        ${open ? '예시 접기' : '예시 보기'}
-      </button>
-      ${open && html`
-        <${Examples} def=${def} value=${value} gender=${gender} img=${img}
-                     style=${style} exclude=${exclude}
-                     onZoom=${onZoom} onPick=${onValue} />`}
+      ${list.length > 1 && html`<div class="zpg">${i + 1}/${list.length}</div>`}
     </div>`;
 }
 
@@ -347,21 +390,24 @@ function App() {
   const [gender, setGender] = useState('female');
   const [style, setStyle] = useState(S.DEFAULT_STYLE);
   const [morph, setMorph] = useState('standard_humanoid');
-  const [sel, setSel] = useState({});        /* 열쇠 → 고른 값 */
-  const [cus, setCus] = useState({});        /* 열쇠 → 직접 입력 */
+  const [sel, setSel] = useState({});
+  const [cus, setCus] = useState({});
   const [special, setSpecial] = useState('');
   const [underboob, setUnderboob] = useState(false);
-  const [toast, showToast] = useToast();
-  const [stamp, setStamp] = useState('');
-  /* 자물쇠는 칸 하나를 랜덤에서 빼둔다. 툴킷과 같은 자리(STORE.locks)를 읽고 쓰되
-     열쇠 이름도 같은 'p:<항목>' 꼴이라 두 화면이 서로의 자물쇠를 알아본다 */
   const [locks, setLocks] = useState({});
   const [rndGroups, setRndGroups] = useState(
-    () => Object.fromEntries(GROUPS.map(([g]) => [g, g !== 'shot'])));
+    () => Object.fromEntries(S.GROUP_META.map(([g]) => [g, g === 'face'])));
   const [onlyEmpty, setOnlyEmpty] = useState(false);
   const [zoom, setZoom] = useState(null);
-  /* 툴킷과 같은 자리에 쓴다. 열쇠 이름·모아 적기·화면 숨길 때 즉시 적기까지
-     lib/toolkit.js 가 맡으므로 여기서는 값을 넣고 save() 만 부른다 */
+  const [status, setStatus] = useState('준비됨');
+  const [showText, setShowText] = useState(false);
+  const [exportText, setExportText] = useState('');
+  const [toast, showToast] = useToast();
+  const [stamp, setStamp] = useState('');
+  const [prevFrom, setPrevFrom] = useState('');
+  const prevRef = useRef(null);
+  const openRef = useRef(null);
+
   const box = useRef(null);
   if (!box.current) {
     box.current = ATK.open(ATK.STORE_KEY,
@@ -373,16 +419,12 @@ function App() {
       .then(([m, s, , img]) => setData({ cards: m.cards, series: s, img }))
       .catch(setErr);
     setStamp(window.AtelierFresh.watch().stamp());
-    try {
-      const raw = box.current.data;
-      if (raw && raw.locks) setLocks({ ...raw.locks });
-    } catch (e) {}
+    const st = box.current.data;
+    if (st.locks) setLocks({ ...st.locks });
+    if (st.last && st.last.mech) { setSeries(st.last.series || ''); setMech(st.last.mech); }
   }, []);
 
-  /* prompt.html 이 남긴 설정을 처음 값으로 가져온다 (읽기만 한다) */
-  /* 이 브라우저에 쓴 것이 저장소 기록보다 나중이면 그쪽을 쓴다.
-     lib/toolkit.js 의 recordOf 에 맡기지 않는 까닭은, 그 모듈이 캐시된 옛 판이면
-     방금 저장한 값을 못 보기 때문이다. 여기서 보관함을 직접 본다 */
+  /* 저장한 값은 보관함에서 직접 본다 (모듈이 캐시된 옛 판이어도 맞게 돌도록) */
   const recordFor = name => {
     const mine = (box.current.data.anthro || {})[name] || null;
     const theirs = ATK.recordOf(name);
@@ -391,73 +433,7 @@ function App() {
     return (mine.t || 0) >= (theirs.t || 0) ? mine : theirs;
   };
 
-  useEffect(() => {
-    if (!mech) return;
-    const rec = recordFor(mech);
-    if (!openRef.current || openRef.current.__card !== mech) {
-      const snap = rec ? JSON.parse(JSON.stringify(rec)) : {};
-      delete snap.prev; snap.__card = mech;
-      openRef.current = snap;
-      setCanUndo(!!(rec && (rec.female || rec.male)));
-    }
-    const g = rec && rec[gender];
-    setSel((g && g.sel) ? { ...g.sel } : {});
-    setCus((g && g.cus) ? { ...g.cus } : {});
-    setUnderboob(!!(g && g.ub));
-    setSpecial((g && g.sp) || '');
-  }, [mech, gender]);
-
-  const seriesList = useMemo(() => {
-    if (!data) return [];
-    const keys = new Set();
-    data.cards.forEach(c => (c.series || []).forEach(k => keys.add(k)));
-    return [...keys];
-  }, [data]);
-
-  const mechList = useMemo(() => {
-    if (!data) return [];
-    return data.cards.filter(c => !series || (c.series || []).indexOf(series) >= 0);
-  }, [data, series]);
-
-  const card = useMemo(() => (data ? data.cards.find(c => c.name === mech) : null), [data, mech]);
-
-  /* 값이 바뀔 때마다 다시 만든다. 만드는 일은 전부 lib/prompt-anthro.js 몫 */
-  const prompt = useMemo(() => {
-    if (!card) return '';
-    const raw = [];
-    S.PARAM_DEFS.forEach(def => {
-      if (def.sex && def.sex !== (gender === 'female' ? 'female' : 'male')) return;
-      let v = sel[def.key] || '';
-      if (v === '__custom__') v = (cus[def.key] || '').trim();
-      if (v) raw.push([def.key, v]);
-    });
-    const params = AP.paramValues(raw, { special: special.trim(), underboob, gender });
-    const serName = (card.series || []).map(k => (data.series.name || {})[k] || k).join(' · ');
-    return AP.buildAnthro({
-      mech: card.name, series: serName, gender,
-      style, morph, translation: translationOf(sel), params,
-    });
-  }, [card, gender, style, morph, sel, cus, special, underboob, data]);
-
-  /* ── 직전 기체 설정 · 되돌리기 ──
-     PREV 는 다른 기체로 넘어갈 때 두고 온 설정이다. 여러 기체를 잇달아 잡을 때
-     같은 얼굴을 이어 쓰는 일이 잦아서 가져올 수 있게 둔다.
-     OPEN 은 이 기체를 열었을 때의 기록이다. 되돌리기는 여기로 돌아간다 */
-  const prevRef = useRef(null);      /* {name, part} */
-  const openRef = useRef(null);      /* 카드를 열었을 때의 기록 */
-  const [prevFrom, setPrevFrom] = useState('');
-  const [canUndo, setCanUndo] = useState(false);
-
   const partNow = () => ({ sel: { ...sel }, cus: { ...cus }, ub: underboob, sp: special.trim() });
-
-  /* 기체를 옮기기 직전에 지금 설정을 두고 간다 */
-  const pickMech = name => {
-    if (mech && mech !== name) {
-      prevRef.current = { name: mech, part: partNow() };
-      setPrevFrom(mech);
-    }
-    setMech(name);
-  };
 
   function applyPart(part) {
     setSel(part && part.sel ? { ...part.sel } : {});
@@ -466,259 +442,345 @@ function App() {
     setSpecial((part && part.sp) || '');
   }
 
-  function takePrev() {
-    if (!prevRef.current) return;
-    applyPart(prevRef.current.part);
-    showToast('직전 기체 "' + prevRef.current.name + '" 설정을 가져왔다');
-  }
+  /* 기체를 열면 그 기록을 불러오고, 되돌리기 기준점으로 붙잡아 둔다 */
+  useEffect(() => {
+    if (!mech) return;
+    const rec = recordFor(mech);
+    if (!openRef.current || openRef.current.__card !== mech) {
+      const snap = rec ? JSON.parse(JSON.stringify(rec)) : {};
+      delete snap.prev; snap.__card = mech;
+      openRef.current = snap;
+    }
+    if (rec && rec.mm) setMorph(rec.mm);
+    applyPart(rec && rec[gender]);
+  }, [mech, gender]);
 
-  /* 되돌리기 — 이 기체를 열었을 때로 돌아간다. 한 번 더 누르면 원위치 */
-  function undo() {
-    const back = openRef.current;
-    if (!back) return;
-    const now = { [gender]: partNow() };
-    applyPart(back[gender] || null);
-    openRef.current = now;
-    showToast('열었을 때 값으로 되돌렸다 — 한 번 더 누르면 원래대로');
-  }
+  /* 성별을 바꾸면 그 성별에 없는 값은 AUTO 로 되돌린다 (원본과 같은 규칙) */
+  useEffect(() => {
+    setSel(o => {
+      let hit = false; const n = {};
+      Object.keys(o).forEach(k => {
+        if (o[k] && !allowed(k, o[k], gender)) { hit = true; return; }
+        n[k] = o[k];
+      });
+      return hit ? n : o;
+    });
+  }, [gender]);
 
-  function resetGender() {
-    applyPart(null);
-    showToast((gender === 'female' ? '여성' : '남성') + ' 설정만 비웠다');
-  }
-
-  /* 한 기체의 기록을 파일로 — 저장소에 손으로 넣을 때 쓴다 (툴킷과 같은 꼴) */
-  function exportOne() {
-    const rec = recordFor(mech) || {};
-    const out = {
-      version: 1, card: mech, updated: new Date().toISOString(),
-      record: (() => { const c = { ...rec }; delete c.prev; return c; })(),
-      used: ATK.usedOf(mech), selectedStyle: style,
-    };
-    const text = JSON.stringify(out, null, 2);
-    copyText(text).then(() => showToast('설정을 복사했다'), () => showToast('복사 실패'));
-    try {
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
-      a.download = mech.replace(/ /g, '_') + '_settings.json';
-      a.click();
-      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-    } catch (e) {}
-  }
-
-  /* 값이 바뀌면 저장한다. 처음 불러오는 중(READY 전)에는 쓰지 않는다 —
-     빈 값이 기존 기록을 덮어쓰는 사고를 막는다 */
   const ready = useRef(false);
   useEffect(() => { ready.current = false; }, [mech]);
   useEffect(() => {
     if (!mech || !data) return;
     if (!ready.current) { ready.current = true; return; }
-    const part = { sel: { ...sel }, cus: { ...cus }, ub: underboob, sp: special.trim() };
-    const rec = ATK.mergeRecord(mech, gender, part, { morph });
+    const rec = ATK.mergeRecord(mech, gender, partNow(), { morph });
     const st = box.current.data;
     if (!st.anthro) st.anthro = {};
     if (rec) st.anthro[mech] = rec; else delete st.anthro[mech];
-    st.last = { series: series, mech: mech };
+    st.last = { series, mech };
     box.current.save();
   }, [mech, gender, sel, cus, underboob, special, morph, data]);
 
-  if (err) return html`<main><p class="warn">자료를 못 읽었다 — ${String(err.message || err)}</p></main>`;
-  if (!data) return html`<main><p class="note" style="padding:40px 0;text-align:center">읽는 중…</p></main>`;
+  const seriesList = useMemo(() => {
+    if (!data) return [];
+    const keys = new Set();
+    data.cards.forEach(c => (c.series || []).forEach(k => keys.add(k)));
+    return [...keys];
+  }, [data]);
+  const mechList = useMemo(() => !data ? []
+    : data.cards.filter(c => !series || (c.series || []).indexOf(series) >= 0), [data, series]);
+  const card = useMemo(() => data ? data.cards.find(c => c.name === mech) : null, [data, mech]);
+
+  const prompt = useMemo(() => {
+    if (!card) return '';
+    const raw = [];
+    S.PARAM_DEFS.forEach(def => {
+      if (!fitsGender(def, gender)) return;
+      let v = sel[def.key] || '';
+      if (v === '__custom__') v = (cus[def.key] || '').trim();
+      if (v) raw.push([def.key, v]);
+    });
+    const params = AP.paramValues(raw, { special: special.trim(), underboob, gender });
+    const serName = (card.series || []).map(k => (data.series.name || {})[k] || k).join(' · ');
+    return AP.buildAnthro({ mech: card.name, series: serName, gender, style, morph,
+      translation: translationOf(sel), params });
+  }, [card, gender, style, morph, sel, cus, special, underboob, data]);
+
+  if (err) return html`<p class="status warn">자료를 못 읽었다 — ${String(err.message || err)}</p>`;
+  if (!data) return html`<p class="status">읽는 중…</p>`;
 
   const setOne = (k, v) => setSel(o => ({ ...o, [k]: v }));
+  const setCustom = (k, v) => setCus(o => ({ ...o, [k]: v }));
   const toggleLock = k => setLocks(o => {
     const n = { ...o };
     if (n['p:' + k]) delete n['p:' + k]; else n['p:' + k] = 1;
-    box.current.data.locks = n;
-    box.current.save();
+    box.current.data.locks = n; box.current.save();
     return n;
   });
+  const lockCount = Object.keys(locks).length;
 
-  /* 지금 보는 성별 설정을 반대 성별 쪽에 덮어쓴다.
-     화면은 안 바뀐다 — 그 성별로 넘어가는 순간 적용된다.
-     반대 성별에 없는 값(남성엔 언더부스트가 없는 식)은 넘어가서 자연히 빠진다 */
+  const filledOf = g => S.PARAM_DEFS.filter(d => d.group === g && fitsGender(d, gender))
+    .filter(d => sel[d.key] && (sel[d.key] !== '__custom__' || (cus[d.key] || '').trim())).length;
+  const filled = S.GROUP_META.reduce((n, [g]) => n + filledOf(g), 0);
+
+  function rollAnthro() {
+    const pick = a => a[Math.floor(Math.random() * a.length)];
+    let set = 0, skipLock = 0, skipFull = 0, on = 0;
+    const next = { ...sel };
+    S.GROUP_META.forEach(([g]) => { if (rndGroups[g]) on++; });
+    if (!on) { setStatus('굴릴 갈래를 하나도 안 골랐다 — 얼굴·체형 같은 것을 켜야 굴러간다'); return; }
+    S.PARAM_DEFS.forEach(def => {
+      if (!rndGroups[def.group] || !fitsGender(def, gender)) return;
+      if (locks['p:' + def.key]) { skipLock++; return; }
+      if (onlyEmpty && next[def.key]) { skipFull++; return; }
+      const cand = optionsFor(def, gender).map(o => o[0]).filter(v => v && v !== '__custom__');
+      if (!cand.length) return;
+      next[def.key] = pick(cand); set++;
+    });
+    if (!set) {
+      setStatus(skipFull ? '한 칸도 안 바뀌었다 — "빈 칸(AUTO)만 채우기" 가 켜져 있어 이미 값이 있는 '
+          + skipFull + '칸을 건너뛰었다'
+        : skipLock ? '한 칸도 안 바뀌었다 — 고른 갈래가 전부 자물쇠(' + skipLock + '칸)로 잠겨 있다'
+        : '한 칸도 안 바뀌었다 — 고른 갈래에 굴릴 칸이 없다');
+      return;
+    }
+    setSel(next);
+    setStatus(set + '칸을 새로 굴렸다' + (skipLock ? ' · 자물쇠 ' + skipLock + '칸은 건너뜀' : ''));
+  }
+
   function copyToOther() {
     const other = gender === 'female' ? 'male' : 'female';
-    const name = gender === 'female' ? '여성' : '남성';
-    const oname = other === 'female' ? '여성' : '남성';
-    if (!confirm(oname + ' 쪽 설정을 지금 보고 있는 ' + name + ' 설정으로 덮어쓴다. ' +
-      oname + ' 쪽에 만들어 둔 설정이 있다면 사라진다. 계속할까?')) return;
-    const part = { sel: { ...sel }, cus: { ...cus }, ub: other === 'female' ? underboob : false,
-                   sp: special.trim() };
+    const nm = gender === 'female' ? '여성' : '남성', onm = other === 'female' ? '여성' : '남성';
+    if (!confirm(onm + ' 쪽 설정을 지금 보고 있는 ' + nm + ' 설정으로 덮어쓴다. '
+      + onm + ' 쪽에 만들어 둔 설정이 있다면 사라진다. 계속할까?')) return;
+    const part = { sel: { ...sel }, cus: { ...cus },
+      ub: other === 'female' ? underboob : false, sp: special.trim() };
     const rec = ATK.mergeRecord(mech, other, part, { morph });
     const st = box.current.data;
     if (!st.anthro) st.anthro = {};
     if (rec) {
-      /* mergeRecord 는 반대 몫을 제 눈에 보이는 기록에서 가져온다. 그 모듈이
-         옛 판이면 지금 화면 몫이 빠질 수 있어, 여기서 한 번 더 채워 넣는다 */
       const now = recordFor(mech);
       if (now && now[gender] && !rec[gender]) rec[gender] = now[gender];
       st.anthro[mech] = rec;
     } else delete st.anthro[mech];
     box.current.flush();
-    showToast(name + ' 설정을 ' + oname + ' 쪽에 복사했다');
+    setStatus(nm + ' 설정을 ' + onm + ' 쪽에 복사했다 — 그 탭으로 넘어가면 적용된다');
   }
 
-  /* 굴릴 갈래만, 잠기지 않은 칸만 바꾼다. 직접 입력 값은 굴리지 않는다
-     (툴킷과 같은 규칙 — 자물쇠는 랜덤에만 걸고 사람이 고르는 것은 막지 않는다) */
-  function rollAnthro() {
-    const pick = a => a[Math.floor(Math.random() * a.length)];
-    let set = 0, skipLock = 0, skipFull = 0;
-    const next = { ...sel };
-    S.PARAM_DEFS.forEach(def => {
-      if (!rndGroups[def.group]) return;
-      if (def.sex && def.sex !== gender) return;
-      if (locks['p:' + def.key]) { skipLock++; return; }
-      if (onlyEmpty && next[def.key]) { skipFull++; return; }
-      const cand = def.options.map(o => o[0]).filter(v => v && v !== '__custom__');
-      if (!cand.length) return;
-      next[def.key] = pick(cand);
-      set++;
-    });
-    if (!set) {
-      showToast(skipFull ? '빈 칸만 채우기가 켜져 있다' :
-                skipLock ? '고른 갈래가 전부 잠겨 있다' : '굴릴 갈래를 고르세요');
-      return;
-    }
-    setSel(next);
-    showToast(set + '칸 굴렸다' + (skipLock ? ' · 자물쇠 ' + skipLock : ''));
+  function pickMech(name) {
+    if (mech && mech !== name) { prevRef.current = { name: mech, part: partNow() }; setPrevFrom(mech); }
+    setMech(name);
   }
-  const setCustom = (k, v) => setCus(o => ({ ...o, [k]: v }));
-  const filled = S.PARAM_DEFS.filter(d => sel[d.key]).length;
-  const lockCount = Object.keys(locks).length;
+  function takePrev() {
+    if (!prevRef.current) return;
+    applyPart(prevRef.current.part);
+    setStatus('직전 기체 "' + prevRef.current.name + '" 의 설정을 가져왔다');
+  }
+  function undo() {
+    const back = openRef.current;
+    if (!back) return;
+    const now = { [gender]: partNow(), __card: mech };
+    applyPart(back[gender] || null);
+    openRef.current = now;
+    setStatus('직전 값으로 되돌렸다. 한 번 더 누르면 원래대로 돌아온다.');
+  }
+  function resetAnthro() {
+    applyPart(null);
+    setStatus((gender === 'female' ? '여성' : '남성') + ' 설정만 AUTO로 초기화했다');
+  }
+  function dropLocal() {
+    const st = box.current.data;
+    if (st.anthro && st.anthro[mech]) delete st.anthro[mech];
+    box.current.flush();
+    applyPart((ATK.recordOf(mech) || {})[gender]);
+    setStatus('이 브라우저에서 고친 것을 버리고 저장소 기록으로 되돌렸다');
+  }
+  function exportOne() {
+    const rec = recordFor(mech) || {};
+    const clean = { ...rec }; delete clean.prev; delete clean.__card;
+    const out = { version: 1, card: mech, updated: new Date().toISOString(),
+      record: clean, used: ATK.usedOf(mech), selectedStyle: style };
+    const text = JSON.stringify(out, null, 2);
+    setExportText(text);
+    copyText(text).then(() => setStatus(mech + ' 한 기체의 settings.json 기록을 내보냈다 — 복사도 했다'),
+      () => setStatus('복사는 실패했다. 아래 칸에서 직접 가져가라'));
+  }
+
+  const localCount = Object.keys(box.current.data.anthro || {}).length;
+  const hasLocal = !!(box.current.data.anthro || {})[mech];
+  const hasRec = !!recordFor(mech);
 
   return html`
-    <main>
-      <div class="chrome">
-        <nav class="workspace-nav" aria-label="Atelier 화면 이동">
-          <a href="prompt.html">툴킷</a>
-          <a href="play.html">드래프트</a>
-          <a href="dex.html">도감</a>
-          <a href="prompt-next.html" aria-current="page">툴킷(시범)</a>
-        </nav>
-        <div class="brand">
-          <h1>의인화 프롬프트</h1><span class="mono">${stamp || 'PREACT 시범'}</span>
-        </div>
+    <nav class="workspace-nav" aria-label="Atelier 화면 이동">
+      <a href="prompt.html">툴킷</a>
+      <a href="play.html">드래프트</a>
+      <a href="dex.html">도감</a>
+      <a href="prompt-next.html" aria-current="page">툴킷(시범)</a>
+    </nav>
+
+    <section class="panel">
+      <div class="panel-head">
+        <strong>ANTHROPOMORPHIZATION GENERATOR</strong>
+        <span>AUTO는 원기체에서 자동 추론 · 원하는 외형만 지정 ${stamp ? '· ' + stamp : ''}</span>
       </div>
 
-      <header>
-        <div class="row">
-          <select value=${series} onchange=${e => { setSeries(e.target.value); setMech(''); }}>
+      <div class="form-section">
+        <div class="field" style="margin-bottom:9px">
+          <label>기체 <small>시리즈로 좁혀 고른다</small></label>
+          <select value=${series} onchange=${e => { setSeries(e.target.value); }}>
             <option value="">시리즈 전체</option>
-            ${seriesList.map(k => html`
-              <option value=${k}>${(data.series.name || {})[k] || k}</option>`)}
+            ${seriesList.map(k => html`<option key=${k} value=${k}>${(data.series.name || {})[k] || k}</option>`)}
           </select>
-        </div>
-        <div class="row">
-          <select value=${mech} onchange=${e => pickMech(e.target.value)}>
+          <select style="margin-top:6px" value=${mech} onchange=${e => pickMech(e.target.value)}>
             <option value="">기체를 고르세요 (${mechList.length})</option>
-            ${mechList.map(c => html`<option value=${c.name}>${c.name}</option>`)}
+            ${mechList.map(c => html`<option key=${c.name} value=${c.name}>${c.name}</option>`)}
+          </select>
+          <select style="margin-top:6px" value=${style} onchange=${e => setStyle(e.target.value)}>
+            ${S.ART_STYLES.map(r => html`<option key=${r[0]} value=${r[0]}>화풍 · ${r[1]}</option>`)}
           </select>
         </div>
-        <div class="row">
-          <div class="sw">
-            ${[['female', '여'], ['male', '남']].map(([g, t]) => html`
-              <button class=${gender === g ? 'on' : ''} onclick=${() => setGender(g)}>${t}</button>`)}
-          </div>
-          <select class="grow" value=${style} onchange=${e => setStyle(e.target.value)}
-                  style="flex:1 1 auto;width:auto">
-            ${S.ART_STYLES.map(r => html`<option value=${r[0]}>${r[1]}</option>`)}
-          </select>
+
+        <div class="gender-tabs">
+          ${[['female', '여성 / Female'], ['male', '남성 / Male']].map(([g, t]) => html`
+            <button type="button" key=${g} class=${'gt' + (gender === g ? ' on' : '')}
+                    onclick=${() => setGender(g)}>${t}</button>`)}
         </div>
-      </header>
+        <div class="param-note" style="margin-top:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span>탭마다 설정을 따로 기억한다. 여성 쪽에서 잡은 값이 남성 쪽으로 자동으로 넘어가지 않는다.</span>
+          <button type="button" class="card-rnd sub" style="flex:none" onclick=${copyToOther}>
+            지금 보는 설정 → 반대 성별에 복사</button>
+        </div>
 
-      ${!card
-        ? html`<p class="note" style="padding:32px 0;text-align:center">기체를 고르면 설정과 프롬프트가 나온다</p>`
-        : html`
-          <p class="note" style="margin:8px 0">
-            바꾸는 대로 툴킷과 같은 자리에 저장된다. 두 화면을 같이 열어 두면
-            나중에 저장한 쪽이 이긴다 — 한쪽에서만 만지는 편이 안전하다.
-          </p>
+        <div class="field" style="margin-top:10px">
+          <label>Morphology Mode <small>형태 번역 전략 · 인간형과 거리가 있는 기체에 사용</small></label>
+          <select value=${morph} onchange=${e => setMorph(e.target.value)}>
+            ${MORPHS.map(([k, t]) => html`<option key=${k} value=${k}>${t}</option>`)}
+          </select>
+          <div class="param-note" style="margin-top:4px">정답은 하나가 아니다 — 결과가 미묘하면 다른 모드로 다시 생성해본다.</div>
+        </div>
 
-          <p class="sec">랜덤 · 채운 항목 ${filled}${lockCount ? ' · 자물쇠 ' + lockCount : ''}</p>
-          <div class="bar">
-            <button class="btn go" onclick=${rollAnthro}>🎲 외형 랜덤</button>
-            <button class="btn" onclick=${copyToOther}>
-              ${gender === 'female' ? '남성' : '여성'} 쪽에 복사
-            </button>
-          </div>
-          <div class="bar">
-            ${prevRef.current && prevRef.current.name !== mech ? html`
-              <button class="btn" onclick=${takePrev}>직전 설정 (${prevFrom})</button>` : null}
-            ${lockCount ? html`
-              <button class="btn" onclick=${() => setLocks({})}>자물쇠 모두 풀기</button>` : null}
-          </div>
-          <div class="row">
-            ${GROUPS.map(([g, t]) => html`
-              <label class=${'chip' + (rndGroups[g] ? ' on' : '')}>
-                <input type="checkbox" checked=${!!rndGroups[g]}
-                       onchange=${e => setRndGroups(o => ({ ...o, [g]: e.target.checked }))} />
-                ${t}
-              </label>`)}
-            <label class=${'chip' + (onlyEmpty ? ' on' : '')}>
-              <input type="checkbox" checked=${onlyEmpty}
-                     onchange=${e => setOnlyEmpty(e.target.checked)} />
-              빈 칸만
-            </label>
-          </div>
+        <div class="param-note" style="margin:10px 0 0">
+          ${filled ? '전체 ' + filled + '개 지정됨 — 비워둔 항목은 기체 원본에서 자동으로 채워진다'
+                   : '전부 AUTO — 기체 원본에서 모두 자동으로 결정된다'}
+        </div>
+        <button type="button" class="rnd-top" onclick=${rollAnthro}>🎲 외형 랜덤</button>
+        <div class="status" style="margin-top:4px">${status}</div>
 
-          <div class="row" style="margin-top:12px">
-            <select value=${morph} onchange=${e => setMorph(e.target.value)}>
-              ${MORPHS.map(([k, t]) => html`<option value=${k}>형태 · ${t}</option>`)}
-            </select>
-          </div>
-
-          ${GROUPS.map(([g, title, hint]) => {
-            const defs = S.PARAM_DEFS.filter(d => d.group === g)
-              .filter(d => !d.sex || d.sex === (gender === 'female' ? 'female' : 'male'));
-            if (!defs.length) return null;
-            const n = defs.filter(d => sel[d.key]).length;
+        <div style="margin-top:8px">
+          ${S.GROUP_META.map(([g, ko, desc, open]) => {
+            const rows = S.PARAM_DEFS.filter(d => d.group === g && fitsGender(d, gender));
+            if (!rows.length) return null;
+            const n = filledOf(g);
+            const tops = rows.filter(d => !d.sub);
+            const subs = rows.filter(d => d.sub);
+            const cardOf = def => html`
+              <${ParamCard} key=${def.key} def=${def} value=${sel[def.key] || ''}
+                            custom=${cus[def.key] || ''} locked=${!!locks['p:' + def.key]}
+                            sel=${sel} gender=${gender} img=${data.img} style=${style} exclude=${mech}
+                            onValue=${v => setOne(def.key, v)} onCustom=${v => setCustom(def.key, v)}
+                            onLock=${() => toggleLock(def.key)}
+                            onZoom=${(list, i) => setZoom({ list, i })} />`;
+            /* 하위 항목은 어느 상위 값 안에서 조정되는지 머리에 적는다 (원본과 같다) */
+            const subGroups = {};
+            subs.forEach(d => { (subGroups[d.sub] = subGroups[d.sub] || []).push(d); });
             return html`
-              <details class="grp" open=${g === 'base'}>
-                <summary>${title}<b>${n ? n + ' / ' + defs.length : defs.length}</b></summary>
-                <div class="body">
-                  <p class="note" style="margin:0 0 8px">${hint}</p>
-                  ${defs.map(def => html`
-                    <${Param} key=${def.key} def=${def}
-                              value=${sel[def.key] || ''} custom=${cus[def.key] || ''}
-                              locked=${!!locks['p:' + def.key]}
-                              gender=${gender} img=${data.img} style=${style} exclude=${mech}
-                              onValue=${v => setOne(def.key, v)}
-                              onCustom=${v => setCustom(def.key, v)}
-                              onLock=${() => toggleLock(def.key)}
-                              onZoom=${(list, i) => setZoom({ list, i })} />`)}
+              <details class="grp" key=${g} open=${!!open}>
+                <summary>
+                  <span>${ko}<em class=${n ? 'on' : ''}>${n ? '  ' + n + ' 지정' : ''}</em></span>
+                  <i>${desc}</i>
+                </summary>
+                <div class="grp-in">
+                  ${tops.map(cardOf)}
+                  ${Object.keys(subGroups).map(parent => {
+                    const pd = S.PARAM_DEFS.find(d => d.key === parent);
+                    const pv = sel[parent];
+                    const txt = pv && pv !== '__custom__'
+                      ? (pd.options.find(o => o[0] === pv) || ['', pv])[1].split(' — ')[0] : '';
+                    return html`
+                      <div class=${'sub-wrap' + (txt ? ' on' : '')} key=${parent}>
+                        <div class="sub-head">
+                          ${txt ? html`위 <b>${pd.label} · ${txt}</b> 안에서 조정`
+                                : html`위 <b>${pd ? pd.label : parent}</b> 가 AUTO — 아래 값이 단독으로 적용된다`}
+                        </div>
+                        ${subGroups[parent].map(cardOf)}
+                      </div>`;
+                  })}
                 </div>
               </details>`;
           })}
+        </div>
 
-          <p class="sec">그 밖에</p>
-          <div class="pdef">
-            <label><b>특이사항</b> · Special Characteristics</label>
-            <input type="text" placeholder="흉터, 문신, 의안 같은 것"
-                   value=${special} oninput=${e => setSpecial(e.target.value)} />
-          </div>
-          ${gender === 'female' && html`
-            <label class="note" style="display:flex;gap:7px;align-items:center;margin-top:6px">
-              <input type="checkbox" checked=${underboob}
-                     onchange=${e => setUnderboob(e.target.checked)} style="width:auto;min-height:0" />
-              언더부스트 장갑 문구 넣기
-            </label>`}
+        ${gender === 'female' && html`
+          <div class="field" style="margin-top:10px">
+            <label style="display:flex;align-items:center;gap:8px;margin:0;cursor:pointer">
+              <input type="checkbox" checked=${underboob} style="width:auto;margin:0;flex:none"
+                     onchange=${e => setUnderboob(e.target.checked)} />
+              <span>Underboob Armor <small>흉갑 하단 노출</small></span>
+            </label>
+          </div>`}
 
-          <p class="sec">결과 · ${prompt.length.toLocaleString()}자</p>
-          <textarea class="out" readonly value=${prompt}></textarea>
-          <div class="bar">
-            <button class="btn go" onclick=${() => copyText(prompt).then(
-              () => showToast('복사했다 · ' + card.name), () => showToast('복사 실패'))}>프롬프트 복사</button>
-          </div>
+        <div class="field" style="margin-top:10px">
+          <label>Special Characteristics <small>특수 외형 / 추가 지시</small></label>
+          <input type="text" placeholder="예: pale mint highlights, narrow waist armor"
+                 value=${special} oninput=${e => setSpecial(e.target.value)} />
+        </div>
 
-          ${/* 가끔 쓰는 것들은 맨 아래에 둔다 */''}
-          <div class="bar">
-            ${canUndo ? html`<button class="btn" onclick=${undo}>되돌리기</button>` : null}
-            <button class="btn" onclick=${resetGender}>이 성별 비우기</button>
-            <button class="btn" onclick=${exportOne}>설정 내보내기</button>
-          </div>
-        `}
-    </main>
+        <div class="param-note">
+          AUTO 항목은 최종 PARAMETERS에서 생략돼. 직접 입력을 고르면 원하는 값을 자유롭게 넣을 수 있어.
+        </div>
+
+        <div class="save-bar">
+          <span class="sb-txt">
+            ${!box.current.ok ? '이 브라우저에서는 저장이 막혀 있다'
+              : (hasRec ? '"' + mech + '" 설정 있음' + (hasLocal ? ' (이 브라우저)' : ' (저장소 기록)')
+                        : '"' + mech + '" 는 아직 설정이 없다')
+                + ' · 이 브라우저 기록 ' + localCount + '기'}
+          </span>
+          <span style="display:flex;gap:6px;flex:none">
+            <button type="button" class="sb-drop" onclick=${undo}>직전 값으로</button>
+            ${hasLocal ? html`<button type="button" class="sb-drop" onclick=${dropLocal}>이 브라우저 수정 되돌리기</button>` : null}
+          </span>
+        </div>
+        <div class="save-bar">
+          <span class="sb-txt">저장소에 커밋할 기록을 내보낸다. 기체 폴더의 <code>settings.json</code>에 저장하면 다른 기기에서도 보인다.</span>
+          <button type="button" class="sb-drop" onclick=${exportOne}>기록 내보내기</button>
+        </div>
+        ${exportText && html`<textarea readonly style="margin-top:8px;min-height:120px;font-size:11px" value=${exportText}></textarea>`}
+
+        <div class="rnd-tgt" style="margin-bottom:9px">
+          <span>🎲 랜덤으로 정할 것 — 자물쇠 걸린 칸은 건너뛴다</span>
+          ${S.GROUP_META.map(([g, ko]) => html`
+            <label key=${g}><input type="checkbox" checked=${!!rndGroups[g]}
+                    onchange=${e => setRndGroups(o => ({ ...o, [g]: e.target.checked }))} /><span>${ko}</span></label>`)}
+          <label style="width:100%;margin-top:2px">
+            <input type="checkbox" checked=${onlyEmpty} onchange=${e => setOnlyEmpty(e.target.checked)} />
+            <span>빈 칸(AUTO)만 채우기 — 켜면 이미 값이 있는 칸은 건너뛴다</span>
+          </label>
+          ${lockCount ? html`<span class="lock-note">자물쇠 ${lockCount}칸 — 랜덤이 건너뛴다</span>` : null}
+          ${lockCount ? html`<button type="button" class="lock-clear"
+            onclick=${() => { setLocks({}); box.current.data.locks = {}; box.current.save(); }}>자물쇠 모두 풀기</button>` : null}
+        </div>
+
+        <div class="param-actions">
+          <button type="button" onclick=${rollAnthro}>🎲 외형 랜덤</button>
+          <button type="button" onclick=${resetAnthro}>외형 리셋</button>
+          ${prevRef.current && prevRef.current.name !== mech
+            ? html`<button type="button" onclick=${takePrev}>직전 기체 설정 가져오기 (${prevFrom})</button>` : null}
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="primary" type="button"
+                onclick=${() => copyText(prompt).then(() => setStatus('클립보드에 복사했다'),
+                                                      () => setStatus('복사에 실패했다'))}>클립보드 복사</button>
+        <button type="button" onclick=${() => setShowText(v => !v)}>텍스트 보기</button>
+      </div>
+      <div class="status">${status}</div>
+      ${showText && html`
+        <div class="prompt-view">
+          <textarea readonly spellcheck="false" value=${prompt}></textarea>
+        </div>`}
+    </section>
+
     ${zoom && html`<${Zoom} list=${zoom.list} start=${zoom.i} onClose=${() => setZoom(null)} />`}
     ${toast}`;
 }
