@@ -42,10 +42,15 @@ html,body{margin:0;padding:0}
 body{background:var(--deck);color:var(--ink);
   font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;
   font-size:15px;line-height:1.5;
-  height:100vh;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
-#app{display:flex;flex-direction:column;min-height:0;flex:1 1 auto}
+  height:100vh;height:100dvh;display:flex;flex-direction:column;
+  overflow:hidden;overflow-x:hidden;width:100%;max-width:100%}
+#app{display:flex;flex-direction:column;min-height:0;flex:1 1 auto;width:100%;max-width:100%}
+/* 어느 칸이든 화면보다 넓어지면 가로로 밀려 왼쪽이 잘린다. 늘어나는 것은
+   전부 최소 너비를 0 으로 두고, 줄은 넘치면 접히게 한다 */
+main, header, .row, .bar, .chrome{max-width:100%}
+.row > *, .bar > *{min-width:0}
 .mono{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace}
-main{flex:1 1 auto;min-height:0;overflow-y:auto;padding:0 12px 24px;
+main{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;padding:0 12px 24px;
   overscroll-behavior:contain}
 .chrome{padding-top:env(safe-area-inset-top)}
 .workspace-nav{display:flex;gap:6px;margin:8px 0;align-items:center;flex-wrap:wrap}
@@ -116,9 +121,10 @@ textarea{min-height:200px;font-family:ui-monospace,Menlo,monospace;font-size:11.
   bottom:calc(10px + env(safe-area-inset-bottom));background:rgba(15,19,24,.55);
   color:var(--plate);font-size:11px;font-weight:700;padding:5px 9px;border-radius:999px;
   pointer-events:none}
-.bar{display:flex;gap:6px;align-items:center;margin:8px 0}
+.bar{display:flex;gap:6px;align-items:center;margin:8px 0;flex-wrap:wrap}
 .btn{background:var(--panel);border:1px solid var(--rule);color:var(--ink);font:inherit;
-  font-size:var(--ui-font);border-radius:7px;padding:8px 12px;min-height:var(--ui-height);cursor:pointer}
+  font-size:var(--ui-font);border-radius:7px;padding:8px 12px;min-height:var(--ui-height);
+  cursor:pointer;white-space:nowrap;flex:0 0 auto}
 .btn.go{background:var(--gold);border-color:var(--gold);color:#17130F;font-weight:700}
 .note{font-size:11px;color:var(--dim);line-height:1.6}
 .warn{border:1px solid var(--gold);border-radius:8px;padding:9px 11px;font-size:11.5px;
@@ -629,36 +635,6 @@ function App() {
             나중에 저장한 쪽이 이긴다 — 한쪽에서만 만지는 편이 안전하다.
           </p>
 
-          <p class="sec">랜덤 · 채운 항목 ${filled}${lockCount ? ' · 자물쇠 ' + lockCount : ''}</p>
-          <div class="bar">
-            <button class="btn go" onclick=${rollAnthro}>🎲 외형 랜덤</button>
-            <button class="btn" onclick=${copyToOther}>
-              ${gender === 'female' ? '남성' : '여성'} 쪽에 복사
-            </button>
-          </div>
-          <div class="bar">
-            ${prevRef.current && prevRef.current.name !== mech ? html`
-              <button class="btn" onclick=${takePrev}>직전 설정 (${prevFrom})</button>` : null}
-            ${canUndo ? html`<button class="btn" onclick=${undo}>되돌리기</button>` : null}
-            <button class="btn" onclick=${resetGender}>이 성별 비우기</button>
-            <button class="btn" onclick=${exportOne}>설정 내보내기</button>
-            ${lockCount ? html`
-              <button class="btn" onclick=${() => setLocks({})}>자물쇠 모두 풀기</button>` : null}
-          </div>
-          <div class="row">
-            ${GROUPS.map(([g, t]) => html`
-              <label class=${'chip' + (rndGroups[g] ? ' on' : '')}>
-                <input type="checkbox" checked=${!!rndGroups[g]}
-                       onchange=${e => setRndGroups(o => ({ ...o, [g]: e.target.checked }))} />
-                ${t}
-              </label>`)}
-            <label class=${'chip' + (onlyEmpty ? ' on' : '')}>
-              <input type="checkbox" checked=${onlyEmpty}
-                     onchange=${e => setOnlyEmpty(e.target.checked)} />
-              빈 칸만
-            </label>
-          </div>
-
           <div class="row" style="margin-top:12px">
             <select value=${morph} onchange=${e => setMorph(e.target.value)}>
               ${MORPHS.map(([k, t]) => html`<option value=${k}>형태 · ${t}</option>`)}
@@ -700,6 +676,36 @@ function App() {
                      onchange=${e => setUnderboob(e.target.checked)} style="width:auto;min-height:0" />
               언더부스트 장갑 문구 넣기
             </label>`}
+
+          <p class="sec">랜덤 · 채운 항목 ${filled}${lockCount ? ' · 자물쇠 ' + lockCount : ''}</p>
+          <div class="bar">
+            <button class="btn go" onclick=${rollAnthro}>🎲 외형 랜덤</button>
+            <button class="btn" onclick=${copyToOther}>
+              ${gender === 'female' ? '남성' : '여성'} 쪽에 복사
+            </button>
+          </div>
+          <div class="bar">
+            ${prevRef.current && prevRef.current.name !== mech ? html`
+              <button class="btn" onclick=${takePrev}>직전 설정 (${prevFrom})</button>` : null}
+            ${canUndo ? html`<button class="btn" onclick=${undo}>되돌리기</button>` : null}
+            <button class="btn" onclick=${resetGender}>이 성별 비우기</button>
+            <button class="btn" onclick=${exportOne}>설정 내보내기</button>
+            ${lockCount ? html`
+              <button class="btn" onclick=${() => setLocks({})}>자물쇠 모두 풀기</button>` : null}
+          </div>
+          <div class="row">
+            ${GROUPS.map(([g, t]) => html`
+              <label class=${'chip' + (rndGroups[g] ? ' on' : '')}>
+                <input type="checkbox" checked=${!!rndGroups[g]}
+                       onchange=${e => setRndGroups(o => ({ ...o, [g]: e.target.checked }))} />
+                ${t}
+              </label>`)}
+            <label class=${'chip' + (onlyEmpty ? ' on' : '')}>
+              <input type="checkbox" checked=${onlyEmpty}
+                     onchange=${e => setOnlyEmpty(e.target.checked)} />
+              빈 칸만
+            </label>
+          </div>
 
           <p class="sec">결과 · ${prompt.length.toLocaleString()}자</p>
           <textarea class="out" readonly value=${prompt}></textarea>
