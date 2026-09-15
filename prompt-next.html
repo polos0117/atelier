@@ -442,6 +442,25 @@ function App() {
     return n;
   });
 
+  /* 지금 보는 성별 설정을 반대 성별 쪽에 덮어쓴다.
+     화면은 안 바뀐다 — 그 성별로 넘어가는 순간 적용된다.
+     반대 성별에 없는 값(남성엔 언더부스트가 없는 식)은 넘어가서 자연히 빠진다 */
+  function copyToOther() {
+    const other = gender === 'female' ? 'male' : 'female';
+    const name = gender === 'female' ? '여성' : '남성';
+    const oname = other === 'female' ? '여성' : '남성';
+    if (!confirm(oname + ' 쪽 설정을 지금 보고 있는 ' + name + ' 설정으로 덮어쓴다. ' +
+      oname + ' 쪽에 만들어 둔 설정이 있다면 사라진다. 계속할까?')) return;
+    const part = { sel: { ...sel }, cus: { ...cus }, ub: other === 'female' ? underboob : false,
+                   sp: special.trim() };
+    const rec = ATK.mergeRecord(mech, other, part, { morph });
+    const st = box.current.data;
+    if (!st.anthro) st.anthro = {};
+    if (rec) st.anthro[mech] = rec; else delete st.anthro[mech];
+    box.current.flush();
+    showToast(name + ' 설정을 ' + oname + ' 쪽에 복사했다');
+  }
+
   /* 굴릴 갈래만, 잠기지 않은 칸만 바꾼다. 직접 입력 값은 굴리지 않는다
      (툴킷과 같은 규칙 — 자물쇠는 랜덤에만 걸고 사람이 고르는 것은 막지 않는다) */
   function rollAnthro() {
@@ -521,6 +540,9 @@ function App() {
           <p class="sec">랜덤 · 채운 항목 ${filled}${lockCount ? ' · 자물쇠 ' + lockCount : ''}</p>
           <div class="bar">
             <button class="btn go" onclick=${rollAnthro}>🎲 외형 랜덤</button>
+            <button class="btn" onclick=${copyToOther}>
+              ${gender === 'female' ? '남성' : '여성'} 쪽에 복사
+            </button>
             ${lockCount ? html`
               <button class="btn" onclick=${() => setLocks({})}>자물쇠 모두 풀기</button>` : null}
           </div>
