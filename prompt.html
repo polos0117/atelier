@@ -1032,10 +1032,19 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
 <script src="lib/toolkit.js"></script>
 <!-- 설정 항목·카테고리·화풍 문구 같은 고정 자료 표 -->
 <script src="lib/toolkit-spec.js"></script>
+<script src="lib/prompt-anthro.js"></script>
 <script src="generation/loader.js"></script>
 <script>
 (async () => {
-  const templateC = "Full-body anthropomorphization of a Gundam-series mobile suit. Every design decision — armor color scheme, head crest, backpack and weapon attachments, facial design, hair color, and hairstyle — is determined strictly by the PARAMETERS at the bottom. Where the PARAMETERS are silent, follow the mobile suit's canonical design and visual identity.\n\n\nDESIGN PRIORITY — Every visual decision must follow this priority order:\n\n1. Explicit instructions written in PARAMETERS.\n2. Clearly visible equipment and loadout details from any uploaded reference image.\n3. The mobile suit's canonical design from the specified series or work.\n4. The general humanoid styling instructions in this prompt.\n\n\nREFERENCE IMAGE RULE — If one or more original reference images are provided by the user, use them as authoritative visual references for equipment and loadout details.\n\nWhen a reference image is provided, prioritize it especially for:\n\n- weapon type, shape, scale, and proportions\n- shield design, outline, mounted accessories, and surface structure\n- backpack structure, thrusters, binders, funnels, panel containers, and launcher arrangement\n- hardpoint placement, attachment direction, and equipment mounting method\n- visible sub-weapons such as spare magazines, Sturm Fausts, missiles, beam sabers, grenades, or auxiliary equipment\n- distinctive armor geometry and mechanical structures that define the identity of the mobile suit\n\nIf the uploaded reference image clearly shows a specific loadout or equipment arrangement, do not replace it with a generic or alternative interpretation.\n\nPreserve the recognizable structure, proportions, placement, and mechanical logic of the equipment from the reference image as faithfully as possible while translating it into the anthropomorphized humanoid design.\n\n\nREFERENCE IMAGE AUTHORITY — When an original mobile-suit reference image is provided, it is the primary visual design authority for the mobile suit: it controls visible armor geometry, silhouette, proportions, equipment placement, hardpoints, backpack structure, shield shape, weapon shape, and visible loadout state.\n\nDo not reconstruct the mobile suit primarily from its name, genre conventions, or canonical memory when the corresponding feature is clearly visible in the uploaded reference; canonical knowledge is fallback information only for details that are genuinely not visible, cropped, or ambiguous in the reference.\n\nThe reference image controls DESIGN, not RENDERING STYLE — preserve its visible geometry and equipment, but render them using the selected ART STYLE rather than copying the reference image's own cel-animation, photographic, CGI, or other rendering style. The selected ART STYLE controls rendering language only and must not redesign or replace clearly visible source-reference geometry.\n\n\nPARAMETER INTERPRETATION RULE — The PARAMETERS are intentionally minimal and usually contain only gender, mobile suit name, series/work title, body type, and any explicitly requested special characteristics.\n\nBecause of this, all other fitting design details must be inferred and completed from the mobile suit's canonical design and from any uploaded original reference image when provided.\n\nWhen PARAMETERS are minimal, automatically determine and faithfully add the following in a way that best matches the specified mobile suit:\n\n- canonical armor color scheme\n- head crest / antenna / sensor design\n- shoulder, chest, waist, leg, and overall armor silhouette\n- backpack structure and attachment placement\n- funnels, wing binders, panel containers, shields, cannons, rifles, and signature equipment\n- distinctive transformation mechanisms or unusual mechanical structures\n- a distinctive human facial design appropriate for the mobile suit\n- a fitting human hairstyle and hair color that harmonize primarily with the mobile suit's armor colors, silhouette, design language, and overall visual character\n- robe-like, mantle-like, dress-like, skirt-like, or armored lower-body treatment that best matches the mobile suit's silhouette\n- suitable negative constraints to prevent common generation errors that would conflict with the specified mobile suit\n\nDo not leave these unspecified as generic design choices.\n\nThey must be completed in a way that makes the result clearly recognizable as the requested mobile suit rather than as generic Gundam-inspired armor.\n\nDo not introduce robe-like, mantle-like, dress-like, cape-like, or long skirt-like lower-body forms unless they are clearly supported by the uploaded source reference or explicitly requested in PARAMETERS; where the source mobile suit's canonical lower-body is armored legs, a split skirt, or another non-flowing structure, preserve that structure rather than defaulting to a flowing dress-like silhouette.\n\n\nHAIR / PILOT RULE — Do not automatically derive hairstyle, hair color, facial appearance, or character styling from the mobile suit's associated pilot.\n\nPilot-inspired hairstyle, hair color, facial traits, or character styling must only be used when explicitly requested in PARAMETERS.\n\nWhen PARAMETERS explicitly specify hairstyle or hair color, follow those instructions exactly.\n\nWhen PARAMETERS are silent about hair, determine the hairstyle and hair color independently based primarily on:\n\n- the mobile suit's canonical armor colors\n- secondary and accent colors\n- armor silhouette\n- mechanical design language\n- overall visual atmosphere\n- gender and body presentation specified in PARAMETERS\n\nThe resulting hairstyle should visually complement the mobile suit itself rather than imitate or resemble its canonical pilot.\n\nDo not automatically make the anthropomorphized character resemble the pilot.\n\n\nFACE DIVERSITY RULE — Do not reuse a generic or recurring face across different mobile-suit anthropomorphizations.\n\nEvery mobile suit must receive an independently designed and visually distinctive human face.\n\nThe facial identity should harmonize with the mobile suit itself while remaining recognizably different from faces used for other mobile suits.\n\nNaturally vary facial characteristics between different designs, including:\n\n- overall face shape: oval, angular, heart-shaped, elongated, compact, softly rounded, or sharp\n- facial width and length\n- jawline shape and definition\n- chin width, length, and projection\n- cheekbone prominence\n- cheek fullness\n- eye size\n- eye shape\n- eye tilt\n- eye spacing\n- eyelid structure\n- eyebrow shape, angle, and thickness\n- nose bridge height and width\n- nose length and tip shape\n- lip shape and fullness\n- mouth width\n- apparent age within an adult range\n- facial maturity\n- resting expression\n- overall facial temperament\n\nDo not simply change hair while retaining the same underlying face.\n\nThe skull proportions, eyes, nose, lips, jawline, cheek structure, and overall facial geometry should meaningfully vary between different mobile-suit anthropomorphizations.\n\n\nMOBILE SUIT → FACE DESIGN RULE — When PARAMETERS do not explicitly define the face, derive an appropriate facial character primarily from the mobile suit's own visual design.\n\nConsider:\n\n- armor silhouette\n- mechanical design language\n- proportions\n- color palette\n- combat role\n- movement characteristics\n- transformation capability\n- visual aggressiveness or elegance\n- technological or stylistic atmosphere\n\nExamples of interpretation:\n\nAngular, aggressive, close-combat-oriented mobile suits may receive sharper facial geometry, narrower or more intense eyes, stronger eyebrows, and more defined jawlines.\n\nElegant, aerodynamic, or high-mobility mobile suits may receive finer facial structures, cleaner jawlines, elongated eyes, and more refined proportions.\n\nHeavy, rugged, heavily armed mobile suits may receive broader or more mature facial structures, stronger jaws, heavier brows, or more grounded facial proportions.\n\nUnusual transformable mobile suits may receive distinctive, slightly unconventional facial proportions or sharper structural characteristics reflecting their mechanical identity.\n\nThese are interpretive guidelines rather than fixed templates. Do not assign the same facial archetype to every mobile suit belonging to the same category.\n\n\nFACE / PILOT SEPARATION RULE — Facial identity must not automatically resemble the canonical pilot.\n\nDo not reproduce the pilot's:\n\n- face shape\n- eye shape\n- hairstyle\n- hair color\n- expression\n- recognizable facial characteristics\n\nunless explicitly requested in PARAMETERS.\n\nPilot resemblance is permitted only when PARAMETERS specifically request pilot-inspired appearance.\n\nOtherwise, the anthropomorphized character must be an original adult human interpretation of the mobile suit itself.\n\n\nFACE UNIQUENESS RULE — Avoid convergence toward a single conventionally attractive anime face.\n\nBeauty should not require identical facial geometry.\n\nFemale characters may remain glamorous and attractive while having substantially different:\n\n- facial proportions\n- jaw structures\n- eye geometry\n- noses\n- lips\n- cheekbones\n- maturity\n- expressions\n\nMale characters should likewise have distinct facial identities rather than sharing one generic handsome face.\n\nPreserve attractiveness where appropriate while prioritizing individual facial identity.\n\n\nAGE RULE — All anthropomorphized human characters are clearly adults.\n\nDo not generate childlike, adolescent, or ambiguously underage facial proportions.\n\nUse mature adult facial anatomy appropriate to the requested gender presentation and mobile suit design.\n\n\nFANTASY ELEMENT RULE — Do not add unrelated fantasy elements unless they are strongly supported by the mobile suit's canonical design or explicitly requested.\n\nAvoid arbitrary:\n\n- crowns\n- tiaras\n- angel wings\n- feathered wings\n- excessive gold filigree\n- ornamental jewelry\n- bridal styling\n- magical staffs\n- fantasy swords\n- generic fantasy armor\n\nunless such elements genuinely correspond to the source mobile suit.\n\n\nHUMANOID TRANSLATION RULE — The mobile suit's armor silhouette is translated into an elegant but mechanically recognizable humanoid form.\n\nPreserve important mechanical geometry rather than converting the design into generic fantasy clothing.\n\nUse:\n\n- angular armor plates\n- visible mechanical segmentation\n- layered armor construction\n- internal mechanical frames where appropriate\n- glowing sensor accents\n- mechanical joints and hardpoints\n- recognizable weapon mounting structures\n\nThese elements may be integrated into flowing robe-like, mantle-like, skirt-like, or body-contoured forms when appropriate, but the original mobile suit's mechanical identity must remain immediately obvious.\n\nRender exposed skin, hair, armor, fabric, and mechanical materials according to the selected ART STYLE. Do not introduce painterly brushwork unless the selected art style explicitly requests it.\n\n\nFIGURE RULE —\n\nIf the gender parameter is female:\n\n- glamorous adult feminine figure\n- graceful silhouette\n- body proportions may follow additional PARAMETERS\n- slightly revealing armor when appropriate\n- feminine but mechanically integrated armor\n- attractive adult facial appearance\n- expression chosen to fit the mobile suit's individual character\n\nIf the gender parameter is male:\n\n- lean or appropriately built adult masculine figure\n- fully armored unless PARAMETERS specify otherwise\n- heroic mechanical silhouette\n- masculine adult facial structure\n- expression chosen to fit the mobile suit's individual character\n\nGender determines body build and presentation but does not determine a fixed hairstyle, hair color, or recurring facial template.\n\nHair and facial identity follow explicit PARAMETERS first; when unspecified, they are independently inferred from the mobile suit's own visual design rather than from its pilot.\n\n\nCOMPOSITION — vertical 2:3 tall composition.\n\nFull figure centered.\n\nGenerous empty margin on both the left and right sides.\n\nSubject occupying roughly the center 65–70 percent of the width.\n\nEntire figure from crown to feet fully inside the frame.\n\nProvide clear headroom above the highest point of the head crest or hair and visible floor space beneath the feet.\n\nHead positioned in the upper center of the frame.\n\nFace and both eyes clearly visible and unobstructed.\n\nHair must not obscure important facial features.\n\nThe complete silhouette of the character should be readable at a glance.\n\n\nEQUIPMENT FRAMING RULE — Large backpacks, wings, binders, funnels, cannons, shields, rifles, swords, transformation structures, and other major attachments must remain completely inside the frame whenever reasonably possible.\n\nAdjust the relative scale of the character and camera distance as necessary so that important canonical equipment is not cropped.\n\nDo not enlarge the character so much that signature equipment extends outside the image.\n\nWhen a weapon is being held rather than stored, preserve the mechanically logical state of its corresponding storage mount and avoid duplicating the same weapon.\n\n\nLIGHTING / BACKGROUND —\n\nLighting and background treatment must follow the selected ART STYLE first.\n\nWhen the selected ART STYLE supports cinematic character lighting, a deep neutral background, controlled rim separation, and a soft key light may be used.\n\nWhen the selected ART STYLE instead calls for flat cel lighting, hand-painted animation lighting, photographic natural light, loose painterly value masses, paper-like negative space, ink wash, or another distinct treatment, use that treatment instead.\n\nDo not force cinematic rim lighting, dark studio backgrounds, bloom, photographic depth of field, physically based reflections, or PBR-style material response into an ART STYLE that does not call for them.\n\nMechanical parts must remain clearly readable and materially distinct, but reflections, speculars, texture, edge wear, shadow treatment, and micro-detail are expressed through the selected ART STYLE.\n\nKeep the face clearly readable while preserving the mobile suit's immediately recognizable mechanical identity.\n\n\nAVOID —\n\ncropped limbs,\ncut off at edges,\ncropped feet,\ncropped head crest,\ncropped backpack,\ncropped wings,\ncropped binders,\ncropped weapons,\nclose-up,\nportrait crop,\nbust shot,\nwide horizontal composition,\nbright background,\nwhite background,\ncluttered background,\nhair covering face,\nobscured eyes,\ntext,\nwatermark,\nmultiple characters,\nextra limbs,\nextra arms,\nextra legs,\nextra fingers,\nmalformed hands,\nduplicated equipment,\nduplicated weapons,\nfloating equipment,\nincorrect weapon mounting,\ngeneric Gundam armor replacing distinctive canonical structures,\nunrelated fantasy elements,\nautomatic pilot resemblance,\npilot-derived hairstyle unless explicitly requested,\npilot-derived face unless explicitly requested,\nrepeated face design,\nsame face as previous characters,\nrecycled facial identity,\ngeneric anime face,\ngeneric beautiful anime girl face,\ngeneric handsome anime male face,\nidentical facial proportions,\nidentical eye shape across characters,\nidentical nose across characters,\nidentical jawline across characters,\nsame facial geometry with different hair.\n\n\nPARAMETERS = [\ngender,\nmobile suit name,\nseries\n]";
+  const {
+    templateC,
+    ETHNIC_PART,
+    DEFAULT_STYLE,
+    MODE,
+    TRANSLATION_PROFILES,
+    ANTHRO_STYLE_LOCK
+  } = window.AtelierSpec;
+
   /* ── 카드 자료 ──────────────────────────────────────────────────
      예전에는 여기 네 블록이 통째로 박혀 있었고 build-prompt.py 가 게임 쪽
      자료에 맞춰 갈아끼웠다. 470KB 파일에 정규식으로 수술하는 방식이라
@@ -2631,21 +2640,26 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
      값만 나란히 적어 두면 모델이 어느 쪽이 어느 쪽인지 못 잡고 한 색으로 섞는다.
      그래서 한 문장으로 풀어 붙인다. 의인화 쪽에만 이 글귀가 있고 단일컷·콜라주는
      'eye color' 한 칸만 넘기고 있어서, 오드아이가 통째로 사라지고 있었다. */
-  function eyeNote(out){
-    const e2=out.find(p=>p[0]==='second eye color'); if(!e2)return;
-    const e1=out.find(p=>p[0]==='eye color');
-    const right=e1?e1[1]:'the primary eye color', left=e2[1];
-    if(e1&&right===left){
-      out.push(['eye color consistency',
-        'both eyes are '+right+'; keep the same eye colour consistently in both eyes']);
-    }else{
-      out.push(['heterochromia',
-        'the character has heterochromia: the right eye is '+right+
-        ' and the left eye is '+left+
-        '; keep the two eye colours clearly distinct and preserve the same side assignment in every image — '+
-        'do not swap the sides and do not blend the colours']);
-    }
+  /* 아래 열 가지는 lib/prompt-anthro.js 로 옮겼다. 여기 남은 것은 화면에서 값을
+     걷어 넘겨 주는 껍데기다 — 기존 호출부를 그대로 두기 위함이다 */
+  const AP=window.AtelierPrompt;
+  function andList(a){return AP.andList(a);}
+  function ethnicLock(e,pinned){return AP.ethnicLock(e,pinned);}
+  function eyeNote(out){return AP.eyeNote(out);}
+  function styleRow(){return AP.styleRow(styleKey());}
+  function styleBlock(){return AP.styleBlock(styleKey());}
+  function anthroStyleBlock(){return AP.anthroStyleBlock(styleKey());}
+  function translationProfileBlock(){return AP.translationProfileBlock(translationProfileKey());}
+  function morphologyAdapterBlock(){return AP.morphologyAdapterBlock(morphModeKey());}
+  function auditPrompt(mode,prompt){return AP.audit(mode,prompt);}
+  function buildAnthroPrompt(st){
+    st=st||readAnthroState();
+    return AP.buildAnthro({
+      mech:st.source.mech, series:st.source.series, gender:st.gender,
+      style:st.style, morph:st.morph, translation:st.translation, params:st.params,
+    });
   }
+
 
   /* ══ 의인화 → 콜라주 정체성 전달 ══
      전부 넘기지 않는다. 장갑 구조나 하체 처리는 현대 의상에 의미가 없고,
@@ -3448,30 +3462,11 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
      지정했으면 민족 쪽은 손을 뗀다 — 안 그러면 한 목록 안에서 "코는 이렇게"
      와 "콧대가 {E} 로 읽혀야 한다" 가 맞붙는다. 예전에는 둘 다 나갔고, 기하가
      비어 있을 때가 많아 늘 민족 쪽이 이겼다. 얼굴이 민족별로만 갈린 까닭이다. */
-  const ETHNIC_PART=[
-    ['facial bone structure',['face shape','face length','face width','jaw & chin']],
-    ['eye shape',['eye shape','eye size','eye tilt']],
-    ['eyelid form',['eye shape','eye size','eye tilt']],
-    ['nose bridge',['nose character']],
-    ['lip shape',['lips']]
-  ];
+
   /* 하나도 안 뺐을 때 예전 문장과 바이트까지 같아야 한다 — 그래야 기하를 적지
      않은 편성의 출력이 이 손질로 흔들리지 않았음을 견줘 볼 수 있다 */
-  function andList(a){
-    return a.length<2?(a[0]||''):a.slice(0,-1).join(', ')+', and '+a[a.length-1];
-  }
-  function ethnicLock(e,pinned){
-    const free=ETHNIC_PART.filter(x=>!x[1].some(k=>pinned.indexOf(k)>=0)).map(x=>x[0]);
-    free.push('skin undertone');   /* 피부 언더톤은 기하 항목이 없어 늘 민족 몫이다 */
-    return andList(free)+' must clearly read as '+e+
-      '; do not default to generic Western or Caucasian features'+
-      (free.length<6
-        ? '. The facial features specified explicitly in this list are already decided — '+
-          'render them as written and let '+e+' show through the remaining features, '+
-          'colouring rather than reshaping what is specified'
-        : '')+
-      '; keep the ethnicity consistent across every cut';
-  }
+
+
   const UNDERBOOB_NEG='no fully covered lower breast, no simple abdomen gap, no detached breast cups, no floating armor, no exposed cleavage-only design';
   const UNDERBOOB_POS='the chest armor ends slightly above the natural inframammary fold, revealing a narrow crescent of the lower breast on both sides; the exposed underboob must be directly continuous with the breast contour, not a separate cutout or gap; nipples and areola remain fully covered; the armor hugs the upper and outer breast naturally and transitions smoothly into the sternum sensor and side armor';
 
@@ -3484,35 +3479,15 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
      기체마다 따로 기억한다. 초상과 일상컷의 결이 어긋나면 한 카드 안에서 따로 놀기 때문에
      세 생성기 모두 같은 값을 쓴다. */
 
-  const DEFAULT_STYLE='cinematic_semi_real';
   function styleKey(){
     const el=document.getElementById('artStyle');
     return (el&&el.value)||DEFAULT_STYLE;
   }
-  function styleRow(){return ART_STYLES.find(x=>x[0]===styleKey())||ART_STYLES[0];}
+
   /* ---- v9.1: 11개 화풍 전부 STYLE CORE / ANTHRO EXTENSION / LIFESTYLE EXTENSION로 분리.
      PILOT_STYLES 분기는 제거했다 — 모든 화풍이 STYLE_PROFILES 한 경로만 쓴다. ---- */
-  const MODE = { ANTHRO:'anthro', LIFESTYLE:'lifestyle' };
 
 
-
-
-
-
-
-  const TRANSLATION_PROFILES = {
-    more_human:
-      'Prioritize adult human anatomy and a graceful, naturally humanized translation of the source mobile suit. ' +
-      'Preserve its design language and identity, but adapt visible body armor freely so the figure reads as human first. ' +
-      'Avoid literal one-to-one reconstruction of robot-body geometry onto the human form.',
-    balanced:
-      'Balance recognizable mechanical structure with human anatomy. ' +
-      'Preserve more of the source armor language while still integrating it coherently into the humanoid body, ' +
-      'so the figure reads as clearly human and clearly the source mobile suit at once.',
-    more_mechanical:
-      'Keep a stronger source armor presence and more explicit hard-surface structure across the body, ' +
-      'while the figure still remains a humanoid anthropomorphization rather than a full robot body.'
-  };
   function translationProfileKey(){
     const sel=document.querySelector('[data-param-select="human-mechanical balance"]');
     const v=sel?sel.value:'';
@@ -3520,9 +3495,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     if(v==='more mechanical'||v==='very mechanical')return 'more_mechanical';
     return 'balanced';
   }
-  function translationProfileBlock(){
-    return '[TRANSLATION PROFILE]\n\n'+TRANSLATION_PROFILES[translationProfileKey()];
-  }
+
 
 
   function morphModeKey(){
@@ -3530,9 +3503,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     const v=el?el.value:'';
     return MORPHOLOGY_PROFILES[v]?v:'standard_humanoid';
   }
-  function morphologyAdapterBlock(){
-    return '[SOURCE MORPHOLOGY ADAPTER]\n\n'+MORPHOLOGY_PROFILES[morphModeKey()];
-  }
+
 
 
 
@@ -3560,20 +3531,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     'use any remaining references only to resolve details that are unclear or occluded. '+
     'Do not average the references into a new face. '+
     'All attached references depict the same character and must resolve toward one identity.';
-  const ANTHRO_STYLE_LOCK =
-    '[STYLE LOCK]\n\n' +
-    'The selected ART STYLE controls the rendering language of the entire image without exception: ' +
-    'facial construction, skin, hair, armor, mechanical components, fabric, weapons, lighting, background treatment, ' +
-    'edge handling, shading, reflections, speculars, texture, and detail density. ' +
-    /* 위 문장이 얼굴까지 화풍의 권한이라고 선언하므로, 그 한계도 같은 자리에서 긋는다.
-       다른 블록에 적으면 두 블록이 서로 다른 말을 하고 모델이 하나를 고른다. */
-    'It governs how the face is rendered, not who the face is: it must not redesign the underlying ' +
-    'facial geometry, facial proportions, or character identity specified in PARAMETERS. ' +
-    'Common instructions elsewhere in this prompt define subject matter, composition, mechanical identity, and equipment structure only; ' +
-    'they must not introduce a different rendering language. ' +
-    'Mechanical complexity controls WHAT is depicted, not HOW realistically it is rendered. ' +
-    'Mechanical parts must not default to CGI or PBR rendering unless the selected ART STYLE itself explicitly calls for it. ' +
-    'If any common instruction conflicts with the selected ART STYLE, the selected ART STYLE wins.';
+
   const LIFESTYLE_STYLE_LOCK =
     '[STYLE LOCK]\n\n' +
     'The selected ART STYLE controls the rendering language of the entire image: ' +
@@ -3583,33 +3541,14 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     'It must not redesign the underlying facial geometry, facial proportions, or character identity established by the attached reference and by this prompt. ' +
     'The attached character reference controls visible character identity and visible equipment state. ' +
     'If any common instruction conflicts with the selected ART STYLE, the selected ART STYLE wins for rendering language only.';
-  function styleBlock(){
-    const r=styleRow();
-    return '[ART STYLE]\n\n'+STYLE_PROFILES[r[0]].core+
-      '\n\nThis art style governs all rendering, facial stylization, lighting, and material treatment throughout this prompt.';
-  }
-  function anthroStyleBlock(){
-    const profile=STYLE_PROFILES[styleKey()];
-    return styleBlock()+'\n\n[ANTHRO STYLE EXTENSION]\n\n'+profile.anthro+'\n\n'+ANTHRO_STYLE_LOCK;
-  }
+
+
   function lifestyleStyleBlock(){
     const profile=STYLE_PROFILES[styleKey()];
     return styleBlock()+'\n\n[LIFESTYLE STYLE EXTENSION]\n\n'+profile.lifestyle+'\n\n'+LIFESTYLE_STYLE_LOCK;
   }
   /* MODE 누수 감지용 최소 점검 — UI에는 노출하지 않고 콘솔 경고만 남긴다 */
-  function auditPrompt(mode,prompt){
-    const errors=[];
-    if(mode===MODE.LIFESTYLE){
-      ['[ANTHRO STYLE EXTENSION]','[TRANSLATION PROFILE]','[SOURCE MORPHOLOGY ADAPTER]'].forEach(tok=>{
-        if(prompt.includes(tok))errors.push('Lifestyle prompt contains anthro block: '+tok);
-      });
-    }
-    if(mode===MODE.ANTHRO){
-      if(prompt.includes('[LIFESTYLE STYLE EXTENSION]'))errors.push('Anthro prompt contains lifestyle block');
-    }
-    if(errors.length)console.warn('[promptAudit]',errors);
-    return errors;
-  }
+
   function fillArtStyle(){
     const el=document.getElementById('artStyle'); if(!el)return;
     el.innerHTML=ART_STYLES.map(r=>'<option value="'+r[0]+'">'+escHtml(r[1])+'</option>').join('');
@@ -4079,34 +4018,11 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     return {
       source:selectedSource(),
       gender:(g&&g.value)||'female',
+      style:styleKey(), morph:morphModeKey(), translation:translationProfileKey(),
       params:getParamValues(),
     };
   }
-  function buildAnthroPrompt(st){
-    st=st||readAnthroState();
-    const s=st.source,gender=st.gender;
-    const lines=['gender: '+gender,'mobile suit name: '+s.mech,'series: '+s.series];
-    st.params.forEach(p=>lines.push(p[0]+': '+p[1]));
-    const block='PARAMETERS = [\n'+lines.join(',\n')+'\n]';
-    /* 화풍은 27개 파라미터 중 하나로 묻히면 힘이 약하다.
-       콜라주·단일과 같이 독립 블록으로 올려 앞에 세운다. */
-    const out2=templateC.replace('PARAMETERS = [\ngender,\nmobile suit name,\nseries\n]',block);
-    /* 숫자를 넣으면 모델이 그것만 보고 특정 부위를 부풀리거나, 반대로 평균
-       체형으로 되돌아간다. 숫자를 어떻게 읽어야 하는지 한 번 못 박아 둔다.
-       비워 두면 이 블록 자체가 없다 — 기존 프롬프트가 그대로여야 하므로. */
-    const bwh=lines.some(l=>l.indexOf('body measurements (B/W/H): ')===0)
-      ? '\n\n[BODY MEASUREMENT NOTE]\n\n'+
-        'The body measurements listed in PARAMETERS are approximate visual proportion and '+
-        'relative body-balance guidance, not literal CAD-like dimensions. Read them together '+
-        'with the descriptive body parameters, which define how the measurements should look. '+
-        'Preserve believable adult human anatomy and do not exaggerate the bust, waist, hips, '+
-        'thighs, or leg length solely because a numeric value is present.'
-      : '';
-    const full=anthroStyleBlock()+'\n\n'+morphologyAdapterBlock()+'\n\n'+translationProfileBlock()+
-      '\n\n==================================================\n\n'+out2+bwh;
-    auditPrompt(MODE.ANTHRO,full);
-    return full;
-  }
+
   function refreshAnthroPrompt(){textAnthro.value=buildAnthroPrompt();persistAnthro();renderCarry();}
   /* ══ 외형 랜덤 ══
      얼굴 구조 아홉 칸은 손으로 하나씩 열어야 해서 실제로는 잘 안 채워진다.
