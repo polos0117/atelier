@@ -217,6 +217,8 @@ body.dex-compact .grid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
 .tk{background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:9px 11px;
   font-size:12px;line-height:1.55;margin-bottom:12px}
 .tk-used{color:var(--dim);margin-top:4px}
+.tk-used > summary{cursor:pointer}
+.tk-used > div{margin-top:3px}
 .tk details{margin-top:6px}
 .tk summary{cursor:pointer;color:var(--dim)}
 .tk pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:11.5px;margin:6px 0 0}
@@ -457,7 +459,13 @@ function Toolkit({ name }) {
       ${summary
         ? summary.split('\n').map(line => html`<div>${line}</div>`)
         : html`<div>저장된 설정이 없다</div>`}
-      ${used.length ? html`<div class="tk-used">뽑아본 것 · ${used.join(', ')}</div>` : null}
+      ${/* 뽑아본 카테고리는 접어 둔다 — 랜덤 회피의 근거라 기록은 남기지만,
+           의인화 설정과 달리 다시 쓸 일이 없어 늘 펴 둘 값어치는 없다 */''}
+      ${used.length ? html`
+        <details class="tk-used">
+          <summary>뽑아본 것 ${used.length}가지</summary>
+          <div>${used.join(', ')}</div>
+        </details>` : null}
       ${notes.map(x => html`
         <details><summary>추가 지시 · ${x.label}</summary><pre>${x.text}</pre></details>`)}
     </div>`;
