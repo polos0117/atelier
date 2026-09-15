@@ -3519,7 +3519,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     if(hits.length)gal='<div class="pp-gal"><div class="pp-gal-t">이 설정으로 뽑은 기체 '+hits.length+'기</div>'+
       '<div class="pp-gal-r">'+hits.map(h=>
         '<a href="?mech='+encodeURIComponent(h.card)+'" title="'+escHtml(h.card)+'">'+
-        '<img loading="lazy" src="'+IMG_BASE+encodeURIComponent(h.file)+'" alt="">'+
+        thumbTag(h.file)+
         '<span>'+escHtml(h.card)+'</span></a>').join('')+'</div></div>';
     if(!head&&!gal){box.classList.add('hidden');box.innerHTML='';return;}
     box.classList.remove('hidden');
@@ -4498,9 +4498,8 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
       ? '<b>'+escHtml(name)+' · 전체</b>모든 화풍 · 남녀 '+all.length+'장'
       : '<b>'+escHtml(name)+'</b>'+escHtml(styleRow()[1])+' · '+gname+' '+cur.length+'장'+
         (cur.length>show.length?(' 중 '+show.length+'장'):'')+' · 눌러서 크게 보기';
-    const grid=show.map(f=>'<a href="'+IMG_BASE+encodeURIComponent(f)+'" target="_blank" rel="noopener" title="'+escHtml(f)+'">'+
-      '<img loading="lazy" src="'+IMG_BASE+'thumb/'+encodeURIComponent(f)+'" alt="" '+
-      'onerror="this.onerror=null;this.src=\''+IMG_BASE+encodeURIComponent(f)+'\'"></a>').join('');
+    const grid=show.map(f=>'<a href="'+imgURLof(f)+'" target="_blank" rel="noopener" title="'+escHtml(f)+'">'+
+      thumbTag(f)+'</a>').join('');
     box.innerHTML='<div class="pp-txt">'+head+'</div><div class="cs-grid">'+grid+'</div>'+
       ((CARD_SHOTS_ALL||all.length>show.length)
         ? '<button type="button" class="cs-more" id="cardShotsMore">'+
@@ -4510,6 +4509,12 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
   }
 
   const IMG_BASE='https://polos0117.github.io/atelier/img/';
+  /* 목록·갤러리는 img/thumb/ 축소본을 쓴다 (긴 변 512, 원본의 10분의 1쯤).
+     등록 자동화가 아직 안 만든 파일은 onerror 로 원본으로 되돌아간다. */
+  const imgURLof=f=>IMG_BASE+encodeURIComponent(f).replace(/'/g,'%27');
+  const thumbURLof=f=>IMG_BASE+'thumb/'+encodeURIComponent(f).replace(/'/g,'%27');
+  const thumbTag=f=>'<img loading="lazy" src="'+thumbURLof(f)+'" alt="" '+
+    'onerror="this.onerror=null;this.src=\''+imgURLof(f)+'\'">';
   const STORE_KEY='atelier_toolkit_v1';
   const DATA_URL='toolkit-data.json';     /* 저장소에 커밋해 두는 기반 기록 */
   let STORE={last:{},anthro:{},collage:null,used:{},style:{}};
