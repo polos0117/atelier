@@ -1368,16 +1368,19 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
   }
 
   function pairForPanel(n){return n<=2?1:n<=4?2:3;}
-  function pairUsed(n){const el=document.getElementById('pair'+n+'Use');return !el||el.checked;}
+  function pairUsed(n,ps){if(ps&&ps.pairs)return ps.pairs[n].use;
+    const el=document.getElementById('pair'+n+'Use');return !el||el.checked;}
   /* 패널이 실제로 따를 카테고리 — Pair 로 묶여 있으면 Pair 것, 아니면 개별 선택 */
-  function panelCat(n){
+  function panelCat(n,ps){
     const p=pairForPanel(n);
+    if(ps&&ps.pairs)return pairUsed(p,ps)?ps.pairs[p].key:(ps.panels[n].cat||'auto_random');
     if(pairUsed(p))return document.getElementById('pair'+p+'Select').value;
     const el=document.getElementById('panel'+n+'Cat');
     return (el&&el.value)||'auto_random';
   }
-  function panelCatCustom(n){
+  function panelCatCustom(n,ps){
     const p=pairForPanel(n);
+    if(ps&&ps.pairs)return pairUsed(p,ps)?ps.pairs[p].custom:ps.panels[n].catCustom;
     if(pairUsed(p))return document.getElementById('pair'+p+'Custom').value.trim();
     const el=document.getElementById('panel'+n+'CatCustom');
     return el?el.value.trim():'';
@@ -1881,7 +1884,9 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     const r=exampleRecord(cat,value);return r?(r[5]||r[1]):'';
   }
 
-  function getPair(n){
+  function getPair(n,ps){
+    if(ps&&ps.pairs){const q=ps.pairs[n];
+      return{key:q.key,custom:q.custom,exampleKey:q.exampleKey,exampleCustom:q.exampleCustom};}
     return{
       key:document.getElementById('pair'+n+'Select').value,
       custom:document.getElementById('pair'+n+'Custom').value.trim(),
@@ -1889,10 +1894,45 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
       exampleCustom:document.getElementById('pair'+n+'ExampleCustom').value.trim()
     };
   }
+  /* ══ 콜라주 패널 입력 모으기 ══
+     여섯 칸과 세 쌍의 값이 화면 곳곳(pair1Select, panel3Cat, [data-ov-panel] …)에
+     흩어져 있어, 프롬프트를 짜는 함수마다 제 손으로 뒤지고 있었다.
+     한 번에 걷어 두고 아래 함수들은 이 객체를 받는다. 인자를 안 주면
+     예전처럼 스스로 읽으므로 화면 쪽 호출은 그대로 둔다. */
+  function readPanelState(){
+    const val=id=>{const e=document.getElementById(id);return e?e.value:'';};
+    const txt=id=>{const e=document.getElementById(id);return e?e.value.trim():'';};
+    const pairs={},panels={};
+    [1,2,3].forEach(p=>{
+      const use=document.getElementById('pair'+p+'Use');
+      const adv={};
+      LOCAL_AXES.concat(PAIR_ONLY).forEach(k=>{adv[k]=val('pair'+p+'Adv_'+k);});
+      pairs[p]={
+        use:!use||use.checked,
+        key:val('pair'+p+'Select'), custom:txt('pair'+p+'Custom'),
+        exampleKey:val('pair'+p+'Example'), exampleCustom:txt('pair'+p+'ExampleCustom'),
+        expr:val('pair'+p+'Expr'), orient:val('pair'+p+'Orient'), pose:val('pair'+p+'Pose'),
+        adv:adv,
+      };
+    });
+    for(let n=1;n<=6;n++){
+      const ov={};
+      document.querySelectorAll('[data-ov-panel="'+n+'"]').forEach(inp=>{
+        ov[inp.dataset.ovKey]=inp.value||'';
+      });
+      panels[n]={
+        cat:val('panel'+n+'Cat'), catCustom:txt('panel'+n+'CatCustom'),
+        exampleKey:val('panel'+n+'Example'), exampleCustom:val('panel'+n+'ExampleCustom'),
+        ov:ov,
+      };
+    }
+    return {pairs:pairs,panels:panels};
+  }
+
   function getAdvanced(){const o={};Object.keys(ADVANCED_OPTIONS).forEach(k=>{const v=document.getElementById('adv_'+k).value;if(v)o[k]=v;});return o;}
   function pairLabel(p,n){if(p.key==='__custom__')return p.custom||('Custom Pair '+n);return(CAT[p.key]||CAT.auto_random).eng;}
 
-  function pairInstruction(p,pairNum,a,b){
+  function pairInstruction(p,pairNum,a,b,ps){
     let txt='';
     if(p.key==='__custom__'){
       txt='PAIR '+pairNum+' — PANELS '+a+'-'+b+' — CUSTOM\nInterpret this pair as: '+(p.custom||'Create a fresh mature category of your choice.')+'.\nPanel '+a+' is the lighter or more restrained version. Panel '+b+' is the clearly stronger version.';
@@ -1905,37 +1945,38 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     const ex=exampleText(p.key,p.exampleKey,p.exampleCustom);
     if(ex)txt+='\nUse this pair-level example as the thematic anchor: '+ex+'.';
     txt+=heritageLine(p.key,p.exampleKey);
-    const pg=document.getElementById('pair'+pairNum+'Adv_pair_gap');
-    if(pg&&pg.value)txt+='\nIntensity gap between these two panels: '+pg.value+
+    const pgv=ps?(ps.pairs[pairNum].adv.pair_gap||''):
+      (function(){const e=document.getElementById('pair'+pairNum+'Adv_pair_gap');return e?e.value:'';})();
+    if(pgv)txt+='\nIntensity gap between these two panels: '+pgv+
       ' (overrides the global pair-gap setting for this pair only).';
     return txt;
   }
 
-  function panelLabel(n){
-    const cat=panelCat(n);
-    if(cat==='__custom__')return panelCatCustom(n)||('Custom Panel '+n);
+  function panelLabel(n,ps){
+    const cat=panelCat(n,ps);
+    if(cat==='__custom__')return panelCatCustom(n,ps)||('Custom Panel '+n);
     return (CAT[cat]||CAT.auto_random).eng;
   }
-  function structureBlock(){
+  function structureBlock(ps){
     const rows=[];
     [1,2,3].forEach(p=>{
       const a=(p-1)*2+1,b=a+1;
-      if(pairUsed(p)){
-        rows.push('Pair '+p+' = Panel '+a+' < Panel '+b+' = '+pairLabel(getPair(p),p));
+      if(pairUsed(p,ps)){
+        rows.push('Pair '+p+' = Panel '+a+' < Panel '+b+' = '+pairLabel(getPair(p,ps),p));
       }else{
-        rows.push('Panel '+a+' = '+panelLabel(a)+'   (independent)');
-        rows.push('Panel '+b+' = '+panelLabel(b)+'   (independent)');
+        rows.push('Panel '+a+' = '+panelLabel(a,ps)+'   (independent)');
+        rows.push('Panel '+b+' = '+panelLabel(b,ps)+'   (independent)');
       }
     });
     let txt='[PANEL STRUCTURE]\n\n'+rows.join('\n');
-    if([1,2,3].some(pairUsed))
+    if([1,2,3].some(q=>pairUsed(q,ps)))
       txt+='\n\nWithin each pair, the first panel is relatively lighter or more restrained and the second panel is clearly stronger, bolder, more visually striking, or more intense.';
-    if(![1,2,3].every(pairUsed))
+    if(![1,2,3].every(q=>pairUsed(q,ps)))
       txt+='\n\nPanels marked independent are not paired. Do not build a lighter/stronger relationship between them — treat each as its own separate concept.';
     return txt;
   }
-  function panelDirection(n){
-    const cat=panelCat(n);
+  function panelDirection(n,ps){
+    const cat=panelCat(n,ps);
     let txt='PANEL '+n+' — ';
     if(cat==='__custom__'){
       txt+='CUSTOM\nInterpret this panel as: '+(panelCatCustom(n)||'Create a fresh mature category of your choice.')+'.';
@@ -1950,17 +1991,17 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     txt+=heritageLine(cat,document.getElementById('panel'+n+'Example').value);
     return txt;
   }
-  function directionBlocks(){
+  function directionBlocks(ps){
     const out=[];
     [1,2,3].forEach(p=>{
       const a=(p-1)*2+1,b=a+1;
-      if(pairUsed(p))out.push(pairInstruction(getPair(p),p,a,b));
-      else{out.push(panelDirection(a));out.push(panelDirection(b));}
+      if(pairUsed(p,ps))out.push(pairInstruction(getPair(p,ps),p,a,b,ps));
+      else{out.push(panelDirection(a,ps));out.push(panelDirection(b,ps));}
     });
     return out.join('\n\n');
   }
 
-  function panelOverrideBlocks(){
+  function panelOverrideBlocks(ps){
     const out=[];
     /* 라벨은 "sleepy — 졸린 느낌" 형태다. 프롬프트에는 영문만 넣는다 */
     const en=a2=>Object.fromEntries(a2.map(o=>[o[0],(o[1]||'').split(' — ')[0]]));
@@ -1968,12 +2009,14 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     const orientMap=en(ORIENTATION_OPTIONS);
     const poseMap=en(POSE_OPTIONS);
     for(let n=1;n<=6;n++){
-      const cat=panelCat(n);
-      const exampleValue=document.getElementById('panel'+n+'Example').value;
-      const exampleCustom=document.getElementById('panel'+n+'ExampleCustom').value;
+      const cat=panelCat(n,ps);
+      const pn=(ps&&ps.panels)?ps.panels[n]:null;
+      const exampleValue=pn?pn.exampleKey:document.getElementById('panel'+n+'Example').value;
+      const exampleCustom=pn?pn.exampleCustom:document.getElementById('panel'+n+'ExampleCustom').value;
       const ex=exampleText(cat,exampleValue,exampleCustom);
       const vals={};
-      document.querySelectorAll('[data-ov-panel="'+n+'"]').forEach(inp=>{
+      if(pn){Object.keys(pn.ov).forEach(k=>{const v=(pn.ov[k]||'').trim();if(v)vals[k]=v;});}
+      else document.querySelectorAll('[data-ov-panel="'+n+'"]').forEach(inp=>{
         const v=(inp.value||'').trim();
         if(v)vals[inp.dataset.ovKey]=v;
       });
@@ -1981,15 +2024,17 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
       const pp=pairForPanel(n);
       const axes=[];
       LOCAL_AXES.forEach(k=>{
-        const pe=document.querySelector('[data-ov-panel="'+n+'"][data-ov-key="adv_'+k+'"]');
-        let v=pe?pe.value:'';
-        if(!v){const pa=document.getElementById('pair'+pp+'Adv_'+k); v=pa?pa.value:'';}
+        let v=ps?(ps.panels[n].ov['adv_'+k]||''):
+          (function(){const e=document.querySelector('[data-ov-panel="'+n+'"][data-ov-key="adv_'+k+'"]');return e?e.value:'';})();
+        if(!v)v=ps?(ps.pairs[pp].adv[k]||''):
+          (function(){const e=document.getElementById('pair'+pp+'Adv_'+k);return e?e.value:'';})();
         if(v)axes.push([k,v]);
       });
-      [['expression','Expr'],['orientation','Orient'],['pose','Pose']].forEach(([k,id])=>{
+      [['expression','expr','Expr'],['orientation','orient','Orient'],['pose','pose','Pose']].forEach(([k,sk,id])=>{
         if(vals[k])return;
-        const el=document.getElementById('pair'+pp+id);
-        if(el&&el.value)vals[k]=el.value;
+        const v=ps?ps.pairs[pp][sk]:
+          (function(){const e=document.getElementById('pair'+pp+id);return e?e.value:'';})();
+        if(v)vals[k]=v;
       });
       if(ex||Object.keys(vals).length||axes.length){
         const lines=['[PANEL '+n+' OVERRIDE]'];
@@ -2106,12 +2151,12 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     }
     return true;
   }
-  function diversityBlock(){
-    const anyPair=[1,2,3].some(pairUsed);
+  function diversityBlock(ps,adv){
+    const anyPair=[1,2,3].some(p=>pairUsed(p,ps));
     const parts=['Create six substantially different scenes. The six panels should differ in location, action, outfit silhouette, body configuration, camera distance, camera angle, lighting, and atmosphere.',
       'Changing only colors, accessories, minor straps, mirrored poses, hand positions, or room props does NOT count as meaningful novelty.',
       'If several outfits would look almost identical as black silhouettes, redesign them.'];
-    if(!getAdvanced().action_level)
+    if(!(adv||getAdvanced()).action_level)
       parts.push('At least four panels should show meaningful action and at least two should feel caught midway.');
     if(!fixedAll('expression'))
       parts.push('Avoid defaulting to the same blank neutral face across the collage.');
@@ -2485,13 +2530,14 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     const chk=id=>{const e=document.getElementById(id);return !!(e&&e.checked);};
     const el=document.getElementById('collageCustom');
     return {
-      source:selectedSource(), adv:getAdvanced(),
+      source:selectedSource(), adv:getAdvanced(), panels:readPanelState(),
       custom:el?el.value.trim():'',
       carryFace:chk('carryFace'), carryBody:chk('carryBody'),
     };
   }
   function buildCollagePrompt(st){
     st=st||readCollageState();
+    const ps=st.panels||readPanelState();
     const s=st.source,adv=st.adv,custom=st.custom;
     const parts=[
       '[INPUT]\n\nSOURCE MOBILE SUIT: ['+s.mech+']\n\nThis name is identity-provenance metadata only, used for lore, personality, and occupation context. It must not be used to reconstruct, restore, or invent mobile-suit armor, weapons, shields, backpacks, mechanical limbs, or other canonical equipment.\n\nUse the attached clearly adult anthropomorphized character as the absolute identity and equipment reference for this image.',
@@ -2500,9 +2546,9 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
       carryBlock(st.carryFace,st.carryBody),
       '[OUTPUT]\n\nCreate ONE SINGLE 3:2 LANDSCAPE image as a clean 3-column × 2-row collage:\n1 | 2 | 3\n4 | 5 | 6\nExactly six equal, approximately square panels. Only small numerals 1–6 in the upper-left corners. No captions, titles, labels, subtitles, logos-as-text, or other words. Exactly one '+GW()+' per panel.',
       lifestyleStyleBlock(),
-      structureBlock(),
-      diversityBlock(),
-      directionBlocks(),
+      structureBlock(ps),
+      diversityBlock(ps,adv),
+      directionBlocks(ps),
       '[ADDITIONAL SETTINGS]\n\n'+additionalSettings(adv,custom)
     ];
     /* 예전에는 여기서 [ALREADY USED FOR THIS CHARACTER] 를 붙여, 이 기체로 이미
@@ -2513,7 +2559,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
        회피는 이미 뽑기 쪽에서 한다 — "이미 쓴 카테고리는 빼고 뽑기" 를 켜면
        freshPool 이 후보에서 빼므로, 프롬프트에 이력을 적지 않아도 겹치지 않는다.
        쓴 컷 목록은 화면에 그대로 있다. */
-    const ovs=panelOverrideBlocks();
+    const ovs=panelOverrideBlocks(ps);
     if(ovs.length)parts.push('[PANEL OVERRIDES]\n\n'+ovs.join('\n\n'));
     parts.push('[NON-EXPLICIT LIMITS]\n\nThe character must clearly read as an adult. The garments are securely fitted and fully opaque, and the styling is suitable for a mainstream fashion or lifestyle editorial. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.');
     parts.push(finalCheckBlock());
