@@ -20,12 +20,12 @@ CODE_BLOCKS = ["IMG_BASE", "ASPECT"]
 BLOCKS = CODE_BLOCKS
 
 
-def prompts(path="image-list.html", ren=None):
+def prompt_tables(path="image-list.html", ren=None):
     """이미지 목록에서 프롬프트와 비고만 뽑는다.
     진행 현황(f/m/c/e)은 게임 파일의 IMG에서 실시간으로 계산하므로 가져오지 않는다."""
     if not os.path.exists(path):
         print(f"[알림] {path} 없음 — 프롬프트 없이 생성한다.")
-        return "var PROMPT={};var NOTE={};"
+        return {}, {}
     src = open(path, encoding="utf-8").read()
     m = re.search(r"var DATA=(\[.*?\]);", src, re.S)
     if not m:
@@ -40,8 +40,31 @@ def prompts(path="image-list.html", ren=None):
                 P[name] = row.get("prompt", "")
                 if row.get("note"):
                     N[name] = row["note"]
+    return P, N
+
+
+def prompts(path="image-list.html", ren=None):
+    P, N = prompt_tables(path, ren)
     return ("var PROMPT=" + json.dumps(P, ensure_ascii=False) + ";\n"
             "var NOTE=" + json.dumps(N, ensure_ascii=False) + ";")
+
+
+def write_prompt_json(P, N, dest="data/prompt.json"):
+    """같은 표를 자료 파일로도 남긴다.
+    도감 파일에 박아 두면 그 파일을 읽는 화면만 쓸 수 있어, 다른 화면이
+    같은 표를 또 들고 있어야 했다. 여기 한 곳만 보면 되게 한다."""
+    out = {
+        "version": 1,
+        "note": ("카드별 이미지 생성용 문구(prompt)와 비고(memo). "
+                 "image-list.html 의 DATA 에서 build-dex.py 가 뽑는다."),
+        "count": len(P),
+        "prompt": P,
+        "memo": N,
+    }
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
+    open(dest, "w", encoding="utf-8").write(
+        json.dumps(out, ensure_ascii=False, indent=1) + "\n")
+    return dest
 
 
 def extract(src, name):
@@ -965,7 +988,11 @@ def main():
 
     data = "\n".join(extract(src, b) for b in CODE_BLOCKS)
     ren = json.loads(re.search(r"var RENAME_MAP=(\{.*?\});", src, re.S).group(1))
-    data += "\n" + prompts(sys.argv[2] if len(sys.argv) > 2 else "image-list.html", ren)
+    list_path = sys.argv[2] if len(sys.argv) > 2 else "image-list.html"
+    P, N = prompt_tables(list_path, ren)
+    data += ("\nvar PROMPT=" + json.dumps(P, ensure_ascii=False) + ";\n"
+             "var NOTE=" + json.dumps(N, ensure_ascii=False) + ";")
+    json_dest = write_prompt_json(P, N)
     out = TEMPLATE.replace("__DATA__", data)
 
     m = re.search(r"(\d+)\.html$", os.path.basename(path))
@@ -974,6 +1001,7 @@ def main():
     open(dest, "w", encoding="utf-8").write(out)
 
     print(f"생성: {dest}  ({len(out):,} bytes)")
+    print(f"생성: {json_dest}  (프롬프트 {len(P)} · 비고 {len(N)})")
     for b in BLOCKS + ["PROMPT", "NOTE"]:
         print(f"  - {b}")
 
