@@ -353,9 +353,13 @@ function root_PerMechRecords() { return window.PerMechRecords || null; }
 /* ── 상세 시트 ─────────────────────────────────────────
    타일을 누르면 열린다. 카드 정보 + 그 카드가 가진 화풍을 고르는 자리 +
    고른 화풍·성별의 그림 목록. 그림을 누르면 확대로 넘긴다. */
-function Sheet({ card, entry, styleName, statLabels, seriesName, gender, onGender, onZoom, onClose }) {
+function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender, onZoom, onClose }) {
   const mine = stylesOf(entry);
   const [style, setStyle] = useState(mine[0] || '');
+  /* 시트 안 남/여는 시트에서만 쓴다. 뒤 목록의 성별까지 끌고 가면
+     상세를 잠깐 들여다본 것만으로 목록이 통째로 바뀐다 (기존 도감도 따로 둔다).
+     시트에는 key 가 붙어 있어 다른 카드를 열면 목록 성별에서 다시 시작한다 */
+  const [gender, setGender] = useState(initialGender);
   const bucket = bucketOf(entry, style);
   const other = gender === 'm' ? 'f' : 'm';
   const own = bucket && bucket[gender];
@@ -407,7 +411,7 @@ function Sheet({ card, entry, styleName, statLabels, seriesName, gender, onGende
             <div class="sw">
               ${[['m', '남'], ['f', '여']].map(([g, label]) => html`
                 <button class=${(gender === g ? 'on' : '') + (countOf(g) ? '' : ' none')}
-                        onclick=${() => onGender(g)}>${label} ${countOf(g)}</button>`)}
+                        onclick=${() => setGender(g)}>${label} ${countOf(g)}</button>`)}
             </div>
           </div>
 
@@ -624,7 +628,7 @@ function App() {
     ${open && html`
       <${Sheet} key=${open.name} card=${open} entry=${data.img[open.name]} styleName=${data.styleName}
                 statLabels=${data.stats[tab] || []} seriesName=${seriesName}
-                gender=${v} onGender=${setV}
+                initialGender=${v}
                 onZoom=${(list, i) => setZoom({ list, i })} onClose=${() => setOpen(null)} />`}
 
     ${zoom && html`<${Zoom} list=${zoom.list} start=${zoom.i} onClose=${() => setZoom(null)} />`}`;
