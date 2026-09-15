@@ -1283,8 +1283,18 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
   /* Pair·패널 단위로 의미가 있는 축만 고른다.
      다양성·개수 제한 계열(의상/장면/포즈/카메라 다양성, 원피스·시선·미소 최대, 예상 밖 컷)은
      여섯 컷 전체를 세는 값이라 칸마다 걸면 서로 모순된다. 그건 전역에만 둔다. */
-  const LOCAL_AXES=['overall_intensity','skin_exposure','action_level','source_influence','separates_preference'];
-  const PAIR_ONLY=['pair_gap'];
+  const {
+    LOCAL_AXES,
+    PAIR_ONLY,
+    ADV_EN,
+    TRAD_EX,
+    CARRY_FACE,
+    CARRY_BODY,
+    LIFESTYLE_REFERENCE_LOCK_BASE,
+    LIFESTYLE_STYLE_LOCK
+  } = window.AtelierSpec;
+
+
   function axisSelect(key,attrs){
     const lab=ADVANCED_LABELS[key]||[key,''], ko=ADV_VAL[key]||{};
     const opts=(ADVANCED_OPTIONS[key]||[]).map(v=>{
@@ -2072,21 +2082,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
   }
 
   let SUPPRESSED=[];
-  const ADV_EN={
-    overall_intensity:'Overall sensual intensity',
-    pair_gap:'Pair intensity gap',
-    outfit_variety:'Outfit variety',
-    scene_variety:'Scene variety',
-    pose_variety:'Pose variety',
-    camera_variety:'Camera variety',
-    skin_exposure:'Visible non-intimate skin exposure',
-    separates_preference:'Separates preference',
-    action_level:'Action balance',
-    direct_gaze_limit:'Maximum direct-camera gazes',
-    smile_limit:'Maximum obvious smiles',
-    unexpected_cuts:'Minimum unexpected coherent cuts',
-    source_influence:'SOURCE influence outside source-editorial panels'
-  };
+
   function additionalSettings(adv,custom){
     const map={
       overall_intensity:'Overall sensual intensity',
@@ -2522,10 +2518,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
   }
   /* 수영복·란제리에도 전통 응용 항목이 있다. 카테고리가 아니라
      고른 예시가 전통을 가리키는지로 판단한다. */
-  const TRAD_EX={burkini_modest:1,sarong_wrap:1,yukata_poolside:1,heritage_pattern_swim:1,
-    onsen_after:1,hanbok_coverup:1,juban_inspired:1,hanbok_slip:1,qipao_silk_set:1,
-    embroidered_corset:1,kebaya_lace:1,sari_blouse_set:1,hanbok_errand:1,festival_daily:1,
-    heritage_evening:1,tea_ceremony_night:1,heritage_couture:1};
+
   function heritageLine(cat,ex){
     if(cat!=='traditional'&&!TRAD_EX[ex])return '';
     const named=ex&&ex!=='auto_traditional'&&ex!=='__custom__';
@@ -2673,42 +2666,8 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
      전부 넘기지 않는다. 장갑 구조나 하체 처리는 현대 의상에 의미가 없고,
      첨부 이미지가 이미 잘 잡아주는 항목까지 글로 적으면 지시가 충돌한다.
      이미지가 유독 못 잡아 흘러버리는 항목만 고른다. */
-  const CARRY_FACE=[
-    ['facial ethnicity','ethnicity'],
-    ['apparent age','apparent age'],
-    ['facial character','facial impression'],
-    ['face shape','face shape'],
-    ['eye shape','eye shape'],
-    ['eye color','eye color'],
-    ['second eye color','second eye color'],
-    ['skin tone','skin tone'],
-    ['hair color','hair color'],
-    ['hair length','hair length'],
-    ['hairstyle','hairstyle'],
-    ['bangs','bangs'],
-    ['facial hair','facial hair'],
-    ['face length','face length'],
-    ['face width','face width'],
-    ['jaw & chin','jaw & chin'],
-    ['eye size','eye size'],
-    ['eye tilt','eye tilt'],
-    ['nose character','nose character'],
-    ['lips','lips'],
-    ['hair texture','hair texture'],
-    ['hair volume','hair volume'],
-    ['parting','parting']
-  ];
-  const CARRY_BODY=[
-    ['body type','body type'],
-    ['height impression','height impression'],
-    ['torso / chest build','torso / chest build'],
-    ['waist / hip silhouette','waist / hip silhouette'],
-    ['leg proportion','leg proportion'],
-    ['shoulder build','shoulder build'],
-    ['torso length','torso length'],
-    ['lower-body build','lower-body build'],
-    ['body measurements (B/W/H)','body measurements (B/W/H)']
-  ];
+
+
   /* 지금 화면의 성별만 읽는다. 예전에는 여성 기록이 있으면 무조건 그쪽을 썼다.
      남녀가 함께 저장된 기체를 남성으로 열면 여성의 얼굴·체형·인종이 그대로
      일상컷 프롬프트로 넘어가, 첨부한 참조 이미지와 지시가 어긋났다.
@@ -3437,32 +3396,8 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
   const GCHEST=()=>curGender()==='male'?'chest':'bust';
   function lifestyleReferenceLock(){return LIFESTYLE_REFERENCE_LOCK_BASE
     .replace('{POSS}',GPOSS());}
-  const LIFESTYLE_REFERENCE_LOCK_BASE =
-    '[LIFESTYLE REFERENCE LOCK]\n\n' +
-    'The attached character image is authoritative for the character\'s visible appearance and equipment state in this image. ' +
-    'The source mobile suit name above is identity-origin metadata only and must not be used to reconstruct, restore, or invent mobile-suit equipment. ' +
-    'Lifestyle may retain small, non-functional, identity-defining accessories from the character reference when they read as wearable ornament rather than active mobile-suit equipment. ' +
-    'Do not retain or reconstruct functional armor, weapons, shields, backpacks, binders, thrusters, mechanical limbs, or other combat/mechanical equipment. ' +
-    'Canonical mobile-suit equipment that is absent from the attached character reference must remain absent. ' +
-    'For civilian, casual, homewear, swimwear, activewear, fashion, and other lifestyle scenes, translate only the character\'s established human identity into the requested scene \u2014 do not revert the character toward {POSS} original mobile-suit form.' +
-    /* 얼굴 크롭과 전신을 같이 붙이면 어느 쪽이 얼굴의 기준인지 알려 줘야 한다.
-       조건문이라 한 장만 붙였을 때는 발동하지 않는다 — 장수를 세는 UI 가 필요 없다. */
-    '\n\nIf multiple reference images of the same character are attached: '+
-    'use the clearest face close-up as the primary facial identity anchor; '+
-    'use the full-character reference as the primary authority for body proportions, hairstyle, overall appearance, and visible equipment state; '+
-    'use any remaining references only to resolve details that are unclear or occluded. '+
-    'Do not average the references into a new face. '+
-    'All attached references depict the same character and must resolve toward one identity.';
 
-  const LIFESTYLE_STYLE_LOCK =
-    '[STYLE LOCK]\n\n' +
-    'The selected ART STYLE controls the rendering language of the entire image: ' +
-    'facial construction, skin, hair, clothing, fabric, props, lighting, background treatment, ' +
-    'edge handling, shading, reflections, speculars, texture, and detail density. ' +
-    'It governs HOW the scene is rendered only \u2014 it must not redesign, reconstruct, or reintroduce the source mobile suit\'s armor, weapons, shield, backpack, mechanical limbs, or other canonical equipment. ' +
-    'It must not redesign the underlying facial geometry, facial proportions, or character identity established by the attached reference and by this prompt. ' +
-    'The attached character reference controls visible character identity and visible equipment state. ' +
-    'If any common instruction conflicts with the selected ART STYLE, the selected ART STYLE wins for rendering language only.';
+
 
 
   function lifestyleStyleBlock(){
