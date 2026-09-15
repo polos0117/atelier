@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "card": "즈사",
+  "model": "AMX-102 Zssa",
+  "series": "기동전사 건담 ZZ",
+  "repository": "polos0117/atelier",
+  "branch": "codex/zssa-20260915",
+  "base_commit": "539c6039536928ff156f41b37acf8d50538e812d",
+  "prompt_source": "prompts directly assembled from the current prompt.html v9.19 workflow after the cloud browser could not open a fresh tab",
+  "run": "2026-09-15t015847z",
+  "created": "2026-09-15T01:58:47Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Settings preserve the v9.19 parameter schema; browser export was unavailable and the exact submitted prompts are stored with this run",
+  "references": [
+    "data/mech.json",
+    "official/mecha/ZZ.json",
+    "official/url/ZZ.json"
+  ],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female light warm-beige skin tone, golden-blonde hair with olive undertone, and moss-green eyes only; casual uses the female generated image as the sole identity reference",
+    "equipment_lock": "One rear booster backpack, exactly two main vertical missile towers, one compact rifle, one docked beam-saber hilt; exactly two human arms and two human legs",
+    "casual_scene": "Pastry chef carrying one tray of twelve citrus tartlets in a warm patisserie kitchen"
+  },
+  "jobs": [
+    {
+      "id": "zssa-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-8bdb388c27718ed3/runs/2026-09-15t015847z/01-female-anthro.txt",
+      "original_generated_file": "exec-99965a97-6657-4b9a-a708-656ac607b1e9.png",
+      "file": "img/즈사_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "c7585d1c58c30695a2cb51400f75051d9ae9058e46bda64f50fd4c0450288b85",
+      "bytes": 344540
+    },
+    {
+      "id": "zssa-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "zssa-female-01",
+      "prompt": "generation/m-8bdb388c27718ed3/runs/2026-09-15t015847z/02-male-anthro.txt",
+      "original_generated_file": "exec-f5a1c3c5-89e3-4ebd-a622-10b198b6fe77.png",
+      "file": "img/즈사_cinematic_semi_real_m.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "863830147e20198ddbb4e8ab2b43105bc279b8ae91469305c06f581f713cb433",
+      "bytes": 335716
+    },
+    {
+      "id": "zssa-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "zssa-female-01",
+      "prompt": "generation/m-8bdb388c27718ed3/runs/2026-09-15t015847z/03-female-casual.txt",
+      "original_generated_file": "exec-138eab73-a62b-4da8-8dd4-a26605933f60.png",
+      "file": "img/즈사_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "13e987e1f5b5e11d47a9179c6d7d5e2a9fbba86a658beb7107c82c6c0fafd65f",
+      "bytes": 310982
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+Use case: stylized-concept
+Asset type: full-body Gundam anthropomorphization portrait for a character collection
+Input image: Image 1 is a COLOR-PALETTE REFERENCE ONLY from the female Zssa counterpart. Do not copy her face, rounded bob, body shape, pose, or feminine anatomy.
+Primary request: Create the male anthropomorphization of the Zssa (AMX-102) from Mobile Suit Gundam ZZ as one clearly adult man in his twenties. He must be a distinctly different person from the female counterpart, balancing compact proportions with formidable missile-heavy power, and must not resemble any canonical pilot.
+
+PALETTE LOCK FROM IMAGE 1
+Match only these three human colors from the woman in Image 1: the same light warm-beige skin tone, the same rich golden-blonde hair color with a muted olive-green undertone, and the same moss-green eye color. Do not copy her heart-shaped face, full cheeks, rounded bob, pear-shaped hourglass body, pose, or smile.
+
+SUBJECT AND IDENTITY
+A short-to-average-height adult man with a compact stocky powerlifter’s build, very broad shoulders, thick chest, strong straight waist, muscular hips and thighs, and sturdy proportionate legs. A distinct masculine face: wide pentagonal structure, flat cheek planes, heavy squared jaw, broad blunt chin, strong short straight nose, medium-thin lips, low heavy brows, and deep-set moss-green eyes. Clean-shaven. His expression is disciplined, confident, and faintly sardonic, without a broad smile. Rich golden-blonde short hair with a muted olive-green undertone, cut into a compact textured crop with tapered sides and a short upward-brushed front; no bob and no long bangs. Face fully visible. No pilot likeness.
+
+MECHA TRANSLATION
+Faithfully preserve the unmistakable Gundam ZZ-era Zssa identity: compact mustard-yellow and ochre armor, muted olive-green structural blocks, dark charcoal inner frame, pale cream edge accents, small red-orange sensors, thick rounded shoulder and thigh armor, short sturdy shin forms, and dense missile-launcher detailing. Fully armored masculine presentation with no exposed torso.
+Mount one large rectangular Zssa booster backpack as external equipment behind the torso, with two prominent vertical missile-pod towers rising behind the shoulders. Each tower has orderly circular launcher cells facing forward and upward, clearly separate from the man’s arms and head. Keep additional small CLOSED missile-port panels integrated into the external shoulder armor, outer thighs, and lower-leg armor, but do not cover the body with random holes. No missiles are firing. Preserve one compact dark-gray beam rifle held in the right hand, muzzle angled safely down, and one inactive beam-saber hilt docked at the left hip. The left hand remains empty and readable.
+Exactly two normal human arms and exactly two normal human legs, anatomically correct, with two readable hands and two readable feet. The missile towers are equipment, not limbs. No extra arms, no extra legs, no body-horror tubes, no helmet, no mask, no mechanical face.
+
+COMPOSITION
+Vertical 2:3. Tight intentional complete full-body framing at the largest practical scale, crown to both feet visible, minimal empty margin. Keep the rectangular backpack, both missile towers, rifle, and both feet inside the frame without pulling the camera unnecessarily far back. Let the model choose a grounded confident pose and cinematic view angle; do not copy Image 1’s pose or camera direction. Face, both hands, both legs, and both feet must remain readable.
+
+SCENE AND LIGHTING
+A restrained dim Neo Zeon-style carrier maintenance bay with a matte deck, faint industrial ribs, and minimal clutter, without emblems or readable signage. Warm amber key light, cool olive-gray fill, restrained red sensor rim light, soft atmospheric depth. No missile trails, explosions, or combat. The man remains dominant.
+
+STYLE
+High-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization. Mature believable adult facial anatomy, dimensional painted skin, grouped painterly golden-blonde and olive hair, weighty painted armor materials, selective sharpness on missile cells and hardware, and controlled reflections. Not live-action photography, not a 3D render, not glossy mobile-game key art, not cel-shaded anime.
+
+HARD CONSTRAINTS
+One clearly adult man only. Full body. Exactly two arms and two legs. One backpack and exactly two main missile towers. No feminine breasts or feminine body silhouette. No childlike proportions. No cropped feet. No firing missiles, duplicate rifle, duplicate saber, extra limbs, floating equipment, text, logos, captions, watermark, cockpit, pilot suit, gore, nudity, or transparent intimate areas. Do not enlarge the background or add arbitrary empty margins.
+
