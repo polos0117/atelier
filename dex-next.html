@@ -140,9 +140,16 @@ body.dex-compact .grid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
   border-radius:999px;pointer-events:none}
 .sheet-bg{position:fixed;inset:0;z-index:60;background:rgba(8,10,13,.72);display:flex;
   align-items:flex-end;justify-content:center}
-.sheet{width:100%;max-width:560px;max-height:88vh;overflow:auto;background:var(--deck);
+.sheet{width:100%;max-width:560px;overflow-y:auto;background:var(--deck);
   border:1px solid var(--rule);border-bottom:0;border-radius:14px 14px 0 0;
-  padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+  padding-bottom:calc(16px + env(safe-area-inset-bottom));
+  /* 내용이 짧은 카드는 시트가 화면 아래쪽에만 붙어 손이 닿는 데까지 내려가 있었다.
+     바닥 기준은 그대로 두고 위로 더 올라오게 최소 높이를 준다.
+     폰은 주소창이 들락거려 100vh 가 실제 보이는 높이보다 크므로 dvh 를 먼저 쓰고,
+     안 되는 브라우저만 vh 로 물러난다 */
+  min-height:74vh; min-height:74dvh;
+  max-height:94vh; max-height:94dvh;
+  overscroll-behavior:contain}
 .sheet .bar{position:sticky;top:0;background:var(--deck);border-bottom:1px solid var(--rule);
   display:flex;align-items:center;gap:8px;padding:12px 14px}
 .sheet .bar .t{font-size:15px;font-weight:800;flex:1 1 auto;
