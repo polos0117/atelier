@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "card": "아그릿사",
+  "model": "AEU-MA07013 Agrissa Type 13",
+  "series": "기동전사 건담 00",
+  "repository": "polos0117/atelier",
+  "branch": "main",
+  "base_commit": "5ce9e5e4151526105e8b79488c72ac28304b8200",
+  "prompt_source": "deployed prompt.html v9.19 UI with an exported settings record and exact submitted prompts",
+  "run": "2026-09-15t051435z",
+  "created": "2026-09-15T05:14:35Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Actual prompt.html selections were exported after female and male configuration; the exact female, male, male output-format retry, and casual prompts are stored with this run",
+  "delivery": {
+    "method": "GitHub Git Data API",
+    "target": "refs/heads/main",
+    "sequence": ["blob", "tree", "commit", "update_ref"],
+    "single_commit": true,
+    "pull_request": false
+  },
+  "references": [
+    "https://en.gundam-official.com/mecha/fyw6heaafslakfwwetag2jwk",
+    "https://gundam-official.com/media/001st_fe75212391/001st_fe75212391.png"
+  ],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female light skin tone, brown hair color, and pale-blue eye color only; casual uses the female generated image as the exact identity reference",
+    "equipment_lock": "Wide coral-red and dark-gray central shell, Enact-derived upper crest, blade rifle, and exactly six separate spider-like mechanical support legs on an external docking frame; every person has exactly two human arms and two human legs",
+    "casual_scene": "High-voltage plasma containment test engineer calibrating a compact blue-white plasma arc in a clean nighttime materials laboratory"
+  },
+  "jobs": [
+    {
+      "id": "agrissa-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-a49b3b0a5ce86c68/runs/2026-09-15t051435z/01-female-anthro.txt",
+      "original_generated_file": "exec-0523ac07-74ee-4ef1-8644-6edf3f032e16.png",
+      "original_sha256": "95fafc8fb335151b9c38272b3c7a4f8582957b52a8c07bb68a69184de1633fd7",
+      "file": "img/아그릿사_cinematic_semi_real_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "6a82293044fdd2466da4057a70cfc2c3dbbadb5a19b0807adb512504b5342fc9",
+      "bytes": 172664
+    },
+    {
+      "id": "agrissa-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "agrissa-female-01",
+      "initial_prompt": "generation/m-a49b3b0a5ce86c68/runs/2026-09-15t051435z/02-male-anthro.txt",
+      "rejected_generated_file": "exec-a0f3af26-d2c4-4c24-b422-605ea443260f.png",
+      "rejected_sha256": "0339732e65296c7f43b6f52500e19c8336d200edec936c44ac715a8c006a2feb",
+      "rejection_reason": "The reference dominated and produced a technical model sheet instead of one adult male character",
+      "prompt": "generation/m-a49b3b0a5ce86c68/runs/2026-09-15t051435z/02b-male-output-format-retry.txt",
+      "final_generated_file": "exec-2f04bff1-e9c3-448a-959f-13f7cc1b1b9f.png",
+      "final_source_sha256": "60467406b974a185cd597c3388ef301b4da62ab5d072e060d42ae731ab48ecfa",
+      "file": "img/아그릿사_cinematic_semi_real_m.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "5cbd0c2d9a90e727d7dc3f2eeb2b3aee419f5c955aa29526c07a854790093835",
+      "bytes": 208018
+    },
+    {
+      "id": "agrissa-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "agrissa-female-01",
+      "prompt": "generation/m-a49b3b0a5ce86c68/runs/2026-09-15t051435z/03-female-casual.txt",
+      "original_generated_file": "exec-1539669f-38e6-4c46-88f7-9ae48ad01cd2.png",
+      "original_sha256": "5580ccfcce1bbecafee4196b039db56cafb43d6562afc3c52124a7b05bcc953f",
+      "file": "img/아그릿사_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "c9987a4485eafe1a45df03621d07d5c788cb15d56e32a2cf14f506279a052fea",
+      "bytes": 144244
+    }
+  ]
+}
