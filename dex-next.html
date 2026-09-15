@@ -27,6 +27,8 @@ document.documentElement.dataset.density=v})();
 <script src="lib/img.js"></script>
 <script src="lib/toolkit.js"></script>
 <script src="lib/fresh.js"></script>
+<!-- 기체별 기록(generation/m-<해시>/) 읽기. 툴킷 설정과 그림별 제출 프롬프트 경로가 여기 있다 -->
+<script src="generation/loader.js"></script>
 <style>
 :root{
   --void:#0F1318; --deck:#151A21; --panel:#1D242D; --rule:#2C3742;
@@ -399,18 +401,6 @@ function WorkRow({ card, color, st, tkText, promptText, memo, styleText, onOpen 
    prompt.html 이 남긴 설정을 읽어 보여 준다. 기체별 기록(generation/m-<해시>/)은
    늦게 도착하므로 도착하면 다시 그린다. 읽기만 하고 쓰지 않는다. */
 function Toolkit({ name }) {
-  const [, bump] = useState(0);
-  useEffect(() => {
-    let live = true;
-    if (root_PerMechRecords()) {
-      root_PerMechRecords().load(name).then(data => {
-        ATK.putCardRecords(name, data);
-        if (live) bump(n => n + 1);
-      }).catch(() => {});
-    }
-    return () => { live = false; };
-  }, [name]);
-
   const summary = ATK.summaryOf(name);
   const used = ATK.usedOf(name);
   const notes = ATK.notesOf(name);
@@ -427,8 +417,6 @@ function Toolkit({ name }) {
         <details><summary>추가 지시 · ${x.label}</summary><pre>${x.text}</pre></details>`)}
     </div>`;
 }
-function root_PerMechRecords() { return window.PerMechRecords || null; }
-
 /* ── 상세 시트 ─────────────────────────────────────────
    타일을 누르면 열린다. 카드 정보 + 그 카드가 가진 화풍을 고르는 자리 +
    고른 화풍·성별의 그림 목록. 그림을 누르면 확대로 넘긴다. */
@@ -454,9 +442,26 @@ function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender,
      화풍·성별을 바꾸면 그 화풍의 초상으로 되돌린다 */
   const [pick, setPick] = useState(null);
   useEffect(() => { setPick(null); }, [style, gender]);
+
+  /* 기체별 기록(generation/m-<해시>/)은 카드를 열 때 따로 받아 온다.
+     툴킷 설정과 그림별 제출 프롬프트 경로가 여기 들어 있어, 도착하면 시트를
+     통째로 다시 그린다. 예전에는 툴킷 칸 안에서만 다시 그려서, 늦게 온 기록이
+     "원문 기록 없음"을 못 걷어냈다 */
+  const [recTick, setRecTick] = useState(0);
+  useEffect(() => {
+    let live = true;
+    const PMR = window.PerMechRecords;
+    if (!PMR) return undefined;
+    PMR.load(card.name).then(data => {
+      ATK.putCardRecords(card.name, data);
+      if (live) setRecTick(n => n + 1);
+    }).catch(() => {});
+    return () => { live = false; };
+  }, [card.name]);
   const shown = (pick && all.indexOf(pick) >= 0) ? pick : portrait;
   const shownIdx = Math.max(0, all.indexOf(shown));
-  const promptPath = shown ? ATK.promptPathOf(shown) : null;
+  const promptPath = useMemo(
+    () => (shown ? ATK.promptPathOf(shown) : null), [shown, recTick]);
 
   return html`
     <div class="sheet-bg" onclick=${onClose}>
