@@ -1,0 +1,22 @@
+Use case: stylized-concept
+Asset type: vertical character portrait for a Gundam anthropomorphization gallery
+Input images: Image 1 is a COLOR-PALETTE REFERENCE ONLY from the female Den'an Gei counterpart. Do not copy her identity, facial geometry, bob haircut, body shape, armor fit, pose, expression, or feminine anatomy.
+Primary request: Create one clearly adult male anthropomorphization of the XM-02 Den'an Gei from Mobile Suit Gundam F91. He must be a distinctly different original person and must not resemble any canonical pilot.
+
+Required color linkage: Match only these three human colors from Image 1: the same fair neutral-rosy skin tone, the same rich copper-red hair color, and the same icy blue-gray eye color. Do not infer ethnicity or hairstyle from his build or these colors.
+
+Subject identity: A Turkish man in his twenties, tall, with a lean tactical interceptor's build: broad level shoulders, a tapered athletic torso, straight narrow waist, long muscular legs, and defined but not bulky musculature. A clearly different masculine face with a long rectangular structure, high narrow cheek planes, firm angular jaw, broad blunt chin, strong slightly aquiline nose, medium-thin lips, heavy straight brows, and deep-set icy blue-gray eyes. Clean-shaven. Calm, disciplined, watchful expression with lips closed. Rich copper-red short hair, wavy texture, tapered sides, swept sharply back with the forehead fully visible; no bob, braids, cornrows, or dreadlocks. Face fully visible. No pilot likeness.
+
+Mobile-suit translation: Faithfully preserve the Den'an Gei's compact Crossbone Vanguard military identity. Smoke gray and muted gray-green armor, dark olive limb sections, charcoal mechanical understructure, restrained pale-ivory edges, and small crimson chest/sensor accents. Rounded shoulder shells and compact curved leg armor remain recognizable. Fully armored masculine presentation with an opaque high-neck underlayer and no exposed torso.
+
+Equipment: Exactly TWO compact three-cell grenade racks total, one mechanically mounted on the outside/top of each shoulder. One long dark-gray beam rifle held in the right hand across the lower side of the body, muzzle safely down. One active translucent rose-magenta beam shield projected from the left forearm, angled outward without hiding the face or torso. Two compact integrated forearm beam-gun ports, one per forearm, not extra hands. Exactly two inactive beam-saber hilts docked at the rear waist. Compact backpack with two rounded rear vernier pods and small auxiliary thrusters, external and mechanical, not wings. No shot lancer.
+
+Anatomy and pose: Exactly one man, two human arms, two human hands, two human legs, normal joints and readable fingers. Controlled three-quarter stance with one foot slightly forward, torso subtly turned, rifle secured low in the right hand and shield guarding the left flank. Distinct from Image 1's stance. Keep both shoulder racks and parts of the backpack readable. No extra limbs, duplicated weapons, mechanical replacement limbs, helmet, visor over the face, gas mask, facial armor, or robot head.
+
+Scene/backdrop: restrained Crossbone Vanguard orbital hangar with dark matte flooring, faint structural forms and subtle haze, no readable insignia. Cool steel-green key light, narrow crimson rim, restrained magenta beam-shield glow. Character dominant.
+
+Composition/framing: vertical 2:3, intentional full-body framing at the largest practical scale, top of hair through both feet fully visible, minimal headroom and floor margin, no distant camera, no arbitrary empty space, no cropping of feet, rifle, shield, shoulder racks, or backpack.
+
+Style/medium: high-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization. Mature believable anatomy, dimensional painted skin, grouped painterly copper hair, tactile matte military armor, selective sharpness and controlled reflections. Not live-action photography, not a 3D render, not glossy mobile-game key art, not cel-shaded anime.
+
+Avoid: copying the woman's identity or body, childlike proportions, pilot resemblance, body-type/ethnicity/hairstyle stereotyping, organic wings, shot lancer, firing grenades, explosions, random missile holes, extra beam blades, text, logos, watermark, gore.
