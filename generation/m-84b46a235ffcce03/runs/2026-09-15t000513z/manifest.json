@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "card": "게드라프",
+  "model": "ZM-S24G Gedlav",
+  "series": "기동전사 V건담",
+  "repository": "polos0117/atelier",
+  "branch": "codex/gedlav-20260914",
+  "base_commit": "9176f49092c700126935f68d4e15ca719649fba5",
+  "prompt_source": "saved prompt.html v9.19 parameter schema and prompt structure; the cloud browser could not enumerate tabs, so the local v9.19 structure was used directly",
+  "run": "2026-09-15t000513z",
+  "created": "2026-09-15T00:05:13Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Settings preserve the v9.19 parameter schema; browser export was unavailable and the exact submitted prompts and correction prompts are stored with this run",
+  "references": [
+    "https://g-rwee.ggame.jp/ms_stage/ms_detail.php?ms=l3okienz",
+    "https://g-rwee.ggame.jp/images/ms_stage/ms/detail/img_ms_l3okienz.png",
+    "https://www.mahq.net/zm-s24g/",
+    "https://www.mahq.net/einerad/"
+  ],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female tan-olive skin tone, copper hair color, and cobalt-blue eye color only; casual uses the female generated image as the identity reference",
+    "equipment_lock": "One complete vertical Einerad wheel, exactly two rim beam cannons, one nine-cell missile pod, one handheld beam rifle, and one docked beam-saber hilt; all equipment is external and each person has exactly two human arms and two human legs",
+    "casual_scene": "Elite track-bicycle wheel builder and race mechanic truing one deep-section carbon wheel in an empty indoor velodrome service bay"
+  },
+  "jobs": [
+    {
+      "id": "gedlav-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-84b46a235ffcce03/runs/2026-09-15t000513z/01-female-anthro.txt",
+      "original_generated_file": "exec-ec9d2c37-04a3-49cc-a509-59d9bfba8803.png",
+      "original_sha256": "b58772245ed3f5e771347ed91375c40ecbfb676550633f2f9aa15f2c85e3b760",
+      "file": "img/게드라프_cinematic_semi_real_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "146c1ba771443e57f818116deb0ea7dda1350bfd105a01396e1b9c383c9b9375",
+      "bytes": 179488
+    },
+    {
+      "id": "gedlav-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "gedlav-female-01",
+      "prompt": "generation/m-84b46a235ffcce03/runs/2026-09-15t000513z/02-male-anthro.txt",
+      "original_generated_file": "exec-d090d546-b771-43fa-9ff6-31c78ab4cee5.png",
+      "original_sha256": "61c3d28ea7628df194b0d82a89ea02177e26d6e6a4b59e8ffb4fa977f0c7857a",
+      "correction_prompt": "generation/m-84b46a235ffcce03/runs/2026-09-15t000513z/02b-male-missile-correction.txt",
+      "final_generated_file": "exec-4d05090f-832b-4cb7-8971-b3c12835ff84.png",
+      "final_source_sha256": "d6bd023602f261f741df822247d5e0ce3bba357e64dc3081910568e8993ced9b",
+      "file": "img/게드라프_cinematic_semi_real_m.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "8ae8684bdf4987aa4e2808e6c5d91b56d79b6dfaec1db7ca366bf89da1efb216",
+      "bytes": 149130
+    },
+    {
+      "id": "gedlav-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "gedlav-female-01",
+      "prompt": "generation/m-84b46a235ffcce03/runs/2026-09-15t000513z/03-female-casual.txt",
+      "original_generated_file": "exec-885bc649-31d6-495d-86b5-cebf5ed7b2b5.png",
+      "original_sha256": "866251c5842f1103416b73352f795221f24ab4b46a38713b933a4fc013347b6a",
+      "correction_prompt": "generation/m-84b46a235ffcce03/runs/2026-09-15t000513z/03b-casual-background-correction.txt",
+      "final_generated_file": "exec-3d12aa77-133e-46ee-9dd6-23d78036adf9.png",
+      "final_source_sha256": "6ce6158e13eedcb26a6adf1a89edbf9d386f447693ada8a4f8173140e649eea1",
+      "file": "img/게드라프_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "0f72f4730553e24c14f3f9c4df42077e36f360b03ee06352ecc8efefcc656d4b",
+      "bytes": 126200
+    }
+  ]
+}

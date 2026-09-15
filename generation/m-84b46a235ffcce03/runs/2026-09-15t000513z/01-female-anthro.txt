@@ -1,0 +1,23 @@
+Create ONE SINGLE 2:3 vertical full-body character image for the “게드라프 / ZM-S24G Gedlav” card from Mobile Suit Victory Gundam.
+
+ART STYLE
+High-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization. It must read as a sophisticated semi-realistic digital painting, not cel anime, mobile-game key art, live-action photography, or glossy 3D CGI. Use believable mature adult anatomy, softly painted skin volume, grouped painterly hair masses, selective sharp mechanical edges, and broken painted reflections instead of PBR surfaces.
+
+SUBJECT
+Exactly one clearly adult woman in her 20s, original identity with no resemblance to any canonical pilot. She is a striking Latin American woman with warm tan-olive skin, vivid cobalt-blue eyes, and warm copper hair in a short asymmetrical bob with a deep side part and one long angled fringe. Give her a distinctive heart-shaped face, wide high cheekbones, slightly upturned almond eyes, a straight medium-width nose, a tapered chin, and a fuller lower lip. Her expression is daring and self-possessed with a faint one-corner smirk.
+Her figure is compact and athletic-voluptuous at average height: broad athletic shoulders, full bust, compact torso, sharply defined waist, full rounded hips, powerful thighs, and balanced lower legs. Mature adult proportions only.
+
+GEDLAV ARMOR TRANSLATION
+Translate the canonical ZM-S24G Gedlav into a recognizable humanoid armored woman. Use a fitted opaque dark forest-green technical undersuit with secure full chest coverage, layered sand-yellow and muted ochre armor, dull olive panels, red-orange accents at the shoulders and boots, dark graphite joints, and a narrow cobalt-blue visor sensor ornament above the forehead. Leave the shoulders and a small amount of side-waist skin visible while keeping the chest completely opaque and securely covered. Preserve the Gedlav’s compact, broad, utilitarian silhouette without turning her into a generic Gundam.
+Her body must remain a normal humanoid skeleton with exactly two shoulders, two human arms, two hands, two human legs, and two boots.
+
+EINERAD SUPPORT WEAPON
+The unmistakable main source feature is ONE enormous vertical Einerad wheel surrounding and framing her complete body. Build it as a single continuous, thick, dark olive-gray armored tire with chunky segmented tread and a sand-yellow inner mechanical rim. The wheel is slightly larger than her standing height and positioned behind her in the same vertical plane; her full body is centered within its open interior and connected only by one compact rigid docking cradle at the lower back. The ring must never intersect her head, torso, arms, or legs and must not become a halo, wings, clothing, tail, or an additional limb.
+Mount exactly TWO forward-facing beam-cannon barrels on the upper inner rim, one on each side, and ONE compact 9-tube missile pod on the upper outer rim with nine clearly separated launch cells. Add two small beam-shield emitter housings on opposite lateral rim sections, inactive with no large glowing discs. These are all fixed parts of the external wheel.
+She holds ONE compact angular Gedlav beam rifle in her right hand, muzzle safely angled down. Her left hand is empty and fully visible. One inactive beam-saber hilt is docked at the left hip; no active blade.
+
+COMPOSITION
+Full-body front three-quarter composition at eye level. She stands centered inside the vertical wheel in a grounded confident stance, both arms and both legs clearly separated and readable. Keep her large and densely framed from the top of her copper hair to both boots, with minimal headroom, floor margin, and side margin. Let the circular Einerad nearly touch the upper and side edges of the 2:3 canvas while preserving its complete recognizable ring; do not pull the camera far back and do not add arbitrary empty space. Use a restrained, softly defocused Zanscare mobile-unit test yard at golden hour with broad warm side light, cool shadows, and light dust. No other people or machines.
+
+HARD CONSTRAINTS
+Exactly one adult woman. Exactly two arms, two hands with five fingers each, and two legs. Exactly one continuous wheel ring, two ring beam cannons, one 9-cell missile pod, one handheld rifle, and one docked saber hilt. No motorcycle, no bicycle, no second wheel, no extra arms, extra hands, extra legs, robotic helper limbs, tentacles, biological tail, feathered wings, angel motif, fantasy crown, pilot resemblance, childlike face, exposed nipples, explicit nudity, readable text, UI, logo, or watermark. Full body visible.

@@ -1,0 +1,6 @@
+Image 1 is the EDIT TARGET. Make exactly one localized correction and preserve everything else.
+
+CHANGE ONLY the compact missile-launcher pod centered on the very top of the external wheel. Replace its current eight launch apertures with exactly NINE identical circular launch cells arranged as a clean 3-column by 3-row grid inside the same rectangular pod housing.
+
+INVARIANTS
+Keep the exact same adult man, face, copper cropped hair, tan-olive skin, cobalt-blue eyes, masculine body, expression, pose, hands, armor design, colors, beam rifle, holstered saber, single circular Einerad wheel, two beam cannons, background, golden-hour lighting, camera angle, full-body framing, scale, and 2:3 canvas unchanged. Do not add or remove any other object. Maintain exactly two human arms, two hands, two legs, one wheel, and two beam cannons. No text, logo, or watermark.

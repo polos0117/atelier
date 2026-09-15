@@ -1,0 +1,6 @@
+Image 1 is the EDIT TARGET. Make exactly one localized background cleanup and preserve everything else.
+
+CHANGE ONLY the left-side and rear background: remove the secondary bicycle, secondary wheels, bicycle-frame silhouettes, and any other circular wheel-like sports equipment behind the woman. Replace those removed objects with a clean, softly defocused continuation of the empty velodrome service bay and banked wooden track.
+
+INVARIANTS
+Keep the exact same adult woman, face, copper asymmetrical bob, tan-olive skin, cobalt-blue eyes, body proportions, expression, pose, both hands, clothing, gloves, boots, lighting, camera angle, full-body framing, main workbench, tools, and the ONE large carbon track wheel mounted in the foreground truing stand unchanged. Maintain exactly two human arms, two hands, and two legs. Do not change the foreground wheel, truing stand, spoke-tension key, or her hand interaction. No new people, bicycles, extra wheels, armor, military equipment, text, logo, or watermark.

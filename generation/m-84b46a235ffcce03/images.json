@@ -1,0 +1,29 @@
+{
+  "게드라프_cinematic_semi_real_f.webp": {
+    "card": "게드라프",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "146c1ba771443e57f818116deb0ea7dda1350bfd105a01396e1b9c383c9b9375",
+    "prompt": "generation/m-84b46a235ffcce03/runs/2026-09-15t000513z/01-female-anthro.txt",
+    "manifest": "generation/m-84b46a235ffcce03/runs/2026-09-15t000513z/manifest.json"
+  },
+  "게드라프_cinematic_semi_real_m.webp": {
+    "card": "게드라프",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "8ae8684bdf4987aa4e2808e6c5d91b56d79b6dfaec1db7ca366bf89da1efb216",
+    "prompt": "generation/m-84b46a235ffcce03/runs/2026-09-15t000513z/02-male-anthro.txt",
+    "manifest": "generation/m-84b46a235ffcce03/runs/2026-09-15t000513z/manifest.json"
+  },
+  "게드라프_cinematic_semi_real_f_casual1.webp": {
+    "card": "게드라프",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "0f72f4730553e24c14f3f9c4df42077e36f360b03ee06352ecc8efefcc656d4b",
+    "prompt": "generation/m-84b46a235ffcce03/runs/2026-09-15t000513z/03-female-casual.txt",
+    "manifest": "generation/m-84b46a235ffcce03/runs/2026-09-15t000513z/manifest.json"
+  }
+}
