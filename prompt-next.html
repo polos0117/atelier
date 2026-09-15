@@ -352,6 +352,13 @@ function App() {
     () => Object.fromEntries(GROUPS.map(([g]) => [g, g !== 'shot'])));
   const [onlyEmpty, setOnlyEmpty] = useState(false);
   const [zoom, setZoom] = useState(null);
+  /* 툴킷과 같은 자리에 쓴다. 열쇠 이름·모아 적기·화면 숨길 때 즉시 적기까지
+     lib/toolkit.js 가 맡으므로 여기서는 값을 넣고 save() 만 부른다 */
+  const box = useRef(null);
+  if (!box.current) {
+    box.current = ATK.open(ATK.STORE_KEY,
+      { last: {}, anthro: {}, collage: null, used: {}, style: {}, locks: {} });
+  }
 
   useEffect(() => {
     Promise.all([getJSON('data/mech.json'), getJSON('data/series.json'), ATK.load(), AIMG.load()])
@@ -359,7 +366,7 @@ function App() {
       .catch(setErr);
     setStamp(window.AtelierFresh.watch().stamp());
     try {
-      const raw = JSON.parse(localStorage.getItem(ATK.STORE_KEY) || 'null');
+      const raw = box.current.data;
       if (raw && raw.locks) setLocks({ ...raw.locks });
     } catch (e) {}
   }, []);
@@ -407,6 +414,22 @@ function App() {
     });
   }, [card, gender, style, morph, sel, cus, special, underboob, data]);
 
+  /* 값이 바뀌면 저장한다. 처음 불러오는 중(READY 전)에는 쓰지 않는다 —
+     빈 값이 기존 기록을 덮어쓰는 사고를 막는다 */
+  const ready = useRef(false);
+  useEffect(() => { ready.current = false; }, [mech]);
+  useEffect(() => {
+    if (!mech || !data) return;
+    if (!ready.current) { ready.current = true; return; }
+    const part = { sel: { ...sel }, cus: { ...cus }, ub: underboob, sp: special.trim() };
+    const rec = ATK.mergeRecord(mech, gender, part, { morph });
+    const st = box.current.data;
+    if (!st.anthro) st.anthro = {};
+    if (rec) st.anthro[mech] = rec; else delete st.anthro[mech];
+    st.last = { series: series, mech: mech };
+    box.current.save();
+  }, [mech, gender, sel, cus, underboob, special, morph, data]);
+
   if (err) return html`<main><p class="warn">자료를 못 읽었다 — ${String(err.message || err)}</p></main>`;
   if (!data) return html`<main><p class="note" style="padding:40px 0;text-align:center">읽는 중…</p></main>`;
 
@@ -414,6 +437,8 @@ function App() {
   const toggleLock = k => setLocks(o => {
     const n = { ...o };
     if (n['p:' + k]) delete n['p:' + k]; else n['p:' + k] = 1;
+    box.current.data.locks = n;
+    box.current.save();
     return n;
   });
 
@@ -488,9 +513,9 @@ function App() {
       ${!card
         ? html`<p class="note" style="padding:32px 0;text-align:center">기체를 고르면 설정과 프롬프트가 나온다</p>`
         : html`
-          <p class="warn">
-            시범판이라 <b>저장하지 않는다.</b> 처음 값은 툴킷에 저장된 설정에서 가져오고,
-            여기서 바꾼 것은 이 화면에만 남는다. 기록에 남기려면 툴킷에서 하세요.
+          <p class="note" style="margin:8px 0">
+            바꾸는 대로 툴킷과 같은 자리에 저장된다. 두 화면을 같이 열어 두면
+            나중에 저장한 쪽이 이긴다 — 한쪽에서만 만지는 편이 안전하다.
           </p>
 
           <p class="sec">랜덤 · 채운 항목 ${filled}${lockCount ? ' · 자물쇠 ' + lockCount : ''}</p>
