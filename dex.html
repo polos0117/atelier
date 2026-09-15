@@ -287,6 +287,7 @@ body{font-size:var(--ui-font)}
 <main><div class="view-tools"><span id="filterSummary" aria-live="polite">전체 보기</span><button type="button" id="clearFilters">조건 초기화</button><button type="button" id="cardSize" aria-pressed="false">작게 보기</button></div><div class="prog" id="prog" hidden><i></i></div><div class="grid" id="grid"></div><div class="empty" id="empty" hidden>해당하는 카드가 없다.</div></main>
 <div id="ovl"></div>
 
+<script src="lib/img.js"></script>
 <script src="generation/loader.js"></script>
 <script>
 /* ══ 게임 파일에서 추출한 데이터 (build-dex.py 자동 생성) ══ */
@@ -355,12 +356,14 @@ var styleSel="";   /* 화풍 탭에서 고른 화풍 키, 빈 값이면 전체 *
 var MODE_NAME={p:"의인화",c:"일상",x:"특별 컷",w:"작업"};
 var onlyLeft=true;   /* 작업 모드: 남은 것만 볼지 */
 
-function imgURL(p){return IMG_BASE+encodeURIComponent(p)}
+/* 그림 자료는 lib/img.js 가 맡는다 — URL 규칙, img.json 읽기, byStyle·컷 구조 */
+var AIMG=window.AtelierImg;
+function imgURL(p){return AIMG.imgURL(p)}
 /* 목록과 갤러리는 작게 그리므로 img/thumb/ 의 축소본을 쓴다.
    눌러서 크게 볼 때(zoom)만 원본을 받는다.
    썸네일은 register-images 워크플로가 make-thumbs.py 로 만들어 둔다.
    아직 없으면 onerror 로 원본으로 되돌아간다 */
-function thumbURL(p){return IMG_BASE+"thumb/"+encodeURIComponent(p)}
+function thumbURL(p){return AIMG.thumbURL(p)}
 
 /* ══ 그림 목록 새로 고치기 ══
    예전에는 api.github.com 의 contents/img 로 파일 목록을 받아 IMG 를 보강했다.
@@ -372,8 +375,8 @@ function thumbURL(p){return IMG_BASE+"thumb/"+encodeURIComponent(p)}
 function reloadIMG(){
   var before=0,k;
   for(k in IMG)before++;
-  return fetchJSON("img.json").then(function(j){
-    fillMap(IMG,j.img);
+  return AIMG.load(DATA_DIR+"img.json").then(function(m){
+    fillMap(IMG,m);
     var after=0;
     for(k in IMG)after++;
     return after-before;
@@ -391,7 +394,7 @@ function esc(s){return String(s).replace(/[&<>"]/g,function(x){
    처음부터 다른 화풍으로만 뽑은 기체는 기본 몫이 비어 있고 화풍 몫에만 그림이 있다.
    예전에는 그럴 때 기본 몫을 그대로 돌려줘서 도감이 빈칸을 띄웠다.
    그래서 이름으로 고르지 않고 그림이 실제로 든 몫을 고른다. */
-function hasPic(b){return !!(b&&(b.m||b.f))}
+function hasPic(b){return AIMG.hasPic(b)}
 function bucketOf(name,key){
   var s=IMG[name]; if(!s)return null;
   var bs=s.byStyle||{},k;
@@ -409,20 +412,9 @@ function styleBucket(c){
 }
 function picOf(c,v){var s=styleBucket(c); if(!s)return null; return s[v]||s[flip(v)]||null}
 /* 일상컷·특별컷도 성별을 나눈다. {"f":[...],"m":[...]} 꼴이고, 성별 표시가 없던
-   예전 자료는 배열 그대로 올 수 있어 그때는 여성으로 친다 */
-function cuts(bucket,slot,v){
-  var box=bucket&&bucket[slot];
-  if(!box)return [];
-  if(Object.prototype.toString.call(box)==="[object Array]")return v==="f"?box:[];
-  return box[v]||[];
-}
-function cutCount(bucket,slot){
-  var box=bucket&&bucket[slot],n=0,g;
-  if(!box)return 0;
-  if(Object.prototype.toString.call(box)==="[object Array]")return box.length;
-  for(g in box)n+=box[g].length;
-  return n;
-}
+   예전 자료는 배열 그대로 올 수 있어 그때는 여성으로 친다 (lib/img.js) */
+function cuts(bucket,slot,v){return AIMG.cuts(bucket,slot,v)}
+function cutCount(bucket,slot){return AIMG.cutCount(bucket,slot)}
 
 /* 현재 보기 모드에서 이 카드가 내놓을 그림들 */
 function shots(c){
