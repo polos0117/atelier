@@ -1,0 +1,24 @@
+Use case: stylized-concept
+Asset type: full-body Gundam anthropomorphization portrait for a character collection
+Primary request: Create the female anthropomorphization of the Graham Aker Custom Union Flag II, commonly called the GN Flag (SVMS-01X), from Mobile Suit Gundam 00 as one clearly adult woman in her twenties. This must be a new character with a face distinct from every previous collection entry and must not resemble the canonical pilot.
+
+SUBJECT AND IDENTITY
+A very tall, long-legged Slavic adult woman with a lean hourglass fighter’s physique, narrow athletic shoulders, a clearly defined waist, strong hips and thighs, and elegant but dangerous proportions. Pale neutral skin. A distinctive long diamond-shaped face with high lateral cheekbones, a clean angular jaw, a pointed but not tiny chin, a straight high-bridged nose, a fuller lower lip, and narrow deep-set ember-red eyes with slightly lowered outer corners. Her expression is controlled, severe, and intensely fixated rather than smiling. Raven-black shoulder-length hair with a subtle dark wine-red underlayer, sleek layered texture, high side part, and a long diagonal fringe that does not cover the eyes. Face fully visible. No pilot likeness.
+
+MECHA TRANSLATION
+Faithfully preserve the unmistakable GN Flag identity: extremely slim black and charcoal aerodynamic armor, narrow pointed chest and waist construction, long blade-like leg armor, small angular shoulder shells, silver-gray frame edges, restrained white panel accents, and vivid red-orange GN sensor glow. High armor coverage with a fitted aerodynamic silhouette and only small controlled skin exposure at the shoulders and side waist; opaque and non-explicit.
+Mount one compact truncated-cone GN Drive Tau at the upper back as clearly external mechanical equipment, with restrained red GN particle light and tidy mechanical power conduits. Keep compact Flag flight-control surfaces and narrow black back fins external and symmetrical enough to read cleanly; they must not become organic wings or replace limbs. Preserve one long active red GN beam saber held as the primary dueling weapon and one compact forearm defense rod on the opposite arm. No linear rifle, no shield duplication, no extra beam blades.
+Exactly two normal human arms and exactly two normal human legs, anatomically correct, with two readable hands and two readable feet. No extra limbs, no aircraft nose replacing the torso, no mechanical face, no helmet, no mask.
+
+COMPOSITION
+Vertical 2:3. Tight intentional complete full-body framing at the largest practical scale, crown to both feet visible, minimal empty margin. Keep the GN Drive, back fins, defense rod, and full beam-saber blade inside the frame without pulling the camera unnecessarily far back. Let the model choose a natural dynamic duelist pose and cinematic view angle; do not force a fixed pose or fixed camera direction. Face, both hands, both legs, and both feet must remain readable.
+
+SCENE AND LIGHTING
+A restrained dark mobile-suit maintenance bay with a smooth floor, only faint structural detail, and no clutter or readable signage. Cool steel-blue cinematic key light, narrow red-orange rim light from the GN Drive and beam saber, subtle red GN particles close to the back unit, and atmospheric depth. The character dominates the image.
+
+STYLE
+High-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization. Mature believable adult anatomy, dimensional painted skin, grouped painterly hair masses with selected fine strands, and precise mechanical forms rendered in the same sophisticated painted language. Selective sharpness and controlled reflections. Not live-action photography, not a 3D render, not glossy mobile-game key art, not cel-shaded anime.
+
+HARD CONSTRAINTS
+One clearly adult woman only. Full body. Exactly two arms and two legs. No cropped feet. No duplicate equipment. No floating equipment. No text, logos, captions, watermark, cockpit, pilot suit, gore, nudity, transparent intimate areas, exposed nipples, visible areolae, or exposed genitals. Do not enlarge the background or add arbitrary empty margins.
+
