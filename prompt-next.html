@@ -22,6 +22,7 @@
 <script src="lib/toolkit-spec.js?v=4"></script>
 <script src="lib/figures.js?v=4"></script>
 <script src="lib/prompt-anthro.js?v=4"></script>
+<script src="lib/prompt-lifestyle.js?v=4"></script>
 <script src="lib/fresh.js?v=4"></script>
 <style>
 :root{
@@ -170,6 +171,7 @@ const S = window.AtelierSpec;
 const AP = window.AtelierPrompt;
 const ATK = window.AtelierToolkit;
 const AIMG = window.AtelierImg;
+const AL = window.AtelierLifestyle;
 const FIG = window.AtelierFigures;
 
 const MORPHS = [
@@ -763,6 +765,385 @@ function AnthroPanel({ data, series, setSeries, mech, setMech, gender, setGender
 `;
 }
 
+/* ── 단일 컷 ─────────────────────────────────────────────────────────────
+   콜라주 없이 한 장만 뽑는다. 원본(prompt.html #panelSingle)의 기능을 그대로
+   옮겼다 — 랜덤 성격 · 세 가지 랜덤 · 직전 설정으로 · 랜덤 대상 고르기 ·
+   카테고리/예시(직접 입력·설명줄) · 비율 · 화각 · 표정 · 시점 · 포즈 ·
+   직접 입력 넷 · 세부 강도 다섯 축 · 정체성 이어받기 둘 · 이미 쓴 카테고리 회피 ·
+   한글 요약 · 설정 반영 · 리셋.
+   프롬프트를 만드는 일은 lib/prompt-lifestyle.js 의 buildSingle 이 한다. */
+const SG_ASPECTS = [
+  ['2:3 vertical', '2:3 세로 — 전신·인물 중심'],
+  ['3:2 horizontal', '3:2 가로 — 배경·상황 중심'],
+  ['1:1 square', '1:1 정사각'],
+  ['4:5 vertical', '4:5 세로 — 살짝 넓은 세로'],
+];
+const SG_FRAMES = [
+  ['', 'AUTO — 자동'], ['full body', 'full body — 전신'],
+  ['three-quarter body', 'three-quarter — 무릎 위'],
+  ['waist up', 'waist up — 상반신'],
+  ['close-up portrait', 'close-up — 얼굴 근접'],
+];
+const SG_TARGETS = [
+  ['cat', '카테고리', true], ['ex', '예시', true], ['adv', '고급 설정', true],
+  ['aspect', '화면 비율', true], ['frame', '화각', true],
+  ['expr', '표정', false], ['orient', '시점', false], ['pose', '포즈', false],
+];
+const sgFresh = () => ({
+  mode: 'variety',
+  tgt: Object.fromEntries(SG_TARGETS.map(([k, , on]) => [k, on])),
+  cat: (S.CATS[0] || [''])[0], catCustom: '', ex: '', exCustom: '',
+  aspect: SG_ASPECTS[0][0], frame: '', expr: '', orient: '', pose: '',
+  scene: '', outfit: '', camera: '', custom: '',
+  axes: Object.fromEntries(S.LOCAL_AXES.map(k => [k, ''])),
+  carryFace: false, carryBody: false, avoid: false,
+});
+
+/* 성별 전용 값 거르기 — 원본의 SEX_OK 와 같은 규칙이다 */
+const sexOK = (x, g) => !x || x === (g === 'male' ? 'm' : 'f');
+const catRows = g => S.CATS.filter(r => sexOK(r[4], g));
+const exRows = (cat, g) => (S.EXAMPLE_MAP[cat] || S.EXAMPLE_MAP['__custom__'] || []).filter(r => sexOK(r[4], g));
+
+function SinglePanel({ data, series, setSeries, mech, setMech, gender, setGender,
+                       style, setStyle, box, seriesList, mechList, card }) {
+  const [st, setSt] = useState(sgFresh);
+  const [status, setStatus] = useState('준비됨');
+  const [showText, setShowText] = useState(false);
+  const prev = useRef(null);
+  const [hasPrev, setHasPrev] = useState(false);
+
+  /* 보관함에서 되살리고, 바뀔 때마다 담아 둔다. 탭을 오가도 남아야 한다 */
+  useEffect(() => {
+    const saved = box.current.data.single;
+    if (saved) setSt(o => ({ ...o, ...saved, tgt: { ...o.tgt, ...(saved.tgt || {}) },
+                                      axes: { ...o.axes, ...(saved.axes || {}) } }));
+  }, []);
+  useEffect(() => { box.current.data.single = st; box.current.save(); }, [st]);
+
+  const set = (k, v) => setSt(o => ({ ...o, [k]: v }));
+  const setAxis = (k, v) => setSt(o => ({ ...o, axes: { ...o.axes, [k]: v } }));
+  const setTgt = (k, v) => setSt(o => ({ ...o, tgt: { ...o.tgt, [k]: v } }));
+
+  const record = useMemo(() => {
+    const mine = (box.current.data.anthro || {})[mech] || null;
+    const theirs = ATK.recordOf(mech);
+    if (!mine) return theirs; if (!theirs) return mine;
+    return (mine.t || 0) >= (theirs.t || 0) ? mine : theirs;
+  }, [mech, data]);
+
+  /* 카테고리를 바꾸면 예시 목록이 바뀐다. 남아 있던 값이 새 목록에 없으면 비운다 */
+  const exList = useMemo(() => exRows(st.cat, gender), [st.cat, gender]);
+  useEffect(() => {
+    if (st.ex && st.ex !== '__custom__' && !exList.some(r => r[0] === st.ex)) set('ex', '');
+  }, [exList]);
+  /* 성별을 바꾸면 그 성별에 없는 카테고리는 첫 값으로 되돌린다 */
+  useEffect(() => {
+    const rows = catRows(gender);
+    if (!rows.some(r => r[0] === st.cat)) set('cat', (rows[0] || [''])[0]);
+  }, [gender]);
+
+  const prompt = useMemo(() => {
+    if (!card) return '';
+    return AL.buildSingle({
+      source: { mech: card.name }, gender, style, record,
+      cat: st.cat, catCustom: st.catCustom.trim(), ex: st.ex, exCustom: st.exCustom.trim(),
+      aspect: st.aspect, frame: st.frame, expr: st.expr, orient: st.orient, pose: st.pose,
+      scene: st.scene.trim(), outfit: st.outfit.trim(), camera: st.camera.trim(),
+      custom: st.custom.trim(), axes: st.axes,
+      carryFace: st.carryFace, carryBody: st.carryBody,
+    });
+  }, [card, gender, style, record, st]);
+
+  function push() { prev.current = JSON.parse(JSON.stringify(st)); setHasPrev(true); }
+  function undo() {
+    if (!prev.current) return;
+    const now = JSON.parse(JSON.stringify(st));
+    setSt(prev.current); prev.current = now;
+    setStatus('직전 설정으로 되돌렸다. 한 번 더 누르면 원래대로.');
+  }
+
+  /* 뽑기 판 — 랜덤 성격이 정한 목록에서, 회피를 켜면 이미 쓴 것을 뺀다 */
+  function pool() {
+    const M = S.RANDOM_MODES[st.mode] || S.RANDOM_MODES.variety;
+    const all = (M.pool || S.RANDOM_POOL).filter(c => catRows(gender).some(r => r[0] === c));
+    if (!st.avoid) return { list: all, full: all.length, skipped: 0 };
+    const used = {}; ATK.usedOf(mech).forEach(r => { if (r.cat) used[r.cat] = 1; });
+    const left = all.filter(c => !used[c]);
+    return { list: left.length ? left : all, full: all.length, skipped: Object.keys(used).length };
+  }
+
+  function roll(mode) {           /* 'all' | 'axesOnly' | 'skipAxes' */
+    push();
+    const pick = a => a[Math.floor(Math.random() * a.length)];
+    const T = st.tgt, next = { ...st };
+    let note = '', narrow = false;
+    if (mode !== 'axesOnly') {
+      if (T.cat) {
+        const p = pool();
+        if (p.list.length) next.cat = pick(p.list);
+        narrow = p.list.length <= 2 && p.full > 2;
+        note = ' — 카테고리 후보 ' + p.list.length + '/' + p.full + '종'
+             + (p.skipped && p.list.length < p.full
+                ? ' (이미 쓴 ' + p.skipped + '종 제외 · 회피 끄면 전체)' : '');
+        next.ex = '';
+      }
+      if (T.ex) {
+        const cand = exRows(next.cat, gender).map(r => r[0]).filter(v => v && v !== '__custom__');
+        next.ex = cand.length ? pick(cand) : '';
+      }
+      if (T.expr) next.expr = pick(S.EXPRESSION_OPTIONS.filter(x => x[0]))[0];
+      if (T.orient) next.orient = pick(S.ORIENTATION_OPTIONS.filter(x => x[0]))[0];
+      if (T.pose) next.pose = pick(S.POSE_OPTIONS.filter(x => x[0]))[0];
+      if (T.aspect) next.aspect = pick(SG_ASPECTS)[0];
+    }
+    /* 화각은 세부 강도만 굴릴 때도 함께 굴러간다 — 원본과 같다 */
+    if (T.frame) next.frame = pick(SG_FRAMES.filter(x => x[0]))[0];
+    if (mode !== 'skipAxes' && T.adv) {
+      const ax = { ...next.axes };
+      S.LOCAL_AXES.forEach(k => {
+        const vals = (S.ADVANCED_OPTIONS[k] || []).filter(v => v !== 'AUTO');
+        ax[k] = (Math.random() < 0.25 || !vals.length) ? '' : vals[Math.floor(Math.random() * vals.length)];
+      });
+      next.axes = ax;
+    }
+    setSt(next);
+    setStatus((mode === 'axesOnly' ? '세부 강도를 굴렸다'
+      : mode === 'skipAxes' ? '세부 강도는 그대로 두고 나머지를 굴렸다'
+      : '단일 컷 설정을 굴렸다') + note + (narrow ? ' ⚠' : ''));
+  }
+
+  function reset() {
+    push();
+    const f = sgFresh();
+    setSt(o => ({ ...f, mode: o.mode, tgt: o.tgt, carryFace: o.carryFace,
+                  carryBody: o.carryBody, avoid: o.avoid }));
+    setStatus('단일 컷 설정을 초기화했다');
+  }
+
+  /* 복사하면 쓴 컷 기록에 한 조합이 쌓인다 — 콜라주와 같은 기록이다 */
+  function noteUse() {
+    if (!mech || !st.cat || st.cat === '__custom__') return;
+    const d = box.current.data;
+    if (!d.used) d.used = {};
+    const arr = d.used[mech] || (d.used[mech] = []);
+    const ex = st.ex || '';
+    const hit = arr.find(r => r.cat === st.cat && (r.ex || '') === ex);
+    if (hit) { hit.n = (hit.n || 1) + 1; hit.t = Date.now(); }
+    else arr.push({ cat: st.cat, ex: ex, n: 1, t: Date.now() });
+    box.current.save();
+  }
+
+  const catNote = S.CAT_KO[st.cat] || '';
+  const exNote = st.ex ? (S.EX_NOTE[st.ex] || '') : '';
+  const axOn = S.LOCAL_AXES.filter(k => st.axes[k]).length;
+  const tgtOn = SG_TARGETS.filter(([k]) => st.tgt[k]).length;
+  const usedN = ATK.usedOf(mech).length;
+
+  /* 한글 요약 — 접어둔 칸의 상태까지 한 줄에 모은다 */
+  const summary = (() => {
+    const half = a => Object.fromEntries(a.map(o => [o[0], (o[1] || '').split(' — ')[1] || o[1]]));
+    const EX = half(S.EXPRESSION_OPTIONS), OR = half(S.ORIENTATION_OPTIONS), PO = half(S.POSE_OPTIONS);
+    const cr = catRows(gender).find(r => r[0] === st.cat);
+    const er = exList.find(r => r[0] === st.ex);
+    const mood = [EX[st.expr], OR[st.orient], PO[st.pose]].filter(Boolean).join(' · ');
+    const flags = ['화풍 ' + ((S.ART_STYLES.find(r => r[0] === style) || ['', style])[1])];
+    if (axOn) flags.push('세부 강도 ' + axOn + '개');
+    const carried = (st.carryFace ? AL.carryValues(S.CARRY_FACE, record, gender).length : 0)
+                  + (st.carryBody ? AL.carryValues(S.CARRY_BODY, record, gender).length : 0);
+    if (carried) flags.push('의인화 설정 ' + carried + '개 전달');
+    if (st.avoid && usedN) flags.push('이미 쓴 카테고리는 랜덤에서 뺀다');
+    return { head: (cr ? cr[2] : st.cat) + (er ? ' — ' + er[2] : ''), aspect: st.aspect, mood, flags };
+  })();
+
+  const optRows = rows => rows.map(([v, t]) => html`<option key=${v} value=${v}>${t}</option>`);
+
+  return html`
+    <section class="panel">
+      <div class="panel-head">
+        <strong>단일 컷</strong>
+        <span>콜라주 없이 한 장만 · 카테고리 · 예시 · 표정 · 시점 · 포즈 · 세부 강도</span>
+      </div>
+
+      <div class="form-section">
+        <aside class="studio-setup" aria-label="기체 기본 설정">
+          <div class="section-caption"><b>01</b> 기체 & 화풍</div>
+          <div class="studio-selection"><div><small>SELECTED UNIT</small><strong>${mech || '기체를 선택하세요'}</strong></div>
+            <span class="selection-count">${usedN ? usedN + '조합 씀' : '처음'}</span></div>
+          <div class="setup-identity">
+            <div class="field" style="margin-bottom:9px">
+              <label>기체 <small>의인화 탭과 같은 기체를 본다</small></label>
+              <select aria-label="시리즈" value=${series} onchange=${e => setSeries(e.target.value)}>
+                <option value="">시리즈 전체</option>
+                ${seriesList.map(k => html`<option key=${k} value=${k}>${(data.series.name || {})[k] || k}</option>`)}
+              </select>
+              <select aria-label="기체" style="margin-top:6px" value=${mech} onchange=${e => setMech(e.target.value)}>
+                <option value="">기체를 고르세요 (${mechList.length})</option>
+                ${mechList.map(c => html`<option key=${c.name} value=${c.name}>${c.name}</option>`)}
+              </select>
+              <select aria-label="화풍" style="margin-top:6px" value=${style} onchange=${e => setStyle(e.target.value)}>
+                ${S.ART_STYLES.map(r => html`<option key=${r[0]} value=${r[0]}>화풍 · ${r[1]}</option>`)}
+              </select>
+            </div>
+          </div>
+          <div class="setup-options">
+            <div class="gender-tabs">
+              ${[['female', '여성 / Female'], ['male', '남성 / Male']].map(([g, t]) => html`
+                <button type="button" key=${g} class=${'gt' + (gender === g ? ' on' : '')}
+                        onclick=${() => setGender(g)}>${t}</button>`)}
+            </div>
+            <div class="field" style="margin-top:10px">
+              <label>랜덤 성격 <small>어떤 카테고리 판에서 고를지</small></label>
+              <select aria-label="랜덤 성격" value=${st.mode} onchange=${e => set('mode', e.target.value)}>
+                ${Object.entries(S.RANDOM_MODES).map(([k, m]) => html`
+                  <option key=${k} value=${k}>${m.ko} — ${m.descOne || m.desc}</option>`)}
+              </select>
+            </div>
+            <div class="param-actions" style="margin-top:8px">
+              <button type="button" onclick=${() => roll('all')}>🎲 전체 랜덤</button>
+              <button type="button" onclick=${() => roll('axesOnly')}>🎲 세부 강도만</button>
+              <button type="button" onclick=${() => roll('skipAxes')}>🎲 세부 강도 빼고</button>
+            </div>
+            ${hasPrev ? html`<button type="button" class="card-rnd sub" style="margin-top:6px"
+                                     onclick=${undo}>↩ 직전 설정으로</button>` : null}
+
+            <details class="grp" style="margin-top:8px">
+              <summary><span>랜덤으로 정할 것<em class=${tgtOn ? 'on' : ''}>  ${tgtOn}/${SG_TARGETS.length}개 켬</em></span>
+                <i>끈 칸은 굴려도 그대로 둔다</i></summary>
+              <div class="grp-in">
+                <div class="rnd-tgt">
+                  ${SG_TARGETS.map(([k, ko]) => html`
+                    <label key=${k}><input type="checkbox" checked=${!!st.tgt[k]}
+                      onchange=${e => setTgt(k, e.target.checked)} /><span>${ko}</span></label>`)}
+                </div>
+              </div>
+            </details>
+          </div>
+        </aside>
+
+        <div class="studio-editor">
+          <div class="section-caption"><b>02</b> 이 컷은 무엇인가</div>
+
+          <div class="field" style="margin-top:10px">
+            <label>Category <small>카테고리</small></label>
+            <select aria-label="카테고리" value=${st.cat} onchange=${e => { set('cat', e.target.value); set('ex', ''); }}>
+              ${catRows(gender).map(r => html`<option key=${r[0]} value=${r[0]}>${r[1]} — ${r[2]}</option>`)}
+            </select>
+            ${st.cat === '__custom__' ? html`
+              <input type="text" style="margin-top:6px" placeholder="카테고리 직접 입력"
+                     value=${st.catCustom} oninput=${e => set('catCustom', e.target.value)} />` : null}
+            ${catNote ? html`<div class="param-note" style="margin-top:4px">${catNote}</div>` : null}
+          </div>
+
+          <div class="field" style="margin-top:9px">
+            <label>Example Menu <small>예시 메뉴</small></label>
+            <select aria-label="예시 메뉴" value=${st.ex} onchange=${e => set('ex', e.target.value)}>
+              ${['basic', 'popular', 'special'].map(g => {
+                const rows = exList.filter(r => r[3] === g);
+                if (!rows.length) return null;
+                return html`<optgroup key=${g} label=${S.GROUP_LABELS[g] || g}>
+                  ${rows.map(r => html`<option key=${r[0]} value=${r[0]}>${r[1]} — ${r[2]}</option>`)}
+                </optgroup>`;
+              })}
+            </select>
+            ${st.ex === '__custom__' ? html`
+              <input type="text" style="margin-top:6px" placeholder="예시 직접 입력"
+                     value=${st.exCustom} oninput=${e => set('exCustom', e.target.value)} />` : null}
+            ${exNote ? html`<div class="param-note" style="margin-top:4px">${exNote}</div>` : null}
+          </div>
+
+          <div class="param-grid" style="margin-top:9px">
+            <div class="field"><label>Aspect <small>화면 비율</small></label>
+              <select aria-label="화면 비율" value=${st.aspect} onchange=${e => set('aspect', e.target.value)}>
+                ${optRows(SG_ASPECTS)}</select></div>
+            <div class="field"><label>Framing <small>화각</small></label>
+              <select aria-label="화각" value=${st.frame} onchange=${e => set('frame', e.target.value)}>
+                ${optRows(SG_FRAMES)}</select></div>
+            <div class="field"><label>Expression <small>표정</small></label>
+              <select aria-label="표정" value=${st.expr} onchange=${e => set('expr', e.target.value)}>
+                ${optRows(S.EXPRESSION_OPTIONS)}</select></div>
+            <div class="field"><label>Body Orientation <small>앞/옆/뒷태</small></label>
+              <select aria-label="앞옆뒷태" value=${st.orient} onchange=${e => set('orient', e.target.value)}>
+                ${optRows(S.ORIENTATION_OPTIONS)}</select></div>
+            <div class="field"><label>Pose <small>포즈</small></label>
+              <select aria-label="포즈" value=${st.pose} onchange=${e => set('pose', e.target.value)}>
+                ${optRows(S.POSE_OPTIONS)}</select></div>
+          </div>
+
+          <details class="grp" style="margin-top:9px">
+            <summary><span>직접 입력<em class=${[st.scene, st.outfit, st.camera, st.custom].filter(Boolean).length ? 'on' : ''}>
+              ${[st.scene, st.outfit, st.camera, st.custom].filter(Boolean).length
+                ? '  ' + [st.scene, st.outfit, st.camera, st.custom].filter(Boolean).length + '칸 적음' : ''}</em></span>
+              <i>장면 · 의상 · 카메라 · 추가 지시</i></summary>
+            <div class="grp-in">
+              ${[['scene', 'Scene / Location', '장면·장소', 'AUTO'],
+                 ['outfit', 'Outfit', '의상', 'AUTO'],
+                 ['camera', 'Camera / Lighting', '카메라·조명', 'AUTO'],
+                 ['custom', 'Custom Instruction', '추가 지시', '예: rain outside the window, warm lamp light']
+                ].map(([k, en, ko, ph]) => html`
+                <div class="field" key=${k} style="margin-top:9px">
+                  <label>${en} <small>${ko}</small></label>
+                  <input type="text" placeholder=${ph} value=${st[k]} oninput=${e => set(k, e.target.value)} />
+                </div>`)}
+            </div>
+          </details>
+
+          <details class="grp" style="margin-top:9px">
+            <summary><span>세부 강도<em class=${axOn ? 'on' : ''}>${axOn ? '  ' + axOn + ' 지정' : ''}</em></span>
+              <i>비워두면 지정하지 않는다 — 한 장이라 이 컷에만 걸린다</i></summary>
+            <div class="grp-in">
+              ${S.LOCAL_AXES.map(k => {
+                const lab = S.ADVANCED_LABELS[k] || [k, ''], ko = S.ADV_VAL[k] || {};
+                return html`<div class="field" key=${k} style="margin-top:7px">
+                  <label>${lab[0]} <small>${lab[1]}</small></label>
+                  <select aria-label=${'세부 ' + lab[0]} value=${st.axes[k] || ''} onchange=${e => setAxis(k, e.target.value)}>
+                    ${(S.ADVANCED_OPTIONS[k] || []).map(v => html`
+                      <option key=${v} value=${v === 'AUTO' ? '' : v}>
+                        ${v === 'AUTO' ? '지정 안 함' : (ko[v] ? v + ' — ' + ko[v] : v)}</option>`)}
+                  </select></div>`;
+              })}
+            </div>
+          </details>
+
+          <div class="save-bar" style="align-items:flex-start;flex-direction:column;gap:6px;margin-top:10px">
+            ${[['carryFace', '이 기체의 얼굴 설정을 정체성에 넘기기'],
+               ['carryBody', '이 기체의 체형 설정을 정체성에 넘기기'],
+               ['avoid', '이미 쓴 카테고리는 랜덤에서 빼기']].map(([k, ko]) => html`
+              <label key=${k} style="display:flex;align-items:center;gap:7px;margin:0;cursor:pointer;font-size:11.5px">
+                <input type="checkbox" checked=${!!st[k]} style="width:auto;margin:0;flex:none"
+                       onchange=${e => set(k, e.target.checked)} /><span>${ko}</span></label>`)}
+            <span class="uz">복사하면 쓴 컷 기록에 쌓인다. 한 장이므로 조합 하나만 적립된다.</span>
+          </div>
+
+          <div class="param-actions">
+            <button type="button" onclick=${() => { setStatus('단일 컷 설정 적용 완료'); }}>설정 반영</button>
+            <button type="button" onclick=${reset}>단일 컷 리셋</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ko-sum">
+        <div class="ks-t">지금 설정 요약</div>
+        <div class="ks-r"><b>한 장</b>${summary.head} <i>${summary.aspect}</i>${summary.mood ? html`<u>${summary.mood}</u>` : null}</div>
+        <div class="ks-f">${summary.flags.join(' · ')}</div>
+      </div>
+
+      <div class="controls">
+        <button class="primary" type="button" disabled=${!prompt}
+                onclick=${() => copyText(prompt).then(
+                  () => { noteUse(); setStatus('클립보드에 복사했다 — 쓴 컷 기록에 쌓았다'); },
+                  () => setStatus('복사에 실패했다'))}>클립보드 복사</button>
+        <button type="button" aria-expanded=${String(showText)}
+                onclick=${() => setShowText(v => !v)}>${showText ? '텍스트 닫기' : '텍스트 보기'}</button>
+      </div>
+      <div class="status" role="status">${status}</div>
+      ${showText && html`
+        <div class="prompt-view">
+          <textarea aria-label="생성 프롬프트" readonly spellcheck="false" value=${prompt}></textarea>
+        </div>`}
+    </section>`;
+}
+
+
 function App() {
   const [data, setData] = useState(null);
   const [err, setErr] = useState(null);
@@ -770,6 +1151,7 @@ function App() {
   const [mech, setMech] = useState('');
   const [gender, setGender] = useState('female');
   const [style, setStyle] = useState(S.DEFAULT_STYLE);
+  const [tab, setTab] = useState('anthro');
   const [zoom, setZoom] = useState(null);
   const [toast, showToast] = useToast();
   const [stamp, setStamp] = useState('');
@@ -814,12 +1196,22 @@ function App() {
     <${AppearanceControls} />
     <${WorkspaceHeading} title="캐릭터 스튜디오" code="PROMPT TOOLKIT"
       subtitle="기체의 개성을 고르고, 나만의 캐릭터로." />
-    <${AnthroPanel} data=${data} series=${series} setSeries=${setSeries}
-      mech=${mech} setMech=${setMech} gender=${gender} setGender=${setGender}
-      style=${style} setStyle=${setStyle} box=${box}
-      seriesList=${seriesList} mechList=${mechList} card=${card}
-      prevRef=${prevRef} prevFrom=${prevFrom} setPrevFrom=${setPrevFrom}
-      onZoom=${z => setZoom(z)} />
+    <div class="gender-tabs" role="tablist" aria-label="프롬프트 갈래" style="margin-bottom:10px">
+      ${[['anthro', '의인화'], ['single', '단일 컷']].map(([k, ko]) => html`
+        <button type="button" key=${k} role="tab" aria-selected=${String(tab === k)}
+                class=${'gt' + (tab === k ? ' on' : '')} onclick=${() => setTab(k)}>${ko}</button>`)}
+    </div>
+    ${tab === 'anthro'
+      ? html`<${AnthroPanel} data=${data} series=${series} setSeries=${setSeries}
+          mech=${mech} setMech=${setMech} gender=${gender} setGender=${setGender}
+          style=${style} setStyle=${setStyle} box=${box}
+          seriesList=${seriesList} mechList=${mechList} card=${card}
+          prevRef=${prevRef} prevFrom=${prevFrom} setPrevFrom=${setPrevFrom}
+          onZoom=${z => setZoom(z)} />`
+      : html`<${SinglePanel} data=${data} series=${series} setSeries=${setSeries}
+          mech=${mech} setMech=${setMech} gender=${gender} setGender=${setGender}
+          style=${style} setStyle=${setStyle} box=${box}
+          seriesList=${seriesList} mechList=${mechList} card=${card} />`}
     <span class="build-stamp">${stamp}</span>
 
     ${zoom && html`<${Zoom} list=${zoom.list} start=${zoom.i} onClose=${() => setZoom(null)} />`}
