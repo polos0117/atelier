@@ -188,6 +188,20 @@ function copyText(text) {
   });
 }
 
+/* 자물쇠 그림 — 이모지(🔓/🔒)는 폰에서 둘 다 비슷하게 보여 구분이 안 된다.
+   잠김은 고리가 몸통 위에 얹히고, 풀림은 고리가 옆으로 젖혀져 한눈에 갈린다 */
+function LockIcon({ open }) {
+  return html`
+    <svg viewBox="0 0 20 20" width="14" height="14" aria-hidden="true"
+         fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <rect x="4" y="9" width="12" height="9" rx="2" fill="currentColor"
+            fill-opacity=${open ? '.15' : '.3'} />
+      ${open
+        ? html`<path d="M8 9V6.5a3.5 3.5 0 0 1 6.6-1.6" />`
+        : html`<path d="M7 9V6.5a3 3 0 0 1 6 0V9" />`}
+    </svg>`;
+}
+
 /* ── 예시 ──
    고른 값이 실제로 어떤 모습인지 보여 준다. 두 가지를 쓴다.
      도식  체형·머리처럼 윤곽으로 갈리는 항목 (lib/figures.js)
@@ -296,7 +310,7 @@ function Param({ def, value, custom, locked, gender, img, style, exclude,
                 onclick=${onLock}
                 aria-pressed=${String(!!locked)}
                 title=${locked ? '이 칸은 랜덤에서 뺀다 — 눌러서 풀기' : '이 칸을 랜덤에서 뺀다'}>
-          ${locked ? '🔒 잠김' : '🔓 잠금'}
+          <${LockIcon} open=${!locked} />${locked ? '잠김' : '잠금'}
         </button>
       </div>
       <select value=${value} onchange=${e => onValue(e.target.value)}>
