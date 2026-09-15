@@ -2479,14 +2479,25 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
       ' Keep construction, layering, and fastening faithful to that tradition — no mixed-culture pastiche.';
   }
 
-  function buildCollagePrompt(){
-    const s=selectedSource(),adv=getAdvanced(),custom=document.getElementById('collageCustom').value.trim();
+  /* 콜라주 입력 모으기 — 단일 컷과 같은 뜻. 화면을 읽는 자리를 한 곳으로 모은다.
+     여섯 칸을 짜는 블록들(structureBlock 등)은 아직 각자 읽는다. 다음 조각에서 옮긴다 */
+  function readCollageState(){
+    const chk=id=>{const e=document.getElementById(id);return !!(e&&e.checked);};
+    const el=document.getElementById('collageCustom');
+    return {
+      source:selectedSource(), adv:getAdvanced(),
+      custom:el?el.value.trim():'',
+      carryFace:chk('carryFace'), carryBody:chk('carryBody'),
+    };
+  }
+  function buildCollagePrompt(st){
+    st=st||readCollageState();
+    const s=st.source,adv=st.adv,custom=st.custom;
     const parts=[
       '[INPUT]\n\nSOURCE MOBILE SUIT: ['+s.mech+']\n\nThis name is identity-provenance metadata only, used for lore, personality, and occupation context. It must not be used to reconstruct, restore, or invent mobile-suit armor, weapons, shields, backpacks, mechanical limbs, or other canonical equipment.\n\nUse the attached clearly adult anthropomorphized character as the absolute identity and equipment reference for this image.',
       '[IDENTITY LOCK]\n\nUse the SAME clearly adult '+GW()+' in all six panels. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, '+GCHEST()+', waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign. Only identity repeats. Facial expression is not identity. The brows, eyelids, eye openness, mouth shape and lip parting must follow the expression specified elsewhere in this prompt \u2014 "preserve mouth shape" refers to the resting structure and proportion of the lips, not to holding a neutral mouth. A specified expression must be clearly readable on the face.',
       lifestyleReferenceLock(),
-      carryBlock(document.getElementById('carryFace')&&document.getElementById('carryFace').checked,
-                 document.getElementById('carryBody')&&document.getElementById('carryBody').checked),
+      carryBlock(st.carryFace,st.carryBody),
       '[OUTPUT]\n\nCreate ONE SINGLE 3:2 LANDSCAPE image as a clean 3-column × 2-row collage:\n1 | 2 | 3\n4 | 5 | 6\nExactly six equal, approximately square panels. Only small numerals 1–6 in the upper-left corners. No captions, titles, labels, subtitles, logos-as-text, or other words. Exactly one '+GW()+' per panel.',
       lifestyleStyleBlock(),
       structureBlock(),
@@ -4016,10 +4027,20 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     return out;
   }
 
-  function buildAnthroPrompt(){
-    const s=selectedSource(),gender=document.getElementById('genderInput').value||'female';
+  /* 의인화 입력 모으기. 설정 값 목록(getParamValues)까지 여기서 걷어 둔다 */
+  function readAnthroState(){
+    const g=document.getElementById('genderInput');
+    return {
+      source:selectedSource(),
+      gender:(g&&g.value)||'female',
+      params:getParamValues(),
+    };
+  }
+  function buildAnthroPrompt(st){
+    st=st||readAnthroState();
+    const s=st.source,gender=st.gender;
     const lines=['gender: '+gender,'mobile suit name: '+s.mech,'series: '+s.series];
-    getParamValues().forEach(p=>lines.push(p[0]+': '+p[1]));
+    st.params.forEach(p=>lines.push(p[0]+': '+p[1]));
     const block='PARAMETERS = [\n'+lines.join(',\n')+'\n]';
     /* 화풍은 27개 파라미터 중 하나로 묻히면 힘이 약하다.
        콜라주·단일과 같이 독립 블록으로 올려 앞에 세운다. */
