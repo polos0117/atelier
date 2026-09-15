@@ -100,6 +100,10 @@ main{padding:12px}
 .stat{background:var(--panel);border:1px solid var(--rule);border-radius:7px;padding:7px 8px;text-align:center}
 .stat i{display:block;font-style:normal;font-size:10px;color:var(--dim);letter-spacing:.06em}
 .stat b{font-size:15px}
+/* 시리즈·화풍은 한 줄에 둘이 나란히, 남는 너비를 반씩 나눠 쓴다.
+   화풍 이름이 길어서 40% 로 묶으면 잘린다 */
+.ctl.filters{flex-wrap:nowrap}
+.ctl.filters select{flex:1 1 0;width:100%;min-width:0;text-overflow:ellipsis}
 .sec{font-size:11px;color:var(--dim);letter-spacing:.08em;margin:0 0 6px}
 /* 시트 안에서는 화풍 이름이 길다 ("한국형 글로시 게임 일러스트"). 머리말 필터처럼
    40% 로 묶으면 잘리므로, 성별 전환을 뺀 남는 너비를 전부 준다 */
@@ -401,6 +405,8 @@ function App() {
       </div>
       <div class="ctl">
         <input placeholder="이름으로 찾기" value=${q} oninput=${e => setQ(e.target.value)} />
+      </div>
+      <div class="ctl filters">
         <select value=${ser} onchange=${e => setSer(e.target.value)}>
           <option value="">시리즈 전체</option>
           ${seriesList.map(s => html`<option value=${s}>${data.series.name[s] || s}</option>`)}
