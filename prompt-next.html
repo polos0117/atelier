@@ -74,7 +74,9 @@ textarea{min-height:200px;font-family:ui-monospace,Menlo,monospace;font-size:11.
 .grp .body{padding:0 12px 12px}
 .pdef{margin-bottom:9px}
 .pdef.sub{padding-left:10px;border-left:2px solid var(--rule)}
-.pdef label{display:block;font-size:11.5px;color:var(--dim);margin-bottom:3px}
+.pdef label{display:block;font-size:11.5px;color:var(--dim)}
+.plabel{display:flex;align-items:center;gap:4px;margin-bottom:3px}
+.plabel label{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .pdef label b{color:var(--ink);font-weight:600}
 .out{margin-top:8px}
 .lockbtn{background:none;border:0;color:var(--dim);font-size:12px;cursor:pointer;
@@ -278,15 +280,19 @@ function Param({ def, value, custom, locked, gender, img, style, exclude,
   const [open, setOpen] = useState(false);
   return html`
     <div class=${'pdef' + (def.sub ? ' sub' : '')}>
-      <label>
-        <b>${def.ko}</b> · ${def.label}
+      ${/* 자물쇠 단추를 label 안에 두면 안 된다 — button 은 label 의 대상이 될 수 있어
+           누를 때 라벨이 한 번 더 클릭을 보낸다. 두 번 토글돼 제자리로 돌아온다 */''}
+      <div class="plabel">
+        <label>
+          <b>${def.ko}</b> · ${def.label}
+        </label>
         <button type="button" class=${'lockbtn' + (locked ? ' on' : '')}
-                onclick=${e => { e.preventDefault(); e.stopPropagation(); onLock(); }}
+                onclick=${onLock}
                 aria-pressed=${String(!!locked)}
                 title=${locked ? '이 칸은 랜덤에서 뺀다 — 눌러서 풀기' : '이 칸을 랜덤에서 뺀다'}>
           ${locked ? '🔒' : '🔓'}
         </button>
-      </label>
+      </div>
       <select value=${value} onchange=${e => onValue(e.target.value)}>
         ${def.options.map(([v, t]) => html`<option value=${v}>${t}</option>`)}
       </select>
