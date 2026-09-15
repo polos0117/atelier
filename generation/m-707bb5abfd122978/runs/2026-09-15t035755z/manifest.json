@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "card": "데난 존",
+  "model": "XM-01 Den'an Zon",
+  "series": "기동전사 건담 F91",
+  "repository": "polos0117/atelier",
+  "branch": "codex/denan-zon-20260915",
+  "base_commit": "4c3cc723e9d1a88695d812deb80201f13df06881",
+  "prompt_source": "prompts directly assembled from the current prompt.html v9.19 workflow after the cloud browser could not open a fresh tab",
+  "run": "2026-09-15t035755z",
+  "created": "2026-09-15T03:57:55Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Settings preserve the v9.19 parameter schema; browser export was unavailable and the exact submitted prompts are stored with this run",
+  "references": [
+    "data/mech.json",
+    "official/mecha/F91.json",
+    "official/url/F91.json",
+    "https://p-bandai.jp/hobby/special-1000019110/",
+    "https://en.gundam-official.com/news/pl81sbgizf1k4p05lpg99b4k"
+  ],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female light neutral-olive skin tone, very dark slate-green hair, and amber-gold eyes only; casual uses the female generated image as the sole identity reference",
+    "equipment_lock": "Exactly one long shot lancer with integrated twin machine-gun block, one four-vane violet-magenta circular beam shield on the left forearm, one integrated left-forearm dual beam-gun port, two rear-waist beam-saber hilts, two rounded spiked shoulder shells, and one compact vernier backpack; no beam rifle or shoulder grenade racks; exactly two human arms and two human legs",
+    "casual_scene": "Custom bicycle frame builder checking the seat-post alignment of one road bicycle in a warm workshop"
+  },
+  "jobs": [
+    {
+      "id": "denan-zon-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-707bb5abfd122978/runs/2026-09-15t035755z/01-female-anthro.txt",
+      "original_generated_file": "exec-b4c15e8b-3cba-4ffb-8918-89ef6622ba88.png",
+      "file": "img/데난 존_cinematic_semi_real_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "8bb9d92cc3fbcc3240b666be2c9a5d3e82820064d4f9d97511c1408140d0b587",
+      "bytes": 124822
+    },
+    {
+      "id": "denan-zon-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "denan-zon-female-01",
+      "prompt": "generation/m-707bb5abfd122978/runs/2026-09-15t035755z/02-male-anthro.txt",
+      "original_generated_file": "exec-6abf8197-acea-4b93-bfcc-3accbdfd0085.png",
+      "file": "img/데난 존_cinematic_semi_real_m.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "b663d5afa0a1ccc7b40207f4029d552456de50e3bc2f0af30fac3ccec1c6a238",
+      "bytes": 150608
+    },
+    {
+      "id": "denan-zon-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "denan-zon-female-01",
+      "prompt": "generation/m-707bb5abfd122978/runs/2026-09-15t035755z/03-female-casual.txt",
+      "original_generated_file": "exec-8af91b88-ebf4-41a9-b43a-85e08a3c2d43.png",
+      "file": "img/데난 존_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "9ba26ef7f3a5c4b46d56b8b32b545ba0e841b1d8252cf9d46fd2d509eaad5155",
+      "bytes": 137140
+    }
+  ]
+}

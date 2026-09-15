@@ -1,0 +1,29 @@
+{
+  "데난 존_cinematic_semi_real_f.webp": {
+    "card": "데난 존",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "8bb9d92cc3fbcc3240b666be2c9a5d3e82820064d4f9d97511c1408140d0b587",
+    "prompt": "generation/m-707bb5abfd122978/runs/2026-09-15t035755z/01-female-anthro.txt",
+    "manifest": "generation/m-707bb5abfd122978/runs/2026-09-15t035755z/manifest.json"
+  },
+  "데난 존_cinematic_semi_real_m.webp": {
+    "card": "데난 존",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "b663d5afa0a1ccc7b40207f4029d552456de50e3bc2f0af30fac3ccec1c6a238",
+    "prompt": "generation/m-707bb5abfd122978/runs/2026-09-15t035755z/02-male-anthro.txt",
+    "manifest": "generation/m-707bb5abfd122978/runs/2026-09-15t035755z/manifest.json"
+  },
+  "데난 존_cinematic_semi_real_f_casual1.webp": {
+    "card": "데난 존",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "9ba26ef7f3a5c4b46d56b8b32b545ba0e841b1d8252cf9d46fd2d509eaad5155",
+    "prompt": "generation/m-707bb5abfd122978/runs/2026-09-15t035755z/03-female-casual.txt",
+    "manifest": "generation/m-707bb5abfd122978/runs/2026-09-15t035755z/manifest.json"
+  }
+}
