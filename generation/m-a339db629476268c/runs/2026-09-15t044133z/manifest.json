@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "card": "기라가",
+  "model": "xvt-zgc Ghirarga",
+  "series": "기동전사 건담 AGE",
+  "repository": "polos0117/atelier",
+  "branch": "main",
+  "base_commit": "12cdd9a1c2d9e29820e3330a1a641774751318ad",
+  "prompt_source": "prompts assembled from the current prompt.html v9.19 selection schema after the cloud browser tab discovery timed out; exact successful submitted prompts are stored with this run",
+  "run": "2026-09-15t044133z",
+  "created": "2026-09-15T04:41:33Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Settings preserve the v9.19 parameter schema; browser export was unavailable and the exact successful submitted prompts are stored with this run",
+  "references": [
+    "data/mech.json",
+    "official/mecha/AGE.json",
+    "official/url/AGE.json",
+    "https://bandai-hobby.net/item/01_1816/",
+    "https://p-bandai.jp/item/item-1000159471/",
+    "https://www.bandaispirits.co.jp/products/search/detail.php?grp_id=5325&prd_id=4543112757111000",
+    "https://g-age.ggame.jp/sp/ms_04.html"
+  ],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "pose_link": "No deliberately large pose distinction was imposed between the female and male portraits",
+    "identity_link": "Male matches only the female warm light-olive skin tone, very dark wine-red hair color, and acid-green eye color; casual uses the female generated image as the sole identity reference",
+    "equipment_lock": "Exactly one intact double-ended Ghirarga Spear with two short acid-green beam blades, one segmented mechanical Ghirarga Tail attached to the lower back, one visible non-firing chest Beam Buster emitter, sharp crimson Vagan armor and acid-green sensors; no rifle, shield, floating bits, duplicate equipment, or mechanical replacement limbs",
+    "sensual_direction": "Adult confidence and tailored glossy armor curves, with controlled shoulder and side-waist exposure for the female and a fitted mostly armored masculine design",
+    "casual_scene": "Independent perfume formulator evaluating one scent blotter in a warm late-afternoon atelier",
+    "retry_note": "The first casual output attempt was rejected by the image safety system; the successful final prompt changed only the wardrobe concept to a fully covered high-neck tailored jumpsuit"
+  },
+  "jobs": [
+    {
+      "id": "giraga-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-a339db629476268c/runs/2026-09-15t044133z/01-female-anthro.txt",
+      "original_generated_file": "exec-59fb4ce8-4cb8-49e8-b701-de5ee9ba07e6.png",
+      "file": "img/기라가_cinematic_semi_real_f.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "90a3d9950bef3104c0871290c21e3d9e975591cc19b8853ab976ef33f0f9afe7",
+      "bytes": 88836
+    },
+    {
+      "id": "giraga-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "giraga-female-01",
+      "prompt": "generation/m-a339db629476268c/runs/2026-09-15t044133z/02-male-anthro.txt",
+      "original_generated_file": "exec-8be66d05-b91a-41af-ba02-ba0773af02ce.png",
+      "file": "img/기라가_cinematic_semi_real_m.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "359b77b04ec959a51343b6475d066f7c2efdd25dce835a90b05e35b093b2cde4",
+      "bytes": 92180
+    },
+    {
+      "id": "giraga-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "giraga-female-01",
+      "prompt": "generation/m-a339db629476268c/runs/2026-09-15t044133z/03-female-casual.txt",
+      "original_generated_file": "exec-f82e945f-1400-48b0-90aa-224e38e1470e.png",
+      "file": "img/기라가_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [1024, 1536],
+      "sha256": "5387775ebf942125e883af69eb9650239ce2743bc6dc1672e3e4e44a30d7a80e",
+      "bytes": 107066
+    }
+  ],
+  "status": {
+    "generated": true,
+    "converted": true,
+    "uploaded": true,
+    "committed": true,
+    "main_merged": true,
+    "registered": false
+  }
+}
