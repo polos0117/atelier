@@ -388,6 +388,12 @@ function App() {
   useEffect(() => {
     if (!mech) return;
     const rec = recordFor(mech);
+    if (!openRef.current || openRef.current.__card !== mech) {
+      const snap = rec ? JSON.parse(JSON.stringify(rec)) : {};
+      delete snap.prev; snap.__card = mech;
+      openRef.current = snap;
+      setCanUndo(!!(rec && (rec.female || rec.male)));
+    }
     const g = rec && rec[gender];
     setSel((g && g.sel) ? { ...g.sel } : {});
     setCus((g && g.cus) ? { ...g.cus } : {});
@@ -426,6 +432,73 @@ function App() {
       style, morph, translation: translationOf(sel), params,
     });
   }, [card, gender, style, morph, sel, cus, special, underboob, data]);
+
+  /* ── 직전 기체 설정 · 되돌리기 ──
+     PREV 는 다른 기체로 넘어갈 때 두고 온 설정이다. 여러 기체를 잇달아 잡을 때
+     같은 얼굴을 이어 쓰는 일이 잦아서 가져올 수 있게 둔다.
+     OPEN 은 이 기체를 열었을 때의 기록이다. 되돌리기는 여기로 돌아간다 */
+  const prevRef = useRef(null);      /* {name, part} */
+  const openRef = useRef(null);      /* 카드를 열었을 때의 기록 */
+  const [prevFrom, setPrevFrom] = useState('');
+  const [canUndo, setCanUndo] = useState(false);
+
+  const partNow = () => ({ sel: { ...sel }, cus: { ...cus }, ub: underboob, sp: special.trim() });
+
+  /* 기체를 옮기기 직전에 지금 설정을 두고 간다 */
+  const pickMech = name => {
+    if (mech && mech !== name) {
+      prevRef.current = { name: mech, part: partNow() };
+      setPrevFrom(mech);
+    }
+    setMech(name);
+  };
+
+  function applyPart(part) {
+    setSel(part && part.sel ? { ...part.sel } : {});
+    setCus(part && part.cus ? { ...part.cus } : {});
+    setUnderboob(!!(part && part.ub));
+    setSpecial((part && part.sp) || '');
+  }
+
+  function takePrev() {
+    if (!prevRef.current) return;
+    applyPart(prevRef.current.part);
+    showToast('직전 기체 "' + prevRef.current.name + '" 설정을 가져왔다');
+  }
+
+  /* 되돌리기 — 이 기체를 열었을 때로 돌아간다. 한 번 더 누르면 원위치 */
+  function undo() {
+    const back = openRef.current;
+    if (!back) return;
+    const now = { [gender]: partNow() };
+    applyPart(back[gender] || null);
+    openRef.current = now;
+    showToast('열었을 때 값으로 되돌렸다 — 한 번 더 누르면 원래대로');
+  }
+
+  function resetGender() {
+    applyPart(null);
+    showToast((gender === 'female' ? '여성' : '남성') + ' 설정만 비웠다');
+  }
+
+  /* 한 기체의 기록을 파일로 — 저장소에 손으로 넣을 때 쓴다 (툴킷과 같은 꼴) */
+  function exportOne() {
+    const rec = recordFor(mech) || {};
+    const out = {
+      version: 1, card: mech, updated: new Date().toISOString(),
+      record: (() => { const c = { ...rec }; delete c.prev; return c; })(),
+      used: ATK.usedOf(mech), selectedStyle: style,
+    };
+    const text = JSON.stringify(out, null, 2);
+    copyText(text).then(() => showToast('설정을 복사했다'), () => showToast('복사 실패'));
+    try {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
+      a.download = mech.replace(/ /g, '_') + '_settings.json';
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    } catch (e) {}
+  }
 
   /* 값이 바뀌면 저장한다. 처음 불러오는 중(READY 전)에는 쓰지 않는다 —
      빈 값이 기존 기록을 덮어쓰는 사고를 막는다 */
@@ -531,7 +604,7 @@ function App() {
           </select>
         </div>
         <div class="row">
-          <select value=${mech} onchange=${e => setMech(e.target.value)}>
+          <select value=${mech} onchange=${e => pickMech(e.target.value)}>
             <option value="">기체를 고르세요 (${mechList.length})</option>
             ${mechList.map(c => html`<option value=${c.name}>${c.name}</option>`)}
           </select>
@@ -562,6 +635,13 @@ function App() {
             <button class="btn" onclick=${copyToOther}>
               ${gender === 'female' ? '남성' : '여성'} 쪽에 복사
             </button>
+          </div>
+          <div class="bar">
+            ${prevRef.current && prevRef.current.name !== mech ? html`
+              <button class="btn" onclick=${takePrev}>직전 설정 (${prevFrom})</button>` : null}
+            ${canUndo ? html`<button class="btn" onclick=${undo}>되돌리기</button>` : null}
+            <button class="btn" onclick=${resetGender}>이 성별 비우기</button>
+            <button class="btn" onclick=${exportOne}>설정 내보내기</button>
             ${lockCount ? html`
               <button class="btn" onclick=${() => setLocks({})}>자물쇠 모두 풀기</button>` : null}
           </div>
