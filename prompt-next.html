@@ -21,13 +21,15 @@
 (function(){var v='compact';try{if(localStorage.getItem('atelier_density_v1')==='relaxed')v='relaxed'}catch(e){}
 document.documentElement.dataset.density=v})();
 </script>
-<!-- 차례가 중요하다: figures·prompt-anthro 는 toolkit-spec 의 표를 읽는다 -->
-<script src="lib/img.js"></script>
-<script src="lib/toolkit.js"></script>
-<script src="lib/toolkit-spec.js"></script>
-<script src="lib/figures.js"></script>
-<script src="lib/prompt-anthro.js"></script>
-<script src="lib/fresh.js"></script>
+<!-- 차례가 중요하다: figures·prompt-anthro 는 toolkit-spec 의 표를 읽는다.
+     ?v= 는 캐시 우회용이다 — HTML 은 새로 받아도 lib/*.js 는 따로 캐시돼서,
+     고친 모듈이 안 걸린 채 옛 판으로 도는 일이 있었다. lib 를 고치면 이 값을 올린다 -->
+<script src="lib/img.js?v=3"></script>
+<script src="lib/toolkit.js?v=3"></script>
+<script src="lib/toolkit-spec.js?v=3"></script>
+<script src="lib/figures.js?v=3"></script>
+<script src="lib/prompt-anthro.js?v=3"></script>
+<script src="lib/fresh.js?v=3"></script>
 <style>
 :root{
   --void:#0f1115; --deck:#141821; --panel:#1b2130; --rule:#2a3242;
@@ -372,9 +374,20 @@ function App() {
   }, []);
 
   /* prompt.html 이 남긴 설정을 처음 값으로 가져온다 (읽기만 한다) */
+  /* 이 브라우저에 쓴 것이 저장소 기록보다 나중이면 그쪽을 쓴다.
+     lib/toolkit.js 의 recordOf 에 맡기지 않는 까닭은, 그 모듈이 캐시된 옛 판이면
+     방금 저장한 값을 못 보기 때문이다. 여기서 보관함을 직접 본다 */
+  const recordFor = name => {
+    const mine = (box.current.data.anthro || {})[name] || null;
+    const theirs = ATK.recordOf(name);
+    if (!mine) return theirs;
+    if (!theirs) return mine;
+    return (mine.t || 0) >= (theirs.t || 0) ? mine : theirs;
+  };
+
   useEffect(() => {
     if (!mech) return;
-    const rec = ATK.recordOf(mech);
+    const rec = recordFor(mech);
     const g = rec && rec[gender];
     setSel((g && g.sel) ? { ...g.sel } : {});
     setCus((g && g.cus) ? { ...g.cus } : {});
@@ -456,7 +469,13 @@ function App() {
     const rec = ATK.mergeRecord(mech, other, part, { morph });
     const st = box.current.data;
     if (!st.anthro) st.anthro = {};
-    if (rec) st.anthro[mech] = rec; else delete st.anthro[mech];
+    if (rec) {
+      /* mergeRecord 는 반대 몫을 제 눈에 보이는 기록에서 가져온다. 그 모듈이
+         옛 판이면 지금 화면 몫이 빠질 수 있어, 여기서 한 번 더 채워 넣는다 */
+      const now = recordFor(mech);
+      if (now && now[gender] && !rec[gender]) rec[gender] = now[gender];
+      st.anthro[mech] = rec;
+    } else delete st.anthro[mech];
     box.current.flush();
     showToast(name + ' 설정을 ' + oname + ' 쪽에 복사했다');
   }
