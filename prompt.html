@@ -1040,6 +1040,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
 <!-- 설정 항목·카테고리·화풍 문구 같은 고정 자료 표 -->
 <script src="lib/toolkit-spec.js"></script>
 <script src="lib/prompt-anthro.js"></script>
+<script src="lib/prompt-lifestyle.js"></script>
 <script src="generation/loader.js"></script>
 <script>
 (async () => {
@@ -1894,21 +1895,28 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     refreshCollagePrompt();setStatus('statusCollage','랜덤 조합 생성 완료 🎲','ok');
   }
 
-  function exampleRecord(cat,value){
-    const list=EXAMPLE_MAP[cat]||[];
-    return list.find(r=>r[0]===value)||null;
+  /* 아래 아홉 가지는 lib/prompt-lifestyle.js 로 옮겼다.
+     여기 남은 것은 화면·기록에서 값을 걷어 넘겨 주는 껍데기다 */
+  const AL=window.AtelierLifestyle;
+  function exampleRecord(cat,value){return AL.exampleRecord(cat,value);}
+  function exampleText(cat,value,custom=''){return AL.exampleText(cat,value,custom);}
+  function heritageLine(cat,ex){return AL.heritageLine(cat,ex,recOf(mechKey()),curGender());}
+  function carryValues(list){return AL.carryValues(list,recOf(mechKey()),curGender());}
+  function ethnicityOf(){return AL.ethnicityOf(recOf(mechKey()),curGender());}
+  function carryBlock(f,b){return AL.carryBlock(f,b,recOf(mechKey()),curGender());}
+  function lifestyleReferenceLock(){return AL.lifestyleReferenceLock(curGender());}
+  function lifestyleStyleBlock(){return AL.lifestyleStyleBlock(styleKey());}
+  function buildSinglePrompt(st){
+    st=st||readSingleState();
+    return AL.buildSingle(Object.assign({},st,{
+      gender:curGender(), style:styleKey(), record:recOf(mechKey()),
+    }));
   }
+
   /* 예시 한 줄은 화면 라벨(r[1])과 프롬프트로 나가는 글을 겸하고 있었다. 그래서
      프롬프트를 고치려면 목록에 뜨는 이름까지 바뀌었다. 여섯째 칸을 두어 갈랐다 —
      있으면 그 글이 나가고, 없으면 예전처럼 라벨이 나간다. 목록은 어느 쪽이든 r[1] 이다. */
-  function exampleText(cat,value,custom=''){
-    if(value==='__custom__')return custom.trim();
-    /* AUTO 는 "예시를 안 골랐다" 는 뜻인데, 그 줄도 라벨이 "AUTO" 라 예전에는
-       "thematic anchor: AUTO." 가 그대로 프롬프트에 실렸다. 아무 말도 아닌
-       문장을 모든 판에 한 줄씩 넣고 있던 셈이다. 안 골랐으면 아무것도 안 낸다 */
-    if(!value)return '';
-    const r=exampleRecord(cat,value);return r?(r[5]||r[1]):'';
-  }
+
 
   function getPair(n,ps){
     if(ps&&ps.pairs){const q=ps.pairs[n];
@@ -2245,66 +2253,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
       eb.innerHTML='<div class="pp-txt"><b>'+escHtml(lab)+'</b>'+escHtml(n)+'</div>';}
     document.getElementById('sgCatCustom').classList.toggle('hidden',cat!=='__custom__');
   }
-  function buildSinglePrompt(st){
-    st=st||readSingleState();
-    const src=st.source, cat=st.cat;
-    const en=a2=>Object.fromEntries(a2.map(o=>[o[0],(o[1]||'').split(' — ')[0]]));
-    const EX=en(EXPRESSION_OPTIONS), OR=en(ORIENTATION_OPTIONS), PO=en(POSE_OPTIONS);
-    const parts=[
-      '[INPUT]\n\nSOURCE MOBILE SUIT: ['+src.mech+']\n\nThis name is identity-provenance metadata only, used for lore, personality, and occupation context. It must not be used to reconstruct, restore, or invent mobile-suit armor, weapons, shields, backpacks, mechanical limbs, or other canonical equipment.\n\nUse the attached clearly adult anthropomorphized character as the absolute identity and equipment reference for this image.',
-      '[IDENTITY LOCK]\n\nUse the SAME clearly adult '+GW()+' as the attached reference. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, '+GCHEST()+', waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign. Facial expression is not identity. The brows, eyelids, eye openness, mouth shape and lip parting must follow the expression specified elsewhere in this prompt \u2014 "preserve mouth shape" refers to the resting structure and proportion of the lips, not to holding a neutral mouth. A specified expression must be clearly readable on the face.',
-      lifestyleReferenceLock()
-    ];
-    parts.push(carryBlock(st.carryFace,st.carryBody));
-    parts.push(lifestyleStyleBlock());
-    parts.push('[OUTPUT]\n\nCreate ONE SINGLE image in '+st.aspect+
-      ' aspect. Exactly one '+GW()+'. No collage, no panels, no split frames, no numerals, no captions, titles, labels, or any other text.');
-    /* 카테고리 안내문은 콜라주 기준으로 쓰여 있어 "이 쌍은" 같은 말이 섞인다.
-       한 장짜리에는 쌍도 다른 패널도 없으므로 단일 컷 문장으로 바꿔 넣는다. */
-    const soloGuide=g=>String(g||'')
-      .replace(/This pair is/g,'This cut is')
-      .replace(/This pair should/g,'This cut should')
-      .replace(/this pair/g,'this cut')
-      .replace(/not already used by the other pairs/g,'not already used for this character')
-      .replace(/the other pairs/g,'the other cuts')
-      .replace(/\bpairs\b/g,'cuts').replace(/\bpair\b/g,'cut');
-    let dir='[DIRECTION]\n\n';
-    if(cat==='__custom__')dir+='Interpret this cut as: '+
-      (st.catCustom||'a fresh mature concept of your choice')+'.';
-    else if(cat==='auto_random')dir+='Invent a fresh mature concept of your own choosing.';
-    /* 예전에는 카테고리 영문 이름을 한 줄 찍고 그 아래 가이드를 붙였다. 그런데
-       가이드가 이미 같은 말을 쓸 수 있는 꼴로 다시 한다("Use tasteful adult
-       lingerie-inspired evening fashion…"). 콜라주는 Pair 를 가르는 머리글이
-       필요하지만 한 장짜리에는 나눌 것이 없어 이름표만 덩그러니 남았다 */
-    else dir+=soloGuide((CAT[cat]||{}).guide);
-    const ex=exampleText(cat,st.ex,st.exCustom);
-    if(ex)dir+='\nUse this as the thematic anchor: '+ex+'.';
-    dir+=heritageLine(cat,st.ex);
-    parts.push(dir);
-    const lines=[];
-    const fr=st.frame; if(fr)lines.push('Framing: '+fr+'.');
-    const e2=st.expr;
-    if(e2)lines.push('Expression: '+(EX[e2]||e2)+
-      (EXPRESSION_DETAIL[e2]?' \u2014 '+EXPRESSION_DETAIL[e2]:'')+'.');
-    const o2=st.orient; if(o2)lines.push('Body orientation: '+(OR[o2]||o2)+'.');
-    const p2=st.pose; if(p2)lines.push('Pose: '+(PO[p2]||p2)+'.');
-    [['scene','Scene / Location'],['outfit','Outfit'],['camera','Camera / Lighting']].forEach(([k,lab])=>{
-      const v=st[k]; if(v)lines.push(lab+': '+v+'.');
-    });
-    LOCAL_AXES.forEach(k=>{
-      const v=st.axes[k];
-      if(v)lines.push((ADV_EN[k]||k)+': '+v+'.');
-    });
-    const cu=st.custom; if(cu)lines.push('Additional instruction: '+cu+'.');
-    if(lines.length)parts.push('[SETTINGS]\n\n'+lines.map(l=>'- '+l).join('\n'));
-    /* 단일 컷도 같은 까닭으로 뺐다. 목록에 들어가던 것이 내부 열쇠였다.
-       카테고리 회피는 sgAvoid 가 뽑기 단계에서 한다 */
-    parts.push('[NON-EXPLICIT LIMITS]\n\nThe character must clearly read as an adult. The garments are securely fitted and fully opaque, and the styling is suitable for a mainstream fashion or lifestyle editorial. Allowed: sensual modern fashion, adult roleplay-inspired fashion, modern occupation styling, everyday fashion, swimwear, active fashion, source-inspired editorial fashion, lingerie-inspired fashion, exposed shoulders, back, waist, abdomen, thighs, high slits, secure cutouts, and semi-sheer outer layers over opaque inner garments. Do NOT depict exposed nipples, visible areolae, exposed genitals, transparent intimate exposure, wet-fabric nipple reveal, sexual activity, or sexual contact.');
-    parts.push('[FINAL CHECK]\n\nVerify: exactly one image and one '+GW()+'; the requested aspect ratio; no text anywhere in the frame; the selected category and example are followed; no explicit nudity or sexual activity.');
-    const full=parts.filter(Boolean).join('\n\n==================================================\n\n');
-    auditPrompt(MODE.LIFESTYLE,full);
-    return full;
-  }
+
   function sgSummary(){
     const EX=Object.fromEntries(EXPRESSION_OPTIONS.map(o=>[o[0],(o[1]||'').split(' — ')[1]||o[1]]));
     const OR=Object.fromEntries(ORIENTATION_OPTIONS.map(o=>[o[0],(o[1]||'').split(' — ')[1]||o[1]]));
@@ -2511,27 +2460,11 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
 
   /* 전통 의상은 어느 문화의 것인지가 정해져야 한다.
      저장된 계통이 있으면 그것을, 없으면 첨부 이미지에서 읽으라고 지시한다. */
-  function ethnicityOf(){
-    const r=recOf(mechKey()); if(!r)return '';
-    const g=curGender(); if(!r[g])return '';      /* carryValues 와 같은 규칙 */
-    return ((r[g]||{}).sel||{})['facial ethnicity']||'';
-  }
+
   /* 수영복·란제리에도 전통 응용 항목이 있다. 카테고리가 아니라
      고른 예시가 전통을 가리키는지로 판단한다. */
 
-  function heritageLine(cat,ex){
-    if(cat!=='traditional'&&!TRAD_EX[ex])return '';
-    const named=ex&&ex!=='auto_traditional'&&ex!=='__custom__';
-    /* 예시가 이미 문화를 지정했으면(한복·기모노 등) 그쪽이 이긴다.
-       계통과 예시가 어긋날 때 두 지시가 싸우지 않게 한다. */
-    if(named)return '\nHeritage source: the example above already names the tradition — follow it, '+
-      'and keep construction, layering, and fastening faithful to it rather than mixing in other cultures.';
-    const e=ethnicityOf();
-    return '\nHeritage source: '+(e?
-      'use the clothing tradition of '+e+' heritage.':
-      'infer the character\'s ethnic background from the attached reference image and use that clothing tradition.')+
-      ' Keep construction, layering, and fastening faithful to that tradition — no mixed-culture pastiche.';
-  }
+
 
   /* 콜라주 입력 모으기 — 단일 컷과 같은 뜻. 화면을 읽는 자리를 한 곳으로 모은다.
      여섯 칸을 짜는 블록들(structureBlock 등)은 아직 각자 읽는다. 다음 조각에서 옮긴다 */
@@ -2673,39 +2606,8 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
      일상컷 프롬프트로 넘어가, 첨부한 참조 이미지와 지시가 어긋났다.
      지금 성별에 기록이 없으면 반대쪽을 끌어오지 않고 비운다 —
      그 자리는 첨부 이미지가 정체성을 잡게 두는 편이 낫다. */
-  function carryValues(list){
-    const r=recOf(mechKey()); if(!r)return [];
-    const g=curGender(); if(!r[g])return [];
-    const sel=(r[g]&&r[g].sel)||{}, cus=(r[g]&&r[g].cus)||{};
-    const out=[];
-    /* 기록은 고른 값과 직접 입력한 글을 따로 담는다. '직접 입력' 을 고른 항목은
-       sel 에 __custom__ 이라는 표가 들어 있을 뿐이라, cus 에서 실제 글을 꺼내야
-       한다. 안 그러면 프롬프트에 __custom__ 이 그대로 실려 나간다. */
-    (list||CARRY_FACE.concat(CARRY_BODY)).forEach(([k,en])=>{
-      let v=sel[k];
-      if(v==='__custom__')v=(cus[k]||'').trim();
-      if(v)out.push([en,v]);
-    });
-    return out;
-  }
-  function carryBlock(includeFace,includeBody){
-    const v=[];
-    if(includeFace){v.push(...carryValues(CARRY_FACE)); eyeNote(v);}
-    if(includeBody)v.push(...carryValues(CARRY_BODY));
-    if(!v.length)return '';
-    return '[CHARACTER IDENTITY SPEC]\n\n'+
-      'The attached anthropomorphized reference image was generated from this specification:\n'+
-      v.map(x=>'- '+x[0]+': '+x[1]).join('\n')+
-      '\n\nPrecedence: the attached image remains the primary reference. Use this list to resolve anything the image leaves ambiguous'+
-      (includeBody?' — including body proportions that the mobile-suit armor in the reference image may obscure'+
-        (includeFace?', and to prevent facial drift across panels — especially ethnicity, facial structure, and apparent age, which tend to slide toward a generic default over six panels':'')+'. ':
-        (includeFace?', and to prevent drift across panels — especially ethnicity, facial structure, and apparent age, which tend to slide toward a generic default over six panels. ':'. '))+
-      /* 예전에는 여기서 끝났다. 그러면 장갑·포즈·원근 때문에 몸이 가려져
-         '어긋나 보이는' 경우까지 이미지가 이기고, 정작 이 목록이 필요한
-         자리에서 아무 일도 안 하게 된다. 뚜렷이 보일 때와 애매할 때를 가른다. */
-      'Where the image shows something clearly and unambiguously, follow the image. '+
-      'Where armor, pose, foreshortening, camera angle, cropping, or occlusion makes a detail ambiguous, use this list to resolve it rather than guessing.';
-  }
+
+
   function renderCarry(){
     const k=mechKey();
     const render1=(elId,onId,list)=>{
@@ -3394,16 +3296,12 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
   const GW=()=>curGender()==='male'?'man':'woman';
   const GPOSS=()=>curGender()==='male'?'his':'her';
   const GCHEST=()=>curGender()==='male'?'chest':'bust';
-  function lifestyleReferenceLock(){return LIFESTYLE_REFERENCE_LOCK_BASE
-    .replace('{POSS}',GPOSS());}
 
 
 
 
-  function lifestyleStyleBlock(){
-    const profile=STYLE_PROFILES[styleKey()];
-    return styleBlock()+'\n\n[LIFESTYLE STYLE EXTENSION]\n\n'+profile.lifestyle+'\n\n'+LIFESTYLE_STYLE_LOCK;
-  }
+
+
   /* MODE 누수 감지용 최소 점검 — UI에는 노출하지 않고 콘솔 경고만 남긴다 */
 
   function fillArtStyle(){
