@@ -4,7 +4,7 @@
   "description": "기체·파일럿을 골라 겨루는 드래프트. 홈 화면에 두면 저장한 것이 브라우저 청소에 쓸려가지 않는다.",
   "id": "index.html",
   "start_url": "index.html",
-  "scope": "index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#232B36",
   "theme_color": "#232B36",

@@ -4,7 +4,7 @@
   "description": "모은 카드와 그림을 보는 도감. 홈 화면에 두면 저장한 것이 브라우저 청소에 쓸려가지 않는다.",
   "id": "dex.html",
   "start_url": "dex.html",
-  "scope": "dex.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#11161C",
   "theme_color": "#11161C",
