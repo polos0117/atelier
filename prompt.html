@@ -1029,6 +1029,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
  <div class="prompt-dock-actions"><button type="button" id="dockTop">설정 ↑</button><button type="button" id="dockPreview">미리보기</button><button type="button" class="primary" id="dockCopy">복사</button></div></div>
 </div>
 <script src="lib/img.js"></script>
+<script src="lib/toolkit.js"></script>
 <!-- 설정 항목·카테고리·화풍 문구 같은 고정 자료 표 -->
 <script src="lib/toolkit-spec.js"></script>
 <script src="generation/loader.js"></script>
@@ -3635,21 +3636,21 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
 
   /* URL 규칙·썸네일·img.json 구조 읽기는 lib/img.js 가 맡는다 */
   const AIMG=window.AtelierImg;
+  const ATK=window.AtelierToolkit;
   const IMG_BASE=AIMG.BASE;
   const imgURLof=f=>AIMG.imgURL(f);
   const thumbTag=f=>AIMG.thumbTag(f);
-  const STORE_KEY='atelier_toolkit_v1';
   const DATA_URL='toolkit-data.json';     /* 저장소에 커밋해 두는 기반 기록 */
-  let STORE={last:{},anthro:{},collage:null,used:{},style:{}};
+  /* 브라우저에 남기는 기록은 lib/toolkit.js 가 연다 — 열쇠 이름과 저장 방식을
+     읽는 쪽(도감)과 한 곳에서 맞춘다. 여기서는 STORE 를 고치고 saveStore() 만 부른다 */
+  const BOX=ATK.open(ATK.STORE_KEY,{last:{},anthro:{},collage:null,used:{},style:{}},
+    ()=>setStatus('statusAnthro','저장 공간이 가득 찼거나 막혀 있다. 기록이 남지 않는다.','warn'));
+  const STORE=BOX.data;
   const CARD_BASE=Object.create(null), CARD_LOADING=Object.create(null);
   let BASE={mechs:{},used:{},style:{}};   /* git 파일에서 읽어온 것 */
-  let STORE_OK=true, READY=false;
-  try{
-    const raw=localStorage.getItem(STORE_KEY);
-    if(raw){const o=JSON.parse(raw);if(o&&typeof o==='object')STORE=Object.assign(STORE,o);}
-    if(!STORE.used)STORE.used={};
-    if(!STORE.locks)STORE.locks={};
-  }catch(e){STORE_OK=false;}
+  let READY=false;
+  if(!STORE.used)STORE.used={};
+  if(!STORE.locks)STORE.locks={};
   loadLocks();
   /* 같은 기체가 양쪽에 있으면 t(마지막 수정 시각)가 늦은 쪽을 쓴다.
      git 파일을 새로 커밋하면 오래된 로컬 기록이 자연히 밀려난다. */
@@ -3699,25 +3700,9 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
       Object.keys(CARD_BASE).forEach(k=>{BASE.mechs[k]=CARD_BASE[k].record;BASE.used[k]=CARD_BASE[k].used||[];});
     }).catch(()=>{});
   }
-  let saveTimer=null;
-  function saveStore(){
-    if(!STORE_OK)return;
-    clearTimeout(saveTimer);
-    saveTimer=setTimeout(()=>{
-      try{localStorage.setItem(STORE_KEY,JSON.stringify(STORE));}
-      catch(e){STORE_OK=false;setStatus('statusAnthro','저장 공간이 가득 찼거나 막혀 있다. 기록이 남지 않는다.','warn');}
-    },250);
-  }
-  /* 250ms 를 기다리는 사이에 탭이 닫히거나 뒤로 밀리면 마지막 손질이 사라진다.
-     폰에서는 앱을 내리는 순간 브라우저가 페이지를 통째로 버리기도 해서
-     그 창이 생각보다 자주 열린다. 숨겨질 때 기다리지 말고 바로 적는다. */
-  function flushStore(){
-    if(!STORE_OK)return;
-    clearTimeout(saveTimer);
-    try{localStorage.setItem(STORE_KEY,JSON.stringify(STORE));}catch(e){}
-  }
-  addEventListener('pagehide',flushStore);
-  addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')flushStore();});
+  /* 모아 적기(250ms)와 화면이 숨겨질 때의 즉시 적기는 보관함이 맡는다 */
+  function saveStore(){BOX.save();}
+  function flushStore(){BOX.flush();}
 
   function mechKey(){return (mechPicker&&mechPicker.value)||'';}
   function savedCount(){return Object.keys(STORE.anthro||{}).length;}
@@ -3896,7 +3881,7 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
     const k=mechKey(),has=!!recOf(k);
     const inBase=!!(BASE.mechs&&BASE.mechs[k]);
     bar.querySelector('.sb-txt').textContent=
-      !STORE_OK?'이 브라우저에서는 저장이 막혀 있다':
+      !BOX.ok?'이 브라우저에서는 저장이 막혀 있다':
       (has?'"'+k+'" 설정 있음'+(inBase?' (저장소 기록)':' (이 브라우저)'):'"'+k+'" 는 아직 설정이 없다')+
       ' · 전체 '+allKeys().length+'기 (저장소 '+Object.keys(BASE.mechs||{}).length+
       ' / 로컬 '+Object.keys(STORE.anthro||{}).length+')';
