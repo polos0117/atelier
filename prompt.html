@@ -2138,6 +2138,26 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
      한 장에서는 셀 대상이 없어 그 지시들이 의미를 잃는다. */
   const SG={cat:'sgCat',ex:'sgEx',expr:'sgExpr',orient:'sgOrient',pose:'sgPose'};
   function sgVal(id){const e=document.getElementById(id);return e?e.value:'';}
+  /* ══ 단일 컷 입력 모으기 ══
+     프롬프트를 만드는 함수가 화면을 직접 뒤지면, 화면 없이는 결과를 확인할 수 없고
+     나중에 화면을 갈아끼울 때 함께 끌려간다. 읽는 자리를 여기 한 곳으로 모으고
+     buildSinglePrompt 는 이 객체만 본다. 값의 뜻과 차례는 예전 그대로다. */
+  function readSingleState(){
+    const txt=id=>{const e=document.getElementById(id);return e?e.value.trim():'';};
+    const chk=id=>{const e=document.getElementById(id);return !!(e&&e.checked);};
+    return {
+      cat:sgVal('sgCat'), ex:sgVal('sgEx'),
+      catCustom:txt('sgCatCustom'), exCustom:txt('sgExCustom'),
+      aspect:sgVal('sgAspect'), frame:sgVal('sgFrame'),
+      expr:sgVal('sgExpr'), orient:sgVal('sgOrient'), pose:sgVal('sgPose'),
+      scene:txt('sgScene'), outfit:txt('sgOutfit'), camera:txt('sgCamera'),
+      custom:txt('sgCustom'),
+      carryFace:chk('sgCarryFace'), carryBody:chk('sgCarryBody'),
+      axes:(()=>{const o={};LOCAL_AXES.forEach(k=>{
+        const el=document.querySelector('[data-sg-axis="'+k+'"]'); o[k]=el?el.value:'';});return o;})(),
+      source:selectedSource(),
+    };
+  }
   function fillSingle(){
     const mk=a2=>a2.map(o=>'<option value="'+escHtml(o[0])+'">'+escHtml(o[1])+'</option>').join('');
     document.getElementById('sgCat').innerHTML=CAT_ROWS().map(r=>
@@ -2168,8 +2188,9 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
       eb.innerHTML='<div class="pp-txt"><b>'+escHtml(lab)+'</b>'+escHtml(n)+'</div>';}
     document.getElementById('sgCatCustom').classList.toggle('hidden',cat!=='__custom__');
   }
-  function buildSinglePrompt(){
-    const src=selectedSource(), cat=sgVal('sgCat');
+  function buildSinglePrompt(st){
+    st=st||readSingleState();
+    const src=st.source, cat=st.cat;
     const en=a2=>Object.fromEntries(a2.map(o=>[o[0],(o[1]||'').split(' — ')[0]]));
     const EX=en(EXPRESSION_OPTIONS), OR=en(ORIENTATION_OPTIONS), PO=en(POSE_OPTIONS);
     const parts=[
@@ -2177,9 +2198,9 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
       '[IDENTITY LOCK]\n\nUse the SAME clearly adult '+GW()+' as the attached reference. Preserve the same character identity, apparent adult age, ethnicity, recognizable eye shape, nose shape, mouth shape, jawline, skin tone, hair color, hairstyle, length, height, physique, shoulders, '+GCHEST()+', waist, hips, and leg proportions. The facial identity must remain recognizable, but the facial rendering and facial proportions may be translated into a more refined anime-inspired visual language. The photorealism level of the reference image is not identity information and must not be copied. No identity drift, age drift, hairstyle redesign, or body redesign. Facial expression is not identity. The brows, eyelids, eye openness, mouth shape and lip parting must follow the expression specified elsewhere in this prompt \u2014 "preserve mouth shape" refers to the resting structure and proportion of the lips, not to holding a neutral mouth. A specified expression must be clearly readable on the face.',
       lifestyleReferenceLock()
     ];
-    parts.push(carryBlock(document.getElementById('sgCarryFace').checked,document.getElementById('sgCarryBody').checked));
+    parts.push(carryBlock(st.carryFace,st.carryBody));
     parts.push(lifestyleStyleBlock());
-    parts.push('[OUTPUT]\n\nCreate ONE SINGLE image in '+sgVal('sgAspect')+
+    parts.push('[OUTPUT]\n\nCreate ONE SINGLE image in '+st.aspect+
       ' aspect. Exactly one '+GW()+'. No collage, no panels, no split frames, no numerals, no captions, titles, labels, or any other text.');
     /* 카테고리 안내문은 콜라주 기준으로 쓰여 있어 "이 쌍은" 같은 말이 섞인다.
        한 장짜리에는 쌍도 다른 패널도 없으므로 단일 컷 문장으로 바꿔 넣는다. */
@@ -2192,33 +2213,32 @@ details.box summary{font-size:var(--ui-font);padding:calc(var(--ui-pad) + 2px)}
       .replace(/\bpairs\b/g,'cuts').replace(/\bpair\b/g,'cut');
     let dir='[DIRECTION]\n\n';
     if(cat==='__custom__')dir+='Interpret this cut as: '+
-      (document.getElementById('sgCatCustom').value.trim()||'a fresh mature concept of your choice')+'.';
+      (st.catCustom||'a fresh mature concept of your choice')+'.';
     else if(cat==='auto_random')dir+='Invent a fresh mature concept of your own choosing.';
     /* 예전에는 카테고리 영문 이름을 한 줄 찍고 그 아래 가이드를 붙였다. 그런데
        가이드가 이미 같은 말을 쓸 수 있는 꼴로 다시 한다("Use tasteful adult
        lingerie-inspired evening fashion…"). 콜라주는 Pair 를 가르는 머리글이
        필요하지만 한 장짜리에는 나눌 것이 없어 이름표만 덩그러니 남았다 */
     else dir+=soloGuide((CAT[cat]||{}).guide);
-    const ex=exampleText(cat,sgVal('sgEx'),document.getElementById('sgExCustom').value.trim());
+    const ex=exampleText(cat,st.ex,st.exCustom);
     if(ex)dir+='\nUse this as the thematic anchor: '+ex+'.';
-    dir+=heritageLine(cat,sgVal('sgEx'));
+    dir+=heritageLine(cat,st.ex);
     parts.push(dir);
     const lines=[];
-    const fr=sgVal('sgFrame'); if(fr)lines.push('Framing: '+fr+'.');
-    const e2=sgVal('sgExpr');
+    const fr=st.frame; if(fr)lines.push('Framing: '+fr+'.');
+    const e2=st.expr;
     if(e2)lines.push('Expression: '+(EX[e2]||e2)+
       (EXPRESSION_DETAIL[e2]?' \u2014 '+EXPRESSION_DETAIL[e2]:'')+'.');
-    const o2=sgVal('sgOrient'); if(o2)lines.push('Body orientation: '+(OR[o2]||o2)+'.');
-    const p2=sgVal('sgPose'); if(p2)lines.push('Pose: '+(PO[p2]||p2)+'.');
-    ['sgScene|Scene / Location','sgOutfit|Outfit','sgCamera|Camera / Lighting'].forEach(x=>{
-      const [id,lab]=x.split('|'); const v=document.getElementById(id).value.trim();
-      if(v)lines.push(lab+': '+v+'.');
+    const o2=st.orient; if(o2)lines.push('Body orientation: '+(OR[o2]||o2)+'.');
+    const p2=st.pose; if(p2)lines.push('Pose: '+(PO[p2]||p2)+'.');
+    [['scene','Scene / Location'],['outfit','Outfit'],['camera','Camera / Lighting']].forEach(([k,lab])=>{
+      const v=st[k]; if(v)lines.push(lab+': '+v+'.');
     });
     LOCAL_AXES.forEach(k=>{
-      const el=document.querySelector('[data-sg-axis="'+k+'"]');
-      if(el&&el.value)lines.push((ADV_EN[k]||k)+': '+el.value+'.');
+      const v=st.axes[k];
+      if(v)lines.push((ADV_EN[k]||k)+': '+v+'.');
     });
-    const cu=document.getElementById('sgCustom').value.trim(); if(cu)lines.push('Additional instruction: '+cu+'.');
+    const cu=st.custom; if(cu)lines.push('Additional instruction: '+cu+'.');
     if(lines.length)parts.push('[SETTINGS]\n\n'+lines.map(l=>'- '+l).join('\n'));
     /* 단일 컷도 같은 까닭으로 뺐다. 목록에 들어가던 것이 내부 열쇠였다.
        카테고리 회피는 sgAvoid 가 뽑기 단계에서 한다 */
