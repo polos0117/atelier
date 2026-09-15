@@ -1,0 +1,24 @@
+Use case: identity-preserve
+Asset type: civilian lifestyle portrait for a character collection
+Input image: Image 1 is the sole identity reference for the female Hyakuri anthropomorphization.
+Primary request: Create one new vertical full-body civilian image of exactly the same clearly adult woman from Image 1 as an expert kite-surf instructor preparing for an early-morning session. Preserve her identity precisely while removing every mobile-suit, armor, weapon, and military element.
+
+IDENTITY LOCK
+Keep exactly the same adult Southeast Asian woman in her twenties from Image 1: the same soft trapezoid face, broad high cheekbones, firm rounded jaw, short squared chin, straight low-bridged nose with a defined tip, softly full lips, wide-set amber-gold eyes, warm medium-tan skin, tall athletic-curvy physique, compact strong shoulders, defined waist, powerful hips and thighs, and long agile legs. Preserve the same deep blue-black hair with rich dark-teal sheen, long thick high braided ponytail, off-center part, and two short cheek-framing locks. Keep her alert, self-possessed, faintly daring expression. No age drift, ethnicity drift, face drift, skin-tone change, hairstyle redesign, or body redesign.
+
+CIVILIAN LOOK
+Remove all mobile-suit elements completely: no armor, no flight binders, no thrusters, no rifle, no blade, no mechanical limbs, no helmet, no pilot suit, no military hardware. Normal human body with exactly two arms and two legs.
+Dress her in an opaque contemporary kite-surfing look derived from the Hyakuri palette: a fitted sleeveless deep-teal and blue-gray spring wetsuit with a high secure asymmetric neckline, pale-gray contour panels, mid-thigh legs, and complete intimate coverage; a slim matte-black waist harness worn correctly over the suit; and practical dark water shoes. No logos. Athletic, elegant, workplace-credible for a professional instructor, adult, and subtly alluring through clean design rather than exposure.
+
+SCENE AND ACTION
+A quiet wind-swept beach shortly after sunrise, with shallow wet sand and a low distant horizon. She walks purposefully toward the water while carrying one neatly rolled blue-gray foil kite under her left arm and one compact civilian control bar with safely coiled lines in her right hand. The kite remains ordinary soft fabric sports equipment, not a rigid wing, not attached to her body, and not spread behind her. Her long braided ponytail moves naturally in the sea breeze. No board is needed. No other people, vehicles, readable signs, or brand marks.
+
+COMPOSITION
+Vertical 2:3. Tight intentional complete full-body framing at the largest practical scale, crown to both water shoes visible, minimal sky and sand margin. Front three-quarter eye-level view capturing a natural walking step. Her face, both hands, the rolled kite, control bar, harness, and both feet must be readable. Do not pull the camera far back, do not add arbitrary empty margins, and do not copy the armored reference pose.
+
+STYLE AND LIGHTING
+High-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization, matching Image 1’s sophisticated painted language rather than its armor. Soft cool marine fill light, narrow warm sunrise rim, subtle wet-sand reflections, dimensional painted skin, tactile neoprene and woven kite fabric, grouped painterly blue-black and teal hair, selective sharpness. Not live-action photography, not a 3D render, not glossy mobile-game key art, not cel-shaded anime.
+
+HARD CONSTRAINTS
+One clearly adult woman only. Same identity as Image 1. Exactly two human arms, two hands, and two legs. No cropped feet. Exactly one rolled fabric kite and one control bar. No rigid wings, mecha remnants, armor, weapons, sci-fi equipment, text, logos, watermark, duplicated limbs, distorted hands, nudity, transparent intimate areas, exposed nipples, visible areolae, or exposed genitals.
+

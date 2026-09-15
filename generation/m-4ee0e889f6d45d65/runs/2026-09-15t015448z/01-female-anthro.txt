@@ -1,0 +1,24 @@
+Use case: stylized-concept
+Asset type: full-body Gundam anthropomorphization portrait for a character collection
+Primary request: Create the female anthropomorphization of the Hyakuri (STH-14s) from Mobile Suit Gundam: Iron-Blooded Orphans as one clearly adult woman in her twenties. This must be a new character with a distinctive face, not a recurring beauty template, and must not resemble any canonical pilot.
+
+SUBJECT AND IDENTITY
+A tall Southeast Asian adult woman with a long athletic-curvy aerial fighter’s build, compact strong shoulders, a defined waist, powerful hips and thighs, and long agile legs. Warm medium-tan skin. A distinctive soft trapezoid face with broad high cheekbones, a firm rounded jaw, a short squared chin, a straight low-bridged nose with a defined tip, softly full lips, and wide-set amber-gold eyes with level outer corners. Her expression is alert, self-possessed, and faintly daring, with lips closed and no broad smile. Deep blue-black hair with a rich dark-teal sheen, arranged in a long high braided ponytail that streams behind her, with a clean off-center part and two short cheek-framing locks; eyes and face unobscured. No pilot likeness.
+
+MECHA TRANSLATION
+Faithfully preserve Hyakuri’s recognizable high-mobility Teiwaz design: compact blue-gray and deep teal armor, cool pale-gray structural sections, restrained warm yellow sensor accents, a narrow aerodynamic torso, small pointed knee and shin plates, and the distinctive long angular high-mobility flight binders. Armor coverage is balanced and fitted, with small controlled skin exposure at the shoulders and side waist only; opaque, secure, and non-explicit.
+Mount exactly TWO large long blue-gray flight binders as external equipment behind and slightly above the shoulders, one on each side, attached to the back/shoulder frame. They must remain rigid mechanical binders with visible thruster housings, must not become organic wings, must not merge with the arms, and must not create extra limbs. Preserve one compact dark-gray Hyakuri rifle in the right hand and one short single-edged combat blade secured at the left hip, inactive and sheathed. The left hand remains readable and empty.
+Exactly two normal human arms and exactly two normal human legs, anatomically correct, with two readable hands and two readable feet. No extra arms, no duplicated binders, no quadruped form, no helmet, no mask, no mechanical face.
+
+COMPOSITION
+Vertical 2:3. Tight intentional complete full-body framing at the largest practical scale, crown to both feet visible, minimal empty margin. Keep both long binders, rifle, and sheathed blade inside the frame without pulling the camera unnecessarily far back. Let the model choose a natural poised aerial-combat stance and cinematic view angle; do not force a fixed pose or camera direction. Face, both hands, both legs, and both feet must remain readable.
+
+SCENE AND LIGHTING
+A restrained orbital maintenance gantry with a dark matte floor and only faint out-of-focus industrial structures. Cool cyan-blue cinematic key light, narrow warm amber rim light, subtle haze, and very restrained thruster glow contained near the rear binders. No readable signage. The character remains dominant.
+
+STYLE
+High-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization. Mature believable adult anatomy, dimensional painted skin, grouped painterly dark-teal hair, convincing mechanical materials rendered in the same sophisticated painted language, selective sharpness, and controlled reflections. Not live-action photography, not a 3D render, not glossy mobile-game key art, not cel-shaded anime.
+
+HARD CONSTRAINTS
+One clearly adult woman only. Full body. Exactly two arms and two legs. Exactly two rear flight binders. No cropped feet. No duplicate rifle, duplicate blade, extra limbs, floating equipment, text, logos, captions, watermark, cockpit, pilot suit, gore, nudity, transparent intimate areas, exposed nipples, visible areolae, or exposed genitals. Do not enlarge the background or add arbitrary empty margins.
+

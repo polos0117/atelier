@@ -1,0 +1,28 @@
+Use case: stylized-concept
+Asset type: full-body Gundam anthropomorphization portrait for a character collection
+Input image: Image 1 is a COLOR-PALETTE REFERENCE ONLY from the female Hyakuri counterpart. Do not copy her face, braided ponytail, body shape, pose, or feminine anatomy.
+Primary request: Create the male anthropomorphization of the Hyakuri (STH-14s) from Mobile Suit Gundam: Iron-Blooded Orphans as one clearly adult man in his twenties. He must be a distinctly different person from the female counterpart and must not resemble any canonical pilot.
+
+PALETTE LOCK FROM IMAGE 1
+Match only these three human colors from the woman in Image 1: the same warm medium-tan skin tone, the same deep blue-black hair color with a dark-teal sheen, and the same amber-gold eye color. Do not copy her soft trapezoid face, braided ponytail, athletic-curvy body, pose, or expression.
+
+SUBJECT AND IDENTITY
+A tall adult man with a lean powerful aerial fighter’s build, broad compact shoulders, a tapered athletic torso, a straight waist, and long muscular legs without bulky mass. A distinct masculine face: long hexagonal structure, flat high cheek planes, a broad firm jaw, slightly cleft blunt chin, strong aquiline nose, medium lips, heavy straight brows, and narrow amber-gold eyes. Clean-shaven. His expression is composed, watchful, and daring, with lips closed. Deep blue-black short hair with a dark-teal sheen, clipped close at the sides and swept upward into compact wind-cut textured layers, fully exposing the forehead; no braid and no ponytail. Face fully visible. No pilot likeness.
+
+MECHA TRANSLATION
+Faithfully preserve Hyakuri’s recognizable high-mobility Teiwaz design: compact blue-gray and deep teal armor, cool pale-gray structural sections, restrained warm yellow sensor accents, a narrow aerodynamic torso, small pointed knee and shin plates, and the distinctive long angular high-mobility flight binders. Fully armored masculine presentation with no exposed torso.
+Mount exactly TWO large long blue-gray flight binders as external equipment behind and slightly above the shoulders, one on each side, attached to the back/shoulder frame. They must remain rigid mechanical binders with visible thruster housings, must not become organic wings, must not merge with the arms, and must not create extra limbs. Preserve one compact dark-gray Hyakuri rifle in the right hand and one short single-edged combat blade secured at the left hip, inactive and sheathed. The left hand remains readable and empty.
+Exactly two normal human arms and exactly two normal human legs, anatomically correct, with two readable hands and two readable feet. No extra arms, no duplicated binders, no quadruped form, no helmet, no mask, no mechanical face.
+
+COMPOSITION
+Vertical 2:3. Tight intentional complete full-body framing at the largest practical scale, crown to both feet visible, minimal empty margin. Keep both long binders, rifle, and sheathed blade inside the frame without pulling the camera unnecessarily far back. Let the model choose a natural poised aerial-combat stance and cinematic view angle; do not copy Image 1’s pose or camera direction. Face, both hands, both legs, and both feet must remain readable.
+
+SCENE AND LIGHTING
+A restrained orbital maintenance gantry with a dark matte floor and only faint out-of-focus industrial structures. Cool cyan-blue cinematic key light, narrow warm amber rim light, subtle haze, and very restrained thruster glow contained near the rear binders. No readable signage. The man remains dominant.
+
+STYLE
+High-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization. Mature believable adult anatomy, dimensional painted skin, grouped painterly dark-teal hair, convincing mechanical materials rendered in the same sophisticated painted language, selective sharpness, and controlled reflections. Not live-action photography, not a 3D render, not glossy mobile-game key art, not cel-shaded anime.
+
+HARD CONSTRAINTS
+One clearly adult man only. Full body. Exactly two arms and two legs. Exactly two rear flight binders. No feminine breasts or feminine body silhouette. No cropped feet. No duplicate rifle, duplicate blade, extra limbs, floating equipment, text, logos, captions, watermark, cockpit, pilot suit, gore, nudity, or transparent intimate areas. Do not enlarge the background or add arbitrary empty margins.
+

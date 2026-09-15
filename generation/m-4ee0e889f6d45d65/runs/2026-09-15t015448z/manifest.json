@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "card": "햐쿠리",
+  "model": "STH-14s Hyakuri",
+  "series": "기동전사 건담 철혈의 오펀스",
+  "repository": "polos0117/atelier",
+  "branch": "codex/hyakuri-20260915",
+  "base_commit": "8e27d712b718d814f2a74dc128b59abde392fa95",
+  "prompt_source": "prompts directly assembled from the current prompt.html v9.19 workflow after the cloud browser could not open a fresh tab",
+  "run": "2026-09-15t015448z",
+  "created": "2026-09-15T01:54:48Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Settings preserve the v9.19 parameter schema; browser export was unavailable and the exact submitted prompts are stored with this run",
+  "references": [
+    "data/mech.json",
+    "official/mecha/IBO.json"
+  ],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female warm medium-tan skin tone, deep blue-black hair with dark-teal sheen, and amber-gold eyes only; casual uses the female generated image as the sole identity reference",
+    "equipment_lock": "Exactly two external rear flight binders, one compact rifle, one sheathed single-edged blade; exactly two human arms and two human legs",
+    "casual_scene": "Expert kite-surf instructor carrying one rolled foil kite and one control bar on a sunrise beach"
+  },
+  "jobs": [
+    {
+      "id": "hyakuri-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-4ee0e889f6d45d65/runs/2026-09-15t015448z/01-female-anthro.txt",
+      "original_generated_file": "exec-b02c2647-5404-4e54-8ab0-2038c604f17c.png",
+      "file": "img/햐쿠리_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "3c72a6b29fea1f2bfefb3d80eb84829c199be9bd4adedbd76abd314278b73b59",
+      "bytes": 292408
+    },
+    {
+      "id": "hyakuri-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "hyakuri-female-01",
+      "prompt": "generation/m-4ee0e889f6d45d65/runs/2026-09-15t015448z/02-male-anthro.txt",
+      "original_generated_file": "exec-db437764-07da-44e8-b1e8-7c304cfc5817.png",
+      "file": "img/햐쿠리_cinematic_semi_real_m.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "0a226d38d5c81c2cec263f8db4f30879f19aff4423e153b3377d09212c60e8e7",
+      "bytes": 332234
+    },
+    {
+      "id": "hyakuri-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "hyakuri-female-01",
+      "prompt": "generation/m-4ee0e889f6d45d65/runs/2026-09-15t015448z/03-female-casual.txt",
+      "original_generated_file": "exec-146cea04-3cca-4db6-9f82-3d5d6ca796c9.png",
+      "file": "img/햐쿠리_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "09b981f3abf5b6a542ad7b11aaa869db1b770d0b6c37604a1cbf937ff012cbba",
+      "bytes": 352698
+    }
+  ]
+}
