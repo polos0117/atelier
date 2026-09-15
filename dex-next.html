@@ -162,6 +162,17 @@ body.dex-compact .grid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
 .art{width:100%;max-width:300px;margin:0 auto 12px;display:block;border-radius:10px;
   overflow:hidden;background:#11161C;cursor:zoom-in}
 .art img{display:block;width:100%;aspect-ratio:2/3;object-fit:cover;object-position:center top}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.chip{font-size:11px;padding:3px 8px;border-radius:99px;border:1px solid var(--rule);
+  color:var(--dim);letter-spacing:.02em}
+.chip.f{border-color:var(--cc);color:var(--plate)}
+.chip.mono{letter-spacing:.04em;opacity:.75}
+.terr{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;margin:2px 0 12px}
+.terr u{text-decoration:none;color:var(--dim);margin-right:5px;font-size:10px}
+.filter-toggle{background:var(--panel);color:var(--ink);border:1px solid var(--rule);
+  border-radius:8px;min-height:var(--ui-height);padding:6px 10px;font:600 12px system-ui;
+  cursor:pointer;flex:0 0 auto}
+.search-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;padding:7px 0 0}
 .dt{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--dim);margin-bottom:12px}
 .dt b{color:var(--ink);font-weight:700;margin-left:4px}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(64px,1fr));gap:6px;margin-bottom:12px}
@@ -218,6 +229,8 @@ const KINDS = [
   { tab: '함',     file: 'ship'  },
 ];
 const MODES = [['p', '의인화'], ['c', '일상'], ['x', '특별'], ['w', '작업']];
+/* 지형 적성 — 게임 쪽은 판마다 전장을 하나 뽑아 이 값으로 점수를 깎는다 */
+const TERRAIN = ['', '부적합', '보통', '적합'];
 
 function getJSON(name) {
   return fetch('data/' + name + '.json', { cache: 'no-cache' }).then(r => {
@@ -490,11 +503,21 @@ function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender,
               ${gender === 'm' ? '남성' : '여성'} 그림이 없어 ${gender === 'm' ? '여성' : '남성'} 초상을 대신 띄웠다
             </p>`}
 
-          <div class="dt">
-            <span>시리즈<b>${serOf(card).map(seriesName).join(' · ') || '—'}</b></span>
-            ${card.factions && html`<span>소속<b>${card.factions.join(' · ')}</b></span>`}
-            ${card.temper && html`<span>기질<b>${card.temper}</b></span>`}
+          <div class="chips">
+            ${(card.factions || []).map(f => html`<span class="chip f">${f}</span>`)}
+            ${serOf(card).map(k => html`<span class="chip">${seriesName(k)}</span>`)}
+            ${card.temper && html`<span class="chip">${card.temper}</span>`}
+            ${card.system && html`<span class="chip">${card.system}</span>`}
+            ${card.psy && html`<span class="chip">${card.psy}</span>`}
+            ${card.models && html`<span class="chip mono">${card.models}</span>`}
           </div>
+
+          ${card.terrain && html`
+            <p class="sec">지형</p>
+            <div class="terr">
+              ${Object.keys(card.terrain).map(k => html`
+                <span><u>${k}</u>${TERRAIN[card.terrain[k]] || '—'}</span>`)}
+            </div>`}
 
           ${card.stats && html`<div class="stats">
             ${card.stats.map((n, i) => html`
@@ -533,6 +556,10 @@ function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender,
             </div>`}
 
           <${Toolkit} name=${card.name} />
+
+          <div class="lnk">
+            <a href=${'prompt.html?mech=' + encodeURIComponent(card.name)}>툴킷에서 열기 →</a>
+          </div>
 
         </div>
       </div>
@@ -584,6 +611,9 @@ function App() {
   const [zoom, setZoom] = useState(null);
   /* 작게 보기 여부. dex.html 과 같은 키라 두 페이지가 설정을 공유한다 */
   const [onlyLeft, setOnlyLeft] = useState(true);   /* 작업 모드: 남은 것만 볼지 */
+  /* 폰에서는 머리말이 화면을 많이 먹는다. 탭·모드·검색만 남기고 나머지는 접는다.
+     걸린 조건이 있으면 단추에 개수가 붙어 접혀 있어도 알 수 있다 */
+  const [showFilters, setShowFilters] = useState(false);
   const [toast, showToast] = useToast();
   /* 화면 밀도 — 세 화면이 같은 키를 쓰므로 다른 탭에서 바꿔도 따라간다 */
   const [density, setDensity] = useState(() => document.documentElement.dataset.density || 'compact');
@@ -724,10 +754,15 @@ function App() {
                 <button class=${v === g ? 'on' : ''} onclick=${() => setV(g)}>${label}</button>`)}
             </div>`}
       </div>
-      <div class="ctl">
+      <div class="search-row">
         <input placeholder="이름으로 찾기" value=${q} oninput=${e => setQ(e.target.value)} />
+        <button type="button" class="filter-toggle" aria-expanded=${String(showFilters)}
+                onclick=${() => setShowFilters(x => !x)}>
+          필터${(ser ? 1 : 0) + (style ? 1 : 0) ? ' ' + ((ser ? 1 : 0) + (style ? 1 : 0)) : ''}
+        </button>
       </div>
-      <div class="ctl filters">
+
+      ${showFilters && html`<div class="ctl filters">
         <select value=${ser} onchange=${e => setSer(e.target.value)}>
           <option value="">시리즈 전체</option>
           ${seriesList.map(k => html`
@@ -738,7 +773,7 @@ function App() {
           ${styleList.map(k => html`
             <option value=${k}>${data.styleName[k]} ${styleCount[k]}</option>`)}
         </select>
-      </div>
+      </div>`}
     </header>
 
     <main>
