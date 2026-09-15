@@ -1,0 +1,29 @@
+{
+  "가자C_cinematic_semi_real_f.webp": {
+    "card": "가자C",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "799671b12443cf17008e2b27860c08a3689e32f0aa71718ab76396f975467ae9",
+    "prompt": "generation/m-ad521e57c59bfc5e/runs/2026-09-15t134456z/01-female-anthro.txt",
+    "manifest": "generation/m-ad521e57c59bfc5e/runs/2026-09-15t134456z/manifest.json"
+  },
+  "가자C_cinematic_semi_real_m.webp": {
+    "card": "가자C",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "2c700ca46c3296dde286ecdccc976e470f6f42483fd2a0f5b7b87cd4ad18493a",
+    "prompt": "generation/m-ad521e57c59bfc5e/runs/2026-09-15t134456z/02-male-anthro.txt",
+    "manifest": "generation/m-ad521e57c59bfc5e/runs/2026-09-15t134456z/manifest.json"
+  },
+  "가자C_cinematic_semi_real_f_casual1.webp": {
+    "card": "가자C",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "fa56cdba6dbd84303d384181ed35f54a0d6d57235017903615110d7246ac3941",
+    "prompt": "generation/m-ad521e57c59bfc5e/runs/2026-09-15t134456z/03-female-casual.txt",
+    "manifest": "generation/m-ad521e57c59bfc5e/runs/2026-09-15t134456z/manifest.json"
+  }
+}

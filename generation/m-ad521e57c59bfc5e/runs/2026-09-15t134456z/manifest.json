@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "card": "가자C",
+  "model": "AMX-003 Gaza-C",
+  "series": "Z건담",
+  "repository": "polos0117/atelier",
+  "branch": "main",
+  "base_commit": "b60e3396fb102f8f297cbfe4cb1b673bfe57f003",
+  "prompt_source": "deployed prompt.html v9.19 UI with an exported settings record and exact submitted prompts",
+  "run": "2026-09-15t134456z",
+  "created": "2026-09-15T13:44:56Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Actual prompt.html selections were exported after female and male configuration; the exact female, male, and casual prompts are stored with this run",
+  "delivery": {
+    "method": "GitHub Git Data API",
+    "target": "refs/heads/main",
+    "sequence": [
+      "blob",
+      "tree",
+      "commit",
+      "update_ref"
+    ],
+    "single_commit": true,
+    "pull_request": false
+  },
+  "references": [],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female light skin tone, crimson hair color, and green eye color only; casual uses the female generated image as the exact identity reference",
+    "equipment_lock": "Dusty rose-magenta and deep-plum armor, pale lavender-gray plates, bright green sensors, elongated angular limb armor, compact transformation fins, claw-inspired external boot armor, and one knuckle-buster beam cannon kept around one normal humanoid body",
+    "casual_scene": "Warm late-afternoon apartment balcony, on tiptoe watering hanging flowers in a cute, playfully sensual civilian outfit"
+  },
+  "jobs": [
+    {
+      "id": "gaza-c-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-ad521e57c59bfc5e/runs/2026-09-15t134456z/01-female-anthro.txt",
+      "original_generated_file": "exec-70cb03ff-ae0c-43a5-b6c2-3643743800bd.png",
+      "original_sha256": "eb21377e0def2c3253c1731b2fd83625969548e4e2e873af42b1bfa669e78415",
+      "file": "img/가자C_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "799671b12443cf17008e2b27860c08a3689e32f0aa71718ab76396f975467ae9",
+      "bytes": 85022
+    },
+    {
+      "id": "gaza-c-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "gaza-c-female-01",
+      "prompt": "generation/m-ad521e57c59bfc5e/runs/2026-09-15t134456z/02-male-anthro.txt",
+      "original_generated_file": "exec-c7d471df-a99d-4b3c-8988-fe93bf68ee84.png",
+      "original_sha256": "ed7c5e496ba4f0d43bfff546b6f0edfcc3d5ca56fb15a516db0d8fd560b7241b",
+      "file": "img/가자C_cinematic_semi_real_m.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "2c700ca46c3296dde286ecdccc976e470f6f42483fd2a0f5b7b87cd4ad18493a",
+      "bytes": 78084
+    },
+    {
+      "id": "gaza-c-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "gaza-c-female-01",
+      "prompt": "generation/m-ad521e57c59bfc5e/runs/2026-09-15t134456z/03-female-casual.txt",
+      "original_generated_file": "exec-23e65d31-6bc1-45f5-b9d9-7e466fbb5c83.png",
+      "original_sha256": "43d1909f5e9557638266b0ec65d595c8bc727e78d0cc2113c077e9f522dd3100",
+      "file": "img/가자C_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "fa56cdba6dbd84303d384181ed35f54a0d6d57235017903615110d7246ac3941",
+      "bytes": 151070
+    }
+  ]
+}
