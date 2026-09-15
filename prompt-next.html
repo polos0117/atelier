@@ -1144,6 +1144,573 @@ function SinglePanel({ data, series, setSeries, mech, setMech, gender, setGender
 }
 
 
+/* ── 콜라주 ─────────────────────────────────────────────────────────────
+   한 장에 여섯 칸. Pair 로 묶으면 두 칸이 같은 주제의 약한 컷 / 강한 컷이 되고,
+   묶기를 풀면 두 칸이 서로 무관해진다. Panel 개별 모드에서 칸마다 덮어쓴다.
+   프롬프트를 만드는 일은 lib/prompt-lifestyle.js 의 buildCollage 가 한다. */
+const CLG_EXPR_MODES = [
+  ['', 'AUTO — 자동'], ['balanced', 'balanced — 균형형'], ['lively', 'lively — 생기 있는 표정'],
+  ['sensual', 'sensual — 자연스러운 섹시'], ['dramatic', 'dramatic — 드라마틱'],
+  ['candid', 'candid — 생활감 있는 표정'], ['playful', 'playful — 장난기'],
+];
+const CLG_ORIENT_MIX = [
+  ['', 'AUTO — 자동'], ['front_balanced', 'front_balanced — 앞태 중심 균형'],
+  ['mixed_balanced', 'mixed_balanced — 앞뒤 균형 믹스'], ['rear_accent', 'rear_accent — 뒷태 포인트 포함'],
+  ['dynamic_mix', 'dynamic_mix — 방향 다양화'], ['elegant_backline', 'elegant_backline — 등/허리 라인 강조'],
+];
+const CLG_FRAMES = [
+  ['', 'AUTO — 자동'], ['full body', 'full body — 전신'],
+  ['three-quarter body', 'three-quarter — 무릎 위'], ['waist up', 'waist up — 상반신'],
+  ['close-up portrait', 'close-up — 얼굴 근접'],
+];
+const CLG_TARGETS = [
+  ['cat', '카테고리', true], ['ex', '예시', true], ['adv', '고급 설정', true],
+  ['frame', '화각', true], ['expr', '표정', false], ['orient', '시점', false], ['pose', '포즈', false],
+];
+const OV_TEXTS = [['scene', 'Scene / Location', '장면/장소'], ['outfit', 'Outfit', '의상'],
+  ['action', 'Action / Pose', '행동/포즈'], ['camera', 'Camera / Lighting', '카메라/조명'],
+  ['extra', 'Extra', '추가 지시']];
+const pairOf = n => Math.ceil(n / 2);
+
+function clgFresh() {
+  /* 원본은 부팅할 때 프리셋 A 를 넣고 시작한다. 'free' 로 두면 전역 고급 설정이
+     통째로 비어 [ADDITIONAL SETTINGS] 가 "Use balanced defaults." 한 줄이 된다 */
+  const P = S.PRESETS.A || S.PRESETS.free;
+  const pairs = {}, panels = {};
+  [1, 2, 3].forEach(n => {
+    pairs[n] = { use: true, key: (P.pairs[n - 1] || ''), custom: '',
+      exampleKey: '', exampleCustom: '', expr: '', orient: '', pose: '',
+      adv: Object.fromEntries(S.LOCAL_AXES.concat(S.PAIR_ONLY).map(k => [k, ''])) };
+  });
+  /* 패널 카테고리는 제 Pair 것을 기본으로 깔고 있는다 — 원본의 renderPanelCat 과 같다.
+     비워 두면 Pair 를 풀었을 때 auto_random 으로 떨어져 카테고리가 통째로 바뀐다 */
+  for (let n = 1; n <= 6; n++) panels[n] = { cat: (P.pairs[pairOf(n) - 1] || ''), catCustom: '',
+    exampleKey: '', exampleCustom: '', ov: {} };
+  return {
+    preset: 'A', mode: 'variety',
+    tgt: Object.fromEntries(CLG_TARGETS.map(([k, , on]) => [k, on])),
+    avoid: true, custom: '', build: 'pair', panelTab: 1,
+    pairs, panels, adv: { ...(P.advanced || {}) },
+    globals: { expressionMode: '', orientationMix: '', frame: '' },
+    carryFace: false, carryBody: false,
+  };
+}
+
+function CollagePanel({ data, series, setSeries, mech, setMech, gender, setGender,
+                        style, setStyle, box, seriesList, mechList, card }) {
+  const [st, setSt] = useState(clgFresh);
+  const [status, setStatus] = useState('준비됨');
+  const [showText, setShowText] = useState(false);
+  const [usedOpen, setUsedOpen] = useState(false);
+  const prev = useRef(null);
+  const [hasPrev, setHasPrev] = useState(false);
+  const [usedTick, setUsedTick] = useState(0);
+
+  useEffect(() => {
+    const saved = box.current.data.collage;
+    if (saved && saved.pairs) setSt(o => ({ ...o, ...saved }));
+  }, []);
+  useEffect(() => { box.current.data.collage = st; box.current.save(); }, [st]);
+
+  const set = (k, v) => setSt(o => ({ ...o, [k]: v }));
+  const setPair = (n, k, v) => setSt(o => ({ ...o, pairs: { ...o.pairs, [n]: { ...o.pairs[n], [k]: v } } }));
+  const setPairAdv = (n, k, v) => setSt(o => ({ ...o, pairs: { ...o.pairs,
+    [n]: { ...o.pairs[n], adv: { ...o.pairs[n].adv, [k]: v } } } }));
+  const setPanel = (n, k, v) => setSt(o => ({ ...o, panels: { ...o.panels, [n]: { ...o.panels[n], [k]: v } } }));
+  const setOv = (n, k, v) => setSt(o => ({ ...o, panels: { ...o.panels,
+    [n]: { ...o.panels[n], ov: { ...o.panels[n].ov, [k]: v } } } }));
+  /* Pair 카테고리를 바꾸면 그 두 패널의 기본값도 함께 옮긴다 — 원본과 같다 */
+  const setPairKey = (n, v) => setSt(o => {
+    const pairs = { ...o.pairs, [n]: { ...o.pairs[n], key: v, custom: '', exampleKey: '' } };
+    const panels = { ...o.panels };
+    [n * 2 - 1, n * 2].forEach(x => { panels[x] = { ...panels[x], cat: v, exampleKey: '' }; });
+    return { ...o, pairs, panels };
+  });
+  const setAdv = (k, v) => setSt(o => ({ ...o, adv: { ...o.adv, [k]: v } }));
+  const setGlobal = (k, v) => setSt(o => ({ ...o, globals: { ...o.globals, [k]: v } }));
+  const setTgt = (k, v) => setSt(o => ({ ...o, tgt: { ...o.tgt, [k]: v } }));
+
+  const record = useMemo(() => {
+    const mine = (box.current.data.anthro || {})[mech] || null;
+    const theirs = ATK.recordOf(mech);
+    if (!mine) return theirs; if (!theirs) return mine;
+    return (mine.t || 0) >= (theirs.t || 0) ? mine : theirs;
+  }, [mech, data]);
+
+  /* 성별을 바꾸면 그 성별에 없는 카테고리는 갈음한다 (원본과 같은 규칙) */
+  useEffect(() => {
+    const rows = catRows(gender);
+    setSt(o => {
+      const p = { ...o.pairs }; let hit = false; const moved = [];
+      [1, 2, 3].forEach(n => {
+        if (p[n].key && !rows.some(r => r[0] === p[n].key)) {
+          const alt = rows.find(r => r[0] !== 'auto_random' && r[0] !== '__custom__');
+          p[n] = { ...p[n], key: alt ? alt[0] : '', exampleKey: '' }; hit = true;
+          moved.push([n, alt ? alt[0] : '']);
+        }
+      });
+      if (!hit) return o;
+      const pn = { ...o.panels };
+      moved.forEach(([n, v]) => [n * 2 - 1, n * 2].forEach(x => { pn[x] = { ...pn[x], cat: v, exampleKey: '' }; }));
+      return { ...o, pairs: p, panels: pn };
+    });
+  }, [gender]);
+
+  const state = useMemo(() => {
+    const pairs = {}, panels = {};
+    [1, 2, 3].forEach(n => {
+      const q = st.pairs[n];
+      pairs[n] = { use: q.use, key: q.key, custom: (q.custom || '').trim(),
+        exampleKey: q.exampleKey, exampleCustom: (q.exampleCustom || '').trim(),
+        expr: q.expr, orient: q.orient, pose: q.pose, adv: q.adv };
+    });
+    for (let n = 1; n <= 6; n++) {
+      const p = st.panels[n];
+      panels[n] = { cat: p.cat, catCustom: (p.catCustom || '').trim(),
+        exampleKey: p.exampleKey, exampleCustom: p.exampleCustom, ov: p.ov };
+    }
+    return { pairs, panels };
+  }, [st]);
+
+  const prompt = useMemo(() => {
+    if (!card) return '';
+    const adv = {}; Object.keys(S.ADVANCED_OPTIONS).forEach(k => { if (st.adv[k]) adv[k] = st.adv[k]; });
+    return AL.buildCollage({
+      source: { mech: card.name }, gender, style, record,
+      adv, panels: state, custom: st.custom.trim(),
+      carryFace: st.carryFace, carryBody: st.carryBody,
+      suppressed: [], globals: st.globals,
+    });
+  }, [card, gender, style, record, st, state]);
+
+  function push() { prev.current = JSON.parse(JSON.stringify(st)); setHasPrev(true); }
+  function undo() {
+    if (!prev.current) return;
+    const now = JSON.parse(JSON.stringify(st));
+    setSt(prev.current); prev.current = now;
+    setStatus('직전 조합으로 되돌렸다. 한 번 더 누르면 원래대로.');
+  }
+
+  function applyPreset(key) {
+    const p = S.PRESETS[key]; if (!p) return;
+    push();
+    const rows = catRows(gender); let swapped = 0;
+    setSt(o => {
+      const pairs = { ...o.pairs };
+      [1, 2, 3].forEach((n, i) => {
+        let want = p.pairs[i];
+        if (!rows.some(r => r[0] === want)) {
+          const alt = rows.find(r => r[0] !== 'auto_random' && r[0] !== '__custom__');
+          if (alt) { want = alt[0]; swapped++; }
+        }
+        pairs[n] = { ...pairs[n], key: want, custom: '', exampleKey: '', exampleCustom: '' };
+      });
+      const panels = { ...o.panels };
+      for (let x = 1; x <= 6; x++) panels[x] = { ...panels[x], cat: pairs[pairOf(x)].key, exampleKey: '' };
+      return { ...o, preset: key, pairs, panels, adv: { ...(p.advanced || {}) } };
+    });
+    setStatus('프리셋 적용 완료' + (swapped ? ' — 지금 성별에 없는 카테고리 ' + swapped + '개는 갈음했다' : ''));
+  }
+
+  /* 랜덤 조합 — 세 Pair 에 서로 다른 카테고리를 돌린다 */
+  function roll() {
+    push();
+    const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+    const pick = a => a[Math.floor(Math.random() * a.length)];
+    const T = st.tgt, rows = catRows(gender);
+    const okCat = list => list.filter(c => rows.some(r => r[0] === c));
+    const M = S.RANDOM_MODES[st.mode] || S.RANDOM_MODES.variety;
+    let pool = shuffle(okCat([...(M.pool || S.RANDOM_POOL)])), note = M.ko + ' — ';
+    if (pool.length < 3) pool = shuffle(okCat([...S.RANDOM_POOL]));
+    if (st.avoid) {
+      const used = {}; ATK.usedOf(mech).forEach(r => { used[r.cat] = 1; });
+      const fresh = pool.filter(c => !used[c]), rest = shuffle(pool.filter(c => used[c]));
+      if (fresh.length >= 3) { pool = fresh; note += '안 써본 카테고리 ' + fresh.length + '개 중에서 뽑았다'; }
+      else if (fresh.length) { pool = fresh.concat(rest);
+        note += '안 써본 건 ' + fresh.length + '개뿐이라 나머지 ' + (3 - fresh.length) + '개는 이미 쓴 것에서 채웠다'; }
+      else note += '모든 카테고리를 이미 써봤다. 회피를 끄는 게 낫다';
+    }
+    if (note.endsWith('— ')) note += M.desc;
+    setSt(o => {
+      const pairs = { ...o.pairs };
+      [1, 2, 3].forEach((n, i) => {
+        let q = { ...pairs[n] };
+        if (T.cat && pool[i]) { q.key = pool[i]; q.custom = ''; q.exampleKey = ''; }
+        if (T.ex) {
+          const cand = exRows(q.key, gender).map(r => r[0]).filter(v => v && v !== '__custom__');
+          q.exampleKey = (cand.length && Math.random() < 0.75) ? pick(cand) : '';
+        }
+        if (T.expr) q.expr = pick(S.EXPRESSION_OPTIONS.filter(x => x[0]))[0];
+        if (T.orient) q.orient = pick(S.ORIENTATION_OPTIONS.filter(x => x[0]))[0];
+        if (T.pose) q.pose = pick(S.POSE_OPTIONS.filter(x => x[0]))[0];
+        pairs[n] = q;
+      });
+      const g = { ...o.globals };
+      if (T.frame) g.frame = pick(CLG_FRAMES.filter(x => x[0]))[0];
+      const adv = T.adv ? { ...(M.adv || {}) } : o.adv;
+      return { ...o, preset: 'free', pairs, globals: g, adv };
+    });
+    setStatus('랜덤 조합 생성 완료 🎲 · ' + note);
+  }
+
+  function reset() {
+    push();
+    const f = clgFresh();
+    setSt(o => ({ ...f, mode: o.mode, tgt: o.tgt, avoid: o.avoid,
+                  carryFace: o.carryFace, carryBody: o.carryBody, build: o.build }));
+    setStatus('콜라주 설정을 초기화했다');
+  }
+
+  /* 복사하면 쓴 컷 기록에 쌓는다 — Pair 로 묶으면 한 번, 풀면 두 칸을 각각 */
+  function noteUse() {
+    if (!mech) return;
+    const d = box.current.data;
+    if (!d.used) d.used = {};
+    const arr = d.used[mech] || (d.used[mech] = []);
+    const now = Date.now();
+    const add = (cat, ex) => {
+      if (!cat || cat === '__custom__') return;
+      const hit = arr.find(r => r.cat === cat && (r.ex || '') === (ex || ''));
+      if (hit) { hit.n = (hit.n || 1) + 1; hit.t = now; }
+      else arr.push({ cat: cat, ex: ex || '', n: 1, t: now });
+    };
+    [1, 2, 3].forEach(n => {
+      const q = st.pairs[n];
+      if (q.use) add(q.key, q.exampleKey);
+      else [n * 2 - 1, n * 2].forEach(x => add(st.panels[x].cat || q.key, st.panels[x].exampleKey));
+    });
+    box.current.save(); setUsedTick(t => t + 1);
+  }
+  function clearUse() {
+    const d = box.current.data;
+    if (d.used) delete d.used[mech];
+    box.current.save(); setUsedTick(t => t + 1);
+    setStatus('이 기체의 쓴 컷 기록을 지웠다');
+  }
+
+  const used = useMemo(() => ATK.usedOf(mech), [mech, usedTick, data]);
+  const advOn = Object.keys(S.ADVANCED_OPTIONS).filter(k => st.adv[k]).length;
+  const tgtOn = CLG_TARGETS.filter(([k]) => st.tgt[k]).length;
+
+  /* 한글 요약 — 세 Pair 가 무엇인지, 그리고 켜둔 것들 */
+  const summary = (() => {
+    const rows = [1, 2, 3].map(n => {
+      const q = st.pairs[n];
+      const cr = catRows(gender).find(r => r[0] === q.key);
+      const er = exRows(q.key, gender).find(r => r[0] === q.exampleKey);
+      return { n, use: q.use, ko: (cr ? cr[2] : q.key || '—'), ex: er ? er[2] : '' };
+    });
+    const flags = ['화풍 ' + ((S.ART_STYLES.find(r => r[0] === style) || ['', style])[1])];
+    if (advOn) flags.push('고급 설정 ' + advOn + '개');
+    if (st.globals.frame) flags.push('화각 ' + st.globals.frame);
+    const carried = (st.carryFace ? AL.carryValues(S.CARRY_FACE, record, gender).length : 0)
+                  + (st.carryBody ? AL.carryValues(S.CARRY_BODY, record, gender).length : 0);
+    if (carried) flags.push('의인화 설정 ' + carried + '개 전달');
+    if (st.avoid && used.length) flags.push('이미 쓴 카테고리는 빼고 뽑는다');
+    if (st.build === 'panel') flags.push('Panel 개별 모드');
+    return { rows, flags };
+  })();
+
+  const optRows = rows => rows.map(([v, t]) => html`<option key=${v} value=${v}>${t}</option>`);
+  const exGroups = (cat, extra) => ['basic', 'popular', 'special'].map(g => {
+    const rs = exRows(cat, gender).filter(r => r[3] === g && !(extra && r[0] === ''));
+    if (!rs.length) return null;
+    return html`<optgroup key=${g} label=${S.GROUP_LABELS[g] || g}>
+      ${rs.map(r => html`<option key=${r[0]} value=${r[0]}>${r[1]} — ${r[2]}</option>`)}</optgroup>`;
+  });
+  const axisField = (k, val, on) => {
+    const lab = S.ADVANCED_LABELS[k] || [k, ''], ko = S.ADV_VAL[k] || {};
+    return html`<div class="field" key=${k} style="margin-top:7px">
+      <label>${lab[0]} <small>${lab[1]}</small></label>
+      <select value=${val || ''} onchange=${e => on(e.target.value)}>
+        ${(S.ADVANCED_OPTIONS[k] || []).map(v => html`
+          <option key=${v} value=${v === 'AUTO' ? '' : v}>
+            ${v === 'AUTO' ? '지정 안 함' : (ko[v] ? v + ' — ' + ko[v] : v)}</option>`)}
+      </select></div>`;
+  };
+
+  return html`
+    <section class="panel">
+      <div class="panel-head">
+        <strong>콜라주</strong>
+        <span>여섯 칸 · Pair 카테고리와 예시 · 표정/앞뒤태 · Panel 개별 덮어쓰기</span>
+      </div>
+
+      <div class="form-section">
+        <aside class="studio-setup" aria-label="기체 기본 설정">
+          <div class="section-caption"><b>01</b> 기체 & 뽑기</div>
+          <div class="studio-selection"><div><small>SELECTED UNIT</small><strong>${mech || '기체를 선택하세요'}</strong></div>
+            <span class="selection-count">${used.length ? used.length + '조합 씀' : '처음'}</span></div>
+          <div class="setup-identity">
+            <div class="field" style="margin-bottom:9px">
+              <label>기체 <small>다른 탭과 같은 기체를 본다</small></label>
+              <select aria-label="시리즈" value=${series} onchange=${e => setSeries(e.target.value)}>
+                <option value="">시리즈 전체</option>
+                ${seriesList.map(k => html`<option key=${k} value=${k}>${(data.series.name || {})[k] || k}</option>`)}
+              </select>
+              <select aria-label="기체" style="margin-top:6px" value=${mech} onchange=${e => setMech(e.target.value)}>
+                <option value="">기체를 고르세요 (${mechList.length})</option>
+                ${mechList.map(c => html`<option key=${c.name} value=${c.name}>${c.name}</option>`)}
+              </select>
+              <select aria-label="화풍" style="margin-top:6px" value=${style} onchange=${e => setStyle(e.target.value)}>
+                ${S.ART_STYLES.map(r => html`<option key=${r[0]} value=${r[0]}>화풍 · ${r[1]}</option>`)}
+              </select>
+            </div>
+          </div>
+          <div class="setup-options">
+            <div class="gender-tabs">
+              ${[['female', '여성 / Female'], ['male', '남성 / Male']].map(([g, t]) => html`
+                <button type="button" key=${g} class=${'gt' + (gender === g ? ' on' : '')}
+                        onclick=${() => setGender(g)}>${t}</button>`)}
+            </div>
+            <div class="field" style="margin-top:10px">
+              <label>Preset <small>프리셋</small></label>
+              <select aria-label="프리셋" value=${st.preset} onchange=${e => applyPreset(e.target.value)}>
+                ${Object.entries(S.PRESETS).map(([k, v]) => html`<option key=${k} value=${k}>${v.label}</option>`)}
+              </select>
+            </div>
+            <div class="field" style="margin-top:9px">
+              <label>랜덤 성격 <small>어떤 카테고리 판에서 고를지</small></label>
+              <select aria-label="랜덤 성격" value=${st.mode} onchange=${e => set('mode', e.target.value)}>
+                ${Object.entries(S.RANDOM_MODES).filter(([, m]) => !m.useRec).map(([k, m]) => html`
+                  <option key=${k} value=${k}>${m.ko} — ${m.desc}</option>`)}
+              </select>
+            </div>
+            <div class="param-actions" style="margin-top:8px">
+              <button type="button" onclick=${roll}>🎲 랜덤 조합</button>
+              ${hasPrev ? html`<button type="button" onclick=${undo}>↩ 직전 조합으로</button>` : null}
+            </div>
+            <details class="grp" style="margin-top:8px">
+              <summary><span>랜덤으로 정할 것<em class=${tgtOn ? 'on' : ''}>  ${tgtOn}/${CLG_TARGETS.length}개 켬</em></span>
+                <i>끈 칸은 굴려도 그대로 둔다</i></summary>
+              <div class="grp-in"><div class="rnd-tgt">
+                ${CLG_TARGETS.map(([k, ko]) => html`
+                  <label key=${k}><input type="checkbox" checked=${!!st.tgt[k]}
+                    onchange=${e => setTgt(k, e.target.checked)} /><span>${ko}</span></label>`)}
+              </div></div>
+            </details>
+            <label style="display:flex;align-items:center;gap:6px;margin:8px 0 0;cursor:pointer;font-size:11.5px;color:var(--muted)">
+              <input type="checkbox" checked=${st.avoid} style="width:auto;margin:0;flex:none"
+                     onchange=${e => set('avoid', e.target.checked)} />
+              <span>이미 쓴 카테고리는 빼고 뽑기</span>
+            </label>
+            <div class="field" style="margin-top:10px">
+              <label>Overall Custom Instructions <small>전체 추가 지시</small></label>
+              <input type="text" placeholder="예: moonlit pool preferred, avoid black mini dresses"
+                     value=${st.custom} oninput=${e => set('custom', e.target.value)} />
+            </div>
+          </div>
+        </aside>
+
+        <div class="studio-editor">
+          <div class="section-caption"><b>02</b> 여섯 칸을 어떻게 나눌까</div>
+          <div class="param-note" style="margin:10px 0 0">
+            <b>Pair 로 묶는다는 것</b> — 두 칸을 같은 주제의 <b>약한 컷 / 강한 컷</b> 한 쌍으로 만든다.
+            묶기를 풀면 그 두 칸이 서로 무관해져서 각자 다른 카테고리를 고를 수 있다.
+          </div>
+          <div class="gender-tabs" style="margin-top:9px">
+            ${[['pair', 'Pair 구성'], ['panel', 'Panel 개별']].map(([k, ko]) => html`
+              <button type="button" key=${k} class=${'gt' + (st.build === k ? ' on' : '')}
+                      onclick=${() => set('build', k)}>${ko}</button>`)}
+          </div>
+
+          ${st.build === 'pair' ? html`
+            <div style="margin-top:10px">
+              ${[1, 2, 3].map(n => {
+                const q = st.pairs[n];
+                return html`
+                <details class="grp" key=${'p' + n} open=${true}>
+                  <summary><span>PAIR ${n}<em class=${q.use ? 'on' : ''}>  Panel ${n * 2 - 1} ‹ Panel ${n * 2}</em></span>
+                    <i>${q.use ? '묶음 — 약한 컷 / 강한 컷' : '풀림 — 두 칸이 따로 논다'}</i></summary>
+                  <div class="grp-in">
+                    <label style="display:flex;align-items:center;gap:7px;margin:0 0 8px;cursor:pointer;font-size:11.5px">
+                      <input type="checkbox" checked=${q.use} style="width:auto;margin:0;flex:none"
+                             onchange=${e => setPair(n, 'use', e.target.checked)} /><span>이 Pair 로 묶기</span></label>
+                    <div class="field">
+                      <label>Category <small>카테고리</small></label>
+                      <select aria-label=${'Pair ' + n + ' 카테고리'} value=${q.key}
+                              onchange=${e => setPairKey(n, e.target.value)}>
+                        ${catRows(gender).map(r => html`<option key=${r[0]} value=${r[0]}>${r[1]} — ${r[2]}</option>`)}
+                      </select>
+                      ${q.key === '__custom__' ? html`<input type="text" style="margin-top:6px" placeholder="카테고리 직접 입력"
+                        value=${q.custom} oninput=${e => setPair(n, 'custom', e.target.value)} />` : null}
+                      ${S.CAT_KO[q.key] ? html`<div class="param-note" style="margin-top:4px">${S.CAT_KO[q.key]}</div>` : null}
+                    </div>
+                    <div class="field" style="margin-top:9px">
+                      <label>Example Menu <small>예시 메뉴</small></label>
+                      <select aria-label=${'Pair ' + n + ' 예시'} value=${q.exampleKey}
+                              onchange=${e => setPair(n, 'exampleKey', e.target.value)}>
+                        ${exGroups(q.key, false)}
+                      </select>
+                      ${q.exampleKey === '__custom__' ? html`<input type="text" style="margin-top:6px" placeholder="예시 직접 입력"
+                        value=${q.exampleCustom} oninput=${e => setPair(n, 'exampleCustom', e.target.value)} />` : null}
+                      ${q.exampleKey && S.EX_NOTE[q.exampleKey]
+                        ? html`<div class="param-note" style="margin-top:4px">${S.EX_NOTE[q.exampleKey]}</div>` : null}
+                    </div>
+                    <div class="param-grid" style="margin-top:9px">
+                      <div class="field"><label>Expression <small>표정 · 이 Pair 공통</small></label>
+                        <select value=${q.expr} onchange=${e => setPair(n, 'expr', e.target.value)}>
+                          ${optRows(S.EXPRESSION_OPTIONS)}</select></div>
+                      <div class="field"><label>Body Orientation <small>앞/옆/뒷태</small></label>
+                        <select value=${q.orient} onchange=${e => setPair(n, 'orient', e.target.value)}>
+                          ${optRows(S.ORIENTATION_OPTIONS)}</select></div>
+                      <div class="field"><label>Pose <small>포즈</small></label>
+                        <select value=${q.pose} onchange=${e => setPair(n, 'pose', e.target.value)}>
+                          ${optRows(S.POSE_OPTIONS)}</select></div>
+                    </div>
+                    <details class="grp" style="margin-top:9px">
+                      <summary><span>세부 강도<em class=${S.PAIR_ONLY.concat(S.LOCAL_AXES).filter(k => q.adv[k]).length ? 'on' : ''}>
+                        ${S.PAIR_ONLY.concat(S.LOCAL_AXES).filter(k => q.adv[k]).length
+                          ? '  ' + S.PAIR_ONLY.concat(S.LOCAL_AXES).filter(k => q.adv[k]).length + ' 지정' : ''}</em></span>
+                        <i>비워두면 전역 설정을 따른다 — 값이 있으면 이 Pair 에서만 덮는다</i></summary>
+                      <div class="grp-in">
+                        ${S.PAIR_ONLY.concat(S.LOCAL_AXES).map(k => axisField(k, q.adv[k], v => setPairAdv(n, k, v)))}
+                      </div>
+                    </details>
+                  </div>
+                </details>`;
+              })}
+            </div>`
+          : html`
+            <div style="margin-top:10px">
+              <div class="gender-tabs" style="flex-wrap:wrap">
+                ${[1, 2, 3, 4, 5, 6].map(n => html`
+                  <button type="button" key=${'t' + n} class=${'gt' + (st.panelTab === n ? ' on' : '')}
+                          onclick=${() => set('panelTab', n)}>${n}</button>`)}
+              </div>
+              ${(() => {
+                const n = st.panelTab, p = st.panels[n];
+                return html`
+                <div class="grp-in" style="margin-top:9px">
+                  <div class="param-note">Panel ${n} — ${n % 2 ? '약한 컷' : '강한 컷'} · Pair ${pairOf(n)}
+                    ${st.pairs[pairOf(n)].use ? ' (묶여 있다 — 비워두면 Pair 를 따른다)' : ' (풀려 있다 — 이 칸이 혼자 정한다)'}</div>
+                  <div class="field" style="margin-top:9px">
+                    <label>Category <small>개별 카테고리</small></label>
+                    <select aria-label=${'Panel ' + n + ' 카테고리'} value=${p.cat}
+                            onchange=${e => { setPanel(n, 'cat', e.target.value); setPanel(n, 'exampleKey', ''); }}>
+                      ${catRows(gender).map(r => html`<option key=${r[0]} value=${r[0]}>${r[1]} — ${r[2]}</option>`)}
+                    </select>
+                    ${p.cat === '__custom__' ? html`<input type="text" style="margin-top:6px" placeholder="카테고리 직접 입력"
+                      value=${p.catCustom} oninput=${e => setPanel(n, 'catCustom', e.target.value)} />` : null}
+                  </div>
+                  <div class="field" style="margin-top:9px">
+                    <label>Panel Example <small>개별 예시</small></label>
+                    <select aria-label=${'Panel ' + n + ' 예시'} value=${p.exampleKey}
+                            onchange=${e => setPanel(n, 'exampleKey', e.target.value)}>
+                      <option value="">AUTO — Pair 예시 따름</option>
+                      ${exGroups(p.cat || st.pairs[pairOf(n)].key, true)}
+                    </select>
+                    ${p.exampleKey === '__custom__' ? html`<input type="text" style="margin-top:6px" placeholder="개별 예시 직접 입력"
+                      value=${p.exampleCustom} oninput=${e => setPanel(n, 'exampleCustom', e.target.value)} />` : null}
+                  </div>
+                  <div class="param-grid" style="margin-top:9px">
+                    <div class="field"><label>Expression <small>표정</small></label>
+                      <select value=${p.ov.expression || ''} onchange=${e => setOv(n, 'expression', e.target.value)}>
+                        ${optRows(S.EXPRESSION_OPTIONS)}</select></div>
+                    <div class="field"><label>Body Orientation <small>앞/옆/뒷태 방향</small></label>
+                      <select value=${p.ov.orientation || ''} onchange=${e => setOv(n, 'orientation', e.target.value)}>
+                        ${optRows(S.ORIENTATION_OPTIONS)}</select></div>
+                    <div class="field"><label>Pose <small>포즈</small></label>
+                      <select value=${p.ov.pose || ''} onchange=${e => setOv(n, 'pose', e.target.value)}>
+                        ${optRows(S.POSE_OPTIONS)}</select></div>
+                  </div>
+                  ${OV_TEXTS.map(([k, en, ko]) => html`
+                    <div class="field" key=${k} style="margin-top:7px">
+                      <label>${en} <small>${ko}</small></label>
+                      <input type="text" placeholder="AUTO" value=${p.ov[k] || ''}
+                             oninput=${e => setOv(n, k, e.target.value)} /></div>`)}
+                  <details class="grp" style="margin-top:9px">
+                    <summary><span>세부 강도<em class=${S.LOCAL_AXES.filter(k => p.ov['adv_' + k]).length ? 'on' : ''}>
+                      ${S.LOCAL_AXES.filter(k => p.ov['adv_' + k]).length
+                        ? '  ' + S.LOCAL_AXES.filter(k => p.ov['adv_' + k]).length + ' 지정' : ''}</em></span>
+                      <i>비워두면 전역 설정을 따른다 — 값이 있으면 이 패널에서만 덮는다</i></summary>
+                    <div class="grp-in">
+                      ${S.LOCAL_AXES.map(k => axisField(k, p.ov['adv_' + k], v => setOv(n, 'adv_' + k, v)))}
+                    </div>
+                  </details>
+                </div>`;
+              })()}
+            </div>`}
+
+          <details class="grp" style="margin-top:10px">
+            <summary><span>콜라주 고급 설정<em class=${advOn ? 'on' : ''}>${advOn ? '  ' + advOn + ' 지정' : ''}</em></span>
+              <i>여섯 칸 전체에 걸리는 값</i></summary>
+            <div class="grp-in">
+              ${Object.keys(S.ADVANCED_OPTIONS).map(k => axisField(k, st.adv[k], v => setAdv(k, v)))}
+              <div class="field" style="margin-top:9px"><label>Expression Mode <small>표정 모드</small></label>
+                <select value=${st.globals.expressionMode}
+                        onchange=${e => setGlobal('expressionMode', e.target.value)}>${optRows(CLG_EXPR_MODES)}</select></div>
+              <div class="field" style="margin-top:7px"><label>Body Orientation Mix <small>앞/옆/뒷태 비율</small></label>
+                <select value=${st.globals.orientationMix}
+                        onchange=${e => setGlobal('orientationMix', e.target.value)}>${optRows(CLG_ORIENT_MIX)}</select></div>
+              <div class="field" style="margin-top:7px"><label>Framing <small>화각 · 전체 기준</small></label>
+                <select aria-label="전체 화각" value=${st.globals.frame}
+                        onchange=${e => setGlobal('frame', e.target.value)}>${optRows(CLG_FRAMES)}</select></div>
+            </div>
+          </details>
+
+          <div class="save-bar" style="align-items:flex-start;flex-direction:column;gap:6px;margin-top:10px">
+            ${[['carryFace', '이 기체의 얼굴 설정을 정체성에 넘기기'],
+               ['carryBody', '이 기체의 체형 설정을 정체성에 넘기기']].map(([k, ko]) => html`
+              <label key=${k} style="display:flex;align-items:center;gap:7px;margin:0;cursor:pointer;font-size:11.5px">
+                <input type="checkbox" checked=${!!st[k]} style="width:auto;margin:0;flex:none"
+                       onchange=${e => set(k, e.target.checked)} /><span>${ko}</span></label>`)}
+            <span class="uz">
+              ${st.carryFace ? '얼굴 ' + AL.carryValues(S.CARRY_FACE, record, gender).length + '개' : ''}
+              ${st.carryBody ? ' · 체형 ' + AL.carryValues(S.CARRY_BODY, record, gender).length + '개' : ''}
+            </span>
+          </div>
+
+          <details class="grp" style="margin-top:9px" open=${usedOpen}
+                   ontoggle=${e => setUsedOpen(e.target.open)}>
+            <summary><span>쓴 컷 기록<em class=${used.length ? 'on' : ''}>${used.length ? '  ' + used.length + '조합' : ''}</em></span>
+              <i>채택이 아니라 복사 기록이다</i></summary>
+            <div class="grp-in">
+              ${used.length ? html`
+                <div class="used-box">${used.map(r => {
+                  const cr = catRows(gender).find(x => x[0] === r.cat);
+                  const er = exRows(r.cat, gender).find(x => x[0] === r.ex);
+                  return html`<span class="uchip" key=${r.cat + '|' + r.ex}>
+                    <b>${cr ? cr[2] : r.cat}</b>${er ? html`<i>${er[2]}</i>` : null}
+                    <u>${r.n > 1 ? r.n + '회 · ' : ''}${new Date(r.t).getMonth() + 1}/${new Date(r.t).getDate()}</u></span>`;
+                })}</div>
+                <button type="button" class="sb-drop" style="margin-top:7px" onclick=${clearUse}>기록 삭제</button>`
+              : html`<span class="uz">아직 없다. 프롬프트를 복사하면 여기에 쌓인다.</span>`}
+            </div>
+          </details>
+
+          <div class="param-actions">
+            <button type="button" onclick=${() => setStatus('콜라주 설정 적용 완료')}>설정 반영</button>
+            <button type="button" onclick=${reset}>콜라주 리셋</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ko-sum">
+        <div class="ks-t">지금 설정 요약</div>
+        ${summary.rows.map(r => html`<div class="ks-r" key=${r.n}>
+          <b>${r.use ? 'PAIR ' + r.n : '패널 ' + (r.n * 2 - 1) + '·' + (r.n * 2)}</b>${r.ko}${r.ex ? ' — ' + r.ex : ''}
+          ${r.use ? null : html`<u>묶기 풀림</u>`}</div>`)}
+        <div class="ks-f">${summary.flags.join(' · ')}</div>
+      </div>
+
+      <div class="controls">
+        <button class="primary" type="button" disabled=${!prompt}
+                onclick=${() => copyText(prompt).then(
+                  () => { noteUse(); setStatus('클립보드에 복사했다 — 쓴 컷 기록에 쌓았다'); },
+                  () => setStatus('복사에 실패했다'))}>클립보드 복사</button>
+        <button type="button" aria-expanded=${String(showText)}
+                onclick=${() => setShowText(v => !v)}>${showText ? '텍스트 닫기' : '텍스트 보기'}</button>
+      </div>
+      <div class="status" role="status">${status}</div>
+      ${showText && html`
+        <div class="prompt-view">
+          <textarea aria-label="생성 프롬프트" readonly spellcheck="false" value=${prompt}></textarea>
+        </div>`}
+    </section>`;
+}
+
+
 function App() {
   const [data, setData] = useState(null);
   const [err, setErr] = useState(null);
@@ -1197,7 +1764,7 @@ function App() {
     <${WorkspaceHeading} title="캐릭터 스튜디오" code="PROMPT TOOLKIT"
       subtitle="기체의 개성을 고르고, 나만의 캐릭터로." />
     <div class="gender-tabs" role="tablist" aria-label="프롬프트 갈래" style="margin-bottom:10px">
-      ${[['anthro', '의인화'], ['single', '단일 컷']].map(([k, ko]) => html`
+      ${[['anthro', '의인화'], ['single', '단일 컷'], ['collage', '콜라주']].map(([k, ko]) => html`
         <button type="button" key=${k} role="tab" aria-selected=${String(tab === k)}
                 class=${'gt' + (tab === k ? ' on' : '')} onclick=${() => setTab(k)}>${ko}</button>`)}
     </div>
@@ -1208,7 +1775,12 @@ function App() {
           seriesList=${seriesList} mechList=${mechList} card=${card}
           prevRef=${prevRef} prevFrom=${prevFrom} setPrevFrom=${setPrevFrom}
           onZoom=${z => setZoom(z)} />`
-      : html`<${SinglePanel} data=${data} series=${series} setSeries=${setSeries}
+      : tab === 'single'
+      ? html`<${SinglePanel} data=${data} series=${series} setSeries=${setSeries}
+          mech=${mech} setMech=${setMech} gender=${gender} setGender=${setGender}
+          style=${style} setStyle=${setStyle} box=${box}
+          seriesList=${seriesList} mechList=${mechList} card=${card} />`
+      : html`<${CollagePanel} data=${data} series=${series} setSeries=${setSeries}
           mech=${mech} setMech=${setMech} gender=${gender} setGender=${setGender}
           style=${style} setStyle=${setStyle} box=${box}
           seriesList=${seriesList} mechList=${mechList} card=${card} />`}
