@@ -31,7 +31,7 @@ document.documentElement.dataset.density=v})();
 :root{
   --void:#0f1115; --deck:#141821; --panel:#1b2130; --rule:#2a3242;
   --ink:#E4E9EF; --dim:#8794A3; --plate:#C9D2DC; --gold:#C9A227;
-  --ui-font:12px; --ui-small:11px; --ui-height:34px;
+  --ui-font:12px; --ui-small:11px; --ui-height:34px; --card:#1b2130;
 }
 :root[data-density="relaxed"]{--ui-font:14px;--ui-small:12px;--ui-height:44px}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -89,7 +89,14 @@ textarea{min-height:200px;font-family:ui-monospace,Menlo,monospace;font-size:11.
   font:inherit;font-size:10.5px;border-radius:999px;padding:3px 9px;min-height:0;cursor:pointer}
 .ex{margin-top:7px;padding:8px;border:1px solid var(--rule);border-radius:8px;background:var(--void)}
 .ex.note{padding:6px 8px}
-.fig{color:var(--plate);text-align:center;margin-bottom:6px}
+.figrow{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:8px}
+.figcell{flex:0 0 auto;background:none;border:1px solid var(--rule);border-radius:8px;
+  padding:4px;color:var(--dim);cursor:pointer;min-height:0;
+  display:flex;flex-direction:column;align-items:center;gap:2px}
+.figcell.on{border-color:var(--gold);color:var(--plate);background:rgba(201,162,39,.08)}
+.figcell svg{width:56px;height:auto;display:block}
+.figcell b{font-size:9.5px;font-weight:600;max-width:64px;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
 .exgal{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:5px}
 .exgal img{width:100%;aspect-ratio:2/3;object-fit:cover;object-position:50% 16%;
   border-radius:5px;display:block;background:var(--panel);cursor:zoom-in}
@@ -182,13 +189,23 @@ function copyText(text) {
    자동으로 고를 방법이 없고, 삽화는 유지가 버겁다.
 
    항목마다 펼쳐 두면 42개가 세로로 길어져 접어 둔다. */
-function Examples({ def, value, gender, img, style, exclude, onZoom }) {
-  const svg = FIG.forKey(def.key, value, gender);
+function Examples({ def, value, gender, img, style, exclude, onZoom, onPick }) {
   const v = gender === 'female' ? 'f' : 'm';
+  /* 도식이 있는 항목(체형·머리)은 값을 안 골랐어도 후보를 늘어놓는다.
+     원래 이 도식은 손으로 그리지 않아 옵션끼리 폭 차이가 그대로 보이는 게 값어치라,
+     나란히 놓고 고르는 편이 하나만 보는 것보다 쓸모 있다 */
+  const figs = useMemo(() => {
+    if (def.key !== 'body type' && def.key !== 'hairstyle') return [];
+    return def.options
+      .filter(([k]) => k && k !== '__custom__')
+      .map(([k, t]) => ({ k, t: t.split(' — ')[0], svg: FIG.forKey(def.key, k, gender) }))
+      .filter(x => x.svg);
+  }, [def.key, gender]);
 
   /* 지금 편집 중인 기체는 뺀다 — 고르는 즉시 제 그림이 예시로 뜨는데,
      그 그림은 지금 값으로 뽑은 게 아니다 (툴킷과 같은 규칙) */
   const hits = useMemo(() => {
+    if (!value) return [];
     const out = [];
     ATK.listCards().forEach(name => {
       if (name === exclude) return;
@@ -200,12 +217,22 @@ function Examples({ def, value, gender, img, style, exclude, onZoom }) {
     return out.slice(0, 8);
   }, [def.key, value, gender, style, exclude, img]);
 
-  if (!svg && !hits.length) {
-    return html`<p class="note ex">이 값으로 뽑아둔 기체가 아직 없다</p>`;
+  if (!figs.length && !hits.length) {
+    return html`<p class="note ex">${value
+      ? '이 값으로 뽑아둔 기체가 아직 없다'
+      : '값을 고르면 그 값으로 뽑은 기체가 여기 뜬다'}</p>`;
   }
   return html`
     <div class="ex">
-      ${svg && html`<div class="fig" dangerouslySetInnerHTML=${{ __html: svg }}></div>`}
+      ${figs.length ? html`
+        <div class="figrow">
+          ${figs.map(f => html`
+            <button type="button" key=${f.k} class=${'figcell' + (f.k === value ? ' on' : '')}
+                    onclick=${() => onPick(f.k)} title=${f.t}>
+              <span dangerouslySetInnerHTML=${{ __html: f.svg }}></span>
+              <b>${f.t}</b>
+            </button>`)}
+        </div>` : null}
       ${hits.length ? html`
         <div class="exgal">
           ${hits.map(h => html`
@@ -214,6 +241,7 @@ function Examples({ def, value, gender, img, style, exclude, onZoom }) {
                  onerror=${e => { e.target.onerror = null; e.target.src = AIMG.imgURL(h.file); }} />`)}
         </div>
         <p class="note">이 값을 쓴 기체 ${hits.length}기 · 눌러서 크게 보기</p>` : null}
+      ${!hits.length && value ? html`<p class="note">이 값으로 뽑아둔 기체는 아직 없다</p>` : null}
     </div>`;
 }
 
@@ -252,7 +280,8 @@ function Param({ def, value, custom, locked, gender, img, style, exclude,
     <div class=${'pdef' + (def.sub ? ' sub' : '')}>
       <label>
         <b>${def.ko}</b> · ${def.label}
-        <button type="button" class=${'lockbtn' + (locked ? ' on' : '')} onclick=${onLock}
+        <button type="button" class=${'lockbtn' + (locked ? ' on' : '')}
+                onclick=${e => { e.preventDefault(); e.stopPropagation(); onLock(); }}
                 aria-pressed=${String(!!locked)}
                 title=${locked ? '이 칸은 랜덤에서 뺀다 — 눌러서 풀기' : '이 칸을 랜덤에서 뺀다'}>
           ${locked ? '🔒' : '🔓'}
@@ -264,14 +293,14 @@ function Param({ def, value, custom, locked, gender, img, style, exclude,
       ${value === '__custom__' && html`
         <input type="text" style="margin-top:5px" placeholder=${def.ph || '직접 입력'}
                value=${custom} oninput=${e => onCustom(e.target.value)} />`}
-      ${value && value !== '__custom__' && html`
-        <button type="button" class="exbtn" aria-expanded=${String(open)}
-                onclick=${() => setOpen(o => !o)}>
-          ${open ? '예시 접기' : '예시 보기'}
-        </button>`}
-      ${open && value && value !== '__custom__' && html`
+      <button type="button" class="exbtn" aria-expanded=${String(open)}
+              onclick=${() => setOpen(o => !o)}>
+        ${open ? '예시 접기' : '예시 보기'}
+      </button>
+      ${open && html`
         <${Examples} def=${def} value=${value} gender=${gender} img=${img}
-                     style=${style} exclude=${exclude} onZoom=${onZoom} />`}
+                     style=${style} exclude=${exclude}
+                     onZoom=${onZoom} onPick=${onValue} />`}
     </div>`;
 }
 
