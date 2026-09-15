@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "card": "데난 게",
+  "model": "XM-02 Den'an Gei",
+  "series": "기동전사 건담 F91",
+  "repository": "polos0117/atelier",
+  "branch": "codex/denan-ge-20260915",
+  "base_commit": "95f4680076aceeb135eb664b0c54b4ec4f816da7",
+  "prompt_source": "prompts directly assembled from the current prompt.html v9.19 workflow after the cloud browser could not open a fresh tab",
+  "run": "2026-09-15t031425z",
+  "created": "2026-09-15T03:14:25Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Settings preserve the v9.19 parameter schema; browser export was unavailable and the exact submitted prompts are stored with this run",
+  "references": [
+    "data/mech.json",
+    "official/mecha/F91.json",
+    "official/url/F91.json"
+  ],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female fair neutral-rosy skin tone, rich copper-red hair, and icy blue-gray eyes only; casual uses the female generated image as the sole identity reference",
+    "equipment_lock": "Exactly two three-cell shoulder grenade racks, one long beam rifle, one left-forearm rose-magenta beam shield, two integrated forearm beam-gun ports, two rear-waist beam-saber hilts, and one compact twin-pod backpack; no shot lancer; exactly two human arms and two human legs",
+    "casual_scene": "Professional jazz saxophonist checking one brass alto saxophone during a quiet pre-show soundcheck"
+  },
+  "discarded_attempts": [
+    {
+      "id": "denan-ge-male-discarded-01",
+      "prompt": "generation/m-5f858c00a5ac88e0/runs/2026-09-15t031425z/02-male-anthro-discarded.txt",
+      "original_generated_file": "exec-cf324bd9-759c-4225-ac98-504361784c77.png",
+      "reason": "The pose and armor presentation were too close to the female counterpart, so the image was not selected."
+    }
+  ],
+  "jobs": [
+    {
+      "id": "denan-ge-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-5f858c00a5ac88e0/runs/2026-09-15t031425z/01-female-anthro.txt",
+      "original_generated_file": "exec-84940ded-58bc-4762-8a75-9494ddd03e16.png",
+      "file": "img/데난 게_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "454684cd45733057edf3d3e74506f4b7d241d6adfb9a63681e4f609c6a326294",
+      "bytes": 96518
+    },
+    {
+      "id": "denan-ge-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "denan-ge-female-01",
+      "prompt": "generation/m-5f858c00a5ac88e0/runs/2026-09-15t031425z/02-male-anthro.txt",
+      "original_generated_file": "exec-08b18206-cdb5-4a23-b5c4-37e45fe016fb.png",
+      "file": "img/데난 게_cinematic_semi_real_m.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "011579ae024ee8c53caeab9bd2ed0d6bc7e4fc97531c47b7ca12b3dd16bf0494",
+      "bytes": 109328
+    },
+    {
+      "id": "denan-ge-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "denan-ge-female-01",
+      "prompt": "generation/m-5f858c00a5ac88e0/runs/2026-09-15t031425z/03-female-casual.txt",
+      "original_generated_file": "exec-5ef2d959-9d9d-4749-9755-2f65f9217c2c.png",
+      "file": "img/데난 게_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "62a48f4a355d178576f254cc7ff1b1f900f43eaf67d83c06e99e2aea9a99397c",
+      "bytes": 74552
+    }
+  ]
+}

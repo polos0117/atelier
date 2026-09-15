@@ -1,0 +1,29 @@
+{
+  "데난 게_cinematic_semi_real_f.webp": {
+    "card": "데난 게",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "anthro",
+    "sha256": "454684cd45733057edf3d3e74506f4b7d241d6adfb9a63681e4f609c6a326294",
+    "prompt": "generation/m-5f858c00a5ac88e0/runs/2026-09-15t031425z/01-female-anthro.txt",
+    "manifest": "generation/m-5f858c00a5ac88e0/runs/2026-09-15t031425z/manifest.json"
+  },
+  "데난 게_cinematic_semi_real_m.webp": {
+    "card": "데난 게",
+    "style": "cinematic_semi_real",
+    "gender": "m",
+    "mode": "anthro",
+    "sha256": "011579ae024ee8c53caeab9bd2ed0d6bc7e4fc97531c47b7ca12b3dd16bf0494",
+    "prompt": "generation/m-5f858c00a5ac88e0/runs/2026-09-15t031425z/02-male-anthro.txt",
+    "manifest": "generation/m-5f858c00a5ac88e0/runs/2026-09-15t031425z/manifest.json"
+  },
+  "데난 게_cinematic_semi_real_f_casual1.webp": {
+    "card": "데난 게",
+    "style": "cinematic_semi_real",
+    "gender": "f",
+    "mode": "single",
+    "sha256": "62a48f4a355d178576f254cc7ff1b1f900f43eaf67d83c06e99e2aea9a99397c",
+    "prompt": "generation/m-5f858c00a5ac88e0/runs/2026-09-15t031425z/03-female-casual.txt",
+    "manifest": "generation/m-5f858c00a5ac88e0/runs/2026-09-15t031425z/manifest.json"
+  }
+}

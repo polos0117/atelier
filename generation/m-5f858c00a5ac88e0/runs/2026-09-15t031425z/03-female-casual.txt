@@ -1,0 +1,20 @@
+Use case: identity-preserve
+Asset type: vertical civilian lifestyle portrait for a character gallery
+Input images: Image 1 is the absolute identity reference for the established female Den'an Gei anthropomorphization. Preserve the woman, not her armor, equipment, pose, or hangar.
+Primary request: Create a single everyday-life image of exactly the same clearly adult woman from Image 1 as a professional jazz saxophonist during a quiet pre-show soundcheck. This is a completely civilian scene with no mobile-suit elements.
+
+Identity lock: Keep exactly the same Japanese woman in her twenties from Image 1: the same wide oval face, low broad cheekbones, straight jaw, broad rounded chin, short straight nose, thin upper lip and fuller lower lip, slightly hooded icy blue-gray eyes, fair neutral-rosy skin, average height, compact athletic physique, level shoulders, straight compact torso, defined waist, powerful proportionate thighs, and agile legs. Preserve the same rich copper-red chin-length geometric bob, straight texture, deep side part, clean cheek-framing section, and compact volume. Keep her recognizable calm, vigilant adult presence, now softened into focused pre-performance concentration. No identity, age, ethnicity, skin-tone, hairstyle, height, or body drift.
+
+Civilian conversion: Remove every mobile-suit element completely. No armor, shoulder shells, grenade racks, beam rifle, beam shield, beam guns, beam sabers, backpack, thrusters, mechanical limbs, helmet, visor, mask, tactical gear, or glowing weapon. Exactly two normal human arms, two normal hands, and two normal human legs.
+
+Wardrobe: A designed contemporary jazz-stage look unrelated to combat equipment: an opaque charcoal sleeveless mock-neck tailored jumpsuit with a secure high neckline, fitted waist, clean wide-leg trousers, and one soft muted-olive draped fabric panel from the waist that reads as fashion rather than armor; a narrow dark leather belt, low-heeled black ankle boots, small brushed-copper hoop earrings, and a simple black saxophone neck strap. Mature, polished, practical, subtly flattering through tailoring, non-transparent, and fully covered.
+
+Action and props: She stands beside a simple microphone stand while checking the keys of one realistic brass alto saxophone held low across her front with both hands. Her face stays fully visible; she is not blowing into the mouthpiece. One foot is slightly ahead as she shifts her weight, creating a natural rehearsal moment. No extra instruments and no duplicated hands or fingers.
+
+Scene/backdrop: a small contemporary jazz club stage before opening, dark wood floor, deep charcoal acoustic curtain, one blurred upright piano far behind, a cable and monitor speaker kept unobtrusive. No audience, no readable signs, no logos. Warm amber stage key light, soft cool blue side fill, subtle copper highlights on the saxophone, restrained cinematic atmosphere.
+
+Composition/framing: vertical 2:3, tight intentional full-body framing at the largest practical scale, top of hair through both boots fully visible, minimal headroom and floor margin. Three-quarter-front view at around waist height, close enough for facial identity while preserving the whole body and saxophone. Do not pull the camera back, do not add arbitrary empty space, and do not copy Image 1's armored stance.
+
+Style/medium: high-end painterly semi-realistic character illustration with naturalistic cinematic lighting and restrained anime-informed facial idealization, matching Image 1's sophisticated painted language rather than its armor. Mature believable anatomy, dimensional painted skin, grouped painterly copper-red hair, tactile tailored fabric and realistic brass, selective sharpness on the eyes and saxophone keys. Not live-action photography, not a 3D render, not glossy mobile-game key art, not cel-shaded anime.
+
+Avoid: any armor or mecha motifs, weapon-like props, identity drift, childlike appearance, sexualized stage costume, transparent fabric, broad smile, text, logos, watermark, gore.
