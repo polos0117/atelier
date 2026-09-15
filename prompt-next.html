@@ -9,10 +9,8 @@
 <!--
   툴킷 의인화 탭을 Preact + htm 으로 옮긴 시범판. prompt.html 은 그대로 둔다.
 
-  화면은 원본을 그대로 옮겼다 — 마크업 구조·클래스 이름·CSS·단추 자리를 베꼈고,
-  내가 보기 좋게 고치지 않았다. 처음에 그렇게 했다가 빠진 기능이 줄줄이 나왔다.
-  (색 스와치·미리보기, 그룹별 지정 수, 하위 항목 안내, 저장 상태줄, 성별 전용 값
-   거르기 등이 통째로 빠져 있었다)
+  Preact 상태와 필드 컴포넌트는 유지하고, 공통 workspace 스타일로 화면을 구성한다.
+  테마·밀도는 외형 생성 설정과 별개이며 도감과 공유한다.
 
   글을 만드는 일은 화면 밖에 있다 — lib/prompt-anthro.js 가 값만 받아
   prompt.html 과 똑같은 글을 뽑는다. 자료 표는 lib/toolkit-spec.js,
@@ -155,13 +153,17 @@ button{font:inherit}
 .lockbtn.mini{width:28px;height:28px;min-height:28px;padding:0;font-size:12px}
 :root[data-density="relaxed"] .lockbtn.mini{width:34px;height:34px;min-height:34px}
 </style>
+<link rel="stylesheet" href="lib/workspace.css?v=1">
+<script src="lib/workspace-theme.js?v=1"></script>
 </head>
-<body>
+<body class="prompt-page">
 <div class="wrap"><div id="app"></div></div>
 <script type="module">
 import { h, render } from 'https://esm.sh/preact@10.24.3';
 import { useState, useEffect, useMemo, useRef } from 'https://esm.sh/preact@10.24.3/hooks';
 import htm from 'https://esm.sh/htm@3.1.1';
+
+import { AppearanceControls, WorkspaceHeading } from './lib/workspace-ui.js?v=1';
 
 const html = htm.bind(h);
 const S = window.AtelierSpec;
@@ -343,7 +345,7 @@ function ParamCard({ def, value, custom, locked, sel, gender, img, style, exclud
             })}
           </div>`
         : html`
-          <select value=${value} onchange=${e => onValue(e.target.value)}>
+          <select aria-label=${def.ko || def.label} value=${value} onchange=${e => onValue(e.target.value)}>
             ${opts.map(([v, t]) => html`<option key=${v} value=${v}>${t}</option>`)}
           </select>`}
       ${value === '__custom__' && html`
@@ -617,28 +619,38 @@ function App() {
       <a href="prompt-next.html" aria-current="page">툴킷(시범)</a>
     </nav>
 
+    <${AppearanceControls} />
+    <${WorkspaceHeading} title="캐릭터 스튜디오" code="PROMPT TOOLKIT"
+      subtitle="기체의 개성을 고르고, 나만의 캐릭터로." />
     <section class="panel">
       <div class="panel-head">
-        <strong>ANTHROPOMORPHIZATION GENERATOR</strong>
-        <span>AUTO는 원기체에서 자동 추론 · 원하는 외형만 지정 ${stamp ? '· ' + stamp : ''}</span>
+        <strong>의인화 프롬프트</strong>
+        <span>기체 선택 → 외형 편집 → 프롬프트 복사</span>
       </div>
 
       <div class="form-section">
+        <aside class="studio-setup" aria-label="기체 기본 설정">
+        <div class="section-caption"><b>01</b> 기체 & 콘셉트</div>
+        <div class="studio-selection"><div><small>SELECTED UNIT</small><strong>${mech || '기체를 선택하세요'}</strong></div>
+          <span class="selection-count">${filled} 지정</span></div>
+        <div class="setup-identity">
         <div class="field" style="margin-bottom:9px">
           <label>기체 <small>시리즈로 좁혀 고른다</small></label>
-          <select value=${series} onchange=${e => { setSeries(e.target.value); }}>
+          <select aria-label="시리즈" value=${series} onchange=${e => { setSeries(e.target.value); }}>
             <option value="">시리즈 전체</option>
             ${seriesList.map(k => html`<option key=${k} value=${k}>${(data.series.name || {})[k] || k}</option>`)}
           </select>
-          <select style="margin-top:6px" value=${mech} onchange=${e => pickMech(e.target.value)}>
+          <select aria-label="기체" style="margin-top:6px" value=${mech} onchange=${e => pickMech(e.target.value)}>
             <option value="">기체를 고르세요 (${mechList.length})</option>
             ${mechList.map(c => html`<option key=${c.name} value=${c.name}>${c.name}</option>`)}
           </select>
-          <select style="margin-top:6px" value=${style} onchange=${e => setStyle(e.target.value)}>
+          <select aria-label="화풍" style="margin-top:6px" value=${style} onchange=${e => setStyle(e.target.value)}>
             ${S.ART_STYLES.map(r => html`<option key=${r[0]} value=${r[0]}>화풍 · ${r[1]}</option>`)}
           </select>
         </div>
 
+        </div>
+        <div class="setup-options">
         <div class="gender-tabs">
           ${[['female', '여성 / Female'], ['male', '남성 / Male']].map(([g, t]) => html`
             <button type="button" key=${g} class=${'gt' + (gender === g ? ' on' : '')}
@@ -652,12 +664,16 @@ function App() {
 
         <div class="field" style="margin-top:10px">
           <label>Morphology Mode <small>형태 번역 전략 · 인간형과 거리가 있는 기체에 사용</small></label>
-          <select value=${morph} onchange=${e => setMorph(e.target.value)}>
+          <select aria-label="형태 번역 전략" value=${morph} onchange=${e => setMorph(e.target.value)}>
             ${MORPHS.map(([k, t]) => html`<option key=${k} value=${k}>${t}</option>`)}
           </select>
           <div class="param-note" style="margin-top:4px">정답은 하나가 아니다 — 결과가 미묘하면 다른 모드로 다시 생성해본다.</div>
         </div>
 
+        </div>
+        </aside>
+        <div class="studio-editor">
+        <div class="section-caption"><b>02</b> 외형 디테일</div>
         <div class="param-note" style="margin:10px 0 0">
           ${filled ? '전체 ' + filled + '개 지정됨 — 비워둔 항목은 기체 원본에서 자동으로 채워진다'
                    : '전부 AUTO — 기체 원본에서 모두 자동으로 결정된다'}
@@ -767,19 +783,21 @@ function App() {
             ? html`<button type="button" onclick=${takePrev}>직전 기체 설정 가져오기 (${prevFrom})</button>` : null}
         </div>
       </div>
+      </div>
 
       <div class="controls">
-        <button class="primary" type="button"
+        <button class="primary" type="button" disabled=${!prompt}
                 onclick=${() => copyText(prompt).then(() => setStatus('클립보드에 복사했다'),
                                                       () => setStatus('복사에 실패했다'))}>클립보드 복사</button>
-        <button type="button" onclick=${() => setShowText(v => !v)}>텍스트 보기</button>
+        <button type="button" aria-expanded=${String(showText)} onclick=${() => setShowText(v => !v)}>${showText ? '텍스트 닫기' : '텍스트 보기'}</button>
       </div>
-      <div class="status">${status}</div>
+      <div class="status" role="status">${status}</div>
       ${showText && html`
         <div class="prompt-view">
-          <textarea readonly spellcheck="false" value=${prompt}></textarea>
+          <textarea aria-label="생성 프롬프트" readonly spellcheck="false" value=${prompt}></textarea>
         </div>`}
     </section>
+    <span class="build-stamp">${stamp}</span>
 
     ${zoom && html`<${Zoom} list=${zoom.list} start=${zoom.i} onClose=${() => setZoom(null)} />`}
     ${toast}`;
