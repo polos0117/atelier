@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "card": "지랏하",
+  "model": "지랏하",
+  "series": "건담 AGE",
+  "repository": "polos0117/atelier",
+  "branch": "main",
+  "base_commit": "199b4826039b8d216bcc2cf3a3a2cd42fb4e8994",
+  "prompt_source": "deployed prompt.html v9.19 UI with an exported settings record and exact submitted prompts",
+  "run": "2026-09-15t123728z",
+  "created": "2026-09-15T12:37:28Z",
+  "generation_tool": "built-in image_gen",
+  "settings_export": "Actual prompt.html selections were exported after female and male configuration; the exact female, male, and casual prompts are stored with this run",
+  "delivery": {
+    "method": "GitHub Git Data API",
+    "target": "refs/heads/main",
+    "sequence": [
+      "blob",
+      "tree",
+      "commit",
+      "update_ref"
+    ],
+    "single_commit": true,
+    "pull_request": false
+  },
+  "references": [],
+  "direction": {
+    "view_angle": "AUTO",
+    "pose_character": "AUTO",
+    "identity_link": "Male matches the female medium skin tone, purple hair color, and amber eye color only; casual uses the female generated image as the exact identity reference",
+    "equipment_lock": "Red-violet and deep-magenta armor, pale contrasting plates, yellow-gold sensors, sharp insectoid crest, and prominent oversized mechanical claw units kept external to one normal humanoid body",
+    "casual_scene": "After-hours contemporary art gallery curator aligning a deep-crimson kinetic glass sculpture with a handheld civilian light meter"
+  },
+  "jobs": [
+    {
+      "id": "jirath-female-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "anthro",
+      "prompt": "generation/m-cb25e15404bd1fcb/runs/2026-09-15t123728z/01-female-anthro.txt",
+      "original_generated_file": "exec-3075085b-03bb-41b5-9fb3-3ca8066e5249.png",
+      "original_sha256": "0e0828715f4067b89413047ef35052ef9ab5643625ce6bc6193cfc10c061a590",
+      "file": "img/지랏하_cinematic_semi_real_f.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "14f6e9903e6d3cbae91b20842d84a8d1cf5a8fe681c3fbc4c8961f1791e0e5d5",
+      "bytes": 97192
+    },
+    {
+      "id": "jirath-male-01",
+      "style": "cinematic_semi_real",
+      "gender": "m",
+      "mode": "anthro",
+      "color_reference_job_id": "jirath-female-01",
+      "prompt": "generation/m-cb25e15404bd1fcb/runs/2026-09-15t123728z/02-male-anthro.txt",
+      "original_generated_file": "exec-c93b7d65-440f-4a5a-b200-62a79cb99300.png",
+      "original_sha256": "cd3b0c2052cd2e4b61d4b3c280b15513987358df3a9d3612a52b51e700c0d42e",
+      "file": "img/지랏하_cinematic_semi_real_m.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "87c590a47c4b0ef411d929bfca096064e01decc6ba64d11481bca24fe88ad1a4",
+      "bytes": 92500
+    },
+    {
+      "id": "jirath-female-casual-01",
+      "style": "cinematic_semi_real",
+      "gender": "f",
+      "mode": "single",
+      "reference_job_id": "jirath-female-01",
+      "prompt": "generation/m-cb25e15404bd1fcb/runs/2026-09-15t123728z/03-female-casual.txt",
+      "original_generated_file": "exec-a1573fe6-702a-45ab-beaa-6f18dc94613a.png",
+      "original_sha256": "cbf6c3219b9a38391bdc10a3ffb59fa178ad9befda96678dacf8d6c7fbd0a87f",
+      "file": "img/지랏하_cinematic_semi_real_f_casual1.webp",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "sha256": "42b7733a8e9a2bac37917eb4a1877876f8faded43d7c789b4ca23091fb9e5dc1",
+      "bytes": 92936
+    }
+  ]
+}
