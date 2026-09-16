@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "card": "게이레일",
+  "baseCommit": "256674522f6967126d05e5b065062b9c0cf3c97c",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact repository prompt functions executed locally. Browser tabs discovery timed out in this session, so UI export was unavailable; settings were exported programmatically and validated against PARAM_DEFS. Actual submitted prompt text is retained unchanged.",
+  "run": "generation/m-a40fcb5e1f20d90a/runs/20260916t221740z",
+  "images": [
+    {
+      "card": "게이레일",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "dfe603ecce8b0835cd05ec51c05bfddcb3abbbb5548699230a86f7e9a799af43",
+      "prompt": "generation/m-a40fcb5e1f20d90a/runs/20260916t221740z/female.txt",
+      "manifest": "generation/m-a40fcb5e1f20d90a/runs/20260916t221740z/manifest.json",
+      "file": "img/게이레일_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-42c0cc85-6ae9-4e84-ad81-215dea8c6b0b.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "게이레일",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "1a75f296045e4e9d2465b10c2fb63f138f37a019ca90fcc7953a99b8b91acbe1",
+      "prompt": "generation/m-a40fcb5e1f20d90a/runs/20260916t221740z/male.txt",
+      "manifest": "generation/m-a40fcb5e1f20d90a/runs/20260916t221740z/manifest.json",
+      "file": "img/게이레일_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-733aa005-3de5-4fec-9c2e-4b2ec2d3df5a.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "게이레일",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "319de4cd821361e1243ccc1a8c1560db88d1024bbd20076e243da717a2dc8e41",
+      "prompt": "generation/m-a40fcb5e1f20d90a/runs/20260916t221740z/casual.txt",
+      "manifest": "generation/m-a40fcb5e1f20d90a/runs/20260916t221740z/manifest.json",
+      "file": "img/게이레일_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-cc73f7bb-0c99-4ef5-b31e-08607db9554e.png",
+      "reference": "img/게이레일_cinematic_semi_real_f.webp",
+      "status": "generated, inspected and converted; main publication pending"
+    }
+  ],
+  "generator": "built-in image_gen",
+  "baseTree": "bb629ee594e60905b95206db1dacdb737d98c853"
+}

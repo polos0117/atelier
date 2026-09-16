@@ -1,0 +1,29 @@
+{
+  "게이레일_cinematic_semi_real_f.webp": {
+    "card": "게이레일",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "dfe603ecce8b0835cd05ec51c05bfddcb3abbbb5548699230a86f7e9a799af43",
+    "prompt": "generation/m-a40fcb5e1f20d90a/runs/20260916t221740z/female.txt",
+    "manifest": "generation/m-a40fcb5e1f20d90a/runs/20260916t221740z/manifest.json"
+  },
+  "게이레일_cinematic_semi_real_m.webp": {
+    "card": "게이레일",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "1a75f296045e4e9d2465b10c2fb63f138f37a019ca90fcc7953a99b8b91acbe1",
+    "prompt": "generation/m-a40fcb5e1f20d90a/runs/20260916t221740z/male.txt",
+    "manifest": "generation/m-a40fcb5e1f20d90a/runs/20260916t221740z/manifest.json"
+  },
+  "게이레일_cinematic_semi_real_f_casual1.webp": {
+    "card": "게이레일",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "319de4cd821361e1243ccc1a8c1560db88d1024bbd20076e243da717a2dc8e41",
+    "prompt": "generation/m-a40fcb5e1f20d90a/runs/20260916t221740z/casual.txt",
+    "manifest": "generation/m-a40fcb5e1f20d90a/runs/20260916t221740z/manifest.json"
+  }
+}

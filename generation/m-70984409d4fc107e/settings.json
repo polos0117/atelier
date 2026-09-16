@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "card": "만다라 건담",
+  "updated": "2026-09-16T22:23:31.990Z",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "South Asian",
+        "body type": "hourglass",
+        "skin tone": "__custom__",
+        "face shape": "heart-shaped",
+        "eye shape": "almond",
+        "eye color": "__custom__",
+        "hair color": "black",
+        "hairstyle": "__custom__",
+        "hair length": "long",
+        "expression": "gentle"
+      },
+      "cus": {
+        "skin tone": "medium brown",
+        "eye color": "violet",
+        "hairstyle": "braided updo"
+      },
+      "ub": false,
+      "sp": "Mandala Gundam GF13-044NNP from G Gundam. Preserve its green bronze bell-shaped armor motif, segmented spherical bead-like arm armor, pale scarf and canonical ringed shakujo staff. Translate the bell-shaped lower body into split outer hip and skirt armor framing TWO visible normal human legs with normal knees and feet, never replace the human lower body with a bell. Compact Buddha-inspired mechanical head ornament with fully exposed human face. Keep recognizable mechanical identity rather than a generic fantasy priestess costume. No extra arms, no floating miniature people or robots. Normal human anatomy: one clearly visible adult human face, two arms, two legs, five fingers per hand. Keep recognizable shoulder armor. Keep the existing dark neutral studio background. Head ornaments should be compact and fully inside the frame, without tall spikes touching the top edge. Full body, feet and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Fit long weapons diagonally or at an appropriate length within the frame. No text or readable markings. Subtle adult sensuality and integrated open armor, fully opaque intimate coverage."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "South Asian",
+        "body type": "athletic",
+        "skin tone": "__custom__",
+        "face shape": "heart-shaped",
+        "eye shape": "almond",
+        "eye color": "__custom__",
+        "hair color": "black",
+        "hairstyle": "layered",
+        "hair length": "short",
+        "expression": "gentle"
+      },
+      "cus": {
+        "skin tone": "medium brown",
+        "eye color": "violet"
+      },
+      "ub": false,
+      "sp": "Mandala Gundam GF13-044NNP from G Gundam. Preserve its green bronze bell-shaped armor motif, segmented spherical bead-like arm armor, pale scarf and canonical ringed shakujo staff. Translate the bell-shaped lower body into split outer hip and skirt armor framing TWO visible normal human legs with normal knees and feet, never replace the human lower body with a bell. Compact Buddha-inspired mechanical head ornament with fully exposed human face. Keep recognizable mechanical identity rather than a generic fantasy priestess costume. No extra arms, no floating miniature people or robots. Normal human anatomy: one clearly visible adult human face, two arms, two legs, five fingers per hand. Keep recognizable shoulder armor. Keep the existing dark neutral studio background. Head ornaments should be compact and fully inside the frame, without tall spikes touching the top edge. Full body, feet and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Fit long weapons diagonally or at an appropriate length within the frame. No text or readable markings. Masculine adult face and physique. Skin, hair and eyes must match the female counterpart: medium brown skin, black hair, violet eyes."
+    },
+    "g": "female",
+    "t": 1789597411989
+  },
+  "used": [],
+  "selectedStyle": "cinematic_semi_real"
+}

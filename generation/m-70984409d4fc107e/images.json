@@ -1,0 +1,29 @@
+{
+  "만다라_건담_cinematic_semi_real_f.webp": {
+    "card": "만다라 건담",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "e08bb9c45d6a27b799f1b07026a5a63ebdf6f1ccd90eb41644300d22735b82a5",
+    "prompt": "generation/m-70984409d4fc107e/runs/20260916t222331z/female.txt",
+    "manifest": "generation/m-70984409d4fc107e/runs/20260916t222331z/manifest.json"
+  },
+  "만다라_건담_cinematic_semi_real_m.webp": {
+    "card": "만다라 건담",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "4e5b3b97a1da8e747dd5663ee939140457619bdac939ee2b809e7968b537b9a2",
+    "prompt": "generation/m-70984409d4fc107e/runs/20260916t222331z/male.txt",
+    "manifest": "generation/m-70984409d4fc107e/runs/20260916t222331z/manifest.json"
+  },
+  "만다라_건담_cinematic_semi_real_f_casual1.webp": {
+    "card": "만다라 건담",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "9a1533be693e5636e40a5db94fdd8a72a689e4e1530d685a14ed39dc508dce3d",
+    "prompt": "generation/m-70984409d4fc107e/runs/20260916t222331z/casual.txt",
+    "manifest": "generation/m-70984409d4fc107e/runs/20260916t222331z/manifest.json"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "card": "만다라 건담",
+  "baseCommit": "256674522f6967126d05e5b065062b9c0cf3c97c",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact repository prompt functions executed locally. Browser tabs discovery timed out in this session, so UI export was unavailable; settings were exported programmatically and validated against PARAM_DEFS. Actual submitted prompt text is retained unchanged.",
+  "run": "generation/m-70984409d4fc107e/runs/20260916t222331z",
+  "images": [
+    {
+      "card": "만다라 건담",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "e08bb9c45d6a27b799f1b07026a5a63ebdf6f1ccd90eb41644300d22735b82a5",
+      "prompt": "generation/m-70984409d4fc107e/runs/20260916t222331z/female.txt",
+      "manifest": "generation/m-70984409d4fc107e/runs/20260916t222331z/manifest.json",
+      "file": "img/만다라_건담_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-5f5f5dcc-ecf4-4d9a-9778-b3d7a5e6c794.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "만다라 건담",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "4e5b3b97a1da8e747dd5663ee939140457619bdac939ee2b809e7968b537b9a2",
+      "prompt": "generation/m-70984409d4fc107e/runs/20260916t222331z/male.txt",
+      "manifest": "generation/m-70984409d4fc107e/runs/20260916t222331z/manifest.json",
+      "file": "img/만다라_건담_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-a13f4b0c-d563-444e-ad03-29ae3e421922.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "만다라 건담",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "9a1533be693e5636e40a5db94fdd8a72a689e4e1530d685a14ed39dc508dce3d",
+      "prompt": "generation/m-70984409d4fc107e/runs/20260916t222331z/casual.txt",
+      "manifest": "generation/m-70984409d4fc107e/runs/20260916t222331z/manifest.json",
+      "file": "img/만다라_건담_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-f3f21857-119a-4295-ad1b-04ba0ac15db7.png",
+      "reference": "img/만다라_건담_cinematic_semi_real_f.webp",
+      "status": "generated, inspected and converted; main publication pending"
+    }
+  ],
+  "generator": "built-in image_gen",
+  "baseTree": "bb629ee594e60905b95206db1dacdb737d98c853"
+}
