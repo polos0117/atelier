@@ -31,13 +31,9 @@
 <!-- 기체별 기록(generation/m-<해시>/) 읽기. 툴킷 설정과 그림별 제출 프롬프트 경로가 여기 있다 -->
 <script src="generation/loader.js"></script>
 <style>
-:root{
-  --void:#0F1318; --deck:#151A21; --panel:#1D242D; --rule:#2C3742;
-  --ink:#E4E9EF; --dim:#8794A3; --plate:#C9D2DC; --cc:#79849A; --gap:10px;
-}
-/* 글자·여백 밀도. 세 화면이 같은 키(atelier_density_v1)를 쓴다 */
-:root{--ui-font:12px;--ui-small:11px;--ui-height:34px;--ui-pad:6px;--ui-gap:6px}
-:root[data-density="relaxed"]{--ui-font:14px;--ui-small:12px;--ui-height:44px;--ui-pad:10px;--ui-gap:9px}
+/* 색·밀도 토큰은 lib/workspace.css 한 곳에 있다 — 여기 또 적으면 뒤에 실리는
+   그쪽이 이겨 아무 일도 안 일어난다. --cc 만 그쪽에 없어 여기 남긴다 */
+:root{--cc:#79849A}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
 /* 목록만 굴린다. 예전에는 문서 전체가 굴러서, 위로 돌아가려면 내비·밀도·제목까지

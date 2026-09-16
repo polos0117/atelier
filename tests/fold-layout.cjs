@@ -3,10 +3,14 @@
    Run: node tests/fold-layout.cjs   (ESM_DIR·CHROMIUM_PATH 는 browser-harness.cjs 설명 참고) */
 const H = require('./browser-harness.cjs');
 
-/* 요소가 화면 안에 온전히 들어와 있나. 반만 걸쳐 있으면 손가락이 닿지 않는다 */
+/* 작업 바에 손이 닿나 — 제 자리로 굴려 온 뒤 화면 안에 온전히 들어오나 본다.
+   "늘 화면 바닥에 붙어 있나" 로 물으면 안 된다. 그것은 설계 선택이고 실제로
+   바뀌었다 — 툴킷 독과 드래프트 출격 띠는 sticky/absolute 에서 static 으로
+   갔다(2026-09-16). 바뀌면 안 되는 것은 붙박이 여부가 아니라 "닿을 수 있나" 다 */
 function inside(sel) {
   const el = document.querySelector(sel);
   if (!el) return { ok: false, why: sel + ' 없음' };
+  el.scrollIntoView({ block: 'end', inline: 'nearest' });
   const r = el.getBoundingClientRect();
   if (r.height <= 0) return { ok: false, why: sel + ' 높이 0' };
   if (r.bottom > innerHeight + 1) return { ok: false, why: '아래가 ' + Math.round(r.bottom - innerHeight) + 'px 넘침' };
