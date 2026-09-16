@@ -1,0 +1,29 @@
+{
+  "슈트룸_갈루스_cinematic_semi_real_f.webp": {
+    "card": "슈트룸 갈루스",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "222810da04c268f93f153ef3d0692f110439f5e1c40c26ef212d9ff3dc8fab8a",
+    "prompt": "generation/m-cec92f43c7700268/runs/20260916t231426z/female.txt",
+    "manifest": "generation/m-cec92f43c7700268/runs/20260916t231426z/manifest.json"
+  },
+  "슈트룸_갈루스_cinematic_semi_real_m.webp": {
+    "card": "슈트룸 갈루스",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "a0d27a63fd2f021422314ca0a70db5cd1ef2ddb140e2f392b508996fa77f5100",
+    "prompt": "generation/m-cec92f43c7700268/runs/20260916t231426z/male.txt",
+    "manifest": "generation/m-cec92f43c7700268/runs/20260916t231426z/manifest.json"
+  },
+  "슈트룸_갈루스_cinematic_semi_real_f_casual1.webp": {
+    "card": "슈트룸 갈루스",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "cf18bc18293d48c3f287b1b48511f9b32f667ada1a507c63ec074646a5982326",
+    "prompt": "generation/m-cec92f43c7700268/runs/20260916t231426z/casual.txt",
+    "manifest": "generation/m-cec92f43c7700268/runs/20260916t231426z/manifest.json"
+  }
+}

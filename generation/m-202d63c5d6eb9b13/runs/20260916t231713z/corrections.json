@@ -1,0 +1,9 @@
+{
+  "casual": {
+    "initialPrompt": "casual.txt",
+    "result": "output moderation rejected; no usable image",
+    "requestId": "272eae55-71fa-4a00-a4d6-3167e837609e",
+    "retryPrompt": "casual-retry1.txt",
+    "change": "Removed sensuality wording and replaced expansive limits with concise non-sexual travel editorial wording; identity, scene, outfit and framing unchanged."
+  }
+}

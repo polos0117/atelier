@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "card": "슈트룸 갈루스",
+  "baseCommit": "d44ed58e57c646c141f67119d0c743d437eb76d9",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact current repository prompt functions executed locally because browser CDP tab discovery timed out. Parameters validated against PARAM_DEFS; settings exported programmatically rather than through browser UI. Actual submitted prompt files are preserved unchanged.",
+  "run": "generation/m-cec92f43c7700268/runs/20260916t231426z",
+  "images": [
+    {
+      "card": "슈트룸 갈루스",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "222810da04c268f93f153ef3d0692f110439f5e1c40c26ef212d9ff3dc8fab8a",
+      "prompt": "generation/m-cec92f43c7700268/runs/20260916t231426z/female.txt",
+      "manifest": "generation/m-cec92f43c7700268/runs/20260916t231426z/manifest.json",
+      "file": "img/슈트룸_갈루스_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-8544c4e9-45d7-4ae9-9465-a49388139e8a.png",
+      "reference": null,
+      "status": "generated, visually inspected, converted; publication pending"
+    },
+    {
+      "card": "슈트룸 갈루스",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "a0d27a63fd2f021422314ca0a70db5cd1ef2ddb140e2f392b508996fa77f5100",
+      "prompt": "generation/m-cec92f43c7700268/runs/20260916t231426z/male.txt",
+      "manifest": "generation/m-cec92f43c7700268/runs/20260916t231426z/manifest.json",
+      "file": "img/슈트룸_갈루스_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-5f18ccc1-98de-4722-8527-1e32fca26848.png",
+      "reference": null,
+      "status": "generated, visually inspected, converted; publication pending"
+    },
+    {
+      "card": "슈트룸 갈루스",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "cf18bc18293d48c3f287b1b48511f9b32f667ada1a507c63ec074646a5982326",
+      "prompt": "generation/m-cec92f43c7700268/runs/20260916t231426z/casual.txt",
+      "manifest": "generation/m-cec92f43c7700268/runs/20260916t231426z/manifest.json",
+      "file": "img/슈트룸_갈루스_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-f2b49849-3a3b-421e-ab90-6367743251d7.png",
+      "reference": "img/슈트룸_갈루스_cinematic_semi_real_f.webp",
+      "status": "generated, visually inspected, converted; publication pending"
+    }
+  ],
+  "baseTree": "ad4d8fca7c5c3560846117d31f9e6ca6b8b41739",
+  "generator": "built-in image_gen"
+}

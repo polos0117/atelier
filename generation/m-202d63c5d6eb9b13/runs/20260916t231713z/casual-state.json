@@ -1,0 +1,84 @@
+{
+  "source": {
+    "mech": "제 줄루"
+  },
+  "gender": "female",
+  "style": "cinematic_semi_real",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "Southeast Asian",
+        "body type": "__custom__",
+        "skin tone": "__custom__",
+        "face shape": "oval",
+        "eye shape": "almond",
+        "eye color": "__custom__",
+        "hair color": "__custom__",
+        "hairstyle": "__custom__",
+        "hair length": "long",
+        "expression": "calm"
+      },
+      "cus": {
+        "body type": "athletic and curvy",
+        "skin tone": "golden tan",
+        "eye color": "sea green",
+        "hair color": "dark navy",
+        "hairstyle": "braided ponytail"
+      },
+      "ub": false,
+      "sp": "AMS-129M Zee Zulu from Gundam Unicorn. Preserve its blue-green amphibious armor, diving apparatus, flipper-like external lower-leg equipment, backpack breathing/mechanical gear and compact underwater rifle. Human face fully exposed, normal human legs and feet integrated into the dive equipment. Maintain recognizable Zee Zulu silhouette and forearm knife mounts without duplicated weapons. Normal adult human anatomy: one fully visible human face, two arms, two legs, five fingers per hand. Keep source shoulder armor. Dark neutral studio background. Full body and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Keep head ornaments compact inside the frame. No text or readable markings. Subtle adult sensuality with integrated open armor and fully opaque intimate coverage."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "Southeast Asian",
+        "body type": "athletic",
+        "skin tone": "__custom__",
+        "face shape": "oval",
+        "eye shape": "almond",
+        "eye color": "__custom__",
+        "hair color": "__custom__",
+        "hairstyle": "__custom__",
+        "hair length": "short",
+        "expression": "calm"
+      },
+      "cus": {
+        "skin tone": "golden tan",
+        "eye color": "sea green",
+        "hair color": "dark navy",
+        "hairstyle": "short swept-back"
+      },
+      "ub": false,
+      "sp": "AMS-129M Zee Zulu from Gundam Unicorn. Preserve its blue-green amphibious armor, diving apparatus, flipper-like external lower-leg equipment, backpack breathing/mechanical gear and compact underwater rifle. Human face fully exposed, normal human legs and feet integrated into the dive equipment. Maintain recognizable Zee Zulu silhouette and forearm knife mounts without duplicated weapons. Normal adult human anatomy: one fully visible human face, two arms, two legs, five fingers per hand. Keep source shoulder armor. Dark neutral studio background. Full body and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Keep head ornaments compact inside the frame. No text or readable markings. Clearly masculine adult face and physique. Match the female counterpart colors exactly: golden tan skin, dark navy hair, sea green eyes."
+    },
+    "g": "female",
+    "t": 1789600633302
+  },
+  "cat": "__custom__",
+  "catCustom": "a stylish adult woman enjoying an ordinary off-duty moment",
+  "ex": "",
+  "exCustom": "",
+  "aspect": "2:3 vertical",
+  "frame": "full body",
+  "expr": "",
+  "orient": "",
+  "pose": "",
+  "scene": "At a seaside dive shop terrace, drying a small diving mask with a towel",
+  "outfit": "An opaque teal one-piece swimsuit with a modest waist cutout, cream linen shorts, an open light shirt and flat sandals",
+  "camera": "Warm morning light with a clear turquoise harbor beyond",
+  "custom": "Use the attached female anthropomorphization as the actual identity reference. Preserve her adult face, hair, skin, eyes and body proportions. Wear only the specified modern civilian outfit. No armor, weapons or mechanical equipment. A natural candid action, subtle sensuality, no text. Do not pull the camera back to add empty margins.",
+  "axes": {},
+  "carryFace": true,
+  "carryBody": true
+}

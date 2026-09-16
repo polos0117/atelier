@@ -1,0 +1,79 @@
+{
+  "source": {
+    "mech": "슈트룸 갈루스"
+  },
+  "gender": "female",
+  "style": "cinematic_semi_real",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "__custom__",
+        "body type": "__custom__",
+        "skin tone": "light",
+        "face shape": "angular",
+        "eye shape": "narrow",
+        "eye color": "amber",
+        "hair color": "ash blonde",
+        "hairstyle": "high ponytail",
+        "hair length": "medium",
+        "expression": "confident"
+      },
+      "cus": {
+        "facial ethnicity": "Eastern European",
+        "body type": "athletic and curvy"
+      },
+      "ub": false,
+      "sp": "AMX-101E Schuzrum Galluss from Gundam Unicorn. Blue and dark navy stripped-down close-combat armor with red accents. Preserve the distinctive pair of spiked shields on the forearms and the chain-mine equipment carried on the back. Powerful exposed human waist and thighs between mechanically recognizable plates, compact shoulders, clearly human hands. No generic handheld rifle or sword. Normal adult human anatomy: one fully visible human face, two arms, two legs, five fingers per hand. Keep source shoulder armor. Dark neutral studio background. Full body and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Keep head ornaments compact inside the frame. No text or readable markings. Subtle adult sensuality with integrated open armor and fully opaque intimate coverage."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "__custom__",
+        "body type": "muscular",
+        "skin tone": "light",
+        "face shape": "angular",
+        "eye shape": "narrow",
+        "eye color": "amber",
+        "hair color": "ash blonde",
+        "hairstyle": "__custom__",
+        "hair length": "short",
+        "expression": "confident"
+      },
+      "cus": {
+        "facial ethnicity": "Eastern European",
+        "hairstyle": "short swept-back"
+      },
+      "ub": false,
+      "sp": "AMX-101E Schuzrum Galluss from Gundam Unicorn. Blue and dark navy stripped-down close-combat armor with red accents. Preserve the distinctive pair of spiked shields on the forearms and the chain-mine equipment carried on the back. Powerful exposed human waist and thighs between mechanically recognizable plates, compact shoulders, clearly human hands. No generic handheld rifle or sword. Normal adult human anatomy: one fully visible human face, two arms, two legs, five fingers per hand. Keep source shoulder armor. Dark neutral studio background. Full body and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Keep head ornaments compact inside the frame. No text or readable markings. Clearly masculine adult face and physique. Match the female counterpart colors exactly: light skin, ash blonde hair, amber eyes."
+    },
+    "g": "female",
+    "t": 1789600466556
+  },
+  "cat": "__custom__",
+  "catCustom": "a stylish adult woman enjoying an ordinary off-duty moment",
+  "ex": "",
+  "exCustom": "",
+  "aspect": "2:3 vertical",
+  "frame": "full body",
+  "expr": "",
+  "orient": "",
+  "pose": "",
+  "scene": "At an urban boxing gym after training, loosely wrapping a clean hand wrap around one hand beside a bench",
+  "outfit": "An opaque fitted navy athletic crop top, high-waisted charcoal training shorts, fingerless training gloves and sneakers",
+  "camera": "Late afternoon side-window light",
+  "custom": "Use the attached female anthropomorphization as the actual identity reference. Preserve her adult face, hair, skin, eyes and body proportions. Wear only the specified modern civilian outfit. No armor, weapons or mechanical equipment. A natural candid action, subtle sensuality, no text. Do not pull the camera back to add empty margins.",
+  "axes": {},
+  "carryFace": true,
+  "carryBody": true
+}

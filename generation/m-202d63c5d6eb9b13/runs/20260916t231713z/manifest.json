@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "card": "제 줄루",
+  "baseCommit": "d44ed58e57c646c141f67119d0c743d437eb76d9",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact current repository prompt functions executed locally because browser CDP tab discovery timed out. Parameters validated against PARAM_DEFS; settings exported programmatically rather than through browser UI. Actual submitted prompt files are preserved unchanged.",
+  "run": "generation/m-202d63c5d6eb9b13/runs/20260916t231713z",
+  "images": [
+    {
+      "card": "제 줄루",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "6bccf88496af136a43aa52ae8c5886bc054c01c5c812e2edfb4a71bde232d80b",
+      "prompt": "generation/m-202d63c5d6eb9b13/runs/20260916t231713z/female.txt",
+      "manifest": "generation/m-202d63c5d6eb9b13/runs/20260916t231713z/manifest.json",
+      "file": "img/제_줄루_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-cb25f656-ed4f-4731-a2cb-7678dd1624c5.png",
+      "reference": null,
+      "status": "generated, visually inspected, converted; publication pending"
+    },
+    {
+      "card": "제 줄루",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "6a97bcef914264e02294541c2321ff5e220d66a1c74db014e34ea58b7d7ec015",
+      "prompt": "generation/m-202d63c5d6eb9b13/runs/20260916t231713z/male.txt",
+      "manifest": "generation/m-202d63c5d6eb9b13/runs/20260916t231713z/manifest.json",
+      "file": "img/제_줄루_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-b42023c2-3807-4d5e-ae99-ce37bab034e1.png",
+      "reference": null,
+      "status": "generated, visually inspected, converted; publication pending"
+    },
+    {
+      "card": "제 줄루",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "b3411a61b8bbea3e2d3683ce407eebed1f0c2bde8f80835cce895ac287ceb5c3",
+      "prompt": "generation/m-202d63c5d6eb9b13/runs/20260916t231713z/casual-retry1.txt",
+      "manifest": "generation/m-202d63c5d6eb9b13/runs/20260916t231713z/manifest.json",
+      "file": "img/제_줄루_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-4a58a0c9-3ea3-46bb-b94f-7a1c3b2d1fd8.png",
+      "reference": "img/제_줄루_cinematic_semi_real_f.webp",
+      "status": "generated, visually inspected, converted; publication pending"
+    }
+  ],
+  "baseTree": "ad4d8fca7c5c3560846117d31f9e6ca6b8b41739",
+  "generator": "built-in image_gen"
+}
