@@ -96,7 +96,7 @@ UC 계열 기체는 날지 못하고 이후 작품 기체는 난다는 것이 �
 |---|---|
 | `index.html` | 들머리. 아래 넷으로 가는 링크만 있다 |
 | `play.html` | **드래프트 게임.** 실행할 때 `data/` 를 읽는다. 도감 · 공적 · 통계도 이 안에 있다 |
-| `dex.html` | **도감.** 카드를 훑고 초상 작업 현황을 본다. `build-dex.py` 가 만드는 **생성물이라 손으로 고치지 않는다** |
+| `dex.html` | **도감.** 카드를 훑고 초상 작업 현황을 본다. 손으로 고치는 파일이다 |
 | `prompt.html` | **초상 프롬프트 툴킷.** 의인화 · 콜라주 · 단일 컷 셋을 만든다. 화면에 판 번호와 패치 노트가 있다 |
 | `prompt-legacy.html` · `dex-legacy.html` | **예전 판.** Preact 로 갈아타기 전의 통짜 화면을 되돌릴 거리로 남겨 둔 것이다. 링크는 걸려 있지 않다 |
 | `sam.html` | 삼국지 드래프트. 건담보다 먼저, git 을 쓰기 전에 만든 통짜 파일이다 → `TRY_SAMGUK.md` |
@@ -127,7 +127,7 @@ UC 계열 기체는 날지 못하고 이후 작품 기체는 난다는 것이 �
 | `build-idmap.py` | G 제네레이션 API 와 카드를 짝지어 `id-map.json` 을 만든다 |
 | `build-data.py` | 형식번호 · id · 레어도 · 지형 · 태그를 카드에 붙인다. `--check` · `--report` |
 | `build-bond.py` | 공식 탑승 관계에서 전용기 후보를 뽑는다 → `bond-candidates.json` |
-| `build-dex.py` | `play.html` 에서 코드를 떼어다 `dex.html` 을 만든다 |
+| `build-prompt-json.py` | `image-list.html` 의 문구·비고를 `data/prompt.json` 으로 뽑는다. `--check` |
 | `register-images.py` | 저장소의 `*.webp` 를 `data/img.json` 에 등록한다. `--check` · `--prune` |
 | `gundam_match.py` | 이름 대조 공용 규칙. 세 출처가 같은 기체를 다르게 적어서 한곳에 모았다 |
 
@@ -165,11 +165,10 @@ UC 계열 기체는 날지 못하고 이후 작품 기체는 난다는 것이 �
 
 | | 갖는 것 |
 |---|---|
-| Claude (이 세션) | 코드 전부 — `prompt.html` · `play.html` · `build-dex.py` · `data/*.json` · 문서 |
+| Claude (이 세션) | 코드 전부 — `prompt.html` · `play.html` · `dex.html` · `data/*.json` · 문서 |
 | 이미지 세션 | `*.webp` · `data/img.json` · `toolkit-data.json` |
 | 검토자 | **아무것도 쓰지 않는다.** 읽고 지적만 한다 → `REVIEW.md` |
 
-`dex.html` 은 `build-dex.py` 가 만드는 생성물이라 손으로 고치지 않는다.
 `prompt.html` 의 판 번호도 한 곳에서만 올린다 — 둘이 같은 번호를 쓰면 반드시 겹친다.
 
 ### 남의 파일을 고쳐야 할 때
@@ -202,7 +201,7 @@ UC 계열 기체는 날지 못하고 이후 작품 기체는 난다는 것이 �
 | 값 | 사는 곳 | 화면은 어떻게 얻나 |
 |---|---|---|
 | 능력치 이름 (출력·화력…) | `data/*.json` 머리말의 `stats` | 불러올 때 `STAT_LABEL` 에 채운다. 화면에 또 적지 않는다 |
-| 카드 종류 넷 | `play.html` 의 `KIND` · `build-dex.py` 의 `KIND` | 받아올 파일 이름, 능력치 이름표, 도감 탭이 다 여기서 갈라진다 |
+| 카드 종류 넷 | `gundam/draft-engine.js` 의 `KIND` | 받아올 파일 이름, 능력치 이름표, 도감 탭이 다 여기서 갈라진다 |
 | 전장·지형 감점 | `data/field.json` | `FIELDS`·`TERR`·`TERR_WORD` 로 채운다 |
 | 판 진행 차례 | `data/rule.json` | `SCHEDULE`·`PACKN`·`CAP_BONUS` 로 채운다 |
 | 태그 규칙·태그 인연 | `data/tag.json` | `TAG_RULE`·`TCOMBO` 로 채운다 |
@@ -266,9 +265,9 @@ official/ ─┐
 ```
 
 셋 다 실행할 때 `data/` 를 받는다. 어느 것도 자료 사본을 들고 있지 않으므로
-**자료가 바뀌어도 다시 만들 파일이 없다.** 화면 코드를 고칠 때만 `dex.html` 을
-`build-dex.py` 로 다시 만든다(도감은 통째로 생성물이다). `play.html` 과
-`prompt.html` 은 손으로 고치는 파일이다.
+**자료가 바뀌어도 다시 만들 파일이 없다.** 셋 다 손으로 고치는 파일이다 —
+예전에는 도감만 `build-dex.py` 가 찍어내는 생성물이었지만, Preact 로 옮기면서
+그 생성기는 없앴다.
 
 `register-images.py` 는 저장소의 `*.webp` 를 `data/img.json` 에 등록한다.
 `play.html` 과 `dex.html` 이 그걸 읽는다.
@@ -321,9 +320,9 @@ official/ ─┐
 저장소에 커밋하면, **도감이 그걸 실행 중에 읽어** 어느 기체가 어떤 화풍으로
 끝났는지 보여 준다. 사람이 덮어써야 하는 유일한 자료 파일이다.
 
-`image-list.html` 은 그 반대편이다. `build-dex.py` 가 여기서 프롬프트와 비고를
-뽑아 도감에 넣는다. 카드 이름이 바뀌면 `play.html` 의 `RENAME_MAP` 을 거쳐
-따라간다. 지금은 `toolkit-data.json` 8 기 · `image-list.html` 529 행 모두
+`image-list.html` 은 그 반대편이다. `build-prompt-json.py` 가 여기서 프롬프트와
+비고를 뽑아 `data/prompt.json` 으로 내보내고, 도감과 툴킷이 그걸 읽는다.
+카드 이름이 바뀌면 `data/rename.json` 의 표를 거쳐 따라간다. 지금은 `toolkit-data.json` 8 기 · `image-list.html` 529 행 모두
 살아 있는 카드를 가리킨다.
 
 카드 이름을 바꾸면 이 둘과 `data/img.json` 의 파일 이름이 같이 어긋난다.
@@ -611,8 +610,8 @@ Toro Hachi  유니콘 [민간] 칸에서 하로 옆에 있다. 마스코트류�
 5. 초상을 올렸으면 `python3 register-images.py` 로 `data/img.json` 에 등록한다
 6. 화면은 다시 만들 것이 없다. 셋 다 실행할 때 `data/` 를 읽는다.
 
-도감 **코드**를 고쳤을 때만 `python3 build-dex.py play.html` 을 돌린다.
-`gundam-dex-x.html` 로 나오므로 `mv gundam-dex-x.html dex.html` 로 옮겨야 한다.
+`image-list.html` 의 문구·비고를 고쳤으면 `python3 build-prompt-json.py` 로
+`data/prompt.json` 을 다시 만든다. 어긋났는지만 보려면 `--check` 를 붙인다.
 
 ## 로스터 대조 현황
 

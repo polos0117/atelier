@@ -22,7 +22,8 @@ TRY_SAMGUK.md     주제를 갈아 끼워 본 기록. 어디가 주제에 묶여
 `ROSTER_CHECK.md` 의 "어느 파일이 무엇을 하나" 를 먼저 본다. 화면 · 자료 ·
 만드는 스크립트 · 사람이 손으로 적는 것 · 중간 생성물이 나뉘어 있다. **생성물을
 고쳤다고 지적하는 것과 원본을 고쳤다고 지적하는 것은 다른 이야기다** — 예를 들어
-`dex.html` 은 `build-dex.py` 가 만들므로 거기서 난 문제는 만드는 쪽을 봐야 한다.
+`data/prompt.json` 은 `build-prompt-json.py` 가 `image-list.html` 에서 뽑으므로
+거기서 난 문제는 만드는 쪽을 봐야 한다.
 
 ## 실제로 났던 사고들 — 같은 것을 찾는다
 
@@ -70,7 +71,7 @@ node tests/style-logic.cjs
 python3 register-images.py --check   # 초상 자료와 파일이 어긋나나
 python3 build-data.py --check        # 바깥 자료와 카드가 어긋나나
 python3 build-data.py --report       # 두 출처가 엇갈리는 자리 전부
-python3 build-dex.py play.html       # 도감이 다시 만들어지나 (dex.html 은 생성물이다)
+python3 build-prompt-json.py --check # 카드 문구가 image-list.html 과 어긋나나
 
 # 화면은 fetch 로 자료를 읽으므로 서버가 필요하다
 python3 -m http.server 8765

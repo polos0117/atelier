@@ -287,7 +287,7 @@ function useAtelierData() {
         const styleName = { unknown: '화풍 미상' };
         (res[n + 1].styles || []).forEach(x => { styleName[x.key] = x.name; });
         /* 프롬프트 문구·비고는 예전에 도감 파일 안에 박혀 있었다. data/prompt.json 으로
-           빼서 도감과 시범판이 같은 것을 읽는다 (build-dex.py 가 함께 내보낸다) */
+           빼서 도감과 툴킷이 같은 것을 읽는다 (build-prompt-json.py 가 내보낸다) */
         setData({
           cards, stats, series: res[n], styleName,
           prompt: res[n + 2].prompt || {}, memo: res[n + 2].memo || {},
