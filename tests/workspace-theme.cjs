@@ -55,11 +55,19 @@ window.AtelierAppearance.set('theme', 'white-base');
 assert.equal(root.dataset.theme, 'white-base');
 assert.equal(meta.content, '#edf1f5');
 
+window.AtelierAppearance.set('theme', 'musai');
+assert.equal(root.dataset.theme, 'musai');
+assert.equal(stored.get('atelier_theme_v1'), 'musai');
+assert.equal(meta.content, '#121a14');
+
 window.AtelierAppearance.set('theme', 'unknown');
 assert.equal(root.dataset.theme, 'midnight');
 assert.equal(meta.content, '#101925');
 
 assert.match(ui, /<option value="archangel">아크엔젤<\/option>/);
+assert.match(ui, /<option value="musai">무사이<\/option>/);
+assert.match(css, /:root\[data-theme="musai"\]/);
+assert.match(css, /MUSAI \/ 03/);
 assert.match(css, /:root\[data-theme="archangel"\]/);
 assert.match(css, /ARCHANGEL \/ 02/);
 assert.match(css, /\.prompt-page \.controls \{position:static/);
@@ -68,4 +76,4 @@ assert.match(draftCss, /\.setup-bottom\{position:static/);
 assert(viewportEvents.has('resize'));
 assert(events.has('storage'));
 
-console.log('PASS: three shared themes, theme colors, storage normalization and visible viewport sizing');
+console.log('PASS: four shared themes, theme colors, storage normalization and visible viewport sizing');

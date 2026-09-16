@@ -20,6 +20,15 @@
   --muted:#6d626d;--line:#d5c5ca;--accent:#b32643;--ok:#28705b;--warn:#9a5d14;
   --signal:#e26067;--gold:#b78a4d;--accent-soft:#f5dce2;--shadow:0 9px 30px #4e273015;
 }
+/* 지온 경순양함. 앞의 둘이 연방 함선이라 반대편을 하나 뒀다.
+   짙은 올리브 선체에 모노아이 불빛 하나 — 강조는 선체에 든 빛(녹), 경고는 그 눈(적).
+   어두운 판이라 ok 를 청록으로 돌려 강조와 안 겹치게 했다 */
+:root[data-theme="musai"] {
+  color-scheme:dark;
+  --bg:#0d130f;--deck:#121a14;--card:#18211a;--card2:#1f2b22;--text:#e7ede6;
+  --muted:#9fb1a3;--line:#32453a;--accent:#86c88f;--ok:#6fc3b0;--warn:#e8c473;
+  --signal:#e08072;--gold:#c9a961;--accent-soft:#25382a;--shadow:0 8px 28px #0005;
+}
 :root[data-density="relaxed"] {
   --ui-font:15px;--ui-small:13px;--ui-height:46px;--ui-pad:12px;--ui-gap:10px;--gap:14px;
 }
@@ -52,11 +61,13 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
 .fleet-name::after {content:'MIDNIGHT / 01';color:var(--accent)}
 [data-theme="white-base"] .fleet-name::after {content:'WHITE BASE / 01'}
 [data-theme="archangel"] .fleet-name::after {content:'ARCHANGEL / 02'}
+[data-theme="musai"] .fleet-name::after {content:'MUSAI / 03'}
 .fleet-signature i {width:120px;height:3px;background:linear-gradient(to right,var(--accent) 0 64%,transparent 64% 69%,var(--signal) 69% 88%,transparent 88% 93%,var(--gold) 93%)}
 .fleet-signature b {font-size:8px;font-weight:400;letter-spacing:.2em}
 [data-theme="archangel"] body {background-color:var(--bg);background-image:radial-gradient(circle at 92% 8%,#fff9 0 11%,transparent 34%),linear-gradient(135deg,transparent 0 73%,#b3264308 73% 73.5%,transparent 73.5%)}
 [data-theme="archangel"] .workspace-nav {border-color:#cdb8bf;box-shadow:inset 4px 0 var(--accent),0 5px 18px #4e27300c}
 [data-theme="archangel"] .theme-dot {background:linear-gradient(135deg,var(--accent) 0 52%,#728ba5 52%);box-shadow:0 0 0 3px #f5dce2}
+[data-theme="musai"] .theme-dot {background:radial-gradient(circle at 50% 50%,var(--signal) 0 38%,var(--accent) 38%);box-shadow:0 0 0 3px var(--accent-soft)}
 [data-theme="archangel"] .fleet-signature i {background:linear-gradient(to right,var(--accent) 0 59%,transparent 59% 64%,#728ba5 64% 84%,transparent 84% 89%,var(--signal) 89%)}
 /* Archive: compact search deck above an image-led collection. */
 .dex-page main {width:100%;max-width:1520px;margin:auto;padding:16px 24px calc(24px + env(safe-area-inset-bottom));scrollbar-color:var(--line) transparent}
