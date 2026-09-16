@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "card": "네로스 건담",
+  "baseCommit": "164d2e90bb46fd5a7535ad5f94854bdde9a9fec2",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact repository prompt functions executed locally after browser confirmation dialog caused CDP timeouts. Selection values validated against current PARAM_DEFS. Browser export was obtained for Efreet female only; remaining settings exported programmatically, not through browser UI.",
+  "run": "generation/m-376c64f811c852a2/runs/20260916t164656z",
+  "images": [
+    {
+      "card": "네로스 건담",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "a90049d3af6a45db5b54fec23c49b20bfe0d968450a14e03973ed2a131639239",
+      "prompt": "generation/m-376c64f811c852a2/runs/20260916t164656z/female.txt",
+      "manifest": "generation/m-376c64f811c852a2/runs/20260916t164656z/manifest.json",
+      "file": "img/네로스_건담_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-a78936fd-3f2f-4991-bbea-582ea3209f77.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "네로스 건담",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "ed1b939987636a99007da78d3015d79f284059a3ad0c85f556ffce522c0f704e",
+      "prompt": "generation/m-376c64f811c852a2/runs/20260916t164656z/male.txt",
+      "manifest": "generation/m-376c64f811c852a2/runs/20260916t164656z/manifest.json",
+      "file": "img/네로스_건담_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-079ceef6-b8bb-43fd-ab05-7fdfacbcecff.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "네로스 건담",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "142505fae063b07c89dea32b0b098257cc57b897719ba257568c3d78b17c5695",
+      "prompt": "generation/m-376c64f811c852a2/runs/20260916t164656z/casual.txt",
+      "manifest": "generation/m-376c64f811c852a2/runs/20260916t164656z/manifest.json",
+      "file": "img/네로스_건담_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-e0e3830a-3320-41d7-9d1b-62bdbf039180.png",
+      "reference": "img/네로스_건담_cinematic_semi_real_f.webp",
+      "status": "generated, inspected and converted; main publication pending"
+    }
+  ]
+}

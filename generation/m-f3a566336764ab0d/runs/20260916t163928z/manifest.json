@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "card": "뭇투",
+  "baseCommit": "164d2e90bb46fd5a7535ad5f94854bdde9a9fec2",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact repository prompt functions executed locally after browser confirmation dialog caused CDP timeouts. Selection values validated against current PARAM_DEFS. Browser export was obtained for Efreet female only; remaining settings exported programmatically, not through browser UI.",
+  "run": "generation/m-f3a566336764ab0d/runs/20260916t163928z",
+  "images": [
+    {
+      "card": "뭇투",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "5d18874612fdd0b905347f81c74502bc362cfe8ad774e58f3d62baea0ee095fe",
+      "prompt": "generation/m-f3a566336764ab0d/runs/20260916t163928z/female.txt",
+      "manifest": "generation/m-f3a566336764ab0d/runs/20260916t163928z/manifest.json",
+      "file": "img/뭇투_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-4a5a28bb-38b3-41f1-bf79-a3e3c8b59ec3.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "뭇투",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "36b57b877b4a35443ce50c71598d91e1fdca44db0ca4c6ceb8bd644df88991e2",
+      "prompt": "generation/m-f3a566336764ab0d/runs/20260916t163928z/male.txt",
+      "manifest": "generation/m-f3a566336764ab0d/runs/20260916t163928z/manifest.json",
+      "file": "img/뭇투_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-b0e9753c-4e24-427e-a890-d98954737641.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "뭇투",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "36af1f3b399fb474e07580ebb6180b3f1bb6dfedaa8ff3f2f8e73b798bd51409",
+      "prompt": "generation/m-f3a566336764ab0d/runs/20260916t163928z/casual.txt",
+      "manifest": "generation/m-f3a566336764ab0d/runs/20260916t163928z/manifest.json",
+      "file": "img/뭇투_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-0e550341-97d6-46f2-bfdf-9f84a24a56f2.png",
+      "reference": "img/뭇투_cinematic_semi_real_f.webp",
+      "status": "generated, inspected and converted; main publication pending"
+    }
+  ]
+}

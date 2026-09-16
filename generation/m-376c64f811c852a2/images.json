@@ -1,0 +1,29 @@
+{
+  "네로스_건담_cinematic_semi_real_f.webp": {
+    "card": "네로스 건담",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "a90049d3af6a45db5b54fec23c49b20bfe0d968450a14e03973ed2a131639239",
+    "prompt": "generation/m-376c64f811c852a2/runs/20260916t164656z/female.txt",
+    "manifest": "generation/m-376c64f811c852a2/runs/20260916t164656z/manifest.json"
+  },
+  "네로스_건담_cinematic_semi_real_m.webp": {
+    "card": "네로스 건담",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "ed1b939987636a99007da78d3015d79f284059a3ad0c85f556ffce522c0f704e",
+    "prompt": "generation/m-376c64f811c852a2/runs/20260916t164656z/male.txt",
+    "manifest": "generation/m-376c64f811c852a2/runs/20260916t164656z/manifest.json"
+  },
+  "네로스_건담_cinematic_semi_real_f_casual1.webp": {
+    "card": "네로스 건담",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "142505fae063b07c89dea32b0b098257cc57b897719ba257568c3d78b17c5695",
+    "prompt": "generation/m-376c64f811c852a2/runs/20260916t164656z/casual.txt",
+    "manifest": "generation/m-376c64f811c852a2/runs/20260916t164656z/manifest.json"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "source": {
+    "mech": "뭇투"
+  },
+  "gender": "female",
+  "style": "cinematic_semi_real",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "South Asian",
+        "body type": "pear-shaped",
+        "skin tone": "medium",
+        "face shape": "__custom__",
+        "eye shape": "drooping",
+        "eye color": "__custom__",
+        "hair color": "__custom__",
+        "hairstyle": "curly",
+        "hair length": "medium",
+        "expression": "gentle"
+      },
+      "cus": {
+        "face shape": "round",
+        "eye color": "hazel",
+        "hair color": "auburn"
+      },
+      "ub": false,
+      "sp": "Muttow (Muttowooo), MRC-F31 from Turn A Gundam. Preserve the canonical rounded red-orange and ochre-gold heavy flight armor with blue sensor windows, dark joints, bulky shoulder units and its distinctive transformable flight structures as external equipment surrounding a normal adult human body. Keep source-specific forearm weapon structures mechanically readable. No fantasy wings, no extra biological limbs, no animal face. Normal human anatomy: one clearly visible adult human face, two arms, two legs, five fingers per hand. Keep recognizable shoulder armor. Keep the existing dark neutral studio background. Head ornaments should be compact and fully inside the frame, without tall spikes touching the top edge. Full body, feet and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Fit long weapons diagonally or at an appropriate length within the frame. No text or readable markings. Subtle adult sensuality and integrated open armor, fully opaque intimate coverage."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "South Asian",
+        "body type": "athletic",
+        "skin tone": "medium",
+        "face shape": "__custom__",
+        "eye shape": "drooping",
+        "eye color": "__custom__",
+        "hair color": "__custom__",
+        "hairstyle": "layered",
+        "hair length": "short",
+        "expression": "gentle"
+      },
+      "cus": {
+        "face shape": "round",
+        "eye color": "hazel",
+        "hair color": "auburn"
+      },
+      "ub": false,
+      "sp": "Muttow (Muttowooo), MRC-F31 from Turn A Gundam. Preserve the canonical rounded red-orange and ochre-gold heavy flight armor with blue sensor windows, dark joints, bulky shoulder units and its distinctive transformable flight structures as external equipment surrounding a normal adult human body. Keep source-specific forearm weapon structures mechanically readable. No fantasy wings, no extra biological limbs, no animal face. Normal human anatomy: one clearly visible adult human face, two arms, two legs, five fingers per hand. Keep recognizable shoulder armor. Keep the existing dark neutral studio background. Head ornaments should be compact and fully inside the frame, without tall spikes touching the top edge. Full body, feet and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Fit long weapons diagonally or at an appropriate length within the frame. No text or readable markings. Masculine adult face and physique. Skin, hair and eyes must match the female counterpart: medium skin, auburn hair, hazel eyes."
+    },
+    "g": "female",
+    "t": 1789576768620
+  },
+  "cat": "__custom__",
+  "catCustom": "a stylish adult woman enjoying an ordinary off-duty moment",
+  "ex": "",
+  "exCustom": "",
+  "aspect": "2:3 vertical",
+  "frame": "full body",
+  "expr": "",
+  "orient": "",
+  "pose": "",
+  "scene": "At a lively flower market, selecting a bouquet from a waist-high bucket",
+  "outfit": "An opaque terracotta wrap blouse with a tasteful deep neckline, a fitted dark midi skirt with a side slit and comfortable heeled sandals",
+  "camera": "Warm morning market light, softly painted flowers",
+  "custom": "Use the attached female anthropomorphization as the actual identity reference. Preserve her adult face, hair, skin, eyes and body proportions. Wear only the specified modern civilian outfit. No armor, weapons or mechanical equipment. A natural candid action, subtle sensuality, no text. Do not pull the camera back to add empty margins.",
+  "axes": {},
+  "carryFace": true,
+  "carryBody": true
+}

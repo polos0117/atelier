@@ -1,0 +1,29 @@
+{
+  "뭇투_cinematic_semi_real_f.webp": {
+    "card": "뭇투",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "5d18874612fdd0b905347f81c74502bc362cfe8ad774e58f3d62baea0ee095fe",
+    "prompt": "generation/m-f3a566336764ab0d/runs/20260916t163928z/female.txt",
+    "manifest": "generation/m-f3a566336764ab0d/runs/20260916t163928z/manifest.json"
+  },
+  "뭇투_cinematic_semi_real_m.webp": {
+    "card": "뭇투",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "36b57b877b4a35443ce50c71598d91e1fdca44db0ca4c6ceb8bd644df88991e2",
+    "prompt": "generation/m-f3a566336764ab0d/runs/20260916t163928z/male.txt",
+    "manifest": "generation/m-f3a566336764ab0d/runs/20260916t163928z/manifest.json"
+  },
+  "뭇투_cinematic_semi_real_f_casual1.webp": {
+    "card": "뭇투",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "36af1f3b399fb474e07580ebb6180b3f1bb6dfedaa8ff3f2f8e73b798bd51409",
+    "prompt": "generation/m-f3a566336764ab0d/runs/20260916t163928z/casual.txt",
+    "manifest": "generation/m-f3a566336764ab0d/runs/20260916t163928z/manifest.json"
+  }
+}
