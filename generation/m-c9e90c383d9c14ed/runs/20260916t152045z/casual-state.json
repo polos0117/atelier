@@ -1,0 +1,79 @@
+{
+  "source": {
+    "mech": "밴디트"
+  },
+  "gender": "female",
+  "style": "cinematic_semi_real",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "facial ethnicity": "Central Asian",
+        "body type": "curvy",
+        "facial character": "exotic",
+        "skin tone": "light",
+        "face shape": "heart-shaped",
+        "eye shape": "narrow",
+        "eye color": "__custom__",
+        "expression": "smirk",
+        "hair color": "black",
+        "hairstyle": "hime cut",
+        "hair length": "long",
+        "bangs": "straight bangs"
+      },
+      "cus": {
+        "eye color": "violet"
+      },
+      "ub": false,
+      "sp": "Bandit G-M1F from Turn A Gundam. Use the central orange-and-cream Bandit in the attached original animation reference as the sole equipment design source; do not copy the other two units, their poses, their background, or the cel-shaded style. Translate the orange torso armor, pale cream limb armor, dark frame, unusual curved shoulder units and large movable rear thrusters into a recognizably human armored silhouette. Preserve its squeeze-weapon equipment as stowed external mechanisms and the canonical beam saber. Retain source identity rather than generic Gundam plates. A mysterious, agile human silhouette framed by alien-looking external mechanical armor. No biological extra limbs and no fantasy wings. Normal human anatomy: one human head with clearly visible face, two arms, two legs, five fingers per hand; no robot face or extra limbs. Keep recognizable shoulder armor. Subtle adult sensuality. No camera pullback to create margins; maintain close full-body framing with feet and major equipment visible."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "facial ethnicity": "Central Asian",
+        "body type": "wiry",
+        "facial character": "exotic",
+        "skin tone": "light",
+        "face shape": "heart-shaped",
+        "eye shape": "narrow",
+        "eye color": "__custom__",
+        "expression": "cold",
+        "hair color": "black",
+        "hairstyle": "layered",
+        "hair length": "medium",
+        "bangs": "straight bangs"
+      },
+      "cus": {
+        "eye color": "violet"
+      },
+      "ub": false,
+      "sp": "Bandit G-M1F from Turn A Gundam. Use the central orange-and-cream Bandit in the attached original animation reference as the sole equipment design source; do not copy the other two units, their poses, their background, or the cel-shaded style. Translate the orange torso armor, pale cream limb armor, dark frame, unusual curved shoulder units and large movable rear thrusters into a recognizably human armored silhouette. Preserve its squeeze-weapon equipment as stowed external mechanisms and the canonical beam saber. Retain source identity rather than generic Gundam plates. A mysterious, agile human silhouette framed by alien-looking external mechanical armor. No biological extra limbs and no fantasy wings. Normal adult masculine human anatomy and face, two arms, two legs. Match the generated female counterpart skin, hair and eye colors exactly. No pilot resemblance. No camera pullback to add blank margins; preserve close full-body scale."
+    },
+    "g": "female",
+    "t": 1789572045681
+  },
+  "cat": "__custom__",
+  "catCustom": "a stylish adult woman enjoying an ordinary off-duty moment",
+  "ex": "",
+  "exCustom": "",
+  "aspect": "2:3 vertical",
+  "frame": "full body",
+  "expr": "",
+  "orient": "",
+  "pose": "",
+  "scene": "At a quiet rooftop conservatory after dusk, tending a potted orchid beside a softly lit glass wall",
+  "outfit": "An opaque dark aubergine halter-neck top, a flowing black skirt with a side slit, a fine waist belt and low strappy heels",
+  "camera": "Moody blue-hour city light mixed with warm greenhouse lamps, painterly full-body composition",
+  "custom": "Use the attached female anthropomorphization as the actual identity reference. Preserve her adult face, hair, skin, eyes and body proportions. Wear only the specified modern civilian outfit. No armor, weapons or mechanical equipment. A natural candid action, subtle sensuality, no text. Do not pull the camera back to add empty margins.",
+  "axes": {},
+  "carryFace": true,
+  "carryBody": true
+}

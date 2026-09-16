@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "card": "G에그제스",
+  "baseCommit": "acfa7aa87613473317c08ee72cb0168cd6d2f7e8",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact repository prompt functions executed locally after browser confirmation dialog caused CDP timeouts. Selection values validated against current PARAM_DEFS. Browser export was obtained for Efreet female only; remaining settings exported programmatically, not through browser UI.",
+  "run": "generation/m-ca4324507b2d4301/runs/20260916t151639z",
+  "images": [
+    {
+      "card": "G에그제스",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "bc0143097390c5c79e8a955591bf9fb7113136e4253f850c872faf60b5d3f49f",
+      "prompt": "generation/m-ca4324507b2d4301/runs/20260916t151639z/female.txt",
+      "manifest": "generation/m-ca4324507b2d4301/runs/20260916t151639z/manifest.json",
+      "file": "img/G에그제스_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-bc1c9581-69fc-4ba7-a899-42d38ea6c2a4.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "G에그제스",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "ba70886a6981f1cd9239af3adc0815264a70a9cab36d6811bec22eff7de0a8e7",
+      "prompt": "generation/m-ca4324507b2d4301/runs/20260916t151639z/male.txt",
+      "manifest": "generation/m-ca4324507b2d4301/runs/20260916t151639z/manifest.json",
+      "file": "img/G에그제스_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-544bb430-7bd6-48b6-8ee8-5ee92bdf994e.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "G에그제스",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "ec5f36b92e8ddc4415dc996e6a5b3ae280142422bea8675a8f508fc554907832",
+      "prompt": "generation/m-ca4324507b2d4301/runs/20260916t151639z/casual.txt",
+      "manifest": "generation/m-ca4324507b2d4301/runs/20260916t151639z/manifest.json",
+      "file": "img/G에그제스_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-ddef586b-fa54-4d76-aeef-d1b11ccffd0d.png",
+      "reference": "img/G에그제스_cinematic_semi_real_f.webp",
+      "status": "generated, inspected and converted; main publication pending"
+    }
+  ]
+}

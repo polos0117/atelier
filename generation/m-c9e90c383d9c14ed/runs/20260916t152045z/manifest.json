@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "card": "밴디트",
+  "baseCommit": "f5ec0caaa4c6298b640f5c1b842930e1794a3573",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact repository prompt functions executed locally after browser confirmation dialog caused CDP timeouts. Selection values validated against current PARAM_DEFS. Browser export was obtained for Efreet female only; remaining settings exported programmatically, not through browser UI.",
+  "run": "generation/m-c9e90c383d9c14ed/runs/20260916t152045z",
+  "images": [
+    {
+      "card": "밴디트",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "db0df525451bfb154fd41dd5c926754f1988bb5cfb14cba6fe35c639c26ebea7",
+      "prompt": "generation/m-c9e90c383d9c14ed/runs/20260916t152045z/female.txt",
+      "manifest": "generation/m-c9e90c383d9c14ed/runs/20260916t152045z/manifest.json",
+      "file": "img/밴디트_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-ddd6cb70-6c00-4d8f-8a7a-e0406653a82c.png",
+      "reference": {
+        "role": "source mobile-suit equipment only",
+        "url": "https://livedoor.blogimg.jp/redcomet2ch/imgs/5/6/56fec5ab.jpg",
+        "sha256": "053d17ee608664e4287584871ab362590d810c4663ce6a65185496abb84d0c80",
+        "subject": "central orange-and-cream Bandit"
+      },
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "밴디트",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "75d67b794c141e0446f24f595e03b8163912cef81c14d49e89bea71d78db7892",
+      "prompt": "generation/m-c9e90c383d9c14ed/runs/20260916t152045z/male.txt",
+      "manifest": "generation/m-c9e90c383d9c14ed/runs/20260916t152045z/manifest.json",
+      "file": "img/밴디트_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-3a4720e2-17ca-4abc-be07-f0c19d171349.png",
+      "reference": {
+        "role": "source mobile-suit equipment only",
+        "url": "https://livedoor.blogimg.jp/redcomet2ch/imgs/5/6/56fec5ab.jpg",
+        "sha256": "053d17ee608664e4287584871ab362590d810c4663ce6a65185496abb84d0c80",
+        "subject": "central orange-and-cream Bandit"
+      },
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "밴디트",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "d8002ad7a04713fd2b4d3ffc6d90f8c40e4fbc7da4342f86ac1f25c1a59dbacd",
+      "prompt": "generation/m-c9e90c383d9c14ed/runs/20260916t152045z/casual.txt",
+      "manifest": "generation/m-c9e90c383d9c14ed/runs/20260916t152045z/manifest.json",
+      "file": "img/밴디트_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-9fd18ed2-6327-4e11-9406-5ee171c20274.png",
+      "reference": "img/밴디트_cinematic_semi_real_f.webp",
+      "status": "generated, inspected and converted; main publication pending"
+    }
+  ]
+}

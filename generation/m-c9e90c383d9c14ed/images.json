@@ -1,0 +1,29 @@
+{
+  "밴디트_cinematic_semi_real_f.webp": {
+    "card": "밴디트",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "db0df525451bfb154fd41dd5c926754f1988bb5cfb14cba6fe35c639c26ebea7",
+    "prompt": "generation/m-c9e90c383d9c14ed/runs/20260916t152045z/female.txt",
+    "manifest": "generation/m-c9e90c383d9c14ed/runs/20260916t152045z/manifest.json"
+  },
+  "밴디트_cinematic_semi_real_m.webp": {
+    "card": "밴디트",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "75d67b794c141e0446f24f595e03b8163912cef81c14d49e89bea71d78db7892",
+    "prompt": "generation/m-c9e90c383d9c14ed/runs/20260916t152045z/male.txt",
+    "manifest": "generation/m-c9e90c383d9c14ed/runs/20260916t152045z/manifest.json"
+  },
+  "밴디트_cinematic_semi_real_f_casual1.webp": {
+    "card": "밴디트",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "d8002ad7a04713fd2b4d3ffc6d90f8c40e4fbc7da4342f86ac1f25c1a59dbacd",
+    "prompt": "generation/m-c9e90c383d9c14ed/runs/20260916t152045z/casual.txt",
+    "manifest": "generation/m-c9e90c383d9c14ed/runs/20260916t152045z/manifest.json"
+  }
+}

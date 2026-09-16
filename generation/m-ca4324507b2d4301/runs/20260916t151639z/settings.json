@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "card": "G에그제스",
+  "updated": "2026-09-16T15:16:39.933Z",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "facial ethnicity": "Nordic",
+        "body type": "tall and lean",
+        "facial character": "refined",
+        "skin tone": "light",
+        "face shape": "elongated",
+        "eye shape": "almond",
+        "eye color": "green",
+        "expression": "confident",
+        "hair color": "__custom__",
+        "hairstyle": "bob",
+        "hair length": "short",
+        "bangs": "side-swept bangs"
+      },
+      "cus": {
+        "hair color": "platinum blonde"
+      },
+      "ub": false,
+      "sp": "G-Exes WMS-GEX1 from Gundam AGE. Brilliant white angular armor, charcoal mechanical joints, restrained green sensor accents. Preserve its distinctive head antenna as a small mechanical hair ornament, broad angular shoulder units and slim high-mobility silhouette. Hold its rifle in one hand and mount the matching white shield on the opposite forearm. No wolf ears or animal tail; human character, not pilot Woolf. White armor should be rendered as painted surfaces against the established dark neutral backdrop. Normal human anatomy: one human head with clearly visible face, two arms, two legs, five fingers per hand; no robot face or extra limbs. Keep recognizable shoulder armor. Subtle adult sensuality. No camera pullback to create margins; maintain close full-body framing with feet and major equipment visible."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "facial ethnicity": "Nordic",
+        "body type": "tall and lean",
+        "facial character": "refined",
+        "skin tone": "light",
+        "face shape": "elongated",
+        "eye shape": "almond",
+        "eye color": "green",
+        "expression": "confident",
+        "hair color": "__custom__",
+        "hairstyle": "layered",
+        "hair length": "short",
+        "bangs": "side-swept bangs"
+      },
+      "cus": {
+        "hair color": "platinum blonde"
+      },
+      "ub": false,
+      "sp": "G-Exes WMS-GEX1 from Gundam AGE. Brilliant white angular armor, charcoal mechanical joints, restrained green sensor accents. Preserve its distinctive head antenna as a small mechanical hair ornament, broad angular shoulder units and slim high-mobility silhouette. Hold its rifle in one hand and mount the matching white shield on the opposite forearm. No wolf ears or animal tail; human character, not pilot Woolf. White armor should be rendered as painted surfaces against the established dark neutral backdrop. Normal adult masculine human anatomy and face, two arms, two legs. Match the generated female counterpart skin, hair and eye colors exactly. No pilot resemblance. No camera pullback to add blank margins; preserve close full-body scale."
+    },
+    "g": "female",
+    "t": 1789571799931
+  },
+  "used": [],
+  "selectedStyle": "cinematic_semi_real"
+}

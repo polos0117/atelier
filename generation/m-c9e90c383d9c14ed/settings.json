@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "card": "밴디트",
+  "updated": "2026-09-16T15:20:45.683Z",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "facial ethnicity": "Central Asian",
+        "body type": "curvy",
+        "facial character": "exotic",
+        "skin tone": "light",
+        "face shape": "heart-shaped",
+        "eye shape": "narrow",
+        "eye color": "__custom__",
+        "expression": "smirk",
+        "hair color": "black",
+        "hairstyle": "hime cut",
+        "hair length": "long",
+        "bangs": "straight bangs"
+      },
+      "cus": {
+        "eye color": "violet"
+      },
+      "ub": false,
+      "sp": "Bandit G-M1F from Turn A Gundam. Use the central orange-and-cream Bandit in the attached original animation reference as the sole equipment design source; do not copy the other two units, their poses, their background, or the cel-shaded style. Translate the orange torso armor, pale cream limb armor, dark frame, unusual curved shoulder units and large movable rear thrusters into a recognizably human armored silhouette. Preserve its squeeze-weapon equipment as stowed external mechanisms and the canonical beam saber. Retain source identity rather than generic Gundam plates. A mysterious, agile human silhouette framed by alien-looking external mechanical armor. No biological extra limbs and no fantasy wings. Normal human anatomy: one human head with clearly visible face, two arms, two legs, five fingers per hand; no robot face or extra limbs. Keep recognizable shoulder armor. Subtle adult sensuality. No camera pullback to create margins; maintain close full-body framing with feet and major equipment visible."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "facial ethnicity": "Central Asian",
+        "body type": "wiry",
+        "facial character": "exotic",
+        "skin tone": "light",
+        "face shape": "heart-shaped",
+        "eye shape": "narrow",
+        "eye color": "__custom__",
+        "expression": "cold",
+        "hair color": "black",
+        "hairstyle": "layered",
+        "hair length": "medium",
+        "bangs": "straight bangs"
+      },
+      "cus": {
+        "eye color": "violet"
+      },
+      "ub": false,
+      "sp": "Bandit G-M1F from Turn A Gundam. Use the central orange-and-cream Bandit in the attached original animation reference as the sole equipment design source; do not copy the other two units, their poses, their background, or the cel-shaded style. Translate the orange torso armor, pale cream limb armor, dark frame, unusual curved shoulder units and large movable rear thrusters into a recognizably human armored silhouette. Preserve its squeeze-weapon equipment as stowed external mechanisms and the canonical beam saber. Retain source identity rather than generic Gundam plates. A mysterious, agile human silhouette framed by alien-looking external mechanical armor. No biological extra limbs and no fantasy wings. Normal adult masculine human anatomy and face, two arms, two legs. Match the generated female counterpart skin, hair and eye colors exactly. No pilot resemblance. No camera pullback to add blank margins; preserve close full-body scale."
+    },
+    "g": "female",
+    "t": 1789572045681
+  },
+  "used": [],
+  "selectedStyle": "cinematic_semi_real"
+}
