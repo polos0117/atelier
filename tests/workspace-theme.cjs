@@ -67,15 +67,20 @@ assert.equal(meta.content, '#101925');
 assert.match(ui, /<option value="archangel">아크엔젤<\/option>/);
 assert.match(ui, /<option value="musai">무사이<\/option>/);
 /* 테마마다 제 문장이 있어야 한다. 하나라도 빠지면 조용히 미드나이트 것이 나온다 */
-const marks = ui.slice(ui.indexOf('const FLEET_MARK'), ui.indexOf('export function WorkspaceHeading'));
+const marks = ui.slice(ui.indexOf('const FLEET_MARK'), ui.indexOf('const MARK_STYLE'));
 for (const key of ['midnight', "'white-base'", 'archangel', 'musai'])
-  assert(marks.includes('\n  ' + key + ': html`'), key + ' 문장이 없다');
+  assert(marks.includes('\n  ' + key + ': ['), key + ' 문장이 없다');
 /* 색을 박으면 테마를 바꿔도 안 따라온다 */
-assert(!/(stroke|fill|circle[^>]*fill)="#/.test(marks), '문장에 색을 박았다');
+assert(!/#[0-9a-f]{3,6}/i.test(marks), '문장에 색을 박았다');
 /* 넷이 서로 달라야 한다 — 베껴 두고 안 고친 것을 잡는다 */
-const shapes = [...marks.matchAll(/ d="([^"]+)"/g)].map(m => m[1]);
+const shapes = [...marks.matchAll(/\['([Mm][^']+)'/g)].map(m => m[1]);
+assert(shapes.length >= 13, '문장 도형이 너무 적다 — ' + shapes.length);
 assert.equal(new Set(shapes).size, shapes.length, '문장에 같은 도형이 두 번 있다');
 assert(ui.includes('FLEET_MARK[theme] || FLEET_MARK.midnight'), '모르는 테마의 되돌림이 없다');
+/* 도형을 모듈 자리에 담아 둔 VNode 로 두면 다시 그릴 때 내용이 빠질 수 있다.
+   자료로 두고 그릴 때마다 새로 만드는지 본다 */
+assert(!/:\s*html`/.test(marks), '문장을 VNode 로 담아 두었다 — 자료로 두고 그릴 때 만든다');
+assert(/FLEET_MARK\[theme\][^;]*\.map\(/.test(ui.replace(/\n/g, ' ')), '문장을 그릴 때 만들지 않는다');
 assert.match(css, /:root\[data-theme="musai"\]/);
 assert.match(css, /MUSAI \/ 03/);
 assert.match(css, /:root\[data-theme="archangel"\]/);
