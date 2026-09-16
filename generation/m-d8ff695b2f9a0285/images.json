@@ -1,0 +1,29 @@
+{
+  "아비골_cinematic_semi_real_f.webp": {
+    "card": "아비골",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "d27501235285874baf08fc33435104fd8347915dcbcc639c6af99d1cfc4015c5",
+    "prompt": "generation/m-d8ff695b2f9a0285/runs/20260916t163043z/female.txt",
+    "manifest": "generation/m-d8ff695b2f9a0285/runs/20260916t163043z/manifest.json"
+  },
+  "아비골_cinematic_semi_real_m.webp": {
+    "card": "아비골",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "6ca12954fc18c0abaebf86c83091901a01919d29142e981d0ff789b391d40608",
+    "prompt": "generation/m-d8ff695b2f9a0285/runs/20260916t163043z/male.txt",
+    "manifest": "generation/m-d8ff695b2f9a0285/runs/20260916t163043z/manifest.json"
+  },
+  "아비골_cinematic_semi_real_f_casual1.webp": {
+    "card": "아비골",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "23e7d5fcc1c6e1bc523b226900fb77ea8fb435ccda959d80af5c94f3fa121686",
+    "prompt": "generation/m-d8ff695b2f9a0285/runs/20260916t163043z/casual.txt",
+    "manifest": "generation/m-d8ff695b2f9a0285/runs/20260916t163043z/manifest.json"
+  }
+}

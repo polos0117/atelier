@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "card": "아비골",
+  "baseCommit": "046460325b06b2ddfbb60e937a7b062a69263705",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact repository prompt functions executed locally after browser confirmation dialog caused CDP timeouts. Selection values validated against current PARAM_DEFS. Browser export was obtained for Efreet female only; remaining settings exported programmatically, not through browser UI.",
+  "run": "generation/m-d8ff695b2f9a0285/runs/20260916t163043z",
+  "images": [
+    {
+      "card": "아비골",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "d27501235285874baf08fc33435104fd8347915dcbcc639c6af99d1cfc4015c5",
+      "prompt": "generation/m-d8ff695b2f9a0285/runs/20260916t163043z/female.txt",
+      "manifest": "generation/m-d8ff695b2f9a0285/runs/20260916t163043z/manifest.json",
+      "file": "img/아비골_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-9e1a1961-8a60-4964-89f2-16da27ea495e.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "아비골",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "6ca12954fc18c0abaebf86c83091901a01919d29142e981d0ff789b391d40608",
+      "prompt": "generation/m-d8ff695b2f9a0285/runs/20260916t163043z/male.txt",
+      "manifest": "generation/m-d8ff695b2f9a0285/runs/20260916t163043z/manifest.json",
+      "file": "img/아비골_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-31e996fe-1d0e-4deb-bd5a-c82b2672fc97.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "아비골",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "23e7d5fcc1c6e1bc523b226900fb77ea8fb435ccda959d80af5c94f3fa121686",
+      "prompt": "generation/m-d8ff695b2f9a0285/runs/20260916t163043z/casual.txt",
+      "manifest": "generation/m-d8ff695b2f9a0285/runs/20260916t163043z/manifest.json",
+      "file": "img/아비골_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-46eefefe-8d38-49f9-8a5e-2e5cc8bd179d.png",
+      "reference": "img/아비골_cinematic_semi_real_f.webp",
+      "status": "generated, inspected and converted; main publication pending"
+    }
+  ]
+}

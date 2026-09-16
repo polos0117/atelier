@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "card": "유고",
+  "updated": "2026-09-16T16:26:24.384Z",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "Central Asian",
+        "body type": "wiry",
+        "skin tone": "pale",
+        "face shape": "angular",
+        "eye shape": "upturned",
+        "eye color": "green",
+        "hair color": "black",
+        "hairstyle": "__custom__",
+        "hair length": "short",
+        "expression": "cold"
+      },
+      "cus": {
+        "hairstyle": "pixie"
+      },
+      "ub": false,
+      "sp": "Hugo IPP-66305 from Iron-Blooded Orphans. Standard orange, tan and dark gray equipment palette. Preserve its distinctive external backward-swept lower-leg armor and foot-claw mechanisms as armor around normal human legs, not reversed biological knees. Slim waist, compact angular shoulder armor, canonical paired scimitars and wire-claw gear stowed coherently. One scimitar in each hand, exactly two human arms and two legs. Normal human anatomy: one clearly visible adult human face, two arms, two legs, five fingers per hand. Keep recognizable shoulder armor. Keep the existing dark neutral studio background. Head ornaments should be compact and fully inside the frame, without tall spikes touching the top edge. Full body, feet and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Fit long weapons diagonally or at an appropriate length within the frame. No text or readable markings. Subtle adult sensuality and integrated open armor, fully opaque intimate coverage."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "Central Asian",
+        "body type": "athletic",
+        "skin tone": "pale",
+        "face shape": "angular",
+        "eye shape": "upturned",
+        "eye color": "green",
+        "hair color": "black",
+        "hairstyle": "__custom__",
+        "hair length": "short",
+        "expression": "cold"
+      },
+      "cus": {
+        "hairstyle": "pixie"
+      },
+      "ub": false,
+      "sp": "Hugo IPP-66305 from Iron-Blooded Orphans. Standard orange, tan and dark gray equipment palette. Preserve its distinctive external backward-swept lower-leg armor and foot-claw mechanisms as armor around normal human legs, not reversed biological knees. Slim waist, compact angular shoulder armor, canonical paired scimitars and wire-claw gear stowed coherently. One scimitar in each hand, exactly two human arms and two legs. Normal human anatomy: one clearly visible adult human face, two arms, two legs, five fingers per hand. Keep recognizable shoulder armor. Keep the existing dark neutral studio background. Head ornaments should be compact and fully inside the frame, without tall spikes touching the top edge. Full body, feet and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Fit long weapons diagonally or at an appropriate length within the frame. No text or readable markings. Masculine adult face and physique. Skin, hair and eyes must match the female counterpart: pale skin, black hair, green eyes."
+    },
+    "g": "female",
+    "t": 1789575984383
+  },
+  "used": [],
+  "selectedStyle": "cinematic_semi_real"
+}

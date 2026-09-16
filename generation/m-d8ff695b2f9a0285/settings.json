@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "card": "아비골",
+  "updated": "2026-09-16T16:30:43.972Z",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "Nordic",
+        "body type": "__custom__",
+        "skin tone": "light",
+        "face shape": "__custom__",
+        "eye shape": "almond",
+        "eye color": "__custom__",
+        "hair color": "lavender",
+        "hairstyle": "__custom__",
+        "hair length": "long",
+        "expression": "confident"
+      },
+      "cus": {
+        "body type": "muscular and curvy",
+        "face shape": "square",
+        "eye color": "violet",
+        "hairstyle": "braided ponytail"
+      },
+      "ub": false,
+      "sp": "Abigor ZM-D11S from Victory Gundam. Purple and muted violet armor with dark mechanical frame and green sensor accents. Preserve its heavy transformable armor, distinctive horned insect-like helmet shapes as external hair ornaments, broad shoulder shells and recognizable back structures. Wield one canonical beam scythe; no extra insect biological limbs. Powerful human physique with a defined waist and substantial thighs, armored bulk should frame rather than erase the human S-curve. Normal human anatomy: one clearly visible adult human face, two arms, two legs, five fingers per hand. Keep recognizable shoulder armor. Keep the existing dark neutral studio background. Head ornaments should be compact and fully inside the frame, without tall spikes touching the top edge. Full body, feet and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Fit long weapons diagonally or at an appropriate length within the frame. No text or readable markings. Subtle adult sensuality and integrated open armor, fully opaque intimate coverage."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "Nordic",
+        "body type": "muscular",
+        "skin tone": "light",
+        "face shape": "__custom__",
+        "eye shape": "almond",
+        "eye color": "__custom__",
+        "hair color": "lavender",
+        "hairstyle": "layered",
+        "hair length": "short",
+        "expression": "confident"
+      },
+      "cus": {
+        "face shape": "square",
+        "eye color": "violet"
+      },
+      "ub": false,
+      "sp": "Abigor ZM-D11S from Victory Gundam. Purple and muted violet armor with dark mechanical frame and green sensor accents. Preserve its heavy transformable armor, distinctive horned insect-like helmet shapes as external hair ornaments, broad shoulder shells and recognizable back structures. Wield one canonical beam scythe; no extra insect biological limbs. Powerful human physique with a defined waist and substantial thighs, armored bulk should frame rather than erase the human S-curve. Normal human anatomy: one clearly visible adult human face, two arms, two legs, five fingers per hand. Keep recognizable shoulder armor. Keep the existing dark neutral studio background. Head ornaments should be compact and fully inside the frame, without tall spikes touching the top edge. Full body, feet and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Fit long weapons diagonally or at an appropriate length within the frame. No text or readable markings. Masculine adult face and physique. Skin, hair and eyes must match the female counterpart: light skin, lavender hair, violet eyes."
+    },
+    "g": "female",
+    "t": 1789576243972
+  },
+  "used": [],
+  "selectedStyle": "cinematic_semi_real"
+}
