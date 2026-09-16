@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "card": "로우에이",
+  "baseCommit": "d44ed58e57c646c141f67119d0c743d437eb76d9",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact current repository prompt functions executed locally because browser CDP tab discovery timed out. Parameters validated against PARAM_DEFS; settings exported programmatically rather than through browser UI. Actual submitted prompt files are preserved unchanged.",
+  "run": "generation/m-35cca4ef7ba1d94f/runs/20260916t233125z",
+  "images": [
+    {
+      "card": "로우에이",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "83bca70ec7eceebb9c8ec7424458733932c70073367793a2f323b837f69b25e0",
+      "prompt": "generation/m-35cca4ef7ba1d94f/runs/20260916t233125z/female.txt",
+      "manifest": "generation/m-35cca4ef7ba1d94f/runs/20260916t233125z/manifest.json",
+      "file": "img/로우에이_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-25622061-9b86-4eaf-8e69-574f4e625c5d.png",
+      "reference": null,
+      "status": "generated, visually inspected, converted; publication pending"
+    },
+    {
+      "card": "로우에이",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "8a84bc1e4cedc4ecf4a907671d16089595330173e894c5e462cb9d827b5d033e",
+      "prompt": "generation/m-35cca4ef7ba1d94f/runs/20260916t233125z/male.txt",
+      "manifest": "generation/m-35cca4ef7ba1d94f/runs/20260916t233125z/manifest.json",
+      "file": "img/로우에이_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-db9a92d6-46a8-4f6b-8be9-106386411fdb.png",
+      "reference": null,
+      "status": "generated, visually inspected, converted; publication pending"
+    },
+    {
+      "card": "로우에이",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "7a01da21b191d0d0a35bcc1652501377018fa3af4e3379917d347b68d5be2d43",
+      "prompt": "generation/m-35cca4ef7ba1d94f/runs/20260916t233125z/casual.txt",
+      "manifest": "generation/m-35cca4ef7ba1d94f/runs/20260916t233125z/manifest.json",
+      "file": "img/로우에이_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-ed8fd0dc-54d8-4a7b-ac2e-de18a8ac20f4.png",
+      "reference": "img/로우에이_cinematic_semi_real_f.webp",
+      "status": "generated, visually inspected, converted; publication pending"
+    }
+  ],
+  "baseTree": "ad4d8fca7c5c3560846117d31f9e6ca6b8b41739",
+  "generator": "built-in image_gen"
+}

@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "card": "그레이즈 리터",
+  "baseCommit": "d44ed58e57c646c141f67119d0c743d437eb76d9",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact current repository prompt functions executed locally because browser CDP tab discovery timed out. Parameters validated against PARAM_DEFS; settings exported programmatically rather than through browser UI. Actual submitted prompt files are preserved unchanged.",
+  "run": "generation/m-b6b45f1f945ac8de/runs/20260916t233125z",
+  "images": [
+    {
+      "card": "그레이즈 리터",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "74368004b950a33f6d67bfd942c32a5a2a06e866f40bb2121d259517a18d142a",
+      "prompt": "generation/m-b6b45f1f945ac8de/runs/20260916t233125z/female.txt",
+      "manifest": "generation/m-b6b45f1f945ac8de/runs/20260916t233125z/manifest.json",
+      "file": "img/그레이즈_리터_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-c76c971b-dfac-4c57-a78e-9ed101df525d.png",
+      "reference": null,
+      "status": "generated, visually inspected, converted; publication pending"
+    },
+    {
+      "card": "그레이즈 리터",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "b932981f87b2aba1784970589aab5614c8c35e8848ac9110cd5de05da208c673",
+      "prompt": "generation/m-b6b45f1f945ac8de/runs/20260916t233125z/male.txt",
+      "manifest": "generation/m-b6b45f1f945ac8de/runs/20260916t233125z/manifest.json",
+      "file": "img/그레이즈_리터_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-4fccba31-1112-48dc-8c7c-1d069ab2cce1.png",
+      "reference": null,
+      "status": "generated, visually inspected, converted; publication pending"
+    },
+    {
+      "card": "그레이즈 리터",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "bf0385efd6a91a8161e2a22f992c6cdc78431fb891a0950a32239eaf98ca9109",
+      "prompt": "generation/m-b6b45f1f945ac8de/runs/20260916t233125z/casual.txt",
+      "manifest": "generation/m-b6b45f1f945ac8de/runs/20260916t233125z/manifest.json",
+      "file": "img/그레이즈_리터_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-830d8ff4-dba6-436b-9d69-5fd0b0a10c26.png",
+      "reference": "img/그레이즈_리터_cinematic_semi_real_f.webp",
+      "status": "generated, visually inspected, converted; publication pending"
+    }
+  ],
+  "baseTree": "ad4d8fca7c5c3560846117d31f9e6ca6b8b41739",
+  "generator": "built-in image_gen"
+}

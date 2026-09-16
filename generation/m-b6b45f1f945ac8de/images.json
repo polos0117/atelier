@@ -1,0 +1,29 @@
+{
+  "그레이즈_리터_cinematic_semi_real_f.webp": {
+    "card": "그레이즈 리터",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "74368004b950a33f6d67bfd942c32a5a2a06e866f40bb2121d259517a18d142a",
+    "prompt": "generation/m-b6b45f1f945ac8de/runs/20260916t233125z/female.txt",
+    "manifest": "generation/m-b6b45f1f945ac8de/runs/20260916t233125z/manifest.json"
+  },
+  "그레이즈_리터_cinematic_semi_real_m.webp": {
+    "card": "그레이즈 리터",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "b932981f87b2aba1784970589aab5614c8c35e8848ac9110cd5de05da208c673",
+    "prompt": "generation/m-b6b45f1f945ac8de/runs/20260916t233125z/male.txt",
+    "manifest": "generation/m-b6b45f1f945ac8de/runs/20260916t233125z/manifest.json"
+  },
+  "그레이즈_리터_cinematic_semi_real_f_casual1.webp": {
+    "card": "그레이즈 리터",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "bf0385efd6a91a8161e2a22f992c6cdc78431fb891a0950a32239eaf98ca9109",
+    "prompt": "generation/m-b6b45f1f945ac8de/runs/20260916t233125z/casual.txt",
+    "manifest": "generation/m-b6b45f1f945ac8de/runs/20260916t233125z/manifest.json"
+  }
+}

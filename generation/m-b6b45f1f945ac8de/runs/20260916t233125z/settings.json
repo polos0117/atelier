@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "card": "그레이즈 리터",
+  "updated": "2026-09-16T23:31:25.392Z",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "__custom__",
+        "body type": "tall and lean",
+        "skin tone": "__custom__",
+        "face shape": "oval",
+        "eye shape": "almond",
+        "eye color": "__custom__",
+        "hair color": "ash blonde",
+        "hairstyle": "half-up",
+        "hair length": "long",
+        "expression": "calm"
+      },
+      "cus": {
+        "facial ethnicity": "Northern European",
+        "skin tone": "fair",
+        "eye color": "ice blue"
+      },
+      "ub": false,
+      "sp": "EB-06r Graze Ritter from Iron-Blooded Orphans, standard green knight-type configuration. Preserve green and ivory mechanical armor, distinctive Ritter shoulder shapes and compact crest, slender waist frame, knight-like leg armor, canonical sword and rifle. Refined disciplined knight presentation, no fantasy filigree, no pilot resemblance. Normal adult human anatomy: one fully visible human face, two arms, two legs, five fingers per hand. Keep source shoulder armor. Dark neutral studio background. Full body and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Keep head ornaments compact inside the frame. No text or readable markings. Subtle adult sensuality with integrated open armor and fully opaque intimate coverage."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "__custom__",
+        "body type": "athletic",
+        "skin tone": "__custom__",
+        "face shape": "oval",
+        "eye shape": "almond",
+        "eye color": "__custom__",
+        "hair color": "ash blonde",
+        "hairstyle": "__custom__",
+        "hair length": "short",
+        "expression": "calm"
+      },
+      "cus": {
+        "facial ethnicity": "Northern European",
+        "skin tone": "fair",
+        "eye color": "ice blue",
+        "hairstyle": "short swept-back"
+      },
+      "ub": false,
+      "sp": "EB-06r Graze Ritter from Iron-Blooded Orphans, standard green knight-type configuration. Preserve green and ivory mechanical armor, distinctive Ritter shoulder shapes and compact crest, slender waist frame, knight-like leg armor, canonical sword and rifle. Refined disciplined knight presentation, no fantasy filigree, no pilot resemblance. Normal adult human anatomy: one fully visible human face, two arms, two legs, five fingers per hand. Keep source shoulder armor. Dark neutral studio background. Full body and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Keep head ornaments compact inside the frame. No text or readable markings. Clearly masculine adult face and physique. Match the female counterpart colors exactly: fair skin, ash blonde hair, ice blue eyes."
+    },
+    "g": "female",
+    "t": 1789601485391
+  },
+  "used": [],
+  "selectedStyle": "cinematic_semi_real"
+}

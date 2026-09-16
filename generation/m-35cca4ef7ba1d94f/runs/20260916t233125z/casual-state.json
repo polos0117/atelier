@@ -1,0 +1,85 @@
+{
+  "source": {
+    "mech": "로우에이"
+  },
+  "gender": "female",
+  "style": "cinematic_semi_real",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "Middle Eastern",
+        "body type": "__custom__",
+        "skin tone": "__custom__",
+        "face shape": "__custom__",
+        "eye shape": "almond",
+        "eye color": "__custom__",
+        "hair color": "black",
+        "hairstyle": "wavy",
+        "hair length": "medium",
+        "expression": "__custom__"
+      },
+      "cus": {
+        "body type": "athletic and curvy",
+        "skin tone": "light olive",
+        "face shape": "square",
+        "eye color": "gray green",
+        "expression": "relaxed"
+      },
+      "ub": false,
+      "sp": "STH-05R Rouei from Iron-Blooded Orphans. Preserve the characteristic tan sand-colored and dark gray utilitarian armor, compact mechanical shoulders, asymmetric rugged details, short gun and heavy close-combat club. A relaxed but capable mercenary with a strong human silhouette; distinct waist, human hands, no pilot likeness. Normal adult human anatomy: one fully visible human face, two arms, two legs, five fingers per hand. Keep source shoulder armor. Dark neutral studio background. Full body and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Keep head ornaments compact inside the frame. No text or readable markings. Subtle adult sensuality with integrated open armor and fully opaque intimate coverage."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "Middle Eastern",
+        "body type": "athletic",
+        "skin tone": "__custom__",
+        "face shape": "__custom__",
+        "eye shape": "almond",
+        "eye color": "__custom__",
+        "hair color": "black",
+        "hairstyle": "__custom__",
+        "hair length": "short",
+        "expression": "__custom__"
+      },
+      "cus": {
+        "skin tone": "light olive",
+        "face shape": "square",
+        "eye color": "gray green",
+        "hairstyle": "short swept-back",
+        "expression": "relaxed"
+      },
+      "ub": false,
+      "sp": "STH-05R Rouei from Iron-Blooded Orphans. Preserve the characteristic tan sand-colored and dark gray utilitarian armor, compact mechanical shoulders, asymmetric rugged details, short gun and heavy close-combat club. A relaxed but capable mercenary with a strong human silhouette; distinct waist, human hands, no pilot likeness. Normal adult human anatomy: one fully visible human face, two arms, two legs, five fingers per hand. Keep source shoulder armor. Dark neutral studio background. Full body and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Keep head ornaments compact inside the frame. No text or readable markings. Clearly masculine adult face and physique. Match the female counterpart colors exactly: light olive skin, black hair, gray green eyes."
+    },
+    "g": "female",
+    "t": 1789601485311
+  },
+  "cat": "__custom__",
+  "catCustom": "a stylish adult woman enjoying an ordinary off-duty moment",
+  "ex": "",
+  "exCustom": "",
+  "aspect": "2:3 vertical",
+  "frame": "full body",
+  "expr": "",
+  "orient": "",
+  "pose": "",
+  "scene": "At a desert roadside repair stop, checking a paper map beside a parked motorcycle",
+  "outfit": "An opaque fitted rust-red tank top, sand cargo trousers, a worn jacket tied at the waist and practical boots",
+  "camera": "Low amber sunset and soft dusty atmosphere",
+  "custom": "Use the attached female anthropomorphization as the actual identity reference. Preserve her adult face, hair, skin, eyes and body proportions. Wear only the specified modern civilian outfit. No armor, weapons or mechanical equipment. A natural candid action, subtle sensuality, no text. Do not pull the camera back to add empty margins.",
+  "axes": {},
+  "carryFace": true,
+  "carryBody": true
+}
