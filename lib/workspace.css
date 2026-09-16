@@ -61,6 +61,15 @@
   --muted:#b3a692;--line:#4f4130;--accent:#e0a05e;--ok:#8fc79f;--warn:#e6c76d;
   --signal:#e07d5e;--gold:#c9a55f;--accent-soft:#3a2c1c;--shadow:0 9px 30px #0006;
 }
+/* 무어 동포단 강습함. 다른 어두운 판의 선체색 대신 무채색 그래파이트를 쓰고,
+   황색 경계선과 적색 전술 신호만 남긴다. 직교 격자는 별가루·빗금·티끌과
+   겹치지 않는 함교 전술판의 이미지다. */
+:root[data-theme="spartan"] {
+  color-scheme:dark;
+  --bg:#0b0e11;--deck:#12171b;--card:#1a2025;--card2:#232b31;--text:#edf1f2;
+  --muted:#aab4b8;--line:#3c484e;--accent:#e4c74f;--ok:#75c39e;--warn:#e5a85f;
+  --signal:#eb6654;--gold:#c8a85a;--accent-soft:#34311e;--shadow:0 10px 32px #0008;
+}
 :root[data-density="relaxed"] {
   --ui-font:15px;--ui-small:13px;--ui-height:46px;--ui-pad:12px;--ui-gap:10px;--gap:14px;
 }
@@ -98,12 +107,14 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
 [data-theme="agama"] .fleet-name::after {content:'AGAMA / 06'}
 [data-theme="ptolemaios"] .fleet-name::after {content:'PTOLEMAIOS / 07'}
 [data-theme="isaribi"] .fleet-name::after {content:'ISARIBI / 08'}
+[data-theme="spartan"] .fleet-name::after {content:'SPARTAN / 09'}
 .fleet-signature i {width:120px;height:3px;background:linear-gradient(to right,var(--accent) 0 64%,transparent 64% 69%,var(--signal) 69% 88%,transparent 88% 93%,var(--gold) 93%)}
 .fleet-signature b {font-size:8px;font-weight:400;letter-spacing:.2em}
 [data-theme="archangel"] body {background-color:var(--bg);background-image:radial-gradient(circle at 92% 8%,#fff9 0 11%,transparent 34%),linear-gradient(135deg,transparent 0 73%,#b3264308 73% 73.5%,transparent 73.5%)}
 [data-theme="rewloola"] body {background-color:var(--bg);background-image:repeating-linear-gradient(115deg,#ffffff06 0 1px,transparent 1px 7px),repeating-linear-gradient(-115deg,#ffffff04 0 1px,transparent 1px 11px),radial-gradient(120% 70% at 50% 0,#e3a0b814 0 38%,transparent 74%)}
 [data-theme="ptolemaios"] body {background-color:var(--bg);background-image:radial-gradient(#ffffff1c 1px,transparent 1.4px),radial-gradient(#71cfd616 1px,transparent 1.4px),radial-gradient(120% 60% at 50% 0,#71cfd612 0 34%,transparent 72%);background-size:37px 37px,61px 61px,auto;background-position:0 0,13px 19px,0 0}
 [data-theme="isaribi"] body {background-color:var(--bg);background-image:repeating-linear-gradient(45deg,#ffffff06 0 2px,transparent 2px 14px),radial-gradient(#ffffff0b 1px,transparent 1.2px),radial-gradient(130% 70% at 50% 0,#e0a05e14 0 32%,transparent 76%);background-size:auto,23px 23px,auto}
+[data-theme="spartan"] body {background-color:var(--bg);background-image:linear-gradient(#e4c74f0a 1px,transparent 1px),linear-gradient(90deg,#e4c74f0a 1px,transparent 1px),radial-gradient(100% 60% at 50% 0,#e4c74f0e 0 32%,transparent 72%);background-size:32px 32px,32px 32px,auto;background-position:-1px -1px,-1px -1px,0 0}
 [data-theme="archangel"] .workspace-nav {border-color:#cdb8bf;box-shadow:inset 4px 0 var(--accent),0 5px 18px #4e27300c}
 [data-theme="archangel"] .theme-dot {background:linear-gradient(135deg,var(--accent) 0 52%,#728ba5 52%);box-shadow:0 0 0 3px #f5dce2}
 [data-theme="musai"] .theme-dot {background:radial-gradient(circle at 50% 50%,var(--signal) 0 38%,var(--accent) 38%);box-shadow:0 0 0 3px var(--accent-soft)}
@@ -111,7 +122,10 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
 [data-theme="agama"] .theme-dot {background:linear-gradient(180deg,var(--accent) 0 50%,var(--signal) 50%);box-shadow:0 0 0 3px var(--accent-soft)}
 [data-theme="ptolemaios"] .theme-dot {background:var(--accent);box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--accent-soft)}
 [data-theme="isaribi"] .theme-dot {background:repeating-linear-gradient(45deg,var(--accent) 0 2px,var(--signal) 2px 4px);box-shadow:0 0 0 3px var(--accent-soft)}
+[data-theme="spartan"] .theme-dot {border-radius:2px;background:repeating-linear-gradient(135deg,var(--accent) 0 2px,var(--card2) 2px 4px);box-shadow:0 0 0 2px var(--signal)}
 [data-theme="archangel"] .fleet-signature i {background:linear-gradient(to right,var(--accent) 0 59%,transparent 59% 64%,#728ba5 64% 84%,transparent 84% 89%,var(--signal) 89%)}
+[data-theme="spartan"] .fleet-signature i {background:repeating-linear-gradient(90deg,var(--accent) 0 14px,transparent 14px 18px,var(--signal) 18px 23px,transparent 23px 27px)}
+[data-theme="spartan"] .workspace-nav {box-shadow:inset 0 3px var(--accent),0 7px 22px #0005}
 /* Archive: compact search deck above an image-led collection. */
 .dex-page main {width:100%;max-width:1520px;margin:auto;padding:16px 24px calc(24px + env(safe-area-inset-bottom));scrollbar-color:var(--line) transparent}
 .dex-page .chrome {padding-top:env(safe-area-inset-top)}
@@ -207,7 +221,8 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
 .prompt-page .rnd-tgt {padding:12px;gap:6px 12px}
 .prompt-page .rnd-tgt label {min-height:40px}
 .prompt-page .rnd-tgt input {width:17px;height:17px}
-.prompt-page .param-actions {padding:0;grid-template-columns:repeat(2,minmax(0,1fr))}
+.prompt-page .param-actions {display:flex;flex-wrap:nowrap;padding:0}
+.prompt-page .param-actions > button {flex:1 1 0;min-width:0}
 .prompt-page .controls {position:static;padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:var(--deck);box-shadow:var(--shadow);grid-template-columns:minmax(0,1fr) auto;gap:10px}
 .prompt-page .controls button {min-height:46px}
 .prompt-page .controls .primary {background:var(--accent);color:var(--bg);border-color:var(--accent)}
@@ -216,6 +231,11 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
 .prompt-page .prompt-view {margin-top:12px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .prompt-page .prompt-view textarea {background:var(--card);color:var(--text);padding:18px;font-size:13px;line-height:1.7}
 .prompt-page .prompt-view textarea:focus-visible {outline-offset:-3px}
+.prompt-page .ko-sum {display:flex;align-items:center;gap:6px;min-width:0;margin:0 0 10px;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--card);overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:thin}
+.prompt-page .ks-r,.prompt-page .ks-f {flex:none;display:flex;align-items:center;gap:5px;min-height:30px;padding:5px 8px;border-radius:7px;background:var(--card2);color:var(--muted);font-size:11px;line-height:1.35;white-space:nowrap}
+.prompt-page .ks-r b {color:var(--accent);font-size:10px;letter-spacing:.03em}
+.prompt-page .ks-r i,.prompt-page .ks-r u {font-style:normal;text-decoration:none;color:var(--muted)}
+.prompt-page .ks-f {background:transparent;border-left:1px solid var(--line);border-radius:0;padding-left:10px}
 .studio-selection {display:flex;gap:10px;align-items:center;margin:0 0 12px;padding:12px;background:var(--card2);border:1px solid var(--line);border-radius:10px}
 .studio-selection > div {min-width:0}
 .studio-selection small {display:block;font-size:10px;color:var(--muted);letter-spacing:.08em}

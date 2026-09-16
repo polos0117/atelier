@@ -205,8 +205,8 @@ button{font:inherit}
   .prompt-dock-actions button{min-height:36px;font-size:12px}
 }
 </style>
-<link rel="stylesheet" href="lib/workspace.css?v=c6b29a2f0d">
-<script src="lib/workspace-theme.js?v=85d54480b4"></script>
+<link rel="stylesheet" href="lib/workspace.css?v=532935085f">
+<script src="lib/workspace-theme.js?v=97c2d41a47"></script>
 </head>
 <body class="prompt-page">
 <div class="wrap"><div id="app"></div></div>
@@ -215,7 +215,7 @@ import { h, render } from 'https://esm.sh/preact@10.24.3';
 import { useState, useEffect, useMemo, useRef } from 'https://esm.sh/preact@10.24.3/hooks';
 import htm from 'https://esm.sh/htm@3.1.1';
 
-import { AppearanceControls, WorkspaceHeading } from './lib/workspace-ui.js?v=666333d737';
+import { AppearanceControls, WorkspaceHeading } from './lib/workspace-ui.js?v=3f4cc9c600';
 
 const html = htm.bind(h);
 const S = window.AtelierSpec;
@@ -1597,7 +1597,6 @@ function SinglePanel({ data, series, setSeries, mech, setMech, gender, setGender
       </div>
 
       <div class="ko-sum">
-        <div class="ks-t">지금 설정 요약</div>
         <div class="ks-r"><b>한 장</b>${summary.head} <i>${summary.aspect}</i>${summary.mood ? html`<u>${summary.mood}</u>` : null}</div>
         <div class="ks-f">${summary.flags.join(' · ')}</div>
       </div>
@@ -2155,7 +2154,6 @@ function CollagePanel({ data, series, setSeries, mech, setMech, gender, setGende
       </div>
 
       <div class="ko-sum">
-        <div class="ks-t">지금 설정 요약</div>
         ${summary.rows.map(r => html`<div class="ks-r" key=${r.n}>
           <b>${r.use ? 'PAIR ' + r.n : '패널 ' + (r.n * 2 - 1) + '·' + (r.n * 2)}</b>${r.ko}${r.ex ? ' — ' + r.ex : ''}
           ${r.use ? null : html`<u>묶기 풀림</u>`}</div>`)}

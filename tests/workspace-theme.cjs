@@ -64,7 +64,7 @@ window.AtelierAppearance.set('theme', 'rewloola');
 assert.equal(root.dataset.theme, 'rewloola');
 assert.equal(meta.content, '#1c141b');
 
-for (const [name, color] of [['agama', '#f3efe4'], ['ptolemaios', '#0d1d25'], ['isaribi', '#1d1710']]) {
+for (const [name, color] of [['agama', '#f3efe4'], ['ptolemaios', '#0d1d25'], ['isaribi', '#1d1710'], ['spartan', '#12171b']]) {
   window.AtelierAppearance.set('theme', name);
   assert.equal(root.dataset.theme, name);
   assert.equal(stored.get('atelier_theme_v1'), name);
@@ -82,25 +82,25 @@ const THEMES = [['midnight', '미드나이트 · 함교', 'MIDNIGHT / 01'],
   ['white-base', '화이트 베이스', 'WHITE BASE / 01'], ['archangel', '아크엔젤', 'ARCHANGEL / 02'],
   ['musai', '무사이', 'MUSAI / 03'], ['rewloola', '레우르라', 'REWLOOLA / 05'],
   ['agama', '아가마', 'AGAMA / 06'], ['ptolemaios', '프톨레마이오스', 'PTOLEMAIOS / 07'],
-  ['isaribi', '이사리비', 'ISARIBI / 08']];
+  ['isaribi', '이사리비', 'ISARIBI / 08'], ['spartan', '스파르탄', 'SPARTAN / 09']];
 for (const [key, ko, sign] of THEMES) {
   assert(ui.includes('<option value="' + key + '">' + ko + '</option>'), key + ' 고르개 항목이 없다');
   if (key !== 'midnight') assert(css.includes(':root[data-theme="' + key + '"] {'), key + ' 토큰이 없다');
   assert(css.includes("content:'" + sign + "'"), sign + ' 이 없다');
 }
 /* 결은 body 에만 깐다 — 카드나 글자 위에 깔면 읽기가 나빠진다 */
-for (const key of ['rewloola', 'ptolemaios', 'isaribi'])
+for (const key of ['rewloola', 'ptolemaios', 'isaribi', 'spartan'])
   assert(css.includes('[data-theme="' + key + '"] body {background-color:var(--bg);background-image:'),
     key + ' 의 결이 body 에 걸려 있지 않다');
 /* 테마마다 제 문장이 있어야 한다. 하나라도 빠지면 조용히 미드나이트 것이 나온다 */
 const marks = ui.slice(ui.indexOf('const FLEET_MARK'), ui.indexOf('const MARK_STYLE'));
-for (const key of ['midnight', "'white-base'", 'archangel', 'musai', 'rewloola', 'agama', 'ptolemaios', 'isaribi'])
+for (const key of ['midnight', "'white-base'", 'archangel', 'musai', 'rewloola', 'agama', 'ptolemaios', 'isaribi', 'spartan'])
   assert(marks.includes('\n  ' + key + ': ['), key + ' 문장이 없다');
 /* 색을 박으면 테마를 바꿔도 안 따라온다 */
 assert(!/#[0-9a-f]{3,6}/i.test(marks), '문장에 색을 박았다');
 /* 넷이 서로 달라야 한다 — 베껴 두고 안 고친 것을 잡는다 */
 const shapes = [...marks.matchAll(/\['([Mm][^']+)'/g)].map(m => m[1]);
-assert(shapes.length >= 27, '문장 도형이 너무 적다 — ' + shapes.length);
+assert(shapes.length >= 31, '문장 도형이 너무 적다 — ' + shapes.length);
 assert.equal(new Set(shapes).size, shapes.length, '문장에 같은 도형이 두 번 있다');
 assert(ui.includes('FLEET_MARK[theme] || FLEET_MARK.midnight'), '모르는 테마의 되돌림이 없다');
 /* 도형을 모듈 자리에 담아 둔 VNode 로 두면 다시 그릴 때 내용이 빠질 수 있다.
@@ -113,8 +113,10 @@ assert.match(css, /:root\[data-theme="archangel"\]/);
 assert.match(css, /ARCHANGEL \/ 02/);
 assert.match(css, /\.prompt-page \.controls \{position:static/);
 assert.match(css, /\.prompt-page \.prompt-dock \{position:static/);
+assert.match(css, /\.prompt-page \.param-actions \{display:flex;flex-wrap:nowrap/);
+assert.match(css, /\.prompt-page \.ko-sum \{display:flex;/);
 assert.match(draftCss, /\.setup-bottom\{position:static/);
 assert(viewportEvents.has('resize'));
 assert(events.has('storage'));
 
-console.log('PASS: eight shared themes, theme colors, storage normalization and visible viewport sizing');
+console.log('PASS: nine shared themes, theme colors, storage normalization and visible viewport sizing');
