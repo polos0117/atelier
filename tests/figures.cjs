@@ -66,6 +66,20 @@ const malePng = {
   statuesque: '78f51333b8', 'broad-shouldered': 'e1b0e0ee80', burly: '437673d9aa',
   lanky: 'ec905f07cd', 'barrel-chested': 'e7eec9b929', rangy: '0741c9abb5'
 };
+const femaleHairPng = {
+  bob: '6550456156', 'pixie-cut': '1518adca53', layered: 'b588a99897',
+  ponytail: '0deb81891e', 'twin-tail': '9ee9469827', 'wolf-cut': '3bc115743e',
+  'slicked-back': '066940adf5', wavy: '6d5ebfe326', straight: 'e3a3f1a99e',
+  'side-ponytail': '5ad6069b99', 'high-ponytail': 'd63b2c784c', braid: 'a972b89667',
+  'twin-braids': '2b37a0a4d1', 'crown-braid': 'dcf0c6b61b', chignon: 'f170dff070',
+  'messy-bun': 'ac5b25d45f', 'top-knot': '682b767a0e', 'low-bun': 'd9be965973',
+  'half-up': '2e2c4040f0', 'space-buns': '0ff8617dd1', 'hime-cut': '94b4e7d2a3',
+  'asymmetric-cut': '7b1dd3a84f', undercut: 'a6c615766c',
+  'side-shaved-long-hair': '209ab12265', curly: '4b786d44ea',
+  'tight-curls': '6facf025df', locs: '9eb4224a80', 'ringlet-curls': 'eacae5882d',
+  'finger-waves': '0e4c531e3f', feathered: '361677c06c', 'blunt-cut': '30ced68f7b',
+  'wet-look-slick': 'ab7de912b5', windswept: '84c505c89a'
+};
 for (const [gender, figures] of Object.entries({ female: femalePng, male: malePng })) {
   for (const [name, hash] of Object.entries(figures)) {
     const file = `assets/figures/body-${gender}-${name}.png`;
@@ -74,10 +88,21 @@ for (const [gender, figures] of Object.entries({ female: femalePng, male: malePn
     assert.equal(crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex').slice(0, 10), hash, `${gender} ${name}`);
   }
 }
+for (const [name, hash] of Object.entries(femaleHairPng)) {
+  const file = `assets/figures/hair-female-${name}.png`;
+  assert.match(prompt, new RegExp(`${name}\\.png\\?v=${hash}`), `female hair ${name}`);
+  assert(fs.existsSync(file), file);
+  assert.equal(crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex').slice(0, 10), hash, `female hair ${name}`);
+}
 /* 남성·여성 화면에 실제 노출되는 PNG 수를 고정해 새 Canvas 회귀를 막는다. */
 assert.equal(Object.keys(femalePng).length, 17);
 assert.equal(Object.keys(malePng).length, 15);
+assert.equal(Object.keys(femaleHairPng).length, 33);
+assert.doesNotMatch(prompt, /'hairstyle\|male\|/);
 assert.match(prompt, /onclick=\$\{\(\) => onValue\(f\.k\)\}/);
+assert.match(prompt, /<span class="figimg"><\$\{FigureImage\}/);
+assert.match(prompt, /height:140px/);
+assert.match(prompt, /-webkit-line-clamp:2/);
 assert.doesNotMatch(prompt, /f\.svg \+ '<b>'/);
 
-console.log(`PASS: ${Object.keys(window.AtelierSpec.BODY_FIG).length} body, ${Object.keys(window.AtelierSpec.HAIR_FIG).length} hair Canvas pickers, ${Object.keys(femalePng).length} female and ${Object.keys(malePng).length} male body PNGs`);
+console.log(`PASS: ${Object.keys(window.AtelierSpec.BODY_FIG).length} body and ${Object.keys(window.AtelierSpec.HAIR_FIG).length} hair pickers; ${Object.keys(femalePng).length} female body, ${Object.keys(malePng).length} male body, ${Object.keys(femaleHairPng).length} female hair PNGs`);

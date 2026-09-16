@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0f1115">
-<title>Gundam Prompt Toolkit v9.24</title>
+<title>Gundam Prompt Toolkit v9.25</title>
 <!-- 홈 화면에 두면 브라우저가 저장 자리를 걷어가지 못한다 -->
 <link rel="manifest" href="prompt.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -65,14 +65,17 @@ button{font:inherit}
 .figure-picker-head>span{font-size:10.5px;color:var(--muted);font-weight:700}
 .figure-auto{min-height:30px;padding:4px 9px;font-size:10px}
 .figrow{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-top:6px}
-.figcell{flex:0 0 auto;background:none;border:1px solid var(--line);border-radius:8px;
-  padding:4px;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;
-  align-items:center;gap:2px}
+.figcell{flex:0 0 74px;width:74px;height:140px;box-sizing:border-box;background:none;
+  border:1px solid var(--line);border-radius:8px;padding:4px;color:var(--muted);
+  cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px}
 .figcell.on{border-color:var(--accent);color:var(--text)}
-.figcell canvas,.figcell .figure-png{width:64px;height:auto;display:block}
-.figcell .figure-png{max-height:103px;object-fit:contain;pointer-events:none}
-.figcell b{font-size:9.5px;font-weight:600;max-width:60px;overflow:hidden;
-  text-overflow:ellipsis;white-space:nowrap}
+.figimg{width:66px;height:104px;flex:none;display:flex;align-items:flex-end;
+  justify-content:center;overflow:hidden}
+.figimg canvas,.figimg .figure-png{display:block;width:auto;height:auto;max-width:64px;max-height:103px}
+.figimg .figure-png{object-fit:contain;pointer-events:none}
+.figcell b{display:-webkit-box;width:64px;height:24px;overflow:hidden;text-align:center;
+  font-size:9.5px;font-weight:600;line-height:12px;white-space:normal;word-break:keep-all;
+  overflow-wrap:anywhere;-webkit-box-orient:vertical;-webkit-line-clamp:2}
 .srcbox>summary .sb-txt{flex:none;font-size:10.5px;color:var(--muted);white-space:nowrap}
 .field,.pair-card,.override-card,.param-card,.rec-card{border:1px solid var(--line);border-radius:10px;background:var(--card2);padding:9px}
 .field label,.param-card label,.override-card label,.pair-card label{display:block;margin-bottom:6px;font-size:12px;font-weight:700;color:var(--text)}
@@ -284,6 +287,39 @@ function LockIcon({ open }) {
 }
 
 const FIGURE_PNG = {
+  'hairstyle|female|bob': 'assets/figures/hair-female-bob.png?v=6550456156',
+  'hairstyle|female|pixie cut': 'assets/figures/hair-female-pixie-cut.png?v=1518adca53',
+  'hairstyle|female|layered': 'assets/figures/hair-female-layered.png?v=b588a99897',
+  'hairstyle|female|ponytail': 'assets/figures/hair-female-ponytail.png?v=0deb81891e',
+  'hairstyle|female|twin tail': 'assets/figures/hair-female-twin-tail.png?v=9ee9469827',
+  'hairstyle|female|wolf cut': 'assets/figures/hair-female-wolf-cut.png?v=3bc115743e',
+  'hairstyle|female|slicked back': 'assets/figures/hair-female-slicked-back.png?v=066940adf5',
+  'hairstyle|female|wavy': 'assets/figures/hair-female-wavy.png?v=6d5ebfe326',
+  'hairstyle|female|straight': 'assets/figures/hair-female-straight.png?v=e3a3f1a99e',
+  'hairstyle|female|side ponytail': 'assets/figures/hair-female-side-ponytail.png?v=5ad6069b99',
+  'hairstyle|female|high ponytail': 'assets/figures/hair-female-high-ponytail.png?v=d63b2c784c',
+  'hairstyle|female|braid': 'assets/figures/hair-female-braid.png?v=a972b89667',
+  'hairstyle|female|twin braids': 'assets/figures/hair-female-twin-braids.png?v=2b37a0a4d1',
+  'hairstyle|female|crown braid': 'assets/figures/hair-female-crown-braid.png?v=dcf0c6b61b',
+  'hairstyle|female|chignon': 'assets/figures/hair-female-chignon.png?v=f170dff070',
+  'hairstyle|female|messy bun': 'assets/figures/hair-female-messy-bun.png?v=ac5b25d45f',
+  'hairstyle|female|top knot': 'assets/figures/hair-female-top-knot.png?v=682b767a0e',
+  'hairstyle|female|low bun': 'assets/figures/hair-female-low-bun.png?v=d9be965973',
+  'hairstyle|female|half-up': 'assets/figures/hair-female-half-up.png?v=2e2c4040f0',
+  'hairstyle|female|space buns': 'assets/figures/hair-female-space-buns.png?v=0ff8617dd1',
+  'hairstyle|female|hime cut': 'assets/figures/hair-female-hime-cut.png?v=94b4e7d2a3',
+  'hairstyle|female|asymmetric cut': 'assets/figures/hair-female-asymmetric-cut.png?v=7b1dd3a84f',
+  'hairstyle|female|undercut': 'assets/figures/hair-female-undercut.png?v=a6c615766c',
+  'hairstyle|female|side-shaved long hair': 'assets/figures/hair-female-side-shaved-long-hair.png?v=209ab12265',
+  'hairstyle|female|curly': 'assets/figures/hair-female-curly.png?v=4b786d44ea',
+  'hairstyle|female|tight curls': 'assets/figures/hair-female-tight-curls.png?v=6facf025df',
+  'hairstyle|female|locs': 'assets/figures/hair-female-locs.png?v=9eb4224a80',
+  'hairstyle|female|ringlet curls': 'assets/figures/hair-female-ringlet-curls.png?v=eacae5882d',
+  'hairstyle|female|finger waves': 'assets/figures/hair-female-finger-waves.png?v=0e4c531e3f',
+  'hairstyle|female|feathered': 'assets/figures/hair-female-feathered.png?v=361677c06c',
+  'hairstyle|female|blunt cut': 'assets/figures/hair-female-blunt-cut.png?v=30ced68f7b',
+  'hairstyle|female|wet-look slick': 'assets/figures/hair-female-wet-look-slick.png?v=ab7de912b5',
+  'hairstyle|female|windswept': 'assets/figures/hair-female-windswept.png?v=84c505c89a',
   'body type|female|slender': 'assets/figures/body-female-slender.png?v=ba669e9a45',
   'body type|female|athletic': 'assets/figures/body-female-athletic.png?v=296437f650',
   'body type|female|curvy': 'assets/figures/body-female-curvy.png?v=7f7c1cdfb8',
@@ -328,7 +364,7 @@ function FigureImage({ type, value, gender }) {
     addEventListener('atelier-appearance', draw);
     return () => removeEventListener('atelier-appearance', draw);
   }, [type, value, gender, png]);
-  if (png) return html`<img class="body-figure figure-png" src=${png} alt="" aria-hidden="true"
+  if (png) return html`<img class=${(type === 'body type' ? 'body-figure' : 'hair-figure') + ' figure-png'} src=${png} alt="" aria-hidden="true"
                            loading="lazy" decoding="async" draggable="false" />`;
   const size = FIG.dimensions(type);
   return html`<canvas ref=${canvas} class=${type === 'body type' ? 'body-figure' : 'hair-figure'}
@@ -399,7 +435,7 @@ function Preview({ def, value, sel, gender, img, style, exclude, onZoom, onValue
       ${figs.length ? html`
         <div class="figure-picker-head"><span>${def.key === 'body type'
           ? `${gender === 'female' ? '여성' : '남성'} 체형 PNG 기준 이미지`
-          : '이미지로 선택 · 도식은 형태 비교'}</span>
+          : (gender === 'female' ? '여성 헤어 PNG 기준 이미지' : '이미지로 선택 · Canvas 도식')}</span>
           <button type="button" class=${'figure-auto' + (!value ? ' on' : '')}
                   aria-pressed=${String(!value)} onclick=${() => onValue('')}>AUTO</button>
         </div>
@@ -408,7 +444,7 @@ function Preview({ def, value, sel, gender, img, style, exclude, onZoom, onValue
             <button type="button" class=${'figcell' + (f.k === value ? ' on' : '')} key=${f.k}
                     aria-pressed=${String(f.k === value)} aria-label=${f.t + ' 선택'}
                     title=${f.description || f.t} onclick=${() => onValue(f.k)}>
-              <${FigureImage} type=${def.key} value=${f.k} gender=${gender} />
+              <span class="figimg"><${FigureImage} type=${def.key} value=${f.k} gender=${gender} /></span>
               <b>${f.t}</b>
             </button>`)}
         </div>` : null}
@@ -502,11 +538,16 @@ function Zoom({ list, start, onClose }) {
 /* 패치 노트. 원본의 마크업을 그대로 쓴다 — 고쳐 옮기면 글이 갈린다 */
 const VERSION_NOTES = `
     <summary>
-      <span class="sel-line" style="white-space:normal;overflow:visible">v9.24 변경 내역</span>
+      <span class="sel-line" style="white-space:normal;overflow:visible">v9.25 변경 내역</span>
       <span class="sb-txt">패치 노트</span>
     </summary>
     <div class="vb-in">
-      <b>v9.24 &middot; 남성 체형 15종 PNG 완비</b>
+      <b>v9.25 &middot; 여성 헤어 33종 PNG · 카드 정렬 개선</b>
+      <ul>
+        <li><b>여성 화면에 노출되는 헤어스타일 33종 전체</b>를 동일한 정면 마네킹·회색 재질·투명 배경의 PNG 기준 이미지로 교체했다. 남성 헤어는 기존 Canvas 도식으로 안전하게 이어진다</li>
+        <li>체형·헤어 카드에 <b>고정 이미지 프레임과 두 줄 라벨 영역</b>을 분리해, 긴 이름이 두 줄로 내려가도 이미지와 카드 높이가 흐트러지지 않는다</li>
+      </ul>
+      <b style="opacity:.55">v9.24 &middot; 남성 체형 15종 PNG 완비</b>
       <ul>
         <li><b>남성 화면에 노출되는 체형 15종 전체</b>를 여성 체형과 같은 정면 자세·회색 마네킹·투명 배경의 PNG 기준 이미지로 교체했다. 키·어깨·흉곽·허리·팔다리 체적 차이를 바로 비교할 수 있다</li>
       </ul>
@@ -702,7 +743,7 @@ function VersionBox() {
   const [stamp, setStamp] = useState('');
   useEffect(() => { try { setStamp(window.AtelierFresh.watch().stamp()); } catch (e) {} }, []);
   return html`
-    <div class="ver-badge">Gundam Prompt Toolkit <b>v9.24</b> <span>남성 체형 15종 PNG 완비</span>
+    <div class="ver-badge">Gundam Prompt Toolkit <b>v9.25</b> <span>여성 헤어 33종 PNG · 카드 정렬 개선</span>
       <span class="bstamp" title="지금 화면에 뜬 판이 서버를 떠난 때">${stamp}</span></div>
     <details class="srcbox verbox">
       <div dangerouslySetInnerHTML=${{ __html: VERSION_NOTES }}></div>
