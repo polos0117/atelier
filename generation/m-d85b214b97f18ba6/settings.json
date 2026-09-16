@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "card": "클란셰",
+  "updated": "2026-09-16T16:11:35.381Z",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "East Asian",
+        "body type": "tall and lean",
+        "skin tone": "medium",
+        "face shape": "oval",
+        "eye shape": "narrow",
+        "eye color": "gray",
+        "hair color": "__custom__",
+        "hairstyle": "layered",
+        "hair length": "medium",
+        "expression": "calm"
+      },
+      "cus": {
+        "hair color": "copper red"
+      },
+      "ub": false,
+      "sp": "Clanche RGE-G2100, standard Gundam AGE version, NOT green Clanche Custom. Salmon-pink and white armor, dark gray inner frame, clear cyan head-sensor accents. Preserve streamlined flight-transformable shoulder and backpack structures, canonical DODS rifle and forearm shield. Human face exposed, two human legs inside integrated armor. Normal human anatomy: one clearly visible adult human face, two arms, two legs, five fingers per hand. Keep recognizable shoulder armor. Keep the existing dark neutral studio background. Full body, feet and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Fit long weapons diagonally or at an appropriate length within the frame. No text or readable markings. Subtle adult sensuality and integrated open armor, fully opaque intimate coverage."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "East Asian",
+        "body type": "athletic",
+        "skin tone": "medium",
+        "face shape": "oval",
+        "eye shape": "narrow",
+        "eye color": "gray",
+        "hair color": "__custom__",
+        "hairstyle": "layered",
+        "hair length": "short",
+        "expression": "calm"
+      },
+      "cus": {
+        "hair color": "copper red"
+      },
+      "ub": false,
+      "sp": "Clanche RGE-G2100, standard Gundam AGE version, NOT green Clanche Custom. Salmon-pink and white armor, dark gray inner frame, clear cyan head-sensor accents. Preserve streamlined flight-transformable shoulder and backpack structures, canonical DODS rifle and forearm shield. Human face exposed, two human legs inside integrated armor. Normal human anatomy: one clearly visible adult human face, two arms, two legs, five fingers per hand. Keep recognizable shoulder armor. Keep the existing dark neutral studio background. Full body, feet and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Fit long weapons diagonally or at an appropriate length within the frame. No text or readable markings. Masculine adult face and physique. Skin, hair and eyes must match the female counterpart: medium skin, copper red hair, gray eyes."
+    },
+    "g": "female",
+    "t": 1789575095380
+  },
+  "used": [],
+  "selectedStyle": "cinematic_semi_real"
+}

@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "card": "시구",
+  "baseCommit": "09ec30e958f850e2b423beaa4701f990c8bd692d",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact repository prompt functions executed locally after browser confirmation dialog caused CDP timeouts. Selection values validated against current PARAM_DEFS. Browser export was obtained for Efreet female only; remaining settings exported programmatically, not through browser UI.",
+  "run": "generation/m-d7c9e5a8895106ac/runs/20260916t161941z",
+  "images": [
+    {
+      "card": "시구",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "7bc2199e2437bfa40a7d178bb70fec535e61c27850218d350eced4cdd040e40b",
+      "prompt": "generation/m-d7c9e5a8895106ac/runs/20260916t161941z/female.txt",
+      "manifest": "generation/m-d7c9e5a8895106ac/runs/20260916t161941z/manifest.json",
+      "file": "img/시구_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-33cc7d03-63f1-423d-a110-2a4891120a95.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "시구",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "cbf25106a642f6347163c8ff17250e252970e619b6e5d5d83ab6819b60efadaa",
+      "prompt": "generation/m-d7c9e5a8895106ac/runs/20260916t161941z/male.txt",
+      "manifest": "generation/m-d7c9e5a8895106ac/runs/20260916t161941z/manifest.json",
+      "file": "img/시구_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-c7072ffb-9605-4889-979f-eca4d2349952.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "시구",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "3e8c9c67a6883595c58493ae0cb48954c0a8cdfcd242dd382e1f3ae6c103140f",
+      "prompt": "generation/m-d7c9e5a8895106ac/runs/20260916t161941z/casual.txt",
+      "manifest": "generation/m-d7c9e5a8895106ac/runs/20260916t161941z/manifest.json",
+      "file": "img/시구_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-3ed1cd6d-f9e6-4087-b13a-83bce5379075.png",
+      "reference": "img/시구_cinematic_semi_real_f.webp",
+      "status": "generated, inspected and converted; main publication pending"
+    }
+  ]
+}

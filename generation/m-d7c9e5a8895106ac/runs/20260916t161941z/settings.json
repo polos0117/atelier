@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "card": "시구",
+  "updated": "2026-09-16T16:19:41.358Z",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "Mediterranean",
+        "body type": "curvy",
+        "skin tone": "__custom__",
+        "face shape": "elongated",
+        "eye shape": "almond",
+        "eye color": "amber",
+        "hair color": "ash blonde",
+        "hairstyle": "wavy",
+        "hair length": "long",
+        "expression": "serious"
+      },
+      "cus": {
+        "skin tone": "olive"
+      },
+      "ub": false,
+      "sp": "CGUE ZGMF-515 from Gundam SEED. Light gray and white armor with dark gray joints, restrained red sensor accents. Preserve the tall central head crest as a mechanical hair ornament, broad angular shoulders and paired blade-like backpack thruster fins. Canonical machine gun held in one hand, heavy sword stored at its proper mount, forearm shield with integrated gatling cannon. No duplicate handheld weapons and no pilot resemblance. Normal human anatomy: one clearly visible adult human face, two arms, two legs, five fingers per hand. Keep recognizable shoulder armor. Keep the existing dark neutral studio background. Full body, feet and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Fit long weapons diagonally or at an appropriate length within the frame. No text or readable markings. Subtle adult sensuality and integrated open armor, fully opaque intimate coverage."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "Mediterranean",
+        "body type": "athletic",
+        "skin tone": "__custom__",
+        "face shape": "elongated",
+        "eye shape": "almond",
+        "eye color": "amber",
+        "hair color": "ash blonde",
+        "hairstyle": "layered",
+        "hair length": "short",
+        "expression": "serious"
+      },
+      "cus": {
+        "skin tone": "olive"
+      },
+      "ub": false,
+      "sp": "CGUE ZGMF-515 from Gundam SEED. Light gray and white armor with dark gray joints, restrained red sensor accents. Preserve the tall central head crest as a mechanical hair ornament, broad angular shoulders and paired blade-like backpack thruster fins. Canonical machine gun held in one hand, heavy sword stored at its proper mount, forearm shield with integrated gatling cannon. No duplicate handheld weapons and no pilot resemblance. Normal human anatomy: one clearly visible adult human face, two arms, two legs, five fingers per hand. Keep recognizable shoulder armor. Keep the existing dark neutral studio background. Full body, feet and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Fit long weapons diagonally or at an appropriate length within the frame. No text or readable markings. Masculine adult face and physique. Skin, hair and eyes must match the female counterpart: olive skin, ash blonde hair, amber eyes."
+    },
+    "g": "female",
+    "t": 1789575581357
+  },
+  "used": [],
+  "selectedStyle": "cinematic_semi_real"
+}
