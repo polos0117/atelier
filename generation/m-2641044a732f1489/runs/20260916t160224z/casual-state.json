@@ -1,0 +1,77 @@
+{
+  "source": {
+    "mech": "스타크 제간"
+  },
+  "gender": "female",
+  "style": "cinematic_semi_real",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "European",
+        "body type": "athletic",
+        "skin tone": "light",
+        "face shape": "angular",
+        "eye shape": "almond",
+        "eye color": "amber",
+        "hair color": "__custom__",
+        "hairstyle": "ponytail",
+        "hair length": "medium",
+        "expression": "confident"
+      },
+      "cus": {
+        "hair color": "ash brown"
+      },
+      "ub": false,
+      "sp": "RGM-89S Stark Jegan from Gundam Unicorn. Original pale mint-green Jegan armor with gray additional armor on torso, forearms and lower legs, orange vent details. Preserve both shoulder-mounted three-tube missile pods, extra backpack thrusters, and one handheld canonical beam rifle. Each shoulder pod has exactly three forward-facing missile cells. Keep its unmistakable reinforced Jegan geometry, no generic Gundam V-fin. Normal human anatomy: one clearly visible adult human face, two arms, two legs, five fingers per hand. Keep recognizable shoulder armor. Keep the existing dark neutral studio background. Full body, feet and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Fit long weapons diagonally or at an appropriate length within the frame. No text or readable markings. Subtle adult sensuality and integrated open armor, fully opaque intimate coverage."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "European",
+        "body type": "athletic",
+        "skin tone": "light",
+        "face shape": "angular",
+        "eye shape": "almond",
+        "eye color": "amber",
+        "hair color": "__custom__",
+        "hairstyle": "layered",
+        "hair length": "short",
+        "expression": "confident"
+      },
+      "cus": {
+        "hair color": "ash brown"
+      },
+      "ub": false,
+      "sp": "RGM-89S Stark Jegan from Gundam Unicorn. Original pale mint-green Jegan armor with gray additional armor on torso, forearms and lower legs, orange vent details. Preserve both shoulder-mounted three-tube missile pods, extra backpack thrusters, and one handheld canonical beam rifle. Each shoulder pod has exactly three forward-facing missile cells. Keep its unmistakable reinforced Jegan geometry, no generic Gundam V-fin. Normal human anatomy: one clearly visible adult human face, two arms, two legs, five fingers per hand. Keep recognizable shoulder armor. Keep the existing dark neutral studio background. Full body, feet and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Fit long weapons diagonally or at an appropriate length within the frame. No text or readable markings. Masculine adult face and physique. Skin, hair and eyes must match the female counterpart: light skin, ash brown hair, amber eyes."
+    },
+    "g": "female",
+    "t": 1789574544233
+  },
+  "cat": "__custom__",
+  "catCustom": "a stylish adult woman enjoying an ordinary off-duty moment",
+  "ex": "",
+  "exCustom": "",
+  "aspect": "2:3 vertical",
+  "frame": "full body",
+  "expr": "",
+  "orient": "",
+  "pose": "",
+  "scene": "In a sunlit ceramics studio, shaping the rim of a clay bowl on a waist-high workbench",
+  "outfit": "A fitted opaque sage sleeveless top, belted charcoal shorts, a canvas half-apron and ankle boots",
+  "camera": "Soft side-window light over clay and timber",
+  "custom": "Use the attached female anthropomorphization as the actual identity reference. Preserve her adult face, hair, skin, eyes and body proportions. Wear only the specified modern civilian outfit. No armor, weapons or mechanical equipment. A natural candid action, subtle sensuality, no text. Do not pull the camera back to add empty margins.",
+  "axes": {},
+  "carryFace": true,
+  "carryBody": true
+}

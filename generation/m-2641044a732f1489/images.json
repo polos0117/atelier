@@ -1,0 +1,29 @@
+{
+  "스타크_제간_cinematic_semi_real_f.webp": {
+    "card": "스타크 제간",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "996cf010fb7e4496c6554da2344e74b3d4834d44f65b6fbb276b8f3ac01f8eb4",
+    "prompt": "generation/m-2641044a732f1489/runs/20260916t160224z/female.txt",
+    "manifest": "generation/m-2641044a732f1489/runs/20260916t160224z/manifest.json"
+  },
+  "스타크_제간_cinematic_semi_real_m.webp": {
+    "card": "스타크 제간",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "8bd8f90b6c369bf0320c3676cf32fbcfce73908924204f2cd399628921c1b5d1",
+    "prompt": "generation/m-2641044a732f1489/runs/20260916t160224z/male.txt",
+    "manifest": "generation/m-2641044a732f1489/runs/20260916t160224z/manifest.json"
+  },
+  "스타크_제간_cinematic_semi_real_f_casual1.webp": {
+    "card": "스타크 제간",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "ac26b93672e0c94d0d11a6e31722d5d9fbb76b08035b7a7bfbe92ef521265375",
+    "prompt": "generation/m-2641044a732f1489/runs/20260916t160224z/casual.txt",
+    "manifest": "generation/m-2641044a732f1489/runs/20260916t160224z/manifest.json"
+  }
+}

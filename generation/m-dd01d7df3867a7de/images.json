@@ -1,0 +1,29 @@
+{
+  "바잠_cinematic_semi_real_f.webp": {
+    "card": "바잠",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "04859aeedf7cf255272bb32dd60f0d9da08705d245b7b5fddaa44b36642f4a46",
+    "prompt": "generation/m-dd01d7df3867a7de/runs/20260916t160537z/female.txt",
+    "manifest": "generation/m-dd01d7df3867a7de/runs/20260916t160537z/manifest.json"
+  },
+  "바잠_cinematic_semi_real_m.webp": {
+    "card": "바잠",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "3075aa69cd9eef063596e9d738ada9ff37f2268decf50587b7d1c109155e9dfb",
+    "prompt": "generation/m-dd01d7df3867a7de/runs/20260916t160537z/male.txt",
+    "manifest": "generation/m-dd01d7df3867a7de/runs/20260916t160537z/manifest.json"
+  },
+  "바잠_cinematic_semi_real_f_casual1.webp": {
+    "card": "바잠",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "4daa3ca3c5faee9d9c6554b38616a23be820567b027cc7977a0b7a44d6b8e0d1",
+    "prompt": "generation/m-dd01d7df3867a7de/runs/20260916t160537z/casual.txt",
+    "manifest": "generation/m-dd01d7df3867a7de/runs/20260916t160537z/manifest.json"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "card": "스타크 제간",
+  "updated": "2026-09-16T16:02:24.234Z",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "European",
+        "body type": "athletic",
+        "skin tone": "light",
+        "face shape": "angular",
+        "eye shape": "almond",
+        "eye color": "amber",
+        "hair color": "__custom__",
+        "hairstyle": "ponytail",
+        "hair length": "medium",
+        "expression": "confident"
+      },
+      "cus": {
+        "hair color": "ash brown"
+      },
+      "ub": false,
+      "sp": "RGM-89S Stark Jegan from Gundam Unicorn. Original pale mint-green Jegan armor with gray additional armor on torso, forearms and lower legs, orange vent details. Preserve both shoulder-mounted three-tube missile pods, extra backpack thrusters, and one handheld canonical beam rifle. Each shoulder pod has exactly three forward-facing missile cells. Keep its unmistakable reinforced Jegan geometry, no generic Gundam V-fin. Normal human anatomy: one clearly visible adult human face, two arms, two legs, five fingers per hand. Keep recognizable shoulder armor. Keep the existing dark neutral studio background. Full body, feet and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Fit long weapons diagonally or at an appropriate length within the frame. No text or readable markings. Subtle adult sensuality and integrated open armor, fully opaque intimate coverage."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "European",
+        "body type": "athletic",
+        "skin tone": "light",
+        "face shape": "angular",
+        "eye shape": "almond",
+        "eye color": "amber",
+        "hair color": "__custom__",
+        "hairstyle": "layered",
+        "hair length": "short",
+        "expression": "confident"
+      },
+      "cus": {
+        "hair color": "ash brown"
+      },
+      "ub": false,
+      "sp": "RGM-89S Stark Jegan from Gundam Unicorn. Original pale mint-green Jegan armor with gray additional armor on torso, forearms and lower legs, orange vent details. Preserve both shoulder-mounted three-tube missile pods, extra backpack thrusters, and one handheld canonical beam rifle. Each shoulder pod has exactly three forward-facing missile cells. Keep its unmistakable reinforced Jegan geometry, no generic Gundam V-fin. Normal human anatomy: one clearly visible adult human face, two arms, two legs, five fingers per hand. Keep recognizable shoulder armor. Keep the existing dark neutral studio background. Full body, feet and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Fit long weapons diagonally or at an appropriate length within the frame. No text or readable markings. Masculine adult face and physique. Skin, hair and eyes must match the female counterpart: light skin, ash brown hair, amber eyes."
+    },
+    "g": "female",
+    "t": 1789574544233
+  },
+  "used": [],
+  "selectedStyle": "cinematic_semi_real"
+}

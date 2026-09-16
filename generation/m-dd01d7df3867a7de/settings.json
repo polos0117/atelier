@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "card": "바잠",
+  "updated": "2026-09-16T16:05:37.983Z",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "African",
+        "body type": "hourglass",
+        "skin tone": "__custom__",
+        "face shape": "heart-shaped",
+        "eye shape": "upturned",
+        "eye color": "__custom__",
+        "hair color": "white",
+        "hairstyle": "bob",
+        "hair length": "short",
+        "expression": "smirk"
+      },
+      "cus": {
+        "skin tone": "dark brown",
+        "eye color": "magenta"
+      },
+      "ub": false,
+      "sp": "RMS-154 Barzam, original Zeta Gundam TV design, NOT refined Barzam or AOZ variants. Deep cobalt-blue main armor, charcoal torso, yellow chest and waist accents, red feet. Preserve its narrow waist, oversized angular lower-leg shells, distinctive forehead crest and monocular sensor translated into a small hair ornament above a clearly visible human face. One canonical Barzam beam rifle with its characteristic grip. Human pelvis and thighs remain anatomically normal. Normal human anatomy: one clearly visible adult human face, two arms, two legs, five fingers per hand. Keep recognizable shoulder armor. Keep the existing dark neutral studio background. Full body, feet and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Fit long weapons diagonally or at an appropriate length within the frame. No text or readable markings. Subtle adult sensuality and integrated open armor, fully opaque intimate coverage."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "African",
+        "body type": "athletic",
+        "skin tone": "__custom__",
+        "face shape": "heart-shaped",
+        "eye shape": "upturned",
+        "eye color": "__custom__",
+        "hair color": "white",
+        "hairstyle": "layered",
+        "hair length": "short",
+        "expression": "smirk"
+      },
+      "cus": {
+        "skin tone": "dark brown",
+        "eye color": "magenta"
+      },
+      "ub": false,
+      "sp": "RMS-154 Barzam, original Zeta Gundam TV design, NOT refined Barzam or AOZ variants. Deep cobalt-blue main armor, charcoal torso, yellow chest and waist accents, red feet. Preserve its narrow waist, oversized angular lower-leg shells, distinctive forehead crest and monocular sensor translated into a small hair ornament above a clearly visible human face. One canonical Barzam beam rifle with its characteristic grip. Human pelvis and thighs remain anatomically normal. Normal human anatomy: one clearly visible adult human face, two arms, two legs, five fingers per hand. Keep recognizable shoulder armor. Keep the existing dark neutral studio background. Full body, feet and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Fit long weapons diagonally or at an appropriate length within the frame. No text or readable markings. Masculine adult face and physique. Skin, hair and eyes must match the female counterpart: dark brown skin, white hair, magenta eyes. Keep the single gold head crest compact: its top tip must remain below the top of the canvas, fully visible. Shorten the crest itself, do not shrink the person or move the camera back."
+    },
+    "g": "female",
+    "t": 1789574737982
+  },
+  "used": [],
+  "selectedStyle": "cinematic_semi_real"
+}

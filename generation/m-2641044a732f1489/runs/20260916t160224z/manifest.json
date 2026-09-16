@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "card": "스타크 제간",
+  "baseCommit": "09ec30e958f850e2b423beaa4701f990c8bd692d",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact repository prompt functions executed locally after browser confirmation dialog caused CDP timeouts. Selection values validated against current PARAM_DEFS. Browser export was obtained for Efreet female only; remaining settings exported programmatically, not through browser UI.",
+  "run": "generation/m-2641044a732f1489/runs/20260916t160224z",
+  "images": [
+    {
+      "card": "스타크 제간",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "996cf010fb7e4496c6554da2344e74b3d4834d44f65b6fbb276b8f3ac01f8eb4",
+      "prompt": "generation/m-2641044a732f1489/runs/20260916t160224z/female.txt",
+      "manifest": "generation/m-2641044a732f1489/runs/20260916t160224z/manifest.json",
+      "file": "img/스타크_제간_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-8513fb92-acb1-4336-8f7c-36829522c137.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "스타크 제간",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "8bd8f90b6c369bf0320c3676cf32fbcfce73908924204f2cd399628921c1b5d1",
+      "prompt": "generation/m-2641044a732f1489/runs/20260916t160224z/male.txt",
+      "manifest": "generation/m-2641044a732f1489/runs/20260916t160224z/manifest.json",
+      "file": "img/스타크_제간_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-09ad1c5a-9b8b-478a-8ed5-ba090cfc8de0.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "스타크 제간",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "ac26b93672e0c94d0d11a6e31722d5d9fbb76b08035b7a7bfbe92ef521265375",
+      "prompt": "generation/m-2641044a732f1489/runs/20260916t160224z/casual.txt",
+      "manifest": "generation/m-2641044a732f1489/runs/20260916t160224z/manifest.json",
+      "file": "img/스타크_제간_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-ef8a5de5-8cd4-49b8-ab19-151b257d63ed.png",
+      "reference": "img/스타크_제간_cinematic_semi_real_f.webp",
+      "status": "generated, inspected and converted; main publication pending"
+    }
+  ]
+}

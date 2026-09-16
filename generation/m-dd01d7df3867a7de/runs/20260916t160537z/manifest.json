@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "card": "바잠",
+  "baseCommit": "09ec30e958f850e2b423beaa4701f990c8bd692d",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact repository prompt functions executed locally after browser confirmation dialog caused CDP timeouts. Selection values validated against current PARAM_DEFS. Browser export was obtained for Efreet female only; remaining settings exported programmatically, not through browser UI.",
+  "run": "generation/m-dd01d7df3867a7de/runs/20260916t160537z",
+  "images": [
+    {
+      "card": "바잠",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "04859aeedf7cf255272bb32dd60f0d9da08705d245b7b5fddaa44b36642f4a46",
+      "prompt": "generation/m-dd01d7df3867a7de/runs/20260916t160537z/female.txt",
+      "manifest": "generation/m-dd01d7df3867a7de/runs/20260916t160537z/manifest.json",
+      "file": "img/바잠_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-e8e94628-0d7d-4527-9bc4-fd91b166fc9c.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "바잠",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "3075aa69cd9eef063596e9d738ada9ff37f2268decf50587b7d1c109155e9dfb",
+      "prompt": "generation/m-dd01d7df3867a7de/runs/20260916t160537z/male.txt",
+      "manifest": "generation/m-dd01d7df3867a7de/runs/20260916t160537z/manifest.json",
+      "file": "img/바잠_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-6b180728-29cf-49ad-ab9a-9fba3e34b0c1.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "바잠",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "4daa3ca3c5faee9d9c6554b38616a23be820567b027cc7977a0b7a44d6b8e0d1",
+      "prompt": "generation/m-dd01d7df3867a7de/runs/20260916t160537z/casual.txt",
+      "manifest": "generation/m-dd01d7df3867a7de/runs/20260916t160537z/manifest.json",
+      "file": "img/바잠_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-2ab4d759-20d0-4e48-b7df-97c7a49dd0bc.png",
+      "reference": "img/바잠_cinematic_semi_real_f.webp",
+      "status": "generated, inspected and converted; main publication pending"
+    }
+  ],
+  "rejectedAttempts": [
+    {
+      "sourceFile": "exec-ad92d2bc-2f40-4a32-9b4c-16c13332cad8.png",
+      "prompt": "generation/m-dd01d7df3867a7de/runs/20260916t160537z/male-initial.txt",
+      "reason": "Head-crest tip clipped by upper canvas edge; regenerated with compact crest."
+    }
+  ]
+}
