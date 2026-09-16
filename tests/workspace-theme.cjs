@@ -66,6 +66,16 @@ assert.equal(meta.content, '#101925');
 
 assert.match(ui, /<option value="archangel">아크엔젤<\/option>/);
 assert.match(ui, /<option value="musai">무사이<\/option>/);
+/* 테마마다 제 문장이 있어야 한다. 하나라도 빠지면 조용히 미드나이트 것이 나온다 */
+const marks = ui.slice(ui.indexOf('const FLEET_MARK'), ui.indexOf('export function WorkspaceHeading'));
+for (const key of ['midnight', "'white-base'", 'archangel', 'musai'])
+  assert(marks.includes('\n  ' + key + ': html`'), key + ' 문장이 없다');
+/* 색을 박으면 테마를 바꿔도 안 따라온다 */
+assert(!/(stroke|fill|circle[^>]*fill)="#/.test(marks), '문장에 색을 박았다');
+/* 넷이 서로 달라야 한다 — 베껴 두고 안 고친 것을 잡는다 */
+const shapes = [...marks.matchAll(/ d="([^"]+)"/g)].map(m => m[1]);
+assert.equal(new Set(shapes).size, shapes.length, '문장에 같은 도형이 두 번 있다');
+assert(ui.includes('FLEET_MARK[theme] || FLEET_MARK.midnight'), '모르는 테마의 되돌림이 없다');
 assert.match(css, /:root\[data-theme="musai"\]/);
 assert.match(css, /MUSAI \/ 03/);
 assert.match(css, /:root\[data-theme="archangel"\]/);
