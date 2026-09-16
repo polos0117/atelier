@@ -20,10 +20,10 @@ MVP는 아군 기체·파일럿 조의 출격 점수에 정원 초과 감점을 
 
 자산 수정 후 `play.html`의 해당 CSS/JS `?v=` 값을 파일 SHA-256 앞 10자리로 갱신한다. `draft-engine.js`를 바꾸면 먼저 `draft-app.js`의 import 버전을 갱신하고, 그 뒤 `play.html`의 앱 버전을 갱신한다. 기존 문서 새 버전 알림도 유지된다.
 
-검증: `node tests/draft-engine.cjs` (브라우저 없이 실행).
-**`tests/mobile-smoke.cjs`·`strategy-smoke.cjs`·`gallery-smoke.cjs` 는 지금 돌지 않는다** — Preact 이관으로 이 검사들이 붙잡던 `.setupbox` 등 옛 DOM 이 없어졌다. 다시 쓰기 전까지는 통과 근거가 못 된다.
+검증: `node tests/draft-engine.cjs` (브라우저 없이 실행) · `node tests/fold-layout.cjs` (폴드 두 크기로 실제 렌더링).
+옛 `mobile-smoke`·`strategy-smoke`·`gallery-smoke`·`insights-smoke`·`style-smoke` 는 Preact 이관으로 붙잡을 DOM 이 없어져 지웠다. 게임 규칙·점수는 `draft-engine.cjs` 가 브라우저 없이 보고, 화면이 실제로 그려지는지는 `fold-layout.cjs` 가 본다.
 
-판단 정보 검증: `tests/insights-smoke.cjs` 도 같은 까닭으로 지금 돌지 않는다. 분석은 복사한 편성과 기존 점수 함수를 사용한다. 궁합·지형, 정원 손실은 기본 출격과 중복 합산하지 않으며 표시값의 반올림 차이는 별도 행으로 맞춘다.
+판단 정보: 분석은 복사한 편성과 기존 점수 함수를 사용한다. 궁합·지형, 정원 손실은 기본 출격과 중복 합산하지 않으며 표시값의 반올림 차이는 별도 행으로 맞춘다.
 
 ## 이미지 화풍 기록
 
@@ -34,13 +34,13 @@ MVP는 아군 기체·파일럿 조의 출격 점수에 정원 초과 감점을 
 - 프롬프트의 화풍 선택은 생성 설정이며 `stylePreferences`에만 기억한다. 기록 내보내기는 저장소의 과거 `style`을 보존하고 브라우저 값으로 덮어쓰지 않는다.
 
 화풍 검증: `python3 tests/style-registration.py`, `node tests/style-logic.cjs`.
-`tests/style-smoke.cjs` 는 도감의 옛 전역(`MECH`)과 툴킷의 옛 id(`#mechPicker`) 를 찾으므로 지금 돌지 않는다.
+화풍 몫 가르기는 `style-logic.cjs` 가 `lib/img.js` 를 직접 돌려 본다. 툴킷 화면의 파일명 안내는 `node tests/toolkit-smoke.cjs` 가 본다.
 
 ## Preact 전환 검증
 
 - `node tests/draft-engine.cjs`: 브라우저나 npm 설치 없이 실행. 같은 씨앗 재현, 보급 재요청, 지명 중복 방지, 낡은 AI 타이머, 점수 내역 합계, 전적 1회 저장을 검사한다.
 - 전환 시 기존 구현과 세 가지 설정의 전체 판을 비교하여 보급 카드·편성·점수·전적·훈장 일치를 확인했다.
-- 기존 `*-smoke.cjs` 중 과거 DOM id/전역 함수에 의존하는 검사는 이전 화면용이며 새 Preact UI의 통과 근거로 사용하지 않는다.
+- 화면을 갈아치우면 그 화면에 딸린 브라우저 검사를 **같이 옮긴다.** 안 옮기면 조용히 죽고, 늘 빨간 검사는 진짜 고장까지 덮는다. 옛 `*-smoke.cjs` 다섯 개가 그렇게 이틀 동안 죽어 있었다.
 - 자동 DOM 검사에서 설정·테마 전환·지명 확인·점수 미리보기·내 편성·전황·도감·이미지 확대·최종 결과를 확인했다. 실제 브라우저 레이아웃 및 폴드5 실기기 확인은 별도로 수행해야 한다.
 
 도감은 `main` 바깥 문서 스크롤을 잠그고, `.collection-scroll`만 세로로 움직인다. 목록을 내리면 상단 내비·제목·탭을 접어 검색 중심의 얇은 바로 바뀌고, 맨 위로 돌아오면 다시 펼친다. 드래프트도 고정된 상단과 하단 버튼 사이의 `.draft-content`만 스크롤한다.

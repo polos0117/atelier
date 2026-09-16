@@ -73,6 +73,12 @@ python3 build-data.py --check        # 바깥 자료와 카드가 어긋나나
 python3 build-data.py --report       # 두 출처가 엇갈리는 자리 전부
 python3 build-prompt-json.py --check # 카드 문구가 image-list.html 과 어긋나나
 
+# 브라우저가 필요한 것 두 개. 실제로 그려서 재야 아는 것만 본다
+node tests/fold-layout.cjs           # 폴드 두 크기에서 하단 작업 버튼이 화면 안에 있나
+node tests/toolkit-smoke.cjs         # 탭 갈아끼우기 · 아래 띠 · 밀도 · ?mech= 딥링크
+#   CDN(esm.sh)이 막힌 곳에서는 ESM_DIR 에 preact·htm 이 든 node_modules 를 준다
+#   이미 도는 서버가 있으면 BASE_URL, 브라우저를 고르려면 CHROMIUM_PATH
+
 # 화면은 fetch 로 자료를 읽으므로 서버가 필요하다
 python3 -m http.server 8765
 #   play.html · dex.html · prompt.html
