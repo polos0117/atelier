@@ -35,7 +35,7 @@ for (const value of Object.keys(window.AtelierSpec.BODY_FIG)) {
   assert.equal(male.dataset.figureReady, 'body');
   assert.equal(female.dataset.figureGender, 'female');
   assert.equal(male.dataset.figureGender, 'male');
-  assert.equal(female.dataset.figureStyle, 'croquis');
+  assert.equal(female.dataset.figureStyle, 'single-croquis');
   assert.equal(male.dataset.figureStyle, 'mannequin');
 }
 for (const value of Object.keys(window.AtelierSpec.HAIR_FIG)) {
