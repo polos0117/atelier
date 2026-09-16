@@ -20,9 +20,10 @@ MVP는 아군 기체·파일럿 조의 출격 점수에 정원 초과 감점을 
 
 자산 수정 후 `play.html`의 해당 CSS/JS `?v=` 값을 파일 SHA-256 앞 10자리로 갱신한다. `draft-engine.js`를 바꾸면 먼저 `draft-app.js`의 import 버전을 갱신하고, 그 뒤 `play.html`의 앱 버전을 갱신한다. 기존 문서 새 버전 알림도 유지된다.
 
-검증: `node tests/mobile-smoke.cjs`, `node tests/strategy-smoke.cjs`, `node tests/gallery-smoke.cjs` (저장소 루트에서 실행; Playwright Chromium 필요).
+검증: `node tests/draft-engine.cjs` (브라우저 없이 실행).
+**`tests/mobile-smoke.cjs`·`strategy-smoke.cjs`·`gallery-smoke.cjs` 는 지금 돌지 않는다** — Preact 이관으로 이 검사들이 붙잡던 `.setupbox` 등 옛 DOM 이 없어졌다. 다시 쓰기 전까지는 통과 근거가 못 된다.
 
-판단 정보 검증: `node tests/insights-smoke.cjs`. 분석은 복사한 편성과 기존 점수 함수를 사용한다. 궁합·지형, 정원 손실은 기본 출격과 중복 합산하지 않으며 표시값의 반올림 차이는 별도 행으로 맞춘다.
+판단 정보 검증: `tests/insights-smoke.cjs` 도 같은 까닭으로 지금 돌지 않는다. 분석은 복사한 편성과 기존 점수 함수를 사용한다. 궁합·지형, 정원 손실은 기본 출격과 중복 합산하지 않으며 표시값의 반올림 차이는 별도 행으로 맞춘다.
 
 ## 이미지 화풍 기록
 
@@ -32,7 +33,8 @@ MVP는 아군 기체·파일럿 조의 출격 점수에 정원 초과 감점을 
 - 화면은 등록된 `img.json`을 기준으로 표시한다. GitHub 파일 목록만으로 검증 전 이미지를 추가하지 않는다.
 - 프롬프트의 화풍 선택은 생성 설정이며 `stylePreferences`에만 기억한다. 기록 내보내기는 저장소의 과거 `style`을 보존하고 브라우저 값으로 덮어쓰지 않는다.
 
-화풍 검증: `python3 tests/style-registration.py`, `node tests/style-logic.cjs`. 브라우저 검증: `node tests/style-smoke.cjs`.
+화풍 검증: `python3 tests/style-registration.py`, `node tests/style-logic.cjs`.
+`tests/style-smoke.cjs` 는 도감의 옛 전역(`MECH`)과 툴킷의 옛 id(`#mechPicker`) 를 찾으므로 지금 돌지 않는다.
 
 ## Preact 전환 검증
 
