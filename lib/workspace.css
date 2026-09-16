@@ -132,7 +132,18 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
 .prompt-page .sw u {font-size:10px}
 .prompt-page .sw.on {box-shadow:0 0 0 1px var(--accent)}
 .prompt-page .figcell {padding:6px}
-.prompt-page .figcell svg {max-width:100%}
+.prompt-page .figure-picker-head {padding-top:4px;border-top:1px solid var(--line)}
+.prompt-page .figure-auto {min-height:32px;background:var(--card);color:var(--muted);border-radius:999px}
+.prompt-page .figure-auto.on {color:var(--text);border-color:var(--accent);background:var(--accent-soft)}
+.prompt-page .figrow {gap:8px;padding:2px 1px 8px;scroll-snap-type:x proximity;scrollbar-width:thin}
+.prompt-page .figcell {position:relative;flex:0 0 82px;min-height:128px;padding:7px 5px 6px;background:var(--card2);color:var(--muted);scroll-snap-align:start;justify-content:flex-end;overflow:hidden}
+.prompt-page .figcell:hover {filter:none;border-color:var(--accent)}
+.prompt-page .figcell.on {border-color:var(--accent);background:var(--accent-soft);color:var(--text);box-shadow:inset 0 -3px var(--accent)}
+.prompt-page .figcell.on::after {content:'✓';position:absolute;top:5px;right:5px;width:19px;height:19px;display:grid;place-items:center;border-radius:50%;background:var(--accent);color:#fff;font-size:11px}
+.prompt-page .figcell canvas {display:block;width:auto;max-width:72px;height:auto;margin:auto;pointer-events:none}
+.prompt-page .figcell .body-figure {max-height:103px}
+.prompt-page .figcell .hair-figure {max-height:88px}
+.prompt-page .figcell b {display:block;width:100%;max-width:100%;font-size:10px;line-height:1.25;white-space:normal;text-align:center;overflow-wrap:anywhere}
 .prompt-page .param-preview {background:var(--card2)}
 .prompt-page .rnd-top {background:var(--accent-soft);border-color:var(--accent);color:var(--text);min-height:44px}
 .prompt-page .save-bar {flex-wrap:wrap;gap:10px;padding:12px;background:var(--card);overflow-wrap:anywhere}
