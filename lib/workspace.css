@@ -38,6 +38,29 @@
   --muted:#b3a1ae;--line:#4d3849;--accent:#e3a0b8;--ok:#8ccfae;--warn:#e8c473;
   --signal:#d2705f;--gold:#c9a961;--accent-soft:#3a2634;--shadow:0 9px 30px #0006;
 }
+/* 에우고 기함. 밝은 판이 청회색·분홍흰색 둘뿐이라 따뜻한 쪽을 하나 뒀다 —
+   모래빛 종이에 올리브금 강조. 밝은 바탕에서는 강조가 충분히 짙어야 링크와
+   주 단추가 읽힌다 */
+:root[data-theme="agama"] {
+  color-scheme:light;
+  --bg:#e9e4d6;--deck:#f3efe4;--card:#fffdf7;--card2:#f4efe0;--text:#33301f;
+  --muted:#6b6553;--line:#c4ba9c;--accent:#6a5c12;--ok:#3f6b46;--warn:#8a5a10;
+  --signal:#a8542f;--gold:#8a6b1f;--accent-soft:#f0ead2;--shadow:0 8px 28px #33301f14;
+}
+/* 소레스탈 비잉 기함. 심우주 청록에 별가루를 깐다 */
+:root[data-theme="ptolemaios"] {
+  color-scheme:dark;
+  --bg:#08141a;--deck:#0d1d25;--card:#11242d;--card2:#17303b;--text:#e2eff2;
+  --muted:#98b3bb;--line:#274752;--accent:#71cfd6;--ok:#8ed3a4;--warn:#e8c473;
+  --signal:#e09a6b;--gold:#c9b06b;--accent-soft:#17343d;--shadow:0 8px 28px #0005;
+}
+/* 철화단 기함. 그을린 주황에 긁힌 강판 — 비스듬한 빗금과 자잘한 티끌 */
+:root[data-theme="isaribi"] {
+  color-scheme:dark;
+  --bg:#16110c;--deck:#1d1710;--card:#241d15;--card2:#2e251a;--text:#efe8dd;
+  --muted:#b3a692;--line:#4f4130;--accent:#e0a05e;--ok:#8fc79f;--warn:#e6c76d;
+  --signal:#e07d5e;--gold:#c9a55f;--accent-soft:#3a2c1c;--shadow:0 9px 30px #0006;
+}
 :root[data-density="relaxed"] {
   --ui-font:15px;--ui-small:13px;--ui-height:46px;--ui-pad:12px;--ui-gap:10px;--gap:14px;
 }
@@ -72,14 +95,22 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
 [data-theme="archangel"] .fleet-name::after {content:'ARCHANGEL / 02'}
 [data-theme="musai"] .fleet-name::after {content:'MUSAI / 03'}
 [data-theme="rewloola"] .fleet-name::after {content:'REWLOOLA / 05'}
+[data-theme="agama"] .fleet-name::after {content:'AGAMA / 06'}
+[data-theme="ptolemaios"] .fleet-name::after {content:'PTOLEMAIOS / 07'}
+[data-theme="isaribi"] .fleet-name::after {content:'ISARIBI / 08'}
 .fleet-signature i {width:120px;height:3px;background:linear-gradient(to right,var(--accent) 0 64%,transparent 64% 69%,var(--signal) 69% 88%,transparent 88% 93%,var(--gold) 93%)}
 .fleet-signature b {font-size:8px;font-weight:400;letter-spacing:.2em}
 [data-theme="archangel"] body {background-color:var(--bg);background-image:radial-gradient(circle at 92% 8%,#fff9 0 11%,transparent 34%),linear-gradient(135deg,transparent 0 73%,#b3264308 73% 73.5%,transparent 73.5%)}
 [data-theme="rewloola"] body {background-color:var(--bg);background-image:repeating-linear-gradient(115deg,#ffffff06 0 1px,transparent 1px 7px),repeating-linear-gradient(-115deg,#ffffff04 0 1px,transparent 1px 11px),radial-gradient(120% 70% at 50% 0,#e3a0b814 0 38%,transparent 74%)}
+[data-theme="ptolemaios"] body {background-color:var(--bg);background-image:radial-gradient(#ffffff1c 1px,transparent 1.4px),radial-gradient(#71cfd616 1px,transparent 1.4px),radial-gradient(120% 60% at 50% 0,#71cfd612 0 34%,transparent 72%);background-size:37px 37px,61px 61px,auto;background-position:0 0,13px 19px,0 0}
+[data-theme="isaribi"] body {background-color:var(--bg);background-image:repeating-linear-gradient(45deg,#ffffff06 0 2px,transparent 2px 14px),radial-gradient(#ffffff0b 1px,transparent 1.2px),radial-gradient(130% 70% at 50% 0,#e0a05e14 0 32%,transparent 76%);background-size:auto,23px 23px,auto}
 [data-theme="archangel"] .workspace-nav {border-color:#cdb8bf;box-shadow:inset 4px 0 var(--accent),0 5px 18px #4e27300c}
 [data-theme="archangel"] .theme-dot {background:linear-gradient(135deg,var(--accent) 0 52%,#728ba5 52%);box-shadow:0 0 0 3px #f5dce2}
 [data-theme="musai"] .theme-dot {background:radial-gradient(circle at 50% 50%,var(--signal) 0 38%,var(--accent) 38%);box-shadow:0 0 0 3px var(--accent-soft)}
 [data-theme="rewloola"] .theme-dot {background:linear-gradient(115deg,var(--accent) 0 46%,var(--signal) 46%);box-shadow:0 0 0 3px var(--accent-soft)}
+[data-theme="agama"] .theme-dot {background:linear-gradient(180deg,var(--accent) 0 50%,var(--signal) 50%);box-shadow:0 0 0 3px var(--accent-soft)}
+[data-theme="ptolemaios"] .theme-dot {background:var(--accent);box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--accent-soft)}
+[data-theme="isaribi"] .theme-dot {background:repeating-linear-gradient(45deg,var(--accent) 0 2px,var(--signal) 2px 4px);box-shadow:0 0 0 3px var(--accent-soft)}
 [data-theme="archangel"] .fleet-signature i {background:linear-gradient(to right,var(--accent) 0 59%,transparent 59% 64%,#728ba5 64% 84%,transparent 84% 89%,var(--signal) 89%)}
 /* Archive: compact search deck above an image-led collection. */
 .dex-page main {width:100%;max-width:1520px;margin:auto;padding:16px 24px calc(24px + env(safe-area-inset-bottom));scrollbar-color:var(--line) transparent}
