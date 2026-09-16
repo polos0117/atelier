@@ -80,7 +80,7 @@ button{font:inherit}
 .field,.pair-card,.override-card,.param-card,.rec-card{border:1px solid var(--line);border-radius:10px;background:var(--card2);padding:9px}
 .field label,.param-card label,.override-card label,.pair-card label{display:block;margin-bottom:6px;font-size:12px;font-weight:700;color:var(--text)}
 .field label small,.param-card label small,.override-card label small,.pair-card label small{color:var(--muted);font-weight:500;margin-left:5px}
-.gender-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:4px;border-radius:10px;background:var(--card2);border:1px solid var(--line)}
+.gender-tabs{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:6px;padding:4px;border-radius:10px;background:var(--card2);border:1px solid var(--line)}
 .gender-tabs .gt{border:0;background:transparent;color:var(--muted);font-size:13px;font-weight:700;padding:9px 6px;border-radius:7px;cursor:pointer}
 .gender-tabs .gt.on{background:var(--card);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.25)}
 .save-bar{margin-top:10px;display:flex;gap:8px;align-items:center;justify-content:space-between;
@@ -2041,7 +2041,7 @@ function CollagePanel({ data, series, setSeries, mech, setMech, gender, setGende
             </div>`
           : html`
             <div style="margin-top:10px">
-              <div class="gender-tabs" style="flex-wrap:wrap">
+              <div class="gender-tabs">
                 ${[1, 2, 3, 4, 5, 6].map(n => html`
                   <button type="button" key=${'t' + n} class=${'gt' + (st.panelTab === n ? ' on' : '')}
                           onclick=${() => set('panelTab', n)}>${n}</button>`)}

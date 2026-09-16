@@ -4,6 +4,7 @@
    Run: node tests/toolkit-smoke.cjs   (ESM_DIR·CHROMIUM_PATH 는 browser-harness.cjs 설명 참고) */
 const H = require('./browser-harness.cjs');
 const WIDE = { width: 1200, height: 1000 };
+const FOLD = { width: 344, height: 882 };  /* 좁은 폭에서만 드러나는 자리를 본다 */
 const STORE = 'atelier_toolkit_v1';
 
 /* 복사는 OS 클립보드 권한에 매달리지 않게 가로챈다 */
@@ -40,7 +41,7 @@ const clickText = text => {
   try {
     /* ── 탭·독 ─────────────────────────────────────── */
     {
-      const s = await boot();
+      const s = await boot({ viewport: FOLD, mobile: true });
       await s.page.evaluate(fire, ['기체', '건담 엑시아']);
       await s.page.waitForTimeout(500);
       /* Preact 는 큰 덩어리를 조건부 템플릿으로 갈아끼우면 insertBefore 로 터진다.
@@ -106,6 +107,25 @@ const clickText = text => {
         });
         add(`${k} 탭 · 랜덤 성격에 기체친화형이 없다`, has && has.includes('source') === want,
             has ? has.join(',') : '셀렉트 없음');
+      }
+
+      /* 띠 안의 단추는 한 줄에 놓인다. 칸 수를 둘로 박아 두면 셋째부터 다음 줄로
+         넘어간다 — 갈래(3개)와 패널 번호(6개)가 그렇게 두 줄·세 줄이었다.
+         폴드 덮개 폭에서 본다 */
+      for (const [k, extra] of [['의인화', null], ['단일 컷', null], ['콜라주', 'Panel 개별']]) {
+        await tab(k); await s.page.waitForTimeout(500);
+        if (extra) {
+          await s.page.evaluate(t => [...document.querySelectorAll('.gt')]
+            .find(b => b.textContent.trim() === t)?.click(), extra);
+          await s.page.waitForTimeout(500);
+        }
+        const strips = await s.page.evaluate(() => [...document.querySelectorAll('.gender-tabs')].map(el => ({
+          n: el.children.length,
+          rows: new Set([...el.querySelectorAll('.gt')].map(b => Math.round(b.getBoundingClientRect().top))).size,
+          first: (el.querySelector('.gt') || {}).textContent })));
+        const many = strips.filter(x => x.rows > 1);
+        add(`${k} 탭 · 단추 띠가 한 줄에 놓인다`, strips.length > 0 && many.length === 0,
+            many.length ? many.map(x => x.first + '(' + x.n + '개→' + x.rows + '줄)').join(' ') : strips.length + '개 띠');
       }
 
       /* 세 탭이 서로 다른 글을 만든다 — 하나라도 같으면 등록이 새고 있다 */
