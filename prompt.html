@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0f1115">
-<title>Gundam Prompt Toolkit v9.20</title>
+<title>Gundam Prompt Toolkit v9.21</title>
 <!-- 홈 화면에 두면 브라우저가 저장 자리를 걷어가지 못한다 -->
 <link rel="manifest" href="prompt.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -30,7 +30,7 @@
 <script src="lib/img.js?v=4"></script>
 <script src="lib/toolkit.js?v=4"></script>
 <script src="lib/toolkit-spec.js?v=4"></script>
-<script src="lib/figures.js?v=9037b65fdd"></script>
+<script src="lib/figures.js?v=4354198a47"></script>
 <script src="lib/prompt-anthro.js?v=4"></script>
 <script src="lib/prompt-lifestyle.js?v=4"></script>
 <script src="lib/fresh.js?v=4"></script>
@@ -204,7 +204,7 @@ button{font:inherit}
   .prompt-dock-actions button{min-height:36px;font-size:12px}
 }
 </style>
-<link rel="stylesheet" href="lib/workspace.css?v=d172356160">
+<link rel="stylesheet" href="lib/workspace.css?v=3e32019101">
 <script src="lib/workspace-theme.js?v=29bddd403b"></script>
 </head>
 <body class="prompt-page">
@@ -463,11 +463,16 @@ function Zoom({ list, start, onClose }) {
 /* 패치 노트. 원본의 마크업을 그대로 쓴다 — 고쳐 옮기면 글이 갈린다 */
 const VERSION_NOTES = `
     <summary>
-      <span class="sel-line" style="white-space:normal;overflow:visible">v9.20 변경 내역</span>
+      <span class="sel-line" style="white-space:normal;overflow:visible">v9.21 변경 내역</span>
       <span class="sb-txt">패치 노트</span>
     </summary>
     <div class="vb-in">
-      <b>v9.20 &middot; 체형·헤어 이미지를 누르면 바로 선택</b>
+      <b>v9.21 &middot; 떠다니지 않는 버튼 · 여성 크로키</b>
+      <ul>
+        <li>드래프트 출격 버튼과 프롬프트 작업 버튼이 스크롤을 따라붙지 않고 <b>각 화면 콘텐츠의 맨 아래 자리</b>에 머문다</li>
+        <li>여성 체형 도식을 단순 비율 마네킹에서 <b>팔·손·타원형 얼굴이 있는 패션 크로키</b>로 바꾸고, 어깨–허리–골반 대비를 다시 잡았다</li>
+      </ul>
+      <b style="opacity:.55">v9.20 &middot; 체형·헤어 이미지를 누르면 바로 선택</b>
       <ul>
         <li><b>Body Type과 Hairstyle의 도식이 보기 전용이었다.</b> 이제 각 이미지를 누르면 같은 select 값이 바로 바뀌고, 저장·랜덤 잠금·기록 내보내기도 기존 값으로 그대로 이어진다</li>
         <li>도식은 SVG 문자열 대신 <b>BODY_FIG·HAIR_FIG 수치를 Canvas 래스터 이미지로 그린다.</b> 옵션이 늘어도 별도 그림 파일을 만들 필요가 없고, 테마를 바꾸면 색도 즉시 다시 그린다</li>
@@ -646,15 +651,14 @@ function VersionBox() {
   const [stamp, setStamp] = useState('');
   useEffect(() => { try { setStamp(window.AtelierFresh.watch().stamp()); } catch (e) {} }, []);
   return html`
-    <div class="ver-badge">Gundam Prompt Toolkit <b>v9.20</b> <span>체형·헤어 이미지를 누르면 바로 선택</span>
+    <div class="ver-badge">Gundam Prompt Toolkit <b>v9.21</b> <span>떠다니지 않는 버튼 · 여성 크로키</span>
       <span class="bstamp" title="지금 화면에 뜬 판이 서버를 떠난 때">${stamp}</span></div>
     <details class="srcbox verbox">
       <div dangerouslySetInnerHTML=${{ __html: VERSION_NOTES }}></div>
     </details>`;
 }
 
-/* 아래에 붙어 다니는 띠. 긴 화면을 스크롤하다 복사하려고 맨 아래까지
-   내려갈 필요가 없게 한다. 지금 열려 있는 탭이 제 프롬프트와 단추를 여기 등록한다 */
+/* 페이지 맨 아래의 빠른 작업 띠. 스크롤을 따라다니지 않고 정해진 자리에 머문다. */
 function PromptDock({ dock }) {
   if (!dock) return null;
   const goTop = () => {

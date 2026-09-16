@@ -5,6 +5,7 @@ const assert = require('node:assert/strict');
 const source = fs.readFileSync('lib/workspace-theme.js', 'utf8');
 const ui = fs.readFileSync('lib/workspace-ui.js', 'utf8');
 const css = fs.readFileSync('lib/workspace.css', 'utf8');
+const draftCss = fs.readFileSync('gundam/draft.css', 'utf8');
 const stored = new Map();
 const events = new Map();
 const viewportEvents = new Map();
@@ -61,6 +62,9 @@ assert.equal(meta.content, '#101925');
 assert.match(ui, /<option value="archangel">아크엔젤<\/option>/);
 assert.match(css, /:root\[data-theme="archangel"\]/);
 assert.match(css, /ARCHANGEL \/ 02/);
+assert.match(css, /\.prompt-page \.controls \{position:static/);
+assert.match(css, /\.prompt-page \.prompt-dock \{position:static/);
+assert.match(draftCss, /\.setup-bottom\{position:static/);
 assert(viewportEvents.has('resize'));
 assert(events.has('storage'));
 
