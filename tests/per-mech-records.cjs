@@ -1,4 +1,30 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+
+/* 페이지 안의 <script> 를 문법만 확인한다. type="module" 은 vm.Script 로 못 올린다 —
+   import 가 있으면 "Cannot use import statement outside a module" 로 터진다.
+   그렇다고 건너뛰면 모듈로 짠 화면은 아무도 안 보게 되므로, 임시 .mjs 로 적어
+   node --check 에 맡긴다. dex.html · prompt.html 이 Preact 로 바뀌면서 필요해졌다. */
+function checkPageScripts(path, assert) {
+  const src = require('node:fs').readFileSync(path, 'utf8');
+  const os = require('node:os'), pathmod = require('node:path'), fs2 = require('node:fs');
+  let n = 0;
+  for (const m of src.matchAll(/<script((?:\s[^>]*)?)>([\s\S]*?)<\/script>/g)) {
+    const attrs = m[1], body = m[2];
+    if (!body.trim()) continue;
+    n++;
+    if (/\btype\s*=\s*["']module["']/i.test(attrs)) {
+      const tmp = pathmod.join(os.tmpdir(), 'atelier-check-' + process.pid + '-' + n + '.mjs');
+      fs2.writeFileSync(tmp, body);
+      const r = require('node:child_process').spawnSync(process.execPath, ['--check', tmp], { encoding: 'utf8' });
+      fs2.unlinkSync(tmp);
+      assert.equal(r.status, 0, path + ' 의 module script 문법 오류\n' + (r.stderr || ''));
+    } else {
+      new (require('node:vm').Script)(body, { filename: path });
+    }
+  }
+  return n;
+}
+
 const index=JSON.parse(fs.readFileSync('generation/index.json'));
 let count=0;
 for(const [name,id] of Object.entries(index.cards)){
@@ -9,7 +35,7 @@ for(const [name,id] of Object.entries(index.cards)){
   assert(fs.existsSync(r.manifest));if(r.prompt)assert(fs.readFileSync(r.prompt,'utf8').trim());count++;
  }
 }
-for(const page of ['prompt.html','dex.html'])for(const m of fs.readFileSync(page,'utf8').matchAll(/<script((?:\s[^>]*)?)>([\s\S]*?)<\/script>/g))if(!/\btype\s*=\s*["']module["']/i.test(m[1]))new vm.Script(m[2],{filename:page});
+for(const page of ['prompt.html','dex.html'])checkPageScripts(page,assert);
 const dex=fs.readFileSync('dex.html','utf8');
 assert.equal((dex.match(/툴킷에서 열기 →/g)||[]).length,2);
 assert(!dex.includes('\\" target=\\"_blank\\" rel=\\"noopener\\">툴킷에서 열기 →</a>'),'툴킷 링크는 같은 탭에서 열어야 한다');
