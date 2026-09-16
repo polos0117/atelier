@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0f1115">
-<title>Gundam Prompt Toolkit v9.23</title>
+<title>Gundam Prompt Toolkit v9.24</title>
 <!-- 홈 화면에 두면 브라우저가 저장 자리를 걷어가지 못한다 -->
 <link rel="manifest" href="prompt.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -303,7 +303,22 @@ const FIGURE_PNG = {
   'body type|female|pear-shaped': 'assets/figures/body-female-pear-shaped.png?v=cfa5424c39',
   'body type|female|inverted triangle': 'assets/figures/body-female-inverted-triangle.png?v=ce2ef25b05',
   'body type|female|stocky': 'assets/figures/body-female-stocky.png?v=53d0c52f91',
-  'body type|female|statuesque': 'assets/figures/body-female-statuesque.png?v=0dfb840494'
+  'body type|female|statuesque': 'assets/figures/body-female-statuesque.png?v=0dfb840494',
+  'body type|male|slender': 'assets/figures/body-male-slender.png?v=f60ed12ac8',
+  'body type|male|athletic': 'assets/figures/body-male-athletic.png?v=eed740f75d',
+  'body type|male|muscular': 'assets/figures/body-male-muscular.png?v=fbc5f9763d',
+  'body type|male|heavy-built': 'assets/figures/body-male-heavy-built.png?v=fb6e877787',
+  'body type|male|tall and lean': 'assets/figures/body-male-tall-and-lean.png?v=2a7447727c',
+  'body type|male|toned': 'assets/figures/body-male-toned.png?v=adebc865a0',
+  'body type|male|wiry': 'assets/figures/body-male-wiry.png?v=53656ae489',
+  'body type|male|inverted triangle': 'assets/figures/body-male-inverted-triangle.png?v=0d258ee640',
+  'body type|male|stocky': 'assets/figures/body-male-stocky.png?v=706e2d5f66',
+  'body type|male|statuesque': 'assets/figures/body-male-statuesque.png?v=78f51333b8',
+  'body type|male|broad-shouldered': 'assets/figures/body-male-broad-shouldered.png?v=e1b0e0ee80',
+  'body type|male|burly': 'assets/figures/body-male-burly.png?v=437673d9aa',
+  'body type|male|lanky': 'assets/figures/body-male-lanky.png?v=ec905f07cd',
+  'body type|male|barrel-chested': 'assets/figures/body-male-barrel-chested.png?v=e7eec9b929',
+  'body type|male|rangy': 'assets/figures/body-male-rangy.png?v=0741c9abb5'
 };
 
 function FigureImage({ type, value, gender }) {
@@ -386,7 +401,7 @@ function Preview({ def, value, sel, gender, img, style, exclude, onZoom, onValue
       ${colorHead && html`<div class="pp-main">${colorHead}</div>`}
       ${figs.length ? html`
         <div class="figure-picker-head"><span>${def.key === 'body type'
-          ? (gender === 'female' ? '여성 체형 PNG 기준 이미지' : 'Canvas 체형 도식')
+          ? `${gender === 'female' ? '여성' : '남성'} 체형 PNG 기준 이미지`
           : '이미지로 선택 · 도식은 형태 비교'}</span>
           <button type="button" class=${'figure-auto' + (!value ? ' on' : '')}
                   aria-pressed=${String(!value)} onclick=${() => onValue('')}>AUTO</button>
@@ -490,11 +505,15 @@ function Zoom({ list, start, onClose }) {
 /* 패치 노트. 원본의 마크업을 그대로 쓴다 — 고쳐 옮기면 글이 갈린다 */
 const VERSION_NOTES = `
     <summary>
-      <span class="sel-line" style="white-space:normal;overflow:visible">v9.23 변경 내역</span>
+      <span class="sel-line" style="white-space:normal;overflow:visible">v9.24 변경 내역</span>
       <span class="sb-txt">패치 노트</span>
     </summary>
     <div class="vb-in">
-      <b>v9.23 &middot; 여성 체형 17종 PNG 완비</b>
+      <b>v9.24 &middot; 남성 체형 15종 PNG 완비</b>
+      <ul>
+        <li><b>남성 화면에 노출되는 체형 15종 전체</b>를 여성 체형과 같은 정면 자세·회색 마네킹·투명 배경의 PNG 기준 이미지로 교체했다. 키·어깨·흉곽·허리·팔다리 체적 차이를 바로 비교할 수 있다</li>
+      </ul>
+      <b style="opacity:.55">v9.23 &middot; 여성 체형 17종 PNG 완비</b>
       <ul>
         <li><b>여성 체형 17종 전체</b>를 같은 정면 자세·회색 마네킹·투명 배경의 PNG 기준 이미지로 교체했다. 키·골격·허리·상하체 볼륨 차이를 작은 화면에서도 바로 비교할 수 있다</li>
       </ul>
@@ -686,7 +705,7 @@ function VersionBox() {
   const [stamp, setStamp] = useState('');
   useEffect(() => { try { setStamp(window.AtelierFresh.watch().stamp()); } catch (e) {} }, []);
   return html`
-    <div class="ver-badge">Gundam Prompt Toolkit <b>v9.23</b> <span>여성 체형 17종 PNG 완비</span>
+    <div class="ver-badge">Gundam Prompt Toolkit <b>v9.24</b> <span>남성 체형 15종 PNG 완비</span>
       <span class="bstamp" title="지금 화면에 뜬 판이 서버를 떠난 때">${stamp}</span></div>
     <details class="srcbox verbox">
       <div dangerouslySetInnerHTML=${{ __html: VERSION_NOTES }}></div>

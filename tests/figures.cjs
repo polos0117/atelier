@@ -59,14 +59,25 @@ const femalePng = {
   'soft-figured': '64d6490f6a', 'pear-shaped': 'cfa5424c39',
   'inverted-triangle': 'ce2ef25b05', stocky: '53d0c52f91', statuesque: '0dfb840494'
 };
-for (const [name, hash] of Object.entries(femalePng)) {
-  const file = `assets/figures/body-female-${name}.png`;
-  assert.match(prompt, new RegExp(`${name}\\.png\\?v=${hash}`), name);
-  assert(fs.existsSync(file), file);
-  assert.equal(crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex').slice(0, 10), hash, name);
+const malePng = {
+  slender: 'f60ed12ac8', athletic: 'eed740f75d', muscular: 'fbc5f9763d',
+  'heavy-built': 'fb6e877787', 'tall-and-lean': '2a7447727c', toned: 'adebc865a0',
+  wiry: '53656ae489', 'inverted-triangle': '0d258ee640', stocky: '706e2d5f66',
+  statuesque: '78f51333b8', 'broad-shouldered': 'e1b0e0ee80', burly: '437673d9aa',
+  lanky: 'ec905f07cd', 'barrel-chested': 'e7eec9b929', rangy: '0741c9abb5'
+};
+for (const [gender, figures] of Object.entries({ female: femalePng, male: malePng })) {
+  for (const [name, hash] of Object.entries(figures)) {
+    const file = `assets/figures/body-${gender}-${name}.png`;
+    assert.match(prompt, new RegExp(`${name}\\.png\\?v=${hash}`), `${gender} ${name}`);
+    assert(fs.existsSync(file), file);
+    assert.equal(crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex').slice(0, 10), hash, `${gender} ${name}`);
+  }
 }
+/* 남성·여성 화면에 실제 노출되는 PNG 수를 고정해 새 Canvas 회귀를 막는다. */
 assert.equal(Object.keys(femalePng).length, 17);
+assert.equal(Object.keys(malePng).length, 15);
 assert.match(prompt, /onclick=\$\{\(\) => onValue\(f\.k\)\}/);
 assert.doesNotMatch(prompt, /f\.svg \+ '<b>'/);
 
-console.log(`PASS: ${Object.keys(window.AtelierSpec.BODY_FIG).length} body, ${Object.keys(window.AtelierSpec.HAIR_FIG).length} hair Canvas pickers, and ${Object.keys(femalePng).length} female body PNGs`);
+console.log(`PASS: ${Object.keys(window.AtelierSpec.BODY_FIG).length} body, ${Object.keys(window.AtelierSpec.HAIR_FIG).length} hair Canvas pickers, ${Object.keys(femalePng).length} female and ${Object.keys(malePng).length} male body PNGs`);
