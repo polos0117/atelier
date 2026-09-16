@@ -1,7 +1,7 @@
 {
  "version": 1,
  "note": "초상 파일 목록. 카드 이름 → {m, f, face, casual[], extra[], byStyle{}} 이다. 파일 이름이 곧 등록 정보라 register-images.py 가 저장소의 *.webp 를 훑어 없는 것만 더한다 — 이미 적힌 것과 얼굴 좌표(face)는 건드리지 않으니 손으로 넣은 항목이 덮이지 않는다. face 는 파일 이름에서 알 수 없어 비면 게임이 기본값을 쓰고, 어색하면 사람이 여기서 손본다. play.html 은 실행 중에도 GitHub 파일 목록으로 같은 규칙을 한 번 더 돌리므로(mergeRepoFiles) 여기 안 적혀 있어도 화면에는 뜬다. 다만 그때는 얼굴 좌표가 기본값이고 목록을 못 받으면 그만이라, 파일로 굳혀 두는 편이 낫다.",
- "count": 370,
+ "count": 372,
  "img": {
   "105 슬로터 대거": {"face": {"m": [0.36, 0.09, 0.1], "f": [0.44, 0.1, 0.1]}, "byStyle": {"cinematic_semi_real": {"m": "105_슬로터_대거_cinematic_semi_real_m.webp", "f": "105_슬로터_대거_cinematic_semi_real_f.webp", "casual": {"f": ["105_슬로터_대거_cinematic_semi_real_f_casual1.webp", "105_슬로터_대거_cinematic_semi_real_f_casual2.webp", "105_슬로터_대거_cinematic_semi_real_f_casual3.webp", "105_슬로터_대거_cinematic_semi_real_f_casual4.webp", "105_슬로터_대거_cinematic_semi_real_f_casual5.webp"]}}}},
   "GFreD": {"byStyle": {"cinematic_semi_real": {"f": "GFreD_cinematic_semi_real_f.webp", "casual": {"f": ["GFreD_cinematic_semi_real_f_casual1.webp"]}}, "anime_illust": {"f": "GFreD_anime_illust_f.webp", "casual": {"f": ["GFreD_anime_illust_f_casual1.webp"]}}}},
@@ -140,6 +140,7 @@
   "기라가": {"byStyle": {"cinematic_semi_real": {"m": "기라가_cinematic_semi_real_m.webp", "f": "기라가_cinematic_semi_real_f.webp", "casual": {"f": ["기라가_cinematic_semi_real_f_casual1.webp"]}}}},
   "나라티브 건담": {"face": {"m": [0.48, 0.24, 0.09], "f": [0.51, 0.16, 0.1]}, "byStyle": {"cinematic_semi_real": {"m": "나라티브_건담_cinematic_semi_real_m.webp", "f": "나라티브_건담_cinematic_semi_real_f.webp", "casual": {"f": ["나라티브_건담_cinematic_semi_real_f_casual1.webp", "나라티브_건담_cinematic_semi_real_f_casual2.webp", "나라티브_건담_cinematic_semi_real_f_casual3.webp", "나라티브_건담_cinematic_semi_real_f_casual4.webp", "나라티브_건담_cinematic_semi_real_f_casual5.webp"]}}}},
   "나이팅게일": {"m": "나이팅게일_m.webp", "f": "나이팅게일_f.webp", "face": {"m": [0.405, 0.075, 0.15], "f": [0.415, 0.115, 0.135]}, "casual": {"f": ["나이팅게일_casual1.webp"]}},
+  "네로스 건담": {"byStyle": {"cinematic_semi_real": {"m": "네로스_건담_cinematic_semi_real_m.webp", "f": "네로스_건담_cinematic_semi_real_f.webp", "casual": {"f": ["네로스_건담_cinematic_semi_real_f_casual1.webp"]}}}},
   "노벨 건담": {"byStyle": {"cinematic_semi_real": {"f": "노벨_건담_cinematic_semi_real_f.webp", "casual": {"f": ["노벨_건담_cinematic_semi_real_f_casual1.webp"]}}, "anime_illust": {"f": "노벨_건담_anime_illust_f.webp", "casual": {"f": ["노벨_건담_anime_illust_f_casual1.webp"]}}}},
   "노이에 질": {"m": "노이에_질_m.webp", "f": "노이에_질_f.webp", "face": {"m": [0.42, 0.114, 0.166], "f": [0.42, 0.107, 0.166]}, "casual": {"f": ["노이에_질_casual1.webp"]}},
   "뉴 건담": {"m": "뉴_건담_m.webp", "f": "뉴_건담_f.webp", "face": [0.393, 0.14, 0.21], "casual": {"f": ["뉴_건담_casual1.webp"]}},
@@ -201,6 +202,7 @@
   "메타스": {"m": "메타스_m.webp", "f": "메타스_f.webp", "face": {"m": [0.435, 0.125, 0.105], "f": [0.435, 0.155, 0.1]}, "casual": {"f": ["메타스_casual1.webp", "메타스_casual2.webp"]}},
   "멧사라": {"byStyle": {"cinematic_semi_real": {"f": "멧사라_cinematic_semi_real_f.webp", "casual": {"f": ["멧사라_cinematic_semi_real_f_casual1.webp"]}}}},
   "무라사메": {"byStyle": {"cinematic_semi_real": {"f": "무라사메_cinematic_semi_real_f.webp", "casual": {"f": ["무라사메_cinematic_semi_real_f_casual1.webp"]}}, "painterly": {"f": "무라사메_painterly_f.webp", "casual": {"f": ["무라사메_painterly_f_casual1.webp"]}}}},
+  "뭇투": {"byStyle": {"cinematic_semi_real": {"m": "뭇투_cinematic_semi_real_m.webp", "f": "뭇투_cinematic_semi_real_f.webp", "casual": {"f": ["뭇투_cinematic_semi_real_f_casual1.webp"]}}}},
   "미카엘리스": {"m": "미카엘리스_m.webp", "f": "미카엘리스_f.webp", "face": {"m": [0.395, 0.07, 0.15], "f": [0.418, 0.088, 0.145]}, "casual": {"f": ["미카엘리스_casual1.webp"]}},
   "바비": {"byStyle": {"cinematic_semi_real": {"f": "바비_cinematic_semi_real_f.webp", "casual": {"f": ["바비_cinematic_semi_real_f_casual1.webp"]}}, "retro_anime": {"f": "바비_retro_anime_f.webp", "casual": {"f": ["바비_retro_anime_f_casual1.webp"]}}}},
   "바우": {"byStyle": {"cinematic_semi_real": {"f": "바우_cinematic_semi_real_f.webp", "casual": {"f": ["바우_cinematic_semi_real_f_casual1.webp"]}}, "painterly": {"f": "바우_painterly_f.webp", "casual": {"f": ["바우_painterly_f_casual1.webp"]}}}},
