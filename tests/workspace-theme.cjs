@@ -5,6 +5,7 @@ const assert = require('node:assert/strict');
 const source = fs.readFileSync('lib/workspace-theme.js', 'utf8');
 const ui = fs.readFileSync('lib/workspace-ui.js', 'utf8');
 const css = fs.readFileSync('lib/workspace.css', 'utf8');
+const prompt = fs.readFileSync('prompt.html', 'utf8');
 const draftCss = fs.readFileSync('gundam/draft.css', 'utf8');
 const stored = new Map();
 const events = new Map();
@@ -115,6 +116,9 @@ assert.match(css, /\.prompt-page \.controls \{position:static/);
 assert.match(css, /\.prompt-page \.prompt-dock \{position:static/);
 assert.match(css, /\.prompt-page \.param-actions \{display:flex;flex-wrap:nowrap/);
 assert.match(css, /\.prompt-page \.ko-sum \{display:flex;/);
+assert.match(css, /\.prompt-page \.select-row \{display:flex;flex-wrap:nowrap/);
+assert.equal((prompt.match(/class="param-grid select-row"/g) || []).length, 3,
+  '단일·Pair·Panel 선택 띠가 모두 한 줄 표시 대상으로 묶여야 한다');
 assert.match(draftCss, /\.setup-bottom\{position:static/);
 assert(viewportEvents.has('resize'));
 assert(events.has('storage'));

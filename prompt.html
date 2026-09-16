@@ -205,7 +205,7 @@ button{font:inherit}
   .prompt-dock-actions button{min-height:36px;font-size:12px}
 }
 </style>
-<link rel="stylesheet" href="lib/workspace.css?v=532935085f">
+<link rel="stylesheet" href="lib/workspace.css?v=eb2eeaaba1">
 <script src="lib/workspace-theme.js?v=97c2d41a47"></script>
 </head>
 <body class="prompt-page">
@@ -1526,7 +1526,7 @@ function SinglePanel({ data, series, setSeries, mech, setMech, gender, setGender
             ${exNote ? html`<div class="param-note" style="margin-top:4px">${exNote}</div>` : null}
           </div>
 
-          <div class="param-grid" style="margin-top:9px">
+          <div class="param-grid select-row" style="margin-top:9px">
             <div class="field"><label>Aspect <small>화면 비율</small></label>
               <select aria-label="화면 비율" value=${st.aspect} onchange=${e => set('aspect', e.target.value)}>
                 ${optRows(SG_ASPECTS)}</select></div>
@@ -2014,7 +2014,7 @@ function CollagePanel({ data, series, setSeries, mech, setMech, gender, setGende
                       ${q.exampleKey && S.EX_NOTE[q.exampleKey]
                         ? html`<div class="param-note" style="margin-top:4px">${S.EX_NOTE[q.exampleKey]}</div>` : null}
                     </div>
-                    <div class="param-grid" style="margin-top:9px">
+                    <div class="param-grid select-row" style="margin-top:9px">
                       <div class="field"><label>Expression <small>표정 · 이 Pair 공통</small></label>
                         <select value=${q.expr} onchange=${e => setPair(n, 'expr', e.target.value)}>
                           ${optRows(S.EXPRESSION_OPTIONS)}</select></div>
@@ -2070,7 +2070,7 @@ function CollagePanel({ data, series, setSeries, mech, setMech, gender, setGende
                     ${p.exampleKey === '__custom__' ? html`<input type="text" style="margin-top:6px" placeholder="개별 예시 직접 입력"
                       value=${p.exampleCustom} oninput=${e => setPanel(n, 'exampleCustom', e.target.value)} />` : null}
                   </div>
-                  <div class="param-grid" style="margin-top:9px">
+                  <div class="param-grid select-row" style="margin-top:9px">
                     <div class="field"><label>Expression <small>표정</small></label>
                       <select value=${p.ov.expression || ''} onchange=${e => setOv(n, 'expression', e.target.value)}>
                         ${optRows(S.EXPRESSION_OPTIONS)}</select></div>
