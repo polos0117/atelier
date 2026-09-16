@@ -210,14 +210,37 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
 .prompt-page .save-bar > span:last-child {max-width:100%}
 .prompt-page .param-actions button {min-width:0;overflow-wrap:anywhere}
 
+/* Keep the mobile action dock inside the actually visible browser viewport.
+   The scroll belongs to the work area, so the dock never slips under Android UI. */
+html:has(.prompt-page) {height:100%;overflow:hidden;overscroll-behavior:none}
+.prompt-page {height:100vh;height:100dvh;height:var(--atelier-vh,100dvh);min-height:0;overflow:hidden;position:relative}
+.prompt-page .wrap {height:100%;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding-bottom:calc(112px + env(safe-area-inset-bottom))}
+.prompt-page .prompt-dock {position:absolute;padding-bottom:max(10px,calc(8px + env(safe-area-inset-bottom)))}
+@media(max-width:640px) {
+  .prompt-page .wrap {padding-bottom:calc(98px + env(safe-area-inset-bottom))}
+  .prompt-page .prompt-dock {padding-bottom:max(8px,calc(5px + env(safe-area-inset-bottom)))}
+}
+
 /* Archive shell stays still; only the collection viewport scrolls. */
 html:has(.dex-page) {height:100%;overflow:hidden;overscroll-behavior:none}
-.dex-page {height:100vh;height:100dvh;min-height:0;overflow:hidden;overscroll-behavior:none}
+.dex-page {height:100vh;height:100dvh;height:var(--atelier-vh,100dvh);min-height:0;overflow:hidden;overscroll-behavior:none}
 .dex-page main {display:flex;flex-direction:column;min-height:0;overflow:hidden;padding-bottom:0}
 .dex-page .chrome,.dex-page header,.dex-page .view-tools {flex:none}
 .dex-page header {position:relative;top:auto}
 .dex-page .collection-scroll {flex:1 1 0;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:3px 2px calc(18px + env(safe-area-inset-bottom));scrollbar-color:var(--line) transparent}
 .dex-page .collection-scroll:focus-visible {outline:2px solid var(--accent);outline-offset:-2px}
+.dex-page main.dex-scrolled .chrome .appearance-controls,
+.dex-page main.dex-scrolled .workspace-heading,
+.dex-page main.dex-scrolled header .tabs,
+.dex-page main.dex-scrolled header>.ctl:not(.filters) {display:none}
+.dex-page main.dex-scrolled .chrome {padding-top:max(4px,env(safe-area-inset-top));padding-bottom:5px}
+.dex-page main.dex-scrolled .workspace-nav {padding:3px;border-radius:9px}
+.dex-page main.dex-scrolled .workspace-nav a {min-height:34px}
+.dex-page main.dex-scrolled header {padding:5px 8px 6px;border-radius:9px;box-shadow:0 6px 18px #0002}
+.dex-page main.dex-scrolled header .search-row {padding:0}
+.dex-page main.dex-scrolled .view-tools {margin:4px 0 5px;min-height:32px}
+.dex-page main.dex-scrolled .view-tools button {min-height:32px;padding-block:4px}
+.dex-page main.dex-scrolled .view-tools span {font-size:10px}
 @media(max-width:599px) {
  .dex-page .workspace-heading {padding:10px 0 13px}
  .dex-page .workspace-heading h1 {font-size:20px;margin:2px 0}
