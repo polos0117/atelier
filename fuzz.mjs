@@ -1,7 +1,7 @@
 /* 그물 — 툴킷 화면을 실제 브라우저에서 몰아 보고 프롬프트를 통째로 받아 둔다.
    화면을 고친 뒤 같은 씨앗으로 다시 받아 fuzz-diff.mjs 로 글자 단위로 견준다.
 
-     PFILE=prompt-next.html OUT=a.json node fuzz.mjs
+     PFILE=prompt.html OUT=a.json node fuzz.mjs
      MECHS='자쿠Ⅱ,시난주' STYLES='anime_illust,ink_wash' SEED=7 node fuzz.mjs
 
    씨앗이 같으면 같은 조합을 밟는다. 값은 화면의 셀렉트를 실제로 바꿔 넣으므로
@@ -14,7 +14,7 @@ import { writeFileSync, existsSync, readFileSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { extname, join, resolve } from 'node:path';
 
-const PFILE = process.env.PFILE || 'prompt-next.html';
+const PFILE = process.env.PFILE || 'prompt.html';
 const OUT   = process.env.OUT   || 'fuzz.json';
 const SEED  = Number(process.env.SEED || 1);
 const ROOT  = resolve(process.env.ROOT || '.');

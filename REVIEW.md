@@ -64,10 +64,8 @@ TRY_SAMGUK.md     주제를 갈아 끼워 본 기록. 어디가 주제에 묶여
 ## 손으로 돌려 볼 수 있는 것
 
 ```bash
-# 문법 — 세 화면 다
-node -e 'const h=require("fs").readFileSync("prompt.html","utf8");
-  for(const b of h.match(/<script>[\s\S]*?<\/script>/g)) new Function(b.slice(8,-9));
-  console.log("ok")'
+# 문법 — 네 화면 다 (type="module" 인 것까지 본다)
+node tests/style-logic.cjs
 
 python3 register-images.py --check   # 초상 자료와 파일이 어긋나나
 python3 build-data.py --check        # 바깥 자료와 카드가 어긋나나

@@ -47,7 +47,9 @@ for(const [file,r] of Object.entries(gunnerImages))assert.equal(tk.promptPathOf(
 tk.putCardRecords('bad',{images:{bad:{prompt:'javascript:alert(1)'}}});assert.equal(tk.promptPathOf('bad'),null);
 tk.putCardRecords('bad',{images:{bad:{prompt:'generation/../../private.txt'}}});assert.equal(tk.promptPathOf('bad'),null);
 // The default export reads only the selected card and requires no network call.
-const source=fs.readFileSync('prompt.html','utf8');const a=source.indexOf("document.getElementById('exportStore').addEventListener");const b=source.indexOf("document.getElementById('exportAllStore').addEventListener",a);
+/* 아래 잘라 쓰는 내보내기 처리기는 예전 판(prompt-legacy.html)의 것이다.
+   지금 prompt.html 은 Preact 라 DOM 처리기가 없다 — 그쪽 내보내기는 브라우저로 본다 */
+const source=fs.readFileSync('prompt-legacy.html','utf8');const a=source.indexOf("document.getElementById('exportStore').addEventListener");const b=source.indexOf("document.getElementById('exportAllStore').addEventListener",a);
 const box={classList:{remove(){}},select(){}};let callback;
 const exportCtx={document:{getElementById:id=>id==='exportStore'?{addEventListener:(_,fn)=>callback=fn}:id==='artStyle'?{value:'game_keyart'}:box,execCommand(){}},mechKey:()=> '선택 기체',persistAnthro(){},stripPrev:r=>r,recOf:()=>({female:{sel:{'apparent age':'20s'}},t:1}),usedOf:()=>[],setStatus(){},downloadJson:()=>true};
 vm.runInNewContext(source.slice(a,b),exportCtx);

@@ -26,9 +26,10 @@ function checkPageScripts(path, assert) {
   return n;
 }
 
-const dex=fs.readFileSync('dex.html','utf8'),prompt=fs.readFileSync('prompt.html','utf8');
+/* 전체 기록 내보내기는 예전 판에만 남아 있다 — 새 툴킷에서는 뺐다 */
+const dex=fs.readFileSync('dex.html','utf8'),prompt=fs.readFileSync('prompt-legacy.html','utf8');
 function fn(source,name){const a=source.indexOf('function '+name+'('),b=source.indexOf('\n}',a);return source.slice(a,b+2);}
-for(const path of ['dex.html','prompt.html','play.html'])checkPageScripts(path,assert);
+for(const path of ['dex.html','prompt.html','prompt-legacy.html','play.html'])checkPageScripts(path,assert);
 for(const path of ['gundam/game.js','gundam/gallery.js'])new vm.Script(fs.readFileSync(path,'utf8'),{filename:path});
 /* 화풍 몫 가르기 — dex.html 이 Preact 로 바뀌면서 이름과 인자가 달라졌다.
    tkStyleKey · tkStyleKeys 는 없어지고 stylesOf(entry) 가 되었고, hasPic 은

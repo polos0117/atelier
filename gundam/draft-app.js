@@ -222,7 +222,7 @@ function App(){
   function switchPane(value){setPane(value);if(scroll.current)scroll.current.scrollTop=0}
   const running=E.phase==='running',done=E.phase==='done';
   return html`<div class=${'draft-shell'+(large?' large-cards':'')+(tactical?' tactical-view':'')}>
-    <div class="draft-chrome"><nav class="workspace-nav" aria-label="Atelier 화면 이동"><a href="prompt.html">프롬프트</a><a href="prompt-next.html">툴킷(시범)</a><a href="play.html" aria-current="page">드래프트</a><a href="dex.html">도감</a></nav><${AppearanceControls}/>
+    <div class="draft-chrome"><nav class="workspace-nav" aria-label="Atelier 화면 이동"><a href="prompt.html">프롬프트</a><a href="play.html" aria-current="page">드래프트</a><a href="dex.html">도감</a></nav><${AppearanceControls}/>
       <${WorkspaceHeading} title="기동전사 드래프트" code="FLEET COMMAND" subtitle="세 함대의 선택, 하나의 승리."/>
     </div>
     ${(running||done)&&html`<div class="draft-command"><div class="round-line"><div><small id="rdl">ROUND ${String(Math.min(E.round+1,E.SCHEDULE.length)).padStart(2,'0')} / ${E.SCHEDULE.length} <b>${E.FIELD}</b></small><h2 id="rdt">${done?'전과 판정':E.SCHEDULE[E.round]+' 선정'}</h2></div><span id="turn" class=${'turn-state'+(E.isMine()?' my-turn':'')} role="status">${done?'종료':E.isMine()?'내 차례':E.seatName(E.turnSeq()[E.si])+' 지명 중'}</span></div>
