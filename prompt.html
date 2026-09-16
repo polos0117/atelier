@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0f1115">
-<title>Gundam Prompt Toolkit v9.21</title>
+<title>Gundam Prompt Toolkit v9.22</title>
 <!-- 홈 화면에 두면 브라우저가 저장 자리를 걷어가지 못한다 -->
 <link rel="manifest" href="prompt.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -72,7 +72,8 @@ button{font:inherit}
   padding:4px;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;
   align-items:center;gap:2px}
 .figcell.on{border-color:var(--accent);color:var(--text)}
-.figcell canvas{width:64px;height:auto;display:block}
+.figcell canvas,.figcell .figure-png{width:64px;height:auto;display:block}
+.figcell .figure-png{max-height:103px;object-fit:contain;pointer-events:none}
 .figcell b{font-size:9.5px;font-weight:600;max-width:60px;overflow:hidden;
   text-overflow:ellipsis;white-space:nowrap}
 .srcbox>summary .sb-txt{flex:none;font-size:10.5px;color:var(--muted);white-space:nowrap}
@@ -285,14 +286,22 @@ function LockIcon({ open }) {
     </svg>`;
 }
 
+const FIGURE_PNG = {
+  'body type|female|hourglass': 'assets/figures/body-female-hourglass.png?v=742710bd85'
+};
+
 function FigureImage({ type, value, gender }) {
   const canvas = useRef(null);
+  const png = FIGURE_PNG[[type, gender, value].join('|')] || '';
   useEffect(() => {
+    if (png) return;
     const draw = () => FIG.drawForKey(type, value, gender, canvas.current);
     draw();
     addEventListener('atelier-appearance', draw);
     return () => removeEventListener('atelier-appearance', draw);
-  }, [type, value, gender]);
+  }, [type, value, gender, png]);
+  if (png) return html`<img class="body-figure figure-png" src=${png} alt="" aria-hidden="true"
+                           loading="lazy" decoding="async" draggable="false" />`;
   const size = FIG.dimensions(type);
   return html`<canvas ref=${canvas} class=${type === 'body type' ? 'body-figure' : 'hair-figure'}
                       width=${size[0]} height=${size[1]} aria-hidden="true"></canvas>`;
@@ -360,7 +369,9 @@ function Preview({ def, value, sel, gender, img, style, exclude, onZoom, onValue
     <div class="param-preview">
       ${colorHead && html`<div class="pp-main">${colorHead}</div>`}
       ${figs.length ? html`
-        <div class="figure-picker-head"><span>이미지로 선택 · 도식은 형태 비교</span>
+        <div class="figure-picker-head"><span>${def.key === 'body type'
+          ? 'PNG 시험 1종 · 나머지는 Canvas 도식'
+          : '이미지로 선택 · 도식은 형태 비교'}</span>
           <button type="button" class=${'figure-auto' + (!value ? ' on' : '')}
                   aria-pressed=${String(!value)} onclick=${() => onValue('')}>AUTO</button>
         </div>
@@ -463,11 +474,15 @@ function Zoom({ list, start, onClose }) {
 /* 패치 노트. 원본의 마크업을 그대로 쓴다 — 고쳐 옮기면 글이 갈린다 */
 const VERSION_NOTES = `
     <summary>
-      <span class="sel-line" style="white-space:normal;overflow:visible">v9.21 변경 내역</span>
+      <span class="sel-line" style="white-space:normal;overflow:visible">v9.22 변경 내역</span>
       <span class="sb-txt">패치 노트</span>
     </summary>
     <div class="vb-in">
-      <b>v9.21 &middot; 떠다니지 않는 버튼 · 여성 크로키</b>
+      <b>v9.22 &middot; hourglass PNG 시험 적용</b>
+      <ul>
+        <li><b>hourglass 여성 체형 한 종</b>을 깨끗한 투명 배경 PNG 기준 이미지로 교체해 Canvas 방식과 같은 화면에서 비교할 수 있게 했다</li>
+      </ul>
+      <b style="opacity:.55">v9.21 &middot; 떠다니지 않는 버튼 · 여성 크로키</b>
       <ul>
         <li>드래프트 출격 버튼과 프롬프트 작업 버튼이 스크롤을 따라붙지 않고 <b>각 화면 콘텐츠의 맨 아래 자리</b>에 머문다</li>
         <li>여성 체형 도식을 <b>팔·손·몸통이 하나로 이어진 패션 크로키</b>로 바꾸고, 겹쳐 보이던 별도 팔 선과 가슴 안내선을 없앴다</li>
@@ -651,7 +666,7 @@ function VersionBox() {
   const [stamp, setStamp] = useState('');
   useEffect(() => { try { setStamp(window.AtelierFresh.watch().stamp()); } catch (e) {} }, []);
   return html`
-    <div class="ver-badge">Gundam Prompt Toolkit <b>v9.21</b> <span>떠다니지 않는 버튼 · 여성 크로키</span>
+    <div class="ver-badge">Gundam Prompt Toolkit <b>v9.22</b> <span>hourglass PNG 시험 적용</span>
       <span class="bstamp" title="지금 화면에 뜬 판이 서버를 떠난 때">${stamp}</span></div>
     <details class="srcbox verbox">
       <div dangerouslySetInnerHTML=${{ __html: VERSION_NOTES }}></div>

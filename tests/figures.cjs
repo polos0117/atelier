@@ -1,6 +1,7 @@
 const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
+const crypto = require('node:crypto');
 
 const window = {
   devicePixelRatio: 2,
@@ -50,6 +51,9 @@ assert(!FIG.drawForKey('unknown', 'bob', 'female', canvas()));
 
 const prompt = fs.readFileSync('prompt.html', 'utf8');
 assert.match(prompt, /<canvas ref=\$\{canvas\}/);
+assert.match(prompt, /body-female-hourglass\.png\?v=742710bd85/);
+assert(fs.existsSync('assets/figures/body-female-hourglass.png'));
+assert.equal(crypto.createHash('sha256').update(fs.readFileSync('assets/figures/body-female-hourglass.png')).digest('hex').slice(0, 10), '742710bd85');
 assert.match(prompt, /onclick=\$\{\(\) => onValue\(f\.k\)\}/);
 assert.doesNotMatch(prompt, /f\.svg \+ '<b>'/);
 
