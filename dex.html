@@ -234,8 +234,8 @@ body.dex-compact .grid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
   .cap{font-size:13px;line-height:1.45}
 }
 </style>
-<link rel="stylesheet" href="lib/workspace.css?v=ccf0dadda3">
-<script src="lib/workspace-theme.js?v=1"></script>
+<link rel="stylesheet" href="lib/workspace.css?v=15baf07966">
+<script src="lib/workspace-theme.js?v=6e2a9a2d5c"></script>
 </head>
 <body class="dex-page">
 <div id="app"></div>
@@ -667,6 +667,8 @@ function App() {
   const [style, setStyle] = useState('');
   const [open, setOpen] = useState(null);
   const [zoom, setZoom] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
+  const collection = useRef(null);
   /* 작게 보기 여부. dex.html 과 같은 키라 두 페이지가 설정을 공유한다 */
   const [onlyLeft, setOnlyLeft] = useState(true);   /* 작업 모드: 남은 것만 볼지 */
   /* 폰에서는 머리말이 화면을 많이 먹는다. 탭·모드·검색만 남기고 나머지는 접는다.
@@ -730,8 +732,8 @@ function App() {
   };
   const pickTab = t => {
     setTab(t); setSer(''); setStyle('');
-    const box = document.querySelector('.collection-scroll');
-    if (box) box.scrollTop = 0;
+    if (collection.current) collection.current.scrollTop = 0;
+    setScrolled(false);
   };
 
   const rows = useMemo(() => {
@@ -769,7 +771,7 @@ function App() {
   const filterSummary = bits.length ? bits.join(' · ') : '전체 보기';
 
   return html`
-    <main>
+    <main class=${scrolled ? 'dex-scrolled' : ''}>
       <div class="chrome">
       <nav class="workspace-nav" aria-label="Atelier 화면 이동">
         <a href="prompt.html">프롬프트</a>
@@ -837,7 +839,8 @@ function App() {
           ${compact ? '크게 보기' : '작게 보기'}
         </button>
       </div>
-      <section class="collection-scroll" aria-label="도감 목록" tabindex="0">
+      <section class="collection-scroll" aria-label="도감 목록" tabindex="0" ref=${collection}
+               onscroll=${event => setScrolled(event.currentTarget.scrollTop > 28)}>
       ${mode === 'w' && html`
         <div class="prog"><i style=${{ width: (rows.length ? doneCount / rows.length * 100 : 0).toFixed(1) + '%' }}></i></div>`}
 
