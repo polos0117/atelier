@@ -51,10 +51,22 @@ assert(!FIG.drawForKey('unknown', 'bob', 'female', canvas()));
 
 const prompt = fs.readFileSync('prompt.html', 'utf8');
 assert.match(prompt, /<canvas ref=\$\{canvas\}/);
-assert.match(prompt, /body-female-hourglass\.png\?v=742710bd85/);
-assert(fs.existsSync('assets/figures/body-female-hourglass.png'));
-assert.equal(crypto.createHash('sha256').update(fs.readFileSync('assets/figures/body-female-hourglass.png')).digest('hex').slice(0, 10), '742710bd85');
+const femalePng = {
+  slender: 'ba669e9a45', athletic: '296437f650', curvy: '7f7c1cdfb8',
+  glamorous: '019109ba96', muscular: 'a8861aa31e', 'heavy-built': '3e66e03b8a',
+  'tall-and-lean': '76fb20ff49', petite: 'eb983632d1', hourglass: '742710bd85',
+  voluptuous: '637864e06b', toned: '67ad784276', wiry: 'f3081d6378',
+  'soft-figured': '64d6490f6a', 'pear-shaped': 'cfa5424c39',
+  'inverted-triangle': 'ce2ef25b05', stocky: '53d0c52f91', statuesque: '0dfb840494'
+};
+for (const [name, hash] of Object.entries(femalePng)) {
+  const file = `assets/figures/body-female-${name}.png`;
+  assert.match(prompt, new RegExp(`${name}\\.png\\?v=${hash}`), name);
+  assert(fs.existsSync(file), file);
+  assert.equal(crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex').slice(0, 10), hash, name);
+}
+assert.equal(Object.keys(femalePng).length, 17);
 assert.match(prompt, /onclick=\$\{\(\) => onValue\(f\.k\)\}/);
 assert.doesNotMatch(prompt, /f\.svg \+ '<b>'/);
 
-console.log(`PASS: ${Object.keys(window.AtelierSpec.BODY_FIG).length} body and ${Object.keys(window.AtelierSpec.HAIR_FIG).length} hair Canvas pickers`);
+console.log(`PASS: ${Object.keys(window.AtelierSpec.BODY_FIG).length} body, ${Object.keys(window.AtelierSpec.HAIR_FIG).length} hair Canvas pickers, and ${Object.keys(femalePng).length} female body PNGs`);

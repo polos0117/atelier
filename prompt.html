@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0f1115">
-<title>Gundam Prompt Toolkit v9.22</title>
+<title>Gundam Prompt Toolkit v9.23</title>
 <!-- 홈 화면에 두면 브라우저가 저장 자리를 걷어가지 못한다 -->
 <link rel="manifest" href="prompt.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -287,7 +287,23 @@ function LockIcon({ open }) {
 }
 
 const FIGURE_PNG = {
-  'body type|female|hourglass': 'assets/figures/body-female-hourglass.png?v=742710bd85'
+  'body type|female|slender': 'assets/figures/body-female-slender.png?v=ba669e9a45',
+  'body type|female|athletic': 'assets/figures/body-female-athletic.png?v=296437f650',
+  'body type|female|curvy': 'assets/figures/body-female-curvy.png?v=7f7c1cdfb8',
+  'body type|female|glamorous': 'assets/figures/body-female-glamorous.png?v=019109ba96',
+  'body type|female|muscular': 'assets/figures/body-female-muscular.png?v=a8861aa31e',
+  'body type|female|heavy-built': 'assets/figures/body-female-heavy-built.png?v=3e66e03b8a',
+  'body type|female|tall and lean': 'assets/figures/body-female-tall-and-lean.png?v=76fb20ff49',
+  'body type|female|petite': 'assets/figures/body-female-petite.png?v=eb983632d1',
+  'body type|female|hourglass': 'assets/figures/body-female-hourglass.png?v=742710bd85',
+  'body type|female|voluptuous': 'assets/figures/body-female-voluptuous.png?v=637864e06b',
+  'body type|female|toned': 'assets/figures/body-female-toned.png?v=67ad784276',
+  'body type|female|wiry': 'assets/figures/body-female-wiry.png?v=f3081d6378',
+  'body type|female|soft-figured': 'assets/figures/body-female-soft-figured.png?v=64d6490f6a',
+  'body type|female|pear-shaped': 'assets/figures/body-female-pear-shaped.png?v=cfa5424c39',
+  'body type|female|inverted triangle': 'assets/figures/body-female-inverted-triangle.png?v=ce2ef25b05',
+  'body type|female|stocky': 'assets/figures/body-female-stocky.png?v=53d0c52f91',
+  'body type|female|statuesque': 'assets/figures/body-female-statuesque.png?v=0dfb840494'
 };
 
 function FigureImage({ type, value, gender }) {
@@ -370,7 +386,7 @@ function Preview({ def, value, sel, gender, img, style, exclude, onZoom, onValue
       ${colorHead && html`<div class="pp-main">${colorHead}</div>`}
       ${figs.length ? html`
         <div class="figure-picker-head"><span>${def.key === 'body type'
-          ? 'PNG 시험 1종 · 나머지는 Canvas 도식'
+          ? (gender === 'female' ? '여성 체형 PNG 기준 이미지' : 'Canvas 체형 도식')
           : '이미지로 선택 · 도식은 형태 비교'}</span>
           <button type="button" class=${'figure-auto' + (!value ? ' on' : '')}
                   aria-pressed=${String(!value)} onclick=${() => onValue('')}>AUTO</button>
@@ -474,11 +490,15 @@ function Zoom({ list, start, onClose }) {
 /* 패치 노트. 원본의 마크업을 그대로 쓴다 — 고쳐 옮기면 글이 갈린다 */
 const VERSION_NOTES = `
     <summary>
-      <span class="sel-line" style="white-space:normal;overflow:visible">v9.22 변경 내역</span>
+      <span class="sel-line" style="white-space:normal;overflow:visible">v9.23 변경 내역</span>
       <span class="sb-txt">패치 노트</span>
     </summary>
     <div class="vb-in">
-      <b>v9.22 &middot; hourglass PNG 시험 적용</b>
+      <b>v9.23 &middot; 여성 체형 17종 PNG 완비</b>
+      <ul>
+        <li><b>여성 체형 17종 전체</b>를 같은 정면 자세·회색 마네킹·투명 배경의 PNG 기준 이미지로 교체했다. 키·골격·허리·상하체 볼륨 차이를 작은 화면에서도 바로 비교할 수 있다</li>
+      </ul>
+      <b style="opacity:.55">v9.22 &middot; hourglass PNG 시험 적용</b>
       <ul>
         <li><b>hourglass 여성 체형 한 종</b>을 깨끗한 투명 배경 PNG 기준 이미지로 교체해 Canvas 방식과 같은 화면에서 비교할 수 있게 했다</li>
       </ul>
@@ -666,7 +686,7 @@ function VersionBox() {
   const [stamp, setStamp] = useState('');
   useEffect(() => { try { setStamp(window.AtelierFresh.watch().stamp()); } catch (e) {} }, []);
   return html`
-    <div class="ver-badge">Gundam Prompt Toolkit <b>v9.22</b> <span>hourglass PNG 시험 적용</span>
+    <div class="ver-badge">Gundam Prompt Toolkit <b>v9.23</b> <span>여성 체형 17종 PNG 완비</span>
       <span class="bstamp" title="지금 화면에 뜬 판이 서버를 떠난 때">${stamp}</span></div>
     <details class="srcbox verbox">
       <div dangerouslySetInnerHTML=${{ __html: VERSION_NOTES }}></div>
