@@ -116,9 +116,9 @@ assert.match(css, /\.prompt-page \.controls \{position:static/);
 assert.match(css, /\.prompt-page \.prompt-dock \{position:static/);
 assert.match(css, /\.prompt-page \.param-actions \{display:flex;flex-wrap:nowrap/);
 assert.match(css, /\.prompt-page \.ko-sum \{display:flex;/);
-assert.match(css, /\.prompt-page \.select-row \{display:flex;flex-wrap:nowrap/);
+assert.match(css, /\.prompt-page \.select-row \{display:grid;grid-template-columns:minmax\(0,1fr\)/);
 assert.equal((prompt.match(/class="param-grid select-row"/g) || []).length, 3,
-  '단일·Pair·Panel 선택 띠가 모두 한 줄 표시 대상으로 묶여야 한다');
+  '단일·Pair·Panel 선택 묶음이 모두 항목당 한 줄 표시 대상이어야 한다');
 assert.match(draftCss, /\.setup-bottom\{position:static/);
 assert(viewportEvents.has('resize'));
 assert(events.has('storage'));
