@@ -1,0 +1,85 @@
+{
+  "source": {
+    "mech": "바쿠토"
+  },
+  "gender": "female",
+  "style": "cinematic_semi_real",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "East Asian",
+        "body type": "curvy",
+        "skin tone": "__custom__",
+        "face shape": "__custom__",
+        "eye shape": "almond",
+        "eye color": "__custom__",
+        "hair color": "__custom__",
+        "hairstyle": "__custom__",
+        "hair length": "long",
+        "expression": "serious"
+      },
+      "cus": {
+        "skin tone": "fair",
+        "face shape": "round",
+        "eye color": "emerald green",
+        "hair color": "warm brown",
+        "hairstyle": "low ponytail"
+      },
+      "ub": false,
+      "sp": "Baqto from Gundam AGE. Preserve its distinctive heavy green Vagan armor, broad rounded shoulder shells, bulky forearms, armored chest and powerful leg armor, chest beam weapon and mechanical tail. Heavy armor frames a visible adult human waist and strong curvy thighs; not a spherical robot body. Human face and two normal arms and legs. No invented sword or handheld rifle. Normal adult human anatomy: one fully visible human face, two arms, two legs, five fingers per hand. Keep source shoulder armor. Dark neutral studio background. Full body and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Keep head ornaments compact inside the frame. No text or readable markings. Subtle adult sensuality with integrated open armor and fully opaque intimate coverage."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "East Asian",
+        "body type": "muscular",
+        "skin tone": "__custom__",
+        "face shape": "__custom__",
+        "eye shape": "almond",
+        "eye color": "__custom__",
+        "hair color": "__custom__",
+        "hairstyle": "__custom__",
+        "hair length": "short",
+        "expression": "serious"
+      },
+      "cus": {
+        "skin tone": "fair",
+        "face shape": "round",
+        "eye color": "emerald green",
+        "hair color": "warm brown",
+        "hairstyle": "short swept-back"
+      },
+      "ub": false,
+      "sp": "Baqto from Gundam AGE. Preserve its distinctive heavy green Vagan armor, broad rounded shoulder shells, bulky forearms, armored chest and powerful leg armor, chest beam weapon and mechanical tail. Heavy armor frames a visible adult human waist and strong curvy thighs; not a spherical robot body. Human face and two normal arms and legs. No invented sword or handheld rifle. Normal adult human anatomy: one fully visible human face, two arms, two legs, five fingers per hand. Keep source shoulder armor. Dark neutral studio background. Full body and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Keep head ornaments compact inside the frame. No text or readable markings. Clearly masculine adult face and physique. Match the female counterpart colors exactly: fair skin, warm brown hair, emerald green eyes."
+    },
+    "g": "female",
+    "t": 1789600994989
+  },
+  "cat": "__custom__",
+  "catCustom": "a stylish adult woman enjoying an ordinary off-duty moment",
+  "ex": "",
+  "exCustom": "",
+  "aspect": "2:3 vertical",
+  "frame": "full body",
+  "expr": "",
+  "orient": "",
+  "pose": "",
+  "scene": "At a cozy bakery kitchen, lifting a tray of freshly baked bread onto a counter",
+  "outfit": "An opaque fitted cream sleeveless knit top, high-waisted moss-green trousers, a waist apron and low shoes",
+  "camera": "Warm oven glow balanced by morning window light",
+  "custom": "Use the attached female anthropomorphization as the actual identity reference. Preserve her adult face, hair, skin, eyes and body proportions. Wear only the specified modern civilian outfit. No armor, weapons or mechanical equipment. A natural candid action, subtle sensuality, no text. Do not pull the camera back to add empty margins.",
+  "axes": {},
+  "carryFace": true,
+  "carryBody": true
+}

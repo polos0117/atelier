@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "card": "바쿠토",
+  "baseCommit": "d44ed58e57c646c141f67119d0c743d437eb76d9",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact current repository prompt functions executed locally because browser CDP tab discovery timed out. Parameters validated against PARAM_DEFS; settings exported programmatically rather than through browser UI. Actual submitted prompt files are preserved unchanged.",
+  "run": "generation/m-558b394cfb97bc61/runs/20260916t232314z",
+  "images": [
+    {
+      "card": "바쿠토",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "612899a3aec7d640300ded53997846e83e9b64c637d09980acf8b54850b5b32c",
+      "prompt": "generation/m-558b394cfb97bc61/runs/20260916t232314z/female.txt",
+      "manifest": "generation/m-558b394cfb97bc61/runs/20260916t232314z/manifest.json",
+      "file": "img/바쿠토_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-691b1361-7679-46ea-ae5f-cbce5b929a1f.png",
+      "reference": null,
+      "status": "generated, visually inspected, converted; publication pending"
+    },
+    {
+      "card": "바쿠토",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "82a36da536d469391f5bbfaa53a9e55a35bd44578c9256e444927daf07e849cb",
+      "prompt": "generation/m-558b394cfb97bc61/runs/20260916t232314z/male.txt",
+      "manifest": "generation/m-558b394cfb97bc61/runs/20260916t232314z/manifest.json",
+      "file": "img/바쿠토_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-44e0ec43-17a1-44ba-ab6e-e9cf70868ef1.png",
+      "reference": null,
+      "status": "generated, visually inspected, converted; publication pending"
+    },
+    {
+      "card": "바쿠토",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "0e56edb74c3eb27ed6573a64ffeea20037fdd318401469dfce0bba34ccc48112",
+      "prompt": "generation/m-558b394cfb97bc61/runs/20260916t232314z/casual.txt",
+      "manifest": "generation/m-558b394cfb97bc61/runs/20260916t232314z/manifest.json",
+      "file": "img/바쿠토_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-99e69a21-be65-4b07-81de-593e80739b9c.png",
+      "reference": "img/바쿠토_cinematic_semi_real_f.webp",
+      "status": "generated, visually inspected, converted; publication pending"
+    }
+  ],
+  "baseTree": "ad4d8fca7c5c3560846117d31f9e6ca6b8b41739",
+  "generator": "built-in image_gen"
+}

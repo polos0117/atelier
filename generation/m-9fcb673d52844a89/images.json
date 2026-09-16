@@ -1,0 +1,29 @@
+{
+  "도라도_cinematic_semi_real_f.webp": {
+    "card": "도라도",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "1471a5607bb42e49bfe5a7359d1741e1dbd20c7867bc78a7dbc707e9098b818e",
+    "prompt": "generation/m-9fcb673d52844a89/runs/20260916t232314z/female.txt",
+    "manifest": "generation/m-9fcb673d52844a89/runs/20260916t232314z/manifest.json"
+  },
+  "도라도_cinematic_semi_real_m.webp": {
+    "card": "도라도",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "14cfbc170b4974f29f8df2833a8cbe1eefbd764a4437cff2643ecdc4abd1fa24",
+    "prompt": "generation/m-9fcb673d52844a89/runs/20260916t232314z/male.txt",
+    "manifest": "generation/m-9fcb673d52844a89/runs/20260916t232314z/manifest.json"
+  },
+  "도라도_cinematic_semi_real_f_casual1.webp": {
+    "card": "도라도",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "3f60cae9ea92a091e61d74b595d87484f49908543fec3880a4876f3dd3e6b2a9",
+    "prompt": "generation/m-9fcb673d52844a89/runs/20260916t232314z/casual.txt",
+    "manifest": "generation/m-9fcb673d52844a89/runs/20260916t232314z/manifest.json"
+  }
+}
