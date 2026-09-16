@@ -33,6 +33,8 @@ for (const value of Object.keys(window.AtelierSpec.BODY_FIG)) {
   assert(FIG.drawForKey('body type', value, 'male', male), value);
   assert.equal(female.dataset.figureReady, 'body');
   assert.equal(male.dataset.figureReady, 'body');
+  assert.equal(female.dataset.figureGender, 'female');
+  assert.equal(male.dataset.figureGender, 'male');
 }
 for (const value of Object.keys(window.AtelierSpec.HAIR_FIG)) {
   assert(FIG.has('hairstyle', value));
