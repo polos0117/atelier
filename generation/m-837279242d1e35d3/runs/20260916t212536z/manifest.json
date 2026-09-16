@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "card": "안크샤",
+  "baseCommit": "256674522f6967126d05e5b065062b9c0cf3c97c",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact repository prompt functions executed locally after browser confirmation dialog caused CDP timeouts. Selection values validated against current PARAM_DEFS. Browser export was obtained for Efreet female only; remaining settings exported programmatically, not through browser UI.",
+  "run": "generation/m-837279242d1e35d3/runs/20260916t212536z",
+  "images": [
+    {
+      "card": "안크샤",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "6183498af013c55f162a7ae9788221712e70735ae45f7c62ada03a8d19e93774",
+      "prompt": "generation/m-837279242d1e35d3/runs/20260916t212536z/female.txt",
+      "manifest": "generation/m-837279242d1e35d3/runs/20260916t212536z/manifest.json",
+      "file": "img/안크샤_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-e685cea4-fd3e-477f-84b1-4e5703764931.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "안크샤",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "f36988f3038f783ee015e76b34d833c75013d703101d7d741f985e1401f37c34",
+      "prompt": "generation/m-837279242d1e35d3/runs/20260916t212536z/male.txt",
+      "manifest": "generation/m-837279242d1e35d3/runs/20260916t212536z/manifest.json",
+      "file": "img/안크샤_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-92a686fe-3ff1-47af-95a0-2f0575fea463.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "안크샤",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "83c7c27c27a55d691da350c023bd22b02efe9e8f19af8cbb90fccaeea98bfb7d",
+      "prompt": "generation/m-837279242d1e35d3/runs/20260916t212536z/casual.txt",
+      "manifest": "generation/m-837279242d1e35d3/runs/20260916t212536z/manifest.json",
+      "file": "img/안크샤_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-b270289e-63c9-49ed-9a6d-3eab7d312b0d.png",
+      "reference": "img/안크샤_cinematic_semi_real_f.webp",
+      "status": "generated, inspected and converted; main publication pending"
+    }
+  ]
+}

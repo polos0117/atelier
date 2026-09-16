@@ -1,0 +1,29 @@
+{
+  "다나진_cinematic_semi_real_f.webp": {
+    "card": "다나진",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "5b529a28f2d9dce7df18489bd71924d61608844993f0924927b0bc2a4d687055",
+    "prompt": "generation/m-53cc8e6b8883a931/runs/20260916t212808z/female.txt",
+    "manifest": "generation/m-53cc8e6b8883a931/runs/20260916t212808z/manifest.json"
+  },
+  "다나진_cinematic_semi_real_m.webp": {
+    "card": "다나진",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "0eafd43dcee504669008fe726a466bb2c1f70d4d71d758b9badcd17eefbb00d7",
+    "prompt": "generation/m-53cc8e6b8883a931/runs/20260916t212808z/male.txt",
+    "manifest": "generation/m-53cc8e6b8883a931/runs/20260916t212808z/manifest.json"
+  },
+  "다나진_cinematic_semi_real_f_casual1.webp": {
+    "card": "다나진",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "4450a32b0d82bcd2cb5cca380d56cb214a7bae32e0b1129204d59d641b49c796",
+    "prompt": "generation/m-53cc8e6b8883a931/runs/20260916t212808z/casual.txt",
+    "manifest": "generation/m-53cc8e6b8883a931/runs/20260916t212808z/manifest.json"
+  }
+}

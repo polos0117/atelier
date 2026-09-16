@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "card": "다나진",
+  "updated": "2026-09-16T21:28:08.011Z",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "Latin American",
+        "body type": "__custom__",
+        "skin tone": "tan",
+        "face shape": "__custom__",
+        "eye shape": "upturned",
+        "eye color": "__custom__",
+        "hair color": "__custom__",
+        "hairstyle": "high ponytail",
+        "hair length": "long",
+        "expression": "confident"
+      },
+      "cus": {
+        "body type": "athletic and curvy",
+        "face shape": "diamond",
+        "eye color": "golden amber",
+        "hair color": "deep burgundy"
+      },
+      "ub": false,
+      "sp": "Danazine ovv-af from Gundam AGE, standard olive-green version. Dragon-like angular green mechanical armor, dark charcoal joints, compact wing-like back equipment, long articulated mechanical tail and hand beam-vulcan ports. All dragon traits are EXTERNAL mechanical equipment on a clearly adult human, not reptilian skin or a dragon head. Preserve two normal human arms, hands, thighs and knees. Tail connects only to backpack equipment; it does not replace either human leg. No invented handheld rifle or sword. Normal human anatomy: one clearly visible adult human face, two arms, two legs, five fingers per hand. Keep recognizable shoulder armor. Keep the existing dark neutral studio background. Head ornaments should be compact and fully inside the frame, without tall spikes touching the top edge. Full body, feet and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Fit long weapons diagonally or at an appropriate length within the frame. No text or readable markings. Subtle adult sensuality and integrated open armor, fully opaque intimate coverage."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "Latin American",
+        "body type": "athletic",
+        "skin tone": "tan",
+        "face shape": "__custom__",
+        "eye shape": "upturned",
+        "eye color": "__custom__",
+        "hair color": "__custom__",
+        "hairstyle": "layered",
+        "hair length": "short",
+        "expression": "confident"
+      },
+      "cus": {
+        "face shape": "diamond",
+        "eye color": "golden amber",
+        "hair color": "deep burgundy"
+      },
+      "ub": false,
+      "sp": "Danazine ovv-af from Gundam AGE, standard olive-green version. Dragon-like angular green mechanical armor, dark charcoal joints, compact wing-like back equipment, long articulated mechanical tail and hand beam-vulcan ports. All dragon traits are EXTERNAL mechanical equipment on a clearly adult human, not reptilian skin or a dragon head. Preserve two normal human arms, hands, thighs and knees. Tail connects only to backpack equipment; it does not replace either human leg. No invented handheld rifle or sword. Normal human anatomy: one clearly visible adult human face, two arms, two legs, five fingers per hand. Keep recognizable shoulder armor. Keep the existing dark neutral studio background. Head ornaments should be compact and fully inside the frame, without tall spikes touching the top edge. Full body, feet and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Fit long weapons diagonally or at an appropriate length within the frame. No text or readable markings. Masculine adult face and physique. Skin, hair and eyes must match the female counterpart: tan skin, deep burgundy hair, golden amber eyes."
+    },
+    "g": "female",
+    "t": 1789594088010
+  },
+  "used": [],
+  "selectedStyle": "cinematic_semi_real"
+}

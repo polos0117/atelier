@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "card": "다나진",
+  "baseCommit": "256674522f6967126d05e5b065062b9c0cf3c97c",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact repository prompt functions executed locally after browser confirmation dialog caused CDP timeouts. Selection values validated against current PARAM_DEFS. Browser export was obtained for Efreet female only; remaining settings exported programmatically, not through browser UI.",
+  "run": "generation/m-53cc8e6b8883a931/runs/20260916t212808z",
+  "images": [
+    {
+      "card": "다나진",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "5b529a28f2d9dce7df18489bd71924d61608844993f0924927b0bc2a4d687055",
+      "prompt": "generation/m-53cc8e6b8883a931/runs/20260916t212808z/female.txt",
+      "manifest": "generation/m-53cc8e6b8883a931/runs/20260916t212808z/manifest.json",
+      "file": "img/다나진_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-04357e68-61ec-4230-9973-2d1725a7d185.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "다나진",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "0eafd43dcee504669008fe726a466bb2c1f70d4d71d758b9badcd17eefbb00d7",
+      "prompt": "generation/m-53cc8e6b8883a931/runs/20260916t212808z/male.txt",
+      "manifest": "generation/m-53cc8e6b8883a931/runs/20260916t212808z/manifest.json",
+      "file": "img/다나진_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-956f4078-f661-4312-866c-c0cdba31123b.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "다나진",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "4450a32b0d82bcd2cb5cca380d56cb214a7bae32e0b1129204d59d641b49c796",
+      "prompt": "generation/m-53cc8e6b8883a931/runs/20260916t212808z/casual.txt",
+      "manifest": "generation/m-53cc8e6b8883a931/runs/20260916t212808z/manifest.json",
+      "file": "img/다나진_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-51499a05-b2ea-45e9-8936-2588396cfc85.png",
+      "reference": "img/다나진_cinematic_semi_real_f.webp",
+      "status": "generated, inspected and converted; main publication pending"
+    }
+  ]
+}

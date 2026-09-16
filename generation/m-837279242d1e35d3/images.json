@@ -1,0 +1,29 @@
+{
+  "안크샤_cinematic_semi_real_f.webp": {
+    "card": "안크샤",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "6183498af013c55f162a7ae9788221712e70735ae45f7c62ada03a8d19e93774",
+    "prompt": "generation/m-837279242d1e35d3/runs/20260916t212536z/female.txt",
+    "manifest": "generation/m-837279242d1e35d3/runs/20260916t212536z/manifest.json"
+  },
+  "안크샤_cinematic_semi_real_m.webp": {
+    "card": "안크샤",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "f36988f3038f783ee015e76b34d833c75013d703101d7d741f985e1401f37c34",
+    "prompt": "generation/m-837279242d1e35d3/runs/20260916t212536z/male.txt",
+    "manifest": "generation/m-837279242d1e35d3/runs/20260916t212536z/manifest.json"
+  },
+  "안크샤_cinematic_semi_real_f_casual1.webp": {
+    "card": "안크샤",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "83c7c27c27a55d691da350c023bd22b02efe9e8f19af8cbb90fccaeea98bfb7d",
+    "prompt": "generation/m-837279242d1e35d3/runs/20260916t212536z/casual.txt",
+    "manifest": "generation/m-837279242d1e35d3/runs/20260916t212536z/manifest.json"
+  }
+}
