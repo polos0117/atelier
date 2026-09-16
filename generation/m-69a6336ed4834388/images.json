@@ -1,0 +1,29 @@
+{
+  "헤키쟈_cinematic_semi_real_f.webp": {
+    "card": "헤키쟈",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "18f38d7afe8c6adbed72c2bf171bb56f9e867173fa328388dc5fc2824d1c56be",
+    "prompt": "generation/m-69a6336ed4834388/runs/20260916t150243z/female.txt",
+    "manifest": "generation/m-69a6336ed4834388/runs/20260916t150243z/manifest.json"
+  },
+  "헤키쟈_cinematic_semi_real_m.webp": {
+    "card": "헤키쟈",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "4647f93629460cc9a21cf5ac69dd61ac8bec00ba064447fe141302925f2370bd",
+    "prompt": "generation/m-69a6336ed4834388/runs/20260916t150243z/male.txt",
+    "manifest": "generation/m-69a6336ed4834388/runs/20260916t150243z/manifest.json"
+  },
+  "헤키쟈_cinematic_semi_real_f_casual1.webp": {
+    "card": "헤키쟈",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "1e8aea19e72c1eee1c93aa8700736119007ae17e0e12a83d11cb68c4570ff9d3",
+    "prompt": "generation/m-69a6336ed4834388/runs/20260916t150243z/casual.txt",
+    "manifest": "generation/m-69a6336ed4834388/runs/20260916t150243z/manifest.json"
+  }
+}

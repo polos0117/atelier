@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "card": "이프리트 슈나이드",
+  "baseCommit": "acfa7aa87613473317c08ee72cb0168cd6d2f7e8",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact repository prompt functions executed locally after browser confirmation dialog caused CDP timeouts. Selection values validated against current PARAM_DEFS. Browser export was obtained for Efreet female only; remaining settings exported programmatically, not through browser UI.",
+  "run": "generation/m-18a66d049dffc56a/runs/20260916t145852z",
+  "images": [
+    {
+      "card": "이프리트 슈나이드",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "a38f5f032c49f019b8f704864a0387e871193a79ad72a96779048910553d131c",
+      "prompt": "generation/m-18a66d049dffc56a/runs/20260916t145852z/female.txt",
+      "manifest": "generation/m-18a66d049dffc56a/runs/20260916t145852z/manifest.json",
+      "file": "img/이프리트_슈나이드_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-a498b392-74ee-4e4d-995f-9199e6613fe2.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "이프리트 슈나이드",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "315359504479168fba353361066e1e9ab098a5fb69211ba285202df74ff6c7b1",
+      "prompt": "generation/m-18a66d049dffc56a/runs/20260916t145852z/male.txt",
+      "manifest": "generation/m-18a66d049dffc56a/runs/20260916t145852z/manifest.json",
+      "file": "img/이프리트_슈나이드_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-4e56e5ce-e845-4d65-8b72-5b8b2251598a.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "이프리트 슈나이드",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "db58f79cd6a9ca8412b9553032f2821db6407bb9c91f104c63a56ebb8b49f903",
+      "prompt": "generation/m-18a66d049dffc56a/runs/20260916t145852z/casual.txt",
+      "manifest": "generation/m-18a66d049dffc56a/runs/20260916t145852z/manifest.json",
+      "file": "img/이프리트_슈나이드_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-4ca273aa-a953-4f33-bb9c-f45185b60084.png",
+      "reference": "img/이프리트_슈나이드_cinematic_semi_real_f.webp",
+      "status": "generated, inspected and converted; main publication pending"
+    }
+  ]
+}

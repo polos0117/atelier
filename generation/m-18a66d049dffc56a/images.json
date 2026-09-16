@@ -1,0 +1,29 @@
+{
+  "이프리트_슈나이드_cinematic_semi_real_f.webp": {
+    "card": "이프리트 슈나이드",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "a38f5f032c49f019b8f704864a0387e871193a79ad72a96779048910553d131c",
+    "prompt": "generation/m-18a66d049dffc56a/runs/20260916t145852z/female.txt",
+    "manifest": "generation/m-18a66d049dffc56a/runs/20260916t145852z/manifest.json"
+  },
+  "이프리트_슈나이드_cinematic_semi_real_m.webp": {
+    "card": "이프리트 슈나이드",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "315359504479168fba353361066e1e9ab098a5fb69211ba285202df74ff6c7b1",
+    "prompt": "generation/m-18a66d049dffc56a/runs/20260916t145852z/male.txt",
+    "manifest": "generation/m-18a66d049dffc56a/runs/20260916t145852z/manifest.json"
+  },
+  "이프리트_슈나이드_cinematic_semi_real_f_casual1.webp": {
+    "card": "이프리트 슈나이드",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "db58f79cd6a9ca8412b9553032f2821db6407bb9c91f104c63a56ebb8b49f903",
+    "prompt": "generation/m-18a66d049dffc56a/runs/20260916t145852z/casual.txt",
+    "manifest": "generation/m-18a66d049dffc56a/runs/20260916t145852z/manifest.json"
+  }
+}

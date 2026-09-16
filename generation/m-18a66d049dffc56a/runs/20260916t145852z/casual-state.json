@@ -1,0 +1,75 @@
+{
+  "source": {
+    "mech": "이프리트 슈나이드"
+  },
+  "gender": "female",
+  "style": "cinematic_semi_real",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "facial ethnicity": "East Asian",
+        "human-mechanical balance": "balanced",
+        "body type": "hourglass",
+        "height impression": "tall",
+        "facial character": "sharp",
+        "skin tone": "light",
+        "face shape": "angular",
+        "eye shape": "almond",
+        "expression": "smirk",
+        "hairstyle": "wolf cut",
+        "hair length": "medium",
+        "bangs": "side-swept bangs",
+        "hair color": "silver",
+        "eye color": "amber",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament"
+      },
+      "cus": {},
+      "ub": false,
+      "sp": "Efreet Schneid identity: lilac-purple and dark plum armor, compact heat-dart racks on both shoulders, forearm and hip mounts; wield one orange-hot heat dart in each hand, remaining darts visibly stowed without duplication. Retain recognizable shoulder armor and lower-leg armor, with elegant exposed waist and upper-thigh breaks and a strong human hourglass silhouette. Clearly adult human face, two normal human arms and legs, five fingers per hand. Subtle sensuality and dangerous confidence, not a robot head. No camera pullback or added blank margins; keep the original full-body composition and subject scale."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "facial ethnicity": "East Asian",
+        "human-mechanical balance": "balanced",
+        "body type": "athletic",
+        "height impression": "tall",
+        "facial character": "sharp",
+        "skin tone": "light",
+        "face shape": "angular",
+        "eye shape": "almond",
+        "expression": "cold",
+        "hairstyle": "wolf cut",
+        "hair length": "short",
+        "bangs": "side-swept bangs",
+        "hair color": "silver",
+        "eye color": "amber",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament"
+      },
+      "cus": {},
+      "ub": false,
+      "sp": "Efreet Schneid identity: lilac-purple and dark plum armor, compact heat-dart racks on both shoulders, forearm and hip mounts. Wield one orange-hot heat dart in each hand, remaining darts visibly stowed without duplication. Clearly adult masculine human anatomy, recognizable shoulder and lower-leg armor, normal two arms and two legs, five fingers per hand. Light skin, silver hair, amber eyes matching the female counterpart. No pilot resemblance. No camera pullback or added blank margins; maintain the original full-body subject scale."
+    },
+    "g": "female",
+    "t": 1789570732583
+  },
+  "cat": "__custom__",
+  "catCustom": "a stylish adult woman enjoying an ordinary off-duty moment",
+  "ex": "",
+  "exCustom": "",
+  "aspect": "2:3 vertical",
+  "frame": "full body",
+  "expr": "",
+  "orient": "",
+  "pose": "",
+  "scene": "At a small late-night record shop, browsing a vinyl sleeve by a listening station",
+  "outfit": "A fitted opaque charcoal sleeveless top with an asymmetric neckline, a high-waisted plum leather mini skirt, a cropped jacket draped on the shoulders and ankle boots",
+  "camera": "Warm shop lighting and soft cool street reflections, painterly cinematic full-body editorial",
+  "custom": "Use the attached female anthropomorphization as the actual identity reference. Preserve her adult face, hair, skin, eyes and body proportions. Wear only the specified modern civilian outfit. No armor, weapons or mechanical equipment. A natural candid action, subtle sensuality, no text. Do not pull the camera back to add empty margins.",
+  "axes": {},
+  "carryFace": true,
+  "carryBody": true
+}

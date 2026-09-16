@@ -1,0 +1,79 @@
+{
+  "source": {
+    "mech": "헤키쟈"
+  },
+  "gender": "female",
+  "style": "cinematic_semi_real",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "facial ethnicity": "Mediterranean",
+        "body type": "athletic",
+        "facial character": "cool",
+        "skin tone": "medium",
+        "face shape": "oval",
+        "eye shape": "upturned",
+        "eye color": "green",
+        "expression": "confident",
+        "hair color": "__custom__",
+        "hairstyle": "high ponytail",
+        "hair length": "long",
+        "bangs": "parted bangs"
+      },
+      "cus": {
+        "hair color": "dark navy"
+      },
+      "ub": false,
+      "sp": "Hekija (STH-20), Teiwaz design from Iron-Blooded Orphans. Dark teal and turquoise armor with dark gray frame, pink-purple sensor accents, rounded shoulder shells, narrow waist, distinctive segmented leg armor and integrated heel/leg thruster structure. One compact firearm and one short solid-blade weapon, no luminous beam weapons. Preserve curved armored surfaces and recognizable mechanical silhouette around a toned human body. Normal human anatomy: one human head with clearly visible face, two arms, two legs, five fingers per hand; no robot face or extra limbs. Keep recognizable shoulder armor. Subtle adult sensuality. No camera pullback to create margins; maintain close full-body framing with feet and major equipment visible."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "facial ethnicity": "Mediterranean",
+        "body type": "athletic",
+        "facial character": "cool",
+        "skin tone": "medium",
+        "face shape": "oval",
+        "eye shape": "upturned",
+        "eye color": "green",
+        "expression": "serious",
+        "hair color": "__custom__",
+        "hairstyle": "slicked back",
+        "hair length": "short",
+        "bangs": "parted bangs"
+      },
+      "cus": {
+        "hair color": "dark navy"
+      },
+      "ub": false,
+      "sp": "Hekija (STH-20), Teiwaz design from Iron-Blooded Orphans. Dark teal and turquoise armor with dark gray frame, pink-purple sensor accents, rounded shoulder shells, narrow waist, distinctive segmented leg armor and integrated heel/leg thruster structure. One compact firearm and one short solid-blade weapon, no luminous beam weapons. Preserve curved armored surfaces and recognizable mechanical silhouette around a toned human body. Normal adult masculine human anatomy and face, two arms, two legs. Match the generated female counterpart skin, hair and eye colors exactly. No pilot resemblance. No camera pullback to add blank margins; preserve close full-body scale."
+    },
+    "g": "female",
+    "t": 1789570963061
+  },
+  "cat": "__custom__",
+  "catCustom": "a stylish adult woman enjoying an ordinary off-duty moment",
+  "ex": "",
+  "exCustom": "",
+  "aspect": "2:3 vertical",
+  "frame": "full body",
+  "expr": "",
+  "orient": "",
+  "pose": "",
+  "scene": "At a sunlit waterfront bicycle stop, standing beside a city bicycle and fastening a glove before a ride",
+  "outfit": "An opaque fitted teal zip-front athletic crop top, black high-waisted cycling shorts, a light open windbreaker and clean trainers",
+  "camera": "Late afternoon seaside light, soft breeze moving the long ponytail, natural full-body editorial",
+  "custom": "Use the attached female anthropomorphization as the actual identity reference. Preserve her adult face, hair, skin, eyes and body proportions. Wear only the specified modern civilian outfit. No armor, weapons or mechanical equipment. A natural candid action, subtle sensuality, no text. Do not pull the camera back to add empty margins.",
+  "axes": {},
+  "carryFace": true,
+  "carryBody": true
+}

@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "card": "헤키쟈",
+  "baseCommit": "acfa7aa87613473317c08ee72cb0168cd6d2f7e8",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact repository prompt functions executed locally after browser confirmation dialog caused CDP timeouts. Selection values validated against current PARAM_DEFS. Browser export was obtained for Efreet female only; remaining settings exported programmatically, not through browser UI.",
+  "run": "generation/m-69a6336ed4834388/runs/20260916t150243z",
+  "images": [
+    {
+      "card": "헤키쟈",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "18f38d7afe8c6adbed72c2bf171bb56f9e867173fa328388dc5fc2824d1c56be",
+      "prompt": "generation/m-69a6336ed4834388/runs/20260916t150243z/female.txt",
+      "manifest": "generation/m-69a6336ed4834388/runs/20260916t150243z/manifest.json",
+      "file": "img/헤키쟈_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-0cd1ebb0-3ef3-49f8-9740-5b9587c2e7cc.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "헤키쟈",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "4647f93629460cc9a21cf5ac69dd61ac8bec00ba064447fe141302925f2370bd",
+      "prompt": "generation/m-69a6336ed4834388/runs/20260916t150243z/male.txt",
+      "manifest": "generation/m-69a6336ed4834388/runs/20260916t150243z/manifest.json",
+      "file": "img/헤키쟈_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-0f349f44-0153-45e0-a6a2-309e6a900f11.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "헤키쟈",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "1e8aea19e72c1eee1c93aa8700736119007ae17e0e12a83d11cb68c4570ff9d3",
+      "prompt": "generation/m-69a6336ed4834388/runs/20260916t150243z/casual.txt",
+      "manifest": "generation/m-69a6336ed4834388/runs/20260916t150243z/manifest.json",
+      "file": "img/헤키쟈_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-6018ea6a-1b90-4c25-b99b-bd1c0c7f04dc.png",
+      "reference": "img/헤키쟈_cinematic_semi_real_f.webp",
+      "status": "generated, inspected and converted; main publication pending"
+    }
+  ]
+}
