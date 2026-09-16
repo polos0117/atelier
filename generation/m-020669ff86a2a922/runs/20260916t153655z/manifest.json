@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "card": "머메이드 건담",
+  "baseCommit": "e7dd54e88e5630b28f1e6e42b64024ac7a3d7335",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact repository prompt functions executed locally after browser confirmation dialog caused CDP timeouts. Selection values validated against current PARAM_DEFS. Browser export was obtained for Efreet female only; remaining settings exported programmatically, not through browser UI.",
+  "run": "generation/m-020669ff86a2a922/runs/20260916t153655z",
+  "images": [
+    {
+      "card": "머메이드 건담",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "75f2077e6a3f8ce3b5394a193503a4e7a44298d72faae0957339d1157f578729",
+      "prompt": "generation/m-020669ff86a2a922/runs/20260916t153655z/female.txt",
+      "manifest": "generation/m-020669ff86a2a922/runs/20260916t153655z/manifest.json",
+      "file": "img/머메이드_건담_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-073b8b83-2125-445d-a56f-c0757e5c7252.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending",
+      "basePrompt": "generation/m-020669ff86a2a922/runs/20260916t153655z/female.txt",
+      "editPrompt": "generation/m-020669ff86a2a922/runs/20260916t153655z/female-edit-01.txt",
+      "editReference": {
+        "sourceFile": "exec-5d5d4da3-a2e9-4a80-91c8-c34db4e87a71.png",
+        "sha256": "f27872da1edc7910a767ada1f1f92b1f063c95ce55771d8175cf84ab4761bcf4"
+      }
+    },
+    {
+      "card": "머메이드 건담",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "bdad856f6c95ae593d6a1dd9ee3d2c60136a2ba5f26a1ef2fbe9f4859b5d23c7",
+      "prompt": "generation/m-020669ff86a2a922/runs/20260916t153655z/male.txt",
+      "manifest": "generation/m-020669ff86a2a922/runs/20260916t153655z/manifest.json",
+      "file": "img/머메이드_건담_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-1a35fa4a-4a13-4476-96e1-c025f47f4807.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending",
+      "basePrompt": "generation/m-020669ff86a2a922/runs/20260916t153655z/male.txt",
+      "editPrompt": "generation/m-020669ff86a2a922/runs/20260916t153655z/male-edit-01.txt",
+      "editReference": {
+        "sourceFile": "exec-fe3911bd-42cf-4b0f-800c-ea3fc49a5150.png",
+        "sha256": "c1edaeb2995fb32ffe2db1c6848cc938f0ae0694571197ed938e2627924e7f4b"
+      }
+    },
+    {
+      "card": "머메이드 건담",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "ac58afe052cdaf0572cd53c122c0c414a67b97356b10cc0823a07a01ae6fefb9",
+      "prompt": "generation/m-020669ff86a2a922/runs/20260916t153655z/casual.txt",
+      "manifest": "generation/m-020669ff86a2a922/runs/20260916t153655z/manifest.json",
+      "file": "img/머메이드_건담_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-f973bca5-8ad3-40b9-9c3f-d08d7dcd0980.png",
+      "reference": "img/머메이드_건담_cinematic_semi_real_f.webp",
+      "status": "generated, inspected and converted; main publication pending"
+    }
+  ],
+  "visualCorrections": "Shortened trident upper shaft; male head crest tip adjusted. Figure and camera scale preserved."
+}

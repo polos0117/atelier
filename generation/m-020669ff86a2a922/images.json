@@ -1,0 +1,31 @@
+{
+  "머메이드_건담_cinematic_semi_real_f.webp": {
+    "card": "머메이드 건담",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "75f2077e6a3f8ce3b5394a193503a4e7a44298d72faae0957339d1157f578729",
+    "prompt": "generation/m-020669ff86a2a922/runs/20260916t153655z/female.txt",
+    "manifest": "generation/m-020669ff86a2a922/runs/20260916t153655z/manifest.json",
+    "editPrompt": "generation/m-020669ff86a2a922/runs/20260916t153655z/female-edit-01.txt"
+  },
+  "머메이드_건담_cinematic_semi_real_m.webp": {
+    "card": "머메이드 건담",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "bdad856f6c95ae593d6a1dd9ee3d2c60136a2ba5f26a1ef2fbe9f4859b5d23c7",
+    "prompt": "generation/m-020669ff86a2a922/runs/20260916t153655z/male.txt",
+    "manifest": "generation/m-020669ff86a2a922/runs/20260916t153655z/manifest.json",
+    "editPrompt": "generation/m-020669ff86a2a922/runs/20260916t153655z/male-edit-01.txt"
+  },
+  "머메이드_건담_cinematic_semi_real_f_casual1.webp": {
+    "card": "머메이드 건담",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "ac58afe052cdaf0572cd53c122c0c414a67b97356b10cc0823a07a01ae6fefb9",
+    "prompt": "generation/m-020669ff86a2a922/runs/20260916t153655z/casual.txt",
+    "manifest": "generation/m-020669ff86a2a922/runs/20260916t153655z/manifest.json"
+  }
+}

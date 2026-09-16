@@ -1,0 +1,29 @@
+{
+  "다기_이루스_cinematic_semi_real_f.webp": {
+    "card": "다기 이루스",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "b508e9a2a5ed4de025da370428822e3831caccc530801e57ca096132134a3233",
+    "prompt": "generation/m-c67a71f1fd8d0a71/runs/20260916t152650z/female.txt",
+    "manifest": "generation/m-c67a71f1fd8d0a71/runs/20260916t152650z/manifest.json"
+  },
+  "다기_이루스_cinematic_semi_real_m.webp": {
+    "card": "다기 이루스",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "e8ba55bd9eabc81063e20c13d98cd2a09c4275fbe3637a5b7ac17ccb5051e977",
+    "prompt": "generation/m-c67a71f1fd8d0a71/runs/20260916t152650z/male.txt",
+    "manifest": "generation/m-c67a71f1fd8d0a71/runs/20260916t152650z/manifest.json"
+  },
+  "다기_이루스_cinematic_semi_real_f_casual1.webp": {
+    "card": "다기 이루스",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "ac442ce78f4db30dda5ed9b14c69a4881fd696cf1996e0c401ea336ad0564520",
+    "prompt": "generation/m-c67a71f1fd8d0a71/runs/20260916t152650z/casual.txt",
+    "manifest": "generation/m-c67a71f1fd8d0a71/runs/20260916t152650z/manifest.json"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "card": "다기 이루스",
+  "baseCommit": "e7dd54e88e5630b28f1e6e42b64024ac7a3d7335",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact repository prompt functions executed locally after browser confirmation dialog caused CDP timeouts. Selection values validated against current PARAM_DEFS. Browser export was obtained for Efreet female only; remaining settings exported programmatically, not through browser UI.",
+  "run": "generation/m-c67a71f1fd8d0a71/runs/20260916t152650z",
+  "images": [
+    {
+      "card": "다기 이루스",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "b508e9a2a5ed4de025da370428822e3831caccc530801e57ca096132134a3233",
+      "prompt": "generation/m-c67a71f1fd8d0a71/runs/20260916t152650z/female.txt",
+      "manifest": "generation/m-c67a71f1fd8d0a71/runs/20260916t152650z/manifest.json",
+      "file": "img/다기_이루스_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-ff25c543-1b32-4847-9933-8e08e1196b70.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "다기 이루스",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "e8ba55bd9eabc81063e20c13d98cd2a09c4275fbe3637a5b7ac17ccb5051e977",
+      "prompt": "generation/m-c67a71f1fd8d0a71/runs/20260916t152650z/male.txt",
+      "manifest": "generation/m-c67a71f1fd8d0a71/runs/20260916t152650z/manifest.json",
+      "file": "img/다기_이루스_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-4dba1a6a-a14b-42e8-a765-731f81e6138c.png",
+      "reference": null,
+      "status": "generated, inspected and converted; main publication pending"
+    },
+    {
+      "card": "다기 이루스",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "ac442ce78f4db30dda5ed9b14c69a4881fd696cf1996e0c401ea336ad0564520",
+      "prompt": "generation/m-c67a71f1fd8d0a71/runs/20260916t152650z/casual.txt",
+      "manifest": "generation/m-c67a71f1fd8d0a71/runs/20260916t152650z/manifest.json",
+      "file": "img/다기_이루스_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-9291af54-02b8-4e63-bf99-2a2301b35095.png",
+      "reference": "img/다기_이루스_cinematic_semi_real_f.webp",
+      "status": "generated, inspected and converted; main publication pending"
+    }
+  ],
+  "rejectedAttempts": [
+    {
+      "sourceFile": "exec-998285ed-f74d-46b4-85c8-1834a433e646.png",
+      "prompt": "generation/m-c67a71f1fd8d0a71/runs/20260916t152650z/female-rejected-01.txt",
+      "reason": "Ivory armor instead of original Crossbone Vanguard green and burgundy palette."
+    }
+  ]
+}

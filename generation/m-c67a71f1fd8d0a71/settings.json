@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "card": "다기 이루스",
+  "updated": "2026-09-16T15:26:50.695Z",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "facial ethnicity": "European",
+        "body type": "statuesque",
+        "facial character": "elegant",
+        "skin tone": "pale",
+        "face shape": "angular",
+        "eye shape": "drooping",
+        "eye color": "amber",
+        "expression": "calm",
+        "hair color": "__custom__",
+        "hairstyle": "chignon",
+        "hair length": "medium",
+        "bangs": "side-swept bangs"
+      },
+      "cus": {
+        "hair color": "auburn"
+      },
+      "ub": false,
+      "sp": "Dahgi Iris XM-06 from Gundam F91, original Crossbone Vanguard version. Preserve its distinctive reconnaissance sensor head accents as face-framing mechanical ornaments, rounded armor shells, characteristic shoulder silhouette, compact beam rifle and mounted shield. Elegant mechanical reconnaissance knight with clearly human face and body. Original Crossbone Vanguard colors: deep forest-green main armor, burgundy-red chest and burgundy physical shield with a small restrained gold emblem, dark charcoal joints. Do not use the ivory Earth Federation repaint. Sensor-equipped rounded shoulder shells and a dorsal reconnaissance radar backpack must remain recognizable. Avoid generic fantasy armor. Normal human anatomy: one human head with clearly visible face, two arms, two legs, five fingers per hand; no robot face or extra limbs. Keep recognizable shoulder armor. Subtle adult sensuality. No camera pullback to create margins; maintain close full-body framing with feet and major equipment visible."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "facial ethnicity": "European",
+        "body type": "broad-shouldered",
+        "facial character": "elegant",
+        "skin tone": "pale",
+        "face shape": "angular",
+        "eye shape": "drooping",
+        "eye color": "amber",
+        "expression": "stoic",
+        "hair color": "__custom__",
+        "hairstyle": "slicked back",
+        "hair length": "short",
+        "bangs": "side-swept bangs"
+      },
+      "cus": {
+        "hair color": "auburn"
+      },
+      "ub": false,
+      "sp": "Dahgi Iris XM-06 from Gundam F91, original Crossbone Vanguard version. Preserve its distinctive reconnaissance sensor head accents as face-framing mechanical ornaments, rounded armor shells, characteristic shoulder silhouette, compact beam rifle and mounted shield. Elegant mechanical reconnaissance knight with clearly human face and body. Original Crossbone Vanguard colors: deep forest-green main armor, burgundy-red chest and burgundy physical shield with a small restrained gold emblem, dark charcoal joints. Do not use the ivory Earth Federation repaint. Sensor-equipped rounded shoulder shells and a dorsal reconnaissance radar backpack must remain recognizable. Avoid generic fantasy armor. Normal adult masculine human anatomy and face, two arms, two legs. Match the generated female counterpart skin, hair and eye colors exactly. No pilot resemblance. No camera pullback to add blank margins; preserve close full-body scale."
+    },
+    "g": "female",
+    "t": 1789572410694
+  },
+  "used": [],
+  "selectedStyle": "cinematic_semi_real"
+}

@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "card": "머메이드 건담",
+  "updated": "2026-09-16T15:36:55.491Z",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "facial ethnicity": "Southeast Asian",
+        "body type": "hourglass",
+        "facial character": "cheerful",
+        "skin tone": "tan",
+        "face shape": "softly rounded",
+        "eye shape": "almond",
+        "eye color": "blue",
+        "expression": "confident",
+        "hair color": "teal",
+        "hairstyle": "wavy",
+        "hair length": "long",
+        "bangs": "curtain bangs"
+      },
+      "cus": {},
+      "ub": false,
+      "sp": "Mermaid Gundam GF13-026ND from G Gundam. Preserve the original blue aquatic armor, fish-form backpack silhouette and trident weapon as external mechanical equipment around a normal human body. Full human legs and feet, no biological fish tail, no mermaid lower body. Fish-shell structures remain external, with readable fin geometry. Hold one canonical trident without duplication. Aquatic mecha identity, not a generic fantasy mermaid. Normal human anatomy: one human head with clearly visible face, two arms, two legs, five fingers per hand; no robot face or extra limbs. Keep recognizable shoulder armor. Subtle adult sensuality. No camera pullback to create margins; maintain close full-body framing with feet and major equipment visible."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "facial ethnicity": "Southeast Asian",
+        "body type": "athletic",
+        "facial character": "cheerful",
+        "skin tone": "tan",
+        "face shape": "softly rounded",
+        "eye shape": "almond",
+        "eye color": "blue",
+        "expression": "confident",
+        "hair color": "teal",
+        "hairstyle": "windswept",
+        "hair length": "medium",
+        "bangs": "curtain bangs"
+      },
+      "cus": {},
+      "ub": false,
+      "sp": "Mermaid Gundam GF13-026ND from G Gundam. Preserve the original blue aquatic armor, fish-form backpack silhouette and trident weapon as external mechanical equipment around a normal human body. Full human legs and feet, no biological fish tail, no mermaid lower body. Fish-shell structures remain external, with readable fin geometry. Hold one canonical trident without duplication. Aquatic mecha identity, not a generic fantasy mermaid. Normal adult masculine human anatomy and face, two arms, two legs. Match the generated female counterpart skin, hair and eye colors exactly. No pilot resemblance. No camera pullback to add blank margins; preserve close full-body scale."
+    },
+    "g": "female",
+    "t": 1789573015490
+  },
+  "used": [],
+  "selectedStyle": "cinematic_semi_real"
+}

@@ -1,0 +1,79 @@
+{
+  "source": {
+    "mech": "다기 이루스"
+  },
+  "gender": "female",
+  "style": "cinematic_semi_real",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "facial ethnicity": "European",
+        "body type": "statuesque",
+        "facial character": "elegant",
+        "skin tone": "pale",
+        "face shape": "angular",
+        "eye shape": "drooping",
+        "eye color": "amber",
+        "expression": "calm",
+        "hair color": "__custom__",
+        "hairstyle": "chignon",
+        "hair length": "medium",
+        "bangs": "side-swept bangs"
+      },
+      "cus": {
+        "hair color": "auburn"
+      },
+      "ub": false,
+      "sp": "Dahgi Iris XM-06 from Gundam F91, original Crossbone Vanguard version. Preserve its distinctive reconnaissance sensor head accents as face-framing mechanical ornaments, rounded armor shells, characteristic shoulder silhouette, compact beam rifle and mounted shield. Elegant mechanical reconnaissance knight with clearly human face and body. Follow the original source color blocking and avoid generic fantasy armor. Normal human anatomy: one human head with clearly visible face, two arms, two legs, five fingers per hand; no robot face or extra limbs. Keep recognizable shoulder armor. Subtle adult sensuality. No camera pullback to create margins; maintain close full-body framing with feet and major equipment visible."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "facial ethnicity": "European",
+        "body type": "broad-shouldered",
+        "facial character": "elegant",
+        "skin tone": "pale",
+        "face shape": "angular",
+        "eye shape": "drooping",
+        "eye color": "amber",
+        "expression": "stoic",
+        "hair color": "__custom__",
+        "hairstyle": "slicked back",
+        "hair length": "short",
+        "bangs": "side-swept bangs"
+      },
+      "cus": {
+        "hair color": "auburn"
+      },
+      "ub": false,
+      "sp": "Dahgi Iris XM-06 from Gundam F91, original Crossbone Vanguard version. Preserve its distinctive reconnaissance sensor head accents as face-framing mechanical ornaments, rounded armor shells, characteristic shoulder silhouette, compact beam rifle and mounted shield. Elegant mechanical reconnaissance knight with clearly human face and body. Follow the original source color blocking and avoid generic fantasy armor. Normal adult masculine human anatomy and face, two arms, two legs. Match the generated female counterpart skin, hair and eye colors exactly. No pilot resemblance. No camera pullback to add blank margins; preserve close full-body scale."
+    },
+    "g": "female",
+    "t": 1789572410694
+  },
+  "cat": "__custom__",
+  "catCustom": "a stylish adult woman enjoying an ordinary off-duty moment",
+  "ex": "",
+  "exCustom": "",
+  "aspect": "2:3 vertical",
+  "frame": "full body",
+  "expr": "",
+  "orient": "",
+  "pose": "",
+  "scene": "In a sunlit old city bookshop, standing on the floor by a tall shelf and opening a clothbound book",
+  "outfit": "An opaque fitted dark olive knit top with an open shoulder neckline, a high-waisted cream pencil skirt with a walking slit, a slim leather belt and ankle boots",
+  "camera": "Warm window light across paper and wood, quiet full-body lifestyle painting",
+  "custom": "Use the attached female anthropomorphization as the actual identity reference. Preserve her adult face, hair, skin, eyes and body proportions. Wear only the specified modern civilian outfit. No armor, weapons or mechanical equipment. A natural candid action, subtle sensuality, no text. Do not pull the camera back to add empty margins.",
+  "axes": {},
+  "carryFace": true,
+  "carryBody": true
+}
