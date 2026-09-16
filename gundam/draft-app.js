@@ -1,7 +1,7 @@
 import { h, render } from 'https://esm.sh/preact@10.24.3';
 import { useState, useEffect, useRef } from 'https://esm.sh/preact@10.24.3/hooks';
 import htm from 'https://esm.sh/htm@3.1.1';
-import { AppearanceControls, WorkspaceHeading } from '../lib/workspace-ui.js?v=ca500074de';
+import { AppearanceControls, WorkspaceHeading } from '../lib/workspace-ui.js?v=4a61706bd9';
 import * as E from './draft-engine.js?v=00e318f6bf';
 const html=htm.bind(h);
 const KINDS=['함','기체','파일럿','지휘관'];

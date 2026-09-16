@@ -29,6 +29,15 @@
   --muted:#9fb1a3;--line:#32453a;--accent:#86c88f;--ok:#6fc3b0;--warn:#e8c473;
   --signal:#e08072;--gold:#c9a961;--accent-soft:#25382a;--shadow:0 8px 28px #0005;
 }
+/* 네오지온 기함. 앞의 넷이 민무늬라 이 하나는 뒷배경에 결을 준다 —
+   비스듬히 짜인 장갑판과 위에서 내려앉는 옅은 빛. 글자는 전부 불투명한 카드
+   위에 앉으므로 결이 읽는 데 끼어들지 않는다. 결은 body 에만 깐다. */
+:root[data-theme="rewloola"] {
+  color-scheme:dark;
+  --bg:#150f14;--deck:#1c141b;--card:#221821;--card2:#2b1f2a;--text:#efe6ec;
+  --muted:#b3a1ae;--line:#4d3849;--accent:#e3a0b8;--ok:#8ccfae;--warn:#e8c473;
+  --signal:#d2705f;--gold:#c9a961;--accent-soft:#3a2634;--shadow:0 9px 30px #0006;
+}
 :root[data-density="relaxed"] {
   --ui-font:15px;--ui-small:13px;--ui-height:46px;--ui-pad:12px;--ui-gap:10px;--gap:14px;
 }
@@ -62,12 +71,15 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
 [data-theme="white-base"] .fleet-name::after {content:'WHITE BASE / 01'}
 [data-theme="archangel"] .fleet-name::after {content:'ARCHANGEL / 02'}
 [data-theme="musai"] .fleet-name::after {content:'MUSAI / 03'}
+[data-theme="rewloola"] .fleet-name::after {content:'REWLOOLA / 05'}
 .fleet-signature i {width:120px;height:3px;background:linear-gradient(to right,var(--accent) 0 64%,transparent 64% 69%,var(--signal) 69% 88%,transparent 88% 93%,var(--gold) 93%)}
 .fleet-signature b {font-size:8px;font-weight:400;letter-spacing:.2em}
 [data-theme="archangel"] body {background-color:var(--bg);background-image:radial-gradient(circle at 92% 8%,#fff9 0 11%,transparent 34%),linear-gradient(135deg,transparent 0 73%,#b3264308 73% 73.5%,transparent 73.5%)}
+[data-theme="rewloola"] body {background-color:var(--bg);background-image:repeating-linear-gradient(115deg,#ffffff06 0 1px,transparent 1px 7px),repeating-linear-gradient(-115deg,#ffffff04 0 1px,transparent 1px 11px),radial-gradient(120% 70% at 50% 0,#e3a0b814 0 38%,transparent 74%)}
 [data-theme="archangel"] .workspace-nav {border-color:#cdb8bf;box-shadow:inset 4px 0 var(--accent),0 5px 18px #4e27300c}
 [data-theme="archangel"] .theme-dot {background:linear-gradient(135deg,var(--accent) 0 52%,#728ba5 52%);box-shadow:0 0 0 3px #f5dce2}
 [data-theme="musai"] .theme-dot {background:radial-gradient(circle at 50% 50%,var(--signal) 0 38%,var(--accent) 38%);box-shadow:0 0 0 3px var(--accent-soft)}
+[data-theme="rewloola"] .theme-dot {background:linear-gradient(115deg,var(--accent) 0 46%,var(--signal) 46%);box-shadow:0 0 0 3px var(--accent-soft)}
 [data-theme="archangel"] .fleet-signature i {background:linear-gradient(to right,var(--accent) 0 59%,transparent 59% 64%,#728ba5 64% 84%,transparent 84% 89%,var(--signal) 89%)}
 /* Archive: compact search deck above an image-led collection. */
 .dex-page main {width:100%;max-width:1520px;margin:auto;padding:16px 24px calc(24px + env(safe-area-inset-bottom));scrollbar-color:var(--line) transparent}

@@ -60,21 +60,30 @@ assert.equal(root.dataset.theme, 'musai');
 assert.equal(stored.get('atelier_theme_v1'), 'musai');
 assert.equal(meta.content, '#121a14');
 
+window.AtelierAppearance.set('theme', 'rewloola');
+assert.equal(root.dataset.theme, 'rewloola');
+assert.equal(meta.content, '#1c141b');
+
 window.AtelierAppearance.set('theme', 'unknown');
 assert.equal(root.dataset.theme, 'midnight');
 assert.equal(meta.content, '#101925');
 
 assert.match(ui, /<option value="archangel">아크엔젤<\/option>/);
 assert.match(ui, /<option value="musai">무사이<\/option>/);
+assert.match(ui, /<option value="rewloola">레우르라<\/option>/);
+assert.match(css, /:root\[data-theme="rewloola"\]/);
+assert.match(css, /REWLOOLA \/ 05/);
+/* 결은 body 에만 깐다 — 카드나 글자 위에 깔면 읽기가 나빠진다 */
+assert.match(css, /\[data-theme="rewloola"\] body \{background-color:var\(--bg\);background-image:/);
 /* 테마마다 제 문장이 있어야 한다. 하나라도 빠지면 조용히 미드나이트 것이 나온다 */
 const marks = ui.slice(ui.indexOf('const FLEET_MARK'), ui.indexOf('const MARK_STYLE'));
-for (const key of ['midnight', "'white-base'", 'archangel', 'musai'])
+for (const key of ['midnight', "'white-base'", 'archangel', 'musai', 'rewloola'])
   assert(marks.includes('\n  ' + key + ': ['), key + ' 문장이 없다');
 /* 색을 박으면 테마를 바꿔도 안 따라온다 */
 assert(!/#[0-9a-f]{3,6}/i.test(marks), '문장에 색을 박았다');
 /* 넷이 서로 달라야 한다 — 베껴 두고 안 고친 것을 잡는다 */
 const shapes = [...marks.matchAll(/\['([Mm][^']+)'/g)].map(m => m[1]);
-assert(shapes.length >= 13, '문장 도형이 너무 적다 — ' + shapes.length);
+assert(shapes.length >= 17, '문장 도형이 너무 적다 — ' + shapes.length);
 assert.equal(new Set(shapes).size, shapes.length, '문장에 같은 도형이 두 번 있다');
 assert(ui.includes('FLEET_MARK[theme] || FLEET_MARK.midnight'), '모르는 테마의 되돌림이 없다');
 /* 도형을 모듈 자리에 담아 둔 VNode 로 두면 다시 그릴 때 내용이 빠질 수 있다.
@@ -91,4 +100,4 @@ assert.match(draftCss, /\.setup-bottom\{position:static/);
 assert(viewportEvents.has('resize'));
 assert(events.has('storage'));
 
-console.log('PASS: four shared themes, theme colors, storage normalization and visible viewport sizing');
+console.log('PASS: five shared themes, theme colors, storage normalization and visible viewport sizing');
