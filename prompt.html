@@ -1337,8 +1337,10 @@ function SinglePanel({ data, series, setSeries, mech, setMech, gender, setGender
             </div>
             <div class="field" style="margin-top:10px">
               <label>랜덤 성격 <small>어떤 카테고리 판에서 고를지</small></label>
+              ${/* useRec(기체친화형)은 추천 세 장을 세 Pair 에 꽂는 모드라 한 장짜리에는
+                    의미가 없다. 원본 단일 컷도 이 모드를 목록에서 뺐다 */''}
               <select aria-label="랜덤 성격" value=${st.mode} onchange=${e => set('mode', e.target.value)}>
-                ${Object.entries(S.RANDOM_MODES).map(([k, m]) => html`
+                ${Object.entries(S.RANDOM_MODES).filter(([, m]) => !m.useRec).map(([k, m]) => html`
                   <option key=${k} value=${k}>${m.ko} — ${m.descOne || m.desc}</option>`)}
               </select>
             </div>

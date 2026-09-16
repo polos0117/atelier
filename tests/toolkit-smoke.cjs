@@ -95,6 +95,19 @@ const clickText = text => {
         });
         await s.page.waitForTimeout(300);
       }
+      /* 기체친화형(useRec)은 추천 세 장을 세 Pair 에 꽂는 모드다. 한 장짜리에는
+         의미가 없고 pool 이 null 이라 전체 목록으로 조용히 떨어진다 — 고를 수 있으면
+         "추천을 쓴다" 는 이름만 보고 골랐다가 아무 일도 안 일어난다 */
+      for (const [k, want] of [['단일 컷', false], ['콜라주', false]]) {
+        await tab(k); await s.page.waitForTimeout(600);
+        const has = await s.page.evaluate(() => {
+          const el = document.querySelector('[aria-label="랜덤 성격"]');
+          return el ? [...el.options].map(o => o.value) : null;
+        });
+        add(`${k} 탭 · 랜덤 성격에 기체친화형이 없다`, has && has.includes('source') === want,
+            has ? has.join(',') : '셀렉트 없음');
+      }
+
       /* 세 탭이 서로 다른 글을 만든다 — 하나라도 같으면 등록이 새고 있다 */
       const keys = Object.keys(seen);
       add('세 탭의 글이 서로 다르다',
