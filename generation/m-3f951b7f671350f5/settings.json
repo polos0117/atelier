@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "card": "게이츠",
+  "updated": "2026-09-16T23:41:45.438Z",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "Latin American",
+        "body type": "__custom__",
+        "skin tone": "tan",
+        "face shape": "heart-shaped",
+        "eye shape": "upturned",
+        "eye color": "__custom__",
+        "hair color": "__custom__",
+        "hairstyle": "braid",
+        "hair length": "long",
+        "expression": "confident"
+      },
+      "cus": {
+        "body type": "muscular and curvy",
+        "eye color": "hazel",
+        "hair color": "auburn"
+      },
+      "ub": false,
+      "sp": "ZGMF-600 GuAIZ from Gundam SEED, original standard green GuAIZ, NOT GuAIZ R. Preserve green and gray armor, compact crested sensor ornament, original two-claw beam shield and waist-mounted extensional arrestor cable units. Canonical beam rifle, no GuAIZ R railguns. Strong curvy adult human frame with distinct waist and powerful thighs. Normal adult human anatomy: one fully visible human face, two arms, two legs, five fingers per hand. Keep source shoulder armor. Dark neutral studio background. Full body and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Keep head ornaments compact inside the frame. No text or readable markings. Subtle adult sensuality with integrated open armor and fully opaque intimate coverage."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "Latin American",
+        "body type": "muscular",
+        "skin tone": "tan",
+        "face shape": "heart-shaped",
+        "eye shape": "upturned",
+        "eye color": "__custom__",
+        "hair color": "__custom__",
+        "hairstyle": "__custom__",
+        "hair length": "short",
+        "expression": "confident"
+      },
+      "cus": {
+        "eye color": "hazel",
+        "hair color": "auburn",
+        "hairstyle": "short swept-back"
+      },
+      "ub": false,
+      "sp": "ZGMF-600 GuAIZ from Gundam SEED, original standard green GuAIZ, NOT GuAIZ R. Preserve green and gray armor, compact crested sensor ornament, original two-claw beam shield and waist-mounted extensional arrestor cable units. Canonical beam rifle, no GuAIZ R railguns. Strong curvy adult human frame with distinct waist and powerful thighs. Normal adult human anatomy: one fully visible human face, two arms, two legs, five fingers per hand. Keep source shoulder armor. Dark neutral studio background. Full body and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Keep head ornaments compact inside the frame. No text or readable markings. Clearly masculine adult face and physique. Match the female counterpart colors exactly: tan skin, auburn hair, hazel eyes."
+    },
+    "g": "female",
+    "t": 1789602105438
+  },
+  "used": [],
+  "selectedStyle": "cinematic_semi_real"
+}

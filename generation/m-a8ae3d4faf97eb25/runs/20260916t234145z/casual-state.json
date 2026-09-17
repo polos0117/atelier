@@ -1,0 +1,80 @@
+{
+  "source": {
+    "mech": "토라스"
+  },
+  "gender": "female",
+  "style": "cinematic_semi_real",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "East Asian",
+        "body type": "__custom__",
+        "skin tone": "light",
+        "face shape": "angular",
+        "eye shape": "narrow",
+        "eye color": "__custom__",
+        "hair color": "black",
+        "hairstyle": "__custom__",
+        "hair length": "medium",
+        "expression": "cold"
+      },
+      "cus": {
+        "body type": "athletic and lean",
+        "eye color": "silver gray",
+        "hairstyle": "sleek bob"
+      },
+      "ub": false,
+      "sp": "Taurus from Gundam Wing, black OZ configuration. Preserve black charcoal and dark blue aerodynamic transformable armor, elongated angular shoulder and leg forms and the distinctive compact head-sensor motif as a small hair ornament. Canonical beam rifle with coherent mechanical geometry. Tall lean human silhouette and exposed human face, no generic Gundam V-fin. Normal adult human anatomy: one fully visible human face, two arms, two legs, five fingers per hand. Keep source shoulder armor. Dark neutral studio background. Full body and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Keep head ornaments compact inside the frame. No text or readable markings. Subtle adult sensuality with integrated open armor and fully opaque intimate coverage."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "human-mechanical balance": "balanced",
+        "height impression": "tall",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament",
+        "bangs": "side-swept bangs",
+        "facial ethnicity": "East Asian",
+        "body type": "athletic",
+        "skin tone": "light",
+        "face shape": "angular",
+        "eye shape": "narrow",
+        "eye color": "__custom__",
+        "hair color": "black",
+        "hairstyle": "__custom__",
+        "hair length": "short",
+        "expression": "cold"
+      },
+      "cus": {
+        "eye color": "silver gray",
+        "hairstyle": "short swept-back"
+      },
+      "ub": false,
+      "sp": "Taurus from Gundam Wing, black OZ configuration. Preserve black charcoal and dark blue aerodynamic transformable armor, elongated angular shoulder and leg forms and the distinctive compact head-sensor motif as a small hair ornament. Canonical beam rifle with coherent mechanical geometry. Tall lean human silhouette and exposed human face, no generic Gundam V-fin. Normal adult human anatomy: one fully visible human face, two arms, two legs, five fingers per hand. Keep source shoulder armor. Dark neutral studio background. Full body and major equipment visible; keep camera close and preserve subject scale, do not pull camera back or expand margins. Keep head ornaments compact inside the frame. No text or readable markings. Clearly masculine adult face and physique. Match the female counterpart colors exactly: light skin, black hair, silver gray eyes."
+    },
+    "g": "female",
+    "t": 1789602105012
+  },
+  "cat": "__custom__",
+  "catCustom": "a stylish adult woman enjoying an ordinary off-duty moment",
+  "ex": "",
+  "exCustom": "",
+  "aspect": "2:3 vertical",
+  "frame": "full body",
+  "expr": "",
+  "orient": "",
+  "pose": "",
+  "scene": "At a modern observatory lounge, adjusting a compact camera on a tripod beside a large window",
+  "outfit": "An opaque fitted black sleeveless mock-neck top, slate tailored trousers and sleek ankle boots",
+  "camera": "Blue twilight outside and restrained warm interior lamps",
+  "custom": "Use the attached female anthropomorphization as the actual identity reference. Preserve her adult face, hair, skin, eyes and body proportions. Wear only the specified modern civilian outfit. No armor, weapons or mechanical equipment. A natural candid action, subtle sensuality, no text. Do not pull the camera back to add empty margins.",
+  "axes": {},
+  "carryFace": true,
+  "carryBody": true
+}

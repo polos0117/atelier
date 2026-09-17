@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "card": "게이츠",
+  "baseCommit": "d44ed58e57c646c141f67119d0c743d437eb76d9",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact current repository prompt functions executed locally because browser CDP tab discovery timed out. Parameters validated against PARAM_DEFS; settings exported programmatically rather than through browser UI. Actual submitted prompt files are preserved unchanged.",
+  "run": "generation/m-3f951b7f671350f5/runs/20260916t234145z",
+  "images": [
+    {
+      "card": "게이츠",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "73d36d553f7c8c9a192da314b45465686235427710d085ae9a309b18ef33dd0d",
+      "prompt": "generation/m-3f951b7f671350f5/runs/20260916t234145z/female.txt",
+      "manifest": "generation/m-3f951b7f671350f5/runs/20260916t234145z/manifest.json",
+      "file": "img/게이츠_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-ccd2f113-cf67-4e2f-bc54-702efe69c211.png",
+      "reference": null,
+      "status": "generated, visually inspected, converted; publication pending"
+    },
+    {
+      "card": "게이츠",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "a2b8c8daa16fe404355bca3acbfe2de99872c5ab2e19aa662b6c63bba010a583",
+      "prompt": "generation/m-3f951b7f671350f5/runs/20260916t234145z/male.txt",
+      "manifest": "generation/m-3f951b7f671350f5/runs/20260916t234145z/manifest.json",
+      "file": "img/게이츠_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-f605a423-1ceb-4945-89cf-f754032e594f.png",
+      "reference": null,
+      "status": "generated, visually inspected, converted; publication pending"
+    },
+    {
+      "card": "게이츠",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "9f2a610e3f00dec8ff4b3638cc7db514d72c0bdb3255aa4474428ced66f32f49",
+      "prompt": "generation/m-3f951b7f671350f5/runs/20260916t234145z/casual.txt",
+      "manifest": "generation/m-3f951b7f671350f5/runs/20260916t234145z/manifest.json",
+      "file": "img/게이츠_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-8c767923-851c-4ce8-ab38-bc7d6f6de50e.png",
+      "reference": "img/게이츠_cinematic_semi_real_f.webp",
+      "status": "generated, visually inspected, converted; publication pending"
+    }
+  ],
+  "baseTree": "ad4d8fca7c5c3560846117d31f9e6ca6b8b41739",
+  "generator": "built-in image_gen"
+}

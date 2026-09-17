@@ -1,0 +1,29 @@
+{
+  "게이츠_cinematic_semi_real_f.webp": {
+    "card": "게이츠",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "73d36d553f7c8c9a192da314b45465686235427710d085ae9a309b18ef33dd0d",
+    "prompt": "generation/m-3f951b7f671350f5/runs/20260916t234145z/female.txt",
+    "manifest": "generation/m-3f951b7f671350f5/runs/20260916t234145z/manifest.json"
+  },
+  "게이츠_cinematic_semi_real_m.webp": {
+    "card": "게이츠",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "a2b8c8daa16fe404355bca3acbfe2de99872c5ab2e19aa662b6c63bba010a583",
+    "prompt": "generation/m-3f951b7f671350f5/runs/20260916t234145z/male.txt",
+    "manifest": "generation/m-3f951b7f671350f5/runs/20260916t234145z/manifest.json"
+  },
+  "게이츠_cinematic_semi_real_f_casual1.webp": {
+    "card": "게이츠",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "9f2a610e3f00dec8ff4b3638cc7db514d72c0bdb3255aa4474428ced66f32f49",
+    "prompt": "generation/m-3f951b7f671350f5/runs/20260916t234145z/casual.txt",
+    "manifest": "generation/m-3f951b7f671350f5/runs/20260916t234145z/manifest.json"
+  }
+}

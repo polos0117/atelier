@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "card": "토라스",
+  "baseCommit": "d44ed58e57c646c141f67119d0c743d437eb76d9",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact current repository prompt functions executed locally because browser CDP tab discovery timed out. Parameters validated against PARAM_DEFS; settings exported programmatically rather than through browser UI. Actual submitted prompt files are preserved unchanged.",
+  "run": "generation/m-a8ae3d4faf97eb25/runs/20260916t234145z",
+  "images": [
+    {
+      "card": "토라스",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "b64a2532afc93056e56027815f32638b2d22a86c764f26db36172c4a5ac69b1e",
+      "prompt": "generation/m-a8ae3d4faf97eb25/runs/20260916t234145z/female.txt",
+      "manifest": "generation/m-a8ae3d4faf97eb25/runs/20260916t234145z/manifest.json",
+      "file": "img/토라스_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-b00e5134-1f12-4c71-b619-e4cd83d7ee79.png",
+      "reference": null,
+      "status": "generated, visually inspected, converted; publication pending"
+    },
+    {
+      "card": "토라스",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "c9ccd72883c33b21f1a89fa248af250e8360192afe51afbba9bf848f053b1818",
+      "prompt": "generation/m-a8ae3d4faf97eb25/runs/20260916t234145z/male.txt",
+      "manifest": "generation/m-a8ae3d4faf97eb25/runs/20260916t234145z/manifest.json",
+      "file": "img/토라스_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-0ab62612-289d-4191-a8c4-8a9a5382afbe.png",
+      "reference": null,
+      "status": "generated, visually inspected, converted; publication pending"
+    },
+    {
+      "card": "토라스",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "d52448c74aa6d2a4d7a53b66a64ac9dc4409489ac55380a1e21f87e1230f96f6",
+      "prompt": "generation/m-a8ae3d4faf97eb25/runs/20260916t234145z/casual.txt",
+      "manifest": "generation/m-a8ae3d4faf97eb25/runs/20260916t234145z/manifest.json",
+      "file": "img/토라스_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-c566ebed-1f0e-4f7a-8dda-3397e7a1d9b9.png",
+      "reference": "img/토라스_cinematic_semi_real_f.webp",
+      "status": "generated, visually inspected, converted; publication pending"
+    }
+  ],
+  "baseTree": "ad4d8fca7c5c3560846117d31f9e6ca6b8b41739",
+  "generator": "built-in image_gen"
+}
