@@ -1,0 +1,13 @@
+{
+  "female": {
+    "initialPrompt": "female.txt",
+    "initialImage": "exec-ec958595-6a91-4fba-950e-a43d74c2441b.png",
+    "result": "Quality revision: face too anime-stylized and upper blade tips clipped",
+    "retryPrompt": "female-retry1.txt",
+    "change": "Refine mature painterly facial anatomy and shorten upper windmill tips only; preserve camera scale, pose, identity and armor.",
+    "referenceStoredPath": "generation/m-f9929ecdc7aead79/runs/20260916t235014z/references/female-initial.webp",
+    "referenceStoredSha256": "a5b75f966a3c195cc4a4430d8493126ef80926682029bb46ad165cf0cd0cf8ee",
+    "sourceSha256": "45f0bfba18258aaea03ba172b5967aa93dac68726769a1c265e5a555cf276d55",
+    "remainingLimitation": "Upper-left windmill blade tip still touches/clips the top edge slightly; camera and figure scale preserved."
+  }
+}

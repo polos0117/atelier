@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "card": "코브라 건담",
+  "baseCommit": "d44ed58e57c646c141f67119d0c743d437eb76d9",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact current repository prompt functions executed locally because browser CDP tab discovery timed out. Parameters validated against PARAM_DEFS; settings exported programmatically rather than through browser UI. Actual submitted prompt files are preserved unchanged.",
+  "run": "generation/m-795019e2d48c0ead/runs/20260916t235013z",
+  "images": [
+    {
+      "card": "코브라 건담",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "875417e72529ffaf56f02821c8c5ad24d15ae774cbdf20bf7be4aaef05a54d52",
+      "prompt": "generation/m-795019e2d48c0ead/runs/20260916t235013z/female-retry1.txt",
+      "manifest": "generation/m-795019e2d48c0ead/runs/20260916t235013z/manifest.json",
+      "file": "img/코브라_건담_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-d4aad104-c83e-4fdc-9575-5ff6af06d0d5.png",
+      "reference": null,
+      "status": "generated, visually inspected, converted; publication pending"
+    },
+    {
+      "card": "코브라 건담",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "8ec502836464cbddebb8fcddc2fba6270b25f3ae22abdb398d94feb45786d903",
+      "prompt": "generation/m-795019e2d48c0ead/runs/20260916t235013z/male.txt",
+      "manifest": "generation/m-795019e2d48c0ead/runs/20260916t235013z/manifest.json",
+      "file": "img/코브라_건담_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-9c213b1d-16fc-44cf-bd4d-6362d259b16e.png",
+      "reference": null,
+      "status": "generated, visually inspected, converted; publication pending"
+    },
+    {
+      "card": "코브라 건담",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "07ee7e3f9f233c1eb97ed9a7b0bcbe738e5468305fe0d770390a511d82a48fdf",
+      "prompt": "generation/m-795019e2d48c0ead/runs/20260916t235013z/casual.txt",
+      "manifest": "generation/m-795019e2d48c0ead/runs/20260916t235013z/manifest.json",
+      "file": "img/코브라_건담_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-128d6bb4-b11f-45ed-971c-1b484dee8d25.png",
+      "reference": "img/코브라_건담_cinematic_semi_real_f.webp",
+      "status": "generated, visually inspected, converted; publication pending"
+    }
+  ],
+  "baseTree": "ad4d8fca7c5c3560846117d31f9e6ca6b8b41739",
+  "generator": "built-in image_gen",
+  "corrections": "generation/m-795019e2d48c0ead/runs/20260916t235013z/corrections.json"
+}

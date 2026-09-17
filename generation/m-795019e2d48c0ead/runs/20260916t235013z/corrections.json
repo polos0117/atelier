@@ -1,0 +1,9 @@
+{
+  "female": {
+    "initialPrompt": "female.txt",
+    "result": "output moderation rejected; no usable image",
+    "requestId": "e737d685-dd28-4d26-a4b6-b6e6b3d79c0b",
+    "retryPrompt": "female-retry1.txt",
+    "change": "Increased armor coverage to high; covered chest, abdomen and hips; removed sensual wording. Identity, palette, source equipment and framing preserved."
+  }
+}

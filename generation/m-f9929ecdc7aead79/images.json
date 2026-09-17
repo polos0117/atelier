@@ -1,0 +1,29 @@
+{
+  "네델_건담_cinematic_semi_real_f.webp": {
+    "card": "네델 건담",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "70982b2d588a35852ea0712174fcdef75291742a0279accc6eb973cfb2dde6ff",
+    "prompt": "generation/m-f9929ecdc7aead79/runs/20260916t235014z/female-retry1.txt",
+    "manifest": "generation/m-f9929ecdc7aead79/runs/20260916t235014z/manifest.json"
+  },
+  "네델_건담_cinematic_semi_real_m.webp": {
+    "card": "네델 건담",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "1cecf78bfd58491633acf2aedda15e05709f8b9082c864ee86b9eb29c37df237",
+    "prompt": "generation/m-f9929ecdc7aead79/runs/20260916t235014z/male.txt",
+    "manifest": "generation/m-f9929ecdc7aead79/runs/20260916t235014z/manifest.json"
+  },
+  "네델_건담_cinematic_semi_real_f_casual1.webp": {
+    "card": "네델 건담",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "f8bf50fadc1b097893b4d90797259e8cea64d33946f4a32b41f61810349a37e3",
+    "prompt": "generation/m-f9929ecdc7aead79/runs/20260916t235014z/casual.txt",
+    "manifest": "generation/m-f9929ecdc7aead79/runs/20260916t235014z/manifest.json"
+  }
+}

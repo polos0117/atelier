@@ -1,0 +1,29 @@
+{
+  "코브라_건담_cinematic_semi_real_f.webp": {
+    "card": "코브라 건담",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "875417e72529ffaf56f02821c8c5ad24d15ae774cbdf20bf7be4aaef05a54d52",
+    "prompt": "generation/m-795019e2d48c0ead/runs/20260916t235013z/female-retry1.txt",
+    "manifest": "generation/m-795019e2d48c0ead/runs/20260916t235013z/manifest.json"
+  },
+  "코브라_건담_cinematic_semi_real_m.webp": {
+    "card": "코브라 건담",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "8ec502836464cbddebb8fcddc2fba6270b25f3ae22abdb398d94feb45786d903",
+    "prompt": "generation/m-795019e2d48c0ead/runs/20260916t235013z/male.txt",
+    "manifest": "generation/m-795019e2d48c0ead/runs/20260916t235013z/manifest.json"
+  },
+  "코브라_건담_cinematic_semi_real_f_casual1.webp": {
+    "card": "코브라 건담",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "07ee7e3f9f233c1eb97ed9a7b0bcbe738e5468305fe0d770390a511d82a48fdf",
+    "prompt": "generation/m-795019e2d48c0ead/runs/20260916t235013z/casual.txt",
+    "manifest": "generation/m-795019e2d48c0ead/runs/20260916t235013z/manifest.json"
+  }
+}
