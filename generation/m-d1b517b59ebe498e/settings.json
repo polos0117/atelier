@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "card": "건담 AGE-3 포트리스",
+  "updated": "2026-09-17T03:50:05.036Z",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "facial ethnicity": "East Asian",
+        "body type": "__custom__",
+        "height impression": "tall",
+        "skin tone": "__custom__",
+        "face shape": "oval",
+        "eye shape": "almond",
+        "eye color": "__custom__",
+        "hair color": "__custom__",
+        "hairstyle": "__custom__",
+        "hair length": "long",
+        "bangs": "side-swept bangs",
+        "expression": "confident",
+        "human-mechanical balance": "balanced",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament"
+      },
+      "cus": {
+        "body type": "full figured hourglass",
+        "skin tone": "light warm",
+        "eye color": "hazel brown",
+        "hair color": "dark cherry brown",
+        "hairstyle": "long loose waves"
+      },
+      "ub": false,
+      "sp": "Gundam AGE-3 Fortress AGE-3F. Preserve its distinctive green and white heavy armor, red and yellow accents, massive layered shoulder units and leg hover armor. Exactly four SigMaxiss cannons integrated in their source shoulder and forearm positions, two shoulder units and two forearm units; coherent barrels, hardpoints and mechanical connections. No invented handheld rifle. Normal adult human head and two arms and legs remain clearly readable between external armor. Normal adult human anatomy, one fully visible human face, two arms, two legs, five fingers per hand. Retain source shoulder armor. Dark neutral studio backdrop, full figure and equipment visible, preserve close subject scale without camera pullback or increased margins. Compact crest ornament. No text. A strong feminine silhouette with a defined waist and subtle adult glamour. Integrated open armor with fully opaque chest and hip coverage."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "facial ethnicity": "East Asian",
+        "body type": "muscular",
+        "height impression": "tall",
+        "skin tone": "__custom__",
+        "face shape": "oval",
+        "eye shape": "almond",
+        "eye color": "__custom__",
+        "hair color": "__custom__",
+        "hairstyle": "__custom__",
+        "hair length": "short",
+        "bangs": "side-swept bangs",
+        "expression": "confident",
+        "human-mechanical balance": "balanced",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament"
+      },
+      "cus": {
+        "skin tone": "light warm",
+        "eye color": "hazel brown",
+        "hair color": "dark cherry brown",
+        "hairstyle": "short swept-back"
+      },
+      "ub": false,
+      "sp": "Gundam AGE-3 Fortress AGE-3F. Preserve its distinctive green and white heavy armor, red and yellow accents, massive layered shoulder units and leg hover armor. Exactly four SigMaxiss cannons integrated in their source shoulder and forearm positions, two shoulder units and two forearm units; coherent barrels, hardpoints and mechanical connections. No invented handheld rifle. Normal adult human head and two arms and legs remain clearly readable between external armor. Normal adult human anatomy, one fully visible human face, two arms, two legs, five fingers per hand. Retain source shoulder armor. Dark neutral studio backdrop, full figure and equipment visible, preserve close subject scale without camera pullback or increased margins. Compact crest ornament. No text. Clearly adult masculine face and physique. Fully armored. Match female colors exactly: light warm skin, dark cherry brown hair, hazel brown eyes."
+    },
+    "g": "female",
+    "t": 1789617005036
+  },
+  "used": [],
+  "selectedStyle": "cinematic_semi_real"
+}

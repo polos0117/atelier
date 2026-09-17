@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "card": "볼트 건담",
+  "baseCommit": "e3bc829768cd89763ad7a43217e0953445d52c9e",
+  "baseTree": "0f8c25e018ffa83562312f3998d533cdb2bffc96",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact repository prompt functions executed locally; browser CDP unavailable in this session. Parameters validated against PARAM_DEFS. Programmatic settings export, not browser UI export.",
+  "generator": "built-in image_gen",
+  "generationSettings": {
+    "model": "not exposed by tool",
+    "seed": "not exposed by tool",
+    "anthroAspect": "2:3 vertical",
+    "lifestyleAspect": "3:2 horizontal"
+  },
+  "run": "generation/m-33e2705008e3665f/runs/20260917t035005z",
+  "images": [
+    {
+      "card": "볼트 건담",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "ac923e24b1302677c685880a383f918dfee92f4e39931a2b54328b87e3ded6d8",
+      "prompt": "generation/m-33e2705008e3665f/runs/20260917t035005z/female.txt",
+      "manifest": "generation/m-33e2705008e3665f/runs/20260917t035005z/manifest.json",
+      "file": "img/볼트_건담_cinematic_semi_real_f_extra1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-77f0c837-a205-4217-b8c7-befec0e3d20c.png",
+      "reference": null,
+      "status": "generated, visually inspected, converted; publication pending",
+      "registrationMode": "extra"
+    },
+    {
+      "card": "볼트 건담",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "64f7e83086ee0d1fd9522d722831fa5d45461c3c23dc6a1bb90cfaa4d7444526",
+      "prompt": "generation/m-33e2705008e3665f/runs/20260917t035005z/male.txt",
+      "manifest": "generation/m-33e2705008e3665f/runs/20260917t035005z/manifest.json",
+      "file": "img/볼트_건담_cinematic_semi_real_m_extra1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-2a8dbedf-7d40-4bd5-ad81-ed591c01e806.png",
+      "reference": null,
+      "status": "generated, visually inspected, converted; publication pending",
+      "registrationMode": "extra"
+    },
+    {
+      "card": "볼트 건담",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "12ae75b278553152e07c6ed28a12b0a9027f61c82c0bcad986db606daca564cd",
+      "prompt": "generation/m-33e2705008e3665f/runs/20260917t035005z/casual.txt",
+      "manifest": "generation/m-33e2705008e3665f/runs/20260917t035005z/manifest.json",
+      "file": "img/볼트_건담_cinematic_semi_real_f_extra2.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "sourceFile": "exec-ee077563-2f90-453c-8451-83694819a27f.png",
+      "reference": "img/볼트_건담_cinematic_semi_real_f_extra1.webp",
+      "status": "generated, visually inspected, converted; publication pending",
+      "registrationMode": "extra"
+    }
+  ],
+  "generatedAs": "보르트 건담",
+  "registrationNote": "User requested all three images as Bolt Gundam extra cuts; original submitted prompts/settings preserve the generation-time name."
+}

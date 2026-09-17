@@ -1,0 +1,87 @@
+{
+  "source": {
+    "mech": "보르트 건담"
+  },
+  "gender": "female",
+  "style": "cinematic_semi_real",
+  "record": {
+    "female": {
+      "sel": {
+        "apparent age": "20s",
+        "facial ethnicity": "__custom__",
+        "body type": "__custom__",
+        "height impression": "tall",
+        "skin tone": "__custom__",
+        "face shape": "__custom__",
+        "eye shape": "almond",
+        "eye color": "__custom__",
+        "hair color": "__custom__",
+        "hairstyle": "high ponytail",
+        "hair length": "long",
+        "bangs": "side-swept bangs",
+        "expression": "confident",
+        "human-mechanical balance": "balanced",
+        "armor coverage": "open",
+        "head crest integration": "hair ornament"
+      },
+      "cus": {
+        "facial ethnicity": "Eastern European",
+        "body type": "muscular and curvy",
+        "skin tone": "light rosy",
+        "face shape": "square",
+        "eye color": "steel blue",
+        "hair color": "ash brown"
+      },
+      "ub": false,
+      "sp": "Bolt Gundam from G Gundam. Preserve heavy dark navy and white armor with red and yellow accents, massive blocky shoulder armor, broad forearm guards and heavy boots. Include its distinctive Graviton Hammer: one heavy spherical hammer on a mechanically connected cable with the proper shoulder storage mount, no duplicate hammer. Translate its powerful silhouette into an adult human with a strong waist and muscular limbs. No pilot likeness. Normal adult human anatomy, one fully visible human face, two arms, two legs, five fingers per hand. Retain source shoulder armor. Dark neutral studio backdrop, full figure and equipment visible, preserve close subject scale without camera pullback or increased margins. Compact crest ornament. No text. A strong feminine silhouette with a defined waist and subtle adult glamour. Integrated open armor with fully opaque chest and hip coverage."
+    },
+    "male": {
+      "sel": {
+        "apparent age": "20s",
+        "facial ethnicity": "__custom__",
+        "body type": "muscular",
+        "height impression": "tall",
+        "skin tone": "__custom__",
+        "face shape": "__custom__",
+        "eye shape": "almond",
+        "eye color": "__custom__",
+        "hair color": "__custom__",
+        "hairstyle": "__custom__",
+        "hair length": "short",
+        "bangs": "side-swept bangs",
+        "expression": "confident",
+        "human-mechanical balance": "balanced",
+        "armor coverage": "high",
+        "head crest integration": "hair ornament"
+      },
+      "cus": {
+        "facial ethnicity": "Eastern European",
+        "skin tone": "light rosy",
+        "face shape": "square",
+        "eye color": "steel blue",
+        "hair color": "ash brown",
+        "hairstyle": "short swept-back"
+      },
+      "ub": false,
+      "sp": "Bolt Gundam from G Gundam. Preserve heavy dark navy and white armor with red and yellow accents, massive blocky shoulder armor, broad forearm guards and heavy boots. Include its distinctive Graviton Hammer: one heavy spherical hammer on a mechanically connected cable with the proper shoulder storage mount, no duplicate hammer. Translate its powerful silhouette into an adult human with a strong waist and muscular limbs. No pilot likeness. Normal adult human anatomy, one fully visible human face, two arms, two legs, five fingers per hand. Retain source shoulder armor. Dark neutral studio backdrop, full figure and equipment visible, preserve close subject scale without camera pullback or increased margins. Compact crest ornament. No text. Clearly adult masculine face and physique. Fully armored. Match female colors exactly: light rosy skin, ash brown hair, steel blue eyes."
+    },
+    "g": "female",
+    "t": 1789617005029
+  },
+  "cat": "__custom__",
+  "catCustom": "a stylish adult woman enjoying an ordinary off-duty moment",
+  "ex": "",
+  "exCustom": "",
+  "aspect": "3:2 horizontal",
+  "frame": "three-quarter body",
+  "expr": "",
+  "orient": "",
+  "pose": "",
+  "scene": "In an intimate billiards lounge, leaning forward over the table and preparing a precise pool shot, eyes following the cue ball, one hand bridging the cue on the felt",
+  "outfit": "An opaque fitted burgundy sleeveless waistcoat over a secure black top, charcoal tailored trousers and low heeled boots",
+  "camera": "A landscape three-quarter side view from near table height, framing her head to upper thighs with the cue and table extending diagonally through the scene; warm pendant lights and cool reflected green felt",
+  "custom": "Use the attached female image only as the identity reference: preserve her adult face, hair, skin, eyes and body proportions. Create an independent composition and camera angle suited to the described civilian scene. Do not copy the reference pose, viewpoint, framing or camera distance. No armor or weapons; wear the specified opaque civilian outfit. Natural candid action and subtle adult glamour. No text.",
+  "axes": {},
+  "carryFace": true,
+  "carryBody": true
+}

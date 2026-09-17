@@ -1,0 +1,29 @@
+{
+  "건담_AGE-3_포트리스_cinematic_semi_real_f.webp": {
+    "card": "건담 AGE-3 포트리스",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "62ca4f5753025b00e89aecddb372e11b8c6cbccd58db4520f23e81ce8899cf78",
+    "prompt": "generation/m-d1b517b59ebe498e/runs/20260917t035005z/female.txt",
+    "manifest": "generation/m-d1b517b59ebe498e/runs/20260917t035005z/manifest.json"
+  },
+  "건담_AGE-3_포트리스_cinematic_semi_real_m.webp": {
+    "card": "건담 AGE-3 포트리스",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "0e005133003f9e5b2299c7e40c48dbac71912f9b730f65f0feb1b23189c9a030",
+    "prompt": "generation/m-d1b517b59ebe498e/runs/20260917t035005z/male.txt",
+    "manifest": "generation/m-d1b517b59ebe498e/runs/20260917t035005z/manifest.json"
+  },
+  "건담_AGE-3_포트리스_cinematic_semi_real_f_casual1.webp": {
+    "card": "건담 AGE-3 포트리스",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "4200d35ea6aabc30f85eb5bcf6379ec367d21b6af8dba218d6ca483acbf39389",
+    "prompt": "generation/m-d1b517b59ebe498e/runs/20260917t035005z/casual.txt",
+    "manifest": "generation/m-d1b517b59ebe498e/runs/20260917t035005z/manifest.json"
+  }
+}

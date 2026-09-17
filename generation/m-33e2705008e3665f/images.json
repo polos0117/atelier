@@ -38,5 +38,38 @@
     "sha256": "34721eb2f0cba78e0c8f8469d36fcd02787098c4319cb89e874d4dbfd1c934a4",
     "prompt": "generation/m-33e2705008e3665f/runs/2026-09-12t153749z/04-casual.txt",
     "manifest": "generation/m-33e2705008e3665f/runs/2026-09-12t153749z/manifest.json"
+  },
+  "볼트_건담_cinematic_semi_real_f_extra1.webp": {
+    "card": "볼트 건담",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "anthro",
+    "sha256": "ac923e24b1302677c685880a383f918dfee92f4e39931a2b54328b87e3ded6d8",
+    "prompt": "generation/m-33e2705008e3665f/runs/20260917t035005z/female.txt",
+    "manifest": "generation/m-33e2705008e3665f/runs/20260917t035005z/manifest.json",
+    "generatedAs": "보르트 건담",
+    "registrationMode": "extra"
+  },
+  "볼트_건담_cinematic_semi_real_m_extra1.webp": {
+    "card": "볼트 건담",
+    "style": "cinematic_semi_real",
+    "gender": "male",
+    "mode": "anthro",
+    "sha256": "64f7e83086ee0d1fd9522d722831fa5d45461c3c23dc6a1bb90cfaa4d7444526",
+    "prompt": "generation/m-33e2705008e3665f/runs/20260917t035005z/male.txt",
+    "manifest": "generation/m-33e2705008e3665f/runs/20260917t035005z/manifest.json",
+    "generatedAs": "보르트 건담",
+    "registrationMode": "extra"
+  },
+  "볼트_건담_cinematic_semi_real_f_extra2.webp": {
+    "card": "볼트 건담",
+    "style": "cinematic_semi_real",
+    "gender": "female",
+    "mode": "lifestyle",
+    "sha256": "12ae75b278553152e07c6ed28a12b0a9027f61c82c0bcad986db606daca564cd",
+    "prompt": "generation/m-33e2705008e3665f/runs/20260917t035005z/casual.txt",
+    "manifest": "generation/m-33e2705008e3665f/runs/20260917t035005z/manifest.json",
+    "generatedAs": "보르트 건담",
+    "registrationMode": "extra"
   }
 }

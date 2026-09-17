@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "card": "건담 AGE-3 포트리스",
+  "baseCommit": "e3bc829768cd89763ad7a43217e0953445d52c9e",
+  "baseTree": "0f8c25e018ffa83562312f3998d533cdb2bffc96",
+  "promptSource": "prompt.html; lib/toolkit-spec.js; lib/prompt-anthro.js; lib/prompt-lifestyle.js",
+  "method": "Exact repository prompt functions executed locally; browser CDP unavailable in this session. Parameters validated against PARAM_DEFS. Programmatic settings export, not browser UI export.",
+  "generator": "built-in image_gen",
+  "generationSettings": {
+    "model": "not exposed by tool",
+    "seed": "not exposed by tool",
+    "anthroAspect": "2:3 vertical",
+    "lifestyleAspect": "3:2 horizontal"
+  },
+  "run": "generation/m-d1b517b59ebe498e/runs/20260917t035005z",
+  "images": [
+    {
+      "card": "건담 AGE-3 포트리스",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "anthro",
+      "sha256": "62ca4f5753025b00e89aecddb372e11b8c6cbccd58db4520f23e81ce8899cf78",
+      "prompt": "generation/m-d1b517b59ebe498e/runs/20260917t035005z/female.txt",
+      "manifest": "generation/m-d1b517b59ebe498e/runs/20260917t035005z/manifest.json",
+      "file": "img/건담_AGE-3_포트리스_cinematic_semi_real_f.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-65c239dd-14c4-4a64-ac55-0df7a2869421.png",
+      "reference": null,
+      "status": "generated, visually inspected, converted; publication pending"
+    },
+    {
+      "card": "건담 AGE-3 포트리스",
+      "style": "cinematic_semi_real",
+      "gender": "male",
+      "mode": "anthro",
+      "sha256": "0e005133003f9e5b2299c7e40c48dbac71912f9b730f65f0feb1b23189c9a030",
+      "prompt": "generation/m-d1b517b59ebe498e/runs/20260917t035005z/male.txt",
+      "manifest": "generation/m-d1b517b59ebe498e/runs/20260917t035005z/manifest.json",
+      "file": "img/건담_AGE-3_포트리스_cinematic_semi_real_m.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "sourceFile": "exec-fab8661b-e7f1-416e-8642-094a270217e0.png",
+      "reference": null,
+      "status": "generated, visually inspected, converted; publication pending"
+    },
+    {
+      "card": "건담 AGE-3 포트리스",
+      "style": "cinematic_semi_real",
+      "gender": "female",
+      "mode": "lifestyle",
+      "sha256": "4200d35ea6aabc30f85eb5bcf6379ec367d21b6af8dba218d6ca483acbf39389",
+      "prompt": "generation/m-d1b517b59ebe498e/runs/20260917t035005z/casual.txt",
+      "manifest": "generation/m-d1b517b59ebe498e/runs/20260917t035005z/manifest.json",
+      "file": "img/건담_AGE-3_포트리스_cinematic_semi_real_f_casual1.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "sourceFile": "exec-1eaba462-b9a7-42f8-b392-bc1efc7612bf.png",
+      "reference": "img/건담_AGE-3_포트리스_cinematic_semi_real_f.webp",
+      "status": "generated, visually inspected, converted; publication pending"
+    }
+  ]
+}
