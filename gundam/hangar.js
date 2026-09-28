@@ -26,9 +26,9 @@
   $('changeExhibits').onclick=() => { if(!records.length) return notify('전시 목록을 불러오는 중입니다.'); offset=(offset+bays.length)%records.length; updateExhibits(); notify('전시 기체를 바꿨습니다.'); };
   $('pauseButton').onclick=() => { paused=!paused; clearInput(); $('pauseButton').textContent=paused?'3D 다시 움직이기':'3D 일시정지'; $('pauseButton').setAttribute('aria-pressed',String(paused)); syncLoop(); };
   function applyQuality() { targetFPS=quality==='high'?60:30; if(!engine) return; if(scene)scene.shadowsEnabled=quality!=='low'; const ratio=quality==='low'?.7:quality==='high'?Math.min(devicePixelRatio||1,1.5):1; engine.setHardwareScalingLevel(1/ratio); engine.resize(); }
-  function resetView() { camera.position.set(0,2.1,-16); camera.rotation.set(-.16,0,0); clearInput(); }
+  function resetView() { camera.position.set(0,2.1,-21.2); camera.rotation.set(-.16,0,0); clearInput(); }
   function blocked() { return paused||document.hidden||!$('options').hidden||!ready; }
-  addEventListener('keydown',e => { if(e.key==='Escape'){ $('options').hidden=true;$('optionsButton').setAttribute('aria-expanded','false');clearInput();return; } if(/INPUT|SELECT|TEXTAREA|BUTTON|A/.test(document.activeElement.tagName)||blocked())return; if(['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code)){keys[e.code]=true;e.preventDefault();} if(e.code==='KeyE'&&!e.repeat&&currentBay) location.href=detailURL(currentBay.record); });
+  addEventListener('keydown',e => { if(e.key==='Escape'){ $('options').hidden=true;$('optionsButton').setAttribute('aria-expanded','false');clearInput();return; } if(/^(INPUT|SELECT|TEXTAREA|BUTTON|A)$/.test(document.activeElement.tagName)||blocked())return; if(['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code)){keys[e.code]=true;e.preventDefault();} if(e.code==='KeyE'&&!e.repeat&&currentBay) location.href=detailURL(currentBay.record); });
   addEventListener('keyup',e=>delete keys[e.code]); addEventListener('blur',clearInput);
   stick.addEventListener('pointerdown',e=>{if(blocked()||stickPointer!==null)return;e.preventDefault();stickPointer=e.pointerId;stick.setPointerCapture(e.pointerId);moveStick(e);});
   function moveStick(e){if(e.pointerId!==stickPointer)return;const r=stick.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2,d=Math.hypot(x,y),s=d>38?38/d:1;joy={x:x*s/38,y:y*s/38};knob.style.transform=`translate(${x*s}px,${y*s}px)`;}
@@ -86,6 +86,16 @@
     // The approved image is a real in-world continuation behind an inaccessible bulkhead.
     // It is not attached to the camera and is never stretched into a fake 360 panorama.
     box('entry bulkhead',0,10,-25,34,20,1,wall);box('port hull',-17,10,0,1,20,50,wall);box('starboard hull',17,10,0,1,20,50,wall);
+    // Frontal image elevations stay on their physical walls; camera motion remains 3D.
+    function wallElevation(name,file,width,height,x,y,z,rotation){
+      const mesh=B.MeshBuilder.CreatePlane(name,{width,height},scene);
+      mesh.position.set(x,y,z);mesh.rotation.y=rotation;
+      const mat=emissive(name+' material','#000000');mat.emissiveTexture=textureAsset(file);mat.fogEnabled=false;
+      mesh.material=mat;mesh.isPickable=false;mesh.freezeWorldMatrix();return mesh;
+    }
+    wallElevation('port wall elevation','port-wall-v3.webp',50,50*793/1983,-16.47,10,0,-Math.PI/2);
+    wallElevation('starboard wall elevation','starboard-wall-v3.webp',50,50*793/1983,16.47,10,0,Math.PI/2);
+    wallElevation('rear wall elevation','rear-wall-v3.webp',34,34*962/1635,0,10,-24.47,Math.PI);
     const backdrop=B.MeshBuilder.CreatePlane('approved hangar extension',{width:42,height:42*941/1672},scene);backdrop.position.set(0,10.65,26.5);const bg=emissive('approved background','#000000');bg.emissiveTexture=textureAsset('hangar-backdrop-v2.webp');bg.fogEnabled=false;backdrop.material=bg;backdrop.isPickable=false;
     box('extension lintel',0,19.8,24.9,34,1,1.8,frame);for(const side of [-1,1]){box('extension jamb',side*15.8,10,24.9,1,20,1.8,panel);box('portal seam',side*15.2,10,23.98,.12,18,.06,amber);}
     // Open clerestory, offset ceiling ribs and bracing replace the former solid roof.
@@ -98,7 +108,6 @@
       for(const side of [-1,1]){const x=side*16;
         box('column web',x,9.6,z,.25,19.2,.75,frame);for(const dz of [-.45,.45])box('column flange',x,9.6,z+dz,.85,19.2,.10,edge);
         box('column shoe',x,.25,z,1.3,.5,1.25,frame);rod('knee brace',[x,15,z],[side*11,19,z],.12,edge);
-        for(let y=2.4;y<18;y+=4.6){box('enamel maintenance module',side*16.45,y,z,.15,4,5.4,panel);box('panel edge',side*16.30,y-2,z,.12,.12,5.5,frame);for(const dz of [-2.5,2.5])box('cover latch',side*16.2,y,z+dz,.2,.5,.13,edge);}
         box('lamp housing',side*14.8,8.8,z,.8,.7,.32,black);box('lamp diffuser',side*14.8,8.8,z-.18,.58,.43,.025,amber);for(const dy of [-.3,.3])box('lamp cage',side*14.8,8.8+dy,z-.23,.8,.035,.045,frame);
         // Double-level service walkways, toe plates, proper handrails and braces.
         for(const y of [5.2,11.3]){box('maintenance platform',side*14.8,y,z,2.6,.22,5.98,frame);box('platform fascia',side*13.45,y-.18,z,.12,.5,5.98,panel);rod('walkway top rail',[side*13.4,y+1.08,z-3],[side*13.4,y+1.08,z+3],.045,gold);rod('walkway mid rail',[side*13.4,y+.58,z-3],[side*13.4,y+.58,z+3],.027,gold);for(const dz of [-2.8,0,2.8])rod('guardrail post',[side*13.4,y,z+dz],[side*13.4,y+1.08,z+dz],.035,gold);rod('platform support',[side*16,y-2,z],[side*13.5,y-.1,z],.085,frame);}
@@ -121,24 +130,35 @@
     box('crane motor',6,17.05,2.5,1.7,.85,1.8,vent);for(const x of [5.1,6.9])for(const z of [1.7,3.2])rod('carriage wheel',[x-.12,16.75,z],[x+.12,16.75,z],.3,edge,12);
     for(const x of [5.8,6.2])rod('hoist cable',[x,16,2.5],[x,10,2.5],.025,black);box('hook block',6,9.9,2.5,.75,.8,.65,gold);ring('crane hook',6,9.28,2.5,.3,.13,edge,'z');
     // Service lockers and restrained ground equipment, outside the central aisle.
-    for(const side of [-1,1])for(const z of [-18,2,18]){
+    for(const side of [-1,1])for(const z of [-22,-8,8,22]){
       const x=side*14.7;box('service cabinet',x,1.15,z,1.8,2.3,1.2,panel);box('cabinet kick plate',x,.16,z-.63,1.85,.3,.12,frame);for(let k=0;k<6;k++)box('cabinet vent',x,1.55+k*.08,z-.61,1.25,.025,.025,black);for(const dx of [-.6,.6])box('door handle',x+dx,1,z-.67,.045,.36,.045,edge);obstacles.push({x,z,w:1.35,d:1.0});
       const tank=B.MeshBuilder.CreateCylinder('pressure vessel',{height:2.3,diameter:.8,tessellation:12},scene);tank.position.set(side*15.6,1.3,z+1.3);group(tank,edge);ring('valve wheel',side*15.6,2.55,z+1.3,.18,.045,gold);
     }
     // Freestanding stairs provide a strong human scale without obstructing movement.
-    for(const side of [-1,1]){const x=side*12.8,z0=-20;for(let k=0;k<15;k++){box('stair tread',x,.17+k*.35,z0+k*.28,1.9,.12,.33,edge);box('stair nosing',x,.235+k*.35,z0+k*.28-.16,1.9,.025,.035,gold);}for(const dx of [-1,1]){rod('stair stringer',[x+dx,.08,z0-.2],[x+dx,5.15,z0+4.1],.12,frame,4);rod('stair railing',[x+dx,1.1,z0-.2],[x+dx,6.2,z0+4.1],.045,gold);for(const k of [0,5,10,14])rod('stair rail post',[x+dx,.2+k*.35,z0+k*.28],[x+dx,1.25+k*.35,z0+k*.28],.035,gold);}obstacles.push({x,z:z0+2,w:1.6,d:2.6});}
-    // Side-mounted archive projections leave the approved background and central aisle open.
-    const layout=[{x:9.7,z:15,rot:Math.PI*.13},{x:-12,z:-5,rot:-Math.PI/2},{x:12,z:-5,rot:Math.PI/2},{x:-12,z:8,rot:-Math.PI/2},{x:12,z:8,rot:Math.PI/2}];
+    for(const side of [-1,1]){const x=side*14.3,z0=-24;for(let k=0;k<15;k++){box('stair tread',x,.17+k*.35,z0+k*.28,1.9,.12,.33,edge);box('stair nosing',x,.235+k*.35,z0+k*.28-.16,1.9,.025,.035,gold);}for(const dx of [-1,1]){rod('stair stringer',[x+dx,.08,z0-.2],[x+dx,5.15,z0+4.1],.12,frame,4);rod('stair railing',[x+dx,1.1,z0-.2],[x+dx,6.2,z0+4.1],.045,gold);for(const k of [0,5,10,14])rod('stair rail post',[x+dx,.2+k*.35,z0+k*.28],[x+dx,1.25+k*.35,z0+k*.28],.035,gold);}obstacles.push({x,z:z0+2,w:1.6,d:2.6});}
+    // Three paired maintenance berths face each other across an unobstructed aisle.
+    const layout=[-16,0,16].flatMap(z=>[
+      {x:-12,z,rot:-Math.PI/2,side:'PORT'},
+      {x:12,z,rot:Math.PI/2,side:'STARBOARD'}
+    ]);
     layout.forEach((loc,index)=>{
       const root=new B.TransformNode('bay '+index,scene);root.position.set(loc.x,0,loc.z);root.rotation.y=loc.rot;
       const localBox=(name,x,y,z,w,h,d,mat)=>{const p=box(name,x,y,z,w,h,d,mat);p.parent=root;return p;};
+      // Floor berth outlines and overhead docking hardware make every station a service bay.
+      for(const side of [-1,1]){
+        localBox('berth floor boundary',side*4.15,.025,.2,.09,.025,5.6,gold);
+        localBox('berth corner marking',side*3.6,.03,-2.55,1.15,.03,.12,gold);
+        localBox('docking gantry foot',side*3.65,.3,1.75,.8,.6,.8,frame);
+        localBox('docking gantry upright',side*3.65,5.45,1.75,.28,10.3,.4,frame);
+      }
+      localBox('docking crossbeam',0,10.6,1.75,7.6,.4,.6,frame);
       localBox('projection plinth',0,.25,0,6.2,.5,3.2,frame);localBox('plinth enamel fascia',0,.27,-1.61,5.9,.3,.04,panel);localBox('plinth seam light',0,.48,-1.65,5.5,.035,.035,cyan);
       localBox('projection backing',0,5.25,.40,5.4,8.1,.14,black);
       for(const x of [-2.7,2.7]){localBox('projector mast',x,4.5,.8,.18,9,.24,edge);localBox('projection rail',x,5.25,.23,.04,8.1,.04,cyan);for(const y of [2,5,8])localBox('mast clamp',x,y,.75,.42,.24,.4,frame);}
       for(const y of [1.2,9.3])localBox('projection trim',0,y,.22,5.4,.04,.04,cyan);
       const p=B.MeshBuilder.CreatePlane('archive hologram '+index,{width:5.3,height:7.95,sideOrientation:B.Mesh.DOUBLESIDE},scene);p.position.set(0,5.25,.20);p.parent=root;
       const mat=new B.StandardMaterial('hologram '+index,scene);mat.disableLighting=true;mat.emissiveColor=B.Color3.Black();mat.diffuseColor=B.Color3.Black();mat.alpha=.92;p.material=mat;p.isPickable=true;
-      const nameplate=label('BAY '+String(index+1).padStart(2,'0'),0,10,.25,4.4,.55);nameplate.parent=root;
+      const nameplate=label('BAY '+String(index+1).padStart(2,'0')+' / '+loc.side,0,10,.25,5.8,.55);nameplate.parent=root;
       // Articulated maintenance arms behind the display: cylinders and real joints.
       for(const side of [-1,1]){
         const points=[[side*3.6,3,1.6],[side*3.4,6.8,1.2],[side*2.8,7.8,.6]];
@@ -150,8 +170,12 @@
       // Conservative rotated-rectangle footprints include support arms and visitor clearance.
       const c=Math.abs(Math.cos(loc.rot)),s=Math.abs(Math.sin(loc.rot));obstacles.push({x:loc.x,z:loc.z,w:4.05*c+2.0*s,d:4.05*s+2.0*c});
     });
-    // Small consoles at human scale; they no longer dominate the first view.
-    [{x:-2.3,text:'ARCHIVE',href:'dex.html'},{x:0,text:'STUDIO',href:'prompt.html'},{x:2.3,text:'SORTIE',href:'play.html'}].forEach(c=>{box('console pedestal',c.x,.55,-9,.55,1.1,.5,frame);box('console body',c.x,1.28,-9,1.45,.62,.18,panel);const screen=label(c.text,c.x,1.29,-9.11,1.31,.46,0,c.href==='play.html'?'#f0b764':'#b4ebf4');screen.isPickable=true;screen.metadata={href:c.href};targets.push(screen);obstacles.push({x:c.x,z:-9,w:1,d:.9});});
+    // Navigation consoles sit beside the entrance, outside the full-length central aisle.
+    [{x:-8,text:'ARCHIVE',href:'dex.html'},{x:-5.5,text:'STUDIO',href:'prompt.html'},{x:8,text:'SORTIE',href:'play.html'}].forEach(c=>{
+      const z=-22;box('console pedestal',c.x,.55,z,.55,1.1,.5,frame);box('console body',c.x,1.28,z,1.45,.62,.18,panel);
+      const screen=label(c.text,c.x,1.29,z+.11,1.31,.46,Math.PI,c.href==='play.html'?'#f0b764':'#b4ebf4');
+      screen.name='entrance console '+c.text;screen.isPickable=true;screen.metadata={href:c.href};targets.push(screen);obstacles.push({x:c.x,z,w:1,d:.9});
+    });
     // Merge opaque static geometry by material, but retain bounded chunks for culling.
     for(const [mat,meshes] of staticGroups){for(const m of meshes)m.computeWorldMatrix(true);for(let i=0;i<meshes.length;i+=160){const chunk=meshes.slice(i,i+160);const merged=B.Mesh.MergeMeshes(chunk,true,true,undefined,false,false);if(merged){merged.name='static:'+mat.name+':'+i;merged.isPickable=false;merged.freezeWorldMatrix();}}}
     const shadows=new B.ShadowGenerator(1024,key);shadows.usePercentageCloserFiltering=true;shadows.filteringQuality=B.ShadowGenerator.QUALITY_LOW;shadows.bias=.001;shadows.normalBias=.04;shadows.setDarkness(.15);

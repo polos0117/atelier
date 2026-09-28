@@ -1,4 +1,4 @@
-# Hangar environment assets v2
+# Hangar environment assets
 
 2026-09-28, generated with the built-in image generation tool for the user-approved hangar redesign. These are environment assets, not character/card images; do not register them in `data/img.json`.
 
@@ -11,3 +11,15 @@
 The two material maps were generated using the approved concept as visual reference, with flat lighting and a front-facing view. Original full dimensions are retained; PNGs were only encoded to WebP for delivery. Normal and roughness channels are authored analytically at runtime, independently of the generated images. Repetition is hidden with geometry, drainage grilles, tracks and equipment, but the base colors are not guaranteed mathematically seamless.
 
 The existing archive artwork remains loaded by its canonical catalog URL and is not changed by this environment update.
+
+## Wall elevations v3
+
+2026-09-28: three new wall images generated with the built-in image generation tool, using the approved v2 concept only as a style/material reference. Exact prompts, full-size source paths, WebP hashes and dimensions are in `walls-v3-prompts.json`.
+
+| File | Dimensions | Purpose |
+| --- | --- | --- |
+| port-wall-v3.webp | 1983 × 793 | Left wall with three empty servicing recesses |
+| starboard-wall-v3.webp | 1983 × 793 | Right wall with matching servicing bays and equipment |
+| rear-wall-v3.webp | 1635 × 962 | Closed rear entrance shutter and maintenance wall |
+
+All three are frontal wall elevations rather than perspective room photographs. They are encoded to WebP at original dimensions without cropping. The renderer uses the native image aspect ratios on fixed wall planes. Nearby structural geometry remains three-dimensional, while depth and lighting inside the generated pictures are baked into the imagery. Original character images are displayed unchanged in six paired side berths.

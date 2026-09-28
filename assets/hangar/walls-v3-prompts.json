@@ -1,0 +1,41 @@
+{
+  "version": 3,
+  "created": "2026-09-28",
+  "method": "built-in image_gen",
+  "reference": "hangar-backdrop-v2.webp",
+  "assets": [
+    {
+      "name": "port-wall-v3.webp",
+      "prompt": "Use case: stylized-concept. Asset type: photorealistic 3D game hangar LEFT SIDE WALL elevation texture, wide 5:2 aspect ratio. Input image 1 is a STYLE AND MATERIAL REFERENCE ONLY, not a composition to copy. Build a perfectly straight-on orthographic wall elevation of the SAME carrier maintenance hangar: weathered ivory enamel modules, dark gunmetal structural ribs, dense real engineering, grey steel, warm amber practical lamps, restrained cyan diagnostic lights, ochre safety handrails. Three large EMPTY mobile-suit servicing recesses arranged horizontally at equal intervals, all within the same wall plane. No robots, no humans, no character images, no hologram screens. Two horizontal service galleries at one quarter and just over half the wall height, many compact pipes, cable trays, hydraulic housings and panel fasteners. Empty dark service recesses remain visibly detailed, no solid black voids. The image fills exactly the entire wall from base at bottom to roof beam at top. NO room perspective, NO receding vanishing point, NO foreground floor, NO view of opposite or adjoining walls, no ceiling plane. All vertical supports parallel to image edges, horizontal galleries completely horizontal. Cinematic realistic material detail matching reference, balanced cool indirect illumination with small warm worklights; photographic rather than cartoon, clean readable industrial architecture, subtle dirt and edge wear. No typography or watermark. This is the port servicing side, with slim coolant manifolds and control cupboards between bays.",
+      "source": "/workspace/scratch/345f35da611c/generated_images/exec-770de95c-175e-43b6-9b27-ab25f35223e6.png",
+      "dimensions": [
+        1983,
+        793
+      ],
+      "bytes": 392366,
+      "sha256": "aba009006606381315cf41d73adc655dd0cbf64f434de6ec6c21f52fb7f4e8e1"
+    },
+    {
+      "name": "starboard-wall-v3.webp",
+      "prompt": "Use case: stylized-concept. Asset type: photorealistic 3D game hangar RIGHT SIDE WALL elevation texture, wide 5:2 aspect ratio. Input image 1 is a STYLE AND MATERIAL REFERENCE ONLY. Make a straight-on orthographic elevation of the same carrier maintenance hangar wall, paired with its opposite side: weathered ivory enamel, dark gunmetal steel ribs, warm amber worklights, cool indirect light, ochre rails, compact bundled pipes and cables, service machinery. Three large EMPTY mobile-suit service recesses arranged horizontally with equal spacing; no robots, people, character artwork or hologram screens. Two perfectly horizontal elevated service galleries at one quarter and just over half the wall height. Dense realistic mechanisms, bolted panels, vertical hydraulic assemblies, electrical cabinets, overhead cable reels. Base of wall flush with bottom edge, upper roof-support beam flush with top. Wall fills the entire image. No view of floor or ceiling plane, no adjoining wall, no room vanishing point; perfectly frontal flat orthographic facade. Detailed but restrained worn metals, cinematic photorealism matching reference and consistent scale across the three bays. Starboard wall has electrical distribution boxes, cable drums, two coolant tanks mounted low between bays. No text, logos, watermark. Avoid a copy of reference camera perspective: this is strictly a wall elevation.",
+      "source": "/workspace/scratch/345f35da611c/generated_images/exec-fb05c80b-c714-4b34-81bd-ee6fcd84cba0.png",
+      "dimensions": [
+        1983,
+        793
+      ],
+      "bytes": 404026,
+      "sha256": "5ebcb564acdc0936f950d8874896074975459be7a534dde89a49eeacacb2fc51"
+    },
+    {
+      "name": "rear-wall-v3.webp",
+      "prompt": "Use case: stylized-concept. Asset type: photorealistic hangar REAR ENTRANCE WALL game texture, landscape 17:10 aspect ratio. Input image 1 is only a reference for the carrier hangar design, colors, realism and materials. Produce a flat straight-on orthographic full wall elevation, no receding room perspective. A massive CLOSED armored gray docking shutter centered, about one third of total wall width and two thirds of wall height, inset in thick gunmetal mechanical frames; symmetrical tall ivory maintenance panels, dense service pipes and access cabinets on either side. A continuous elevated service gallery with thin ochre guardrails crosses above the closed shutter, roof-support truss along the top. Small amber worklights, cool subtle overhead illumination, realistic wear, hydraulic actuators, bolt patterns and cable trays matching the reference hangar. Wall starts at exact bottom image edge and reaches top edge. No foreground floor plane, no side walls visible, no robots, no people, no screens with artwork, no lettering or logo. High fidelity realistic architecture and materials. This wall will be seen behind the visitor after turning around in the same 3D hangar.",
+      "source": "/workspace/scratch/345f35da611c/generated_images/exec-f98d0c3b-e026-4452-a311-0732739c6826.png",
+      "dimensions": [
+        1635,
+        962
+      ],
+      "bytes": 375438,
+      "sha256": "c79b8a00b1f5ffa53dac6fd3492341e0ed26615c2ec639b77025e699fe33b0a9"
+    }
+  ]
+}
