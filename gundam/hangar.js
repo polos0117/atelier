@@ -56,74 +56,109 @@
   function group(mesh,mat){mesh.material=mat;mesh.isPickable=false;if(!staticGroups.has(mat))staticGroups.set(mat,[]);staticGroups.get(mat).push(mesh);return mesh;}
   function box(name,x,y,z,w,h,d,mat,rot=0){const m=B.MeshBuilder.CreateBox(name,{width:w,height:h,depth:d},scene);m.position.set(x,y,z);m.rotation.z=rot;return group(m,mat);}
   function label(text,x,y,z,w,h,rotation=0,ink='#b7d7e5',bg='#142431'){const t=new B.DynamicTexture('label:'+text,{width:1024,height:256},scene,false);const c=t.getContext();c.fillStyle=bg;c.fillRect(0,0,1024,256);c.fillStyle=ink;c.font='500 76px sans-serif';c.textAlign='center';c.textBaseline='middle';c.fillText(text,512,133,960);t.update();const m=emissive('label material', '#000000');m.emissiveTexture=t;const p=B.MeshBuilder.CreatePlane('label',{width:w,height:h,sideOrientation:B.Mesh.DOUBLESIDE},scene);p.position.set(x,y,z);p.rotation.y=rotation;p.material=m;p.isPickable=false;return p;}
+  // Cylindrical pipes, jointed tools and actual trusses retain parallax when walking.
+  function rod(name,a,b,r,mat,sides=10){const av=new B.Vector3(...a),bv=new B.Vector3(...b),delta=bv.subtract(av);const m=B.MeshBuilder.CreateCylinder(name,{height:delta.length(),diameter:r*2,tessellation:sides},scene);m.position=av.add(bv).scale(.5);m.rotationQuaternion=B.Quaternion.FromUnitVectorsToRef(B.Axis.Y,delta.normalize(),new B.Quaternion());return group(m,mat);}
+  function ring(name,x,y,z,r,t,mat,axis='y'){const m=B.MeshBuilder.CreateTorus(name,{diameter:r*2,thickness:t,tessellation:16},scene);m.position.set(x,y,z);if(axis==='z')m.rotation.x=Math.PI/2;if(axis==='x')m.rotation.z=Math.PI/2;return group(m,mat);}
+  function steelBeam(a,b,width,mat){rod('structural web',a,b,width*.22,mat,4);for(const dx of [-width/2,width/2])rod('beam flange',[a[0]+dx,a[1],a[2]],[b[0]+dx,b[1],b[2]],width*.18,mat,4);}
+  function textureAsset(file,u=1,v=1){const t=new B.Texture('assets/hangar/'+file,scene,false,true,B.Texture.TRILINEAR_SAMPLINGMODE);t.uScale=u;t.vScale=v;t.anisotropicFilteringLevel=4;return t;}
+  // Normal/roughness data are small analytic GPU material maps, not painted lighting.
+  function surfaceMaps(name,repeatsU,repeatsV){
+    const size=256,norm=new B.DynamicTexture(name+' normal',{width:size,height:size},scene,true),orm=new B.DynamicTexture(name+' roughness',{width:size,height:size},scene,true);
+    const nc=norm.getContext(),oc=orm.getContext(),ni=nc.createImageData(size,size),oi=oc.createImageData(size,size);let seed=741;
+    for(let y=0;y<size;y++)for(let x=0;x<size;x++){seed=(seed*1664525+1013904223)>>>0;const i=(y*size+x)*4,dx=Math.min(x%128,127-x%128),dy=Math.min(y%128,127-y%128),seam=Math.min(dx,dy);ni.data[i]=128+(dx<3?(x%128<64?-32:32):((seed%7)-3));ni.data[i+1]=128+(dy<3?(y%128<64?-32:32):0);ni.data[i+2]=250;ni.data[i+3]=255;oi.data[i]=seam<2?110:255;oi.data[i+1]=seam<3?218:85+((seed>>>12)%64);oi.data[i+2]=seam<2?30:195;oi.data[i+3]=255;}
+    nc.putImageData(ni,0,0);oc.putImageData(oi,0,0);norm.update();orm.update();for(const t of [norm,orm]){t.uScale=repeatsU;t.vScale=repeatsV;t.gammaSpace=false;}return {normal:norm,orm};
+  }
   function build(){
     B=window.BABYLON;if(!B||!B.Engine.isSupported())throw new Error('WebGL unavailable');
     engine=new B.Engine(canvas,true,{preserveDrawingBuffer:false,stencil:false,powerPreference:'default'},false);applyQuality();
-    scene=new B.Scene(engine);scene.clearColor=new B.Color4(.026,.046,.064,1);scene.fogMode=B.Scene.FOGMODE_EXP2;scene.fogDensity=.012;scene.fogColor=color('#152736');
-    scene.environmentTexture=B.CubeTexture.CreateFromPrefilteredData('https://assets.babylonjs.com/environments/environmentSpecular.env',scene);scene.environmentIntensity=.5;
-    scene.imageProcessingConfiguration.toneMappingEnabled=true;scene.imageProcessingConfiguration.toneMappingType=B.ImageProcessingConfiguration.TONEMAPPING_ACES;scene.imageProcessingConfiguration.exposure=1.25;scene.imageProcessingConfiguration.contrast=1.12;
-    camera=new B.FreeCamera('visitor',new B.Vector3(0,2.1,-16),scene);camera.minZ=.12;camera.maxZ=110;camera.fov=.95;camera.inputs.clear();resetView();
-    const hemi=new B.HemisphericLight('ambient',new B.Vector3(0,1,0),scene);hemi.intensity=.8;hemi.diffuse=color('#c4dbe6');hemi.groundColor=color('#172634');
-    const key=new B.DirectionalLight('ceiling spill',new B.Vector3(.15,-1,.35),scene);key.intensity=1.35;key.diffuse=color('#e3f3ff');
-    const blue=new B.PointLight('projection light',new B.Vector3(0,5,13),scene);blue.diffuse=color('#60c5ed');blue.intensity=20;blue.range=25;
-    const warm=new B.PointLight('service light',new B.Vector3(-10,8,-10),scene);warm.diffuse=color('#ffbd73');warm.intensity=16;warm.range=25;
-    const floor=material('brushed deck','#4a5860',.65,.46), wall=material('hull','#384955',.5,.63),frame=material('structural steel','#172832',.65,.42),panel=material('inset panels','#263641',.35,.6),edge=material('edge trims','#71818a',.75,.35),black=material('rubber','#0c151c',.1,.8),gold=material('safety yellow','#cf963e',.3,.5),cyan=emissive('projection','#48d9f2'),white=emissive('light strips','#d9eef5'),amber=emissive('hazard lamps','#ffa53f');
-    // Repeating steel decking, with fine deterministic roughness. No large texture downloads.
-    const deck=new B.DynamicTexture('deck finish',{width:512,height:512},scene,true);const ctx=deck.getContext();ctx.fillStyle='#788a95';ctx.fillRect(0,0,512,512);let seed=701;for(let i=0;i<16000;i++){seed=(seed*1664525+1013904223)>>>0;const a=seed/4294967296;ctx.fillStyle='rgba(15,26,35,'+(a*.10)+')';ctx.fillRect(seed%512,(seed>>>10)%512,1+(seed%5),1);}ctx.strokeStyle='#34444f';ctx.lineWidth=3;ctx.strokeRect(1,1,510,510);for(const x of [12,500])for(const y of [12,500]){ctx.fillStyle='#303e47';ctx.beginPath();ctx.arc(x,y,2,0,Math.PI*2);ctx.fill();}deck.update();deck.uScale=10;deck.vScale=15;floor.albedoTexture=deck;
+    scene=new B.Scene(engine);scene.clearColor=new B.Color4(.025,.035,.04,1);scene.fogMode=B.Scene.FOGMODE_EXP2;scene.fogDensity=.004;scene.fogColor=color('#303b40');
+    scene.environmentTexture=B.CubeTexture.CreateFromPrefilteredData('https://assets.babylonjs.com/environments/environmentSpecular.env',scene);scene.environmentIntensity=.62;
+    scene.imageProcessingConfiguration.toneMappingEnabled=true;scene.imageProcessingConfiguration.toneMappingType=B.ImageProcessingConfiguration.TONEMAPPING_ACES;scene.imageProcessingConfiguration.exposure=1.25;scene.imageProcessingConfiguration.contrast=1.15;
+    camera=new B.FreeCamera('visitor',new B.Vector3(0,2.1,-16),scene);camera.minZ=.12;camera.maxZ=130;camera.fov=.95;camera.inputs.clear();resetView();
+    const hemi=new B.HemisphericLight('skylight bounce',new B.Vector3(0,1,0),scene);hemi.intensity=.28;hemi.diffuse=color('#d8e5eb');hemi.groundColor=color('#252b2b');
+    const key=new B.DirectionalLight('clerestory daylight',new B.Vector3(.12,-1,.28),scene);key.intensity=2.25;key.diffuse=color('#ebf3f6');key.position.set(-6,22,-12);
+    for(const [x,y,z,hex,power] of [[-9,7,-7,'#ffc88b',70],[9,8,8,'#b1e0ed',65]]){const l=new B.PointLight('maintenance light',new B.Vector3(x,y,z),scene);l.diffuse=color(hex);l.intensity=power;l.range=25;}
+    const floor=material('brushed deck','#ffffff',.7,.47), wall=material('hull','#5c6466',.45,.7),frame=material('structural steel','#303c43',.75,.44),panel=material('enamel panels','#919994',.22,.52),edge=material('brushed aluminium','#9aa5a7',.88,.3),black=material('rubber','#11181c',.05,.9),gold=material('safety ochre','#bf8c35',.45,.52),cyan=emissive('projection','#3d9cab'),white=emissive('light strips','#d5eaf1'),amber=emissive('hazard lamps','#ffc583'),vent=material('vents','#354047',.6,.62);
+    floor.albedoTexture=textureAsset('deck-albedo-v2.webp',8.5,12.5);const fm=surfaceMaps('deck',8.5,12.5);floor.bumpTexture=fm.normal;floor.bumpTexture.level=.35;floor.metallicTexture=fm.orm;floor.useRoughnessFromMetallicTextureGreen=true;floor.useRoughnessFromMetallicTextureAlpha=false;floor.useMetallnessFromMetallicTextureBlue=true;floor.useAmbientOcclusionFromMetallicTextureRed=true;
+    panel.albedoTexture=textureAsset('enamel-albedo-v2.webp');const wm=surfaceMaps('enamel',1,1);panel.bumpTexture=wm.normal;panel.bumpTexture.level=.18;
     const ground=B.MeshBuilder.CreateGround('deck',{width:34,height:50},scene);group(ground,floor);
-    box('rear bulkhead',0,9,25,34,18,1,wall);box('entry bulkhead',0,9,-25,34,18,1,wall);box('port wall',-17,9,0,1,18,50,wall);box('starboard wall',17,9,0,1,18,50,wall);box('ceiling',0,18,0,34,.5,50,panel);
-    for(let z=-24;z<=24;z+=8){
-      box('roof crossbeam',0,16.9,z,34,.7,.5,frame);box('beam flange',0,17.3,z,34,.14,1.1,edge);
-      for(const side of [-1,1]){const x=side*15.7;box('vertical rib',x,8.4,z,.6,16.8,.75,frame);box('rib face',x-side*.32,8.4,z,.12,16.8,.92,edge);box('brace',side*13.4,15.6,z,.35,5.7,.5,frame,-side*.72);box('rail',side*12.5,11.8,z,1,.4,7.9,frame);box('ceiling light',side*7,17.1,z,5,.08,.24,white);box('light recess',side*7,17.15,z,5.3,.3,.6,frame);
-        for(let y=2;y<14;y+=4){box('wall module',side*16.3,y,z,.25,3.5,7,panel);box('panel seam',side*16.05,y+1.5,z,.08,.07,6.5,edge);}
+    frame.albedoTexture=textureAsset('deck-albedo-v2.webp');frame.bumpTexture=wm.normal;
+    // The approved image is a real in-world continuation behind an inaccessible bulkhead.
+    // It is not attached to the camera and is never stretched into a fake 360 panorama.
+    box('entry bulkhead',0,10,-25,34,20,1,wall);box('port hull',-17,10,0,1,20,50,wall);box('starboard hull',17,10,0,1,20,50,wall);
+    const backdrop=B.MeshBuilder.CreatePlane('approved hangar extension',{width:42,height:42*941/1672},scene);backdrop.position.set(0,10.65,26.5);const bg=emissive('approved background','#000000');bg.emissiveTexture=textureAsset('hangar-backdrop-v2.webp');bg.fogEnabled=false;backdrop.material=bg;backdrop.isPickable=false;
+    box('extension lintel',0,19.8,24.9,34,1,1.8,frame);for(const side of [-1,1]){box('extension jamb',side*15.8,10,24.9,1,20,1.8,panel);box('portal seam',side*15.2,10,23.98,.12,18,.06,amber);}
+    // Open clerestory, offset ceiling ribs and bracing replace the former solid roof.
+    for(const side of [-1,1])box('roof side',side*11.6,20.1,0,10.7,.32,50,frame);
+    const sky=emissive('skylight diffuser','#a8c3ce');box('clerestory glass',0,21.4,0,11.8,.12,50,sky);
+    for(let z=-24;z<=24;z+=6){
+      box('overhead I web',0,19.4,z,33,.85,.15,frame);box('overhead I flange',0,19.9,z,33,.14,.8,edge);box('overhead I lower flange',0,18.95,z,33,.12,.75,frame);
+      for(const side of [-1,1]){box('overhead lighting trough',side*6,19.3,z,1.15,.18,4.8,black);box('overhead light diffuser',side*6,19.18,z,.85,.03,4.3,white);rod('roof diagonal',[side*6,19.95,z-2.7],[side*13,19.95,z+2.7],.065,edge);}
+      box('skylight mullion',0,21.2,z,12,.15,.12,frame);
+      for(const side of [-1,1]){const x=side*16;
+        box('column web',x,9.6,z,.25,19.2,.75,frame);for(const dz of [-.45,.45])box('column flange',x,9.6,z+dz,.85,19.2,.10,edge);
+        box('column shoe',x,.25,z,1.3,.5,1.25,frame);rod('knee brace',[x,15,z],[side*11,19,z],.12,edge);
+        for(let y=2.4;y<18;y+=4.6){box('enamel maintenance module',side*16.45,y,z,.15,4,5.4,panel);box('panel edge',side*16.30,y-2,z,.12,.12,5.5,frame);for(const dz of [-2.5,2.5])box('cover latch',side*16.2,y,z+dz,.2,.5,.13,edge);}
+        box('lamp housing',side*14.8,8.8,z,.8,.7,.32,black);box('lamp diffuser',side*14.8,8.8,z-.18,.58,.43,.025,amber);for(const dy of [-.3,.3])box('lamp cage',side*14.8,8.8+dy,z-.23,.8,.035,.045,frame);
+        // Double-level service walkways, toe plates, proper handrails and braces.
+        for(const y of [5.2,11.3]){box('maintenance platform',side*14.8,y,z,2.6,.22,5.98,frame);box('platform fascia',side*13.45,y-.18,z,.12,.5,5.98,panel);rod('walkway top rail',[side*13.4,y+1.08,z-3],[side*13.4,y+1.08,z+3],.045,gold);rod('walkway mid rail',[side*13.4,y+.58,z-3],[side*13.4,y+.58,z+3],.027,gold);for(const dz of [-2.8,0,2.8])rod('guardrail post',[side*13.4,y,z+dz],[side*13.4,y+1.08,z+dz],.035,gold);rod('platform support',[side*16,y-2,z],[side*13.5,y-.1,z],.085,frame);}
+        // Real round pipes and flanges, with separated cable bundles.
+        for(let k=0;k<3;k++){const px=side*(15.5-k*.28);rod('service pipe',[px,13.4+k*.35,z-3],[px,13.4+k*.35,z+3],k===0?.12:.07,k===0?edge:vent);ring('pipe flange',px,13.4+k*.35,z,.17,.045,edge,'z');}
+        for(let k=0;k<3;k++)rod('vertical service riser',[side*(16.1-k*.25),.5,z+2.7],[side*(16.1-k*.25),16,z+2.7],.075,edge);
       }
     }
+    // Deck drainage, inset rails, worn lane markings and light modules.
     for(const side of [-1,1]){
-      box('runway line',side*4.2,.012,0,.10,.02,47,gold);
-      box('drain',side*5.1,.016,0,.38,.025,47,black);
-      for(let z=-23;z<24;z+=1.3){box('drain grille',side*5.1,.035,z,.42,.015,.08,edge);box('guide light',side*4.2,.025,z,.14,.02,.19,cyan);}
-      for(let z=-23;z<24;z+=3)box('ceiling pipe',side*15,14.7,z,.2,.2,2.95,edge);
+      box('drain trough',side*5.5,.018,0,.52,.025,47,black);
+      for(let z=-23;z<24;z+=.42)box('drain grille',side*5.5,.036,z,.52,.015,.07,edge);
+      for(let z=-23;z<24;z+=3){box('worn lane stripe',side*4.85,.023,z,.13,.02,2.35,gold);box('lane lamp casing',side*4.3,.045,z,.27,.075,.54,black);box('lane lamp glass',side*4.3,.088,z,.12,.015,.28,white);}
+      for(const x of [side*2.1,side*2.3])box('recessed transfer track',x,.013,0,.05,.024,48,edge);
     }
-    for(let z=-21;z<18;z+=4)box('center deck marking',0,.021,z,.13,.02,1.1,gold);
-    // Rear pressure door, catwalk and overhead gantry make the scale legible.
-    box('pressure door recess',0,7.5,24.3,15,15,.3,black);box('door left',-3.7,7.5,24.05,7.2,14.6,.2,panel);box('door right',3.7,7.5,24.05,7.2,14.6,.2,panel);
-    for(let y=1;y<15;y+=1.7)box('door rib',0,y,23.88,14.4,.10,.12,edge);
-    label('MOBILE SUIT  /  ARCHIVE',0,16.1,23.7,12,1.5);
-    box('gantry crane',0,15.1,5,29,.9,1.4,gold);for(let x=-13;x<14;x+=1.3)box('crane warning',x,15.12,4.28,.4,.86,.025,frame,.35);
-    box('hoist',5,14.1,5,1.4,1.2,1.7,frame);box('hoist cable',5,10.5,5,.035,6,.035,edge);const hook=B.MeshBuilder.CreateTorus('hook',{diameter:.65,thickness:.12,tessellation:12},scene);hook.position.set(5,7.4,5);hook.rotation.x=Math.PI/2;group(hook,gold);
-    for(const side of [-1,1]){box('catwalk',side*14,6.1,0,2,.24,46,frame);box('handrail',side*13.1,7.2,0,.075,.075,46,gold);for(let z=-22;z<24;z+=2.5)box('rail upright',side*13.1,6.65,z,.065,1.1,.065,gold);}
-    const layout=[{x:0,z:18,rot:0},{x:-11,z:-5,rot:-Math.PI/2},{x:11,z:-5,rot:Math.PI/2},{x:-11,z:9,rot:-Math.PI/2},{x:11,z:9,rot:Math.PI/2}];
+    // End-to-end rail crane with mechanical carriage, wheels and suspended hook.
+    for(const side of [-1,1])box('crane travel rail',side*13.6,16.6,0,.7,.8,48,frame);
+    for(const z of [1.7,3.2]){box('crane girder web',0,16,z,28,1.0,.18,gold);for(const y of [15.5,16.5])box('crane flange',0,y,z,28,.12,.62,gold);}
+    for(let x=-13;x<14;x+=2){rod('crane cross bracing',[x,15.6,1.7],[x+1.8,16.4,1.7],.055,frame);box('gantry stripe',x,16,1.59,.26,.9,.025,black,.3);}
+    box('crane motor',6,17.05,2.5,1.7,.85,1.8,vent);for(const x of [5.1,6.9])for(const z of [1.7,3.2])rod('carriage wheel',[x-.12,16.75,z],[x+.12,16.75,z],.3,edge,12);
+    for(const x of [5.8,6.2])rod('hoist cable',[x,16,2.5],[x,10,2.5],.025,black);box('hook block',6,9.9,2.5,.75,.8,.65,gold);ring('crane hook',6,9.28,2.5,.3,.13,edge,'z');
+    // Service lockers and restrained ground equipment, outside the central aisle.
+    for(const side of [-1,1])for(const z of [-18,2,18]){
+      const x=side*14.7;box('service cabinet',x,1.15,z,1.8,2.3,1.2,panel);box('cabinet kick plate',x,.16,z-.63,1.85,.3,.12,frame);for(let k=0;k<6;k++)box('cabinet vent',x,1.55+k*.08,z-.61,1.25,.025,.025,black);for(const dx of [-.6,.6])box('door handle',x+dx,1,z-.67,.045,.36,.045,edge);obstacles.push({x,z,w:1.35,d:1.0});
+      const tank=B.MeshBuilder.CreateCylinder('pressure vessel',{height:2.3,diameter:.8,tessellation:12},scene);tank.position.set(side*15.6,1.3,z+1.3);group(tank,edge);ring('valve wheel',side*15.6,2.55,z+1.3,.18,.045,gold);
+    }
+    // Freestanding stairs provide a strong human scale without obstructing movement.
+    for(const side of [-1,1]){const x=side*12.8,z0=-20;for(let k=0;k<15;k++){box('stair tread',x,.17+k*.35,z0+k*.28,1.9,.12,.33,edge);box('stair nosing',x,.235+k*.35,z0+k*.28-.16,1.9,.025,.035,gold);}for(const dx of [-1,1]){rod('stair stringer',[x+dx,.08,z0-.2],[x+dx,5.15,z0+4.1],.12,frame,4);rod('stair railing',[x+dx,1.1,z0-.2],[x+dx,6.2,z0+4.1],.045,gold);for(const k of [0,5,10,14])rod('stair rail post',[x+dx,.2+k*.35,z0+k*.28],[x+dx,1.25+k*.35,z0+k*.28],.035,gold);}obstacles.push({x,z:z0+2,w:1.6,d:2.6});}
+    // Side-mounted archive projections leave the approved background and central aisle open.
+    const layout=[{x:9.7,z:15,rot:Math.PI*.13},{x:-12,z:-5,rot:-Math.PI/2},{x:12,z:-5,rot:Math.PI/2},{x:-12,z:8,rot:-Math.PI/2},{x:12,z:8,rot:Math.PI/2}];
     layout.forEach((loc,index)=>{
       const root=new B.TransformNode('bay '+index,scene);root.position.set(loc.x,0,loc.z);root.rotation.y=loc.rot;
       const localBox=(name,x,y,z,w,h,d,mat)=>{const p=box(name,x,y,z,w,h,d,mat);p.parent=root;return p;};
-      localBox('projection plinth',0,.28,0,7.5,.55,3.6,frame);localBox('plinth edge',0,.58,-1.7,7.2,.08,.1,cyan);
-      localBox('hologram spine',0,6,.45,7,10.8,.35,frame);localBox('dark surround',0,6,.24,6.8,10.5,.18,black);
-      for(const x of [-3.42,3.42]){localBox('projector edge',x,6,.04,.055,10.5,.06,cyan);localBox('support',x,5.5,.8,.26,11,.3,edge);}
-      for(const y of [.92,11.16])localBox('screen frame',0,y,.03,6.85,.065,.08,cyan);
-      for(const x of [-3,3]){localBox('uplight housing',x,.8,-1.3,.4,.35,.65,black);localBox('uplight glass',x,1,-1.3,.28,.045,.45,cyan);}
-      const p=B.MeshBuilder.CreatePlane('archive hologram '+index,{width:6.6,height:9.9,sideOrientation:B.Mesh.DOUBLESIDE},scene);p.position.set(0,6,.015);p.parent=root;
-      const mat=new B.StandardMaterial('hologram '+index,scene);mat.disableLighting=true;mat.emissiveColor=B.Color3.Black();mat.diffuseColor=B.Color3.Black();mat.alpha=.96;p.material=mat;p.isPickable=true;
-      const nameplate=label('BAY '+String(index+1).padStart(2,'0'),0,12,.1,6.8,.95);nameplate.parent=root;
+      localBox('projection plinth',0,.25,0,6.2,.5,3.2,frame);localBox('plinth enamel fascia',0,.27,-1.61,5.9,.3,.04,panel);localBox('plinth seam light',0,.48,-1.65,5.5,.035,.035,cyan);
+      localBox('projection backing',0,5.25,.40,5.4,8.1,.14,black);
+      for(const x of [-2.7,2.7]){localBox('projector mast',x,4.5,.8,.18,9,.24,edge);localBox('projection rail',x,5.25,.23,.04,8.1,.04,cyan);for(const y of [2,5,8])localBox('mast clamp',x,y,.75,.42,.24,.4,frame);}
+      for(const y of [1.2,9.3])localBox('projection trim',0,y,.22,5.4,.04,.04,cyan);
+      const p=B.MeshBuilder.CreatePlane('archive hologram '+index,{width:5.3,height:7.95,sideOrientation:B.Mesh.DOUBLESIDE},scene);p.position.set(0,5.25,.20);p.parent=root;
+      const mat=new B.StandardMaterial('hologram '+index,scene);mat.disableLighting=true;mat.emissiveColor=B.Color3.Black();mat.diffuseColor=B.Color3.Black();mat.alpha=.92;p.material=mat;p.isPickable=true;
+      const nameplate=label('BAY '+String(index+1).padStart(2,'0'),0,10,.25,4.4,.55);nameplate.parent=root;
+      // Articulated maintenance arms behind the display: cylinders and real joints.
+      for(const side of [-1,1]){
+        const points=[[side*3.6,3,1.6],[side*3.4,6.8,1.2],[side*2.8,7.8,.6]];
+        for(let k=0;k<2;k++){const arm=rod('maintenance arm',points[k],points[k+1],.19,panel,8);arm.parent=root;const hydraulic=rod('hydraulic piston',[points[k][0]+side*.2,points[k][1]+.4,points[k][2]],[points[k+1][0]+side*.2,points[k+1][1]-.3,points[k+1][2]],.07,edge);hydraulic.parent=root;}
+        for(const pt of points){const joint=rod('arm pivot',[pt[0],pt[1],pt[2]-.19],[pt[0],pt[1],pt[2]+.19],.29,frame,12);joint.parent=root;}
+        localBox('service tool',side*2.8,7.8,.15,.32,.6,.65,vent);
+      }
       const bay={...loc,index,root,plane:p,mat,record:null,token:0,texture:null};bays.push(bay);targets.push(p);
-      // Axis-aligned footprints, expanded by the visitor's shoulder radius.
-      obstacles.push({x:loc.x,z:loc.z,w:loc.rot?2.3:4.2,d:loc.rot?4.2:2.3});
+      // Conservative rotated-rectangle footprints include support arms and visitor clearance.
+      const c=Math.abs(Math.cos(loc.rot)),s=Math.abs(Math.sin(loc.rot));obstacles.push({x:loc.x,z:loc.z,w:4.05*c+2.0*s,d:4.05*s+2.0*c});
     });
-    // Three physical menu consoles; the same destinations are always in the HUD.
-    [{x:-2.3,text:'ARCHIVE',href:'dex.html'},{x:0,text:'STUDIO',href:'prompt.html'},{x:2.3,text:'SORTIE',href:'play.html'}].forEach(c=>{box('console pedestal',c.x,.75,-9,1.3,1.5,.9,frame);box('console rim',c.x,1.65,-9,1.8,.8,.3,edge);const screen=label(c.text,c.x,1.67,-9.18,1.65,.63,0,c.href==='play.html'?'#f0b764':'#b4ebf4');screen.isPickable=true;screen.metadata={href:c.href};targets.push(screen);obstacles.push({x:c.x,z:-9,w:1,d:.9});});
-    // Resolve parent world matrices before merging; keep only interactive meshes separate.
-    for(const [mat,meshes] of staticGroups){for(const m of meshes)m.computeWorldMatrix(true);if(meshes.length>1){const merged=B.Mesh.MergeMeshes(meshes,true,true,undefined,false,false);if(merged){merged.name='static:'+mat.name;merged.isPickable=false;merged.freezeWorldMatrix();}}else meshes[0].freezeWorldMatrix();}
-    // The hangar does not move: render its directional shadow atlas once.
-    key.position.set(-6,17,-12);
-    const shadows=new B.ShadowGenerator(1024,key);
-    shadows.usePercentageCloserFiltering=true;shadows.filteringQuality=B.ShadowGenerator.QUALITY_LOW;
-    shadows.bias=.002;shadows.normalBias=.025;shadows.setDarkness(.35);
-    for(const mesh of scene.meshes){mesh.receiveShadows=true;if(mesh.name.startsWith('static:')&&!['static:brushed deck','static:projection','static:light strips','static:hazard lamps'].includes(mesh.name))shadows.addShadowCaster(mesh);}
-    shadows.getShadowMap().refreshRate=B.RenderTargetTexture.REFRESHRATE_RENDER_ONCE;
-    scene.shadowsEnabled=quality!=='low';
-    scene.skipPointerMovePicking=true;scene.autoClear=true;scene.freezeMaterials();
+    // Small consoles at human scale; they no longer dominate the first view.
+    [{x:-2.3,text:'ARCHIVE',href:'dex.html'},{x:0,text:'STUDIO',href:'prompt.html'},{x:2.3,text:'SORTIE',href:'play.html'}].forEach(c=>{box('console pedestal',c.x,.55,-9,.55,1.1,.5,frame);box('console body',c.x,1.28,-9,1.45,.62,.18,panel);const screen=label(c.text,c.x,1.29,-9.11,1.31,.46,0,c.href==='play.html'?'#f0b764':'#b4ebf4');screen.isPickable=true;screen.metadata={href:c.href};targets.push(screen);obstacles.push({x:c.x,z:-9,w:1,d:.9});});
+    // Merge opaque static geometry by material, but retain bounded chunks for culling.
+    for(const [mat,meshes] of staticGroups){for(const m of meshes)m.computeWorldMatrix(true);for(let i=0;i<meshes.length;i+=160){const chunk=meshes.slice(i,i+160);const merged=B.Mesh.MergeMeshes(chunk,true,true,undefined,false,false);if(merged){merged.name='static:'+mat.name+':'+i;merged.isPickable=false;merged.freezeWorldMatrix();}}}
+    const shadows=new B.ShadowGenerator(1024,key);shadows.usePercentageCloserFiltering=true;shadows.filteringQuality=B.ShadowGenerator.QUALITY_LOW;shadows.bias=.001;shadows.normalBias=.04;shadows.setDarkness(.15);
+    for(const mesh of scene.meshes){mesh.receiveShadows=true;if(mesh.name.startsWith('static:')&&!['static:brushed deck','static:projection','static:light strips','static:hazard lamps','static:skylight diffuser'].some(prefix=>mesh.name.startsWith(prefix)))shadows.addShadowCaster(mesh);}
+    shadows.getShadowMap().refreshRate=B.RenderTargetTexture.REFRESHRATE_RENDER_ONCE;scene.executeWhenReady(()=>shadows.getShadowMap().resetRefreshCounter());
+    scene.shadowsEnabled=quality!=='low';scene.skipPointerMovePicking=true;scene.autoClear=true;scene.freezeMaterials();
     ready=true;loading.hidden=true;syncLoop();
-    // Do not promise a measured device framerate; these are render caps.
-    if(reduced) $('lookHint').lastChild.textContent='드래그로 둘러보기';
   }
   function imageFor(record){const entry=record.entry;return window.AtelierImg.portraitOf(entry,gender,'cinematic_semi_real')||window.AtelierImg.portraitOf(entry,gender==='f'?'m':'f','cinematic_semi_real');}
   function updateExhibits(){if(!scene||!records.length)return;for(const bay of bays){const record=records[(offset+bay.index)%records.length];bay.record=record;bay.plane.metadata={href:detailURL(record)};const file=imageFor(record),token=++bay.token;bay.mat.unfreeze();bay.mat.emissiveTexture=null;if(bay.texture){bay.texture.dispose();bay.texture=null;}bay.mat.markDirty();const texture=new B.Texture(window.AtelierImg.imgURL(file),scene,false,true,B.Texture.TRILINEAR_SAMPLINGMODE,()=>{if(token!==bay.token){texture.dispose();return;}if(bay.texture)bay.texture.dispose();bay.texture=texture;bay.mat.emissiveTexture=texture;bay.mat.markDirty();},()=>{texture.dispose();if(token===bay.token)notify(record.name+' 그림을 불러오지 못했습니다. 도감에서 확인해 주세요.');});texture.anisotropicFilteringLevel=4;}

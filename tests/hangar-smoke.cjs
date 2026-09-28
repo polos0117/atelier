@@ -29,6 +29,8 @@ const { chromium } = require('playwright');
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto(base+'/index.html',{waitUntil:'domcontentloaded'});
     await page.waitForFunction(()=>window.BABYLON?.EngineStore.LastCreatedScene?.meshes.filter(m=>m.name.startsWith('archive hologram')).every(m=>m.material.emissiveTexture?.isReady())&&document.getElementById('loading').hidden,null,{timeout:60000});
+    await page.waitForFunction(()=>{const t=BABYLON.EngineStore.LastCreatedScene.textures.filter(t=>t.name.startsWith('assets/hangar/'));return t.length>=3&&t.every(t=>t.isReady());},null,{timeout:60000});
+    assert(await page.evaluate(()=>{const s=BABYLON.EngineStore.LastCreatedScene;return s.getMaterialByName('brushed deck').bumpTexture&&s.getMaterialByName('brushed deck').metallicTexture&&s.getMeshByName('approved hangar extension').position.z>21;}),'textured materials and world-space backdrop');
     for(const [name,size] of Object.entries({cover:{width:344,height:882},inner:{width:690,height:829},landscape:{width:882,height:344}})){
       await page.setViewportSize(size);
       await page.waitForTimeout(250);
@@ -57,8 +59,8 @@ const { chromium } = require('playwright');
     await page.locator('#pauseButton').click();assert(await page.evaluate(()=>BABYLON.EngineStore.LastCreatedScene.getEngine()._activeRenderLoops.length===0),'pause stops GPU loop');
     await page.locator('#pauseButton').click();await page.locator('#resetView').click();
     assert.deepEqual(await page.locator('.launchpad a').evaluateAll(links=>links.map(a=>a.getAttribute('href'))),['dex.html','prompt.html','play.html']);
-    const detail=await page.locator('#inspect').getAttribute('href');assert(detail.includes('mech='),'deep link');
-    await page.goto(base+'/'+detail,{waitUntil:'domcontentloaded'});await page.locator('.sheet').waitFor({timeout:60000});assert((await page.locator('.sheet').textContent()).includes('RX-78-2 건담'),'correct detail opens');
+    const detail=await page.locator('#inspect').getAttribute('href');assert(detail.includes('mech='),'deep link');const expectedName=new URL(detail,base).searchParams.get('mech');
+    await page.goto(base+'/'+detail,{waitUntil:'domcontentloaded'});await page.locator('.sheet').waitFor({timeout:60000});assert((await page.locator('.sheet').textContent()).includes(expectedName),'correct detail opens');
     await page.locator('.sheet .bar button').last().click();
     assert(await page.locator('a[href="index.html"]').count(),'archive home link');
     // Runtime failure must not remove access to any of the three applications.
