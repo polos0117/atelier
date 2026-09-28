@@ -658,6 +658,21 @@ function App() {
   const [ser, setSer] = useState('');
   const [style, setStyle] = useState('');
   const [open, setOpen] = useState(null);
+  // A hangar projection links directly to the existing archive detail sheet.
+  const openedFromHangar = useRef(false);
+  useEffect(() => {
+    if (!data || openedFromHangar.current) return;
+    openedFromHangar.current = true;
+    const params = new URLSearchParams(location.search);
+    const name = params.get('mech');
+    if (!name) return;
+    const card = data.cards['기체'].find(c => c.name === name);
+    if (card) {
+      setTab('기체');
+      setV(params.get('gender') === 'm' ? 'm' : 'f');
+      setOpen(card);
+    }
+  }, [data]);
   const [zoom, setZoom] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const collection = useRef(null);
@@ -766,6 +781,7 @@ function App() {
     <main class=${scrolled ? 'dex-scrolled' : ''}>
       <div class="chrome">
       <nav class="workspace-nav" aria-label="Atelier 화면 이동">
+        <a href="index.html">격납고</a>
         <a href="prompt.html">프롬프트</a>
         <a href="play.html">드래프트</a>
         <a href="dex.html" aria-current="page">도감</a>

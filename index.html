@@ -4,118 +4,49 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#151A21">
-<title>건담 드래프트</title>
-<!-- 홈 화면에 두면 브라우저가 저장 자리를 걷어가지 못한다 -->
+<meta name="theme-color" content="#0b141d">
+<title>건담 드래프트 — 격납고</title>
 <link rel="manifest" href="index.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="건담">
 <link rel="apple-touch-icon" href="icon-index-180.png">
-<style>
-:root{--deck:#151A21;--panel:#1D242D;--rule:#2C3742;--ink:#E4E9EF;--dim:#8794A3;--plate:#C9D2DC}
-*{box-sizing:border-box}
-body{margin:0;background:var(--deck);color:var(--ink);
-  font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;
-  font-size:15px;line-height:1.5;padding:calc(28px + env(safe-area-inset-top)) 16px 40px}
-.wrap{max-width:460px;margin:0 auto}
-h1{margin:0 0 4px;font-size:19px;font-weight:800;letter-spacing:.22em}
-.sub{color:var(--dim);font-size:12px;letter-spacing:.08em;
-  font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;margin-bottom:22px}
-a.item{display:block;text-decoration:none;color:inherit;background:var(--panel);
-  border:1px solid var(--rule);border-left:4px solid var(--cc,#79849A);
-  border-radius:6px;padding:13px 15px;margin-bottom:9px}
-a.item:active{background:#232B36}
-a.item b{display:block;font-size:16px;font-weight:700;margin-bottom:2px}
-a.item span{color:var(--dim);font-size:12.5px}
-.note{color:var(--dim);font-size:12px;margin-top:20px;line-height:1.65}
-</style>
+<link rel="icon" href="icon-index-192.png">
+<link rel="stylesheet" href="gundam/hangar.css?v=0c4dedf7fb">
+<script defer src="lib/img.js"></script>
+<script defer src="lib/fresh.js"></script>
+<script defer src="gundam/hangar.js?v=4949aa764a"></script>
 </head>
 <body>
-<div class="wrap">
-  <h1>건담 드래프트</h1>
-  <div class="sub">POLOS0117 · GUNDAM-IMG</div>
-
-  <a class="item" href="dex.html" style="--cc:#3E6C9C">
-    <b>도감</b><span>513장 열람 · 의인화 / 일상 / 특별 / 작업</span></a>
-  <a class="item" href="play.html" style="--cc:#B0463A">
-    <b>건담 드래프트</b><span>본편</span></a>
-  <a class="item" href="prompt.html" style="--cc:#7A5FA8">
-    <b>프롬프트 툴킷</b><span>기체별 프롬프트 생성 · 프리셋</span></a>
-  <a class="item" href="sam.html" style="--cc:#8C6A3E">
-    <b>삼국지 드래프트</b><span>이전 작업 · 단일 파일</span></a>
-
-  <div class="note">
-    잔여 현황과 프롬프트 복사는 도감의 <b>작업</b> 탭에 들어갔다.<br>
-    갱신했는데 옛날 화면이 보이면 주소 뒤에 <b>?v=2</b> 처럼 붙여서 다시 열면 된다.<br>
-    게임 기록과 체크 상태는 이 주소 기준으로 따로 저장된다.
-  </div>
-</div>
-<script>
-/* ══ 새 판 살피기 ══
-   홈 화면 앱에는 주소창도 새로고침 단추도 없다. 그래서 스스로 살핀다.
-   본문을 통째로 다시 받으면 데이터가 아까우니 머리(HEAD)만 물어 견준다.
-   판이 한창일 수 있으니 제멋대로 갈아타지 않고, 띠를 띄워 누를 때 갈아탄다 */
-(function(){
-  /* 견줄 자리를 "이 창이 처음 본 표" 로 잡으면 안 된다.
-     화면에 떠 있는 쪽이 캐시에서 온 옛 판이면 첫 살핌이 서버의 새 판을
-     "이미 본 것" 으로 적어 버려 영영 알리지 못한다. 안 뜨던 까닭이 이것이다.
-     그래서 지금 이 문서가 서버를 떠난 때(document.lastModified)를 기준 삼는다.
-     그보다 서버 쪽이 나중이면 새 판이다 — 캐시에서 왔든 아니든 맞게 걸린다.
-     표(etag)는 CDN 마디마다 다르게 붙어 같은 판도 바뀐 듯 보이니 뒷받침으로만 쓴다 */
-  var GAP=18e4, SLACK=2e3;              /* 삼 분에 한 번, 앞뒤 이 초는 봐준다 */
-  var KEY="skip_build_v1:"+location.pathname;
-  var MINE=Date.parse(document.lastModified); if(!isFinite(MINE))MINE=0;
-  var TAG=null, busy=false, shown=false, last=0;
-  function skipped(){try{return localStorage.getItem(KEY)}catch(e){return null}}
-  function noMore(t){try{localStorage.setItem(KEY,t)}catch(e){}}
-  /* 자리가 있으면 지금 판이 언제 것인지 적어 둔다. 눈으로 견줄 데가 있어야 한다 */
-  (function(){
-    var el=document.getElementById("buildStamp"); if(!el||!MINE)return;
-    var d=new Date(MINE), p=function(n){return(n<10?"0":"")+n};
-    el.textContent="판 "+p(d.getMonth()+1)+"-"+p(d.getDate())+" "+p(d.getHours())+":"+p(d.getMinutes());
-  })();
-  function look(force){
-    if(busy||shown||!window.fetch)return;
-    var now=Date.now(); if(!force&&now-last<GAP)return; last=now; busy=true;
-    fetch(location.pathname+"?_="+now,{method:"HEAD",cache:"no-store"})
-      .then(function(r){ busy=false; if(!r.ok)return;
-        var lm=r.headers.get("last-modified"), et=r.headers.get("etag");
-        var t=lm||et; if(!t||t===skipped())return;
-        var srv=lm?Date.parse(lm):NaN;
-        if(MINE&&isFinite(srv)){ if(srv>MINE+SLACK)band(t); return; }
-        /* 날짜를 못 얻는 자리에서만 예전처럼 표를 견준다 */
-        if(TAG===null){TAG=t;return}
-        if(t!==TAG)band(t);
-      }).catch(function(){busy=false});
-  }
-  function band(t){
-    if(shown)return; shown=true;
-    var d=document.createElement("div");
-    d.setAttribute("role","status");
-    d.style.cssText="position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));"+
-      "z-index:99999;background:#1b1f27;color:#f0ead8;border:1px solid #C9A227;border-radius:10px;"+
-      "padding:12px 14px;font:600 14px/1.5 -apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif;"+
-      "box-shadow:0 6px 22px rgba(0,0,0,.45);display:flex;gap:10px;align-items:center";
-    d.innerHTML='<span style="flex:1">새 판이 나왔습니다. 하던 것을 마치고 눌러 주세요.</span>'+
-      '<button type="button" style="flex:none;background:#C9A227;color:#17130F;border:0;border-radius:7px;'+
-      'padding:8px 12px;font:700 14px/1 inherit">갈아타기</button>'+
-      '<button type="button" aria-label="닫기" style="flex:none;background:none;color:#8b8578;border:0;'+
-      'font:700 18px/1 inherit;padding:4px 6px">×</button>';
-    var b=d.querySelectorAll("button");
-    b[0].onclick=function(){
-      var u=location.pathname+location.search;
-      location.replace(u+(location.search?"&":"?")+"_v="+Date.now());
-    };
-    /* 닫기를 눌렀으면 이 판으로는 다시 묻지 않는다. 그다음 판은 또 알린다 */
-    b[1].onclick=function(){d.remove();shown=false;noMore(t)};
-    document.body.appendChild(d);
-  }
-  look(true);
-  /* 앱을 다시 열 때만 본다. focus 까지 걸면 한 번 오갈 때 두 번 물어본다 */
-  document.addEventListener("visibilitychange",function(){if(!document.hidden)look()});
-})();
-</script>
+<main id="hangar" aria-label="건담 격납고">
+  <canvas id="hangarCanvas" tabindex="0" aria-label="3D 격납고. WASD 또는 방향키로 이동, 드래그로 둘러보기"></canvas>
+  <div class="shade" aria-hidden="true"></div>
+  <header class="masthead">
+    <div class="brand"><span class="eyebrow">ATELIER / HANGAR 01</span><h1>건담 드래프트</h1></div>
+    <button id="optionsButton" class="small-button" aria-expanded="false" aria-controls="options">설정</button>
+  </header>
+  <section id="options" class="options" hidden aria-label="격납고 설정">
+    <label>화질<select id="quality"><option value="balanced">균형 · 30fps</option><option value="low">절전 · 30fps</option><option value="high">선명 · 60fps</option></select></label>
+    <label>전시 초상<select id="gender"><option value="f">여성</option><option value="m">남성</option></select></label>
+    <button id="changeExhibits">다음 기체 전시</button>
+    <button id="resetView">입구로 돌아가기</button>
+    <button id="pauseButton" aria-pressed="false">3D 일시정지</button>
+    <p>왼쪽 스틱으로 이동 · 화면을 드래그해 둘러보기<br>PC: WASD / 방향키 · E로 가까운 전시 열기</p>
+    <a href="sam.html">삼국지 드래프트</a>
+  </section>
+  <div id="loading" role="status" class="loading"><span class="eyebrow">HANGAR SYSTEM</span><b>격납고를 여는 중…</b><span>아래 메뉴는 바로 이용할 수 있습니다.</span></div>
+  <div class="bay-caption"><span id="bayCode" class="eyebrow">ARCHIVE PROJECTION</span><h2 id="bayName">기체 홀로그램</h2><a id="inspect" href="dex.html">도감 열기 ↗</a></div>
+  <div class="reticle" aria-hidden="true">+</div>
+  <div class="movement" id="movement"><div id="stick" role="group" aria-label="이동 스틱"><div id="stickKnob"></div><span>이동</span></div></div>
+  <div class="look-hint" id="lookHint" aria-hidden="true"><span>↔</span>드래그로 둘러보기</div>
+  <p id="notice" class="notice" role="status"></p>
+  <nav class="launchpad" aria-label="메인 메뉴">
+    <a href="dex.html"><span class="nav-code">01 / ARCHIVE</span><strong>도감</strong><span class="nav-sub">기체 컬렉션</span></a>
+    <a href="prompt.html"><span class="nav-code">02 / STUDIO</span><strong>프롬프트</strong><span class="nav-sub">캐릭터 만들기</span></a>
+    <a href="play.html" class="launch"><span class="nav-code">03 / SORTIE</span><strong>드래프트 <span aria-hidden="true">↗</span></strong><span class="nav-sub">출격 준비</span></a>
+  </nav>
+  <noscript><p class="loading">3D 이동에는 JavaScript가 필요합니다. 아래 메뉴로 이동할 수 있습니다.</p></noscript>
+</main>
 </body>
 </html>
