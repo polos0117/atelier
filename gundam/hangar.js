@@ -17,7 +17,9 @@
   try { const p = JSON.parse(localStorage.getItem('atelier_hangar_v1') || '{}'); if (['low','balanced','high'].includes(p.quality)) quality=p.quality; if (['f','m'].includes(p.gender)) gender=p.gender; } catch (_) {}
   $('quality').value=quality; $('gender').value=gender;
   function clearInput() { keys={}; joy={x:0,y:0}; stickPointer=null; look=null; knob.style.transform=''; }
-  function resize() { document.documentElement.style.setProperty('--vh', (window.visualViewport ? visualViewport.height : innerHeight)+'px'); if(engine) engine.resize(); }
+  /* Portrait phones (Fold cover 344×882) get a fixed 60° horizontal view; a fixed vertical fov left them a ~23° tunnel of ceiling. */
+  function fitLens() { if(!camera) return; const tall=innerWidth<innerHeight; camera.fovMode=tall?B.Camera.FOVMODE_HORIZONTAL_FIXED:B.Camera.FOVMODE_VERTICAL_FIXED; camera.fov=tall?1.05:.95; }
+  function resize() { document.documentElement.style.setProperty('--vh', (window.visualViewport ? visualViewport.height : innerHeight)+'px'); fitLens(); if(engine) engine.resize(); }
   resize(); addEventListener('resize', resize); if(window.visualViewport) visualViewport.addEventListener('resize', resize);
   $('optionsButton').onclick=() => { const open=$('options').hidden; $('options').hidden=!open; $('optionsButton').setAttribute('aria-expanded',String(open)); clearInput(); };
   $('resetView').onclick=() => { if(camera) resetView(); $('options').hidden=true; $('optionsButton').setAttribute('aria-expanded','false'); };
@@ -26,7 +28,7 @@
   $('changeExhibits').onclick=() => { if(!records.length) return notify('전시 목록을 불러오는 중입니다.'); offset=(offset+bays.length)%records.length; updateExhibits(); notify('전시 기체를 바꿨습니다.'); };
   $('pauseButton').onclick=() => { paused=!paused; clearInput(); $('pauseButton').textContent=paused?'3D 다시 움직이기':'3D 일시정지'; $('pauseButton').setAttribute('aria-pressed',String(paused)); syncLoop(); };
   function applyQuality() { targetFPS=quality==='high'?60:30; if(!engine) return; if(scene)scene.shadowsEnabled=quality!=='low'; const ratio=quality==='low'?.7:quality==='high'?Math.min(devicePixelRatio||1,1.5):1; engine.setHardwareScalingLevel(1/ratio); engine.resize(); }
-  function resetView() { camera.position.set(0,2.1,-21.2); camera.rotation.set(-.16,0,0); clearInput(); }
+  function resetView() { camera.position.set(0,2.1,-21.2); camera.rotation.set(innerWidth<innerHeight?-.06:-.16,0,0); clearInput(); }
   function blocked() { return paused||document.hidden||!$('options').hidden||!ready; }
   addEventListener('keydown',e => { if(e.key==='Escape'){ $('options').hidden=true;$('optionsButton').setAttribute('aria-expanded','false');clearInput();return; } if(/^(INPUT|SELECT|TEXTAREA|BUTTON|A)$/.test(document.activeElement.tagName)||blocked())return; if(['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code)){keys[e.code]=true;e.preventDefault();} if(e.code==='KeyE'&&!e.repeat&&currentBay) location.href=detailURL(currentBay.record); });
   addEventListener('keyup',e=>delete keys[e.code]); addEventListener('blur',clearInput);
@@ -74,7 +76,7 @@
     scene=new B.Scene(engine);scene.clearColor=new B.Color4(.025,.035,.04,1);scene.fogMode=B.Scene.FOGMODE_EXP2;scene.fogDensity=.004;scene.fogColor=color('#303b40');
     scene.environmentTexture=B.CubeTexture.CreateFromPrefilteredData('https://assets.babylonjs.com/environments/environmentSpecular.env',scene);scene.environmentIntensity=.62;
     scene.imageProcessingConfiguration.toneMappingEnabled=true;scene.imageProcessingConfiguration.toneMappingType=B.ImageProcessingConfiguration.TONEMAPPING_ACES;scene.imageProcessingConfiguration.exposure=1.25;scene.imageProcessingConfiguration.contrast=1.15;
-    camera=new B.FreeCamera('visitor',new B.Vector3(0,2.1,-16),scene);camera.minZ=.12;camera.maxZ=130;camera.fov=.95;camera.inputs.clear();resetView();
+    camera=new B.FreeCamera('visitor',new B.Vector3(0,2.1,-16),scene);camera.minZ=.12;camera.maxZ=130;camera.fov=.95;fitLens();camera.inputs.clear();resetView();
     const hemi=new B.HemisphericLight('skylight bounce',new B.Vector3(0,1,0),scene);hemi.intensity=.28;hemi.diffuse=color('#d8e5eb');hemi.groundColor=color('#252b2b');
     const key=new B.DirectionalLight('clerestory daylight',new B.Vector3(.12,-1,.28),scene);key.intensity=2.25;key.diffuse=color('#ebf3f6');key.position.set(-6,22,-12);
     for(const [x,y,z,hex,power] of [[-9,7,-7,'#ffc88b',70],[9,8,8,'#b1e0ed',65]]){const l=new B.PointLight('maintenance light',new B.Vector3(x,y,z),scene);l.diffuse=color(hex);l.intensity=power;l.range=25;}
