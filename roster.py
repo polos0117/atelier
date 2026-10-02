@@ -262,11 +262,12 @@ def new_art():
             return None
         return r.stdout if r.returncode == 0 else None
 
+    # img/thumb 는 make-thumbs.py 가 일부러 작게 만든 축소본이라 규격 대상이 아니다
     added = git("log", "--diff-filter=A", "--name-only", "--format=",
-                ART_SINCE + "..HEAD", "--", "img")
+                ART_SINCE + "..HEAD", "--", "img", ":(exclude)img/thumb")
     if added:
         out |= {l.strip() for l in added.splitlines() if l.strip()}
-    live = git("status", "--porcelain", "--", "img")
+    live = git("status", "--porcelain", "--", "img", ":(exclude)img/thumb")
     if live:
         out |= {l[3:].strip() for l in live.splitlines()}
     return sorted(n for n in out
