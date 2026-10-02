@@ -3,21 +3,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>삼국지 드래프트 — 이동</title>
-<link rel="manifest" href="sam.webmanifest">
-<meta name="theme-color" content="#17130F">
-<script>
-(function(){
- var target=new URL("sam/index.html",location.href);target.search=location.search;target.hash=location.hash;
- if(location.protocol==="file:"){
-  try{
-   var data={};["samgukji_draft_rec_v1","samgukji_draft_cfg_v1","samgukji_draft_game_v2","samgukji_mark_v1"].forEach(function(k){var v=localStorage.getItem(k);if(v)data[k]=v});
-   if(Object.keys(data).length)target.hash="sam-transfer="+encodeURIComponent(JSON.stringify(data));
-  }catch(e){}
- }
- location.replace(target.href);
-})();
-</script>
-<noscript><meta http-equiv="refresh" content="0;url=sam/index.html"></noscript>
+<!-- 삼국지 드래프트는 sam-atelier 저장소로 옮겼다. 옛 주소·설치한 앱을 위해 남긴 이동 페이지 -->
+<script>location.replace("../sam-atelier/"+location.search+location.hash)</script>
+<noscript><meta http-equiv="refresh" content="0;url=../sam-atelier/"></noscript>
 </head><body style="background:#17130F;color:#E7DCC3;font-family:system-ui;padding:24px">
-<p>게임 페이지로 이동합니다. <a href="sam/index.html" style="color:#C9A227">삼국지 드래프트 열기</a></p>
+<p>게임 페이지로 이동합니다. <a href="../sam-atelier/" style="color:#C9A227">삼국지 드래프트 열기</a></p>
 </body></html>
