@@ -50,16 +50,17 @@ function Gallery({card,type,partner,preferDaily=false,initialGender}){
   const [mode,setMode]=useState(preferDaily&&daily.length?'daily':'base'),[index,setIndex]=useState(0),[zoom,setZoom]=useState(false);
   const list=mode==='daily'?daily:mode==='extra'?extra:[];
   const current=list.length?list[index%list.length]:null;
+  const ship=type==='함';
   return html`<section class="draft-gallery" aria-label=${card[0]+' 이미지'}>
-    <div class="segmented gallery-tabs">${[['base','기본',true],['daily','일상 '+daily.length,!!daily.length],['extra','특별 '+extra.length,!!extra.length]].map(([key,label,enabled])=>html`
-      <button type="button" key=${key} disabled=${!enabled} aria-pressed=${mode===key} onClick=${()=>{setMode(key);setIndex(0)}}>${label}</button>`)}</div>
+    ${!ship&&html`<div class="segmented gallery-tabs">${[['base','기본',true],['daily','일상 '+daily.length,!!daily.length],['extra','특별 '+extra.length,!!extra.length]].map(([key,label,enabled])=>html`
+      <button type="button" key=${key} disabled=${!enabled} aria-pressed=${mode===key} onClick=${()=>{setMode(key);setIndex(0)}}>${label}</button>`)}</div>`}
     <button type="button" class=${'gallery-image '+(type==='함'?'ship-image':'')} aria-label="이미지 크게 보기" onClick=${()=>setZoom(true)}><${Portrait} card=${card} partner=${partner} gender=${gender} path=${current?.path} eager=${true}/></button>
-    <div class="gallery-footer">
+    ${!ship&&html`<div class="gallery-footer">
       <div class="segmented">${[['f','여'],['m','남']].map(([v,label])=>html`<button key=${v} type="button" aria-label=${label+'성 이미지'} aria-pressed=${gender===v} onClick=${()=>{setGender(v);setMode('base');setIndex(0)}}>${label}</button>`)}</div>
       ${mode!=='base'&&html`<div class="gallery-paging"><button type="button" aria-label="이전 이미지" disabled=${list.length<2} onClick=${()=>setIndex(i=>(i+list.length-1)%list.length)}>‹</button><span>${list.length?index%list.length+1:0} / ${list.length}</span><button type="button" aria-label="다음 이미지" disabled=${list.length<2} onClick=${()=>setIndex(i=>(i+1)%list.length)}>›</button></div>`}
-    </div>
+    </div>`}
     ${current&&html`<small class="muted">${E.ART_NAME[current.style]||current.style}</small>`}
-    ${!daily.length&&html`<small class="muted">${gender==='f'?'여성':'남성'} 일상컷이 아직 없습니다.</small>`}
+    ${!ship&&!daily.length&&html`<small class="muted">${gender==='f'?'여성':'남성'} 일상컷이 아직 없습니다.</small>`}
     ${zoom&&html`<${ImageZoom} card=${card} gender=${gender} path=${current?.path} onClose=${()=>setZoom(false)}/>`}
   </section>`;
 }
@@ -93,15 +94,16 @@ function Setup({open}){
     <div class="setup-bottom"><div><b>${E.REC.games}판</b><span> · 수위 ${E.REC.first} · 최고 ${E.REC.best}점</span><button type="button" class="text-button" onClick=${()=>open({kind:'records'})}>전적·훈장 보기 ↗</button></div><button class="primary launch" type="button" onClick=${E.start}>출격 <span>→</span></button></div>
   </section>`;
 }
-function Candidate({slot,type,open}){
+function Candidate({slot,type,open,i=0}){
   const card=slot.c,mine=E.isMine()&&slot.by===null;
   const gain=E.hintOn&&mine?E.delta(card,type):null;
   const reason=slot.by!==null?'지명 완료':mine?E.choiceReason(card,type,gain):'상대 지명 중';
-  return html`<button type="button" class=${'draft-card'+(slot.by!==null?' taken':'')} disabled=${!mine}
-    aria-label=${card[0]+' · '+reason} style=${{'--faction':E.fc(card[1][card[1].length-1])}}
+  const fresh=slot.by!==null&&E.log[0]?.c===card;
+  return html`<button type="button" class=${'draft-card'+(slot.by!==null?' taken '+(slot.by===0?'by-ally':'by-enemy')+(fresh?' fresh':''):'')} disabled=${!mine}
+    aria-label=${card[0]+' · '+reason} style=${{'--faction':E.fc(card[1][card[1].length-1]),'--i':i}}
     onClick=${()=>open({kind:'candidate',card,type,token:E.turnToken()})}>
     <div class="candidate-image"><${Portrait} card=${card}/><span class="candidate-kind">${type}</span><span class="candidate-series">${E.serTag(card)}</span>
-      ${slot.by!==null&&html`<span class="taken-label">${slot.by===0?'아군':'적 '+slot.by} 지명</span>`}</div>
+      ${slot.by!==null&&html`<span class="taken-label">${slot.by===0?'아군':'적 '+slot.by} 지명</span><span class="lock-stamp" aria-hidden="true">${slot.by===0?'LOCKED':'ENEMY LOCK'}</span>`}</div>
     <div class="candidate-info"><small>${card[1][card[1].length-1]||'소속 없음'}</small><b class="candidate-name">${card[0]}</b>
       <${Stats} card=${card} type=${type}/><div class=${'candidate-gain'+(gain?.v<0?' negative':'')}><span>${gain?'선택 시':'상태'}</span><strong>${gain?signed(gain.v):slot.by!==null?'지명됨':mine?'상세 확인':'대기'}</strong></div><p>${reason}</p>
     </div></button>`;
@@ -202,7 +204,7 @@ function Results({open}){
   const [opponent,setOpponent]=useState(()=>E.evaluate(E.teams[1]).total>=E.evaluate(E.teams[2]).total?1:2),[copyStatus,setCopyStatus]=useState('같은 판 주소 복사');
   const ranking=[0,1,2].map(i=>({i,total:E.evaluate(E.teams[i]).total})).sort((a,b)=>b.total-a.total);
   const a=E.scoreParts(E.teams[0]),b=E.scoreParts(E.teams[opponent]);
-  return html`<section class="results" id="endArea"><div class="rankings">${ranking.map((r,i)=>html`<button type="button" class=${'ranking'+(r.i===0?' ally':'')} onClick=${()=>open({kind:'team',index:r.i})}><span>${i+1}위</span><b>${E.seatName(r.i)}</b><strong>${r.total}</strong></button>`)}</div>
+  return html`<section class="results" id="endArea"><div class="rankings">${ranking.map((r,i)=>html`<button type="button" class=${'ranking'+(r.i===0?' ally':'')} style=${{'--r':ranking.length-1-i}} onClick=${()=>open({kind:'team',index:r.i})}><span>${i+1}위</span><b>${E.seatName(r.i)}</b><strong><${CountUp} to=${r.total}/></strong></button>`)}</div>
     <${MVP} open=${open}/><section class="draft-panel"><h3>승패 분석 · 상대와 점수 비교</h3><select aria-label="분석할 상대" value=${opponent} onChange=${e=>setOpponent(+e.target.value)}>${[1,2].map(i=>html`<option value=${i}>${E.seatName(i)}</option>`)}</select><p>${E.seatName(opponent)} 대비 ${signed(a.total-b.total)}점</p><${ScoreTable} a=${a} b=${b}/><p class="muted">궁합·지형은 기본 출격 대비 보정값입니다. 정원 초과 감점과 반올림 보정을 포함해 최종 점수와 일치합니다.</p></section>
     <${Team} open=${open}/>
     ${E.newFeats.length>0&&html`<section class="draft-panel"><h3>새 훈장</h3><div class="medal-grid">${E.FEATS.filter(f=>E.newFeats.includes(f.id)).map(f=>html`<div class="earned"><b>${f.n}</b><span>${f.d}</span></div>`)}</div></section>`}
@@ -211,11 +213,28 @@ function Results({open}){
     <details class="draft-panel"><summary>이 판의 규칙</summary><p>조 점수 = 기체력 × 파일럿력 × 싱크. 기질·감응·시리즈·소속·전용기 연대를 반영한 싱크는 0.70~1.45입니다. 정원을 넘긴 조는 60%로 계산합니다.</p><p>소속 결속은 현 소속 1.0, 과거 소속 0.5입니다. 보급 요청은 양편에 같은 횟수가 주어지며 마지막 배치에서는 사용할 수 없습니다.</p></details>
   </section>`;
 }
+function CountUp({to}){
+  const [n,setN]=useState(()=>matchMedia('(prefers-reduced-motion: reduce)').matches?to:0);
+  useEffect(()=>{if(n===to)return;let raf,t0;const step=t=>{t0??=t;const k=Math.min(1,(t-t0)/900);setN(Math.round(to*(1-Math.pow(1-k,3))));if(k<1)raf=requestAnimationFrame(step)};const wait=setTimeout(()=>raf=requestAnimationFrame(step),250);return ()=>{clearTimeout(wait);cancelAnimationFrame(raf)}},[to]);
+  return n;
+}
 function Board({open}){return html`<section id="boardArea"><div class="enemy-teams">${[1,2].map(index=>html`<${Team} index=${index} open=${open}/>` )}</div><section class="draft-panel"><h3>교신 로그</h3>${E.fogOn&&E.phase!=='done'?html`<p class="draft-note">관제 두절 · 상대의 지명은 숨겨집니다.</p>`:html`<ol class="draft-feed">${E.log.map((l,i)=>html`<li key=${i}><span>R${l.r}</span><b>${E.seatName(l.ti)}</b><span>${l.rr?'보급 요청':l.c?.[0]}</span></li>`)}</ol>`}</section></section>`}
 function App(){
   const revision=useEngine(),[pane,setPane]=useState('cards'),[stack,setStack]=useState([]);
   const [large,setLarge]=useState(()=>preference('atelier_play_large_v1','1')!=='0'),[tactical,setTactical]=useState(()=>preference('atelier_tactical_v1','1')!=='0');
   const scroll=useRef(null),previousPhase=useRef('loading');
+  const [bursts,setBursts]=useState([]),[ping,setPing]=useState(0),mineRef=useRef(null);
+  useEffect(()=>{
+    if(E.phase!=='running'||!E.teams){mineRef.current=null;return}
+    const t=E.teams[0],count=KINDS.reduce((n,k)=>n+t[k].length,0),pairs=E.assign(t).filter(u=>u.m&&u.p),obj=E.OBJECTIVE?Math.min(E.OBJECTIVE.target,E.objectiveCount(t,E.OBJECTIVE)):0;
+    const prev=mineRef.current;mineRef.current={count,pairs:pairs.length,obj};
+    if(!prev||count<=prev.count)return;
+    setPing(v=>v+1);
+    const add=[];
+    if(pairs.length>prev.pairs){const last=E.log[0]?.c,u=pairs.find(x=>x.m===last||x.p===last)||pairs[pairs.length-1];add.push({k:'SYNC',big:E.sync(u.m,u.p).toFixed(2),small:u.m[0]+' × '+u.p[0]})}
+    if(obj>prev.obj)add.push({k:'OPERATION',big:obj+' / '+E.OBJECTIVE.target,small:E.OBJECTIVE.name+' · +'+E.objectiveScore(t)+'점'});
+    if(add.length){const id=Date.now();setBursts(add.map((b,j)=>({...b,id:id+'-'+j,d:j})));setTimeout(()=>setBursts(v=>v.filter(b=>!String(b.id).startsWith(id+'-'))),2000)}
+  },[revision]);
   const open=item=>setStack([item]),push=item=>setStack(s=>s.concat(item)),close=()=>setStack(s=>s.slice(0,-1));
   useEffect(()=>{document.body.classList.toggle('draft-running',E.phase==='running');if(previousPhase.current!==E.phase){setPane('cards');setStack([]);if(scroll.current)scroll.current.scrollTop=0;previousPhase.current=E.phase}},[revision]);
   useEffect(()=>{window.AtelierFresh?.watch()},[]);
@@ -235,7 +254,7 @@ function App(){
       ${running&&html`
         ${E.OBJECTIVE&&html`<button type="button" class="mission-strip" onClick=${()=>open({kind:'progress'})}><span><small>공개 작전</small><b>${E.OBJECTIVE.name}</b></span><span>${Math.min(E.OBJECTIVE.target,E.objectiveCount(E.teams[0],E.OBJECTIVE))} / ${E.OBJECTIVE.target}<small>+${E.objectiveScore(E.teams[0])}점</small></span></button>`}
         ${pane==='cards'&&html`<section id="packArea"><div class="draft-toolbar"><span>다음 · ${E.SCHEDULE[E.round+1]||'최종 판정'}</span><button id="viewMode" type="button" aria-pressed=${tactical} onClick=${()=>setTactical(v=>{savePreference('atelier_tactical_v1',v?'0':'1');return !v})}>${tactical?'일반 보기':'상황판'}</button><button id="playCardSize" type="button" aria-pressed=${large} onClick=${()=>setLarge(v=>{savePreference('atelier_play_large_v1',v?'0':'1');return !v})}>${large?'카드 기본':'카드 크게'}</button></div>
-          <div class="draft-battle-layout"><div><div class="candidate-grid">${E.candidates().map(slot=>html`<${Candidate} key=${slot.c[0]} slot=${slot} type=${E.SCHEDULE[E.round]} open=${open}/>` )}</div>
+          <div class="draft-battle-layout"><div><div class="candidate-grid">${E.candidates().map((slot,i)=>html`<${Candidate} key=${slot.c[0]} slot=${slot} i=${i} type=${E.SCHEDULE[E.round]} open=${open}/>` )}</div>
             ${!E.candidates().length&&html`<p class="draft-note" role="status">상대 지명 중 · 곧 내 보급이 도착합니다.</p>`}
             <button class="resupply" type="button" disabled=${!E.isMine()||E.rerolls<1||E.round===E.SCHEDULE.length-1} onClick=${E.resupply}>${E.round===E.SCHEDULE.length-1?'마지막 배치 · 보급 불가':'보급 요청 · '+E.rerolls+' / '+E.REROLL_MAX}</button></div>
             <aside class="battle-side"><${Team} open=${open} compact=${true}/><button type="button" onClick=${()=>open({kind:'progress'})}>연대 · 작전 진행판</button></aside></div>
@@ -247,9 +266,10 @@ function App(){
       ${done&&html`<${Results} open=${open}/>`}
       <footer class="draft-foot"><button type="button" onClick=${()=>open({kind:'collection'})} disabled=${E.phase==='loading'||E.phase==='error'}>도감 열기</button><button type="button" onClick=${()=>open({kind:'records'})}>전적 · 훈장</button></footer>
     </main>
-    ${running&&html`<nav class="draft-bottom-nav" aria-label="게임 화면 바로가기">${[['cards','카드'],['team','내 편성'],['board','전황']].map(([value,label])=>html`<button type="button" aria-pressed=${pane===value} onClick=${()=>switchPane(value)}>${label}</button>`)}</nav>`}
+    ${running&&html`<nav class="draft-bottom-nav" aria-label="게임 화면 바로가기">${[['cards','카드'],['team','내 편성'],['board','전황']].map(([value,label])=>html`<button type="button" key=${value==='team'?'team'+ping:value} class=${value==='team'&&ping?'ping':''} aria-pressed=${pane===value} onClick=${()=>switchPane(value)}>${label}</button>`)}</nav>`}
     ${stack.length>0&&html`<${Modal} item=${stack[stack.length-1]} onClose=${close} open=${push} replace=${item=>setStack(s=>s.slice(0,-1).concat(item))}/>`}
-    ${(E.feedback||E.notices.length>0)&&html`<div class="draft-feedback" role="status">${E.feedback&&html`<b>지명 완료 · ${E.feedback}</b>`}${E.notices.map(n=>html`<span class=${n.v<0?'negative':''}>${n.n} ${signed(Math.round(n.v*E.PLEDGE_MUL))}</span>`)}</div>`}
+    ${E.feedback&&html`<div class="draft-feedback" role="status"><b>지명 완료 · ${E.feedback}</b></div>`}
+    ${running&&(bursts.length>0||E.notices.length>0)&&html`<div class="burst-stack" role="status">${bursts.map(b=>html`<div key=${b.id} class="burst" style=${{'--d':b.d}}><small>${b.k}</small><b>${b.big}</b><span>${b.small}</span></div>`)}${E.notices.map((n,j)=>html`<div key=${'n'+n.n} class=${'burst bond'+(n.v<0?' negative':'')} style=${{'--d':bursts.length+j}}><small>${n.v<0?'CONFLICT':'BOND'}</small><b>${signed(Math.round(n.v*E.PLEDGE_MUL))}</b><span>${n.n}</span></div>`)}</div>`}
   </div>`;
 }
 render(html`<${App}/>`,document.getElementById('app'));

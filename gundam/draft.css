@@ -220,3 +220,57 @@ html:has(.draft-page){height:100%;overflow:hidden;overscroll-behavior:none}
 .draft-content:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
 .face-crop-frame{display:block;position:relative;width:100%;height:100%;overflow:hidden}
 .face-crop-frame img{position:absolute;height:auto;max-width:none;display:block}
+
+/* ── 2026-10 덮개 화면 정리 ── */
+@media(max-width:599px){
+ /* 1. 게임 중에는 테마·밀도와 제목을 접고 메뉴 탭을 낮춰 카드 자리를 넓힌다 */
+ .draft-running .draft-chrome .appearance-controls,.draft-running .draft-chrome .workspace-heading{display:none}
+ .draft-running .draft-chrome{margin-bottom:8px}
+ .draft-running .draft-chrome .workspace-nav{padding:3px}
+ .draft-running .draft-chrome .workspace-nav a{min-height:34px;font-size:11.5px}
+ .draft-running .draft-command{padding:8px 12px}
+ /* 2. 그림이 없는 후보는 그림 자리를 얇은 띠로 */
+ .candidate-image:has(>.draft-placeholder){aspect-ratio:auto;height:58px}
+ .candidate-image>.draft-placeholder{flex-direction:row;gap:8px}
+ .candidate-image>.draft-placeholder svg{display:none}
+ .candidate-image>.draft-placeholder>b{font-size:22px}
+ .candidate-image>.draft-placeholder>small{margin-top:0}
+ .candidate-image:has(>.draft-placeholder) .candidate-kind,.candidate-image:has(>.draft-placeholder) .candidate-series{top:5px}
+ .candidate-image:has(>.draft-placeholder) .taken-label{padding:3px}
+ /* 3. 8~9px 글씨를 읽을 수 있게 */
+ .draft-stats dt,.candidate-gain span,.pair-score small{font-size:10.5px}
+ .candidate-kind,.candidate-series{font-size:10px}
+ .draft-placeholder>small{font-size:9.5px}
+ .setup-rounds{font-size:10px}
+ .draft-panel>h3>span{font-size:10.5px}
+}
+/* 이펙트 — 움직임 줄이기 설정이면 모두 꺼진다 */
+@media(prefers-reduced-motion:no-preference){
+ .draft-card{animation:card-deal .34s cubic-bezier(.2,.8,.3,1) backwards;animation-delay:calc(var(--i,0) * 40ms)}
+ @keyframes card-deal{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+ .draft-card.fresh .candidate-image::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 35%,#ffffff40 50%,transparent 65%);animation:lock-sheen .6s ease-out both}
+ @keyframes lock-sheen{from{transform:translateX(-120%)}to{transform:translateX(120%)}}
+ .draft-card.fresh.by-ally{animation:ally-pulse .7s ease-out}
+ .draft-card.fresh.by-enemy{animation:enemy-pulse .7s ease-out}
+ @keyframes ally-pulse{0%{box-shadow:0 0 0 2px var(--accent),0 0 22px var(--accent)}100%{box-shadow:none}}
+ @keyframes enemy-pulse{0%,30%,60%{box-shadow:0 0 0 2px var(--signal)}15%,45%,100%{box-shadow:none}}
+ .fresh .lock-stamp{animation:stamp-in .38s cubic-bezier(.2,1.4,.4,1) both}
+ @keyframes stamp-in{from{opacity:0;transform:translate(-50%,-50%) rotate(-8deg) scale(1.9)}to{opacity:.95;transform:translate(-50%,-50%) rotate(-8deg) scale(1)}}
+ .draft-bottom-nav button.ping{animation:tab-ping .8s ease-out}
+ @keyframes tab-ping{0%{background:var(--accent);color:var(--bg)}100%{background:transparent}}
+ .burst{animation:burst-in .32s cubic-bezier(.2,1.3,.4,1) backwards,burst-out .35s ease-in 1.55s forwards;animation-delay:calc(var(--d,0) * 120ms),calc(1.55s + var(--d,0) * 120ms)}
+ @keyframes burst-in{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+ @keyframes burst-out{to{opacity:0;transform:translateY(-12px)}}
+ .ranking{animation:rank-in .4s cubic-bezier(.2,.8,.3,1) backwards;animation-delay:calc(.15s + var(--r,0) * 260ms)}
+ @keyframes rank-in{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:none}}
+}
+.lock-stamp{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-8deg);z-index:2;padding:3px 8px;border:2px solid var(--accent);border-radius:4px;color:var(--accent);background:color-mix(in srgb,var(--deck) 82%,transparent);font:800 12px ui-monospace,monospace;letter-spacing:.12em;white-space:nowrap;pointer-events:none;opacity:.95}
+.draft-card.by-enemy .lock-stamp{border-color:var(--signal);color:var(--signal)}
+.candidate-image:has(>.draft-placeholder) .lock-stamp{font-size:10px;padding:1px 6px;border-width:1.5px}
+.burst-stack{position:fixed;left:50%;top:42%;transform:translate(-50%,-50%);z-index:60;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;width:max-content;max-width:calc(100% - 32px)}
+.burst{text-align:center;padding:10px 22px;border:1px solid var(--accent);border-radius:12px;background:color-mix(in srgb,var(--deck) 94%,transparent);box-shadow:0 0 0 1px #0006,0 0 28px color-mix(in srgb,var(--accent) 45%,transparent);color:var(--text)}
+.burst small{display:block;font:700 11px ui-monospace,monospace;letter-spacing:.24em;color:var(--accent)}
+.burst b{display:block;font:800 30px/1.15 ui-monospace,monospace;color:var(--accent);margin:2px 0}
+.burst span{display:block;font-size:12px;color:var(--muted);overflow-wrap:anywhere}
+.burst.bond{border-color:var(--gold)}.burst.bond small,.burst.bond b{color:var(--gold)}
+.burst.negative{border-color:var(--signal)}.burst.negative small,.burst.negative b{color:var(--signal)}
