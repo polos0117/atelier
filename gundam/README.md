@@ -9,7 +9,6 @@
 - `../lib/fresh.js`: 새 버전 감지
 
 `../draft.html`은 기존 `play.html`로 연결하는 별칭이다. 씨앗·주제 쿼리와 해시를 보존한다.
-기존 `game.js`, `insights.js`, `gallery.js`, `page.js`는 이전 구현을 대조하기 위해 남겨 두며 새 화면에서는 로드하지 않는다.
 Preact가 DOM을 소유하고, 엔진은 DOM에 접근하지 않는다. 기존 `gundam_draft_cfg_v1`, `draft_rec_v1:<주제>` 저장 키와 게임 규칙을 유지한다.
 
 `data/`와 `img/`는 도감과 공유하며 복제하지 않는다. 상대 데이터 URL은 문서인 `play.html` 기준으로 해석된다. GitHub Pages 또는 로컬 HTTP 서버로 실행한다.

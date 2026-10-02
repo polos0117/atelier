@@ -30,7 +30,6 @@ function checkPageScripts(path, assert) {
 const dex=fs.readFileSync('dex.html','utf8'),prompt=fs.readFileSync('prompt-legacy.html','utf8');
 function fn(source,name){const a=source.indexOf('function '+name+'('),b=source.indexOf('\n}',a);return source.slice(a,b+2);}
 for(const path of ['dex.html','prompt.html','prompt-legacy.html','play.html'])checkPageScripts(path,assert);
-for(const path of ['gundam/game.js','gundam/gallery.js'])new vm.Script(fs.readFileSync(path,'utf8'),{filename:path});
 /* 화풍 몫 가르기 — dex.html 이 Preact 로 바뀌면서 이름과 인자가 달라졌다.
    tkStyleKey · tkStyleKeys 는 없어지고 stylesOf(entry) 가 되었고, hasPic 은
    lib/img.js 로 갔다. 이름을 따라가되 보는 것은 그대로다 — 기본 몫은 '화풍 미상',
