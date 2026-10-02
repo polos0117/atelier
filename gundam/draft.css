@@ -203,13 +203,10 @@ html:has(.draft-page){height:100%;overflow:hidden;overscroll-behavior:none}
  .draft-panel{padding:12px}.draft-toolbar>span{min-width:60px}
  .draft-dialog{margin:auto 10px;max-height:94dvh}.dialog-shell{max-height:92dvh}
 }
-@media(max-height:550px){.draft-chrome .workspace-heading{display:none}.draft-chrome{display:flex;gap:8px;align-items:center;padding-bottom:8px}.draft-chrome .workspace-nav{flex:1}.draft-chrome .appearance-controls{margin:0}.draft-chrome .appearance-controls label:last-child{display:none}}
+@media(max-height:550px){.draft-chrome .workspace-heading{display:none}.draft-chrome{display:flex;gap:8px;align-items:center;padding-bottom:8px}.draft-chrome .workspace-nav-row{flex:1}}
 @media(hover:hover){.draft-card:not(:disabled):hover{border-color:var(--accent);transform:translateY(-2px)}}
 .draft-page .workspace-nav{display:flex}
 .draft-page .workspace-nav a{display:flex;align-items:center;justify-content:center;flex:1;text-decoration:none}
-.draft-page .appearance-controls select{width:auto;font-size:12px}
-@media(max-width:599px){.draft-page .appearance-controls select{font-size:11px}}
-@media(max-width:359px){.draft-page .appearance-controls select{font-size:10px}}
 .draft-page button.gallery-image{display:block;padding:0;border:1px solid var(--line);cursor:zoom-in}
 .draft-image-zoom{inset:0;width:100vw;height:100vh;height:100dvh;max-width:100vw;max-height:100dvh;margin:0;padding:54px 12px 12px;border:0;background:#07101af5;color:#fff;overflow:hidden}
 .draft-image-zoom::backdrop{background:#07101a}
@@ -224,7 +221,7 @@ html:has(.draft-page){height:100%;overflow:hidden;overscroll-behavior:none}
 /* ── 2026-10 덮개 화면 정리 ── */
 @media(max-width:599px){
  /* 1. 게임 중에는 테마·밀도와 제목을 접고 메뉴 탭을 낮춰 카드 자리를 넓힌다 */
- .draft-running .draft-chrome .appearance-controls,.draft-running .draft-chrome .workspace-heading{display:none}
+ .draft-running .draft-chrome .workspace-heading{display:none}
  .draft-running .draft-chrome{margin-bottom:8px}
  .draft-running .draft-chrome .workspace-nav{padding:3px}
  .draft-running .draft-chrome .workspace-nav a{min-height:34px;font-size:11.5px}

@@ -87,9 +87,6 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
 .workspace-nav {gap:4px;padding:4px;margin:0;background:var(--card);border:1px solid var(--line);border-radius:12px;flex-wrap:nowrap}
 .workspace-nav a {min-width:0;min-height:40px;border:0;border-radius:8px;font-size:12px;font-weight:650;opacity:1;color:var(--muted);white-space:nowrap}
 .workspace-nav a[aria-current="page"] {color:var(--text);background:var(--accent-soft);box-shadow:inset 0 -2px var(--accent)}
-.appearance-controls {display:flex;justify-content:flex-end;flex-wrap:wrap;gap:8px 16px;margin:12px 0 0;color:var(--muted);font-size:11px}
-.appearance-controls label {display:flex;align-items:center;gap:6px;white-space:nowrap}
-.appearance-controls select {width:auto;min-width:0;max-width:180px;min-height:40px;padding:7px 26px 7px 9px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--text);font:600 12px system-ui}
 .theme-dot {width:7px;height:7px;flex:none;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 .workspace-heading {display:flex;justify-content:space-between;align-items:center;gap:18px;padding:24px 0 22px;position:relative}
 .workspace-title {display:flex;align-items:center;gap:14px;min-width:0}
@@ -262,9 +259,6 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
 /* Fold cover display (~344–400 CSS px) and narrow split-screen. */
 @media (max-width:599px) {
   .dex-page main,.prompt-page .wrap {padding-left:12px;padding-right:12px;padding-top:12px}
-  .appearance-controls {justify-content:space-between;gap:6px;margin-top:8px}
-  .appearance-controls label {gap:5px;font-size:10px}
-  .appearance-controls select {font-size:11px;max-width:150px;padding-right:4px}
   .workspace-heading {padding:18px 0;gap:10px}
   .workspace-title {gap:10px}
   .fleet-mark {width:34px;height:34px}
@@ -292,9 +286,6 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
   .prompt-page .controls button {font-size:13px}
 }
 @media (max-width:359px) {
-  .appearance-controls select {max-width:133px;font-size:10px}
-  .appearance-controls {gap:5px}
-  .appearance-controls .theme-dot {display:none}
   .workspace-nav a {font-size:11px}
 }
 @media (prefers-reduced-motion:reduce) {*,*::before,*::after {scroll-behavior:auto!important;transition:none!important}}
@@ -305,7 +296,6 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
 @media (pointer:coarse) {
   .prompt-page .lab-lock {min-height:44px;padding-right:50px}
   .prompt-page .lab-lock .lockbtn.mini {width:44px;height:44px;min-height:44px}
-  .appearance-controls select,.workspace-nav a,.dex-page .view-tools button {min-height:44px}
 }
 .prompt-page .save-bar > span:last-child {max-width:100%}
 .prompt-page .param-actions button {min-width:0;overflow-wrap:anywhere}
@@ -328,7 +318,6 @@ html:has(.dex-page) {height:100%;overflow:hidden;overscroll-behavior:none}
 .dex-page header {position:relative;top:auto}
 .dex-page .collection-scroll {flex:1 1 0;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:3px 2px calc(18px + env(safe-area-inset-bottom));scrollbar-color:var(--line) transparent}
 .dex-page .collection-scroll:focus-visible {outline:2px solid var(--accent);outline-offset:-2px}
-.dex-page main.dex-scrolled .chrome .appearance-controls,
 .dex-page main.dex-scrolled .workspace-heading,
 .dex-page main.dex-scrolled header .tabs,
 .dex-page main.dex-scrolled header>.ctl:not(.filters) {display:none}
@@ -352,6 +341,15 @@ html:has(.dex-page) {height:100%;overflow:hidden;overscroll-behavior:none}
  .dex-page .workspace-heading {display:none}
  .dex-page .chrome {display:flex;gap:8px;align-items:center;padding-bottom:6px}
  .dex-page .workspace-nav {flex:1}
- .dex-page .appearance-controls {margin:0}
- .dex-page .appearance-controls label:last-child {display:none}
 }
+
+/* 설정 — 메뉴 줄 끝의 ⚙. 누르면 테마·화면 밀도가 같은 폭 두 칸으로 펼쳐진다 */
+.workspace-nav-row {display:flex;gap:6px;align-items:stretch}
+.workspace-nav-row .workspace-nav {flex:1;min-width:0}
+.appearance-controls {position:relative;display:flex;flex:none;margin:0}
+.appearance-toggle {display:flex;align-items:center;justify-content:center;gap:5px;flex:0 0 54px;width:54px;min-height:44px;padding:0;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--muted);font:inherit;font-size:17px;line-height:1;cursor:pointer}
+.appearance-toggle:hover,.appearance-toggle[aria-expanded="true"] {color:var(--text);border-color:var(--accent)}
+.appearance-toggle[aria-expanded="true"] {background:var(--accent-soft)}
+.appearance-panel {position:absolute;right:0;top:calc(100% + 6px);z-index:90;width:min(340px,calc(100vw - 24px));display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 14px 34px #0009}
+.appearance-panel label {display:flex;flex-direction:column;gap:6px;min-width:0;font-size:12px;color:var(--muted)}
+.appearance-controls .appearance-panel select {width:100%;min-width:0;max-width:none;min-height:44px;padding:8px 6px 8px 9px;border:1px solid var(--line);border-radius:8px;background:var(--card2);color:var(--text);font:600 12px system-ui;letter-spacing:0}

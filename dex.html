@@ -226,7 +226,7 @@ body.dex-compact .grid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
   .cap{font-size:13px;line-height:1.45}
 }
 </style>
-<link rel="stylesheet" href="lib/workspace.css?v=f0a9a58b04">
+<link rel="stylesheet" href="lib/workspace.css?v=8af52b9276">
 <script src="lib/workspace-theme.js?v=97c2d41a47"></script>
 </head>
 <body class="dex-page">
@@ -237,7 +237,7 @@ import { h, render } from 'https://esm.sh/preact@10.24.3';
 import { useState, useEffect, useMemo, useRef } from 'https://esm.sh/preact@10.24.3/hooks';
 import htm from 'https://esm.sh/htm@3.1.1';
 
-import { AppearanceControls, WorkspaceHeading } from './lib/workspace-ui.js?v=3f4cc9c600';
+import { AppearanceControls, WorkspaceHeading } from './lib/workspace-ui.js?v=e7fdca7664';
 
 const html = htm.bind(h);
 const AIMG = window.AtelierImg;
@@ -780,13 +780,13 @@ function App() {
   return html`
     <main class=${scrolled ? 'dex-scrolled' : ''}>
       <div class="chrome">
-      <nav class="workspace-nav" aria-label="Atelier 화면 이동">
+      <div class="workspace-nav-row"><nav class="workspace-nav" aria-label="Atelier 화면 이동">
         <a href="index.html">격납고</a>
         <a href="prompt.html">프롬프트</a>
         <a href="play.html">드래프트</a>
         <a href="dex.html" aria-current="page">도감</a>
       </nav>
-      <${AppearanceControls} />
+      <${AppearanceControls} /></div>
       <${WorkspaceHeading} title="건담 도감" code="MOBILE SUIT ARCHIVE"
         subtitle="한 장씩 쌓아가는, 나만의 기체 컬렉션." />
       </div>
