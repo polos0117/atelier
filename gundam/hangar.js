@@ -32,14 +32,17 @@
   function blocked() { return paused||document.hidden||!$('options').hidden||!ready; }
   addEventListener('keydown',e => { if(e.key==='Escape'){ $('options').hidden=true;$('optionsButton').setAttribute('aria-expanded','false');clearInput();return; } if(/^(INPUT|SELECT|TEXTAREA|BUTTON|A)$/.test(document.activeElement.tagName)||blocked())return; if(['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code)){keys[e.code]=true;e.preventDefault();} if(e.code==='KeyE'&&!e.repeat&&currentBay) location.href=detailURL(currentBay.record); });
   addEventListener('keyup',e=>delete keys[e.code]); addEventListener('blur',clearInput);
-  stick.addEventListener('pointerdown',e=>{if(blocked()||stickPointer!==null)return;e.preventDefault();stickPointer=e.pointerId;stick.setPointerCapture(e.pointerId);moveStick(e);});
+  stick.addEventListener('pointerdown',e=>{if(blocked()||stickPointer!==null)return;e.preventDefault();stickPointer=e.pointerId;stick.setPointerCapture(e.pointerId);moveStick(e);steer(true);});
   function moveStick(e){if(e.pointerId!==stickPointer)return;const r=stick.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2,d=Math.hypot(x,y),s=d>38?38/d:1;joy={x:x*s/38,y:y*s/38};knob.style.transform=`translate(${x*s}px,${y*s}px)`;}
   stick.addEventListener('pointermove',moveStick);
-  ['pointerup','pointercancel','lostpointercapture'].forEach(type=>stick.addEventListener(type,e=>{if(e.pointerId===stickPointer){stickPointer=null;joy={x:0,y:0};knob.style.transform='';}}));
-  canvas.addEventListener('pointerdown',e=>{if(blocked()||look||e.button>0)return;canvas.focus({preventScroll:true});canvas.setPointerCapture(e.pointerId);look={id:e.pointerId,x:e.clientX,y:e.clientY,sx:e.clientX,sy:e.clientY,moved:false};});
+  ['pointerup','pointercancel','lostpointercapture'].forEach(type=>stick.addEventListener(type,e=>{if(e.pointerId===stickPointer){stickPointer=null;joy={x:0,y:0};knob.style.transform='';steer(false);}}));
+  canvas.addEventListener('pointerdown',e=>{if(blocked()||look||e.button>0)return;canvas.focus({preventScroll:true});canvas.setPointerCapture(e.pointerId);look={id:e.pointerId,x:e.clientX,y:e.clientY,sx:e.clientX,sy:e.clientY,moved:false};steer(true);});
   canvas.addEventListener('pointermove',e=>{if(!look||look.id!==e.pointerId||blocked())return;const dx=e.clientX-look.x,dy=e.clientY-look.y;look.moved=look.moved||Math.hypot(e.clientX-look.sx,e.clientY-look.sy)>7;camera.rotation.y+=dx*.003;camera.rotation.x=Math.max(-1.15,Math.min(.7,camera.rotation.x+dy*.003));look.x=e.clientX;look.y=e.clientY;});
-  canvas.addEventListener('pointerup',e=>{if(!look||look.id!==e.pointerId)return;const tap=!look.moved;look=null;if(tap&&scene&&!blocked()){const r=canvas.getBoundingClientRect();const pick=scene.pick(e.clientX-r.left,e.clientY-r.top,m=>!!m.metadata?.href);if(pick?.hit)location.href=pick.pickedMesh.metadata.href;}});
-  ['pointercancel','lostpointercapture'].forEach(type=>canvas.addEventListener(type,()=>look=null));
+  canvas.addEventListener('pointerup',e=>{if(!look||look.id!==e.pointerId)return;const tap=!look.moved;look=null;steer(false);if(tap&&scene&&!blocked()){const r=canvas.getBoundingClientRect();const pick=scene.pick(e.clientX-r.left,e.clientY-r.top,m=>!!m.metadata?.href);if(pick?.hit)location.href=pick.pickedMesh.metadata.href;}});
+  ['pointercancel','lostpointercapture'].forEach(type=>canvas.addEventListener(type,()=>{look=null;steer(false);}));
+  /* While a thumb steers, the overlays step back so the cover screen shows more hangar; the look hint retires after first use. */
+  let steerT; function steer(on){clearTimeout(steerT);if(on){$('hangar').classList.add('steer');$('lookHint').classList.add('seen');}else steerT=setTimeout(()=>{if(stickPointer===null&&!look)$('hangar').classList.remove('steer');},900);}
+  setTimeout(()=>$('lookHint').classList.add('seen'),9000);
   function syncLoop(){if(!engine||failed)return;engine.stopRenderLoop(render);lastFrame=0;if(!document.hidden&&!paused&&ready)engine.runRenderLoop(render);}
   document.addEventListener('visibilitychange',()=>{clearInput();syncLoop();});
   addEventListener('pagehide',()=>{clearInput();if(engine)engine.stopRenderLoop(render);});
