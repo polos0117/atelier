@@ -228,17 +228,19 @@ body.dex-compact .grid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
 </style>
 <link rel="stylesheet" href="lib/workspace.css?v=8af52b9276">
 <script src="lib/workspace-theme.js?v=97c2d41a47"></script>
+<link rel="stylesheet" href="lib/gallery.css?v=1">
 </head>
 <body class="dex-page">
 <div id="app"></div>
 
 <script type="module">
 import { h, render } from 'https://esm.sh/preact@10.24.3';
-import { useState, useEffect, useMemo, useRef } from 'https://esm.sh/preact@10.24.3/hooks';
+import { useState, useEffect, useLayoutEffect, useMemo, useRef } from 'https://esm.sh/preact@10.24.3/hooks';
 import htm from 'https://esm.sh/htm@3.1.1';
 
 import { AppearanceControls, WorkspaceHeading } from './lib/workspace-ui.js?v=e7fdca7664';
 
+import { modalFocus } from './lib/gallery.js?v=1';
 const html = htm.bind(h);
 const AIMG = window.AtelierImg;
 const ATK = window.AtelierToolkit;
@@ -348,7 +350,7 @@ function serOf(card) {
 }
 
 /* ── 타일 ─────────────────────────────────────────────── */
-function Cell({ name, color, shots, onOpen }) {
+function Cell({ name, color, shots, onOpen, subtitle }) {
   const [page, setPage] = useState(0);
   const touch = useRef({ x: 0, y: 0, swiped: false });
   const i = shots.length ? ((page % shots.length) + shots.length) % shots.length : 0;
@@ -371,11 +373,11 @@ function Cell({ name, color, shots, onOpen }) {
   };
 
   return html`
-    <div class="cell" tabindex="0" style=${{ '--cc': color }}
+    <div class="cell" role="button" aria-label=${name} tabindex="0" onKeyDown=${e=>{if(e.target===e.currentTarget && ['Enter',' '].includes(e.key)){e.preventDefault();onOpen();}}} style=${{ '--cc': color }}
          ontouchstart=${onStart} ontouchend=${onEnd} onclick=${onClick}>
       <span class="face">
         ${pic
-          ? html`<img loading="lazy" src=${AIMG.thumbURL(pic)} alt=""
+          ? html`<img key=${pic} width="800" height="1200" decoding="async" loading="lazy" src=${AIMG.thumbURL(pic)} alt=${name}
                    onerror=${e => { e.target.onerror = null; e.target.src = AIMG.imgURL(pic); }} />`
           : html`<span class="ph">그림 없음</span>`}
         ${shots.length > 1 && html`
@@ -384,7 +386,7 @@ function Cell({ name, color, shots, onOpen }) {
             ${i + 1}/${shots.length}
           </button>`}
       </span>
-      <div class="cap">${name}</div>
+      <div class="cap"><span class="card-meta">${subtitle}</span><strong>${name}</strong><i>${shots.length ? shots.length+'장의 그림' : '그림을 기다리는 중'} <span aria-hidden="true">↗</span></i></div>
     </div>`;
 }
 
@@ -420,7 +422,7 @@ function copyText(text) {
    완료 기준은 초상 남녀 두 장이다 (일상·특별은 끝이 없으므로 기준에서 뺀다) */
 function WorkRow({ card, color, st, tkText, promptText, memo, styleText, onOpen }) {
   return html`
-    <div class=${'row' + (st.done ? ' done' : '')} tabindex="0"
+    <div class=${'row' + (st.done ? ' done' : '')} role="button" tabindex="0" onKeyDown=${e=>{if(e.target===e.currentTarget && ['Enter',' '].includes(e.key)){e.preventDefault();onOpen();}}}
          style=${{ '--cc': color }} onclick=${onOpen}>
       <div class="top">
         <span class="nm">${card.name}</span>
@@ -471,6 +473,8 @@ function Toolkit({ name }) {
    고른 화풍·성별의 그림 목록. 그림을 누르면 확대로 넘긴다. */
 function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender,
                 promptText, memo, onCopy, onZoom, onClose }) {
+  const layer=useRef(),liveClose=useRef();liveClose.current=onClose;
+  useLayoutEffect(()=>modalFocus(layer.current,()=>liveClose.current(),'.grid .cell'),[]);
   const mine = stylesOf(entry);
   const [style, setStyle] = useState(mine[0] || '');
   /* 시트 안 남/여는 시트에서만 쓴다. 뒤 목록의 성별까지 끌고 가면
@@ -514,10 +518,10 @@ function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender,
 
   return html`
     <div class="sheet-bg" onclick=${onClose}>
-      <div class="sheet" onclick=${e => e.stopPropagation()}>
+      <div ref=${layer} class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" onclick=${e => e.stopPropagation()}>
         <div class="bar">
-          <div class="t">${card.name}</div>
-          <button onclick=${onClose}>닫기</button>
+          <h2 class="t" id="sheet-title">${card.name}</h2>
+          <button data-dialog-close onclick=${onClose}>목록으로</button>
         </div>
         <div class="body">
           ${!mine.length && html`
@@ -534,13 +538,13 @@ function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender,
               </div>
             </div>`}
 
-          ${shown
-            ? html`<div class="art" onclick=${() => onZoom(all.length ? all : [shown], shownIdx)}>
+<div class="detail-spread"><section class="artwork-panel">          ${shown
+            ? html`<button type="button" class="art" aria-label="크게 감상하기" onclick=${() => onZoom(all.length ? all : [shown], shownIdx)}>
                      ${/* 여기는 300px 폭으로 크게 그린다. 썸네일(긴 변 512)을 쓰면
                           고해상도 화면에서 흐릿해 목록 타일보다 화질이 나빠 보인다.
                           한 장뿐이니 원본을 받는다 — 목록은 장수가 많아 썸네일 유지 */''}
-                     <img src=${AIMG.imgURL(shown)} alt="" />
-                   </div>`
+                     <img width="800" height="1200" src=${AIMG.imgURL(shown)} alt=${card.name} />
+                   </button>`
             : html`<div class="empty">이 화풍에는 그림이 없다</div>`}
           ${shown && html`
             <p class="sec" style="text-align:center">
@@ -552,6 +556,28 @@ function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender,
             <p class="sec" style="text-align:center">
               ${gender === 'm' ? '남성' : '여성'} 그림이 없어 ${gender === 'm' ? '여성' : '남성'} 초상을 대신 띄웠다
             </p>`}
+
+</section><section class="story-panel"><p class="editorial-kicker">${serOf(card).map(seriesName).join(' · ')}</p><p class="persona">${card.name}</p>          <div class="ctl">
+            ${mine.length > 1 && html`
+              <select aria-label="화풍 필터" value=${style} onchange=${e => setStyle(e.target.value)}>
+                ${mine.map(k => html`<option value=${k}>${styleName[k] || k}</option>`)}
+              </select>`}
+            <div class="sw">
+              ${[['m', '남'], ['f', '여']].map(([g, label]) => html`
+                <button class=${(gender === g ? 'on' : '') + (countOf(g) ? '' : ' none')}
+                        onclick=${() => setGender(g)}>${label} ${countOf(g)}</button>`)}
+            </div>
+          </div>
+
+          ${all.length > 1 && html`
+            <p class="sec">${gender === 'm' ? '남성' : '여성'} ${all.length}장 · 일상 ${casual.length} · 특별 ${extra.length}</p>
+            <div class="gal">
+              ${all.map(f => html`
+                <button type="button" class="art-thumb" aria-label=${card.name+' · '+(all.indexOf(f)+1)} aria-pressed=${f===shown} onclick=${()=>setPick(f)}><img key=${f} width="800" height="1200" loading="lazy" src=${AIMG.thumbURL(f)} alt="" title=${f}
+                     class=${f === shown ? 'on' : ''}
+
+                     onerror=${e => { e.target.onerror = null; e.target.src = AIMG.imgURL(f); }} /></button>`)}
+            </div>`}
 
           <div class="chips">
             ${(card.factions || []).map(f => html`<span class="chip f">${f}</span>`)}
@@ -574,29 +600,7 @@ function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender,
               <div class="stat"><i>${statLabels[i] || ''}</i><b>${n}</b></div>`)}
           </div>`}
 
-          <div class="ctl">
-            ${mine.length > 1 && html`
-              <select aria-label="화풍 필터" value=${style} onchange=${e => setStyle(e.target.value)}>
-                ${mine.map(k => html`<option value=${k}>${styleName[k] || k}</option>`)}
-              </select>`}
-            <div class="sw">
-              ${[['m', '남'], ['f', '여']].map(([g, label]) => html`
-                <button class=${(gender === g ? 'on' : '') + (countOf(g) ? '' : ' none')}
-                        onclick=${() => setGender(g)}>${label} ${countOf(g)}</button>`)}
-            </div>
-          </div>
-
-          ${all.length > 1 && html`
-            <p class="sec">${gender === 'm' ? '남성' : '여성'} ${all.length}장 · 일상 ${casual.length} · 특별 ${extra.length}</p>
-            <div class="gal">
-              ${all.map(f => html`
-                <img key=${f} loading="lazy" src=${AIMG.thumbURL(f)} alt="" title=${f}
-                     class=${f === shown ? 'on' : ''}
-                     onclick=${() => setPick(f)}
-                     onerror=${e => { e.target.onerror = null; e.target.src = AIMG.imgURL(f); }} />`)}
-            </div>`}
-
-          ${(promptText || memo) && html`
+</section></div><section class="reading-notes">          ${(promptText || memo) && html`
             <p class="sec">프롬프트</p>
             <div class="tk">
               ${promptText ? html`<div>${promptText}</div>` : html`<div>문구가 없다</div>`}
@@ -610,7 +614,7 @@ function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender,
           <div class="lnk">
             <a href=${'prompt.html?mech=' + encodeURIComponent(card.name)}>툴킷에서 열기 →</a>
           </div>
-
+</section>
         </div>
       </div>
     </div>`;
@@ -618,34 +622,11 @@ function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender,
 
 /* ── 확대 ─────────────────────────────────────────────── */
 function Zoom({ list, start, onClose }) {
-  const [i, setI] = useState(start);
-  const touch = useRef({ x: 0, y: 0, swiped: false });
-  const step = d => setI(p => ((p + d) % list.length + list.length) % list.length);
-
-  useEffect(() => {
-    const onKey = e => {
-      if (e.key === 'Escape') onClose();
-      else if (e.key === 'ArrowRight') step(1);
-      else if (e.key === 'ArrowLeft') step(-1);
-    };
-    addEventListener('keydown', onKey);
-    return () => removeEventListener('keydown', onKey);
-  }, [list.length]);
-
-  const onStart = e => { const t = e.touches[0]; touch.current = { x: t.clientX, y: t.clientY, swiped: false }; };
-  const onEnd = e => {
-    if (list.length < 2) return;
-    const t = e.changedTouches[0];
-    const dx = t.clientX - touch.current.x, dy = t.clientY - touch.current.y;
-    if (Math.abs(dx) > 28 && Math.abs(dx) > Math.abs(dy) * 1.4) { step(dx < 0 ? 1 : -1); touch.current.swiped = true; }
-  };
-
-  return html`
-    <div class="zoom" ontouchstart=${onStart} ontouchend=${onEnd}
-         onclick=${() => { if (touch.current.swiped) { touch.current.swiped = false; return; } onClose(); }}>
-      <img src=${AIMG.imgURL(list[i])} alt="" />
-      ${list.length > 1 && html`<div class="zpg mono">${i + 1}/${list.length}</div>`}
-    </div>`;
+ const [i,setI]=useState(start),layer=useRef(),live=useRef();live.current=onClose;
+ const touch=useRef(null),step=d=>setI(p=>(p+d+list.length)%list.length);
+ useLayoutEffect(()=>modalFocus(layer.current,()=>live.current(),'.sheet .art'),[]);
+ useLayoutEffect(()=>{const key=e=>{if(e.altKey||e.ctrlKey||e.metaKey)return;if(['ArrowRight','ArrowLeft'].includes(e.key)){e.preventDefault();step(e.key==='ArrowRight'?1:-1);}};addEventListener('keydown',key);return()=>removeEventListener('keydown',key);},[list.length]);
+ return html`<div ref=${layer} class="zoom-layer" role="dialog" aria-modal="true" aria-label="크게 감상하기"><div class="zoom-bar"><b>일러스트 감상</b><span aria-live="polite">${i+1} / ${list.length}</span><a class="zoom-open" href=${AIMG.imgURL(list[i])} target="_blank" rel="noopener">원본 열기 ↗</a><button class="zoom-close" data-dialog-close onClick=${onClose} aria-label="감상 닫기">✕</button></div><div class="zoom-body" onPointerDown=${e=>{if(!e.target.closest('button'))touch.current={x:e.clientX,y:e.clientY};}} onPointerUp=${e=>{if(!touch.current)return;const dx=e.clientX-touch.current.x,dy=e.clientY-touch.current.y;touch.current=null;if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)*1.5)step(dx<0?1:-1);}} onPointerCancel=${()=>{touch.current=null;}}><img width="800" height="1200" src=${AIMG.imgURL(list[i])} alt="선택한 일러스트" draggable="false"/><div class="zoom-nav"><button class="zoom-prev" disabled=${list.length<2} onClick=${()=>step(-1)} aria-label="이전 그림">‹</button><button class="zoom-next" disabled=${list.length<2} onClick=${()=>step(1)} aria-label="다음 그림">›</button></div></div><div class="zoom-footer"><span class="viewer-keyboard">← → 그림 넘기기 · Esc 닫기</span><span class="viewer-touch">좌우로 밀어 그림 넘기기</span></div></div>`;
 }
 
 /* ── 화면 ─────────────────────────────────────────────── */
@@ -849,6 +830,7 @@ function App() {
       </div>
       <section class="collection-scroll" aria-label="도감 목록" tabindex="0" ref=${collection}
                onscroll=${event => setScrolled(event.currentTarget.scrollTop > 28)}>
+      <section class="gallery-intro"><div><p class="editorial-kicker">ATELIER / MOBILE SUIT COLLECTION</p><h2>강철에 깃든 새로운 얼굴</h2></div><p>기체의 개성과 의인화, 일상의 장면을 한 장씩 만나보세요.</p></section>
       ${mode === 'w' && html`
         <div class="prog"><i style=${{ width: (rows.length ? doneCount / rows.length * 100 : 0).toFixed(1) + '%' }}></i></div>`}
 
@@ -868,7 +850,7 @@ function App() {
             ? html`<div class="grid">
                 ${rows.map(r => html`
                   <${Cell} key=${r.card.name} name=${r.card.name} color=${colorOf(r.card)}
-                           shots=${r.shots} onOpen=${() => setOpen(r.card)} />`)}
+                           subtitle=${serOf(r.card).map(seriesName).join(' · ')} shots=${r.shots} onOpen=${() => setOpen(r.card)} />`)}
               </div>`
             : html`<div class="empty">해당하는 카드가 없다</div>`)}
       <div class="foot mono">
