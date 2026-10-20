@@ -69,6 +69,13 @@ const { chromium } = require('playwright');
     await page.keyboard.down('w');await page.waitForTimeout(650);await page.keyboard.up('w');assert((await pos()).z>=-21.1,'console collision');
     await page.evaluate(()=>{const c=BABYLON.EngineStore.LastCreatedScene.activeCamera;c.position.set(0,2.1,-9.6);c.rotation.set(0,0,0);});
     await page.keyboard.down('w');try{await page.waitForFunction(()=>BABYLON.EngineStore.LastCreatedScene.activeCamera.position.z>-8.9,null,{timeout:10000});}finally{await page.keyboard.up('w');}assert((await pos()).z>-8.9,'central aisle no longer blocked by consoles');
+    // Keyboard look: Shift + ←/→ turns in place, plain arrows still step sideways, and the focused canvas shows its ring.
+    await page.evaluate(()=>{const c=BABYLON.EngineStore.LastCreatedScene.activeCamera;c.position.set(0,2.1,-12);c.rotation.set(0,0,0);});
+    const turn0=await pos();await page.keyboard.down('Shift');await page.keyboard.down('ArrowRight');try{await page.waitForFunction(y=>BABYLON.EngineStore.LastCreatedScene.activeCamera.rotation.y>y+.2,turn0.yaw,{timeout:10000});}finally{await page.keyboard.up('ArrowRight');await page.keyboard.up('Shift');}
+    const turn1=await pos();assert(turn1.yaw>turn0.yaw+.2,'shift+arrow turns');assert(Math.abs(turn1.x-turn0.x)<.01&&Math.abs(turn1.z-turn0.z)<.01,'turning does not walk');
+    await page.keyboard.down('ArrowLeft');try{await page.waitForFunction(p=>{const c=BABYLON.EngineStore.LastCreatedScene.activeCamera.position;return Math.hypot(c.x-p.x,c.z-p.z)>.2;},turn1,{timeout:10000});}finally{await page.keyboard.up('ArrowLeft');}const turn2=await pos();
+    assert(Math.abs(turn2.yaw-turn1.yaw)<.001&&Math.hypot(turn2.x-turn1.x,turn2.z-turn1.z)>.2,'plain arrow still strafes');
+    assert(await page.evaluate(()=>{const c=document.getElementById('hangarCanvas');return c.matches(':focus-visible')&&getComputedStyle(c).outlineStyle!=='none';}),'canvas keyboard focus ring');
     await page.locator('#optionsButton').click();await page.locator('#quality').selectOption('low');
     assert(await page.evaluate(()=>BABYLON.EngineStore.LastCreatedScene.shadowsEnabled===false),'low mode shadows');
     await page.locator('#pauseButton').click();assert(await page.evaluate(()=>BABYLON.EngineStore.LastCreatedScene.getEngine()._activeRenderLoops.length===0),'pause stops GPU loop');
