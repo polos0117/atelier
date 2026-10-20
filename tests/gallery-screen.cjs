@@ -14,7 +14,7 @@ const gundam=path.basename(path.resolve(__dirname,'..'))==='atelier';
  assert.deepEqual(await cell.boundingBox(),before,'loading must reserve card geometry');
  assert(await p.evaluate(()=>document.body.scrollWidth<=innerWidth),'no horizontal overflow');
  if(!gundam){assert.equal(await p.locator('.dex-filters').evaluate(e=>e.open),false);await p.locator('.genre-strip button').nth(1).click();assert.equal(await p.locator('.genre-strip button').nth(1).getAttribute('aria-pressed'),'true');await p.locator('#dex-reset').click();}
- await cell.focus();await p.keyboard.press('Enter');
+ await cell.locator(gundam?'.cell-open':':scope').focus();await p.keyboard.press('Enter');
  const trigger=p.locator(gundam?'.sheet .art':'.big .zoom'),hero=p.locator(gundam?'.sheet .art img':'.big img');
  await hero.evaluate(i=>i.decode());const box=await hero.boundingBox();assert(box.height<=844&&box.width<=width,'hero remains a bounded image');assert.equal(await hero.evaluate(i=>getComputedStyle(i).objectFit),'contain');
  if(!gundam)assert.equal(await p.evaluate(()=>document.activeElement.id),'detail-title');

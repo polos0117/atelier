@@ -114,6 +114,12 @@ body.dex-compact .grid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
 .cell{background:var(--panel);border:1px solid var(--rule);border-radius:8px;overflow:hidden;
   cursor:pointer;position:relative;border-left:3px solid var(--cc)}
 .cell:focus-visible{outline:2px solid var(--plate);outline-offset:2px}
+/* 카드 전체를 누르는 자리는 이름 단추 하나다. ::after 를 카드 위에 펼치고, 다음 그림 단추만 그 위로 올린다 */
+.cell-open{all:unset;display:inline;cursor:pointer;overflow-wrap:anywhere}
+.cell-open::after{content:'';position:absolute;inset:0;z-index:1}
+.cell-open:focus-visible{outline:none}
+.cell-open:focus-visible::after{outline:2px solid var(--accent,var(--plate));outline-offset:3px;border-radius:4px}
+.cell .pg{z-index:2}
 .face{display:block;position:relative;width:100%;aspect-ratio:2/3;background:#11161C;overflow:hidden}
 .face img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
 .ph{display:flex;align-items:center;justify-content:center;height:100%;color:var(--dim);
@@ -367,17 +373,21 @@ function Cell({ name, color, shots, onOpen, subtitle }) {
       touch.current.swiped = true;
     }
   };
+  /* 마우스·터치로 열어도 이름 단추에 초점을 둔다 — 시트를 닫으면 초점이 이 카드로 돌아온다
+     (Safari 는 누른 단추에 초점을 주지 않고, 카드 바깥 목록이 대신 받는다) */
+  const openBtn = useRef(null);
   const onClick = () => {
     if (touch.current.swiped) { touch.current.swiped = false; return; }
+    if (openBtn.current && document.activeElement !== openBtn.current) openBtn.current.focus({ preventScroll: true });
     onOpen();
   };
 
   return html`
-    <div class="cell" role="button" aria-label=${name} tabindex="0" onKeyDown=${e=>{if(e.target===e.currentTarget && ['Enter',' '].includes(e.key)){e.preventDefault();onOpen();}}} style=${{ '--cc': color }}
+    <div class="cell" style=${{ '--cc': color }}
          ontouchstart=${onStart} ontouchend=${onEnd} onclick=${onClick}>
       <span class="face">
         ${pic
-          ? html`<img key=${pic} width="800" height="1200" decoding="async" loading="lazy" src=${AIMG.thumbURL(pic)} alt=${name}
+          ? html`<img key=${pic} width="800" height="1200" decoding="async" loading="lazy" src=${AIMG.thumbURL(pic)} alt=""
                    onerror=${e => { e.target.onerror = null; e.target.src = AIMG.imgURL(pic); }} />`
           : html`<span class="ph">그림 없음</span>`}
         ${shots.length > 1 && html`
@@ -386,7 +396,7 @@ function Cell({ name, color, shots, onOpen, subtitle }) {
             ${i + 1}/${shots.length}
           </button>`}
       </span>
-      <div class="cap"><span class="card-meta">${subtitle}</span><strong>${name}</strong><i>${shots.length ? shots.length+'장의 그림' : '그림을 기다리는 중'} <span aria-hidden="true">↗</span></i></div>
+      <div class="cap"><span class="card-meta">${subtitle}</span><strong><button type="button" class="cell-open" ref=${openBtn}>${name}</button></strong><i>${shots.length ? shots.length+'장의 그림' : '그림을 기다리는 중'} <span aria-hidden="true">↗</span></i></div>
     </div>`;
 }
 
@@ -474,7 +484,7 @@ function Toolkit({ name }) {
 function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender,
                 promptText, memo, onCopy, onZoom, onClose }) {
   const layer=useRef(),liveClose=useRef();liveClose.current=onClose;
-  useLayoutEffect(()=>modalFocus(layer.current,()=>liveClose.current(),'.grid .cell'),[]);
+  useLayoutEffect(()=>modalFocus(layer.current,()=>liveClose.current(),'.grid .cell-open'),[]);
   const mine = stylesOf(entry);
   const [style, setStyle] = useState(mine[0] || '');
   /* 시트 안 남/여는 시트에서만 쓴다. 뒤 목록의 성별까지 끌고 가면
@@ -630,30 +640,78 @@ function Zoom({ list, start, onClose }) {
 }
 
 /* ── 화면 ─────────────────────────────────────────────── */
+/* ── 주소 ───────────────────────────────────────────────
+   탭·모드·성별·검색·시리즈·화풍은 주소에 남긴다(replaceState) — 새로고침하거나 주소를
+   건네도 같은 목록이 뜬다. 상세 시트는 ?mech= 로 열고 pushState 로 한 칸을 쌓아,
+   뒤로 가기가 사이트를 떠나지 않고 시트를 닫는다. 격납고는 ?mech=&gender= 로 걸어 온다 */
+const URL0 = new URLSearchParams(location.search);
+const fromURL = (k, ok, d) => { const x = URL0.get(k); return x !== null && ok(x) ? x : d; };
+function dexURL({ tab, mode, v, q, ser, style, open }) {
+  const p = new URLSearchParams();
+  if (tab !== '기체') p.set('tab', tab);
+  if (mode !== 'p') p.set('mode', mode);
+  if (v !== 'f') p.set('gender', v);
+  if (q.trim()) p.set('q', q.trim());
+  if (ser) p.set('series', ser);
+  if (style) p.set('style', style);
+  if (open) p.set('mech', open.name);
+  const qs = p.toString();
+  return location.pathname + (qs ? '?' + qs : '') + location.hash;
+}
+function writeURL(how, url, state) {
+  if (url === location.pathname + location.search + location.hash) return;
+  try { history[how](state, '', url); } catch (e) { /* 너무 잦은 갱신은 브라우저가 막는다 — 주소만 못 남긴다 */ }
+}
+
 function App() {
   const { data, err } = useAtelierData();
-  const [tab, setTab] = useState('기체');
-  const [mode, setMode] = useState('p');
-  const [v, setV] = useState('f');
-  const [q, setQ] = useState('');
-  const [ser, setSer] = useState('');
-  const [style, setStyle] = useState('');
+  const [tab, setTab] = useState(() => fromURL('tab', x => KINDS.some(k => k.tab === x), '기체'));
+  const [mode, setMode] = useState(() => fromURL('mode', x => MODES.some(m => m[0] === x), 'p'));
+  const [v, setV] = useState(() => fromURL('gender', x => x === 'm' || x === 'f', 'f'));
+  const [q, setQ] = useState(() => fromURL('q', () => true, ''));
+  const [ser, setSer] = useState(() => fromURL('series', () => true, ''));
+  const [style, setStyle] = useState(() => fromURL('style', () => true, ''));
   const [open, setOpen] = useState(null);
-  // A hangar projection links directly to the existing archive detail sheet.
-  const openedFromHangar = useRef(false);
+  /* 자료가 오기 전에 주소를 고쳐 쓰면 ?mech= 가 시트를 열기도 전에 지워진다 */
+  const [urlReady, setUrlReady] = useState(false);
+  const cardOf = (t, name) => (name && data && data.cards[t] || []).find(c => c.name === name) || null;
+  // A hangar projection (or a shared link) opens the detail sheet directly.
   useEffect(() => {
-    if (!data || openedFromHangar.current) return;
-    openedFromHangar.current = true;
-    const params = new URLSearchParams(location.search);
-    const name = params.get('mech');
-    if (!name) return;
-    const card = data.cards['기체'].find(c => c.name === name);
-    if (card) {
-      setTab('기체');
-      setV(params.get('gender') === 'm' ? 'm' : 'f');
-      setOpen(card);
-    }
+    if (!data || urlReady) return;
+    const card = cardOf(tab, URL0.get('mech'));
+    if (card) setOpen(card);
+    setUrlReady(true);
   }, [data]);
+  /* 이 문서가 쌓은 시트 칸인지. 새로고침 뒤 남은 history.state 로 back() 하면 페이지를 다시 읽는다 */
+  const pushed = useRef(false);
+  const openCard = card => {
+    setOpen(card);
+    writeURL('pushState', dexURL({ tab, mode, v, q, ser, style, open: card }), { dexSheet: card.name });
+    pushed.current = true;
+  };
+  const closeSheet = () => {
+    if (pushed.current && history.state && history.state.dexSheet) { history.back(); return; }
+    setOpen(null); setZoom(null);
+    writeURL('replaceState', dexURL({ tab, mode, v, q, ser, style, open: null }), null);
+  };
+  useEffect(() => {
+    if (!urlReady) return;
+    writeURL('replaceState', dexURL({ tab, mode, v, q, ser, style, open }), history.state);
+  }, [urlReady, tab, mode, v, q, ser, style, open]);
+  useEffect(() => {
+    if (!data) return;
+    const onPop = () => {
+      const p = new URLSearchParams(location.search);
+      const t = KINDS.some(k => k.tab === p.get('tab')) ? p.get('tab') : '기체';
+      const card = (data.cards[t] || []).find(c => c.name === p.get('mech')) || null;
+      setZoom(null);
+      if (card && t !== tab) setTab(t);
+      setOpen(card);
+      if (!card) pushed.current = false;
+    };
+    addEventListener('popstate', onPop);
+    return () => removeEventListener('popstate', onPop);
+  }, [data, tab]);
   const [zoom, setZoom] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const collection = useRef(null);
@@ -843,14 +901,14 @@ function App() {
                               promptText=${data.prompt[r.card.name] || ''}
                               memo=${data.memo[r.card.name] || ''}
                               styleText=${styleTextOf(r.card.name)}
-                              onOpen=${() => setOpen(r.card)} />`)}
+                              onOpen=${() => openCard(r.card)} />`)}
               </div>`
             : html`<div class="empty">${onlyLeft ? '이 범위는 초상이 전부 채워졌다' : '해당하는 카드가 없다'}</div>`)
         : (rows.length
             ? html`<div class="grid">
                 ${rows.map(r => html`
                   <${Cell} key=${r.card.name} name=${r.card.name} color=${colorOf(r.card)}
-                           subtitle=${serOf(r.card).map(seriesName).join(' · ')} shots=${r.shots} onOpen=${() => setOpen(r.card)} />`)}
+                           subtitle=${serOf(r.card).map(seriesName).join(' · ')} shots=${r.shots} onOpen=${() => openCard(r.card)} />`)}
               </div>`
             : html`<div class="empty">해당하는 카드가 없다</div>`)}
       <div class="foot mono">
@@ -869,7 +927,7 @@ function App() {
                 initialGender=${v}
                 promptText=${data.prompt[open.name] || ''} memo=${data.memo[open.name] || ''}
                 onCopy=${copyPrompt}
-                onZoom=${(list, i) => setZoom({ list, i })} onClose=${() => setOpen(null)} />`}
+                onZoom=${(list, i) => setZoom({ list, i })} onClose=${closeSheet} />`}
 
     ${zoom && html`<${Zoom} list=${zoom.list} start=${zoom.i} onClose=${() => setZoom(null)} />`}
     ${toast}`;
