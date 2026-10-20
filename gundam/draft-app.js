@@ -1,7 +1,7 @@
 import { h, render } from 'https://esm.sh/preact@10.24.3';
 import { useState, useEffect, useRef } from 'https://esm.sh/preact@10.24.3/hooks';
 import htm from 'https://esm.sh/htm@3.1.1';
-import { AppearanceControls, WorkspaceHeading } from '../lib/workspace-ui.js?v=e7fdca7664';
+import { AppearanceControls, WorkspaceHeading } from '../lib/workspace-ui.js?v=df35009068';
 import * as E from './draft-engine.js?v=00e318f6bf';
 const html=htm.bind(h);
 const KINDS=['함','기체','파일럿','지휘관'];
@@ -68,30 +68,30 @@ function OptionRow({title,description,name,value,options}){return html`<div clas
 function Setup({open}){
   const toggle=(title,description,name,value)=>html`<${OptionRow} title=${title} description=${description} name=${name} value=${value} options=${[[true,'켬'],[false,'끔']]}/>`;
   return html`<section class="draft-setup" id="packArea">
-    <div class="setup-intro"><div><span class="eyebrow">OPERATION SETUP</span><h2>당신의 함대를 편성하세요.</h2><p>모함을 고르고, 기체와 파일럿의 조합을 완성하세요.</p></div><span class="setup-rounds"><b>${E.SCHEDULE.length}</b> ROUNDS</span></div>
+    <div class="setup-intro"><div><h2>당신의 함대를 편성하세요.</h2><p>모함을 고르고, 기체와 파일럿의 조합을 완성하세요.</p></div><span class="setup-rounds"><b>${E.SCHEDULE.length}</b>라운드</span></div>
     ${E.SET_NAME!=='gundam'&&html`<p class="draft-note">주제 ${E.SET_NAME} · 전적은 주제별로 따로 저장됩니다.</p>`}
     ${E.REC_MOVED>=0&&html`<p class="draft-note">이전 전적 ${E.REC_MOVED}판을 건담 기록으로 옮겼습니다. 기존 기록도 보존되어 있습니다.</p>`}
     ${E.DATA_WARN.length>0&&html`<details class="draft-note"><summary>자료 안내 ${E.DATA_WARN.length}건</summary><ul>${E.DATA_WARN.map(w=>html`<li>${w}</li>`)}</ul></details>`}
     <div class="setup-grid">
-      <section class="draft-panel"><h3><span>01</span> 작전 계획</h3>
+      <section class="draft-panel"><h3>작전 계획</h3>
         <${OptionRow} title="적 함대" description="에이스는 점수뿐 아니라 인연까지 노립니다." name="lv" value=${E.AI_LV} options=${E.AI_NAME.map((n,i)=>[i,n])}/>
         ${E.SCALE_OPTS.length>1&&html`<${OptionRow} title="편성 규모" description=${'한 편의 기체·파일럿 조 수 · '+E.SCHEDULE.length+'라운드'} name="sc" value=${E.SCALE} options=${E.SCALE_OPTS.map(n=>[n,n+'조'])}/>`}
         <${OptionRow} title="드래프트 순서" description="교차 방식은 기체와 파일럿을 번갈아 확보합니다." name="flow" value=${E.DRAFT_FLOW} options=${[['cross','교차'],['classic','종류별']]}/>
         ${toggle('공개 작전 목표','세 팀 공통 목표 · 최대 '+E.futurePairs()*6+'점','objective',E.objectiveOn)}
       </section>
-      <section class="draft-panel"><h3><span>02</span> 보급 & 정보</h3>
+      <section class="draft-panel"><h3>보급 & 정보</h3>
         <${OptionRow} title="보급 방식" description="한 팩을 셋이 나누거나, 각자 받습니다." name="shared" value=${E.sharedPack} options=${[[true,'공유'],[false,'개별']]}/>
         <${OptionRow} title="보급 요청" description="적 함대도 같은 횟수를 사용할 수 있습니다." name="rr" value=${E.REROLL_MAX} options=${E.RR_OPT.map(n=>[n,n?n+'회':'없음'])}/>
         ${toggle('증감 힌트','지명 전 점수 변화와 인연을 표시합니다.','hint',E.hintOn)}
         ${toggle('관제 두절','최종 판정까지 적 편성을 숨깁니다.','fog',E.fogOn)}
         ${toggle('보급 제한','한 번 나온 카드의 재등장을 제한합니다.','ex',E.exhaustOn)}
       </section>
-      <section class="draft-panel portrait-options"><h3><span>03</span> 초상 설정</h3>
+      <section class="draft-panel portrait-options"><h3>초상 설정</h3>
         <${OptionRow} title="파일럿 초상" description="이번 판에 표시할 이미지 성별" name="vp" value=${E.VIEW_P} options=${[['m','남'],['f','여'],['r','무작위']]}/>
         <${OptionRow} title="기체 초상" description="반대: 짝을 이룬 파일럿과 반대 성별" name="vm" value=${E.VIEW_M} options=${[['m','남'],['f','여'],['r','무작위'],['x','반대']]}/>
       </section>
     </div>
-    <div class="setup-bottom"><div><b>${E.REC.games}판</b><span> · 수위 ${E.REC.first} · 최고 ${E.REC.best}점</span><button type="button" class="text-button" onClick=${()=>open({kind:'records'})}>전적·훈장 보기 ↗</button></div><button class="primary launch" type="button" onClick=${E.start}>출격 <span>→</span></button></div>
+    <div class="setup-bottom"><div><b>${E.REC.games}판</b><span> · 수위 ${E.REC.first} · 최고 ${E.REC.best}점</span><button type="button" class="text-button" onClick=${()=>open({kind:'records'})}>전적·훈장 보기</button></div><button class="primary launch" type="button" onClick=${E.start}>출격 <span>→</span></button></div>
   </section>`;
 }
 function Candidate({slot,type,open,i=0}){
@@ -242,7 +242,7 @@ function App(){
   const running=E.phase==='running',done=E.phase==='done';
   return html`<div class=${'draft-shell'+(large?' large-cards':'')+(tactical?' tactical-view':'')}>
     <div class="draft-chrome"><div class="workspace-nav-row"><nav class="workspace-nav" aria-label="Atelier 화면 이동"><a href="index.html">격납고</a><a href="prompt.html">프롬프트</a><a href="play.html" aria-current="page">드래프트</a><a href="dex.html">도감</a></nav><${AppearanceControls}/></div>
-      <${WorkspaceHeading} title="기동전사 드래프트" code="FLEET COMMAND" subtitle="세 함대의 선택, 하나의 승리."/>
+      <${WorkspaceHeading} title="기동전사 드래프트" subtitle="세 함대의 선택, 하나의 승리."/>
     </div>
     ${(running||done)&&html`<div class="draft-command"><div class="round-line"><div><small id="rdl">ROUND ${String(Math.min(E.round+1,E.SCHEDULE.length)).padStart(2,'0')} / ${E.SCHEDULE.length} <b>${E.FIELD}</b></small><h2 id="rdt">${done?'전과 판정':E.SCHEDULE[E.round]+' 선정'}</h2></div><span id="turn" class=${'turn-state'+(E.isMine()?' my-turn':'')} role="status">${done?'종료':E.isMine()?'내 차례':E.seatName(E.turnSeq()[E.si])+' 지명 중'}</span></div>
       <div class="round-gauge" aria-label=${'진행 '+E.round+'/'+E.SCHEDULE.length}>${E.SCHEDULE.map((s,i)=>html`<i key=${i} class=${i<E.round?'complete':i===E.round?'current':''} title=${(i+1)+' · '+s}></i>`)}</div>

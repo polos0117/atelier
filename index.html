@@ -13,17 +13,17 @@
 <meta name="apple-mobile-web-app-title" content="건담">
 <link rel="apple-touch-icon" href="icon-index-180.png">
 <link rel="icon" href="icon-index-192.png">
-<link rel="stylesheet" href="gundam/hangar.css?v=97ef5eae73">
+<link rel="stylesheet" href="gundam/hangar.css?v=85bf4c41a6">
 <script defer src="lib/img.js"></script>
 <script defer src="lib/fresh.js"></script>
-<script defer src="gundam/hangar.js?v=bc53979f68"></script>
+<script defer src="gundam/hangar.js?v=9c006dfcf4"></script>
 </head>
 <body>
 <main id="hangar" aria-label="건담 격납고">
   <canvas id="hangarCanvas" tabindex="0" aria-label="3D 격납고. WASD 또는 방향키로 이동, Shift와 함께 누르는 좌우 방향키로 돌아보기, 드래그로 둘러보기"></canvas>
   <div class="shade" aria-hidden="true"></div>
   <header class="masthead">
-    <div class="brand"><span class="eyebrow">ATELIER / HANGAR 01</span><h1>건담 드래프트</h1></div>
+    <div class="brand"><h1>건담 드래프트</h1></div>
     <button id="optionsButton" class="small-button" aria-expanded="false" aria-controls="options">설정</button>
   </header>
   <section id="options" class="options" hidden aria-label="격납고 설정">
@@ -35,16 +35,16 @@
     <p>왼쪽 스틱으로 이동 · 화면을 드래그해 둘러보기<br>PC: WASD / 방향키로 이동 · Shift + ←/→로 돌아보기 · E로 가까운 전시 열기</p>
     <a href="/sam-atelier/">삼국지 쟁탈전</a>
   </section>
-  <div id="loading" role="status" class="loading"><span class="eyebrow">HANGAR SYSTEM</span><b>격납고를 여는 중…</b><span>아래 메뉴는 바로 이용할 수 있습니다.</span></div>
-  <div class="bay-caption"><span id="bayCode" class="eyebrow">ARCHIVE PROJECTION</span><h2 id="bayName">기체 홀로그램</h2><a id="inspect" href="dex.html">도감 열기 ↗</a></div>
+  <div id="loading" role="status" class="loading"><b>격납고를 여는 중…</b><span>아래 메뉴는 바로 이용할 수 있습니다.</span></div>
+  <div class="bay-caption"><span id="bayCode" class="eyebrow">ARCHIVE PROJECTION</span><h2 id="bayName">기체 홀로그램</h2><a id="inspect" href="dex.html">도감 열기</a></div>
   <div class="reticle" aria-hidden="true">+</div>
   <div class="movement" id="movement"><div id="stick" role="group" aria-label="이동 스틱"><div id="stickKnob"></div><span>이동</span></div></div>
   <div class="look-hint" id="lookHint" aria-hidden="true"><span>↔</span>드래그로 둘러보기<small class="key-hint">키보드는 Shift + ←/→</small></div>
   <p id="notice" class="notice" role="status"></p>
   <nav class="launchpad" aria-label="메인 메뉴">
-    <a href="dex.html"><span class="nav-code">01 / ARCHIVE</span><strong>도감</strong><span class="nav-sub">기체 컬렉션</span></a>
-    <a href="prompt.html"><span class="nav-code">02 / STUDIO</span><strong>프롬프트</strong><span class="nav-sub">캐릭터 만들기</span></a>
-    <a href="play.html" class="launch"><span class="nav-code">03 / SORTIE</span><strong>드래프트 <span aria-hidden="true">↗</span></strong><span class="nav-sub">출격 준비</span></a>
+    <a href="dex.html"><strong>도감</strong><span class="nav-sub">기체 컬렉션</span></a>
+    <a href="prompt.html"><strong>프롬프트</strong><span class="nav-sub">캐릭터 만들기</span></a>
+    <a href="play.html" class="launch"><strong>드래프트</strong><span class="nav-sub">출격 준비</span></a>
   </nav>
   <noscript><p class="loading">3D 이동에는 JavaScript가 필요합니다. 아래 메뉴로 이동할 수 있습니다.</p></noscript>
 </main>

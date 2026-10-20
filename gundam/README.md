@@ -4,7 +4,7 @@
 
 - `draft-engine.js`: 화면과 분리한 게임 상태, 데이터 로딩, 드래프트·AI·점수·전적 저장
 - `draft-app.js`: Preact + htm 컴포넌트. 설정, 카드 지명, 편성, 전황, 결과, 도감, 기록, 갤러리
-- `draft.css`: 폴드 커버·내부 화면에 대응하는 레이아웃. 색상은 `../lib/workspace.css`의 공통 테마 토큰 사용
+- `draft.css`: 폴드 커버·내부 화면에 대응하는 레이아웃. 색상은 `../lib/workspace.css`의 공통 테마 토큰 사용. 카드·구획은 격납고 재료 토큰(`--hazard` 오커 경계 빗금, `--rail` 투영 레일, `--nameplate` 명판 활자, `--slot-r` 2–4px 모서리)을 쓰고 그림자 대신 이음새 선을 둔다
 - `../lib/workspace-theme.js`, `../lib/workspace-ui.js`: 도감·툴킷과 공유하는 테마·밀도 설정
 - `../lib/fresh.js`: 새 버전 감지
 

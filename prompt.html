@@ -214,7 +214,7 @@ button{font:inherit}
   .prompt-dock-actions button{min-height:36px;font-size:12px}
 }
 </style>
-<link rel="stylesheet" href="lib/workspace.css?v=8af52b9276">
+<link rel="stylesheet" href="lib/workspace.css?v=45b8463bd0">
 <script src="lib/workspace-theme.js?v=97c2d41a47"></script>
 </head>
 <body class="prompt-page">
@@ -224,7 +224,7 @@ import { h, render } from 'https://esm.sh/preact@10.24.3';
 import { useState, useEffect, useMemo, useRef } from 'https://esm.sh/preact@10.24.3/hooks';
 import htm from 'https://esm.sh/htm@3.1.1';
 
-import { AppearanceControls, WorkspaceHeading } from './lib/workspace-ui.js?v=e7fdca7664';
+import { AppearanceControls, WorkspaceHeading } from './lib/workspace-ui.js?v=df35009068';
 
 const html = htm.bind(h);
 const S = window.AtelierSpec;
@@ -1127,7 +1127,7 @@ function AnthroPanel({ data, series, setSeries, mech, setMech, gender, setGender
       <div class="form-section">
         <aside class="studio-setup" aria-label="기체 기본 설정">
         <div class="section-caption"><b>01</b> 기체 & 콘셉트</div>
-        <div class="studio-selection"><div><small>SELECTED UNIT</small><strong>${mech || '기체를 선택하세요'}</strong></div>
+        <div class="studio-selection"><div><small>선택한 기체</small><strong>${mech || '기체를 선택하세요'}</strong></div>
           <span class="selection-count">${filled} 지정</span></div>
         <div class="setup-options">
         <div class="gender-tabs">
@@ -1490,7 +1490,7 @@ function SinglePanel({ data, series, setSeries, mech, setMech, gender, setGender
       <div class="form-section">
         <aside class="studio-setup" aria-label="기체 기본 설정">
           <div class="section-caption"><b>01</b> 기체 & 화풍</div>
-          <div class="studio-selection"><div><small>SELECTED UNIT</small><strong>${mech || '기체를 선택하세요'}</strong></div>
+          <div class="studio-selection"><div><small>선택한 기체</small><strong>${mech || '기체를 선택하세요'}</strong></div>
             <span class="selection-count">${usedN ? usedN + '조합 씀' : '처음'}</span></div>
           <div class="setup-options">
             <div class="gender-tabs">
@@ -1956,7 +1956,7 @@ function CollagePanel({ data, series, setSeries, mech, setMech, gender, setGende
       <div class="form-section">
         <aside class="studio-setup" aria-label="기체 기본 설정">
           <div class="section-caption"><b>01</b> 기체 & 뽑기</div>
-          <div class="studio-selection"><div><small>SELECTED UNIT</small><strong>${mech || '기체를 선택하세요'}</strong></div>
+          <div class="studio-selection"><div><small>선택한 기체</small><strong>${mech || '기체를 선택하세요'}</strong></div>
             <span class="selection-count">${used.length ? used.length + '조합 씀' : '처음'}</span></div>
           <div class="setup-options">
             <div class="gender-tabs">
@@ -2274,7 +2274,7 @@ function App() {
       <a href="dex.html">도감</a>
     </nav>
     <${AppearanceControls} /></div>
-    <${WorkspaceHeading} title="캐릭터 스튜디오" code="PROMPT TOOLKIT"
+    <${WorkspaceHeading} title="캐릭터 스튜디오"
       subtitle="기체의 개성을 고르고, 나만의 캐릭터로." />
     <${VersionBox} />
     <${SourceBox} data=${data} series=${series} setSeries=${setSeries}

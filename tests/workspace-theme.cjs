@@ -78,12 +78,15 @@ assert.equal(meta.content, '#101925');
 
 assert.match(ui, /<option value="archangel">아크엔젤<\/option>/);
 assert.match(ui, /<option value="musai">무사이<\/option>/);
-/* 고르개·토큰·함선 이름이 테마마다 다 있어야 한다 */
-const THEMES = [['midnight', '미드나이트 · 함교', 'MIDNIGHT / 01'],
-  ['white-base', '화이트 베이스', 'WHITE BASE / 01'], ['archangel', '아크엔젤', 'ARCHANGEL / 02'],
-  ['musai', '무사이', 'MUSAI / 03'], ['rewloola', '레우르라', 'REWLOOLA / 05'],
-  ['agama', '아가마', 'AGAMA / 06'], ['ptolemaios', '프톨레마이오스', 'PTOLEMAIOS / 07'],
-  ['isaribi', '이사리비', 'ISARIBI / 08'], ['spartan', '스파르탄', 'SPARTAN / 09']];
+/* 고르개·토큰·함선 이름이 테마마다 다 있어야 한다.
+   함선 이름표는 한글 명판이다 — 순서가 아닌 번호(/ 01 …)는 붙이지 않는다 */
+const THEMES = [['midnight', '미드나이트 · 함교', '미드나이트'],
+  ['white-base', '화이트 베이스', '화이트 베이스'], ['archangel', '아크엔젤', '아크엔젤'],
+  ['musai', '무사이', '무사이'], ['rewloola', '레우르라', '레우르라'],
+  ['agama', '아가마', '아가마'], ['ptolemaios', '프톨레마이오스', '프톨레마이오스'],
+  ['isaribi', '이사리비', '이사리비'], ['spartan', '스파르탄', '스파르탄']];
+assert(!/fleet-name::after \{content:'[^']*\/ \d/.test(css), '함선 이름표에 번호가 남았다');
+assert(!ui.includes('<b>CREATIVE DECK</b>') && !ui.includes('ATELIER <span>'), '정보 없는 영문 서명·아이브로가 남았다');
 for (const [key, ko, sign] of THEMES) {
   assert(ui.includes('<option value="' + key + '">' + ko + '</option>'), key + ' 고르개 항목이 없다');
   if (key !== 'midnight') assert(css.includes(':root[data-theme="' + key + '"] {'), key + ' 토큰이 없다');
@@ -109,9 +112,9 @@ assert(ui.includes('FLEET_MARK[theme] || FLEET_MARK.midnight'), '모르는 테�
 assert(!/:\s*html`/.test(marks), '문장을 VNode 로 담아 두었다 — 자료로 두고 그릴 때 만든다');
 assert(/FLEET_MARK\[theme\][^;]*\.map\(/.test(ui.replace(/\n/g, ' ')), '문장을 그릴 때 만들지 않는다');
 assert.match(css, /:root\[data-theme="musai"\]/);
-assert.match(css, /MUSAI \/ 03/);
+assert.match(css, /content:'무사이'/);
 assert.match(css, /:root\[data-theme="archangel"\]/);
-assert.match(css, /ARCHANGEL \/ 02/);
+assert.match(css, /content:'아크엔젤'/);
 assert.match(css, /\.prompt-page \.controls \{position:static/);
 assert.match(css, /\.prompt-page \.prompt-dock \{position:static/);
 assert.match(css, /\.prompt-page \.param-actions \{display:flex;flex-wrap:nowrap/);

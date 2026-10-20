@@ -232,9 +232,9 @@ body.dex-compact .grid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
   .cap{font-size:13px;line-height:1.45}
 }
 </style>
-<link rel="stylesheet" href="lib/workspace.css?v=8af52b9276">
+<link rel="stylesheet" href="lib/workspace.css?v=45b8463bd0">
 <script src="lib/workspace-theme.js?v=97c2d41a47"></script>
-<link rel="stylesheet" href="lib/gallery.css?v=1">
+<link rel="stylesheet" href="lib/gallery.css?v=6b456ff7ef">
 </head>
 <body class="dex-page">
 <div id="app"></div>
@@ -244,7 +244,7 @@ import { h, render } from 'https://esm.sh/preact@10.24.3';
 import { useState, useEffect, useLayoutEffect, useMemo, useRef } from 'https://esm.sh/preact@10.24.3/hooks';
 import htm from 'https://esm.sh/htm@3.1.1';
 
-import { AppearanceControls, WorkspaceHeading } from './lib/workspace-ui.js?v=e7fdca7664';
+import { AppearanceControls, WorkspaceHeading } from './lib/workspace-ui.js?v=df35009068';
 
 import { modalFocus } from './lib/gallery.js?v=1';
 const html = htm.bind(h);
@@ -396,7 +396,7 @@ function Cell({ name, color, shots, onOpen, subtitle }) {
             ${i + 1}/${shots.length}
           </button>`}
       </span>
-      <div class="cap"><span class="card-meta">${subtitle}</span><strong><button type="button" class="cell-open" ref=${openBtn}>${name}</button></strong><i>${shots.length ? shots.length+'장의 그림' : '그림을 기다리는 중'} <span aria-hidden="true">↗</span></i></div>
+      <div class="cap"><span class="card-meta">${subtitle}</span><strong><button type="button" class="cell-open" ref=${openBtn}>${name}</button></strong><i>${shots.length ? shots.length+'장의 그림' : '그림을 기다리는 중'}</i></div>
     </div>`;
 }
 
@@ -826,7 +826,7 @@ function App() {
         <a href="dex.html" aria-current="page">도감</a>
       </nav>
       <${AppearanceControls} /></div>
-      <${WorkspaceHeading} title="건담 도감" code="MOBILE SUIT ARCHIVE"
+      <${WorkspaceHeading} title="건담 도감"
         subtitle="한 장씩 쌓아가는, 나만의 기체 컬렉션." />
       </div>
 
@@ -888,7 +888,7 @@ function App() {
       </div>
       <section class="collection-scroll" aria-label="도감 목록" tabindex="0" ref=${collection}
                onscroll=${event => setScrolled(event.currentTarget.scrollTop > 28)}>
-      <section class="gallery-intro"><div><p class="editorial-kicker">ATELIER / MOBILE SUIT COLLECTION</p><h2>강철에 깃든 새로운 얼굴</h2></div><p>기체의 개성과 의인화, 일상의 장면을 한 장씩 만나보세요.</p></section>
+      <section class="gallery-intro"><div><h2>강철에 깃든 새로운 얼굴</h2></div><p>기체의 개성과 의인화, 일상의 장면을 한 장씩 만나보세요.</p></section>
       ${mode === 'w' && html`
         <div class="prog"><i style=${{ width: (rows.length ? doneCount / rows.length * 100 : 0).toFixed(1) + '%' }}></i></div>`}
 

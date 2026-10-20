@@ -21,15 +21,18 @@ html:has(.draft-page){height:100%;overflow:hidden;overscroll-behavior:none}
 .draft-chrome .workspace-heading{padding:18px 0 22px}
 .draft-content{overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;flex:1 1 0;min-height:0;padding:2px 2px calc(18px + env(safe-area-inset-bottom));scrollbar-color:var(--line) transparent}
 .draft-running .draft-content{padding-bottom:16px}
-.draft-panel{padding:16px;background:var(--card);border:1px solid var(--line);border-radius:13px;margin-bottom:14px;min-width:0}
+.draft-panel{padding:16px;background:var(--card);border:1px solid var(--line);border-radius:var(--slot-r);margin-bottom:14px;min-width:0}
 .draft-panel>h3{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid var(--line)}
 .draft-panel>h3>span{font:10px ui-monospace,monospace;color:var(--accent);letter-spacing:.07em}
+/* 설정 구획 머리 — 순서가 없는 세 판이라 번호 대신 격납고 바닥의 오커 경계 빗금을 단다 */
+.draft-setup .draft-panel>h3::before{content:'';flex:none;width:16px;height:5px;background:repeating-linear-gradient(135deg,var(--hazard) 0 3px,transparent 3px 6px)}
 .draft-note{padding:12px;background:var(--card2);border:1px solid var(--line);border-radius:9px;color:var(--muted);line-height:1.7;white-space:pre-line}
-.setup-intro{display:flex;gap:16px;justify-content:space-between;align-items:center;padding:18px;background:var(--card);border:1px solid var(--line);border-top:2px solid var(--accent);border-radius:13px;margin-bottom:16px}
-.setup-intro h2{margin:6px 0 8px;font-size:24px}
+.setup-intro{display:flex;gap:16px;justify-content:space-between;align-items:center;padding:18px;background:var(--card);border:1px solid var(--line);border-top:2px solid var(--rail);border-radius:var(--slot-r);margin-bottom:16px}
+.setup-intro h2{margin:0 0 8px;font-size:24px;word-break:keep-all}
 .setup-intro p{margin:0;color:var(--muted);font-size:12px;word-break:keep-all}
-.setup-rounds{display:flex;flex-direction:column;flex:none;align-items:center;color:var(--muted);font:9px ui-monospace,monospace;letter-spacing:.1em}
-.setup-rounds b{font-size:38px;font-weight:400;color:var(--accent);line-height:1.2}
+/* 라운드 수는 명판 하나 — 큰 숫자에 작은 영문 라벨을 달던 처리를 걷었다 */
+.setup-rounds{display:inline-flex;flex:none;align-items:baseline;gap:3px;padding:6px 11px;border:1px solid var(--line);border-left:3px solid var(--hazard);border-radius:2px;color:var(--muted);font:600 12px/1.3 var(--nameplate)}
+.setup-rounds b{font-size:20px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
 .setup-grid{display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
 .setup-grid .draft-panel{margin:0}
 .draft-option{display:flex;flex-direction:column;gap:10px;padding:14px 0;border-bottom:1px solid var(--line)}
@@ -40,11 +43,11 @@ html:has(.draft-page){height:100%;overflow:hidden;overscroll-behavior:none}
 .segmented{display:flex;gap:4px;border:1px solid var(--line);border-radius:10px;background:var(--card2);padding:4px;min-width:0}
 .draft-page .segmented button{border:0;background:transparent;border-radius:7px;flex:1;white-space:nowrap;padding:8px 7px;color:var(--muted)}
 .draft-page .segmented button[aria-pressed="true"]{color:var(--text);background:var(--accent-soft);box-shadow:inset 0 -2px var(--accent)}
-.setup-bottom{position:static;background:var(--deck);border:1px solid var(--line);border-radius:12px;margin-top:16px;padding:12px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow)}
+.setup-bottom{position:static;background:var(--deck);border:1px solid var(--line);border-radius:var(--slot-r);margin-top:16px;padding:12px;display:flex;align-items:center;gap:12px}
 .setup-bottom>div{flex:1;min-width:0;font-size:12px;color:var(--muted)}
 .draft-page .text-button{display:block;border:0;padding:4px 0;color:var(--accent);background:transparent;font-size:11px;min-height:34px}
 .draft-page .launch{flex:0 0 110px;display:flex;align-items:center;justify-content:space-between;font-size:16px;min-height:50px}
-.draft-command{flex:none;padding:10px 12px;background:var(--deck);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;border-top:2px solid var(--accent)}
+.draft-command{flex:none;padding:10px 12px;background:var(--deck);border:1px solid var(--line);border-radius:var(--slot-r);margin-bottom:10px;border-top:2px solid var(--accent)}
 .round-line{display:flex;gap:12px;justify-content:space-between;align-items:center}
 .round-line>div{min-width:0}
 .round-line small{font:10px ui-monospace,monospace;color:var(--muted);letter-spacing:.05em}
@@ -64,7 +67,7 @@ html:has(.draft-page){height:100%;overflow:hidden;overscroll-behavior:none}
 .draft-toolbar button{font-size:11px;padding:6px 8px}
 .candidate-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;align-items:stretch}
 .large-cards .candidate-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.draft-page .draft-card{display:flex;flex-direction:column;text-align:left;min-width:0;padding:0;border-radius:11px;overflow:hidden;background:var(--card);transition:border-color .15s,transform .15s}
+.draft-page .draft-card{display:flex;flex-direction:column;text-align:left;min-width:0;padding:0;border-radius:var(--slot-r);overflow:hidden;background:var(--card);transition:border-color .15s,transform .15s}
 .draft-card:disabled{opacity:1}
 .draft-card.taken{opacity:.52}
 .candidate-image{aspect-ratio:3/4;position:relative;overflow:hidden;background:var(--card2);width:100%;border-bottom:2px solid var(--faction)}
@@ -74,11 +77,11 @@ html:has(.draft-page){height:100%;overflow:hidden;overscroll-behavior:none}
 .taken-label{position:absolute;left:0;right:0;bottom:0;text-align:center;padding:7px;background:#101925dc;color:#fff;font-size:11px}
 .candidate-info{padding:10px;flex:1;display:flex;flex-direction:column;min-width:0;width:100%}
 .candidate-info>small{color:var(--muted);font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.candidate-name{font-size:13px;line-height:1.4;margin:4px 0 8px;overflow-wrap:anywhere}
+.candidate-name{font:700 13px/1.4 var(--nameplate);letter-spacing:-.02em;margin:4px 0 8px;overflow-wrap:anywhere}
 .draft-stats{margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;min-width:0}
 .draft-stats>div{background:var(--card2);padding:5px 1px;text-align:center;border-radius:5px}
 .draft-stats dt{color:var(--muted);font-size:9px;white-space:nowrap}
-.draft-stats dd{margin:3px 0 0;font:700 12px ui-monospace,monospace}
+.draft-stats dd{margin:3px 0 0;font:700 12px ui-monospace,monospace;font-variant-numeric:tabular-nums}
 .candidate-gain{display:flex;gap:4px;align-items:center;justify-content:space-between;margin-top:9px;padding-top:8px;border-top:1px solid var(--line);color:var(--accent)}
 .candidate-gain span{font-size:9px;color:var(--muted)}
 .candidate-gain strong{font:700 16px ui-monospace,monospace}
@@ -198,8 +201,8 @@ html:has(.draft-page){height:100%;overflow:hidden;overscroll-behavior:none}
 }
 @media(max-width:599px){
  .draft-chrome .workspace-heading{padding:12px 0 17px}.draft-chrome .workspace-heading h1{font-size:23px}
- .draft-running .draft-chrome .workspace-heading{padding:8px 0 12px}.draft-running .workspace-heading h1{font-size:18px}.draft-running .workspace-heading p,.draft-running .workspace-heading .eyebrow{display:none}.draft-running .fleet-mark{width:26px;height:26px}
- .setup-intro{padding:14px;gap:10px}.setup-intro h2{font-size:21px}.setup-rounds b{font-size:30px}
+ .draft-running .draft-chrome .workspace-heading{padding:8px 0 12px}.draft-running .workspace-heading h1{font-size:18px}.draft-running .workspace-heading p{display:none}.draft-running .fleet-mark{width:26px;height:26px}
+ .setup-intro{padding:14px;gap:10px}.setup-intro h2{font-size:21px}.setup-rounds b{font-size:18px}
  .draft-panel{padding:12px}.draft-toolbar>span{min-width:60px}
  .draft-dialog{margin:auto 10px;max-height:94dvh}.dialog-shell{max-height:92dvh}
 }
@@ -238,7 +241,6 @@ html:has(.draft-page){height:100%;overflow:hidden;overscroll-behavior:none}
  .draft-stats dt,.candidate-gain span,.pair-score small{font-size:10.5px}
  .candidate-kind,.candidate-series{font-size:10px}
  .draft-placeholder>small{font-size:9.5px}
- .setup-rounds{font-size:10px}
  .draft-panel>h3>span{font-size:10.5px}
 }
 /* 이펙트 — 움직임 줄이기 설정이면 모두 꺼진다 */

@@ -1,5 +1,9 @@
 /* Shared visual layer for the Preact dex and toolkit. No generation rules here. */
 :root {
+  /* 격납고(index.html)에서 가져온 재료 — 정비대 바닥의 오커 경계선, 홀로그램의 투영 레일, 베이 캡션의 명판 활자.
+     색은 테마마다 따라가도록 기존 토큰에 묶는다 */
+  --hazard:var(--gold);--rail:var(--accent);--slot-r:3px;
+  --nameplate:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;
   color-scheme:dark;
   --bg:#0b111b;--card:#131e2c;--card2:#192738;--text:#e9eff7;
   --muted:#a1b0c4;--line:#2e4158;--accent:#9cc8f2;--ok:#8bd9b5;--warn:#f0c778;
@@ -91,22 +95,20 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
 .workspace-heading {display:flex;justify-content:space-between;align-items:center;gap:18px;padding:24px 0 22px;position:relative}
 .workspace-title {display:flex;align-items:center;gap:14px;min-width:0}
 .fleet-mark {width:46px;height:46px;flex:none;color:var(--accent)}
-.eyebrow {font:700 10px/1.6 ui-monospace,monospace;letter-spacing:.16em;color:var(--accent)}
-.eyebrow span {color:var(--muted);font-weight:400}
 .workspace-heading h1 {margin:3px 0 4px;font-size:clamp(24px,3.7vw,34px);line-height:1.2;letter-spacing:-.045em;font-weight:800}
 .workspace-heading p {margin:0;color:var(--muted);font-size:12px;word-break:keep-all}
-.fleet-signature {display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex:none;font:10px ui-monospace,monospace;letter-spacing:.12em;color:var(--muted)}
-.fleet-name::after {content:'MIDNIGHT / 01';color:var(--accent)}
-[data-theme="white-base"] .fleet-name::after {content:'WHITE BASE / 01'}
-[data-theme="archangel"] .fleet-name::after {content:'ARCHANGEL / 02'}
-[data-theme="musai"] .fleet-name::after {content:'MUSAI / 03'}
-[data-theme="rewloola"] .fleet-name::after {content:'REWLOOLA / 05'}
-[data-theme="agama"] .fleet-name::after {content:'AGAMA / 06'}
-[data-theme="ptolemaios"] .fleet-name::after {content:'PTOLEMAIOS / 07'}
-[data-theme="isaribi"] .fleet-name::after {content:'ISARIBI / 08'}
-[data-theme="spartan"] .fleet-name::after {content:'SPARTAN / 09'}
+.fleet-signature {display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex:none;font:700 12px/1.4 var(--nameplate);letter-spacing:-.01em;color:var(--muted)}
+/* 지금 탄 함선의 명판. 번호는 순서가 아니어서 뺐다 */
+.fleet-name::after {content:'미드나이트';color:var(--accent)}
+[data-theme="white-base"] .fleet-name::after {content:'화이트 베이스'}
+[data-theme="archangel"] .fleet-name::after {content:'아크엔젤'}
+[data-theme="musai"] .fleet-name::after {content:'무사이'}
+[data-theme="rewloola"] .fleet-name::after {content:'레우르라'}
+[data-theme="agama"] .fleet-name::after {content:'아가마'}
+[data-theme="ptolemaios"] .fleet-name::after {content:'프톨레마이오스'}
+[data-theme="isaribi"] .fleet-name::after {content:'이사리비'}
+[data-theme="spartan"] .fleet-name::after {content:'스파르탄'}
 .fleet-signature i {width:120px;height:3px;background:linear-gradient(to right,var(--accent) 0 64%,transparent 64% 69%,var(--signal) 69% 88%,transparent 88% 93%,var(--gold) 93%)}
-.fleet-signature b {font-size:8px;font-weight:400;letter-spacing:.2em}
 [data-theme="archangel"] body {background-color:var(--bg);background-image:radial-gradient(circle at 92% 8%,#fff9 0 11%,transparent 34%),linear-gradient(135deg,transparent 0 73%,#b3264308 73% 73.5%,transparent 73.5%)}
 [data-theme="rewloola"] body {background-color:var(--bg);background-image:repeating-linear-gradient(115deg,#ffffff06 0 1px,transparent 1px 7px),repeating-linear-gradient(-115deg,#ffffff04 0 1px,transparent 1px 11px),radial-gradient(120% 70% at 50% 0,#e3a0b814 0 38%,transparent 74%)}
 [data-theme="ptolemaios"] body {background-color:var(--bg);background-image:radial-gradient(#ffffff1c 1px,transparent 1.4px),radial-gradient(#71cfd616 1px,transparent 1.4px),radial-gradient(120% 60% at 50% 0,#71cfd612 0 34%,transparent 72%);background-size:37px 37px,61px 61px,auto;background-position:0 0,13px 19px,0 0}
@@ -237,8 +239,8 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
 .prompt-page .ks-f {background:transparent;border-left:1px solid var(--line);border-radius:0;padding-left:10px}
 .studio-selection {display:flex;gap:10px;align-items:center;margin:0 0 12px;padding:12px;background:var(--card2);border:1px solid var(--line);border-radius:10px}
 .studio-selection > div {min-width:0}
-.studio-selection small {display:block;font-size:10px;color:var(--muted);letter-spacing:.08em}
-.studio-selection strong {display:block;font-size:15px;overflow-wrap:anywhere}
+.studio-selection small {display:block;font-size:10px;color:var(--muted)}
+.studio-selection strong {display:block;font:700 16px/1.35 var(--nameplate);letter-spacing:-.02em;overflow-wrap:anywhere}
 .studio-selection .selection-count {margin-left:auto;white-space:nowrap;color:var(--accent);font:11px ui-monospace,monospace}
 @media (hover:hover) {
   .workspace-nav a:hover,button:not(:disabled):hover {filter:brightness(1.12)}
@@ -265,7 +267,6 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
   .workspace-heading h1 {font-size:25px}
   .workspace-heading p {font-size:11px}
   .fleet-signature {display:none}
-  .eyebrow {font-size:9px}
   .dex-page header {padding:0 9px 10px;border-radius:10px}
   .dex-page .tab {flex:1;padding:10px 6px;white-space:nowrap;font-size:12px}
   .dex-page .tab b {font-size:10px;margin-left:3px}
@@ -332,7 +333,7 @@ html:has(.dex-page) {height:100%;overflow:hidden;overscroll-behavior:none}
 @media(max-width:599px) {
  .dex-page .workspace-heading {padding:10px 0 13px}
  .dex-page .workspace-heading h1 {font-size:20px;margin:2px 0}
- .dex-page .workspace-heading p,.dex-page .workspace-heading .eyebrow {display:none}
+ .dex-page .workspace-heading p {display:none}
  .dex-page .fleet-mark {width:27px;height:27px}
  .dex-page .workspace-heading::after {bottom:5px;width:40px;height:2px}
  .dex-page .view-tools {margin:8px 0}
@@ -353,3 +354,14 @@ html:has(.dex-page) {height:100%;overflow:hidden;overscroll-behavior:none}
 .appearance-panel {position:absolute;right:0;top:calc(100% + 6px);z-index:90;width:min(340px,calc(100vw - 24px));display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 14px 34px #0009}
 .appearance-panel label {display:flex;flex-direction:column;gap:6px;min-width:0;font-size:12px;color:var(--muted)}
 .appearance-controls .appearance-panel select {width:100%;min-width:0;max-width:none;min-height:44px;padding:8px 6px 8px 9px;border:1px solid var(--line);border-radius:8px;background:var(--card2);color:var(--text);font:600 12px system-ui;letter-spacing:0}
+
+/* ── 격납 슬롯 ────────────────────────────────────────────
+   격납고의 재료로 하위 화면 카드를 잇는다. 모서리는 2–4px, 떠 있는 그림자 대신 판 이음새 선,
+   구획 머리에는 바닥 경계선 같은 오커 빗금을 단다. 진영색은 그림 아래 바닥선(.cap / .candidate-image)에 깐다 */
+.dex-page header,.dex-page .cell,.dex-page .row,
+.prompt-page .field,.prompt-page .param-card,.prompt-page .grp,.prompt-page .pair-card,.prompt-page .override-card,.prompt-page .rec-card,
+.prompt-page .controls,.prompt-page .prompt-view,.prompt-page .ko-sum,.studio-selection {border-radius:var(--slot-r);box-shadow:none}
+.prompt-page .panel-head {border-radius:var(--slot-r) var(--slot-r) 0 0}
+.dex-page .sheet {border-radius:var(--slot-r)}
+.prompt-page .panel-head strong {display:inline-flex;align-items:center;gap:9px}
+.prompt-page .panel-head strong::before {content:'';flex:none;width:16px;height:5px;background:repeating-linear-gradient(135deg,var(--hazard) 0 3px,transparent 3px 6px)}
