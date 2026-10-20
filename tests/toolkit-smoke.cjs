@@ -197,6 +197,52 @@ const clickText = text => {
       await s.close();
     }
 
+    /* ── 패치 노트 요약 줄과 확대 보기 ── */
+    {
+      const s = await boot();
+      /* summary 가 <details> 직계 자식이 아니면 브라우저가 영어 "Details" 를 대신 단다 */
+      const ver = await s.page.evaluate(() => {
+        const d = document.querySelector('.verbox'), first = d && d.firstElementChild;
+        return first ? first.tagName + ':' + first.textContent.trim().replace(/\s+/g, ' ') : 'none';
+      });
+      add('패치 노트 요약 줄이 details 바로 아래에 있다', /^SUMMARY:v\d+\.\d+ 변경 내역/.test(ver), ver);
+      await s.page.evaluate(fire, ['기체', '건담 엑시아']);
+      await s.page.waitForTimeout(900);
+      const hit = await s.page.evaluate(async () => {
+        for (const sel of document.querySelectorAll('.param-card select')) {
+          for (const o of [...sel.options].slice(1, 6)) {
+            sel.value = o.value; sel.dispatchEvent(new Event('change', { bubbles: true }));
+            await new Promise(r => setTimeout(r, 120));
+            if (document.querySelector('.pp-gal-r button')) return true;
+          }
+        }
+        return false;
+      });
+      add('그림 줄이 링크(href="#")가 아니라 단추다',
+          hit && await s.page.evaluate(() => !document.querySelector('a[href="#"]')), hit);
+      if (hit) {
+        await s.page.locator('.pp-gal-r button').first().focus();
+        const opener = await s.page.evaluate(() => document.activeElement.getAttribute('aria-label'));
+        await s.page.keyboard.press('Enter'); await s.page.waitForTimeout(400);
+        const z = await s.page.evaluate(() => {
+          const d = document.querySelector('dialog.zoom');
+          return d ? { modal: d.matches(':modal'), named: !!d.getAttribute('aria-label'),
+                       focus: document.activeElement.getAttribute('aria-label'), alt: d.querySelector('img').alt } : null;
+        });
+        add('확대 보기는 이름 있는 모달 대화상자다', z && z.modal && z.named && z.alt, JSON.stringify(z));
+        add('열면 닫기 단추에 초점이 간다', z && z.focus === '닫기', z && z.focus);
+        await s.page.keyboard.press('Escape'); await s.page.waitForTimeout(300);
+        const back = await s.page.evaluate(() => ({ gone: !document.querySelector('dialog.zoom'),
+                                                    focus: document.activeElement.getAttribute('aria-label') }));
+        add('Esc 로 닫히고 연 자리로 초점이 돌아온다', back.gone && back.focus === opener, JSON.stringify(back));
+        await s.page.locator('.pp-gal-r button').first().click(); await s.page.waitForTimeout(300);
+        await s.page.locator('dialog.zoom .zoom-x').click(); await s.page.waitForTimeout(300);
+        add('닫기 단추로 닫힌다', await s.page.evaluate(() => !document.querySelector('dialog.zoom')));
+      }
+      add('확대 보기 검사 중 JS 오류 없음', s.errors.length === 0, s.errors.join(' | '));
+      await s.close();
+    }
+
     /* ── 밀도: 그려지기 전에 정해지나 (세 화면이 같은 열쇠를 쓴다) ── */
     for (const page of ['prompt.html', 'dex.html', 'play.html']) {
       for (const [saved, want] of [['relaxed', 'relaxed'], ['', 'compact'], ['엉뚱한값', 'compact']]) {
