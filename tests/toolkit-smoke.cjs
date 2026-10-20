@@ -156,6 +156,47 @@ const clickText = text => {
       await s.close();
     }
 
+    /* ── 입력칸 이름: 라벨이 옆에 놓이기만 하면 읽는 이름이 없고, 눌러도 칸으로 안 간다 ── */
+    {
+      const s = await boot();
+      await s.page.evaluate(fire, ['기체', '건담 엑시아']);
+      await s.page.waitForTimeout(700);
+      const tab = k => s.page.evaluate(k => {
+        const b = [...document.querySelectorAll('[role=tab]')].find(x => x.textContent.trim() === k);
+        if (b) b.click(); return !!b;
+      }, k);
+      const audit = () => s.page.evaluate(() => {
+        document.querySelectorAll('details').forEach(d => { d.open = true; });
+        const named = el => !!((el.labels && el.labels.length && [...el.labels].some(l => l.textContent.trim()))
+          || (el.getAttribute('aria-label') || '').trim() || el.getAttribute('aria-labelledby'));
+        const ctl = [...document.querySelectorAll('input:not([type=hidden]),select,textarea')];
+        const ids = [...document.querySelectorAll('[id]')].map(e => e.id);
+        const dup = ids.filter((x, i) => ids.indexOf(x) !== i);
+        const dangling = [...document.querySelectorAll('label[for]')].filter(l => !document.getElementById(l.htmlFor)).map(l => l.htmlFor);
+        const loose = [...document.querySelectorAll('.field > label, .param-card label')]
+          .filter(l => !l.control && !l.closest('.lab-lock')?.parentElement.querySelector('[role=group]')).map(l => l.textContent.trim().slice(0, 24));
+        return { n: ctl.length, unnamed: ctl.filter(el => !named(el)).map(el => el.outerHTML.slice(0, 80)), dup, dangling, loose };
+      });
+      for (const [k, extra] of [['의인화', null], ['단일 컷', null], ['콜라주', null], ['콜라주', 'Panel 개별']]) {
+        await tab(k); await s.page.waitForTimeout(500);
+        if (extra) { await s.page.evaluate(t => [...document.querySelectorAll('.gt')].find(b => b.textContent.trim() === t)?.click(), extra);
+                     await s.page.waitForTimeout(400); }
+        const a = await audit();
+        const at = k + (extra ? '·' + extra : '');
+        add(`${at} · 입력칸 ${a.n}개 모두 이름이 있다`, a.n > 0 && a.unnamed.length === 0, a.unnamed.join(' | '));
+        add(`${at} · 라벨이 모두 칸에 이어진다`, a.loose.length === 0 && a.dangling.length === 0, a.loose.concat(a.dangling).join(' | '));
+        add(`${at} · id 가 겹치지 않는다`, a.dup.length === 0, a.dup.join(','));
+      }
+      await tab('의인화'); await s.page.waitForTimeout(400);
+      const focused = await s.page.evaluate(() => {
+        const l = [...document.querySelectorAll('.field > label')].find(x => x.textContent.startsWith('Special Characteristics'));
+        if (!l) return 'no label'; l.click(); return document.activeElement === l.control && l.control.type === 'text';
+      });
+      add('라벨을 누르면 그 칸으로 간다', focused === true, focused);
+      add('이름 검사 중 JS 오류 없음', s.errors.length === 0, s.errors.join(' | '));
+      await s.close();
+    }
+
     /* ── 밀도: 그려지기 전에 정해지나 (세 화면이 같은 열쇠를 쓴다) ── */
     for (const page of ['prompt.html', 'dex.html', 'play.html']) {
       for (const [saved, want] of [['relaxed', 'relaxed'], ['', 'compact'], ['엉뚱한값', 'compact']]) {

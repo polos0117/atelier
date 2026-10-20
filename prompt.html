@@ -480,7 +480,7 @@ function ParamCard({ def, value, custom, locked, sel, gender, img, style, exclud
   return html`
     <div class="param-card">
       <div class="lab-lock">
-        <label>${def.label} <small>${def.ko}</small></label>
+        <label id=${'pcl-' + def.key} for=${isColor ? null : 'pc-' + def.key}>${def.label} <small>${def.ko}</small></label>
         <button type="button" class=${'lockbtn mini' + (locked ? ' on' : '')} onclick=${onLock}
                 aria-pressed=${String(!!locked)}
                 title=${locked ? '이 칸은 랜덤에서 뺀다 — 눌러서 풀기' : '이 칸을 랜덤에서 뺀다'}>
@@ -489,7 +489,7 @@ function ParamCard({ def, value, custom, locked, sel, gender, img, style, exclud
       </div>
       ${isColor
         ? html`
-          <div class="sw-grid">
+          <div class="sw-grid" role="group" aria-labelledby=${'pcl-' + def.key}>
             ${opts.map(([v, t]) => {
               const ko = (t || '').split(' — ')[1] || t;
               if (!v) return html`<button type="button" key=${v} class=${'sw sw-auto' + (value === '' ? ' on' : '')}
@@ -504,11 +504,11 @@ function ParamCard({ def, value, custom, locked, sel, gender, img, style, exclud
             })}
           </div>`
         : html`
-          <select aria-label=${def.ko || def.label} value=${value} onchange=${e => onValue(e.target.value)}>
+          <select id=${'pc-' + def.key} aria-label=${def.ko || def.label} value=${value} onchange=${e => onValue(e.target.value)}>
             ${opts.map(([v, t]) => html`<option key=${v} value=${v}>${t}</option>`)}
           </select>`}
       ${value === '__custom__' && html`
-        <input class="custom-input" type="text" placeholder=${def.ph || '직접 입력'}
+        <input class="custom-input" type="text" aria-label=${(def.ko || def.label) + ' 직접 입력'} placeholder=${def.ph || '직접 입력'}
                value=${custom} oninput=${e => onCustom(e.target.value)} />`}
       <${Preview} def=${def} value=${value} sel=${sel} gender=${gender} img=${img}
                   style=${style} exclude=${exclude} onZoom=${onZoom} onValue=${onValue} />
@@ -836,8 +836,8 @@ function SourceBox({ data, series, setSeries, mech, setMech, style, setStyle,
         </div>
 
         <div class="field" style="margin-top:10px">
-          <label>Art Style <small>화풍 · 지금 생성할 프롬프트에 적용</small></label>
-          <select aria-label="화풍" value=${style} onchange=${e => setStyle(e.target.value)}>
+          <label for="fld-style">Art Style <small>화풍 · 지금 생성할 프롬프트에 적용</small></label>
+          <select id="fld-style" aria-label="화풍" value=${style} onchange=${e => setStyle(e.target.value)}>
             ${S.ART_STYLES.map(r => html`<option key=${r[0]} value=${r[0]}>${r[1]}</option>`)}
           </select>
 
@@ -1116,8 +1116,8 @@ function AnthroPanel({ data, series, setSeries, mech, setMech, gender, setGender
         </div>
 
         <div class="field" style="margin-top:10px">
-          <label>Morphology Mode <small>형태 번역 전략 · 인간형과 거리가 있는 기체에 사용</small></label>
-          <select aria-label="형태 번역 전략" value=${morph} onchange=${e => setMorph(e.target.value)}>
+          <label for="fld-morph">Morphology Mode <small>형태 번역 전략 · 인간형과 거리가 있는 기체에 사용</small></label>
+          <select id="fld-morph" aria-label="형태 번역 전략" value=${morph} onchange=${e => setMorph(e.target.value)}>
             ${MORPHS.map(([k, t]) => html`<option key=${k} value=${k}>${t}</option>`)}
           </select>
           <div class="param-note" style="margin-top:4px">정답은 하나가 아니다 — 결과가 미묘하면 다른 모드로 다시 생성해본다.</div>
@@ -1188,8 +1188,8 @@ function AnthroPanel({ data, series, setSeries, mech, setMech, gender, setGender
           </div>`}
 
         <div class="field" style="margin-top:10px">
-          <label>Special Characteristics <small>특수 외형 / 추가 지시</small></label>
-          <input type="text" placeholder="예: pale mint highlights, narrow waist armor"
+          <label for="fld-special">Special Characteristics <small>특수 외형 / 추가 지시</small></label>
+          <input id="fld-special" type="text" placeholder="예: pale mint highlights, narrow waist armor"
                  value=${special} oninput=${e => setSpecial(e.target.value)} />
         </div>
 
@@ -1213,7 +1213,7 @@ function AnthroPanel({ data, series, setSeries, mech, setMech, gender, setGender
           <span class="sb-txt">저장소에 커밋할 기록을 내보낸다. 기체 폴더의 <code>settings.json</code>에 저장하면 다른 기기에서도 보인다.</span>
           <button type="button" class="sb-drop" onclick=${exportOne}>기록 내보내기</button>
         </div>
-        ${exportText && html`<textarea readonly style="margin-top:8px;min-height:120px;font-size:11px" value=${exportText}></textarea>`}
+        ${exportText && html`<textarea readonly aria-label="내보낸 기록 (settings.json)" style="margin-top:8px;min-height:120px;font-size:11px" value=${exportText}></textarea>`}
 
         <div class="rnd-tgt" style="margin-bottom:9px">
           <span>🎲 랜덤으로 정할 것 — 자물쇠 걸린 칸은 건너뛴다</span>
@@ -1473,10 +1473,10 @@ function SinglePanel({ data, series, setSeries, mech, setMech, gender, setGender
                         onclick=${() => setGender(g)}>${t}</button>`)}
             </div>
             <div class="field" style="margin-top:10px">
-              <label>랜덤 성격 <small>어떤 카테고리 판에서 고를지</small></label>
+              <label for="sg-mode">랜덤 성격 <small>어떤 카테고리 판에서 고를지</small></label>
               ${/* useRec(기체친화형)은 추천 세 장을 세 Pair 에 꽂는 모드라 한 장짜리에는
                     의미가 없다. 원본 단일 컷도 이 모드를 목록에서 뺐다 */''}
-              <select aria-label="랜덤 성격" value=${st.mode} onchange=${e => set('mode', e.target.value)}>
+              <select id="sg-mode" aria-label="랜덤 성격" value=${st.mode} onchange=${e => set('mode', e.target.value)}>
                 ${Object.entries(S.RANDOM_MODES).filter(([, m]) => !m.useRec).map(([k, m]) => html`
                   <option key=${k} value=${k}>${m.ko} — ${m.descOne || m.desc}</option>`)}
               </select>
@@ -1507,19 +1507,19 @@ function SinglePanel({ data, series, setSeries, mech, setMech, gender, setGender
           <div class="section-caption"><b>02</b> 이 컷은 무엇인가</div>
 
           <div class="field" style="margin-top:10px">
-            <label>Category <small>카테고리</small></label>
-            <select aria-label="카테고리" value=${st.cat} onchange=${e => { set('cat', e.target.value); set('ex', ''); }}>
+            <label for="sg-cat">Category <small>카테고리</small></label>
+            <select id="sg-cat" aria-label="카테고리" value=${st.cat} onchange=${e => { set('cat', e.target.value); set('ex', ''); }}>
               ${catRows(gender).map(r => html`<option key=${r[0]} value=${r[0]}>${r[1]} — ${r[2]}</option>`)}
             </select>
             ${st.cat === '__custom__' ? html`
-              <input type="text" style="margin-top:6px" placeholder="카테고리 직접 입력"
+              <input type="text" aria-label="카테고리 직접 입력" style="margin-top:6px" placeholder="카테고리 직접 입력"
                      value=${st.catCustom} oninput=${e => set('catCustom', e.target.value)} />` : null}
             ${catNote ? html`<div class="param-note" style="margin-top:4px">${catNote}</div>` : null}
           </div>
 
           <div class="field" style="margin-top:9px">
-            <label>Example Menu <small>예시 메뉴</small></label>
-            <select aria-label="예시 메뉴" value=${st.ex} onchange=${e => set('ex', e.target.value)}>
+            <label for="sg-ex">Example Menu <small>예시 메뉴</small></label>
+            <select id="sg-ex" aria-label="예시 메뉴" value=${st.ex} onchange=${e => set('ex', e.target.value)}>
               ${['basic', 'popular', 'special'].map(g => {
                 const rows = exList.filter(r => r[3] === g);
                 if (!rows.length) return null;
@@ -1529,26 +1529,26 @@ function SinglePanel({ data, series, setSeries, mech, setMech, gender, setGender
               })}
             </select>
             ${st.ex === '__custom__' ? html`
-              <input type="text" style="margin-top:6px" placeholder="예시 직접 입력"
+              <input type="text" aria-label="예시 직접 입력" style="margin-top:6px" placeholder="예시 직접 입력"
                      value=${st.exCustom} oninput=${e => set('exCustom', e.target.value)} />` : null}
             ${exNote ? html`<div class="param-note" style="margin-top:4px">${exNote}</div>` : null}
           </div>
 
           <div class="param-grid select-row" style="margin-top:9px">
-            <div class="field"><label>Aspect <small>화면 비율</small></label>
-              <select aria-label="화면 비율" value=${st.aspect} onchange=${e => set('aspect', e.target.value)}>
+            <div class="field"><label for="sg-aspect">Aspect <small>화면 비율</small></label>
+              <select id="sg-aspect" aria-label="화면 비율" value=${st.aspect} onchange=${e => set('aspect', e.target.value)}>
                 ${optRows(SG_ASPECTS)}</select></div>
-            <div class="field"><label>Framing <small>화각</small></label>
-              <select aria-label="화각" value=${st.frame} onchange=${e => set('frame', e.target.value)}>
+            <div class="field"><label for="sg-frame">Framing <small>화각</small></label>
+              <select id="sg-frame" aria-label="화각" value=${st.frame} onchange=${e => set('frame', e.target.value)}>
                 ${optRows(SG_FRAMES)}</select></div>
-            <div class="field"><label>Expression <small>표정</small></label>
-              <select aria-label="표정" value=${st.expr} onchange=${e => set('expr', e.target.value)}>
+            <div class="field"><label for="sg-expr">Expression <small>표정</small></label>
+              <select id="sg-expr" aria-label="표정" value=${st.expr} onchange=${e => set('expr', e.target.value)}>
                 ${optRows(S.EXPRESSION_OPTIONS)}</select></div>
-            <div class="field"><label>Body Orientation <small>앞/옆/뒷태</small></label>
-              <select aria-label="앞옆뒷태" value=${st.orient} onchange=${e => set('orient', e.target.value)}>
+            <div class="field"><label for="sg-orient">Body Orientation <small>앞/옆/뒷태</small></label>
+              <select id="sg-orient" aria-label="앞옆뒷태" value=${st.orient} onchange=${e => set('orient', e.target.value)}>
                 ${optRows(S.ORIENTATION_OPTIONS)}</select></div>
-            <div class="field"><label>Pose <small>포즈</small></label>
-              <select aria-label="포즈" value=${st.pose} onchange=${e => set('pose', e.target.value)}>
+            <div class="field"><label for="sg-pose">Pose <small>포즈</small></label>
+              <select id="sg-pose" aria-label="포즈" value=${st.pose} onchange=${e => set('pose', e.target.value)}>
                 ${optRows(S.POSE_OPTIONS)}</select></div>
           </div>
 
@@ -1564,8 +1564,8 @@ function SinglePanel({ data, series, setSeries, mech, setMech, gender, setGender
                  ['custom', 'Custom Instruction', '추가 지시', '예: rain outside the window, warm lamp light']
                 ].map(([k, en, ko, ph]) => html`
                 <div class="field" key=${k} style="margin-top:9px">
-                  <label>${en} <small>${ko}</small></label>
-                  <input type="text" placeholder=${ph} value=${st[k]} oninput=${e => set(k, e.target.value)} />
+                  <label for=${'sg-' + k}>${en} <small>${ko}</small></label>
+                  <input id=${'sg-' + k} type="text" placeholder=${ph} value=${st[k]} oninput=${e => set(k, e.target.value)} />
                 </div>`)}
             </div>
           </details>
@@ -1577,8 +1577,8 @@ function SinglePanel({ data, series, setSeries, mech, setMech, gender, setGender
               ${S.LOCAL_AXES.map(k => {
                 const lab = S.ADVANCED_LABELS[k] || [k, ''], ko = S.ADV_VAL[k] || {};
                 return html`<div class="field" key=${k} style="margin-top:7px">
-                  <label>${lab[0]} <small>${lab[1]}</small></label>
-                  <select aria-label=${'세부 ' + lab[0]} value=${st.axes[k] || ''} onchange=${e => setAxis(k, e.target.value)}>
+                  <label for=${'sg-ax-' + k}>${lab[0]} <small>${lab[1]}</small></label>
+                  <select id=${'sg-ax-' + k} aria-label=${'세부 ' + lab[0]} value=${st.axes[k] || ''} onchange=${e => setAxis(k, e.target.value)}>
                     ${(S.ADVANCED_OPTIONS[k] || []).map(v => html`
                       <option key=${v} value=${v === 'AUTO' ? '' : v}>
                         ${v === 'AUTO' ? '지정 안 함' : (ko[v] ? v + ' — ' + ko[v] : v)}</option>`)}
@@ -1909,11 +1909,11 @@ function CollagePanel({ data, series, setSeries, mech, setMech, gender, setGende
     return html`<optgroup key=${g} label=${S.GROUP_LABELS[g] || g}>
       ${rs.map(r => html`<option key=${r[0]} value=${r[0]}>${r[1]} — ${r[2]}</option>`)}</optgroup>`;
   });
-  const axisField = (k, val, on) => {
+  const axisField = (k, val, on, scope) => {
     const lab = S.ADVANCED_LABELS[k] || [k, ''], ko = S.ADV_VAL[k] || {};
     return html`<div class="field" key=${k} style="margin-top:7px">
-      <label>${lab[0]} <small>${lab[1]}</small></label>
-      <select value=${val || ''} onchange=${e => on(e.target.value)}>
+      <label for=${scope + '-' + k}>${lab[0]} <small>${lab[1]}</small></label>
+      <select id=${scope + '-' + k} value=${val || ''} onchange=${e => on(e.target.value)}>
         ${(S.ADVANCED_OPTIONS[k] || []).map(v => html`
           <option key=${v} value=${v === 'AUTO' ? '' : v}>
             ${v === 'AUTO' ? '지정 안 함' : (ko[v] ? v + ' — ' + ko[v] : v)}</option>`)}
@@ -1939,14 +1939,14 @@ function CollagePanel({ data, series, setSeries, mech, setMech, gender, setGende
                         onclick=${() => setGender(g)}>${t}</button>`)}
             </div>
             <div class="field" style="margin-top:10px">
-              <label>Preset <small>프리셋</small></label>
-              <select aria-label="프리셋" value=${st.preset} onchange=${e => applyPreset(e.target.value)}>
+              <label for="clg-preset">Preset <small>프리셋</small></label>
+              <select id="clg-preset" aria-label="프리셋" value=${st.preset} onchange=${e => applyPreset(e.target.value)}>
                 ${Object.entries(S.PRESETS).map(([k, v]) => html`<option key=${k} value=${k}>${v.label}</option>`)}
               </select>
             </div>
             <div class="field" style="margin-top:9px">
-              <label>랜덤 성격 <small>어떤 카테고리 판에서 고를지</small></label>
-              <select aria-label="랜덤 성격" value=${st.mode} onchange=${e => set('mode', e.target.value)}>
+              <label for="clg-mode">랜덤 성격 <small>어떤 카테고리 판에서 고를지</small></label>
+              <select id="clg-mode" aria-label="랜덤 성격" value=${st.mode} onchange=${e => set('mode', e.target.value)}>
                 ${Object.entries(S.RANDOM_MODES).filter(([, m]) => !m.useRec).map(([k, m]) => html`
                   <option key=${k} value=${k}>${m.ko} — ${m.desc}</option>`)}
               </select>
@@ -1970,8 +1970,8 @@ function CollagePanel({ data, series, setSeries, mech, setMech, gender, setGende
               <span>이미 쓴 카테고리는 빼고 뽑기</span>
             </label>
             <div class="field" style="margin-top:10px">
-              <label>Overall Custom Instructions <small>전체 추가 지시</small></label>
-              <input type="text" placeholder="예: moonlit pool preferred, avoid black mini dresses"
+              <label for="clg-custom">Overall Custom Instructions <small>전체 추가 지시</small></label>
+              <input id="clg-custom" type="text" placeholder="예: moonlit pool preferred, avoid black mini dresses"
                      value=${st.custom} oninput=${e => set('custom', e.target.value)} />
             </div>
           </div>
@@ -2002,35 +2002,35 @@ function CollagePanel({ data, series, setSeries, mech, setMech, gender, setGende
                       <input type="checkbox" checked=${q.use} style="width:auto;margin:0;flex:none"
                              onchange=${e => setPair(n, 'use', e.target.checked)} /><span>이 Pair 로 묶기</span></label>
                     <div class="field">
-                      <label>Category <small>카테고리</small></label>
-                      <select aria-label=${'Pair ' + n + ' 카테고리'} value=${q.key}
+                      <label for=${'clg-p' + n + '-cat'}>Category <small>카테고리</small></label>
+                      <select id=${'clg-p' + n + '-cat'} aria-label=${'Pair ' + n + ' 카테고리'} value=${q.key}
                               onchange=${e => setPairKey(n, e.target.value)}>
                         ${catRows(gender).map(r => html`<option key=${r[0]} value=${r[0]}>${r[1]} — ${r[2]}</option>`)}
                       </select>
-                      ${q.key === '__custom__' ? html`<input type="text" style="margin-top:6px" placeholder="카테고리 직접 입력"
+                      ${q.key === '__custom__' ? html`<input type="text" aria-label=${'Pair ' + n + ' 카테고리 직접 입력'} style="margin-top:6px" placeholder="카테고리 직접 입력"
                         value=${q.custom} oninput=${e => setPair(n, 'custom', e.target.value)} />` : null}
                       ${S.CAT_KO[q.key] ? html`<div class="param-note" style="margin-top:4px">${S.CAT_KO[q.key]}</div>` : null}
                     </div>
                     <div class="field" style="margin-top:9px">
-                      <label>Example Menu <small>예시 메뉴</small></label>
-                      <select aria-label=${'Pair ' + n + ' 예시'} value=${q.exampleKey}
+                      <label for=${'clg-p' + n + '-ex'}>Example Menu <small>예시 메뉴</small></label>
+                      <select id=${'clg-p' + n + '-ex'} aria-label=${'Pair ' + n + ' 예시'} value=${q.exampleKey}
                               onchange=${e => setPair(n, 'exampleKey', e.target.value)}>
                         ${exGroups(q.key, false)}
                       </select>
-                      ${q.exampleKey === '__custom__' ? html`<input type="text" style="margin-top:6px" placeholder="예시 직접 입력"
+                      ${q.exampleKey === '__custom__' ? html`<input type="text" aria-label=${'Pair ' + n + ' 예시 직접 입력'} style="margin-top:6px" placeholder="예시 직접 입력"
                         value=${q.exampleCustom} oninput=${e => setPair(n, 'exampleCustom', e.target.value)} />` : null}
                       ${q.exampleKey && S.EX_NOTE[q.exampleKey]
                         ? html`<div class="param-note" style="margin-top:4px">${S.EX_NOTE[q.exampleKey]}</div>` : null}
                     </div>
                     <div class="param-grid select-row" style="margin-top:9px">
-                      <div class="field"><label>Expression <small>표정 · 이 Pair 공통</small></label>
-                        <select value=${q.expr} onchange=${e => setPair(n, 'expr', e.target.value)}>
+                      <div class="field"><label for=${'clg-p' + n + '-expr'}>Expression <small>표정 · 이 Pair 공통</small></label>
+                        <select id=${'clg-p' + n + '-expr'} value=${q.expr} onchange=${e => setPair(n, 'expr', e.target.value)}>
                           ${optRows(S.EXPRESSION_OPTIONS)}</select></div>
-                      <div class="field"><label>Body Orientation <small>앞/옆/뒷태</small></label>
-                        <select value=${q.orient} onchange=${e => setPair(n, 'orient', e.target.value)}>
+                      <div class="field"><label for=${'clg-p' + n + '-orient'}>Body Orientation <small>앞/옆/뒷태</small></label>
+                        <select id=${'clg-p' + n + '-orient'} value=${q.orient} onchange=${e => setPair(n, 'orient', e.target.value)}>
                           ${optRows(S.ORIENTATION_OPTIONS)}</select></div>
-                      <div class="field"><label>Pose <small>포즈</small></label>
-                        <select value=${q.pose} onchange=${e => setPair(n, 'pose', e.target.value)}>
+                      <div class="field"><label for=${'clg-p' + n + '-pose'}>Pose <small>포즈</small></label>
+                        <select id=${'clg-p' + n + '-pose'} value=${q.pose} onchange=${e => setPair(n, 'pose', e.target.value)}>
                           ${optRows(S.POSE_OPTIONS)}</select></div>
                     </div>
                     <details class="grp" style="margin-top:9px">
@@ -2039,7 +2039,7 @@ function CollagePanel({ data, series, setSeries, mech, setMech, gender, setGende
                           ? '  ' + S.PAIR_ONLY.concat(S.LOCAL_AXES).filter(k => q.adv[k]).length + ' 지정' : ''}</em></span>
                         <i>비워두면 전역 설정을 따른다 — 값이 있으면 이 Pair 에서만 덮는다</i></summary>
                       <div class="grp-in">
-                        ${S.PAIR_ONLY.concat(S.LOCAL_AXES).map(k => axisField(k, q.adv[k], v => setPairAdv(n, k, v)))}
+                        ${S.PAIR_ONLY.concat(S.LOCAL_AXES).map(k => axisField(k, q.adv[k], v => setPairAdv(n, k, v), 'clg-p' + n + '-ax'))}
                       </div>
                     </details>
                   </div>
@@ -2060,39 +2060,39 @@ function CollagePanel({ data, series, setSeries, mech, setMech, gender, setGende
                   <div class="param-note">Panel ${n} — ${n % 2 ? '약한 컷' : '강한 컷'} · Pair ${pairOf(n)}
                     ${st.pairs[pairOf(n)].use ? ' (묶여 있다 — 비워두면 Pair 를 따른다)' : ' (풀려 있다 — 이 칸이 혼자 정한다)'}</div>
                   <div class="field" style="margin-top:9px">
-                    <label>Category <small>개별 카테고리</small></label>
-                    <select aria-label=${'Panel ' + n + ' 카테고리'} value=${p.cat}
+                    <label for=${'clg-n' + n + '-cat'}>Category <small>개별 카테고리</small></label>
+                    <select id=${'clg-n' + n + '-cat'} aria-label=${'Panel ' + n + ' 카테고리'} value=${p.cat}
                             onchange=${e => { setPanel(n, 'cat', e.target.value); setPanel(n, 'exampleKey', ''); }}>
                       ${catRows(gender).map(r => html`<option key=${r[0]} value=${r[0]}>${r[1]} — ${r[2]}</option>`)}
                     </select>
-                    ${p.cat === '__custom__' ? html`<input type="text" style="margin-top:6px" placeholder="카테고리 직접 입력"
+                    ${p.cat === '__custom__' ? html`<input type="text" aria-label=${'Panel ' + n + ' 카테고리 직접 입력'} style="margin-top:6px" placeholder="카테고리 직접 입력"
                       value=${p.catCustom} oninput=${e => setPanel(n, 'catCustom', e.target.value)} />` : null}
                   </div>
                   <div class="field" style="margin-top:9px">
-                    <label>Panel Example <small>개별 예시</small></label>
-                    <select aria-label=${'Panel ' + n + ' 예시'} value=${p.exampleKey}
+                    <label for=${'clg-n' + n + '-ex'}>Panel Example <small>개별 예시</small></label>
+                    <select id=${'clg-n' + n + '-ex'} aria-label=${'Panel ' + n + ' 예시'} value=${p.exampleKey}
                             onchange=${e => setPanel(n, 'exampleKey', e.target.value)}>
                       <option value="">AUTO — Pair 예시 따름</option>
                       ${exGroups(p.cat || st.pairs[pairOf(n)].key, true)}
                     </select>
-                    ${p.exampleKey === '__custom__' ? html`<input type="text" style="margin-top:6px" placeholder="개별 예시 직접 입력"
+                    ${p.exampleKey === '__custom__' ? html`<input type="text" aria-label=${'Panel ' + n + ' 예시 직접 입력'} style="margin-top:6px" placeholder="개별 예시 직접 입력"
                       value=${p.exampleCustom} oninput=${e => setPanel(n, 'exampleCustom', e.target.value)} />` : null}
                   </div>
                   <div class="param-grid select-row" style="margin-top:9px">
-                    <div class="field"><label>Expression <small>표정</small></label>
-                      <select value=${p.ov.expression || ''} onchange=${e => setOv(n, 'expression', e.target.value)}>
+                    <div class="field"><label for=${'clg-n' + n + '-expr'}>Expression <small>표정</small></label>
+                      <select id=${'clg-n' + n + '-expr'} value=${p.ov.expression || ''} onchange=${e => setOv(n, 'expression', e.target.value)}>
                         ${optRows(S.EXPRESSION_OPTIONS)}</select></div>
-                    <div class="field"><label>Body Orientation <small>앞/옆/뒷태 방향</small></label>
-                      <select value=${p.ov.orientation || ''} onchange=${e => setOv(n, 'orientation', e.target.value)}>
+                    <div class="field"><label for=${'clg-n' + n + '-orient'}>Body Orientation <small>앞/옆/뒷태 방향</small></label>
+                      <select id=${'clg-n' + n + '-orient'} value=${p.ov.orientation || ''} onchange=${e => setOv(n, 'orientation', e.target.value)}>
                         ${optRows(S.ORIENTATION_OPTIONS)}</select></div>
-                    <div class="field"><label>Pose <small>포즈</small></label>
-                      <select value=${p.ov.pose || ''} onchange=${e => setOv(n, 'pose', e.target.value)}>
+                    <div class="field"><label for=${'clg-n' + n + '-pose'}>Pose <small>포즈</small></label>
+                      <select id=${'clg-n' + n + '-pose'} value=${p.ov.pose || ''} onchange=${e => setOv(n, 'pose', e.target.value)}>
                         ${optRows(S.POSE_OPTIONS)}</select></div>
                   </div>
                   ${OV_TEXTS.map(([k, en, ko]) => html`
                     <div class="field" key=${k} style="margin-top:7px">
-                      <label>${en} <small>${ko}</small></label>
-                      <input type="text" placeholder="AUTO" value=${p.ov[k] || ''}
+                      <label for=${'clg-n' + n + '-' + k}>${en} <small>${ko}</small></label>
+                      <input id=${'clg-n' + n + '-' + k} type="text" placeholder="AUTO" value=${p.ov[k] || ''}
                              oninput=${e => setOv(n, k, e.target.value)} /></div>`)}
                   <details class="grp" style="margin-top:9px">
                     <summary><span>세부 강도<em class=${S.LOCAL_AXES.filter(k => p.ov['adv_' + k]).length ? 'on' : ''}>
@@ -2100,7 +2100,7 @@ function CollagePanel({ data, series, setSeries, mech, setMech, gender, setGende
                         ? '  ' + S.LOCAL_AXES.filter(k => p.ov['adv_' + k]).length + ' 지정' : ''}</em></span>
                       <i>비워두면 전역 설정을 따른다 — 값이 있으면 이 패널에서만 덮는다</i></summary>
                     <div class="grp-in">
-                      ${S.LOCAL_AXES.map(k => axisField(k, p.ov['adv_' + k], v => setOv(n, 'adv_' + k, v)))}
+                      ${S.LOCAL_AXES.map(k => axisField(k, p.ov['adv_' + k], v => setOv(n, 'adv_' + k, v), 'clg-n' + n + '-ax'))}
                     </div>
                   </details>
                 </div>`;
@@ -2111,15 +2111,15 @@ function CollagePanel({ data, series, setSeries, mech, setMech, gender, setGende
             <summary><span>콜라주 고급 설정<em class=${advOn ? 'on' : ''}>${advOn ? '  ' + advOn + ' 지정' : ''}</em></span>
               <i>여섯 칸 전체에 걸리는 값</i></summary>
             <div class="grp-in">
-              ${Object.keys(S.ADVANCED_OPTIONS).map(k => axisField(k, st.adv[k], v => setAdv(k, v)))}
-              <div class="field" style="margin-top:9px"><label>Expression Mode <small>표정 모드</small></label>
-                <select value=${st.globals.expressionMode}
+              ${Object.keys(S.ADVANCED_OPTIONS).map(k => axisField(k, st.adv[k], v => setAdv(k, v), 'clg-ax'))}
+              <div class="field" style="margin-top:9px"><label for="clg-exprmode">Expression Mode <small>표정 모드</small></label>
+                <select id="clg-exprmode" value=${st.globals.expressionMode}
                         onchange=${e => setGlobal('expressionMode', e.target.value)}>${optRows(CLG_EXPR_MODES)}</select></div>
-              <div class="field" style="margin-top:7px"><label>Body Orientation Mix <small>앞/옆/뒷태 비율</small></label>
-                <select value=${st.globals.orientationMix}
+              <div class="field" style="margin-top:7px"><label for="clg-orientmix">Body Orientation Mix <small>앞/옆/뒷태 비율</small></label>
+                <select id="clg-orientmix" value=${st.globals.orientationMix}
                         onchange=${e => setGlobal('orientationMix', e.target.value)}>${optRows(CLG_ORIENT_MIX)}</select></div>
-              <div class="field" style="margin-top:7px"><label>Framing <small>화각 · 전체 기준</small></label>
-                <select aria-label="전체 화각" value=${st.globals.frame}
+              <div class="field" style="margin-top:7px"><label for="clg-frame">Framing <small>화각 · 전체 기준</small></label>
+                <select id="clg-frame" aria-label="전체 화각" value=${st.globals.frame}
                         onchange=${e => setGlobal('frame', e.target.value)}>${optRows(CLG_FRAMES)}</select></div>
             </div>
           </details>
