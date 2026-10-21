@@ -3,6 +3,9 @@ import { useState, useEffect, useRef } from 'https://esm.sh/preact@10.24.3/hooks
 import htm from 'https://esm.sh/htm@3.1.1';
 import { AppearanceControls, WorkspaceHeading } from '../lib/workspace-ui.js?v=df35009068';
 import * as E from './draft-engine.js?v=00e318f6bf';
+/* 오늘 기록 — 공방 지도가 읽는 칸(lib/today.js). 오늘 몇 판 했는지 단추에 작게 */
+const TODAY=window.AtelierToday;
+function todayLine(){const r=TODAY&&TODAY.read('gundam');return r&&r.n?html` <small>오늘 ${r.n}판${r.daily?' · 끝냈다':''}</small>`:'';}
 const html=htm.bind(h);
 const KINDS=['함','기체','파일럿','지휘관'];
 const POOLS={함:E.SHIP,기체:E.MECH,파일럿:E.PILOT,지휘관:E.CREW};
@@ -91,7 +94,7 @@ function Setup({open}){
         <${OptionRow} title="기체 초상" description="반대: 짝을 이룬 파일럿과 반대 성별" name="vm" value=${E.VIEW_M} options=${[['m','남'],['f','여'],['r','무작위'],['x','반대']]}/>
       </section>
     </div>
-    <div class="setup-bottom"><div><b>${E.REC.games}판</b><span> · 수위 ${E.REC.first} · 최고 ${E.REC.best}점</span><button type="button" class="text-button" onClick=${()=>open({kind:'records'})}>전적·훈장 보기</button></div><button class="primary launch" type="button" onClick=${E.start}>출격 <span>→</span></button></div>
+    <div class="setup-bottom"><div><b>${E.REC.games}판</b><span> · 수위 ${E.REC.first} · 최고 ${E.REC.best}점</span><button type="button" class="text-button" onClick=${()=>open({kind:'records'})}>전적·훈장 보기</button></div><button class="primary launch" type="button" onClick=${E.start}>출격 <span>→</span></button><button class="launch daily" type="button" onClick=${E.startDaily} title="날짜가 씨앗 — 오늘은 모두 같은 판">오늘의 출격${todayLine()}</button></div>
   </section>`;
 }
 function Candidate({slot,type,open,i=0}){
@@ -208,7 +211,7 @@ function Results({open}){
     <${MVP} open=${open}/><section class="draft-panel"><h3>승패 분석 · 상대와 점수 비교</h3><select aria-label="분석할 상대" value=${opponent} onChange=${e=>setOpponent(+e.target.value)}>${[1,2].map(i=>html`<option value=${i}>${E.seatName(i)}</option>`)}</select><p>${E.seatName(opponent)} 대비 ${signed(a.total-b.total)}점</p><${ScoreTable} a=${a} b=${b}/><p class="muted">궁합·지형은 기본 출격 대비 보정값입니다. 정원 초과 감점과 반올림 보정을 포함해 최종 점수와 일치합니다.</p></section>
     <${Team} open=${open}/>
     ${E.newFeats.length>0&&html`<section class="draft-panel"><h3>새 훈장</h3><div class="medal-grid">${E.FEATS.filter(f=>E.newFeats.includes(f.id)).map(f=>html`<div class="earned"><b>${f.n}</b><span>${f.d}</span></div>`)}</div></section>`}
-    <section class="draft-panel"><h3>이 판의 씨앗 · ${E.GAME_SEED}</h3><p class="muted">${E.FIELD} · ${E.AI_NAME[E.AI_LV]} · ${E.sharedPack?'공유팩':'개별팩'} · 보급 ${E.REROLL_MAX}</p><button type="button" onClick=${()=>copy(E.replayURL()).then(()=>setCopyStatus('복사했습니다'),()=>setCopyStatus('복사에 실패했습니다'))}>${copyStatus}</button></section>
+    <section class="draft-panel"><h3>이 판의 씨앗 · ${E.GAME_SEED}${E.DAILY?' · 오늘의 판':''}</h3><p class="muted">${E.FIELD} · ${E.AI_NAME[E.AI_LV]} · ${E.sharedPack?'공유팩':'개별팩'} · 보급 ${E.REROLL_MAX}</p><button type="button" onClick=${()=>copy(E.replayURL()).then(()=>setCopyStatus('복사했습니다'),()=>setCopyStatus('복사에 실패했습니다'))}>${copyStatus}</button></section>
     <div class="result-actions"><button type="button" class="primary" onClick=${E.start}>다시 출격</button><button type="button" onClick=${E.setup}>설정 변경</button><button type="button" onClick=${()=>open({kind:'records'})}>전적 · 훈장</button></div>
     <details class="draft-panel"><summary>이 판의 규칙</summary><p>조 점수 = 기체력 × 파일럿력 × 싱크. 기질·감응·시리즈·소속·전용기 연대를 반영한 싱크는 0.70~1.45입니다. 정원을 넘긴 조는 60%로 계산합니다.</p><p>소속 결속은 현 소속 1.0, 과거 소속 0.5입니다. 보급 요청은 양편에 같은 횟수가 주어지며 마지막 배치에서는 사용할 수 없습니다.</p></details>
   </section>`;

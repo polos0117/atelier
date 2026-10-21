@@ -4,11 +4,12 @@ const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 const root=path.resolve(__dirname,'..');
 function engine(config,seed=43217){
   const timers=[],saved=new Map([['gundam_draft_cfg_v1',JSON.stringify(config)]]);
-  const context={console,URL,queueMicrotask,location:{search:'?seed='+seed,origin:'https://example.test',pathname:'/play.html'},
+  const context={console,URL,queueMicrotask,location:{search:seed==='daily'?'?daily':'?seed='+seed,origin:'https://example.test',pathname:'/play.html'},
     localStorage:{getItem:key=>saved.get(key)??null,setItem:(key,value)=>saved.set(key,value)},
     setTimeout:(fn,ms)=>{timers.push({fn,ms});return timers.length},
     fetch:async url=>{const file=path.join(root,'data',url.split('/').pop());return{ok:fs.existsSync(file),status:fs.existsSync(file)?200:404,json:async()=>JSON.parse(fs.readFileSync(file,'utf8'))}}};
   context.window={};vm.createContext(context);
+  vm.runInContext(fs.readFileSync(path.join(root,'lib/today.js'),'utf8'),context);   /* 오늘 기록 — 엔진이 window.AtelierToday 로 본다 */
   let source=fs.readFileSync(path.join(root,'gundam/draft-engine.js'),'utf8');
   source=source.replace(/export \{([\s\S]*?)\};/,(_,names)=>'window.engine={'+names.split(',').map(n=>n.trim()).filter(Boolean).map(n=>'get '+n+'(){return '+n+'}').join(',')+'};');
   vm.runInContext(source,context);
@@ -47,5 +48,14 @@ async function play(config){
  for(const config of [{lv:0,sc:4,shared:true,flow:'cross',rr:1},{lv:2,sc:4,shared:false,flow:'classic',rr:3,fog:true},{lv:1,sc:6,shared:true,flow:'cross',objective:false,rr:0}]){
   assert.equal(await play(config),await play(config),'same seed and decisions reproduce the game');console.log('PASS',JSON.stringify(config));
  }
- console.log('PASS deterministic games, resupply, stale choices/timers, scoring, record persistence');
+ /* 오늘의 판 — ?daily 면 날짜 씨앗으로 첫 판, 끝나면 오늘 기록 한 칸(공방 지도가 읽는 칸). 다음 판은 보통 판, startDaily 로 다시 오늘의 판 */
+ const T=require('../lib/today.js'),run=engine({lv:0,sc:4,shared:true,flow:'cross',rr:1},'daily'),g=run.game;await g.boot();g.start();
+ assert.equal(g.GAME_SEED,T.seed('gundam'),'daily seed from the date');assert.equal(g.DAILY,true);
+ while(g.phase==='running'){run.drain();if(g.phase==='done')break;const c=g.candidates().filter(x=>x.by===null)[0].c;assert(g.selectCard(c,g.turnToken()));}
+ const rec=JSON.parse(run.saved.get('atelier_today_v1:gundam'));
+ assert(rec&&rec.d===T.today()&&rec.n===1&&rec.daily===true&&rec.seen>0&&rec.w===(g.REC.first===1?1:0),'today record: '+JSON.stringify(rec));
+ g.setup();g.start();assert.equal(g.DAILY,false,'next game is an ordinary one');assert.notEqual(g.GAME_SEED,T.seed('gundam'));
+ assert(g.startDaily());assert.equal(g.GAME_SEED,T.seed('gundam'));assert.equal(g.DAILY,true,'startDaily pins the date seed');
+ const plain=engine({lv:0,sc:4,shared:true,flow:'cross',rr:1}).game;await plain.boot();plain.start();assert.equal(plain.DAILY,false);
+ console.log('PASS deterministic games, resupply, stale choices/timers, scoring, record persistence, daily seed + today record');
 })().catch(e=>{console.error(e);process.exitCode=1});

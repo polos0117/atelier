@@ -486,6 +486,9 @@ var NTB=[-.20,.10,.18,.25];
    주소에 ?seed=39281741 을 붙이면 그 씨앗으로 첫 판을 연다. 그 뒤의 판은
    새로 굴리되, 판마다 쓴 씨앗을 판정 화면에 적어 둔다. */
 var GAME_SEED=0, rngState=1, seedPinned=null;
+/* 오늘의 판 — 날짜가 씨앗(lib/today.js 의 seed). 끝나면 오늘 기록 한 칸을 적어 공방 지도(polos0117.github.io)가 격납고에 불을 켠다.
+   주소에 ?daily 를 붙이면 첫 판이 오늘의 판. 시험(node)에서는 window.AtelierToday 가 없을 수 있어 늘 있는지 본다 */
+var TODAY=(typeof window!=='undefined'&&window.AtelierToday)||null, ROOM='gundam', DAILY=false, dailyPinned=false;
 function mulberry32(){
   rngState=(rngState+0x6D2B79F5)>>>0;
   var t=rngState;
@@ -496,6 +499,7 @@ function mulberry32(){
 function rng(){return mulberry32()}
 function rngInt(n){return Math.floor(rng()*n)}
 function newSeed(){
+  DAILY=dailyPinned;dailyPinned=false;
   if(seedPinned!==null){var v=seedPinned;seedPinned=null;return v}
   return (Math.random()*4294967296)>>>0;
 }
@@ -503,6 +507,7 @@ function rngReset(sd){GAME_SEED=sd>>>0;rngState=(GAME_SEED||1)>>>0}
 (function(){
   var m=/[?&]seed=(\d+)/.exec(location.search);
   if(m)seedPinned=(+m[1])>>>0;
+  if(TODAY){TODAY.visit(ROOM);if(TODAY.isDaily()){seedPinned=TODAY.seed(ROOM);dailyPinned=true}}
 })();
 
 var FIELDS=[];          /* [이름, 뽑힐 비율] — data/field.json 에서 채운다 */
@@ -1418,6 +1423,7 @@ function finish(){
   REC.lv[AI_LV]=(REC.lv[AI_LV]||0)+(rank===0?1:0);
   newFeats=checkFeats(rank,evs[0].ev,sorted[0].ev.total-sorted[2].ev.total);
   recSave();
+  if(TODAY)TODAY.bump(ROOM,{won:rank===0,daily:DAILY});   /* 오늘 기록 — 공방 지도가 읽는 칸 */
 }
 function render(){
   phase=round>=SCHEDULE.length?'done':'running';preparePack();
@@ -1442,6 +1448,8 @@ function setup(){
   feedback='';notices=[];notify();
 }
 function start(){newFeats=[];feedback='';notices=[];reset()}
+/* 오늘의 출격 — 오늘 날짜의 씨앗을 걸고 새 판 */
+function startDaily(){if(!TODAY)return false;seedPinned=TODAY.seed(ROOM);dailyPinned=true;start();return true}
 function configure(key,value){
   if(phase!=='setup')return false;
   switch(key){
@@ -1495,7 +1503,7 @@ export {
   boot,subscribe,phase,error,DATA_WARN,DATA_DIR,SET_NAME,REC_MOVED,REC,FEATS,newFeats,
   MECH,PILOT,SHIP,CREW,KIND,STAT_LABEL,SER_NAME,ART_NAME,ART_ORDER,IMG,COMBO,BOND,TCOMBO,
   SCHEDULE,SCALE,SCALE_OPTS,CAP_BONUS,AI_LV,AI_NAME,REROLL_MAX,RR_OPT,VIEW_P,VIEW_M,
-  DRAFT_FLOW,objectiveOn,sharedPack,fogOn,hintOn,exhaustOn,OBJECTIVE,FIELD,GAME_SEED,
+  DRAFT_FLOW,objectiveOn,sharedPack,fogOn,hintOn,exhaustOn,OBJECTIVE,FIELD,GAME_SEED,DAILY,startDaily,
   teams,round,si,busy,log,rerolls,feedback,notices,PLEDGE_MUL,SCORE_PARTS,
   setup,start,configure,turnToken,isMine,candidates,selectCard,resupply,eraseRecords,
   turnSeq,seatName,slotsOf,futurePairs,capOf,evaluate,assign,sync,syncParts,pledges,synergy,
