@@ -9,3 +9,5 @@
 `prompt.html`을 사용한 이미지 생성부터 업로드까지의 작업 전에는 [PROMPT_IMAGE_WORKFLOW.md](PROMPT_IMAGE_WORKFLOW.md)도 반드시 읽는다.
 
 기체별 설정·생성 이력은 [generation/README.md](generation/README.md)를 따른다. 기본 기록 내보내기는 한 기체의 `settings.json`이며, 완료한 `runs/` 기록은 보존한다. 신규 작업에서 공용 JSON 전체를 다시 올리는 방식을 기본으로 사용하지 않는다.
+
+즐겨찾기 `lib/favorites.js` 는 공방 모음(polos0117.github.io)의 `favorites.js` 를 글자 하나 다르지 않게 복사한 공용 모듈이다(열쇠 `atelier_favorites_v1`, 약속은 그쪽 README 「즐겨찾기」절). 고치면 다섯 저장소를 같이 고치고, `node tests/dex-favorites.cjs` 가 원본과 견준다.

@@ -34,6 +34,8 @@
 <link rel="stylesheet" href="lib/scene-motion.css?v=1">
 <script src="lib/scene-motion.js?v=1"></script>
 <script src="lib/dex-motion.js?v=1"></script>
+<!-- 즐겨찾기 — lib/favorites.js(네 공방과 공방 모음이 글자 하나 다르지 않게 나눠 쓴다). 담은 그림은 공방 모음의 /favorites.html 이 모아 보여 준다 -->
+<script src="lib/favorites.js?v=1"></script>
 <style>
 /* 색·밀도 토큰은 lib/workspace.css 한 곳에 있다 — 여기 또 적으면 뒤에 실리는
    그쪽이 이겨 아무 일도 안 일어난다. --cc 만 그쪽에 없어 여기 남긴다 */
@@ -230,6 +232,13 @@ body.dex-compact .grid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
 .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px}
 .gal img{width:100%;aspect-ratio:2/3;object-fit:cover;object-position:50% 18%;
   border-radius:6px;display:block;background:var(--panel);cursor:zoom-in}
+/* 즐겨찾기 — 큰 그림 아래 움직임 단추 옆. 담긴 그림은 하트가 찬다 */
+.art-motion{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.art-motion .fav-heart[aria-pressed="true"]{border-color:var(--plate);color:var(--plate)}
+.art-motion .fav-heart span{font-size:15px;line-height:1;margin-right:4px}
+.art-motion .fav-heart:focus-visible,.sheet .art-motion .fav-count:focus-visible{outline:2px solid var(--plate);outline-offset:2px}
+.sheet .art-motion .fav-count{display:inline-flex;align-items:center;min-height:44px;padding:8px 12px;color:var(--dim);font-size:12px;text-decoration:none;border-radius:3px}
+.sheet .art-motion .fav-count:hover{color:var(--ink)}
 @media (min-width:600px){
   .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
   body.dex-compact .grid{grid-template-columns:repeat(auto-fill,minmax(115px,1fr))}
@@ -257,6 +266,20 @@ const ATK = window.AtelierToolkit;
 /* 움직임 — 상세 시트의 큰 그림에만 쓴다(크게 보기는 살펴보는 자리라 그대로).
    켜고 끄는 값은 이 브라우저에만 남고 다른 공방과 같이 쓴다(atelier_motion_v1, 모듈이 맡는다) */
 const MOTION = window.AtelierMotion, DEXM = window.AtelierDexMotion;
+/* 즐겨찾기 — 지금 보이는 그림 한 장(카드가 아니라). 담은 것은 이 브라우저의 atelier_favorites_v1 에 남고 공방 모음이 모아 보여 준다 */
+const FAV = window.AtelierFavorites;
+const FAV_HUB = '/favorites.html';
+const FAV_TEXT = {
+  label: '즐겨찾기', added: '즐겨찾기에 담았어요', removed: '즐겨찾기에서 뺐어요',
+  blocked: '이 브라우저는 저장을 막아 두어 담지 못했어요', count: n => '즐겨찾기 ' + n,
+  note: '지금 보이는 그림을 담습니다. 공방 모음의 내 즐겨찾기에서 모아 봅니다.',
+  cut: { portrait: '의인화', casual: '일상', extra: '특별' },
+};
+function useFavorites() {
+  const [list, setList] = useState(() => (FAV ? FAV.list() : []));
+  useEffect(() => (FAV ? FAV.onChange(setList) : undefined), []);
+  return list;
+}
 const MOTION_TEXT = {
   on: '움직임 켜기', off: '움직임 끄기',
   note: '그림이 천천히 다가오고, 초상과 특별 컷 사이를 오갈 때 빛과 입자가 흩날립니다. 이 브라우저에만 남고 다른 공방도 같이 따릅니다.',
@@ -472,7 +495,8 @@ function useToast() {
     clearTimeout(timer.current);
     timer.current = setTimeout(() => setMsg(''), 1500);
   };
-  const node = msg ? html`<div class="toast">${msg}</div>` : null;
+  /* 알림 자리는 늘 깔아 둔다 — 화면 읽기 프로그램은 새로 생긴 칸의 말을 놓치기 쉽다 */
+  const node = html`<div class="toast-live" role="status" aria-live="polite">${msg ? html`<div class="toast">${msg}</div>` : null}</div>`;
   return [node, show];
 }
 
@@ -543,8 +567,8 @@ function Toolkit({ name }) {
 /* ── 상세 시트 ─────────────────────────────────────────
    타일을 누르면 열린다. 카드 정보 + 그 카드가 가진 화풍을 고르는 자리 +
    고른 화풍·성별의 그림 목록. 그림을 누르면 확대로 넘긴다. */
-function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender, initialStyle, initialPick,
-                promptText, memo, onCopy, onZoom, onClose }) {
+function Sheet({ card, entry, tab, styleName, statLabels, seriesName, initialGender, initialStyle, initialPick,
+                promptText, memo, onCopy, onZoom, onClose, onToast }) {
   const layer=useRef(),liveClose=useRef();liveClose.current=onClose;
   useLayoutEffect(()=>modalFocus(layer.current,()=>liveClose.current(),'.grid .cell-open'),[]);
   const mine = stylesOf(entry);
@@ -618,6 +642,21 @@ function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender, 
   }, [shown]);
   useEffect(() => () => { if (MOTION) { MOTION.cancel('dex-sheet'); MOTION.stop(kbImg.current); } }, []);
 
+  /* 즐겨찾기 — 큰 그림에 떠 있는 바로 그 그림. 주소에는 ?mech=&pic= 를 적어 공방 모음에서 누르면 이 그림으로 다시 연다 */
+  const favs = useFavorites();
+  const faved = !!shown && favs.some(x => x.a === 'gundam' && x.file === shown);
+  const toggleFav = () => {
+    if (!FAV || !shown) return;
+    const cut = cutOf(shown), n = cut === 'casual' ? casual.indexOf(shown) + 1 : cut === 'extra' ? extra.indexOf(shown) + 1 : 0;
+    const q = new URLSearchParams();
+    if (tab && tab !== '기체') q.set('tab', tab);
+    q.set('mech', card.name); q.set('pic', shown);
+    const on = FAV.toggle({ a: 'gundam', key: card.name, file: shown, title: card.name,
+      sub: FAV_TEXT.cut[cut] + (n ? ' ' + n : ''), thumb: AIMG.thumbURL(shown), full: AIMG.imgURL(shown),
+      link: new URL('dex.html', location.href).pathname + '?' + q.toString() });
+    if (onToast) onToast(on ? FAV_TEXT.added : faved ? FAV_TEXT.removed : FAV_TEXT.blocked);
+  };
+
   return html`
     <div class="sheet-bg" onclick=${onClose}>
       <div ref=${layer} class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" onclick=${e => e.stopPropagation()}>
@@ -655,6 +694,9 @@ function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender, 
                 : '이 그림의 제출 프롬프트 · 원문 기록 없음'}
             </p>
             <p class="art-motion">
+              <button type="button" class="fav-heart" id="dex-fav" aria-pressed=${faved} title=${FAV_TEXT.note}
+                      disabled=${!FAV} onclick=${toggleFav}><span aria-hidden="true">${faved ? '♥' : '♡'}</span>${FAV_TEXT.label}</button>
+              ${favs.length ? html`<a class="fav-count" id="dex-fav-count" href=${FAV_HUB}>${FAV_TEXT.count(favs.length)}</a>` : null}
               <button type="button" id="dex-motion" disabled=${motionLocked}
                       title=${motionLocked ? MOTION_TEXT.reduced : MOTION_TEXT.note}
                       onclick=${() => MOTION.setEnabled(!motion)}>${motion ? MOTION_TEXT.off : MOTION_TEXT.on}</button>
@@ -782,6 +824,9 @@ function App() {
   useEffect(() => {
     if (!data || urlReady) return;
     const card = cardOf(tab, URL0.get('mech'));
+    /* ?pic= — 즐겨찾기(공방 모음)에서 온 주소. 그 그림이 든 화풍·성별로 연다 */
+    const pic = URL0.get('pic'), at = card && pic && shotIdx[pic];
+    if (at && at.card === card.name) setOpenAt({ f: pic, ...at });
     if (card) setOpen(card);
     setUrlReady(true);
   }, [data]);
@@ -1092,12 +1137,12 @@ function App() {
     </main>
 
     ${open && html`
-      <${Sheet} key=${open.name + (openAt ? '|' + openAt.f : '')} card=${open} entry=${data.img[open.name]} styleName=${data.styleName}
+      <${Sheet} key=${open.name + (openAt ? '|' + openAt.f : '')} card=${open} entry=${data.img[open.name]} tab=${tab} styleName=${data.styleName}
                 statLabels=${data.stats[tab] || []} seriesName=${seriesName}
                 initialGender=${openAt ? openAt.gender : v}
                 initialStyle=${openAt ? openAt.style : ''} initialPick=${openAt ? openAt.f : null}
                 promptText=${data.prompt[open.name] || ''} memo=${data.memo[open.name] || ''}
-                onCopy=${copyPrompt}
+                onCopy=${copyPrompt} onToast=${showToast}
                 onZoom=${(list, i) => setZoom({ list, i })} onClose=${closeSheet} />`}
 
     ${zoom && html`<${Zoom} list=${zoom.list} start=${zoom.i} onClose=${() => setZoom(null)} />`}
