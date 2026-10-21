@@ -8,3 +8,13 @@ book-atelier의 이미지 감상 구조를 건담 도감에 적용했다. 기존
 - tests/gallery-screen.cjs: 344·390·690·1440px의 배치 안정성·그림 감상·키보드 복귀 검사.
 
 검증: gallery-screen, fold-layout, workspace-theme 통과. 실제 이미지로 1440×1000, 390×844 전후 화면을 비교했다.
+
+## 움직임 · 2026-10-21
+
+book-atelier 의 장면 움직임 모듈을 도감 상세 시트에 붙였다. 규약·API·입자 종류 정본은 book-atelier `docs/SCENE_MOTION.md`.
+
+- `lib/scene-motion.js` · `lib/scene-motion.css` — 네 공방이 **글자 하나 다르지 않게** 나눠 쓴다. 여기서 고치지 않는다(고칠 일은 book-atelier 에서 판을 올려 네 곳에 복사).
+- 상세 시트 큰 그림: 켄 번스. 초상 ↔ 특별 컷은 `reveal()` 과 그 카드의 입자 터짐, 그 밖(일상 컷·화풍·성별 바꾸기)은 `turn()`. 크게 보기는 그대로(켄 번스·입자 없음).
+- 「움직임 켜기/끄기」 단추(`#dex-motion`)는 큰 그림 아래. 열쇠 `atelier_motion_v1` 은 공방 넷이 같이 쓴다. 기기의 동작 줄이기가 켜져 있으면 잠긴다. 화면 말은 dex.html 의 `MOTION_TEXT`.
+- 입자는 `lib/dex-motion.js` 가 카드 자료로 고른다 — 세 가지뿐: 태그 「지상용」「탱크」 → `dust`, 지형 적성 우주 > 지상 → `stars`, 지상 > 우주 → `dust`, 나머지는 첫 시리즈의 무대 표(`SERIES`: 우주 이야기 `stars`, 정글·사막·화성·지구 `dust`, 그 밖 빔·전투 `sparks`). 지금 기체 760: sparks 379 · stars 213 · dust 168.
+- 검사 `tests/scene-motion.cjs`: 같은 파일(판·바깥 없음·옆에 book-atelier 가 있으면 같은 글자), 모든 시리즈가 무대 표에 있고 모든 카드가 세 종류 안, 모듈 동작, 시트 전환·크게 보기·스위치·동작 줄이기, 344×882·390×844·844×390·690×829·1280×900 넘침·오류 없음.

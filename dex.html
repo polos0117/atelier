@@ -30,6 +30,10 @@
 <script src="lib/fresh.js"></script>
 <!-- 기체별 기록(generation/m-<해시>/) 읽기. 툴킷 설정과 그림별 제출 프롬프트 경로가 여기 있다 -->
 <script src="generation/loader.js"></script>
+<!-- 움직임 — lib/scene-motion.*(네 공방이 글자 하나 다르지 않게 나눠 쓴다)와 카드마다 입자를 고르는 lib/dex-motion.js -->
+<link rel="stylesheet" href="lib/scene-motion.css?v=1">
+<script src="lib/scene-motion.js?v=1"></script>
+<script src="lib/dex-motion.js?v=1"></script>
 <style>
 /* 색·밀도 토큰은 lib/workspace.css 한 곳에 있다 — 여기 또 적으면 뒤에 실리는
    그쪽이 이겨 아무 일도 안 일어난다. --cc 만 그쪽에 없어 여기 남긴다 */
@@ -234,7 +238,7 @@ body.dex-compact .grid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
 </style>
 <link rel="stylesheet" href="lib/workspace.css?v=45b8463bd0">
 <script src="lib/workspace-theme.js?v=97c2d41a47"></script>
-<link rel="stylesheet" href="lib/gallery.css?v=99ee1fbf19">
+<link rel="stylesheet" href="lib/gallery.css?v=e0b0a65147">
 </head>
 <body class="dex-page">
 <div id="app"></div>
@@ -250,6 +254,14 @@ import { modalFocus } from './lib/gallery.js?v=1';
 const html = htm.bind(h);
 const AIMG = window.AtelierImg;
 const ATK = window.AtelierToolkit;
+/* 움직임 — 상세 시트의 큰 그림에만 쓴다(크게 보기는 살펴보는 자리라 그대로).
+   켜고 끄는 값은 이 브라우저에만 남고 다른 공방과 같이 쓴다(atelier_motion_v1, 모듈이 맡는다) */
+const MOTION = window.AtelierMotion, DEXM = window.AtelierDexMotion;
+const MOTION_TEXT = {
+  on: '움직임 켜기', off: '움직임 끄기',
+  note: '그림이 천천히 다가오고, 초상과 특별 컷 사이를 오갈 때 빛과 입자가 흩날립니다. 이 브라우저에만 남고 다른 공방도 같이 따릅니다.',
+  reduced: '기기의 동작 줄이기 설정을 따라 움직임을 껐습니다.',
+};
 
 /* ── 자료 ───────────────────────────────────────────────
    dex.html 은 게임 코드와 배열 꼴을 공유하느라 c[0], c[1] 처럼 자리번호로 읽는다.
@@ -579,6 +591,33 @@ function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender, 
   const promptPath = useMemo(
     () => (shown ? ATK.promptPathOf(shown) : null), [shown, recTick]);
 
+  /* 움직임 — 큰 그림에 켄 번스(같은 그림은 늘 같은 쪽으로 흐른다). 초상 ↔ 특별 컷은 열리기(reveal)와
+     이 카드의 입자(lib/dex-motion.js — 우주 별·지상 먼지·빔 불꽃), 그 밖의 그림 바꾸기는 넘기기(turn).
+     Preact 는 같은 img 의 주소만 바꾸므로 나가는 그림은 정지 사본(ghost)으로 깐다 */
+  const artRef = useRef(null), lastShown = useRef(null), kbImg = useRef(null);
+  const [motion, setMotion] = useState(() => !!MOTION && MOTION.enabled());
+  useEffect(() => MOTION ? MOTION.subscribe(setMotion) : undefined, []);
+  const motionLocked = !MOTION || MOTION.reduced();
+  const kind = DEXM ? DEXM.kindOf(card) : 'sparks';
+  const cutOf = f => (f === portrait ? 'portrait' : extra.indexOf(f) >= 0 ? 'extra' : 'casual');
+  useLayoutEffect(() => {
+    const prev = lastShown.current, img = artRef.current && artRef.current.querySelector('img');
+    const now = shown && img ? { file: shown, cut: cutOf(shown), at: all.indexOf(shown), list: style + '|' + gender } : null;
+    lastShown.current = now;
+    if (!MOTION || !now) return;
+    kbImg.current = img;
+    const kb = { el: img, seed: now.file };
+    if (!prev) { MOTION.kenBurns(img, kb); return; }
+    if (prev.file === now.file) return;
+    MOTION.stop(img);
+    const from = MOTION.ghost(img, AIMG.imgURL(prev.file), { fit: 'contain' });
+    const climax = prev.list === now.list && [prev.cut, now.cut].sort().join() === 'extra,portrait';
+    if (climax) MOTION.reveal(from, img, { kind, removeFrom: true, key: 'dex-sheet', seed: now.file, kenBurns: kb });
+    else MOTION.turn(from, img, { direction: prev.list === now.list && now.at < prev.at ? 'previous' : 'next',
+                                  removeFrom: true, key: 'dex-sheet', kenBurns: kb });
+  }, [shown]);
+  useEffect(() => () => { if (MOTION) { MOTION.cancel('dex-sheet'); MOTION.stop(kbImg.current); } }, []);
+
   return html`
     <div class="sheet-bg" onclick=${onClose}>
       <div ref=${layer} class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" onclick=${e => e.stopPropagation()}>
@@ -602,7 +641,7 @@ function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender, 
             </div>`}
 
 <div class="detail-spread"><section class="artwork-panel">          ${shown
-            ? html`<button type="button" class="art" aria-label="크게 감상하기" onclick=${() => onZoom(all.length ? all : [shown], shownIdx)}>
+            ? html`<button type="button" class="art" ref=${artRef} data-particles=${kind} aria-label="크게 감상하기" onclick=${() => onZoom(all.length ? all : [shown], shownIdx)}>
                      ${/* 여기는 300px 폭으로 크게 그린다. 썸네일(긴 변 512)을 쓰면
                           고해상도 화면에서 흐릿해 목록 타일보다 화질이 나빠 보인다.
                           한 장뿐이니 원본을 받는다 — 목록은 장수가 많아 썸네일 유지 */''}
@@ -614,6 +653,11 @@ function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender, 
               ${promptPath
                 ? html`<a href=${promptPath} target="_blank" rel="noopener">이 그림의 실제 제출 프롬프트 열기 →</a>`
                 : '이 그림의 제출 프롬프트 · 원문 기록 없음'}
+            </p>
+            <p class="art-motion">
+              <button type="button" id="dex-motion" disabled=${motionLocked}
+                      title=${motionLocked ? MOTION_TEXT.reduced : MOTION_TEXT.note}
+                      onclick=${() => MOTION.setEnabled(!motion)}>${motion ? MOTION_TEXT.off : MOTION_TEXT.on}</button>
             </p>`}
           ${portrait && !own && html`
             <p class="sec" style="text-align:center">

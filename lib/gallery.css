@@ -88,3 +88,8 @@ body.dex-page{background-image:none}
 .new-badge{position:absolute;top:6px;left:6px;padding:3px 6px;border-radius:3px;background:var(--accent);color:var(--bg);font-size:10px;font-weight:700;line-height:1.2;pointer-events:none}
 .dex-page .filter-toggle[aria-pressed=true]{background:var(--plate);color:var(--void);border-color:var(--plate)}
 @media(min-width:720px){.recent-shot{width:96px}.recent-list{gap:14px}}
+/* 움직임 — 큰 그림 칸이 사본·빛·입자 층(lib/scene-motion.css)을 제 안에 담아 자른다. 단추는 그림 아래 가운데 */
+.sheet .art{position:relative}
+.art-motion{text-align:center;margin:0 0 14px}
+.art-motion button{min-height:44px;padding:8px 14px;border:1px solid var(--rule);border-radius:3px;background:transparent;color:var(--ink);font:inherit;font-size:12px;cursor:pointer}
+.art-motion button:disabled{opacity:.5;cursor:default}
