@@ -216,6 +216,7 @@ function Clash({onDone}){
   const opponent=ranking.find(r=>r.i!==0).i,rank=ranking.findIndex(r=>r.i===0)+1;
   const rounds=useState(()=>clashRounds(opponent))[0],still=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const [i,setI]=useState(0);
+  useEffect(()=>{if(window.AtelierSpeech)window.AtelierSpeech.clear()},[]);   /* 지명 말풍선이 장면 위에 남지 않게 */
   useEffect(()=>{if(still||!rounds.length){onDone();return}if(i>=rounds.length)return;const t=setTimeout(()=>setI(i+1),i===0?1100:950);return()=>clearTimeout(t)},[i]);
   if(still||!rounds.length)return null;
   const done=i>=rounds.length,cur=rounds[Math.min(i,rounds.length-1)],tally=rounds.slice(0,i).reduce((t,r)=>(t[r.cl]++,t),{w:0,d:0,l:0});
@@ -223,9 +224,9 @@ function Clash({onDone}){
   return html`<div class="clash" role="dialog" aria-label="결전 장면" onClick=${()=>done?onDone():setI(rounds.length)}>
     <div class="clash-head"><span>${E.seatName(0)} 대 ${E.seatName(opponent)}</span><b>${done?'결전 끝':String(i+1).padStart(2,'0')+' / '+String(rounds.length).padStart(2,'0')+' 합'}</b><span>${tally.w}승 ${tally.d}무 ${tally.l}패</span></div>
     ${!done?html`<div class="clash-ring" key=${i}>
-      <div class=${'fighter ally '+(cur.cl==='w'?'win':cur.cl==='l'?'lose':'')}><span class="face"><${Portrait} card=${cur.a.m} type="기체" partner=${cur.a.p} face=${true}/></span><b>${cur.a.m[0]}</b><small>${cur.a.p[0]}</small><strong>${cur.a.s}</strong></div>
+      <div class=${'fighter ally '+(cur.cl==='w'?'win':cur.cl==='l'?'lose':'')}><span class="face"><${Portrait} card=${cur.a.m} type="기체" partner=${cur.a.p}/></span><b>${cur.a.m[0]}</b><small>${cur.a.p[0]}</small><strong>${cur.a.s}</strong></div>
       <div class="vs"><span>VS</span><em class=${cur.cl}>${cur.rs}</em></div>
-      <div class=${'fighter foe '+(cur.cl==='l'?'win':cur.cl==='w'?'lose':'')}><span class="face"><${Portrait} card=${cur.b.m} type="기체" partner=${cur.b.p} face=${true}/></span><b>${cur.b.m[0]}</b><small>${cur.b.p[0]}</small><strong>${cur.b.s}</strong></div>
+      <div class=${'fighter foe '+(cur.cl==='l'?'win':cur.cl==='w'?'lose':'')}><span class="face"><${Portrait} card=${cur.b.m} type="기체" partner=${cur.b.p}/></span><b>${cur.b.m[0]}</b><small>${cur.b.p[0]}</small><strong>${cur.b.s}</strong></div>
     </div>`:html`<div class="clash-verdict"><b class=${rank===1?'win':'lose'}>${word}</b><span>${E.evaluate(E.teams[0]).total}점 대 ${E.evaluate(E.teams[opponent]).total}점 · 합 ${tally.w}승 ${tally.d}무 ${tally.l}패(참고)</span><button type="button" class="primary" onClick=${onDone}>결과 보기</button></div>`}
     <p class="clash-hint">${done?'':'누르면 건너뛴다'}</p>
   </div>`;
