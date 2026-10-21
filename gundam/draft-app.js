@@ -102,7 +102,7 @@ function Candidate({slot,type,open,i=0}){
   const gain=E.hintOn&&mine?E.delta(card,type):null;
   const reason=slot.by!==null?'지명 완료':mine?E.choiceReason(card,type,gain):'상대 지명 중';
   const fresh=slot.by!==null&&E.log[0]?.c===card;
-  return html`<button type="button" class=${'draft-card'+(slot.by!==null?' taken '+(slot.by===0?'by-ally':'by-enemy')+(fresh?' fresh':''):'')} disabled=${!mine}
+  return html`<button type="button" class=${'draft-card'+(slot.by!==null?' taken '+(slot.by===0?'by-ally':'by-enemy')+(fresh?' fresh':''):'')} disabled=${!mine} data-name=${card[0]}
     aria-label=${card[0]+' · '+reason} style=${{'--faction':E.fc(card[1][card[1].length-1]),'--i':i}}
     onClick=${()=>open({kind:'candidate',card,type,token:E.turnToken()})}>
     <div class="candidate-image"><${Portrait} card=${card}/><span class="candidate-kind">${type}</span><span class="candidate-series">${E.serTag(card)}</span>
@@ -222,8 +222,18 @@ function CountUp({to}){
   return n;
 }
 function Board({open}){return html`<section id="boardArea"><div class="enemy-teams">${[1,2].map(index=>html`<${Team} index=${index} open=${open}/>` )}</div><section class="draft-panel"><h3>교신 로그</h3>${E.fogOn&&E.phase!=='done'?html`<p class="draft-note">관제 두절 · 상대의 지명은 숨겨집니다.</p>`:html`<ol class="draft-feed">${E.log.map((l,i)=>html`<li key=${i}><span>R${l.r}</span><b>${E.seatName(l.ti)}</b><span>${l.rr?'보급 요청':l.c?.[0]}</span></li>`)}</ol>`}</section></section>`}
+/* 말풍선 — 지명된 카드가 제 사연(lore) 한 줄을 한다. 아군·적 다 같이, 지명된 그 카드 위에(lib/speech.js) */
+function useSpeech(){
+  const last=(E.log||[])[0];   /* boot 전엔 log 가 없다 */
+  useEffect(()=>{
+    const SP=window.AtelierSpeech;if(!SP||!last||last.rr||!last.c||!last.fresh)return;
+    const text=E.loreOf(last.c);if(!text)return;
+    const t=setTimeout(()=>{const el=document.querySelector('.draft-card[data-name="'+CSS.escape(last.c[0])+'"]')||document.querySelector('.candidate-grid');if(el)SP.say(el,text,{who:last.ti===0?'me':'foe'})},80);
+    return()=>clearTimeout(t);
+  },[last]);
+}
 function App(){
-  const revision=useEngine(),[pane,setPane]=useState('cards'),[stack,setStack]=useState([]);
+  const revision=useEngine(),[pane,setPane]=useState('cards'),[stack,setStack]=useState([]);useSpeech();
   const [large,setLarge]=useState(()=>preference('atelier_play_large_v1','1')!=='0'),[tactical,setTactical]=useState(()=>preference('atelier_tactical_v1','1')!=='0');
   const scroll=useRef(null),previousPhase=useRef('loading');
   const [bursts,setBursts]=useState([]),[ping,setPing]=useState(0),mineRef=useRef(null);
