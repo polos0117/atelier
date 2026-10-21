@@ -203,6 +203,33 @@ function MVP({open}){
   if(!best)return null;const card=member?best.u.p:best.u.m,type=member?'파일럿':'기체';
   return html`<section class="draft-panel mvp-panel"><h3><span>MVP</span> 최고의 출격 조</h3><div class="mvp-layout"><div><h2>${best.u.m[0]}<small> × </small>${best.u.p[0]}</h2><p>출격 기여 <b>${Math.round(best.score)}점</b>${best.over?' · 정원 초과 감점 반영':''}</p><p class="muted">연대·작전 보너스 제외</p><div class="segmented">${['기체','파일럿'].map((n,i)=>html`<button aria-pressed=${member===i} onClick=${()=>setMember(i)}>${n}</button>`)}</div></div><${Gallery} key=${card[0]} card=${card} type=${type} partner=${member?null:best.u.p} preferDaily=${true}/></div></section>`;
 }
+/* 결전 장면 — 판정이 난 순간 한 번, 점수가 큰 조부터 한 합씩 맞붙는 연출. 규칙은 그대로(evaluate 가 정한 순위를 보여 줄 뿐)이고 보여 주는 차례만 바뀐다.
+   한 합 = 아군 출격 조(기체 × 파일럿, 조 점수) 대 상대의 같은 자리 조. 점수 비로 승·근소·무승부·패를 매긴다(참고). 누르면 끝까지 건너뛴다. 움직임 줄이기면 바로 결과 */
+function clashRounds(opponent){
+  const pairsOf=t=>E.assign(t).filter(u=>u.m&&u.p).map(u=>({m:u.m,p:u.p,s:Math.round(u.s)})).sort((a,b)=>b.s-a.s);
+  const a=pairsOf(E.teams[0]),b=pairsOf(E.teams[opponent]),n=Math.min(a.length,b.length),out=[];
+  for(let i=0;i<n;i++){const r=a[i].s/Math.max(1,b[i].s);out.push({a:a[i],b:b[i],cl:r>1.12?'w':r>1.03?'w':r>=.97?'d':r>=.89?'l':'l',rs:r>1.12?'아군 승':r>1.03?'근소 우세':r>=.97?'호각':r>=.89?'근소 열세':'적군 승'})}
+  return out;
+}
+function Clash({onDone}){
+  const ranking=[0,1,2].map(i=>({i,total:E.evaluate(E.teams[i]).total})).sort((a,b)=>b.total-a.total);
+  const opponent=ranking.find(r=>r.i!==0).i,rank=ranking.findIndex(r=>r.i===0)+1;
+  const rounds=useState(()=>clashRounds(opponent))[0],still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const [i,setI]=useState(0);
+  useEffect(()=>{if(still||!rounds.length){onDone();return}if(i>=rounds.length)return;const t=setTimeout(()=>setI(i+1),i===0?1100:950);return()=>clearTimeout(t)},[i]);
+  if(still||!rounds.length)return null;
+  const done=i>=rounds.length,cur=rounds[Math.min(i,rounds.length-1)],tally=rounds.slice(0,i).reduce((t,r)=>(t[r.cl]++,t),{w:0,d:0,l:0});
+  const word=rank===1?'1위 · 출격 승리':rank===2?'2위':'3위';
+  return html`<div class="clash" role="dialog" aria-label="결전 장면" onClick=${()=>done?onDone():setI(rounds.length)}>
+    <div class="clash-head"><span>${E.seatName(0)} 대 ${E.seatName(opponent)}</span><b>${done?'결전 끝':String(i+1).padStart(2,'0')+' / '+String(rounds.length).padStart(2,'0')+' 합'}</b><span>${tally.w}승 ${tally.d}무 ${tally.l}패</span></div>
+    ${!done?html`<div class="clash-ring" key=${i}>
+      <div class=${'fighter ally '+(cur.cl==='w'?'win':cur.cl==='l'?'lose':'')}><span class="face"><${Portrait} card=${cur.a.m} type="기체" partner=${cur.a.p} face=${true}/></span><b>${cur.a.m[0]}</b><small>${cur.a.p[0]}</small><strong>${cur.a.s}</strong></div>
+      <div class="vs"><span>VS</span><em class=${cur.cl}>${cur.rs}</em></div>
+      <div class=${'fighter foe '+(cur.cl==='l'?'win':cur.cl==='w'?'lose':'')}><span class="face"><${Portrait} card=${cur.b.m} type="기체" partner=${cur.b.p} face=${true}/></span><b>${cur.b.m[0]}</b><small>${cur.b.p[0]}</small><strong>${cur.b.s}</strong></div>
+    </div>`:html`<div class="clash-verdict"><b class=${rank===1?'win':'lose'}>${word}</b><span>${E.evaluate(E.teams[0]).total}점 대 ${E.evaluate(E.teams[opponent]).total}점 · 합 ${tally.w}승 ${tally.d}무 ${tally.l}패(참고)</span><button type="button" class="primary" onClick=${onDone}>결과 보기</button></div>`}
+    <p class="clash-hint">${done?'':'누르면 건너뛴다'}</p>
+  </div>`;
+}
 function Results({open}){
   const [opponent,setOpponent]=useState(()=>E.evaluate(E.teams[1]).total>=E.evaluate(E.teams[2]).total?1:2),[copyStatus,setCopyStatus]=useState('같은 판 주소 복사');
   const ranking=[0,1,2].map(i=>({i,total:E.evaluate(E.teams[i]).total})).sort((a,b)=>b.total-a.total);
@@ -234,6 +261,9 @@ function useSpeech(){
 }
 function App(){
   const revision=useEngine(),[pane,setPane]=useState('cards'),[stack,setStack]=useState([]);useSpeech();
+  /* 결전 장면 — 이 창에서 판정이 나는 순간 한 번. 열자마자 이미 끝난 판이면 안 튼다 */
+  const [clash,setClash]=useState(false),wasDone=useRef(E.phase==='done');
+  useEffect(()=>{const d=E.phase==='done';if(d&&!wasDone.current)setClash(true);if(!d)setClash(false);wasDone.current=d},[E.phase,E.GAME_SEED]);
   const [large,setLarge]=useState(()=>preference('atelier_play_large_v1','1')!=='0'),[tactical,setTactical]=useState(()=>preference('atelier_tactical_v1','1')!=='0');
   const scroll=useRef(null),previousPhase=useRef('loading');
   const [bursts,setBursts]=useState([]),[ping,setPing]=useState(0),mineRef=useRef(null);
@@ -277,6 +307,7 @@ function App(){
         ${pane==='board'&&html`<${Board} open=${open}/>`}
       `}
       ${done&&html`<${Results} open=${open}/>`}
+      ${done&&clash&&html`<${Clash} onDone=${()=>setClash(false)}/>`}
       <footer class="draft-foot"><button type="button" onClick=${()=>open({kind:'collection'})} disabled=${E.phase==='loading'||E.phase==='error'}>도감 열기</button><button type="button" onClick=${()=>open({kind:'records'})}>전적 · 훈장</button></footer>
     </main>
     ${running&&html`<nav class="draft-bottom-nav" aria-label="게임 화면 바로가기">${[['cards','카드'],['team','내 편성'],['board','전황']].map(([value,label])=>html`<button type="button" key=${value==='team'?'team'+ping:value} class=${value==='team'&&ping?'ping':''} aria-pressed=${pane===value} onClick=${()=>switchPane(value)}>${label}</button>`)}</nav>`}

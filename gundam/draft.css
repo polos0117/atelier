@@ -274,3 +274,24 @@ html:has(.draft-page){height:100%;overflow:hidden;overscroll-behavior:none}
 .burst span{display:block;font-size:12px;color:var(--muted);overflow-wrap:anywhere}
 .burst.bond{border-color:var(--gold)}.burst.bond small,.burst.bond b{color:var(--gold)}
 .burst.negative{border-color:var(--signal)}.burst.negative small,.burst.negative b{color:var(--signal)}
+
+/* 결전 장면 — 판정 위에 한 번 덮이는 막. 한 합씩 두 조가 맞붙고 진 쪽이 흐려진다 */
+.draft-page .clash{position:fixed;inset:0;z-index:40;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:20px;background:radial-gradient(80% 60% at 50% 40%,#13203088,#05080df0 70%),#05080de6;cursor:pointer;animation:clash-fade .3s ease-out}
+.draft-page .clash-head{display:flex;gap:14px;align-items:baseline;color:#95adbc;font-size:12px;letter-spacing:.08em}.draft-page .clash-head b{font-size:18px;color:#fff;letter-spacing:.14em}
+.draft-page .clash-ring{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;width:min(100%,720px)}
+.draft-page .fighter{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px;border-radius:14px;background:var(--card);border:1px solid var(--line);text-align:center;animation:clash-in .35s cubic-bezier(.2,.9,.3,1.2) backwards}
+.draft-page .fighter.foe{animation-delay:.12s}
+.draft-page .fighter .face{display:block;width:min(34vw,150px);aspect-ratio:3/4;border-radius:10px;overflow:hidden;background:#0c1a26}.draft-page .fighter .face img,.draft-page .fighter .face .draft-placeholder{width:100%;height:100%;object-fit:cover}
+.draft-page .fighter b{font-size:15px}.draft-page .fighter small{color:#95adbc;font-size:12px}.draft-page .fighter strong{font-size:22px;letter-spacing:-.02em}
+.draft-page .fighter.win{box-shadow:0 0 0 2px #e6c66a,0 0 36px #e6c66a66;animation:clash-in .35s cubic-bezier(.2,.9,.3,1.2) backwards,clash-win .5s ease-out .55s}
+.draft-page .fighter.lose{animation:clash-in .35s cubic-bezier(.2,.9,.3,1.2) backwards,clash-lose .5s ease-in .55s forwards}
+.draft-page .vs{display:flex;flex-direction:column;align-items:center;gap:6px}.draft-page .vs span{font-size:20px;font-weight:800;letter-spacing:.2em;color:#e6c66a}
+.draft-page .vs em{font-style:normal;font-size:12px;padding:3px 9px;border-radius:99px;background:#ffffff14;opacity:0;animation:clash-fade .25s ease-out .6s forwards}.draft-page .vs em.w{color:#9fe3a8}.draft-page .vs em.l{color:#ff9f9f}.draft-page .vs em.d{color:#d7d2c8}
+.draft-page .clash-verdict{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;animation:clash-in .4s cubic-bezier(.2,.9,.3,1.2)}.draft-page .clash-verdict b{font-size:34px;letter-spacing:-.03em}.draft-page .clash-verdict b.win{color:#e6c66a}.draft-page .clash-verdict b.lose{color:#c6d2dc}.draft-page .clash-verdict span{color:#95adbc;font-size:13px}
+.draft-page .clash-hint{margin:0;color:#6f8290;font-size:12px;min-height:1em}
+@keyframes clash-fade{from{opacity:0}to{opacity:1}}
+@keyframes clash-in{from{opacity:0;transform:translateY(12px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes clash-win{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
+@keyframes clash-lose{to{filter:grayscale(1) brightness(.55);transform:translateY(6px) scale(.96);opacity:.7}}
+@media (max-width:480px){.draft-page .clash-ring{gap:8px}.draft-page .fighter{padding:8px}.draft-page .fighter .face{width:30vw}}
+@media (prefers-reduced-motion:reduce){.draft-page .clash,.draft-page .fighter,.draft-page .vs em,.draft-page .clash-verdict{animation:none;opacity:1}}
