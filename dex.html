@@ -234,7 +234,7 @@ body.dex-compact .grid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
 </style>
 <link rel="stylesheet" href="lib/workspace.css?v=45b8463bd0">
 <script src="lib/workspace-theme.js?v=97c2d41a47"></script>
-<link rel="stylesheet" href="lib/gallery.css?v=6b456ff7ef">
+<link rel="stylesheet" href="lib/gallery.css?v=99ee1fbf19">
 </head>
 <body class="dex-page">
 <div id="app"></div>
@@ -276,7 +276,9 @@ function useAtelierData() {
   const [err, setErr] = useState(null);
   useEffect(() => {
     Promise.all(KINDS.map(k => getJSON(k.file))
-      .concat([getJSON('series'), getJSON('style'), getJSON('prompt'), AIMG.load(),
+      .concat([getJSON('series'), getJSON('style'), getJSON('prompt'),
+               /* 캐시에 남은 예전 lib/img.js 에는 loadAll 이 없다 — 날짜 없이 연다 */
+               AIMG.loadAll ? AIMG.loadAll() : AIMG.load().then(img => ({ img, added: {} })),
                ATK.load(), ATK.loadGeneration()]))
       .then(res => {
         const cards = {}, stats = {};
@@ -291,7 +293,7 @@ function useAtelierData() {
         setData({
           cards, stats, series: res[n], styleName,
           prompt: res[n + 2].prompt || {}, memo: res[n + 2].memo || {},
-          img: res[n + 3],
+          img: res[n + 3].img, added: res[n + 3].added,
         });
       })
       .catch(setErr);
@@ -355,8 +357,55 @@ function serOf(card) {
   return Array.isArray(s) ? s : (s ? [s] : []);
 }
 
+/* ── 새 그림 ─────────────────────────────────────────────
+   data/img.json 의 added 가 파일마다 등록한 날을 들고 있다 (register-images.py).
+   날짜를 모르는 파일은 거기 없으므로 최근 추가에도 「새」에도 걸리지 않는다.
+   「새」는 이 브라우저가 지난번에 보고 간 뒤로 들어온 그림이다. 날짜가 하루 단위라
+   본 것 가운데 가장 늦은 날짜와 그날 파일 목록을 같이 남긴다 — 같은 날 뒤에
+   들어온 것도 놓치지 않는다. 처음 오면 아무것도 새로 치지 않는다(전부 새 그림이면
+   표시가 뜻이 없다). 남기는 때는 화면을 떠날 때다 — 보는 동안에는 표시가 그대로 있다 */
+const RECENT_DAYS = 7, RECENT_MAX = 24;
+const SEEN_KEY = 'atelier_dex_seen_v1';
+function readSeen() {
+  try {
+    const j = JSON.parse(localStorage.getItem(SEEN_KEY) || 'null');
+    return j && typeof j.d === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(j.d) && Array.isArray(j.f) ? j : null;
+  } catch (e) { return null; }
+}
+/* 자료를 받기 전에 읽어 둔다 — 떠날 때 덮어쓰므로 이번 방문 동안은 이 값으로 센다 */
+const SEEN0 = readSeen();
+function seenMark(added) {
+  let d = '';
+  for (const f in added) if (added[f] > d) d = added[f];
+  return d ? { d, f: Object.keys(added).filter(f => added[f] === d) } : null;
+}
+function isNewSince(prev, f, d) { return !!prev && (d > prev.d || (d === prev.d && prev.f.indexOf(f) < 0)); }
+/* 이 기기의 날짜 (YYYY-MM-DD) */
+function localDay(t) {
+  const z = new Date(t);
+  return z.getFullYear() + '-' + String(z.getMonth() + 1).padStart(2, '0') + '-' + String(z.getDate()).padStart(2, '0');
+}
+function dayLabel(d) {
+  if (d === localDay(Date.now())) return '오늘';
+  if (d === localDay(Date.now() - 864e5)) return '어제';
+  return (+d.slice(5, 7)) + '월 ' + (+d.slice(8, 10)) + '일';
+}
+/* 파일 → 어느 카드·화풍·성별 몫인지. 최근 추가에서 누르면 시트를 그 그림에 맞춰 연다 */
+function shotIndex(img) {
+  const out = {};
+  const put = (card, bucket, style) => ['f', 'm'].forEach(g => AIMG.shotsOf(bucket, g).forEach((f, i) => {
+    if (!out[f]) out[f] = { card, style, gender: g, i };
+  }));
+  for (const card in img) {
+    const bs = AIMG.styleMap(img[card]);
+    for (const k in bs) put(card, bs[k], k);
+    put(card, img[card], 'unknown');
+  }
+  return out;
+}
+
 /* ── 타일 ─────────────────────────────────────────────── */
-function Cell({ name, color, shots, onOpen, subtitle }) {
+function Cell({ name, color, shots, onOpen, subtitle, fresh }) {
   const [page, setPage] = useState(0);
   const touch = useRef({ x: 0, y: 0, swiped: false });
   const i = shots.length ? ((page % shots.length) + shots.length) % shots.length : 0;
@@ -390,13 +439,14 @@ function Cell({ name, color, shots, onOpen, subtitle }) {
           ? html`<img key=${pic} width="800" height="1200" decoding="async" loading="lazy" src=${AIMG.thumbURL(pic)} alt=""
                    onerror=${e => { e.target.onerror = null; e.target.src = AIMG.imgURL(pic); }} />`
           : html`<span class="ph">그림 없음</span>`}
+        ${fresh ? html`<span class="new-badge" aria-hidden="true">새</span>` : null}
         ${shots.length > 1 && html`
           <button class="pg mono" aria-label="다음 그림"
                   onclick=${e => { e.stopPropagation(); step(1); }}>
             ${i + 1}/${shots.length}
           </button>`}
       </span>
-      <div class="cap"><span class="card-meta">${subtitle}</span><strong><button type="button" class="cell-open" ref=${openBtn}>${name}</button></strong><i>${shots.length ? shots.length+'장의 그림' : '그림을 기다리는 중'}</i></div>
+      <div class="cap"><span class="card-meta">${subtitle}</span><strong><button type="button" class="cell-open" ref=${openBtn}>${name}</button></strong><i>${shots.length ? shots.length+'장의 그림' : '그림을 기다리는 중'}${fresh ? ' · 새 그림 ' + fresh + '장' : ''}</i></div>
     </div>`;
 }
 
@@ -481,12 +531,13 @@ function Toolkit({ name }) {
 /* ── 상세 시트 ─────────────────────────────────────────
    타일을 누르면 열린다. 카드 정보 + 그 카드가 가진 화풍을 고르는 자리 +
    고른 화풍·성별의 그림 목록. 그림을 누르면 확대로 넘긴다. */
-function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender,
+function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender, initialStyle, initialPick,
                 promptText, memo, onCopy, onZoom, onClose }) {
   const layer=useRef(),liveClose=useRef();liveClose.current=onClose;
   useLayoutEffect(()=>modalFocus(layer.current,()=>liveClose.current(),'.grid .cell-open'),[]);
   const mine = stylesOf(entry);
-  const [style, setStyle] = useState(mine[0] || '');
+  /* 최근 추가에서 열면 그 그림이 든 화풍·성별로 시작한다 */
+  const [style, setStyle] = useState(initialStyle && mine.indexOf(initialStyle) >= 0 ? initialStyle : (mine[0] || ''));
   /* 시트 안 남/여는 시트에서만 쓴다. 뒤 목록의 성별까지 끌고 가면
      상세를 잠깐 들여다본 것만으로 목록이 통째로 바뀐다 (기존 도감도 따로 둔다).
      시트에는 key 가 붙어 있어 다른 카드를 열면 목록 성별에서 다시 시작한다 */
@@ -503,8 +554,10 @@ function Sheet({ card, entry, styleName, statLabels, seriesName, initialGender,
   const countOf = g => AIMG.shotsOf(bucket, g).length;
   /* 갤러리에서 고른 그림을 위에 크게 띄운다 (기존 도감과 같은 동작).
      화풍·성별을 바꾸면 그 화풍의 초상으로 되돌린다 */
-  const [pick, setPick] = useState(null);
-  useEffect(() => { setPick(null); }, [style, gender]);
+  const [pick, setPick] = useState(initialPick || null);
+  /* 처음 그릴 때는 건너뛴다 — 안 그러면 최근 추가에서 고른 그림이 바로 지워진다 */
+  const firstPick = useRef(true);
+  useEffect(() => { if (firstPick.current) { firstPick.current = false; return; } setPick(null); }, [style, gender]);
 
   /* 기체별 기록(generation/m-<해시>/)은 카드를 열 때 따로 받아 온다.
      툴킷 설정과 그림별 제출 프롬프트 경로가 여기 들어 있어, 도착하면 시트를
@@ -676,6 +729,8 @@ function App() {
   const [ser, setSer] = useState(() => fromURL('series', () => true, ''));
   const [style, setStyle] = useState(() => fromURL('style', () => true, ''));
   const [open, setOpen] = useState(null);
+  /* 최근 추가에서 연 그림 {f, style, gender} — 시트가 그 그림부터 띄운다 */
+  const [openAt, setOpenAt] = useState(null);
   /* 자료가 오기 전에 주소를 고쳐 쓰면 ?mech= 가 시트를 열기도 전에 지워진다 */
   const [urlReady, setUrlReady] = useState(false);
   const cardOf = (t, name) => (name && data && data.cards[t] || []).find(c => c.name === name) || null;
@@ -688,14 +743,15 @@ function App() {
   }, [data]);
   /* 이 문서가 쌓은 시트 칸인지. 새로고침 뒤 남은 history.state 로 back() 하면 페이지를 다시 읽는다 */
   const pushed = useRef(false);
-  const openCard = card => {
+  const openCard = (card, at) => {
+    setOpenAt(at || null);
     setOpen(card);
     writeURL('pushState', dexURL({ tab, mode, v, q, ser, style, open: card }), { dexSheet: card.name });
     pushed.current = true;
   };
   const closeSheet = () => {
     if (pushed.current && history.state && history.state.dexSheet) { history.back(); return; }
-    setOpen(null); setZoom(null);
+    setOpen(null); setOpenAt(null); setZoom(null);
     writeURL('replaceState', dexURL({ tab, mode, v, q, ser, style, open: null }), null);
   };
   useEffect(() => {
@@ -708,7 +764,7 @@ function App() {
       const p = new URLSearchParams(location.search);
       const t = KINDS.some(k => k.tab === p.get('tab')) ? p.get('tab') : '기체';
       const card = (data.cards[t] || []).find(c => c.name === p.get('mech')) || null;
-      setZoom(null);
+      setZoom(null); setOpenAt(null);
       if (card && t !== tab) setTab(t);
       setOpen(card);
       if (!card) pushed.current = false;
@@ -724,6 +780,8 @@ function App() {
   /* 폰에서는 머리말이 화면을 많이 먹는다. 탭·모드·검색만 남기고 나머지는 접는다.
      걸린 조건이 있으면 단추에 개수가 붙어 접혀 있어도 알 수 있다 */
   const [showFilters, setShowFilters] = useState(false);
+  /* 지난번 다녀간 뒤로 새 그림이 든 카드만 */
+  const [newOnly, setNewOnly] = useState(false);
   const [toast, showToast] = useToast();
   /* 새 판이 올라오면 띠를 띄운다. 지금 판이 언제 것인지도 머리말에 적는다 */
   const [stamp, setStamp] = useState('');
@@ -739,15 +797,48 @@ function App() {
   /* 선택지는 지금 조건에 실제로 걸리는 것만 남기고 개수를 같이 보여 준다.
      화풍을 셀 때는 시리즈까지, 시리즈를 셀 때는 화풍까지 반영한다 —
      자기 자신은 빼고 세야 고른 뒤에도 목록에서 사라지지 않는다 */
+  const shotIdx = useMemo(() => (data ? shotIndex(data.img) : {}), [data]);
+  /* 카드 → 지난번 뒤로 새로 든 그림 장수 */
+  const fresh = useMemo(() => {
+    const out = {};
+    if (!data || !SEEN0) return out;
+    for (const f in data.added) {
+      const at = shotIdx[f];
+      if (at && isNewSince(SEEN0, f, data.added[f])) out[at.card] = (out[at.card] || 0) + 1;
+    }
+    return out;
+  }, [data, shotIdx]);
+  useEffect(() => {
+    const mark = data && seenMark(data.added);
+    if (!mark) return undefined;   /* 날짜가 하나도 없으면 남기지 않는다 — 다음에 전부 새 그림이 된다 */
+    const save = () => { try { localStorage.setItem(SEEN_KEY, JSON.stringify(mark)); } catch (e) {} };
+    const onHide = () => { if (document.visibilityState === 'hidden') save(); };
+    addEventListener('pagehide', save);
+    document.addEventListener('visibilitychange', onHide);
+    return () => { removeEventListener('pagehide', save); document.removeEventListener('visibilitychange', onHide); };
+  }, [data]);
+  /* 최근 추가 — 지금 탭의 카드 그림 가운데 지난 RECENT_DAYS 일 안에 등록된 것, 새것부터 */
+  const recentAll = useMemo(() => {
+    if (!data) return [];
+    const names = new Set(data.cards[tab].map(c => c.name));
+    const from = localDay(Date.now() - (RECENT_DAYS - 1) * 864e5);
+    return Object.keys(data.added)
+      .filter(f => data.added[f] >= from && shotIdx[f] && names.has(shotIdx[f].card))
+      .sort((a, b) => data.added[b].localeCompare(data.added[a])
+        || shotIdx[a].card.localeCompare(shotIdx[b].card, 'ko') || shotIdx[a].i - shotIdx[b].i)
+      .map(f => ({ f, d: data.added[f], ...shotIdx[f] }));
+  }, [data, tab, shotIdx]);
+
   const base = useMemo(() => {
     if (!data) return [];
     const needle = q.trim().toLowerCase();
     return data.cards[tab]
       .filter(c => !needle || c.name.toLowerCase().includes(needle))
+      .filter(c => !newOnly || fresh[c.name])
       /* 작업 모드와 "그림 없음" 은 아직 없는 것을 보는 쪽이라 그림 유무로 거르지 않는다 */
       .filter(c => mode === 'p' || mode === 'w' || style === NOPIC
         || shotsFor(data.img[c.name], mode, v).length);
-  }, [data, tab, q, mode, v, style]);
+  }, [data, tab, q, mode, v, style, newOnly, fresh]);
 
   const styleCount = useMemo(() => {
     const cnt = {};
@@ -781,7 +872,7 @@ function App() {
                         () => showToast('복사 실패'));
   };
   const pickTab = t => {
-    setTab(t); setSer(''); setStyle('');
+    setTab(t); setSer(''); setStyle(''); setNewOnly(false);
     if (collection.current) collection.current.scrollTop = 0;
     setScrolled(false);
   };
@@ -817,7 +908,12 @@ function App() {
   if (q.trim()) bits.push('"' + q.trim() + '"');
   if (ser) bits.push(seriesName(ser));
   if (style) bits.push(style === NOPIC ? '그림 없음' : (data.styleName[style] || style));
+  if (newOnly) bits.push('새 그림만');
   const activeCount = bits.length;
+  const freshCards = data.cards[tab].filter(c => fresh[c.name]).length;
+  const filterCount = (ser ? 1 : 0) + (style ? 1 : 0) + (newOnly ? 1 : 0);
+  /* 찾는 중에는 목록과 상관없는 줄이 끼지 않게 접는다 */
+  const recent = mode !== 'w' && !activeCount ? recentAll.slice(0, RECENT_MAX) : [];
   const filterSummary = bits.length ? bits.join(' · ') : '전체 보기';
 
   return html`
@@ -860,7 +956,7 @@ function App() {
         <input aria-label="기체 이름 검색" placeholder="기체 이름으로 검색" value=${q} oninput=${e => setQ(e.target.value)} />
         <button type="button" class="filter-toggle" aria-expanded=${String(showFilters)}
                 onclick=${() => setShowFilters(x => !x)}>
-          필터${(ser ? 1 : 0) + (style ? 1 : 0) ? ' ' + ((ser ? 1 : 0) + (style ? 1 : 0)) : ''}
+          필터${filterCount ? ' ' + filterCount : ''}
         </button>
       </div>
 
@@ -878,12 +974,16 @@ function App() {
             <option value=${k}>${data.styleName[k]} ${styleCount[k]}</option>`)}
         </select>
       </div>`}
+      ${showFilters && (freshCards || newOnly) ? html`<div class="ctl">
+        <button type="button" class="filter-toggle" aria-pressed=${String(newOnly)}
+                onclick=${() => setNewOnly(x => !x)}>새 그림만 ${freshCards}</button>
+      </div>` : null}
       </header>
 
       <div class="view-tools">
         <span>${filterSummary}<b class="collection-count">${mode === 'w' ? workRows.length : rows.length}</b></span>
         <button disabled=${!activeCount}
-                onclick=${() => { setQ(''); setSer(''); setStyle(''); }}>
+                onclick=${() => { setQ(''); setSer(''); setStyle(''); setNewOnly(false); }}>
           조건 초기화${activeCount ? ' ' + activeCount : ''}
         </button>
         <button aria-pressed=${compact} onclick=${() => setCompact(c => !c)}>
@@ -893,6 +993,27 @@ function App() {
       <section class="collection-scroll" aria-label="도감 목록" tabindex="0" ref=${collection}
                onscroll=${event => setScrolled(event.currentTarget.scrollTop > 28)}>
       <section class="gallery-intro"><div><h2>강철에 깃든 새로운 얼굴</h2></div><p>기체의 개성과 의인화, 일상의 장면을 한 장씩 만나보세요.</p></section>
+      ${recent.length ? html`
+        <section class="recent-strip" aria-labelledby="recent-title">
+          <div class="recent-head">
+            <h2 id="recent-title">최근 추가</h2>
+            <span>지난 ${RECENT_DAYS}일 · ${recentAll.length > recent.length ? recentAll.length + '장 가운데 ' + recent.length + '장' : recent.length + '장'}</span>
+          </div>
+          <ul class="recent-list">
+            ${recent.map(r => html`
+              <li key=${r.f}>
+                <button type="button" class="recent-shot" data-file=${r.f} data-date=${r.d}
+                        onclick=${e => { e.currentTarget.focus({ preventScroll: true }); openCard(cardOf(tab, r.card), r); }}>
+                  <span class="recent-face">
+                    <img width="800" height="1200" decoding="async" loading="lazy" src=${AIMG.thumbURL(r.f)} alt=""
+                         onerror=${e => { e.target.onerror = null; e.target.src = AIMG.imgURL(r.f); }} />
+                  </span>
+                  <span class="recent-name">${r.card}</span>
+                  <span class="recent-day">${dayLabel(r.d)}</span>
+                </button>
+              </li>`)}
+          </ul>
+        </section>` : null}
       ${mode === 'w' && html`
         <div class="prog"><i style=${{ width: (rows.length ? doneCount / rows.length * 100 : 0).toFixed(1) + '%' }}></i></div>`}
 
@@ -912,7 +1033,8 @@ function App() {
             ? html`<div class="grid">
                 ${rows.map(r => html`
                   <${Cell} key=${r.card.name} name=${r.card.name} color=${colorOf(r.card)}
-                           subtitle=${serOf(r.card).map(seriesName).join(' · ')} shots=${r.shots} onOpen=${() => openCard(r.card)} />`)}
+                           subtitle=${serOf(r.card).map(seriesName).join(' · ')} shots=${r.shots}
+                           fresh=${fresh[r.card.name] || 0} onOpen=${() => openCard(r.card)} />`)}
               </div>`
             : html`<div class="empty">해당하는 카드가 없다</div>`)}
       <div class="foot mono">
@@ -926,9 +1048,10 @@ function App() {
     </main>
 
     ${open && html`
-      <${Sheet} key=${open.name} card=${open} entry=${data.img[open.name]} styleName=${data.styleName}
+      <${Sheet} key=${open.name + (openAt ? '|' + openAt.f : '')} card=${open} entry=${data.img[open.name]} styleName=${data.styleName}
                 statLabels=${data.stats[tab] || []} seriesName=${seriesName}
-                initialGender=${v}
+                initialGender=${openAt ? openAt.gender : v}
+                initialStyle=${openAt ? openAt.style : ''} initialPick=${openAt ? openAt.f : null}
                 promptText=${data.prompt[open.name] || ''} memo=${data.memo[open.name] || ''}
                 onCopy=${copyPrompt}
                 onZoom=${(list, i) => setZoom({ list, i })} onClose=${closeSheet} />`}

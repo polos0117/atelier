@@ -30,14 +30,26 @@ FACE_DEF=[.34,.03,.30] 을 쓰므로 일단 뜨기는 뜨고, 잘라낸 자리�
 play.html과 dex.html은 검증된 data/img.json을 읽는다. GitHub 파일 목록만으로
 미등록 이미지를 화면에 추가하지 않으므로 이 스크립트의 검증이 먼저 통과해야 한다.
 
+등록한 날(added): 도감의 「최근 추가」와 「새」 표시가 읽는다.
+    {"added": {"<파일>": "YYYY-MM-DD"}} — 카드 몫과 따로 파일 이름으로 단다.
+    이번 실행에서 새로 등록된 파일만 오늘 날짜(한국 시각)를 받는다. 이미 적힌
+    날짜는 고치지 않는다. 날짜를 모르는 파일은 비워 둔다 — 화면은 날짜 없는
+    그림을 「최근 추가」에 올리지 않는다. 지어낸 날짜는 넣지 않는다.
+    처음 한 번은 --backfill-dates 로 git 이력에서 채운다(이름 바꾸기·img/ 이동을
+    따라가 그 파일이 처음 들어온 커밋 날짜). 얕은 클론이면 이력이 잘려
+    엉뚱한 날짜가 나오므로 하지 않는다.
+
 사용법:
     python3 register-images.py            # data/img.json 에 없는 것을 더한다
     python3 register-images.py --check    # 쓰지 않고 무엇이 달라지는지만 본다
     python3 register-images.py --prune    # 파일이 사라진 항목도 지운다
+    python3 register-images.py --backfill-dates  # 날짜 없는 등록 파일을 git 이력으로 채운다
 """
 import argparse
+import datetime
 import os
 import re
+import subprocess
 
 import roster
 
@@ -135,11 +147,73 @@ def listed_files(img):
     return out
 
 
+DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+# 작업자도 화면을 보는 사람도 한국 시각으로 하루를 센다. Actions 러너는 UTC 라
+# 그냥 date.today() 를 쓰면 아침 아홉 시 전 등록이 전날로 적힌다
+KST = datetime.timezone(datetime.timedelta(hours=9))
+
+
+def today():
+    return datetime.datetime.now(KST).date().isoformat()
+
+
+def git_added(f):
+    """img/<f> 가 저장소에 처음 들어온 날. 모르면 None.
+
+    --follow 로 이름 바꾸기와 img/ 이동(2026-09-09)을 거슬러 올라간다 — 안 따라가면
+    옮긴 날이 들어온 날로 찍힌다. 지웠다 다시 올린 파일은 가장 최근에 들어온 날이다."""
+    try:
+        r = subprocess.run(("git", "-c", "core.quotePath=false", "log", "--follow",
+                            "--diff-filter=A", "--format=%cs", "--", IMG_DIR + "/" + f),
+                           capture_output=True, text=True, timeout=60)
+    except (OSError, subprocess.SubprocessError):
+        return None
+    lines = r.stdout.split() if r.returncode == 0 else []
+    return lines[0] if lines and DATE.match(lines[0]) else None
+
+
+def shallow():
+    """얕은 클론이면 맨 아래 커밋이 모든 파일을 '추가'한 것처럼 보인다."""
+    try:
+        r = subprocess.run(("git", "rev-parse", "--is-shallow-repository"),
+                           capture_output=True, text=True, timeout=20)
+    except (OSError, subprocess.SubprocessError):
+        return True
+    return r.returncode != 0 or r.stdout.strip() != "false"
+
+
+def date_files(added, new_files, listed, backfill=False):
+    """등록한 날 표를 새로 만든다. 등록돼 있는 파일만 남긴다.
+
+    added      지금까지의 {파일: 날짜}
+    new_files  이번 실행에서 새로 등록된 파일 — 오늘 날짜를 받는다
+    listed     실행 뒤 img.json 이 가리키는 파일 전부
+    backfill   날짜 없는 파일을 git 이력으로 채울지"""
+    out = {f: d for f, d in (added or {}).items()
+           if f in listed and isinstance(d, str) and DATE.match(d)}
+    stamp = today()
+    for f in new_files:
+        out.setdefault(f, stamp)
+    filled = 0
+    if backfill:
+        for f in sorted(listed - set(out)):
+            d = git_added(f)
+            if d:
+                out[f] = d
+                filled += 1
+    return dict(sorted(out.items())), filled
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--prune", action="store_true", help="파일이 없어진 항목을 지운다")
+    ap.add_argument("--backfill-dates", action="store_true",
+                    help="날짜 없는 등록 파일에 git 이력의 처음 들어온 날을 단다 (한 번만)")
     a = ap.parse_args()
+    if a.backfill_dates and shallow():
+        raise SystemExit("얕은 클론이다 — git fetch --unshallow 뒤에 다시 한다 "
+                         "(잘린 이력은 맨 아래 커밋 날짜를 모든 파일에 붙인다)")
 
     doc = roster.read("img")
     img = doc["img"]
@@ -148,7 +222,7 @@ def main():
     disk = {f for f in os.listdir(IMG_DIR) if f.lower().endswith(".webp")}
     listed = listed_files(img)
 
-    added, unknown = [], []
+    added, unknown, fresh = [], [], []
     for f in sorted(disk - listed):
         if SKIP.match(f):
             continue
@@ -193,6 +267,7 @@ def main():
             lst[:] = [x for x in lst if x]
             lst.append(f)
             lst.sort(key=lambda x: int(re.search(r"_(?:casual|extra)(\d+)\.webp$", x, re.I).group(1)))
+        fresh.append(f)
         added.append((card + ("" if not style else " · " + styles[style])
                       + ("" if kind in ("m", "f") else " · " + ("남" if gender == "m" else "여")), f))
 
@@ -240,12 +315,16 @@ def main():
     tidy(img, styles)
     doc["img"] = dict(sorted(img.items()))
     doc["count"] = len(img)
+    doc["added"], filled = date_files(doc.get("added"), fresh, listed_files(img),
+                                      backfill=a.backfill_dates)
     if not a.check and not unknown:
         roster.write("img", doc)
 
     print("[%s] data/img.json · 카드 %d · 파일 %d"
           % ("검증 실패·저장 안 함" if unknown else ("대조" if a.check else "완료"), len(img), len(listed_files(img))))
     print("  등록 후보 %d%s" % (len(added), " — 오류로 저장 안 함" if unknown else ""))
+    print("  등록한 날 %d / %d%s" % (len(doc["added"]), len(listed_files(img)),
+                                ("" if not a.backfill_dates else " · 이력에서 채움 %d" % filled)))
     for card, f in added[:20]:
         print("     %-24s %s" % (card, f))
     if ghosts:
