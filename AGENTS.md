@@ -11,3 +11,5 @@
 기체별 설정·생성 이력은 [generation/README.md](generation/README.md)를 따른다. 기본 기록 내보내기는 한 기체의 `settings.json`이며, 완료한 `runs/` 기록은 보존한다. 신규 작업에서 공용 JSON 전체를 다시 올리는 방식을 기본으로 사용하지 않는다.
 
 즐겨찾기 `lib/favorites.js` 는 공방 모음(polos0117.github.io)의 `favorites.js` 를 글자 하나 다르지 않게 복사한 공용 모듈이다(열쇠 `atelier_favorites_v1`, 약속은 그쪽 README 「즐겨찾기」절). 고치면 다섯 저장소를 같이 고치고, `node tests/dex-favorites.cjs` 가 원본과 견준다.
+
+도트 재생기 `lib/sprite-actor.js`·`lib/sprite-actor.css` 도 공방 모음의 `sprite-actor.js`·`.css` 를 글자 하나 다르지 않게 복사한 공용 모듈이다(판 v1, 약속 — `data/sprites.json` 꼴·API — 은 그쪽 README 「도트 재생기」절, 인물의 그림은 공방 모음의 도트 공방 `dot.html` 에서 만든다). 고치면 원본과 다섯 저장소를 같이, `node tests/sprite-actor-copy.cjs` 가 원본과 견준다. 아직 이 공방에서 부르는 화면은 없다 — 도트 인물이 생기면 `data/sprites.json` 을 두고 화면이 `AtelierSprite.create` 로 세운다.
