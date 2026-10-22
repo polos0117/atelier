@@ -72,6 +72,22 @@ const OTHER = '105 슬로터 대거';
     assert.equal(await p.locator('.cell[data-card="' + OTHER + '"] .dot-badge').count(), 0);
     await s.close();
     n += 3;
-    console.log('PASS 도트 기체: ' + n + '가지 · 격납고 바닥(휴대폰 둘·PC 셋·메뉴와 이동 스틱을 비운다·띠는 누름을 지나 보낸다·누르면 도감) · 자료 없음 · 도감 상세 시트 무대(누르면 반응) · 없는 기체는 없다 · 목록 「도트」 표');
+    /* ── 화소 배율이 정수가 아닌 화면 — 폴드(2.625: 도트 한 칸 3화소 = 1.14배) · 노트북 150%(1.5: 2화소 = 1.33배). 공간이 도트만큼 늘어 머리가 안 잘린다(재생기 grow) ── */
+    const headIn = (host, sel) => p.evaluate(([host, sel]) => { const f = document.querySelector(host).getBoundingClientRect(), as = [...document.querySelectorAll(sel)];
+      return as.length > 0 && as.every(a => { const u = a.sprite.debug().unit, b = a.getBoundingClientRect(); return b.top - 2 * u >= f.top - 0.5 && b.bottom <= f.bottom + 0.5; }); }, [host, sel]);
+    for (const [dpr, vp, mobile] of [[2.625, { width: 344, height: 882 }, true], [2.625, { width: 690, height: 829 }, true], [1.5, { width: 1280, height: 800 }, false]]) {
+      s = await h.open('index.html', opt({ viewport: vp, mobile, dpr })); p = s.page;
+      await p.waitForSelector('#hangarDots .sprite-actor:not([hidden])', { timeout: 10000 });
+      assert(await headIn('#hangarDots', '#hangarDots .sprite-actor'), '머리가 잘린다 — index.html · 배율 ' + dpr + ' · 폭 ' + vp.width);
+      const g2 = await p.evaluate(() => { const r = s => document.querySelector(s).getBoundingClientRect(), box = o => ({ left: o.left, right: o.right, top: o.top, bottom: o.bottom }); return { dots: box(r('#hangarDots')), pad: box(r('.launchpad')), stick: box(r('#stick')) }; });
+      assert(!overlap(g2.dots, g2.pad) && !overlap(g2.dots, g2.stick), '늘어난 띠도 메뉴·이동 스틱과 겹치지 않는다 — 배율 ' + dpr + ' ' + JSON.stringify(g2));
+      await s.close();
+      s = await h.open('dex.html?mech=' + encodeURIComponent('RX-78-2 건담'), opt({ viewport: vp, mobile, dpr })); p = s.page;
+      await p.waitForSelector('.sheet .dex-dot .sprite-actor:not([hidden])', { timeout: 30000 });
+      assert(await headIn('.dex-dot-stage', '.sheet .dex-dot .sprite-actor'), '머리가 잘린다 — dex.html?mech= · 배율 ' + dpr + ' · 폭 ' + vp.width);
+      await s.close();
+    }
+    n++;
+    console.log('PASS 도트 기체: ' + n + '가지 · 격납고 바닥(휴대폰 둘·PC 셋·메뉴와 이동 스틱을 비운다·띠는 누름을 지나 보낸다·누르면 도감) · 자료 없음 · 도감 상세 시트 무대(누르면 반응) · 없는 기체는 없다 · 목록 「도트」 표 · 폴드·150% 화면에서 머리가 안 잘린다');
   } finally { await h.stop(); fs.rmSync(art, { recursive: true, force: true }); }
 })().catch(e => { console.error(e); process.exit(1); });

@@ -9,7 +9,7 @@
     SP.load('data/sprites.json').then(function (d) {
       if (!d || !d.actors || !Object.keys(d.actors).length) return;
       var F = SP.floor(host, d, {
-        floor: 6, count: function (w) { return w < 210 ? 1 : w < 640 ? 2 : 3; },
+        floor: 6, grow: true, count: function (w) { return w < 210 ? 1 : w < 640 ? 2 : 3; },
         labelOf: function (k) { return k + ' 도트 — 눌러서 도감 열기'; },
         onSelect: function (k) { location.href = 'dex.html?mech=' + encodeURIComponent(k); }
       });
