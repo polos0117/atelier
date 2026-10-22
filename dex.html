@@ -36,7 +36,15 @@
 <script src="lib/dex-motion.js?v=1"></script>
 <!-- 즐겨찾기 — lib/favorites.js(네 공방과 공방 모음이 글자 하나 다르지 않게 나눠 쓴다). 담은 그림은 공방 모음의 /favorites.html 이 모아 보여 준다 -->
 <script src="lib/favorites.js?v=1"></script>
+<!-- 도트 — lib/sprite-actor.js(공방 모음의 공용 재생기) · data/sprites.json. 도트가 있는 기체는 목록 칸에 「도트」 표, 상세 시트에 작은 무대 한 줄 -->
+<script src="lib/sprite-actor.js?v=1"></script>
+<link rel="stylesheet" href="lib/sprite-actor.css?v=1">
 <style>
+/* 도트 — 상세 시트의 작은 무대(바닥 위를 거닌다, 누르면 반응), 목록 칸의 「도트」 표(「새」는 왼쪽 위라 오른쪽 아래) */
+.dex-dot{margin:12px 0 4px}.dex-dot[hidden]{display:none}
+.dex-dot-stage{position:relative;height:150px;overflow:hidden;border:1px solid var(--line);border-radius:5px;
+  background:linear-gradient(180deg,var(--panel) 0,var(--panel) 74%,color-mix(in srgb,var(--line) 80%,var(--panel)) 74%,var(--panel) 100%)}
+.dot-badge{position:absolute;right:6px;bottom:6px;padding:3px 6px;border-radius:3px;background:#0c1a26e0;color:#9fd2e4;font-size:10px;font-weight:700;line-height:1.2;pointer-events:none}
 /* 색·밀도 토큰은 lib/workspace.css 한 곳에 있다 — 여기 또 적으면 뒤에 실리는
    그쪽이 이겨 아무 일도 안 일어난다. --cc 만 그쪽에 없어 여기 남긴다 */
 :root{--cc:#79849A}
@@ -280,6 +288,27 @@ function useFavorites() {
   useEffect(() => (FAV ? FAV.onChange(setList) : undefined), []);
   return list;
 }
+/* 도트 — 공용 재생기(lib/sprite-actor.js)와 data/sprites.json. 자료는 한 번만 받는다 */
+const SP = window.AtelierSprite;
+const DOT_TEXT = { badge: '도트', label: '이 기체의 도트가 있다', title: '도트', note: '격납고 바닥을 거닌다 · 눌러서 반응', actor: n => n + ' 도트 — 눌러서 반응' };
+function useSprites() {
+  const [sp, setSp] = useState(null);
+  useEffect(() => { let live = true; if (SP) SP.load('data/sprites.json').then(d => { if (live && d && d.actors) setSp(d); }, () => {}); return () => { live = false; }; }, []);
+  return sp;
+}
+/* 도트 — 이 기체의 도트가 있으면 작은 무대 한 줄(거닐고, 누르면 반응). 없거나 그림을 못 받으면 아무것도 없다 */
+function DotRow({ card }) {
+  const box = useRef(null), [on, setOn] = useState(false);
+  useEffect(() => {
+    if (!SP || !box.current) return;
+    let live = true, a = null;
+    SP.mount(box.current, card.name, { label: DOT_TEXT.actor(card.name) }).then(x => { if (!live) { if (x) x.destroy(); return; } a = x; setOn(!!x); });
+    return () => { live = false; if (a) a.destroy(); setOn(false); };
+  }, [card.name]);
+  return html`<section class="dex-dot" hidden=${!on} data-card=${card.name} aria-labelledby="dex-dot-title">
+    <p class="sec" id="dex-dot-title">${DOT_TEXT.title} · ${DOT_TEXT.note}</p>
+    <div class="dex-dot-stage" ref=${box}></div></section>`;
+}
 const MOTION_TEXT = {
   on: '움직임 켜기', off: '움직임 끄기',
   note: '그림이 천천히 다가오고, 초상과 특별 컷 사이를 오갈 때 빛과 입자가 흩날립니다. 이 브라우저에만 남고 다른 공방도 같이 따릅니다.',
@@ -441,7 +470,7 @@ function shotIndex(img) {
 
 /* ── 타일 ─────────────────────────────────────────────── */
 function Cell({ name, color, shots, onOpen, subtitle, fresh }) {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(0), sprites = useSprites();
   const touch = useRef({ x: 0, y: 0, swiped: false });
   const i = shots.length ? ((page % shots.length) + shots.length) % shots.length : 0;
   const pic = shots[i];
@@ -467,7 +496,7 @@ function Cell({ name, color, shots, onOpen, subtitle, fresh }) {
   };
 
   return html`
-    <div class="cell" style=${{ '--cc': color }}
+    <div class="cell" data-card=${name} style=${{ '--cc': color }}
          ontouchstart=${onStart} ontouchend=${onEnd} onclick=${onClick}>
       <span class="face">
         ${pic
@@ -475,6 +504,7 @@ function Cell({ name, color, shots, onOpen, subtitle, fresh }) {
                    onerror=${e => { e.target.onerror = null; e.target.src = AIMG.imgURL(pic); }} />`
           : html`<span class="ph">그림 없음</span>`}
         ${fresh ? html`<span class="new-badge" aria-hidden="true">새</span>` : null}
+        ${SP && sprites && SP.actorFor(sprites, name) ? html`<span class="dot-badge" title=${DOT_TEXT.label}>${DOT_TEXT.badge}</span>` : null}
         ${shots.length > 1 && html`
           <button class="pg mono" aria-label="다음 그림"
                   onclick=${e => { e.stopPropagation(); step(1); }}>
@@ -701,6 +731,7 @@ function Sheet({ card, entry, tab, styleName, statLabels, seriesName, initialGen
                       title=${motionLocked ? MOTION_TEXT.reduced : MOTION_TEXT.note}
                       onclick=${() => MOTION.setEnabled(!motion)}>${motion ? MOTION_TEXT.off : MOTION_TEXT.on}</button>
             </p>`}
+          <${DotRow} key=${card.name} card=${card} />
           ${portrait && !own && html`
             <p class="sec" style="text-align:center">
               ${gender === 'm' ? '남성' : '여성'} 그림이 없어 ${gender === 'm' ? '여성' : '남성'} 초상을 대신 띄웠다

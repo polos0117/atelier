@@ -48,7 +48,7 @@ async function start() {
   async function open(page, opt) {
     opt = opt || {};
     const ctx = await browser.newContext({ viewport: opt.viewport || FOLD.cover,
-      isMobile: !!opt.mobile, hasTouch: !!opt.mobile });
+      isMobile: !!opt.mobile, hasTouch: !!opt.mobile, ...(opt.reducedMotion ? { reducedMotion: opt.reducedMotion } : {}) });
     await ctx.route('**/*', async route => {
       const url = route.request().url(), origin = new URL(url).origin;
       if (origin === new URL(base).origin) return route.continue();
@@ -68,6 +68,13 @@ async function start() {
       /* 배포된 그림 주소는 체크아웃의 같은 파일로 돌린다.
          주소를 다시 요청하면 한글 파일 이름의 %xx 가 두 번 인코딩돼 404 가 된다 —
          디스크에서 바로 읽는다 */
+      /* 도트 그림(sprites/) — opt.imgRoot(검사가 만든 임시 자리)의 sprites/ 에서 */
+      if (origin === 'https://polos0117.github.io' && new URL(url).pathname.startsWith('/atelier/sprites/')) {
+        const rel = decodeURIComponent(new URL(url).pathname.slice('/atelier/'.length));
+        const file = opt.imgRoot ? path.resolve(opt.imgRoot, rel) : null;
+        if (!file || !file.startsWith(opt.imgRoot + path.sep) || !fs.existsSync(file)) return route.fulfill({ status: 404, body: 'no sprite' });
+        return route.fulfill({ status: 200, contentType: 'image/png', body: fs.readFileSync(file) });
+      }
       if (origin === 'https://polos0117.github.io' && new URL(url).pathname.startsWith('/atelier/img/')) {
         const rel = decodeURIComponent(new URL(url).pathname.slice('/atelier/'.length));
         const file = path.resolve(ROOT, rel);
@@ -79,6 +86,11 @@ async function start() {
       }
       return route.abort();
     });
+    /* opt.files — 체크아웃의 파일 대신 줄 내용 {'data/sprites.json': 문자열|객체}. 나중에 건 길이 먼저 잡는다 */
+    for (const [rel, body] of Object.entries(opt.files || {}))
+      await ctx.route(u => new URL(u).origin === new URL(base).origin && new URL(u).pathname === '/' + rel,
+        r => r.fulfill({ status: 200, contentType: MIME[path.extname(rel)] || 'application/octet-stream',
+                         body: typeof body === 'string' ? body : JSON.stringify(body) }));
     if (opt.store) await ctx.addInitScript(([k, v]) => { try { localStorage.setItem(k, v); } catch (e) {} }, opt.store);
     if (opt.init) await ctx.addInitScript(opt.init);
     const p = await ctx.newPage(), errors = [];

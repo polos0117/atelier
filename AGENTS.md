@@ -12,4 +12,4 @@
 
 즐겨찾기 `lib/favorites.js` 는 공방 모음(polos0117.github.io)의 `favorites.js` 를 글자 하나 다르지 않게 복사한 공용 모듈이다(열쇠 `atelier_favorites_v1`, 약속은 그쪽 README 「즐겨찾기」절). 고치면 다섯 저장소를 같이 고치고, `node tests/dex-favorites.cjs` 가 원본과 견준다.
 
-도트 재생기 `lib/sprite-actor.js`·`lib/sprite-actor.css` 도 공방 모음의 `sprite-actor.js`·`.css` 를 글자 하나 다르지 않게 복사한 공용 모듈이다(판 v1, 약속 — `data/sprites.json` 꼴·API — 은 그쪽 README 「도트 재생기」절, 인물의 그림은 공방 모음의 도트 공방 `dot.html` 에서 만든다). 고치면 원본과 다섯 저장소를 같이, `node tests/sprite-actor-copy.cjs` 가 원본과 견준다. 아직 이 공방에서 부르는 화면은 없다 — 도트 인물이 생기면 `data/sprites.json` 을 두고 화면이 `AtelierSprite.create` 로 세운다.
+도트 재생기 `lib/sprite-actor.js`·`lib/sprite-actor.css` 도 공방 모음의 `sprite-actor.js`·`.css` 를 글자 하나 다르지 않게 복사한 공용 모듈이다(판 v1, 약속 — `data/sprites.json` 꼴·API — 은 그쪽 README 「도트 재생기」절, 인물의 그림은 공방 모음의 도트 공방 `dot.html` 에서 만든다). 고치면 원본과 다섯 저장소를 같이, `node tests/sprite-actor-copy.cjs` 가 원본과 견준다. 부르는 곳: 격납고(`index.html` · `gundam/hangar-dots.js` — 메인 메뉴 위 바닥 띠, 이동 스틱 자리는 비운다, 누르면 그 기체의 도감)·도감(상세 시트의 도트 줄, 목록 칸의 「도트」 표). 인물은 `data/sprites.json` 의 `actors` 에 도트 공방의 「인물 칸 복사」를 넣는다(card = 기체 이름), 그림은 이 저장소의 `sprites/`. 검사 `node tests/dot-screen.cjs`(시험 자료).
