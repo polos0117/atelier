@@ -49,7 +49,7 @@ assert.equal(properties.get('--atelier-vh'), '704px');
 
 window.AtelierAppearance.set('theme', 'archangel');
 assert.equal(root.dataset.theme, 'archangel');
-assert.equal(stored.get('atelier_theme_v1'), 'archangel');
+assert.equal(stored.get('gundam_theme_v1'), 'archangel');
 assert.equal(meta.content, '#f7f8fa');
 
 window.AtelierAppearance.set('theme', 'white-base');
@@ -58,7 +58,7 @@ assert.equal(meta.content, '#edf1f5');
 
 window.AtelierAppearance.set('theme', 'musai');
 assert.equal(root.dataset.theme, 'musai');
-assert.equal(stored.get('atelier_theme_v1'), 'musai');
+assert.equal(stored.get('gundam_theme_v1'), 'musai');
 assert.equal(meta.content, '#121a14');
 
 window.AtelierAppearance.set('theme', 'rewloola');
@@ -68,7 +68,7 @@ assert.equal(meta.content, '#1c141b');
 for (const [name, color] of [['agama', '#f3efe4'], ['ptolemaios', '#0d1d25'], ['isaribi', '#1d1710'], ['spartan', '#12171b']]) {
   window.AtelierAppearance.set('theme', name);
   assert.equal(root.dataset.theme, name);
-  assert.equal(stored.get('atelier_theme_v1'), name);
+  assert.equal(stored.get('gundam_theme_v1'), name);
   assert.equal(meta.content, color, name + ' 의 theme-color');
 }
 
@@ -127,3 +127,14 @@ assert(viewportEvents.has('resize'));
 assert(events.has('storage'));
 
 console.log('PASS: nine shared themes, theme colors, storage normalization and visible viewport sizing');
+/* 공방마다 따로 — 옛 공용 열쇠(atelier_theme_v1)는 처음 한 번만, 이 공방 테마일 때만 옮겨 온다. 이 공방에서 바꿔도 옛 열쇠는 안 건드린다 */
+for (const [legacy, want] of [['musai', 'musai'], ['plum', null]]) {
+  const st = new Map([['atelier_theme_v1', legacy]]), rt = { dataset: {}, style: { setProperty() {} } }, w = { innerHeight: 800, addEventListener() {}, dispatchEvent() {} };
+  vm.runInNewContext(source, { window: w, document: { documentElement: rt, querySelector: () => ({ content: '' }) },
+    localStorage: { getItem: k => st.has(k) ? st.get(k) : null, setItem: (k, v) => st.set(k, v) },
+    requestAnimationFrame: () => 0, cancelAnimationFrame() {}, Event: function () {} });
+  if (want) { assert.equal(rt.dataset.theme, want, '옛 열쇠의 이 공방 테마를 옮겨 온다'); assert.equal(st.get('gundam_theme_v1'), want); }
+  else assert.equal(st.has('gundam_theme_v1'), false, '다른 공방 테마 이름은 옮기지 않는다');
+  w.AtelierAppearance.set('theme', 'archangel');
+  assert.equal(st.get('atelier_theme_v1'), legacy, '이 공방에서 바꿔도 다른 공방(옛 열쇠)은 그대로');
+}

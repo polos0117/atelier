@@ -1,0 +1,5 @@
+{
+ "_": "도트 인물 — 약속은 공방 모음(polos0117.github.io) README 「도트 재생기」. 인물마다 card(기체 이름 = 도감 ?mech=) · cell · foot · scale · flip · facing · states(still · idle · walk · react). 인물 칸은 공방 모음의 도트 공방(dot.html) 「인물 칸 복사」 그대로 넣는다. 그림은 이 저장소의 sprites/<이름>/ (img/ 밖 — 등록기·썸네일이 읽지 않는다). 격납고 바닥(gundam/hangar-dots.js)·도감 상세의 도트 줄이 이것을 읽는다.",
+ "base": "https://polos0117.github.io/atelier/sprites/",
+ "actors": {}
+}

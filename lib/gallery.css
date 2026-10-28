@@ -69,3 +69,27 @@ body.dex-page{background-image:none}
 .zoom-layer .zoom-body.actual{display:block;overflow:auto;overscroll-behavior:contain;touch-action:pan-x pan-y pinch-zoom;padding:0;-webkit-overflow-scrolling:touch}
 .zoom-layer .zoom-body.actual>img{width:auto;height:auto;min-height:0;max-width:none;max-height:none;object-fit:none;margin:0 auto;cursor:auto}
 .zoom-layer .zoom-body.actual .zoom-nav{display:none}
+
+/* 최근 추가 — 목록 맨 위 한 줄. 이 줄 안에서만 옆으로 민다(문서는 옆으로 넘치지 않는다).
+   그림은 목록 카드처럼 2:3 자리를 먼저 잡고 contain 으로 넣어 잘리지 않는다 */
+.recent-strip{min-width:0;margin:0 0 22px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.recent-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;margin:0 4px 6px}
+.recent-head h2{margin:0;font:700 16px/1.4 var(--nameplate);letter-spacing:-.02em}
+.recent-head span{color:var(--muted);font-size:11px}
+.recent-list{display:flex;gap:10px;margin:0;padding:4px;list-style:none;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scroll-padding-inline:4px;scrollbar-width:thin;scrollbar-color:var(--line) transparent;-webkit-overflow-scrolling:touch}
+.recent-list li{flex:none;scroll-snap-align:start}
+.recent-shot{display:flex;flex-direction:column;gap:3px;width:84px;min-height:44px;padding:0 0 2px;border:0;border-radius:3px;background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.recent-face{display:block;width:100%;aspect-ratio:2/3;border-radius:3px;background:var(--card2);overflow:hidden}
+.recent-face img{display:block;width:100%;height:100%;object-fit:contain}
+.recent-shot:hover .recent-face{outline:1px solid var(--accent);outline-offset:2px}
+.recent-name{margin-top:3px;font-size:11px;font-weight:600;line-height:1.35;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.recent-day{color:var(--muted);font-size:10px;line-height:1.3}
+/* 지난번 다녀간 뒤로 새 그림이 든 카드 */
+.new-badge{position:absolute;top:6px;left:6px;padding:3px 6px;border-radius:3px;background:var(--accent);color:var(--bg);font-size:10px;font-weight:700;line-height:1.2;pointer-events:none}
+.dex-page .filter-toggle[aria-pressed=true]{background:var(--plate);color:var(--void);border-color:var(--plate)}
+@media(min-width:720px){.recent-shot{width:96px}.recent-list{gap:14px}}
+/* 움직임 — 큰 그림 칸이 사본·빛·입자 층(lib/scene-motion.css)을 제 안에 담아 자른다. 단추는 그림 아래 가운데 */
+.sheet .art{position:relative}
+.art-motion{text-align:center;margin:0 0 14px}
+.art-motion button{min-height:44px;padding:8px 14px;border:1px solid var(--rule);border-radius:3px;background:transparent;color:var(--ink);font:inherit;font-size:12px;cursor:pointer}
+.art-motion button:disabled{opacity:.5;cursor:default}

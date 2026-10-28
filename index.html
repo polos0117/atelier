@@ -17,6 +17,19 @@
 <script defer src="lib/img.js"></script>
 <script defer src="lib/fresh.js"></script>
 <script defer src="gundam/hangar.js?v=9c006dfcf4"></script>
+<script defer src="lib/sprite-actor.js?v=2"></script>
+<script defer src="gundam/hangar-dots.js?v=2"></script>
+<link rel="stylesheet" href="lib/sprite-actor.css?v=1">
+<style>
+/* 격납고 바닥의 도트(gundam/hangar-dots.js) — 메인 메뉴 위 띠. 이동 스틱 자리는 비운다(휴대폰은 왼쪽, PC 는 오른쪽에 스틱) */
+.hangar-dots{position:absolute;z-index:2;left:150px;right:12px;bottom:calc(104px + env(safe-area-inset-bottom));height:132px;pointer-events:none}
+.hangar-dots[hidden]{display:none}
+.hangar-dots .sprite-actor{pointer-events:auto}
+@media(min-width:601px){.hangar-dots{left:24px;right:190px;bottom:calc(120px + env(safe-area-inset-bottom))}}
+@media(min-width:1000px){.hangar-dots{left:40px;right:200px;bottom:calc(122px + env(safe-area-inset-bottom))}}
+@media(max-width:600px) and (min-height:551px){.hangar-dots{bottom:calc(70px + env(safe-area-inset-bottom))}}
+@media(max-height:550px){.hangar-dots{left:180px;right:18px;bottom:82px;height:110px}}
+</style>
 </head>
 <body>
 <main id="hangar" aria-label="건담 격납고">
@@ -41,6 +54,7 @@
   <div class="movement" id="movement"><div id="stick" role="group" aria-label="이동 스틱"><div id="stickKnob"></div><span>이동</span></div></div>
   <div class="look-hint" id="lookHint" aria-hidden="true"><span>↔</span>드래그로 둘러보기<small class="key-hint">키보드는 Shift + ←/→</small></div>
   <p id="notice" class="notice" role="status"></p>
+  <div class="hangar-dots" id="hangarDots" role="group" aria-label="격납고 바닥 — 도트 기체가 거닌다" hidden></div>
   <nav class="launchpad" aria-label="메인 메뉴">
     <a href="dex.html"><strong>도감</strong><span class="nav-sub">기체 컬렉션</span></a>
     <a href="prompt.html"><strong>프롬프트</strong><span class="nav-sub">캐릭터 만들기</span></a>

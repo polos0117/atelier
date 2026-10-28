@@ -125,6 +125,8 @@ GitHub Git Data API는 반드시 다음 순서로 사용한다.
 
 현재 자동 등록은 `main`에 WebP, `generation/m-*/settings.json` 또는 `generation/m-*/images.json` 변경이 반영되거나 수동 실행될 때 동작한다. 원본 이미지로 썸네일과 `data/img.json`을 만들고, 기체별 기록으로 `generation/index.json`을 만든 뒤 `[skip actions]` 커밋으로 되돌려 넣는다. 브라우저 업로드가 끝났거나 blob·tree·commit만 만든 상태에서는 완료가 아니며, main 반영과 해당 실행의 성공 여부를 확인한다. 실패·경고가 있으면 로그와 필요한 등록 항목을 조사한다. 화면은 자동화가 갱신한 `img.json`을 읽으며, 미등록 파일이 GitHub에 있다는 사실만으로 표시하지 않는다.
 
+`img.json`의 `added`(파일 → 등록한 날)도 자동화가 적는다. 그 실행에서 새로 등록된 파일만 그날 날짜(한국 시각)를 받고 이미 적힌 날짜는 그대로 둔다. 도감의 「최근 추가」와 「새」 표시가 이 값을 읽는다. 날짜를 손으로 넣거나 고치지 않는다. 날짜가 빠진 기존 파일은 전체 이력이 있는 클론에서 `python3 register-images.py --backfill-dates`로만 채운다.
+
 ## 6. 기존 이미지 이동·재분류
 
 기본 자리에서 `byStyle`로 이동하려면 **이동 대상 이미지의 화풍 근거**가 있어야 한다. 기존 대장의 카드별 값만으로 일괄 이동하지 않는다.
