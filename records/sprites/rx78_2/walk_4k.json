@@ -1,0 +1,222 @@
+{
+ "date": "2026-10-28",
+ "author": "claude",
+ "atelier": "gundam",
+ "id": "rx78_2",
+ "form": "base",
+ "state": "walk",
+ "plan": "polos0117.github.io dot.html — 공용 도트 공방",
+ "generation": {
+  "file": "sprites/rx78_2/raw/rx78_2_base_walk_gen1.png",
+  "sha256": "79123b26cc75b335fdac10cc84723a31eb8911961523f1883fe69675b4cf3460",
+  "by": "gpt",
+  "received_as": "rx78_2_base_walk_gen1.png",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "medium",
+  "size": "2160x3840",
+  "usage": {
+   "input_tokens": 4465,
+   "input_tokens_details": {
+    "image_tokens": 3770,
+    "text_tokens": 695
+   },
+   "output_tokens": 865,
+   "output_tokens_details": {
+    "image_tokens": 865,
+    "text_tokens": 0
+   },
+   "total_tokens": 5330
+  },
+  "seconds": 33,
+  "attachments": [
+   "still_x6",
+   "leg_guide",
+   "canonical"
+  ],
+  "prompt": "Pixel art WALK CYCLE sprite sheet of the EXACT same character as attached image 1 — a finished pixel-art sprite.\nCopy it pixel for pixel in style: same very large chunky pixels, same 16-colour palette, same dark outline,\nsame proportions (about 4 heads tall), same face. Short white hair with a white V-fin crest and a red forehead gem, a white armoured bodysuit with a blue chest plate, yellow vents and a red waist plate, white and red armoured boots, a grey beam rifle held in the image-left hand and a red-and-white shield with a yellow cross on the image-right arm.\nKeep decoration as simple as image 1 — do not add new details. Image 3 is only a colour and face reference; do not copy its painterly style.\n\nSheet layout: portrait canvas 2160 x 3840, 6 frames in a 3 x 2 grid (cell 720 x 1920), read left to right, top to bottom.\nIn every cell the character is the same size (about 125 pixels tall on the sprite's own pixel grid, each sprite pixel\ndrawn as a crisp 13 x 13 square), centred horizontally, with both feet on the same baseline near the bottom of the cell.\nEvery frame faces the same direction as described below. Hard edges only: no anti-aliasing, no blur, no gradients, no dithering noise.\nTransparent background. No grid lines, no cell borders, no numbers, no labels, no text, no ground, no shadow, no motion lines, no extra characters.\nSide three-quarter view walking toward the viewer's right, walking in place (the character does not travel across the cell).\n\nLEGS — follow attached image 2 exactly, cell by cell (dark navy = the NEAR leg, the one closer to the viewer;\ngrey = the FAR leg). Do not copy image 2's shapes or colours, only where each leg and foot is:\nframe 1 = contact: NEAR leg reaches forward, heel down; FAR leg stretched back, only its toe touching.\nframe 2 = down: weight on the NEAR leg, knee slightly bent, body 1 pixel lower; FAR foot lifting off behind.\nframe 3 = passing: NEAR leg straight under the body; FAR leg swings forward past it with the knee lifted; body 1 pixel higher.\nframe 4 = contact, the MIRROR of frame 1: FAR leg reaches forward, heel down; NEAR leg stretched BACK, only its toe touching.\nframe 5 = down: weight on the FAR leg; NEAR foot lifting off behind; body 1 pixel lower.\nframe 6 = passing: FAR leg straight under the body; NEAR leg swings forward past it with the knee lifted; body 1 pixel higher.\nFrames 1 and 4 must look clearly different: in frame 1 the near leg is in front, in frame 4 the near leg is behind.\nArms swing opposite to the legs (near arm back when the near leg is forward). Head height changes by at most 1 sprite pixel\nexcept the rise and fall above. The loop 6 -> 1 must be seamless."
+ },
+ "cleaned": {
+  "file": "sprites/rx78_2/rx78_2_base_walk_4k.png",
+  "sha1": "c977094b7441",
+  "tool": "polos0117.github.io dot.html (rust/dot-core — book-atelier 파이썬 도구와 같은 셈)",
+  "args": [
+   "--frames",
+   "6",
+   "--grid",
+   "3x2",
+   "--palette",
+   "sprites/rx78_2/rx78_2_base_still_4k.png",
+   "--rows",
+   "229",
+   "--speck",
+   "150",
+   "--cell",
+   "192x256"
+  ],
+  "cell": [
+   192,
+   256
+  ],
+  "frames": 6,
+  "foot_y": 254,
+  "colours": 24,
+  "frame": [
+   {
+    "box_px": [
+     25,
+     256,
+     653,
+     1765
+    ],
+    "pitch": 6.44,
+    "size": [
+     97,
+     229
+    ],
+    "anchor_x": 52.56,
+    "dropped_specks": 0,
+    "at": [
+     43,
+     25
+    ]
+   },
+   {
+    "box_px": [
+     736,
+     256,
+     1388,
+     1765
+    ],
+    "pitch": 6.44,
+    "size": [
+     102,
+     227
+    ],
+    "anchor_x": 55.47,
+    "dropped_specks": 0,
+    "at": [
+     41,
+     27
+    ]
+   },
+   {
+    "box_px": [
+     1455,
+     256,
+     2135,
+     1765
+    ],
+    "pitch": 6.44,
+    "size": [
+     105,
+     234
+    ],
+    "anchor_x": 57.4,
+    "dropped_specks": 0,
+    "at": [
+     39,
+     20
+    ]
+   },
+   {
+    "box_px": [
+     26,
+     2172,
+     683,
+     3683
+    ],
+    "pitch": 6.44,
+    "size": [
+     102,
+     229
+    ],
+    "anchor_x": 55.24,
+    "dropped_specks": 0,
+    "at": [
+     41,
+     25
+    ]
+   },
+   {
+    "box_px": [
+     732,
+     2172,
+     1385,
+     3683
+    ],
+    "pitch": 6.44,
+    "size": [
+     102,
+     225
+    ],
+    "anchor_x": 54.97,
+    "dropped_specks": 0,
+    "at": [
+     41,
+     29
+    ]
+   },
+   {
+    "box_px": [
+     1455,
+     2172,
+     2135,
+     3683
+    ],
+    "pitch": 6.44,
+    "size": [
+     105,
+     235
+    ],
+    "anchor_x": 57.33,
+    "dropped_specks": 0,
+    "at": [
+     39,
+     19
+    ]
+   }
+  ]
+ },
+ "playback": {
+  "order": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "ms": [
+   200,
+   200,
+   200,
+   200,
+   200,
+   200
+  ],
+  "speed": 88,
+  "dy": [
+   -1,
+   -0.33,
+   1.67,
+   -0.67,
+   -2,
+   2
+  ],
+  "stride": 53
+ },
+ "canvas": "2160x3840",
+ "cell": [
+  192,
+  256
+ ],
+ "flip": {
+  "allowed": true
+ },
+ "references": {
+  "canonical": "img/RX-78-2_건담_f.webp",
+  "still_x6": "sprites/rx78_2/rx78_2_base_still_4k.png (최근접 6배)",
+  "leg_guide": "polos0117.github.io dot/walk_leg_guide.png"
+ },
+ "why": "사용자 \"삼국지는 빼고 공방별로 2개씩 더 만들어줘\"(2026-10-28) — 이 공방 그림 중 내가 고른 한 장. book 의 4K 와 같은 길(2160×3840 · 원본 격자 그대로 · 칸 192×256 · dot 0.5), 본보기는 book 앨리스 4K 정지 6배"
+}

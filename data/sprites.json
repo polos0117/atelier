@@ -1,5 +1,174 @@
 {
  "_": "도트 인물 — 약속은 공방 모음(polos0117.github.io) README 「도트 재생기」. 인물마다 card(기체 이름 = 도감 ?mech=) · cell · foot · scale · flip · facing · states(still · idle · walk · react). 인물 칸은 공방 모음의 도트 공방(dot.html) 「인물 칸 복사」 그대로 넣는다. 그림은 이 저장소의 sprites/<이름>/ (img/ 밖 — 등록기·썸네일이 읽지 않는다). 격납고 바닥(gundam/hangar-dots.js)·도감 상세의 도트 줄이 이것을 읽는다.",
  "base": "https://polos0117.github.io/atelier/sprites/",
- "actors": {}
+ "actors": {
+  "rx78_2": {
+   "card": "RX-78-2 건담",
+   "id": "rx78_2",
+   "form": "base",
+   "cell": [
+    192,
+    256
+   ],
+   "foot": [
+    96,
+    254
+   ],
+   "scale": 1,
+   "dot": 0.5,
+   "flip": true,
+   "facing": "right",
+   "states": {
+    "still": {
+     "file": "rx78_2/rx78_2_base_still_4k.png",
+     "frames": 1
+    },
+    "idle": {
+     "file": "rx78_2/rx78_2_base_idle_4k.png",
+     "frames": 4,
+     "order": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "ms": [
+      700,
+      220,
+      140,
+      220
+     ]
+    },
+    "walk": {
+     "file": "rx78_2/rx78_2_base_walk_4k.png",
+     "frames": 6,
+     "order": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "ms": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200
+     ],
+     "speed": 88,
+     "dy": [
+      -1,
+      -0.33,
+      1.67,
+      -0.67,
+      -2,
+      2
+     ]
+    },
+    "react": {
+     "file": "rx78_2/rx78_2_base_react_4k.png",
+     "frames": 4,
+     "order": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "ms": [
+      120,
+      180,
+      320,
+      200
+     ]
+    }
+   }
+  },
+  "char_zaku": {
+   "card": "샤아 전용 자쿠",
+   "id": "char_zaku",
+   "form": "base",
+   "cell": [
+    192,
+    256
+   ],
+   "foot": [
+    96,
+    254
+   ],
+   "scale": 1,
+   "dot": 0.5,
+   "flip": true,
+   "facing": "right",
+   "states": {
+    "still": {
+     "file": "char_zaku/char_zaku_base_still_4k.png",
+     "frames": 1
+    },
+    "idle": {
+     "file": "char_zaku/char_zaku_base_idle_4k.png",
+     "frames": 4,
+     "order": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "ms": [
+      700,
+      220,
+      140,
+      220
+     ]
+    },
+    "walk": {
+     "file": "char_zaku/char_zaku_base_walk_4k.png",
+     "frames": 6,
+     "order": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "ms": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200
+     ],
+     "speed": 75,
+     "dy": [
+      -2,
+      1,
+      0,
+      0.67,
+      0.67,
+      0
+     ]
+    },
+    "react": {
+     "file": "char_zaku/char_zaku_base_react_4k.png",
+     "frames": 4,
+     "order": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "ms": [
+      120,
+      180,
+      320,
+      200
+     ]
+    }
+   }
+  }
+ }
 }

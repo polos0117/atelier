@@ -1,0 +1,111 @@
+{
+ "date": "2026-10-28",
+ "author": "claude",
+ "atelier": "gundam",
+ "id": "rx78_2",
+ "form": "base",
+ "state": "still",
+ "plan": "polos0117.github.io dot.html — 공용 도트 공방",
+ "generation": {
+  "file": "sprites/rx78_2/raw/rx78_2_base_still_gen1.png",
+  "sha256": "98ec26a515cbaf6f89e076e846168378867325a6df465c11398a752096828303",
+  "by": "gpt",
+  "received_as": "rx78_2_base_still_gen1.png",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "medium",
+  "size": "2160x3840",
+  "usage": {
+   "input_tokens": 2605,
+   "input_tokens_details": {
+    "image_tokens": 2234,
+    "text_tokens": 371
+   },
+   "output_tokens": 865,
+   "output_tokens_details": {
+    "image_tokens": 865,
+    "text_tokens": 0
+   },
+   "total_tokens": 3470
+  },
+  "seconds": 29.2,
+  "attachments": [
+   "canonical",
+   "sample_x6"
+  ],
+  "prompt": "Pixel art game sprite of the SAME young woman shown in attached image 1. Copy the face, hair, skin tone, outfit and palette from image 1.\nAttached image 2 is a finished sprite of a different character from the same game: match its pixel size, outline, shading style and body proportions exactly, but NOT its outfit or colours.\nShort white hair with a white V-fin crest and a red forehead gem, a white armoured bodysuit with a blue chest plate, yellow vents and a red waist plate, white and red armoured boots, a grey beam rifle held in the image-left hand and a red-and-white shield with a yellow cross on the image-right arm.\nDo not draw any background, furniture, props or scenery from the attachments.\n\nDraw with very large chunky pixels (each sprite pixel a crisp 25 x 25 square), about 16 colours,\nabout 4 heads tall (not chibi), and about half the decoration of image 1 — keep only the shapes that\nmake the character recognisable at small size. One full-body character, standing idle on flat ground,\nthree-quarter view turned slightly toward the viewer's right, arms relaxed, feet close together.\nHard edges only: no anti-aliasing, no blur, no gradients, no dithering noise. Dark selective outline,\nsimple 2-3 tone shading lit from the upper left. Keep the face readable: two clear eyes, small mouth.\nTransparent background. If transparency is not possible, use one flat solid #00FF00 green with nothing else.\nNo ground shadow, no floor, no text, no frame, no border, no second character.\nPortrait canvas 2160 x 3840."
+ },
+ "cleaned": {
+  "file": "sprites/rx78_2/rx78_2_base_still_4k.png",
+  "sha1": "8d7e876896c8",
+  "tool": "polos0117.github.io dot.html (rust/dot-core — book-atelier 파이썬 도구와 같은 셈)",
+  "args": [
+   "24",
+   "--pitch",
+   "10,24",
+   "--outline",
+   "--cell",
+   "192x256"
+  ],
+  "pitch": [
+   16,
+   16
+  ],
+  "offset": [
+   14.75,
+   15.5
+  ],
+  "sprite": [
+   122,
+   231
+  ],
+  "cell": [
+   192,
+   256
+  ],
+  "cell_offset": [
+   35,
+   23
+  ],
+  "foot_y": 254,
+  "colours": 24,
+  "palette": [
+   "#27344a",
+   "#2d2a2b",
+   "#2e476b",
+   "#3c5e8e",
+   "#4a74ab",
+   "#4e2727",
+   "#5e5654",
+   "#682928",
+   "#7f552a",
+   "#83839c",
+   "#865e4f",
+   "#8a7e7a",
+   "#8c362f",
+   "#a26f31",
+   "#ac9f99",
+   "#ad443a",
+   "#b8846d",
+   "#c85646",
+   "#ca9641",
+   "#cb9d5a",
+   "#dba68e",
+   "#e5dacf",
+   "#f0c05a",
+   "#fbd2b6"
+  ]
+ },
+ "canvas": "2160x3840",
+ "cell": [
+  192,
+  256
+ ],
+ "flip": {
+  "allowed": true
+ },
+ "references": {
+  "canonical": "img/RX-78-2_건담_f.webp",
+  "sample_x6": "sprites/alice/alice_begin_still_4k.png 를 최근접 6배 — 다른 인물, 화소 크기·윤곽·비율 본보기"
+ },
+ "why": "사용자 \"삼국지는 빼고 공방별로 2개씩 더 만들어줘\"(2026-10-28) — 이 공방 그림 중 내가 고른 한 장. book 의 4K 와 같은 길(2160×3840 · 원본 격자 그대로 · 칸 192×256 · dot 0.5), 본보기는 book 앨리스 4K 정지 6배"
+}

@@ -1,0 +1,111 @@
+{
+ "date": "2026-10-28",
+ "author": "claude",
+ "atelier": "gundam",
+ "id": "char_zaku",
+ "form": "base",
+ "state": "still",
+ "plan": "polos0117.github.io dot.html — 공용 도트 공방",
+ "generation": {
+  "file": "sprites/char_zaku/raw/char_zaku_base_still_gen1.png",
+  "sha256": "4bd574bf78244b410c84130d46e979f61f0fd9790a3f926e1d7556f2c2d19ea6",
+  "by": "gpt",
+  "received_as": "char_zaku_base_still_gen1.png",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "medium",
+  "size": "2160x3840",
+  "usage": {
+   "input_tokens": 2602,
+   "input_tokens_details": {
+    "image_tokens": 2234,
+    "text_tokens": 368
+   },
+   "output_tokens": 865,
+   "output_tokens_details": {
+    "image_tokens": 865,
+    "text_tokens": 0
+   },
+   "total_tokens": 3467
+  },
+  "seconds": 32.7,
+  "attachments": [
+   "canonical",
+   "sample_x6"
+  ],
+  "prompt": "Pixel art game sprite of the SAME young woman shown in attached image 1. Copy the face, hair, skin tone, outfit and palette from image 1.\nAttached image 2 is a finished sprite of a different character from the same game: match its pixel size, outline, shading style and body proportions exactly, but NOT its outfit or colours.\nShort pink-red hair, a red mono-eye visor helmet with a single antenna horn on the image-left side, red armour with a spiked shoulder shield on the image-right shoulder, a black tubular power cable at the waist, red armoured skirt plates and heavy red boots, a grey machine gun held in the image-left hand.\nDo not draw any background, furniture, props or scenery from the attachments.\n\nDraw with very large chunky pixels (each sprite pixel a crisp 25 x 25 square), about 16 colours,\nabout 4 heads tall (not chibi), and about half the decoration of image 1 — keep only the shapes that\nmake the character recognisable at small size. One full-body character, standing idle on flat ground,\nthree-quarter view turned slightly toward the viewer's right, arms relaxed, feet close together.\nHard edges only: no anti-aliasing, no blur, no gradients, no dithering noise. Dark selective outline,\nsimple 2-3 tone shading lit from the upper left. Keep the face readable: two clear eyes, small mouth.\nTransparent background. If transparency is not possible, use one flat solid #00FF00 green with nothing else.\nNo ground shadow, no floor, no text, no frame, no border, no second character.\nPortrait canvas 2160 x 3840."
+ },
+ "cleaned": {
+  "file": "sprites/char_zaku/char_zaku_base_still_4k.png",
+  "sha1": "71814cd96dcd",
+  "tool": "polos0117.github.io dot.html (rust/dot-core — book-atelier 파이썬 도구와 같은 셈)",
+  "args": [
+   "24",
+   "--pitch",
+   "10,24",
+   "--outline",
+   "--cell",
+   "192x256"
+  ],
+  "pitch": [
+   16,
+   16
+  ],
+  "offset": [
+   14.75,
+   15.5
+  ],
+  "sprite": [
+   106,
+   224
+  ],
+  "cell": [
+   192,
+   256
+  ],
+  "cell_offset": [
+   43,
+   30
+  ],
+  "foot_y": 254,
+  "colours": 24,
+  "palette": [
+   "#1b1316",
+   "#201f20",
+   "#29161a",
+   "#313131",
+   "#444444",
+   "#461f21",
+   "#5a5958",
+   "#602728",
+   "#752e2e",
+   "#797777",
+   "#8e4d3c",
+   "#933937",
+   "#9e8468",
+   "#a2a09e",
+   "#aa4340",
+   "#ad654d",
+   "#c0a298",
+   "#c24f4b",
+   "#cc8463",
+   "#da6962",
+   "#e19e78",
+   "#e3d6c1",
+   "#e9897b",
+   "#f0a290"
+  ]
+ },
+ "canvas": "2160x3840",
+ "cell": [
+  192,
+  256
+ ],
+ "flip": {
+  "allowed": true
+ },
+ "references": {
+  "canonical": "img/샤아_전용_자쿠_f.webp",
+  "sample_x6": "sprites/alice/alice_begin_still_4k.png 를 최근접 6배 — 다른 인물, 화소 크기·윤곽·비율 본보기"
+ },
+ "why": "사용자 \"삼국지는 빼고 공방별로 2개씩 더 만들어줘\"(2026-10-28) — 이 공방 그림 중 내가 고른 한 장. book 의 4K 와 같은 길(2160×3840 · 원본 격자 그대로 · 칸 192×256 · dot 0.5), 본보기는 book 앨리스 4K 정지 6배"
+}

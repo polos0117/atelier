@@ -1,0 +1,168 @@
+{
+ "date": "2026-10-28",
+ "author": "claude",
+ "atelier": "gundam",
+ "id": "char_zaku",
+ "form": "base",
+ "state": "react",
+ "plan": "polos0117.github.io dot.html — 공용 도트 공방",
+ "generation": {
+  "file": "sprites/char_zaku/raw/char_zaku_base_react_gen1.png",
+  "sha256": "e9b35ea3e2562251506c6f598736a6c740810196afa1a9ded0ae2547eade4be7",
+  "by": "gpt",
+  "received_as": "char_zaku_base_react_gen1.png",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "medium",
+  "size": "2160x3840",
+  "usage": {
+   "input_tokens": 2684,
+   "input_tokens_details": {
+    "image_tokens": 2234,
+    "text_tokens": 450
+   },
+   "output_tokens": 865,
+   "output_tokens_details": {
+    "image_tokens": 865,
+    "text_tokens": 0
+   },
+   "total_tokens": 3549
+  },
+  "seconds": 30.6,
+  "attachments": [
+   "still_x6",
+   "canonical"
+  ],
+  "prompt": "Pixel art sprite sheet of the EXACT same character as attached image 1 — a finished pixel-art sprite.\nCopy it pixel for pixel in style: same very large chunky pixels, same 16-colour palette, same dark outline,\nsame proportions (about 4 heads tall), same face. Short pink-red hair, a red mono-eye visor helmet with a single antenna horn on the image-left side, red armour with a spiked shoulder shield on the image-right shoulder, a black tubular power cable at the waist, red armoured skirt plates and heavy red boots, a grey machine gun held in the image-left hand.\nKeep decoration as simple as image 1 — do not add new details. Image 2 is only a colour and face reference; do not copy its painterly style.\n\nSheet layout: portrait canvas 2160 x 3840, 4 frames in a 2 x 2 grid (cell 1080 x 1920), read left to right, top to bottom.\nIn every cell the character is the same size (about 125 pixels tall on the sprite's own pixel grid, each sprite pixel\ndrawn as a crisp 13 x 13 square), centred horizontally, with both feet on the same baseline near the bottom of the cell.\nEvery frame faces the same direction as described below. Hard edges only: no anti-aliasing, no blur, no gradients, no dithering noise.\nTransparent background. No grid lines, no cell borders, no numbers, no labels, no text, no ground, no shadow, no motion lines, no extra characters.\n\nREACT animation when selected, 4 frames. Starts and ends in the image 1 pose.\nframe 1 = image 1 pose; frame 2 = turns head and body toward the viewer with a small pleased expression;\nframe 3 = a small greeting that suits the character (a light bow, a curtsy or a small wave), knees slightly bent, body 2-3 pixels lower;\nframe 4 = rising back halfway toward the image 1 pose. Feet stay on the baseline."
+ },
+ "cleaned": {
+  "file": "sprites/char_zaku/char_zaku_base_react_4k.png",
+  "sha1": "4a4cb584623e",
+  "tool": "polos0117.github.io dot.html (rust/dot-core — book-atelier 파이썬 도구와 같은 셈)",
+  "args": [
+   "--frames",
+   "4",
+   "--grid",
+   "2x2",
+   "--palette",
+   "sprites/char_zaku/char_zaku_base_still_4k.png",
+   "--rows",
+   "222",
+   "--speck",
+   "150",
+   "--cell",
+   "192x256"
+  ],
+  "cell": [
+   192,
+   256
+  ],
+  "frames": 4,
+  "foot_y": 254,
+  "colours": 23,
+  "frame": [
+   {
+    "box_px": [
+     121,
+     84,
+     952,
+     1840
+    ],
+    "pitch": 7.91,
+    "size": [
+     105,
+     221
+    ],
+    "anchor_x": 59.5,
+    "dropped_specks": 0,
+    "at": [
+     36,
+     33
+    ]
+   },
+   {
+    "box_px": [
+     1149,
+     84,
+     1971,
+     1840
+    ],
+    "pitch": 7.91,
+    "size": [
+     104,
+     221
+    ],
+    "anchor_x": 59.39,
+    "dropped_specks": 0,
+    "at": [
+     37,
+     33
+    ]
+   },
+   {
+    "box_px": [
+     205,
+     1984,
+     996,
+     3746
+    ],
+    "pitch": 7.91,
+    "size": [
+     100,
+     210
+    ],
+    "anchor_x": 53.71,
+    "dropped_specks": 0,
+    "at": [
+     42,
+     44
+    ]
+   },
+   {
+    "box_px": [
+     1157,
+     1984,
+     2000,
+     3746
+    ],
+    "pitch": 7.91,
+    "size": [
+     106,
+     223
+    ],
+    "anchor_x": 59.38,
+    "dropped_specks": 0,
+    "at": [
+     37,
+     31
+    ]
+   }
+  ]
+ },
+ "playback": {
+  "order": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "ms": [
+   120,
+   180,
+   320,
+   200
+  ]
+ },
+ "canvas": "2160x3840",
+ "cell": [
+  192,
+  256
+ ],
+ "flip": {
+  "allowed": true
+ },
+ "references": {
+  "canonical": "img/샤아_전용_자쿠_f.webp",
+  "still_x6": "sprites/char_zaku/char_zaku_base_still_4k.png (최근접 6배)"
+ },
+ "why": "사용자 \"삼국지는 빼고 공방별로 2개씩 더 만들어줘\"(2026-10-28) — 이 공방 그림 중 내가 고른 한 장. book 의 4K 와 같은 길(2160×3840 · 원본 격자 그대로 · 칸 192×256 · dot 0.5), 본보기는 book 앨리스 4K 정지 6배"
+}
