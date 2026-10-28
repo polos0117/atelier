@@ -18,15 +18,20 @@
 <script defer src="lib/fresh.js"></script>
 <script defer src="gundam/hangar.js?v=9c006dfcf4"></script>
 <script defer src="lib/sprite-actor.js?v=4"></script>
-<script defer src="gundam/hangar-dots.js?v=2"></script>
+<script defer src="gundam/hangar-dots.js?v=3"></script>
 <link rel="stylesheet" href="lib/sprite-actor.css?v=1">
 <style>
-/* 격납고 바닥의 도트(gundam/hangar-dots.js) — 메인 메뉴 위 띠. 이동 스틱 자리는 비운다(휴대폰은 왼쪽, PC 는 오른쪽에 스틱) */
-.hangar-dots{position:absolute;z-index:2;left:150px;right:12px;bottom:calc(104px + env(safe-area-inset-bottom));height:132px;pointer-events:none}
+/* 도트 데크(gundam/hangar-dots.js) — 메인 메뉴 위, 도트 기체가 거니는 강판 데크 한 칸. 이동 스틱 자리는 비운다(휴대폰은 왼쪽, PC 는 오른쪽에 스틱).
+   배경은 backgrounds/hangar.webp(도트 공방과 같은 열쇠로 받은 픽셀아트 격납고, 기록 records/backgrounds/hangar.json) — 아래 셋째의 빈 바닥만 보이게 2.6배로 키워 바닥에 맞추고 옆으로 잇는다.
+   3D 가 안 떠도 이 데크는 선다. 도트가 없으면 데크째 없다 */
+.hangar-dots{position:absolute;z-index:2;left:150px;right:12px;bottom:calc(104px + env(safe-area-inset-bottom));height:150px;pointer-events:none;overflow:hidden;border-radius:6px;
+  border:1px solid #9bc6d655;box-shadow:0 10px 30px #00000080,inset 0 1px 0 #ffffff14;
+  background:#0d1a26 url("backgrounds/hangar.webp") center 100% / auto 260% repeat-x;image-rendering:pixelated}
+.hangar-dots::before{content:'DOT DECK';position:absolute;left:10px;top:7px;font:10px/1.4 ui-monospace,monospace;letter-spacing:.2em;color:#b5e6eecc;text-shadow:0 1px 4px #000}
 .hangar-dots[hidden]{display:none}
 .hangar-dots .sprite-actor{pointer-events:auto}
 @media(min-width:601px){.hangar-dots{left:24px;right:190px;bottom:calc(120px + env(safe-area-inset-bottom))}}
-@media(min-width:1000px){.hangar-dots{left:40px;right:200px;bottom:calc(122px + env(safe-area-inset-bottom))}}
+@media(min-width:1000px){.hangar-dots{left:40px;right:200px;bottom:calc(122px + env(safe-area-inset-bottom))}.bay-caption{bottom:296px}}
 @media(max-width:600px) and (min-height:551px){.hangar-dots{bottom:calc(70px + env(safe-area-inset-bottom))}}
 @media(max-height:550px){.hangar-dots{left:180px;right:18px;bottom:82px;height:110px}}
 </style>

@@ -1,0 +1,26 @@
+{
+ "model": "gpt-image-2.5-sunburst",
+ "size": "1536x1024",
+ "quality": "medium",
+ "prompt": "Pixel art background for a 2D side-scrolling game, 16-bit style with crisp square pixels and a limited cool palette (steel blue, slate grey, amber warning lights, pale cyan lamps), wide straight-on front view, no perspective tilt.\nScene: the interior of a huge mobile suit hangar at night. Back wall of riveted steel panels with tall maintenance gantries and scaffolding towers, hanging cables and hoses, a crane rail along the ceiling, rows of small cyan work lamps, a few amber rotating warning lights, large shuttered bay doors with yellow-and-black hazard stripes. Empty docking cradles with no machines in them.\nThe bottom third of the image is an empty flat steel catwalk floor with a thin yellow guide line and grated plates, completely clear of objects, so sprites can stand on it.\nNo people, no robots, no mobile suits, no characters, no text, no letters, no logos, no readable signs, nothing blurry.",
+ "usage": {
+  "input_tokens": 202,
+  "input_tokens_details": {
+   "image_tokens": 0,
+   "text_tokens": 202
+  },
+  "output_tokens": 343,
+  "output_tokens_details": {
+   "image_tokens": 343,
+   "text_tokens": 0
+  },
+  "total_tokens": 545
+ },
+ "seconds": 20.354,
+ "date": "2026-10-28",
+ "file": "backgrounds/hangar.webp",
+ "raw_sha256": "9b4b809eccc2ceeba21eb04e2a75bc87fbbf08957ec9252026e231b851d691e8",
+ "by": "claude",
+ "why": "건담 격납고 첫 화면의 도트 데크(메인 메뉴 위 띠) 배경 — 아래 셋째가 빈 강판 바닥이라 도트 기체가 선다. 사용자 \"건담 공방도 리뉴얼 — 메인 덱과 도감에서 도트가 보이게\"(2026-10-28). 원본 PNG 는 올리지 않는다",
+ "how": "images/generations 1536×1024 medium, 도트 공방과 같은 열쇠. webp 86 으로 줄여 이 저장소 backgrounds/ 에(그림은 이 저장소 img/ 에 두는 공방이라 배경도 여기)"
+}
