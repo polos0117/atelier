@@ -1,6 +1,7 @@
 /* 툴킷(prompt.html) 브라우저 검사 — 코드만 읽어서는 안 보이는 자리만 본다.
    탭을 컴포넌트로 갈아끼우는 것, 아래 띠(독)가 탭을 넘어 사는 것,
    밀도가 그려지기 전에 정해지는 것, 도감이 걸어 오는 ?mech= 딥링크.
+   정해 둔 시간만큼 쉬지 않는다 — 기다릴 상태를 정해 기다리고, 그린 뒤 두 프레임만 둔다(2026-11-12).
    Run: node tests/toolkit-smoke.cjs   (ESM_DIR·CHROMIUM_PATH 는 browser-harness.cjs 설명 참고) */
 const H = require('./browser-harness.cjs');
 const WIDE = { width: 1200, height: 1000 };
@@ -20,6 +21,21 @@ const fire = ([label, value]) => {
   el.value = value; el.dispatchEvent(new Event('change', { bubbles: true }));
   return true;
 };
+/* 그린 뒤 두 프레임 — Preact 가 상태를 화면에 옮길 틈 */
+const settle = p => p.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
+/* 상태가 될 때까지(못 되면 false — 단언이 실패를 적는다) */
+const until = (p, fn, arg, ms) => p.waitForFunction(fn, arg, { timeout: ms || 5000 }).then(() => true, () => false);
+const listed = () => { const s = document.querySelector('[aria-label=기체]'); return !!s && s.options.length > 1; };
+/* 탭을 누르고 그 탭이 고른 상태가 될 때까지 */
+const tabOf = p => async k => {
+  const ok = await p.evaluate(k => {
+    const b = [...document.querySelectorAll('[role=tab]')].find(x => x.textContent.trim() === k);
+    if (b) b.click(); return !!b;
+  }, k);
+  if (ok) await until(p, k => [...document.querySelectorAll('[role=tab][aria-selected=true]')].some(x => x.textContent.trim() === k), k);
+  await settle(p);
+  return ok;
+};
 const clickText = text => {
   const b = [...document.querySelectorAll('button')].find(x => x.textContent.trim() === text);
   if (b) b.click();
@@ -34,7 +50,7 @@ const clickText = text => {
   const boot = async opt => {
     const s = await h.open('prompt.html', Object.assign({ viewport: WIDE, init: stubClipboard }, opt));
     await s.page.waitForSelector('[aria-label=기체]', { state: 'attached', timeout: 20000 });
-    await s.page.waitForTimeout(900);
+    await until(s.page, listed, null, 20000); await settle(s.page);
     return s;
   };
 
@@ -42,19 +58,13 @@ const clickText = text => {
     /* ── 탭·독 ─────────────────────────────────────── */
     {
       const s = await boot({ viewport: FOLD, mobile: true });
-      await s.page.evaluate(fire, ['기체', '건담 엑시아']);
-      await s.page.waitForTimeout(500);
+      await s.page.evaluate(fire, ['기체', '건담 엑시아']); await settle(s.page);
       /* Preact 는 큰 덩어리를 조건부 템플릿으로 갈아끼우면 insertBefore 로 터진다.
-         탭은 컴포넌트를 갈아끼워야 한다 — 여러 번 오가며 그것을 본다 */
-      const tab = k => s.page.evaluate(k => {
-        const b = [...document.querySelectorAll('[role=tab]')].find(x => x.textContent.trim() === k);
-        if (b) b.click();
-        return !!b;
-      }, k);
-      for (let i = 0; i < 4; i++) {
-        for (const k of ['단일 컷', '콜라주', '의인화']) { await tab(k); await s.page.waitForTimeout(220); }
-      }
-      add('탭을 열두 번 오가도 안 터진다', s.errors.length === 0, s.errors.join(' | '));
+         탭은 컴포넌트를 갈아끼워야 한다 — 세 탭을 한 바퀴 돌아 갈아끼우기 셋을 다 지난다
+         (네 바퀴 돌던 것을 2026-11-12 한 바퀴로 — 같은 갈아끼우기의 되풀이였다) */
+      const tab = tabOf(s.page);
+      for (const k of ['단일 컷', '콜라주', '의인화']) await tab(k);
+      add('탭을 한 바퀴 오가도 안 터진다', s.errors.length === 0, s.errors.join(' | '));
       add('고르개는 탭 밖에 한 벌만 있다',
         await s.page.evaluate(() => document.querySelectorAll('[aria-label=기체]').length === 1));
       add('탭을 오가도 기체가 이어진다',
@@ -66,7 +76,7 @@ const clickText = text => {
          같은지를 본다 */
       const seen = {};
       for (const k of ['의인화', '단일 컷', '콜라주']) {
-        await tab(k); await s.page.waitForTimeout(700);
+        await tab(k);
         /* 미리보기를 열어 이 탭이 보여 주는 글을 받는다 */
         const opened = await s.page.evaluate(() => {
           const b = [...document.querySelectorAll('.prompt-dock-actions button')]
@@ -74,7 +84,7 @@ const clickText = text => {
           if (b) b.click();
           return !!b;
         });
-        await s.page.waitForTimeout(600);
+        await until(s.page, () => { const t = document.querySelector('.prompt-view textarea'); return t && t.value.length > 500; });
         const shown = await s.page.evaluate(() => {
           const t = document.querySelector('.prompt-view textarea');
           return t ? t.value : '';
@@ -83,7 +93,7 @@ const clickText = text => {
         /* 같은 상태에서 독의 복사가 그 글을 넘기나 */
         await s.page.evaluate(() => { window.__copied = ''; 
           document.querySelector('.prompt-dock-actions button.primary').click(); });
-        await s.page.waitForTimeout(600);
+        await until(s.page, () => !!window.__copied);
         const copied = await s.page.evaluate(() => window.__copied || '');
         add(`${k} 탭 · 독의 복사가 그 탭의 글을 넘긴다`, copied === shown && copied.length > 500,
             `보인 글 ${shown.length}자 / 복사 ${copied.length}자`);
@@ -94,13 +104,13 @@ const clickText = text => {
             .find(x => x.textContent.trim() === '미리보기');
           if (b) b.click();
         });
-        await s.page.waitForTimeout(300);
+        await until(s.page, () => !document.querySelector('.prompt-view textarea')); await settle(s.page);
       }
       /* 기체친화형(useRec)은 추천 세 장을 세 Pair 에 꽂는 모드다. 한 장짜리에는
          의미가 없고 pool 이 null 이라 전체 목록으로 조용히 떨어진다 — 고를 수 있으면
          "추천을 쓴다" 는 이름만 보고 골랐다가 아무 일도 안 일어난다 */
       for (const [k, want] of [['단일 컷', false], ['콜라주', false]]) {
-        await tab(k); await s.page.waitForTimeout(600);
+        await tab(k);
         const has = await s.page.evaluate(() => {
           const el = document.querySelector('[aria-label="랜덤 성격"]');
           return el ? [...el.options].map(o => o.value) : null;
@@ -113,11 +123,11 @@ const clickText = text => {
          넘어간다 — 갈래(3개)와 패널 번호(6개)가 그렇게 두 줄·세 줄이었다.
          폴드 덮개 폭에서 본다 */
       for (const [k, extra] of [['의인화', null], ['단일 컷', null], ['콜라주', 'Panel 개별']]) {
-        await tab(k); await s.page.waitForTimeout(500);
+        await tab(k);
         if (extra) {
           await s.page.evaluate(t => [...document.querySelectorAll('.gt')]
             .find(b => b.textContent.trim() === t)?.click(), extra);
-          await s.page.waitForTimeout(500);
+          await settle(s.page);
         }
         const strips = await s.page.evaluate(() => [...document.querySelectorAll('.gender-tabs')].map(el => ({
           n: el.children.length,
@@ -144,7 +154,7 @@ const clickText = text => {
       add('판 날짜가 찍힌다', /판 \d\d-\d\d/.test(await txt('.bstamp')));
       add('변경 내역이 있다', await s.page.evaluate(() => /v\d+\.\d+ 변경 내역/.test(document.body.textContent)));
       await s.page.evaluate(fire, ['기체', '건담 엑시아']);
-      await s.page.waitForTimeout(900);
+      await until(s.page, () => /신규 파일명: /.test(document.body.textContent)); await settle(s.page);
       add('선택 정보에 기체·시리즈', /건담 엑시아\s+·/.test(await txt('.srcbox:not(.verbox) .sel-line')));
       /* 파일명 규칙은 이미지 등록과 맞아야 한다 — 어긋나면 올린 그림이 도감에 안 붙는다 */
       add('파일명 안내가 규칙대로다', await s.page.evaluate(
@@ -159,12 +169,8 @@ const clickText = text => {
     /* ── 입력칸 이름: 라벨이 옆에 놓이기만 하면 읽는 이름이 없고, 눌러도 칸으로 안 간다 ── */
     {
       const s = await boot();
-      await s.page.evaluate(fire, ['기체', '건담 엑시아']);
-      await s.page.waitForTimeout(700);
-      const tab = k => s.page.evaluate(k => {
-        const b = [...document.querySelectorAll('[role=tab]')].find(x => x.textContent.trim() === k);
-        if (b) b.click(); return !!b;
-      }, k);
+      await s.page.evaluate(fire, ['기체', '건담 엑시아']); await settle(s.page);
+      const tab = tabOf(s.page);
       const audit = () => s.page.evaluate(() => {
         document.querySelectorAll('details').forEach(d => { d.open = true; });
         const named = el => !!((el.labels && el.labels.length && [...el.labels].some(l => l.textContent.trim()))
@@ -178,16 +184,16 @@ const clickText = text => {
         return { n: ctl.length, unnamed: ctl.filter(el => !named(el)).map(el => el.outerHTML.slice(0, 80)), dup, dangling, loose };
       });
       for (const [k, extra] of [['의인화', null], ['단일 컷', null], ['콜라주', null], ['콜라주', 'Panel 개별']]) {
-        await tab(k); await s.page.waitForTimeout(500);
+        await tab(k);
         if (extra) { await s.page.evaluate(t => [...document.querySelectorAll('.gt')].find(b => b.textContent.trim() === t)?.click(), extra);
-                     await s.page.waitForTimeout(400); }
+                     await settle(s.page); }
         const a = await audit();
         const at = k + (extra ? '·' + extra : '');
         add(`${at} · 입력칸 ${a.n}개 모두 이름이 있다`, a.n > 0 && a.unnamed.length === 0, a.unnamed.join(' | '));
         add(`${at} · 라벨이 모두 칸에 이어진다`, a.loose.length === 0 && a.dangling.length === 0, a.loose.concat(a.dangling).join(' | '));
         add(`${at} · id 가 겹치지 않는다`, a.dup.length === 0, a.dup.join(','));
       }
-      await tab('의인화'); await s.page.waitForTimeout(400);
+      await tab('의인화');
       const focused = await s.page.evaluate(() => {
         const l = [...document.querySelectorAll('.field > label')].find(x => x.textContent.startsWith('Special Characteristics'));
         if (!l) return 'no label'; l.click(); return document.activeElement === l.control && l.control.type === 'text';
@@ -206,8 +212,7 @@ const clickText = text => {
         return first ? first.tagName + ':' + first.textContent.trim().replace(/\s+/g, ' ') : 'none';
       });
       add('패치 노트 요약 줄이 details 바로 아래에 있다', /^SUMMARY:v\d+\.\d+ 변경 내역/.test(ver), ver);
-      await s.page.evaluate(fire, ['기체', '건담 엑시아']);
-      await s.page.waitForTimeout(900);
+      await s.page.evaluate(fire, ['기체', '건담 엑시아']); await settle(s.page);
       const hit = await s.page.evaluate(async () => {
         for (const sel of document.querySelectorAll('.param-card select')) {
           for (const o of [...sel.options].slice(1, 6)) {
@@ -223,7 +228,7 @@ const clickText = text => {
       if (hit) {
         await s.page.locator('.pp-gal-r button').first().focus();
         const opener = await s.page.evaluate(() => document.activeElement.getAttribute('aria-label'));
-        await s.page.keyboard.press('Enter'); await s.page.waitForTimeout(400);
+        await s.page.keyboard.press('Enter'); await until(s.page, () => !!document.querySelector('dialog.zoom')); await settle(s.page);
         const z = await s.page.evaluate(() => {
           const d = document.querySelector('dialog.zoom');
           return d ? { modal: d.matches(':modal'), named: !!d.getAttribute('aria-label'),
@@ -231,12 +236,12 @@ const clickText = text => {
         });
         add('확대 보기는 이름 있는 모달 대화상자다', z && z.modal && z.named && z.alt, JSON.stringify(z));
         add('열면 닫기 단추에 초점이 간다', z && z.focus === '닫기', z && z.focus);
-        await s.page.keyboard.press('Escape'); await s.page.waitForTimeout(300);
+        await s.page.keyboard.press('Escape'); await until(s.page, () => !document.querySelector('dialog.zoom')); await settle(s.page);
         const back = await s.page.evaluate(() => ({ gone: !document.querySelector('dialog.zoom'),
                                                     focus: document.activeElement.getAttribute('aria-label') }));
         add('Esc 로 닫히고 연 자리로 초점이 돌아온다', back.gone && back.focus === opener, JSON.stringify(back));
-        await s.page.locator('.pp-gal-r button').first().click(); await s.page.waitForTimeout(300);
-        await s.page.locator('dialog.zoom .zoom-x').click(); await s.page.waitForTimeout(300);
+        await s.page.locator('.pp-gal-r button').first().click(); await until(s.page, () => !!document.querySelector('dialog.zoom'));
+        await s.page.locator('dialog.zoom .zoom-x').click(); await until(s.page, () => !document.querySelector('dialog.zoom'));
         add('닫기 단추로 닫힌다', await s.page.evaluate(() => !document.querySelector('dialog.zoom')));
       }
       add('확대 보기 검사 중 JS 오류 없음', s.errors.length === 0, s.errors.join(' | '));
@@ -248,7 +253,7 @@ const clickText = text => {
       for (const [saved, want] of [['relaxed', 'relaxed'], ['', 'compact'], ['엉뚱한값', 'compact']]) {
         const s = await h.open(page, { viewport: WIDE, init: stubClipboard,
           store: saved ? ['atelier_density_v1', saved] : null });
-        await s.page.waitForTimeout(700);
+        await until(s.page, () => '__firstPaintDensity' in window); await settle(s.page);
         const v = await s.page.evaluate(() => ({ first: window.__firstPaintDensity,
                                                  now: document.documentElement.dataset.density }));
         add(`${page} · 저장값 "${saved || '없음'}" → 밀도 ${want}`,
@@ -269,7 +274,7 @@ const clickText = text => {
         const s = await h.open('prompt.html' + qs, { viewport: WIDE, init: stubClipboard,
           store: store ? [STORE, store] : null });
         await s.page.waitForSelector('[aria-label=기체]', { state: 'attached', timeout: 20000 });
-        await s.page.waitForTimeout(900);
+        await until(s.page, listed, null, 20000); await settle(s.page);
         const v = await read(s); const errs = s.errors.slice(); await s.close();
         return { v, errs };
       };

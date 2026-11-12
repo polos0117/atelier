@@ -1,5 +1,5 @@
 // node tests/generation-records.cjs
-const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
 const records=JSON.parse(fs.readFileSync('data/generation.json','utf8'));
 /* 프롬프트 경로 검증과 설정 요약은 도감 안에 있던 함수였지만 지금은 lib/toolkit.js 하나가
    가지고 있다. 도감·툴킷·드래프트가 같은 것을 쓰므로 여기서도 그 파일을 그대로 돌린다 */
@@ -20,7 +20,8 @@ assert(!tkBody.includes('dangerouslySetInnerHTML'),'툴킷 기록 칸이 HTML �
  await ATK.load();await ATK.loadGeneration();
  let known=0,missing=0;
  for(const [file,r] of Object.entries(records)){
-  assert.equal(crypto.createHash('sha256').update(fs.readFileSync('img/'+file)).digest('hex'),r.sha256,file);
+  /* 그림 파일 해시 대조는 뺐다(2026-11-12) — 이 표의 그림은 모두 generation/m-…/images.json 에 같은 sha256 으로
+     있고 per-mech-records.cjs(등록 CI)가 그쪽에서 파일마다 대조한다. 여기서는 표 ↔ 제조서 ↔ 툴킷 링크만 */
   const assets=JSON.parse(fs.readFileSync(r.manifest,'utf8')).assets;
   assert(assets.some(a=>a.file===file&&a.card===r.card&&a.sha256===r.sha256),file+' 은 제조서와 어긋난다');
   if(r.prompt){assert(fs.readFileSync(r.prompt,'utf8').trim(),r.prompt+' 이 비었다');assert.equal(ATK.promptPathOf(file),r.prompt,file);known++;}
@@ -34,5 +35,5 @@ assert(!tkBody.includes('dangerouslySetInnerHTML'),'툴킷 기록 칸이 HTML �
  ATK.putCardRecords('bad',{images:{bad:{prompt:'javascript:alert(1)'}}});
  assert.equal(ATK.promptPathOf('bad'),null);
  assert.equal(ATK.promptPathOf('unrecorded.webp'),null);
- console.log(`PASS: ${known} exact prompt links, ${missing} explicitly missing originals, image hashes, custom settings and raw-instruction handling`);
+ console.log(`PASS: ${known} exact prompt links, ${missing} explicitly missing originals, manifest match, custom settings and raw-instruction handling`);
 })().catch(e=>{console.error(e);process.exitCode=1});

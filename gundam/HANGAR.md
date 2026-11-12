@@ -16,4 +16,4 @@
 
 자산 변경 후 `index.html`의 `hangar.css`·`hangar.js` 쿼리를 해당 파일 SHA-256 앞 10자리로 갱신한다. `draft-app.js` 변경 시 기존 README에 따라 `play.html` 쿼리도 갱신한다.
 
-검증: `node tests/hangar-smoke.cjs` (로컬 HTTP 서버 + Playwright), `node tests/draft-engine.cjs`. Fold 커버 344×882, 내부 690×829, 가로 882×344에서 화면 경계·탭 크기, 두 손가락 이동/회전, 손을 뗀 뒤 정지, 충돌, 절전·일시정지, 도감 상세 연결, 엔진 로드 실패 시 메뉴 유지 확인. 실제 Fold5 하드웨어의 프레임·발열은 별도 확인이 필요하다.
+검증: `node tests/draft-engine.cjs`. 격납고 3D 화면 검사(hangar-smoke)는 바깥 CDN 의 Babylon 없이는 돌지 않아 2026-11-12 걷었다 — 격납고를 고치면 Fold 커버 344×882 · 내부 690×829 · 가로 882×344 에서 화면 경계 · 탭 크기 · 두 손가락 이동/회전 · 도감 상세 연결 · 엔진 로드 실패 시 메뉴 유지를 손으로 본다. 실제 Fold5 하드웨어의 프레임·발열은 별도 확인이 필요하다.
