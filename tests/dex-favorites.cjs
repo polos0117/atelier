@@ -3,6 +3,7 @@
    - 그림마다 따로다(같은 카드의 다른 그림은 안 담긴 상태), 새것이 앞
    - 새로고침해도 남고, 칸의 link(?mech=&pic=)로 오면 그 그림으로 열린다
    - 「즐겨찾기 n」 이 공방 모음의 /favorites.html 로 간다
+   - 크게 보기에도 하트(2026-11-12) — 넘겨 보는 그림을 상세와 같은 칸으로 담고, 넘기면 그 그림의 상태, 닫으면 상세와 같다(344×882)
    - 저장이 막힌 브라우저에서는 던지지 않고 "못 담았다" 를 알린다
    - 344×882 · 390×844 · 844×390 · 690×829 · 1280×900 에서 누르는 자리 44px, 옆으로 안 넘친다
    lib/favorites.js 는 polos0117.github.io/favorites.js 와 글자 하나 다르지 않아야 한다(옆에 받아 두었으면 견준다).
@@ -86,6 +87,36 @@ const A = Object.keys(doc.img).filter(n => mechs.has(n) && femaleShots(doc.img[n
     add('오류 없음', !s.errors.length, s.errors.join(' | '));
     await s.close();
 
+    /* 크게 보기의 하트(2026-11-12) — 넘겨 보는 그 그림을 담고, 넘기면 그 그림의 상태로, 닫으면 상세 하트도 같다 (폴드 덮개 344×882) */
+    const z = await h.open('dex.html?mech=' + encodeURIComponent(A), { viewport: { width: 344, height: 882 }, mobile: true }), zp = z.page;
+    await zp.locator('#dex-fav').waitFor({ timeout: 30000 });
+    await zp.locator('.sheet .art').tap();
+    await zp.locator('.zoom-layer #zoom-fav').waitFor({ timeout: 10000 });
+    const zFile = () => zp.evaluate(() => { const i = document.querySelector('.zoom-body > img'); return i ? decodeURIComponent(i.getAttribute('src').split('?')[0].split('/').pop()) : ''; });
+    const z1 = await zFile();
+    add('크게 보기 — 하트에 이름 「즐겨찾기」 · 처음엔 비었다', /즐겨찾기/.test(await zp.locator('#zoom-fav').textContent()) && await zp.locator('#zoom-fav').getAttribute('aria-pressed') === 'false');
+    await zp.locator('#zoom-fav').tap(); await zp.waitForTimeout(150);
+    const zl = await stored(zp), ze = zl[0] || {}, zk = new URL(ze.link || '/', 'http://x');
+    add('크게 보기 — 보고 있는 그림이 상세와 같은 꼴로 담긴다', zl.length === 1 && ze.a === 'gundam' && ze.key === A && ze.title === A && ze.file === z1 && ze.sub.length > 0
+      && ze.thumb === 'https://polos0117.github.io/atelier/img/thumb/' + encodeURIComponent(z1) && /^\/(.*\/)?dex\.html$/.test(zk.pathname) && zk.searchParams.get('mech') === A && zk.searchParams.get('pic') === z1, JSON.stringify(ze));
+    add('크게 보기 — 하트가 차고 알림(aria-live)', await zp.locator('#zoom-fav').getAttribute('aria-pressed') === 'true' && (await zp.locator('#zoom-fav').textContent()).includes('♥')
+      && /즐겨찾기에 담았어요/.test(await zp.locator('.zoom-layer .toast-live').textContent()) && await zp.locator('.zoom-layer .toast-live').getAttribute('aria-live') === 'polite');
+    const zb = await zp.evaluate(() => { const r = s => document.querySelector(s).getBoundingClientRect();
+      const t = r('.zoom-layer .toast'), hit = ['.zoom-prev', '.zoom-next'].some(s => { const b = r(s); return !(t.right <= b.left || t.left >= b.right || t.bottom <= b.top || t.top >= b.bottom); });
+      return { h: r('#zoom-fav').height, l: r('#zoom-fav').left, r: r('#zoom-fav').right, w: innerWidth, over: document.documentElement.scrollWidth - innerWidth, barOver: document.querySelector('.zoom-bar').scrollWidth - document.querySelector('.zoom-bar').clientWidth, hit }; });
+    add('크게 보기 — 하트 44px · 화면 안 · 옆으로 안 넘친다', zb.h >= 44 && zb.l >= 0 && zb.r <= zb.w + 1 && zb.over <= 1 && zb.barOver <= 1, JSON.stringify(zb));
+    add('크게 보기 — 알림이 넘기기 단추를 안 가린다', !zb.hit, JSON.stringify(zb));
+    if (await zp.locator('.zoom-next:not([disabled])').count()) {
+      await zp.locator('.zoom-next').tap(); await zp.waitForTimeout(300);
+      add('크게 보기 — 넘기면 그 그림의 상태(안 담김)', (await zFile()) !== z1 && await zp.locator('#zoom-fav').getAttribute('aria-pressed') === 'false', await zFile());
+      await zp.locator('.zoom-prev').tap(); await zp.waitForTimeout(300);
+      add('크게 보기 — 돌아오면 다시 찬 하트', (await zFile()) === z1 && await zp.locator('#zoom-fav').getAttribute('aria-pressed') === 'true');
+    }
+    await zp.locator('.zoom-close').tap(); await zp.waitForTimeout(200);
+    add('크게 보기를 닫으면 상세 하트도 차 있다', await zp.locator('#dex-fav').getAttribute('aria-pressed') === 'true' && await zp.locator('#dex-fav-count').textContent() === '즐겨찾기 1');
+    add('크게 보기 — 오류 없음', !z.errors.length, z.errors.join(' | '));
+    await z.close();
+
     /* 저장이 막힌 브라우저 */
     const b = await h.open('dex.html?mech=' + encodeURIComponent(A), { viewport: { width: 1280, height: 900 },
       init: () => { const no = () => { throw new DOMException('blocked', 'SecurityError'); }; Storage.prototype.setItem = no; Storage.prototype.getItem = no; } });
@@ -94,6 +125,11 @@ const A = Object.keys(doc.img).filter(n => mechs.has(n) && femaleShots(doc.img[n
     await b.page.waitForTimeout(150);
     add('저장이 막히면 담긴 척하지 않는다', await b.page.locator('#dex-fav').getAttribute('aria-pressed') === 'false');
     add('저장이 막히면 못 담았다고 알린다', /저장을 막아/.test(await b.page.locator('.toast-live').textContent()));
+    await b.page.locator('.sheet .art').click();
+    await b.page.locator('#zoom-fav').click();
+    await b.page.waitForTimeout(150);
+    add('크게 보기 — 저장이 막히면 담긴 척하지 않고 알린다', await b.page.locator('#zoom-fav').getAttribute('aria-pressed') === 'false'
+      && /저장을 막아/.test(await b.page.locator('.zoom-layer .toast-live').textContent()));
     add('저장이 막혀도 오류 없음', !b.errors.length, b.errors.join(' | '));
     await b.close();
 

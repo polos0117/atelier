@@ -93,3 +93,8 @@ body.dex-page{background-image:none}
 .art-motion{text-align:center;margin:0 0 14px}
 .art-motion button{min-height:44px;padding:8px 14px;border:1px solid var(--rule);border-radius:3px;background:transparent;color:var(--ink);font:inherit;font-size:12px;cursor:pointer}
 .art-motion button:disabled{opacity:.5;cursor:default}
+/* 크게 보기 하트(2026-11-12) — 지금 넘겨 보는 그림을 즐겨찾기에. 담기면 상세 하트처럼 강조색. 알림은 위 띠 바로 밑(폰의 넘기기 단추는 아래) */
+.zoom-layer .zoom-fav span{font-size:15px;line-height:1;margin-right:4px}
+.zoom-layer .zoom-fav[aria-pressed="true"]{border-color:var(--plate);color:var(--plate)}
+.zoom-layer .toast-live{position:relative;height:0}.zoom-layer .toast{position:absolute;top:12px;bottom:auto}
+@media(max-width:599px){.zoom-layer .zoom-fav{order:3}}

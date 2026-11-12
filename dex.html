@@ -260,7 +260,7 @@ body.dex-compact .grid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
 </style>
 <link rel="stylesheet" href="lib/workspace.css?v=45b8463bd0">
 <script src="lib/workspace-theme.js?v=97c2d41a47"></script>
-<link rel="stylesheet" href="lib/gallery.css?v=e0b0a65147">
+<link rel="stylesheet" href="lib/gallery.css?v=8dc3855791">
 </head>
 <body class="dex-page">
 <div id="app"></div>
@@ -681,15 +681,19 @@ function Sheet({ card, entry, tab, styleName, statLabels, seriesName, initialGen
   /* 즐겨찾기 — 큰 그림에 떠 있는 바로 그 그림. 주소에는 ?mech=&pic= 를 적어 공방 모음에서 누르면 이 그림으로 다시 연다 */
   const favs = useFavorites();
   const faved = !!shown && favs.some(x => x.a === 'gundam' && x.file === shown);
-  const toggleFav = () => {
-    if (!FAV || !shown) return;
-    const cut = cutOf(shown), n = cut === 'casual' ? casual.indexOf(shown) + 1 : cut === 'extra' ? extra.indexOf(shown) + 1 : 0;
+  /* 담는 칸 하나 — 상세 하트와 크게 보기 하트가 같이 쓴다(크게 보기에는 onZoom 으로 넘긴다) */
+  const favEntry = f => {
+    const cut = cutOf(f), n = cut === 'casual' ? casual.indexOf(f) + 1 : cut === 'extra' ? extra.indexOf(f) + 1 : 0;
     const q = new URLSearchParams();
     if (tab && tab !== '기체') q.set('tab', tab);
-    q.set('mech', card.name); q.set('pic', shown);
-    const on = FAV.toggle({ a: 'gundam', key: card.name, file: shown, title: card.name,
-      sub: FAV_TEXT.cut[cut] + (n ? ' ' + n : ''), thumb: AIMG.thumbURL(shown), full: AIMG.imgURL(shown),
-      link: new URL('dex.html', location.href).pathname + '?' + q.toString() });
+    q.set('mech', card.name); q.set('pic', f);
+    return { a: 'gundam', key: card.name, file: f, title: card.name,
+      sub: FAV_TEXT.cut[cut] + (n ? ' ' + n : ''), thumb: AIMG.thumbURL(f), full: AIMG.imgURL(f),
+      link: new URL('dex.html', location.href).pathname + '?' + q.toString() };
+  };
+  const toggleFav = () => {
+    if (!FAV || !shown) return;
+    const on = FAV.toggle(favEntry(shown));
     if (onToast) onToast(on ? FAV_TEXT.added : faved ? FAV_TEXT.removed : FAV_TEXT.blocked);
   };
 
@@ -716,7 +720,7 @@ function Sheet({ card, entry, tab, styleName, statLabels, seriesName, initialGen
             </div>`}
 
 <div class="detail-spread"><section class="artwork-panel">          ${shown
-            ? html`<button type="button" class="art" ref=${artRef} data-particles=${kind} aria-label="크게 감상하기" onclick=${() => onZoom(all.length ? all : [shown], shownIdx)}>
+            ? html`<button type="button" class="art" ref=${artRef} data-particles=${kind} aria-label="크게 감상하기" onclick=${() => onZoom(all.length ? all : [shown], shownIdx, favEntry)}>
                      ${/* 여기는 300px 폭으로 크게 그린다. 썸네일(긴 변 512)을 쓰면
                           고해상도 화면에서 흐릿해 목록 타일보다 화질이 나빠 보인다.
                           한 장뿐이니 원본을 받는다 — 목록은 장수가 많아 썸네일 유지 */''}
@@ -807,8 +811,12 @@ function Sheet({ card, entry, tab, styleName, statLabels, seriesName, initialGen
 }
 
 /* ── 확대 ─────────────────────────────────────────────── */
-function Zoom({ list, start, onClose }) {
+function Zoom({ list, start, favEntry, onClose }) {
  const [i,setI]=useState(start),layer=useRef(),live=useRef();live.current=onClose;
+ /* 즐겨찾기(2026-11-12 사용자 「크게보기에도 즐겨찾기 추가 다 해야돼」) — 지금 넘겨 보고 있는 그림 한 장. 칸은 상세의 favEntry 그대로.
+    알림은 크게 보기 안, 위 띠 바로 밑(바깥 알림은 이 층 밑에 깔리고, 아래는 폰의 넘기기 단추 자리) */
+ const favs=useFavorites(),[favNote,sayFav]=useToast(),file=list[i],faved=favs.some(x=>x.a==='gundam'&&x.file===file);
+ const toggleFav=()=>{if(!FAV||!favEntry)return;const on=FAV.toggle(favEntry(file));sayFav(on?FAV_TEXT.added:faved?FAV_TEXT.removed:FAV_TEXT.blocked);};
  const touch=useRef(null),step=d=>setI(p=>(p+d+list.length)%list.length);
  /* 원본 크기 — 제 픽셀 크기로 펼쳐 이 칸 안에서 민다. 예전엔 그림 파일을 새 창으로 열었는데, 홈 화면 앱에서는
     같은 앱 창에 그림만 떠서 돌아올 길이 없었다(2026-10-20). 넘기면 다시 화면에 맞춘다 */
@@ -816,7 +824,7 @@ function Zoom({ list, start, onClose }) {
  useEffect(()=>setActual(false),[i]);
  useLayoutEffect(()=>modalFocus(layer.current,()=>live.current(),'.sheet .art'),[]);
  useLayoutEffect(()=>{const key=e=>{if(e.altKey||e.ctrlKey||e.metaKey)return;if(['ArrowRight','ArrowLeft'].includes(e.key)){e.preventDefault();step(e.key==='ArrowRight'?1:-1);}};addEventListener('keydown',key);return()=>removeEventListener('keydown',key);},[list.length]);
- return html`<div ref=${layer} class="zoom-layer" role="dialog" aria-modal="true" aria-label="크게 감상하기"><div class="zoom-bar"><b>일러스트 감상</b><span aria-live="polite">${i+1} / ${list.length}</span><button type="button" class="zoom-open" aria-pressed=${actual} onClick=${()=>setActual(v=>!v)}>${actual?'화면에 맞추기':'원본 크기'}</button><button class="zoom-close" data-dialog-close onClick=${onClose} aria-label="감상 닫기">✕</button></div><div class=${'zoom-body'+(actual?' actual':'')} onPointerDown=${e=>{if(!actual&&!e.target.closest('button'))touch.current={x:e.clientX,y:e.clientY};}} onPointerUp=${e=>{if(!touch.current)return;const dx=e.clientX-touch.current.x,dy=e.clientY-touch.current.y;touch.current=null;if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)*1.5)step(dx<0?1:-1);}} onPointerCancel=${()=>{touch.current=null;}}><img width="800" height="1200" src=${AIMG.imgURL(list[i])} alt="선택한 일러스트" draggable="false"/><div class="zoom-nav"><button class="zoom-prev" disabled=${list.length<2} onClick=${()=>step(-1)} aria-label="이전 그림">‹</button><button class="zoom-next" disabled=${list.length<2} onClick=${()=>step(1)} aria-label="다음 그림">›</button></div></div><div class="zoom-footer"><span class="viewer-keyboard">← → 그림 넘기기 · Esc 닫기</span><span class="viewer-touch">좌우로 밀어 그림 넘기기</span></div></div>`;
+ return html`<div ref=${layer} class="zoom-layer" role="dialog" aria-modal="true" aria-label="크게 감상하기"><div class="zoom-bar"><b>일러스트 감상</b><span aria-live="polite">${i+1} / ${list.length}</span><button type="button" class="zoom-fav" id="zoom-fav" aria-pressed=${faved} disabled=${!FAV||!favEntry} title=${FAV_TEXT.note} onClick=${toggleFav}><span aria-hidden="true">${faved?'♥':'♡'}</span>${FAV_TEXT.label}</button><button type="button" class="zoom-open" aria-pressed=${actual} onClick=${()=>setActual(v=>!v)}>${actual?'화면에 맞추기':'원본 크기'}</button><button class="zoom-close" data-dialog-close onClick=${onClose} aria-label="감상 닫기">✕</button></div>${favNote}<div class=${'zoom-body'+(actual?' actual':'')} onPointerDown=${e=>{if(!actual&&!e.target.closest('button'))touch.current={x:e.clientX,y:e.clientY};}} onPointerUp=${e=>{if(!touch.current)return;const dx=e.clientX-touch.current.x,dy=e.clientY-touch.current.y;touch.current=null;if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)*1.5)step(dx<0?1:-1);}} onPointerCancel=${()=>{touch.current=null;}}><img width="800" height="1200" src=${AIMG.imgURL(list[i])} alt="선택한 일러스트" draggable="false"/><div class="zoom-nav"><button class="zoom-prev" disabled=${list.length<2} onClick=${()=>step(-1)} aria-label="이전 그림">‹</button><button class="zoom-next" disabled=${list.length<2} onClick=${()=>step(1)} aria-label="다음 그림">›</button></div></div><div class="zoom-footer"><span class="viewer-keyboard">← → 그림 넘기기 · Esc 닫기</span><span class="viewer-touch">좌우로 밀어 그림 넘기기</span></div></div>`;
 }
 
 /* ── 화면 ─────────────────────────────────────────────── */
@@ -1180,9 +1188,9 @@ function App() {
                 initialStyle=${openAt ? openAt.style : ''} initialPick=${openAt ? openAt.f : null}
                 promptText=${data.prompt[open.name] || ''} memo=${data.memo[open.name] || ''}
                 onCopy=${copyPrompt} onToast=${showToast}
-                onZoom=${(list, i) => setZoom({ list, i })} onClose=${closeSheet} />`}
+                onZoom=${(list, i, favEntry) => setZoom({ list, i, favEntry })} onClose=${closeSheet} />`}
 
-    ${zoom && html`<${Zoom} list=${zoom.list} start=${zoom.i} onClose=${() => setZoom(null)} />`}
+    ${zoom && html`<${Zoom} list=${zoom.list} start=${zoom.i} favEntry=${zoom.favEntry} onClose=${() => setZoom(null)} />`}
     ${toast}`;
 }
 
