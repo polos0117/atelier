@@ -36,7 +36,7 @@
 <script src="lib/scene-motion.js?v=1"></script>
 <script src="lib/dex-motion.js?v=1"></script>
 <!-- 즐겨찾기 — lib/favorites.js(네 공방과 공방 모음이 글자 하나 다르지 않게 나눠 쓴다). 담은 그림은 공방 모음의 /favorites.html 이 모아 보여 준다 -->
-<script src="lib/favorites.js?v=1"></script>
+<script src="lib/favorites.js?v=2"></script>
 <!-- 도트 — lib/sprite-actor.js(공방 모음의 공용 재생기) · data/sprites.json. 도트가 있는 기체는 목록 칸에 「도트」 표, 상세 시트에 작은 무대 한 줄 -->
 <script src="lib/sprite-actor.js?v=4"></script>
 <link rel="stylesheet" href="lib/sprite-actor.css?v=1">
@@ -694,7 +694,7 @@ function Sheet({ card, entry, tab, styleName, statLabels, seriesName, initialGen
   const toggleFav = () => {
     if (!FAV || !shown) return;
     const on = FAV.toggle(favEntry(shown));
-    if (onToast) onToast(on ? FAV_TEXT.added : faved ? FAV_TEXT.removed : FAV_TEXT.blocked);
+    if (onToast) onToast(on ? FAV_TEXT.added : faved ? FAV_TEXT.removed : FAV.message() || FAV_TEXT.blocked);
   };
 
   return html`
@@ -816,7 +816,7 @@ function Zoom({ list, start, favEntry, onClose }) {
  /* 즐겨찾기(2026-11-12 사용자 「크게보기에도 즐겨찾기 추가 다 해야돼」) — 지금 넘겨 보고 있는 그림 한 장. 칸은 상세의 favEntry 그대로.
     알림은 크게 보기 안, 위 띠 바로 밑(바깥 알림은 이 층 밑에 깔리고, 아래는 폰의 넘기기 단추 자리) */
  const favs=useFavorites(),[favNote,sayFav]=useToast(),file=list[i],faved=favs.some(x=>x.a==='gundam'&&x.file===file);
- const toggleFav=()=>{if(!FAV||!favEntry)return;const on=FAV.toggle(favEntry(file));sayFav(on?FAV_TEXT.added:faved?FAV_TEXT.removed:FAV_TEXT.blocked);};
+ const toggleFav=()=>{if(!FAV||!favEntry)return;const on=FAV.toggle(favEntry(file));sayFav(on?FAV_TEXT.added:faved?FAV_TEXT.removed:FAV.message()||FAV_TEXT.blocked);};
  const touch=useRef(null),step=d=>setI(p=>(p+d+list.length)%list.length);
  /* 원본 크기 — 제 픽셀 크기로 펼쳐 이 칸 안에서 민다. 예전엔 그림 파일을 새 창으로 열었는데, 홈 화면 앱에서는
     같은 앱 창에 그림만 떠서 돌아올 길이 없었다(2026-10-20). 넘기면 다시 화면에 맞춘다 */

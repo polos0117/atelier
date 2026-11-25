@@ -10,7 +10,7 @@
 
 기체별 설정·생성 이력은 [generation/README.md](generation/README.md)를 따른다. 기본 기록 내보내기는 한 기체의 `settings.json`이며, 완료한 `runs/` 기록은 보존한다. 신규 작업에서 공용 JSON 전체를 다시 올리는 방식을 기본으로 사용하지 않는다.
 
-즐겨찾기 `lib/favorites.js` 는 공방 모음(polos0117.github.io)의 `favorites.js` 를 글자 하나 다르지 않게 복사한 공용 모듈이다(열쇠 `atelier_favorites_v1`, 약속은 그쪽 README 「즐겨찾기」절). 고치면 다섯 저장소를 같이 고치고, `node tests/dex-favorites.cjs` 가 원본과 견준다.
+즐겨찾기 `lib/favorites.js` 는 공방 모음(polos0117.github.io)의 `favorites.js` 를 글자 하나 다르지 않게 복사한 공용 모듈이다(열쇠 `atelier_favorites_v1`, 약속은 그쪽 README 「즐겨찾기」절). 2026-11-25부터 원본은 style-atelier `shared/lib/favorites.js` — `node shared/sync.cjs` 가 덮으니 여기서 고치지 않는다. 3000칸까지, 가득 차면 오래된 것을 빼지 않고 담기를 거절한다(하트 알림은 `FAV.message() || 막힘 말`). `node tests/dex-favorites.cjs` 가 옆 공방 모음 사본과 견준다.
 
 첫 화면(격납고)의 **도트 데크**(`index.html` `.hangar-dots` · `gundam/hangar-dots.js`)와 도감 상세의 도트 줄(그림 바로 아래)은 `data/sprites.json` 의 도트 기체가 거니는 자리다 — 배경은 `backgrounds/hangar.webp`(도트 공방과 같은 열쇠로 받은 픽셀아트 격납고, 기록 `records/backgrounds/hangar.json`, 원본 PNG 는 안 올린다). 도트가 없으면 데크째 없다. 목록 칸의 「도트」 표에는 정지 도트 작은 그림이 붙는다.
 
